@@ -7,27 +7,33 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <h1>Quotes</h1>
         <h1>Quotes</h1>
         <p>
-            The <Markup.Code>{'<blockquote>'}</Markup.Code> element must not be used to indent non-quote text.
+            The <Markup.Code>{'<blockquote>'}</Markup.Code> element must not be
+            used to indent non-quote text.
         </p>
 
         <h2>Why it matters</h2>
         <p>
-            The <Markup.Code>{'<blockquote>'}</Markup.Code> is a semantic element that conveys to assistive technologies that it contains a
-            quote. People who use assistive technologies might be confused if this semantic element is used instead as a quick way to style
+            The <Markup.Code>{'<blockquote>'}</Markup.Code> is a semantic
+            element that conveys to assistive technologies that it contains a
+            quote. People who use assistive technologies might be confused if
+            this semantic element is used instead as a quick way to style
             non-quote text.
         </p>
 
         <h2>How to fix</h2>
         <p>
-            Do not use the <Markup.Code>{'<blockquote>'}</Markup.Code> element. Instead, use CSS <Markup.Code>margin</Markup.Code>{' '}
-            properties to create space around blocks of text.
+            Do not use the <Markup.Code>{'<blockquote>'}</Markup.Code> element.
+            Instead, use CSS <Markup.Code>margin</Markup.Code> properties to
+            create space around blocks of text.
         </p>
 
         <Markup.PassFail
             failText={
                 <p>
-                    A link is enclosed in a <Markup.Code>{'<blockquote>'}</Markup.Code> element to increase the spacing around it and
-                    thereby make it visually prominent.
+                    A link is enclosed in a{' '}
+                    <Markup.Code>{'<blockquote>'}</Markup.Code> element to
+                    increase the spacing around it and thereby make it visually
+                    prominent.
                 </p>
             }
             failExample={`<p>The Rentenmark was a currency introduced in 1923 in Weimar Germany after hyperinflation
@@ -35,7 +41,12 @@ export const infoAndExamples = create(({ Markup, Link }) => (
            [<blockquote>]
            <a href="/wiki/German_Rentenmark" title="German Rentenmark">Learn more about the Rentenmark</a>
            [</blockquote>]`}
-            passText={<p>Spacing around the link is achieved using the CSS margin property.</p>}
+            passText={
+                <p>
+                    Spacing around the link is achieved using the CSS margin
+                    property.
+                </p>
+            }
             passExample={`<style>
             [a {margin: 70px;}]
             </style>
@@ -64,7 +75,8 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <h3>Common failures</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F43">
-                Failure of Success Criterion 1.3.1 due to using structural markup in a way that does not represent relationships in the
+                Failure of Success Criterion 1.3.1 due to using structural
+                markup in a way that does not represent relationships in the
                 content
             </Markup.HyperLink>
         </Markup.Links>

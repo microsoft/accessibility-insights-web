@@ -40,7 +40,8 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             id: FeatureFlags.showAllAssessments,
             defaultValue: false,
             displayableName: 'Show all assessments',
-            displayableDescription: 'Show all assessments, even the in-development ones',
+            displayableDescription:
+                'Show all assessments, even the in-development ones',
             isPreviewFeature: false,
             forceDefault: false,
         },
@@ -48,7 +49,8 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             id: FeatureFlags.logTelemetryToConsole,
             defaultValue: false,
             displayableName: 'Log telemetry to console',
-            displayableDescription: 'Write telemetry payload information to the developer tools console.',
+            displayableDescription:
+                'Write telemetry payload information to the developer tools console.',
             isPreviewFeature: false,
             forceDefault: false,
         },
@@ -56,7 +58,8 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             id: FeatureFlags.showAllFeatureFlags,
             defaultValue: false,
             displayableName: 'Show all feature flags',
-            displayableDescription: 'Show all feature flags in the Preview Features panel.',
+            displayableDescription:
+                'Show all feature flags in the Preview Features panel.',
             isPreviewFeature: false,
             forceDefault: false,
         },
@@ -64,7 +67,8 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             id: FeatureFlags.scoping,
             defaultValue: false,
             displayableName: 'Scoping experience',
-            displayableDescription: 'Enable scoping to limit scanning to selected portions of the webpage.',
+            displayableDescription:
+                'Enable scoping to limit scanning to selected portions of the webpage.',
             isPreviewFeature: false,
             forceDefault: false,
         },
@@ -92,7 +96,8 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             id: FeatureFlags.universalCardsUI,
             defaultValue: false,
             displayableName: 'Enable universal cards UI',
-            displayableDescription: 'Show results in cards using the universal cards UI.',
+            displayableDescription:
+                'Show results in cards using the universal cards UI.',
             isPreviewFeature: false,
             forceDefault: false,
         },

@@ -11,13 +11,17 @@ module.exports = function(grunt) {
     };
 
     const options = {
-        appInsightsInstrumentationKey: grunt.option('app-insights-instrumentation-key'),
+        appInsightsInstrumentationKey: grunt.option(
+            'app-insights-instrumentation-key',
+        ),
         extensionVersion: grunt.option('extension-version'),
         webstoreAppId: grunt.option('webstore-app-id'),
     };
 
     if (!options.appInsightsInstrumentationKey) {
-        grunt.fail.fatal('app-insights-instrumentation-key required to publish');
+        grunt.fail.fatal(
+            'app-insights-instrumentation-key required to publish',
+        );
     }
     if (!grunt.option('extension-version')) {
         grunt.fail.fatal('extension-version required to publish');
@@ -47,20 +51,24 @@ module.exports = function(grunt) {
 
     const versionFromDate = () => {
         const now = new Date();
-        return `${now.getUTCFullYear()}.${now.getUTCMonth() + 1}.${now.getUTCDate()}.${now.getUTCHours() * 100 + now.getUTCMinutes()}`;
+        return `${now.getUTCFullYear()}.${now.getUTCMonth() +
+            1}.${now.getUTCDate()}.${now.getUTCHours() * 100 +
+            now.getUTCMinutes()}`;
     };
 
     grunt.registerTask('update-config', function() {
         const configJSONPath = 'product/insights.config.json';
         const config = grunt.file.readJSON(configJSONPath);
 
-        config.options.appInsightsInstrumentationKey = options.appInsightsInstrumentationKey;
+        config.options.appInsightsInstrumentationKey =
+            options.appInsightsInstrumentationKey;
 
         const configJSPath = 'product/insights.config.js';
         const configJSON = JSON.stringify(config, undefined, 4);
         grunt.file.write(configJSONPath, configJSON);
 
-        const copyrightHeader = '// Copyright (c) Microsoft Corporation. All rights reserved.\n// Licensed under the MIT License.\n';
+        const copyrightHeader =
+            '// Copyright (c) Microsoft Corporation. All rights reserved.\n// Licensed under the MIT License.\n';
         const configJS = `${copyrightHeader}window.insights = ${configJSON}`;
         grunt.file.write(configJSPath, configJS);
     });
@@ -75,7 +83,11 @@ module.exports = function(grunt) {
         manifest.version = version;
         grunt.file.write(manifestPath, JSON.stringify(manifest, undefined, 4));
     });
-    grunt.registerTask('zip', ['update-config', 'update-manifest', 'compress:extension']);
+    grunt.registerTask('zip', [
+        'update-config',
+        'update-manifest',
+        'compress:extension',
+    ]);
     grunt.registerTask('checkWebStoreAccount', () => {
         if (!grunt.option('webstore-app-id')) {
             grunt.fail.fatal('webstore-app-id required to publish');
@@ -90,7 +102,11 @@ module.exports = function(grunt) {
             grunt.fail.fatal('webstore-refresh-token required to publish');
         }
     });
-    grunt.registerTask('publish', ['zip', 'checkWebStoreAccount', 'webstore_upload:open']);
+    grunt.registerTask('publish', [
+        'zip',
+        'checkWebStoreAccount',
+        'webstore_upload:open',
+    ]);
 
     grunt.registerTask('default', ['publish']);
 };

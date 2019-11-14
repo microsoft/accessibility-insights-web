@@ -15,7 +15,9 @@ describe('getPlatform', () => {
             .returns(() => 'MACOSX')
             .verifiable(Times.once());
 
-        expect(getPlatform(winMock.object).devToolsShortcut).toEqual(MAC_SHORTCUT);
+        expect(getPlatform(winMock.object).devToolsShortcut).toEqual(
+            MAC_SHORTCUT,
+        );
         winMock.verifyAll();
     });
 
@@ -26,7 +28,9 @@ describe('getPlatform', () => {
             .returns(() => 'Win32')
             .verifiable(Times.once());
 
-        expect(getPlatform(winMock.object).devToolsShortcut).toEqual(WIN_LINUX_SHORTCUT);
+        expect(getPlatform(winMock.object).devToolsShortcut).toEqual(
+            WIN_LINUX_SHORTCUT,
+        );
         winMock.verifyAll();
     });
 
@@ -37,7 +41,9 @@ describe('getPlatform', () => {
             .returns(() => 'other')
             .verifiable(Times.once());
 
-        expect(getPlatform(winMock.object).devToolsShortcut).toEqual(WIN_LINUX_SHORTCUT);
+        expect(getPlatform(winMock.object).devToolsShortcut).toEqual(
+            WIN_LINUX_SHORTCUT,
+        );
         winMock.verifyAll();
     });
 });

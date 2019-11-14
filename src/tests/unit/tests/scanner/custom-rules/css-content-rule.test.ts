@@ -12,7 +12,9 @@ describe('verify meaningful semantic configs', () => {
         expect(cssContentConfiguration.rule.any[0]).toBe('css-content');
         expect(cssContentConfiguration.rule.any.length).toBe(1);
         expect(cssContentConfiguration.checks[0].id).toBe('css-content');
-        expect(cssContentConfiguration.checks[0].evaluate(null, null, null, null)).toBe(true);
+        expect(
+            cssContentConfiguration.checks[0].evaluate(null, null, null, null),
+        ).toBe(true);
     });
 });
 
@@ -20,8 +22,18 @@ describe('verify matches', () => {
     let divElementFixture: HTMLDivElement;
     let headingElementFixture: HTMLHeadingElement;
 
-    const getComputedStyleMock = GlobalMock.ofInstance(window.getComputedStyle, 'getComputedStyle', window, MockBehavior.Strict);
-    const axeVisibilityMock = GlobalMock.ofInstance(axe.commons.dom.isVisible, 'isVisible', axe.commons.dom, MockBehavior.Strict);
+    const getComputedStyleMock = GlobalMock.ofInstance(
+        window.getComputedStyle,
+        'getComputedStyle',
+        window,
+        MockBehavior.Strict,
+    );
+    const axeVisibilityMock = GlobalMock.ofInstance(
+        axe.commons.dom.isVisible,
+        'isVisible',
+        axe.commons.dom,
+        MockBehavior.Strict,
+    );
 
     beforeEach(() => {
         divElementFixture = document.createElement('div');
@@ -45,39 +57,66 @@ describe('verify matches', () => {
 
     const isElementVisible = [true, false];
 
-    test.each(isElementVisible)('element has pseudo selector but isVisible is toggled: %s', isVisibleParam => {
-        axeVisibilityMock
-            .setup(isVisible => isVisible(headingElementFixture))
-            .returns(() => isVisibleParam)
-            .verifiable();
+    test.each(isElementVisible)(
+        'element has pseudo selector but isVisible is toggled: %s',
+        isVisibleParam => {
+            axeVisibilityMock
+                .setup(isVisible => isVisible(headingElementFixture))
+                .returns(() => isVisibleParam)
+                .verifiable();
 
-        getComputedStyleMock
-            .setup(getComputedStyle => getComputedStyle(headingElementFixture, It.is(checkIfSelectorIsValid)))
-            .returns(style => ({ content: 'test' } as CSSStyleDeclaration))
-            .verifiable(Times.atLeastOnce());
+            getComputedStyleMock
+                .setup(getComputedStyle =>
+                    getComputedStyle(
+                        headingElementFixture,
+                        It.is(checkIfSelectorIsValid),
+                    ),
+                )
+                .returns(style => ({ content: 'test' } as CSSStyleDeclaration))
+                .verifiable(Times.atLeastOnce());
 
-        testSemantics(divElementFixture, isVisibleParam);
-    });
+            testSemantics(divElementFixture, isVisibleParam);
+        },
+    );
 
     const contentSwitchParameters = [
         { pseudoSelectorContent: 'none', testExpectation: false },
         { pseudoSelectorContent: 'non-none', testExpectation: true },
     ];
-    test.each(contentSwitchParameters)('element isVisible but pseudo selector content is toggled: %p', testCaseParameters => {
-        axeVisibilityMock
-            .setup(isVisible => isVisible(headingElementFixture))
-            .returns(() => true)
-            .verifiable();
+    test.each(contentSwitchParameters)(
+        'element isVisible but pseudo selector content is toggled: %p',
+        testCaseParameters => {
+            axeVisibilityMock
+                .setup(isVisible => isVisible(headingElementFixture))
+                .returns(() => true)
+                .verifiable();
 
-        getComputedStyleMock
-            .setup(getComputedStyle => getComputedStyle(headingElementFixture, It.is(checkIfSelectorIsValid)))
-            .returns(style => ({ content: testCaseParameters.pseudoSelectorContent } as CSSStyleDeclaration))
-            .verifiable(Times.atLeastOnce());
+            getComputedStyleMock
+                .setup(getComputedStyle =>
+                    getComputedStyle(
+                        headingElementFixture,
+                        It.is(checkIfSelectorIsValid),
+                    ),
+                )
+                .returns(
+                    style =>
+                        ({
+                            content: testCaseParameters.pseudoSelectorContent,
+                        } as CSSStyleDeclaration),
+                )
+                .verifiable(Times.atLeastOnce());
 
-        testSemantics(divElementFixture, testCaseParameters.testExpectation);
-    });
+            testSemantics(
+                divElementFixture,
+                testCaseParameters.testExpectation,
+            );
+        },
+    );
 
-    function testSemantics(elements: HTMLElement, expectedResult: boolean): void {
+    function testSemantics(
+        elements: HTMLElement,
+        expectedResult: boolean,
+    ): void {
         let result: boolean;
 
         GlobalScope.using(getComputedStyleMock, axeVisibilityMock).with(() => {

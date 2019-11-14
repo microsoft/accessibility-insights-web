@@ -7,6 +7,8 @@ function alterRequirementReportModel(model: RequirementReportModel): void {
     model.showPassingInstances = false;
 }
 
-export const excludePassingInstancesFromAssessmentReport = assessmentReportExtensionPoint.define({
-    alterRequirementReportModel,
-});
+export const excludePassingInstancesFromAssessmentReport = assessmentReportExtensionPoint.define(
+    {
+        alterRequirementReportModel,
+    },
+);

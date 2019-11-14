@@ -27,7 +27,10 @@ export class TabContextStoreHub implements StoreHub {
     public unifiedScanResultStore: UnifiedScanResultStore;
     public cardSelectionStore: CardSelectionStore;
 
-    constructor(actionHub: ActionHub, visualizationConfigurationFactory: VisualizationConfigurationFactory) {
+    constructor(
+        actionHub: ActionHub,
+        visualizationConfigurationFactory: VisualizationConfigurationFactory,
+    ) {
         this.visualizationStore = new VisualizationStore(
             actionHub.visualizationActions,
             actionHub.tabActions,
@@ -42,7 +45,10 @@ export class TabContextStoreHub implements StoreHub {
         );
         this.visualizationScanResultStore.initialize();
 
-        this.tabStore = new TabStore(actionHub.tabActions, actionHub.visualizationActions);
+        this.tabStore = new TabStore(
+            actionHub.tabActions,
+            actionHub.visualizationActions,
+        );
         this.tabStore.initialize();
 
         this.devToolStore = new DevToolStore(actionHub.devToolActions);
@@ -56,16 +62,26 @@ export class TabContextStoreHub implements StoreHub {
         );
         this.detailsViewStore.initialize();
 
-        this.inspectStore = new InspectStore(actionHub.inspectActions, actionHub.tabActions);
+        this.inspectStore = new InspectStore(
+            actionHub.inspectActions,
+            actionHub.tabActions,
+        );
         this.inspectStore.initialize();
 
-        this.pathSnippetStore = new PathSnippetStore(actionHub.pathSnippetActions);
+        this.pathSnippetStore = new PathSnippetStore(
+            actionHub.pathSnippetActions,
+        );
         this.pathSnippetStore.initialize();
 
-        this.unifiedScanResultStore = new UnifiedScanResultStore(actionHub.scanResultActions);
+        this.unifiedScanResultStore = new UnifiedScanResultStore(
+            actionHub.scanResultActions,
+        );
         this.unifiedScanResultStore.initialize();
 
-        this.cardSelectionStore = new CardSelectionStore(actionHub.cardSelectionActions, actionHub.scanResultActions);
+        this.cardSelectionStore = new CardSelectionStore(
+            actionHub.cardSelectionActions,
+            actionHub.scanResultActions,
+        );
         this.cardSelectionStore.initialize();
     }
 

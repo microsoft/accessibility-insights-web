@@ -9,11 +9,18 @@ import { DictionaryStringTo } from '../../types/common-types';
 
 export const visualHelperText = 'Visual helper';
 
-export abstract class BaseVisualHelperToggle extends React.Component<VisualHelperToggleConfig> {
+export abstract class BaseVisualHelperToggle extends React.Component<
+    VisualHelperToggleConfig
+> {
     public render(): JSX.Element {
-        const filteredInstances = this.filterInstancesByTestStep(this.props.assessmentNavState, this.props.instancesMap);
+        const filteredInstances = this.filterInstancesByTestStep(
+            this.props.assessmentNavState,
+            this.props.instancesMap,
+        );
         const isDisabled: boolean = this.isDisabled(filteredInstances);
-        const disabledMessage = this.renderNoMatchingElementsMessage(isDisabled);
+        const disabledMessage = this.renderNoMatchingElementsMessage(
+            isDisabled,
+        );
         const onClick = this.onClick;
         const isChecked = this.isChecked(filteredInstances);
 
@@ -32,9 +39,13 @@ export abstract class BaseVisualHelperToggle extends React.Component<VisualHelpe
         );
     }
 
-    protected abstract isDisabled(filteredInstances: GeneratedAssessmentInstance<{}, {}>[]): boolean;
+    protected abstract isDisabled(
+        filteredInstances: GeneratedAssessmentInstance<{}, {}>[],
+    ): boolean;
 
-    protected abstract isChecked(instances: GeneratedAssessmentInstance<{}, {}>[]): boolean;
+    protected abstract isChecked(
+        instances: GeneratedAssessmentInstance<{}, {}>[],
+    ): boolean;
 
     protected filterInstancesByTestStep(
         assessmentNavState,
@@ -48,13 +59,20 @@ export abstract class BaseVisualHelperToggle extends React.Component<VisualHelpe
             }
 
             const testStepKeys = _.keys(instance.testStepResults);
-            return _.includes(testStepKeys, selectedTestStep) && instance.testStepResults[selectedTestStep] != null;
+            return (
+                _.includes(testStepKeys, selectedTestStep) &&
+                instance.testStepResults[selectedTestStep] != null
+            );
         });
     }
 
     private renderNoMatchingElementsMessage(isDisabled: boolean): JSX.Element {
         if (isDisabled) {
-            return <span className="no-matching-elements">No matching/failing instances were found</span>;
+            return (
+                <span className="no-matching-elements">
+                    No matching/failing instances were found
+                </span>
+            );
         }
 
         return null;

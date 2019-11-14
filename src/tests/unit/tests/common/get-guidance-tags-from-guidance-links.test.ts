@@ -4,19 +4,32 @@ import { GetGuidanceTagsFromGuidanceLinks } from '../../../../common/get-guidanc
 import { GuidanceLink } from '../../../../scanner/rule-to-links-mappings';
 
 describe('GetGuidanceTagsFromGuidanceLinks', () => {
-    it.each([null, [], [undefined]])('handles invalid arg %p', (links: GuidanceLink[]) => {
-        expect(GetGuidanceTagsFromGuidanceLinks(links)).toEqual([]);
-    });
+    it.each([null, [], [undefined]])(
+        'handles invalid arg %p',
+        (links: GuidanceLink[]) => {
+            expect(GetGuidanceTagsFromGuidanceLinks(links)).toEqual([]);
+        },
+    );
 
     const testLink1: GuidanceLink = {
         href: null,
         text: null,
-        tags: [{ id: 'guidanceLinks-tags-id-1', displayText: 'guidanceLinks-tags-displayText-1' }],
+        tags: [
+            {
+                id: 'guidanceLinks-tags-id-1',
+                displayText: 'guidanceLinks-tags-displayText-1',
+            },
+        ],
     };
     const testLink2: GuidanceLink = {
         href: null,
         text: null,
-        tags: [{ id: 'guidanceLinks-tags-id-2', displayText: 'guidanceLinks-tags-displayText-2' }],
+        tags: [
+            {
+                id: 'guidanceLinks-tags-id-2',
+                displayText: 'guidanceLinks-tags-displayText-2',
+            },
+        ],
     };
 
     it('handles a valid list with 1 link', () => {
@@ -24,6 +37,8 @@ describe('GetGuidanceTagsFromGuidanceLinks', () => {
     });
 
     it('handles a valid list with 2 links', () => {
-        expect(GetGuidanceTagsFromGuidanceLinks([testLink1, testLink2])).toMatchSnapshot();
+        expect(
+            GetGuidanceTagsFromGuidanceLinks([testLink1, testLink2]),
+        ).toMatchSnapshot();
     });
 });

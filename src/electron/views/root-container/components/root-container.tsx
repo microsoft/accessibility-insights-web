@@ -7,7 +7,10 @@ import { UserConfigurationStoreData } from 'common/types/store-data/user-configu
 import { DeviceStoreData } from 'electron/flux/types/device-store-data';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
-import { AutomatedChecksView, AutomatedChecksViewDeps } from 'electron/views/automated-checks/automated-checks-view';
+import {
+    AutomatedChecksView,
+    AutomatedChecksViewDeps,
+} from 'electron/views/automated-checks/automated-checks-view';
 import {
     DeviceConnectViewContainer,
     DeviceConnectViewContainerDeps,
@@ -32,7 +35,10 @@ export type RootContainerState = {
     cardSelectionStoreData: CardSelectionStoreData;
 };
 
-export class RootContainer extends React.Component<RootContainerProps, RootContainerState> {
+export class RootContainer extends React.Component<
+    RootContainerProps,
+    RootContainerState
+> {
     constructor(props: RootContainerProps) {
         super(props);
 
@@ -46,8 +52,12 @@ export class RootContainer extends React.Component<RootContainerProps, RootConta
                     deviceStoreData={this.state.deviceStoreData}
                     scanStoreData={this.state.scanStoreData}
                     windowStateStoreData={this.state.windowStateStoreData}
-                    unifiedScanResultStoreData={this.state.unifiedScanResultStoreData}
-                    userConfigurationStoreData={this.state.userConfigurationStoreData}
+                    unifiedScanResultStoreData={
+                        this.state.unifiedScanResultStoreData
+                    }
+                    userConfigurationStoreData={
+                        this.state.userConfigurationStoreData
+                    }
                     cardSelectionStoreData={this.state.cardSelectionStoreData}
                     {...this.props}
                 />
@@ -56,7 +66,8 @@ export class RootContainer extends React.Component<RootContainerProps, RootConta
         return (
             <DeviceConnectViewContainer
                 {...{
-                    userConfigurationStoreData: this.state.userConfigurationStoreData,
+                    userConfigurationStoreData: this.state
+                        .userConfigurationStoreData,
                     deviceStoreData: this.state.deviceStoreData,
                     windowStateStoreData: this.state.windowStateStoreData,
                     ...this.props,
@@ -66,7 +77,9 @@ export class RootContainer extends React.Component<RootContainerProps, RootConta
     }
 
     public componentDidMount(): void {
-        this.props.deps.storeHub.addChangedListenerToAllStores(this.onStoresChange);
+        this.props.deps.storeHub.addChangedListenerToAllStores(
+            this.onStoresChange,
+        );
     }
 
     private onStoresChange = () => {

@@ -10,26 +10,40 @@ export interface AssessmentSummaryDetailsProps {
     testSummaries: AssessmentSummaryReportModel[];
 }
 
-export class AssessmentSummaryDetails extends React.Component<AssessmentSummaryDetailsProps> {
+export class AssessmentSummaryDetails extends React.Component<
+    AssessmentSummaryDetailsProps
+> {
     public render(): JSX.Element {
         return (
             <div role="table" className="assessment-summary-details">
-                <div role="rowgroup" className="assessment-summary-details-body">
+                <div
+                    role="rowgroup"
+                    className="assessment-summary-details-body"
+                >
                     {this.getTestDetailsList(this.props.testSummaries)}
                 </div>
             </div>
         );
     }
 
-    private getTestDetailsList(summaries: AssessmentSummaryReportModel[]): JSX.Element[] {
+    private getTestDetailsList(
+        summaries: AssessmentSummaryReportModel[],
+    ): JSX.Element[] {
         return summaries.map(testSummary => (
-            <div role="row" key={testSummary.displayName} className="assessment-summary-details-row">
+            <div
+                role="row"
+                key={testSummary.displayName}
+                className="assessment-summary-details-row"
+            >
                 <div className="test-summary">
                     <div role="cell" className="test-summary-display-name">
                         {testSummary.displayName}
                     </div>
                     <div role="cell" className="test-summary-status">
-                        {testSummary.pass + testSummary.incomplete + testSummary.fail > 7 ? (
+                        {testSummary.pass +
+                            testSummary.incomplete +
+                            testSummary.fail >
+                        7 ? (
                             <OutcomeChipSet {...testSummary} />
                         ) : (
                             <OutcomeIconSet {...testSummary} />

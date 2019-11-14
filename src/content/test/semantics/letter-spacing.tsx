@@ -5,27 +5,38 @@ import { create, React } from '../../common';
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
         <h1>Letter spacing</h1>
-        <p>Spacing characters must not be used to increase the space between letters in a word.</p>
+        <p>
+            Spacing characters must not be used to increase the space between
+            letters in a word.
+        </p>
 
         <h2>Why it matters</h2>
         <p>
-            When spacing characters —such as spaces, tabs, line breaks, or carriage returns— are inserted to increase letter spacing,
-            assistive technologies might not recognize the word, with the result that they mispronounce it or spell it out. In some scripts,
-            such as Kanji, adding a space between characters can completely change their meaning.
+            When spacing characters —such as spaces, tabs, line breaks, or
+            carriage returns— are inserted to increase letter spacing, assistive
+            technologies might not recognize the word, with the result that they
+            mispronounce it or spell it out. In some scripts, such as Kanji,
+            adding a space between characters can completely change their
+            meaning.
         </p>
 
         <h2>How to fix</h2>
         <p>
-            Use the CSS <Markup.Code>letter-spacing</Markup.Code> property to adjust the space between the letters in a word. To maintain
-            consistent spacing when users adjust the font size, use a relative unit, such as <Markup.Code>em</Markup.Code>.
+            Use the CSS <Markup.Code>letter-spacing</Markup.Code> property to
+            adjust the space between the letters in a word. To maintain
+            consistent spacing when users adjust the font size, use a relative
+            unit, such as <Markup.Code>em</Markup.Code>.
         </p>
 
         <Markup.PassFail
-            failText={<p>Spaces are inserted between the letters of headings.</p>}
+            failText={
+                <p>Spaces are inserted between the letters of headings.</p>
+            }
             failExample={`<h2>[C O N T E N T S]</h2>`}
             passText={
                 <p>
-                    Spacing around the link is achieved using the CSS <Markup.Code>letter-spacing</Markup.Code> property.
+                    Spacing around the link is achieved using the CSS{' '}
+                    <Markup.Code>letter-spacing</Markup.Code> property.
                 </p>
             }
             passExample={`[<style>
@@ -56,7 +67,8 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <h3>Common failures</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F32">
-                Failure of Success Criterion 1.3.2 due to using white space characters to control spacing within a word
+                Failure of Success Criterion 1.3.2 due to using white space
+                characters to control spacing within a word
             </Markup.HyperLink>
         </Markup.Links>
     </>

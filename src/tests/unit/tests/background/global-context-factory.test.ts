@@ -36,10 +36,14 @@ describe('GlobalContextFactoryTest', () => {
         storageAdapterMock = Mock.ofType<StorageAdapter>();
         browserAdapterMock = Mock.ofType<BrowserAdapter>();
         commandsAdapterMock = Mock.ofType<CommandsAdapter>();
-        browserAdapterMock.setup(adapter => adapter.sendMessageToAllFramesAndTabs(It.isAny()));
+        browserAdapterMock.setup(adapter =>
+            adapter.sendMessageToAllFramesAndTabs(It.isAny()),
+        );
         telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler);
         telemetryDataFactoryMock = Mock.ofType(TelemetryDataFactory);
-        issueFilingServiceProviderMock = Mock.ofType(IssueFilingServiceProvider);
+        issueFilingServiceProviderMock = Mock.ofType(
+            IssueFilingServiceProvider,
+        );
 
         userDataStub = {};
         environmentInfoStub = {} as EnvironmentInfo;
@@ -65,7 +69,11 @@ describe('GlobalContextFactoryTest', () => {
         expect(globalContext).toBeInstanceOf(GlobalContext);
         expect(globalContext.interpreter).toBeInstanceOf(Interpreter);
         expect(globalContext.stores.commandStore).toBeInstanceOf(CommandStore);
-        expect(globalContext.stores.featureFlagStore).toBeInstanceOf(FeatureFlagStore);
-        expect(globalContext.stores.launchPanelStore).toBeInstanceOf(LaunchPanelStore);
+        expect(globalContext.stores.featureFlagStore).toBeInstanceOf(
+            FeatureFlagStore,
+        );
+        expect(globalContext.stores.launchPanelStore).toBeInstanceOf(
+            LaunchPanelStore,
+        );
     });
 });

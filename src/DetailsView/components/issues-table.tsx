@@ -22,7 +22,10 @@ import { DictionaryStringTo } from 'types/common-types';
 import { CardsView, CardsViewDeps } from './cards-view';
 import { ExportDialogDeps } from './export-dialog';
 import { IssuesDetailsList } from './issues-details-list';
-import { IssuesDetailsPane, IssuesDetailsPaneDeps } from './Issues-details-pane';
+import {
+    IssuesDetailsPane,
+    IssuesDetailsPaneDeps,
+} from './Issues-details-pane';
 import { IssuesTableHandler } from './issues-table-handler';
 import { ReportExportComponent } from './report-export-component';
 
@@ -56,12 +59,16 @@ export interface IssuesTableProps {
 
 export class IssuesTable extends React.Component<IssuesTableProps> {
     private configuration: VisualizationConfiguration;
-    public static readonly exportTextareaLabel: string = 'Provide result description';
-    public static readonly exportInstructions: string = 'Optional: please describe the result (it will be saved in the report).';
+    public static readonly exportTextareaLabel: string =
+        'Provide result description';
+    public static readonly exportInstructions: string =
+        'Optional: please describe the result (it will be saved in the report).';
 
     constructor(props: IssuesTableProps) {
         super(props);
-        this.configuration = props.visualizationConfigurationFactory.getConfiguration(VisualizationType.Issues);
+        this.configuration = props.visualizationConfigurationFactory.getConfiguration(
+            VisualizationType.Issues,
+        );
     }
 
     public render(): JSX.Element {
@@ -78,7 +85,9 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
         if (!this.props.subtitle) {
             return null;
         }
-        return <div className="issues-table-subtitle">{this.props.subtitle}</div>;
+        return (
+            <div className="issues-table-subtitle">{this.props.subtitle}</div>
+        );
     }
 
     private renderContent(): JSX.Element {
@@ -86,7 +95,9 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
             return this.renderSpinner('Loading...');
         }
 
-        return <div className="issues-table-content">{this.renderComponent()}</div>;
+        return (
+            <div className="issues-table-content">{this.renderComponent()}</div>
+        );
     }
 
     private renderCommandBar(): JSX.Element {
@@ -103,7 +114,8 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
     private getEmptyExportDescription = () => '';
 
     private renderExportButton(): JSX.Element {
-        const shouldShowButton = this.props.issuesEnabled && !this.props.scanning;
+        const shouldShowButton =
+            this.props.issuesEnabled && !this.props.scanning;
 
         if (shouldShowButton) {
             const { deps, scanResult, pageTitle, pageUrl } = this.props;
@@ -124,7 +136,9 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
                         pageUrl,
                         this.props.cardsViewData,
                     )}
-                    updatePersistedDescription={this.nullUpdatePersistedDescription}
+                    updatePersistedDescription={
+                        this.nullUpdatePersistedDescription
+                    }
                     getExportDescription={this.getEmptyExportDescription}
                 />
             );
@@ -153,7 +167,9 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
                     <CardsView
                         deps={this.props.deps}
                         cardsViewData={this.props.cardsViewData}
-                        userConfigurationStoreData={this.props.userConfigurationStoreData}
+                        userConfigurationStoreData={
+                            this.props.userConfigurationStoreData
+                        }
                         targetAppInfo={this.props.targetAppInfo}
                     />
                 }
@@ -183,7 +199,11 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
     private renderDisabledMessage(): JSX.Element {
         return (
             <div className="details-disabled-message" role="alert">
-                Turn on <Markup.Term>{this.configuration.displayableData.title}</Markup.Term> to see a list of failures.
+                Turn on{' '}
+                <Markup.Term>
+                    {this.configuration.displayableData.title}
+                </Markup.Term>{' '}
+                to see a list of failures.
             </div>
         );
     }
@@ -198,7 +218,9 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
                         issuesTableHandler={this.props.issuesTableHandler}
                         issuesSelection={this.props.issuesSelection}
                     />
-                    <div className="issue-detail-outer-container ms-Fabric">{this.getIssueDetailPane()}</div>
+                    <div className="issue-detail-outer-container ms-Fabric">
+                        {this.getIssueDetailPane()}
+                    </div>
                 </div>
             </>
         );
@@ -212,7 +234,9 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
                 pageTitle={this.props.pageTitle}
                 pageUrl={this.props.pageUrl}
                 featureFlagData={this.props.featureFlags}
-                userConfigurationStoreData={this.props.userConfigurationStoreData}
+                userConfigurationStoreData={
+                    this.props.userConfigurationStoreData
+                }
             />
         );
     }

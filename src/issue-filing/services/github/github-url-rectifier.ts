@@ -8,7 +8,9 @@ export const rectify: UrlRectifier = (url: string): string => {
         return `${url}/issues`;
     }
 
-    const ownerAndRepoAndSlash = new RegExp('^https?://github.com/[^/]+/[^/]+/$');
+    const ownerAndRepoAndSlash = new RegExp(
+        '^https?://github.com/[^/]+/[^/]+/$',
+    );
     if (ownerAndRepoAndSlash.test(url)) {
         return `${url}issues`;
     }

@@ -3,7 +3,12 @@
 import * as Q from 'q';
 import { WindowUtils } from '../../common/window-utils';
 import { TabStopEvent, TabStopsListener } from '../tab-stops-listener';
-import { AxeAnalyzerResult, FocusAnalyzerConfiguration, ScanBasePayload, ScanUpdatePayload } from './analyzer';
+import {
+    AxeAnalyzerResult,
+    FocusAnalyzerConfiguration,
+    ScanBasePayload,
+    ScanUpdatePayload,
+} from './analyzer';
 import { BaseAnalyzer } from './base-analyzer';
 
 export interface ProgressResult<T> {
@@ -41,22 +46,24 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
 
     protected getResults = (): Q.Promise<AxeAnalyzerResult> => {
         this.deferred = Q.defer<AxeAnalyzerResult>();
-        this.tabStopsListener.setTabEventListenerOnMainWindow((tabEvent: TabStopEvent) => {
-            if (this.onTabbedTimeoutId != null) {
-                this.windowUtils.clearTimeout(this.onTabbedTimeoutId);
-                this.onTabbedTimeoutId = null;
-            }
+        this.tabStopsListener.setTabEventListenerOnMainWindow(
+            (tabEvent: TabStopEvent) => {
+                if (this.onTabbedTimeoutId != null) {
+                    this.windowUtils.clearTimeout(this.onTabbedTimeoutId);
+                    this.onTabbedTimeoutId = null;
+                }
 
-            this.pendingTabbedElements.push(tabEvent);
+                this.pendingTabbedElements.push(tabEvent);
 
-            this.onTabbedTimeoutId = this.windowUtils.setTimeout(() => {
-                this.deferred.notify({
-                    result: this.pendingTabbedElements,
-                });
-                this.onTabbedTimeoutId = null;
-                this.pendingTabbedElements = [];
-            }, 50);
-        });
+                this.onTabbedTimeoutId = this.windowUtils.setTimeout(() => {
+                    this.deferred.notify({
+                        result: this.pendingTabbedElements,
+                    });
+                    this.onTabbedTimeoutId = null;
+                    this.pendingTabbedElements = [];
+                }, 50);
+            },
+        );
 
         this.tabStopsListener.startListenToTabStops();
         this.analyzerSetupComplete();
@@ -67,7 +74,9 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         this.onResolve(this.emptyResults);
     }
 
-    protected onProgress = (progressResult: ProgressResult<TabStopEvent[]>): void => {
+    protected onProgress = (
+        progressResult: ProgressResult<TabStopEvent[]>,
+    ): void => {
         const payload: ScanUpdatePayload = {
             key: this.config.key,
             testType: this.config.testType,

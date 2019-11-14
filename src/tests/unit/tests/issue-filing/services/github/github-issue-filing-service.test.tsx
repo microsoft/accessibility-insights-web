@@ -16,7 +16,13 @@ describe('GithubIssueFilingServiceTest', () => {
     let props: SettingsFormProps<GitHubIssueFilingSettings>;
     let onPropertyUpdateCallbackMock: IMock<OnPropertyUpdateCallback>;
 
-    const invalidTestSettings = [null, {}, undefined, { random: '' }, { repository: '' }];
+    const invalidTestSettings = [
+        null,
+        {},
+        undefined,
+        { random: '' },
+        { repository: '' },
+    ];
 
     beforeEach(() => {
         onPropertyUpdateCallbackMock = Mock.ofInstance(() => null);
@@ -42,7 +48,9 @@ describe('GithubIssueFilingServiceTest', () => {
         const expectedStoreData: GitHubIssueFilingSettings = {
             repository: url,
         };
-        expect(GitHubIssueFilingService.buildStoreData(url)).toEqual(expectedStoreData);
+        expect(GitHubIssueFilingService.buildStoreData(url)).toEqual(
+            expectedStoreData,
+        );
     });
 
     it('getSettingsFromStoreData', () => {
@@ -53,20 +61,29 @@ describe('GithubIssueFilingServiceTest', () => {
             'some other service': {},
             [GitHubIssueFilingService.key]: expectedStoreData,
         };
-        expect(GitHubIssueFilingService.getSettingsFromStoreData(givenData)).toEqual(expectedStoreData);
+        expect(
+            GitHubIssueFilingService.getSettingsFromStoreData(givenData),
+        ).toEqual(expectedStoreData);
     });
 
     describe('isSettingsValid', () => {
-        it.each(invalidTestSettings)('invalid settings with %p', (settings: GitHubIssueFilingSettings) => {
-            expect(GitHubIssueFilingService.isSettingsValid(settings)).toBe(false);
-        });
+        it.each(invalidTestSettings)(
+            'invalid settings with %p',
+            (settings: GitHubIssueFilingSettings) => {
+                expect(GitHubIssueFilingService.isSettingsValid(settings)).toBe(
+                    false,
+                );
+            },
+        );
 
         it('valid settings', () => {
             const validSettings: GitHubIssueFilingSettings = {
                 repository: 'repository',
             };
 
-            expect(GitHubIssueFilingService.isSettingsValid(validSettings)).toBe(true);
+            expect(
+                GitHubIssueFilingService.isSettingsValid(validSettings),
+            ).toBe(true);
         });
     });
 
@@ -95,7 +112,9 @@ describe('GithubIssueFilingServiceTest', () => {
                 propertyName: 'repository',
                 propertyValue: newRepositoryValue,
             };
-            onPropertyUpdateCallbackMock.setup(updateCallback => updateCallback(It.isValue(payload))).verifiable(Times.once());
+            onPropertyUpdateCallbackMock
+                .setup(updateCallback => updateCallback(It.isValue(payload)))
+                .verifiable(Times.once());
             wrapper
                 .find(TextField)
                 .props()

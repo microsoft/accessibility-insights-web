@@ -8,7 +8,10 @@ import { IssuesAdHocVisualization } from 'ad-hoc-visualizations/issues/visualiza
 import { LandmarksAdHocVisualization } from 'ad-hoc-visualizations/landmarks/visualization';
 import { TabStopsAdHocVisualization } from 'ad-hoc-visualizations/tab-stops/visualization';
 import { Assessments } from 'assessments/assessments';
-import { DictionaryNumberTo, DictionaryStringTo } from '../../types/common-types';
+import {
+    DictionaryNumberTo,
+    DictionaryStringTo,
+} from '../../types/common-types';
 import { EnumHelper } from '../enum-helper';
 import { VisualizationType } from '../types/visualization-type';
 import { TestMode } from './test-mode';
@@ -36,10 +39,15 @@ export class VisualizationConfigurationFactory {
     }
 
     public getConfigurationByKey(key: string): VisualizationConfiguration {
-        return _.find(_.values(this.configurationByType), config => config.key === key);
+        return _.find(
+            _.values(this.configurationByType),
+            config => config.key === key,
+        );
     }
 
-    public getConfiguration(visualizationType: VisualizationType): VisualizationConfiguration {
+    public getConfiguration(
+        visualizationType: VisualizationType,
+    ): VisualizationConfiguration {
         if (Assessments.isValidType(visualizationType)) {
             const assessment = Assessments.forType(visualizationType);
             const defaults = {
@@ -68,10 +76,14 @@ export class VisualizationConfigurationFactory {
         return configuration;
     }
 
-    public getChromeCommandToVisualizationTypeMap(): DictionaryStringTo<VisualizationType> {
+    public getChromeCommandToVisualizationTypeMap(): DictionaryStringTo<
+        VisualizationType
+    > {
         const map: DictionaryStringTo<VisualizationType> = {};
 
-        const types = EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
+        const types = EnumHelper.getNumericValues<VisualizationType>(
+            VisualizationType,
+        );
 
         _.each(types, visualizationType => {
             const configuration = this.configurationByType[visualizationType];

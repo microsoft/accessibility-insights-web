@@ -8,7 +8,9 @@ import * as React from 'react';
 
 describe('ElectronLink', () => {
     it('renders and uses electron shell', () => {
-        const wrapped = shallow(<ElectronLink href="test-href">test-text</ElectronLink>);
+        const wrapped = shallow(
+            <ElectronLink href="test-href">test-text</ElectronLink>,
+        );
 
         expect(wrapped.getElement()).toMatchSnapshot();
 

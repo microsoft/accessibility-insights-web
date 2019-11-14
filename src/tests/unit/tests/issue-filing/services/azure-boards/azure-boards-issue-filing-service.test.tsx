@@ -23,7 +23,12 @@ describe('AzureBoardsIssueFilingServiceTest', () => {
             projectURL: projectUrlStub,
             issueDetailsField: issueDetailsLocationStub,
         };
-        expect(AzureBoardsIssueFilingService.buildStoreData(projectUrlStub, issueDetailsLocationStub)).toEqual(expectedStoreData);
+        expect(
+            AzureBoardsIssueFilingService.buildStoreData(
+                projectUrlStub,
+                issueDetailsLocationStub,
+            ),
+        ).toEqual(expectedStoreData);
     });
 
     it('getSettingsFromStoreData', () => {
@@ -35,7 +40,9 @@ describe('AzureBoardsIssueFilingServiceTest', () => {
             'some other service': {},
             [AzureBoardsIssueFilingService.key]: expectedStoreData,
         };
-        expect(AzureBoardsIssueFilingService.getSettingsFromStoreData(givenData)).toEqual(expectedStoreData);
+        expect(
+            AzureBoardsIssueFilingService.getSettingsFromStoreData(givenData),
+        ).toEqual(expectedStoreData);
     });
 
     describe('isSettingsValid', () => {
@@ -44,14 +51,28 @@ describe('AzureBoardsIssueFilingServiceTest', () => {
             {} as AzureBoardsIssueFilingSettings,
             undefined,
             { projectURL: '' } as AzureBoardsIssueFilingSettings,
-            { projectURL: '', issueDetailsField: '' as AzureBoardsIssueDetailField },
-            { projectURL: 'some project', issueDetailsField: '' as AzureBoardsIssueDetailField },
-            { projectURL: '', issueDetailsField: 'some issue details location' as AzureBoardsIssueDetailField },
+            {
+                projectURL: '',
+                issueDetailsField: '' as AzureBoardsIssueDetailField,
+            },
+            {
+                projectURL: 'some project',
+                issueDetailsField: '' as AzureBoardsIssueDetailField,
+            },
+            {
+                projectURL: '',
+                issueDetailsField: 'some issue details location' as AzureBoardsIssueDetailField,
+            },
         ];
 
-        it.each(invalidTestSettings)('handles invalid settings: %p', settings => {
-            expect(AzureBoardsIssueFilingService.isSettingsValid(settings)).toBe(false);
-        });
+        it.each(invalidTestSettings)(
+            'handles invalid settings: %p',
+            settings => {
+                expect(
+                    AzureBoardsIssueFilingService.isSettingsValid(settings),
+                ).toBe(false);
+            },
+        );
 
         it('handles valid settings', () => {
             const validSettings: AzureBoardsIssueFilingSettings = {
@@ -59,11 +80,15 @@ describe('AzureBoardsIssueFilingServiceTest', () => {
                 issueDetailsField: 'some issue details location' as AzureBoardsIssueDetailField,
             };
 
-            expect(AzureBoardsIssueFilingService.isSettingsValid(validSettings)).toBe(true);
+            expect(
+                AzureBoardsIssueFilingService.isSettingsValid(validSettings),
+            ).toBe(true);
         });
     });
 
     it('has correct settingsForm', () => {
-        expect(AzureBoardsIssueFilingService.settingsForm).toBe(AzureBoardsSettingsForm);
+        expect(AzureBoardsIssueFilingService.settingsForm).toBe(
+            AzureBoardsSettingsForm,
+        );
     });
 });

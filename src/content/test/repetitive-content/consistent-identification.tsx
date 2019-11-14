@@ -5,19 +5,26 @@ import { create, React } from '../../common';
 export const infoAndExamples = create(({ Markup }) => (
     <>
         <h1>Consistent identification</h1>
-        <p>Functional components that appear on multiple pages must be identified consistently.</p>
+        <p>
+            Functional components that appear on multiple pages must be
+            identified consistently.
+        </p>
 
         <h2>Why it matters</h2>
         <p>
-            When components with the same function are identified consistently across the pages of a website or web app, users can find and
-            recognize them more easily. For example, a user who wants to update certain sections of an online form will find the task easier
-            if the site consistently provides an 'Edit' button for each section. Consistent use of labels and icons are helpful for
-            everyone, especially people who have cognitive or reading disabilities.
+            When components with the same function are identified consistently
+            across the pages of a website or web app, users can find and
+            recognize them more easily. For example, a user who wants to update
+            certain sections of an online form will find the task easier if the
+            site consistently provides an 'Edit' button for each section.
+            Consistent use of labels and icons are helpful for everyone,
+            especially people who have cognitive or reading disabilities.
         </p>
 
         <h2>How to fix</h2>
         <p>
-            For any functional component that repeats across pages, use a consistent label, icon, and/or text alternative every time it
+            For any functional component that repeats across pages, use a
+            consistent label, icon, and/or text alternative every time it
             appears.
         </p>
 
@@ -25,9 +32,11 @@ export const infoAndExamples = create(({ Markup }) => (
         <Markup.PassFail
             failText={
                 <p>
-                    A web app has multiple pages. On every page, there's a link that navigates to the user's profile. On some pages, it's an
-                    image link showing the user's avatar, and its text alternative says, "User profile." On other pages, it's a text link
-                    that says, "Manage your profile."
+                    A web app has multiple pages. On every page, there's a link
+                    that navigates to the user's profile. On some pages, it's an
+                    image link showing the user's avatar, and its text
+                    alternative says, "User profile." On other pages, it's a
+                    text link that says, "Manage your profile."
                 </p>
             }
             failExample={`Profile link, style 1
@@ -40,7 +49,8 @@ export const infoAndExamples = create(({ Markup }) => (
             `}
             passText={
                 <p>
-                    On every page, the link that navigates to the user's profile is an image link showing the user's avatar, with a text
+                    On every page, the link that navigates to the user's profile
+                    is an image link showing the user's avatar, with a text
                     alternative that says, "User profile."
                 </p>
             }
@@ -62,14 +72,16 @@ export const infoAndExamples = create(({ Markup }) => (
         <h3>Sufficent techniques</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G197">
-                Using labels, names, and text alternatives consistently for content that has the same functionality
+                Using labels, names, and text alternatives consistently for
+                content that has the same functionality
             </Markup.HyperLink>
         </Markup.Links>
 
         <h3>Common failures</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F31">
-                Failure due to using two different labels for the same function on different pages
+                Failure due to using two different labels for the same function
+                on different pages
             </Markup.HyperLink>
         </Markup.Links>
     </>

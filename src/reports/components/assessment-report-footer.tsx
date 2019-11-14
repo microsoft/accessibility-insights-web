@@ -9,14 +9,22 @@ export interface AssessmentReportFooterProps {
     chromeVersion: string;
 }
 
-export class AssessmentReportFooter extends React.Component<AssessmentReportFooterProps> {
+export class AssessmentReportFooter extends React.Component<
+    AssessmentReportFooterProps
+> {
     public render(): JSX.Element {
         return (
             <footer className="report-footer">
-                This assessment report was generated using {title} {this.props.extensionVersion} (Axe {this.props.axeVersion}), a tool that
-                helps debug and find accessibility issues earlier on {this.props.chromeVersion}. Get more information & download this tool
-                at{' '}
-                <a href="http://aka.ms/AccessibilityInsights" className="link report-footer-link" target="_blank">
+                This assessment report was generated using {title}{' '}
+                {this.props.extensionVersion} (Axe {this.props.axeVersion}), a
+                tool that helps debug and find accessibility issues earlier on{' '}
+                {this.props.chromeVersion}. Get more information & download this
+                tool at{' '}
+                <a
+                    href="http://aka.ms/AccessibilityInsights"
+                    className="link report-footer-link"
+                    target="_blank"
+                >
                     http://aka.ms/AccessibilityInsights
                 </a>
             </footer>

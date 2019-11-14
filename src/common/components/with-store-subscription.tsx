@@ -15,7 +15,10 @@ export type WithStoreSubscriptionDeps<T> = {
     storeActionMessageCreator: StoreActionMessageCreator;
 };
 
-export function withStoreSubscription<P extends WithStoreSubscriptionProps<S>, S>(
+export function withStoreSubscription<
+    P extends WithStoreSubscriptionProps<S>,
+    S
+>(
     WrappedComponent: React.ComponentType<P>,
 ): React.ComponentClass<Pick<P, Exclude<keyof P, keyof { storeState: S }>>, S> {
     return class extends React.Component<P, S> {
@@ -42,7 +45,9 @@ export function withStoreSubscription<P extends WithStoreSubscriptionProps<S>, S
             if (!this.hasStores()) {
                 return;
             }
-            this.props.deps.storesHub.removeChangedListenerFromAllStores(this.onStoreChange);
+            this.props.deps.storesHub.removeChangedListenerFromAllStores(
+                this.onStoreChange,
+            );
         }
 
         public onStoreChange = () => {

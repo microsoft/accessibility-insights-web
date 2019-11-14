@@ -14,11 +14,20 @@ describe('CustomWidgetsFormatterTests', () => {
         testGetBoundingRect('button', false);
     });
 
-    function testGetBoundingRect(role: string, shouldIncludeChildren: boolean): void {
-        const expectedChildrenTimes = shouldIncludeChildren ? Times.once() : Times.never();
-        const expectedDefaultTimes = shouldIncludeChildren ? Times.never() : Times.once();
+    function testGetBoundingRect(
+        role: string,
+        shouldIncludeChildren: boolean,
+    ): void {
+        const expectedChildrenTimes = shouldIncludeChildren
+            ? Times.once()
+            : Times.never();
+        const expectedDefaultTimes = shouldIncludeChildren
+            ? Times.never()
+            : Times.once();
 
-        const getBoundingClientRectMock = Mock.ofType<() => ClientRect | DOMRect>();
+        const getBoundingClientRectMock = Mock.ofType<
+            () => ClientRect | DOMRect
+        >();
         const element = {
             getAttribute: r => role,
             getBoundingClientRect: getBoundingClientRectMock.object,
@@ -45,9 +54,11 @@ describe('CustomWidgetsFormatterTests', () => {
         const config = testSubject.getDrawerConfiguration(element, null);
         expect(config.getBoundingRect).toBeDefined();
         let result = null;
-        GlobalScope.using(getBoundingClientRectIncludingChildrenMock).with(() => {
-            result = config.getBoundingRect(element);
-        });
+        GlobalScope.using(getBoundingClientRectIncludingChildrenMock).with(
+            () => {
+                result = config.getBoundingRect(element);
+            },
+        );
         expect(result).toEqual(expectedRectStub);
         getBoundingClientRectMock.verifyAll();
         getBoundingClientRectIncludingChildrenMock.verifyAll();

@@ -3,7 +3,10 @@
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { AxeOptions } from '../../../../scanner/axe-options';
-import { RuleSifter, RuleWithA11YCriteria } from '../../../../scanner/rule-sifter';
+import {
+    RuleSifter,
+    RuleWithA11YCriteria,
+} from '../../../../scanner/rule-sifter';
 import { ScanOptions } from '../../../../scanner/scan-options';
 import { ScanParameterGenerator } from '../../../../scanner/scan-parameter-generator';
 
@@ -33,7 +36,9 @@ describe('ScanParameterGenerator', () => {
             ];
 
             sifterMock = Mock.ofType(RuleSifter, MockBehavior.Strict);
-            sifterMock.setup(ms => ms.getSiftedRules()).returns(() => siftedRulesStub);
+            sifterMock
+                .setup(ms => ms.getSiftedRules())
+                .returns(() => siftedRulesStub);
 
             testObject = new ScanParameterGenerator(sifterMock.object);
         });
@@ -109,7 +114,9 @@ describe('ScanParameterGenerator', () => {
                 testsToRun: ['throwaway-property'],
             };
             const returnedContext = 'test-selector';
-            expect(generator.getContext(null, options)).toEqual(returnedContext);
+            expect(generator.getContext(null, options)).toEqual(
+                returnedContext,
+            );
         });
         it('should return dom when set in options', () => {
             const sifterMock = Mock.ofType(RuleSifter, MockBehavior.Strict);
@@ -120,7 +127,9 @@ describe('ScanParameterGenerator', () => {
                 testsToRun: ['throwaway-property'],
             };
             const returnedContext = documentStub.object;
-            expect(generator.getContext(null, options)).toEqual(returnedContext);
+            expect(generator.getContext(null, options)).toEqual(
+                returnedContext,
+            );
         });
         it('should return the include/exclude set in options', () => {
             const sifterMock = Mock.ofType(RuleSifter, MockBehavior.Strict);
@@ -134,7 +143,9 @@ describe('ScanParameterGenerator', () => {
                 include: [['include']],
                 exclude: [['exclude']],
             };
-            expect(generator.getContext(null, options)).toEqual(returnedContext);
+            expect(generator.getContext(null, options)).toEqual(
+                returnedContext,
+            );
         });
         it('should check in order for contexts: dom > selector > include/exclude', () => {
             const sifterMock = Mock.ofType(RuleSifter, MockBehavior.Strict);
@@ -156,8 +167,12 @@ describe('ScanParameterGenerator', () => {
             };
             const selectorFirstReturnedContext = 'test-selector';
 
-            expect(generator.getContext(null, domFirstOptions)).toEqual(domFirstReturnedContext);
-            expect(generator.getContext(null, selectorFirstOptions)).toEqual(selectorFirstReturnedContext);
+            expect(generator.getContext(null, domFirstOptions)).toEqual(
+                domFirstReturnedContext,
+            );
+            expect(generator.getContext(null, selectorFirstOptions)).toEqual(
+                selectorFirstReturnedContext,
+            );
         });
     });
 });

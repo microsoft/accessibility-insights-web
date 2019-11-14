@@ -1,10 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { StorageAdapter } from 'common/browser-adapters/storage-adapter';
-import { FeatureFlags, getDefaultFeatureFlagValues, getForceDefaultFlags } from 'common/feature-flags';
+import {
+    FeatureFlags,
+    getDefaultFeatureFlagValues,
+    getForceDefaultFlags,
+} from 'common/feature-flags';
 import { StoreNames } from 'common/stores/store-names';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { FeatureFlagActions, FeatureFlagPayload } from '../../actions/feature-flag-actions';
+import {
+    FeatureFlagActions,
+    FeatureFlagPayload,
+} from '../../actions/feature-flag-actions';
 import { LocalStorageDataKeys } from '../../local-storage-data-keys';
 import { LocalStorageData } from '../../storage-data';
 import { BaseStoreImpl } from '../base-store-impl';
@@ -32,14 +39,22 @@ export class FeatureFlagStore extends BaseStoreImpl<FeatureFlagStoreData> {
     }
 
     protected addActionListeners(): void {
-        this.featureFlagActions.getCurrentState.addListener(this.onGetCurrentState);
-        this.featureFlagActions.setFeatureFlag.addListener(this.onSetFeatureFlags);
-        this.featureFlagActions.resetFeatureFlags.addListener(this.onResetFeatureFlags);
+        this.featureFlagActions.getCurrentState.addListener(
+            this.onGetCurrentState,
+        );
+        this.featureFlagActions.setFeatureFlag.addListener(
+            this.onSetFeatureFlags,
+        );
+        this.featureFlagActions.resetFeatureFlags.addListener(
+            this.onResetFeatureFlags,
+        );
     }
 
     private computeInitialState(): FeatureFlagStoreData {
         const initialState = this.getDefaultState();
-        const stateFromLocalStorage = this.userData ? this.userData.featureFlags : null;
+        const stateFromLocalStorage = this.userData
+            ? this.userData.featureFlags
+            : null;
 
         if (!stateFromLocalStorage) {
             return initialState;
@@ -47,7 +62,10 @@ export class FeatureFlagStore extends BaseStoreImpl<FeatureFlagStoreData> {
 
         const forceDefaultFlags = this.getForceDefaultFlags();
         for (const key in stateFromLocalStorage) {
-            if (initialState[key] != null && forceDefaultFlags.indexOf(key) === -1) {
+            if (
+                initialState[key] != null &&
+                forceDefaultFlags.indexOf(key) === -1
+            ) {
                 initialState[key] = stateFromLocalStorage[key];
             }
         }
@@ -57,7 +75,9 @@ export class FeatureFlagStore extends BaseStoreImpl<FeatureFlagStoreData> {
 
     private onSetFeatureFlags = (payload: FeatureFlagPayload): void => {
         this.state[payload.feature] = payload.enabled;
-        this.storageAdapter.setUserData({ [LocalStorageDataKeys.featureFlags]: this.state }).catch(console.error);
+        this.storageAdapter
+            .setUserData({ [LocalStorageDataKeys.featureFlags]: this.state })
+            .catch(console.error);
         this.emitChanged();
     };
 

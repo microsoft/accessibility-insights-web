@@ -16,7 +16,9 @@ export class ScanParameterGenerator {
         };
 
         if (options == null || options.testsToRun == null) {
-            result.runOnly.values = this.ruleSifter.getSiftedRules().map(rule => rule.id);
+            result.runOnly.values = this.ruleSifter
+                .getSiftedRules()
+                .map(rule => rule.id);
         } else {
             result.runOnly.values = options.testsToRun;
         }

@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FeatureFlagDetail, FeatureFlags } from '../../../../../common/feature-flags';
+import {
+    FeatureFlagDetail,
+    FeatureFlags,
+} from '../../../../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 import { PreviewFeatureFlagsHandler } from '../../../../../DetailsView/handlers/preview-feature-flags-handler';
 
@@ -36,8 +39,12 @@ describe('PreviewFeatureFlagHandlerTest', () => {
         expect(actual).toHaveLength(5);
         for (let i: number = 0; i < actual.length; i++) {
             expect(actual[i].id).toEqual(details[i].id);
-            expect(actual[i].displayableName).toEqual(details[i].displayableName);
-            expect(actual[i].displayableDescription).toEqual(details[i].displayableDescription);
+            expect(actual[i].displayableName).toEqual(
+                details[i].displayableName,
+            );
+            expect(actual[i].displayableDescription).toEqual(
+                details[i].displayableDescription,
+            );
         }
     });
 

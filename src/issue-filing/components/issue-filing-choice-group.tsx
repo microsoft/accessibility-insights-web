@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ChoiceGroup, IChoiceGroupOption } from 'office-ui-fabric-react/lib/ChoiceGroup';
+import {
+    ChoiceGroup,
+    IChoiceGroupOption,
+} from 'office-ui-fabric-react/lib/ChoiceGroup';
 import * as React from 'react';
 
 import { NamedFC } from '../../common/react/named-fc';
@@ -13,29 +16,35 @@ export type IssueFilingChoiceGroupProps = {
     onSelectedServiceChange: OnSelectedServiceChange;
 };
 
-export const IssueFilingChoiceGroup = NamedFC<IssueFilingChoiceGroupProps>('IssueFilingChoiceGroup', props => {
-    const getOptions: () => IChoiceGroupOption[] = () => {
-        return props.issueFilingServices.map(service => {
-            return {
-                key: service.key,
-                text: service.displayName,
-            };
-        });
-    };
-
-    const onChange = (ev?: React.FormEvent<HTMLElement | HTMLInputElement>, option?: IChoiceGroupOption) => {
-        const payload = {
-            issueFilingServiceName: option.key,
+export const IssueFilingChoiceGroup = NamedFC<IssueFilingChoiceGroupProps>(
+    'IssueFilingChoiceGroup',
+    props => {
+        const getOptions: () => IChoiceGroupOption[] = () => {
+            return props.issueFilingServices.map(service => {
+                return {
+                    key: service.key,
+                    text: service.displayName,
+                };
+            });
         };
-        props.onSelectedServiceChange(payload);
-    };
 
-    return (
-        <ChoiceGroup
-            className={'issue-filing-choice-group'}
-            onChange={onChange}
-            options={getOptions()}
-            selectedKey={props.selectedIssueFilingService.key}
-        />
-    );
-});
+        const onChange = (
+            ev?: React.FormEvent<HTMLElement | HTMLInputElement>,
+            option?: IChoiceGroupOption,
+        ) => {
+            const payload = {
+                issueFilingServiceName: option.key,
+            };
+            props.onSelectedServiceChange(payload);
+        };
+
+        return (
+            <ChoiceGroup
+                className={'issue-filing-choice-group'}
+                onChange={onChange}
+                options={getOptions()}
+                selectedKey={props.selectedIssueFilingService.key}
+            />
+        );
+    },
+);

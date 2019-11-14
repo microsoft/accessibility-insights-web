@@ -12,7 +12,10 @@ import { VisualizationType } from '../../../../../common/types/visualization-typ
 import { AssessmentInstanceTable } from '../../../../../DetailsView/components/assessment-instance-table';
 import { AssessmentVisualizationEnabledToggle } from '../../../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ManualTestStepView } from '../../../../../DetailsView/components/manual-test-step-view';
-import { TestStepView, TestStepViewProps } from '../../../../../DetailsView/components/test-step-view';
+import {
+    TestStepView,
+    TestStepViewProps,
+} from '../../../../../DetailsView/components/test-step-view';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
 import { BaseDataBuilder } from '../../../common/base-data-builder';
 
@@ -31,7 +34,9 @@ describe('TestStepViewTest', () => {
     });
 
     test('render, check fixed parts', () => {
-        const props = TestStepViewPropsBuilder.defaultProps(getVisualHelperToggleMock.object).build();
+        const props = TestStepViewPropsBuilder.defaultProps(
+            getVisualHelperToggleMock.object,
+        ).build();
 
         const wrapper = Enzyme.shallow(<TestStepView {...props} />);
 
@@ -47,13 +52,21 @@ describe('TestStepViewTest', () => {
         const testInstructions = wrapper.find(CollapsibleComponent);
 
         expect(testInstructions.exists()).toBeTruthy();
-        expect(props.testStep.howToTest).toEqual(testInstructions.prop('content'));
-        expect(testInstructions.prop('contentClassName')).toBe('test-step-instructions');
-        expect(testInstructions.prop('header')).toEqual(<h4 className="test-step-instructions-header">How to test</h4>);
+        expect(props.testStep.howToTest).toEqual(
+            testInstructions.prop('content'),
+        );
+        expect(testInstructions.prop('contentClassName')).toBe(
+            'test-step-instructions',
+        );
+        expect(testInstructions.prop('header')).toEqual(
+            <h4 className="test-step-instructions-header">How to test</h4>,
+        );
     });
 
     test('render spinner for non-manual tests', () => {
-        const props = TestStepViewPropsBuilder.defaultProps(getVisualHelperToggleMock.object)
+        const props = TestStepViewPropsBuilder.defaultProps(
+            getVisualHelperToggleMock.object,
+        )
             .withScanning(true)
             .build();
 
@@ -64,7 +77,9 @@ describe('TestStepViewTest', () => {
     });
 
     test('render manual test step view even when scanning manual tests', () => {
-        const props = TestStepViewPropsBuilder.defaultProps(getVisualHelperToggleMock.object)
+        const props = TestStepViewPropsBuilder.defaultProps(
+            getVisualHelperToggleMock.object,
+        )
             .withScanning(true)
             .withIsManual(true)
             .build();
@@ -74,7 +89,9 @@ describe('TestStepViewTest', () => {
     });
 
     test('render, variable part for assisted test', () => {
-        const props = TestStepViewPropsBuilder.defaultProps(getVisualHelperToggleMock.object)
+        const props = TestStepViewPropsBuilder.defaultProps(
+            getVisualHelperToggleMock.object,
+        )
             .withIsManual(false)
             .build();
 
@@ -89,14 +106,20 @@ describe('TestStepViewTest', () => {
 
         expect(instanceTable.exists()).toBeTruthy();
         expect(instanceTable.prop('instancesMap')).toEqual(props.instancesMap);
-        expect(instanceTable.prop('assessmentInstanceTableHandler')).toEqual(props.assessmentInstanceTableHandler);
-        expect(props.assessmentNavState).toEqual(instanceTable.prop('assessmentNavState'));
+        expect(instanceTable.prop('assessmentInstanceTableHandler')).toEqual(
+            props.assessmentInstanceTableHandler,
+        );
+        expect(props.assessmentNavState).toEqual(
+            instanceTable.prop('assessmentNavState'),
+        );
 
         expect(wrapper.debug()).toMatchSnapshot();
     });
 
     test('render, variable part for manual test', () => {
-        const props = TestStepViewPropsBuilder.defaultProps(getVisualHelperToggleMock.object)
+        const props = TestStepViewPropsBuilder.defaultProps(
+            getVisualHelperToggleMock.object,
+        )
             .withIsManual(true)
             .build();
 
@@ -105,11 +128,15 @@ describe('TestStepViewTest', () => {
     });
 
     test('render, with no visual helper toggle', () => {
-        const props = TestStepViewPropsBuilder.defaultProps(getVisualHelperToggleMock.object)
+        const props = TestStepViewPropsBuilder.defaultProps(
+            getVisualHelperToggleMock.object,
+        )
             .withNoGetToggleConfig()
             .build();
 
-        getVisualHelperToggleMock.setup(g => g(It.isAny(), It.isAny())).verifiable(Times.never());
+        getVisualHelperToggleMock
+            .setup(g => g(It.isAny(), It.isAny()))
+            .verifiable(Times.never());
 
         const wrapper = Enzyme.shallow(<TestStepView {...props} />);
 
@@ -120,7 +147,9 @@ describe('TestStepViewTest', () => {
     });
 
     test('render snapshot matches with manual false and scanning is finished', () => {
-        const props = TestStepViewPropsBuilder.defaultProps(getVisualHelperToggleMock.object)
+        const props = TestStepViewPropsBuilder.defaultProps(
+            getVisualHelperToggleMock.object,
+        )
             .withIsManual(false)
             .withStepScanComplete(true)
             .build();
@@ -129,24 +158,44 @@ describe('TestStepViewTest', () => {
         expect(wrapper.debug()).toMatchSnapshot();
     });
 
-    function validateManualTestStepView(wrapper: Enzyme.ShallowWrapper, props: TestStepViewProps): void {
+    function validateManualTestStepView(
+        wrapper: Enzyme.ShallowWrapper,
+        props: TestStepViewProps,
+    ): void {
         const view = wrapper.find(ManualTestStepView);
         expect(view.exists()).toBe(true);
-        expect(props.assessmentNavState.selectedTestStep).toEqual(view.prop('step'));
-        expect(props.assessmentNavState.selectedTestType).toEqual(view.prop('test'));
-        expect(props.manualTestStepResultMap).toEqual(view.prop('manualTestStepResultMap'));
-        expect(props.assessmentInstanceTableHandler).toEqual(view.prop('assessmentInstanceTableHandler'));
-        expect(props.assessmentsProvider).toEqual(view.prop('assessmentsProvider'));
+        expect(props.assessmentNavState.selectedTestStep).toEqual(
+            view.prop('step'),
+        );
+        expect(props.assessmentNavState.selectedTestType).toEqual(
+            view.prop('test'),
+        );
+        expect(props.manualTestStepResultMap).toEqual(
+            view.prop('manualTestStepResultMap'),
+        );
+        expect(props.assessmentInstanceTableHandler).toEqual(
+            view.prop('assessmentInstanceTableHandler'),
+        );
+        expect(props.assessmentsProvider).toEqual(
+            view.prop('assessmentsProvider'),
+        );
     }
 });
 
 class TestStepViewPropsBuilder extends BaseDataBuilder<TestStepViewProps> {
-    public static defaultProps(getVisualHelperToggle: (provider, props) => {}): TestStepViewPropsBuilder {
-        const assessmentsProviderMock = Mock.ofType(AssessmentsProviderImpl, MockBehavior.Strict);
+    public static defaultProps(
+        getVisualHelperToggle: (provider, props) => {},
+    ): TestStepViewPropsBuilder {
+        const assessmentsProviderMock = Mock.ofType(
+            AssessmentsProviderImpl,
+            MockBehavior.Strict,
+        );
         assessmentsProviderMock
             .setup(p => p.getStep(It.isAny(), It.isAny()))
             .returns((test, step) => {
-                return { getVisualHelperToggle: getVisualHelperToggle } as Requirement;
+                return {
+                    getVisualHelperToggle: getVisualHelperToggle,
+                } as Requirement;
             });
         return new TestStepViewPropsBuilder()
             .with('instancesMap', {
@@ -182,7 +231,10 @@ class TestStepViewPropsBuilder extends BaseDataBuilder<TestStepViewProps> {
                     },
                 },
             })
-            .with('assessmentInstanceTableHandler', Mock.ofType(AssessmentInstanceTableHandler).object)
+            .with(
+                'assessmentInstanceTableHandler',
+                Mock.ofType(AssessmentInstanceTableHandler).object,
+            )
             .with('manualTestStepResultMap', {
                 headingFunction: {
                     status: ManualTestStatus.PASS,
@@ -228,7 +280,9 @@ class TestStepViewPropsBuilder extends BaseDataBuilder<TestStepViewProps> {
         return this;
     }
 
-    public withStepScanComplete(isStepScanned: boolean): TestStepViewPropsBuilder {
+    public withStepScanComplete(
+        isStepScanned: boolean,
+    ): TestStepViewPropsBuilder {
         this.data.isStepScanned = isStepScanned;
         return this;
     }

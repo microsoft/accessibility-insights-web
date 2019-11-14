@@ -5,16 +5,24 @@ import * as Puppeteer from 'puppeteer';
 
 import { forceTestFailure } from '../force-test-failure';
 import { takeScreenshot } from '../generate-screenshot';
-import { DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS, DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from '../timeouts';
+import {
+    DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS,
+    DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
+} from '../timeouts';
 
 export type PageOptions = {
     onPageCrash?: () => void;
 };
 
 export class Page {
-    constructor(protected readonly underlyingPage: Puppeteer.Page, options?: PageOptions) {
+    constructor(
+        protected readonly underlyingPage: Puppeteer.Page,
+        options?: PageOptions,
+    ) {
         function forceEventFailure(eventDescription: string): void {
-            forceTestFailure(`Puppeteer.Page '${underlyingPage.url()}' emitted ${eventDescription}`);
+            forceTestFailure(
+                `Puppeteer.Page '${underlyingPage.url()}' emitted ${eventDescription}`,
+            );
         }
 
         function serializeError(error: Error): string {
@@ -22,7 +30,12 @@ export class Page {
         }
 
         underlyingPage.on('error', error => {
-            if (error.stack && error.stack.includes('Page crashed!') && options && options.onPageCrash) {
+            if (
+                error.stack &&
+                error.stack.includes('Page crashed!') &&
+                options &&
+                options.onPageCrash
+            ) {
                 options.onPageCrash();
             }
 
@@ -30,19 +43,29 @@ export class Page {
         });
         underlyingPage.on('pageerror', error => {
             if (
-                error.message.startsWith("TypeError: Cannot read property 'focusElement' of null") &&
-                error.message.includes('office-ui-fabric-react/lib/components/Dropdown/Dropdown.base.js')
+                error.message.startsWith(
+                    "TypeError: Cannot read property 'focusElement' of null",
+                ) &&
+                error.message.includes(
+                    'office-ui-fabric-react/lib/components/Dropdown/Dropdown.base.js',
+                )
             ) {
                 return; // benign; caused by https://github.com/OfficeDev/office-ui-fabric-react/issues/9715
             }
 
-            forceEventFailure(`'pageerror' (console.error): ${serializeError(error)}`);
+            forceEventFailure(
+                `'pageerror' (console.error): ${serializeError(error)}`,
+            );
         });
         underlyingPage.on('requestfailed', request => {
             const url = request.url();
             // Checking for 'fonts' and 'icons' in url as a workaround for #923
             if (!includes(url, 'fonts') && !includes(url, 'icons')) {
-                forceEventFailure(`'requestfailed' from '${url}' with errorText: ${request.failure().errorText}`);
+                forceEventFailure(
+                    `'requestfailed' from '${url}' with errorText: ${
+                        request.failure().errorText
+                    }`,
+                );
             }
         });
         underlyingPage.on('response', response => {
@@ -56,7 +79,9 @@ export class Page {
 
     public async goto(url: string): Promise<void> {
         await this.screenshotOnError(async () => {
-            await this.underlyingPage.goto(url, { timeout: DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS });
+            await this.underlyingPage.goto(url, {
+                timeout: DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS,
+            });
 
             // This waitFor is a hack to work around a class of various different flakiness issues that generally take the form of
             // "some button had been loaded into the DOM, but when we clicked on it, nothing happened". We would prefer to use a more
@@ -84,24 +109,41 @@ export class Page {
         if (ignoreIfAlreadyClosed && this.underlyingPage.isClosed()) {
             return;
         }
-        await this.screenshotOnError(async () => await this.underlyingPage.close());
+        await this.screenshotOnError(
+            async () => await this.underlyingPage.close(),
+        );
     }
 
     public async bringToFront(): Promise<void> {
-        await this.screenshotOnError(async () => await this.underlyingPage.bringToFront());
+        await this.screenshotOnError(
+            async () => await this.underlyingPage.bringToFront(),
+        );
     }
 
-    public async evaluate(fn: Puppeteer.EvaluateFn, ...args: any[]): Promise<any> {
-        return await this.screenshotOnError(async () => await this.underlyingPage.evaluate(fn, ...args));
+    public async evaluate(
+        fn: Puppeteer.EvaluateFn,
+        // tslint:disable-next-line: trailing-comma
+        ...args: any[]
+    ): Promise<any> {
+        return await this.screenshotOnError(
+            async () => await this.underlyingPage.evaluate(fn, ...args),
+        );
     }
 
-    public async getMatchingElements<T>(selector: string, elementProperty?: keyof Element): Promise<T[]> {
+    public async getMatchingElements<T>(
+        selector: string,
+        elementProperty?: keyof Element,
+    ): Promise<T[]> {
         return await this.screenshotOnError(
             async () =>
                 await this.evaluate(
                     (selectorInEvaluate, elementPropertyInEvaluate) => {
-                        const elements = Array.from(document.querySelectorAll(selectorInEvaluate));
-                        return elements.map(element => element[elementPropertyInEvaluate]);
+                        const elements = Array.from(
+                            document.querySelectorAll(selectorInEvaluate),
+                        );
+                        return elements.map(
+                            element => element[elementPropertyInEvaluate],
+                        );
                     },
                     selector,
                     elementProperty,
@@ -109,19 +151,33 @@ export class Page {
         );
     }
 
-    public async waitForSelector(selector: string, options?: Puppeteer.WaitForSelectorOptions): Promise<Puppeteer.ElementHandle<Element>> {
+    public async waitForSelector(
+        selector: string,
+        options?: Puppeteer.WaitForSelectorOptions,
+    ): Promise<Puppeteer.ElementHandle<Element>> {
         return await this.screenshotOnError(
-            async () => await this.underlyingPage.waitForSelector(selector, { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS, ...options }),
+            async () =>
+                await this.underlyingPage.waitForSelector(selector, {
+                    timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
+                    ...options,
+                }),
         );
     }
 
-    public async waitForSelectorXPath(xpath: string): Promise<Puppeteer.ElementHandle<Element>> {
+    public async waitForSelectorXPath(
+        xpath: string,
+    ): Promise<Puppeteer.ElementHandle<Element>> {
         return await this.screenshotOnError(
-            async () => await this.underlyingPage.waitForXPath(xpath, { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS }),
+            async () =>
+                await this.underlyingPage.waitForXPath(xpath, {
+                    timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
+                }),
         );
     }
 
-    public async waitForId(id: string): Promise<Puppeteer.ElementHandle<Element>> {
+    public async waitForId(
+        id: string,
+    ): Promise<Puppeteer.ElementHandle<Element>> {
         return this.waitForSelector(`#${id}`);
     }
 
@@ -144,10 +200,16 @@ export class Page {
         });
     }
 
-    public async getShadowRootOfSelector(selector: string): Promise<Puppeteer.ElementHandle<Element>> {
+    public async getShadowRootOfSelector(
+        selector: string,
+    ): Promise<Puppeteer.ElementHandle<Element>> {
         return await this.screenshotOnError(async () =>
             (
-                await this.underlyingPage.evaluateHandle(selectorInEval => document.querySelector(selectorInEval).shadowRoot, selector)
+                await this.underlyingPage.evaluateHandle(
+                    selectorInEval =>
+                        document.querySelector(selectorInEval).shadowRoot,
+                    selector,
+                )
             ).asElement(),
         );
     }
@@ -156,7 +218,8 @@ export class Page {
         await this.screenshotOnError(
             async () =>
                 await this.underlyingPage.waitFor(
-                    selectorInEvaluate => !document.querySelector(selectorInEvaluate),
+                    selectorInEvaluate =>
+                        !document.querySelector(selectorInEvaluate),
                     { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS },
                     selector,
                 ),
@@ -182,12 +245,21 @@ export class Page {
         descendentSelector: string,
         options?: Puppeteer.WaitForSelectorOptions,
     ): Promise<void> {
-        await this.waitForDescendentSelector(parentElement, descendentSelector, options);
-        const element = await this.getDescendentSelectorElement(parentElement, descendentSelector);
+        await this.waitForDescendentSelector(
+            parentElement,
+            descendentSelector,
+            options,
+        );
+        const element = await this.getDescendentSelectorElement(
+            parentElement,
+            descendentSelector,
+        );
         await this.clickElementHandle(element);
     }
 
-    public async clickElementHandle(element: Puppeteer.ElementHandle<Element>): Promise<void> {
+    public async clickElementHandle(
+        element: Puppeteer.ElementHandle<Element>,
+    ): Promise<void> {
         await this.screenshotOnError(async () => {
             await element.click();
         });
@@ -202,13 +274,17 @@ export class Page {
         });
     }
 
-    public async getSelectorElement(selector: string): Promise<Puppeteer.ElementHandle<Element>> {
+    public async getSelectorElement(
+        selector: string,
+    ): Promise<Puppeteer.ElementHandle<Element>> {
         return await this.screenshotOnError(async () => {
             return await this.underlyingPage.$(selector);
         });
     }
 
-    public async getSelectorElements(selector: string): Promise<Puppeteer.ElementHandle<Element>[]> {
+    public async getSelectorElements(
+        selector: string,
+    ): Promise<Puppeteer.ElementHandle<Element>[]> {
         return await this.screenshotOnError(async () => {
             return await this.underlyingPage.$$(selector);
         });
@@ -230,10 +306,16 @@ export class Page {
 
     public async getOuterHTMLOfSelector(selector: string): Promise<string> {
         return await this.screenshotOnError(async () => {
-            const element = await this.underlyingPage.waitForSelector(selector, {
-                timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
-            });
-            return await this.underlyingPage.evaluate(el => el.outerHTML, element);
+            const element = await this.underlyingPage.waitForSelector(
+                selector,
+                {
+                    timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
+                },
+            );
+            return await this.underlyingPage.evaluate(
+                el => el.outerHTML,
+                element,
+            );
         });
     }
 

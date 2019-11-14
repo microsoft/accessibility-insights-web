@@ -14,14 +14,21 @@ export interface ElementFinderByPositionMessage {
 }
 
 export class ElementFinderByPosition {
-    public static readonly findElementByPositionCommand = 'insights.findElementByPositionCommand';
+    public static readonly findElementByPositionCommand =
+        'insights.findElementByPositionCommand';
     private scannerUtils: ScannerUtils;
     private frameCommunicator: FrameCommunicator;
     private clientUtils: ClientUtils;
     private q: typeof Q;
     private dom: Document;
 
-    constructor(frameCommunicator: FrameCommunicator, clientUtils: ClientUtils, scannerUtils: ScannerUtils, q: typeof Q, dom: Document) {
+    constructor(
+        frameCommunicator: FrameCommunicator,
+        clientUtils: ClientUtils,
+        scannerUtils: ScannerUtils,
+        q: typeof Q,
+        dom: Document,
+    ) {
         this.frameCommunicator = frameCommunicator;
         this.scannerUtils = scannerUtils;
         this.clientUtils = clientUtils;
@@ -30,7 +37,10 @@ export class ElementFinderByPosition {
     }
 
     public initialize(): void {
-        this.frameCommunicator.subscribe(ElementFinderByPosition.findElementByPositionCommand, this.onfindElementByPosition);
+        this.frameCommunicator.subscribe(
+            ElementFinderByPosition.findElementByPositionCommand,
+            this.onfindElementByPosition,
+        );
     }
 
     protected onfindElementByPosition = (
@@ -49,7 +59,9 @@ export class ElementFinderByPosition {
         );
     };
 
-    public processRequest(message: ElementFinderByPositionMessage): Q.IPromise<string[]> {
+    public processRequest(
+        message: ElementFinderByPositionMessage,
+    ): Q.IPromise<string[]> {
         let path = [];
         const deferred = this.q.defer<string[]>();
         const element = this.getElementByPosition(message);
@@ -66,7 +78,9 @@ export class ElementFinderByPosition {
             return deferred.promise;
         }
 
-        const elementRect = this.clientUtils.getOffset(element as BoundRectAccessor);
+        const elementRect = this.clientUtils.getOffset(
+            element as BoundRectAccessor,
+        );
 
         this.frameCommunicator
             .sendMessage<ElementFinderByPositionMessage, string[]>({
@@ -91,8 +105,13 @@ export class ElementFinderByPosition {
         return deferred.promise;
     }
 
-    private getElementByPosition(message: ElementFinderByPositionMessage): HTMLElement {
-        const elements = this.dom.elementsFromPoint(message.x, message.y) as HTMLElement[];
+    private getElementByPosition(
+        message: ElementFinderByPositionMessage,
+    ): HTMLElement {
+        const elements = this.dom.elementsFromPoint(
+            message.x,
+            message.y,
+        ) as HTMLElement[];
 
         for (let pos = 0; pos < elements.length; pos++) {
             if (elements[pos].id === 'insights-shadow-host') {

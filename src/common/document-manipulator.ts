@@ -4,7 +4,9 @@ export class DocumentManipulator {
     constructor(private document: Document) {}
 
     public setShortcutIcon(href: string): void {
-        const icon = this.document.querySelector('head link[rel="shortcut icon"]');
+        const icon = this.document.querySelector(
+            'head link[rel="shortcut icon"]',
+        );
         if (!icon) {
             throw Error('missing icon link in html');
         }

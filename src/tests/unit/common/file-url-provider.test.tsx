@@ -7,7 +7,9 @@ import { WindowUtils } from '../../../common/window-utils';
 describe('FileURLProviderTest', () => {
     it('provideURL', () => {
         const windowUtilsMock = Mock.ofType(WindowUtils);
-        const provideBlobMock = Mock.ofType<(blobParts?: any[], mimeType?: string) => Blob>();
+        const provideBlobMock = Mock.ofType<
+            (blobParts?: any[], mimeType?: string) => Blob
+        >();
         const content = ['<a></a>'];
         const mimeType = 'text/html';
         const returnedURL = 'returned url';
@@ -23,7 +25,10 @@ describe('FileURLProviderTest', () => {
             .returns(() => returnedURL)
             .verifiable(Times.once());
 
-        const testProvider = new FileURLProvider(windowUtilsMock.object, provideBlobMock.object);
+        const testProvider = new FileURLProvider(
+            windowUtilsMock.object,
+            provideBlobMock.object,
+        );
         testProvider.provideURL(content, mimeType);
 
         provideBlobMock.verifyAll();

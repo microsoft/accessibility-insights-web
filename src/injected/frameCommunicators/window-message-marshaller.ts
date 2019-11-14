@@ -14,7 +14,10 @@ export class WindowMessageMarshaller {
     public readonly messageSourceId: string;
     public readonly messageVersion: string;
 
-    constructor(browserAdapter: BrowserAdapter, private readonly generateUIDFunc: () => string) {
+    constructor(
+        browserAdapter: BrowserAdapter,
+        private readonly generateUIDFunc: () => string,
+    ) {
         const manifest = browserAdapter.getManifest();
         this.messageSourceId = manifest.name;
         this.messageVersion = manifest.version;
@@ -36,7 +39,11 @@ export class WindowMessageMarshaller {
         return data;
     }
 
-    public createMessage(command: string, payload: any, responseId?: string): WindowMessage {
+    public createMessage(
+        command: string,
+        payload: any,
+        responseId?: string,
+    ): WindowMessage {
         let error;
         if (payload instanceof Error) {
             error = {
@@ -47,7 +54,9 @@ export class WindowMessageMarshaller {
             payload = undefined;
         }
 
-        const messageId: string = responseId ? responseId : this.generateUIDFunc();
+        const messageId: string = responseId
+            ? responseId
+            : this.generateUIDFunc();
 
         return {
             messageId: messageId,

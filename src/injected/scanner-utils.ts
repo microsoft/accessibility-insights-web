@@ -37,7 +37,10 @@ export class ScannerUtils {
         private logger: Logger = createDefaultLogger(),
     ) {}
 
-    public scan(options: ScanOptions, callback: (results: ScanResults) => void): void {
+    public scan(
+        options: ScanOptions,
+        callback: (results: ScanResults) => void,
+    ): void {
         this.scanner(
             options,
             axeResults => {
@@ -59,32 +62,42 @@ export class ScannerUtils {
         return selector;
     }
 
-    public getIncompleteInstances = (results: ScanResults): DictionaryStringTo<HtmlElementAxeResults> => {
+    public getIncompleteInstances = (
+        results: ScanResults,
+    ): DictionaryStringTo<HtmlElementAxeResults> => {
         const resultsMap: DictionaryStringTo<HtmlElementAxeResults> = {};
         this.addIncompletesToDictionary(resultsMap, results.incomplete);
         return resultsMap;
     };
 
-    public getFailingInstances = (results: ScanResults): DictionaryStringTo<HtmlElementAxeResults> => {
+    public getFailingInstances = (
+        results: ScanResults,
+    ): DictionaryStringTo<HtmlElementAxeResults> => {
         const resultsMap: DictionaryStringTo<HtmlElementAxeResults> = {};
         this.addFailuresToDictionary(resultsMap, results.violations);
         return resultsMap;
     };
 
-    public getPassingInstances = (results: ScanResults): DictionaryStringTo<HtmlElementAxeResults> => {
+    public getPassingInstances = (
+        results: ScanResults,
+    ): DictionaryStringTo<HtmlElementAxeResults> => {
         const resultsMap: DictionaryStringTo<HtmlElementAxeResults> = {};
         this.addPassesToDictionary(resultsMap, results.passes);
         return resultsMap;
     };
 
-    public getAllCompletedInstances = (results: ScanResults): DictionaryStringTo<HtmlElementAxeResults> => {
+    public getAllCompletedInstances = (
+        results: ScanResults,
+    ): DictionaryStringTo<HtmlElementAxeResults> => {
         const resultsMap: DictionaryStringTo<HtmlElementAxeResults> = {};
         this.addPassesToDictionary(resultsMap, results.passes);
         this.addFailuresToDictionary(resultsMap, results.violations);
         return resultsMap;
     };
 
-    public getFailingOrPassingInstances = (results: ScanResults): DictionaryStringTo<HtmlElementAxeResults> => {
+    public getFailingOrPassingInstances = (
+        results: ScanResults,
+    ): DictionaryStringTo<HtmlElementAxeResults> => {
         const resultsMap: DictionaryStringTo<HtmlElementAxeResults> = {};
         this.addFailuresToDictionary(resultsMap, results.violations);
         if (Object.keys(resultsMap).length === 0) {
@@ -93,19 +106,32 @@ export class ScannerUtils {
         return resultsMap;
     };
 
-    private addPassesToDictionary(dictionary: DictionaryStringTo<HtmlElementAxeResults>, axeRules: RuleResult[]): void {
+    private addPassesToDictionary(
+        dictionary: DictionaryStringTo<HtmlElementAxeResults>,
+        axeRules: RuleResult[],
+    ): void {
         this.addResultstoDictionary(dictionary, axeRules, true);
     }
 
-    private addIncompletesToDictionary(dictionary: DictionaryStringTo<HtmlElementAxeResults>, axeRules: RuleResult[]): void {
+    private addIncompletesToDictionary(
+        dictionary: DictionaryStringTo<HtmlElementAxeResults>,
+        axeRules: RuleResult[],
+    ): void {
         this.addResultstoDictionary(dictionary, axeRules, undefined);
     }
 
-    private addFailuresToDictionary(dictionary: DictionaryStringTo<HtmlElementAxeResults>, axeRules: RuleResult[]): void {
+    private addFailuresToDictionary(
+        dictionary: DictionaryStringTo<HtmlElementAxeResults>,
+        axeRules: RuleResult[],
+    ): void {
         this.addResultstoDictionary(dictionary, axeRules, false);
     }
 
-    private addResultstoDictionary(dictionary: DictionaryStringTo<HtmlElementAxeResults>, axeRules: RuleResult[], status: boolean): void {
+    private addResultstoDictionary(
+        dictionary: DictionaryStringTo<HtmlElementAxeResults>,
+        axeRules: RuleResult[],
+        status: boolean,
+    ): void {
         axeRules.forEach(ruleResult => {
             ruleResult.nodes.forEach(node => {
                 const selectorKey = node.target.join(';');
@@ -135,7 +161,12 @@ export class ScannerUtils {
         });
     }
 
-    public static getFingerprint(node: AxeNodeResult, rule: RuleResult): string {
-        return 'fp--' + rule.id + '--' + node.target.join(';') + '--' + node.html;
+    public static getFingerprint(
+        node: AxeNodeResult,
+        rule: RuleResult,
+    ): string {
+        return (
+            'fp--' + rule.id + '--' + node.target.join(';') + '--' + node.html
+        );
     }
 }

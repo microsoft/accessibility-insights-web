@@ -19,7 +19,10 @@ export const filterResultsByRules: IResultRuleFilter = (results, rules) => {
     };
 };
 
-function filterRuleResultListByRules(list: RuleResult[], rules: string[]): RuleResult[] {
+function filterRuleResultListByRules(
+    list: RuleResult[],
+    rules: string[],
+): RuleResult[] {
     return list.filter(result => {
         return rules.indexOf(result.id) >= 0;
     });

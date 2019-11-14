@@ -1,13 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { KeyCodeConstants } from 'common/constants/keycode-constants';
-import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
+import {
+    DefaultButton,
+    PrimaryButton,
+} from 'office-ui-fabric-react/lib/Button';
 import { MaskedTextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 
 import { DeviceConnectActionCreator } from '../../../flux/action-creator/device-connect-action-creator';
 import { DeviceConnectState } from '../../../flux/types/device-connect-state';
-import { deviceConnectPortEntry, portNumberField } from './device-connect-port-entry.scss';
+import {
+    deviceConnectPortEntry,
+    portNumberField,
+} from './device-connect-port-entry.scss';
 
 export type DeviceConnectPortEntryViewState = {
     deviceConnectState: DeviceConnectState;
@@ -26,7 +32,10 @@ export interface DeviceConnectPortEntryState {
     port: string;
 }
 
-export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEntryProps, DeviceConnectPortEntryState> {
+export class DeviceConnectPortEntry extends React.Component<
+    DeviceConnectPortEntryProps,
+    DeviceConnectPortEntryState
+> {
     constructor(props: DeviceConnectPortEntryProps) {
         super(props);
         this.state = { port: '' };
@@ -57,18 +66,31 @@ export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEnt
             onClick: this.onValidateClick,
         };
 
-        if (this.props.viewState.deviceConnectState !== DeviceConnectState.Connected) {
-            return <PrimaryButton {...props}>Validate port number</PrimaryButton>;
+        if (
+            this.props.viewState.deviceConnectState !==
+            DeviceConnectState.Connected
+        ) {
+            return (
+                <PrimaryButton {...props}>Validate port number</PrimaryButton>
+            );
         }
 
         return <DefaultButton {...props}>Validate port number</DefaultButton>;
     }
 
     private isValidateButtonDisabled(): boolean {
-        return !this.state.port || this.state.port === '' || this.props.viewState.deviceConnectState === DeviceConnectState.Connecting;
+        return (
+            !this.state.port ||
+            this.state.port === '' ||
+            this.props.viewState.deviceConnectState ===
+                DeviceConnectState.Connecting
+        );
     }
 
-    private onPortTextChanged = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
+    private onPortTextChanged = (
+        event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>,
+        newValue?: string,
+    ) => {
         this.props.deps.deviceConnectActionCreator.resetConnection();
         this.setState({ port: newValue });
     };
@@ -78,7 +100,9 @@ export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEnt
         this.props.deps.deviceConnectActionCreator.validatePort(port);
     };
 
-    private onEnterKey = (event: React.KeyboardEvent<HTMLInputElement>): void => {
+    private onEnterKey = (
+        event: React.KeyboardEvent<HTMLInputElement>,
+    ): void => {
         if (event.keyCode === KeyCodeConstants.ENTER) {
             this.onValidateClick();
         }

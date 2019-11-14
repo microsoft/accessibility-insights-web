@@ -5,8 +5,14 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { It, Mock, MockBehavior } from 'typemoq';
 
-import { NamedFC, ReactFCWithDisplayName } from '../../../../../../common/react/named-fc';
-import { AssessmentData, AssessmentStoreData } from '../../../../../../common/types/store-data/assessment-result-data';
+import {
+    NamedFC,
+    ReactFCWithDisplayName,
+} from '../../../../../../common/react/named-fc';
+import {
+    AssessmentData,
+    AssessmentStoreData,
+} from '../../../../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../../../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
 import { DetailsRightPanelConfiguration } from '../../../../../../DetailsView/components/details-view-right-panel';
@@ -23,12 +29,22 @@ describe('DetailsViewLeftNav', () => {
         const selectedTestStub: VisualizationType = -1;
         const selectedKeyStub: string = 'some key';
         const featureFlagDataStub: FeatureFlagStoreData = {};
-        const assessmentsProviderWithFeaturesEnabledMock = Mock.ofInstance((provider, featureFlagData) => null, MockBehavior.Strict);
+        const assessmentsProviderWithFeaturesEnabledMock = Mock.ofInstance(
+            (provider, featureFlagData) => null,
+            MockBehavior.Strict,
+        );
         const assessmentProviderStub = {} as AssessmentsProvider;
         const filteredProviderStub = {} as AssessmentsProvider;
-        const GetLeftNavSelectedKeyMock = Mock.ofInstance((theProps: GetLeftNavSelectedKeyProps) => null, MockBehavior.Strict);
-        const LeftNavStub: Readonly<ReactFCWithDisplayName<DetailsViewLeftNavProps>> = NamedFC<DetailsViewLeftNavProps>('test', _ => null);
-        const assessmentDataStub: { [key: string]: AssessmentData } = { x: { testStepStatus: {} } as AssessmentData };
+        const GetLeftNavSelectedKeyMock = Mock.ofInstance(
+            (theProps: GetLeftNavSelectedKeyProps) => null,
+            MockBehavior.Strict,
+        );
+        const LeftNavStub: Readonly<ReactFCWithDisplayName<
+            DetailsViewLeftNavProps
+        >> = NamedFC<DetailsViewLeftNavProps>('test', _ => null);
+        const assessmentDataStub: { [key: string]: AssessmentData } = {
+            x: { testStepStatus: {} } as AssessmentData,
+        };
         const assessmentStoreDataStub = {
             assessments: assessmentDataStub,
         } as AssessmentStoreData;
@@ -43,7 +59,8 @@ describe('DetailsViewLeftNav', () => {
 
         const deps = {
             assessmentsProvider: assessmentProviderStub,
-            assessmentsProviderWithFeaturesEnabled: assessmentsProviderWithFeaturesEnabledMock.object,
+            assessmentsProviderWithFeaturesEnabled:
+                assessmentsProviderWithFeaturesEnabledMock.object,
         } as DetailsViewLeftNavDeps;
 
         const props = {
@@ -55,9 +72,9 @@ describe('DetailsViewLeftNav', () => {
             assessmentStoreData: assessmentStoreDataStub,
         } as DetailsViewLeftNavProps;
 
-        GetLeftNavSelectedKeyMock.setup(getter => getter(It.isValue({ visualizationType: selectedTestStub }))).returns(
-            () => selectedKeyStub,
-        );
+        GetLeftNavSelectedKeyMock.setup(getter =>
+            getter(It.isValue({ visualizationType: selectedTestStub })),
+        ).returns(() => selectedKeyStub);
 
         assessmentsProviderWithFeaturesEnabledMock
             .setup(ap => ap(assessmentProviderStub, featureFlagDataStub))

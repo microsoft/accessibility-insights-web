@@ -27,7 +27,10 @@ describe('SingleTargetDrawer Tests', () => {
 
         setupDrawerUtilsMockDefault(dom);
 
-        const testSubject = new SingleTargetDrawer(drawerUtilsMock.object, formatterMock.object);
+        const testSubject = new SingleTargetDrawer(
+            drawerUtilsMock.object,
+            formatterMock.object,
+        );
 
         const drawerInfo: DrawerInitData<HtmlElementAxeResults> = {
             data: [
@@ -51,7 +54,10 @@ describe('SingleTargetDrawer Tests', () => {
         setupDrawerUtilsMockDefault(dom);
         setupFormatterMock();
 
-        const testSubject = new SingleTargetDrawer(drawerUtilsMock.object, formatterMock.object);
+        const testSubject = new SingleTargetDrawer(
+            drawerUtilsMock.object,
+            formatterMock.object,
+        );
 
         const drawerInfo: DrawerInitData<HtmlElementAxeResults> = {
             data: [
@@ -82,7 +88,10 @@ describe('SingleTargetDrawer Tests', () => {
         setupDrawerUtilsMockDefault(dom);
         setupFormatterMock();
 
-        const testSubject = new SingleTargetDrawer(drawerUtilsMock.object, formatterMock.object);
+        const testSubject = new SingleTargetDrawer(
+            drawerUtilsMock.object,
+            formatterMock.object,
+        );
 
         const drawerInfo: DrawerInitData<HtmlElementAxeResults> = {
             data: [
@@ -97,7 +106,10 @@ describe('SingleTargetDrawer Tests', () => {
         expect(testSubject.isOverlayEnabled).toBe(false);
 
         testSubject.drawLayout();
-        testSubject.initialize({ data: [], featureFlagStoreData: getDefaultFeatureFlagValues() });
+        testSubject.initialize({
+            data: [],
+            featureFlagStoreData: getDefaultFeatureFlagValues(),
+        });
 
         expect(testSubject.isOverlayEnabled).toBe(false);
 
@@ -113,7 +125,10 @@ describe('SingleTargetDrawer Tests', () => {
         setupDrawerUtilsMockDefault(dom);
         setupFormatterMock();
 
-        const testSubject = new SingleTargetDrawer(drawerUtilsMock.object, formatterMock.object);
+        const testSubject = new SingleTargetDrawer(
+            drawerUtilsMock.object,
+            formatterMock.object,
+        );
 
         const drawerInfo: DrawerInitData<HtmlElementAxeResults> = {
             data: [

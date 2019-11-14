@@ -2,7 +2,10 @@
 // Licensed under the MIT License.
 import { MoreActionsMenuIcon } from 'common/icons/more-actions-menu-icon';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
-import { DirectionalHint, IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
+import {
+    DirectionalHint,
+    IContextualMenuItem,
+} from 'office-ui-fabric-react/lib/ContextualMenu';
 import * as React from 'react';
 
 import { IssueDetailsTextGenerator } from '../../../background/issue-details-text-generator';
@@ -12,11 +15,18 @@ import { IssueFilingService } from '../../../issue-filing/types/issue-filing-ser
 import { NavigatorUtils } from '../../navigator-utils';
 import { CreateIssueDetailsTextData } from '../../types/create-issue-details-text-data';
 import { IssueFilingNeedsSettingsContentProps } from '../../types/issue-filing-needs-setting-content';
-import { IssueFilingServiceProperties, UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
+import {
+    IssueFilingServiceProperties,
+    UserConfigurationStoreData,
+} from '../../types/store-data/user-configuration-store';
 import { IssueFilingButtonDeps } from '../issue-filing-button';
 import { Toast, ToastDeps } from '../toast';
 import { CardInteractionSupport } from './card-interaction-support';
-import { kebabMenu, kebabMenuButton, kebabMenuCallout } from './card-kebab-menu-button.scss';
+import {
+    kebabMenu,
+    kebabMenuButton,
+    kebabMenuCallout,
+} from './card-kebab-menu-button.scss';
 
 export type CardKebabMenuButtonDeps = {
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
@@ -37,7 +47,10 @@ export interface CardKebabMenuButtonProps {
     kebabMenuAriaLabel?: string;
 }
 
-export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProps, CardKebabMenuButtonState> {
+export class CardKebabMenuButton extends React.Component<
+    CardKebabMenuButtonProps,
+    CardKebabMenuButtonState
+> {
     private toastRef: React.RefObject<Toast>;
     constructor(props: CardKebabMenuButtonProps) {
         super(props);
@@ -122,45 +135,74 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
     }
 
     private fileIssue = (event: React.MouseEvent<any>): void => {
-        const { issueDetailsData, userConfigurationStoreData, deps } = this.props;
-        const { issueFilingServiceProvider, issueFilingActionMessageCreator } = deps;
+        const {
+            issueDetailsData,
+            userConfigurationStoreData,
+            deps,
+        } = this.props;
+        const {
+            issueFilingServiceProvider,
+            issueFilingActionMessageCreator,
+        } = deps;
 
-        const selectedBugFilingService = issueFilingServiceProvider.forKey(userConfigurationStoreData.bugService);
+        const selectedBugFilingService = issueFilingServiceProvider.forKey(
+            userConfigurationStoreData.bugService,
+        );
         const selectedBugFilingServiceData = selectedBugFilingService.getSettingsFromStoreData(
             userConfigurationStoreData.bugServicePropertiesMap,
         );
-        const isSettingValid = selectedBugFilingService.isSettingsValid(selectedBugFilingServiceData);
+        const isSettingValid = selectedBugFilingService.isSettingsValid(
+            selectedBugFilingServiceData,
+        );
 
         if (isSettingValid) {
-            issueFilingActionMessageCreator.fileIssue(event, userConfigurationStoreData.bugService, issueDetailsData);
+            issueFilingActionMessageCreator.fileIssue(
+                event,
+                userConfigurationStoreData.bugService,
+                issueDetailsData,
+            );
             this.closeNeedsSettingsContent();
         } else {
             this.openNeedsSettingsContent();
         }
     };
 
-    private copyFailureDetails = async (event: React.MouseEvent<any>): Promise<void> => {
-        const text = this.props.deps.issueDetailsTextGenerator.buildText(this.props.issueDetailsData);
-        this.props.deps.detailsViewActionMessageCreator.copyIssueDetailsClicked(event);
+    private copyFailureDetails = async (
+        event: React.MouseEvent<any>,
+    ): Promise<void> => {
+        const text = this.props.deps.issueDetailsTextGenerator.buildText(
+            this.props.issueDetailsData,
+        );
+        this.props.deps.detailsViewActionMessageCreator.copyIssueDetailsClicked(
+            event,
+        );
 
         try {
             await this.props.deps.navigatorUtils.copyToClipboard(text);
         } catch (error) {
-            this.toastRef.current.show('Failed to copy failure details. Please try again.');
+            this.toastRef.current.show(
+                'Failed to copy failure details. Please try again.',
+            );
             return;
         }
         this.toastRef.current.show('Failure details copied.');
     };
 
     public renderIssueFilingSettingContent(): JSX.Element {
-        const { deps, userConfigurationStoreData, issueDetailsData } = this.props;
+        const {
+            deps,
+            userConfigurationStoreData,
+            issueDetailsData,
+        } = this.props;
         const { issueFilingServiceProvider, cardInteractionSupport } = deps;
 
         if (!cardInteractionSupport.supportsIssueFiling) {
             return null;
         }
 
-        const selectedIssueFilingService: IssueFilingService = issueFilingServiceProvider.forKey(userConfigurationStoreData.bugService);
+        const selectedIssueFilingService: IssueFilingService = issueFilingServiceProvider.forKey(
+            userConfigurationStoreData.bugService,
+        );
         const selectedIssueFilingServiceData: IssueFilingServiceProperties = selectedIssueFilingService.getSettingsFromStoreData(
             userConfigurationStoreData.bugServicePropertiesMap,
         );
@@ -171,7 +213,8 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
             selectedIssueData: issueDetailsData,
             selectedIssueFilingServiceData,
             onClose: this.closeNeedsSettingsContent,
-            issueFilingServicePropertiesMap: userConfigurationStoreData.bugServicePropertiesMap,
+            issueFilingServicePropertiesMap:
+                userConfigurationStoreData.bugServicePropertiesMap,
         };
 
         return <IssueFilingDialog {...needsSettingsContentProps} />;

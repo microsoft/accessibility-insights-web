@@ -5,11 +5,15 @@ import { EventHandlerList } from './event-handler-list';
 export class Store {
     private changedHandlers = new EventHandlerList<this, unknown>();
 
-    public addChangedListener(handler: (store: this, args?: unknown) => void): void {
+    public addChangedListener(
+        handler: (store: this, args?: unknown) => void,
+    ): void {
         this.changedHandlers.subscribe(handler);
     }
 
-    public removeChangedListener(handler: (store: this, args?: unknown) => void): void {
+    public removeChangedListener(
+        handler: (store: this, args?: unknown) => void,
+    ): void {
         this.changedHandlers.unsubscribe(handler);
     }
 

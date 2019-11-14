@@ -7,11 +7,17 @@ export const guidance = create(({ Markup, Link }) => (
         <GuidanceTitle name={'Language'} />
         <h2>Why it matters</h2>
         <p>
-            When the correct language is programmatically identified, browsers and assistive technologies can render the text more
-            accurately; screen readers can use the correct pronunciation; visual browsers can display the correct characters; and media
-            players can show captions correctly. All users find it easier to understand the page's content.
+            When the correct language is programmatically identified, browsers
+            and assistive technologies can render the text more accurately;
+            screen readers can use the correct pronunciation; visual browsers
+            can display the correct characters; and media players can show
+            captions correctly. All users find it easier to understand the
+            page's content.
         </p>
-        <p>Identifying the correct text direction allows browsers to correctly render right-to-left scripts, such as Arabic and Hebrew.</p>
+        <p>
+            Identifying the correct text direction allows browsers to correctly
+            render right-to-left scripts, such as Arabic and Hebrew.
+        </p>
 
         <Markup.Columns>
             <Markup.Do>
@@ -25,15 +31,19 @@ export const guidance = create(({ Markup, Link }) => (
                         <Markup.HyperLink href="http://www.iana.org/assignments/language-subtag-registry/language-subtag-registry">
                             lang attribute
                         </Markup.HyperLink>{' '}
-                        on the page's <Markup.Code>{'<html>'}</Markup.Code> element.
+                        on the page's <Markup.Code>{'<html>'}</Markup.Code>{' '}
+                        element.
                     </li>
                     <li>
-                        An automated check will fail if the <Markup.Code>{'<html>'}</Markup.Code>element's <Markup.Code>lang</Markup.Code>{' '}
-                        attribute is missing or invalid.
+                        An automated check will fail if the{' '}
+                        <Markup.Code>{'<html>'}</Markup.Code>element's{' '}
+                        <Markup.Code>lang</Markup.Code> attribute is missing or
+                        invalid.
                     </li>
                 </ul>
                 <h3>
-                    Define the correct language for any passage in a different language. (<Link.WCAG_3_1_2 />)
+                    Define the correct language for any passage in a different
+                    language. (<Link.WCAG_3_1_2 />)
                 </h3>
                 <ul>
                     <li>
@@ -44,20 +54,25 @@ export const guidance = create(({ Markup, Link }) => (
                         to an element that contains the text.
                     </li>
                     <li>
-                        An automated check will fail if any element has an invalid <Markup.Code>lang</Markup.Code> attribute.
+                        An automated check will fail if any element has an
+                        invalid <Markup.Code>lang</Markup.Code> attribute.
                     </li>
                 </ul>
                 <h3>
-                    Define the correct text direction if the language uses a script that's read right-to-left. (<Link.WCAG_1_3_2 />)
+                    Define the correct text direction if the language uses a
+                    script that's read right-to-left. (<Link.WCAG_1_3_2 />)
                 </h3>
                 <ul>
                     <li>
-                        If the default language of the page is read right-to-left, add <Markup.Code>dir="rtl"</Markup.Code> to the page's{' '}
-                        <Markup.Code>{'<html>'}</Markup.Code>element.
+                        If the default language of the page is read
+                        right-to-left, add <Markup.Code>dir="rtl"</Markup.Code>{' '}
+                        to the page's <Markup.Code>{'<html>'}</Markup.Code>
+                        element.
                     </li>
                     <li>
-                        If only a passage is read right-to-left, add <Markup.Code>dir="rtl"</Markup.Code> to the element that contains the
-                        passage.
+                        If only a passage is read right-to-left, add{' '}
+                        <Markup.Code>dir="rtl"</Markup.Code> to the element that
+                        contains the passage.
                     </li>
                 </ul>
             </Markup.Do>
@@ -93,7 +108,8 @@ export const guidance = create(({ Markup, Link }) => (
         <h4>Sufficient techniques</h4>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H58">
-                Using the lang attribute to identify changes in the human language
+                Using the lang attribute to identify changes in the human
+                language
             </Markup.HyperLink>
         </Markup.Links>
 
@@ -115,7 +131,8 @@ export const guidance = create(({ Markup, Link }) => (
                 Inline markup and bidirectional text in HTML
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H56">
-                Using the dir attribute on an inline element to resolve problems with nested directional runs
+                Using the dir attribute on an inline element to resolve problems
+                with nested directional runs
             </Markup.HyperLink>
         </Markup.Links>
     </>

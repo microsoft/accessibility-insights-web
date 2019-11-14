@@ -14,7 +14,8 @@ describe('filter by feature flag', () => {
     ];
 
     const baseProvider = AssessmentsProviderImpl.Create(assessments);
-    const create = flags => assessmentsProviderWithFeaturesEnabled(baseProvider, flags);
+    const create = flags =>
+        assessmentsProviderWithFeaturesEnabled(baseProvider, flags);
 
     test('none enabled', () => {
         const provider = create({});

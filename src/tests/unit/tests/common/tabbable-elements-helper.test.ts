@@ -16,7 +16,9 @@ describe('TabbableElementsHelperTest', () => {
                 <div id="id5"></div>
             `);
 
-        const focusedDiv: HTMLElement = dom.querySelector('#id3') as HTMLElement;
+        const focusedDiv: HTMLElement = dom.querySelector(
+            '#id3',
+        ) as HTMLElement;
 
         const htmlElementUtilsMock = Mock.ofType(HTMLElementUtils);
         htmlElementUtilsMock
@@ -24,7 +26,9 @@ describe('TabbableElementsHelperTest', () => {
             .returns(() => focusedDiv)
             .verifiable(Times.once());
 
-        const testObject = new TabbableElementsHelper(htmlElementUtilsMock.object);
+        const testObject = new TabbableElementsHelper(
+            htmlElementUtilsMock.object,
+        );
         expect(testObject.getCurrentFocusedElement()).toEqual(focusedDiv);
         htmlElementUtilsMock.verifyAll();
     });

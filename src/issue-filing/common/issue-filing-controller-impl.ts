@@ -8,7 +8,10 @@ import { UserConfigurationStoreData } from '../../common/types/store-data/user-c
 import { IssueFilingServiceProvider } from '../issue-filing-service-provider';
 
 export type IssueFilingController = {
-    fileIssue: (serviceKey: string, issueData: CreateIssueDetailsTextData) => void;
+    fileIssue: (
+        serviceKey: string,
+        issueData: CreateIssueDetailsTextData,
+    ) => void;
 };
 
 export class IssueFilingControllerImpl implements IssueFilingController {
@@ -16,13 +19,23 @@ export class IssueFilingControllerImpl implements IssueFilingController {
         private readonly provider: IssueFilingServiceProvider,
         private readonly browserAdapter: BrowserAdapter,
         private readonly environmentInfo: EnvironmentInfo,
-        private readonly userConfigurationStore: BaseStore<UserConfigurationStoreData>,
+        private readonly userConfigurationStore: BaseStore<
+            UserConfigurationStoreData
+        >,
     ) {}
 
-    public fileIssue = (serviceKey: string, issueData: CreateIssueDetailsTextData): void => {
+    public fileIssue = (
+        serviceKey: string,
+        issueData: CreateIssueDetailsTextData,
+    ): void => {
         const service = this.provider.forKey(serviceKey);
         const userConfigurationStoreData = this.userConfigurationStore.getState();
 
-        service.fileIssue(this.browserAdapter, userConfigurationStoreData.bugServicePropertiesMap, issueData, this.environmentInfo);
+        service.fileIssue(
+            this.browserAdapter,
+            userConfigurationStoreData.bugServicePropertiesMap,
+            issueData,
+            this.environmentInfo,
+        );
     };
 }

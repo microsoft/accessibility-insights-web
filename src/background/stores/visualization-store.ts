@@ -8,7 +8,11 @@ import { EnumHelper } from 'common/enum-helper';
 import { Tab } from 'common/itab';
 import { StoreNames } from 'common/stores/store-names';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
-import { AssessmentScanData, TestsEnabledState, VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import {
+    AssessmentScanData,
+    TestsEnabledState,
+    VisualizationStoreData,
+} from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 
 import {
@@ -42,23 +46,47 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
     }
 
     protected addActionListeners(): void {
-        this.visualizationActions.enableVisualization.addListener(this.onEnableVisualization);
-        this.visualizationActions.enableVisualizationWithoutScan.addListener(this.onEnableVisualizationWithoutScan);
-        this.visualizationActions.disableVisualization.addListener(this.onDisableVisualization);
-        this.visualizationActions.disableAssessmentVisualizations.addListener(this.onDisableAssessmentVisualizations);
+        this.visualizationActions.enableVisualization.addListener(
+            this.onEnableVisualization,
+        );
+        this.visualizationActions.enableVisualizationWithoutScan.addListener(
+            this.onEnableVisualizationWithoutScan,
+        );
+        this.visualizationActions.disableVisualization.addListener(
+            this.onDisableVisualization,
+        );
+        this.visualizationActions.disableAssessmentVisualizations.addListener(
+            this.onDisableAssessmentVisualizations,
+        );
 
-        this.visualizationActions.scanCompleted.addListener(this.onScanCompleted);
-        this.visualizationActions.updateFocusedInstance.addListener(this.onUpdateFocusedInstance);
-        this.visualizationActions.scrollRequested.addListener(this.onScrollRequested);
+        this.visualizationActions.scanCompleted.addListener(
+            this.onScanCompleted,
+        );
+        this.visualizationActions.updateFocusedInstance.addListener(
+            this.onUpdateFocusedInstance,
+        );
+        this.visualizationActions.scrollRequested.addListener(
+            this.onScrollRequested,
+        );
 
-        this.visualizationActions.getCurrentState.addListener(this.onGetCurrentState);
+        this.visualizationActions.getCurrentState.addListener(
+            this.onGetCurrentState,
+        );
         this.tabActions.tabChange.addListener(this.onTabChange);
 
-        this.visualizationActions.updateSelectedPivotChild.addListener(this.onUpdateSelectedPivotChild);
-        this.visualizationActions.updateSelectedPivot.addListener(this.onUpdateSelectedPivot);
+        this.visualizationActions.updateSelectedPivotChild.addListener(
+            this.onUpdateSelectedPivotChild,
+        );
+        this.visualizationActions.updateSelectedPivot.addListener(
+            this.onUpdateSelectedPivot,
+        );
 
-        this.injectionActions.injectionCompleted.addListener(this.onInjectionCompleted);
-        this.injectionActions.injectionStarted.addListener(this.onInjectionStarted);
+        this.injectionActions.injectionCompleted.addListener(
+            this.onInjectionCompleted,
+        );
+        this.injectionActions.injectionStarted.addListener(
+            this.onInjectionStarted,
+        );
     }
 
     public getDefaultState(): VisualizationStoreData {
@@ -68,12 +96,16 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
         };
 
         if (this.visualizationConfigurationFactory != null) {
-            EnumHelper.getNumericValues(VisualizationType).forEach((test: VisualizationType) => {
-                const config = this.visualizationConfigurationFactory.getConfiguration(test);
-                tests[config.testMode][config.key] = {
-                    enabled: false,
-                };
-            });
+            EnumHelper.getNumericValues(VisualizationType).forEach(
+                (test: VisualizationType) => {
+                    const config = this.visualizationConfigurationFactory.getConfiguration(
+                        test,
+                    );
+                    tests[config.testMode][config.key] = {
+                        enabled: false,
+                    };
+                },
+            );
 
             Object.keys(tests.assessments).forEach(key => {
                 tests.assessments[key].stepStatus = {};
@@ -106,11 +138,15 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
             return isStateChanged;
         }
 
-        const configuration = this.visualizationConfigurationFactory.getConfiguration(test);
+        const configuration = this.visualizationConfigurationFactory.getConfiguration(
+            test,
+        );
         const scanData = configuration.getStoreData(this.state.tests);
 
         if (this.isAssessment(configuration)) {
-            const assessmentScanData = configuration.getStoreData(this.state.tests) as AssessmentScanData;
+            const assessmentScanData = configuration.getStoreData(
+                this.state.tests,
+            ) as AssessmentScanData;
             Object.keys(assessmentScanData.stepStatus).forEach(step => {
                 if (assessmentScanData.enabled) {
                     configuration.disableTest(assessmentScanData, step);
@@ -139,13 +175,17 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
     };
 
     private disableAssessmentVisualizationsWithoutEmitting(): void {
-        EnumHelper.getNumericValues(VisualizationType).forEach((test: number) => {
-            const configuration = this.visualizationConfigurationFactory.getConfiguration(test);
-            const shouldDisableTest = this.isAssessment(configuration);
-            if (shouldDisableTest) {
-                this.toggleTestOff(test);
-            }
-        });
+        EnumHelper.getNumericValues(VisualizationType).forEach(
+            (test: number) => {
+                const configuration = this.visualizationConfigurationFactory.getConfiguration(
+                    test,
+                );
+                const shouldDisableTest = this.isAssessment(configuration);
+                if (shouldDisableTest) {
+                    this.toggleTestOff(test);
+                }
+            },
+        );
     }
 
     private onDisableAssessmentVisualizations = (): void => {
@@ -157,17 +197,24 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
         this.enableTest(payload, false);
     };
 
-    private onEnableVisualizationWithoutScan = (payload: ToggleActionPayload): void => {
+    private onEnableVisualizationWithoutScan = (
+        payload: ToggleActionPayload,
+    ): void => {
         this.enableTest(payload, true);
     };
 
-    private enableTest(payload: ToggleActionPayload, skipScanning: boolean): void {
+    private enableTest(
+        payload: ToggleActionPayload,
+        skipScanning: boolean,
+    ): void {
         if (this.state.scanning != null) {
             // do not change state if currently scanning, not even the toggle
             return;
         }
 
-        const configuration = this.visualizationConfigurationFactory.getConfiguration(payload.test);
+        const configuration = this.visualizationConfigurationFactory.getConfiguration(
+            payload.test,
+        );
         this.disableAssessmentVisualizationsWithoutEmitting();
         const scanData = configuration.getStoreData(this.state.tests);
 
@@ -199,14 +246,20 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
     };
 
     private disableAllTests(): void {
-        EnumHelper.getNumericValues(VisualizationType).forEach((test: VisualizationType) => {
-            this.toggleTestOff(test);
-        });
+        EnumHelper.getNumericValues(VisualizationType).forEach(
+            (test: VisualizationType) => {
+                this.toggleTestOff(test);
+            },
+        );
     }
 
-    private onUpdateSelectedPivotChild = (payload: UpdateSelectedDetailsViewPayload): void => {
+    private onUpdateSelectedPivotChild = (
+        payload: UpdateSelectedDetailsViewPayload,
+    ): void => {
         const pivot = payload.pivotType;
-        const pivotChildUpdated = this.updateSelectedPivotChildUnderPivot(payload);
+        const pivotChildUpdated = this.updateSelectedPivotChildUnderPivot(
+            payload,
+        );
         const pivotUpdated = this.updateSelectedPivot(pivot);
         if (pivotChildUpdated || pivotUpdated) {
             this.disableAllTests();
@@ -224,7 +277,9 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
         this.emitChanged();
     };
 
-    private onUpdateFocusedInstance = (focusedInstanceTarget: string[]): void => {
+    private onUpdateFocusedInstance = (
+        focusedInstanceTarget: string[],
+    ): void => {
         this.state.focusedTarget = focusedInstanceTarget;
         this.emitChanged();
     };
@@ -245,17 +300,23 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
         this.emitChanged();
     };
 
-    private updateSelectedPivotChildUnderPivot(payload: UpdateSelectedDetailsViewPayload): boolean {
+    private updateSelectedPivotChildUnderPivot(
+        payload: UpdateSelectedDetailsViewPayload,
+    ): boolean {
         let updated = false;
         if (payload.detailsViewType == null) {
             return updated;
         }
 
-        if (this.state.selectedAdhocDetailsView !== payload.detailsViewType && payload.pivotType === DetailsViewPivotType.allTest) {
+        if (
+            this.state.selectedAdhocDetailsView !== payload.detailsViewType &&
+            payload.pivotType === DetailsViewPivotType.allTest
+        ) {
             this.state.selectedAdhocDetailsView = payload.detailsViewType;
             updated = true;
         } else if (
-            this.state.selectedFastPassDetailsView !== payload.detailsViewType &&
+            this.state.selectedFastPassDetailsView !==
+                payload.detailsViewType &&
             payload.pivotType === DetailsViewPivotType.fastPass
         ) {
             this.state.selectedFastPassDetailsView = payload.detailsViewType;

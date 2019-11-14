@@ -24,7 +24,9 @@ describe('HeadingsInstanceDetailsColumnRendererTest', () => {
                 customClassName="not-applicable"
             />
         );
-        expect(headingsAssessmentInstanceDetailsColumnRenderer(item)).toEqual(expected);
+        expect(headingsAssessmentInstanceDetailsColumnRenderer(item)).toEqual(
+            expected,
+        );
     });
 
     test('render', () => {
@@ -45,7 +47,9 @@ describe('HeadingsInstanceDetailsColumnRendererTest', () => {
                 customClassName={null}
             />
         );
-        expect(headingsAssessmentInstanceDetailsColumnRenderer(item)).toEqual(expected);
+        expect(headingsAssessmentInstanceDetailsColumnRenderer(item)).toEqual(
+            expected,
+        );
     });
 
     test('render out of bounds level', () => {
@@ -66,6 +70,8 @@ describe('HeadingsInstanceDetailsColumnRendererTest', () => {
                 customClassName={null}
             />
         );
-        expect(headingsAssessmentInstanceDetailsColumnRenderer(item)).toEqual(expected);
+        expect(headingsAssessmentInstanceDetailsColumnRenderer(item)).toEqual(
+            expected,
+        );
     });
 });

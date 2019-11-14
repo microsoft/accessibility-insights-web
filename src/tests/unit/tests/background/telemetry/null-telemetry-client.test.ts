@@ -16,14 +16,22 @@ describe('Null telemetry client', () => {
 
     beforeEach(() => {
         loggerMock = Mock.ofType<TelemetryLogger>();
-        telemetryDataFactoryMock = Mock.ofType<ApplicationTelemetryDataFactory>();
+        telemetryDataFactoryMock = Mock.ofType<
+            ApplicationTelemetryDataFactory
+        >();
     });
 
     describe('no op, no side effects', () => {
         const data = [
             ['constructor', createDefaultTestObject],
-            ['enableTelemetry', () => createDefaultTestObject().enableTelemetry()],
-            ['disableTelemetry', () => createDefaultTestObject().disableTelemetry()],
+            [
+                'enableTelemetry',
+                () => createDefaultTestObject().enableTelemetry(),
+            ],
+            [
+                'disableTelemetry',
+                () => createDefaultTestObject().disableTelemetry(),
+            ],
         ];
 
         it.each(data)('%s', (_, toExec) => {
@@ -53,7 +61,9 @@ describe('Null telemetry client', () => {
                 .returns(() => appDataStub)
                 .verifiable(Times.once());
 
-            loggerMock.setup(logger => logger.log(expectedLogData)).verifiable(Times.once());
+            loggerMock
+                .setup(logger => logger.log(expectedLogData))
+                .verifiable(Times.once());
 
             const testObject = createDefaultTestObject();
 
@@ -65,6 +75,9 @@ describe('Null telemetry client', () => {
     });
 
     function createDefaultTestObject(): NullTelemetryClient {
-        return new NullTelemetryClient(telemetryDataFactoryMock.object, loggerMock.object);
+        return new NullTelemetryClient(
+            telemetryDataFactoryMock.object,
+            loggerMock.object,
+        );
     }
 });

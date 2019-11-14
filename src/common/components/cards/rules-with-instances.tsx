@@ -13,7 +13,10 @@ import { CardRuleResult } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { CollapsibleComponentCardsProps } from './collapsible-component-cards';
 import { RuleContent, RuleContentDeps } from './rule-content';
-import { collapsibleRuleDetailsGroup, ruleDetailsGroup } from './rules-with-instances.scss';
+import {
+    collapsibleRuleDetailsGroup,
+    ruleDetailsGroup,
+} from './rules-with-instances.scss';
 
 export type RulesWithInstancesDeps = RuleContentDeps & {
     collapsibleControl: (props: CollapsibleComponentCardsProps) => JSX.Element;
@@ -30,12 +33,29 @@ export type RulesWithInstancesProps = {
 
 export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
     'RulesWithInstances',
-    ({ rules, outcomeType, fixInstructionProcessor, deps, userConfigurationStoreData, targetAppInfo }) => {
-        const getCollapsibleComponentProps = (rule: CardRuleResult, idx: number, buttonAriaLabel: string) => {
+    ({
+        rules,
+        outcomeType,
+        fixInstructionProcessor,
+        deps,
+        userConfigurationStoreData,
+        targetAppInfo,
+    }) => {
+        const getCollapsibleComponentProps = (
+            rule: CardRuleResult,
+            idx: number,
+            buttonAriaLabel: string,
+        ) => {
             return {
                 id: rule.id,
                 key: `summary-details-${idx + 1}`,
-                header: <MinimalRuleHeader key={rule.id} rule={rule} outcomeType={outcomeType} />,
+                header: (
+                    <MinimalRuleHeader
+                        key={rule.id}
+                        rule={rule}
+                        outcomeType={outcomeType}
+                    />
+                ),
                 content: (
                     <RuleContent
                         key={`${rule.id}-rule-group`}
@@ -59,7 +79,13 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                 {rules.map((rule, idx) => {
                     const { pastTense } = outcomeTypeSemantics[outcomeType];
                     const buttonAriaLabel = `${rule.id} ${rule.nodes.length} ${pastTense} ${rule.description}`;
-                    const CollapsibleComponent = deps.collapsibleControl(getCollapsibleComponentProps(rule, idx, buttonAriaLabel));
+                    const CollapsibleComponent = deps.collapsibleControl(
+                        getCollapsibleComponentProps(
+                            rule,
+                            idx,
+                            buttonAriaLabel,
+                        ),
+                    );
                     return CollapsibleComponent;
                 })}
             </div>

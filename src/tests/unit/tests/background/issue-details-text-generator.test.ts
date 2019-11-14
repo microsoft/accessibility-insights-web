@@ -38,21 +38,40 @@ describe('Issue details text builder', () => {
             snippet: 'RR-snippet   space',
         } as any;
 
-        issueUrlCreationUtilsMock = Mock.ofType<IssueUrlCreationUtils>(undefined, MockBehavior.Strict);
-        issueUrlCreationUtilsMock.setup(utils => utils.getSelectorLastPart(selector)).returns(() => selector);
-        issueUrlCreationUtilsMock.setup(utils => utils.getTitle(sampleIssueDetailsData)).returns(() => title);
-        issueUrlCreationUtilsMock.setup(utils => utils.standardizeTags(sampleIssueDetailsData)).returns(() => wcagTags);
+        issueUrlCreationUtilsMock = Mock.ofType<IssueUrlCreationUtils>(
+            undefined,
+            MockBehavior.Strict,
+        );
+        issueUrlCreationUtilsMock
+            .setup(utils => utils.getSelectorLastPart(selector))
+            .returns(() => selector);
+        issueUrlCreationUtilsMock
+            .setup(utils => utils.getTitle(sampleIssueDetailsData))
+            .returns(() => title);
+        issueUrlCreationUtilsMock
+            .setup(utils => utils.standardizeTags(sampleIssueDetailsData))
+            .returns(() => wcagTags);
 
         const envInfo = {
             axeCoreVersion: 'AXE.CORE.VER',
             browserSpec: 'BROWSER.SPEC',
             extensionVersion: 'MY.EXT.VER',
         };
-        envInfoProviderMock = Mock.ofType<EnvironmentInfoProvider>(undefined, MockBehavior.Strict);
-        envInfoProviderMock.setup(provider => provider.getEnvironmentInfo()).returns(() => envInfo);
+        envInfoProviderMock = Mock.ofType<EnvironmentInfoProvider>(
+            undefined,
+            MockBehavior.Strict,
+        );
+        envInfoProviderMock
+            .setup(provider => provider.getEnvironmentInfo())
+            .returns(() => envInfo);
 
-        issueDetailsBuilderMock = Mock.ofType<IssueDetailsBuilder>(undefined, MockBehavior.Strict);
-        issueDetailsBuilderMock.setup(builder => builder(envInfo, sampleIssueDetailsData)).returns(() => 'test-issue-details-builder');
+        issueDetailsBuilderMock = Mock.ofType<IssueDetailsBuilder>(
+            undefined,
+            MockBehavior.Strict,
+        );
+        issueDetailsBuilderMock
+            .setup(builder => builder(envInfo, sampleIssueDetailsData))
+            .returns(() => 'test-issue-details-builder');
 
         testSubject = new IssueDetailsTextGenerator(
             issueUrlCreationUtilsMock.object,
@@ -79,21 +98,31 @@ describe('Issue details text builder', () => {
     describe('buildTags', () => {
         test('no standard tags', () => {
             const expected = 'Accessibility, RR-rule-id';
-            const actual = testSubject.buildTags(sampleIssueDetailsData, noStandardTags);
+            const actual = testSubject.buildTags(
+                sampleIssueDetailsData,
+                noStandardTags,
+            );
 
             expect(actual).toEqual(expected);
         });
 
         test('one standard tag', () => {
             const expected = 'Accessibility, WCAG-1.4.1, RR-rule-id';
-            const actual = testSubject.buildTags(sampleIssueDetailsData, oneStandardTag);
+            const actual = testSubject.buildTags(
+                sampleIssueDetailsData,
+                oneStandardTag,
+            );
 
             expect(actual).toEqual(expected);
         });
 
         test('many standard tags', () => {
-            const expected = 'Accessibility, WCAG-1.4.1, WCAG-2.8.2, WCAG-4.1.4, RR-rule-id';
-            const actual = testSubject.buildTags(sampleIssueDetailsData, manyStandardTags);
+            const expected =
+                'Accessibility, WCAG-1.4.1, WCAG-2.8.2, WCAG-4.1.4, RR-rule-id';
+            const actual = testSubject.buildTags(
+                sampleIssueDetailsData,
+                manyStandardTags,
+            );
 
             expect(actual).toEqual(expected);
         });

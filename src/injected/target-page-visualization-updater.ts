@@ -13,8 +13,14 @@ import { IsVisualizationEnabledCallback } from './is-visualization-enabled';
 import { SelectorMapHelper } from './selector-map-helper';
 import { VisualizationNeedsUpdateCallback } from './visualization-needs-update';
 
-export type VisualizationSelectorMapContainer = DictionaryNumberTo<DictionaryStringTo<AssessmentVisualizationInstance>>;
-export type UpdateVisualization = (visualizationType: VisualizationType, step: string, storeData: TargetPageStoreData) => void;
+export type VisualizationSelectorMapContainer = DictionaryNumberTo<
+    DictionaryStringTo<AssessmentVisualizationInstance>
+>;
+export type UpdateVisualization = (
+    visualizationType: VisualizationType,
+    step: string,
+    storeData: TargetPageStoreData,
+) => void;
 export class TargetPageVisualizationUpdater {
     private previousVisualizationSelectorMapStates: VisualizationSelectorMapContainer = {};
     private previousVisualizationStates: DictionaryStringTo<boolean> = {};
@@ -32,10 +38,23 @@ export class TargetPageVisualizationUpdater {
         stepKey: string,
         storeData: TargetPageStoreData,
     ) => {
-        const selectorMap = this.selectorMapHelper.getSelectorMap(visualizationType, stepKey, storeData);
-        const configuration = this.visualizationConfigurationFactory.getConfiguration(visualizationType);
+        const selectorMap = this.selectorMapHelper.getSelectorMap(
+            visualizationType,
+            stepKey,
+            storeData,
+        );
+        const configuration = this.visualizationConfigurationFactory.getConfiguration(
+            visualizationType,
+        );
         const configId = configuration.getIdentifier(stepKey);
-        this.executeUpdate(visualizationType, stepKey, storeData, selectorMap, configuration, configId);
+        this.executeUpdate(
+            visualizationType,
+            stepKey,
+            storeData,
+            selectorMap,
+            configuration,
+            configId,
+        );
         this.previousVisualizationSelectorMapStates[configId] = selectorMap;
     };
 
@@ -68,7 +87,9 @@ export class TargetPageVisualizationUpdater {
             return;
         }
 
-        this.previousVisualizationStates[configId] = newVisualizationEnabledState;
+        this.previousVisualizationStates[
+            configId
+        ] = newVisualizationEnabledState;
 
         if (newVisualizationEnabledState) {
             this.drawingInitiator.enableVisualization(
@@ -79,7 +100,11 @@ export class TargetPageVisualizationUpdater {
                 configuration.visualizationInstanceProcessor(stepKey),
             );
         } else {
-            this.drawingInitiator.disableVisualization(visualizationType, storeData.featureFlagStoreData, configId);
+            this.drawingInitiator.disableVisualization(
+                visualizationType,
+                storeData.featureFlagStoreData,
+                configId,
+            );
         }
     };
 }

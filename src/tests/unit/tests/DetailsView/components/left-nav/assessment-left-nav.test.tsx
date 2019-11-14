@@ -5,7 +5,10 @@ import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
 
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { ManualTestStatus, ManualTestStatusData } from '../../../../../../common/types/manual-test-status';
+import {
+    ManualTestStatus,
+    ManualTestStatusData,
+} from '../../../../../../common/types/manual-test-status';
 import {
     AssessmentLeftNav,
     AssessmentLeftNavDeps,
@@ -50,7 +53,13 @@ describe('AssessmentLeftNav', () => {
 
         leftNavLinkBuilderMock
             .setup(lnlbm =>
-                lnlbm.buildOverviewLink(deps, navLinkHandlerMock.onOverviewClick, assessmentsProviderStub, assessmentsDataStub, 0),
+                lnlbm.buildOverviewLink(
+                    deps,
+                    navLinkHandlerMock.onOverviewClick,
+                    assessmentsProviderStub,
+                    assessmentsDataStub,
+                    0,
+                ),
             )
             .returns(() => linkStub);
 
@@ -69,7 +78,9 @@ describe('AssessmentLeftNav', () => {
 
     it('render with index icon', () => {
         const actual = shallow(<AssessmentLeftNav {...props} />);
-        const renderIcon: (link: AssessmentLeftNavLink) => JSX.Element = actual.prop('renderIcon');
+        const renderIcon: (
+            link: AssessmentLeftNavLink,
+        ) => JSX.Element = actual.prop('renderIcon');
         const renderedIcon = shallow(renderIcon(linkStub));
 
         expect(actual.getElement()).toMatchSnapshot();
@@ -79,7 +90,9 @@ describe('AssessmentLeftNav', () => {
     it('render with status icon', () => {
         linkStub.status = -1;
         const actual = shallow(<AssessmentLeftNav {...props} />);
-        const renderIcon: (link: AssessmentLeftNavLink) => JSX.Element = actual.prop('renderIcon');
+        const renderIcon: (
+            link: AssessmentLeftNavLink,
+        ) => JSX.Element = actual.prop('renderIcon');
         const renderedIcon = shallow(renderIcon(linkStub));
 
         expect(actual.getElement()).toMatchSnapshot();

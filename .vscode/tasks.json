@@ -4,7 +4,11 @@
         {
             "label": "Test current file in VSCode",
             "command": "node",
-            "args": ["${workspaceRoot}/node_modules/jest/bin/jest.js", "--runInBand", "${relativeFile}"],
+            "args": [
+                "${workspaceRoot}/node_modules/jest/bin/jest.js",
+                "--runInBand",
+                "${relativeFile}"
+            ],
             "group": {
                 "kind": "test",
                 "isDefault": true
@@ -18,7 +22,11 @@
         {
             "label": "Begin Jest watch session",
             "command": "node",
-            "args": ["${workspaceRoot}/node_modules/jest/bin/jest.js", "--runInBand", "--watch"],
+            "args": [
+                "${workspaceRoot}/node_modules/jest/bin/jest.js",
+                "--runInBand",
+                "--watch"
+            ],
             "group": {
                 "kind": "test",
                 "isDefault": true
@@ -32,7 +40,12 @@
         {
             "label": "Debug current test file outside VSCode",
             "command": "node",
-            "args": ["--inspect-brk", "${workspaceRoot}/node_modules/jest/bin/jest.js", "--runInBand", "${relativeFile}"],
+            "args": [
+                "--inspect-brk",
+                "${workspaceRoot}/node_modules/jest/bin/jest.js",
+                "--runInBand",
+                "${relativeFile}"
+            ],
             "group": {
                 "kind": "test",
                 "isDefault": true

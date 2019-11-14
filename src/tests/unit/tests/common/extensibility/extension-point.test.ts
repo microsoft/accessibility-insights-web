@@ -68,7 +68,13 @@ describe('ExtensionPoint', () => {
     });
 
     it('works with malformed extensions in list', () => {
-        const malformedExnteions = [null, undefined, [], {}, { type: 'Extension' }];
+        const malformedExnteions = [
+            null,
+            undefined,
+            [],
+            {},
+            { type: 'Extension' },
+        ];
 
         const result = ep.apply([extOne, ...malformedExnteions, extTwo]);
 

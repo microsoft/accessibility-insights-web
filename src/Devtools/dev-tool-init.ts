@@ -4,5 +4,7 @@ import { DevToolsChromeAdapterImpl } from 'background/dev-tools-chrome-adapter';
 import { DevToolInitializer } from './dev-tool-initializer';
 
 const browserAdapter = new DevToolsChromeAdapterImpl();
-const devToolInitializer: DevToolInitializer = new DevToolInitializer(browserAdapter);
+const devToolInitializer: DevToolInitializer = new DevToolInitializer(
+    browserAdapter,
+);
 devToolInitializer.initialize();

@@ -14,7 +14,9 @@ export class Action<TPayload> {
 
     public invoke(payload: TPayload): void {
         if (Action.executingScopes[this.scope]) {
-            throw new Error(`Cannot invoke an action with scope ${this.scope} from inside another action with the same scope`);
+            throw new Error(
+                `Cannot invoke an action with scope ${this.scope} from inside another action with the same scope`,
+            );
         }
 
         Action.executingScopes[this.scope] = true;

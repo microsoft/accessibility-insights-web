@@ -11,7 +11,8 @@ export const AutomatedChecksViewSelectors = {
     collapsibleContainerContent: '.collapsible-container-content',
     getRuleDetailsIdSelector: (position: number) =>
         `${AutomatedChecksViewSelectors.collapsibleRuleDetailsGroup}:nth-of-type(${position}) .rule-details-id`,
-    getLiFailuresSelector: (position: number) => `${AutomatedChecksViewSelectors.collapsibleRuleDetailsGroup}:nth-of-type(${position}) li`,
+    getLiFailuresSelector: (position: number) =>
+        `${AutomatedChecksViewSelectors.collapsibleRuleDetailsGroup}:nth-of-type(${position}) li`,
     getCollapseExpandButtonByGroupPosition: (position: number) =>
         `${AutomatedChecksViewSelectors.collapsibleRuleDetailsGroup}:nth-of-type(${position}) button`,
 };
@@ -20,5 +21,6 @@ export const ScreenshotViewSelectors = {
     screenshotView: `[data-automation-id=${screenshotViewAutomationId}]`,
     screenshotImage: `[data-automation-id=${screenshotImageAutomationId}]`,
     highlightBox: `[data-automation-id=${highlightBoxAutomationId}]`,
-    getHighlightBoxByIndex: (index: number) => `${ScreenshotViewSelectors.highlightBox}:nth-of-type(${index})`,
+    getHighlightBoxByIndex: (index: number) =>
+        `${ScreenshotViewSelectors.highlightBox}:nth-of-type(${index})`,
 };

@@ -33,19 +33,24 @@ export const LandmarksAdHocVisualization: VisualizationConfiguration = {
     chromeCommand: '02_toggle-landmarks',
     launchPanelDisplayOrder: 2,
     adhocToolsPanelDisplayOrder: 4,
-    resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
+    resultProcessor: (scanner: ScannerUtils) =>
+        scanner.getAllCompletedInstances,
     getAnalyzer: provider =>
         provider.createRuleAnalyzer({
             rules: ['unique-landmark'],
-            resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
-            telemetryProcessor: (telemetryFactory: TelemetryDataFactory) => telemetryFactory.forTestScan,
+            resultProcessor: (scanner: ScannerUtils) =>
+                scanner.getAllCompletedInstances,
+            telemetryProcessor: (telemetryFactory: TelemetryDataFactory) =>
+                telemetryFactory.forTestScan,
             key: AdHocTestkeys.Landmarks,
             testType: VisualizationType.Landmarks,
             analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
         }),
     getIdentifier: () => AdHocTestkeys.Landmarks,
-    visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
-    getNotificationMessage: selectorMap => (isEmpty(selectorMap) ? 'No landmarks found' : null),
+    visualizationInstanceProcessor: () =>
+        VisualizationInstanceProcessor.nullProcessor,
+    getNotificationMessage: selectorMap =>
+        isEmpty(selectorMap) ? 'No landmarks found' : null,
     getDrawer: provider => provider.createLandmarksDrawer(),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,

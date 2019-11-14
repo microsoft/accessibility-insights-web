@@ -4,4 +4,7 @@ import { GetLabelledStringPropertyCardRow } from './get-labelled-string-property
 
 import { contentSnipppet } from '../../../reports/components/instance-details.scss';
 
-export const SnippetCardRow = GetLabelledStringPropertyCardRow('Snippet', contentSnipppet);
+export const SnippetCardRow = GetLabelledStringPropertyCardRow(
+    'Snippet',
+    contentSnipppet,
+);

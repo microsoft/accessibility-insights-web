@@ -38,20 +38,26 @@ describe('AutomatedChecksView', () => {
     });
 
     async function countHighlightBoxes(): Promise<number> {
-        const boxes = await automatedChecksView.client.$$(ScreenshotViewSelectors.highlightBox);
+        const boxes = await automatedChecksView.client.$$(
+            ScreenshotViewSelectors.highlightBox,
+        );
         return boxes.length;
     }
 
     it('supports expanding and collapsing rule groups', async () => {
         expect(await countHighlightBoxes()).toBe(5);
-        expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(0);
+        expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(
+            0,
+        );
 
         await automatedChecksView.toggleRuleGroupAtPosition(1);
         await automatedChecksView.toggleRuleGroupAtPosition(2);
         await automatedChecksView.toggleRuleGroupAtPosition(3);
 
         expect(await countHighlightBoxes()).toBe(4);
-        expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(3);
+        expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(
+            3,
+        );
         await assertExpandedRuleGroup(1, 'ImageViewName', 1);
         await assertExpandedRuleGroup(2, 'ActiveViewName', 2);
         await assertExpandedRuleGroup(3, 'TouchSizeWcag', 1);
@@ -60,30 +66,51 @@ describe('AutomatedChecksView', () => {
         await automatedChecksView.toggleRuleGroupAtPosition(2);
 
         expect(await countHighlightBoxes()).toBe(1);
-        expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(1);
+        expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(
+            1,
+        );
         await assertExpandedRuleGroup(3, 'TouchSizeWcag', 1);
     });
 
     it('should not contain any accessibility issues', async () => {
-        const violations = await scanForAccessibilityIssues(automatedChecksView);
+        const violations = await scanForAccessibilityIssues(
+            automatedChecksView,
+        );
         expect(violations).toStrictEqual([]);
     });
 
-    async function assertExpandedRuleGroup(position: number, expectedTitle: string, expectedFailures: number): Promise<void> {
-        const title = await automatedChecksView.client.$(AutomatedChecksViewSelectors.getRuleDetailsIdSelector(position)).getText();
+    async function assertExpandedRuleGroup(
+        position: number,
+        expectedTitle: string,
+        expectedFailures: number,
+    ): Promise<void> {
+        const title = await automatedChecksView.client
+            .$(AutomatedChecksViewSelectors.getRuleDetailsIdSelector(position))
+            .getText();
         expect(title).toEqual(expectedTitle);
 
-        const failures = await automatedChecksView.client.$$(AutomatedChecksViewSelectors.getLiFailuresSelector(position));
+        const failures = await automatedChecksView.client.$$(
+            AutomatedChecksViewSelectors.getLiFailuresSelector(position),
+        );
         expect(failures).toHaveLength(expectedFailures);
     }
 
     it('ScreenshotView renders screenshot image from specified source', async () => {
-        const resultExamplePath = path.join(testResourceServerConfig.absolutePath, 'axe/result.json');
-        const axeRuleResultExample = JSON.parse(fs.readFileSync(resultExamplePath, { encoding: 'utf-8' }));
+        const resultExamplePath = path.join(
+            testResourceServerConfig.absolutePath,
+            'axe/result.json',
+        );
+        const axeRuleResultExample = JSON.parse(
+            fs.readFileSync(resultExamplePath, { encoding: 'utf-8' }),
+        );
 
-        const expectedScreenshotImage = 'data:image/png;base64,' + axeRuleResultExample.axeContext.screenshot;
+        const expectedScreenshotImage =
+            'data:image/png;base64,' +
+            axeRuleResultExample.axeContext.screenshot;
 
-        const actualScreenshotImage = await automatedChecksView.findElement(ScreenshotViewSelectors.screenshotImage).getAttribute('src');
+        const actualScreenshotImage = await automatedChecksView
+            .findElement(ScreenshotViewSelectors.screenshotImage)
+            .getAttribute('src');
 
         expect(actualScreenshotImage).toEqual(expectedScreenshotImage);
     });
@@ -91,11 +118,15 @@ describe('AutomatedChecksView', () => {
     it('ScreenshotView renders expected number/size of highlight boxes in expected positions', async () => {
         await automatedChecksView.waitForScreenshotViewVisible();
 
-        const highlightBoxes = await automatedChecksView.client.$$(ScreenshotViewSelectors.highlightBox);
+        const highlightBoxes = await automatedChecksView.client.$$(
+            ScreenshotViewSelectors.highlightBox,
+        );
 
         const actualHighlightBoxStyles: PositionStyles[] = [];
         for (let i = 1; i <= highlightBoxes.length; i++) {
-            const style = await automatedChecksView.findElement(ScreenshotViewSelectors.getHighlightBoxByIndex(i)).getAttribute('style');
+            const style = await automatedChecksView
+                .findElement(ScreenshotViewSelectors.getHighlightBoxByIndex(i))
+                .getAttribute('style');
             actualHighlightBoxStyles.push(extractPositionStyles(style));
         }
 
@@ -124,18 +155,36 @@ describe('AutomatedChecksView', () => {
         };
     }
 
-    function extractStyleProperty(styleValue: string, propertyName: string): number {
-        return parseFloat(RegExp(`${propertyName}: (-?\\d+(\\.\\d+)?)%`).exec(styleValue)[1]);
+    function extractStyleProperty(
+        styleValue: string,
+        propertyName: string,
+    ): number {
+        return parseFloat(
+            RegExp(`${propertyName}: (-?\\d+(\\.\\d+)?)%`).exec(styleValue)[1],
+        );
     }
 
-    function verifyHighlightBoxStyles(actualHighlightBoxStyles: PositionStyles[], expectedHighlightBoxStyles: PositionStyles[]): void {
-        expect(actualHighlightBoxStyles).toHaveLength(expectedHighlightBoxStyles.length);
+    function verifyHighlightBoxStyles(
+        actualHighlightBoxStyles: PositionStyles[],
+        expectedHighlightBoxStyles: PositionStyles[],
+    ): void {
+        expect(actualHighlightBoxStyles).toHaveLength(
+            expectedHighlightBoxStyles.length,
+        );
 
         actualHighlightBoxStyles.forEach((boxStyle, index) => {
-            expect(boxStyle.top).toBeCloseTo(expectedHighlightBoxStyles[index].top);
-            expect(boxStyle.left).toBeCloseTo(expectedHighlightBoxStyles[index].left);
-            expect(boxStyle.width).toBeCloseTo(expectedHighlightBoxStyles[index].width);
-            expect(boxStyle.height).toBeCloseTo(expectedHighlightBoxStyles[index].height);
+            expect(boxStyle.top).toBeCloseTo(
+                expectedHighlightBoxStyles[index].top,
+            );
+            expect(boxStyle.left).toBeCloseTo(
+                expectedHighlightBoxStyles[index].left,
+            );
+            expect(boxStyle.width).toBeCloseTo(
+                expectedHighlightBoxStyles[index].width,
+            );
+            expect(boxStyle.height).toBeCloseTo(
+                expectedHighlightBoxStyles[index].height,
+            );
         });
     }
 });

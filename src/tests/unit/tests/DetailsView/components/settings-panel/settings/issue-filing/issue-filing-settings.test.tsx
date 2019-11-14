@@ -8,7 +8,10 @@ import { UserConfigMessageCreator } from '../../../../../../../../common/message
 import { NamedFC } from '../../../../../../../../common/react/named-fc';
 import { UserConfigurationStoreData } from '../../../../../../../../common/types/store-data/user-configuration-store';
 import { IssueFilingSettings } from '../../../../../../../../DetailsView/components/settings-panel/settings/issue-filing/issue-filing-settings';
-import { SettingsDeps, SettingsProps } from '../../../../../../../../DetailsView/components/settings-panel/settings/settings-props';
+import {
+    SettingsDeps,
+    SettingsProps,
+} from '../../../../../../../../DetailsView/components/settings-panel/settings/settings-props';
 import { IssueFilingServiceProvider } from '../../../../../../../../issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from '../../../../../../../../issue-filing/types/issue-filing-service';
 
@@ -21,13 +24,17 @@ describe('IssueFilingSettings', () => {
 
     beforeEach(() => {
         userConfigMessageCreatorMock = Mock.ofType(UserConfigMessageCreator);
-        issueFilingServiceProviderMock = Mock.ofType(IssueFilingServiceProvider);
+        issueFilingServiceProviderMock = Mock.ofType(
+            IssueFilingServiceProvider,
+        );
         userData = {
             isFirstTime: true,
             enableTelemetry: true,
             enableHighContrast: true,
             bugService: 'gitHub',
-            bugServicePropertiesMap: { gitHub: { repository: 'test-repository' } },
+            bugServicePropertiesMap: {
+                gitHub: { repository: 'test-repository' },
+            },
         };
         testIssueFilingServiceStub = {
             key: testKey,
@@ -41,13 +48,16 @@ describe('IssueFilingSettings', () => {
             fileIssue: () => {},
         };
 
-        issueFilingServiceProviderMock.setup(provider => provider.forKey(userData.bugService)).returns(() => testIssueFilingServiceStub);
+        issueFilingServiceProviderMock
+            .setup(provider => provider.forKey(userData.bugService))
+            .returns(() => testIssueFilingServiceStub);
     });
 
     it('renders', () => {
         const props: SettingsProps = {
             deps: {
-                issueFilingServiceProvider: issueFilingServiceProviderMock.object,
+                issueFilingServiceProvider:
+                    issueFilingServiceProviderMock.object,
                 userConfigMessageCreator: userConfigMessageCreatorMock.object,
             } as SettingsDeps,
             featureFlagData: {},

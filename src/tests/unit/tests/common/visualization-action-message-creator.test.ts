@@ -4,7 +4,11 @@ import { VisualizationTogglePayload } from 'background/actions/action-payloads';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { TelemetryEventSource, ToggleTelemetryData, TriggeredBy } from '../../../../common/extension-telemetry-events';
+import {
+    TelemetryEventSource,
+    ToggleTelemetryData,
+    TriggeredBy,
+} from '../../../../common/extension-telemetry-events';
 import { Message } from '../../../../common/message';
 import { VisualizationActionMessageCreator } from '../../../../common/message-creators/visualization-action-message-creator';
 import { Messages } from '../../../../common/messages';
@@ -18,7 +22,9 @@ describe('VisualizationActionMessageCreatorTest', () => {
 
     beforeEach(() => {
         actionMessageDispatcherMock = Mock.ofType<ActionMessageDispatcher>();
-        testObject = new VisualizationActionMessageCreator(actionMessageDispatcherMock.object);
+        testObject = new VisualizationActionMessageCreator(
+            actionMessageDispatcherMock.object,
+        );
     });
 
     it('dispatch message for setVisualizationState', () => {
@@ -41,7 +47,11 @@ describe('VisualizationActionMessageCreatorTest', () => {
             payload,
         };
 
-        actionMessageDispatcherMock.setup(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage))).verifiable(Times.once());
+        actionMessageDispatcherMock
+            .setup(dispatcher =>
+                dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            )
+            .verifiable(Times.once());
 
         testObject.setVisualizationState(test, enabled, telemetry);
 

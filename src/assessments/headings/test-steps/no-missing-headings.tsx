@@ -14,17 +14,23 @@ import { HeadingsTestStep } from './test-steps';
 
 const missingHeadingsDescription: JSX.Element = (
     <span>
-        Text that <Markup.Emphasis>looks like</Markup.Emphasis> a heading must be <Markup.Emphasis>coded</Markup.Emphasis> as a heading.
+        Text that <Markup.Emphasis>looks like</Markup.Emphasis> a heading must
+        be <Markup.Emphasis>coded</Markup.Emphasis> as a heading.
     </span>
 );
 
 const missingHeadingsHowToTest: JSX.Element = (
     <div>
-        <p>The visual helper for this requirement highlights coded headings in the target page.</p>
+        <p>
+            The visual helper for this requirement highlights coded headings in
+            the target page.
+        </p>
         <ol>
             <li>
-                Examine the target page to verify that each element that <Markup.Emphasis>looks like a</Markup.Emphasis> heading is{' '}
-                <Markup.Emphasis>coded</Markup.Emphasis> as a heading (highlighted).
+                Examine the target page to verify that each element that{' '}
+                <Markup.Emphasis>looks like a</Markup.Emphasis> heading is{' '}
+                <Markup.Emphasis>coded</Markup.Emphasis> as a heading
+                (highlighted).
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
@@ -48,5 +54,7 @@ export const NoMissingHeadings: Requirement = {
             }),
         ),
     getDrawer: provider => provider.createHeadingsDrawer(),
-    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
+    getVisualHelperToggle: props => (
+        <AssessmentVisualizationEnabledToggle {...props} />
+    ),
 };

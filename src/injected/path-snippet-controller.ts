@@ -2,7 +2,10 @@
 // Licensed under the MIT License.
 import { BaseStore } from '../common/base-store';
 import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
-import { ElementFinderByPath, ElementFinderByPathMessage } from './element-finder-by-path';
+import {
+    ElementFinderByPath,
+    ElementFinderByPathMessage,
+} from './element-finder-by-path';
 
 export class PathSnippetController {
     constructor(

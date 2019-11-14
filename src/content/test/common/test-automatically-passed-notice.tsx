@@ -5,12 +5,16 @@ import * as React from 'react';
 import * as Markup from 'assessments/markup';
 import { NamedFC } from '../../../common/react/named-fc';
 
-export const TestAutomaticallyPassedNotice = NamedFC('TestAutomaticallyPassedNotice', () => {
-    return (
-        <p>
-            <Markup.Emphasis>
-                Note: If no matching/failing instances are found, this requirement will automatically be marked as pass.
-            </Markup.Emphasis>
-        </p>
-    );
-});
+export const TestAutomaticallyPassedNotice = NamedFC(
+    'TestAutomaticallyPassedNotice',
+    () => {
+        return (
+            <p>
+                <Markup.Emphasis>
+                    Note: If no matching/failing instances are found, this
+                    requirement will automatically be marked as pass.
+                </Markup.Emphasis>
+            </p>
+        );
+    },
+);

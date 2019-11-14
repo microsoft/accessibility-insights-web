@@ -6,6 +6,8 @@ describe('RiggedFeatureFlagChecker', () => {
     it('checks if a feature flag is enabled', () => {
         const testSubject = new RiggedFeatureFlagChecker();
 
-        expect(testSubject.isEnabled('any feature flag should work')).toBe(true);
+        expect(testSubject.isEnabled('any feature flag should work')).toBe(
+            true,
+        );
     });
 });

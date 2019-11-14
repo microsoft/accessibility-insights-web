@@ -18,7 +18,10 @@ export const OutcomeChip = NamedFC<OutcomeChipProps>('OutcomeChip', props => {
     const text = `${count} ${pastTense}`;
 
     return (
-        <span className={'outcome-chip outcome-chip-' + outcomeType} title={text}>
+        <span
+            className={'outcome-chip outcome-chip-' + outcomeType}
+            title={text}
+        >
             <span className="icon">
                 <OutcomeIcon outcomeType={outcomeType} />
             </span>

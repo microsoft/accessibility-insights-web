@@ -5,12 +5,18 @@ import { Button } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 import { Mock, Times } from 'typemoq';
 
-import { MaximizeRestoreButton, MaximizeRestoreButtonProps } from 'electron/views/automated-checks/components/maximize-restore-button';
+import {
+    MaximizeRestoreButton,
+    MaximizeRestoreButtonProps,
+} from 'electron/views/automated-checks/components/maximize-restore-button';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 
 describe('MaximizeRestoreButton', () => {
     it('renders with restore', () => {
-        const props: MaximizeRestoreButtonProps = { isMaximized: true, onClick: null };
+        const props: MaximizeRestoreButtonProps = {
+            isMaximized: true,
+            onClick: null,
+        };
 
         const rendered = shallow(<MaximizeRestoreButton {...props} />);
         const icon = rendered.getElement().props.onRenderIcon();
@@ -20,16 +26,24 @@ describe('MaximizeRestoreButton', () => {
     });
 
     it('renders with maximize', () => {
-        const props: MaximizeRestoreButtonProps = { isMaximized: false, onClick: null };
+        const props: MaximizeRestoreButtonProps = {
+            isMaximized: false,
+            onClick: null,
+        };
         const rendered = shallow(<MaximizeRestoreButton {...props} />);
 
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
     it('handles click', () => {
-        const eventStub = new EventStubFactory().createMouseClickEvent() as React.MouseEvent<Button>;
+        const eventStub = new EventStubFactory().createMouseClickEvent() as React.MouseEvent<
+            Button
+        >;
         const onClickMock = Mock.ofInstance(() => {});
-        const props: MaximizeRestoreButtonProps = { isMaximized: false, onClick: onClickMock.object };
+        const props: MaximizeRestoreButtonProps = {
+            isMaximized: false,
+            onClick: onClickMock.object,
+        };
 
         const rendered = shallow(<MaximizeRestoreButton {...props} />);
         rendered.simulate('click', eventStub);

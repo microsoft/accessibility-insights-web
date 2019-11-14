@@ -4,8 +4,15 @@ import { css } from '@uifabric/utilities';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
-import { ResultSectionContent, ResultSectionContentDeps, ResultSectionContentProps } from './result-section-content';
-import { ResultSectionTitle, ResultSectionTitleProps } from './result-section-title';
+import {
+    ResultSectionContent,
+    ResultSectionContentDeps,
+    ResultSectionContentProps,
+} from './result-section-content';
+import {
+    ResultSectionTitle,
+    ResultSectionTitleProps,
+} from './result-section-title';
 import { resultSection } from './result-section.scss';
 
 export type ResultSectionDeps = ResultSectionContentDeps;
@@ -16,15 +23,18 @@ export type ResultSectionProps = ResultSectionContentProps &
         deps: ResultSectionDeps;
     };
 
-export const ResultSection = NamedFC<ResultSectionProps>('ResultSection', props => {
-    const { containerClassName } = props;
+export const ResultSection = NamedFC<ResultSectionProps>(
+    'ResultSection',
+    props => {
+        const { containerClassName } = props;
 
-    return (
-        <div className={css(containerClassName, resultSection)}>
-            <h2>
-                <ResultSectionTitle {...props} />
-            </h2>
-            <ResultSectionContent {...props} />
-        </div>
-    );
-});
+        return (
+            <div className={css(containerClassName, resultSection)}>
+                <h2>
+                    <ResultSectionTitle {...props} />
+                </h2>
+                <ResultSectionContent {...props} />
+            </div>
+        );
+    },
+);

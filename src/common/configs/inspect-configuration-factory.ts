@@ -6,7 +6,10 @@ import { DictionaryStringTo } from '../../types/common-types';
 import { ScopingActionMessageCreator } from '../message-creators/scoping-action-message-creator';
 import { SingleElementSelector } from '../types/store-data/scoping-store-data';
 
-export type IInspectCallback = (event: MouseEvent, selector: SingleElementSelector) => void;
+export type IInspectCallback = (
+    event: MouseEvent,
+    selector: SingleElementSelector,
+) => void;
 
 export type ConfigurationKey = Exclude<InspectMode, 'off'>;
 
@@ -16,12 +19,26 @@ export class InspectConfigurationFactory {
         this.scopingActionMessageCreator = scopingActionMessageCreator;
     }
 
-    private addIncludeSelector = (event: MouseEvent, selector: string[]): void => {
-        this.scopingActionMessageCreator.addSelector(event, ScopingInputTypes.include, selector);
+    private addIncludeSelector = (
+        event: MouseEvent,
+        selector: string[],
+    ): void => {
+        this.scopingActionMessageCreator.addSelector(
+            event,
+            ScopingInputTypes.include,
+            selector,
+        );
     };
 
-    private addExcludeSelector = (event: MouseEvent, selector: string[]): void => {
-        this.scopingActionMessageCreator.addSelector(event, ScopingInputTypes.exclude, selector);
+    private addExcludeSelector = (
+        event: MouseEvent,
+        selector: string[],
+    ): void => {
+        this.scopingActionMessageCreator.addSelector(
+            event,
+            ScopingInputTypes.exclude,
+            selector,
+        );
     };
 
     private configurationByType: DictionaryStringTo<IInspectCallback> = {
@@ -29,7 +46,9 @@ export class InspectConfigurationFactory {
         [InspectMode.scopingAddExclude]: this.addExcludeSelector,
     };
 
-    public getConfigurationByKey(key: ConfigurationKey): (event: MouseEvent, selector: string[]) => void {
+    public getConfigurationByKey(
+        key: ConfigurationKey,
+    ): (event: MouseEvent, selector: string[]) => void {
         const configuration = this.configurationByType[key];
 
         if (configuration == null) {

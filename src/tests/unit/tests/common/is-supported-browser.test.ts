@@ -19,23 +19,32 @@ describe('isSupportedBrowser', () => {
         ${'Chrome'}                     | ${'Chrome'}    | ${'WebKit'}     | ${true}
         ${'Firefox'}                    | ${'Firefox'}   | ${'Gecko'}      | ${true}
         ${'Ficticious Browser'}         | ${'Ficticius'} | ${'The Engine'} | ${true}
-    `('checks if $testedBrowser is supported', ({ browserName, engineName, isSupported }) => {
-        setGetBrowser({
-            name: browserName,
-        } as IUAParser.IBrowser);
+    `(
+        'checks if $testedBrowser is supported',
+        ({ browserName, engineName, isSupported }) => {
+            setGetBrowser({
+                name: browserName,
+            } as IUAParser.IBrowser);
 
-        setGetEngine({
-            name: engineName,
-        } as IUAParser.IEngine);
+            setGetEngine({
+                name: engineName,
+            } as IUAParser.IEngine);
 
-        const testObject = createSupportedBrowserChecker(uaParserMock.object);
+            const testObject = createSupportedBrowserChecker(
+                uaParserMock.object,
+            );
 
-        const result = testObject();
+            const result = testObject();
 
-        expect(result).toBe(isSupported);
-    });
+            expect(result).toBe(isSupported);
+        },
+    );
 
-    const setGetBrowser = (browser: IUAParser.IBrowser) => uaParserMock.setup(parser => parser.getBrowser()).returns(() => browser);
+    const setGetBrowser = (browser: IUAParser.IBrowser) =>
+        uaParserMock
+            .setup(parser => parser.getBrowser())
+            .returns(() => browser);
 
-    const setGetEngine = (engine: IUAParser.IEngine) => uaParserMock.setup(parser => parser.getEngine()).returns(() => engine);
+    const setGetEngine = (engine: IUAParser.IEngine) =>
+        uaParserMock.setup(parser => parser.getEngine()).returns(() => engine);
 });

@@ -4,7 +4,10 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
-import { GuidanceTags, GuidanceTagsProps } from '../../../../../common/components/guidance-tags';
+import {
+    GuidanceTags,
+    GuidanceTagsProps,
+} from '../../../../../common/components/guidance-tags';
 import { GetGuidanceTagsFromGuidanceLinks } from '../../../../../common/get-guidance-tags-from-guidance-links';
 import { GuidanceLink } from '../../../../../scanner/rule-to-links-mappings';
 
@@ -12,13 +15,16 @@ describe('GuidanceTags', () => {
     let getGuidanceTagsFromGuidanceLinksMock: IMock<GetGuidanceTagsFromGuidanceLinks>;
 
     beforeEach(() => {
-        getGuidanceTagsFromGuidanceLinksMock = Mock.ofType<GetGuidanceTagsFromGuidanceLinks>(null, MockBehavior.Strict);
+        getGuidanceTagsFromGuidanceLinksMock = Mock.ofType<
+            GetGuidanceTagsFromGuidanceLinks
+        >(null, MockBehavior.Strict);
     });
 
     test.each([null, []])('tags is: %p', (tags: GuidanceLink[]) => {
         const props: GuidanceTagsProps = {
             deps: {
-                getGuidanceTagsFromGuidanceLinks: getGuidanceTagsFromGuidanceLinksMock.object,
+                getGuidanceTagsFromGuidanceLinks:
+                    getGuidanceTagsFromGuidanceLinksMock.object,
             },
             links: tags,
         };
@@ -51,12 +57,15 @@ describe('GuidanceTags', () => {
         ];
         const props: GuidanceTagsProps = {
             deps: {
-                getGuidanceTagsFromGuidanceLinks: getGuidanceTagsFromGuidanceLinksMock.object,
+                getGuidanceTagsFromGuidanceLinks:
+                    getGuidanceTagsFromGuidanceLinksMock.object,
             },
             links: sampleLinks,
         };
 
-        getGuidanceTagsFromGuidanceLinksMock.setup(mock => mock(sampleLinks)).returns(() => sampleTags);
+        getGuidanceTagsFromGuidanceLinksMock
+            .setup(mock => mock(sampleLinks))
+            .returns(() => sampleTags);
 
         const testSubject = shallow(<GuidanceTags {...props} />);
         expect(testSubject.getElement()).toMatchSnapshot();

@@ -19,18 +19,28 @@ describe('assessments-style-cop', () => {
     test('test and step names are properly styled', () => {
         Assessments.all().forEach(assessment => {
             assertIsProperlyStyled(assessment.title, assessment.key);
-            if (assessment.visualizationType === VisualizationType.AutomatedChecks) {
+            if (
+                assessment.visualizationType ===
+                VisualizationType.AutomatedChecks
+            ) {
                 return;
             }
 
             assessment.requirements.forEach(step => {
-                assertIsProperlyStyled(step.name, assessment.key + '.' + step.key);
+                assertIsProperlyStyled(
+                    step.name,
+                    assessment.key + '.' + step.key,
+                );
             });
         });
     });
 
     function isProperlyStyled(s: string): boolean {
-        return isUpperCaseAcronym(s) || isSentenceCase(s) || doesSentenceStartWithAcronym(s);
+        return (
+            isUpperCaseAcronym(s) ||
+            isSentenceCase(s) ||
+            doesSentenceStartWithAcronym(s)
+        );
     }
 
     function doesSentenceStartWithAcronym(s: string): boolean {
@@ -73,16 +83,24 @@ describe('assessments-style-cop', () => {
             },
         ];
 
-        expect(findFirstDuplicateTestStepKey(assessmentWithNoDuplicates as any)).toBeNull();
-        expect(findFirstDuplicateTestStepKey(assessmentWithOneDuplicate as any)).toBe('C');
-        expect(findFirstDuplicateTestStepKey(assessmentWithTwoDuplicates as any)).toBe('B');
+        expect(
+            findFirstDuplicateTestStepKey(assessmentWithNoDuplicates as any),
+        ).toBeNull();
+        expect(
+            findFirstDuplicateTestStepKey(assessmentWithOneDuplicate as any),
+        ).toBe('C');
+        expect(
+            findFirstDuplicateTestStepKey(assessmentWithTwoDuplicates as any),
+        ).toBe('B');
     });
 
     test('test step key names are unique', () => {
         expect(findFirstDuplicateTestStepKey(Assessments.all())).toBeNull();
     });
 
-    function findFirstDuplicateTestStepKey(all: ReadonlyArray<Readonly<Assessment>>): string {
+    function findFirstDuplicateTestStepKey(
+        all: ReadonlyArray<Readonly<Assessment>>,
+    ): string {
         const testStepKeys = {};
         let duplicateKey = null;
 

@@ -19,7 +19,9 @@ describe('rendererDependencies', () => {
     });
 
     it('includes contentActionMessageCreator', () => {
-        expect(subject.contentActionMessageCreator).toBeInstanceOf(ContentActionMessageCreator);
+        expect(subject.contentActionMessageCreator).toBeInstanceOf(
+            ContentActionMessageCreator,
+        );
     });
 
     it('includes contentProvider', () => {

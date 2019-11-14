@@ -10,7 +10,10 @@ import { Logger } from '../common/logging/logger';
 import { Messages } from '../common/messages';
 import { NotificationCreator } from '../common/notification-creator';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
-import { ScanData, VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
+import {
+    ScanData,
+    VisualizationStoreData,
+} from '../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { UrlValidator } from '../common/url-validator';
 import { DictionaryStringTo } from '../types/common-types';
@@ -65,9 +68,13 @@ export class ChromeCommandHandler {
             const hasAccess = await this.checkAccessUrl();
             if (hasAccess === false) {
                 if (UrlValidator.isFileUrl(currentTab.url)) {
-                    this.notificationCreator.createNotification(DisplayableStrings.fileUrlDoesNotHaveAccess);
+                    this.notificationCreator.createNotification(
+                        DisplayableStrings.fileUrlDoesNotHaveAccess,
+                    );
                 } else {
-                    this.notificationCreator.createNotification(DisplayableStrings.urlNotScannable.join('\n'));
+                    this.notificationCreator.createNotification(
+                        DisplayableStrings.urlNotScannable.join('\n'),
+                    );
                 }
 
                 return;
@@ -80,10 +87,15 @@ export class ChromeCommandHandler {
                 return;
             }
 
-            const visualizationType = this.getVisualizationTypeFromCommand(commandId);
+            const visualizationType = this.getVisualizationTypeFromCommand(
+                commandId,
+            );
 
             if (visualizationType != null) {
-                this.createEnableNotificationIfCurrentStateIsDisabled(visualizationType, state);
+                this.createEnableNotificationIfCurrentStateIsDisabled(
+                    visualizationType,
+                    state,
+                );
                 this.invokeToggleAction(visualizationType, state, tabId);
             }
         } catch (err) {
@@ -95,12 +107,19 @@ export class ChromeCommandHandler {
         return await this.urlValidator.isSupportedUrl(this.targetTabUrl);
     }
 
-    private queryTabs(tabQueryParams: chrome.tabs.QueryInfo): Promise<chrome.tabs.Tab[]> {
-        return new Promise(resolve => this.browserAdapter.tabsQuery(tabQueryParams, resolve));
+    private queryTabs(
+        tabQueryParams: chrome.tabs.QueryInfo,
+    ): Promise<chrome.tabs.Tab[]> {
+        return new Promise(resolve =>
+            this.browserAdapter.tabsQuery(tabQueryParams, resolve),
+        );
     }
 
     private async queryCurrentActiveTab(): Promise<chrome.tabs.Tab> {
-        const tabQueryParams: chrome.tabs.QueryInfo = { active: true, currentWindow: true };
+        const tabQueryParams: chrome.tabs.QueryInfo = {
+            active: true,
+            currentWindow: true,
+        };
         const currentActiveTabs = await this.queryTabs(tabQueryParams);
 
         if (currentActiveTabs && currentActiveTabs[0]) {
@@ -109,40 +128,59 @@ export class ChromeCommandHandler {
         return null;
     }
 
-    private getVisualizationTypeFromCommand(commandId: string): VisualizationType {
+    private getVisualizationTypeFromCommand(
+        commandId: string,
+    ): VisualizationType {
         return this.commandToVisualizationType[commandId];
     }
 
-    private createEnableNotificationIfCurrentStateIsDisabled(visualizationType: VisualizationType, data: VisualizationStoreData): void {
+    private createEnableNotificationIfCurrentStateIsDisabled(
+        visualizationType: VisualizationType,
+        data: VisualizationStoreData,
+    ): void {
         if (!this.shouldNotifyOnEnable(visualizationType)) {
             return;
         }
 
-        const configuration = this.visualizationConfigurationFactory.getConfiguration(visualizationType);
+        const configuration = this.visualizationConfigurationFactory.getConfiguration(
+            visualizationType,
+        );
         const scanData = configuration.getStoreData(data.tests);
 
         if (!scanData.enabled) {
             const displayableVisualizationData = configuration.displayableData;
 
             if (displayableVisualizationData) {
-                this.notificationCreator.createNotification(displayableVisualizationData.enableMessage);
+                this.notificationCreator.createNotification(
+                    displayableVisualizationData.enableMessage,
+                );
             }
         }
     }
 
-    private shouldNotifyOnEnable(visualizationType: VisualizationType): boolean {
+    private shouldNotifyOnEnable(
+        visualizationType: VisualizationType,
+    ): boolean {
         return visualizationType !== VisualizationType.TabStops;
     }
 
-    private invokeToggleAction(visualizationType: VisualizationType, state: VisualizationStoreData, tabId: number): void {
-        const configuration = this.visualizationConfigurationFactory.getConfiguration(visualizationType);
+    private invokeToggleAction(
+        visualizationType: VisualizationType,
+        state: VisualizationStoreData,
+        tabId: number,
+    ): void {
+        const configuration = this.visualizationConfigurationFactory.getConfiguration(
+            visualizationType,
+        );
         const scanData: ScanData = configuration.getStoreData(state.tests);
         const tabContext = this.tabToContextMap[tabId];
 
         const action = VisualizationMessages.Common.Toggle;
         const toEnabled = !scanData.enabled;
 
-        const telemetryInfo: ToggleTelemetryData = this.telemetryDataFactory.forVisualizationToggleByCommand(toEnabled);
+        const telemetryInfo: ToggleTelemetryData = this.telemetryDataFactory.forVisualizationToggleByCommand(
+            toEnabled,
+        );
 
         const payload: VisualizationTogglePayload = {
             enabled: toEnabled,

@@ -40,14 +40,18 @@ export class DetailsViewPage extends Page {
         await this.waitForSelector(detailsViewSelectors.settingsPanel);
 
         await this.keyPress('Escape');
-        await this.waitForSelectorToDisappear(detailsViewSelectors.settingsPanel);
+        await this.waitForSelectorToDisappear(
+            detailsViewSelectors.settingsPanel,
+        );
     }
 
     public async enableHighContrast(): Promise<void> {
         await this.openSettingsPanel();
 
         await this.clickSelector(detailsViewSelectors.highContrastToggle);
-        await this.waitForSelector(detailsViewSelectors.highContrastToggleCheckedStateSelector);
+        await this.waitForSelector(
+            detailsViewSelectors.highContrastToggleCheckedStateSelector,
+        );
         await this.waitForSelector(CommonSelectors.highContrastThemeSelector);
 
         await this.closeSettingsPanel();

@@ -1,7 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DrawerUtils } from './drawer-utils';
-import { CircleConfiguration, LineConfiguration, StrokeConfiguration, TextConfiguration } from './formatter';
+import {
+    CircleConfiguration,
+    LineConfiguration,
+    StrokeConfiguration,
+    TextConfiguration,
+} from './formatter';
 import { Point } from './point';
 import { SVGNamespaceUrl } from './svg-constants';
 
@@ -26,11 +31,19 @@ export class SVGShapeFactory {
 
         line.setAttributeNS(null, 'class', this.lineCssClassName);
 
-        const adjustedSourcePoint = this.getAdjustedPoint(source, destination, circleRadius + this.lineBuffer);
+        const adjustedSourcePoint = this.getAdjustedPoint(
+            source,
+            destination,
+            circleRadius + this.lineBuffer,
+        );
         line.setAttributeNS(null, 'x1', adjustedSourcePoint.x.toString());
         line.setAttributeNS(null, 'y1', adjustedSourcePoint.y.toString());
 
-        const adjustedDestinationPoint = this.getAdjustedPoint(destination, source, circleRadius + this.lineBuffer);
+        const adjustedDestinationPoint = this.getAdjustedPoint(
+            destination,
+            source,
+            circleRadius + this.lineBuffer,
+        );
         line.setAttributeNS(null, 'x2', adjustedDestinationPoint.x.toString());
         line.setAttributeNS(null, 'y2', adjustedDestinationPoint.y.toString());
 
@@ -41,18 +54,28 @@ export class SVGShapeFactory {
         return line;
     }
 
-    public applyStrokeConfiguration(element: Element, configuration: StrokeConfiguration): void {
+    public applyStrokeConfiguration(
+        element: Element,
+        configuration: StrokeConfiguration,
+    ): void {
         element.setAttributeNS(null, 'stroke', configuration.stroke);
         element.setAttributeNS(null, 'stroke-width', configuration.strokeWidth);
 
         if (configuration.strokeDasharray != null) {
-            element.setAttributeNS(null, 'stroke-dasharray', configuration.strokeDasharray);
+            element.setAttributeNS(
+                null,
+                'stroke-dasharray',
+                configuration.strokeDasharray,
+            );
         } else {
             element.removeAttributeNS(null, 'stroke-dasharray');
         }
     }
 
-    public createCircle(center: Point, configuration: CircleConfiguration): Element {
+    public createCircle(
+        center: Point,
+        configuration: CircleConfiguration,
+    ): Element {
         const myDocument = this.drawerUtils.getDocumentElement();
 
         const circle = myDocument.createElementNS(SVGNamespaceUrl, 'ellipse');
@@ -66,7 +89,11 @@ export class SVGShapeFactory {
         return circle;
     }
 
-    public createTabIndexLabel(center: Point, textConfig: TextConfiguration, tabOrder: number): Element {
+    public createTabIndexLabel(
+        center: Point,
+        textConfig: TextConfiguration,
+        tabOrder: number,
+    ): Element {
         const myDocument = this.drawerUtils.getDocumentElement();
         const text = myDocument.createElementNS(SVGNamespaceUrl, 'text');
 
@@ -83,7 +110,10 @@ export class SVGShapeFactory {
         return text;
     }
 
-    private applyCircleConfiguration(element: Element, configuration: CircleConfiguration): void {
+    private applyCircleConfiguration(
+        element: Element,
+        configuration: CircleConfiguration,
+    ): void {
         element.setAttributeNS(null, 'rx', configuration.ellipseRx);
         element.setAttributeNS(null, 'ry', configuration.ellipseRy);
 
@@ -93,8 +123,15 @@ export class SVGShapeFactory {
         this.applyStrokeConfiguration(element, configuration);
     }
 
-    private getAdjustedPoint(source: Point, destination: Point, circleRadius: number): Point {
-        const angle = Math.atan2(destination.y - source.y, destination.x - source.x);
+    private getAdjustedPoint(
+        source: Point,
+        destination: Point,
+        circleRadius: number,
+    ): Point {
+        const angle = Math.atan2(
+            destination.y - source.y,
+            destination.x - source.x,
+        );
 
         const adjustedPoint: Point = {
             x: source.x + circleRadius * Math.cos(angle),

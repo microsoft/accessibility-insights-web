@@ -21,7 +21,12 @@ export class FailureDetails extends React.Component<FailureDetailsProps> {
 
     private renderIcon(): JSX.Element {
         if (this.props.items && this.props.items.length !== 0) {
-            return <Icon iconName="statusErrorFull" className="details-icon-error" />;
+            return (
+                <Icon
+                    iconName="statusErrorFull"
+                    className="details-icon-error"
+                />
+            );
         }
 
         return null;

@@ -3,7 +3,10 @@
 import { PREVIEW_FEATURES_TOGGLE } from '../../common/extension-telemetry-events';
 import { getStoreStateMessage, Messages } from '../../common/messages';
 import { StoreNames } from '../../common/stores/store-names';
-import { FeatureFlagActions, FeatureFlagPayload } from '../actions/feature-flag-actions';
+import {
+    FeatureFlagActions,
+    FeatureFlagPayload,
+} from '../actions/feature-flag-actions';
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 
@@ -15,9 +18,18 @@ export class FeatureFlagsActionCreator {
     ) {}
 
     public registerCallbacks(): void {
-        this.interpreter.registerTypeToPayloadCallback(getStoreStateMessage(StoreNames.FeatureFlagStore), this.onGetFeatureFlags);
-        this.interpreter.registerTypeToPayloadCallback(Messages.FeatureFlags.SetFeatureFlag, this.onSetFeatureFlags);
-        this.interpreter.registerTypeToPayloadCallback(Messages.FeatureFlags.ResetFeatureFlag, this.onResetFeatureFlags);
+        this.interpreter.registerTypeToPayloadCallback(
+            getStoreStateMessage(StoreNames.FeatureFlagStore),
+            this.onGetFeatureFlags,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.FeatureFlags.SetFeatureFlag,
+            this.onSetFeatureFlags,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.FeatureFlags.ResetFeatureFlag,
+            this.onResetFeatureFlags,
+        );
     }
 
     private onGetFeatureFlags = (): void => {
@@ -25,7 +37,10 @@ export class FeatureFlagsActionCreator {
     };
 
     private onSetFeatureFlags = (payload: FeatureFlagPayload): void => {
-        this.telemetryEventHandler.publishTelemetry(PREVIEW_FEATURES_TOGGLE, payload);
+        this.telemetryEventHandler.publishTelemetry(
+            PREVIEW_FEATURES_TOGGLE,
+            payload,
+        );
         this.featureFlagActions.setFeatureFlag.invoke(payload);
     };
 

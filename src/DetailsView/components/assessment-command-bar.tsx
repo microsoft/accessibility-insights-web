@@ -6,6 +6,9 @@ import { NamedFC } from 'common/react/named-fc';
 import { CommandBarProps } from './details-view-command-bar';
 import { DetailsViewCommandBar } from './details-view-command-bar';
 
-export const AssessmentCommandBar = NamedFC<CommandBarProps>('AssessmentCommandBar', props => {
-    return <DetailsViewCommandBar {...props} />;
-});
+export const AssessmentCommandBar = NamedFC<CommandBarProps>(
+    'AssessmentCommandBar',
+    props => {
+        return <DetailsViewCommandBar {...props} />;
+    },
+);

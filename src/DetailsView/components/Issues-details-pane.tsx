@@ -3,17 +3,29 @@
 import * as React from 'react';
 
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
-import { CopyIssueDetailsButton, CopyIssueDetailsButtonDeps } from '../../common/components/copy-issue-details-button';
+import {
+    CopyIssueDetailsButton,
+    CopyIssueDetailsButtonDeps,
+} from '../../common/components/copy-issue-details-button';
 import { GuidanceLinks } from '../../common/components/guidance-links';
-import { GuidanceTags, GuidanceTagsDeps } from '../../common/components/guidance-tags';
-import { IssueFilingButton, IssueFilingButtonDeps } from '../../common/components/issue-filing-button';
+import {
+    GuidanceTags,
+    GuidanceTagsDeps,
+} from '../../common/components/guidance-tags';
+import {
+    IssueFilingButton,
+    IssueFilingButtonDeps,
+} from '../../common/components/issue-filing-button';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { ToastDeps } from '../../common/components/toast';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { CheckType } from '../../injected/components/details-dialog';
-import { FixInstructionPanel, FixInstructionPanelDeps } from '../../injected/components/fix-instruction-panel';
+import {
+    FixInstructionPanel,
+    FixInstructionPanelDeps,
+} from '../../injected/components/fix-instruction-panel';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { AxeResultToIssueFilingDataConverter } from '../../issue-filing/rule-result-to-issue-filing-data';
 import { DictionaryStringTo } from '../../types/common-types';
@@ -43,7 +55,10 @@ interface IssueDetailsState {
     showingCopyToast: boolean;
 }
 
-export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, IssueDetailsState> {
+export class IssuesDetailsPane extends React.Component<
+    IssuesDetailsPaneProps,
+    IssueDetailsState
+> {
     constructor(props: IssuesDetailsPaneProps) {
         super(props);
         this.state = { showingCopyToast: false };
@@ -58,7 +73,8 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
             return this.renderSelectMessage();
         }
 
-        const result: DecoratedAxeNodeResult = this.props.selectedIdToRuleResultMap[ids[0]];
+        const result: DecoratedAxeNodeResult = this.props
+            .selectedIdToRuleResultMap[ids[0]];
         return this.renderSingleIssue(result);
     }
 
@@ -67,29 +83,41 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
             <div>
                 <h2>Failure details</h2>
                 <div className="issue-detail-select-message">
-                    Select a single failure instance from a group in the table above to see more details here.
+                    Select a single failure instance from a group in the table
+                    above to see more details here.
                 </div>
             </div>
         );
     }
 
-    private getFileIssueDetailsButton(issueData: CreateIssueDetailsTextData): JSX.Element {
+    private getFileIssueDetailsButton(
+        issueData: CreateIssueDetailsTextData,
+    ): JSX.Element {
         return (
             <IssueFilingButton
                 deps={this.props.deps}
                 issueDetailsData={issueData}
-                userConfigurationStoreData={this.props.userConfigurationStoreData}
+                userConfigurationStoreData={
+                    this.props.userConfigurationStoreData
+                }
                 needsSettingsContentRenderer={IssueFilingDialog}
             />
         );
     }
 
-    private renderFixInstructionsTitleElement(titleText: string, className: string): JSX.Element {
+    private renderFixInstructionsTitleElement(
+        titleText: string,
+        className: string,
+    ): JSX.Element {
         return <div className={className}>{titleText}</div>;
     }
 
     private renderSingleIssue(result: DecoratedAxeNodeResult): JSX.Element {
-        const issueData = this.props.deps.axeResultToIssueFilingDataConverter.convert(result, this.props.pageTitle, this.props.pageUrl);
+        const issueData = this.props.deps.axeResultToIssueFilingDataConverter.convert(
+            result,
+            this.props.pageTitle,
+            this.props.pageUrl,
+        );
 
         return (
             <div>
@@ -97,7 +125,10 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
                 <CopyIssueDetailsButton
                     deps={this.props.deps}
                     issueDetailsData={issueData}
-                    onClick={this.props.deps.detailsViewActionMessageCreator.copyIssueDetailsClicked}
+                    onClick={
+                        this.props.deps.detailsViewActionMessageCreator
+                            .copyIssueDetailsClicked
+                    }
                 />
                 {this.getFileIssueDetailsButton(issueData)}
                 <table className="issue-detail-table">
@@ -105,11 +136,16 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
                         <tr>
                             <td>Rule</td>
                             <td>
-                                <NewTabLink href={result.helpUrl}>{result.ruleId}</NewTabLink>
+                                <NewTabLink href={result.helpUrl}>
+                                    {result.ruleId}
+                                </NewTabLink>
                                 {`: ${result.help}`}
                                 &nbsp;&nbsp;
                                 <GuidanceLinks links={result.guidanceLinks} />
-                                <GuidanceTags deps={this.props.deps} links={result.guidanceLinks} />
+                                <GuidanceTags
+                                    deps={this.props.deps}
+                                    links={result.guidanceLinks}
+                                />
                             </td>
                         </tr>
                         <tr>
@@ -119,13 +155,17 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
                                     deps={this.props.deps}
                                     checkType={CheckType.All}
                                     checks={result.all.concat(result.none)}
-                                    renderTitleElement={this.renderFixInstructionsTitleElement}
+                                    renderTitleElement={
+                                        this.renderFixInstructionsTitleElement
+                                    }
                                 />
                                 <FixInstructionPanel
                                     deps={this.props.deps}
                                     checkType={CheckType.Any}
                                     checks={result.any}
-                                    renderTitleElement={this.renderFixInstructionsTitleElement}
+                                    renderTitleElement={
+                                        this.renderFixInstructionsTitleElement
+                                    }
                                 />
                             </td>
                         </tr>

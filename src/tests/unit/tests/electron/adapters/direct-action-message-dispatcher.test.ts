@@ -11,10 +11,15 @@ describe('DirectActionMessageDispatcher', () => {
 
         const message = { messageType: 'test-message-type' } as Message;
 
-        const testSubject = new DirectActionMessageDispatcher(interpreterMock.object);
+        const testSubject = new DirectActionMessageDispatcher(
+            interpreterMock.object,
+        );
 
         testSubject.dispatchMessage(message);
 
-        interpreterMock.verify(interpreter => interpreter.interpret(message), Times.once());
+        interpreterMock.verify(
+            interpreter => interpreter.interpret(message),
+            Times.once(),
+        );
     });
 });

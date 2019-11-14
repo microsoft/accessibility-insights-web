@@ -6,7 +6,11 @@ import { FileIssuePayload } from 'background/actions/action-payloads';
 import { IssueFilingActionCreator } from 'background/global-action-creators/issue-filing-action-creator';
 import { Interpreter } from 'background/interpreter';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
-import { FILE_ISSUE_CLICK, TelemetryEventSource, TriggeredBy } from '../../../../../common/extension-telemetry-events';
+import {
+    FILE_ISSUE_CLICK,
+    TelemetryEventSource,
+    TriggeredBy,
+} from '../../../../../common/extension-telemetry-events';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 import { IssueFilingController } from '../../../../../issue-filing/common/issue-filing-controller-impl';
 
@@ -25,14 +29,33 @@ describe('IssueFilingActionCreator', () => {
 
         const interpreterMock = Mock.ofType<Interpreter>();
         interpreterMock
-            .setup(interpreter => interpreter.registerTypeToPayloadCallback(It.isAny(), It.isAny()))
+            .setup(interpreter =>
+                interpreter.registerTypeToPayloadCallback(
+                    It.isAny(),
+                    It.isAny(),
+                ),
+            )
             .callback((message, handler) => handler(payload));
 
-        const telemetryHandlerMock = Mock.ofType(TelemetryEventHandler, MockBehavior.Strict);
-        telemetryHandlerMock.setup(handler => handler.publishTelemetry(FILE_ISSUE_CLICK, payload)).verifiable(Times.once());
+        const telemetryHandlerMock = Mock.ofType(
+            TelemetryEventHandler,
+            MockBehavior.Strict,
+        );
+        telemetryHandlerMock
+            .setup(handler =>
+                handler.publishTelemetry(FILE_ISSUE_CLICK, payload),
+            )
+            .verifiable(Times.once());
 
-        const issueFilingControllerMock = Mock.ofType<IssueFilingController>(null, MockBehavior.Strict);
-        issueFilingControllerMock.setup(controller => controller.fileIssue(payload.service, payload.issueData)).verifiable(Times.once());
+        const issueFilingControllerMock = Mock.ofType<IssueFilingController>(
+            null,
+            MockBehavior.Strict,
+        );
+        issueFilingControllerMock
+            .setup(controller =>
+                controller.fileIssue(payload.service, payload.issueData),
+            )
+            .verifiable(Times.once());
 
         const testSubject = new IssueFilingActionCreator(
             interpreterMock.object,

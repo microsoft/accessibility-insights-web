@@ -12,7 +12,9 @@ export interface FrameStyleConfiguration {
 }
 
 export class FrameFormatter extends FailureInstanceFormatter {
-    public static frameStyles: { [frameType: string]: FrameStyleConfiguration } = {
+    public static frameStyles: {
+        [frameType: string]: FrameStyleConfiguration;
+    } = {
         frame: {
             borderColor: '#0066CC',
             fontColor: '#FFFFFF',
@@ -34,9 +36,14 @@ export class FrameFormatter extends FailureInstanceFormatter {
         return null;
     }
 
-    public getDrawerConfiguration(element: HTMLElement, data: AssessmentVisualizationInstance): DrawerConfiguration {
+    public getDrawerConfiguration(
+        element: HTMLElement,
+        data: AssessmentVisualizationInstance,
+    ): DrawerConfiguration {
         const frameType = element.tagName.toLowerCase();
-        const style = FrameFormatter.frameStyles[frameType] || FrameFormatter.frameStyles.default;
+        const style =
+            FrameFormatter.frameStyles[frameType] ||
+            FrameFormatter.frameStyles.default;
 
         const drawerConfig: DrawerConfiguration = {
             textBoxConfig: {

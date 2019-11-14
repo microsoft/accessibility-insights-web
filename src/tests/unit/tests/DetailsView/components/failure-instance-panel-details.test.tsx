@@ -3,7 +3,10 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { It, Mock, Times } from 'typemoq';
-import { DefaultButton, TextField } from '../../../../../../node_modules/office-ui-fabric-react';
+import {
+    DefaultButton,
+    TextField,
+} from '../../../../../../node_modules/office-ui-fabric-react';
 import { FailureInstancePanelDetails } from '../../../../../DetailsView/components/failure-instance-panel-details';
 
 describe('FailureInstancePanelDetailsTest', () => {
@@ -33,7 +36,9 @@ describe('FailureInstancePanelDetailsTest', () => {
 
     it('triggers selector change on typing', () => {
         const newPath = 'updated path';
-        onSelectorChangeMock.setup(dc => dc(It.isValue(newPath))).verifiable(Times.once());
+        onSelectorChangeMock
+            .setup(dc => dc(It.isValue(newPath)))
+            .verifiable(Times.once());
 
         const textField = rendered.find(TextField);
         textField.simulate('change', newPath);
@@ -41,7 +46,9 @@ describe('FailureInstancePanelDetailsTest', () => {
     });
 
     it('triggers validation on click', () => {
-        onValidateSelectorMock.setup(getter => getter()).verifiable(Times.once());
+        onValidateSelectorMock
+            .setup(getter => getter())
+            .verifiable(Times.once());
 
         rendered.find(DefaultButton).simulate('click');
         onValidateSelectorMock.verifyAll();

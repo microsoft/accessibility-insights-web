@@ -3,7 +3,9 @@
 import { MarkupFormatter } from './markup-formatter';
 import { truncateSnippet as truncate } from './truncate-snippet';
 
-export const createFormatter = (truncateSnippet: (text: string) => string): MarkupFormatter => {
+export const createFormatter = (
+    truncateSnippet: (text: string) => string,
+): MarkupFormatter => {
     const snippet = (text: string): string => {
         const truncated = truncateSnippet(text);
 

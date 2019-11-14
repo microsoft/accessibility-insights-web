@@ -12,21 +12,26 @@ export interface HeaderSectionProps {
     pageUrl: string;
 }
 
-export const HeaderSection = NamedFC<HeaderSectionProps>('HeaderSection', ({ pageTitle, pageUrl }) => {
-    return (
-        <header>
-            <div className="report-header-bar">
-                <BrandWhite />
-                <div className="ms-font-m header-text ms-fontWeight-semibold">{productName}</div>
-            </div>
-            <div className="report-header-command-bar">
-                <div className="target-page">
-                    Target page:&nbsp;
-                    <NewTabLink href={pageUrl} title={pageTitle}>
-                        {pageTitle}
-                    </NewTabLink>
+export const HeaderSection = NamedFC<HeaderSectionProps>(
+    'HeaderSection',
+    ({ pageTitle, pageUrl }) => {
+        return (
+            <header>
+                <div className="report-header-bar">
+                    <BrandWhite />
+                    <div className="ms-font-m header-text ms-fontWeight-semibold">
+                        {productName}
+                    </div>
                 </div>
-            </div>
-        </header>
-    );
-});
+                <div className="report-header-command-bar">
+                    <div className="target-page">
+                        Target page:&nbsp;
+                        <NewTabLink href={pageUrl} title={pageTitle}>
+                            {pageTitle}
+                        </NewTabLink>
+                    </div>
+                </div>
+            </header>
+        );
+    },
+);

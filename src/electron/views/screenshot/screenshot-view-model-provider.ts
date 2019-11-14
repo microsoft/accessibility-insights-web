@@ -1,7 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { UnifiedResult, UnifiedScanResultStoreData, ViewPortProperties } from 'common/types/store-data/unified-data-interface';
-import { HighlightBoxViewModel, ScreenshotViewModel } from './screenshot-view-model';
+import {
+    UnifiedResult,
+    UnifiedScanResultStoreData,
+    ViewPortProperties,
+} from 'common/types/store-data/unified-data-interface';
+import {
+    HighlightBoxViewModel,
+    ScreenshotViewModel,
+} from './screenshot-view-model';
 
 export type ScreenshotViewModelProvider = typeof screenshotViewModelProvider;
 
@@ -45,7 +52,10 @@ function pxAsPercentRelativeTo(px: number, containerSizePx: number): string {
     return `${100.0 * (px / containerSizePx)}%`;
 }
 
-function getHighlightBoxViewModelFromResult(result: UnifiedResult, viewPort: ViewPortProperties): HighlightBoxViewModel {
+function getHighlightBoxViewModelFromResult(
+    result: UnifiedResult,
+    viewPort: ViewPortProperties,
+): HighlightBoxViewModel {
     const rectInPx = result.descriptors.boundingRectangle;
     const widthInPx = rectInPx.right - rectInPx.left;
     const heightInPx = rectInPx.bottom - rectInPx.top;

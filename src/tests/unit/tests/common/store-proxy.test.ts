@@ -32,7 +32,10 @@ describe('StoreProxyTest', () => {
             })
             .verifiable();
 
-        const storeProxy = new TestableStoreProxy('TestStore', browserAdapterMock.object);
+        const storeProxy = new TestableStoreProxy(
+            'TestStore',
+            browserAdapterMock.object,
+        );
         storeProxy.setTabId(1);
 
         onChange.call(storeProxy, {
@@ -61,7 +64,10 @@ describe('StoreProxyTest', () => {
             })
             .verifiable();
 
-        const storeProxy = new TestableStoreProxy('TestStore', browserAdapterMock.object);
+        const storeProxy = new TestableStoreProxy(
+            'TestStore',
+            browserAdapterMock.object,
+        );
         storeProxy.setTabId(1);
 
         const stateUpdateMessage: StoreUpdateMessage<string> = {
@@ -95,7 +101,10 @@ describe('StoreProxyTest', () => {
             })
             .verifiable();
 
-        const storeProxy = new TestableStoreProxy('TestStore', browserAdapterMock.object);
+        const storeProxy = new TestableStoreProxy(
+            'TestStore',
+            browserAdapterMock.object,
+        );
         storeProxy.setTabId(null);
 
         onChange.call(storeProxy, {
@@ -122,7 +131,10 @@ describe('StoreProxyTest', () => {
             })
             .verifiable();
 
-        const storeProxy = new TestableStoreProxy('TestStore', browserAdapterMock.object);
+        const storeProxy = new TestableStoreProxy(
+            'TestStore',
+            browserAdapterMock.object,
+        );
         storeProxy.setTabId(1);
 
         onChange.call(storeProxy, {
@@ -150,7 +162,10 @@ describe('StoreProxyTest', () => {
             })
             .verifiable();
 
-        const storeProxy = new TestableStoreProxy('GlobalStoreProxy', browserAdapterMock.object);
+        const storeProxy = new TestableStoreProxy(
+            'GlobalStoreProxy',
+            browserAdapterMock.object,
+        );
         storeProxy.setTabId(1);
 
         onChange.call(storeProxy, {
@@ -176,7 +191,10 @@ describe('StoreProxyTest', () => {
             })
             .verifiable();
 
-        const storeProxy = new TestableStoreProxy('TestStore', browserAdapterMock.object);
+        const storeProxy = new TestableStoreProxy(
+            'TestStore',
+            browserAdapterMock.object,
+        );
         storeProxy.setTabId(1);
 
         onChange.call(storeProxy, {
@@ -203,7 +221,10 @@ describe('StoreProxyTest', () => {
             })
             .verifiable();
 
-        const storeProxy = new TestableStoreProxy('TestStore', browserAdapterMock.object);
+        const storeProxy = new TestableStoreProxy(
+            'TestStore',
+            browserAdapterMock.object,
+        );
         storeProxy.setTabId(1);
 
         onChange.call(storeProxy, {
@@ -230,7 +251,10 @@ describe('StoreProxyTest', () => {
             })
             .verifiable();
 
-        const storeProxy = new TestableStoreProxy('TestStore', browserAdapterMock.object);
+        const storeProxy = new TestableStoreProxy(
+            'TestStore',
+            browserAdapterMock.object,
+        );
         storeProxy.setTabId(1);
 
         onChange.call(storeProxy, {

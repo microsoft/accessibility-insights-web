@@ -19,15 +19,23 @@ import { VisualizationScanResultData } from '../common/types/store-data/visualiz
 import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DetailsViewCommandBarDeps } from './components/details-view-command-bar';
-import { DetailsRightPanelConfiguration, DetailsViewContentDeps } from './components/details-view-right-panel';
+import {
+    DetailsRightPanelConfiguration,
+    DetailsViewContentDeps,
+} from './components/details-view-right-panel';
 import { DetailsViewSwitcherNavConfiguration } from './components/details-view-switcher-nav';
 import { IssuesTableHandler } from './components/issues-table-handler';
-import { DetailsViewLeftNav, DetailsViewLeftNavDeps } from './components/left-nav/details-view-left-nav';
+import {
+    DetailsViewLeftNav,
+    DetailsViewLeftNavDeps,
+} from './components/left-nav/details-view-left-nav';
 import { TabInfo } from './components/tab-info';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 
-export type DetailsViewBodyDeps = DetailsViewContentDeps & DetailsViewLeftNavDeps & DetailsViewCommandBarDeps;
+export type DetailsViewBodyDeps = DetailsViewContentDeps &
+    DetailsViewLeftNavDeps &
+    DetailsViewCommandBarDeps;
 
 export interface DetailsViewBodyProps {
     deps: DetailsViewBodyDeps;
@@ -63,7 +71,9 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
                     <div className="details-view-body-content-pane">
                         {this.getTabInfo(this.props.tabStoreData.isClosed)}
                         <div className="view" role="main">
-                            <this.props.rightPanelConfiguration.RightPanel {...this.props} />
+                            <this.props.rightPanelConfiguration.RightPanel
+                                {...this.props}
+                            />
                         </div>
                     </div>
                 </div>
@@ -79,7 +89,11 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
             ...this.props,
         };
 
-        return <switcherNavConfiguration.CommandBar {...detailsViewCommandBarProps} />;
+        return (
+            <switcherNavConfiguration.CommandBar
+                {...detailsViewCommandBarProps}
+            />
+        );
     }
 
     private renderNavBar(): JSX.Element {
@@ -103,7 +117,9 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
                 url={this.props.tabStoreData.url}
                 title={this.props.tabStoreData.title}
                 actionCreator={this.props.deps.detailsViewActionMessageCreator}
-                selectedPivot={this.props.visualizationStoreData.selectedDetailsViewPivot}
+                selectedPivot={
+                    this.props.visualizationStoreData.selectedDetailsViewPivot
+                }
                 dropdownClickHandler={this.props.dropdownClickHandler}
             />
         );

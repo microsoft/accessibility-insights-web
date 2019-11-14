@@ -4,7 +4,11 @@ import { mount } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { Toast, ToastProps, ToastState } from '../../../../../common/components/toast';
+import {
+    Toast,
+    ToastProps,
+    ToastState,
+} from '../../../../../common/components/toast';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { itIsFunction } from '../../../common/it-is-function';
 
@@ -26,7 +30,9 @@ describe('ToastTest', () => {
         const toastRef: React.RefObject<Toast> = React.createRef();
         const result = mount(<Toast ref={toastRef} {...props}></Toast>);
 
-        expect(result.getDOMNode()).toMatchSnapshot('render nothing before show() is called');
+        expect(result.getDOMNode()).toMatchSnapshot(
+            'render nothing before show() is called',
+        );
 
         toastRef.current.show('hello world');
 
@@ -60,7 +66,9 @@ describe('ToastTest', () => {
 
     test('clearTimeout upon componentWillUnmount', () => {
         const timeoutId = 1;
-        windowUtilsMock.setup(m => m.clearTimeout(timeoutId)).verifiable(Times.once());
+        windowUtilsMock
+            .setup(m => m.clearTimeout(timeoutId))
+            .verifiable(Times.once());
         const subject = new Toast(props);
         (subject as any).timeoutId = timeoutId;
         subject.componentWillUnmount();
@@ -69,7 +77,9 @@ describe('ToastTest', () => {
     });
 
     test('clearTimeout upon componentWillUnmount without existing timeout, no-op', () => {
-        windowUtilsMock.setup(m => m.clearTimeout(It.isAny())).verifiable(Times.never());
+        windowUtilsMock
+            .setup(m => m.clearTimeout(It.isAny()))
+            .verifiable(Times.never());
         const subject = new Toast(props);
         subject.componentWillUnmount();
         windowUtilsMock.verifyAll();

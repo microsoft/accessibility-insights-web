@@ -7,7 +7,10 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { ConnectionNames } from '../../../../common/constants/connection-names';
 import { Messages } from '../../../../common/messages';
 import { DevToolsOpenMessage } from '../../../../common/types/dev-tools-open-message';
-import { DevToolsChromeAdapterMock, PortWithTabTabIdStub } from '../../mock-helpers/dev-tools-chrome-adapter-mock';
+import {
+    DevToolsChromeAdapterMock,
+    PortWithTabTabIdStub,
+} from '../../mock-helpers/dev-tools-chrome-adapter-mock';
 import { PortOnDisconnectMock } from '../../mock-helpers/port-on-disconnect-mock';
 import { PortOnMessageMock } from '../../mock-helpers/port-on-message-mock';
 
@@ -26,7 +29,10 @@ describe('DevToolsListenerTests', () => {
             2: new TabContext(tabId2InterpreterMock.object, null),
         };
         devToolsChromeAdapterMock = new DevToolsChromeAdapterMock();
-        testSubject = new DevToolsListener(tabIdToContextMap, devToolsChromeAdapterMock.getObject());
+        testSubject = new DevToolsListener(
+            tabIdToContextMap,
+            devToolsChromeAdapterMock.getObject(),
+        );
     });
 
     test('initialize - ignore non-dev tools connections', () => {
@@ -87,7 +93,10 @@ describe('DevToolsListenerTests', () => {
             onDisconnectPortMock.getObject(),
         );
         let connectListenerCB: (port: PortWithTabTabIdStub) => void;
-        let messageListenerCB: (message: DevToolsOpenMessage, port: chrome.runtime.Port) => void;
+        let messageListenerCB: (
+            message: DevToolsOpenMessage,
+            port: chrome.runtime.Port,
+        ) => void;
 
         onMessagePortMock.setupAddListenerMock(cb => {
             messageListenerCB = cb;
@@ -134,7 +143,10 @@ describe('DevToolsListenerTests', () => {
             onDisconnectPortMockValidator.getObject(),
         );
         let connectListenerCB: (port: PortWithTabTabIdStub) => void;
-        let disconnectMessageCB: (message: DevToolsOpenMessage, port: chrome.runtime.Port) => void;
+        let disconnectMessageCB: (
+            message: DevToolsOpenMessage,
+            port: chrome.runtime.Port,
+        ) => void;
 
         portStub.targetPageTabId = 2;
 

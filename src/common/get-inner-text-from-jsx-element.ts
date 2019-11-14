@@ -13,7 +13,9 @@ function getInnerTextFromJsxElementRecursive(element: JSX.Element): string {
 
     const childProps = element.props.children || [];
     if (Array.isArray(childProps)) {
-        return childProps.map(child => getInnerTextFromJsxElementRecursive(child)).join('');
+        return childProps
+            .map(child => getInnerTextFromJsxElementRecursive(child))
+            .join('');
     }
 
     return `${childProps}`;

@@ -3,7 +3,10 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { DetailsGroupHeader, DetailsGroupHeaderProps } from '../../../../../DetailsView/components/details-group-header';
+import {
+    DetailsGroupHeader,
+    DetailsGroupHeaderProps,
+} from '../../../../../DetailsView/components/details-group-header';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('DetailsGroupHeader', () => {

@@ -15,7 +15,8 @@ const createFormatter = (): MarkupFormatter => {
 
     const sectionHeader = (text: string): string => text;
 
-    const howToFixSection = (failureSummary: string): string => `\n${failureSummary}`;
+    const howToFixSection = (failureSummary: string): string =>
+        `\n${failureSummary}`;
 
     const sectionHeaderSeparator = () => ': ';
 

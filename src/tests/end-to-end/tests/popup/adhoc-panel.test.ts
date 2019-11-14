@@ -36,8 +36,12 @@ describe('Ad hoc tools', () => {
     });
 
     it('should take back to Launch pad on clicking "Back to Launch pad" link & is sticky', async () => {
-        await popupPage.clickSelectorXPath(popupPageElementIdentifiers.adhocLaunchPadLinkXPath);
-        await popupPage.clickSelector(popupPageElementIdentifiers.backToLaunchPadLink);
+        await popupPage.clickSelectorXPath(
+            popupPageElementIdentifiers.adhocLaunchPadLinkXPath,
+        );
+        await popupPage.clickSelector(
+            popupPageElementIdentifiers.backToLaunchPadLink,
+        );
 
         await popupPage.verifyLaunchPadLoaded();
 
@@ -72,7 +76,9 @@ describe('Ad hoc tools', () => {
 
             await popupPage.enableToggleByAriaLabel(toggleAriaLabel);
 
-            expect(await targetPage.getShadowRootHtmlSnapshot()).toMatchSnapshot();
+            expect(
+                await targetPage.getShadowRootHtmlSnapshot(),
+            ).toMatchSnapshot();
         },
     );
 });

@@ -13,7 +13,10 @@ import {
     RequirementReportModel,
     ScanDetailsReportModel,
 } from 'reports/assessment-report-model';
-import { ManualTestStatus, ManualTestStatusData } from '../../../../common/types/manual-test-status';
+import {
+    ManualTestStatus,
+    ManualTestStatusData,
+} from '../../../../common/types/manual-test-status';
 import {
     AssessmentData,
     AssessmentStoreData,
@@ -33,7 +36,9 @@ export class AssessmentReportBuilderTestHelper {
 
     public static readonly reportDate = new Date(Date.UTC(2000, 0, 1, 0, 0));
 
-    private static getAssistedInstances(): DictionaryStringTo<GeneratedAssessmentInstance> {
+    private static getAssistedInstances(): DictionaryStringTo<
+        GeneratedAssessmentInstance
+    > {
         return {
             ['instance1']: {
                 id: 'id1',
@@ -76,7 +81,9 @@ export class AssessmentReportBuilderTestHelper {
         } as DictionaryStringTo<GeneratedAssessmentInstance>;
     }
 
-    private static getManualInstance1(): DictionaryStringTo<ManualTestStepResult> {
+    private static getManualInstance1(): DictionaryStringTo<
+        ManualTestStepResult
+    > {
         return {
             ['step1a']: {
                 status: ManualTestStatus.FAIL,
@@ -108,7 +115,9 @@ export class AssessmentReportBuilderTestHelper {
         } as DictionaryStringTo<ManualTestStepResult>;
     }
 
-    private static getManualInstance2(): DictionaryStringTo<ManualTestStepResult> {
+    private static getManualInstance2(): DictionaryStringTo<
+        ManualTestStepResult
+    > {
         return {
             ['step1b']: {
                 status: ManualTestStatus.FAIL,
@@ -183,10 +192,16 @@ export class AssessmentReportBuilderTestHelper {
     }
 
     public static getAssessmentProviderAll(getDefaultMessage): Assessment[] {
-        const manualFields: ReportInstanceFields = [{ key: 'comment', label: 'Comment', getValue: i => i.description }];
+        const manualFields: ReportInstanceFields = [
+            { key: 'comment', label: 'Comment', getValue: i => i.description },
+        ];
 
         const automaticFields: ReportInstanceFields = [
-            { key: 'path', label: 'Path', getValue: i => i.target && i.target.join(', ') },
+            {
+                key: 'path',
+                label: 'Path',
+                getValue: i => i.target && i.target.join(', '),
+            },
             { key: 'snippet', label: 'Snippet', getValue: i => i.html },
         ];
 
@@ -278,10 +293,16 @@ export class AssessmentReportBuilderTestHelper {
         ] as Assessment[];
     }
 
-    public static getStepKeysForAssessment(assessmentKey: string, data: Assessment[]): string[] {
+    public static getStepKeysForAssessment(
+        assessmentKey: string,
+        data: Assessment[],
+    ): string[] {
         return flatten(
             data
-                .filter(assessmentContent => assessmentContent.key === assessmentKey)
+                .filter(
+                    assessmentContent =>
+                        assessmentContent.key === assessmentKey,
+                )
                 .map(assessmentContent => {
                     return assessmentContent.requirements.map(step => step.key);
                 }),
@@ -406,7 +427,8 @@ export class AssessmentReportBuilderTestHelper {
                     requirementType: 'assisted',
                 },
                 instances: this.getInstanceReportModelStep1PassStep2Fail(),
-                defaultMessageComponent: AssessmentReportBuilderTestHelper.defaultMessageComponent,
+                defaultMessageComponent:
+                    AssessmentReportBuilderTestHelper.defaultMessageComponent,
                 showPassingInstances: false,
             },
         ] as RequirementReportModel[];
@@ -423,7 +445,8 @@ export class AssessmentReportBuilderTestHelper {
                     requirementType: 'assisted',
                 },
                 instances: this.getInstanceReportModelStep1PassStep2Fail(),
-                defaultMessageComponent: AssessmentReportBuilderTestHelper.defaultMessageComponent,
+                defaultMessageComponent:
+                    AssessmentReportBuilderTestHelper.defaultMessageComponent,
                 showPassingInstances: false,
             },
             {
@@ -435,7 +458,8 @@ export class AssessmentReportBuilderTestHelper {
                     requirementType: 'manual',
                 },
                 instances: this.getInstanceReportModelManualStep4Fail(),
-                defaultMessageComponent: AssessmentReportBuilderTestHelper.defaultMessageComponent,
+                defaultMessageComponent:
+                    AssessmentReportBuilderTestHelper.defaultMessageComponent,
                 showPassingInstances: false,
             },
         ] as RequirementReportModel[];
@@ -452,7 +476,8 @@ export class AssessmentReportBuilderTestHelper {
                     requirementType: 'manual',
                 },
                 instances: [],
-                defaultMessageComponent: AssessmentReportBuilderTestHelper.defaultMessageComponent,
+                defaultMessageComponent:
+                    AssessmentReportBuilderTestHelper.defaultMessageComponent,
                 showPassingInstances: true,
             },
         ] as RequirementReportModel[];
@@ -469,7 +494,8 @@ export class AssessmentReportBuilderTestHelper {
                     requirementType: 'assisted',
                 },
                 instances: this.getInstanceReportModelStep3Unknown(),
-                defaultMessageComponent: AssessmentReportBuilderTestHelper.defaultMessageComponent,
+                defaultMessageComponent:
+                    AssessmentReportBuilderTestHelper.defaultMessageComponent,
                 showPassingInstances: false,
             },
         ] as RequirementReportModel[];
@@ -485,7 +511,8 @@ export class AssessmentReportBuilderTestHelper {
                     guidanceLinks: [],
                     requirementType: 'assisted',
                 },
-                defaultMessageComponent: AssessmentReportBuilderTestHelper.defaultMessageComponent,
+                defaultMessageComponent:
+                    AssessmentReportBuilderTestHelper.defaultMessageComponent,
                 instances: [],
                 showPassingInstances: true,
             },

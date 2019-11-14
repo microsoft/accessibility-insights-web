@@ -28,8 +28,12 @@ import { StoreUpdateMessage } from '../../../../common/types/store-update-messag
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { WindowUtils } from '../../../../common/window-utils';
 
-function getConfigs(visualizationType: VisualizationType): VisualizationConfiguration {
-    return new VisualizationConfigurationFactory().getConfiguration(visualizationType);
+function getConfigs(
+    visualizationType: VisualizationType,
+): VisualizationConfiguration {
+    return new VisualizationConfigurationFactory().getConfiguration(
+        visualizationType,
+    );
 }
 
 describe('TabContextFactoryTest', () => {
@@ -46,7 +50,8 @@ describe('TabContextFactoryTest', () => {
     it('createInterpreter', () => {
         const tabId = -1;
         const windowUtilsStub = Mock.ofType(WindowUtils);
-        const broadcastMock = Mock.ofInstance(message => {}, MockBehavior.Strict);
+        const broadcastMock = Mock.ofInstance(message => {},
+        MockBehavior.Strict);
         const telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler);
         const targetTabControllerMock = Mock.ofType(TargetTabController);
         const assessmentStore = Mock.ofType(AssessmentStore);
@@ -66,15 +71,29 @@ describe('TabContextFactoryTest', () => {
 
         storeNames.forEach(storeName => {
             broadcastMock
-                .setup(bm => bm(It.isObjectWith({ storeId: StoreNames[storeName] } as StoreUpdateMessage<any>)))
+                .setup(bm =>
+                    bm(
+                        It.isObjectWith({
+                            storeId: StoreNames[storeName],
+                        } as StoreUpdateMessage<any>),
+                    ),
+                )
                 .verifiable(Times.once());
         });
 
-        mockBrowserAdapter.setup(ba => ba.addListenerToTabsOnRemoved(It.isAny())).verifiable();
-        mockBrowserAdapter.setup(ba => ba.addListenerToTabsOnUpdated(It.isAny())).verifiable();
+        mockBrowserAdapter
+            .setup(ba => ba.addListenerToTabsOnRemoved(It.isAny()))
+            .verifiable();
+        mockBrowserAdapter
+            .setup(ba => ba.addListenerToTabsOnUpdated(It.isAny()))
+            .verifiable();
 
-        const visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
-        visualizationConfigurationFactoryMock.setup(vcfm => vcfm.getConfiguration(It.isAny())).returns(theType => getConfigs(theType));
+        const visualizationConfigurationFactoryMock = Mock.ofType(
+            VisualizationConfigurationFactory,
+        );
+        visualizationConfigurationFactoryMock
+            .setup(vcfm => vcfm.getConfiguration(It.isAny()))
+            .returns(theType => getConfigs(theType));
 
         const promiseFactoryMock = Mock.ofType<PromiseFactory>();
         const testObject = new TabContextFactory(
@@ -98,25 +117,44 @@ describe('TabContextFactoryTest', () => {
         broadcastMock.reset();
 
         broadcastMock
-            .setup(bm => bm(It.isObjectWith({ storeId: StoreNames[StoreNames.VisualizationScanResultStore] } as StoreUpdateMessage<any>)))
+            .setup(bm =>
+                bm(
+                    It.isObjectWith({
+                        storeId:
+                            StoreNames[StoreNames.VisualizationScanResultStore],
+                    } as StoreUpdateMessage<any>),
+                ),
+            )
             .verifiable(Times.once());
 
         tabContext.interpreter.interpret({
-            messageType: getStoreStateMessage(StoreNames.VisualizationScanResultStore),
+            messageType: getStoreStateMessage(
+                StoreNames.VisualizationScanResultStore,
+            ),
             tabId: null,
         });
 
         broadcastMock.verifyAll();
         expect(tabContext).toBeInstanceOf(TabContext);
         expect(tabContext.interpreter).toBeInstanceOf(Interpreter);
-        expect(tabContext.stores.visualizationStore).toBeInstanceOf(VisualizationStore);
+        expect(tabContext.stores.visualizationStore).toBeInstanceOf(
+            VisualizationStore,
+        );
         expect(tabContext.stores.tabStore).toBeInstanceOf(TabStore);
-        expect(tabContext.stores.visualizationScanResultStore).toBeInstanceOf(VisualizationScanResultStore);
+        expect(tabContext.stores.visualizationScanResultStore).toBeInstanceOf(
+            VisualizationScanResultStore,
+        );
         expect(tabContext.stores.devToolStore).toBeInstanceOf(DevToolStore);
-        expect(tabContext.stores.detailsViewStore).toBeInstanceOf(DetailsViewStore);
+        expect(tabContext.stores.detailsViewStore).toBeInstanceOf(
+            DetailsViewStore,
+        );
         expect(tabContext.stores.inspectStore).toBeInstanceOf(InspectStore);
-        expect(tabContext.stores.unifiedScanResultStore).toBeInstanceOf(UnifiedScanResultStore);
-        expect(tabContext.stores.cardSelectionStore).toBeInstanceOf(CardSelectionStore);
+        expect(tabContext.stores.unifiedScanResultStore).toBeInstanceOf(
+            UnifiedScanResultStore,
+        );
+        expect(tabContext.stores.cardSelectionStore).toBeInstanceOf(
+            CardSelectionStore,
+        );
 
         broadcastMock.verifyAll();
     });

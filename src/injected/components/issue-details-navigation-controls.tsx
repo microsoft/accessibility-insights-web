@@ -23,11 +23,17 @@ export type IssueDetailsNavigationControlsProps = {
     failuresCount: number;
 };
 
-export const IssueDetailsNavigationControls = NamedFC<IssueDetailsNavigationControlsProps>('IssueDetailsNavigationControls', props => {
-    const onClickNextButton = event => props.dialogHandler.nextButtonClickHandler(props.container);
-    const onClickBackButton = event => props.dialogHandler.backButtonClickHandler(props.container);
+export const IssueDetailsNavigationControls = NamedFC<
+    IssueDetailsNavigationControlsProps
+>('IssueDetailsNavigationControls', props => {
+    const onClickNextButton = event =>
+        props.dialogHandler.nextButtonClickHandler(props.container);
+    const onClickBackButton = event =>
+        props.dialogHandler.backButtonClickHandler(props.container);
 
-    const getOnClickWhenNotInShadowDom = (func: (ev: any) => void): ((ev: any) => void) => {
+    const getOnClickWhenNotInShadowDom = (
+        func: (ev: any) => void,
+    ): ((ev: any) => void) => {
         if (props.featureFlagStoreData[FeatureFlags.shadowDialog]) {
             return null;
         } else {
@@ -41,12 +47,20 @@ export const IssueDetailsNavigationControls = NamedFC<IssueDetailsNavigationCont
 
     const renderBackButton = () =>
         !props.dialogHandler.isBackButtonDisabled(props.container) && (
-            <DefaultButton data-automation-id="back" text="< Back" onClick={getOnClickWhenNotInShadowDom(onClickBackButton)} />
+            <DefaultButton
+                data-automation-id="back"
+                text="< Back"
+                onClick={getOnClickWhenNotInShadowDom(onClickBackButton)}
+            />
         );
 
     const renderNextButton = () =>
         !props.dialogHandler.isNextButtonDisabled(props.container) && (
-            <DefaultButton data-automation-id="next" text="Next >" onClick={getOnClickWhenNotInShadowDom(onClickNextButton)} />
+            <DefaultButton
+                data-automation-id="next"
+                text="Next >"
+                onClick={getOnClickWhenNotInShadowDom(onClickNextButton)}
+            />
         );
 
     return (

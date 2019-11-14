@@ -5,32 +5,43 @@ import { create, React } from '../../common';
 export const infoAndExamples = create(({ Markup }) => (
     <>
         <h1>Orientation</h1>
-        <p>Web content must not be locked to a particular screen orientation.</p>
+        <p>
+            Web content must not be locked to a particular screen orientation.
+        </p>
 
         <h2>Why it matters</h2>
         <p>
-            Some people with dexterity impairments prefer to use a device mounted in a fixed orientation. Some people with low vision prefer
-            to view content in landscape orientation because it allows a larger text size. Not locking the content orientation allows it to
-            match the device orientation.
+            Some people with dexterity impairments prefer to use a device
+            mounted in a fixed orientation. Some people with low vision prefer
+            to view content in landscape orientation because it allows a larger
+            text size. Not locking the content orientation allows it to match
+            the device orientation.
         </p>
 
         <h2>How to fix</h2>
         <p>
             Do not lock the content orientation unless a specific orientation is{' '}
-            <Markup.HyperLink href="https://www.w3.org/TR/WCAG21/#dfn-essential">essential</Markup.HyperLink> to the functionality.
+            <Markup.HyperLink href="https://www.w3.org/TR/WCAG21/#dfn-essential">
+                essential
+            </Markup.HyperLink>{' '}
+            to the functionality.
         </p>
 
         <h2>Example</h2>
         <Markup.PassFail
             failText={
                 <p>
-                    A banking application uses <Markup.Code>Screen.lockOrientation('landscape')</Markup.Code> to lock all content to a
-                    horizontal orientation.
+                    A banking application uses{' '}
+                    <Markup.Code>
+                        Screen.lockOrientation('landscape')
+                    </Markup.Code>{' '}
+                    to lock all content to a horizontal orientation.
                 </p>
             }
             passText={
                 <p>
-                    The banking application locks the content to a horizontal orientation only when the user is capturing an image of a
+                    The banking application locks the content to a horizontal
+                    orientation only when the user is capturing an image of a
                     check to deposit.
                 </p>
             }

@@ -5,17 +5,25 @@ import { create, React } from '../../common';
 export const infoAndExamples = create(({ Markup }) => (
     <>
         <h1>Landmark roles</h1>
-        <p>A landmark region must have the role that best describes its content.</p>
+        <p>
+            A landmark region must have the role that best describes its
+            content.
+        </p>
 
         <h2>Why it matters</h2>
         <p>
-            Assistive technologies allow users to quickly navigate through a page’s landmark regions to see what types of content the page
-            contains. Users might not be able to find the content they want if it has an incorrect landmark role.
+            Assistive technologies allow users to quickly navigate through a
+            page’s landmark regions to see what types of content the page
+            contains. Users might not be able to find the content they want if
+            it has an incorrect landmark role.
         </p>
 
         <h2>How to fix</h2>
         <p>
-            Use the <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-practices-1.1/#landmark-roles">landmark role</Markup.HyperLink>{' '}
+            Use the{' '}
+            <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-practices-1.1/#landmark-roles">
+                landmark role
+            </Markup.HyperLink>{' '}
             that best describes the content.
         </p>
 
@@ -24,7 +32,8 @@ export const infoAndExamples = create(({ Markup }) => (
         <Markup.PassFail
             failText={
                 <p>
-                    This div functions as a banner, but it has the <Markup.Term>navigation</Markup.Term> role.
+                    This div functions as a banner, but it has the{' '}
+                    <Markup.Term>navigation</Markup.Term> role.
                 </p>
             }
             failExample={`<div role="navigation">

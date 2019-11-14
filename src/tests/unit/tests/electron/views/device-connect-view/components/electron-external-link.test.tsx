@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Shell } from 'electron';
-import { ElectronExternalLink, ElectronExternalLinkProps } from 'electron/views/device-connect-view/components/electron-external-link';
+import {
+    ElectronExternalLink,
+    ElectronExternalLinkProps,
+} from 'electron/views/device-connect-view/components/electron-external-link';
 import { shallow } from 'enzyme';
 import { Button } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
@@ -26,8 +29,12 @@ describe('ElectronExternalLinkTest', () => {
 
     test('click', () => {
         const shellMock = Mock.ofType<Shell>();
-        const eventStub = new EventStubFactory().createMouseClickEvent() as React.MouseEvent<Button>;
-        shellMock.setup(shell => shell.openExternal(testHref)).verifiable(Times.once());
+        const eventStub = new EventStubFactory().createMouseClickEvent() as React.MouseEvent<
+            Button
+        >;
+        shellMock
+            .setup(shell => shell.openExternal(testHref))
+            .verifiable(Times.once());
 
         const props: ElectronExternalLinkProps = {
             href: testHref,

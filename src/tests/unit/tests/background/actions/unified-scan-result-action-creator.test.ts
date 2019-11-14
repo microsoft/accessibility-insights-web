@@ -8,7 +8,10 @@ import { StoreNames } from 'common/stores/store-names';
 import { IMock, Mock } from 'typemoq';
 
 import { ToolData } from '../../../../../common/types/store-data/unified-data-interface';
-import { createActionMock, createInterpreterMock } from '../global-action-creators/action-creator-test-helpers';
+import {
+    createActionMock,
+    createInterpreterMock,
+} from '../global-action-creators/action-creator-test-helpers';
 
 describe('UnifiedScanResultActionCreator', () => {
     it('should handle ScanCompleted message', () => {
@@ -20,10 +23,19 @@ describe('UnifiedScanResultActionCreator', () => {
         };
 
         const scanCompletedMock = createActionMock(payload);
-        const actionsMock = createActionsMock('scanCompleted', scanCompletedMock.object);
-        const interpreterMock = createInterpreterMock(Messages.UnifiedScan.ScanCompleted, payload);
+        const actionsMock = createActionsMock(
+            'scanCompleted',
+            scanCompletedMock.object,
+        );
+        const interpreterMock = createInterpreterMock(
+            Messages.UnifiedScan.ScanCompleted,
+            payload,
+        );
 
-        const testSubject = new UnifiedScanResultActionCreator(interpreterMock.object, actionsMock.object);
+        const testSubject = new UnifiedScanResultActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+        );
 
         testSubject.registerCallbacks();
 
@@ -34,17 +46,28 @@ describe('UnifiedScanResultActionCreator', () => {
         const payload = null;
 
         const getCurrentStateMock = createActionMock<null>(payload);
-        const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
-        const interpreterMock = createInterpreterMock(getStoreStateMessage(StoreNames.UnifiedScanResultStore), payload);
+        const actionsMock = createActionsMock(
+            'getCurrentState',
+            getCurrentStateMock.object,
+        );
+        const interpreterMock = createInterpreterMock(
+            getStoreStateMessage(StoreNames.UnifiedScanResultStore),
+            payload,
+        );
 
-        const testSubject = new UnifiedScanResultActionCreator(interpreterMock.object, actionsMock.object);
+        const testSubject = new UnifiedScanResultActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+        );
 
         testSubject.registerCallbacks();
 
         getCurrentStateMock.verifyAll();
     });
 
-    function createActionsMock<ActionName extends keyof UnifiedScanResultActions>(
+    function createActionsMock<
+        ActionName extends keyof UnifiedScanResultActions
+    >(
         actionName: ActionName,
         action: UnifiedScanResultActions[ActionName],
     ): IMock<UnifiedScanResultActions> {

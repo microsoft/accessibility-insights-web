@@ -3,13 +3,20 @@
 import { InspectMode } from 'background/inspect-modes';
 import { ScopingInputTypes } from 'background/scoping-input-types';
 import { Mock, Times } from 'typemoq';
-import { ConfigurationKey, InspectConfigurationFactory } from '../../../../../common/configs/inspect-configuration-factory';
+import {
+    ConfigurationKey,
+    InspectConfigurationFactory,
+} from '../../../../../common/configs/inspect-configuration-factory';
 import { ScopingActionMessageCreator } from '../../../../../common/message-creators/scoping-action-message-creator';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('InspectConfigurationTest', () => {
-    const scopingActionMessageCreatorMock = Mock.ofType<ScopingActionMessageCreator>();
-    const testObject = new InspectConfigurationFactory(scopingActionMessageCreatorMock.object);
+    const scopingActionMessageCreatorMock = Mock.ofType<
+        ScopingActionMessageCreator
+    >();
+    const testObject = new InspectConfigurationFactory(
+        scopingActionMessageCreatorMock.object,
+    );
 
     afterEach(() => {
         scopingActionMessageCreatorMock.reset();
@@ -25,7 +32,9 @@ describe('InspectConfigurationTest', () => {
     });
 
     test('getConfigurationByKey for inspect configuration', () => {
-        const keys = Object.keys(InspectMode).filter(checkNonNullConfig) as ConfigurationKey[];
+        const keys = Object.keys(InspectMode).filter(
+            checkNonNullConfig,
+        ) as ConfigurationKey[];
 
         keys.forEach(key => {
             const configuration = testObject.getConfigurationByKey(key);
@@ -40,10 +49,18 @@ describe('InspectConfigurationTest', () => {
 
         it('handles include', () => {
             scopingActionMessageCreatorMock
-                .setup(creator => creator.addSelector(event, ScopingInputTypes.include, testSelector))
+                .setup(creator =>
+                    creator.addSelector(
+                        event,
+                        ScopingInputTypes.include,
+                        testSelector,
+                    ),
+                )
                 .verifiable(Times.once());
 
-            const handler = testObject.getConfigurationByKey(InspectMode.scopingAddInclude);
+            const handler = testObject.getConfigurationByKey(
+                InspectMode.scopingAddInclude,
+            );
             handler(event, testSelector);
 
             scopingActionMessageCreatorMock.verifyAll();
@@ -51,10 +68,18 @@ describe('InspectConfigurationTest', () => {
 
         it('handles exclude', () => {
             scopingActionMessageCreatorMock
-                .setup(creator => creator.addSelector(event, ScopingInputTypes.exclude, testSelector))
+                .setup(creator =>
+                    creator.addSelector(
+                        event,
+                        ScopingInputTypes.exclude,
+                        testSelector,
+                    ),
+                )
                 .verifiable(Times.once());
 
-            const handler = testObject.getConfigurationByKey(InspectMode.scopingAddExclude);
+            const handler = testObject.getConfigurationByKey(
+                InspectMode.scopingAddExclude,
+            );
             handler(event, testSelector);
 
             scopingActionMessageCreatorMock.verifyAll();

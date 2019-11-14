@@ -2,7 +2,10 @@
 // Licensed under the MIT License.
 import { IPoint } from '@uifabric/utilities';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
-import { ContextualMenu, IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
+import {
+    ContextualMenu,
+    IContextualMenuItem,
+} from 'office-ui-fabric-react/lib/ContextualMenu';
 import * as React from 'react';
 
 import { VisualizationType } from '../../common/types/visualization-type';
@@ -26,7 +29,10 @@ export interface StartOverProps {
     rightPanelConfiguration: DetailsRightPanelConfiguration;
 }
 
-export class StartOverDropdown extends React.Component<StartOverProps, StartOverState> {
+export class StartOverDropdown extends React.Component<
+    StartOverProps,
+    StartOverState
+> {
     constructor(props: StartOverProps) {
         super(props);
 
@@ -61,7 +67,13 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
             return null;
         }
 
-        return <ContextualMenu onDismiss={() => this.dismissDropdown()} target={this.state.target} items={this.getMenuItems()} />;
+        return (
+            <ContextualMenu
+                onDismiss={() => this.dismissDropdown()}
+                target={this.state.target}
+                items={this.getMenuItems()}
+            />
+        );
     }
 
     private getMenuItems(): IContextualMenuItem[] {
@@ -79,7 +91,9 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
             },
         ];
 
-        return rightPanelConfiguration.GetStartOverContextualMenuItemKeys().map(key => items.find(item => item.key === key));
+        return rightPanelConfiguration
+            .GetStartOverContextualMenuItemKeys()
+            .map(key => items.find(item => item.key === key));
     }
 
     private onStartOverTestMenu = (): void => {
@@ -153,7 +167,10 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
     };
 
     private openDropdown = (event): void => {
-        this.setState({ target: event.currentTarget, isContextMenuVisible: true });
+        this.setState({
+            target: event.currentTarget,
+            isContextMenuVisible: true,
+        });
     };
 
     private dismissDropdown(): void {

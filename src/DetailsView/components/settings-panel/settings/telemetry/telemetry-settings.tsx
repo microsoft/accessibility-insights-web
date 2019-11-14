@@ -10,19 +10,25 @@ import { NamedFC } from '../../../../../common/react/named-fc';
 import { GenericToggle } from '../../../generic-toggle';
 import { SettingsProps } from '../settings-props';
 
-export type TelemetrySettingsProps = SettingsProps & EnableTelemetrySettingDescriptionProps;
+export type TelemetrySettingsProps = SettingsProps &
+    EnableTelemetrySettingDescriptionProps;
 
-export const TelemetrySettings = NamedFC<TelemetrySettingsProps>('TelemetrySettings', props => {
-    const { deps } = props;
-    const { userConfigMessageCreator } = deps;
+export const TelemetrySettings = NamedFC<TelemetrySettingsProps>(
+    'TelemetrySettings',
+    props => {
+        const { deps } = props;
+        const { userConfigMessageCreator } = deps;
 
-    return (
-        <GenericToggle
-            enabled={props.userConfigurationStoreState.enableTelemetry}
-            id="enable-telemetry"
-            name={enableTelemetrySettingsPanelTitle}
-            description={<EnableTelemetrySettingDescription deps={deps} />}
-            onClick={(id, state) => userConfigMessageCreator.setTelemetryState(state)}
-        />
-    );
-});
+        return (
+            <GenericToggle
+                enabled={props.userConfigurationStoreState.enableTelemetry}
+                id="enable-telemetry"
+                name={enableTelemetrySettingsPanelTitle}
+                description={<EnableTelemetrySettingDescription deps={deps} />}
+                onClick={(id, state) =>
+                    userConfigMessageCreator.setTelemetryState(state)
+                }
+            />
+        );
+    },
+);

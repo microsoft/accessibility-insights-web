@@ -16,7 +16,9 @@ export interface PreviewFeaturesContainerProps {
     previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
 }
 
-export class PreviewFeaturesContainer extends React.Component<PreviewFeaturesContainerProps> {
+export class PreviewFeaturesContainer extends React.Component<
+    PreviewFeaturesContainerProps
+> {
     public render(): JSX.Element {
         const displayableFeatureFlags: DisplayableFeatureFlag[] = this.props.previewFeatureFlagsHandler.getDisplayableFeatureFlags(
             this.props.featureFlagData,
@@ -26,7 +28,9 @@ export class PreviewFeaturesContainer extends React.Component<PreviewFeaturesCon
         }
         return (
             <div>
-                <div className="preview-features-description">{DisplayableStrings.previewFeaturesDescription}</div>
+                <div className="preview-features-description">
+                    {DisplayableStrings.previewFeaturesDescription}
+                </div>
                 <PreviewFeaturesToggleList
                     displayedFeatureFlags={displayableFeatureFlags}
                     actionMessageCreator={this.props.actionMessageCreator}

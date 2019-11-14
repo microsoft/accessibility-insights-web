@@ -18,11 +18,19 @@ const { guidance } = content.timedEvents;
 const timedEventAssessmentGettingStarted: JSX.Element = (
     <React.Fragment>
         <p>
-            People who use screen readers or voice input and people with cognitive disabilities might need more time than other users to
-            assimilate the information and execute the controls on a website or web app.
+            People who use screen readers or voice input and people with
+            cognitive disabilities might need more time than other users to
+            assimilate the information and execute the controls on a website or
+            web app.
         </p>
-        <p>People who have trouble focusing might need a way to decrease the distractions created by movement in an application.</p>
-        <p>People who use screen readers might find it hard to hear the speech output if there is other audio playing at the same time.</p>
+        <p>
+            People who have trouble focusing might need a way to decrease the
+            distractions created by movement in an application.
+        </p>
+        <p>
+            People who use screen readers might find it hard to hear the speech
+            output if there is other audio playing at the same time.
+        </p>
     </React.Fragment>
 );
 
@@ -32,5 +40,10 @@ export const TimedEventsAssessment: Assessment = AssessmentBuilder.Manual({
     gettingStarted: timedEventAssessmentGettingStarted,
     visualizationType: VisualizationType.TimedEventsAssessment,
     guidance,
-    requirements: [TimeLimits, MovingContent, AutoUpdatingContent, AudioControl],
+    requirements: [
+        TimeLimits,
+        MovingContent,
+        AutoUpdatingContent,
+        AudioControl,
+    ],
 });

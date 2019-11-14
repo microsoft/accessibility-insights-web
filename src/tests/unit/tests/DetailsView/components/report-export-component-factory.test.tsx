@@ -9,7 +9,10 @@ import { VisualizationScanResultData } from 'common/types/store-data/visualizati
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
-import { DetailsViewCommandBarDeps, DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
+import {
+    DetailsViewCommandBarDeps,
+    DetailsViewCommandBarProps,
+} from 'DetailsView/components/details-view-command-bar';
 import {
     getReportExportComponentForAssessment,
     getReportExportComponentForFastPass,
@@ -40,7 +43,10 @@ describe('ReportExportComponentPropsFactory', () => {
 
     beforeEach(() => {
         featureFlagStoreData = {};
-        actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator, MockBehavior.Strict);
+        actionMessageCreatorMock = Mock.ofType(
+            DetailsViewActionMessageCreator,
+            MockBehavior.Strict,
+        );
         tabStoreData = {
             title: thePageTitle,
             url: thePageUrl,
@@ -48,8 +54,14 @@ describe('ReportExportComponentPropsFactory', () => {
         assessmentStoreData = {
             resultDescription: theDescription,
         } as AssessmentStoreData;
-        assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(undefined, MockBehavior.Loose);
-        reportGeneratorMock = Mock.ofType<ReportGenerator>(undefined, MockBehavior.Loose);
+        assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(
+            undefined,
+            MockBehavior.Loose,
+        );
+        reportGeneratorMock = Mock.ofType<ReportGenerator>(
+            undefined,
+            MockBehavior.Loose,
+        );
         cardsViewData = null;
         scanResult = null;
         visualizationStoreData = null;
@@ -136,7 +148,9 @@ describe('ReportExportComponentPropsFactory', () => {
 
     test('getReportExportComponentForFastPass, scanResults is null, props is null', () => {
         const props = getProps();
-        const component: JSX.Element = getReportExportComponentForFastPass(props);
+        const component: JSX.Element = getReportExportComponentForFastPass(
+            props,
+        );
 
         expect(component).toBeNull();
     });
@@ -145,7 +159,9 @@ describe('ReportExportComponentPropsFactory', () => {
         setScanResults();
         setSelectedFastPassDetailsView(VisualizationType.TabStops);
         const props = getProps();
-        const component: JSX.Element = getReportExportComponentForFastPass(props);
+        const component: JSX.Element = getReportExportComponentForFastPass(
+            props,
+        );
 
         expect(component).toBeNull();
     });

@@ -4,18 +4,29 @@ import { AxeResults, ElementContext } from 'axe-core';
 
 import * as path from 'path';
 import { Page } from './page-controllers/page';
-import { prettyPrintAxeViolations, PrintableAxeResult } from './pretty-print-axe-violations';
+import {
+    prettyPrintAxeViolations,
+    PrintableAxeResult,
+} from './pretty-print-axe-violations';
 
 // we are using axe object in target page scope. so we shouldn't be importing axe object via axe-core
 declare var axe;
 
-export async function scanForAccessibilityIssues(page: Page, selector: string): Promise<PrintableAxeResult[]> {
+export async function scanForAccessibilityIssues(
+    page: Page,
+    selector: string,
+): Promise<PrintableAxeResult[]> {
     await injectAxeIfUndefined(page);
 
     const axeResults = (await page.evaluate(selectorInEvaluate => {
         return axe.run(
             { include: [selectorInEvaluate] } as ElementContext,
-            { runOnly: { type: 'tag', values: ['wcag2a', 'wcag21a', 'wcag2aa', 'wcag21aa'] } } as ElementContext,
+            {
+                runOnly: {
+                    type: 'tag',
+                    values: ['wcag2a', 'wcag21a', 'wcag2aa', 'wcag21aa'],
+                },
+            } as ElementContext,
         );
     }, selector)) as AxeResults;
 
@@ -28,6 +39,11 @@ async function injectAxeIfUndefined(page: Page): Promise<void> {
     });
 
     if (axeIsUndefined) {
-        await page.injectScriptFile(path.join(__dirname, '../../../../node_modules/axe-core/axe.min.js'));
+        await page.injectScriptFile(
+            path.join(
+                __dirname,
+                '../../../../node_modules/axe-core/axe.min.js',
+            ),
+        );
     }
 }

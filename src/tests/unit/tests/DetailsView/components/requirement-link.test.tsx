@@ -3,7 +3,10 @@
 import * as React from 'react';
 
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
-import { RequirementLink, RequirementLinkProps } from '../../../../../DetailsView/components/requirement-link';
+import {
+    RequirementLink,
+    RequirementLinkProps,
+} from '../../../../../DetailsView/components/requirement-link';
 
 describe('RequirementLink', () => {
     it('renders with index', () => {
@@ -18,7 +21,8 @@ describe('RequirementLink', () => {
         const props: RequirementLinkProps = {
             link: link,
             status: ManualTestStatus.PASS,
-            renderRequirementDescription: requirementLink => requirementLink.renderRequirementDescriptionWithIndex(),
+            renderRequirementDescription: requirementLink =>
+                requirementLink.renderRequirementDescriptionWithIndex(),
         };
         const testSubject = new RequirementLink(props);
 
@@ -37,7 +41,8 @@ describe('RequirementLink', () => {
         const props: RequirementLinkProps = {
             link: link,
             status: ManualTestStatus.PASS,
-            renderRequirementDescription: requirementLink => requirementLink.renderRequirementDescriptionWithoutIndex(),
+            renderRequirementDescription: requirementLink =>
+                requirementLink.renderRequirementDescriptionWithoutIndex(),
         };
         const testSubject = new RequirementLink(props);
 

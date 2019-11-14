@@ -22,13 +22,18 @@ const { guidance } = content.keyboard;
 const keyboardInteractionGettingStarted: JSX.Element = (
     <React.Fragment>
         <p>
-            Users must be able to access and interact with interface components using only the keyboard because using a mouse is not
-            possible when the user has no vision or low vision or doesn't have the physical capability or dexterity to effectively control a
-            pointing device.
+            Users must be able to access and interact with interface components
+            using only the keyboard because using a mouse is not possible when
+            the user has no vision or low vision or doesn't have the physical
+            capability or dexterity to effectively control a pointing device.
         </p>
         <p>
-            See <NewTabLink href="https://go.microsoft.com/fwlink/?linkid=2080372">this fun video</NewTabLink> to learn how landmarks,
-            headings, and tab stops work together to provide efficient navigation.
+            See{' '}
+            <NewTabLink href="https://go.microsoft.com/fwlink/?linkid=2080372">
+                this fun video
+            </NewTabLink>{' '}
+            to learn how landmarks, headings, and tab stops work together to
+            provide efficient navigation.
         </p>
     </React.Fragment>
 );
@@ -39,7 +44,14 @@ export const KeyboardInteraction: Assessment = AssessmentBuilder.Assisted({
     gettingStarted: keyboardInteractionGettingStarted,
     guidance,
     visualizationType: VisualizationType.KeyboardInteraction,
-    requirements: [KeyboardNavigation, NoKeyboardTraps, OnFocus, OnInput, NoKeystrokeTiming, CharacterKeyShortcuts],
+    requirements: [
+        KeyboardNavigation,
+        NoKeyboardTraps,
+        OnFocus,
+        OnInput,
+        NoKeystrokeTiming,
+        CharacterKeyShortcuts,
+    ],
     storeDataKey: 'keyboardInteractionAssessment',
     visualizationConfiguration: {
         key: key,

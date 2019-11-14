@@ -2,13 +2,23 @@
 // Licensed under the MIT License.
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
-import { InstanceCount, TelemetryEventSource } from 'common/extension-telemetry-events';
+import {
+    InstanceCount,
+    TelemetryEventSource,
+} from 'common/extension-telemetry-events';
 import { createDefaultLogger } from 'common/logging/default-logger';
-import { SCAN_COMPLETED, SCAN_FAILED, SCAN_STARTED } from 'electron/common/electron-telemetry-events';
+import {
+    SCAN_COMPLETED,
+    SCAN_FAILED,
+    SCAN_STARTED,
+} from 'electron/common/electron-telemetry-events';
 import { PortPayload } from 'electron/flux/action/device-action-payloads';
 import { ScanActions } from 'electron/flux/action/scan-actions';
 import { FetchScanResultsType } from 'electron/platform/android/fetch-scan-results';
-import { RuleResultsData, ScanResults } from 'electron/platform/android/scan-results';
+import {
+    RuleResultsData,
+    ScanResults,
+} from 'electron/platform/android/scan-results';
 import { UnifiedScanCompletedPayloadBuilder } from 'electron/platform/android/unified-result-builder';
 
 export class ScanController {
@@ -43,7 +53,11 @@ export class ScanController {
             .catch(this.scanFailed.bind(this, scanStartedTime, port));
     };
 
-    private scanCompleted(scanStartedTime: number, port: number, data: ScanResults): void {
+    private scanCompleted(
+        scanStartedTime: number,
+        port: number,
+        data: ScanResults,
+    ): void {
         const scanCompletedTime = this.getCurrentDate().getTime();
 
         const scanDuration = scanCompletedTime - scanStartedTime;
@@ -67,10 +81,18 @@ export class ScanController {
     private buildInstanceCount(ruleResults: RuleResultsData[]): InstanceCount {
         return ruleResults.reduce<InstanceCount>(
             (accumulator, currentRuleResult) => {
-                if (accumulator[currentRuleResult.status][currentRuleResult.ruleId] == null) {
-                    accumulator[currentRuleResult.status][currentRuleResult.ruleId] = 1;
+                if (
+                    accumulator[currentRuleResult.status][
+                        currentRuleResult.ruleId
+                    ] == null
+                ) {
+                    accumulator[currentRuleResult.status][
+                        currentRuleResult.ruleId
+                    ] = 1;
                 } else {
-                    accumulator[currentRuleResult.status][currentRuleResult.ruleId]++;
+                    accumulator[currentRuleResult.status][
+                        currentRuleResult.ruleId
+                    ]++;
                 }
 
                 return accumulator;
@@ -79,7 +101,11 @@ export class ScanController {
         );
     }
 
-    private scanFailed(scanStartedTime: number, port: number, error: Error): void {
+    private scanFailed(
+        scanStartedTime: number,
+        port: number,
+        error: Error,
+    ): void {
         this.logger.error('scan failed: ', error);
 
         const scanCompletedTime = this.getCurrentDate().getTime();

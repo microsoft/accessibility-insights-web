@@ -45,7 +45,9 @@ export interface AnalyzerConfiguration {
 
 export interface RuleAnalyzerConfiguration extends AnalyzerConfiguration {
     rules: string[];
-    resultProcessor: (scanner: ScannerUtils) => (results: ScanResults) => DictionaryStringTo<HtmlElementAxeResults>;
+    resultProcessor: (
+        scanner: ScannerUtils,
+    ) => (results: ScanResults) => DictionaryStringTo<HtmlElementAxeResults>;
     telemetryProcessor: TelemetryProcessor<IAnalyzerTelemetryCallback>;
 }
 

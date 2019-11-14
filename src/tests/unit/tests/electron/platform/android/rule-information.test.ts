@@ -20,14 +20,24 @@ describe('RuleInformation', () => {
 
     test('RuleId works correctly', () => {
         for (const ruleId of testInputs) {
-            const ruleInformation = new RuleInformation(ruleId, null, null, failIfCalled);
+            const ruleInformation = new RuleInformation(
+                ruleId,
+                null,
+                null,
+                failIfCalled,
+            );
             expect(ruleId === ruleInformation.ruleId);
         }
     });
 
     test('RuleDescription works correctly', () => {
         for (const ruleDescription of testInputs) {
-            const ruleInformation = new RuleInformation(null, ruleDescription, null, failIfCalled);
+            const ruleInformation = new RuleInformation(
+                null,
+                ruleDescription,
+                null,
+                failIfCalled,
+            );
             expect(ruleDescription === ruleInformation.ruleDescription);
         }
     });
@@ -41,16 +51,31 @@ describe('RuleInformation', () => {
         };
 
         for (const howToFixString of testInputs) {
-            const expectedUnifiedFormattableResolution: UnifiedFormattableResolution = { howToFixSummary: howToFixString };
+            const expectedUnifiedFormattableResolution: UnifiedFormattableResolution = {
+                howToFixSummary: howToFixString,
+            };
 
-            const getUnifiedFormattableResolutionDelegateMock = Mock.ofType<GetUnifiedFormattableResolutionDelegate>();
-            getUnifiedFormattableResolutionDelegateMock.setup(func => func(testData)).returns(() => expectedUnifiedFormattableResolution);
+            const getUnifiedFormattableResolutionDelegateMock = Mock.ofType<
+                GetUnifiedFormattableResolutionDelegate
+            >();
+            getUnifiedFormattableResolutionDelegateMock
+                .setup(func => func(testData))
+                .returns(() => expectedUnifiedFormattableResolution);
 
-            const ruleInformation = new RuleInformation(null, null, getUnifiedFormattableResolutionDelegateMock.object, failIfCalled);
+            const ruleInformation = new RuleInformation(
+                null,
+                null,
+                getUnifiedFormattableResolutionDelegateMock.object,
+                failIfCalled,
+            );
 
-            const actualUnifiedResolution = ruleInformation.getUnifiedFormattableResolution(testData);
+            const actualUnifiedResolution = ruleInformation.getUnifiedFormattableResolution(
+                testData,
+            );
 
-            expect(actualUnifiedResolution).toBe(expectedUnifiedFormattableResolution);
+            expect(actualUnifiedResolution).toBe(
+                expectedUnifiedFormattableResolution,
+            );
         }
     });
 
@@ -65,10 +90,19 @@ describe('RuleInformation', () => {
         };
 
         for (const expectedResult of expectedResults) {
-            const includeThisResultMock = Mock.ofType<IncludeThisResultDelegate>();
-            includeThisResultMock.setup(func => func(testData)).returns(() => expectedResult);
+            const includeThisResultMock = Mock.ofType<
+                IncludeThisResultDelegate
+            >();
+            includeThisResultMock
+                .setup(func => func(testData))
+                .returns(() => expectedResult);
 
-            const ruleInformation = new RuleInformation(null, null, null, includeThisResultMock.object);
+            const ruleInformation = new RuleInformation(
+                null,
+                null,
+                null,
+                includeThisResultMock.object,
+            );
 
             const actualResult = ruleInformation.includeThisResult(testData);
 

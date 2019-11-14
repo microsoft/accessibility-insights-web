@@ -24,9 +24,13 @@ describe('HandlerTest', () => {
     });
 
     test('subscribe and invokeHandlers (2 handlers)', () => {
-        firstHandlerMock.setup(hm => hm(senderStub, argsStub)).verifiable(Times.once());
+        firstHandlerMock
+            .setup(hm => hm(senderStub, argsStub))
+            .verifiable(Times.once());
 
-        secondHandlerMock.setup(hm => hm(senderStub, argsStub)).verifiable(Times.once());
+        secondHandlerMock
+            .setup(hm => hm(senderStub, argsStub))
+            .verifiable(Times.once());
 
         testObject.subscribe(firstHandlerMock.object);
         testObject.subscribe(secondHandlerMock.object);
@@ -38,7 +42,9 @@ describe('HandlerTest', () => {
     });
 
     test('unsuscribe', () => {
-        firstHandlerMock.setup(hm => hm(senderStub, argsStub)).verifiable(Times.once());
+        firstHandlerMock
+            .setup(hm => hm(senderStub, argsStub))
+            .verifiable(Times.once());
 
         testObject.subscribe(firstHandlerMock.object);
 
@@ -48,7 +54,9 @@ describe('HandlerTest', () => {
 
         firstHandlerMock.reset();
 
-        firstHandlerMock.setup(hm => hm(It.isAny(), It.isAny())).verifiable(Times.never());
+        firstHandlerMock
+            .setup(hm => hm(It.isAny(), It.isAny()))
+            .verifiable(Times.never());
 
         testObject.unsubscribe(firstHandlerMock.object);
 
@@ -58,7 +66,9 @@ describe('HandlerTest', () => {
     });
 
     test('unsuscribe, null handler', () => {
-        firstHandlerMock.setup(hm => hm(senderStub, argsStub)).verifiable(Times.once());
+        firstHandlerMock
+            .setup(hm => hm(senderStub, argsStub))
+            .verifiable(Times.once());
 
         testObject.subscribe(firstHandlerMock.object);
         testObject.unsubscribe(null);

@@ -10,19 +10,25 @@ export interface StringPropertyCardRowProps extends CardRowProps {
     propertyData: string;
 }
 
-export const GetLabelledStringPropertyCardRow = (label: string, contentClassName?: string) => {
-    return NamedFC<StringPropertyCardRowProps>('StringPropertyCardRowProps', props => {
-        if (isEmpty(props.propertyData)) {
-            return null;
-        }
+export const GetLabelledStringPropertyCardRow = (
+    label: string,
+    contentClassName?: string,
+) => {
+    return NamedFC<StringPropertyCardRowProps>(
+        'StringPropertyCardRowProps',
+        props => {
+            if (isEmpty(props.propertyData)) {
+                return null;
+            }
 
-        return (
-            <SimpleCardRow
-                label={label}
-                content={props.propertyData}
-                rowKey={`${label}-${props.index}`}
-                contentClassName={contentClassName}
-            />
-        );
-    });
+            return (
+                <SimpleCardRow
+                    label={label}
+                    content={props.propertyData}
+                    rowKey={`${label}-${props.index}`}
+                    contentClassName={contentClassName}
+                />
+            );
+        },
+    );
 };

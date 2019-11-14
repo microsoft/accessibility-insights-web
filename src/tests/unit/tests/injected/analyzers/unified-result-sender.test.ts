@@ -5,7 +5,11 @@ import { UnifiedScanCompletedPayload } from '../../../../../background/actions/a
 import { EnvironmentInfoProvider } from '../../../../../common/environment-info-provider';
 import { Message } from '../../../../../common/message';
 import { Messages } from '../../../../../common/messages';
-import { ToolData, UnifiedResult, UnifiedRule } from '../../../../../common/types/store-data/unified-data-interface';
+import {
+    ToolData,
+    UnifiedResult,
+    UnifiedRule,
+} from '../../../../../common/types/store-data/unified-data-interface';
 import { ConvertScanResultsToUnifiedResultsDelegate } from '../../../../../injected/adapters/scan-results-to-unified-results';
 import { ConvertScanResultsToUnifiedRulesDelegate } from '../../../../../injected/adapters/scan-results-to-unified-rules';
 import { MessageDelegate } from '../../../../../injected/analyzers/rule-analyzer';
@@ -24,18 +28,28 @@ describe('sendConvertedResults', () => {
 
         const uuidGeneratorStub = () => null;
 
-        const sendDelegate: IMock<MessageDelegate> = Mock.ofInstance(message => null);
+        const sendDelegate: IMock<MessageDelegate> = Mock.ofInstance(
+            message => null,
+        );
         const convertToUnifiedMock: IMock<ConvertScanResultsToUnifiedResultsDelegate> = Mock.ofInstance(
             (scanResults, uuidGenerator) => null,
         );
         const convertToUnifiedRulesMock: IMock<ConvertScanResultsToUnifiedRulesDelegate> = Mock.ofInstance(
             (scanResults: ScanResults) => null,
         );
-        const environmentInfoProviderMock: IMock<EnvironmentInfoProvider> = Mock.ofType(EnvironmentInfoProvider);
+        const environmentInfoProviderMock: IMock<EnvironmentInfoProvider> = Mock.ofType(
+            EnvironmentInfoProvider,
+        );
 
-        convertToUnifiedMock.setup(m => m(axeInputResults, uuidGeneratorStub)).returns(val => unifiedResults);
-        convertToUnifiedRulesMock.setup(m => m(axeInputResults)).returns(val => unifiedRules);
-        environmentInfoProviderMock.setup(provider => provider.getToolData()).returns(() => toolInfo);
+        convertToUnifiedMock
+            .setup(m => m(axeInputResults, uuidGeneratorStub))
+            .returns(val => unifiedResults);
+        convertToUnifiedRulesMock
+            .setup(m => m(axeInputResults))
+            .returns(val => unifiedRules);
+        environmentInfoProviderMock
+            .setup(provider => provider.getToolData())
+            .returns(() => toolInfo);
 
         const testSubject = new UnifiedResultSender(
             sendDelegate.object,

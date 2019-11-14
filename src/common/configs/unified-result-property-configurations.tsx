@@ -11,7 +11,14 @@ import { PathCardRow } from '../components/cards/path-card-row';
 import { SnippetCardRow } from '../components/cards/snippet-card-row';
 import { ReactFCWithDisplayName } from '../react/named-fc';
 
-export type PropertyType = 'css-selector' | 'how-to-fix-web' | 'snippet' | 'className' | 'contentDescription' | 'text' | 'howToFixFormat';
+export type PropertyType =
+    | 'css-selector'
+    | 'how-to-fix-web'
+    | 'snippet'
+    | 'className'
+    | 'contentDescription'
+    | 'text'
+    | 'howToFixFormat';
 export const AllPropertyTypes: PropertyType[] = [
     'css-selector',
     'how-to-fix-web',
@@ -77,6 +84,8 @@ const propertyIdToConfigurationMap: PropertyIdToConfigurationMap = {
     text: textConfiguration,
 };
 
-export function getPropertyConfiguration(id: string): Readonly<PropertyConfiguration> {
+export function getPropertyConfiguration(
+    id: string,
+): Readonly<PropertyConfiguration> {
     return propertyIdToConfigurationMap[id];
 }

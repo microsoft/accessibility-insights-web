@@ -15,7 +15,11 @@ describe('NotApplicableChecksSection', () => {
         const props: NotApplicableChecksSectionProps = {
             deps: {} as SectionDeps,
             scanResult: {
-                inapplicable: [{} as RuleResult, {} as RuleResult, {} as RuleResult],
+                inapplicable: [
+                    {} as RuleResult,
+                    {} as RuleResult,
+                    {} as RuleResult,
+                ],
                 violations: [],
                 passes: [],
                 incomplete: [],

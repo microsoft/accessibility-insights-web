@@ -42,16 +42,26 @@ describe('TelemetryPermissionDialogTest', () => {
             isFirstTime: true,
         };
 
-        const wrapper = Enzyme.shallow(<TelemetryPermissionDialog {...props} />);
+        const wrapper = Enzyme.shallow(
+            <TelemetryPermissionDialog {...props} />,
+        );
 
         expect(wrapper.getElement()).toMatchSnapshot();
-        expect(wrapper.state()).toMatchObject({ isEnableTelemetryChecked: true });
+        expect(wrapper.state()).toMatchObject({
+            isEnableTelemetryChecked: true,
+        });
 
         const telemetryNotice = wrapper.find(TelemetryNotice);
-        expect(telemetryNotice.prop('deps').LinkComponent).toBe(props.deps.LinkComponent);
+        expect(telemetryNotice.prop('deps').LinkComponent).toBe(
+            props.deps.LinkComponent,
+        );
 
-        const privacyStatementPopupText = wrapper.find(PrivacyStatementPopupText);
-        expect(privacyStatementPopupText.prop('deps').LinkComponent).toBe(props.deps.LinkComponent);
+        const privacyStatementPopupText = wrapper.find(
+            PrivacyStatementPopupText,
+        );
+        expect(privacyStatementPopupText.prop('deps').LinkComponent).toBe(
+            props.deps.LinkComponent,
+        );
     });
 
     test('toggle check box', () => {
@@ -60,13 +70,21 @@ describe('TelemetryPermissionDialogTest', () => {
             isFirstTime: true,
         };
 
-        const wrapper = Enzyme.shallow(<TelemetryPermissionDialog {...props} />);
+        const wrapper = Enzyme.shallow(
+            <TelemetryPermissionDialog {...props} />,
+        );
         const checkBox = wrapper.find(Checkbox);
-        expect(wrapper.state()).toMatchObject({ isEnableTelemetryChecked: true });
+        expect(wrapper.state()).toMatchObject({
+            isEnableTelemetryChecked: true,
+        });
         checkBox.props().onChange(null, false);
-        expect(wrapper.state()).toMatchObject({ isEnableTelemetryChecked: false });
+        expect(wrapper.state()).toMatchObject({
+            isEnableTelemetryChecked: false,
+        });
         checkBox.props().onChange(null, true);
-        expect(wrapper.state()).toMatchObject({ isEnableTelemetryChecked: true });
+        expect(wrapper.state()).toMatchObject({
+            isEnableTelemetryChecked: true,
+        });
     });
 
     test('button click', () => {
@@ -77,7 +95,9 @@ describe('TelemetryPermissionDialogTest', () => {
             isFirstTime: true,
         };
 
-        const wrapper = Enzyme.shallow(<TelemetryPermissionDialog {...props} />);
+        const wrapper = Enzyme.shallow(
+            <TelemetryPermissionDialog {...props} />,
+        );
         const button = wrapper.find(PrimaryButton);
         button.simulate('click');
         expect(setTelemetryStateMock).toBeCalled();

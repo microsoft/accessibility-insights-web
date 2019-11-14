@@ -4,7 +4,10 @@ import * as React from 'react';
 
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import { AssessmentDetailsReportModel } from '../assessment-report-model';
-import { AssessmentReportStepList, AssessmentReportStepListDeps } from './assessment-report-step-list';
+import {
+    AssessmentReportStepList,
+    AssessmentReportStepListDeps,
+} from './assessment-report-step-list';
 import { OutcomeChip } from './outcome-chip';
 import { allRequirementOutcomeTypes } from './requirement-outcome-type';
 
@@ -21,7 +24,9 @@ export interface IconWithCountProps {
     count: number;
 }
 
-export class AssessmentReportAssessmentList extends React.Component<AssessmentReportAssessmentListProps> {
+export class AssessmentReportAssessmentList extends React.Component<
+    AssessmentReportAssessmentListProps
+> {
     public render(): JSX.Element {
         return <div>{this.renderAssessments()}</div>;
     }
@@ -31,17 +36,26 @@ export class AssessmentReportAssessmentList extends React.Component<AssessmentRe
             return (
                 <div className="assessment-details" key={assessment.key}>
                     {this.renderAssessmentHeader(assessment)}
-                    <AssessmentReportStepList deps={this.props.deps} status={this.props.status} steps={assessment.steps} />
+                    <AssessmentReportStepList
+                        deps={this.props.deps}
+                        status={this.props.status}
+                        steps={assessment.steps}
+                    />
                 </div>
             );
         });
     }
 
-    private renderAssessmentHeader(assessment: AssessmentDetailsReportModel): JSX.Element {
+    private renderAssessmentHeader(
+        assessment: AssessmentDetailsReportModel,
+    ): JSX.Element {
         return (
             <h3 className="assessment-header">
                 {assessment.displayName}
-                <OutcomeChip count={assessment.steps.length} outcomeType={allRequirementOutcomeTypes[this.props.status]} />
+                <OutcomeChip
+                    count={assessment.steps.length}
+                    outcomeType={allRequirementOutcomeTypes[this.props.status]}
+                />
             </h3>
         );
     }

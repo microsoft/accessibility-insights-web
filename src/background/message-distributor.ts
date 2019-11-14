@@ -24,11 +24,18 @@ export class MessageDistributor {
         this.browserAdapter.addListenerOnMessage(this.distributeMessage);
     }
 
-    private distributeMessage = (message: InterpreterMessage, sender?: Sender): void => {
+    private distributeMessage = (
+        message: InterpreterMessage,
+        sender?: Sender,
+    ): void => {
         message.tabId = this.getTabId(message, sender);
 
-        const isInterpretedUsingGlobalContext = this.globalContext.interpreter.interpret(message);
-        const isInterpretedUsingTabContext = this.tryInterpretUsingTabContext(message);
+        const isInterpretedUsingGlobalContext = this.globalContext.interpreter.interpret(
+            message,
+        );
+        const isInterpretedUsingTabContext = this.tryInterpretUsingTabContext(
+            message,
+        );
 
         if (!isInterpretedUsingGlobalContext && !isInterpretedUsingTabContext) {
             this.logger.log('Unable to interpret message - ', message);
@@ -38,7 +45,11 @@ export class MessageDistributor {
     private getTabId(message: InterpreterMessage, sender?: Sender): number {
         if (message != null && message.tabId != null) {
             return message.tabId;
-        } else if (sender != null && sender.tab != null && sender.tab.id != null) {
+        } else if (
+            sender != null &&
+            sender.tab != null &&
+            sender.tab.id != null
+        ) {
             return sender.tab.id;
         }
 

@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ScopingActions, ScopingPayload } from 'background/actions/scoping-actions';
+import {
+    ScopingActions,
+    ScopingPayload,
+} from 'background/actions/scoping-actions';
 import { ScopingActionCreator } from 'background/global-action-creators/scoping-action-creator';
 import { Interpreter } from 'background/interpreter';
 import { isFunction } from 'lodash';
@@ -20,11 +23,16 @@ describe('ScopingActionCreator', () => {
         interpreterMock = Mock.ofType<Interpreter>();
         scopingActionsMock = Mock.ofType<ScopingActions>();
 
-        testSubject = new ScopingActionCreator(interpreterMock.object, scopingActionsMock.object);
+        testSubject = new ScopingActionCreator(
+            interpreterMock.object,
+            scopingActionsMock.object,
+        );
     });
 
     it('handles GetCurrentState', () => {
-        const expectedMessage = getStoreStateMessage(StoreNames.ScopingPanelStateStore);
+        const expectedMessage = getStoreStateMessage(
+            StoreNames.ScopingPanelStateStore,
+        );
 
         setupInterpreterMock(expectedMessage);
 
@@ -75,9 +83,17 @@ describe('ScopingActionCreator', () => {
         deleteSelectorMock.verifyAll();
     });
 
-    const setupInterpreterMock = <Payload>(expectedMessage: string, payload?: Payload): void => {
+    const setupInterpreterMock = <Payload>(
+        expectedMessage: string,
+        payload?: Payload,
+    ): void => {
         interpreterMock
-            .setup(interpreter => interpreter.registerTypeToPayloadCallback(expectedMessage, It.is(isFunction)))
+            .setup(interpreter =>
+                interpreter.registerTypeToPayloadCallback(
+                    expectedMessage,
+                    It.is(isFunction),
+                ),
+            )
             .callback((message, handler) => {
                 if (payload) {
                     handler(payload);
@@ -87,7 +103,12 @@ describe('ScopingActionCreator', () => {
             });
     };
 
-    const setupActionsMock = <ActionName extends keyof ScopingActions>(actionName: ActionName, action: ScopingActions[ActionName]) => {
-        scopingActionsMock.setup(actions => actions[actionName]).returns(() => action);
+    const setupActionsMock = <ActionName extends keyof ScopingActions>(
+        actionName: ActionName,
+        action: ScopingActions[ActionName],
+    ) => {
+        scopingActionsMock
+            .setup(actions => actions[actionName])
+            .returns(() => action);
     };
 });

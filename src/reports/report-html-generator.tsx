@@ -11,9 +11,16 @@ import * as React from 'react';
 import { ScanResults } from 'scanner/iruleresults';
 
 import { ReportHead } from './components/report-head';
-import { ReportBody, ReportBodyProps } from './components/report-sections/report-body';
+import {
+    ReportBody,
+    ReportBodyProps,
+} from './components/report-sections/report-body';
 import { ReportCollapsibleContainerControl } from './components/report-sections/report-collapsible-container';
-import { ReportSectionFactory, SectionDeps, SectionProps } from './components/report-sections/report-section-factory';
+import {
+    ReportSectionFactory,
+    SectionDeps,
+    SectionProps,
+} from './components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from './react-static-renderer';
 
 export class ReportHtmlGenerator {
@@ -25,7 +32,9 @@ export class ReportHtmlGenerator {
         private readonly utcDateConverter: (scanDate: Date) => string,
         private readonly getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
         private readonly fixInstructionProcessor: FixInstructionProcessor,
-        private readonly getPropertyConfiguration: (id: string) => Readonly<PropertyConfiguration>,
+        private readonly getPropertyConfiguration: (
+            id: string,
+        ) => Readonly<PropertyConfiguration>,
     ) {}
 
     public generateHtml(
@@ -37,7 +46,9 @@ export class ReportHtmlGenerator {
         cardsViewData: CardsViewModel,
     ): string {
         const headElement: JSX.Element = <ReportHead />;
-        const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(headElement);
+        const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(
+            headElement,
+        );
 
         const detailsProps: SectionProps = {
             pageTitle,
@@ -48,7 +59,8 @@ export class ReportHtmlGenerator {
             deps: {
                 fixInstructionProcessor: this.fixInstructionProcessor,
                 collapsibleControl: ReportCollapsibleContainerControl,
-                getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,
+                getGuidanceTagsFromGuidanceLinks: this
+                    .getGuidanceTagsFromGuidanceLinks,
                 getPropertyConfigById: this.getPropertyConfiguration,
                 cardInteractionSupport: noCardInteractionsSupported,
                 cardsVisualizationModifierButtons: NullComponent,
@@ -57,7 +69,8 @@ export class ReportHtmlGenerator {
             environmentInfo: this.environmentInfo,
             toUtcString: this.utcDateConverter,
             getCollapsibleScript: this.getCollpasibleScript,
-            getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,
+            getGuidanceTagsFromGuidanceLinks: this
+                .getGuidanceTagsFromGuidanceLinks,
             fixInstructionProcessor: this.fixInstructionProcessor,
         } as SectionProps;
 
@@ -67,8 +80,15 @@ export class ReportHtmlGenerator {
         };
 
         const bodyElement: JSX.Element = <ReportBody {...props} />;
-        const bodyMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(bodyElement);
+        const bodyMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(
+            bodyElement,
+        );
 
-        return '<!DOCTYPE html><html lang="en">' + headMarkup + bodyMarkup + '</html>';
+        return (
+            '<!DOCTYPE html><html lang="en">' +
+            headMarkup +
+            bodyMarkup +
+            '</html>'
+        );
     }
 }

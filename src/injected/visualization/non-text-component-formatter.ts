@@ -10,7 +10,10 @@ export class NonTextComponentFormatter extends CustomWidgetsFormatter {
         super();
     }
 
-    public getDrawerConfiguration(element: HTMLElement, data: AssessmentVisualizationInstance): DrawerConfiguration {
+    public getDrawerConfiguration(
+        element: HTMLElement,
+        data: AssessmentVisualizationInstance,
+    ): DrawerConfiguration {
         const drawerConfig: DrawerConfiguration = {
             ...super.getDrawerConfiguration(element, data),
             getBoundingRect: this.getBoundingRectWithPadding,
@@ -22,12 +25,21 @@ export class NonTextComponentFormatter extends CustomWidgetsFormatter {
     private getBoundingRectWithPadding = (element: Element) => {
         const baseBoundingRect = this.getBoundingRect(element);
         return {
-            bottom: baseBoundingRect.bottom + NonTextComponentFormatter.PADDING_VALUE,
-            height: baseBoundingRect.height + 2 * NonTextComponentFormatter.PADDING_VALUE,
-            left: baseBoundingRect.left - NonTextComponentFormatter.PADDING_VALUE,
-            right: baseBoundingRect.right + NonTextComponentFormatter.PADDING_VALUE,
+            bottom:
+                baseBoundingRect.bottom +
+                NonTextComponentFormatter.PADDING_VALUE,
+            height:
+                baseBoundingRect.height +
+                2 * NonTextComponentFormatter.PADDING_VALUE,
+            left:
+                baseBoundingRect.left - NonTextComponentFormatter.PADDING_VALUE,
+            right:
+                baseBoundingRect.right +
+                NonTextComponentFormatter.PADDING_VALUE,
             top: baseBoundingRect.top - NonTextComponentFormatter.PADDING_VALUE,
-            width: baseBoundingRect.width + 2 * NonTextComponentFormatter.PADDING_VALUE,
+            width:
+                baseBoundingRect.width +
+                2 * NonTextComponentFormatter.PADDING_VALUE,
         };
     };
 }

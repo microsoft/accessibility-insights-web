@@ -1,6 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CheckboxVisibility, ConstrainMode, DetailsList } from 'office-ui-fabric-react/lib/DetailsList';
+import {
+    CheckboxVisibility,
+    ConstrainMode,
+    DetailsList,
+} from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
@@ -11,7 +15,11 @@ import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../types/common-types';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
-import { CapturedInstanceActionType, FailureInstanceData, FailureInstancePanelControl } from './failure-instance-panel-control';
+import {
+    CapturedInstanceActionType,
+    FailureInstanceData,
+    FailureInstancePanelControl,
+} from './failure-instance-panel-control';
 import { TestStatusChoiceGroup } from './test-status-choice-group';
 
 export interface ManualTestStepViewProps {
@@ -24,9 +32,12 @@ export interface ManualTestStepViewProps {
     pathSnippetStoreData: PathSnippetStoreData;
 }
 
-export class ManualTestStepView extends React.Component<ManualTestStepViewProps> {
+export class ManualTestStepView extends React.Component<
+    ManualTestStepViewProps
+> {
     public render(): JSX.Element {
-        const status = this.props.manualTestStepResultMap[this.props.step].status;
+        const status = this.props.manualTestStepResultMap[this.props.step]
+            .status;
         return (
             <React.Fragment>
                 <div className="test-step-choice-group-container">
@@ -35,12 +46,20 @@ export class ManualTestStepView extends React.Component<ManualTestStepViewProps>
                         step={this.props.step}
                         status={status}
                         originalStatus={ManualTestStatus.UNKNOWN}
-                        onGroupChoiceChange={this.props.assessmentInstanceTableHandler.changeRequirementStatus}
-                        onUndoClicked={this.props.assessmentInstanceTableHandler.undoRequirementStatusChange}
+                        onGroupChoiceChange={
+                            this.props.assessmentInstanceTableHandler
+                                .changeRequirementStatus
+                        }
+                        onUndoClicked={
+                            this.props.assessmentInstanceTableHandler
+                                .undoRequirementStatusChange
+                        }
                         isLabelVisible={true}
                     />
                 </div>
-                <div className="manual-test-step-table-container">{this.renderTable(status)}</div>
+                <div className="manual-test-step-table-container">
+                    {this.renderTable(status)}
+                </div>
             </React.Fragment>
         );
     }
@@ -67,9 +86,18 @@ export class ManualTestStepView extends React.Component<ManualTestStepViewProps>
                 <FailureInstancePanelControl
                     step={this.props.step}
                     test={this.props.test}
-                    addFailureInstance={this.props.assessmentInstanceTableHandler.addFailureInstance}
-                    addPathForValidation={this.props.assessmentInstanceTableHandler.addPathForValidation}
-                    clearPathSnippetData={this.props.assessmentInstanceTableHandler.clearPathSnippetData}
+                    addFailureInstance={
+                        this.props.assessmentInstanceTableHandler
+                            .addFailureInstance
+                    }
+                    addPathForValidation={
+                        this.props.assessmentInstanceTableHandler
+                            .addPathForValidation
+                    }
+                    clearPathSnippetData={
+                        this.props.assessmentInstanceTableHandler
+                            .clearPathSnippetData
+                    }
                     actionType={CapturedInstanceActionType.CREATE}
                     assessmentsProvider={this.props.assessmentsProvider}
                     featureFlagStoreData={this.props.featureFlagStoreData}

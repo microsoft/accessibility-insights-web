@@ -1,10 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentDefaultMessageGenerator, DefaultMessageInterface } from 'assessments/assessment-default-message-generator';
+import {
+    AssessmentDefaultMessageGenerator,
+    DefaultMessageInterface,
+} from 'assessments/assessment-default-message-generator';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { ManualTestStatus } from 'common/types/manual-test-status';
-import { AssessmentData, AssessmentStoreData, TestStepInstance } from 'common/types/store-data/assessment-result-data';
+import {
+    AssessmentData,
+    AssessmentStoreData,
+    TestStepInstance,
+} from 'common/types/store-data/assessment-result-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import * as _ from 'lodash';
 
@@ -30,11 +37,14 @@ export class AssessmentReportModelBuilder {
     ) {}
 
     public getReportModelData(): ReportModel {
-        const assessmentDefaultMessageGeneratorInstance = this.assessmentDefaultMessageGenerator;
-        const assessments: AssessmentResult[] = this.assessmentsProvider.all().map(a => ({
-            ...a,
-            storeData: this.assessmentStoreData.assessments[a.key],
-        }));
+        const assessmentDefaultMessageGeneratorInstance = this
+            .assessmentDefaultMessageGenerator;
+        const assessments: AssessmentResult[] = this.assessmentsProvider
+            .all()
+            .map(a => ({
+                ...a,
+                storeData: this.assessmentStoreData.assessments[a.key],
+            }));
 
         const scanDetails = {
             targetPage: this.tabStoreData.title,
@@ -50,13 +60,24 @@ export class AssessmentReportModelBuilder {
             incompleteDetailsData: getDetails(ManualTestStatus.UNKNOWN),
         } as ReportModel;
 
-        function getDefaultMessageComponent(getDefaultMessage, instancesMap, selectedStep): DefaultMessageInterface {
-            const defaultMessageGenerator = getDefaultMessage(assessmentDefaultMessageGeneratorInstance);
-            const defaultMessageComponent = defaultMessageGenerator(instancesMap, selectedStep);
+        function getDefaultMessageComponent(
+            getDefaultMessage,
+            instancesMap,
+            selectedStep,
+        ): DefaultMessageInterface {
+            const defaultMessageGenerator = getDefaultMessage(
+                assessmentDefaultMessageGeneratorInstance,
+            );
+            const defaultMessageComponent = defaultMessageGenerator(
+                instancesMap,
+                selectedStep,
+            );
             return defaultMessageComponent;
         }
 
-        function getDetails(status: ManualTestStatus): AssessmentDetailsReportModel[] {
+        function getDetails(
+            status: ManualTestStatus,
+        ): AssessmentDetailsReportModel[] {
             return assessments
                 .map(assessment => {
                     return {
@@ -64,19 +85,30 @@ export class AssessmentReportModelBuilder {
                         displayName: assessment.title,
                         steps: assessment.requirements
                             .filter(step => {
-                                return assessment.storeData.testStepStatus[step.key].stepFinalResult === status;
+                                return (
+                                    assessment.storeData.testStepStatus[
+                                        step.key
+                                    ].stepFinalResult === status
+                                );
                             })
                             .map(step => {
-                                const generatedInstancesMap = assessment.storeData.generatedAssessmentInstancesMap;
+                                const generatedInstancesMap =
+                                    assessment.storeData
+                                        .generatedAssessmentInstancesMap;
                                 const model: RequirementReportModel = {
                                     key: step.key,
                                     header: {
                                         displayName: step.name,
                                         description: step.renderReportDescription(),
                                         guidanceLinks: step.guidanceLinks,
-                                        requirementType: step.isManual ? 'manual' : 'assisted',
+                                        requirementType: step.isManual
+                                            ? 'manual'
+                                            : 'assisted',
                                     },
-                                    instances: getInstances(assessment, step.key),
+                                    instances: getInstances(
+                                        assessment,
+                                        step.key,
+                                    ),
                                     defaultMessageComponent: getDefaultMessageComponent(
                                         step.getDefaultMessage,
                                         generatedInstancesMap,
@@ -85,7 +117,9 @@ export class AssessmentReportModelBuilder {
                                     showPassingInstances: true,
                                 };
 
-                                assessmentReportExtensionPoint.apply(assessment.extensions).alterRequirementReportModel(model);
+                                assessmentReportExtensionPoint
+                                    .apply(assessment.extensions)
+                                    .alterRequirementReportModel(model);
 
                                 return model;
                             }),
@@ -96,11 +130,19 @@ export class AssessmentReportModelBuilder {
                 }) as AssessmentDetailsReportModel[];
         }
 
-        function getInstances(assessment: AssessmentResult, stepKey: string): InstanceReportModel[] {
+        function getInstances(
+            assessment: AssessmentResult,
+            stepKey: string,
+        ): InstanceReportModel[] {
             const { storeData } = assessment;
-            const { reportInstanceFields } = _.find(assessment.requirements, s => s.key === stepKey);
+            const { reportInstanceFields } = _.find(
+                assessment.requirements,
+                s => s.key === stepKey,
+            );
 
-            function getInstanceReportModel(instance: Partial<TestStepInstance>): InstanceReportModel {
+            function getInstanceReportModel(
+                instance: Partial<TestStepInstance>,
+            ): InstanceReportModel {
                 const props = reportInstanceFields
                     .filter(element => {
                         if (element.getValue(instance)) {
@@ -108,13 +150,21 @@ export class AssessmentReportModelBuilder {
                         }
                         return false;
                     })
-                    .map(({ label, getValue }) => ({ key: label, value: getValue(instance) } as InstancePairReportModel));
+                    .map(
+                        ({ label, getValue }) =>
+                            ({
+                                key: label,
+                                value: getValue(instance),
+                            } as InstancePairReportModel),
+                    );
 
                 return { props };
             }
 
             function getManualData(): InstanceReportModel[] {
-                return storeData.manualTestStepResultMap[stepKey].instances.map(instance => getInstanceReportModel(instance));
+                return storeData.manualTestStepResultMap[
+                    stepKey
+                ].instances.map(instance => getInstanceReportModel(instance));
             }
 
             function getAssistedData(): InstanceReportModel[] {
@@ -124,17 +174,30 @@ export class AssessmentReportModelBuilder {
 
                 return _.keys(storeData.generatedAssessmentInstancesMap)
                     .filter(key => {
-                        const testStepResult = storeData.generatedAssessmentInstancesMap[key].testStepResults[stepKey];
-                        return testStepResult != undefined && testStepResult.status === storeData.testStepStatus[stepKey].stepFinalResult;
+                        const testStepResult =
+                            storeData.generatedAssessmentInstancesMap[key]
+                                .testStepResults[stepKey];
+                        return (
+                            testStepResult != undefined &&
+                            testStepResult.status ===
+                                storeData.testStepStatus[stepKey]
+                                    .stepFinalResult
+                        );
                     })
-                    .map(key => getInstanceReportModel(storeData.generatedAssessmentInstancesMap[key]));
+                    .map(key =>
+                        getInstanceReportModel(
+                            storeData.generatedAssessmentInstancesMap[key],
+                        ),
+                    );
             }
 
             if (
-                storeData.testStepStatus[stepKey].stepFinalResult === ManualTestStatus.FAIL &&
+                storeData.testStepStatus[stepKey].stepFinalResult ===
+                    ManualTestStatus.FAIL &&
                 !(
                     storeData.manualTestStepResultMap[stepKey] === undefined ||
-                    storeData.manualTestStepResultMap[stepKey].instances.length === 0
+                    storeData.manualTestStepResultMap[stepKey].instances
+                        .length === 0
                 )
             ) {
                 return getManualData();

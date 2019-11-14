@@ -1,7 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BaseActionPayload, CardSelectionPayload, RuleExpandCollapsePayload } from 'background/actions/action-payloads';
-import { BaseTelemetryData, TelemetryEventSource } from 'common/extension-telemetry-events';
+import {
+    BaseActionPayload,
+    CardSelectionPayload,
+    RuleExpandCollapsePayload,
+} from 'background/actions/action-payloads';
+import {
+    BaseTelemetryData,
+    TelemetryEventSource,
+} from 'common/extension-telemetry-events';
 import { Message } from 'common/message';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
@@ -23,7 +30,11 @@ describe('Card Selection Message Creator', () => {
         sourceStub = -1;
         eventStub = {} as React.SyntheticEvent;
         telemetryStub = {} as BaseTelemetryData;
-        testSubject = new CardSelectionMessageCreator(dispatcherMock.object, telemetryDataFactoryMock.object, sourceStub);
+        testSubject = new CardSelectionMessageCreator(
+            dispatcherMock.object,
+            telemetryDataFactoryMock.object,
+            sourceStub,
+        );
     });
 
     it('dispatches message for toggleCardSelection', () => {
@@ -40,11 +51,16 @@ describe('Card Selection Message Creator', () => {
             payload,
         };
 
-        telemetryDataFactoryMock.setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub)).returns(() => telemetryStub);
+        telemetryDataFactoryMock
+            .setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub))
+            .returns(() => telemetryStub);
 
         testSubject.toggleCardSelection(ruleId, resultInstanceUid, eventStub);
 
-        dispatcherMock.verify(handler => handler.dispatchMessage(expectedMessage), Times.once());
+        dispatcherMock.verify(
+            handler => handler.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
     });
 
     test('toggleRuleExpandCollapse', () => {
@@ -59,11 +75,16 @@ describe('Card Selection Message Creator', () => {
             payload,
         };
 
-        telemetryDataFactoryMock.setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub)).returns(() => telemetryStub);
+        telemetryDataFactoryMock
+            .setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub))
+            .returns(() => telemetryStub);
 
         testSubject.toggleRuleExpandCollapse(ruleId, eventStub);
 
-        dispatcherMock.verify(handler => handler.dispatchMessage(expectedMessage), Times.once());
+        dispatcherMock.verify(
+            handler => handler.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
     });
 
     test('collapseAllRules', () => {
@@ -76,11 +97,16 @@ describe('Card Selection Message Creator', () => {
             payload,
         };
 
-        telemetryDataFactoryMock.setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub)).returns(() => telemetryStub);
+        telemetryDataFactoryMock
+            .setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub))
+            .returns(() => telemetryStub);
 
         testSubject.collapseAllRules(eventStub);
 
-        dispatcherMock.verify(dm => dm.dispatchMessage(expectedMessage), Times.once());
+        dispatcherMock.verify(
+            dm => dm.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
     });
 
     test('expandAllRules', () => {
@@ -93,11 +119,16 @@ describe('Card Selection Message Creator', () => {
             payload,
         };
 
-        telemetryDataFactoryMock.setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub)).returns(() => telemetryStub);
+        telemetryDataFactoryMock
+            .setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub))
+            .returns(() => telemetryStub);
 
         testSubject.expandAllRules(eventStub);
 
-        dispatcherMock.verify(dm => dm.dispatchMessage(expectedMessage), Times.once());
+        dispatcherMock.verify(
+            dm => dm.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
     });
 
     test('toggleVisualHelper', () => {
@@ -110,10 +141,15 @@ describe('Card Selection Message Creator', () => {
             payload,
         };
 
-        telemetryDataFactoryMock.setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub)).returns(() => telemetryStub);
+        telemetryDataFactoryMock
+            .setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub))
+            .returns(() => telemetryStub);
 
         testSubject.toggleVisualHelper(eventStub);
 
-        dispatcherMock.verify(dm => dm.dispatchMessage(expectedMessage), Times.once());
+        dispatcherMock.verify(
+            dm => dm.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
     });
 });

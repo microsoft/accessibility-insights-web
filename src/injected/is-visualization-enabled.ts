@@ -24,7 +24,9 @@ export const isVisualizationEnabled: IsVisualizationEnabledCallback = (
     const scanData = config.getStoreData(visualizationState.tests);
     return (
         config.getTestStatus(scanData, step) &&
-        (!isAssessment(config) || assessmentState.persistedTabInfo === null || tabState.id === assessmentState.persistedTabInfo.id)
+        (!isAssessment(config) ||
+            assessmentState.persistedTabInfo === null ||
+            tabState.id === assessmentState.persistedTabInfo.id)
     );
 };
 

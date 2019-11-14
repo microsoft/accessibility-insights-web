@@ -8,19 +8,25 @@ import { Requirement } from '../../types/requirement';
 import { RepetitiveContentTestStep } from './test-steps';
 
 const consistentNavigationDescription: JSX.Element = (
-    <span>Navigational mechanisms that appear on multiple pages must be presented in the same relative order.</span>
+    <span>
+        Navigational mechanisms that appear on multiple pages must be presented
+        in the same relative order.
+    </span>
 );
 
 const consistentNavigationHowToTest: JSX.Element = (
     <div>
         <ol>
             <li>
-                Examine the target page to identify any navigational mechanisms (such as site navigation bars, search fields, and skip
-                links) that appear on multiple pages.
+                Examine the target page to identify any navigational mechanisms
+                (such as site navigation bars, search fields, and skip links)
+                that appear on multiple pages.
             </li>
             <li>
-                Verify that the links or buttons in each navigational mechanism are presented in the same relative order each time they
-                appear. (Items should be in the same relative order even if other items are inserted or removed between them.)
+                Verify that the links or buttons in each navigational mechanism
+                are presented in the same relative order each time they appear.
+                (Items should be in the same relative order even if other items
+                are inserted or removed between them.)
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>

@@ -12,25 +12,30 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe('DeviceConnectBodyTest', () => {
-    const deviceConnectStates = EnumHelper.getNumericValues<DeviceConnectState>(DeviceConnectState).map(state => DeviceConnectState[state]);
+    const deviceConnectStates = EnumHelper.getNumericValues<DeviceConnectState>(
+        DeviceConnectState,
+    ).map(state => DeviceConnectState[state]);
 
-    it.each(deviceConnectStates)(`renders, with device connect state = %s`, stateName => {
-        const props: DeviceConnectBodyProps = {
-            deps: {
-                currentWindow: {
-                    close: () => {
-                        return;
-                    },
-                } as BrowserWindow,
-            } as DeviceConnectBodyDeps,
-            viewState: {
-                connectedDevice: 'Test Device',
-                deviceConnectState: DeviceConnectState[stateName],
-            },
-        } as DeviceConnectBodyProps;
+    it.each(deviceConnectStates)(
+        `renders, with device connect state = %s`,
+        stateName => {
+            const props: DeviceConnectBodyProps = {
+                deps: {
+                    currentWindow: {
+                        close: () => {
+                            return;
+                        },
+                    } as BrowserWindow,
+                } as DeviceConnectBodyDeps,
+                viewState: {
+                    connectedDevice: 'Test Device',
+                    deviceConnectState: DeviceConnectState[stateName],
+                },
+            } as DeviceConnectBodyProps;
 
-        const wrapped = shallow(<DeviceConnectBody {...props} />);
+            const wrapped = shallow(<DeviceConnectBody {...props} />);
 
-        expect(wrapped.getElement()).toMatchSnapshot();
-    });
+            expect(wrapped.getElement()).toMatchSnapshot();
+        },
+    );
 });

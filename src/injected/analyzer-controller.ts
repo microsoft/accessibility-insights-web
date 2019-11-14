@@ -40,7 +40,10 @@ export class AnalyzerController {
         this.analyzerProvider = analyzerProvider;
         this.assessmentsProvider = assessmentsProvider;
         this.analyzerStateUpdateHandler = analyzerStateUpdateHandler;
-        this.analyzerStateUpdateHandler.setupHandlers(this.startScan, this.teardown);
+        this.analyzerStateUpdateHandler.setupHandlers(
+            this.startScan,
+            this.teardown,
+        );
     }
 
     public listenToStore(): void {
@@ -56,7 +59,9 @@ export class AnalyzerController {
             return;
         }
 
-        this.analyzerStateUpdateHandler.handleUpdate(this.visualizationstore.getState());
+        this.analyzerStateUpdateHandler.handleUpdate(
+            this.visualizationstore.getState(),
+        );
     };
 
     protected teardown = (id: string): void => {
@@ -70,17 +75,28 @@ export class AnalyzerController {
     };
 
     private initializeAnalyzers(): void {
-        EnumHelper.getNumericValues(VisualizationType).forEach((test: VisualizationType) => {
-            const config = this.visualizationConfigurationFactory.getConfiguration(test);
-            if (this.assessmentsProvider.isValidType(test)) {
-                this.assessmentsProvider.forType(test).requirements.forEach(stepConfig => {
-                    this.analyzers[stepConfig.key] = config.getAnalyzer(this.analyzerProvider, stepConfig.key);
-                });
-            } else {
-                const key = config.getIdentifier();
-                this.analyzers[key] = config.getAnalyzer(this.analyzerProvider);
-            }
-        });
+        EnumHelper.getNumericValues(VisualizationType).forEach(
+            (test: VisualizationType) => {
+                const config = this.visualizationConfigurationFactory.getConfiguration(
+                    test,
+                );
+                if (this.assessmentsProvider.isValidType(test)) {
+                    this.assessmentsProvider
+                        .forType(test)
+                        .requirements.forEach(stepConfig => {
+                            this.analyzers[stepConfig.key] = config.getAnalyzer(
+                                this.analyzerProvider,
+                                stepConfig.key,
+                            );
+                        });
+                } else {
+                    const key = config.getIdentifier();
+                    this.analyzers[key] = config.getAnalyzer(
+                        this.analyzerProvider,
+                    );
+                }
+            },
+        );
     }
 
     private getAnalyzerByIdentifier(key: string): Analyzer {
@@ -92,7 +108,9 @@ export class AnalyzerController {
 
     private hasInitializedStores(): boolean {
         return (
-            this.visualizationstore.getState() != null && this.scopingStore.getState() != null && this.featureFlagStore.getState() != null
+            this.visualizationstore.getState() != null &&
+            this.scopingStore.getState() != null &&
+            this.featureFlagStore.getState() != null
         );
     }
 }

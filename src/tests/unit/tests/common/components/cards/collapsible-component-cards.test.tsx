@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CardsCollapsibleControl, CollapsibleComponentCardsProps } from 'common/components/cards/collapsible-component-cards';
+import {
+    CardsCollapsibleControl,
+    CollapsibleComponentCardsProps,
+} from 'common/components/cards/collapsible-component-cards';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { shallow } from 'enzyme';
 import { forOwn } from 'lodash';
@@ -16,14 +19,21 @@ describe('CollapsibleComponentCardsTest', () => {
     };
 
     beforeEach(() => {
-        cardSelectionMessageCreatorMock = Mock.ofType(CardSelectionMessageCreator);
+        cardSelectionMessageCreatorMock = Mock.ofType(
+            CardSelectionMessageCreator,
+        );
     });
 
     forOwn(optionalPropertiesObject, (propertyValues, propertyName) => {
         propertyValues.forEach(value => {
             test(`render with ${propertyName} set to: ${value}`, () => {
                 cardSelectionMessageCreatorMock
-                    .setup(mock => mock.toggleRuleExpandCollapse(It.isAnyString(), It.isAny()))
+                    .setup(mock =>
+                        mock.toggleRuleExpandCollapse(
+                            It.isAnyString(),
+                            It.isAny(),
+                        ),
+                    )
                     .verifiable(Times.never());
 
                 const props: CollapsibleComponentCardsProps = {
@@ -31,7 +41,10 @@ describe('CollapsibleComponentCardsTest', () => {
                     content: <div>Some content</div>,
                     headingLevel: 5,
                     [propertyName]: value,
-                    deps: { cardSelectionMessageCreator: cardSelectionMessageCreatorMock.object },
+                    deps: {
+                        cardSelectionMessageCreator:
+                            cardSelectionMessageCreatorMock.object,
+                    },
                     isExpanded: true,
                 };
                 const control = CardsCollapsibleControl(props);
@@ -44,14 +57,19 @@ describe('CollapsibleComponentCardsTest', () => {
 
     test('toggle from expanded to collapsed', () => {
         const eventStub = {} as React.SyntheticEvent;
-        cardSelectionMessageCreatorMock.setup(mock => mock.toggleRuleExpandCollapse(It.isAnyString(), eventStub)).verifiable(Times.once());
+        cardSelectionMessageCreatorMock
+            .setup(mock =>
+                mock.toggleRuleExpandCollapse(It.isAnyString(), eventStub),
+            )
+            .verifiable(Times.once());
 
         const props: CollapsibleComponentCardsProps = {
             header: <div>Some header</div>,
             content: <div>Some content</div>,
             headingLevel: 5,
             deps: {
-                cardSelectionMessageCreator: cardSelectionMessageCreatorMock.object,
+                cardSelectionMessageCreator:
+                    cardSelectionMessageCreatorMock.object,
             },
             isExpanded: true,
             id: 'test-id',

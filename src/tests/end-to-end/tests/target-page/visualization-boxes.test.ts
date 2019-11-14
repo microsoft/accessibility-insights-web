@@ -28,15 +28,25 @@ describe('Target Page visualization boxes', () => {
 
     const adhocTools = ['Landmarks', 'Headings', 'Automated checks'];
 
-    it.each(adhocTools)('for adhoc tool "%s" should pass accessibility validation', async adhocTool => {
-        await popupPage.enableToggleByAriaLabel(adhocTool);
+    it.each(adhocTools)(
+        'for adhoc tool "%s" should pass accessibility validation',
+        async adhocTool => {
+            await popupPage.enableToggleByAriaLabel(adhocTool);
 
-        const shadowRoot = await targetPage.getShadowRoot();
-        await targetPage.waitForDescendentSelector(shadowRoot, TargetPageInjectedComponentSelectors.insightsVisualizationBox, {
-            visible: true,
-        });
+            const shadowRoot = await targetPage.getShadowRoot();
+            await targetPage.waitForDescendentSelector(
+                shadowRoot,
+                TargetPageInjectedComponentSelectors.insightsVisualizationBox,
+                {
+                    visible: true,
+                },
+            );
 
-        const results = await scanForAccessibilityIssues(targetPage, TargetPageInjectedComponentSelectors.insightsRootContainer);
-        expect(results).toHaveLength(0);
-    });
+            const results = await scanForAccessibilityIssues(
+                targetPage,
+                TargetPageInjectedComponentSelectors.insightsRootContainer,
+            );
+            expect(results).toHaveLength(0);
+        },
+    );
 });

@@ -2,7 +2,10 @@
 // Licensed under the MIT License.
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { UnifiedRule } from 'common/types/store-data/unified-data-interface';
-import { ElementBasedViewModelCreator, GetHighlightedResultInstanceIdsCallback } from 'injected/element-based-view-model-creator';
+import {
+    ElementBasedViewModelCreator,
+    GetHighlightedResultInstanceIdsCallback,
+} from 'injected/element-based-view-model-creator';
 import { GetDecoratedAxeNodeCallback } from 'injected/get-decorated-axe-node';
 import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
 import { cloneDeep } from 'lodash';
@@ -16,23 +19,44 @@ describe('ElementBasedViewModelCreator', () => {
     let cardSelectionData: CardSelectionStoreData;
 
     beforeEach(() => {
-        getDecoratedAxeNodeCallbackMock = Mock.ofType<GetDecoratedAxeNodeCallback>(undefined, MockBehavior.Strict);
-        getHighlightedResultInstanceIdsMock = Mock.ofType<GetHighlightedResultInstanceIdsCallback>(undefined, MockBehavior.Strict);
-        testSubject = new ElementBasedViewModelCreator(getDecoratedAxeNodeCallbackMock.object, getHighlightedResultInstanceIdsMock.object);
+        getDecoratedAxeNodeCallbackMock = Mock.ofType<
+            GetDecoratedAxeNodeCallback
+        >(undefined, MockBehavior.Strict);
+        getHighlightedResultInstanceIdsMock = Mock.ofType<
+            GetHighlightedResultInstanceIdsCallback
+        >(undefined, MockBehavior.Strict);
+        testSubject = new ElementBasedViewModelCreator(
+            getDecoratedAxeNodeCallbackMock.object,
+            getHighlightedResultInstanceIdsMock.object,
+        );
 
         cardSelectionData = {} as CardSelectionStoreData;
     });
 
     test('getElementBasedViewModel: rules are null', () => {
-        expect(testSubject.getElementBasedViewModel(null, [], {} as CardSelectionStoreData)).toBeUndefined();
+        expect(
+            testSubject.getElementBasedViewModel(
+                null,
+                [],
+                {} as CardSelectionStoreData,
+            ),
+        ).toBeUndefined();
     });
 
     test('getElementBasedViewModel: results are null', () => {
-        expect(testSubject.getElementBasedViewModel([], null, {} as CardSelectionStoreData)).toBeUndefined();
+        expect(
+            testSubject.getElementBasedViewModel(
+                [],
+                null,
+                {} as CardSelectionStoreData,
+            ),
+        ).toBeUndefined();
     });
 
     test('getElementBasedViewModel: cardSelectionData are null', () => {
-        expect(testSubject.getElementBasedViewModel([], [], null)).toBeUndefined();
+        expect(
+            testSubject.getElementBasedViewModel([], [], null),
+        ).toBeUndefined();
     });
 
     test('getElementBasedViewModel: no failing results', () => {
@@ -47,7 +71,13 @@ describe('ElementBasedViewModelCreator', () => {
             }));
 
         const expectedResult = {};
-        expect(testSubject.getElementBasedViewModel([], [unifiedResult], cardSelectionData)).toEqual(expectedResult);
+        expect(
+            testSubject.getElementBasedViewModel(
+                [],
+                [unifiedResult],
+                cardSelectionData,
+            ),
+        ).toEqual(expectedResult);
     });
 
     test('getElementBasedViewModel: no highlighted results', () => {
@@ -60,7 +90,13 @@ describe('ElementBasedViewModelCreator', () => {
             .returns(() => ({ highlightedResultUids: highlightedInstanceIds }));
 
         const expectedResult = {};
-        expect(testSubject.getElementBasedViewModel([], [unifiedResult], cardSelectionData)).toEqual(expectedResult);
+        expect(
+            testSubject.getElementBasedViewModel(
+                [],
+                [unifiedResult],
+                cardSelectionData,
+            ),
+        ).toEqual(expectedResult);
     });
 
     test('getElementBasedViewModel: one element, one result', () => {
@@ -75,7 +111,9 @@ describe('ElementBasedViewModelCreator', () => {
         getHighlightedResultInstanceIdsMock
             .setup(mock => mock(cardSelectionData))
             .returns(() => ({ highlightedResultUids: highlightedInstanceIds }));
-        getDecoratedAxeNodeCallbackMock.setup(mock => mock(unifiedResult, ruleStub, identifierStub)).returns(() => decoratedResultStub);
+        getDecoratedAxeNodeCallbackMock
+            .setup(mock => mock(unifiedResult, ruleStub, identifierStub))
+            .returns(() => decoratedResultStub);
 
         const expectedResult = {
             [identifierStub]: {
@@ -88,7 +126,13 @@ describe('ElementBasedViewModelCreator', () => {
             },
         };
 
-        expect(testSubject.getElementBasedViewModel(unifiedRules, [unifiedResult], cardSelectionData)).toEqual(expectedResult);
+        expect(
+            testSubject.getElementBasedViewModel(
+                unifiedRules,
+                [unifiedResult],
+                cardSelectionData,
+            ),
+        ).toEqual(expectedResult);
     });
 
     test('getElementBasedViewModel: two results that map to one element', () => {
@@ -109,7 +153,10 @@ describe('ElementBasedViewModelCreator', () => {
             id: 'some other id',
         } as DecoratedAxeNodeResult;
 
-        const highlightedInstanceIds = [unifiedResultOne.uid, unifiedResultTwo.uid];
+        const highlightedInstanceIds = [
+            unifiedResultOne.uid,
+            unifiedResultTwo.uid,
+        ];
         getHighlightedResultInstanceIdsMock
             .setup(mock => mock(cardSelectionData))
             .returns(() => ({ highlightedResultUids: highlightedInstanceIds }));
@@ -138,6 +185,12 @@ describe('ElementBasedViewModelCreator', () => {
             },
         };
 
-        expect(testSubject.getElementBasedViewModel(unifiedRules, unifiedResults, cardSelectionData)).toEqual(expectedResult);
+        expect(
+            testSubject.getElementBasedViewModel(
+                unifiedRules,
+                unifiedResults,
+                cardSelectionData,
+            ),
+        ).toEqual(expectedResult);
     });
 });

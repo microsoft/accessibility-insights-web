@@ -51,7 +51,12 @@ export interface IRuleConfiguration {
 
 export interface ICheckConfiguration {
     id: string;
-    evaluate: (node: any, options: any, virtualNode: any, context: any) => boolean;
+    evaluate: (
+        node: any,
+        options: any,
+        virtualNode: any,
+        context: any,
+    ) => boolean;
     after?: any;
     options?: any;
     enabled?: boolean;

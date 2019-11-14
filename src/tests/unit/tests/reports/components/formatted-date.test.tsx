@@ -1,11 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FormattedDate, FormattedDateProps } from 'reports/components/formatted-date';
+import {
+    FormattedDate,
+    FormattedDateProps,
+} from 'reports/components/formatted-date';
 
 describe('FormattedDate', () => {
     describe('render', () => {
         test('end of last millennium', () => {
-            testDate(new Date(1999, 11, 31, 23, 59, 59), '1999-12-31 11:59 PM FTZ');
+            testDate(
+                new Date(1999, 11, 31, 23, 59, 59),
+                '1999-12-31 11:59 PM FTZ',
+            );
         });
 
         test('start of this millennium', () => {

@@ -29,15 +29,20 @@ export const ADD_FAILURE_INSTANCE: string = 'addFailureInstance';
 export const REMOVE_FAILURE_INSTANCE: string = 'removeFailureInstance';
 export const EDIT_FAILURE_INSTANCE: string = 'editFailureInstance';
 export const PASS_UNMARKED_INSTANCES: string = 'passUnmarkedInstances';
-export const CONTINUE_PREVIOUS_ASSESSMENT: string = 'ContinuePreviousAssessment';
+export const CONTINUE_PREVIOUS_ASSESSMENT: string =
+    'ContinuePreviousAssessment';
 export const ENABLE_VISUAL_HELPER: string = 'enableVisualHelper';
 export const UNDO_TEST_STATUS_CHANGE: string = 'undoTestStatusChange';
-export const UNDO_REQUIREMENT_STATUS_CHANGE: string = 'undoRequirementStatusChange';
+export const UNDO_REQUIREMENT_STATUS_CHANGE: string =
+    'undoRequirementStatusChange';
 export const CHANGE_INSTANCE_STATUS: string = 'changeInstanceStatus';
-export const CHANGE_ASSESSMENT_VISUALIZATION_STATUS: string = 'changeAssessmentVisualizationState';
-export const CHANGE_ASSESSMENT_VISUALIZATION_STATUS_FOR_ALL: string = 'changeAssessmentVisualizationStateForAll';
+export const CHANGE_ASSESSMENT_VISUALIZATION_STATUS: string =
+    'changeAssessmentVisualizationState';
+export const CHANGE_ASSESSMENT_VISUALIZATION_STATUS_FOR_ALL: string =
+    'changeAssessmentVisualizationStateForAll';
 export const DISABLE_VISUAL_HELPER: string = 'disableVisualHelper';
-export const CHANGE_OVERALL_REQUIREMENT_STATUS: string = 'changeOverallRequirementStatus';
+export const CHANGE_OVERALL_REQUIREMENT_STATUS: string =
+    'changeOverallRequirementStatus';
 export const PREVIEW_FEATURES_CLOSE: string = 'PreviewFeaturesClose';
 export const PREVIEW_FEATURES_OPEN: string = 'PreviewFeaturesOpen';
 export const PREVIEW_FEATURES_TOGGLE: string = 'PreviewFeaturesToggle';

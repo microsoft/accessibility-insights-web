@@ -11,23 +11,31 @@ export interface PreviewFeaturesToggleListProps {
     actionMessageCreator: DetailsViewActionMessageCreator;
 }
 
-export class PreviewFeaturesToggleList extends React.Component<PreviewFeaturesToggleListProps> {
+export class PreviewFeaturesToggleList extends React.Component<
+    PreviewFeaturesToggleListProps
+> {
     public render(): JSX.Element {
-        return <div className="preview-feature-toggle-list">{this.generateToggleList()}</div>;
+        return (
+            <div className="preview-feature-toggle-list">
+                {this.generateToggleList()}
+            </div>
+        );
     }
 
     private generateToggleList(): JSX.Element[] {
         const flags = this.props.displayedFeatureFlags;
-        const toggleList = flags.map((displayableFlag: DisplayableFeatureFlag) => (
-            <GenericToggle
-                name={displayableFlag.displayableName}
-                description={displayableFlag.displayableDescription}
-                enabled={displayableFlag.enabled}
-                onClick={this.props.actionMessageCreator.setFeatureFlag}
-                key={this.getToggleKey(displayableFlag.id)}
-                id={displayableFlag.id}
-            />
-        ));
+        const toggleList = flags.map(
+            (displayableFlag: DisplayableFeatureFlag) => (
+                <GenericToggle
+                    name={displayableFlag.displayableName}
+                    description={displayableFlag.displayableDescription}
+                    enabled={displayableFlag.enabled}
+                    onClick={this.props.actionMessageCreator.setFeatureFlag}
+                    key={this.getToggleKey(displayableFlag.id)}
+                    id={displayableFlag.id}
+                />
+            ),
+        );
 
         return toggleList;
     }

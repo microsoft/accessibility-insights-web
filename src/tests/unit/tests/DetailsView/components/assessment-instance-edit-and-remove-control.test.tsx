@@ -21,7 +21,9 @@ describe('AssessmentInstanceRemoveButton', () => {
     const featureFlagStoreData = {} as FeatureFlagStoreData;
 
     test('constructor', () => {
-        const testObject = new AssessmentInstanceEditAndRemoveControl({} as AssessmentInstanceEditAndRemoveControlProps);
+        const testObject = new AssessmentInstanceEditAndRemoveControl(
+            {} as AssessmentInstanceEditAndRemoveControlProps,
+        );
         expect(testObject).toBeInstanceOf(React.Component);
     });
 
@@ -43,7 +45,9 @@ describe('AssessmentInstanceRemoveButton', () => {
             assessmentsProvider: CreateTestAssessmentProvider(),
             featureFlagStoreData: featureFlagStoreData,
         };
-        onRemoveMock.setup(r => r(props.test, props.step, props.id)).verifiable(Times.once());
+        onRemoveMock
+            .setup(r => r(props.test, props.step, props.id))
+            .verifiable(Times.once());
 
         const testSubject = new TestableAssessmentInstanceRemoveButton(props);
         const expected = (
@@ -60,7 +64,10 @@ describe('AssessmentInstanceRemoveButton', () => {
                     assessmentsProvider={props.assessmentsProvider}
                     featureFlagStoreData={featureFlagStoreData}
                 />
-                <Link className="remove-button" onClick={testSubject.getOnRemoveButtonClicked()}>
+                <Link
+                    className="remove-button"
+                    onClick={testSubject.getOnRemoveButtonClicked()}
+                >
                     <Icon iconName="delete" ariaLabel={'delete instance'} />
                 </Link>
             </div>
@@ -74,7 +81,11 @@ describe('AssessmentInstanceRemoveButton', () => {
 });
 
 class TestableAssessmentInstanceRemoveButton extends AssessmentInstanceEditAndRemoveControl {
-    public getOnRemoveButtonClicked(): (event?: React.MouseEvent<HTMLElement | HTMLAnchorElement | HTMLButtonElement>) => void {
+    public getOnRemoveButtonClicked(): (
+        event?: React.MouseEvent<
+            HTMLElement | HTMLAnchorElement | HTMLButtonElement
+        >,
+    ) => void {
         return this.onRemoveButtonClicked;
     }
 }

@@ -8,11 +8,13 @@ import { ManualTestRecordYourResults } from '../../common/manual-test-record-you
 import { Requirement } from '../../types/requirement';
 import { ParsingTestStep } from './test-steps';
 
-const keyboardBookmarkletInstructionsURL = '/insights.html#/content/test/parsing/keyboardBookmarkletInstructions';
+const keyboardBookmarkletInstructionsURL =
+    '/insights.html#/content/test/parsing/keyboardBookmarkletInstructions';
 
 const description: JSX.Element = (
     <span>
-        Elements must have complete start and end tags, must not contain duplicate attributes, and must be nested according to their
+        Elements must have complete start and end tags, must not contain
+        duplicate attributes, and must be nested according to their
         specifications.
     </span>
 );
@@ -20,12 +22,19 @@ const description: JSX.Element = (
 const howToTest: JSX.Element = (
     <div>
         <p>
-            This test uses the <NewTabLink href="https://validator.w3.org/nu/">Nu HTML Checker</NewTabLink> and supporting bookmarklets.
+            This test uses the{' '}
+            <NewTabLink href="https://validator.w3.org/nu/">
+                Nu HTML Checker
+            </NewTabLink>{' '}
+            and supporting bookmarklets.
         </p>
         <ol>
             <li>
-                Open <NewTabLink href="https://validator.w3.org/nu/about.html">About the Nu HTML Checker</NewTabLink> in a new browser
-                window.
+                Open{' '}
+                <NewTabLink href="https://validator.w3.org/nu/about.html">
+                    About the Nu HTML Checker
+                </NewTabLink>{' '}
+                in a new browser window.
             </li>
             <li>
                 Add these two bookmarklets to your browser bookmarks:
@@ -34,20 +43,28 @@ const howToTest: JSX.Element = (
                     <li>Check for WCAG 2.0 parsing compliance</li>
                 </ol>
                 <p>
-                    (Mouse users can simply drag the corresponding links from the page to the browser bookmarks bar. Keyboard users can
-                    follow <NewTabLink href={keyboardBookmarkletInstructionsURL}>these instructions</NewTabLink>.)
+                    (Mouse users can simply drag the corresponding links from
+                    the page to the browser bookmarks bar. Keyboard users can
+                    follow{' '}
+                    <NewTabLink href={keyboardBookmarkletInstructionsURL}>
+                        these instructions
+                    </NewTabLink>
+                    .)
                 </p>
             </li>
             <li>
-                Run the first bookmarklet in the browser tab containing your target page. It will send the page's DOM to the checker and
-                show the results in a new browser tab.
+                Run the first bookmarklet in the browser tab containing your
+                target page. It will send the page's DOM to the checker and show
+                the results in a new browser tab.
             </li>
             <li>
-                Run the second bookmarklet in the browser tab containing the checker results. It will filter the results to show only WCAG
+                Run the second bookmarklet in the browser tab containing the
+                checker results. It will filter the results to show only WCAG
                 parsing errors.
             </li>
             <li>
-                Examine the filtered results to verify that there are no errors related to:
+                Examine the filtered results to verify that there are no errors
+                related to:
                 <ol>
                     <li>Missing start or end tags</li>
                     <li>Duplicate attributes</li>

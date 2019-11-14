@@ -29,6 +29,9 @@ export const visualizationNeedsUpdate: VisualizationNeedsUpdateCallback = (
 
     return (
         previousVisualizationStates[id] !== newVisualizationEnabledState ||
-        !isEqual(newSelectorMapState, previousVisualizationSelectorMapData[visualizationType])
+        !isEqual(
+            newSelectorMapState,
+            previousVisualizationSelectorMapData[visualizationType],
+        )
     );
 };

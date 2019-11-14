@@ -7,7 +7,10 @@ import { IMock, Mock, Times } from 'typemoq';
 
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import { Switcher, SwitcherProps } from '../../../../../DetailsView/components/switcher';
+import {
+    Switcher,
+    SwitcherProps,
+} from '../../../../../DetailsView/components/switcher';
 
 describe('Switcher', () => {
     let defaultProps: SwitcherProps;
@@ -38,7 +41,11 @@ describe('Switcher', () => {
 
     test('onOptionChange', () => {
         actionCreatorMock
-            .setup(creator => creator.sendPivotItemClicked(DetailsViewPivotType[DetailsViewPivotType.assessment]))
+            .setup(creator =>
+                creator.sendPivotItemClicked(
+                    DetailsViewPivotType[DetailsViewPivotType.assessment],
+                ),
+            )
             .verifiable(Times.once());
         const wrapper = shallow<Switcher>(<Switcher {...defaultProps} />);
         const dropdown = wrapper.find(Dropdown);
@@ -49,7 +56,9 @@ describe('Switcher', () => {
             key: DetailsViewPivotType.assessment,
         } as IDropdownOption);
 
-        expect(wrapper.state().selectedKey).toBe(DetailsViewPivotType.assessment);
+        expect(wrapper.state().selectedKey).toBe(
+            DetailsViewPivotType.assessment,
+        );
         actionCreatorMock.verifyAll();
     });
 
@@ -58,14 +67,22 @@ describe('Switcher', () => {
             ...defaultProps,
             pivotKey: DetailsViewPivotType.assessment,
         };
-        const component = shallow(<Switcher {...newProps} />).instance() as Switcher;
+        const component = shallow(
+            <Switcher {...newProps} />,
+        ).instance() as Switcher;
         component.componentDidUpdate(defaultProps);
-        expect(component.state).toMatchObject({ selectedKey: DetailsViewPivotType.assessment });
+        expect(component.state).toMatchObject({
+            selectedKey: DetailsViewPivotType.assessment,
+        });
     });
 
     test('componentDidUpdate: pivotKey has not changed', () => {
-        const component = shallow(<Switcher {...defaultProps} />).instance() as Switcher;
+        const component = shallow(
+            <Switcher {...defaultProps} />,
+        ).instance() as Switcher;
         component.componentDidUpdate(defaultProps);
-        expect(component.state).toMatchObject({ selectedKey: DetailsViewPivotType.fastPass });
+        expect(component.state).toMatchObject({
+            selectedKey: DetailsViewPivotType.fastPass,
+        });
     });
 });

@@ -6,12 +6,26 @@ import { CreateIssueDetailsTextData } from '../../../common/types/create-issue-d
 import { createIssueDetailsBuilder } from '../../common/create-issue-details-builder';
 import { HTTPQueryBuilder } from '../../common/http-query-builder';
 import { IssueDetailsBuilder } from '../../common/issue-details-builder';
-import { IssueFilingUrlStringUtils, IssueUrlCreationUtils } from '../../common/issue-filing-url-string-utils';
+import {
+    IssueFilingUrlStringUtils,
+    IssueUrlCreationUtils,
+} from '../../common/issue-filing-url-string-utils';
 import { HTMLFormatter } from '../../common/markup/html-formatter';
-import { AzureBoardsIssueFilingSettings, AzureBoardsWorkItemType } from './azure-boards-issue-filing-settings';
+import {
+    AzureBoardsIssueFilingSettings,
+    AzureBoardsWorkItemType,
+} from './azure-boards-issue-filing-settings';
 
-const buildTags = (createIssueData: CreateIssueDetailsTextData, standardTags: string[]): string => {
-    const tags = ['Accessibility', title, `rule: ${createIssueData.rule.id}`, ...standardTags];
+const buildTags = (
+    createIssueData: CreateIssueDetailsTextData,
+    standardTags: string[],
+): string => {
+    const tags = [
+        'Accessibility',
+        title,
+        `rule: ${createIssueData.rule.id}`,
+        ...standardTags,
+    ];
     return tags.join('; ');
 };
 
@@ -20,7 +34,11 @@ export const createAzureBoardsIssueFilingUrlProvider = (
     issueDetailsBuilder: IssueDetailsBuilder,
     queryBuilderProvider: () => HTTPQueryBuilder,
 ) => {
-    return (settingsData: AzureBoardsIssueFilingSettings, issueData: CreateIssueDetailsTextData, environmentInfo: EnvironmentInfo) => {
+    return (
+        settingsData: AzureBoardsIssueFilingSettings,
+        issueData: CreateIssueDetailsTextData,
+        environmentInfo: EnvironmentInfo,
+    ) => {
         const titleField = stringUtils.getTitle(issueData);
         const standardTags = stringUtils.standardizeTags(issueData);
         const tags = buildTags(issueData, standardTags);
@@ -35,7 +53,9 @@ export const createAzureBoardsIssueFilingUrlProvider = (
         }
 
         return queryBuilderProvider()
-            .withBaseUrl(`${settingsData.projectURL}/_workitems/create/${workItemType}`)
+            .withBaseUrl(
+                `${settingsData.projectURL}/_workitems/create/${workItemType}`,
+            )
             .withParam('fullScreen', 'true')
             .withParam('[System.Title]', titleField)
             .withParam('[System.Tags]', tags)

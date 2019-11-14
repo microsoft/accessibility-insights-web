@@ -2,4 +2,6 @@
 // Licensed under the MIT License.
 import { TelemetryDataFactory } from '../telemetry-data-factory';
 
-export type TelemetryProcessor<T> = (telemetryFactory: TelemetryDataFactory) => T;
+export type TelemetryProcessor<T> = (
+    telemetryFactory: TelemetryDataFactory,
+) => T;

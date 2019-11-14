@@ -23,7 +23,9 @@ module.exports = wallaby => {
         compilers: {
             // Wallaby uses tsconfig.json's settings for everything we don't explicitly override here. We need to use a
             // different module type than normal for compatibility with Wallaby's incremental instrumentation process.
-            '**/*.+(ts|tsx)': wallaby.compilers.typeScript({ module: 'commonjs' }),
+            '**/*.+(ts|tsx)': wallaby.compilers.typeScript({
+                module: 'commonjs',
+            }),
         },
         testFramework: 'jest',
         setup: function(wallaby) {
@@ -34,7 +36,9 @@ module.exports = wallaby => {
 
             // Normally, jest transforms jest-setup.ts to .js itself. Since we're suppressing jest's transform,
             // we need to redirect it to the wallaby-generated .js version ourselves.
-            jestConfig.setupFiles = jestConfig.setupFiles.map(filePath => filePath.replace(/\.ts$/, '.js'));
+            jestConfig.setupFiles = jestConfig.setupFiles.map(filePath =>
+                filePath.replace(/\.ts$/, '.js'),
+            );
 
             // It looks like wallaby doesn't support jest-circus yet, so falling back to the default runner.
             jestConfig.testRunner = 'jasmine2';

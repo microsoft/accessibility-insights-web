@@ -22,7 +22,12 @@ export const getTelemetryClient = (
     appInsights: Microsoft.ApplicationInsights.IAppInsights,
     storageAdapter: StorageAdapter,
 ): TelemetryClient => {
-    const installDataGenerator = new InstallDataGenerator(installationData, generateUID, DateProvider.getCurrentDate, storageAdapter);
+    const installDataGenerator = new InstallDataGenerator(
+        installationData,
+        generateUID,
+        DateProvider.getCurrentDate,
+        storageAdapter,
+    );
     const applicationBuildGenerator = new ApplicationBuildGenerator();
     const coreTelemetryDataFactory = new ApplicationTelemetryDataFactory(
         appDataAdapter.getVersion(),
@@ -31,11 +36,17 @@ export const getTelemetryClient = (
         installDataGenerator,
     );
 
-    const appInsightsInstrumentationKey = config.getOption('appInsightsInstrumentationKey');
+    const appInsightsInstrumentationKey = config.getOption(
+        'appInsightsInstrumentationKey',
+    );
 
     if (appInsightsInstrumentationKey == null) {
         return new NullTelemetryClient(coreTelemetryDataFactory, logger);
     }
 
-    return new AppInsightsTelemetryClient(appInsights, coreTelemetryDataFactory, logger);
+    return new AppInsightsTelemetryClient(
+        appInsights,
+        coreTelemetryDataFactory,
+        logger,
+    );
 };

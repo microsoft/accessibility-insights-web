@@ -11,7 +11,10 @@ import * as React from 'react';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
 import { InstructionsAndLabelsNotes } from '../../common/instructions-and-labels-note';
-import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
+import {
+    NoValue,
+    PropertyBagColumnRendererConfig,
+} from '../../common/property-bag-column-renderer';
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
@@ -19,13 +22,17 @@ import { Requirement } from '../../types/requirement';
 import { NativeWidgetsTestStep } from './test-steps';
 
 const description: JSX.Element = (
-    <span>If a native widget has a visible label or instructions, they must be programmatically related to it.</span>
+    <span>
+        If a native widget has a visible label or instructions, they must be
+        programmatically related to it.
+    </span>
 );
 
 const howToTest: JSX.Element = (
     <div>
         <p>
-            The visual helper for this requirement highlights native widgets. Native widgets include
+            The visual helper for this requirement highlights native widgets.
+            Native widgets include
             <Markup.NonBreakingSpace />
             <Markup.Tag tagName="button" isBold={false} />,
             <Markup.NonBreakingSpace />
@@ -37,12 +44,19 @@ const howToTest: JSX.Element = (
         </p>
         <InstructionsAndLabelsNotes />
         <ol>
-            <li>In the target page, examine each highlighted element to determine whether it has a visible label or instructions.</li>
             <li>
-                Verify that all visible labels and instructions are displayed in the Instances list:
+                In the target page, examine each highlighted element to
+                determine whether it has a visible label or instructions.
+            </li>
+            <li>
+                Verify that all visible labels and instructions are displayed in
+                the Instances list:
                 <ol>
                     <li>Any label should appear in the accessible name.</li>
-                    <li>Any additional instructions should appear in the accessible description.</li>
+                    <li>
+                        Any additional instructions should appear in the
+                        accessible description.
+                    </li>
                 </ol>
             </li>
             <AssistedTestRecordYourResults />
@@ -50,7 +64,9 @@ const howToTest: JSX.Element = (
     </div>
 );
 
-const propertyBagConfig: PropertyBagColumnRendererConfig<DefaultWidgetPropertyBag>[] = [
+const propertyBagConfig: PropertyBagColumnRendererConfig<
+    DefaultWidgetPropertyBag
+>[] = [
     {
         propertyName: 'element',
         displayName: 'Element',
@@ -80,7 +96,9 @@ export const Instructions: Requirement = {
         {
             key: 'instructions-info',
             name: 'Instructions',
-            onRender: PropertyBagColumnRendererFactory.getRenderer<DefaultWidgetPropertyBag>(propertyBagConfig),
+            onRender: PropertyBagColumnRendererFactory.getRenderer<
+                DefaultWidgetPropertyBag
+            >(propertyBagConfig),
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),
@@ -90,9 +108,12 @@ export const Instructions: Requirement = {
                 rules: ['native-widgets-default'],
                 key: NativeWidgetsTestStep.instructions,
                 testType: VisualizationType.NativeWidgets,
-                resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
+                resultProcessor: (scanner: ScannerUtils) =>
+                    scanner.getPassingInstances,
             }),
         ),
     getDrawer: provider => provider.createHighlightBoxDrawer(),
-    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
+    getVisualHelperToggle: props => (
+        <AssessmentVisualizationEnabledToggle {...props} />
+    ),
 };

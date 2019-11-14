@@ -27,7 +27,9 @@ describe('TelemetryClientProvider', () => {
 
         const appAdapterMock = Mock.ofType<AppDataAdapter>();
 
-        appAdapterMock.setup(adapter => adapter.getVersion()).returns(() => 'test');
+        appAdapterMock
+            .setup(adapter => adapter.getVersion())
+            .returns(() => 'test');
 
         const result = getTelemetryClient(
             applicationName,

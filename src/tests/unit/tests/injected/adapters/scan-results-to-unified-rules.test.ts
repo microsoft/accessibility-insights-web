@@ -12,21 +12,30 @@ describe('ScanResults to UnifiedRule[] test', () => {
 
             const expectedResults = [] as UnifiedRule[];
 
-            expect(convertScanResultsToUnifiedRules(undefinedScanResults)).toEqual(expectedResults);
-            expect(convertScanResultsToUnifiedRules(nullScanResults)).toEqual(expectedResults);
+            expect(
+                convertScanResultsToUnifiedRules(undefinedScanResults),
+            ).toEqual(expectedResults);
+            expect(convertScanResultsToUnifiedRules(nullScanResults)).toEqual(
+                expectedResults,
+            );
         });
 
         it('returns the expected UnifiedRule[] from sample ScanResults', () => {
             const scanResultsStub = {
                 passes: [createRuleResultStub('rule1')],
                 violations: [createRuleResultStub('rule1')],
-                inapplicable: [createRuleResultStub('rule2'), createRuleResultStub('rule3')],
+                inapplicable: [
+                    createRuleResultStub('rule2'),
+                    createRuleResultStub('rule3'),
+                ],
                 incomplete: [],
             } as ScanResults;
 
             const expectedResults = getSampleUnifiedRuleStubs(3);
 
-            const actualResults = convertScanResultsToUnifiedRules(scanResultsStub);
+            const actualResults = convertScanResultsToUnifiedRules(
+                scanResultsStub,
+            );
 
             expect(actualResults).toEqual(expectedResults);
         });

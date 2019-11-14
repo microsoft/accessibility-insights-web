@@ -3,14 +3,22 @@
 import * as React from 'react';
 
 import { NamedFC } from 'common/react/named-fc';
-import { CollapsibleResultSection, CollapsibleResultSectionDeps } from './collapsible-result-section';
+import {
+    CollapsibleResultSection,
+    CollapsibleResultSectionDeps,
+} from './collapsible-result-section';
 import { SectionProps } from './report-section-factory';
 
 export type NotApplicableChecksSectionDeps = CollapsibleResultSectionDeps;
 
-export type NotApplicableChecksSectionProps = Pick<SectionProps, 'scanResult' | 'deps'>;
+export type NotApplicableChecksSectionProps = Pick<
+    SectionProps,
+    'scanResult' | 'deps'
+>;
 
-export const NotApplicableChecksSection = NamedFC<NotApplicableChecksSectionProps>('NotApplicableChecksSection', ({ scanResult, deps }) => {
+export const NotApplicableChecksSection = NamedFC<
+    NotApplicableChecksSectionProps
+>('NotApplicableChecksSection', ({ scanResult, deps }) => {
     const rules = scanResult.inapplicable;
 
     return (

@@ -38,20 +38,47 @@ import { VisualizationScanResultStoreDataBuilder } from '../../common/visualizat
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 
 export class StoreMocks {
-    public visualizationStoreMock = Mock.ofType(VisualizationStore, MockBehavior.Strict);
-    public visualizationScanResultStoreMock = Mock.ofType(VisualizationScanResultStore, MockBehavior.Strict);
-    public detailsViewStoreMock = Mock.ofType(DetailsViewStore, MockBehavior.Strict);
+    public visualizationStoreMock = Mock.ofType(
+        VisualizationStore,
+        MockBehavior.Strict,
+    );
+    public visualizationScanResultStoreMock = Mock.ofType(
+        VisualizationScanResultStore,
+        MockBehavior.Strict,
+    );
+    public detailsViewStoreMock = Mock.ofType(
+        DetailsViewStore,
+        MockBehavior.Strict,
+    );
     public tabStoreMock = Mock.ofType(TabStore, MockBehavior.Strict);
-    public featureFlagStoreMock = Mock.ofType(FeatureFlagStore, MockBehavior.Strict);
-    public assessmentStoreMock = Mock.ofType(AssessmentStore, MockBehavior.Strict);
+    public featureFlagStoreMock = Mock.ofType(
+        FeatureFlagStore,
+        MockBehavior.Strict,
+    );
+    public assessmentStoreMock = Mock.ofType(
+        AssessmentStore,
+        MockBehavior.Strict,
+    );
     public assessmentsProviderMock = Mock.ofType(AssessmentsProviderImpl);
     public scopingStoreMock = Mock.ofType(ScopingStore, MockBehavior.Strict);
     public inspectStoreMock = Mock.ofType(InspectStore, MockBehavior.Strict);
-    public pathSnippetStoreMock = Mock.ofType(PathSnippetStore, MockBehavior.Strict);
+    public pathSnippetStoreMock = Mock.ofType(
+        PathSnippetStore,
+        MockBehavior.Strict,
+    );
     public commandStoreMock = Mock.ofType(CommandStore, MockBehavior.Strict);
-    public userConfigurationStoreMock = Mock.ofType(UserConfigurationStore, MockBehavior.Strict);
-    public launchPanelStateStoreMock = Mock.ofType(LaunchPanelStore, MockBehavior.Strict);
-    public unifiedScanResultStoreMock = Mock.ofType(UnifiedScanResultStore, MockBehavior.Strict);
+    public userConfigurationStoreMock = Mock.ofType(
+        UserConfigurationStore,
+        MockBehavior.Strict,
+    );
+    public launchPanelStateStoreMock = Mock.ofType(
+        LaunchPanelStore,
+        MockBehavior.Strict,
+    );
+    public unifiedScanResultStoreMock = Mock.ofType(
+        UnifiedScanResultStore,
+        MockBehavior.Strict,
+    );
 
     public visualizationStoreData = new VisualizationStoreDataBuilder().build();
     public visualizationScanResultsStoreData = new VisualizationScanResultStoreDataBuilder().build();
@@ -65,24 +92,41 @@ export class StoreMocks {
         isPageHidden: false,
     };
     public commandStoreData = new CommandStore(null, null).getDefaultState();
-    public userConfigurationStoreData = new UserConfigurationStore(null, null, null).getDefaultState();
+    public userConfigurationStoreData = new UserConfigurationStore(
+        null,
+        null,
+        null,
+    ).getDefaultState();
     public scopingStoreData = new ScopingStore(null).getDefaultState();
     public inspectStoreData = new InspectStore(null, null).getDefaultState();
     public pathSnippetStoreData = new PathSnippetStore(null).getDefaultState();
-    public unifiedScanResultStoreData = new UnifiedScanResultStore(null).getDefaultState();
-    public launchPanelStateStoreData = new LaunchPanelStore(null, null, null).getDefaultState();
+    public unifiedScanResultStoreData = new UnifiedScanResultStore(
+        null,
+    ).getDefaultState();
+    public launchPanelStateStoreData = new LaunchPanelStore(
+        null,
+        null,
+        null,
+    ).getDefaultState();
     public featureFlagStoreData: FeatureFlagStoreData = {
         [FeatureFlags[FeatureFlags.logTelemetryToConsole]]: false,
     };
     public assessmentStoreData: AssessmentStoreData;
 
-    public cardSelectionStoreData = new CardSelectionStore(null, null).getDefaultState();
+    public cardSelectionStoreData = new CardSelectionStore(
+        null,
+        null,
+    ).getDefaultState();
 
     constructor() {
         this.assessmentsProviderMock.setup(ap => ap.all()).returns(() => []);
 
-        const assessmentDataConverterMock = Mock.ofType(AssessmentDataConverter);
-        assessmentDataConverterMock.setup(acdm => acdm.getNewManualTestStepResult(It.isAny())).returns(() => null);
+        const assessmentDataConverterMock = Mock.ofType(
+            AssessmentDataConverter,
+        );
+        assessmentDataConverterMock
+            .setup(acdm => acdm.getNewManualTestStepResult(It.isAny()))
+            .returns(() => null);
 
         this.assessmentStoreData = new AssessmentsStoreDataBuilder(
             this.assessmentsProviderMock.object,
@@ -97,12 +141,16 @@ export class StoreMocks {
         },
     };
 
-    public setVisualizationScanResultStoreData(data: VisualizationScanResultData): StoreMocks {
+    public setVisualizationScanResultStoreData(
+        data: VisualizationScanResultData,
+    ): StoreMocks {
         this.visualizationScanResultsStoreData = data;
         return this;
     }
 
-    public setUnifiedScanResultStoreData(data: UnifiedScanResultStoreData): StoreMocks {
+    public setUnifiedScanResultStoreData(
+        data: UnifiedScanResultStoreData,
+    ): StoreMocks {
         this.unifiedScanResultStoreData = data;
         return this;
     }
@@ -112,7 +160,9 @@ export class StoreMocks {
         return this;
     }
 
-    public setLaunchPanelStateStoreData(data: LaunchPanelStoreData): StoreMocks {
+    public setLaunchPanelStateStoreData(
+        data: LaunchPanelStoreData,
+    ): StoreMocks {
         this.launchPanelStateStoreData = data;
         return this;
     }
@@ -137,7 +187,9 @@ export class StoreMocks {
         return this;
     }
 
-    public setUserConfigurationStoreData(data: UserConfigurationStoreData): StoreMocks {
+    public setUserConfigurationStoreData(
+        data: UserConfigurationStoreData,
+    ): StoreMocks {
         this.userConfigurationStoreData = data;
         return this;
     }

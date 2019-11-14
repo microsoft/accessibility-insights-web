@@ -2,7 +2,12 @@
 // Licensed under the MIT License.
 import { UnifiedResolution } from 'common/types/store-data/unified-data-interface';
 import { RuleInformation } from 'electron/platform/android/rule-information';
-import { DeviceInfo, RuleResultsData, ScanResults, ViewElementData } from 'electron/platform/android/scan-results';
+import {
+    DeviceInfo,
+    RuleResultsData,
+    ScanResults,
+    ViewElementData,
+} from 'electron/platform/android/scan-results';
 
 export function buildScanResultsObject(
     deviceName: string = null,
@@ -65,7 +70,12 @@ export function buildScanResultsObject(
     return new ScanResults(scanResults);
 }
 
-export function buildRuleResultObject(ruleId: string, status: string, axeViewId: string = null, props: any = null): RuleResultsData {
+export function buildRuleResultObject(
+    ruleId: string,
+    status: string,
+    axeViewId: string = null,
+    props: any = null,
+): RuleResultsData {
     const result = {};
     result['ruleId'] = ruleId;
     result['status'] = status;
@@ -99,20 +109,29 @@ export function buildViewElement(
     return viewElement as ViewElementData;
 }
 
-export function buildRuleInformation(ruleId: string, includeResults: boolean = true): RuleInformation {
+export function buildRuleInformation(
+    ruleId: string,
+    includeResults: boolean = true,
+): RuleInformation {
     return {
         ruleId: ruleId,
         ruleDescription: 'This describes ' + ruleId,
         getUnifiedFormattableResolutionDelegate: r => {
-            expect('getUnifiedResolution').toBe('This code should never execute');
+            expect('getUnifiedResolution').toBe(
+                'This code should never execute',
+            );
             return null;
         },
         getUnifiedFormattableResolution: r => {
             const summary: string = 'How to fix ' + ruleId;
-            return ({ howtoFixSummary: summary } as unknown) as UnifiedResolution;
+            return ({
+                howtoFixSummary: summary,
+            } as unknown) as UnifiedResolution;
         },
         includeThisResultDelegate: r => {
-            expect('includeThisResultDelegate').toBe('This code should never execute');
+            expect('includeThisResultDelegate').toBe(
+                'This code should never execute',
+            );
             return null;
         },
         includeThisResult: r => {

@@ -44,9 +44,14 @@ describe('DeviceConnectConnectedDeviceTest', () => {
         ],
     ];
 
-    test.each(testProps)('render %s', (testName: string, props: DeviceConnectConnectedDeviceProps) => {
-        const rendered = shallow(<DeviceConnectConnectedDevice {...props} />);
+    test.each(testProps)(
+        'render %s',
+        (testName: string, props: DeviceConnectConnectedDeviceProps) => {
+            const rendered = shallow(
+                <DeviceConnectConnectedDevice {...props} />,
+            );
 
-        expect(rendered.getElement()).toMatchSnapshot(testName);
-    });
+            expect(rendered.getElement()).toMatchSnapshot(testName);
+        },
+    );
 });

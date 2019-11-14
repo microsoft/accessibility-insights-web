@@ -5,10 +5,14 @@ import { RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { ScannerUtils } from 'injected/scanner-utils';
 
 export class AnalyzerConfigurationFactory {
-    public static forScanner(base: Partial<RuleAnalyzerConfiguration>): RuleAnalyzerConfiguration {
+    public static forScanner(
+        base: Partial<RuleAnalyzerConfiguration>,
+    ): RuleAnalyzerConfiguration {
         const defaultValues: Partial<RuleAnalyzerConfiguration> = {
-            resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
-            telemetryProcessor: telemetryFactory => telemetryFactory.forAssessmentRequirementScan,
+            resultProcessor: (scanner: ScannerUtils) =>
+                scanner.getAllCompletedInstances,
+            telemetryProcessor: telemetryFactory =>
+                telemetryFactory.forAssessmentRequirementScan,
             analyzerMessageType: Messages.Assessment.AssessmentScanCompleted,
         };
 

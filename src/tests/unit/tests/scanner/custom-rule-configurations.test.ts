@@ -7,7 +7,8 @@ describe('CustomRuleConfiguration', () => {
     it('contains items which are all either disabled or have rule-to-links mappings', () => {
         for (const config of configuration) {
             const isDisabled = config.rule.enabled === false;
-            const ruleToLinks = ruleToLinkConfiguration[config.rule.id] !== undefined;
+            const ruleToLinks =
+                ruleToLinkConfiguration[config.rule.id] !== undefined;
             expect(isDisabled || ruleToLinks).toBeTruthy();
         }
     });

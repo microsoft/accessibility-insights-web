@@ -24,9 +24,13 @@ input[type="date-time-local"],\
 input[type="range"],\
 input[type="color"]',
             );
-            expect(autocompleteRuleConfiguration.rule.any[0]).toBe('autocomplete');
+            expect(autocompleteRuleConfiguration.rule.any[0]).toBe(
+                'autocomplete',
+            );
             expect(autocompleteRuleConfiguration.rule.any.length).toBe(1);
-            expect(autocompleteRuleConfiguration.checks[0].id).toBe('autocomplete');
+            expect(autocompleteRuleConfiguration.checks[0].id).toBe(
+                'autocomplete',
+            );
         });
     });
 
@@ -37,7 +41,9 @@ input[type="color"]',
                 <div type="text" id="node-2"></div>
                 <input type="invalid-type" id="node-3">
             `);
-            const nodes = testDom.querySelectorAll(autocompleteRuleConfiguration.rule.selector);
+            const nodes = testDom.querySelectorAll(
+                autocompleteRuleConfiguration.rule.selector,
+            );
             expect(nodes.length).toBe(1);
             expect(nodes[0].getAttribute('id')).toBe('node-1');
         });
@@ -50,31 +56,60 @@ input[type="color"]',
             dataSetterMock = Mock.ofInstance(data => {});
         });
 
-        it.each(['text', 'search', 'url', 'tel', 'email', 'password', 'date', 'date-time', 'date-time-local', 'range', 'color'])(
+        it.each([
+            'text',
+            'search',
+            'url',
+            'tel',
+            'email',
+            'password',
+            'date',
+            'date-time',
+            'date-time-local',
+            'range',
+            'color',
+        ])(
             'validate input with type %s is collected by rule',
             (inputType: string) => {
-                testDom = TestDocumentCreator.createTestDocument(`<input type="${inputType}" id="test-node">`);
+                testDom = TestDocumentCreator.createTestDocument(
+                    `<input type="${inputType}" id="test-node">`,
+                );
                 const node = testDom.querySelector('#test-node');
                 const expectedData = {
                     inputType,
                     autocomplete: null,
                 };
-                dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
-                const result = autocompleteRuleConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, node);
+                dataSetterMock
+                    .setup(d => d(It.isValue(expectedData)))
+                    .verifiable(Times.once());
+                const result = autocompleteRuleConfiguration.checks[0].evaluate.call(
+                    { data: dataSetterMock.object },
+                    node,
+                );
                 expect(result).toBe(true);
             },
         );
 
-        it.each(['on', 'off'])('should pick autocomplete value', (autocomplete: string) => {
-            testDom = TestDocumentCreator.createTestDocument(`<input type="text" autocomplete="${autocomplete}" id="test-node">`);
-            const node = testDom.querySelector('#test-node');
-            const expectedData = {
-                inputType: 'text',
-                autocomplete,
-            };
-            dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
-            const result = autocompleteRuleConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, node);
-            expect(result).toBe(true);
-        });
+        it.each(['on', 'off'])(
+            'should pick autocomplete value',
+            (autocomplete: string) => {
+                testDom = TestDocumentCreator.createTestDocument(
+                    `<input type="text" autocomplete="${autocomplete}" id="test-node">`,
+                );
+                const node = testDom.querySelector('#test-node');
+                const expectedData = {
+                    inputType: 'text',
+                    autocomplete,
+                };
+                dataSetterMock
+                    .setup(d => d(It.isValue(expectedData)))
+                    .verifiable(Times.once());
+                const result = autocompleteRuleConfiguration.checks[0].evaluate.call(
+                    { data: dataSetterMock.object },
+                    node,
+                );
+                expect(result).toBe(true);
+            },
+        );
     });
 });

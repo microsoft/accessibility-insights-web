@@ -4,8 +4,13 @@ import { UAParser } from 'ua-parser-js';
 
 export type IsSupportedBrowser = () => boolean;
 
-export const createSupportedBrowserChecker = (uaParser: UAParser): IsSupportedBrowser => {
+export const createSupportedBrowserChecker = (
+    uaParser: UAParser,
+): IsSupportedBrowser => {
     return () => {
-        return !(uaParser.getBrowser().name === 'Edge' && uaParser.getEngine().name === 'EdgeHTML');
+        return !(
+            uaParser.getBrowser().name === 'Edge' &&
+            uaParser.getEngine().name === 'EdgeHTML'
+        );
     };
 };

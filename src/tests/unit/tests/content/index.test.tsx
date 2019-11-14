@@ -8,7 +8,9 @@ import { ContentActionMessageCreator } from '../../../../common/message-creators
 import { contentPages } from '../../../../content';
 
 describe('content', () => {
-    const contentActionMessageCreator = Mock.ofType<ContentActionMessageCreator>().object;
+    const contentActionMessageCreator = Mock.ofType<
+        ContentActionMessageCreator
+    >().object;
     const deps = { contentActionMessageCreator };
 
     contentPages.allPaths().forEach(path =>

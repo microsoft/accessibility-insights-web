@@ -17,8 +17,12 @@ describe('configuration', () => {
     test('telemetryBuildName default', () => {
         const defaultTelemetryBuildName = 'unknownBuild';
 
-        expect(config.getOption('telemetryBuildName')).toBe(defaultTelemetryBuildName);
-        expect(config.config.options.telemetryBuildName).toBe(defaultTelemetryBuildName);
+        expect(config.getOption('telemetryBuildName')).toBe(
+            defaultTelemetryBuildName,
+        );
+        expect(config.config.options.telemetryBuildName).toBe(
+            defaultTelemetryBuildName,
+        );
     });
 
     test('fullName set', () => {

@@ -31,16 +31,27 @@ describe('IssueFilingControllerImpl', () => {
                 repository: testUrl,
             },
         };
-        const serviceConfig = { bugServicePropertiesMap: map } as UserConfigurationStoreData;
+        const serviceConfig = {
+            bugServicePropertiesMap: map,
+        } as UserConfigurationStoreData;
 
         const browserAdapterMock = Mock.ofType<BrowserAdapter>();
         const issueFilingServiceMock = Mock.ofType<IssueFilingService>();
         issueFilingServiceMock
-            .setup(service => service.fileIssue(browserAdapterMock.object, map, issueData, environmentInfoStub))
+            .setup(service =>
+                service.fileIssue(
+                    browserAdapterMock.object,
+                    map,
+                    issueData,
+                    environmentInfoStub,
+                ),
+            )
             .verifiable(Times.once());
 
         const providerMock = Mock.ofType<IssueFilingServiceProvider>();
-        providerMock.setup(provider => provider.forKey(serviceKey)).returns(() => issueFilingServiceMock.object);
+        providerMock
+            .setup(provider => provider.forKey(serviceKey))
+            .returns(() => issueFilingServiceMock.object);
 
         const storeMock = Mock.ofType<BaseStore<UserConfigurationStoreData>>();
         storeMock.setup(store => store.getState()).returns(() => serviceConfig);

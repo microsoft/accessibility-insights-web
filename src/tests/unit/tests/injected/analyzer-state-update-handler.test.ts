@@ -16,10 +16,14 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
     let testObject: TestableAnalyzerStateUpdateHandler;
 
     beforeEach(() => {
-        visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
+        visualizationConfigurationFactoryMock = Mock.ofType(
+            VisualizationConfigurationFactory,
+        );
         startScanMock = Mock.ofInstance(id => {});
         teardownMock = Mock.ofInstance(id => {});
-        testObject = new TestableAnalyzerStateUpdateHandler(visualizationConfigurationFactoryMock.object);
+        testObject = new TestableAnalyzerStateUpdateHandler(
+            visualizationConfigurationFactoryMock.object,
+        );
         testObject.setupHandlers(startScanMock.object, teardownMock.object);
     });
 
@@ -39,9 +43,13 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
     });
 
     test('do not start scan if nothing is scanning', () => {
-        const state = new VisualizationStoreDataBuilder().withLandmarksEnable().build();
+        const state = new VisualizationStoreDataBuilder()
+            .withLandmarksEnable()
+            .build();
 
-        startScanMock.setup(start => start(It.isAny())).verifiable(Times.never());
+        startScanMock
+            .setup(start => start(It.isAny()))
+            .verifiable(Times.never());
 
         testObject.handleUpdate(state);
 
@@ -55,7 +63,9 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
             .withLandmarksEnable()
             .build();
 
-        startScanMock.setup(start => start(It.isAny())).verifiable(Times.never());
+        startScanMock
+            .setup(start => start(It.isAny()))
+            .verifiable(Times.never());
 
         testObject.handleUpdate(state);
 
@@ -69,7 +79,9 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
             .build();
         const newState = prevState;
         testObject.setPrevState(prevState);
-        startScanMock.setup(start => start(It.isAny())).verifiable(Times.never());
+        startScanMock
+            .setup(start => start(It.isAny()))
+            .verifiable(Times.never());
         setupDefaultVisualizationConfigFactory();
 
         testObject.handleUpdate(newState);
@@ -83,7 +95,9 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
             .with('scanning', HeadingsTestStep.headingFunction)
             .withHeadingsAssessment(true, enabledStep)
             .build();
-        startScanMock.setup(start => start(HeadingsTestStep.headingFunction)).verifiable(Times.once());
+        startScanMock
+            .setup(start => start(HeadingsTestStep.headingFunction))
+            .verifiable(Times.once());
         setupDefaultVisualizationConfigFactory();
 
         testObject.handleUpdate(state);
@@ -103,7 +117,9 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
             .withHeadingsAssessment(true, enabledStep)
             .build();
         testObject.setPrevState(prevState);
-        startScanMock.setup(start => start(enabledStep)).verifiable(Times.once());
+        startScanMock
+            .setup(start => start(enabledStep))
+            .verifiable(Times.once());
         setupDefaultVisualizationConfigFactory();
 
         testObject.handleUpdate(currState);
@@ -119,7 +135,9 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
             .withHeadingsAssessment(true, enabledStep)
             .build();
         testObject.setPrevState(prevState);
-        startScanMock.setup(start => start(enabledStep)).verifiable(Times.once());
+        startScanMock
+            .setup(start => start(enabledStep))
+            .verifiable(Times.once());
         setupDefaultVisualizationConfigFactory();
 
         testObject.handleUpdate(currState);
@@ -130,7 +148,9 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
     test('do not terminate anything if prev state is null', () => {
         const currState = new VisualizationStoreDataBuilder().build();
 
-        teardownMock.setup(teardown => teardown(It.isAny())).verifiable(Times.never());
+        teardownMock
+            .setup(teardown => teardown(It.isAny()))
+            .verifiable(Times.never());
         setupDefaultVisualizationConfigFactory();
 
         testObject.handleUpdate(currState);
@@ -140,10 +160,16 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
 
     test('teardown when a test is turned form enabled to disabled', () => {
         const enabledStep = HeadingsTestStep.headingFunction;
-        const prevState = new VisualizationStoreDataBuilder().withHeadingsAssessment(true, enabledStep).build();
-        const currState = new VisualizationStoreDataBuilder().withHeadingsAssessment(false, enabledStep).build();
+        const prevState = new VisualizationStoreDataBuilder()
+            .withHeadingsAssessment(true, enabledStep)
+            .build();
+        const currState = new VisualizationStoreDataBuilder()
+            .withHeadingsAssessment(false, enabledStep)
+            .build();
         testObject.setPrevState(prevState);
-        teardownMock.setup(teardown => teardown(enabledStep)).verifiable(Times.once());
+        teardownMock
+            .setup(teardown => teardown(enabledStep))
+            .verifiable(Times.once());
         setupDefaultVisualizationConfigFactory();
 
         testObject.handleUpdate(currState);
@@ -154,13 +180,17 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
     test('teardown when enabled step is changed', () => {
         const prevEnabledStep = HeadingsTestStep.headingFunction;
         const currEnabledStep = HeadingsTestStep.headingLevel;
-        const prevState = new VisualizationStoreDataBuilder().withHeadingsAssessment(true, prevEnabledStep).build();
+        const prevState = new VisualizationStoreDataBuilder()
+            .withHeadingsAssessment(true, prevEnabledStep)
+            .build();
         const currState = new VisualizationStoreDataBuilder()
             .withHeadingsAssessment(false, prevEnabledStep)
             .withHeadingsAssessment(true, currEnabledStep)
             .build();
         testObject.setPrevState(prevState);
-        teardownMock.setup(teardown => teardown(prevEnabledStep)).verifiable(Times.once());
+        teardownMock
+            .setup(teardown => teardown(prevEnabledStep))
+            .verifiable(Times.once());
         setupDefaultVisualizationConfigFactory();
 
         testObject.handleUpdate(currState);
@@ -171,15 +201,21 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
     test('both test and step get changed', () => {
         const prevEnabledStep = LandmarkTestStep.landmarkRoles;
         const currEnabledStep = HeadingsTestStep.headingLevel;
-        const prevState = new VisualizationStoreDataBuilder().withLandmarksAssessment(true, prevEnabledStep).build();
+        const prevState = new VisualizationStoreDataBuilder()
+            .withLandmarksAssessment(true, prevEnabledStep)
+            .build();
         const currState = new VisualizationStoreDataBuilder()
             .with('scanning', currEnabledStep)
             .withLandmarksAssessment(false, prevEnabledStep)
             .withHeadingsAssessment(true, currEnabledStep)
             .build();
         testObject.setPrevState(prevState);
-        startScanMock.setup(start => start(currEnabledStep)).verifiable(Times.once());
-        teardownMock.setup(teardown => teardown(prevEnabledStep)).verifiable(Times.once());
+        startScanMock
+            .setup(start => start(currEnabledStep))
+            .verifiable(Times.once());
+        teardownMock
+            .setup(teardown => teardown(prevEnabledStep))
+            .verifiable(Times.once());
         setupDefaultVisualizationConfigFactory();
 
         testObject.handleUpdate(currState);
@@ -191,7 +227,9 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
     function setupDefaultVisualizationConfigFactory(): void {
         visualizationConfigurationFactoryMock
             .setup(vcfm => vcfm.getConfiguration(It.isAnyNumber()))
-            .returns(test => new VisualizationConfigurationFactory().getConfiguration(test));
+            .returns(test =>
+                new VisualizationConfigurationFactory().getConfiguration(test),
+            );
     }
 });
 

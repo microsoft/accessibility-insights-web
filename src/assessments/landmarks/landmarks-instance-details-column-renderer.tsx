@@ -11,11 +11,20 @@ export function landmarksAssessmentInstanceDetailsColumnRenderer(
     item: AssessmentInstanceRowData<LandmarksAssessmentProperties>,
 ): JSX.Element {
     const propertyBag = item.instance.propertyBag;
-    const background = LandmarkFormatter.getStyleForLandmarkRole(propertyBag.role).borderColor;
+    const background = LandmarkFormatter.getStyleForLandmarkRole(
+        propertyBag.role,
+    ).borderColor;
     let textContent = propertyBag.role;
     if (propertyBag.label != null) {
         textContent += `: ${propertyBag.label}`;
     }
 
-    return <AssessmentInstanceDetailsColumn background={background} textContent={textContent} tooltipId={null} customClassName="radio" />;
+    return (
+        <AssessmentInstanceDetailsColumn
+            background={background}
+            textContent={textContent}
+            tooltipId={null}
+            customClassName="radio"
+        />
+    );
 }

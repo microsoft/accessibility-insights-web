@@ -3,11 +3,14 @@
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 
 export class ShortcutsPageController {
-    public static configureCommandTabUrl: string = 'chrome://extensions/shortcuts';
+    public static configureCommandTabUrl: string =
+        'chrome://extensions/shortcuts';
 
     constructor(private readonly browserAdapter: BrowserAdapter) {}
 
     public openShortcutsTab(): void {
-        this.browserAdapter.createTab(ShortcutsPageController.configureCommandTabUrl);
+        this.browserAdapter.createTab(
+            ShortcutsPageController.configureCommandTabUrl,
+        );
     }
 }

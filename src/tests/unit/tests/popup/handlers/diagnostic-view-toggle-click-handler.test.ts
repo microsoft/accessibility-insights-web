@@ -3,7 +3,10 @@
 import { It, Mock } from 'typemoq';
 
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
-import { TelemetryEventSource, ToggleTelemetryData } from '../../../../../common/extension-telemetry-events';
+import {
+    TelemetryEventSource,
+    ToggleTelemetryData,
+} from '../../../../../common/extension-telemetry-events';
 import { VisualizationActionMessageCreator } from '../../../../../common/message-creators/visualization-action-message-creator';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
@@ -28,10 +31,18 @@ describe('DiagnosticViewToggleClickHandlerTest', () => {
 
         const visualizationType = VisualizationType.Headings;
 
-        const visualizationActionCreatorMock = Mock.ofType(VisualizationActionMessageCreator);
+        const visualizationActionCreatorMock = Mock.ofType(
+            VisualizationActionMessageCreator,
+        );
 
         visualizationActionCreatorMock
-            .setup(ac => ac.setVisualizationState(visualizationType, true, It.isValue(expectedTelemetryInfo)))
+            .setup(ac =>
+                ac.setVisualizationState(
+                    visualizationType,
+                    true,
+                    It.isValue(expectedTelemetryInfo),
+                ),
+            )
             .verifiable();
 
         const telemetryFactoryMock = Mock.ofType(TelemetryDataFactory);
@@ -45,7 +56,11 @@ describe('DiagnosticViewToggleClickHandlerTest', () => {
             visualizationActionCreatorMock.object,
             new VisualizationConfigurationFactory(),
         );
-        testObject.toggleVisualization(visualizationStoreData, visualizationType, event);
+        testObject.toggleVisualization(
+            visualizationStoreData,
+            visualizationType,
+            event,
+        );
 
         visualizationActionCreatorMock.verifyAll();
         telemetryFactoryMock.verifyAll();
@@ -63,12 +78,22 @@ describe('DiagnosticViewToggleClickHandlerTest', () => {
 
         const visualizationType = VisualizationType.Headings;
 
-        const visualizationStoreData = new VisualizationStoreDataBuilder().withEnable(visualizationType).build();
+        const visualizationStoreData = new VisualizationStoreDataBuilder()
+            .withEnable(visualizationType)
+            .build();
 
-        const visualizationActionCreatorMock = Mock.ofType(VisualizationActionMessageCreator);
+        const visualizationActionCreatorMock = Mock.ofType(
+            VisualizationActionMessageCreator,
+        );
 
         visualizationActionCreatorMock
-            .setup(ac => ac.setVisualizationState(visualizationType, false, It.isValue(expectedTelemetryInfo)))
+            .setup(ac =>
+                ac.setVisualizationState(
+                    visualizationType,
+                    false,
+                    It.isValue(expectedTelemetryInfo),
+                ),
+            )
             .verifiable();
 
         const telemetryFactoryMock = Mock.ofType(TelemetryDataFactory);
@@ -82,7 +107,11 @@ describe('DiagnosticViewToggleClickHandlerTest', () => {
             visualizationActionCreatorMock.object,
             new VisualizationConfigurationFactory(),
         );
-        testObject.toggleVisualization(visualizationStoreData, visualizationType, event);
+        testObject.toggleVisualization(
+            visualizationStoreData,
+            visualizationType,
+            event,
+        );
 
         visualizationActionCreatorMock.verifyAll();
         telemetryFactoryMock.verifyAll();

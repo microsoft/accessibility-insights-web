@@ -9,7 +9,8 @@ import { ShadowInitializer } from '../../../../injected/shadow-initializer';
 
 describe('ShadowInitializerTests', () => {
     const injectedCssPathFileUrl: string = 'injectedCssPathFileUrl';
-    const generatedBundleInjectedCssPathFileUrl: string = 'generatedBundleInjectedCssPathFileUrl';
+    const generatedBundleInjectedCssPathFileUrl: string =
+        'generatedBundleInjectedCssPathFileUrl';
     let testSubject: ShadowInitializer;
     let browserAdapter: IMock<BrowserAdapter>;
     let htmlElementUtilsMock: IMock<HTMLElementUtils>;
@@ -44,11 +45,17 @@ describe('ShadowInitializerTests', () => {
             .verifiable();
 
         browserAdapter
-            .setup(x => x.getUrl(ShadowInitializer.generatedBundleInjectedCssPath))
+            .setup(x =>
+                x.getUrl(ShadowInitializer.generatedBundleInjectedCssPath),
+            )
             .returns(() => generatedBundleInjectedCssPathFileUrl);
 
         const loggerMock = Mock.ofType<Logger>();
-        testSubject = new ShadowInitializer(browserAdapter.object, htmlElementUtilsMock.object, loggerMock.object);
+        testSubject = new ShadowInitializer(
+            browserAdapter.object,
+            htmlElementUtilsMock.object,
+            loggerMock.object,
+        );
     });
 
     afterEach(() => {
@@ -56,7 +63,9 @@ describe('ShadowInitializerTests', () => {
     });
 
     test('remove existing & create new shadow container on initialize', async () => {
-        htmlElementUtilsMock.setup(x => x.deleteAllElements('#insights-shadow-host')).verifiable();
+        htmlElementUtilsMock
+            .setup(x => x.deleteAllElements('#insights-shadow-host'))
+            .verifiable();
 
         await testSubject.initialize();
 
@@ -68,7 +77,10 @@ describe('ShadowInitializerTests', () => {
     });
 
     test('add style data to shadow container', async () => {
-        expect(shadowRoot.querySelectorAll('div#insights-shadow-container style').length).toEqual(0);
+        expect(
+            shadowRoot.querySelectorAll('div#insights-shadow-container style')
+                .length,
+        ).toEqual(0);
 
         await testSubject.initialize();
 

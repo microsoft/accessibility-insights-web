@@ -81,7 +81,9 @@ describe('visualizationNeedsUpdate', () => {
         };
 
         newSelectorMapState = {};
-        previousVisualizationSelectorMapData[visualizationType] = newSelectorMapState;
+        previousVisualizationSelectorMapData[
+            visualizationType
+        ] = newSelectorMapState;
 
         expect(
             visualizationNeedsUpdate(

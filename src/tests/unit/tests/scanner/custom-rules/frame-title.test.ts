@@ -23,10 +23,15 @@ describe('FrameTitleRule', () => {
             };
 
             const dataSetterMock = Mock.ofInstance(data => {});
-            dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
+            dataSetterMock
+                .setup(d => d(It.isValue(expectedData)))
+                .verifiable(Times.once());
 
             expect(iframe.matches(selector)).toBeTruthy();
-            frameTitleConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, elementStub);
+            frameTitleConfiguration.checks[0].evaluate.call(
+                { data: dataSetterMock.object },
+                elementStub,
+            );
             dataSetterMock.verifyAll();
         });
     });
@@ -51,10 +56,15 @@ describe('FrameTitleRule', () => {
             };
 
             const dataSetterMock = Mock.ofInstance(data => {});
-            dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
+            dataSetterMock
+                .setup(d => d(It.isValue(expectedData)))
+                .verifiable(Times.once());
 
             expect(frame.matches(selector)).toBeTruthy();
-            frameTitleConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, elementStub);
+            frameTitleConfiguration.checks[0].evaluate.call(
+                { data: dataSetterMock.object },
+                elementStub,
+            );
             dataSetterMock.verifyAll();
         });
     });

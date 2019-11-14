@@ -19,21 +19,30 @@ import { getFlatDesignPatternStringFromRole } from '../custom-widgets-column-ren
 import { CustomWidgetsColumnRendererFactory } from '../custom-widgets-column-renderer-factory';
 import { CustomWidgetsTestStep } from './test-steps';
 
-const labelDescription: JSX.Element = <span>A custom widget must have a label and/or instructions that identify the expected input.</span>;
+const labelDescription: JSX.Element = (
+    <span>
+        A custom widget must have a label and/or instructions that identify the
+        expected input.
+    </span>
+);
 
 const labelHowToTest: JSX.Element = (
     <div>
         For this requirement, {productName} highlights custom widgets. <br />
         <p>
             <Markup.Emphasis>
-                Note: (1) If no matching/failing instances are found, this requirement will automatically be marked as pass. (2) If a custom
-                widget has no programmatically-related label, it will fail an automated check.
+                Note: (1) If no matching/failing instances are found, this
+                requirement will automatically be marked as pass. (2) If a
+                custom widget has no programmatically-related label, it will
+                fail an automated check.
             </Markup.Emphasis>
         </p>
         <ol>
             <li>
-                Examine each widget in the <Markup.Term>Instances</Markup.Term> list below to verify that its accessible name and/or
-                instructions identify the expected input, including any unusual or specific formatting requirements.
+                Examine each widget in the <Markup.Term>Instances</Markup.Term>{' '}
+                list below to verify that its accessible name and/or
+                instructions identify the expected input, including any unusual
+                or specific formatting requirements.
             </li>
             <AssistedTestRecordYourResults />
         </ol>
@@ -52,7 +61,9 @@ export const ExpectedInput: Requirement = {
         {
             key: 'label-info-custom-widgets',
             name: 'Label',
-            onRender: CustomWidgetsColumnRendererFactory.getWithoutLink<CustomWidgetPropertyBag>([
+            onRender: CustomWidgetsColumnRendererFactory.getWithoutLink<
+                CustomWidgetPropertyBag
+            >([
                 {
                     propertyName: 'designPattern',
                     displayName: 'Design pattern',
@@ -72,11 +83,19 @@ export const ExpectedInput: Requirement = {
         },
     ],
     reportInstanceFields: [
-        ReportInstanceField.fromPropertyBagFunction<CustomWidgetPropertyBag>('Design pattern', 'designPattern', pb =>
-            getFlatDesignPatternStringFromRole(pb.role),
+        ReportInstanceField.fromPropertyBagFunction<CustomWidgetPropertyBag>(
+            'Design pattern',
+            'designPattern',
+            pb => getFlatDesignPatternStringFromRole(pb.role),
         ),
-        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>('Accessible name', 'text'),
-        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>('Accessible description', 'describedBy'),
+        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>(
+            'Accessible name',
+            'text',
+        ),
+        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>(
+            'Accessible description',
+            'describedBy',
+        ),
     ],
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(
@@ -84,9 +103,12 @@ export const ExpectedInput: Requirement = {
                 rules: ['custom-widget'],
                 key: CustomWidgetsTestStep.label,
                 testType: VisualizationType.CustomWidgets,
-                resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
+                resultProcessor: (scanner: ScannerUtils) =>
+                    scanner.getPassingInstances,
             }),
         ),
     getDrawer: provider => provider.createHighlightBoxDrawer(),
-    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
+    getVisualHelperToggle: props => (
+        <AssessmentVisualizationEnabledToggle {...props} />
+    ),
 };

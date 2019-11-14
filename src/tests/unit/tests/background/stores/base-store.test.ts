@@ -36,8 +36,11 @@ describe('BaseStoreTest', () => {
     });
 
     test('initialize (calling addActionListeners)', () => {
-        const addActionListenerMock = Mock.ofInstance(() => {}, MockBehavior.Strict);
-        addActionListenerMock.setup(listener => listener()).verifiable(Times.once());
+        const addActionListenerMock = Mock.ofInstance(() => {},
+        MockBehavior.Strict);
+        addActionListenerMock
+            .setup(listener => listener())
+            .verifiable(Times.once());
         const testObject = new TestStore(addActionListenerMock.object);
 
         testObject.initialize();
@@ -46,7 +49,10 @@ describe('BaseStoreTest', () => {
     });
 
     test('onGetCurrentState', () => {
-        const changedListener = Mock.ofInstance((testStore: TestStore, args: any) => {}, MockBehavior.Strict);
+        const changedListener = Mock.ofInstance(
+            (testStore: TestStore, args: any) => {},
+            MockBehavior.Strict,
+        );
 
         const listenerAdder = function(): void {
             // hack to access onGetCurrentState from the BaseStore class
@@ -55,7 +61,11 @@ describe('BaseStoreTest', () => {
         };
 
         const testObject = new TestStore(listenerAdder);
-        changedListener.setup(listener => listener(IsSameObject(testObject), It.isValue(undefined))).verifiable(Times.once());
+        changedListener
+            .setup(listener =>
+                listener(IsSameObject(testObject), It.isValue(undefined)),
+            )
+            .verifiable(Times.once());
 
         testObject.addChangedListener(changedListener.object);
         testObject.initialize();

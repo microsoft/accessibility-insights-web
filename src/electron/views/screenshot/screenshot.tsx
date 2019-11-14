@@ -11,7 +11,8 @@ export type ScreenshotProps = {
 };
 
 export const Screenshot = NamedFC<ScreenshotProps>('Screenshot', props => {
-    const altText = 'axe-android results screenshot with highlighted components';
+    const altText =
+        'axe-android results screenshot with highlighted components';
 
     return (
         <img

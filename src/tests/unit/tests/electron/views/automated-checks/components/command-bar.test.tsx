@@ -3,7 +3,10 @@
 import { EnumHelper } from 'common/enum-helper';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { ScanStatus } from 'electron/flux/types/scan-status';
-import { CommandBar, CommandBarProps } from 'electron/views/automated-checks/components/command-bar';
+import {
+    CommandBar,
+    CommandBarProps,
+} from 'electron/views/automated-checks/components/command-bar';
 import { mount, shallow } from 'enzyme';
 import { Button } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
@@ -25,7 +28,9 @@ describe('CommandBar', () => {
             expect(rendered.getElement()).toMatchSnapshot();
         });
 
-        const notScanningStatuses = EnumHelper.getNumericValues<ScanStatus>(ScanStatus)
+        const notScanningStatuses = EnumHelper.getNumericValues<ScanStatus>(
+            ScanStatus,
+        )
             .filter(status => status !== ScanStatus.Scanning)
             .map(status => ScanStatus[status]);
 
@@ -44,12 +49,19 @@ describe('CommandBar', () => {
     });
 
     test('rescan click', () => {
-        const eventStub = new EventStubFactory().createMouseClickEvent() as React.MouseEvent<Button>;
+        const eventStub = new EventStubFactory().createMouseClickEvent() as React.MouseEvent<
+            Button
+        >;
 
         const port = 111;
 
-        const scanActionCreatorMock = Mock.ofType<ScanActionCreator>(undefined, MockBehavior.Strict);
-        scanActionCreatorMock.setup(creator => creator.scan(port)).verifiable(Times.once());
+        const scanActionCreatorMock = Mock.ofType<ScanActionCreator>(
+            undefined,
+            MockBehavior.Strict,
+        );
+        scanActionCreatorMock
+            .setup(creator => creator.scan(port))
+            .verifiable(Times.once());
 
         const props = {
             deps: {

@@ -15,7 +15,10 @@ describe('MessageDecorator', () => {
     beforeEach(() => {
         configuration = CustomRulesConfigurationStub;
         axeResultStub = generateAxeResultStubWithStatus(configuration[0]);
-        checkMessageTransformerMock = Mock.ofType(CheckMessageTransformer, MockBehavior.Strict);
+        checkMessageTransformerMock = Mock.ofType(
+            CheckMessageTransformer,
+            MockBehavior.Strict,
+        );
     });
 
     describe('constructor', () => {
@@ -27,40 +30,74 @@ describe('MessageDecorator', () => {
 
     describe('decorateResultsWithMessages', () => {
         it('should add messages to all checks via check message creator & execute decorateNode from config', () => {
-            configuration[0].rule.decorateNode = node => (node.snippet = 'test snippet');
-            const expectedResult = generateAxeResultStubWithStatus(configuration[0]);
+            configuration[0].rule.decorateNode = node =>
+                (node.snippet = 'test snippet');
+            const expectedResult = generateAxeResultStubWithStatus(
+                configuration[0],
+            );
             expectedResult.nodes[0].snippet = 'test snippet';
-            const testSubject = new MessageDecorator(configuration, checkMessageTransformerMock.object);
+            const testSubject = new MessageDecorator(
+                configuration,
+                checkMessageTransformerMock.object,
+            );
             testBasicDecorateMessage(expectedResult, testSubject);
         });
 
         it('should add messages to all checks via check message creator (no decorateNode in config)', () => {
             configuration[0].rule.decorateNode = null;
-            const expectedResult = generateAxeResultStubWithStatus(configuration[0]);
-            const testSubject = new MessageDecorator(configuration, checkMessageTransformerMock.object);
+            const expectedResult = generateAxeResultStubWithStatus(
+                configuration[0],
+            );
+            const testSubject = new MessageDecorator(
+                configuration,
+                checkMessageTransformerMock.object,
+            );
             testBasicDecorateMessage(expectedResult, testSubject);
         });
 
         it("should not do anything as rule config doesn't exist", () => {
-            const expectedResult = generateAxeResultStubWithStatus(configuration[0]);
-            const testSubject = new MessageDecorator([], checkMessageTransformerMock.object);
+            const expectedResult = generateAxeResultStubWithStatus(
+                configuration[0],
+            );
+            const testSubject = new MessageDecorator(
+                [],
+                checkMessageTransformerMock.object,
+            );
             testSubject.decorateResultWithMessages(axeResultStub);
 
             expect(axeResultStub).toEqual(expectedResult);
         });
     });
 
-    function testBasicDecorateMessage(expectedResult: AxeRule, testSubject: MessageDecorator): void {
+    function testBasicDecorateMessage(
+        expectedResult: AxeRule,
+        testSubject: MessageDecorator,
+    ): void {
         checkMessageTransformerMock
-            .setup(cmcm => cmcm.addMessagesToChecks(axeResultStub.nodes[0].any, configuration[0].checks))
+            .setup(cmcm =>
+                cmcm.addMessagesToChecks(
+                    axeResultStub.nodes[0].any,
+                    configuration[0].checks,
+                ),
+            )
             .verifiable(Times.once());
 
         checkMessageTransformerMock
-            .setup(cmcm => cmcm.addMessagesToChecks(axeResultStub.nodes[0].none, configuration[0].checks))
+            .setup(cmcm =>
+                cmcm.addMessagesToChecks(
+                    axeResultStub.nodes[0].none,
+                    configuration[0].checks,
+                ),
+            )
             .verifiable(Times.once());
 
         checkMessageTransformerMock
-            .setup(cmcm => cmcm.addMessagesToChecks(axeResultStub.nodes[0].all, configuration[0].checks))
+            .setup(cmcm =>
+                cmcm.addMessagesToChecks(
+                    axeResultStub.nodes[0].all,
+                    configuration[0].checks,
+                ),
+            )
             .verifiable(Times.once());
 
         expectedResult.description = configuration[0].rule.description;
@@ -71,7 +108,9 @@ describe('MessageDecorator', () => {
         checkMessageTransformerMock.verifyAll();
     }
 
-    function generateAxeResultStubWithStatus(config: RuleConfiguration): AxeRule {
+    function generateAxeResultStubWithStatus(
+        config: RuleConfiguration,
+    ): AxeRule {
         return {
             id: config.rule.id,
             nodes: [

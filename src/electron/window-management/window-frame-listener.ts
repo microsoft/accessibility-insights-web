@@ -4,7 +4,10 @@ import { BrowserWindow } from 'electron';
 import { WindowStateActionCreator } from '../flux/action-creator/window-state-action-creator';
 
 export class WindowFrameListener {
-    constructor(private readonly windowStateActionsCreator: WindowStateActionCreator, private readonly browserWindow: BrowserWindow) {}
+    constructor(
+        private readonly windowStateActionsCreator: WindowStateActionCreator,
+        private readonly browserWindow: BrowserWindow,
+    ) {}
 
     public initialize(): void {
         this.browserWindow.on('maximize', this.onMaximize);
@@ -13,11 +16,15 @@ export class WindowFrameListener {
         this.browserWindow.on('leave-full-screen', this.onLeaveFullScreen);
     }
     private onMaximize = (): void => {
-        this.windowStateActionsCreator.setWindowState({ currentWindowState: 'maximized' });
+        this.windowStateActionsCreator.setWindowState({
+            currentWindowState: 'maximized',
+        });
     };
 
     private onEnterFullScreen = (): void => {
-        this.windowStateActionsCreator.setWindowState({ currentWindowState: 'fullScreen' });
+        this.windowStateActionsCreator.setWindowState({
+            currentWindowState: 'fullScreen',
+        });
     };
     private onLeaveFullScreen = (): void => {
         if (this.browserWindow.isMaximized()) {
@@ -27,6 +34,8 @@ export class WindowFrameListener {
         }
     };
     private onUnMaximize = (): void => {
-        this.windowStateActionsCreator.setWindowState({ currentWindowState: 'customSize' });
+        this.windowStateActionsCreator.setWindowState({
+            currentWindowState: 'customSize',
+        });
     };
 }

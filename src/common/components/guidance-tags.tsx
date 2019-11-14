@@ -15,22 +15,25 @@ export interface GuidanceTagsProps {
     links: GuidanceLink[];
 }
 
-export const GuidanceTags = NamedFC<GuidanceTagsProps>('GuidanceTags', props => {
-    const { links, deps } = props;
+export const GuidanceTags = NamedFC<GuidanceTagsProps>(
+    'GuidanceTags',
+    props => {
+        const { links, deps } = props;
 
-    if (isEmpty(links)) {
-        return null;
-    }
+        if (isEmpty(links)) {
+            return null;
+        }
 
-    const tags = deps.getGuidanceTagsFromGuidanceLinks(links);
+        const tags = deps.getGuidanceTagsFromGuidanceLinks(links);
 
-    if (isEmpty(tags)) {
-        return null;
-    }
+        if (isEmpty(tags)) {
+            return null;
+        }
 
-    const tagElements = tags.map((tag, index) => {
-        return <span key={index}>{tag.displayText}</span>;
-    });
+        const tagElements = tags.map((tag, index) => {
+            return <span key={index}>{tag.displayText}</span>;
+        });
 
-    return <span className="guidance-tags">{tagElements}</span>;
-});
+        return <span className="guidance-tags">{tagElements}</span>;
+    },
+);

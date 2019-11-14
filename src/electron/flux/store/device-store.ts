@@ -3,7 +3,10 @@
 import { BaseStoreImpl } from 'background/stores/base-store-impl';
 import { StoreNames } from 'common/stores/store-names';
 
-import { ConnectedDevicePayload, PortPayload } from '../action/device-action-payloads';
+import {
+    ConnectedDevicePayload,
+    PortPayload,
+} from '../action/device-action-payloads';
 import { DeviceActions } from '../action/device-actions';
 import { DeviceConnectState } from '../types/device-connect-state';
 import { DeviceStoreData } from '../types/device-store-data';
@@ -22,8 +25,12 @@ export class DeviceStore extends BaseStoreImpl<DeviceStoreData> {
     }
 
     protected addActionListeners(): void {
-        this.deviceActions.connectionFailed.addListener(this.onConnectionFailed);
-        this.deviceActions.connectionSucceeded.addListener(this.onConnectionSucceeded);
+        this.deviceActions.connectionFailed.addListener(
+            this.onConnectionFailed,
+        );
+        this.deviceActions.connectionSucceeded.addListener(
+            this.onConnectionSucceeded,
+        );
         this.deviceActions.connecting.addListener(this.onConnecting);
         this.deviceActions.resetConnection.addListener(this.onResetConnection);
     }
@@ -39,7 +46,10 @@ export class DeviceStore extends BaseStoreImpl<DeviceStoreData> {
     };
 
     private onConnecting = (payload: PortPayload) => {
-        if (this.state.deviceConnectState === DeviceConnectState.Connecting && this.state.port === payload.port) {
+        if (
+            this.state.deviceConnectState === DeviceConnectState.Connecting &&
+            this.state.port === payload.port
+        ) {
             return;
         }
 

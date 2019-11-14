@@ -18,14 +18,20 @@ import { TabStoreData } from '../../../../common/types/store-data/tab-store-data
 import { AssessmentReportBuilderTestHelper } from './assessment-report-builder-test-helper';
 
 describe('AssessmentReportModelBuilderTest', () => {
-    const assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(AssessmentsProviderImpl);
-    const getDefaultMessageStub: IGetMessageGenerator = generator => (map, step) => null;
-    const getDefaultMessageMock = Mock.ofInstance(getDefaultMessageStub);
-    const assessments = AssessmentReportBuilderTestHelper.getAssessmentProviderAll(getDefaultMessageMock.object);
-    const assessmentDefaultMessageGeneratorMock = Mock.ofType<AssessmentDefaultMessageGenerator>(
-        AssessmentDefaultMessageGenerator,
-        MockBehavior.Strict,
+    const assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(
+        AssessmentsProviderImpl,
     );
+    const getDefaultMessageStub: IGetMessageGenerator = generator => (
+        map,
+        step,
+    ) => null;
+    const getDefaultMessageMock = Mock.ofInstance(getDefaultMessageStub);
+    const assessments = AssessmentReportBuilderTestHelper.getAssessmentProviderAll(
+        getDefaultMessageMock.object,
+    );
+    const assessmentDefaultMessageGeneratorMock = Mock.ofType<
+        AssessmentDefaultMessageGenerator
+    >(AssessmentDefaultMessageGenerator, MockBehavior.Strict);
     const assessmentStoreData = AssessmentReportBuilderTestHelper.getAssessmentStoreData();
     const generatorStub: IMessageGenerator = (instances, step) => null;
     const generatorMock = Mock.ofInstance(generatorStub, MockBehavior.Strict);
@@ -80,17 +86,24 @@ function setupGeneratorMockWithAssessmentData(
     assessmentStoreData: AssessmentStoreData,
     assessments: Assessment[],
     stubMessage: DefaultMessageInterface,
-    assessmentDefaultMessageGeneratorMock: IMock<AssessmentDefaultMessageGenerator>,
+    assessmentDefaultMessageGeneratorMock: IMock<
+        AssessmentDefaultMessageGenerator
+    >,
 ): void {
     forOwn(assessmentStoreData.assessments, (assessmentData, assessmentKey) => {
-        AssessmentReportBuilderTestHelper.getStepKeysForAssessment(assessmentKey, assessments).forEach(stepKey => {
+        AssessmentReportBuilderTestHelper.getStepKeysForAssessment(
+            assessmentKey,
+            assessments,
+        ).forEach(stepKey => {
             getDefaultMessageMock
                 .setup(gdm => gdm(assessmentDefaultMessageGeneratorMock.object))
                 .returns(() => messageGenerator.object)
                 .verifiable(Times.atLeastOnce());
 
             messageGenerator
-                .setup(gm => gm(assessmentData.generatedAssessmentInstancesMap, stepKey))
+                .setup(gm =>
+                    gm(assessmentData.generatedAssessmentInstancesMap, stepKey),
+                )
                 .returns(() => stubMessage)
                 .verifiable();
         });

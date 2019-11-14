@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { HowToFixWebCardRow, HowToFixWebCardRowProps } from 'common/components/cards/how-to-fix-card-row';
+import {
+    HowToFixWebCardRow,
+    HowToFixWebCardRowProps,
+} from 'common/components/cards/how-to-fix-card-row';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
@@ -9,9 +12,13 @@ import { FixInstructionProcessor } from '../../../../../../injected/fix-instruct
 
 describe('HowToFixWebCardRow', () => {
     it('renders', () => {
-        const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
+        const fixInstructionProcessorMock = Mock.ofType(
+            FixInstructionProcessor,
+        );
         const props: HowToFixWebCardRowProps = {
-            deps: { fixInstructionProcessor: fixInstructionProcessorMock.object },
+            deps: {
+                fixInstructionProcessor: fixInstructionProcessorMock.object,
+            },
             index: 22,
             propertyData: {
                 any: ['some any message'],

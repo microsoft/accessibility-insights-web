@@ -3,7 +3,10 @@
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import * as React from 'react';
 
-import { FailureDetails, FailureDetailsProps } from '../../../../../DetailsView/components/failure-details';
+import {
+    FailureDetails,
+    FailureDetailsProps,
+} from '../../../../../DetailsView/components/failure-details';
 
 describe('FailureDetailsTests', () => {
     test('null items array', () => {
@@ -70,7 +73,9 @@ describe('FailureDetailsTests', () => {
 
         const testObject = new FailureDetails(props);
 
-        const expectedText = createExpectedSpan(`${props.items.length} failures were detected.`);
+        const expectedText = createExpectedSpan(
+            `${props.items.length} failures were detected.`,
+        );
 
         const expected: JSX.Element = (
             <div className="details-message">
@@ -92,6 +97,8 @@ describe('FailureDetailsTests', () => {
     }
 
     function createExpectedIcon(): JSX.Element {
-        return <Icon iconName="statusErrorFull" className="details-icon-error" />;
+        return (
+            <Icon iconName="statusErrorFull" className="details-icon-error" />
+        );
     }
 });

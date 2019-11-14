@@ -16,4 +16,7 @@ export const storageDataKeys: string[] = [
     LocalStorageDataKeys.installationData,
 ];
 
-export const deprecatedStorageDataKeys: string[] = [LocalStorageDataKeys.alias, LocalStorageDataKeys.hideStartDialog];
+export const deprecatedStorageDataKeys: string[] = [
+    LocalStorageDataKeys.alias,
+    LocalStorageDataKeys.hideStartDialog,
+];

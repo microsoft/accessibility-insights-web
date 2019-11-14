@@ -15,7 +15,9 @@ describe('PrivacyStatementText', () => {
             LinkComponent: NewTabLink,
         };
 
-        const wrapper = shallow(<PrivacyStatementText deps={deps}></PrivacyStatementText>);
+        const wrapper = shallow(
+            <PrivacyStatementText deps={deps}></PrivacyStatementText>,
+        );
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 });
@@ -26,10 +28,14 @@ describe('PrivacyStatementPopupText', () => {
             LinkComponent: NewTabLink,
         };
 
-        const wrapper = shallow(<PrivacyStatementPopupText deps={deps}></PrivacyStatementPopupText>);
+        const wrapper = shallow(
+            <PrivacyStatementPopupText deps={deps}></PrivacyStatementPopupText>,
+        );
         const privacyStatementText = wrapper.find(PrivacyStatementText);
 
         expect(wrapper.getElement()).toMatchSnapshot();
-        expect(privacyStatementText.prop('deps').LinkComponent).toBe(deps.LinkComponent);
+        expect(privacyStatementText.prop('deps').LinkComponent).toBe(
+            deps.LinkComponent,
+        );
     });
 });

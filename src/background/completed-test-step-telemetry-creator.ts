@@ -9,7 +9,10 @@ import * as TelemetryEvents from '../common/extension-telemetry-events';
 import { RequirementStatusTelemetryData } from '../common/extension-telemetry-events';
 import { Messages } from '../common/messages';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
-import { ManualTestStatus, ManualTestStatusData } from '../common/types/manual-test-status';
+import {
+    ManualTestStatus,
+    ManualTestStatusData,
+} from '../common/types/manual-test-status';
 import { AssessmentData } from '../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../types/common-types';
 import { PayloadWithEventName } from './actions/action-payloads';
@@ -23,7 +26,12 @@ export class CompletedTestStepTelemetryCreator {
     private interpreter: Interpreter;
     private oldTestStates: DictionaryStringTo<ManualTestStatusData>;
 
-    constructor(store: AssessmentStore, provider: AssessmentsProvider, factory: TelemetryDataFactory, interpreter: Interpreter) {
+    constructor(
+        store: AssessmentStore,
+        provider: AssessmentsProvider,
+        factory: TelemetryDataFactory,
+        interpreter: Interpreter,
+    ) {
         this.store = store;
         this.provider = provider;
         this.telemetryFactory = factory;
@@ -37,12 +45,20 @@ export class CompletedTestStepTelemetryCreator {
     }
 
     private onAssessmentChange = (): void => {
-        this.provider.all().some(assessment => this.sendTelemetryIfNewCompletedTestStep(assessment));
+        this.provider
+            .all()
+            .some(assessment =>
+                this.sendTelemetryIfNewCompletedTestStep(assessment),
+            );
         this.updateOldTestStatusState();
     };
 
-    private sendTelemetryIfNewCompletedTestStep(assessment: Assessment): boolean {
-        const completedStep = assessment.requirements.find(step => this.isNewCompletedTestStep(assessment, step));
+    private sendTelemetryIfNewCompletedTestStep(
+        assessment: Assessment,
+    ): boolean {
+        const completedStep = assessment.requirements.find(step =>
+            this.isNewCompletedTestStep(assessment, step),
+        );
         const targetTab = this.store.getState().persistedTabInfo;
         if (completedStep != undefined && targetTab !== null) {
             const payload: PayloadWithEventName = {
@@ -59,19 +75,30 @@ export class CompletedTestStepTelemetryCreator {
         return completedStep != undefined;
     }
 
-    private isNewCompletedTestStep(assessment: Assessment, step: Requirement): boolean {
-        const newStatus = this.store.getState().assessments[assessment.key].testStepStatus;
+    private isNewCompletedTestStep(
+        assessment: Assessment,
+        step: Requirement,
+    ): boolean {
+        const newStatus = this.store.getState().assessments[assessment.key]
+            .testStepStatus;
         const oldStatus = this.oldTestStates[assessment.key];
         return (
-            newStatus[step.key].stepFinalResult !== oldStatus[step.key].stepFinalResult &&
+            newStatus[step.key].stepFinalResult !==
+                oldStatus[step.key].stepFinalResult &&
             newStatus[step.key].stepFinalResult !== ManualTestStatus.UNKNOWN
         );
     }
 
-    private createTelemetryInfo(assessment: Assessment, step: Requirement): RequirementStatusTelemetryData {
-        const assessmentData = assessment.getVisualizationConfiguration().getAssessmentData(this.store.getState());
+    private createTelemetryInfo(
+        assessment: Assessment,
+        step: Requirement,
+    ): RequirementStatusTelemetryData {
+        const assessmentData = assessment
+            .getVisualizationConfiguration()
+            .getAssessmentData(this.store.getState());
         const numInstances = this.getNumInstances(step, assessmentData);
-        const newStatus = this.store.getState().assessments[assessment.key].testStepStatus;
+        const newStatus = this.store.getState().assessments[assessment.key]
+            .testStepStatus;
         return this.telemetryFactory.forRequirementStatus(
             assessment.visualizationType,
             step.key,
@@ -80,21 +107,36 @@ export class CompletedTestStepTelemetryCreator {
         );
     }
 
-    private getNumInstances(step: Requirement, assessmentData: AssessmentData): number {
+    private getNumInstances(
+        step: Requirement,
+        assessmentData: AssessmentData,
+    ): number {
         let numInstances = 0;
         if (!step.isManual) {
-            numInstances = _.filter(Object.keys(assessmentData.generatedAssessmentInstancesMap), key => {
-                return step.key in assessmentData.generatedAssessmentInstancesMap[key].testStepResults;
-            }).length;
+            numInstances = _.filter(
+                Object.keys(assessmentData.generatedAssessmentInstancesMap),
+                key => {
+                    return (
+                        step.key in
+                        assessmentData.generatedAssessmentInstancesMap[key]
+                            .testStepResults
+                    );
+                },
+            ).length;
         } else if (step.key in assessmentData.manualTestStepResultMap) {
-            numInstances = assessmentData.manualTestStepResultMap[step.key].instances.length;
+            numInstances =
+                assessmentData.manualTestStepResultMap[step.key].instances
+                    .length;
         }
         return numInstances;
     }
 
     private updateOldTestStatusState(): void {
         this.provider.all().forEach(assessment => {
-            this.oldTestStates[assessment.key] = _.cloneDeep(this.store.getState().assessments[assessment.key].testStepStatus);
+            this.oldTestStates[assessment.key] = _.cloneDeep(
+                this.store.getState().assessments[assessment.key]
+                    .testStepStatus,
+            );
         });
     }
 }

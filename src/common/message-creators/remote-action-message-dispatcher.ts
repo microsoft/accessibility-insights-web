@@ -7,7 +7,10 @@ import { Messages } from '../messages';
 import { ActionMessageDispatcher } from './types/dispatcher';
 
 export class RemoteActionMessageDispatcher implements ActionMessageDispatcher {
-    constructor(private postMessageDelegate: (message: InterpreterMessage) => void, private tabId: number) {}
+    constructor(
+        private postMessageDelegate: (message: InterpreterMessage) => void,
+        private tabId: number,
+    ) {}
 
     public dispatchMessage(message: Message): void {
         const interpreterMessage = this.decorateWithTabId(message);

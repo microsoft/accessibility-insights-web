@@ -7,7 +7,9 @@ import { DocumentManipulator } from '../../../../common/document-manipulator';
 describe('test shortcut icon', () => {
     test('shortcut icon exists', () => {
         const expectedHref = 'defaultIcon.png';
-        const jsdom = new JSDOM('<html><head><link rel="shortcut icon" type="image/x-icon" href="badIcon.png" /></head></html>');
+        const jsdom = new JSDOM(
+            '<html><head><link rel="shortcut icon" type="image/x-icon" href="badIcon.png" /></head></html>',
+        );
         const document = jsdom.window.document;
         const setter = new DocumentManipulator(document);
 
@@ -25,6 +27,8 @@ describe('test shortcut icon', () => {
         const document = jsdom.window.document;
         const setter = new DocumentManipulator(document);
 
-        expect(() => setter.setShortcutIcon('properIcon.png')).toThrowError(/missing icon/);
+        expect(() => setter.setShortcutIcon('properIcon.png')).toThrowError(
+            /missing icon/,
+        );
     });
 });

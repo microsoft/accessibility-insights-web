@@ -11,40 +11,65 @@ import * as content from 'content/test/images/text-alternative';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
-import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
+import {
+    NoValue,
+    PropertyBagColumnRendererConfig,
+} from '../../common/property-bag-column-renderer';
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { Requirement } from '../../types/requirement';
 import { ImagesTestStep } from './test-steps';
 
-const description: JSX.Element = <span>A meaningful image must have a text alternative that serves the equivalent purpose.</span>;
+const description: JSX.Element = (
+    <span>
+        A meaningful image must have a text alternative that serves the
+        equivalent purpose.
+    </span>
+);
 
 const howToTest: JSX.Element = (
     <div>
-        <p>For this requirement, {productName} highlights images that are coded as meaningful.</p>
+        <p>
+            For this requirement, {productName} highlights images that are coded
+            as meaningful.
+        </p>
         <TestAutomaticallyPassedNotice />
         <ol>
             <li>
-                Examine each image in the <Markup.Term>Instances</Markup.Term> list to verify that its text alternative serves the
-                equivalent purpose.
+                Examine each image in the <Markup.Term>Instances</Markup.Term>{' '}
+                list to verify that its text alternative serves the equivalent
+                purpose.
                 <ol>
                     <li>
-                        A <Markup.Emphasis>simple</Markup.Emphasis> image should have an accessible name that serves the equivalent purpose.
-                        Special cases:
+                        A <Markup.Emphasis>simple</Markup.Emphasis> image should
+                        have an accessible name that serves the equivalent
+                        purpose. Special cases:
                         <ol>
-                            <li>An image of text should have an accessible name that exactly matches the text within the image.</li>
                             <li>
-                                A CAPTCHA image should have an accessible name that communicates the purpose of the image, but not its
-                                content. (A CAPTCHA is a test to differentiate a human from a computer.)
+                                An image of text should have an accessible name
+                                that exactly matches the text within the image.
+                            </li>
+                            <li>
+                                A CAPTCHA image should have an accessible name
+                                that communicates the purpose of the image, but
+                                not its content. (A CAPTCHA is a test to
+                                differentiate a human from a computer.)
                             </li>
                         </ol>
                     </li>
                     <li>
-                        A <Markup.Emphasis>complex</Markup.Emphasis> image (such as a graph) should have both
+                        A <Markup.Emphasis>complex</Markup.Emphasis> image (such
+                        as a graph) should have both
                         <ol>
-                            <li>An accessible name that communicates the purpose of the image, and</li>
-                            <li>An accessible description that communicates the content of the image.</li>
+                            <li>
+                                An accessible name that communicates the purpose
+                                of the image, and
+                            </li>
+                            <li>
+                                An accessible description that communicates the
+                                content of the image.
+                            </li>
                         </ol>
                     </li>
                 </ol>
@@ -56,7 +81,9 @@ const howToTest: JSX.Element = (
 
 const key = ImagesTestStep.textAlternative;
 
-const propertyBagConfig: PropertyBagColumnRendererConfig<TextAlternativePropertyBag>[] = [
+const propertyBagConfig: PropertyBagColumnRendererConfig<
+    TextAlternativePropertyBag
+>[] = [
     {
         propertyName: 'imageType',
         displayName: 'Image type',
@@ -85,7 +112,9 @@ export const TextAlternative: Requirement = {
         {
             key: 'image-info',
             name: 'Image info',
-            onRender: PropertyBagColumnRendererFactory.getRenderer(propertyBagConfig),
+            onRender: PropertyBagColumnRendererFactory.getRenderer(
+                propertyBagConfig,
+            ),
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),
@@ -98,5 +127,7 @@ export const TextAlternative: Requirement = {
             }),
         ),
     getDrawer: provider => provider.createHighlightBoxDrawer(),
-    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
+    getVisualHelperToggle: props => (
+        <AssessmentVisualizationEnabledToggle {...props} />
+    ),
 };

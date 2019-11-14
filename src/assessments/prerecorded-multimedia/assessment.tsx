@@ -19,17 +19,23 @@ const { guidance } = content.multimedia;
 const gettingStartedText: JSX.Element = (
     <React.Fragment>
         <p>
-            When pre-recorded multimedia content (synchronized video and audio) is provided, equivalent alternatives also must be provided
-            for people who either can't hear the audio or can't see the video.
+            When pre-recorded multimedia content (synchronized video and audio)
+            is provided, equivalent alternatives also must be provided for
+            people who either can't hear the audio or can't see the video.
         </p>
         <p>
-            <Markup.Term>Captions</Markup.Term> help people who are deaf or have a hearing loss by providing an equivalent alternative for
-            the <Markup.Emphasis>audio</Markup.Emphasis> in multimedia content. Captions should convey the dialogue, identify who is
-            speaking, and provide other information conveyed through audio, such as music and sound effects.
+            <Markup.Term>Captions</Markup.Term> help people who are deaf or have
+            a hearing loss by providing an equivalent alternative for the{' '}
+            <Markup.Emphasis>audio</Markup.Emphasis> in multimedia content.
+            Captions should convey the dialogue, identify who is speaking, and
+            provide other information conveyed through audio, such as music and
+            sound effects.
         </p>
         <p>
-            <Markup.Term>Audio description</Markup.Term> helps blind and low vision people by providing an equivalent alternative for the{' '}
-            <Markup.Emphasis>video</Markup.Emphasis> in multimedia content. Audio description should include information about actions,
+            <Markup.Term>Audio description</Markup.Term> helps blind and low
+            vision people by providing an equivalent alternative for the{' '}
+            <Markup.Emphasis>video</Markup.Emphasis> in multimedia content.
+            Audio description should include information about actions,
             characters, scene changes, on-screen text, and other visual content.
         </p>
     </React.Fragment>
@@ -41,5 +47,11 @@ export const PrerecordedMultimediaAssessment = AssessmentBuilder.Manual({
     gettingStarted: gettingStartedText,
     title,
     guidance,
-    requirements: [Captions, NoObstruction, AudioDescription, Synchronization, NoConflict],
+    requirements: [
+        Captions,
+        NoObstruction,
+        AudioDescription,
+        Synchronization,
+        NoConflict,
+    ],
 });

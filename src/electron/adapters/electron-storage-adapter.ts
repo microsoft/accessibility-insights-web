@@ -9,22 +9,32 @@ export class ElectronStorageAdapter implements StorageAdapter {
     constructor(private readonly indexedDBInstance: IndexedDBAPI) {}
 
     public async setUserData(items: Object): Promise<void> {
-        await this.indexedDBInstance.setItem(IndexedDBDataKeys.installation, items);
+        await this.indexedDBInstance.setItem(
+            IndexedDBDataKeys.installation,
+            items,
+        );
     }
 
     public async getUserData(keys: string[]): Promise<{ [key: string]: any }> {
-        const data = await this.indexedDBInstance.getItem(IndexedDBDataKeys.installation);
+        const data = await this.indexedDBInstance.getItem(
+            IndexedDBDataKeys.installation,
+        );
         return pick(data, keys);
     }
 
     public async removeUserData(key: string): Promise<void> {
-        const data = await this.indexedDBInstance.getItem(IndexedDBDataKeys.installation);
+        const data = await this.indexedDBInstance.getItem(
+            IndexedDBDataKeys.installation,
+        );
         const filtered = Object.keys(data)
             .filter(internalKey => internalKey !== key)
             .reduce((obj, k) => {
                 obj[k] = data[k];
                 return obj;
             }, {});
-        await this.indexedDBInstance.setItem(IndexedDBDataKeys.installation, filtered);
+        await this.indexedDBInstance.setItem(
+            IndexedDBDataKeys.installation,
+            filtered,
+        );
     }
 }

@@ -11,5 +11,8 @@ import { renderer } from './renderer';
 const browserAdapter = new ChromeAdapter();
 renderer(rendererDependencies(browserAdapter));
 
-const a11ySelfValidator = new A11YSelfValidator(new ScannerUtils(scan), new HTMLElementUtils());
+const a11ySelfValidator = new A11YSelfValidator(
+    new ScannerUtils(scan),
+    new HTMLElementUtils(),
+);
 (window as any).A11YSelfValidator = a11ySelfValidator;

@@ -56,16 +56,26 @@ describe('DiagnosticViewToggleFactoryTest', () => {
         [featureFlagStub]: true,
     };
 
-    let visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
-    let visualizationStoreMock = Mock.ofType(VisualizationStore, MockBehavior.Strict);
+    let visualizationConfigurationFactoryMock = Mock.ofType(
+        VisualizationConfigurationFactory,
+    );
+    let visualizationStoreMock = Mock.ofType(
+        VisualizationStore,
+        MockBehavior.Strict,
+    );
     let featureFlagStoreMock = Mock.ofType(FeatureFlagStore);
     let commandStoreMock = Mock.ofType(CommandStore, MockBehavior.Strict);
     let actionMessageCreator = Mock.ofType(PopupActionMessageCreator);
     let clickHandler = Mock.ofType(DiagnosticViewClickHandler);
 
     beforeEach(() => {
-        visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
-        visualizationStoreMock = Mock.ofType(VisualizationStore, MockBehavior.Strict);
+        visualizationConfigurationFactoryMock = Mock.ofType(
+            VisualizationConfigurationFactory,
+        );
+        visualizationStoreMock = Mock.ofType(
+            VisualizationStore,
+            MockBehavior.Strict,
+        );
         featureFlagStoreMock = Mock.ofType(FeatureFlagStore);
         commandStoreMock = Mock.ofType(CommandStore, MockBehavior.Strict);
         actionMessageCreator = Mock.ofType(PopupActionMessageCreator);
@@ -79,10 +89,14 @@ describe('DiagnosticViewToggleFactoryTest', () => {
             .returns(() => secondVisualizationConfiguration);
 
         visualizationConfigurationFactoryMock
-            .setup(vcf => vcf.getConfiguration(thirdAlwaysDisabledVisualizationTypeStub))
+            .setup(vcf =>
+                vcf.getConfiguration(thirdAlwaysDisabledVisualizationTypeStub),
+            )
             .returns(() => alwaysDisabledConfiguration);
 
-        visualizationStoreMock.setup(vs => vs.getState()).returns(() => visualizationStoreData);
+        visualizationStoreMock
+            .setup(vs => vs.getState())
+            .returns(() => visualizationStoreData);
 
         featureFlagStoreMock
             .setup(ff => ff.getState())
@@ -124,7 +138,9 @@ describe('DiagnosticViewToggleFactoryTest', () => {
                 visualizationType={firstVisualizationTypeStub}
                 key="diagnostic_view_toggle_-1"
                 shortcutCommands={ShortcutCommandsTestData}
-                visualizationConfigurationFactory={visualizationConfigurationFactoryMock.object}
+                visualizationConfigurationFactory={
+                    visualizationConfigurationFactoryMock.object
+                }
                 actionMessageCreator={actionMessageCreator.object}
                 clickHandler={clickHandler.object}
                 visualizationStoreData={visualizationStoreData}
@@ -137,7 +153,9 @@ describe('DiagnosticViewToggleFactoryTest', () => {
                 visualizationType={secondVisualizationTypeStub}
                 key="diagnostic_view_toggle_-2"
                 shortcutCommands={ShortcutCommandsTestData}
-                visualizationConfigurationFactory={visualizationConfigurationFactoryMock.object}
+                visualizationConfigurationFactory={
+                    visualizationConfigurationFactoryMock.object
+                }
                 actionMessageCreator={actionMessageCreator.object}
                 clickHandler={clickHandler.object}
                 visualizationStoreData={visualizationStoreData}
@@ -173,7 +191,9 @@ describe('DiagnosticViewToggleFactoryTest', () => {
                 visualizationType={secondVisualizationTypeStub}
                 key="diagnostic_view_toggle_-2"
                 shortcutCommands={ShortcutCommandsTestData}
-                visualizationConfigurationFactory={visualizationConfigurationFactoryMock.object}
+                visualizationConfigurationFactory={
+                    visualizationConfigurationFactoryMock.object
+                }
                 actionMessageCreator={actionMessageCreator.object}
                 clickHandler={clickHandler.object}
                 visualizationStoreData={visualizationStoreData}
@@ -186,7 +206,9 @@ describe('DiagnosticViewToggleFactoryTest', () => {
                 visualizationType={firstVisualizationTypeStub}
                 key="diagnostic_view_toggle_-1"
                 shortcutCommands={ShortcutCommandsTestData}
-                visualizationConfigurationFactory={visualizationConfigurationFactoryMock.object}
+                visualizationConfigurationFactory={
+                    visualizationConfigurationFactoryMock.object
+                }
                 actionMessageCreator={actionMessageCreator.object}
                 clickHandler={clickHandler.object}
                 visualizationStoreData={visualizationStoreData}

@@ -5,7 +5,10 @@ import { TelemetryClient } from 'background/telemetry/telemetry-client';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import * as _ from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { TelemetryEventSource, TriggeredBy } from '../../../../../common/extension-telemetry-events';
+import {
+    TelemetryEventSource,
+    TriggeredBy,
+} from '../../../../../common/extension-telemetry-events';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 
 describe('TelemetryEventHandlerTest', () => {
@@ -22,7 +25,10 @@ describe('TelemetryEventHandlerTest', () => {
             },
         };
 
-        telemetryClientStrictMock = Mock.ofType<TelemetryClient>(null, MockBehavior.Strict);
+        telemetryClientStrictMock = Mock.ofType<TelemetryClient>(
+            null,
+            MockBehavior.Strict,
+        );
     });
 
     test('test for when telemetry is null', () => {
@@ -35,7 +41,9 @@ describe('TelemetryEventHandlerTest', () => {
     });
 
     test('test for when tab is null', () => {
-        telemetryClientStrictMock.setup(te => te.trackEvent(It.isAny(), It.isAny())).verifiable(Times.once());
+        telemetryClientStrictMock
+            .setup(te => te.trackEvent(It.isAny(), It.isAny()))
+            .verifiable(Times.once());
 
         const testObject = createAndEnableTelemetryEventHandler();
         testObject.publishTelemetry(testEventName, testTelemetryPayload);
@@ -52,7 +60,9 @@ describe('TelemetryEventHandlerTest', () => {
     test('test for disableTelemetry in telemetryClient', () => {
         const testObject = createAndEnableTelemetryEventHandler();
 
-        telemetryClientStrictMock.setup(t => t.disableTelemetry()).verifiable(Times.once());
+        telemetryClientStrictMock
+            .setup(t => t.disableTelemetry())
+            .verifiable(Times.once());
         testObject.disableTelemetry();
 
         telemetryClientStrictMock.verifyAll();
@@ -91,7 +101,9 @@ describe('TelemetryEventHandlerTest', () => {
             },
         };
 
-        const expectedTelemetry = createExpectedAppInsightsTelemetry(extraFields);
+        const expectedTelemetry = createExpectedAppInsightsTelemetry(
+            extraFields,
+        );
 
         setupTrackEvent(testEventName, expectedTelemetry);
 
@@ -102,7 +114,9 @@ describe('TelemetryEventHandlerTest', () => {
         telemetryClientStrictMock.verifyAll();
     });
 
-    function createExpectedAppInsightsTelemetry(customFields?: DictionaryStringTo<any>): DictionaryStringTo<string> {
+    function createExpectedAppInsightsTelemetry(
+        customFields?: DictionaryStringTo<any>,
+    ): DictionaryStringTo<string> {
         const telemetry: any = {
             source: undefined,
             triggeredBy: 'triggered by test',
@@ -118,14 +132,28 @@ describe('TelemetryEventHandlerTest', () => {
     }
 
     function createAndEnableTelemetryEventHandler(): TelemetryEventHandler {
-        const telemetryEventHandler = new TelemetryEventHandler(telemetryClientStrictMock.object);
-        telemetryClientStrictMock.setup(ai => ai.enableTelemetry()).verifiable(Times.once());
+        const telemetryEventHandler = new TelemetryEventHandler(
+            telemetryClientStrictMock.object,
+        );
+        telemetryClientStrictMock
+            .setup(ai => ai.enableTelemetry())
+            .verifiable(Times.once());
 
         telemetryEventHandler.enableTelemetry();
         return telemetryEventHandler;
     }
 
-    function setupTrackEvent(eventName: string, expectedTelemetry: DictionaryStringTo<string>): void {
-        telemetryClientStrictMock.setup(te => te.trackEvent(It.isValue(eventName), It.isValue(expectedTelemetry))).verifiable(Times.once());
+    function setupTrackEvent(
+        eventName: string,
+        expectedTelemetry: DictionaryStringTo<string>,
+    ): void {
+        telemetryClientStrictMock
+            .setup(te =>
+                te.trackEvent(
+                    It.isValue(eventName),
+                    It.isValue(expectedTelemetry),
+                ),
+            )
+            .verifiable(Times.once());
     }
 });

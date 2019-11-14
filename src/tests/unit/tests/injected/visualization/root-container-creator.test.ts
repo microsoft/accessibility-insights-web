@@ -14,14 +14,18 @@ describe(RootContainerCreator, () => {
         htmlElementUtilsMock = Mock.ofType(HTMLElementUtils);
 
         bodyStub = document.createElement('body');
-        htmlElementUtilsMock.setup(h => h.querySelector('body')).returns(() => bodyStub);
+        htmlElementUtilsMock
+            .setup(h => h.querySelector('body'))
+            .returns(() => bodyStub);
     });
 
     it('should create root container', () => {
         const id = 'test-id';
         const selector = `#${id}`;
 
-        htmlElementUtilsMock.setup(h => h.deleteAllElements(selector)).verifiable();
+        htmlElementUtilsMock
+            .setup(h => h.deleteAllElements(selector))
+            .verifiable();
 
         new RootContainerCreator(htmlElementUtilsMock.object).create(id);
 

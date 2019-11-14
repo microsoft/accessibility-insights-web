@@ -4,11 +4,16 @@ import * as Enzyme from 'enzyme';
 import { IToggleProps, Toggle } from 'office-ui-fabric-react/lib/Toggle';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
-import { VisualizationToggle, VisualizationToggleProps } from '../../../../../common/components/visualization-toggle';
+import {
+    VisualizationToggle,
+    VisualizationToggleProps,
+} from '../../../../../common/components/visualization-toggle';
 
 describe('VisualizationToggleTest', () => {
     test('constructor', () => {
-        const testObject = new VisualizationToggle({} as VisualizationToggleProps);
+        const testObject = new VisualizationToggle(
+            {} as VisualizationToggleProps,
+        );
         expect(testObject).toBeInstanceOf(React.Component);
     });
 
@@ -45,7 +50,9 @@ describe('VisualizationToggleTest', () => {
     test('verify onClick being called when toggle clicked', () => {
         const onClickMock = Mock.ofInstance(event => {});
         const clickEventStub = {};
-        onClickMock.setup(onClick => onClick(clickEventStub)).verifiable(Times.once());
+        onClickMock
+            .setup(onClick => onClick(clickEventStub))
+            .verifiable(Times.once());
 
         const props: VisualizationToggleProps = new VisualizationTogglePropsBuilder()
             .setLabel('my test label')
@@ -61,7 +68,9 @@ describe('VisualizationToggleTest', () => {
         onClickMock.verifyAll();
     });
 
-    function visualizationTogglePropsToToggleProps(props: VisualizationToggleProps): IToggleProps {
+    function visualizationTogglePropsToToggleProps(
+        props: VisualizationToggleProps,
+    ): IToggleProps {
         const result: IToggleProps = {
             checked: props.checked,
             onClick: props.onClick,
@@ -106,7 +115,9 @@ class VisualizationTogglePropsBuilder {
         return this;
     }
 
-    public setOnClickMock(onClickMock: IMock<(event) => void>): VisualizationTogglePropsBuilder {
+    public setOnClickMock(
+        onClickMock: IMock<(event) => void>,
+    ): VisualizationTogglePropsBuilder {
         this.onClickMock = onClickMock;
         return this;
     }

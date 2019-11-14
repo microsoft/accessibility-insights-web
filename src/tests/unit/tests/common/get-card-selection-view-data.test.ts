@@ -34,7 +34,12 @@ describe('getCardSelectionStoreviewData', () => {
     test('all rules collapsed, visual helper enabled, expect all highlights', () => {
         const viewData = getCardSelectionViewData(initialState);
 
-        expect(viewData.highlightedResultUids).toEqual(['sampleUid1', 'sampleUid2', 'sampleUid3', 'sampleUid4']);
+        expect(viewData.highlightedResultUids).toEqual([
+            'sampleUid1',
+            'sampleUid2',
+            'sampleUid3',
+            'sampleUid4',
+        ]);
         expect(viewData.expandedRuleIds).toEqual([]);
         expect(viewData.selectedResultUids).toEqual([]);
         expect(viewData.visualHelperEnabled).toEqual(true);
@@ -46,8 +51,16 @@ describe('getCardSelectionStoreviewData', () => {
 
         const viewData = getCardSelectionViewData(initialState);
 
-        expect(viewData.highlightedResultUids).toEqual(['sampleUid1', 'sampleUid2', 'sampleUid3', 'sampleUid4']);
-        expect(viewData.expandedRuleIds).toEqual(['sampleRuleId1', 'sampleRuleId2']);
+        expect(viewData.highlightedResultUids).toEqual([
+            'sampleUid1',
+            'sampleUid2',
+            'sampleUid3',
+            'sampleUid4',
+        ]);
+        expect(viewData.expandedRuleIds).toEqual([
+            'sampleRuleId1',
+            'sampleRuleId2',
+        ]);
         expect(viewData.selectedResultUids).toEqual([]);
         expect(viewData.visualHelperEnabled).toEqual(true);
     });
@@ -57,7 +70,10 @@ describe('getCardSelectionStoreviewData', () => {
 
         const viewData = getCardSelectionViewData(initialState);
 
-        expect(viewData.highlightedResultUids).toEqual(['sampleUid1', 'sampleUid2']);
+        expect(viewData.highlightedResultUids).toEqual([
+            'sampleUid1',
+            'sampleUid2',
+        ]);
         expect(viewData.expandedRuleIds).toEqual(['sampleRuleId1']);
         expect(viewData.selectedResultUids).toEqual([]);
         expect(viewData.visualHelperEnabled).toEqual(true);
@@ -71,7 +87,10 @@ describe('getCardSelectionStoreviewData', () => {
         const viewData = getCardSelectionViewData(initialState);
 
         expect(viewData.highlightedResultUids).toEqual(['sampleUid3']);
-        expect(viewData.expandedRuleIds).toEqual(['sampleRuleId1', 'sampleRuleId2']);
+        expect(viewData.expandedRuleIds).toEqual([
+            'sampleRuleId1',
+            'sampleRuleId2',
+        ]);
         expect(viewData.selectedResultUids).toEqual(['sampleUid3']);
         expect(viewData.visualHelperEnabled).toEqual(true);
     });
@@ -81,7 +100,12 @@ describe('getCardSelectionStoreviewData', () => {
 
         const viewData = getCardSelectionViewData(initialState);
 
-        expect(viewData.highlightedResultUids).toEqual(['sampleUid1', 'sampleUid2', 'sampleUid3', 'sampleUid4']);
+        expect(viewData.highlightedResultUids).toEqual([
+            'sampleUid1',
+            'sampleUid2',
+            'sampleUid3',
+            'sampleUid4',
+        ]);
         expect(viewData.expandedRuleIds).toEqual([]);
         expect(viewData.selectedResultUids).toEqual([]);
         expect(viewData.visualHelperEnabled).toEqual(true);
@@ -96,7 +120,10 @@ describe('getCardSelectionStoreviewData', () => {
         const viewData = getCardSelectionViewData(initialState);
 
         expect(viewData.highlightedResultUids).toEqual([]);
-        expect(viewData.expandedRuleIds).toEqual(['sampleRuleId1', 'sampleRuleId2']);
+        expect(viewData.expandedRuleIds).toEqual([
+            'sampleRuleId1',
+            'sampleRuleId2',
+        ]);
         expect(viewData.selectedResultUids).toEqual([]);
         expect(viewData.visualHelperEnabled).toEqual(false);
     });

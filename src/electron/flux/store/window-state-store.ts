@@ -22,7 +22,9 @@ export class WindowStateStore extends BaseStoreImpl<WindowStateStoreData> {
 
     protected addActionListeners(): void {
         this.windowStateActions.setRoute.addListener(this.onSetRoute);
-        this.windowStateActions.setWindowState.addListener(this.onSetWindowState);
+        this.windowStateActions.setWindowState.addListener(
+            this.onSetWindowState,
+        );
     }
 
     private onSetRoute = (payload: RoutePayload) => {

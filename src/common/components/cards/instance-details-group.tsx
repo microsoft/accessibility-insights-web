@@ -5,7 +5,10 @@ import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
 import { getPropertyConfiguration } from '../../../common/configs/unified-result-property-configurations';
-import { TargetAppData, UnifiedRule } from '../../../common/types/store-data/unified-data-interface';
+import {
+    TargetAppData,
+    UnifiedRule,
+} from '../../../common/types/store-data/unified-data-interface';
 import { CardRuleResult } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { InstanceDetails, InstanceDetailsDeps } from './instance-details';
@@ -22,31 +25,39 @@ export type InstanceDetailsGroupProps = {
     targetAppInfo: TargetAppData;
 };
 
-export const InstanceDetailsGroup = NamedFC<InstanceDetailsGroupProps>('InstanceDetailsGroup', props => {
-    const { deps, rule, userConfigurationStoreData, targetAppInfo } = props;
-    const { nodes } = rule;
-    const unifiedRule: UnifiedRule = {
-        id: rule.id,
-        description: rule.description,
-        url: rule.url,
-        guidance: rule.guidance,
-    };
+export const InstanceDetailsGroup = NamedFC<InstanceDetailsGroupProps>(
+    'InstanceDetailsGroup',
+    props => {
+        const { deps, rule, userConfigurationStoreData, targetAppInfo } = props;
+        const { nodes } = rule;
+        const unifiedRule: UnifiedRule = {
+            id: rule.id,
+            description: rule.description,
+            url: rule.url,
+            guidance: rule.guidance,
+        };
 
-    return (
-        <ul className={instanceDetailsList} aria-label="failed instances with path, snippet and how to fix information">
-            {nodes.map((node, index) => (
-                <li key={`instance-details-${index}`}>
-                    <InstanceDetails
-                        {...{ index }}
-                        deps={deps}
-                        result={node}
-                        getPropertyConfigById={getPropertyConfiguration}
-                        userConfigurationStoreData={userConfigurationStoreData}
-                        rule={unifiedRule}
-                        targetAppInfo={targetAppInfo}
-                    />
-                </li>
-            ))}
-        </ul>
-    );
-});
+        return (
+            <ul
+                className={instanceDetailsList}
+                aria-label="failed instances with path, snippet and how to fix information"
+            >
+                {nodes.map((node, index) => (
+                    <li key={`instance-details-${index}`}>
+                        <InstanceDetails
+                            {...{ index }}
+                            deps={deps}
+                            result={node}
+                            getPropertyConfigById={getPropertyConfiguration}
+                            userConfigurationStoreData={
+                                userConfigurationStoreData
+                            }
+                            rule={unifiedRule}
+                            targetAppInfo={targetAppInfo}
+                        />
+                    </li>
+                ))}
+            </ul>
+        );
+    },
+);

@@ -2,7 +2,10 @@
 // Licensed under the MIT License.
 import { CardSelectionViewData } from 'common/get-card-selection-view-data';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
-import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
+import {
+    UnifiedResult,
+    UnifiedRule,
+} from 'common/types/store-data/unified-data-interface';
 import { AssessmentVisualizationInstance } from 'injected/frameCommunicators/html-element-axe-results-helper';
 import { GetDecoratedAxeNodeCallback } from 'injected/get-decorated-axe-node';
 import { find, includes } from 'lodash';
@@ -41,18 +44,32 @@ export class ElementBasedViewModelCreator {
         }
 
         const resultDictionary: DictionaryStringTo<AssessmentVisualizationInstance> = {};
-        const highlightedResultInstanceUids = this.getHighlightedResultInstanceIds(cardSelectionData).highlightedResultUids;
+        const highlightedResultInstanceUids = this.getHighlightedResultInstanceIds(
+            cardSelectionData,
+        ).highlightedResultUids;
 
         results.forEach(unifiedResult => {
-            if (unifiedResult.status !== 'fail' || !includes(highlightedResultInstanceUids, unifiedResult.uid)) {
+            if (
+                unifiedResult.status !== 'fail' ||
+                !includes(highlightedResultInstanceUids, unifiedResult.uid)
+            ) {
                 return;
             }
 
-            const rule = find(rules, unifiedRule => unifiedRule.id === unifiedResult.ruleId);
+            const rule = find(
+                rules,
+                unifiedRule => unifiedRule.id === unifiedResult.ruleId,
+            );
 
             const identifier = this.getIdentifier(unifiedResult);
-            const decoratedResult = this.getDecoratedAxeNode(unifiedResult, rule, identifier);
-            const ruleResults = resultDictionary[identifier] ? resultDictionary[identifier].ruleResults : {};
+            const decoratedResult = this.getDecoratedAxeNode(
+                unifiedResult,
+                rule,
+                identifier,
+            );
+            const ruleResults = resultDictionary[identifier]
+                ? resultDictionary[identifier].ruleResults
+                : {};
 
             resultDictionary[identifier] = {
                 isFailure: true,

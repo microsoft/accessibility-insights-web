@@ -22,7 +22,10 @@ export function CodeExample(props: CodeExampleProps): JSX.Element {
         if (code[0] === '[') {
             const end = code.indexOf(']');
             if (end > 0) {
-                return [code.slice(0, end + 1), ...getRegions(code.slice(end + 1))];
+                return [
+                    code.slice(0, end + 1),
+                    ...getRegions(code.slice(end + 1)),
+                ];
             } else {
                 return [code + ']'];
             }
@@ -37,7 +40,11 @@ export function CodeExample(props: CodeExampleProps): JSX.Element {
     }
 
     function renderLineBreaks(str: string): React.ReactNode[] {
-        return flatten(str.split('\n').map(s => [<br key={`line-breaker-${lineCount++}`} />, s])).slice(1);
+        return flatten(
+            str
+                .split('\n')
+                .map(s => [<br key={`line-breaker-${lineCount++}`} />, s]),
+        ).slice(1);
     }
 
     function renderRegion(str: string, index: number): React.ReactNode[] {

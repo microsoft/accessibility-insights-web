@@ -10,7 +10,8 @@ import { KeyboardInteractionTestStep } from './test-steps';
 
 const description: JSX.Element = (
     <span>
-        Users must be able to <Markup.Emphasis>navigate away</Markup.Emphasis> from all components using a keyboard.
+        Users must be able to <Markup.Emphasis>navigate away</Markup.Emphasis>{' '}
+        from all components using a keyboard.
     </span>
 );
 
@@ -18,24 +19,34 @@ const howToTest: JSX.Element = (
     <div>
         <ol>
             <li>
-                Use standard keyboard commands (unmodified Tab and arrow keys) to navigate through all the interactive interface components
-                in the target page.
+                Use standard keyboard commands (unmodified Tab and arrow keys)
+                to navigate through all the interactive interface components in
+                the target page.
             </li>
             <li>
-                If you can't navigate away from a component using standard keyboard commands:
+                If you can't navigate away from a component using standard
+                keyboard commands:
                 <ol>
                     <li>
-                        Examine the component's accessible name and accessible description to determine whether they describe an alternative
-                        keyboard command.
+                        Examine the component's accessible name and accessible
+                        description to determine whether they describe an
+                        alternative keyboard command.
                     </li>
-                    <li>If an alternative keyboard command is documented, test whether it works.</li>
+                    <li>
+                        If an alternative keyboard command is documented, test
+                        whether it works.
+                    </li>
                 </ol>
             </li>
             <li>
-                Verify that you can navigate away from all components using <Markup.Emphasis>either</Markup.Emphasis>
+                Verify that you can navigate away from all components using{' '}
+                <Markup.Emphasis>either</Markup.Emphasis>
                 <ol>
                     <li>Standard keyboard commands, or</li>
-                    <li>An alternative keyboard command that's described to users.</li>
+                    <li>
+                        An alternative keyboard command that's described to
+                        users.
+                    </li>
                 </ol>
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />

@@ -8,10 +8,15 @@ import { ManualTestRecordYourResults } from 'assessments/common/manual-test-reco
 describe('ManualTestRecordYourResultsTest', () => {
     const multiple = [false, true];
 
-    it.each(multiple)('render: isMultipleFailurePossible = %p', isMultipleFailurePossible => {
-        const props = { isMultipleFailurePossible };
-        const wrapper = Enzyme.shallow(<ManualTestRecordYourResults {...props} />);
+    it.each(multiple)(
+        'render: isMultipleFailurePossible = %p',
+        isMultipleFailurePossible => {
+            const props = { isMultipleFailurePossible };
+            const wrapper = Enzyme.shallow(
+                <ManualTestRecordYourResults {...props} />,
+            );
 
-        expect(wrapper.getElement()).toMatchSnapshot();
-    });
+            expect(wrapper.getElement()).toMatchSnapshot();
+        },
+    );
 });

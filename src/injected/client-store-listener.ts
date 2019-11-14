@@ -22,12 +22,16 @@ export interface TargetPageStoreData {
 }
 
 export class ClientStoreListener {
-    private onReadyToExecuteVisualizationUpdates: ((storeData: TargetPageStoreData) => void)[] = [];
+    private onReadyToExecuteVisualizationUpdates: ((
+        storeData: TargetPageStoreData,
+    ) => void)[] = [];
     constructor(private storeHub: BaseClientStoresHub<TargetPageStoreData>) {
         this.storeHub.addChangedListenerToAllStores(this.onChangedState);
     }
 
-    public registerOnReadyToExecuteVisualizationCallback = (callback: (storeData: TargetPageStoreData) => void) => {
+    public registerOnReadyToExecuteVisualizationCallback = (
+        callback: (storeData: TargetPageStoreData) => void,
+    ) => {
         this.onReadyToExecuteVisualizationUpdates.push(callback);
     };
 
@@ -42,6 +46,8 @@ export class ClientStoreListener {
             return;
         }
 
-        this.onReadyToExecuteVisualizationUpdates.forEach(callback => callback(storeData));
+        this.onReadyToExecuteVisualizationUpdates.forEach(callback =>
+            callback(storeData),
+        );
     };
 }

@@ -4,9 +4,15 @@ import { CreateIssueDetailsTextData } from '../common/types/create-issue-details
 import { DecoratedAxeNodeResult } from '../injected/scanner-utils';
 
 export class AxeResultToIssueFilingDataConverter {
-    constructor(private readonly shortenSelector: (selector: string) => string) {}
+    constructor(
+        private readonly shortenSelector: (selector: string) => string,
+    ) {}
 
-    public convert(result: DecoratedAxeNodeResult, pageTitle: string, pageUrl: string): CreateIssueDetailsTextData {
+    public convert(
+        result: DecoratedAxeNodeResult,
+        pageTitle: string,
+        pageUrl: string,
+    ): CreateIssueDetailsTextData {
         return {
             rule: {
                 description: result.help,

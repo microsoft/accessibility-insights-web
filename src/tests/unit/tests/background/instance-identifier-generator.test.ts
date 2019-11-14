@@ -8,7 +8,9 @@ describe('InstanceIdentifierGeneratorTest', () => {
         const instanceStub = {
             target: [expectedSelector],
         };
-        const actual = InstanceIdentifierGenerator.generateSelectorIdentifier(instanceStub);
+        const actual = InstanceIdentifierGenerator.generateSelectorIdentifier(
+            instanceStub,
+        );
         expect(actual).toEqual(expectedSelector);
     });
     it('defaultIdentifier', () => {
@@ -19,7 +21,9 @@ describe('InstanceIdentifierGeneratorTest', () => {
             html: html,
             target: [selector],
         };
-        const actual = InstanceIdentifierGenerator.defaultHtmlSelectorIdentifier(instanceStub);
+        const actual = InstanceIdentifierGenerator.defaultHtmlSelectorIdentifier(
+            instanceStub,
+        );
         expect(actual).toEqual(expected);
     });
 });

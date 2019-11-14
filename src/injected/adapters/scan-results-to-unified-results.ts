@@ -2,12 +2,22 @@
 // Licensed under the MIT License.
 import { flatMap } from 'lodash';
 
-import { InstanceResultStatus, UnifiedResult } from '../../common/types/store-data/unified-data-interface';
+import {
+    InstanceResultStatus,
+    UnifiedResult,
+} from '../../common/types/store-data/unified-data-interface';
 import { UUIDGeneratorType } from '../../common/uid-generator';
-import { AxeNodeResult, RuleResult, ScanResults } from '../../scanner/iruleresults';
+import {
+    AxeNodeResult,
+    RuleResult,
+    ScanResults,
+} from '../../scanner/iruleresults';
 import { IssueFilingUrlStringUtils } from './../../issue-filing/common/issue-filing-url-string-utils';
 
-export type ConvertScanResultsToUnifiedResultsDelegate = (scanResults: ScanResults, uuidGenerator: UUIDGeneratorType) => UnifiedResult[];
+export type ConvertScanResultsToUnifiedResultsDelegate = (
+    scanResults: ScanResults,
+    uuidGenerator: UUIDGeneratorType,
+) => UnifiedResult[];
 
 interface RuleResultData {
     status: InstanceResultStatus;
@@ -25,17 +35,31 @@ interface CreationData extends RuleResultData {
     };
 }
 
-export const convertScanResultsToUnifiedResults = (scanResults: ScanResults, uuidGenerator: UUIDGeneratorType): UnifiedResult[] => {
+export const convertScanResultsToUnifiedResults = (
+    scanResults: ScanResults,
+    uuidGenerator: UUIDGeneratorType,
+): UnifiedResult[] => {
     if (!scanResults) {
         return [];
     }
     return createUnifiedResultsFromScanResults(scanResults, uuidGenerator);
 };
 
-const createUnifiedResultsFromScanResults = (scanResults: ScanResults, uuidGenerator: UUIDGeneratorType): UnifiedResult[] => {
+const createUnifiedResultsFromScanResults = (
+    scanResults: ScanResults,
+    uuidGenerator: UUIDGeneratorType,
+): UnifiedResult[] => {
     return [
-        ...createUnifiedResultsFromRuleResults(scanResults.violations, 'fail', uuidGenerator),
-        ...createUnifiedResultsFromRuleResults(scanResults.passes, 'pass', uuidGenerator),
+        ...createUnifiedResultsFromRuleResults(
+            scanResults.violations,
+            'fail',
+            uuidGenerator,
+        ),
+        ...createUnifiedResultsFromRuleResults(
+            scanResults.passes,
+            'pass',
+            uuidGenerator,
+        ),
     ];
 };
 
@@ -87,14 +111,19 @@ const createUnifiedResultFromNode = (
     );
 };
 
-const createUnifiedResult = (data: CreationData, uuidGenerator: UUIDGeneratorType): UnifiedResult => {
+const createUnifiedResult = (
+    data: CreationData,
+    uuidGenerator: UUIDGeneratorType,
+): UnifiedResult => {
     return {
         uid: uuidGenerator(),
         status: data.status,
         ruleId: data.ruleID,
         identifiers: {
             identifier: data.cssSelector,
-            conciseName: IssueFilingUrlStringUtils.getSelectorLastPart(data.cssSelector),
+            conciseName: IssueFilingUrlStringUtils.getSelectorLastPart(
+                data.cssSelector,
+            ),
             'css-selector': data.cssSelector,
         },
         descriptors: {

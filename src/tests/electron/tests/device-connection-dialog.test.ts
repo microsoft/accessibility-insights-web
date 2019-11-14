@@ -27,24 +27,52 @@ describe('device connection dialog', () => {
     });
 
     it('should initially have the cancel button and port field enabled, but validate and start buttons disabled', async () => {
-        expect(await dialog.isEnabled(DeviceConnectionDialogSelectors.cancelButton)).toBe(true);
-        expect(await dialog.isEnabled(DeviceConnectionDialogSelectors.portNumber)).toBe(true);
-        expect(await dialog.isEnabled(DeviceConnectionDialogSelectors.startButton)).toBe(false);
-        expect(await dialog.isEnabled(DeviceConnectionDialogSelectors.validateButton)).toBe(false);
+        expect(
+            await dialog.isEnabled(
+                DeviceConnectionDialogSelectors.cancelButton,
+            ),
+        ).toBe(true);
+        expect(
+            await dialog.isEnabled(DeviceConnectionDialogSelectors.portNumber),
+        ).toBe(true);
+        expect(
+            await dialog.isEnabled(DeviceConnectionDialogSelectors.startButton),
+        ).toBe(false);
+        expect(
+            await dialog.isEnabled(
+                DeviceConnectionDialogSelectors.validateButton,
+            ),
+        ).toBe(false);
     });
 
     it('should leave the validate and start buttons disabled when provided an invalid port number', async () => {
         await dialog.click(DeviceConnectionDialogSelectors.portNumber);
-        await dialog.findElement(DeviceConnectionDialogSelectors.portNumber).keys('abc');
-        expect(await dialog.isEnabled(DeviceConnectionDialogSelectors.validateButton)).toBe(false);
-        expect(await dialog.isEnabled(DeviceConnectionDialogSelectors.startButton)).toBe(false);
+        await dialog
+            .findElement(DeviceConnectionDialogSelectors.portNumber)
+            .keys('abc');
+        expect(
+            await dialog.isEnabled(
+                DeviceConnectionDialogSelectors.validateButton,
+            ),
+        ).toBe(false);
+        expect(
+            await dialog.isEnabled(DeviceConnectionDialogSelectors.startButton),
+        ).toBe(false);
     });
 
     it('should enable the validate and start buttons when provided a valid port number', async () => {
         await dialog.click(DeviceConnectionDialogSelectors.portNumber);
-        await dialog.findElement(DeviceConnectionDialogSelectors.portNumber).keys('999');
-        expect(await dialog.isEnabled(DeviceConnectionDialogSelectors.validateButton)).toBe(true);
-        expect(await dialog.isEnabled(DeviceConnectionDialogSelectors.startButton)).toBe(false);
+        await dialog
+            .findElement(DeviceConnectionDialogSelectors.portNumber)
+            .keys('999');
+        expect(
+            await dialog.isEnabled(
+                DeviceConnectionDialogSelectors.validateButton,
+            ),
+        ).toBe(true);
+        expect(
+            await dialog.isEnabled(DeviceConnectionDialogSelectors.startButton),
+        ).toBe(false);
     });
 
     it('should not contain any accessibility issues', async () => {

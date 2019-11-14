@@ -1,15 +1,23 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BaseActionPayload, FileIssuePayload } from 'background/actions/action-payloads';
+import {
+    BaseActionPayload,
+    FileIssuePayload,
+} from 'background/actions/action-payloads';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 
-import { FILE_ISSUE_CLICK, TelemetryEventSource } from '../extension-telemetry-events';
+import {
+    FILE_ISSUE_CLICK,
+    TelemetryEventSource,
+} from '../extension-telemetry-events';
 import { Message } from '../message';
 import { Messages } from '../messages';
 import { TelemetryDataFactory } from '../telemetry-data-factory';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
 
-type SupportedMouseEvent = React.MouseEvent<HTMLElement> | React.SyntheticEvent<Element, Event>;
+type SupportedMouseEvent =
+    | React.MouseEvent<HTMLElement>
+    | React.SyntheticEvent<Element, Event>;
 
 export class IssueFilingActionMessageCreator {
     constructor(
@@ -20,7 +28,11 @@ export class IssueFilingActionMessageCreator {
 
     public openSettingsPanel(event: React.MouseEvent<HTMLElement>): void {
         const messageType = Messages.SettingsPanel.OpenPanel;
-        const telemetry = this.telemetryFactory.forSettingsPanelOpen(event, this.source, 'fileIssueSettingsPrompt');
+        const telemetry = this.telemetryFactory.forSettingsPanelOpen(
+            event,
+            this.source,
+            'fileIssueSettingsPrompt',
+        );
         const payload: BaseActionPayload = {
             telemetry,
         };
@@ -30,14 +42,29 @@ export class IssueFilingActionMessageCreator {
         });
     }
 
-    public trackFileIssueClick(event: React.MouseEvent<HTMLElement>, service: string): void {
-        const telemetry = this.telemetryFactory.forFileIssueClick(event, this.source, service);
+    public trackFileIssueClick(
+        event: React.MouseEvent<HTMLElement>,
+        service: string,
+    ): void {
+        const telemetry = this.telemetryFactory.forFileIssueClick(
+            event,
+            this.source,
+            service,
+        );
         this.dispatcher.sendTelemetry(FILE_ISSUE_CLICK, telemetry);
     }
 
-    public fileIssue(event: SupportedMouseEvent, serviceKey: string, issueData: CreateIssueDetailsTextData): void {
+    public fileIssue(
+        event: SupportedMouseEvent,
+        serviceKey: string,
+        issueData: CreateIssueDetailsTextData,
+    ): void {
         const messageType = Messages.IssueFiling.FileIssue;
-        const telemetry = this.telemetryFactory.forFileIssueClick(event, this.source, serviceKey);
+        const telemetry = this.telemetryFactory.forFileIssueClick(
+            event,
+            this.source,
+            serviceKey,
+        );
         const payload: FileIssuePayload = {
             telemetry,
             issueData,

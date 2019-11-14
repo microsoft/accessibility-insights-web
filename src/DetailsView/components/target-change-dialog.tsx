@@ -27,7 +27,9 @@ export interface TargetChangeDialogProps {
     actionMessageCreator: DetailsViewActionMessageCreator;
 }
 
-export class TargetChangeDialog extends React.Component<TargetChangeDialogProps> {
+export class TargetChangeDialog extends React.Component<
+    TargetChangeDialogProps
+> {
     public render(): JSX.Element {
         const { prevTab, newTab } = this.props;
         if (!this.showTargetChangeDialog(prevTab, newTab)) {
@@ -42,35 +44,50 @@ export class TargetChangeDialog extends React.Component<TargetChangeDialogProps>
                 }}
                 modalProps={{
                     className: 'target-change-dialog-modal',
-                    containerClassName: 'insights-dialog-main-override target-change-dialog',
+                    containerClassName:
+                        'insights-dialog-main-override target-change-dialog',
                     subtitleAriaId: 'target-change-dialog-description',
                 }}
             >
                 <div id="target-change-dialog-description">
                     <div>
                         There is already an assessment running on&nbsp;
-                        {this.renderPreviousTabLink(this.props.prevTab)}. Would you like to continue your current assessment on the new
+                        {this.renderPreviousTabLink(this.props.prevTab)}. Would
+                        you like to continue your current assessment on the new
                         target of&nbsp;
                         {this.renderCurrentTabLink(this.props.newTab)}?
                     </div>
                     <p>
-                        <Markup.Term>Note</Markup.Term>: If 'Continue previous' is selected, the previous assessment will be connected to
-                        this new page.
+                        <Markup.Term>Note</Markup.Term>: If 'Continue previous'
+                        is selected, the previous assessment will be connected
+                        to this new page.
                     </p>
-                    <p>If 'Start new' is selected, all previous progress will be lost.</p>
+                    <p>
+                        If 'Start new' is selected, all previous progress will
+                        be lost.
+                    </p>
                 </div>
 
                 <DialogFooter>
                     <div className="target-change-dialog-button-container">
                         <div className="button ms-Grid-col  action-cancel-button-col restart-button">
-                            <DefaultButton text="Start new" onClick={this.props.actionMessageCreator.startOverAllAssessments} />
+                            <DefaultButton
+                                text="Start new"
+                                onClick={
+                                    this.props.actionMessageCreator
+                                        .startOverAllAssessments
+                                }
+                            />
                         </div>
 
                         <div className="button ms-Grid-col  action-cancel-button-col continue-button">
                             <DefaultButton
                                 autoFocus={true}
                                 text="Continue previous"
-                                onClick={this.props.actionMessageCreator.continuePreviousAssessment}
+                                onClick={
+                                    this.props.actionMessageCreator
+                                        .continuePreviousAssessment
+                                }
                             />
                         </div>
                     </div>
@@ -81,8 +98,16 @@ export class TargetChangeDialog extends React.Component<TargetChangeDialogProps>
 
     private renderPreviousTabLink(tab: Tab): JSX.Element {
         return (
-            <TooltipHost content={tab.url} id={'previous-target-page-link'} calloutProps={{ gapSpace: 0 }}>
-                <NewTabLink role="link" className="target-page-link" href={tab.url}>
+            <TooltipHost
+                content={tab.url}
+                id={'previous-target-page-link'}
+                calloutProps={{ gapSpace: 0 }}
+            >
+                <NewTabLink
+                    role="link"
+                    className="target-page-link"
+                    href={tab.url}
+                >
                     {tab.title}
                 </NewTabLink>
             </TooltipHost>
@@ -91,7 +116,11 @@ export class TargetChangeDialog extends React.Component<TargetChangeDialogProps>
 
     private renderCurrentTabLink(tab: Tab): JSX.Element {
         return (
-            <TooltipHost content={tab.url} id={'current-target-page-link'} calloutProps={{ gapSpace: 0 }}>
+            <TooltipHost
+                content={tab.url}
+                id={'current-target-page-link'}
+                calloutProps={{ gapSpace: 0 }}
+            >
                 <Link
                     role="link"
                     className={css('insights-link', 'target-page-link')}
@@ -103,7 +132,10 @@ export class TargetChangeDialog extends React.Component<TargetChangeDialogProps>
         );
     }
 
-    private showTargetChangeDialog(prevTab: PersistedTabInfo, newTab: Tab): boolean {
+    private showTargetChangeDialog(
+        prevTab: PersistedTabInfo,
+        newTab: Tab,
+    ): boolean {
         if (isEmpty(prevTab)) {
             return false;
         }
@@ -113,12 +145,17 @@ export class TargetChangeDialog extends React.Component<TargetChangeDialogProps>
         }
 
         const { urlParser } = this.props.deps;
-        const urlChanged = prevTab.url && urlParser.areURLsEqual(prevTab.url, newTab.url) === false;
+        const urlChanged =
+            prevTab.url &&
+            urlParser.areURLsEqual(prevTab.url, newTab.url) === false;
 
         return this.didTargetTabChanged(prevTab, newTab) || urlChanged === true;
     }
 
-    private didTargetTabChanged(prevTab: PersistedTabInfo, newTab: Tab): boolean {
+    private didTargetTabChanged(
+        prevTab: PersistedTabInfo,
+        newTab: Tab,
+    ): boolean {
         return prevTab.id !== newTab.id;
     }
 }

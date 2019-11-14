@@ -3,7 +3,11 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { HeaderIconComponent, HeaderIconDeps, HeaderIconProps } from '../../../../../common/components/header-icon';
+import {
+    HeaderIconComponent,
+    HeaderIconDeps,
+    HeaderIconProps,
+} from '../../../../../common/components/header-icon';
 
 describe('HeaderIconComponent', () => {
     let props: HeaderIconProps;
@@ -21,9 +25,12 @@ describe('HeaderIconComponent', () => {
             },
         } as HeaderIconProps;
     });
-    test.each([true, false])('is high contrast mode enabled: %s', (enableHighContrast: boolean) => {
-        props.storeState.userConfigurationStoreData.enableHighContrast = enableHighContrast;
-        const wrapper = shallow(<HeaderIconComponent {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
-    });
+    test.each([true, false])(
+        'is high contrast mode enabled: %s',
+        (enableHighContrast: boolean) => {
+            props.storeState.userConfigurationStoreData.enableHighContrast = enableHighContrast;
+            const wrapper = shallow(<HeaderIconComponent {...props} />);
+            expect(wrapper.getElement()).toMatchSnapshot();
+        },
+    );
 });

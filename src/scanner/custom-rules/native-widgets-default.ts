@@ -4,7 +4,8 @@ import * as AxeUtils from '../axe-utils';
 import { RuleConfiguration } from '../iruleresults';
 import { RoleUtils } from '../role-utils';
 
-export const nativeWidgetSelector = 'button, input[list], input[type]:not([type="hidden"]), select, textarea';
+export const nativeWidgetSelector =
+    'button, input[list], input[type]:not([type="hidden"]), select, textarea';
 
 export const nativeWidgetsDefaultConfiguration = createNativeWidgetConfiguration(
     'native-widgets-default',
@@ -14,7 +15,12 @@ export const nativeWidgetsDefaultConfiguration = createNativeWidgetConfiguration
 export function createNativeWidgetConfiguration(
     ruleId: string,
     checkId: string,
-    evaluate?: (node: any, options: any, virtualNode: any, context: any) => boolean,
+    evaluate?: (
+        node: any,
+        options: any,
+        virtualNode: any,
+        context: any,
+    ) => boolean,
     matches?: (node: any, virtualNode: any) => boolean,
 ): RuleConfiguration {
     return {
@@ -51,7 +57,11 @@ export function evaluateNativeWidget(node: HTMLElement): boolean {
 }
 
 export function getNativeWidgetElementType(node: HTMLElement): string {
-    if (node.tagName === 'BUTTON' || node.tagName === 'SELECT' || node.tagName === 'TEXTAREA') {
+    if (
+        node.tagName === 'BUTTON' ||
+        node.tagName === 'SELECT' ||
+        node.tagName === 'TEXTAREA'
+    ) {
         return node.tagName.toLowerCase();
     } else if (node.tagName === 'INPUT' && node.hasAttribute('list')) {
         return 'input list';

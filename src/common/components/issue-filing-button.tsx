@@ -10,8 +10,14 @@ import { EnvironmentInfoProvider } from '../environment-info-provider';
 import { LadyBugSolidIcon } from '../icons/lady-bug-solid-icon';
 import { IssueFilingActionMessageCreator } from '../message-creators/issue-filing-action-message-creator';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
-import { IssueFilingNeedsSettingsContentProps, IssueFilingNeedsSettingsContentRenderer } from '../types/issue-filing-needs-setting-content';
-import { IssueFilingServiceProperties, UserConfigurationStoreData } from '../types/store-data/user-configuration-store';
+import {
+    IssueFilingNeedsSettingsContentProps,
+    IssueFilingNeedsSettingsContentRenderer,
+} from '../types/issue-filing-needs-setting-content';
+import {
+    IssueFilingServiceProperties,
+    UserConfigurationStoreData,
+} from '../types/store-data/user-configuration-store';
 
 export type IssueFilingButtonDeps = {
     issueFilingActionMessageCreator: IssueFilingActionMessageCreator;
@@ -30,7 +36,10 @@ export type IssueFilingButtonState = {
     showNeedsSettingsContent: boolean;
 };
 
-export class IssueFilingButton extends React.Component<IssueFilingButtonProps, IssueFilingButtonState> {
+export class IssueFilingButton extends React.Component<
+    IssueFilingButtonProps,
+    IssueFilingButtonState
+> {
     constructor(props) {
         super(props);
         this.state = {
@@ -39,9 +48,15 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
     }
 
     public render(): JSX.Element {
-        const { issueDetailsData, userConfigurationStoreData, deps } = this.props;
+        const {
+            issueDetailsData,
+            userConfigurationStoreData,
+            deps,
+        } = this.props;
         const { issueFilingServiceProvider } = deps;
-        const selectedIssueFilingService: IssueFilingService = issueFilingServiceProvider.forKey(userConfigurationStoreData.bugService);
+        const selectedIssueFilingService: IssueFilingService = issueFilingServiceProvider.forKey(
+            userConfigurationStoreData.bugService,
+        );
         const selectedIssueFilingServiceData: IssueFilingServiceProperties = selectedIssueFilingService.getSettingsFromStoreData(
             userConfigurationStoreData.bugServicePropertiesMap,
         );
@@ -53,13 +68,17 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
             selectedIssueData: issueDetailsData,
             selectedIssueFilingServiceData,
             onClose: this.closeNeedsSettingsContent,
-            issueFilingServicePropertiesMap: userConfigurationStoreData.bugServicePropertiesMap,
+            issueFilingServicePropertiesMap:
+                userConfigurationStoreData.bugServicePropertiesMap,
         };
         const NeedsSettingsContent = this.props.needsSettingsContentRenderer;
 
         return (
             <>
-                <DefaultButton className={'file-issue-button'} onClick={event => this.onClickFileIssueButton(event)}>
+                <DefaultButton
+                    className={'file-issue-button'}
+                    onClick={event => this.onClickFileIssueButton(event)}
+                >
                     <LadyBugSolidIcon />
                     <div className="ms-Button-label">File issue</div>
                 </DefaultButton>
@@ -77,17 +96,32 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
     }
 
     private onClickFileIssueButton = (event: React.MouseEvent<any>): void => {
-        const { issueDetailsData, userConfigurationStoreData, deps } = this.props;
-        const { issueFilingServiceProvider, issueFilingActionMessageCreator } = deps;
+        const {
+            issueDetailsData,
+            userConfigurationStoreData,
+            deps,
+        } = this.props;
+        const {
+            issueFilingServiceProvider,
+            issueFilingActionMessageCreator,
+        } = deps;
 
-        const selectedBugFilingService = issueFilingServiceProvider.forKey(userConfigurationStoreData.bugService);
+        const selectedBugFilingService = issueFilingServiceProvider.forKey(
+            userConfigurationStoreData.bugService,
+        );
         const selectedBugFilingServiceData = selectedBugFilingService.getSettingsFromStoreData(
             userConfigurationStoreData.bugServicePropertiesMap,
         );
-        const isSettingValid = selectedBugFilingService.isSettingsValid(selectedBugFilingServiceData);
+        const isSettingValid = selectedBugFilingService.isSettingsValid(
+            selectedBugFilingServiceData,
+        );
 
         if (isSettingValid) {
-            issueFilingActionMessageCreator.fileIssue(event, userConfigurationStoreData.bugService, issueDetailsData);
+            issueFilingActionMessageCreator.fileIssue(
+                event,
+                userConfigurationStoreData.bugService,
+                issueDetailsData,
+            );
             this.closeNeedsSettingsContent();
         } else {
             this.openNeedsSettingsContent();

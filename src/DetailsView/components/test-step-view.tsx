@@ -5,10 +5,19 @@ import * as React from 'react';
 
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { Requirement, VisualHelperToggleConfig } from 'assessments/types/requirement';
-import { ContentPanelButton, ContentPanelButtonDeps } from 'views/content/content-panel-button';
+import {
+    Requirement,
+    VisualHelperToggleConfig,
+} from 'assessments/types/requirement';
+import {
+    ContentPanelButton,
+    ContentPanelButtonDeps,
+} from 'views/content/content-panel-button';
 import { CollapsibleComponent } from '../../common/components/collapsible-component';
-import { GuidanceTags, GuidanceTagsDeps } from '../../common/components/guidance-tags';
+import {
+    GuidanceTags,
+    GuidanceTagsDeps,
+} from '../../common/components/guidance-tags';
 import {
     AssessmentNavState,
     GeneratedAssessmentInstance,
@@ -49,15 +58,26 @@ export class TestStepView extends React.Component<TestStepViewProps> {
                 <div className="test-step-title-container">
                     <h3 className="test-step-view-title">
                         {this.props.testStep.name}
-                        <GuidanceTags deps={this.props.deps} links={this.props.testStep.guidanceLinks} />
+                        <GuidanceTags
+                            deps={this.props.deps}
+                            links={this.props.testStep.guidanceLinks}
+                        />
                     </h3>
-                    <ContentPanelButton deps={this.props.deps} reference={this.props.testStep.infoAndExamples} iconName="info">
+                    <ContentPanelButton
+                        deps={this.props.deps}
+                        reference={this.props.testStep.infoAndExamples}
+                        iconName="info"
+                    >
                         Info &amp; examples
                     </ContentPanelButton>
                 </div>
                 {this.renderVisualHelperToggle()}
                 <CollapsibleComponent
-                    header={<h4 className="test-step-instructions-header">How to test</h4>}
+                    header={
+                        <h4 className="test-step-instructions-header">
+                            How to test
+                        </h4>
+                    }
                     content={this.props.testStep.howToTest}
                     contentClassName={'test-step-instructions'}
                 />
@@ -73,7 +93,9 @@ export class TestStepView extends React.Component<TestStepViewProps> {
                     test={this.props.assessmentNavState.selectedTestType}
                     step={this.props.assessmentNavState.selectedTestStep}
                     manualTestStepResultMap={this.props.manualTestStepResultMap}
-                    assessmentInstanceTableHandler={this.props.assessmentInstanceTableHandler}
+                    assessmentInstanceTableHandler={
+                        this.props.assessmentInstanceTableHandler
+                    }
                     assessmentsProvider={this.props.assessmentsProvider}
                     featureFlagStoreData={this.props.featureFlagStoreData}
                     pathSnippetStoreData={this.props.pathSnippetStoreData}
@@ -82,7 +104,13 @@ export class TestStepView extends React.Component<TestStepViewProps> {
         }
 
         if (this.props.isScanning) {
-            return <Spinner className="details-view-spinner" size={SpinnerSize.large} label={'Scanning'} />;
+            return (
+                <Spinner
+                    className="details-view-spinner"
+                    size={SpinnerSize.large}
+                    label={'Scanning'}
+                />
+            );
         }
 
         return (
@@ -91,11 +119,17 @@ export class TestStepView extends React.Component<TestStepViewProps> {
                 <h3 className="test-step-instances-header">Instances</h3>
                 <AssessmentInstanceTable
                     instancesMap={this.props.instancesMap}
-                    assessmentInstanceTableHandler={this.props.assessmentInstanceTableHandler}
+                    assessmentInstanceTableHandler={
+                        this.props.assessmentInstanceTableHandler
+                    }
                     assessmentNavState={this.props.assessmentNavState}
-                    renderInstanceTableHeader={this.props.testStep.renderInstanceTableHeader}
+                    renderInstanceTableHeader={
+                        this.props.testStep.renderInstanceTableHeader
+                    }
                     getDefaultMessage={this.props.testStep.getDefaultMessage}
-                    assessmentDefaultMessageGenerator={this.props.assessmentDefaultMessageGenerator}
+                    assessmentDefaultMessageGenerator={
+                        this.props.assessmentDefaultMessageGenerator
+                    }
                     hasVisualHelper={this.doesSelectedStepHaveVisualHelper()}
                 />
             </React.Fragment>
@@ -104,7 +138,13 @@ export class TestStepView extends React.Component<TestStepViewProps> {
 
     private renderScanCompleteAlert(): JSX.Element {
         if (!this.props.testStep.isManual && this.props.isStepScanned) {
-            return <div role="alert" aria-live="polite" aria-label="Scan Complete" />;
+            return (
+                <div
+                    role="alert"
+                    aria-live="polite"
+                    aria-label="Scan Complete"
+                />
+            );
         }
     }
     private getSelectedStep(): Readonly<Requirement> {
@@ -131,6 +171,8 @@ export class TestStepView extends React.Component<TestStepViewProps> {
             isStepScanned: this.props.isStepScanned,
         };
 
-        return this.getSelectedStep().getVisualHelperToggle(visualHelperToggleConfig);
+        return this.getSelectedStep().getVisualHelperToggle(
+            visualHelperToggleConfig,
+        );
     }
 }

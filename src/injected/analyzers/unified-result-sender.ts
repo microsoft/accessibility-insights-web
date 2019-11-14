@@ -18,10 +18,17 @@ export class UnifiedResultSender {
         private readonly generateUID: UUIDGeneratorType,
     ) {}
 
-    public sendResults: PostResolveCallback = (axeResults: AxeAnalyzerResult) => {
+    public sendResults: PostResolveCallback = (
+        axeResults: AxeAnalyzerResult,
+    ) => {
         const payload: UnifiedScanCompletedPayload = {
-            scanResult: this.convertScanResultsToUnifiedResults(axeResults.originalResult, this.generateUID),
-            rules: this.convertScanResultsToUnifiedRules(axeResults.originalResult),
+            scanResult: this.convertScanResultsToUnifiedResults(
+                axeResults.originalResult,
+                this.generateUID,
+            ),
+            rules: this.convertScanResultsToUnifiedRules(
+                axeResults.originalResult,
+            ),
             toolInfo: this.environmentInfoProvider.getToolData(),
             targetAppInfo: {
                 name: axeResults.originalResult.targetPageTitle,

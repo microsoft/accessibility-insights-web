@@ -15,15 +15,31 @@ describe('OutcomeMath', () => {
     });
 
     it('computes the weightedPercentage', () => {
-        expect(weightedPercentage(statArray)).toEqual({ pass: 13, fail: 50, incomplete: 37 });
+        expect(weightedPercentage(statArray)).toEqual({
+            pass: 13,
+            fail: 50,
+            incomplete: 37,
+        });
     });
 
     it('computes percentageComplete', () => {
-        expect(percentageComplete({ pass: 0, fail: 0, incomplete: 20 })).toEqual(0);
-        expect(percentageComplete({ pass: 10, fail: 0, incomplete: 0 })).toEqual(100);
-        expect(percentageComplete({ pass: 0, fail: 10, incomplete: 0 })).toEqual(100);
-        expect(percentageComplete({ pass: 10, fail: 10, incomplete: 20 })).toEqual(50);
-        expect(percentageComplete({ pass: null, fail: null, incomplete: 20 })).toEqual(0);
-        expect(percentageComplete({ pass: 0, fail: 0, incomplete: 0 })).toEqual(NaN);
+        expect(
+            percentageComplete({ pass: 0, fail: 0, incomplete: 20 }),
+        ).toEqual(0);
+        expect(
+            percentageComplete({ pass: 10, fail: 0, incomplete: 0 }),
+        ).toEqual(100);
+        expect(
+            percentageComplete({ pass: 0, fail: 10, incomplete: 0 }),
+        ).toEqual(100);
+        expect(
+            percentageComplete({ pass: 10, fail: 10, incomplete: 20 }),
+        ).toEqual(50);
+        expect(
+            percentageComplete({ pass: null, fail: null, incomplete: 20 }),
+        ).toEqual(0);
+        expect(percentageComplete({ pass: 0, fail: 0, incomplete: 0 })).toEqual(
+            NaN,
+        );
     });
 });

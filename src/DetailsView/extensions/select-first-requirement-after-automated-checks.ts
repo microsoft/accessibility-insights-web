@@ -9,7 +9,10 @@ function isRunning(props: AssessmentViewProps): boolean {
     return results.incomplete > 0;
 }
 
-function onAssessmentViewUpdate(prevProps: AssessmentViewProps, curProps: AssessmentViewProps): void {
+function onAssessmentViewUpdate(
+    prevProps: AssessmentViewProps,
+    curProps: AssessmentViewProps,
+): void {
     const { assessmentTestResult } = curProps;
     const prevIsRunning = isRunning(prevProps);
     const nowIsRunning = isRunning(curProps);
@@ -22,6 +25,8 @@ function onAssessmentViewUpdate(prevProps: AssessmentViewProps, curProps: Assess
     }
 }
 
-export const selectFirstRequirementAfterAutomatedChecks = detailsViewExtensionPoint.define({
-    onAssessmentViewUpdate,
-});
+export const selectFirstRequirementAfterAutomatedChecks = detailsViewExtensionPoint.define(
+    {
+        onAssessmentViewUpdate,
+    },
+);

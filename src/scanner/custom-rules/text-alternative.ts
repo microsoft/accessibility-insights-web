@@ -23,12 +23,16 @@ export const textAlternativeConfiguration: RuleConfiguration = {
 };
 
 function matches(node: HTMLElement): boolean {
-    return isImage(node, null) && AxeUtils.getImageCodedAs(node) === 'Meaningful';
+    return (
+        isImage(node, null) && AxeUtils.getImageCodedAs(node) === 'Meaningful'
+    );
 }
 
 function evaluateTextAlternative(node: HTMLElement): boolean {
     const accessibleName: string = AxeUtils.getAccessibleText(node, false);
-    const accessibleDescription: string = AxeUtils.getAccessibleDescription(node);
+    const accessibleDescription: string = AxeUtils.getAccessibleDescription(
+        node,
+    );
     const imageType: string = AxeUtils.getImageType(node);
 
     // tslint:disable-next-line:no-invalid-this

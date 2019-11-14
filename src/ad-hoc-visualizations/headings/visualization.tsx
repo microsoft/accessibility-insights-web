@@ -33,19 +33,24 @@ export const HeadingsAdHocVisualization: VisualizationConfiguration = {
     chromeCommand: '03_toggle-headings',
     launchPanelDisplayOrder: 3,
     adhocToolsPanelDisplayOrder: 3,
-    resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
+    resultProcessor: (scanner: ScannerUtils) =>
+        scanner.getAllCompletedInstances,
     getAnalyzer: provider =>
         provider.createRuleAnalyzer({
             rules: ['heading-order'],
-            resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
-            telemetryProcessor: (telemetryFactory: TelemetryDataFactory) => telemetryFactory.forTestScan,
+            resultProcessor: (scanner: ScannerUtils) =>
+                scanner.getAllCompletedInstances,
+            telemetryProcessor: (telemetryFactory: TelemetryDataFactory) =>
+                telemetryFactory.forTestScan,
             key: AdHocTestkeys.Headings,
             testType: VisualizationType.Headings,
             analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
         }),
     getIdentifier: () => AdHocTestkeys.Headings,
-    visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
-    getNotificationMessage: selectorMap => (isEmpty(selectorMap) ? 'No headings found' : null),
+    visualizationInstanceProcessor: () =>
+        VisualizationInstanceProcessor.nullProcessor,
+    getNotificationMessage: selectorMap =>
+        isEmpty(selectorMap) ? 'No headings found' : null,
     getDrawer: provider => provider.createHeadingsDrawer(),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,

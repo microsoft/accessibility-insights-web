@@ -10,8 +10,12 @@ describe('AssessmentReportModelBuilderFactory', () => {
     test('create', () => {
         const testSubject = new AssessmentReportModelBuilderFactory();
 
-        const assessmentStoreData: AssessmentStoreData = { stub: 'assessmentStoreData' } as any;
-        const assessmentsProvider: AssessmentsProvider = { stub: 'assessmentsProvider' } as any;
+        const assessmentStoreData: AssessmentStoreData = {
+            stub: 'assessmentStoreData',
+        } as any;
+        const assessmentsProvider: AssessmentsProvider = {
+            stub: 'assessmentsProvider',
+        } as any;
         const tabStoreData: TabStoreData = { stub: 'tabStoreData' } as any;
         const reportDate = new Date(2018, 9, 19, 10, 53);
         const assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator = new AssessmentDefaultMessageGenerator();

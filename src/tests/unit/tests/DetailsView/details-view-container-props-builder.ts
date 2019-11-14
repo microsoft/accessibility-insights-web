@@ -17,7 +17,10 @@ import { UnifiedScanResultStoreData } from '../../../../common/types/store-data/
 import { VisualizationScanResultData } from '../../../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';
 import { IssuesTableHandler } from '../../../../DetailsView/components/issues-table-handler';
-import { DetailsViewContainerDeps, DetailsViewContainerProps } from '../../../../DetailsView/details-view-container';
+import {
+    DetailsViewContainerDeps,
+    DetailsViewContainerProps,
+} from '../../../../DetailsView/details-view-container';
 import { AssessmentInstanceTableHandler } from '../../../../DetailsView/handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from '../../../../DetailsView/handlers/preview-feature-flags-handler';
@@ -27,7 +30,9 @@ import { StoreMocks } from './store-mocks';
 export class DetailsViewContainerPropsBuilder {
     private visualizationStore: BaseStore<VisualizationStoreData>;
     private assessmentStore: BaseStore<AssessmentStoreData>;
-    private visualizationScanResultStore: BaseStore<VisualizationScanResultData>;
+    private visualizationScanResultStore: BaseStore<
+        VisualizationScanResultData
+    >;
     private unifiedScanResultStore: BaseStore<UnifiedScanResultStoreData>;
     private tabStore: BaseStore<TabStoreData>;
     private featureFlagStore: BaseStore<DictionaryStringTo<boolean>>;
@@ -49,57 +54,79 @@ export class DetailsViewContainerPropsBuilder {
     private storesHub: BaseClientStoresHub<any>;
     constructor(private deps: DetailsViewContainerDeps) {}
 
-    public setDetailsViewStoreActionMessageCreator(creator: StoreActionMessageCreator): DetailsViewContainerPropsBuilder {
+    public setDetailsViewStoreActionMessageCreator(
+        creator: StoreActionMessageCreator,
+    ): DetailsViewContainerPropsBuilder {
         this.storeActionCreator = creator;
         return this;
     }
 
-    public setAssessmentProvider(provider: AssessmentsProvider): DetailsViewContainerPropsBuilder {
+    public setAssessmentProvider(
+        provider: AssessmentsProvider,
+    ): DetailsViewContainerPropsBuilder {
         this.assessmentProvider = provider;
         return this;
     }
 
-    public setVisualizationConfigurationFactory(configFactory: VisualizationConfigurationFactory): DetailsViewContainerPropsBuilder {
+    public setVisualizationConfigurationFactory(
+        configFactory: VisualizationConfigurationFactory,
+    ): DetailsViewContainerPropsBuilder {
         this.configFactory = configFactory;
         return this;
     }
 
-    public setClickHandlerFactory(factory: DetailsViewToggleClickHandlerFactory): DetailsViewContainerPropsBuilder {
+    public setClickHandlerFactory(
+        factory: DetailsViewToggleClickHandlerFactory,
+    ): DetailsViewContainerPropsBuilder {
         this.clickHandlerFactory = factory;
         return this;
     }
 
-    public setIssuesTableHandler(issuesTableHandler: IssuesTableHandler): DetailsViewContainerPropsBuilder {
+    public setIssuesTableHandler(
+        issuesTableHandler: IssuesTableHandler,
+    ): DetailsViewContainerPropsBuilder {
         this.issuesTableHandler = issuesTableHandler;
         return this;
     }
 
-    public setPreviewFeatureFlagsHandler(previewFeatureFlagsHandler: PreviewFeatureFlagsHandler): DetailsViewContainerPropsBuilder {
+    public setPreviewFeatureFlagsHandler(
+        previewFeatureFlagsHandler: PreviewFeatureFlagsHandler,
+    ): DetailsViewContainerPropsBuilder {
         this.previewFeatureFlagsHandler = previewFeatureFlagsHandler;
         return this;
     }
 
-    public setIssuesSelection(selection: ISelection): DetailsViewContainerPropsBuilder {
+    public setIssuesSelection(
+        selection: ISelection,
+    ): DetailsViewContainerPropsBuilder {
         this.issuesSelection = selection;
         return this;
     }
 
-    public setScopingActionMessageCreator(creator: ScopingActionMessageCreator): DetailsViewContainerPropsBuilder {
+    public setScopingActionMessageCreator(
+        creator: ScopingActionMessageCreator,
+    ): DetailsViewContainerPropsBuilder {
         this.scopingActionMessageCreator = creator;
         return this;
     }
 
-    public setInspectActionMessageCreator(creator: InspectActionMessageCreator): DetailsViewContainerPropsBuilder {
+    public setInspectActionMessageCreator(
+        creator: InspectActionMessageCreator,
+    ): DetailsViewContainerPropsBuilder {
         this.inspectActionMessageCreator = creator;
         return this;
     }
 
-    public setStoreActionMessageCreator(creator: StoreActionMessageCreator): DetailsViewContainerPropsBuilder {
+    public setStoreActionMessageCreator(
+        creator: StoreActionMessageCreator,
+    ): DetailsViewContainerPropsBuilder {
         this.storeActionCreator = creator;
         return this;
     }
 
-    public setDropdownClickHandler(creator: DropdownClickHandler): DetailsViewContainerPropsBuilder {
+    public setDropdownClickHandler(
+        creator: DropdownClickHandler,
+    ): DetailsViewContainerPropsBuilder {
         this.dropdownClickHandler = creator;
         return this;
     }
@@ -111,14 +138,20 @@ export class DetailsViewContainerPropsBuilder {
         return this;
     }
 
-    public setStoresHubMock(hub: BaseClientStoresHub<any>): DetailsViewContainerPropsBuilder {
+    public setStoresHubMock(
+        hub: BaseClientStoresHub<any>,
+    ): DetailsViewContainerPropsBuilder {
         this.storesHub = hub;
         return this;
     }
 
-    public setStoreMocks(storeMocks: StoreMocks): DetailsViewContainerPropsBuilder {
-        this.visualizationScanResultStore = storeMocks.visualizationScanResultStoreMock.object;
-        this.unifiedScanResultStore = storeMocks.unifiedScanResultStoreMock.object;
+    public setStoreMocks(
+        storeMocks: StoreMocks,
+    ): DetailsViewContainerPropsBuilder {
+        this.visualizationScanResultStore =
+            storeMocks.visualizationScanResultStoreMock.object;
+        this.unifiedScanResultStore =
+            storeMocks.unifiedScanResultStoreMock.object;
         this.visualizationStore = storeMocks.visualizationStoreMock.object;
         this.tabStore = storeMocks.tabStoreMock.object;
         this.detailsViewStore = storeMocks.detailsViewStoreMock.object;
@@ -142,7 +175,9 @@ export class DetailsViewContainerPropsBuilder {
                 this.scopingStateStore,
             ]);
 
-        const storeState = this.storesHub ? this.storesHub.getAllStoreData() : null;
+        const storeState = this.storesHub
+            ? this.storesHub.getAllStoreData()
+            : null;
         if (this.deps !== null) {
             this.deps.storesHub = storesHub;
             this.deps.storeActionMessageCreator = this.storeActionCreator;

@@ -4,7 +4,10 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { HowToFixAndroidCardRow, HowToFixAndroidCardRowProps } from 'common/components/cards/how-to-fix-android-card-row';
+import {
+    HowToFixAndroidCardRow,
+    HowToFixAndroidCardRowProps,
+} from 'common/components/cards/how-to-fix-android-card-row';
 import { IMock, It, Mock } from 'typemoq';
 import { FixInstructionProcessor } from '../../../../../../injected/fix-instruction-processor';
 
@@ -13,15 +16,20 @@ describe(HowToFixAndroidCardRow, () => {
     beforeEach(() => {
         fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
 
-        fixInstructionProcessorMock.setup(f => f.process(It.isAnyString())).returns(str => str);
+        fixInstructionProcessorMock
+            .setup(f => f.process(It.isAnyString()))
+            .returns(str => str);
     });
     it('renders with matches', () => {
         const props: HowToFixAndroidCardRowProps = {
-            deps: { fixInstructionProcessor: fixInstructionProcessorMock.object },
+            deps: {
+                fixInstructionProcessor: fixInstructionProcessorMock.object,
+            },
             index: 22,
             propertyData: {
                 formatAsCode: ["isn't", 'notPresent', 'bold'],
-                howToFix: "This isn't a simple text. It has some words that will be marked as bold.",
+                howToFix:
+                    "This isn't a simple text. It has some words that will be marked as bold.",
             },
         };
 
@@ -30,33 +38,46 @@ describe(HowToFixAndroidCardRow, () => {
         expect(testSubject.getElement()).toMatchSnapshot();
     });
 
-    test.each([null, undefined])('renders when howToFix is empty. - %o', howToFixValue => {
-        const props: HowToFixAndroidCardRowProps = {
-            deps: { fixInstructionProcessor: fixInstructionProcessorMock.object },
-            index: 22,
-            propertyData: {
-                formatAsCode: ["isn't", 'notPresent', 'bold'],
-                howToFix: howToFixValue,
-            },
-        };
+    test.each([null, undefined])(
+        'renders when howToFix is empty. - %o',
+        howToFixValue => {
+            const props: HowToFixAndroidCardRowProps = {
+                deps: {
+                    fixInstructionProcessor: fixInstructionProcessorMock.object,
+                },
+                index: 22,
+                propertyData: {
+                    formatAsCode: ["isn't", 'notPresent', 'bold'],
+                    howToFix: howToFixValue,
+                },
+            };
 
-        const testSubject = shallow(<HowToFixAndroidCardRow {...props} />);
+            const testSubject = shallow(<HowToFixAndroidCardRow {...props} />);
 
-        expect(testSubject.getElement()).toMatchSnapshot();
-    });
+            expect(testSubject.getElement()).toMatchSnapshot();
+        },
+    );
 
-    test.each([null, undefined])('throws when match has empty strings - %o', value => {
-        const props: HowToFixAndroidCardRowProps = {
-            deps: { fixInstructionProcessor: fixInstructionProcessorMock.object },
-            index: 22,
-            propertyData: {
-                formatAsCode: [value],
-                howToFix: "This isn't a simple text. It has some words that will be marked as bold.",
-            },
-        };
+    test.each([null, undefined])(
+        'throws when match has empty strings - %o',
+        value => {
+            const props: HowToFixAndroidCardRowProps = {
+                deps: {
+                    fixInstructionProcessor: fixInstructionProcessorMock.object,
+                },
+                index: 22,
+                propertyData: {
+                    formatAsCode: [value],
+                    howToFix:
+                        "This isn't a simple text. It has some words that will be marked as bold.",
+                },
+            };
 
-        expect(() => shallow(<HowToFixAndroidCardRow {...props} />)).toThrow();
-    });
+            expect(() =>
+                shallow(<HowToFixAndroidCardRow {...props} />),
+            ).toThrow();
+        },
+    );
 
     type RenderWithSpaceTestCase = {
         label: string;
@@ -87,7 +108,9 @@ describe(HowToFixAndroidCardRow, () => {
     renderWithSpaceTestCases.forEach(testCase => {
         it(`renders with whitespace - ${testCase.label}`, () => {
             const props: HowToFixAndroidCardRowProps = {
-                deps: { fixInstructionProcessor: fixInstructionProcessorMock.object },
+                deps: {
+                    fixInstructionProcessor: fixInstructionProcessorMock.object,
+                },
                 index: 22,
                 propertyData: {
                     formatAsCode: testCase.formatAsCode,
@@ -103,10 +126,13 @@ describe(HowToFixAndroidCardRow, () => {
 
     it('renders without formatAsCode property', () => {
         const props: HowToFixAndroidCardRowProps = {
-            deps: { fixInstructionProcessor: fixInstructionProcessorMock.object },
+            deps: {
+                fixInstructionProcessor: fixInstructionProcessorMock.object,
+            },
             index: 22,
             propertyData: {
-                howToFix: "This isn't a simple text. It has some words that will be marked as bold.",
+                howToFix:
+                    "This isn't a simple text. It has some words that will be marked as bold.",
             },
         };
 
@@ -117,11 +143,14 @@ describe(HowToFixAndroidCardRow, () => {
 
     it('renders when matches are not found', () => {
         const props: HowToFixAndroidCardRowProps = {
-            deps: { fixInstructionProcessor: fixInstructionProcessorMock.object },
+            deps: {
+                fixInstructionProcessor: fixInstructionProcessorMock.object,
+            },
             index: 22,
             propertyData: {
                 formatAsCode: ["isn'T", 'notPresent', 'bold1'],
-                howToFix: "This isn't a simple text. It has some words that will be marked as bold.",
+                howToFix:
+                    "This isn't a simple text. It has some words that will be marked as bold.",
             },
         };
 
@@ -132,14 +161,19 @@ describe(HowToFixAndroidCardRow, () => {
 
     it('renders with colors', () => {
         fixInstructionProcessorMock.reset();
-        fixInstructionProcessorMock.setup(f => f.process(It.isAnyString())).returns(str => <>replaced-color</>);
+        fixInstructionProcessorMock
+            .setup(f => f.process(It.isAnyString()))
+            .returns(str => <>replaced-color</>);
 
         const props: HowToFixAndroidCardRowProps = {
-            deps: { fixInstructionProcessor: fixInstructionProcessorMock.object },
+            deps: {
+                fixInstructionProcessor: fixInstructionProcessorMock.object,
+            },
             index: 22,
             propertyData: {
                 formatAsCode: ["isn't", 'notPresent', 'bold'],
-                howToFix: "This isn't a simple text. It has some words that will be marked as bold.",
+                howToFix:
+                    "This isn't a simple text. It has some words that will be marked as bold.",
             },
         };
 

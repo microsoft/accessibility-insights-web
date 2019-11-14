@@ -7,7 +7,9 @@ import { ScanResults } from 'electron/platform/android/scan-results';
 
 export type ToolDataDelegate = (scanResults: ScanResults) => ToolData;
 
-export const createGetToolDataDelegate = (appDataAdapter: AppDataAdapter): ToolDataDelegate => {
+export const createGetToolDataDelegate = (
+    appDataAdapter: AppDataAdapter,
+): ToolDataDelegate => {
     return scanResults => {
         return {
             scanEngineProperties: {

@@ -21,7 +21,9 @@ describe(RootContainer, () => {
     let props: RootContainerProps;
 
     beforeEach(() => {
-        storeHubMock = Mock.ofType<ClientStoresHub<RootContainerState>>(BaseClientStoresHub);
+        storeHubMock = Mock.ofType<ClientStoresHub<RootContainerState>>(
+            BaseClientStoresHub,
+        );
 
         deps = { storeHub: storeHubMock.object } as RootContainerDeps;
         props = {
@@ -35,10 +37,17 @@ describe(RootContainer, () => {
                 .setup(hub => hub.getAllStoreData())
                 .returns(() => {
                     return {
-                        windowStateStoreData: { routeId: 'deviceConnectView', currentWindowState: 'customSize' },
+                        windowStateStoreData: {
+                            routeId: 'deviceConnectView',
+                            currentWindowState: 'customSize',
+                        },
                         userConfigurationStoreData: { isFirstTime: true },
-                        deviceStoreData: { deviceConnectState: DeviceConnectState.Connected },
-                        unifiedScanResultStoreData: { targetAppInfo: { name: 'test-target-app-name' } },
+                        deviceStoreData: {
+                            deviceConnectState: DeviceConnectState.Connected,
+                        },
+                        unifiedScanResultStoreData: {
+                            targetAppInfo: { name: 'test-target-app-name' },
+                        },
                         scanStoreData: { status: ScanStatus.Completed },
                     } as RootContainerState;
                 });
@@ -53,9 +62,15 @@ describe(RootContainer, () => {
                 .setup(hub => hub.getAllStoreData())
                 .returns(() => {
                     return {
-                        windowStateStoreData: { routeId: 'resultsView', currentWindowState: 'customSize' },
+                        windowStateStoreData: {
+                            routeId: 'resultsView',
+                            currentWindowState: 'customSize',
+                        },
                         userConfigurationStoreData: { isFirstTime: true },
-                        deviceStoreData: { deviceConnectState: DeviceConnectState.Connected, port: 11111 },
+                        deviceStoreData: {
+                            deviceConnectState: DeviceConnectState.Connected,
+                            port: 11111,
+                        },
                         scanStoreData: { status: ScanStatus.Default },
                     } as RootContainerState;
                 });
@@ -72,23 +87,35 @@ describe(RootContainer, () => {
                 .setup(hub => hub.getAllStoreData())
                 .returns(() => {
                     return {
-                        windowStateStoreData: { routeId: 'deviceConnectView', currentWindowState: 'customSize' },
+                        windowStateStoreData: {
+                            routeId: 'deviceConnectView',
+                            currentWindowState: 'customSize',
+                        },
                         userConfigurationStoreData: { isFirstTime: true },
-                        deviceStoreData: { deviceConnectState: DeviceConnectState.Connected },
+                        deviceStoreData: {
+                            deviceConnectState: DeviceConnectState.Connected,
+                        },
                     } as RootContainerState;
                 });
             storeHubMock
                 .setup(hub => hub.getAllStoreData())
                 .returns(() => {
                     return {
-                        windowStateStoreData: { routeId: 'resultsView', currentWindowState: 'customSize' },
+                        windowStateStoreData: {
+                            routeId: 'resultsView',
+                            currentWindowState: 'customSize',
+                        },
                         userConfigurationStoreData: { isFirstTime: true },
-                        deviceStoreData: { deviceConnectState: DeviceConnectState.Connected },
+                        deviceStoreData: {
+                            deviceConnectState: DeviceConnectState.Connected,
+                        },
                     } as RootContainerState;
                 });
             let storeListener: Function;
             storeHubMock
-                .setup(hub => hub.addChangedListenerToAllStores(It.is(isFunction)))
+                .setup(hub =>
+                    hub.addChangedListenerToAllStores(It.is(isFunction)),
+                )
                 .callback(cb => {
                     storeListener = cb;
                 });

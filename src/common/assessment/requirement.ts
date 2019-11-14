@@ -4,7 +4,10 @@ import { keys, sortBy } from 'lodash';
 
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Requirement } from 'assessments/types/requirement';
-import { ManualTestStatusData, TestStepData } from '../types/manual-test-status';
+import {
+    ManualTestStatusData,
+    TestStepData,
+} from '../types/manual-test-status';
 import { VisualizationType } from '../types/visualization-type';
 
 export type RequirementDefinition = Requirement;
@@ -15,7 +18,9 @@ export type RequirementResult = {
     data: RequirementData;
 };
 export type RequirementOrdering = RequirementOrderPart | RequirementOrderPart[];
-export type RequirementOrderPart = (result: RequirementResult) => string | number;
+export type RequirementOrderPart = (
+    result: RequirementResult,
+) => string | number;
 
 export function getRequirementsResults(
     provider: AssessmentsProvider,

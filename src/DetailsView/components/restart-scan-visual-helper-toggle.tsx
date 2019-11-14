@@ -4,11 +4,15 @@ import { GeneratedAssessmentInstance } from '../../common/types/store-data/asses
 import { BaseVisualHelperToggle } from './base-visual-helper-toggle';
 
 export class RestartScanVisualHelperToggle extends BaseVisualHelperToggle {
-    protected isDisabled(instances: GeneratedAssessmentInstance<{}, {}>[]): boolean {
+    protected isDisabled(
+        instances: GeneratedAssessmentInstance<{}, {}>[],
+    ): boolean {
         return false;
     }
 
-    protected isChecked(instances: GeneratedAssessmentInstance<{}, {}>[]): boolean {
+    protected isChecked(
+        instances: GeneratedAssessmentInstance<{}, {}>[],
+    ): boolean {
         return this.props.isStepEnabled;
     }
 

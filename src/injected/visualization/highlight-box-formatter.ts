@@ -15,7 +15,10 @@ export class HighlightBoxFormatter extends FailureInstanceFormatter {
         return null;
     }
 
-    public getDrawerConfiguration(element: HTMLElement, data: AssessmentVisualizationInstance): DrawerConfiguration {
+    public getDrawerConfiguration(
+        element: HTMLElement,
+        data: AssessmentVisualizationInstance,
+    ): DrawerConfiguration {
         const drawerConfig: DrawerConfiguration = {
             failureBoxConfig: this.getFailureBoxConfig(data),
             borderColor: IssuesFormatter.style.borderColor,

@@ -27,18 +27,42 @@ describe('createFileIssueHandler', () => {
         };
         const urlStub = 'url-stub';
 
-        const settingsGetterMock = Mock.ofType<(data: IssueFilingServicePropertiesMap) => any>(undefined, MockBehavior.Strict);
-        settingsGetterMock.setup(getter => getter(serviceMap)).returns(() => settingsStub);
+        const settingsGetterMock = Mock.ofType<
+            (data: IssueFilingServicePropertiesMap) => any
+        >(undefined, MockBehavior.Strict);
+        settingsGetterMock
+            .setup(getter => getter(serviceMap))
+            .returns(() => settingsStub);
 
-        const urlProviderMock = Mock.ofType<IssueFilingUrlProvider<any>>(undefined, MockBehavior.Strict);
-        urlProviderMock.setup(provider => provider(settingsStub, issueData, environmentInfoStub)).returns(() => urlStub);
+        const urlProviderMock = Mock.ofType<IssueFilingUrlProvider<any>>(
+            undefined,
+            MockBehavior.Strict,
+        );
+        urlProviderMock
+            .setup(provider =>
+                provider(settingsStub, issueData, environmentInfoStub),
+            )
+            .returns(() => urlStub);
 
-        const browserAdapterMock = Mock.ofType<BrowserAdapter>(undefined, MockBehavior.Strict);
-        browserAdapterMock.setup(adapter => adapter.createTab(urlStub)).verifiable(Times.once());
+        const browserAdapterMock = Mock.ofType<BrowserAdapter>(
+            undefined,
+            MockBehavior.Strict,
+        );
+        browserAdapterMock
+            .setup(adapter => adapter.createTab(urlStub))
+            .verifiable(Times.once());
 
-        const testSubject = createFileIssueHandler(urlProviderMock.object, settingsGetterMock.object);
+        const testSubject = createFileIssueHandler(
+            urlProviderMock.object,
+            settingsGetterMock.object,
+        );
 
-        testSubject(browserAdapterMock.object, serviceMap, issueData, environmentInfoStub);
+        testSubject(
+            browserAdapterMock.object,
+            serviceMap,
+            issueData,
+            environmentInfoStub,
+        );
 
         browserAdapterMock.verifyAll();
     });

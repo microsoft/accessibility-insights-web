@@ -13,7 +13,9 @@ export class PreviewFeatureFlagsHandler {
         this.featureFlagDetails = featureFlagDetails;
     }
 
-    public getDisplayableFeatureFlags(featureFlagValues: FeatureFlagStoreData): DisplayableFeatureFlag[] {
+    public getDisplayableFeatureFlags(
+        featureFlagValues: FeatureFlagStoreData,
+    ): DisplayableFeatureFlag[] {
         const showAll = featureFlagValues[FeatureFlags.showAllFeatureFlags];
         const results: DisplayableFeatureFlag[] = [];
 

@@ -11,26 +11,38 @@ import { Requirement } from '../../types/requirement';
 import { pageTitleInstanceDetailsColumnRenderer } from '../pagetitle-instance-details-column-renderer';
 import { PageTestStep } from './test-steps';
 
-const pageTitleDescription: JSX.Element = <span>A web page must have a title that describes its topic or purpose.</span>;
+const pageTitleDescription: JSX.Element = (
+    <span>
+        A web page must have a title that describes its topic or purpose.
+    </span>
+);
 
 const pageTitleHowToTest: JSX.Element = (
     <div>
         <ol>
             <li>
-                Consider the title of the target page, displayed in the <Term>Instances</Term> list below.
+                Consider the title of the target page, displayed in the{' '}
+                <Term>Instances</Term> list below.
             </li>
             <li>
                 Verify that the page's title describes its topic or purpose:
                 <ol>
-                    <li>For pages within a website, the page title must be unique.</li>
-                    <li>For documents or single-page web apps, the document name or app name is sufficient.</li>
+                    <li>
+                        For pages within a website, the page title must be
+                        unique.
+                    </li>
+                    <li>
+                        For documents or single-page web apps, the document name
+                        or app name is sufficient.
+                    </li>
                 </ol>
             </li>
             <li>
                 Record your results:
                 <ol>
                     <li>
-                        Select <Term>Fail</Term> if the page title does not meet the requirement.
+                        Select <Term>Fail</Term> if the page title does not meet
+                        the requirement.
                     </li>
                     <li>
                         Otherwise, select <Term>Pass</Term>.
@@ -56,7 +68,9 @@ export const PageTitle: Requirement = {
             onRender: pageTitleInstanceDetailsColumnRenderer,
         },
     ],
-    reportInstanceFields: [ReportInstanceField.fromPropertyBagField('Page title', 'pageTitle')],
+    reportInstanceFields: [
+        ReportInstanceField.fromPropertyBagField('Page title', 'pageTitle'),
+    ],
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({

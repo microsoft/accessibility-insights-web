@@ -9,7 +9,10 @@ import { Requirement } from '../../types/requirement';
 import { TimedEventsTestStep } from './test-steps';
 
 const description: JSX.Element = (
-    <span>If content updates automatically, users must be able to pause, stop, hide, or control frequency of the updates.</span>
+    <span>
+        If content updates automatically, users must be able to pause, stop,
+        hide, or control frequency of the updates.
+    </span>
 );
 
 const howToTest: JSX.Element = (
@@ -24,7 +27,10 @@ const howToTest: JSX.Element = (
                     <li>Is not part of an activity where it is essential.</li>
                 </ol>
             </li>
-            <li>If you find such content, verify that you can pause, stop, or hide it, or control the update frequency.</li>
+            <li>
+                If you find such content, verify that you can pause, stop, or
+                hide it, or control the update frequency.
+            </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
     </div>

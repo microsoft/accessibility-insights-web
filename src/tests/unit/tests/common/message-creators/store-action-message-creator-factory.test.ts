@@ -11,7 +11,10 @@ import { getStoreStateMessage } from '../../../../../common/messages';
 import { StoreNames } from '../../../../../common/stores/store-names';
 
 describe('StoreActionMessageCreatorFactoryTest', () => {
-    const dispatcherMock = Mock.ofType<ActionMessageDispatcher>(undefined, MockBehavior.Strict);
+    const dispatcherMock = Mock.ofType<ActionMessageDispatcher>(
+        undefined,
+        MockBehavior.Strict,
+    );
 
     beforeEach(() => {
         dispatcherMock.reset();
@@ -19,27 +22,42 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
 
     it('dispatches messages for fromStores', () => {
         const createStoreMock = (storeName: StoreNames) => {
-            const mock = Mock.ofType<BaseStore<any>>(undefined, MockBehavior.Strict);
-            mock.setup(store => store.getId()).returns(() => StoreNames[storeName]);
+            const mock = Mock.ofType<BaseStore<any>>(
+                undefined,
+                MockBehavior.Strict,
+            );
+            mock.setup(store => store.getId()).returns(
+                () => StoreNames[storeName],
+            );
             return mock;
         };
 
         const storeNames = EnumHelper.getNumericValues<StoreNames>(StoreNames);
 
-        const storeMocks = storeNames.map(createStoreMock).map(mock => mock.object);
+        const storeMocks = storeNames
+            .map(createStoreMock)
+            .map(mock => mock.object);
 
-        const expectedMessages = storeNames.map(name => getStoreStateMessage(name));
+        const expectedMessages = storeNames.map(name =>
+            getStoreStateMessage(name),
+        );
 
-        testWithExpectedMessages(expectedMessages, testObject => testObject.fromStores(storeMocks));
+        testWithExpectedMessages(expectedMessages, testObject =>
+            testObject.fromStores(storeMocks),
+        );
     });
 
     function testWithExpectedMessages(
         messages: string[],
-        getter: (testObject: StoreActionMessageCreatorFactory) => StoreActionMessageCreator,
+        getter: (
+            testObject: StoreActionMessageCreatorFactory,
+        ) => StoreActionMessageCreator,
     ): void {
         messages.forEach(message => setupDispatcherMock(message));
 
-        const testObject = new StoreActionMessageCreatorFactory(dispatcherMock.object);
+        const testObject = new StoreActionMessageCreatorFactory(
+            dispatcherMock.object,
+        );
 
         const creator = getter(testObject);
 
@@ -49,6 +67,8 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
     }
 
     function setupDispatcherMock(messageType: string): void {
-        dispatcherMock.setup(dispatcher => dispatcher.dispatchType(messageType));
+        dispatcherMock.setup(dispatcher =>
+            dispatcher.dispatchType(messageType),
+        );
     }
 });

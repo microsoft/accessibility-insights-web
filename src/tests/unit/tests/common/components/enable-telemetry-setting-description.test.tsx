@@ -16,12 +16,18 @@ describe('EnableTelemetrySettingDescription', () => {
             LinkComponent: NewTabLink,
         };
 
-        const wrapper = shallow(<EnableTelemetrySettingDescription deps={deps} />);
+        const wrapper = shallow(
+            <EnableTelemetrySettingDescription deps={deps} />,
+        );
         const telemetryNotice = wrapper.find(TelemetryNotice);
         const privacyStatementText = wrapper.find(PrivacyStatementText);
 
         expect(wrapper.getElement()).toMatchSnapshot();
-        expect(telemetryNotice.prop('deps').LinkComponent).toBe(deps.LinkComponent);
-        expect(privacyStatementText.prop('deps').LinkComponent).toBe(deps.LinkComponent);
+        expect(telemetryNotice.prop('deps').LinkComponent).toBe(
+            deps.LinkComponent,
+        );
+        expect(privacyStatementText.prop('deps').LinkComponent).toBe(
+            deps.LinkComponent,
+        );
     });
 });

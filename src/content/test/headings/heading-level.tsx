@@ -5,22 +5,34 @@ import { create, React } from '../../common';
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
         <h1>Heading level</h1>
-        <p>A heading's programmatic level must match the level that's presented visually.</p>
+        <p>
+            A heading's programmatic level must match the level that's presented
+            visually.
+        </p>
 
         <h2>Why it matters</h2>
         <p>
-            Heading levels communicate the relative importance of headings within a page. People with good vision can infer heading levels
-            through visual cues—higher-level headings typically have greater visual prominence than lower-level headings. Users of assistive
+            Heading levels communicate the relative importance of headings
+            within a page. People with good vision can infer heading levels
+            through visual cues—higher-level headings typically have greater
+            visual prominence than lower-level headings. Users of assistive
             technology rely on programmatic cues to perceive heading levels.
         </p>
 
         <h2>How to fix</h2>
-        <p>Specify a programmatic heading level that matches the visual level.</p>
+        <p>
+            Specify a programmatic heading level that matches the visual level.
+        </p>
 
         <h2>Example</h2>
 
         <Markup.PassFail
-            failText={<p>Both headings are coded as level 2, but styling makes the second heading visually less prominent.</p>}
+            failText={
+                <p>
+                    Both headings are coded as level 2, but styling makes the
+                    second heading visually less prominent.
+                </p>
+            }
             failExample={`<!--section title-->
            <h2>Web accessibility</h2>
            <p>Web accessibility refers to the inclusive practice of removing barriers that prevent interaction with, or access to websites, by people with disabilities. When sites are correctly designed, developed and edited, all users have equal access to information and functionality.</p>
@@ -50,7 +62,9 @@ export const infoAndExamples = create(({ Markup, Link }) => (
 
         <h3>Sufficient techniques</h3>
         <Markup.Links>
-            <Link.IdentifyHeadings>Using h1 - h6 to identify headings</Link.IdentifyHeadings>
+            <Link.IdentifyHeadings>
+                Using h1 - h6 to identify headings
+            </Link.IdentifyHeadings>
         </Markup.Links>
     </>
 ));

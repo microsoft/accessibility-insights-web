@@ -2,7 +2,13 @@
 // Licensed under the MIT License.
 import { IMock, Mock } from 'typemoq';
 
-import { BoundRectAccessor, ClientRectOffset, ClientUtils, ElementMatcher, ScrollAccessor } from '../../../injected/client-utils';
+import {
+    BoundRectAccessor,
+    ClientRectOffset,
+    ClientUtils,
+    ElementMatcher,
+    ScrollAccessor,
+} from '../../../injected/client-utils';
 
 class ScrollAccessorStub implements ScrollAccessor {
     public scrollX: number = 0;
@@ -42,8 +48,12 @@ describe('ClientUtilsTest', () => {
 
         matchesMock.setup(m => m(selector2)).returns(() => matches2);
 
-        expect(testObject.matchesSelector(elementStub, selector1)).toEqual(matches1);
-        expect(testObject.matchesSelector(elementStub, selector2)).toEqual(matches2);
+        expect(testObject.matchesSelector(elementStub, selector1)).toEqual(
+            matches1,
+        );
+        expect(testObject.matchesSelector(elementStub, selector2)).toEqual(
+            matches2,
+        );
     });
 
     test('matchesSelector: webkitMatchesSelector', () => {
@@ -64,8 +74,12 @@ describe('ClientUtilsTest', () => {
 
         matchesMock.setup(m => m(selector2)).returns(() => matches2);
 
-        expect(testObject.matchesSelector(elementStub, selector1)).toEqual(matches1);
-        expect(testObject.matchesSelector(elementStub, selector2)).toEqual(matches2);
+        expect(testObject.matchesSelector(elementStub, selector1)).toEqual(
+            matches1,
+        );
+        expect(testObject.matchesSelector(elementStub, selector2)).toEqual(
+            matches2,
+        );
     });
 
     test('matchesSelector: matches', () => {
@@ -86,8 +100,12 @@ describe('ClientUtilsTest', () => {
 
         matchesMock.setup(m => m(selector2)).returns(() => matches2);
 
-        expect(testObject.matchesSelector(elementStub, selector1)).toEqual(matches1);
-        expect(testObject.matchesSelector(elementStub, selector2)).toEqual(matches2);
+        expect(testObject.matchesSelector(elementStub, selector1)).toEqual(
+            matches1,
+        );
+        expect(testObject.matchesSelector(elementStub, selector2)).toEqual(
+            matches2,
+        );
     });
 
     test('getOffset', () => {
@@ -101,7 +119,9 @@ describe('ClientUtilsTest', () => {
         const elementTop = 100;
         const elementLeft = 25;
 
-        const elementMock = Mock.ofType<BoundRectAccessor>(BoundRectAccessorStub);
+        const elementMock = Mock.ofType<BoundRectAccessor>(
+            BoundRectAccessorStub,
+        );
         elementMock
             .setup(em => em.getBoundingClientRect())
             .returns(() => {

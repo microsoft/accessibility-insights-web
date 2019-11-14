@@ -3,7 +3,10 @@
 import { isEmpty } from 'lodash';
 
 import { ManualTestStatus } from 'common/types/manual-test-status';
-import { GeneratedAssessmentInstance, TestStepResult } from 'common/types/store-data/assessment-result-data';
+import {
+    GeneratedAssessmentInstance,
+    TestStepResult,
+} from 'common/types/store-data/assessment-result-data';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
 
 function failingInstances(result: TestStepResult): boolean {
@@ -11,21 +14,33 @@ function failingInstances(result: TestStepResult): boolean {
 }
 
 export class AutomatedChecksVisualizationToggle extends AssessmentVisualizationEnabledToggle {
-    protected isDisabled(passingOrFailingInstances: GeneratedAssessmentInstance<{}, {}>[]): boolean {
+    protected isDisabled(
+        passingOrFailingInstances: GeneratedAssessmentInstance<{}, {}>[],
+    ): boolean {
         const selectedTestStep = this.props.assessmentNavState.selectedTestStep;
         if (isEmpty(passingOrFailingInstances)) {
             return true;
         }
 
-        const relevantTestStepResults = this.getRelevantTestStepResults(passingOrFailingInstances, selectedTestStep);
+        const relevantTestStepResults = this.getRelevantTestStepResults(
+            passingOrFailingInstances,
+            selectedTestStep,
+        );
 
-        const failingInstanceKeys = relevantTestStepResults.filter(failingInstances);
+        const failingInstanceKeys = relevantTestStepResults.filter(
+            failingInstances,
+        );
 
         return isEmpty(failingInstanceKeys);
     }
 
-    private getRelevantTestStepResults(instances: GeneratedAssessmentInstance<{}, {}>[], selectedTestStep: string): TestStepResult[] {
-        const getSelectedTestStepResult: (instance: string) => TestStepResult = (instance: string) => {
+    private getRelevantTestStepResults(
+        instances: GeneratedAssessmentInstance<{}, {}>[],
+        selectedTestStep: string,
+    ): TestStepResult[] {
+        const getSelectedTestStepResult: (
+            instance: string,
+        ) => TestStepResult = (instance: string) => {
             return instances[instance].testStepResults[selectedTestStep];
         };
         return Object.keys(instances)

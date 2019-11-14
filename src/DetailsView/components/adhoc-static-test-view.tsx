@@ -10,7 +10,11 @@ import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-toggle-click-handler-factory';
-import { StaticContentDetailsView, StaticContentDetailsViewDeps, StaticContentDetailsViewProps } from './static-content-details-view';
+import {
+    StaticContentDetailsView,
+    StaticContentDetailsViewDeps,
+    StaticContentDetailsViewProps,
+} from './static-content-details-view';
 import { TargetPageChangedView } from './target-page-changed-view';
 
 export type AdhocStaticTestViewDeps = StaticContentDetailsViewDeps;
@@ -27,32 +31,40 @@ export interface AdhocStaticTestViewProps {
     featureFlagStoreData: FeatureFlagStoreData;
 }
 
-export const AdhocStaticTestView = NamedFC<AdhocStaticTestViewProps>('AdhocStaticTestView', ({ children, ...props }) => {
-    const selectedTest = props.selectedTest;
-    const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
-    const clickHandler = props.clickHandlerFactory.createClickHandler(selectedTest, !scanData.enabled);
-    const displayableData = props.configuration.displayableData;
-
-    if (props.tabStoreData.isChanged) {
-        return (
-            <TargetPageChangedView
-                displayableData={displayableData}
-                visualizationType={selectedTest}
-                toggleClickHandler={clickHandler}
-                featureFlagStoreData={props.featureFlagStoreData}
-            />
+export const AdhocStaticTestView = NamedFC<AdhocStaticTestViewProps>(
+    'AdhocStaticTestView',
+    ({ children, ...props }) => {
+        const selectedTest = props.selectedTest;
+        const scanData = props.configuration.getStoreData(
+            props.visualizationStoreData.tests,
         );
-    }
+        const clickHandler = props.clickHandlerFactory.createClickHandler(
+            selectedTest,
+            !scanData.enabled,
+        );
+        const displayableData = props.configuration.displayableData;
 
-    const givenProps: StaticContentDetailsViewProps = {
-        deps: props.deps,
-        visualizationEnabled: scanData.enabled,
-        onToggleClick: clickHandler,
-        title: displayableData.title,
-        toggleLabel: displayableData.toggleLabel,
-        content: props.content,
-        guidance: props.guidance,
-    };
+        if (props.tabStoreData.isChanged) {
+            return (
+                <TargetPageChangedView
+                    displayableData={displayableData}
+                    visualizationType={selectedTest}
+                    toggleClickHandler={clickHandler}
+                    featureFlagStoreData={props.featureFlagStoreData}
+                />
+            );
+        }
 
-    return <StaticContentDetailsView {...givenProps} />;
-});
+        const givenProps: StaticContentDetailsViewProps = {
+            deps: props.deps,
+            visualizationEnabled: scanData.enabled,
+            onToggleClick: clickHandler,
+            title: displayableData.title,
+            toggleLabel: displayableData.toggleLabel,
+            content: props.content,
+            guidance: props.guidance,
+        };
+
+        return <StaticContentDetailsView {...givenProps} />;
+    },
+);

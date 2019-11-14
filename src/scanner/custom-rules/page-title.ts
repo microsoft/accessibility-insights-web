@@ -17,7 +17,10 @@ export const pageConfiguration: RuleConfiguration = {
         selector: 'html',
         any: [pageCheckId],
         matches: function matches(node, virtualNode): boolean {
-            return node.ownerDocument.defaultView.self === node.ownerDocument.defaultView.top;
+            return (
+                node.ownerDocument.defaultView.self ===
+                node.ownerDocument.defaultView.top
+            );
         },
         enabled: false,
     },

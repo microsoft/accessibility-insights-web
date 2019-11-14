@@ -6,7 +6,11 @@ export interface AxeOptions {
     runOnly?: Axe.RunOnly;
     restoreScroll?: boolean;
 }
-export type AxeScanContext = string | Document | IncludeExcludeOptions | NodeList;
+export type AxeScanContext =
+    | string
+    | Document
+    | IncludeExcludeOptions
+    | NodeList;
 export interface IncludeExcludeOptions {
     include: string[][];
     exclude: string[][];

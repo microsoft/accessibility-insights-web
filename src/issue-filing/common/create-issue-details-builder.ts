@@ -7,20 +7,43 @@ import { CreateIssueDetailsTextData } from '../../common/types/create-issue-deta
 import { IssueDetailsBuilder } from './issue-details-builder';
 import { MarkupFormatter } from './markup/markup-formatter';
 
-export const createIssueDetailsBuilder = (markup: MarkupFormatter): IssueDetailsBuilder => {
-    const getter = (environmentInfo: EnvironmentInfo, data: CreateIssueDetailsTextData): string => {
-        const { howToFixSection, link, sectionHeader, snippet, sectionHeaderSeparator, footerSeparator, sectionSeparator } = markup;
+export const createIssueDetailsBuilder = (
+    markup: MarkupFormatter,
+): IssueDetailsBuilder => {
+    const getter = (
+        environmentInfo: EnvironmentInfo,
+        data: CreateIssueDetailsTextData,
+    ): string => {
+        const {
+            howToFixSection,
+            link,
+            sectionHeader,
+            snippet,
+            sectionHeaderSeparator,
+            footerSeparator,
+            sectionSeparator,
+        } = markup;
 
-        const targetAppText = data.targetApp.url ? link(data.targetApp.url, data.targetApp.name) : data.targetApp.name;
+        const targetAppText = data.targetApp.url
+            ? link(data.targetApp.url, data.targetApp.name)
+            : data.targetApp.name;
 
         const snippetSection = data.snippet
-            ? [sectionHeader('Snippet'), sectionHeaderSeparator(), snippet(data.snippet), sectionSeparator()]
+            ? [
+                  sectionHeader('Snippet'),
+                  sectionHeaderSeparator(),
+                  snippet(data.snippet),
+                  sectionSeparator(),
+              ]
             : null;
 
         const lines = [
             sectionHeader('Issue'),
             sectionHeaderSeparator(),
-            `${snippet(data.rule.description)} (${link(data.rule.url, data.rule.id)})`,
+            `${snippet(data.rule.description)} (${link(
+                data.rule.url,
+                data.rule.id,
+            )})`,
             sectionSeparator(),
 
             sectionHeader('Target application'),

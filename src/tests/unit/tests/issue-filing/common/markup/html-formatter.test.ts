@@ -10,12 +10,17 @@ describe('HTMLFormatter', () => {
     let testSubject: MarkupFormatter;
 
     beforeEach(() => {
-        truncateMock = Mock.ofInstance((text: string) => text, MockBehavior.Strict);
+        truncateMock = Mock.ofInstance(
+            (text: string) => text,
+            MockBehavior.Strict,
+        );
         testSubject = createFormatter(truncateMock.object);
     });
 
     it('returns section header', () => {
-        expect(testSubject.sectionHeader('test-header')).toEqual('<h4>test-header</h4>');
+        expect(testSubject.sectionHeader('test-header')).toEqual(
+            '<h4>test-header</h4>',
+        );
     });
 
     it('returns how to fix section', () => {
@@ -40,7 +45,9 @@ describe('HTMLFormatter', () => {
 
     describe('creates snippet', () => {
         beforeEach(() => {
-            truncateMock.setup(truncate => truncate(It.isAnyString())).returns(text => text);
+            truncateMock
+                .setup(truncate => truncate(It.isAnyString()))
+                .returns(text => text);
         });
 
         it('no need to escape', () => {

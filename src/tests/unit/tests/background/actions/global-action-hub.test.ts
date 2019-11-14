@@ -23,6 +23,8 @@ function runNullAsserts(hub: GlobalActionHub): void {
 function runTypeAsserts(hub: GlobalActionHub): void {
     expect(hub.commandActions instanceof CommandActions).toBeTruthy();
     expect(hub.featureFlagActions instanceof FeatureFlagActions).toBeTruthy();
-    expect(hub.launchPanelStateActions instanceof LaunchPanelStateActions).toBeTruthy();
+    expect(
+        hub.launchPanelStateActions instanceof LaunchPanelStateActions,
+    ).toBeTruthy();
     expect(hub.scopingActions instanceof ScopingActions).toBeTruthy();
 }

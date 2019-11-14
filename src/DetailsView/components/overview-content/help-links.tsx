@@ -3,7 +3,10 @@
 import * as React from 'react';
 import { HyperlinkDefinition } from 'views/content/content-page';
 
-import { ExternalLink, ExternalLinkDeps } from '../../../common/components/external-link';
+import {
+    ExternalLink,
+    ExternalLinkDeps,
+} from '../../../common/components/external-link';
 import { NamedFC } from '../../../common/react/named-fc';
 import { helpLink } from './help-links.scss';
 

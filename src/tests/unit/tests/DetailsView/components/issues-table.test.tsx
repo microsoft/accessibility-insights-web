@@ -3,8 +3,15 @@
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { DateProvider } from 'common/date-provider';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
-import { IssuesTable, IssuesTableDeps, IssuesTableProps } from 'DetailsView/components/issues-table';
-import { DetailsRowData, IssuesTableHandler } from 'DetailsView/components/issues-table-handler';
+import {
+    IssuesTable,
+    IssuesTableDeps,
+    IssuesTableProps,
+} from 'DetailsView/components/issues-table';
+import {
+    DetailsRowData,
+    IssuesTableHandler,
+} from 'DetailsView/components/issues-table-handler';
 import { shallow } from 'enzyme';
 import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
 import { ISelection, Selection } from 'office-ui-fabric-react/lib/DetailsList';
@@ -37,7 +44,9 @@ describe('IssuesTableTest', () => {
     });
 
     it('includes subtitle if specified', () => {
-        const props = new TestPropsBuilder().setSubtitle(<>test subtitle text</>).build();
+        const props = new TestPropsBuilder()
+            .setSubtitle(<>test subtitle text</>)
+            .build();
 
         const wrapped = shallow(<IssuesTable {...props} />);
 
@@ -86,7 +95,9 @@ describe('IssuesTableTest', () => {
             const sampleIdToRuleResultMap: DictionaryStringTo<DecoratedAxeNodeResult> = {};
             const items: DetailsRowData[] = [];
             for (let i: number = 1; i <= count; i++) {
-                sampleIdToRuleResultMap['id' + i] = {} as DecoratedAxeNodeResult;
+                sampleIdToRuleResultMap[
+                    'id' + i
+                ] = {} as DecoratedAxeNodeResult;
                 items.push({} as DetailsRowData);
             }
 
@@ -191,7 +202,9 @@ class TestPropsBuilder {
         return this;
     }
 
-    public setIssuesTableHandler(issuesTableHandler: IssuesTableHandler): TestPropsBuilder {
+    public setIssuesTableHandler(
+        issuesTableHandler: IssuesTableHandler,
+    ): TestPropsBuilder {
         this.issuesTableHandler = issuesTableHandler;
         return this;
     }
@@ -232,7 +245,11 @@ class TestPropsBuilder {
                 targetPageTitle: '',
             },
             targetAppInfo: { name: 'app' },
-            cardsViewData: { cards: exampleUnifiedStatusResults, visualHelperEnabled: true, allCardsCollapsed: true },
+            cardsViewData: {
+                cards: exampleUnifiedStatusResults,
+                visualHelperEnabled: true,
+                allCardsCollapsed: true,
+            },
             userConfigurationStoreData: {
                 bugService: 'gitHub',
             } as UserConfigurationStoreData,

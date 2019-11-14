@@ -1,6 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { RuleResources, RuleResourcesDeps, RuleResourcesProps } from 'common/components/cards/rule-resources';
+import {
+    RuleResources,
+    RuleResourcesDeps,
+    RuleResourcesProps,
+} from 'common/components/cards/rule-resources';
 import { shallow } from 'enzyme';
 import { cloneDeep } from 'lodash';
 import * as React from 'react';
@@ -15,8 +19,14 @@ describe('RuleResources', () => {
         };
 
         const testCases: TestCases[] = [
-            { url: 'test-url', guidanceLinks: [{ href: 'test-href' } as GuidanceLink] },
-            { url: null, guidanceLinks: [{ href: 'test-href' } as GuidanceLink] },
+            {
+                url: 'test-url',
+                guidanceLinks: [{ href: 'test-href' } as GuidanceLink],
+            },
+            {
+                url: null,
+                guidanceLinks: [{ href: 'test-href' } as GuidanceLink],
+            },
             { url: 'test-url', guidanceLinks: [] },
             { url: 'test-url', guidanceLinks: null },
             { url: null, guidanceLinks: [] },

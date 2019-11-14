@@ -5,10 +5,20 @@ import * as React from 'react';
 import { NamedFC } from '../react/named-fc';
 import { NewTabLink } from './new-tab-link';
 
-export const WindowsContrastCheckerAppLink = NamedFC('WindowsContrastCheckerAppLink', () => (
-    <NewTabLink href="https://go.microsoft.com/fwlink/?linkid=2075365">{windowsProductName}</NewTabLink>
-));
+export const WindowsContrastCheckerAppLink = NamedFC(
+    'WindowsContrastCheckerAppLink',
+    () => (
+        <NewTabLink href="https://go.microsoft.com/fwlink/?linkid=2075365">
+            {windowsProductName}
+        </NewTabLink>
+    ),
+);
 
-export const MacContrastCheckerAppLink = NamedFC('MacContrastCheckerAppLink', () => (
-    <NewTabLink href="https://developer.paciellogroup.com/resources/contrastanalyser/">Colour Contrast Analyser</NewTabLink>
-));
+export const MacContrastCheckerAppLink = NamedFC(
+    'MacContrastCheckerAppLink',
+    () => (
+        <NewTabLink href="https://developer.paciellogroup.com/resources/contrastanalyser/">
+            Colour Contrast Analyser
+        </NewTabLink>
+    ),
+);

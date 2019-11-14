@@ -13,11 +13,17 @@ import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { AssessmentInstanceRowData, AssessmentInstanceTable } from '../../../../../DetailsView/components/assessment-instance-table';
+import {
+    AssessmentInstanceRowData,
+    AssessmentInstanceTable,
+} from '../../../../../DetailsView/components/assessment-instance-table';
 import { RequirementLink } from '../../../../../DetailsView/components/requirement-link';
 import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../../../../injected/analyzers/analyzer-provider';
-import { DecoratedAxeNodeResult, ScannerUtils } from '../../../../../injected/scanner-utils';
+import {
+    DecoratedAxeNodeResult,
+    ScannerUtils,
+} from '../../../../../injected/scanner-utils';
 import { DrawerProvider } from '../../../../../injected/visualization/drawer-provider';
 import { ScannerRuleInfo } from '../../../../../scanner/scanner-rule-info';
 
@@ -39,7 +45,10 @@ describe('buildTestStepsFromRules', () => {
         const expectedHowToTest = (
             <React.Fragment>
                 {expectedDescription}{' '}
-                <NewTabLink href={rule.url} aria-label={`See more info here about ${rule.id} rule`}>
+                <NewTabLink
+                    href={rule.url}
+                    aria-label={`See more info here about ${rule.id} rule`}
+                >
                     See more info here.
                 </NewTabLink>
             </React.Fragment>
@@ -52,7 +61,8 @@ describe('buildTestStepsFromRules', () => {
             isManual: false,
             howToTest: expectedHowToTest,
             guidanceLinks: rule.a11yCriteria,
-            generateInstanceIdentifier: InstanceIdentifierGenerator.generateSelectorIdentifier,
+            generateInstanceIdentifier:
+                InstanceIdentifierGenerator.generateSelectorIdentifier,
             columnsConfig: [],
         };
 
@@ -65,8 +75,14 @@ describe('buildTestStepsFromRules', () => {
         });
     });
 
-    function validateAnalyzerConfiguration(actual: Requirement, rule: ScannerRuleInfo): void {
-        const analyzerProviderMock = Mock.ofType(AnalyzerProvider, MockBehavior.Strict);
+    function validateAnalyzerConfiguration(
+        actual: Requirement,
+        rule: ScannerRuleInfo,
+    ): void {
+        const analyzerProviderMock = Mock.ofType(
+            AnalyzerProvider,
+            MockBehavior.Strict,
+        );
         const getFailingOrPassingInstances = {};
         const forRuleAnalyzerScanStub = {};
         const scannerStub: ScannerUtils = {
@@ -86,8 +102,12 @@ describe('buildTestStepsFromRules', () => {
             .setup(apm => apm.createBatchedRuleAnalyzer(It.isAny()))
             .callback((result: RuleAnalyzerConfiguration) => {
                 expectResultToContainBase(result, expectedConfig);
-                expect(result.telemetryProcessor(telemetryProcessorStub)).toBe(forRuleAnalyzerScanStub);
-                expect(result.resultProcessor(scannerStub)).toBe(getFailingOrPassingInstances);
+                expect(result.telemetryProcessor(telemetryProcessorStub)).toBe(
+                    forRuleAnalyzerScanStub,
+                );
+                expect(result.resultProcessor(scannerStub)).toBe(
+                    getFailingOrPassingInstances,
+                );
             })
             .verifiable();
 
@@ -96,9 +116,14 @@ describe('buildTestStepsFromRules', () => {
     }
 
     function validateDrawer(actual: Requirement): void {
-        const drawerProviderMock = Mock.ofType(DrawerProvider, MockBehavior.Strict);
+        const drawerProviderMock = Mock.ofType(
+            DrawerProvider,
+            MockBehavior.Strict,
+        );
 
-        drawerProviderMock.setup(dpm => dpm.createHighlightBoxDrawer()).verifiable();
+        drawerProviderMock
+            .setup(dpm => dpm.createHighlightBoxDrawer())
+            .verifiable();
 
         actual.getDrawer(drawerProviderMock.object);
         drawerProviderMock.verifyAll();
@@ -106,14 +131,24 @@ describe('buildTestStepsFromRules', () => {
 
     function validateInstanceTableSettings(actual: Requirement): void {
         expect(actual.getInstanceStatus).toBeDefined();
-        expect(actual.getInstanceStatus({ status: true } as DecoratedAxeNodeResult)).toBe(ManualTestStatus.PASS);
-        expect(actual.getInstanceStatus({ status: false } as DecoratedAxeNodeResult)).toBe(ManualTestStatus.FAIL);
+        expect(
+            actual.getInstanceStatus({
+                status: true,
+            } as DecoratedAxeNodeResult),
+        ).toBe(ManualTestStatus.PASS);
+        expect(
+            actual.getInstanceStatus({
+                status: false,
+            } as DecoratedAxeNodeResult),
+        ).toBe(ManualTestStatus.FAIL);
 
         expect(actual.getInstanceStatusColumns).toBeDefined();
         expect(actual.getInstanceStatusColumns()).toHaveLength(0);
 
         expect(actual.renderInstanceTableHeader).toBeDefined();
-        expect(actual.renderInstanceTableHeader({} as AssessmentInstanceTable, [])).toBeNull();
+        expect(
+            actual.renderInstanceTableHeader({} as AssessmentInstanceTable, []),
+        ).toBeNull();
 
         const linkMock = Mock.ofType(RequirementLink, MockBehavior.Strict);
         const descriptionStub = <div>descriptionWithoutIndexStub</div>;
@@ -122,7 +157,9 @@ describe('buildTestStepsFromRules', () => {
             .returns(() => descriptionStub)
             .verifiable(Times.once());
         expect(actual.renderRequirementDescription).toBeDefined();
-        expect(actual.renderRequirementDescription(linkMock.object)).toBe(descriptionStub);
+        expect(actual.renderRequirementDescription(linkMock.object)).toBe(
+            descriptionStub,
+        );
         linkMock.verifyAll();
 
         expect(actual.columnsConfig).toHaveLength(2);
@@ -133,10 +170,20 @@ describe('buildTestStepsFromRules', () => {
 
         validateInstanceColumnsRender(actual.columnsConfig, null, null, 'null');
         validateInstanceColumnsRender(actual.columnsConfig, ['A'], 'X', 'one');
-        validateInstanceColumnsRender(actual.columnsConfig, ['A', 'B'], 'XY', 'two');
+        validateInstanceColumnsRender(
+            actual.columnsConfig,
+            ['A', 'B'],
+            'XY',
+            'two',
+        );
     }
 
-    function validateInstanceColumnsRender(actualColumns: InstanceTableColumn[], target: string[], html: string, message: string): void {
+    function validateInstanceColumnsRender(
+        actualColumns: InstanceTableColumn[],
+        target: string[],
+        html: string,
+        message: string,
+    ): void {
         const item: AssessmentInstanceRowData = {
             statusChoiceGroup: null,
             visualizationButton: null,
@@ -147,8 +194,12 @@ describe('buildTestStepsFromRules', () => {
             },
         };
 
-        expect(actualColumns[0].onRender(item)).toMatchSnapshot(`render path - ${message}`);
-        expect(actualColumns[1].onRender(item)).toMatchSnapshot(`render snippet - ${message}`);
+        expect(actualColumns[0].onRender(item)).toMatchSnapshot(
+            `render path - ${message}`,
+        );
+        expect(actualColumns[1].onRender(item)).toMatchSnapshot(
+            `render snippet - ${message}`,
+        );
     }
 
     function expectResultToContainBase(result: Object, base: Object): void {

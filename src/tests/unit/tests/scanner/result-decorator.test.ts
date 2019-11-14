@@ -1,6 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GlobalMock, GlobalScope, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import {
+    GlobalMock,
+    GlobalScope,
+    IMock,
+    It,
+    Mock,
+    MockBehavior,
+    Times,
+} from 'typemoq';
 
 import { DocumentUtils } from '../../../../scanner/document-utils';
 import { RuleResult } from '../../../../scanner/iruleresults';
@@ -34,7 +42,10 @@ describe('ResultDecorator', () => {
             targetPageTitle: 'test title',
             url: 'https://test_url',
         };
-        messageDecoratorMock = Mock.ofType(MessageDecorator, MockBehavior.Strict);
+        messageDecoratorMock = Mock.ofType(
+            MessageDecorator,
+            MockBehavior.Strict,
+        );
         getHelpUrlMock = Mock.ofInstance(rule => null, MockBehavior.Strict);
         documentUtilsMock = Mock.ofType(DocumentUtils);
 
@@ -48,7 +59,11 @@ describe('ResultDecorator', () => {
 
     describe('constructor', () => {
         it('should construct the generator', () => {
-            const resultDecorator = new ResultDecorator(documentUtilsMock.object, messageDecoratorMock.object, getHelpUrlMock.object);
+            const resultDecorator = new ResultDecorator(
+                documentUtilsMock.object,
+                messageDecoratorMock.object,
+                getHelpUrlMock.object,
+            );
             expect(resultDecorator).not.toBeNull();
         });
     });
@@ -76,9 +91,13 @@ describe('ResultDecorator', () => {
                 MockBehavior.Strict,
             );
 
-            messageDecoratorMock.setup(mdm => mdm.decorateResultWithMessages(instanceStub)).verifiable(Times.once());
+            messageDecoratorMock
+                .setup(mdm => mdm.decorateResultWithMessages(instanceStub))
+                .verifiable(Times.once());
 
-            getHelpUrlMock.setup(gchm => gchm(instanceStub.id, It.isAny())).returns(() => urlStub);
+            getHelpUrlMock
+                .setup(gchm => gchm(instanceStub.id, It.isAny()))
+                .returns(() => urlStub);
 
             suppressChecksByMessagesMock
                 .setup(scbmm => scbmm(instanceStub, true))
@@ -87,10 +106,16 @@ describe('ResultDecorator', () => {
                 })
                 .verifiable();
 
-            const testSubject = new ResultDecorator(documentUtilsMock.object, messageDecoratorMock.object, getHelpUrlMock.object);
+            const testSubject = new ResultDecorator(
+                documentUtilsMock.object,
+                messageDecoratorMock.object,
+                getHelpUrlMock.object,
+            );
             let decoratedResult;
             GlobalScope.using(suppressChecksByMessagesMock).with(() => {
-                decoratedResult = testSubject.decorateResults(nonEmptyResultStub);
+                decoratedResult = testSubject.decorateResults(
+                    nonEmptyResultStub,
+                );
             });
 
             expect(decoratedResult).toEqual(nonEmptyScanResultStub);
@@ -130,9 +155,13 @@ describe('ResultDecorator', () => {
                 MockBehavior.Strict,
             );
 
-            messageDecoratorMock.setup(mdm => mdm.decorateResultWithMessages(instanceStub)).verifiable(Times.once());
+            messageDecoratorMock
+                .setup(mdm => mdm.decorateResultWithMessages(instanceStub))
+                .verifiable(Times.once());
 
-            getHelpUrlMock.setup(gchm => gchm(instanceStub.id, It.isAny())).returns(() => urlStub);
+            getHelpUrlMock
+                .setup(gchm => gchm(instanceStub.id, It.isAny()))
+                .returns(() => urlStub);
 
             suppressChecksByMessagesMock
                 .setup(scbmm => scbmm(instanceStub, true))
@@ -141,11 +170,17 @@ describe('ResultDecorator', () => {
                 })
                 .verifiable();
 
-            const testSubject = new ResultDecorator(documentUtilsMock.object, messageDecoratorMock.object, getHelpUrlMock.object);
+            const testSubject = new ResultDecorator(
+                documentUtilsMock.object,
+                messageDecoratorMock.object,
+                getHelpUrlMock.object,
+            );
             let decoratedResult;
             testSubject.setRuleToLinksConfiguration(configuration);
             GlobalScope.using(suppressChecksByMessagesMock).with(() => {
-                decoratedResult = testSubject.decorateResults(nonEmptyResultStub);
+                decoratedResult = testSubject.decorateResults(
+                    nonEmptyResultStub,
+                );
             });
 
             expect(decoratedResult).toEqual(resultStubWithGuidacenLinks);
@@ -206,13 +241,23 @@ describe('ResultDecorator', () => {
                 MockBehavior.Strict,
             );
 
-            messageDecoratorMock.setup(mdm => mdm.decorateResultWithMessages(instanceStub)).verifiable(Times.once());
+            messageDecoratorMock
+                .setup(mdm => mdm.decorateResultWithMessages(instanceStub))
+                .verifiable(Times.once());
 
-            messageDecoratorMock.setup(mdm => mdm.decorateResultWithMessages(inapplicableInstance)).verifiable(Times.once());
+            messageDecoratorMock
+                .setup(mdm =>
+                    mdm.decorateResultWithMessages(inapplicableInstance),
+                )
+                .verifiable(Times.once());
 
-            getHelpUrlMock.setup(gchm => gchm(instanceStub.id, It.isAny())).returns(() => urlStub);
+            getHelpUrlMock
+                .setup(gchm => gchm(instanceStub.id, It.isAny()))
+                .returns(() => urlStub);
 
-            getHelpUrlMock.setup(gchm => gchm(inapplicableInstance.id, It.isAny())).returns(() => urlStub);
+            getHelpUrlMock
+                .setup(gchm => gchm(inapplicableInstance.id, It.isAny()))
+                .returns(() => urlStub);
 
             suppressChecksByMessagesMock
                 .setup(scbmm => scbmm(instanceStub, true))
@@ -228,11 +273,17 @@ describe('ResultDecorator', () => {
                 })
                 .verifiable();
 
-            const testSubject = new ResultDecorator(documentUtilsMock.object, messageDecoratorMock.object, getHelpUrlMock.object);
+            const testSubject = new ResultDecorator(
+                documentUtilsMock.object,
+                messageDecoratorMock.object,
+                getHelpUrlMock.object,
+            );
             let decoratedResult;
             testSubject.setRuleToLinksConfiguration(configuration);
             GlobalScope.using(suppressChecksByMessagesMock).with(() => {
-                decoratedResult = testSubject.decorateResults(nonEmptyResultWithInapplicable as any);
+                decoratedResult = testSubject.decorateResults(
+                    nonEmptyResultWithInapplicable as any,
+                );
             });
 
             expect(decoratedResult).toEqual(resultStubWithGuidacenLinks);
@@ -266,7 +317,9 @@ describe('ResultDecorator', () => {
 
             instanceStub.nodes = [];
 
-            messageDecoratorMock.setup(mdm => mdm.decorateResultWithMessages(instanceStub)).verifiable(Times.once());
+            messageDecoratorMock
+                .setup(mdm => mdm.decorateResultWithMessages(instanceStub))
+                .verifiable(Times.once());
 
             suppressChecksByMessagesMock
                 .setup(scbmm => scbmm(instanceStub, true))
@@ -275,11 +328,17 @@ describe('ResultDecorator', () => {
                 })
                 .verifiable();
 
-            const testSubject = new ResultDecorator(documentUtilsMock.object, messageDecoratorMock.object, getHelpUrlMock.object);
+            const testSubject = new ResultDecorator(
+                documentUtilsMock.object,
+                messageDecoratorMock.object,
+                getHelpUrlMock.object,
+            );
             let decoratedResult;
             testSubject.setRuleToLinksConfiguration(configuration);
             GlobalScope.using(suppressChecksByMessagesMock).with(() => {
-                decoratedResult = testSubject.decorateResults(nonEmptyResultStub);
+                decoratedResult = testSubject.decorateResults(
+                    nonEmptyResultStub,
+                );
             });
 
             expect(decoratedResult).toEqual(emptyResultsStub);

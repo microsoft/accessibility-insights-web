@@ -5,7 +5,10 @@ import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
 import { HyperlinkDefinition } from 'views/content/content-page';
 import { getRules } from '../../../../scanner/get-rules';
-import { RuleSifter, RuleWithA11YCriteria } from '../../../../scanner/rule-sifter';
+import {
+    RuleSifter,
+    RuleWithA11YCriteria,
+} from '../../../../scanner/rule-sifter';
 import { ScannerRuleInfo } from '../../../../scanner/scanner-rule-info';
 
 describe('getDefaultRules', () => {
@@ -73,13 +76,23 @@ describe('getDefaultRules', () => {
             .returns(() => rulesStub)
             .verifiable();
 
-        ruleSifterMock.setup(rsm => rsm.getSiftedRules()).returns(() => siftedRulesStub);
+        ruleSifterMock
+            .setup(rsm => rsm.getSiftedRules())
+            .returns(() => siftedRulesStub);
 
-        getHelpUrlMock.setup(gchm => gchm(ruleStubOne.ruleId, It.isAny())).returns(() => urlStub);
+        getHelpUrlMock
+            .setup(gchm => gchm(ruleStubOne.ruleId, It.isAny()))
+            .returns(() => urlStub);
 
-        getHelpUrlMock.setup(gchm => gchm(ruleStubTwo.ruleId, It.isAny())).returns(() => urlStub);
+        getHelpUrlMock
+            .setup(gchm => gchm(ruleStubTwo.ruleId, It.isAny()))
+            .returns(() => urlStub);
 
-        const actual = getRules(axeStub, getHelpUrlMock.object, ruleSifterMock.object);
+        const actual = getRules(
+            axeStub,
+            getHelpUrlMock.object,
+            ruleSifterMock.object,
+        );
 
         expect(actual).toEqual(expected);
         getRulesMock.verifyAll();

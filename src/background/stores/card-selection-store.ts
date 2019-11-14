@@ -2,8 +2,15 @@
 // Licensed under the MIT License.
 import { forOwn } from 'lodash';
 import { StoreNames } from '../../common/stores/store-names';
-import { CardSelectionStoreData, RuleExpandCollapseData } from '../../common/types/store-data/card-selection-store-data';
-import { CardSelectionPayload, RuleExpandCollapsePayload, UnifiedScanCompletedPayload } from '../actions/action-payloads';
+import {
+    CardSelectionStoreData,
+    RuleExpandCollapseData,
+} from '../../common/types/store-data/card-selection-store-data';
+import {
+    CardSelectionPayload,
+    RuleExpandCollapsePayload,
+    UnifiedScanCompletedPayload,
+} from '../actions/action-payloads';
 import { CardSelectionActions } from '../actions/card-selection-actions';
 import { UnifiedScanResultActions } from '../actions/unified-scan-result-actions';
 import { BaseStoreImpl } from './base-store-impl';
@@ -17,13 +24,27 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
     }
 
     protected addActionListeners(): void {
-        this.cardSelectionActions.toggleRuleExpandCollapse.addListener(this.toggleRuleExpandCollapse);
-        this.cardSelectionActions.toggleCardSelection.addListener(this.toggleCardSelection);
-        this.cardSelectionActions.collapseAllRules.addListener(this.collapseAllRules);
-        this.cardSelectionActions.expandAllRules.addListener(this.expandAllRules);
-        this.cardSelectionActions.toggleVisualHelper.addListener(this.toggleVisualHelper);
-        this.cardSelectionActions.getCurrentState.addListener(this.onGetCurrentState);
-        this.unifiedScanResultActions.scanCompleted.addListener(this.onScanCompleted);
+        this.cardSelectionActions.toggleRuleExpandCollapse.addListener(
+            this.toggleRuleExpandCollapse,
+        );
+        this.cardSelectionActions.toggleCardSelection.addListener(
+            this.toggleCardSelection,
+        );
+        this.cardSelectionActions.collapseAllRules.addListener(
+            this.collapseAllRules,
+        );
+        this.cardSelectionActions.expandAllRules.addListener(
+            this.expandAllRules,
+        );
+        this.cardSelectionActions.toggleVisualHelper.addListener(
+            this.toggleVisualHelper,
+        );
+        this.cardSelectionActions.getCurrentState.addListener(
+            this.onGetCurrentState,
+        );
+        this.unifiedScanResultActions.scanCompleted.addListener(
+            this.onScanCompleted,
+        );
     }
 
     public getDefaultState(): CardSelectionStoreData {
@@ -51,7 +72,9 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
         });
     };
 
-    private toggleRuleExpandCollapse = (payload: RuleExpandCollapsePayload): void => {
+    private toggleRuleExpandCollapse = (
+        payload: RuleExpandCollapsePayload,
+    ): void => {
         if (!payload || !this.state.rules[payload.ruleId]) {
             return;
         }
@@ -71,14 +94,18 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
         if (
             !payload ||
             !this.state.rules[payload.ruleId] ||
-            this.state.rules[payload.ruleId].cards[payload.resultInstanceUid] === undefined
+            this.state.rules[payload.ruleId].cards[
+                payload.resultInstanceUid
+            ] === undefined
         ) {
             return;
         }
 
         const rule = this.state.rules[payload.ruleId];
 
-        rule.cards[payload.resultInstanceUid] = !rule.cards[payload.resultInstanceUid];
+        rule.cards[payload.resultInstanceUid] = !rule.cards[
+            payload.resultInstanceUid
+        ];
 
         // whenever a card is selected, the visual helper is enabled
         if (rule.cards[payload.resultInstanceUid]) {

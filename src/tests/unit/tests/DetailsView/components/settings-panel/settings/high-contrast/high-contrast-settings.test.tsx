@@ -8,7 +8,10 @@ import { Mock, Times } from 'typemoq';
 import { UserConfigMessageCreator } from '../../../../../../../../common/message-creators/user-config-message-creator';
 import { UserConfigurationStoreData } from '../../../../../../../../common/types/store-data/user-configuration-store';
 import { HighContrastSettings } from '../../../../../../../../DetailsView/components/settings-panel/settings/high-contrast/high-contrast-settings';
-import { SettingsDeps, SettingsProps } from '../../../../../../../../DetailsView/components/settings-panel/settings/settings-props';
+import {
+    SettingsDeps,
+    SettingsProps,
+} from '../../../../../../../../DetailsView/components/settings-panel/settings/settings-props';
 
 describe('HighContrastSettings', () => {
     const enableStates = [true, false];
@@ -30,29 +33,37 @@ describe('HighContrastSettings', () => {
     });
 
     describe('user interaction', () => {
-        it.each(enableStates)('handles toggle click, with enabled = %s', enabled => {
-            const userConfigMessageCreatorMock = Mock.ofType<UserConfigMessageCreator>();
-            const deps = {
-                userConfigMessageCreator: userConfigMessageCreatorMock.object,
-            } as SettingsDeps;
-            const props: SettingsProps = {
-                deps,
-                userConfigurationStoreState: {
-                    enableHighContrast: enabled,
-                } as UserConfigurationStoreData,
-                featureFlagData: {},
-            };
+        it.each(enableStates)(
+            'handles toggle click, with enabled = %s',
+            enabled => {
+                const userConfigMessageCreatorMock = Mock.ofType<
+                    UserConfigMessageCreator
+                >();
+                const deps = {
+                    userConfigMessageCreator:
+                        userConfigMessageCreatorMock.object,
+                } as SettingsDeps;
+                const props: SettingsProps = {
+                    deps,
+                    userConfigurationStoreState: {
+                        enableHighContrast: enabled,
+                    } as UserConfigurationStoreData,
+                    featureFlagData: {},
+                };
 
-            const wrapper = shallow(<HighContrastSettings {...props} />);
+                const wrapper = shallow(<HighContrastSettings {...props} />);
 
-            userConfigMessageCreatorMock.setup(creator => creator.setHighContrastMode(!enabled)).verifiable(Times.once());
+                userConfigMessageCreatorMock
+                    .setup(creator => creator.setHighContrastMode(!enabled))
+                    .verifiable(Times.once());
 
-            wrapper
-                .dive()
-                .find(Toggle)
-                .simulate('click');
+                wrapper
+                    .dive()
+                    .find(Toggle)
+                    .simulate('click');
 
-            userConfigMessageCreatorMock.verifyAll();
-        });
+                userConfigMessageCreatorMock.verifyAll();
+            },
+        );
     });
 });

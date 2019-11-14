@@ -17,7 +17,10 @@ import { DictionaryStringTo } from '../../types/common-types';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { AssessmentInstanceEditAndRemoveControl } from '../components/assessment-instance-edit-and-remove-control';
 import { AssessmentInstanceSelectedButton } from '../components/assessment-instance-selected-button';
-import { AssessmentInstanceRowData, CapturedInstanceRowData } from '../components/assessment-instance-table';
+import {
+    AssessmentInstanceRowData,
+    CapturedInstanceRowData,
+} from '../components/assessment-instance-table';
 import { AssessmentTableColumnConfigHandler } from '../components/assessment-table-column-config-handler';
 import { FailureInstanceData } from '../components/failure-instance-panel-control';
 import { TestStatusChoiceGroup } from '../components/test-status-choice-group';
@@ -37,15 +40,30 @@ export class AssessmentInstanceTableHandler {
         this.assessmentsProvider = assessmentsProvider;
     }
 
-    public changeRequirementStatus = (status: ManualTestStatus, test: VisualizationType, step: string): void => {
-        this.actionMessageCreator.changeManualRequirementStatus(status, test, step);
+    public changeRequirementStatus = (
+        status: ManualTestStatus,
+        test: VisualizationType,
+        step: string,
+    ): void => {
+        this.actionMessageCreator.changeManualRequirementStatus(
+            status,
+            test,
+            step,
+        );
     };
 
-    public undoRequirementStatusChange = (test: VisualizationType, step: string): void => {
+    public undoRequirementStatusChange = (
+        test: VisualizationType,
+        step: string,
+    ): void => {
         this.actionMessageCreator.undoManualRequirementStatusChange(test, step);
     };
 
-    public addFailureInstance = (instanceData: FailureInstanceData, test: VisualizationType, step: string): void => {
+    public addFailureInstance = (
+        instanceData: FailureInstanceData,
+        test: VisualizationType,
+        step: string,
+    ): void => {
         this.actionMessageCreator.addFailureInstance(instanceData, test, step);
     };
 
@@ -70,12 +88,25 @@ export class AssessmentInstanceTableHandler {
         assessmentNavState: AssessmentNavState,
         hasVisualHelper: boolean,
     ): AssessmentInstanceRowData[] {
-        const assessmentInstances = this.getInstanceKeys(instancesMap, assessmentNavState).map(key => {
+        const assessmentInstances = this.getInstanceKeys(
+            instancesMap,
+            assessmentNavState,
+        ).map(key => {
             const instance = instancesMap[key];
             return {
                 key: key,
-                statusChoiceGroup: this.renderChoiceGroup(instance, key, assessmentNavState),
-                visualizationButton: hasVisualHelper ? this.renderSelectedButton(instance, key, assessmentNavState) : null,
+                statusChoiceGroup: this.renderChoiceGroup(
+                    instance,
+                    key,
+                    assessmentNavState,
+                ),
+                visualizationButton: hasVisualHelper
+                    ? this.renderSelectedButton(
+                          instance,
+                          key,
+                          assessmentNavState,
+                      )
+                    : null,
                 instance: instance,
             } as AssessmentInstanceRowData;
         });
@@ -88,17 +119,27 @@ export class AssessmentInstanceTableHandler {
         hasVisualHelper: boolean,
     ): IColumn[] {
         let allEnabled: boolean = true;
-        const instanceKeys = this.getInstanceKeys(instancesMap, assessmentNavState);
+        const instanceKeys = this.getInstanceKeys(
+            instancesMap,
+            assessmentNavState,
+        );
         for (let keyIndex = 0; keyIndex < instanceKeys.length; keyIndex++) {
             const key = instanceKeys[keyIndex];
             const instance = instancesMap[key];
-            if (!instance.testStepResults[assessmentNavState.selectedTestStep].isVisualizationEnabled) {
+            if (
+                !instance.testStepResults[assessmentNavState.selectedTestStep]
+                    .isVisualizationEnabled
+            ) {
                 allEnabled = false;
                 break;
             }
         }
 
-        return this.assessmentTableColumnConfigHandler.getColumnConfigs(assessmentNavState, allEnabled, hasVisualHelper);
+        return this.assessmentTableColumnConfigHandler.getColumnConfigs(
+            assessmentNavState,
+            allEnabled,
+            hasVisualHelper,
+        );
     }
 
     public createCapturedInstanceTableItems(
@@ -111,7 +152,13 @@ export class AssessmentInstanceTableHandler {
         return instances.map((instance: UserCapturedInstance) => {
             return {
                 instance: instance,
-                instanceActionButtons: this.renderInstanceActionButtons(instance, test, step, featureFlagStoreData, pathSnippetStoreData),
+                instanceActionButtons: this.renderInstanceActionButtons(
+                    instance,
+                    test,
+                    step,
+                    featureFlagStoreData,
+                    pathSnippetStoreData,
+                ),
             };
         });
     }
@@ -134,8 +181,12 @@ export class AssessmentInstanceTableHandler {
                 selector={key}
                 status={instance.testStepResults[step].status}
                 originalStatus={instance.testStepResults[step].originalStatus}
-                onGroupChoiceChange={this.actionMessageCreator.changeManualTestStatus}
-                onUndoClicked={this.actionMessageCreator.undoManualTestStatusChange}
+                onGroupChoiceChange={
+                    this.actionMessageCreator.changeManualTestStatus
+                }
+                onUndoClicked={
+                    this.actionMessageCreator.undoManualTestStatusChange
+                }
             />
         );
     };
@@ -153,9 +204,13 @@ export class AssessmentInstanceTableHandler {
                 test={test}
                 step={step}
                 selector={key}
-                isVisualizationEnabled={instance.testStepResults[step].isVisualizationEnabled}
+                isVisualizationEnabled={
+                    instance.testStepResults[step].isVisualizationEnabled
+                }
                 isVisible={instance.testStepResults[step].isVisible}
-                onSelected={this.actionMessageCreator.changeAssessmentVisualizationState}
+                onSelected={
+                    this.actionMessageCreator.changeAssessmentVisualizationState
+                }
             />
         );
     };
@@ -180,7 +235,9 @@ export class AssessmentInstanceTableHandler {
                 currentInstance={currentInstance}
                 onRemove={this.actionMessageCreator.removeFailureInstance}
                 onEdit={this.actionMessageCreator.editFailureInstance}
-                onClearPathSnippetData={this.actionMessageCreator.clearPathSnippetData}
+                onClearPathSnippetData={
+                    this.actionMessageCreator.clearPathSnippetData
+                }
                 onAddPath={this.actionMessageCreator.addPathForValidation}
                 assessmentsProvider={this.assessmentsProvider}
                 featureFlagStoreData={featureFlagStoreData}
@@ -193,7 +250,11 @@ export class AssessmentInstanceTableHandler {
         assessmentNavState: AssessmentNavState,
     ): string[] {
         return Object.keys(instancesMap).filter(key => {
-            return instancesMap[key].testStepResults[assessmentNavState.selectedTestStep] != null;
+            return (
+                instancesMap[key].testStepResults[
+                    assessmentNavState.selectedTestStep
+                ] != null
+            );
         });
     }
 }

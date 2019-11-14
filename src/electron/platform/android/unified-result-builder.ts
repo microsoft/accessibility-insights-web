@@ -19,7 +19,9 @@ import {
     ConvertScanResultsToUnifiedRulesDelegate,
 } from 'electron/platform/android/scan-results-to-unified-rules';
 
-export type UnifiedScanCompletedPayloadBuilder = (scanResults: ScanResults) => UnifiedScanCompletedPayload;
+export type UnifiedScanCompletedPayloadBuilder = (
+    scanResults: ScanResults,
+) => UnifiedScanCompletedPayload;
 
 export const createBuilder = (
     getUnifiedResults: ConvertScanResultsToUnifiedResultsDelegate,
@@ -30,8 +32,16 @@ export const createBuilder = (
     getToolData: ToolDataDelegate,
 ) => (scanResults: ScanResults): UnifiedScanCompletedPayload => {
     const payload: UnifiedScanCompletedPayload = {
-        scanResult: getUnifiedResults(scanResults, ruleInformationProvider, uuidGenerator),
-        rules: getUnifiedRules(scanResults, ruleInformationProvider, uuidGenerator),
+        scanResult: getUnifiedResults(
+            scanResults,
+            ruleInformationProvider,
+            uuidGenerator,
+        ),
+        rules: getUnifiedRules(
+            scanResults,
+            ruleInformationProvider,
+            uuidGenerator,
+        ),
         platformInfo: getPlatformData(scanResults),
         toolInfo: getToolData(scanResults),
         targetAppInfo: {

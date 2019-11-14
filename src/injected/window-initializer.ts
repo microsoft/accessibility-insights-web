@@ -65,7 +65,10 @@ export class WindowInitializer {
 
         new RootContainerCreator(htmlElementUtils).create(rootContainerId);
 
-        this.shadowInitializer = new ShadowInitializer(this.browserAdapter, htmlElementUtils);
+        this.shadowInitializer = new ShadowInitializer(
+            this.browserAdapter,
+            htmlElementUtils,
+        );
         asyncInitializationSteps.push(this.shadowInitializer.initialize());
 
         this.visualizationConfigurationFactory = new VisualizationConfigurationFactory();
@@ -74,8 +77,17 @@ export class WindowInitializer {
             this.windowUtils,
             new WindowMessageMarshaller(this.browserAdapter, generateUID),
         );
-        this.frameCommunicator = new FrameCommunicator(windowMessageHandler, htmlElementUtils, Q);
-        this.tabStopsListener = new TabStopsListener(this.frameCommunicator, this.windowUtils, htmlElementUtils, this.scannerUtils);
+        this.frameCommunicator = new FrameCommunicator(
+            windowMessageHandler,
+            htmlElementUtils,
+            Q,
+        );
+        this.tabStopsListener = new TabStopsListener(
+            this.frameCommunicator,
+            this.windowUtils,
+            htmlElementUtils,
+            this.scannerUtils,
+        );
         const drawerProvider = new DrawerProvider(
             htmlElementUtils,
             this.windowUtils,
@@ -94,8 +106,15 @@ export class WindowInitializer {
             new HtmlElementAxeResultsHelper(htmlElementUtils),
             htmlElementUtils,
         );
-        this.scrollingController = new ScrollingController(this.frameCommunicator, htmlElementUtils);
-        this.frameUrlFinder = new FrameUrlFinder(this.frameCommunicator, this.windowUtils, htmlElementUtils);
+        this.scrollingController = new ScrollingController(
+            this.frameCommunicator,
+            htmlElementUtils,
+        );
+        this.frameUrlFinder = new FrameUrlFinder(
+            this.frameCommunicator,
+            this.windowUtils,
+            htmlElementUtils,
+        );
         windowMessageHandler.initialize();
         this.tabStopsListener.initialize();
         this.frameCommunicator.initialize();
@@ -109,7 +128,9 @@ export class WindowInitializer {
             Assessments,
             drawerProvider,
         );
-        EnumHelper.getNumericValues(VisualizationType).forEach(visualizationTypeDrawerRegistrar.registerType);
+        EnumHelper.getNumericValues(VisualizationType).forEach(
+            visualizationTypeDrawerRegistrar.registerType,
+        );
 
         const port = this.browserAdapter.connect();
         port.onDisconnect.addListener(() => this.dispose());
@@ -123,7 +144,10 @@ export class WindowInitializer {
         );
         this.elementFinderByPosition.initialize();
 
-        this.elementFinderByPath = new ElementFinderByPath(htmlElementUtils, this.frameCommunicator);
+        this.elementFinderByPath = new ElementFinderByPath(
+            htmlElementUtils,
+            this.frameCommunicator,
+        );
         this.elementFinderByPath.initialize();
 
         await Promise.all(asyncInitializationSteps);

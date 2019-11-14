@@ -5,7 +5,10 @@ import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
 import { SingleElementSelector } from '../../../../common/types/store-data/scoping-store-data';
 import { ClientUtils } from '../../../../injected/client-utils';
-import { ElementFinderByPosition, ElementFinderByPositionMessage } from '../../../../injected/element-finder-by-position';
+import {
+    ElementFinderByPosition,
+    ElementFinderByPositionMessage,
+} from '../../../../injected/element-finder-by-position';
 import { ErrorMessageContent } from '../../../../injected/frameCommunicators/error-message-content';
 import { FrameCommunicator } from '../../../../injected/frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from '../../../../injected/frameCommunicators/window-message-handler';
@@ -69,8 +72,16 @@ describe('ElementFinderByPositionTest', () => {
     });
 
     test('initialize', () => {
-        const responderMock = Mock.ofInstance((result: any, error: ErrorMessageContent, messageSourceWindow: Window) => {});
-        const processRequestPromiseHandlerMock = Mock.ofInstance((successCb, errorCb) => {});
+        const responderMock = Mock.ofInstance(
+            (
+                result: any,
+                error: ErrorMessageContent,
+                messageSourceWindow: Window,
+            ) => {},
+        );
+        const processRequestPromiseHandlerMock = Mock.ofInstance(
+            (successCb, errorCb) => {},
+        );
         const processRequestMock = Mock.ofInstance(message => {
             return null;
         });
@@ -87,7 +98,12 @@ describe('ElementFinderByPositionTest', () => {
         } as Q.IPromise<string[]>;
 
         frameCommunicatorMock
-            .setup(fcm => fcm.subscribe(ElementFinderByPosition.findElementByPositionCommand, subscribeCallback))
+            .setup(fcm =>
+                fcm.subscribe(
+                    ElementFinderByPosition.findElementByPositionCommand,
+                    subscribeCallback,
+                ),
+            )
             .verifiable();
 
         processRequestMock
@@ -102,7 +118,9 @@ describe('ElementFinderByPositionTest', () => {
                 errorCallback = error;
             });
 
-        responderMock.setup(rm => rm(resultsStub, null, windowStub)).verifiable();
+        responderMock
+            .setup(rm => rm(resultsStub, null, windowStub))
+            .verifiable();
 
         responderMock.setup(rm => rm(null, errorStub, windowStub)).verifiable();
 
@@ -154,7 +172,9 @@ describe('ElementFinderByPositionTest', () => {
     test('process request when element is in iframe', () => {
         let successCallback;
         let errorCallback;
-        const sendMessagePromiseHandlerMock = Mock.ofInstance((successCb, errorCb) => {});
+        const sendMessagePromiseHandlerMock = Mock.ofInstance(
+            (successCb, errorCb) => {},
+        );
         const sendMessageReturnStub = {
             then: sendMessagePromiseHandlerMock.object,
         } as Q.IPromise<string[]>;
@@ -182,7 +202,9 @@ describe('ElementFinderByPositionTest', () => {
         setupGetUniqueSelector(elementStub, iframeSelector);
 
         frameCommunicatorMock
-            .setup(fcm => fcm.sendMessage(It.isValue(expectedFrameCommunicatorMessage)))
+            .setup(fcm =>
+                fcm.sendMessage(It.isValue(expectedFrameCommunicatorMessage)),
+            )
             .returns(() => sendMessageReturnStub)
             .verifiable();
 
@@ -210,14 +232,20 @@ describe('ElementFinderByPositionTest', () => {
         verifyAll();
     });
 
-    function setupElementsFromPointMock(messageStub: ElementFinderByPositionMessage, elements: HTMLElement[]): void {
+    function setupElementsFromPointMock(
+        messageStub: ElementFinderByPositionMessage,
+        elements: HTMLElement[],
+    ): void {
         elementsFromPointMock
             .setup(em => em(messageStub.x, messageStub.y))
             .returns(() => elements)
             .verifiable();
     }
 
-    function setupGetUniqueSelector(element: HTMLElement, selector: string): void {
+    function setupGetUniqueSelector(
+        element: HTMLElement,
+        selector: string,
+    ): void {
         scannerUtils
             .setup(ksm => ksm.getUniqueSelector(element))
             .returns(() => selector)

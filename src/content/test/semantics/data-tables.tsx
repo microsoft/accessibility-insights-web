@@ -5,23 +5,31 @@ import { create, React } from '../../common';
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
         <h1>Data tables</h1>
-        <p>Semantic elements in a data table must not be coded as presentational.</p>
+        <p>
+            Semantic elements in a data table must not be coded as
+            presentational.
+        </p>
 
         <h2>Why it matters</h2>
         <p>
-            The semantic elements in a data table communicate relationships between cells and row or column headers. When{' '}
-            <Markup.Code>role="presentation"</Markup.Code> is applied to a data table element, its semantics are suppressed, and critical
-            relationships are consequently hidden from people who use assistive technologies. Moreover, they can't use the standard
-            navigational shortcuts for data tables.
+            The semantic elements in a data table communicate relationships
+            between cells and row or column headers. When{' '}
+            <Markup.Code>role="presentation"</Markup.Code> is applied to a data
+            table element, its semantics are suppressed, and critical
+            relationships are consequently hidden from people who use assistive
+            technologies. Moreover, they can't use the standard navigational
+            shortcuts for data tables.
         </p>
         <p>
-            (Applying <Markup.Code>role="presentation"</Markup.Code> is appropriate for layout tables, because their table semantics do not
+            (Applying <Markup.Code>role="presentation"</Markup.Code> is
+            appropriate for layout tables, because their table semantics do not
             communicate any meaningful relationships.)
         </p>
 
         <h2>How to fix</h2>
         <p>
-            Do not use <Markup.Code>role="presentation"</Markup.Code> on any of the semantic elements in a data table:
+            Do not use <Markup.Code>role="presentation"</Markup.Code> on any of
+            the semantic elements in a data table:
             <ul>
                 <li>
                     <Markup.Code>{'<table>'}</Markup.Code>
@@ -58,7 +66,8 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <Markup.PassFail
             failText={
                 <p>
-                    This data table is incorrectly coded as presentational. Assistive technologies are unaware of the table's semantic
+                    This data table is incorrectly coded as presentational.
+                    Assistive technologies are unaware of the table's semantic
                     elements.
                 </p>
             }
@@ -82,7 +91,8 @@ export const infoAndExamples = create(({ Markup, Link }) => (
            </table>`}
             passText={
                 <p>
-                    With <Markup.Code>role="presentation"</Markup.Code> removed, assistive technologies can help users understand the
+                    With <Markup.Code>role="presentation"</Markup.Code> removed,
+                    assistive technologies can help users understand the
                     relationships between cells and column headers.{' '}
                 </p>
             }
@@ -120,23 +130,28 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 Using table markup to present tabular information
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H39">
-                Using caption elements to associate data table captions with data tables
+                Using caption elements to associate data table captions with
+                data tables
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H73">
-                Using the summary attribute of the table element to give an overview of data tables
+                Using the summary attribute of the table element to give an
+                overview of data tables
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H63">
-                Using the scope attribute to associate header cells and data cells in data tables
+                Using the scope attribute to associate header cells and data
+                cells in data tables
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H43">
-                Using id and headers attributes to associate data cells with header cells in data tables
+                Using id and headers attributes to associate data cells with
+                header cells in data tables
             </Markup.HyperLink>
         </Markup.Links>
 
         <h3>Common failures</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F92">
-                Failure of Success Criterion 1.3.1 due to the use of role presentation on content which conveys semantic information
+                Failure of Success Criterion 1.3.1 due to the use of role
+                presentation on content which conveys semantic information
             </Markup.HyperLink>
         </Markup.Links>
 

@@ -62,7 +62,11 @@ $outcome-count-border-size: 1.5px;
         height: $outcome-chip-icon-size - (2 * $outcome-count-border-size);
     }
     &.outcome-chip-pass {
-        @include check-icon-styles($outcome-chip-icon-size, 0px, $outcome-pass-color);
+        @include check-icon-styles(
+            $outcome-chip-icon-size,
+            0px,
+            $outcome-pass-color
+        );
         @include outcome-chip-color($outcome-pass-color);
     }
     &.outcome-chip-incomplete {
@@ -70,7 +74,11 @@ $outcome-count-border-size: 1.5px;
         @include outcome-chip-color($outcome-incomplete-border-color);
     }
     &.outcome-chip-fail {
-        @include cross-icon-styles($outcome-chip-icon-size, 0px, $outcome-fail-color);
+        @include cross-icon-styles(
+            $outcome-chip-icon-size,
+            0px,
+            $outcome-fail-color
+        );
         @include outcome-chip-color($outcome-fail-color);
     }
     &.outcome-chip-inapplicable {
@@ -86,7 +94,11 @@ $outcome-count-border-size: 1.5px;
         border-radius: 50%;
     }
     .outcome-icon-pass {
-        @include check-icon-styles($outcome-icon-size, 0px, $outcome-pass-color);
+        @include check-icon-styles(
+            $outcome-icon-size,
+            0px,
+            $outcome-pass-color
+        );
     }
     .outcome-icon-incomplete {
         @include incomplete-icon-styles($outcome-icon-size, 1px);
@@ -95,6 +107,10 @@ $outcome-count-border-size: 1.5px;
         }
     }
     .outcome-icon-fail {
-        @include cross-icon-styles($outcome-icon-size, 0px, $outcome-fail-color);
+        @include cross-icon-styles(
+            $outcome-icon-size,
+            0px,
+            $outcome-fail-color
+        );
     }
 }

@@ -20,8 +20,14 @@ import { DetailsDialogHandler } from '../details-dialog-handler';
 import { DecoratedAxeNodeResult } from '../scanner-utils';
 import { TargetPageActionMessageCreator } from '../target-page-action-message-creator';
 import { CommandBar, CommandBarDeps, CommandBarProps } from './command-bar';
-import { FixInstructionPanel, FixInstructionPanelDeps } from './fix-instruction-panel';
-import { IssueDetailsNavigationControls, IssueDetailsNavigationControlsProps } from './issue-details-navigation-controls';
+import {
+    FixInstructionPanel,
+    FixInstructionPanelDeps,
+} from './fix-instruction-panel';
+import {
+    IssueDetailsNavigationControls,
+    IssueDetailsNavigationControlsProps,
+} from './issue-details-navigation-controls';
 
 export enum CheckType {
     All,
@@ -56,7 +62,10 @@ export interface DetailsDialogState {
     showInspectMessage: boolean;
 }
 
-export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDialogState> {
+export class DetailsDialog extends React.Component<
+    DetailsDialogProps,
+    DetailsDialogState
+> {
     private onHideDialog: () => void;
     public onClickInspectButton: (ev) => void;
     private onLayoutDidMount: () => void;
@@ -127,7 +136,9 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         }
     }
 
-    private getOnClickWhenNotInShadowDom(func: (ev: any) => void): (ev: any) => void {
+    private getOnClickWhenNotInShadowDom(
+        func: (ev: any) => void,
+    ): (ev: any) => void {
         if (this.props.featureFlagStoreData[FeatureFlags.shadowDialog]) {
             return null;
         } else {
@@ -141,9 +152,13 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
             deps: this.props.deps,
             devToolsShortcut: this.props.devToolsShortcut,
             failedRules: this.props.failedRules,
-            onClickCopyIssueDetailsButton: this.props.deps.targetPageActionMessageCreator.copyIssueDetailsClicked,
-            onClickInspectButton: this.getOnClickWhenNotInShadowDom(this.onClickInspectButton),
-            shouldShowInspectButtonMessage: () => this.props.dialogHandler.shouldShowInspectButtonMessage(this),
+            onClickCopyIssueDetailsButton: this.props.deps
+                .targetPageActionMessageCreator.copyIssueDetailsClicked,
+            onClickInspectButton: this.getOnClickWhenNotInShadowDom(
+                this.onClickInspectButton,
+            ),
+            shouldShowInspectButtonMessage: () =>
+                this.props.dialogHandler.shouldShowInspectButtonMessage(this),
             userConfigurationStoreData: this.state.userConfigurationStoreData,
         };
 
@@ -165,8 +180,15 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         return <IssueDetailsNavigationControls {...navigationControlsProps} />;
     }
 
-    private renderSectionTitle(sectionTitle: string, className?: string): JSX.Element {
-        return <h3 className={css('insights-dialog-section-title', className)}>{sectionTitle}</h3>;
+    private renderSectionTitle(
+        sectionTitle: string,
+        className?: string,
+    ): JSX.Element {
+        return (
+            <h3 className={css('insights-dialog-section-title', className)}>
+                {sectionTitle}
+            </h3>
+        );
     }
 
     private renderRuleName(rule: DecoratedAxeNodeResult): JSX.Element {
@@ -182,16 +204,23 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         return (
             <div className="insights-dialog-rule-name">
                 {this.renderSectionTitle('Rule name')}
-                <NewTabLink href={fixUrl(rule.helpUrl)}>{rule.ruleId}</NewTabLink>
+                <NewTabLink href={fixUrl(rule.helpUrl)}>
+                    {rule.ruleId}
+                </NewTabLink>
             </div>
         );
     }
 
-    private renderSuccessCriteria(ruleGuidanceLinks: HyperlinkDefinition[]): JSX.Element {
+    private renderSuccessCriteria(
+        ruleGuidanceLinks: HyperlinkDefinition[],
+    ): JSX.Element {
         if (isEmpty(ruleGuidanceLinks)) {
             return null;
         }
-        const sectionTitle: string = ruleGuidanceLinks.length === 1 ? 'Success criterion' : 'Success criteria';
+        const sectionTitle: string =
+            ruleGuidanceLinks.length === 1
+                ? 'Success criterion'
+                : 'Success criteria';
 
         return (
             <div className="insights-dialog-success-criteria">
@@ -210,7 +239,9 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         );
     }
 
-    private renderFixInstructions(ruleResult: DecoratedAxeNodeResult): JSX.Element {
+    private renderFixInstructions(
+        ruleResult: DecoratedAxeNodeResult,
+    ): JSX.Element {
         return (
             <div className="insights-dialog-fix-instruction-container">
                 <FixInstructionPanel
@@ -244,10 +275,17 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
 
     private withshadowDomTurnedOn(rule: DecoratedAxeNodeResult): JSX.Element {
         return (
-            <div style={{ visibility: this.state.showDialog ? 'visible' : 'hidden' }} className="insights-dialog-main-override-shadow">
+            <div
+                style={{
+                    visibility: this.state.showDialog ? 'visible' : 'hidden',
+                }}
+                className="insights-dialog-main-override-shadow"
+            >
                 <div className="insights-dialog-container">
                     <div className="insights-dialog-header">
-                        <p className="ms-Dialog-title insights-dialog-title">{rule.help}</p>
+                        <p className="ms-Dialog-title insights-dialog-title">
+                            {rule.help}
+                        </p>
                         <div className="ms-Dialog-topButton">
                             <button
                                 type="button"
@@ -287,7 +325,8 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
                 }}
                 modalProps={{
                     isBlocking: false,
-                    containerClassName: 'insights-dialog-main-override insights-dialog-main-container',
+                    containerClassName:
+                        'insights-dialog-main-override insights-dialog-main-container',
                     layerProps: {
                         onLayerDidMount: this.onLayoutDidMount,
                         hostId: 'insights-dialog-layer-host',

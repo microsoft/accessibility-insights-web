@@ -4,9 +4,17 @@ import { AssessmentInstanceDetailsColumn } from 'DetailsView/components/assessme
 import { AssessmentInstanceRowData } from 'DetailsView/components/assessment-instance-table';
 import * as React from 'react';
 
-export function pageTitleInstanceDetailsColumnRenderer(item: AssessmentInstanceRowData<any>): JSX.Element {
+export function pageTitleInstanceDetailsColumnRenderer(
+    item: AssessmentInstanceRowData<any>,
+): JSX.Element {
     const propertyBag = item.instance.propertyBag;
     const textContent = propertyBag ? propertyBag.pageTitle : null;
 
-    return <AssessmentInstanceDetailsColumn background={null} textContent={textContent} tooltipId={null} />;
+    return (
+        <AssessmentInstanceDetailsColumn
+            background={null}
+            textContent={textContent}
+            tooltipId={null}
+        />
+    );
 }

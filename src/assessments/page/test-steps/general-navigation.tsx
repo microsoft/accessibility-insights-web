@@ -9,7 +9,9 @@ import { Term } from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { PageTestStep } from './test-steps';
 
-const generalNavigationDescription: JSX.Element = <span>Users must have multiple ways to navigate to a page.</span>;
+const generalNavigationDescription: JSX.Element = (
+    <span>Users must have multiple ways to navigate to a page.</span>
+);
 
 const generalNavigationHowToTest: JSX.Element = (
     <div>
@@ -19,17 +21,22 @@ const generalNavigationHowToTest: JSX.Element = (
                 <li>The page is part of a multi-page website or web app.</li>
                 <ol>
                     <li>
-                        If there are no other pages within the site or app, select <Term>Pass</Term>.
+                        If there are no other pages within the site or app,
+                        select <Term>Pass</Term>.
                     </li>
                 </ol>
                 <li>The page is the result of, or a step in, a process.</li>
                 <ol>
                     <li>
-                        If the page is part of a process, select <Term>Pass</Term>.
+                        If the page is part of a process, select{' '}
+                        <Term>Pass</Term>.
                     </li>
                 </ol>
             </ol>
-            <li>Verify that the page provides two or more ways to locate pages within the site or app, such as:</li>
+            <li>
+                Verify that the page provides two or more ways to locate pages
+                within the site or app, such as:
+            </li>
             <ol>
                 <li>Site maps</li>
                 <li>Site search</li>

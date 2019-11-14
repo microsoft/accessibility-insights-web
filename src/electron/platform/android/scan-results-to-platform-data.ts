@@ -3,9 +3,13 @@
 import { PlatformData } from 'common/types/store-data/unified-data-interface';
 import { ScanResults } from './scan-results';
 
-export type ConvertScanResultsToPlatformDataDelegate = (scanResults: ScanResults) => PlatformData;
+export type ConvertScanResultsToPlatformDataDelegate = (
+    scanResults: ScanResults,
+) => PlatformData;
 
-export function convertScanResultsToPlatformData(scanResults: ScanResults): PlatformData {
+export function convertScanResultsToPlatformData(
+    scanResults: ScanResults,
+): PlatformData {
     if (scanResults == null || scanResults.deviceInfo == null) {
         return null;
     }

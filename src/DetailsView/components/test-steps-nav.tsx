@@ -6,7 +6,10 @@ import * as React from 'react';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { OutcomeTypeSemantic } from 'reports/components/outcome-type';
 import { getRequirementsResults } from '../../common/assessment/requirement';
-import { ManualTestStatus, ManualTestStatusData } from '../../common/types/manual-test-status';
+import {
+    ManualTestStatus,
+    ManualTestStatusData,
+} from '../../common/types/manual-test-status';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { RequirementLink } from './requirement-link';
@@ -14,7 +17,9 @@ import { RequirementLink } from './requirement-link';
 export interface TestStepNavDeps {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     assessmentsProvider: AssessmentsProvider;
-    outcomeTypeSemanticsFromTestStatus(testStatus: ManualTestStatus): OutcomeTypeSemantic;
+    outcomeTypeSemanticsFromTestStatus(
+        testStatus: ManualTestStatus,
+    ): OutcomeTypeSemantic;
     getInnerTextFromJsxElement(element: JSX.Element): string;
 }
 
@@ -65,22 +70,43 @@ export class TestStepsNav extends React.Component<TestStepNavProps> {
         return this.props.stepStatus[key].stepFinalResult;
     }
 
-    protected onTestStepSelected = (event?: React.MouseEvent<HTMLElement>, item?: INavLink): void => {
+    protected onTestStepSelected = (
+        event?: React.MouseEvent<HTMLElement>,
+        item?: INavLink,
+    ): void => {
         if (item) {
-            this.props.deps.detailsViewActionMessageCreator.selectRequirement(event, item.key, this.props.selectedTest);
+            this.props.deps.detailsViewActionMessageCreator.selectRequirement(
+                event,
+                item.key,
+                this.props.selectedTest,
+            );
         }
     };
 
     private getLinks(): INavLink[] {
         const { selectedTest, stepStatus } = this.props;
-        const { assessmentsProvider, getInnerTextFromJsxElement, outcomeTypeSemanticsFromTestStatus } = this.props.deps;
-        const results = getRequirementsResults(assessmentsProvider, selectedTest, stepStatus);
+        const {
+            assessmentsProvider,
+            getInnerTextFromJsxElement,
+            outcomeTypeSemanticsFromTestStatus,
+        } = this.props.deps;
+        const results = getRequirementsResults(
+            assessmentsProvider,
+            selectedTest,
+            stepStatus,
+        );
 
         return results.map(result => {
             const { definition: step } = result;
             const status = this.getStepStatus(step.key);
-            const uiDisplayableStatus = outcomeTypeSemanticsFromTestStatus(status).pastTense;
-            const title = `${step.name}. ${uiDisplayableStatus}. ${getInnerTextFromJsxElement(step.description)}`;
+            const uiDisplayableStatus = outcomeTypeSemanticsFromTestStatus(
+                status,
+            ).pastTense;
+            const title = `${
+                step.name
+            }. ${uiDisplayableStatus}. ${getInnerTextFromJsxElement(
+                step.description,
+            )}`;
 
             return {
                 key: step.key,

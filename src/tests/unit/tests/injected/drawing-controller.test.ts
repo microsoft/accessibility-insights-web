@@ -5,14 +5,20 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { getDefaultFeatureFlagValues } from '../../../../common/feature-flags';
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
-import { DrawingController, VisualizationWindowMessage } from '../../../../injected/drawing-controller';
+import {
+    DrawingController,
+    VisualizationWindowMessage,
+} from '../../../../injected/drawing-controller';
 import { FrameCommunicator } from '../../../../injected/frameCommunicators/frame-communicator';
 import {
     AssessmentVisualizationInstance,
     HtmlElementAxeResultsHelper,
 } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { HtmlElementAxeResults } from '../../../../injected/scanner-utils';
-import { Drawer, DrawerInitData } from '../../../../injected/visualization/drawer';
+import {
+    Drawer,
+    DrawerInitData,
+} from '../../../../injected/visualization/drawer';
 import { HighlightBoxDrawer } from '../../../../injected/visualization/highlight-box-drawer';
 import { HTMLCollectionOfBuilder } from '../../common/html-collection-of-builder';
 
@@ -37,12 +43,16 @@ class VisualizationWindowMessageStubBuilder {
         return this;
     }
 
-    public setElementResults(results: AssessmentVisualizationInstance[]): VisualizationWindowMessageStubBuilder {
+    public setElementResults(
+        results: AssessmentVisualizationInstance[],
+    ): VisualizationWindowMessageStubBuilder {
         this.elementResults = results;
         return this;
     }
 
-    public setFeatureFlagStoreData(featureFlagStoreData: FeatureFlagStoreData): VisualizationWindowMessageStubBuilder {
+    public setFeatureFlagStoreData(
+        featureFlagStoreData: FeatureFlagStoreData,
+    ): VisualizationWindowMessageStubBuilder {
         this.featureFlagStoreData = featureFlagStoreData;
         return this;
     }
@@ -70,24 +80,40 @@ describe('DrawingControllerTest', () => {
     });
 
     test('initialize and invokeMethodIfExists test', () => {
-        let subscribeCallback: (result: any, error: any, win: any, responder?: any) => void;
+        let subscribeCallback: (
+            result: any,
+            error: any,
+            win: any,
+            responder?: any,
+        ) => void;
         const configId = 'id';
         frameCommunicatorMock
-            .setup(fcm => fcm.subscribe(It.isValue(DrawingController.triggerVisualizationCommand), It.isAny()))
+            .setup(fcm =>
+                fcm.subscribe(
+                    It.isValue(DrawingController.triggerVisualizationCommand),
+                    It.isAny(),
+                ),
+            )
             .returns((cmd, func) => {
                 subscribeCallback = func;
             })
             .verifiable(Times.once());
 
-        axeResultsHelperMock.setup(am => am.splitResultsByFrame(It.isAny())).verifiable(Times.never());
+        axeResultsHelperMock
+            .setup(am => am.splitResultsByFrame(It.isAny()))
+            .verifiable(Times.never());
 
-        const message: VisualizationWindowMessage = new VisualizationWindowMessageStubBuilder(configId)
+        const message: VisualizationWindowMessage = new VisualizationWindowMessageStubBuilder(
+            configId,
+        )
             .setVisualizationDisabled()
             .setElementResults([])
             .build();
 
         const responderMock = Mock.ofInstance((data: any) => {});
-        responderMock.setup(rm => rm(It.isValue(null))).verifiable(Times.once());
+        responderMock
+            .setup(rm => rm(It.isValue(null)))
+            .verifiable(Times.once());
 
         hTMLElementUtils
             .setup(dm => dm.getAllElementsByTagName(It.isValue('iframe')))
@@ -99,7 +125,11 @@ describe('DrawingControllerTest', () => {
         const drawerMock = Mock.ofType(HighlightBoxDrawer, MockBehavior.Strict);
         drawerMock.setup(m => m.eraseLayout()).verifiable(Times.once());
 
-        const testObject = new DrawingController(frameCommunicatorMock.object, axeResultsHelperMock.object, hTMLElementUtils.object);
+        const testObject = new DrawingController(
+            frameCommunicatorMock.object,
+            axeResultsHelperMock.object,
+            hTMLElementUtils.object,
+        );
 
         testObject.initialize();
         testObject.registerDrawer(configId, drawerMock.object);
@@ -114,8 +144,14 @@ describe('DrawingControllerTest', () => {
         const featureFlagStoreData = getDefaultFeatureFlagValues();
 
         const configId = 'id';
-        let subscribeCallback: (result: any, error: any, responder?: any) => void;
-        const message: VisualizationWindowMessage = new VisualizationWindowMessageStubBuilder(configId)
+        let subscribeCallback: (
+            result: any,
+            error: any,
+            responder?: any,
+        ) => void;
+        const message: VisualizationWindowMessage = new VisualizationWindowMessageStubBuilder(
+            configId,
+        )
             .setVisualizationEnabled()
             .setElementResults(['some data'] as any)
             .setFeatureFlagStoreData(featureFlagStoreData)
@@ -123,7 +159,9 @@ describe('DrawingControllerTest', () => {
         const iframeResults = ['iframeContent'];
         const iframeElement = 'iframeElement';
         const visibleResultStub = {} as HtmlElementAxeResults;
-        const disabledResultStub = { isVisualizationEnabled: false } as AssessmentVisualizationInstance;
+        const disabledResultStub = {
+            isVisualizationEnabled: false,
+        } as AssessmentVisualizationInstance;
         const resultsByFrames = [
             {
                 frame: null,
@@ -137,7 +175,12 @@ describe('DrawingControllerTest', () => {
         const drawerMock = Mock.ofType(HighlightBoxDrawer, MockBehavior.Strict);
 
         frameCommunicatorMock
-            .setup(fcm => fcm.subscribe(It.isValue(DrawingController.triggerVisualizationCommand), It.isAny()))
+            .setup(fcm =>
+                fcm.subscribe(
+                    It.isValue(DrawingController.triggerVisualizationCommand),
+                    It.isAny(),
+                ),
+            )
             .returns((cmd, func) => {
                 subscribeCallback = func;
             })
@@ -161,23 +204,33 @@ describe('DrawingControllerTest', () => {
             .verifiable(Times.once());
 
         axeResultsHelperMock
-            .setup(am => am.splitResultsByFrame(It.isValue(message.elementResults)))
+            .setup(am =>
+                am.splitResultsByFrame(It.isValue(message.elementResults)),
+            )
             .returns(() => {
                 return resultsByFrames as any;
             })
             .verifiable(Times.once());
 
-        hTMLElementUtils.setup(dm => dm.getAllElementsByTagName(It.isAny())).verifiable(Times.never());
+        hTMLElementUtils
+            .setup(dm => dm.getAllElementsByTagName(It.isAny()))
+            .verifiable(Times.never());
 
         const expected: DrawerInitData<HtmlElementAxeResults> = {
             data: [visibleResultStub],
             featureFlagStoreData,
         };
-        drawerMock.setup(dm => dm.initialize(It.isValue(expected))).verifiable(Times.once());
+        drawerMock
+            .setup(dm => dm.initialize(It.isValue(expected)))
+            .verifiable(Times.once());
 
         drawerMock.setup(dm => dm.drawLayout()).verifiable(Times.once());
 
-        const testObject = new DrawingController(frameCommunicatorMock.object, axeResultsHelperMock.object, hTMLElementUtils.object);
+        const testObject = new DrawingController(
+            frameCommunicatorMock.object,
+            axeResultsHelperMock.object,
+            hTMLElementUtils.object,
+        );
 
         testObject.initialize();
         testObject.registerDrawer(configId, drawerMock.object);
@@ -191,13 +244,26 @@ describe('DrawingControllerTest', () => {
 
     test('enable visualization test when results is null - tabstops', () => {
         const configId = 'id';
-        let subscribeCallback: (result: any, error: any, responder?: any) => void;
-        const message: VisualizationWindowMessage = new VisualizationWindowMessageStubBuilder(configId).setVisualizationEnabled().build();
+        let subscribeCallback: (
+            result: any,
+            error: any,
+            responder?: any,
+        ) => void;
+        const message: VisualizationWindowMessage = new VisualizationWindowMessageStubBuilder(
+            configId,
+        )
+            .setVisualizationEnabled()
+            .build();
         const iframeElement = 'iframeElement';
         const drawerMock = Mock.ofType(HighlightBoxDrawer, MockBehavior.Strict);
 
         frameCommunicatorMock
-            .setup(fcm => fcm.subscribe(It.isValue(DrawingController.triggerVisualizationCommand), It.isAny()))
+            .setup(fcm =>
+                fcm.subscribe(
+                    It.isValue(DrawingController.triggerVisualizationCommand),
+                    It.isAny(),
+                ),
+            )
             .returns((cmd, func) => {
                 subscribeCallback = func;
             })
@@ -220,19 +286,34 @@ describe('DrawingControllerTest', () => {
             )
             .verifiable(Times.once());
 
-        axeResultsHelperMock.setup(am => am.splitResultsByFrame(It.isAny())).verifiable(Times.never());
+        axeResultsHelperMock
+            .setup(am => am.splitResultsByFrame(It.isAny()))
+            .verifiable(Times.never());
 
         hTMLElementUtils
             .setup(dm => dm.getAllElementsByTagName('iframe'))
-            .returns(() => HTMLCollectionOfBuilder.create([iframeElement as any]))
+            .returns(() =>
+                HTMLCollectionOfBuilder.create([iframeElement as any]),
+            )
             .verifiable(Times.once());
 
         drawerMock
-            .setup(dm => dm.initialize(It.isValue({ data: null, featureFlagStoreData: getDefaultFeatureFlagValues() })))
+            .setup(dm =>
+                dm.initialize(
+                    It.isValue({
+                        data: null,
+                        featureFlagStoreData: getDefaultFeatureFlagValues(),
+                    }),
+                ),
+            )
             .verifiable(Times.once());
         drawerMock.setup(dm => dm.drawLayout()).verifiable(Times.once());
 
-        const testObject = new DrawingController(frameCommunicatorMock.object, axeResultsHelperMock.object, hTMLElementUtils.object);
+        const testObject = new DrawingController(
+            frameCommunicatorMock.object,
+            axeResultsHelperMock.object,
+            hTMLElementUtils.object,
+        );
 
         testObject.initialize();
         testObject.registerDrawer(configId, drawerMock.object);
@@ -246,7 +327,11 @@ describe('DrawingControllerTest', () => {
 
     test('disable visualization test', () => {
         const configId = 'id';
-        const disableMessage = new VisualizationWindowMessageStubBuilder(configId).setVisualizationDisabled().build();
+        const disableMessage = new VisualizationWindowMessageStubBuilder(
+            configId,
+        )
+            .setVisualizationDisabled()
+            .build();
         const iframes = ['1'];
         const drawerMock = Mock.ofType(HighlightBoxDrawer, MockBehavior.Strict);
 
@@ -273,7 +358,11 @@ describe('DrawingControllerTest', () => {
             )
             .verifiable(Times.once());
 
-        const testObject = new DrawingController(frameCommunicatorMock.object, axeResultsHelperMock.object, hTMLElementUtils.object);
+        const testObject = new DrawingController(
+            frameCommunicatorMock.object,
+            axeResultsHelperMock.object,
+            hTMLElementUtils.object,
+        );
 
         testObject.initialize();
         testObject.registerDrawer(configId, drawerMock.object);
@@ -287,13 +376,19 @@ describe('DrawingControllerTest', () => {
 
     test('dispose should call eraseLayout on drawers', () => {
         const configId = 'id';
-        const enableMessage: VisualizationWindowMessage = new VisualizationWindowMessageStubBuilder(configId)
+        const enableMessage: VisualizationWindowMessage = new VisualizationWindowMessageStubBuilder(
+            configId,
+        )
             .setVisualizationEnabled()
             .build();
         const drawerMock = Mock.ofType(HighlightBoxDrawer, MockBehavior.Strict);
-        drawerMock.setup(dm => dm.initialize(It.isAny())).verifiable(Times.once());
+        drawerMock
+            .setup(dm => dm.initialize(It.isAny()))
+            .verifiable(Times.once());
         drawerMock.setup(dm => dm.drawLayout()).verifiable(Times.once());
-        drawerMock.setup(dm => dm.eraseLayout()).verifiable(Times.atLeastOnce());
+        drawerMock
+            .setup(dm => dm.eraseLayout())
+            .verifiable(Times.atLeastOnce());
 
         const resultsByFrames = [
             {
@@ -311,10 +406,16 @@ describe('DrawingControllerTest', () => {
         const iframeElement = 'iframeElement';
         hTMLElementUtils
             .setup(dm => dm.getAllElementsByTagName(It.isAny()))
-            .returns(() => HTMLCollectionOfBuilder.create([iframeElement as any]))
+            .returns(() =>
+                HTMLCollectionOfBuilder.create([iframeElement as any]),
+            )
             .verifiable(Times.once());
 
-        const testObject = new DrawingController(frameCommunicatorMock.object, axeResultsHelperMock.object, hTMLElementUtils.object);
+        const testObject = new DrawingController(
+            frameCommunicatorMock.object,
+            axeResultsHelperMock.object,
+            hTMLElementUtils.object,
+        );
 
         testObject.initialize();
         testObject.registerDrawer(configId, drawerMock.object);
@@ -331,8 +432,14 @@ describe('DrawingControllerTest', () => {
     test('drawer already registered', () => {
         const configId = 'stub id';
         const drawerMock = Mock.ofType<Drawer>();
-        const testObject = new DrawingController(frameCommunicatorMock.object, axeResultsHelperMock.object, hTMLElementUtils.object);
+        const testObject = new DrawingController(
+            frameCommunicatorMock.object,
+            axeResultsHelperMock.object,
+            hTMLElementUtils.object,
+        );
         testObject.registerDrawer(configId, drawerMock.object);
-        expect(() => testObject.registerDrawer(configId, drawerMock.object)).toThrowErrorMatchingSnapshot();
+        expect(() =>
+            testObject.registerDrawer(configId, drawerMock.object),
+        ).toThrowErrorMatchingSnapshot();
     });
 });

@@ -34,7 +34,8 @@ export interface OverviewSummaryReportModel {
 
 export interface AssessmentSummaryReportStats extends RequirementOutcomeStats {}
 
-export interface AssessmentSummaryReportModel extends AssessmentSummaryReportStats {
+export interface AssessmentSummaryReportModel
+    extends AssessmentSummaryReportStats {
     displayName: string;
 }
 export type RequirementType = 'manual' | 'assisted';

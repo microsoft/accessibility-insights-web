@@ -15,11 +15,17 @@ export class IssueFilingActionCreator {
     ) {}
 
     public registerCallbacks(): void {
-        this.interpreter.registerTypeToPayloadCallback(Messages.IssueFiling.FileIssue, this.onFileIssue);
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.IssueFiling.FileIssue,
+            this.onFileIssue,
+        );
     }
 
     private onFileIssue = (payload: FileIssuePayload) => {
         this.telemetryEventHandler.publishTelemetry(FILE_ISSUE_CLICK, payload);
-        this.issueFilingController.fileIssue(payload.service, payload.issueData);
+        this.issueFilingController.fileIssue(
+            payload.service,
+            payload.issueData,
+        );
     };
 }

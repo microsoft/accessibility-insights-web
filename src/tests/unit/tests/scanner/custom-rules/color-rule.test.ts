@@ -1,11 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { colorConfiguration, isInTopWindow } from '../../../../../scanner/custom-rules/color-rule';
+import {
+    colorConfiguration,
+    isInTopWindow,
+} from '../../../../../scanner/custom-rules/color-rule';
 
 describe('ColorRule', () => {
     describe('verify color configs', () => {
         it('should have correct props', () => {
-            expect(colorConfiguration.checks[0].evaluate(null, null, null, null)).toBeTruthy();
+            expect(
+                colorConfiguration.checks[0].evaluate(null, null, null, null),
+            ).toBeTruthy();
             expect(colorConfiguration.checks[0].id).toBe('select-body');
             expect(colorConfiguration.rule.id).toBe('select-body');
             expect(colorConfiguration.rule.selector).toBe('body');

@@ -5,7 +5,10 @@ import { UnifiedScanResultActions } from '../../../../../background/actions/unif
 import { UnifiedScanResultStore } from '../../../../../background/stores/unified-scan-result-store';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { UnifiedScanResultStoreData } from '../../../../../common/types/store-data/unified-data-interface';
-import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
+import {
+    createStoreWithNullParams,
+    StoreTester,
+} from '../../../common/store-tester';
 import { TargetAppData } from './../../../../../common/types/store-data/unified-data-interface';
 
 describe('UnifiedScanResultStore Test', () => {
@@ -17,7 +20,9 @@ describe('UnifiedScanResultStore Test', () => {
     test('getId', () => {
         const testObject = createStoreWithNullParams(UnifiedScanResultStore);
 
-        expect(testObject.getId()).toEqual(StoreNames[StoreNames.UnifiedScanResultStore]);
+        expect(testObject.getId()).toEqual(
+            StoreNames[StoreNames.UnifiedScanResultStore],
+        );
     });
 
     test('check defaultState is empty', () => {
@@ -34,7 +39,9 @@ describe('UnifiedScanResultStore Test', () => {
         const initialState = getDefaultState();
         const finalState = getDefaultState();
 
-        createStoreForUnifiedScanResultActions('getCurrentState').testListenerToBeCalledOnce(initialState, finalState);
+        createStoreForUnifiedScanResultActions(
+            'getCurrentState',
+        ).testListenerToBeCalledOnce(initialState, finalState);
     });
 
     test('onScanCompleted', () => {
@@ -80,13 +87,16 @@ describe('UnifiedScanResultStore Test', () => {
     });
 
     function getDefaultState(): UnifiedScanResultStoreData {
-        return createStoreWithNullParams(UnifiedScanResultStore).getDefaultState();
+        return createStoreWithNullParams(
+            UnifiedScanResultStore,
+        ).getDefaultState();
     }
 
     function createStoreForUnifiedScanResultActions(
         actionName: keyof UnifiedScanResultActions,
     ): StoreTester<UnifiedScanResultStoreData, UnifiedScanResultActions> {
-        const factory = (actions: UnifiedScanResultActions) => new UnifiedScanResultStore(actions);
+        const factory = (actions: UnifiedScanResultActions) =>
+            new UnifiedScanResultStore(actions);
 
         return new StoreTester(UnifiedScanResultActions, actionName, factory);
     }

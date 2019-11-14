@@ -8,7 +8,10 @@ import { IndexedDBAPI } from '../../../common/indexedDB/indexedDB';
 import { DefaultConstructor } from '../../../common/types/idefault-constructor';
 import { StoreTester } from './store-tester';
 
-export class AssessmentStoreTester<TStoreData, TActions> extends StoreTester<TStoreData, TActions> {
+export class AssessmentStoreTester<TStoreData, TActions> extends StoreTester<
+    TStoreData,
+    TActions
+> {
     private indexDbMock: IMock<IndexedDBAPI>;
     constructor(
         actions: DefaultConstructor<TActions>,
@@ -20,8 +23,19 @@ export class AssessmentStoreTester<TStoreData, TActions> extends StoreTester<TSt
         this.indexDbMock = indexDbMock;
     }
 
-    public testListenerToBeCalledOnce(initial: TStoreData, expected: TStoreData, getItemReturnValue: TStoreData = null): void {
-        this.indexDbMock.setup(idm => idm.setItem(IndexedDBDataKeys.assessmentStore, It.isValue(expected))).verifiable(Times.once());
+    public testListenerToBeCalledOnce(
+        initial: TStoreData,
+        expected: TStoreData,
+        getItemReturnValue: TStoreData = null,
+    ): void {
+        this.indexDbMock
+            .setup(idm =>
+                idm.setItem(
+                    IndexedDBDataKeys.assessmentStore,
+                    It.isValue(expected),
+                ),
+            )
+            .verifiable(Times.once());
         super.testListenerToBeCalledOnce(initial, expected);
     }
 }

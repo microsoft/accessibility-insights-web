@@ -6,7 +6,11 @@ import { VisualizationType } from '../common/types/visualization-type';
 import { AssessmentStore } from './stores/assessment-store';
 import { VisualizationStore } from './stores/visualization-store';
 
-export type IScheduleScan = (test: VisualizationType, step: string, tabId: number) => void;
+export type IScheduleScan = (
+    test: VisualizationType,
+    step: string,
+    tabId: number,
+) => void;
 export type IIsAnAssessmentSelected = (testData: TestsEnabledState) => boolean;
 
 export class AssessmentScanPolicyRunner {
@@ -27,7 +31,9 @@ export class AssessmentScanPolicyRunner {
     private onChange = () => {
         const visualizationState = this.visualizationStore.getState();
         const assessmentState = this.assessmentStore.getState();
-        const selectedAssessment = this.getSelectedAssessmentTest(visualizationState.tests);
+        const selectedAssessment = this.getSelectedAssessmentTest(
+            visualizationState.tests,
+        );
 
         if (
             assessmentState.persistedTabInfo == null ||
@@ -38,13 +44,22 @@ export class AssessmentScanPolicyRunner {
             return;
         }
 
-        const assessmentConfig = this.assessmentProvider.forType(assessmentState.assessmentNavState.selectedTestType);
+        const assessmentConfig = this.assessmentProvider.forType(
+            assessmentState.assessmentNavState.selectedTestType,
+        );
         const visualizationConfig = assessmentConfig.getVisualizationConfiguration();
 
         const scanStep = (step: string) => {
-            this.scheduleScan(assessmentConfig.visualizationType, step, this.tabId);
+            this.scheduleScan(
+                assessmentConfig.visualizationType,
+                step,
+                this.tabId,
+            );
         };
 
-        assessmentConfig.executeAssessmentScanPolicy(scanStep, visualizationConfig.getAssessmentData(assessmentState));
+        assessmentConfig.executeAssessmentScanPolicy(
+            scanStep,
+            visualizationConfig.getAssessmentData(assessmentState),
+        );
     };
 }

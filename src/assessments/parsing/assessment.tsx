@@ -13,7 +13,10 @@ const { guidance } = content.parsing;
 
 const gettingStarted: JSX.Element = (
     <React.Fragment>
-        <p>The requirements in this test ensure that parsing errors don't disrupt assistive technology.</p>
+        <p>
+            The requirements in this test ensure that parsing errors don't
+            disrupt assistive technology.
+        </p>
     </React.Fragment>
 );
 

@@ -11,7 +11,8 @@ import { ErrorsTestStep } from './test-steps';
 
 const description: JSX.Element = (
     <span>
-        If submitting data might have serious consequences, users must be able to correct the data input before finalizing a submission.
+        If submitting data might have serious consequences, users must be able
+        to correct the data input before finalizing a submission.
     </span>
 );
 
@@ -21,17 +22,26 @@ const howToTest: JSX.Element = (
             <li>
                 Examine the target page to determine whether it allows users to:
                 <ol>
-                    <li>Make any legal commitments or financial transactions, or</li>
+                    <li>
+                        Make any legal commitments or financial transactions, or
+                    </li>
                     <li>Modify or delete data in a data storage system, or</li>
                     <li>Submit test responses.</li>
                 </ol>
             </li>
             <li>
-                If the page <Markup.Emphasis>does</Markup.Emphasis> allow such actions, verify that at least one of the following is true:
+                If the page <Markup.Emphasis>does</Markup.Emphasis> allow such
+                actions, verify that at least one of the following is true:
                 <ol>
                     <li>Submissions are reversible.</li>
-                    <li>Data entered by the user is checked for input errors, and the user is given an opportunity to correct them.</li>
-                    <li>The user can review, confirm, and correct information before finalizing the submission.</li>
+                    <li>
+                        Data entered by the user is checked for input errors,
+                        and the user is given an opportunity to correct them.
+                    </li>
+                    <li>
+                        The user can review, confirm, and correct information
+                        before finalizing the submission.
+                    </li>
                 </ol>
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={false} />

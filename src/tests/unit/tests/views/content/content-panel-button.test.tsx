@@ -20,7 +20,11 @@ describe('ContentPanelButton', () => {
 
     it('renders from content', () => {
         const wrapped = shallow(
-            <ContentPanelButton deps={deps} reference={content.for.testing} iconName="iconName">
+            <ContentPanelButton
+                deps={deps}
+                reference={content.for.testing}
+                iconName="iconName"
+            >
                 TEXT
             </ContentPanelButton>,
         );
@@ -30,7 +34,11 @@ describe('ContentPanelButton', () => {
 
     it('renders from path', () => {
         const wrapped = shallow(
-            <ContentPanelButton deps={deps} reference={'for/testing'} iconName="iconName">
+            <ContentPanelButton
+                deps={deps}
+                reference={'for/testing'}
+                iconName="iconName"
+            >
                 TEXT
             </ContentPanelButton>,
         );

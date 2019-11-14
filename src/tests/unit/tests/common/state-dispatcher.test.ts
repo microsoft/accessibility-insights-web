@@ -19,8 +19,13 @@ describe('StateDispatcherTest', () => {
             payload: newstoreData,
         };
 
-        const storeMock: IMock<BaseStore<StoreStubData>> = Mock.ofType<BaseStore<StoreStubData>>();
-        const storeHubStrictMock = Mock.ofType<StoreHubStub>(null, MockBehavior.Strict);
+        const storeMock: IMock<BaseStore<StoreStubData>> = Mock.ofType<
+            BaseStore<StoreStubData>
+        >();
+        const storeHubStrictMock = Mock.ofType<StoreHubStub>(
+            null,
+            MockBehavior.Strict,
+        );
         storeHubStrictMock
             .setup(x => x.getAllStores())
             .returns(() => [storeMock.object])
@@ -40,10 +45,15 @@ describe('StateDispatcherTest', () => {
             .verifiable();
 
         const defaultBoardcastMessage = (message: Object) => {};
-        const broadcastMock = Mock.ofInstance<(message: Object) => void>(defaultBoardcastMessage);
+        const broadcastMock = Mock.ofInstance<(message: Object) => void>(
+            defaultBoardcastMessage,
+        );
         broadcastMock.setup(bc => bc(It.isValue(expectedMessage))).verifiable();
 
-        const stateDispatcher = new StateDispatcher(broadcastMock.object, storeHubStrictMock.object);
+        const stateDispatcher = new StateDispatcher(
+            broadcastMock.object,
+            storeHubStrictMock.object,
+        );
         stateDispatcher.initialize();
 
         storeMock.verifyAll();
@@ -61,12 +71,23 @@ describe('StateDispatcherTest', () => {
         };
 
         let privateDispatcher: Function;
-        const storeMock: IMock<BaseStore<StoreStubData>> = Mock.ofType<BaseStore<StoreStubData>>();
-        const storeHubMock = Mock.ofType<StoreHubStub>(null, MockBehavior.Strict);
+        const storeMock: IMock<BaseStore<StoreStubData>> = Mock.ofType<
+            BaseStore<StoreStubData>
+        >();
+        const storeHubMock = Mock.ofType<StoreHubStub>(
+            null,
+            MockBehavior.Strict,
+        );
 
-        storeHubMock.setup(x => x.getAllStores()).returns(() => [storeMock.object]);
-        storeHubMock.setup(x => x.getStoreType()).returns(() => StoreType.TabContextStore);
-        storeMock.setup(sm => sm.getId()).returns(() => expectedMessage.storeId);
+        storeHubMock
+            .setup(x => x.getAllStores())
+            .returns(() => [storeMock.object]);
+        storeHubMock
+            .setup(x => x.getStoreType())
+            .returns(() => StoreType.TabContextStore);
+        storeMock
+            .setup(sm => sm.getId())
+            .returns(() => expectedMessage.storeId);
         storeMock.setup(sm => sm.getState()).returns(() => newstoreData);
         storeMock
             .setup(sm =>
@@ -81,15 +102,23 @@ describe('StateDispatcherTest', () => {
             });
 
         const defaultBoardcastMessage = (message: Object) => {};
-        const broadcastMock = Mock.ofInstance<(message: Object) => void>(defaultBoardcastMessage);
+        const broadcastMock = Mock.ofInstance<(message: Object) => void>(
+            defaultBoardcastMessage,
+        );
 
-        const stateDispatcher = new StateDispatcher(broadcastMock.object, storeHubMock.object);
+        const stateDispatcher = new StateDispatcher(
+            broadcastMock.object,
+            storeHubMock.object,
+        );
         stateDispatcher.initialize();
         broadcastMock.reset();
 
         privateDispatcher.call(stateDispatcher);
 
-        broadcastMock.verify(bc => bc(It.isValue(expectedMessage)), Times.once());
+        broadcastMock.verify(
+            bc => bc(It.isValue(expectedMessage)),
+            Times.once(),
+        );
     });
 });
 

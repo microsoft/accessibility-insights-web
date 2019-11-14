@@ -48,7 +48,11 @@ export class Toast extends React.Component<ToastProps, ToastState> {
     public render(): JSX.Element {
         return (
             <div className={toastContainer} aria-live="polite">
-                {this.state.toastVisible ? <div className={css('ms-fadeIn100', toastContent)}>{this.state.content}</div> : null}
+                {this.state.toastVisible ? (
+                    <div className={css('ms-fadeIn100', toastContent)}>
+                        {this.state.content}
+                    </div>
+                ) : null}
             </div>
         );
     }

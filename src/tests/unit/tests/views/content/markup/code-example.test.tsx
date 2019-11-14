@@ -28,7 +28,9 @@ describe('<CodeExample>', () => {
     });
 
     it('renders with one highlighted region', () => {
-        const wrapper = shallow(<CodeExample>One [single] highlight</CodeExample>);
+        const wrapper = shallow(
+            <CodeExample>One [single] highlight</CodeExample>,
+        );
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
@@ -38,12 +40,16 @@ describe('<CodeExample>', () => {
     });
 
     it('renders with unterminated highlighted region', () => {
-        const wrapper = shallow(<CodeExample>One [unterminated highlight</CodeExample>);
+        const wrapper = shallow(
+            <CodeExample>One [unterminated highlight</CodeExample>,
+        );
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
     it('renders with many highlighted regions', () => {
-        const wrapper = shallow(<CodeExample>With [quite] a [number] of [highlights].</CodeExample>);
+        const wrapper = shallow(
+            <CodeExample>With [quite] a [number] of [highlights].</CodeExample>,
+        );
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
@@ -53,17 +59,23 @@ describe('<CodeExample>', () => {
     });
 
     it('renders with a line breaks and a highlighted line', () => {
-        const wrapper = shallow(<CodeExample>{`Line 1\n[Line 2]\nLine 3`}</CodeExample>);
+        const wrapper = shallow(
+            <CodeExample>{`Line 1\n[Line 2]\nLine 3`}</CodeExample>,
+        );
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
     it('renders with a highlight that spans multiple lines', () => {
-        const wrapper = shallow(<CodeExample>{`Line 1\n[Line 2\nLine 3]\nLine 4`}</CodeExample>);
+        const wrapper = shallow(
+            <CodeExample>{`Line 1\n[Line 2\nLine 3]\nLine 4`}</CodeExample>,
+        );
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
     it('renders with a highlight that breaks in the middle of multiple lines', () => {
-        const wrapper = shallow(<CodeExample>{`Line 1\nLine 2 [HIGHLIGHT\nHERE]Line 3\nLine 4`}</CodeExample>);
+        const wrapper = shallow(
+            <CodeExample>{`Line 1\nLine 2 [HIGHLIGHT\nHERE]Line 3\nLine 4`}</CodeExample>,
+        );
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 

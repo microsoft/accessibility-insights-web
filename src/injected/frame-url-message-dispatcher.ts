@@ -8,16 +8,26 @@ export class FrameUrlMessageDispatcher {
     private devToolActionMessageCreator: DevToolActionMessageCreator;
     private frameCommunicator: FrameCommunicator;
 
-    constructor(devToolActionMessageCreator: DevToolActionMessageCreator, frameCommunicator: FrameCommunicator) {
+    constructor(
+        devToolActionMessageCreator: DevToolActionMessageCreator,
+        frameCommunicator: FrameCommunicator,
+    ) {
         this.devToolActionMessageCreator = devToolActionMessageCreator;
         this.frameCommunicator = frameCommunicator;
     }
 
     public initialize(): void {
-        this.frameCommunicator.subscribe(FrameUrlFinder.SetFrameUrlCommand, this.setTargetFrameUrl);
+        this.frameCommunicator.subscribe(
+            FrameUrlFinder.SetFrameUrlCommand,
+            this.setTargetFrameUrl,
+        );
     }
 
-    public setTargetFrameUrl = (targetFrameUrlMessage: FrameUrlMessage): void => {
-        this.devToolActionMessageCreator.setInspectFrameUrl(targetFrameUrlMessage.frameUrl);
+    public setTargetFrameUrl = (
+        targetFrameUrlMessage: FrameUrlMessage,
+    ): void => {
+        this.devToolActionMessageCreator.setInspectFrameUrl(
+            targetFrameUrlMessage.frameUrl,
+        );
     };
 }

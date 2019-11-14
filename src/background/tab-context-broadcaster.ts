@@ -6,7 +6,9 @@ import { StoreUpdateMessage } from '../common/types/store-update-message';
 export class TabContextBroadcaster {
     constructor(private readonly browserAdapter: BrowserAdapter) {}
 
-    public getBroadcastMessageDelegate = (tabId): ((message: StoreUpdateMessage<any>) => void) => {
+    public getBroadcastMessageDelegate = (
+        tabId,
+    ): ((message: StoreUpdateMessage<any>) => void) => {
         return message => {
             message.tabId = tabId;
             this.browserAdapter.sendMessageToFrames(message);

@@ -16,7 +16,9 @@ enum TestStringEnum {
 
 describe('EnumHelperTest', () => {
     test('happy path', () => {
-        const result = EnumHelper.getNumericValues<TestNumericEnum>(TestNumericEnum);
+        const result = EnumHelper.getNumericValues<TestNumericEnum>(
+            TestNumericEnum,
+        );
 
         const expected = [100, 200, 300];
 
@@ -24,8 +26,11 @@ describe('EnumHelperTest', () => {
     });
 
     test('string enum', () => {
-        const action = () => EnumHelper.getNumericValues<TestStringEnum>(TestStringEnum);
+        const action = () =>
+            EnumHelper.getNumericValues<TestStringEnum>(TestStringEnum);
 
-        expect(action).toThrowError(`No 'number' key found on ${TestStringEnum}`);
+        expect(action).toThrowError(
+            `No 'number' key found on ${TestStringEnum}`,
+        );
     });
 });

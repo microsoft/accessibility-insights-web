@@ -18,7 +18,8 @@ describe('Github Url Rectifier', () => {
     ];
 
     it.each(shouldAddSuffixTestCases)('should append to: %s', (url: string) => {
-        const expected = url + (url[url.length - 1] === '/' ? 'issues' : '/issues');
+        const expected =
+            url + (url[url.length - 1] === '/' ? 'issues' : '/issues');
         expect(testSubject(url)).toEqual(expected);
     });
 

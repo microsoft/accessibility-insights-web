@@ -16,7 +16,10 @@ export class WindowStateActionCreator {
         this.windowStateActions.setRoute.invoke(payload);
 
         if (payload.routeId === 'deviceConnectView') {
-            this.windowFrameActionCreator.setWindowSize({ width: 600, height: 391 });
+            this.windowFrameActionCreator.setWindowSize({
+                width: 600,
+                height: 391,
+            });
         }
     }
 

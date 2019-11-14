@@ -30,32 +30,41 @@ type ReactExtensionPoint<P extends {}> = ExtensionPoint<React.FC<P>> & {
     component: React.FC<P & { extensions: AnyExtension[] }>;
 };
 
-function isReactExtension(extension: Extension<any>): extension is ReactExtension<any> {
+function isReactExtension(
+    extension: Extension<any>,
+): extension is ReactExtension<any> {
     return (extension as AnyExtension).extensionType === 'reactComponent';
 }
 
-export function reactExtensionPoint<P extends {}>(extensionPointKey: string): ReactExtensionPoint<P> {
-    const component = NamedFC<P & { extensions: Extension<any>[] }>(extensionPointKey, props => {
-        const { children, extensions } = props;
+export function reactExtensionPoint<P extends {}>(
+    extensionPointKey: string,
+): ReactExtensionPoint<P> {
+    const component = NamedFC<P & { extensions: Extension<any>[] }>(
+        extensionPointKey,
+        props => {
+            const { children, extensions } = props;
 
-        let result = <>{children}</>;
+            let result = <>{children}</>;
 
-        if (extensions) {
-            extensions
-                .filter(isReactExtension)
-                .filter(e => e.extensionPointKey === extensionPointKey)
-                .forEach(e => {
-                    const Outside = e.component;
-                    result = <Outside {...props}>{result}</Outside>;
-                });
-        }
+            if (extensions) {
+                extensions
+                    .filter(isReactExtension)
+                    .filter(e => e.extensionPointKey === extensionPointKey)
+                    .forEach(e => {
+                        const Outside = e.component;
+                        result = <Outside {...props}>{result}</Outside>;
+                    });
+            }
 
-        return result;
-    });
+            return result;
+        },
+    );
 
     function create(extensionComponent: React.FC<P>): ReactExtension<P> {
         const Wrap = extensionComponent;
-        const wrapComponent = NamedFC<P>(extensionPointKey, props => <Wrap {...props} />);
+        const wrapComponent = NamedFC<P>(extensionPointKey, props => (
+            <Wrap {...props} />
+        ));
         wrapComponent.displayName = extensionPointKey;
 
         return {

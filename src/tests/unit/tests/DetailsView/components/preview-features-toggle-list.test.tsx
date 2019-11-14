@@ -13,7 +13,9 @@ import {
 
 describe('PreviewFeaturesToggleListTest', () => {
     test('constructor', () => {
-        const testSubject = new PreviewFeaturesToggleList({} as PreviewFeaturesToggleListProps);
+        const testSubject = new PreviewFeaturesToggleList(
+            {} as PreviewFeaturesToggleListProps,
+        );
         expect(testSubject).toBeDefined();
     });
 
@@ -32,7 +34,9 @@ describe('PreviewFeaturesToggleListTest', () => {
                 enabled: false,
             },
         ];
-        const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+        const actionMessageCreatorMock = Mock.ofType(
+            DetailsViewActionMessageCreator,
+        );
         const props: PreviewFeaturesToggleListProps = {
             displayedFeatureFlags: displayableFeatureFlagsStub,
             actionMessageCreator: actionMessageCreatorMock.object,
@@ -41,6 +45,8 @@ describe('PreviewFeaturesToggleListTest', () => {
         const testSubject = shallow(<PreviewFeaturesToggleList {...props} />);
         expect(testSubject.debug()).toMatchSnapshot();
 
-        expect(testSubject.find({ id: 'test-id-1' }).props().onClick).toBe(actionMessageCreatorMock.object.setFeatureFlag);
+        expect(testSubject.find({ id: 'test-id-1' }).props().onClick).toBe(
+            actionMessageCreatorMock.object.setFeatureFlag,
+        );
     });
 });

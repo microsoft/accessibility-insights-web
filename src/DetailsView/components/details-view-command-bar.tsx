@@ -24,7 +24,9 @@ export type DetailsViewCommandBarDeps = ReportExportComponentDeps & {
 
 export type CommandBarProps = DetailsViewCommandBarProps;
 
-export type ReportExportComponentFactory = (props: CommandBarProps) => JSX.Element;
+export type ReportExportComponentFactory = (
+    props: CommandBarProps,
+) => JSX.Element;
 
 export type StartOverComponentFactory = (props: CommandBarProps) => JSX.Element;
 
@@ -42,7 +44,9 @@ export interface DetailsViewCommandBarProps {
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
 }
 
-export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBarProps> {
+export class DetailsViewCommandBar extends React.Component<
+    DetailsViewCommandBarProps
+> {
     public render(): JSX.Element {
         if (this.props.tabStoreData.isClosed) {
             return null;
@@ -90,10 +94,14 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
     }
 
     private renderExportComponent(): JSX.Element {
-        return this.props.switcherNavConfiguration.ReportExportComponentFactory(this.props);
+        return this.props.switcherNavConfiguration.ReportExportComponentFactory(
+            this.props,
+        );
     }
 
     private renderStartOverComponent(): JSX.Element {
-        return this.props.switcherNavConfiguration.StartOverComponentFactory(this.props);
+        return this.props.switcherNavConfiguration.StartOverComponentFactory(
+            this.props,
+        );
     }
 }

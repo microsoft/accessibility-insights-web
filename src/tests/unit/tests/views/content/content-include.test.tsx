@@ -20,12 +20,16 @@ describe('ContentInclude', () => {
     };
 
     it('renders from content', () => {
-        const result = shallow(<ContentInclude deps={deps} content={content.for.testing} />);
+        const result = shallow(
+            <ContentInclude deps={deps} content={content.for.testing} />,
+        );
         expect(result.debug()).toMatchSnapshot();
     });
 
     it('renders from path', () => {
-        const result = shallow(<ContentInclude deps={deps} content={'for/testing'} />);
+        const result = shallow(
+            <ContentInclude deps={deps} content={'for/testing'} />,
+        );
         expect(result.debug()).toMatchSnapshot();
     });
 });

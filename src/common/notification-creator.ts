@@ -11,7 +11,10 @@ export class NotificationCreator {
     private browserAdapter: BrowserAdapter;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
 
-    constructor(browserAdapter: BrowserAdapter, visualizationConfigurationFactory: VisualizationConfigurationFactory) {
+    constructor(
+        browserAdapter: BrowserAdapter,
+        visualizationConfigurationFactory: VisualizationConfigurationFactory,
+    ) {
         this.browserAdapter = browserAdapter;
         this.visualizationConfigurationFactory = visualizationConfigurationFactory;
     }
@@ -34,8 +37,13 @@ export class NotificationCreator {
         visualizationType: VisualizationType,
     ): void {
         if (_.isEmpty(selectorMap)) {
-            const configuration = this.visualizationConfigurationFactory.getConfiguration(visualizationType);
-            const notificationMessage = configuration.getNotificationMessage(selectorMap, key);
+            const configuration = this.visualizationConfigurationFactory.getConfiguration(
+                visualizationType,
+            );
+            const notificationMessage = configuration.getNotificationMessage(
+                selectorMap,
+                key,
+            );
             if (notificationMessage != null) {
                 this.createNotification(notificationMessage);
             }

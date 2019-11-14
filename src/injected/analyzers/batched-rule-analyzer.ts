@@ -9,7 +9,10 @@ import { ScannerUtils } from '../scanner-utils';
 import { AxeAnalyzerResult, RuleAnalyzerConfiguration } from './analyzer';
 import { RuleAnalyzer } from './rule-analyzer';
 
-export type IResultRuleFilter = (results: ScanResults, rules: string[]) => ScanResults;
+export type IResultRuleFilter = (
+    results: ScanResults,
+    rules: string[],
+) => ScanResults;
 
 export class BatchedRuleAnalyzer extends RuleAnalyzer {
     private static batchConfigs: RuleAnalyzerConfiguration[] = [];
@@ -24,7 +27,16 @@ export class BatchedRuleAnalyzer extends RuleAnalyzer {
         protected readonly visualizationConfigFactory: VisualizationConfigurationFactory,
         private postScanFilter: IResultRuleFilter,
     ) {
-        super(config, scanner, scopingStore, sendMessageDelegate, dateGetter, telemetryFactory, visualizationConfigFactory, null);
+        super(
+            config,
+            scanner,
+            scopingStore,
+            sendMessageDelegate,
+            dateGetter,
+            telemetryFactory,
+            visualizationConfigFactory,
+            null,
+        );
         BatchedRuleAnalyzer.batchConfigs.push(config);
     }
 
@@ -34,14 +46,20 @@ export class BatchedRuleAnalyzer extends RuleAnalyzer {
 
     protected onResolve = (results: AxeAnalyzerResult): void => {
         BatchedRuleAnalyzer.batchConfigs.forEach(config => {
-            const filteredScannerResult = this.postScanFilter(results.originalResult, config.rules);
+            const filteredScannerResult = this.postScanFilter(
+                results.originalResult,
+                config.rules,
+            );
             const processResults = config.resultProcessor(this.scanner);
             const filteredAxeAnalyzerResult: AxeAnalyzerResult = {
                 ...results,
                 originalResult: filteredScannerResult,
                 results: processResults(filteredScannerResult),
             };
-            this.sendScanCompleteResolveMessage(filteredAxeAnalyzerResult, config);
+            this.sendScanCompleteResolveMessage(
+                filteredAxeAnalyzerResult,
+                config,
+            );
         });
     };
 }

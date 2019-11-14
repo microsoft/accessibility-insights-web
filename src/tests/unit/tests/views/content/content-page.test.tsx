@@ -3,7 +3,12 @@
 import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
-import { ContentCreator, ContentPage, ContentPageDeps, linkTo } from 'views/content/content-page';
+import {
+    ContentCreator,
+    ContentPage,
+    ContentPageDeps,
+    linkTo,
+} from 'views/content/content-page';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
 
 describe('ContentPage', () => {
@@ -24,7 +29,12 @@ describe('ContentPage', () => {
                 return <>{(Markup as any).options.testString}</>;
             });
 
-            const result = shallow(<MyPage deps={deps} options={{ setPageTitle: true, testString: 'TEST STRING' }} />);
+            const result = shallow(
+                <MyPage
+                    deps={deps}
+                    options={{ setPageTitle: true, testString: 'TEST STRING' }}
+                />,
+            );
             expect(result.getElement()).toMatchSnapshot();
         });
     });
@@ -69,7 +79,13 @@ describe('ContentPage', () => {
             expect(result.getElement()).toMatchSnapshot();
         });
 
-        ['forest', 'notForest/thePage', 'forest/notThePage', 'extraPath/forest/thePage', 'thePage'].forEach(page =>
+        [
+            'forest',
+            'notForest/thePage',
+            'forest/notThePage',
+            'extraPath/forest/thePage',
+            'thePage',
+        ].forEach(page =>
             it(`doesn't find ${page}`, () => {
                 const MyPage = provider.getPage(page);
                 expect(MyPage.displayName).toEqual('ContentPageComponent');
@@ -97,7 +113,9 @@ describe('ContentPage', () => {
         });
 
         it('renders, children is text', () => {
-            const MyPage = create(({ Link }) => <Link.testLink>OVERRIDE</Link.testLink>);
+            const MyPage = create(({ Link }) => (
+                <Link.testLink>OVERRIDE</Link.testLink>
+            ));
 
             const wrapped = mount(<MyPage deps={deps} />);
 

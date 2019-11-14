@@ -17,9 +17,24 @@ describe('ReportInstanceField', () => {
         };
 
         const cases: [ReportInstanceField, string, string, string][] = [
-            [ReportInstanceField.common.comment, 'comment', 'Comment', 'my description'],
-            [ReportInstanceField.common.snippet, 'snippet', 'Snippet', '<p>My HTML</p>'],
-            [ReportInstanceField.common.path, 'path', 'Path', 'many, parts, of, the, path'],
+            [
+                ReportInstanceField.common.comment,
+                'comment',
+                'Comment',
+                'my description',
+            ],
+            [
+                ReportInstanceField.common.snippet,
+                'snippet',
+                'Snippet',
+                '<p>My HTML</p>',
+            ],
+            [
+                ReportInstanceField.common.path,
+                'path',
+                'Path',
+                'many, parts, of, the, path',
+            ],
         ];
         cases.forEach(([field, key, label, expected]) =>
             describe(key, () => {
@@ -43,7 +58,10 @@ describe('ReportInstanceField', () => {
     });
 
     describe('fromPropertyBagField', () => {
-        const field = ReportInstanceField.fromPropertyBagField<Bag>('One', 'one');
+        const field = ReportInstanceField.fromPropertyBagField<Bag>(
+            'One',
+            'one',
+        );
 
         it('returns key', () => {
             expect(field.key).toEqual('one');
@@ -54,7 +72,9 @@ describe('ReportInstanceField', () => {
         });
 
         it('returns value', () => {
-            expect(field.getValue({ propertyBag: { one: '42' } })).toEqual('42');
+            expect(field.getValue({ propertyBag: { one: '42' } })).toEqual(
+                '42',
+            );
         });
 
         it('returns null for missing value', () => {
@@ -67,7 +87,10 @@ describe('ReportInstanceField', () => {
     });
 
     describe('fromColumnValueBagField without default value set', () => {
-        const field = ReportInstanceField.fromColumnValueBagField<Bag>('One', 'one');
+        const field = ReportInstanceField.fromColumnValueBagField<Bag>(
+            'One',
+            'one',
+        );
 
         it('returns key', () => {
             expect(field.key).toEqual('one');
@@ -78,11 +101,15 @@ describe('ReportInstanceField', () => {
         });
 
         it('returns value', () => {
-            expect(field.getValue({ propertyBag: { one: '42' } })).toEqual('42');
+            expect(field.getValue({ propertyBag: { one: '42' } })).toEqual(
+                '42',
+            );
         });
 
         it('returns nested property bag', () => {
-            expect(field.getValue({ propertyBag: { one: { two: '42' } } })).toEqual({ two: '42' });
+            expect(
+                field.getValue({ propertyBag: { one: { two: '42' } } }),
+            ).toEqual({ two: '42' });
         });
 
         it('returns - for missing value by default', () => {
@@ -91,7 +118,11 @@ describe('ReportInstanceField', () => {
     });
 
     describe('fromColumnValueBagField with default value set', () => {
-        const field = ReportInstanceField.fromColumnValueBagField<Bag>('One', 'one', 'x');
+        const field = ReportInstanceField.fromColumnValueBagField<Bag>(
+            'One',
+            'one',
+            'x',
+        );
 
         it('returns - for missing value by default', () => {
             expect(field.getValue({ propertyBag: {} })).toEqual('x');
@@ -99,7 +130,11 @@ describe('ReportInstanceField', () => {
     });
 
     describe('fromPropertyBagFunction', () => {
-        const field = ReportInstanceField.fromPropertyBagFunction<Bag>('Three', 'three', b => b.one + ' + ' + b.two);
+        const field = ReportInstanceField.fromPropertyBagFunction<Bag>(
+            'Three',
+            'three',
+            b => b.one + ' + ' + b.two,
+        );
 
         it('returns key', () => {
             expect(field.key).toEqual('three');
@@ -170,14 +205,18 @@ describe('ReportInstanceField', () => {
             it('returns string default', () => {
                 const defaultValue = '(empty)';
 
-                const [field] = ReportInstanceField.fromColumns([{ ...config, defaultValue }]);
+                const [field] = ReportInstanceField.fromColumns([
+                    { ...config, defaultValue },
+                ]);
                 expect(field.getValue(empty)).toEqual(defaultValue);
             });
 
             it('returns bag default', () => {
                 const defaultValue = { prop: 'bag' };
 
-                const [field] = ReportInstanceField.fromColumns([{ ...config, defaultValue }]);
+                const [field] = ReportInstanceField.fromColumns([
+                    { ...config, defaultValue },
+                ]);
                 expect(field.getValue(empty)).toEqual(defaultValue);
             });
 
@@ -185,7 +224,9 @@ describe('ReportInstanceField', () => {
                 const defaultValue = '(empty)';
                 const inst = { propertyBag: { attr: empty } };
 
-                const [field] = ReportInstanceField.fromColumns([{ ...config, defaultValue }]);
+                const [field] = ReportInstanceField.fromColumns([
+                    { ...config, defaultValue },
+                ]);
                 expect(field.getValue(inst)).toEqual(defaultValue);
             });
 

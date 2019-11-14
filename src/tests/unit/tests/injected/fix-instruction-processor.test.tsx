@@ -10,7 +10,8 @@ describe('FixInstructionProcessor', () => {
     });
 
     test('no background nor foreground on the message', () => {
-        const fixInstruction = 'there is nothing that will trigger the processor to change the fix instruction here';
+        const fixInstruction =
+            'there is nothing that will trigger the processor to change the fix instruction here';
 
         const result = testSubject.process(fixInstruction);
 
@@ -18,7 +19,8 @@ describe('FixInstructionProcessor', () => {
     });
 
     test('foreground color on the message', () => {
-        const fixInstruction = 'color contrast of 2.52 (foreground color: #8a94a8; nothing else to match here)';
+        const fixInstruction =
+            'color contrast of 2.52 (foreground color: #8a94a8; nothing else to match here)';
 
         const result = testSubject.process(fixInstruction);
 
@@ -26,7 +28,8 @@ describe('FixInstructionProcessor', () => {
     });
 
     test('background color on the message', () => {
-        const fixInstruction = 'color contrast of 2.52 (background color: #8a94a8; nothing else to match here)';
+        const fixInstruction =
+            'color contrast of 2.52 (background color: #8a94a8; nothing else to match here)';
 
         const result = testSubject.process(fixInstruction);
 

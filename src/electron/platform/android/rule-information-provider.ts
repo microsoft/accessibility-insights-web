@@ -56,17 +56,30 @@ export class RuleInformationProvider {
         };
     }
 
-    private getColorContrastUnifiedFormattableResolution = (ruleResultsData: RuleResultsData): UnifiedFormattableResolution => {
-        const ratio = this.floorTo3Decimal(ruleResultsData.props['Color Contrast Ratio'] as number);
-        const foreground = this.getColorValue(ruleResultsData, 'Foreground Color');
-        const background = this.getColorValue(ruleResultsData, 'Background Color');
+    private getColorContrastUnifiedFormattableResolution = (
+        ruleResultsData: RuleResultsData,
+    ): UnifiedFormattableResolution => {
+        const ratio = this.floorTo3Decimal(
+            ruleResultsData.props['Color Contrast Ratio'] as number,
+        );
+        const foreground = this.getColorValue(
+            ruleResultsData,
+            'Foreground Color',
+        );
+        const background = this.getColorValue(
+            ruleResultsData,
+            'Background Color',
+        );
 
         return this.buildUnifiedFormattableResolution(
             `The text element has insufficient contrast of ${ratio}. Foreground color: ${foreground}, background color: ${background}). Modify the text foreground and/or background colors to provide a contrast ratio of at least 4.5:1 for regular text, or 3:1 for large text (at least 18pt, or 14pt+bold).`,
         );
     };
 
-    private getColorValue(ruleResultsData: RuleResultsData, propertyName: string): string {
+    private getColorValue(
+        ruleResultsData: RuleResultsData,
+        propertyName: string,
+    ): string {
         let result = 'NO VALUE AVAILABLE';
         const value = ruleResultsData.props[propertyName] as string;
 
@@ -78,11 +91,15 @@ export class RuleInformationProvider {
         return result;
     }
 
-    private getTouchSizeUnifiedFormattableResolution = (ruleResultsData: RuleResultsData): UnifiedFormattableResolution => {
+    private getTouchSizeUnifiedFormattableResolution = (
+        ruleResultsData: RuleResultsData,
+    ): UnifiedFormattableResolution => {
         const dpi: number = ruleResultsData.props['Screen Dots Per Inch'];
         const boundingRect = ruleResultsData.props['boundsInScreen'];
-        const physicalWidth: number = boundingRect['right'] - boundingRect['left'];
-        const physicalHeight: number = boundingRect['bottom'] - boundingRect['top'];
+        const physicalWidth: number =
+            boundingRect['right'] - boundingRect['left'];
+        const physicalHeight: number =
+            boundingRect['bottom'] - boundingRect['top'];
         const logicalWidth = this.floorTo3Decimal(physicalWidth / dpi);
         const logicalHeight = this.floorTo3Decimal(physicalHeight / dpi);
 
@@ -92,12 +109,25 @@ export class RuleInformationProvider {
         );
     };
 
-    private buildUnifiedFormattableResolution(unformattedText: string, codeStrings: string[] = null): UnifiedFormattableResolution {
-        return { howToFixSummary: unformattedText, howToFixFormat: { howToFix: unformattedText, formatAsCode: codeStrings } };
+    private buildUnifiedFormattableResolution(
+        unformattedText: string,
+        codeStrings: string[] = null,
+    ): UnifiedFormattableResolution {
+        return {
+            howToFixSummary: unformattedText,
+            howToFixFormat: {
+                howToFix: unformattedText,
+                formatAsCode: codeStrings,
+            },
+        };
     }
 
-    private includeColorContrastResult = (ruleResultsData: RuleResultsData): boolean => {
-        return ruleResultsData.props['Confidence in Color Detection'] === 'High';
+    private includeColorContrastResult = (
+        ruleResultsData: RuleResultsData,
+    ): boolean => {
+        return (
+            ruleResultsData.props['Confidence in Color Detection'] === 'High'
+        );
     };
 
     private includeAllResults = (ruleResultsData: RuleResultsData): boolean => {

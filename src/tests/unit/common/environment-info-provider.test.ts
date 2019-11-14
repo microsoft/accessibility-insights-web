@@ -12,7 +12,11 @@ describe('EnvironmentInfoProvider', () => {
     let environmentInfoProvider: EnvironmentInfoProvider;
 
     beforeEach(() => {
-        environmentInfoProvider = new EnvironmentInfoProvider(extensionVersion, browserSpec, axeCoreVersion);
+        environmentInfoProvider = new EnvironmentInfoProvider(
+            extensionVersion,
+            browserSpec,
+            axeCoreVersion,
+        );
     });
 
     test('constructor', () => {

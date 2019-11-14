@@ -6,5 +6,7 @@ import { SettingsDeps } from 'DetailsView/components/settings-panel/settings/set
 export type SettingsFormProps<Settings> = {
     deps: SettingsDeps;
     settings: Settings;
-    onPropertyUpdateCallback: (payload: SetIssueFilingServicePropertyPayload) => void;
+    onPropertyUpdateCallback: (
+        payload: SetIssueFilingServicePropertyPayload,
+    ) => void;
 };

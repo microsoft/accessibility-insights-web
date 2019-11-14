@@ -34,7 +34,9 @@ export class SVGSolidShadowFilterFactory {
             { dx: 0, dy: -1, result: 'shadow_4' },
         ];
 
-        const offsets = _.map(offsetProps, offset => this.createOffsetElement(doc, offset));
+        const offsets = _.map(offsetProps, offset =>
+            this.createOffsetElement(doc, offset),
+        );
         _.each(offsets, offset => filter.appendChild(offset));
 
         const mergeIns = _.map(offsetProps, 'result');
@@ -46,7 +48,12 @@ export class SVGSolidShadowFilterFactory {
         const feFlood = this.createFloodElement(doc, 'white');
         filter.appendChild(feFlood);
 
-        const feComposite = this.createCompositeElement(doc, 'in', 'shadow', 'shadow');
+        const feComposite = this.createCompositeElement(
+            doc,
+            'in',
+            'shadow',
+            'shadow',
+        );
         filter.appendChild(feComposite);
 
         const finalMergeIns = ['shadow', 'SourceGraphic'];
@@ -57,8 +64,16 @@ export class SVGSolidShadowFilterFactory {
         return filter;
     }
 
-    private createCompositeElement(doc: Document, operator: string, result: string, in2: string): Element {
-        return new FeElementBuilder<FeCompositeParams>(this.drawerUtils, 'feComposite')
+    private createCompositeElement(
+        doc: Document,
+        operator: string,
+        result: string,
+        in2: string,
+    ): Element {
+        return new FeElementBuilder<FeCompositeParams>(
+            this.drawerUtils,
+            'feComposite',
+        )
             .setupParam('operator', operator)
             .setupParam('result', result)
             .setupParam('in2', in2)
@@ -66,12 +81,23 @@ export class SVGSolidShadowFilterFactory {
     }
 
     private createFloodElement(doc: Document, floodColor: string): Element {
-        return new FeElementBuilder<FeFloodParams>(this.drawerUtils, 'feFlood').setupParam('flood-color', floodColor).build();
+        return new FeElementBuilder<FeFloodParams>(this.drawerUtils, 'feFlood')
+            .setupParam('flood-color', floodColor)
+            .build();
     }
 
-    private createMergeElement(doc: Document, mergeNodeIns: string[], result?: string): Element {
+    private createMergeElement(
+        doc: Document,
+        mergeNodeIns: string[],
+        result?: string,
+    ): Element {
         const mergeNodes: Element[] = _.map(mergeNodeIns, inParam => {
-            return new FeElementBuilder<FeMergeNodeParams>(this.drawerUtils, 'feMergeNode').setupParam('in', inParam).build();
+            return new FeElementBuilder<FeMergeNodeParams>(
+                this.drawerUtils,
+                'feMergeNode',
+            )
+                .setupParam('in', inParam)
+                .build();
         });
 
         return new FeElementBuilder<FeMergeParams>(this.drawerUtils, 'feMerge')
@@ -81,7 +107,10 @@ export class SVGSolidShadowFilterFactory {
     }
 
     private createOffsetElement(doc: Document, props: FeOffsetParams): Element {
-        return new FeElementBuilder<FeOffsetParams>(this.drawerUtils, 'feOffset')
+        return new FeElementBuilder<FeOffsetParams>(
+            this.drawerUtils,
+            'feOffset',
+        )
             .setupParam('in', props.in || 'expand')
             .setupParam('dx', props.dx)
             .setupParam('dy', props.dy)
@@ -97,7 +126,10 @@ export class SVGSolidShadowFilterFactory {
     }
 
     private createMorphologyElement(): Element {
-        return new FeElementBuilder<FeMorphologyParams>(this.drawerUtils, 'feMorphology')
+        return new FeElementBuilder<FeMorphologyParams>(
+            this.drawerUtils,
+            'feMorphology',
+        )
             .setupParam('in', 'SourceGraphic')
             .setupParam('operator', 'dilate')
             .setupParam('radius', 1)

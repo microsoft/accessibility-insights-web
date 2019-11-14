@@ -5,36 +5,56 @@ import { create, React } from '../../common';
 export const infoAndExamples = create(({ Markup }) => (
     <>
         <h1>Pointer cancellation</h1>
-        <p>Users must be able to cancel functions that can be operated using a single pointer.</p>
+        <p>
+            Users must be able to cancel functions that can be operated using a
+            single pointer.
+        </p>
 
         <h2>Why it matters</h2>
         <p>
-            Everyone benefits when it's easy to recover from hitting the wrong mouse or touch target. People with motor, visual, or
-            cognitive disabilities are more likely to inadvertently initiate mouse or touch events.
+            Everyone benefits when it's easy to recover from hitting the wrong
+            mouse or touch target. People with motor, visual, or cognitive
+            disabilities are more likely to inadvertently initiate mouse or
+            touch events.
         </p>
 
         <h2>How to fix</h2>
-        <p>For any function that can be operated using a single pointer, make sure at least one of the following is true:</p>
+        <p>
+            For any function that can be operated using a single pointer, make
+            sure at least one of the following is true:
+        </p>
         <ul>
-            <li> The down event doesn't trigger any part of the function, or</li>
             <li>
                 {' '}
-                The down event initiates the function, which is completed only on the up event, and users can abort or undo the function, or
+                The down event doesn't trigger any part of the function, or
             </li>
-            <li> The down event completes the function, and the up event reverses the outcome of the preceding down event.</li>
+            <li>
+                {' '}
+                The down event initiates the function, which is completed only
+                on the up event, and users can abort or undo the function, or
+            </li>
+            <li>
+                {' '}
+                The down event completes the function, and the up event reverses
+                the outcome of the preceding down event.
+            </li>
         </ul>
         <h2>Example</h2>
         <Markup.PassFail
             failText={
                 <p>
-                    An online survey allows respondents to rank the importance of certain list items by dragging and dropping them into
-                    priority order. Once an item is selected (on the down event), the user has no way to cancel the drag operation. To avoid
-                    moving the list item, the user must place it back in its original position before triggering the up event.
+                    An online survey allows respondents to rank the importance
+                    of certain list items by dragging and dropping them into
+                    priority order. Once an item is selected (on the down
+                    event), the user has no way to cancel the drag operation. To
+                    avoid moving the list item, the user must place it back in
+                    its original position before triggering the up event.
                 </p>
             }
             passText={
                 <p>
-                    The user can cancel a drag operation by dropping the item (on the up event) with the pointer outside the boundaries of
+                    The user can cancel a drag operation by dropping the item
+                    (on the up event) with the pointer outside the boundaries of
                     the list.
                 </p>
             }

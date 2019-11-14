@@ -4,7 +4,8 @@ import { BaseStore } from '../../common/base-store';
 import { Store } from '../../common/flux/store';
 import { StoreNames } from '../../common/stores/store-names';
 
-export abstract class BaseStoreImpl<TState> extends Store implements BaseStore<TState> {
+export abstract class BaseStoreImpl<TState> extends Store
+    implements BaseStore<TState> {
     private storeName: StoreNames;
     protected state: TState;
 

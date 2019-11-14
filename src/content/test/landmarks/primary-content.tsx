@@ -9,14 +9,16 @@ export const infoAndExamples = create(({ Markup }) => (
 
         <h2>Why it matters</h2>
         <p>
-            People with good vision can quickly scan a page to identify its primary content. Users of assistive technology expect all
-            primary content to be contained within the page's main landmark. If primary content appears elsewhere, they might not be able to
-            find it.
+            People with good vision can quickly scan a page to identify its
+            primary content. Users of assistive technology expect all primary
+            content to be contained within the page's main landmark. If primary
+            content appears elsewhere, they might not be able to find it.
         </p>
 
         <h2>How to fix</h2>
         <p>
-            Re-implement so all primary content is contained within the page's <Markup.Term>main</Markup.Term> landmark.
+            Re-implement so all primary content is contained within the page's{' '}
+            <Markup.Term>main</Markup.Term> landmark.
         </p>
 
         <h2>Example</h2>
@@ -24,7 +26,8 @@ export const infoAndExamples = create(({ Markup }) => (
         <Markup.PassFail
             failText={
                 <p>
-                    Some of the page's primary content is not contained within the <Markup.Term>main</Markup.Term> landmark.
+                    Some of the page's primary content is not contained within
+                    the <Markup.Term>main</Markup.Term> landmark.
                 </p>
             }
             failExample={`<header>…</header>
@@ -34,7 +37,8 @@ export const infoAndExamples = create(({ Markup }) => (
             <footer>…</footer>`}
             passText={
                 <p>
-                    All of the page's primary content is within the <Markup.Term>main</Markup.Term> landmark.
+                    All of the page's primary content is within the{' '}
+                    <Markup.Term>main</Markup.Term> landmark.
                 </p>
             }
             passExample={`<header>…</header>

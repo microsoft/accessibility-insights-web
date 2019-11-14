@@ -2,7 +2,10 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { PassedChecksSection, PassedChecksSectionProps } from 'reports/components/report-sections/passed-checks-section';
+import {
+    PassedChecksSection,
+    PassedChecksSectionProps,
+} from 'reports/components/report-sections/passed-checks-section';
 import { RuleResult } from 'scanner/iruleresults';
 
 import { SectionDeps } from '../../../../../../reports/components/report-sections/report-section-factory';

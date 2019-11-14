@@ -12,7 +12,10 @@ import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
 import { IssuesTableHandler } from './components/issues-table-handler';
-import { DetailsView, DetailsViewContainerDeps } from './details-view-container';
+import {
+    DetailsView,
+    DetailsViewContainerDeps,
+} from './details-view-container';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
@@ -67,7 +70,9 @@ export class DetailsViewRenderer {
     }
 
     public render(): void {
-        const detailsViewContainer = this.dom.querySelector('#details-container');
+        const detailsViewContainer = this.dom.querySelector(
+            '#details-container',
+        );
         const iconPath = '../' + config.getOption('icon128');
         this.documentManipulator.setShortcutIcon(iconPath);
         this.renderer(
@@ -77,14 +82,22 @@ export class DetailsViewRenderer {
                     deps={this.deps}
                     issuesSelection={this.issuesSelection}
                     clickHandlerFactory={this.clickHandlerFactory}
-                    visualizationConfigurationFactory={this.visualizationConfigurationFactory}
+                    visualizationConfigurationFactory={
+                        this.visualizationConfigurationFactory
+                    }
                     issuesTableHandler={this.issuesTableHandler}
-                    assessmentInstanceTableHandler={this.assessmentInstanceTableHandler}
+                    assessmentInstanceTableHandler={
+                        this.assessmentInstanceTableHandler
+                    }
                     previewFeatureFlagsHandler={this.previewFeatureFlagsHandler}
                     scopingFlagsHandler={this.scopingFlagsHandler}
                     dropdownClickHandler={this.dropdownClickHandler}
-                    scopingActionMessageCreator={this.scopingActionMessageCreator}
-                    inspectActionMessageCreator={this.inspectActionMessageCreator}
+                    scopingActionMessageCreator={
+                        this.scopingActionMessageCreator
+                    }
+                    inspectActionMessageCreator={
+                        this.inspectActionMessageCreator
+                    }
                     assessmentsProvider={this.assessmentsProvider}
                 />
             </>,

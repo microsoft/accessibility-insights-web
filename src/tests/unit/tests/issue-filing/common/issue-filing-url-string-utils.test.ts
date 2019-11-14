@@ -17,7 +17,10 @@ describe('IssueFilingUrlStringUtilsTest', () => {
                         text: 'WCAG-1.4.1',
                         tags: [
                             { id: 'some-id', displayText: 'some displayText' },
-                            { id: 'some-other-id', displayText: 'some other displayText' },
+                            {
+                                id: 'some-other-id',
+                                displayText: 'some other displayText',
+                            },
                         ],
                     },
                     { text: 'wcag-2.8.2' },
@@ -38,13 +41,17 @@ describe('IssueFilingUrlStringUtilsTest', () => {
 
     describe('getTitle', () => {
         test('with tags', () => {
-            expect(IssueFilingUrlStringUtils.getTitle(sampleIssueDetailsData)).toMatchSnapshot();
+            expect(
+                IssueFilingUrlStringUtils.getTitle(sampleIssueDetailsData),
+            ).toMatchSnapshot();
         });
 
         test('without tags', () => {
             sampleIssueDetailsData.rule.guidance = [];
 
-            expect(IssueFilingUrlStringUtils.getTitle(sampleIssueDetailsData)).toMatchSnapshot();
+            expect(
+                IssueFilingUrlStringUtils.getTitle(sampleIssueDetailsData),
+            ).toMatchSnapshot();
         });
     });
 
@@ -53,16 +60,31 @@ describe('IssueFilingUrlStringUtilsTest', () => {
             ['hello world', 'hello world'],
             ['hello > world', 'world'],
             ['iframe[name="image-text"];html', 'html'],
-            ['iframe[name="image-text"];a > img:nth-child(2)', 'img:nth-child(2)'],
+            [
+                'iframe[name="image-text"];a > img:nth-child(2)',
+                'img:nth-child(2)',
+            ],
         ];
 
-        it.each(testCases)('find the selector last part for "%s"', (input, expected) => {
-            expect(IssueFilingUrlStringUtils.getSelectorLastPart(input)).toEqual(expected);
-        });
+        it.each(testCases)(
+            'find the selector last part for "%s"',
+            (input, expected) => {
+                expect(
+                    IssueFilingUrlStringUtils.getSelectorLastPart(input),
+                ).toEqual(expected);
+            },
+        );
     });
 
     test('standardizeTags', () => {
-        const expected = ['WCAG-1.4.1', 'WCAG-2.8.2', 'some displayText', 'some other displayText'];
-        expect(IssueFilingUrlStringUtils.standardizeTags(sampleIssueDetailsData)).toEqual(expected);
+        const expected = [
+            'WCAG-1.4.1',
+            'WCAG-2.8.2',
+            'some displayText',
+            'some other displayText',
+        ];
+        expect(
+            IssueFilingUrlStringUtils.standardizeTags(sampleIssueDetailsData),
+        ).toEqual(expected);
     });
 });

@@ -5,10 +5,18 @@ import * as React from 'react';
 
 import { NamedFC } from '../../../common/react/named-fc';
 import { SettingsFormProps } from '../../types/settings-form-props';
-import { AzureBoardsIssueDetailLocationDropdownOption, AzureBoardsIssueFilingService } from './azure-boards-issue-filing-service';
-import { AzureBoardsIssueDetailField, AzureBoardsIssueFilingSettings } from './azure-boards-issue-filing-settings';
+import {
+    AzureBoardsIssueDetailLocationDropdownOption,
+    AzureBoardsIssueFilingService,
+} from './azure-boards-issue-filing-service';
+import {
+    AzureBoardsIssueDetailField,
+    AzureBoardsIssueFilingSettings,
+} from './azure-boards-issue-filing-settings';
 
-export const AzureBoardsSettingsForm = NamedFC<SettingsFormProps<AzureBoardsIssueFilingSettings>>('AzureBoardsSettingsForm', props => {
+export const AzureBoardsSettingsForm = NamedFC<
+    SettingsFormProps<AzureBoardsIssueFilingSettings>
+>('AzureBoardsSettingsForm', props => {
     const options: AzureBoardsIssueDetailLocationDropdownOption[] = [
         {
             key: 'reproSteps',
@@ -20,7 +28,10 @@ export const AzureBoardsSettingsForm = NamedFC<SettingsFormProps<AzureBoardsIssu
         },
     ];
 
-    const onProjectURLChange = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
+    const onProjectURLChange = (
+        event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>,
+        newValue?: string,
+    ) => {
         const propertyName: keyof AzureBoardsIssueFilingSettings = 'projectURL';
         const payload = {
             issueFilingServiceName: AzureBoardsIssueFilingService.key,
@@ -30,8 +41,12 @@ export const AzureBoardsSettingsForm = NamedFC<SettingsFormProps<AzureBoardsIssu
         props.onPropertyUpdateCallback(payload);
     };
 
-    const onIssueDetailLocationChange = (event: React.FormEvent<HTMLElement>, newValue: IDropdownOption) => {
-        const propertyName: keyof AzureBoardsIssueFilingSettings = 'issueDetailsField';
+    const onIssueDetailLocationChange = (
+        event: React.FormEvent<HTMLElement>,
+        newValue: IDropdownOption,
+    ) => {
+        const propertyName: keyof AzureBoardsIssueFilingSettings =
+            'issueDetailsField';
         const payload = {
             issueFilingServiceName: AzureBoardsIssueFilingService.key,
             propertyName,
@@ -54,7 +69,9 @@ export const AzureBoardsSettingsForm = NamedFC<SettingsFormProps<AzureBoardsIssu
                 placeholder="Select an option"
                 label="File issue details in:"
                 onChange={onIssueDetailLocationChange}
-                selectedKey={props.settings ? props.settings.issueDetailsField : null}
+                selectedKey={
+                    props.settings ? props.settings.issueDetailsField : null
+                }
             />
         </>
     );

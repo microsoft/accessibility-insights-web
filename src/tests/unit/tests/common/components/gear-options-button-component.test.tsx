@@ -113,16 +113,40 @@ describe('GearOptionsButtonComponent', () => {
         const testSubject = shallow(<GearOptionsButtonComponent {...props} />);
         const dropdownProps = testSubject.find(DetailsViewDropDown).props();
 
-        mockDropdownClickHandler.verify(h => h.openSettingsPanelHandler(It.isAny()), Times.never());
-        dropdownProps.menuItems.filter(item => item.key === 'settings')[0].onClick(stubClickEvent);
-        mockDropdownClickHandler.verify(h => h.openSettingsPanelHandler(It.isAny()), Times.once());
+        mockDropdownClickHandler.verify(
+            h => h.openSettingsPanelHandler(It.isAny()),
+            Times.never(),
+        );
+        dropdownProps.menuItems
+            .filter(item => item.key === 'settings')[0]
+            .onClick(stubClickEvent);
+        mockDropdownClickHandler.verify(
+            h => h.openSettingsPanelHandler(It.isAny()),
+            Times.once(),
+        );
 
-        mockDropdownClickHandler.verify(h => h.openScopingPanelHandler(It.isAny()), Times.never());
-        dropdownProps.menuItems.filter(item => item.key === 'scoping-feature')[0].onClick(stubClickEvent);
-        mockDropdownClickHandler.verify(h => h.openScopingPanelHandler(It.isAny()), Times.once());
+        mockDropdownClickHandler.verify(
+            h => h.openScopingPanelHandler(It.isAny()),
+            Times.never(),
+        );
+        dropdownProps.menuItems
+            .filter(item => item.key === 'scoping-feature')[0]
+            .onClick(stubClickEvent);
+        mockDropdownClickHandler.verify(
+            h => h.openScopingPanelHandler(It.isAny()),
+            Times.once(),
+        );
 
-        mockDropdownClickHandler.verify(h => h.openPreviewFeaturesPanelHandler(It.isAny()), Times.never());
-        dropdownProps.menuItems.filter(item => item.key === 'preview-features')[0].onClick(stubClickEvent);
-        mockDropdownClickHandler.verify(h => h.openPreviewFeaturesPanelHandler(It.isAny()), Times.once());
+        mockDropdownClickHandler.verify(
+            h => h.openPreviewFeaturesPanelHandler(It.isAny()),
+            Times.never(),
+        );
+        dropdownProps.menuItems
+            .filter(item => item.key === 'preview-features')[0]
+            .onClick(stubClickEvent);
+        mockDropdownClickHandler.verify(
+            h => h.openPreviewFeaturesPanelHandler(It.isAny()),
+            Times.once(),
+        );
     });
 });

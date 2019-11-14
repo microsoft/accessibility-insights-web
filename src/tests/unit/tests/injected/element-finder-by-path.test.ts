@@ -3,7 +3,10 @@
 import { IMock, It, Mock } from 'typemoq';
 
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
-import { ElementFinderByPath, ElementFinderByPathMessage } from '../../../../injected/element-finder-by-path';
+import {
+    ElementFinderByPath,
+    ElementFinderByPathMessage,
+} from '../../../../injected/element-finder-by-path';
 import { ErrorMessageContent } from '../../../../injected/frameCommunicators/error-message-content';
 import { FrameCommunicator } from '../../../../injected/frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from '../../../../injected/frameCommunicators/window-message-handler';
@@ -33,12 +36,23 @@ describe('ElementFinderByPositionTest', () => {
             querySelector: querySelectorMock.object,
         } as HTMLElementUtils;
 
-        testSubject = new TestablePathElementFinder(htmlElementUtilsStub, frameCommunicatorMock.object);
+        testSubject = new TestablePathElementFinder(
+            htmlElementUtilsStub,
+            frameCommunicatorMock.object,
+        );
     });
 
     test('initialize', () => {
-        const responderMock = Mock.ofInstance((result: any, error: ErrorMessageContent, messageSourceWindow: Window) => {});
-        const processRequestPromiseHandlerMock = Mock.ofInstance((successCb, errorCb) => {});
+        const responderMock = Mock.ofInstance(
+            (
+                result: any,
+                error: ErrorMessageContent,
+                messageSourceWindow: Window,
+            ) => {},
+        );
+        const processRequestPromiseHandlerMock = Mock.ofInstance(
+            (successCb, errorCb) => {},
+        );
         const processRequestMock = Mock.ofInstance(message => {
             return null;
         });
@@ -54,7 +68,14 @@ describe('ElementFinderByPositionTest', () => {
             then: processRequestPromiseHandlerMock.object,
         } as Promise<string>;
 
-        frameCommunicatorMock.setup(fcm => fcm.subscribe(ElementFinderByPath.findElementByPathCommand, subscribeCallback)).verifiable();
+        frameCommunicatorMock
+            .setup(fcm =>
+                fcm.subscribe(
+                    ElementFinderByPath.findElementByPathCommand,
+                    subscribeCallback,
+                ),
+            )
+            .verifiable();
 
         processRequestMock
             .setup(prm => prm(messageStub))
@@ -68,7 +89,9 @@ describe('ElementFinderByPositionTest', () => {
                 errorCallback = error;
             });
 
-        responderMock.setup(rm => rm(resultsStub, null, windowStub)).verifiable();
+        responderMock
+            .setup(rm => rm(resultsStub, null, windowStub))
+            .verifiable();
 
         responderMock.setup(rm => rm(null, errorStub, windowStub)).verifiable();
 
@@ -89,7 +112,9 @@ describe('ElementFinderByPositionTest', () => {
             path: [',bad path'],
         } as ElementFinderByPathMessage;
 
-        return expect(testSubject.processRequest(messageStub)).rejects.toBeUndefined();
+        return expect(
+            testSubject.processRequest(messageStub),
+        ).rejects.toBeUndefined();
     });
 
     test('process request when element is null', async () => {
@@ -98,7 +123,9 @@ describe('ElementFinderByPositionTest', () => {
         } as ElementFinderByPathMessage;
 
         setupQuerySelectorMock(messageStub, null);
-        return expect(testSubject.processRequest(messageStub)).rejects.toBeUndefined();
+        return expect(
+            testSubject.processRequest(messageStub),
+        ).rejects.toBeUndefined();
     });
 
     test('process request when path is invalid', async () => {
@@ -109,7 +136,9 @@ describe('ElementFinderByPositionTest', () => {
         const elementStub = { tagName: 'test' } as HTMLElement;
 
         setupQuerySelectorMock(messageStub, elementStub);
-        return expect(testSubject.processRequest(messageStub)).rejects.toBeUndefined();
+        return expect(
+            testSubject.processRequest(messageStub),
+        ).rejects.toBeUndefined();
     });
 
     test('process request when element is not iframe', async () => {
@@ -117,7 +146,10 @@ describe('ElementFinderByPositionTest', () => {
             path: ['valid path'],
         };
         const snippet = 'valid snippet';
-        const elementStub = { tagName: 'test', outerHTML: snippet } as HTMLElement;
+        const elementStub = {
+            tagName: 'test',
+            outerHTML: snippet,
+        } as HTMLElement;
 
         setupQuerySelectorMock(messageStub, elementStub);
 
@@ -142,15 +174,22 @@ describe('ElementFinderByPositionTest', () => {
         };
 
         frameCommunicatorMock
-            .setup(fcm => fcm.sendMessage(It.isValue(expectedFrameCommunicatorMessage)))
+            .setup(fcm =>
+                fcm.sendMessage(It.isValue(expectedFrameCommunicatorMessage)),
+            )
             .returns(() => Promise.resolve(snippet));
 
         const response = await testSubject.processRequest(messageStub);
         expect(response).toEqual(snippet);
     });
 
-    function setupQuerySelectorMock(messageStub: ElementFinderByPathMessage, element: HTMLElement): void {
-        querySelectorMock.setup(em => em(messageStub.path[0])).returns(() => element);
+    function setupQuerySelectorMock(
+        messageStub: ElementFinderByPathMessage,
+        element: HTMLElement,
+    ): void {
+        querySelectorMock
+            .setup(em => em(messageStub.path[0]))
+            .returns(() => element);
     }
 
     function verifyAll(): void {

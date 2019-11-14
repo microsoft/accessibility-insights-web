@@ -11,32 +11,42 @@ export interface GuidanceLinksProps {
     classNameForDiv?: string;
 }
 
-export const GuidanceLinks = NamedFC('GuidanceLinks', (props: GuidanceLinksProps) => {
-    const { links, classNameForDiv } = props;
+export const GuidanceLinks = NamedFC(
+    'GuidanceLinks',
+    (props: GuidanceLinksProps) => {
+        const { links, classNameForDiv } = props;
 
-    if (isEmpty(links)) {
-        return null;
-    }
+        if (isEmpty(links)) {
+            return null;
+        }
 
-    const renderLinks = (): JSX.Element[] => {
-        return links.map((link, index) => {
-            return renderLink(link, index, links.length);
-        });
-    };
+        const renderLinks = (): JSX.Element[] => {
+            return links.map((link, index) => {
+                return renderLink(link, index, links.length);
+            });
+        };
 
-    const renderLink = (link: HyperlinkDefinition, index: number, length: number): JSX.Element => {
-        const addComma: boolean = index !== length - 1;
-        const comma = addComma ? <span>,&nbsp;</span> : null;
-        return (
-            <React.Fragment key={`guidance-link-${index}`}>
-                <NewTabLink href={link.href} onClick={event => event.stopPropagation()}>
-                    {link.text.toUpperCase()}
-                </NewTabLink>
-                {comma}
-            </React.Fragment>
-        );
-    };
+        const renderLink = (
+            link: HyperlinkDefinition,
+            index: number,
+            length: number,
+        ): JSX.Element => {
+            const addComma: boolean = index !== length - 1;
+            const comma = addComma ? <span>,&nbsp;</span> : null;
+            return (
+                <React.Fragment key={`guidance-link-${index}`}>
+                    <NewTabLink
+                        href={link.href}
+                        onClick={event => event.stopPropagation()}
+                    >
+                        {link.text.toUpperCase()}
+                    </NewTabLink>
+                    {comma}
+                </React.Fragment>
+            );
+        };
 
-    const spanClassName = classNameForDiv || 'guidance-links';
-    return <span className={spanClassName}>{renderLinks()}</span>;
-});
+        const spanClassName = classNameForDiv || 'guidance-links';
+        return <span className={spanClassName}>{renderLinks()}</span>;
+    },
+);

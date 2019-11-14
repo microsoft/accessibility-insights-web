@@ -13,9 +13,15 @@ export interface GearOptionsButtonComponentProps {
     featureFlags: FeatureFlagStoreData;
 }
 
-export class GearOptionsButtonComponent extends React.Component<GearOptionsButtonComponentProps> {
+export class GearOptionsButtonComponent extends React.Component<
+    GearOptionsButtonComponentProps
+> {
     public render(): JSX.Element {
-        return <div className="gear-options-button-component">{this.renderButton()}</div>;
+        return (
+            <div className="gear-options-button-component">
+                {this.renderButton()}
+            </div>
+        );
     }
 
     private renderButton(): JSX.Element {
@@ -41,7 +47,8 @@ export class GearOptionsButtonComponent extends React.Component<GearOptionsButto
             iconProps: {
                 iconName: 'giftboxOpen',
             },
-            onClick: this.props.dropdownClickHandler.openPreviewFeaturesPanelHandler,
+            onClick: this.props.dropdownClickHandler
+                .openPreviewFeaturesPanelHandler,
             name: 'Preview features',
             className: 'preview-features-drop-down-button',
         };

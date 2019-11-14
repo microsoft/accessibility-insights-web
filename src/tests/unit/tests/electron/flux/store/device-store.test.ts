@@ -1,12 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ConnectedDevicePayload, PortPayload } from 'electron/flux/action/device-action-payloads';
+import {
+    ConnectedDevicePayload,
+    PortPayload,
+} from 'electron/flux/action/device-action-payloads';
 import { DeviceActions } from 'electron/flux/action/device-actions';
 import { DeviceStore } from 'electron/flux/store/device-store';
 import { DeviceConnectState } from 'electron/flux/types/device-connect-state';
 import { DeviceStoreData } from 'electron/flux/types/device-store-data';
 
-import { createStoreWithNullParams, StoreTester } from '../../../../common/store-tester';
+import {
+    createStoreWithNullParams,
+    StoreTester,
+} from '../../../../common/store-tester';
 
 describe('DeviceStore', () => {
     let initialState: DeviceStoreData;
@@ -117,7 +123,9 @@ describe('DeviceStore', () => {
                 deviceConnectState: DeviceConnectState.Error,
             };
 
-            createStoreTesterForDeviceActions('connectionFailed').testListenerToBeCalledOnce(initialState, expectedState);
+            createStoreTesterForDeviceActions(
+                'connectionFailed',
+            ).testListenerToBeCalledOnce(initialState, expectedState);
         });
 
         it('does not updates if state is already Error', () => {
@@ -127,7 +135,9 @@ describe('DeviceStore', () => {
                 ...initialState,
             };
 
-            createStoreTesterForDeviceActions('connectionFailed').testListenerToNeverBeCalled(initialState, expectedState);
+            createStoreTesterForDeviceActions(
+                'connectionFailed',
+            ).testListenerToNeverBeCalled(initialState, expectedState);
         });
     });
 
@@ -140,7 +150,9 @@ describe('DeviceStore', () => {
                 deviceConnectState: DeviceConnectState.Default,
             };
 
-            createStoreTesterForDeviceActions('resetConnection').testListenerToBeCalledOnce(initialState, expectedState);
+            createStoreTesterForDeviceActions(
+                'resetConnection',
+            ).testListenerToBeCalledOnce(initialState, expectedState);
         });
 
         it('does not updated if status is already DEFAULT', () => {
@@ -150,11 +162,15 @@ describe('DeviceStore', () => {
                 ...initialState,
             };
 
-            createStoreTesterForDeviceActions('resetConnection').testListenerToNeverBeCalled(initialState, expectedState);
+            createStoreTesterForDeviceActions(
+                'resetConnection',
+            ).testListenerToNeverBeCalled(initialState, expectedState);
         });
     });
 
-    function createStoreTesterForDeviceActions(actionName: keyof DeviceActions): StoreTester<DeviceStoreData, DeviceActions> {
+    function createStoreTesterForDeviceActions(
+        actionName: keyof DeviceActions,
+    ): StoreTester<DeviceStoreData, DeviceActions> {
         const factory = (actions: DeviceActions) => new DeviceStore(actions);
 
         return new StoreTester(DeviceActions, actionName, factory);

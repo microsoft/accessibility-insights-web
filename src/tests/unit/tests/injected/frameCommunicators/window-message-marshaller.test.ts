@@ -4,7 +4,10 @@ import { IMock, Mock } from 'typemoq';
 
 import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 import { WindowMessage } from '../../../../../injected/frameCommunicators/window-message';
-import { MESSAGE_STABLE_SIGNATURE, WindowMessageMarshaller } from '../../../../../injected/frameCommunicators/window-message-marshaller';
+import {
+    MESSAGE_STABLE_SIGNATURE,
+    WindowMessageMarshaller,
+} from '../../../../../injected/frameCommunicators/window-message-marshaller';
 
 describe('WindowMessageMarshallerTests', () => {
     let testSubject: WindowMessageMarshaller;
@@ -42,7 +45,9 @@ describe('WindowMessageMarshallerTests', () => {
         JSON.stringify({ messageId: '12' } as WindowMessage),
         JSON.stringify({ messageSourceId: messageSourceId } as WindowMessage),
         JSON.stringify({ messageVersion: messageVersion } as WindowMessage),
-        JSON.stringify({ messageStableSignature: MESSAGE_STABLE_SIGNATURE } as WindowMessage),
+        JSON.stringify({
+            messageStableSignature: MESSAGE_STABLE_SIGNATURE,
+        } as WindowMessage),
         // Only one required field missing
         JSON.stringify({
             // messageId: { unknownMessageIdType: true } as any,
@@ -127,7 +132,9 @@ describe('WindowMessageMarshallerTests', () => {
             command: 'someCommand',
         } as WindowMessage, // without message
     ])('handleParsingValidData: %#', message => {
-        expect(testSubject.parseMessage(JSON.stringify(message))).toEqual(message);
+        expect(testSubject.parseMessage(JSON.stringify(message))).toEqual(
+            message,
+        );
     });
 
     test('createMessageWithResponseId', () => {
@@ -195,13 +202,19 @@ describe('WindowMessageMarshallerTests', () => {
         const command = 'command1';
         const responseId = 'responseId';
         const payload = {};
-        const actualMessage = testSubject.createMessage(command, payload, responseId);
+        const actualMessage = testSubject.createMessage(
+            command,
+            payload,
+            responseId,
+        );
 
         expect(typeof actualMessage).toBe('object');
 
         // Using strings instead of strongly typed names to avoid accidentally tool-refactoring the names/values
         // such that this test still passes but our partners break; those partners depend on this *exact* format
         // to distinguish our messages from unknown/assumed-malicious messages.
-        expect(actualMessage['messageStableSignature']).toBe('e467510c-ca1f-47df-ace1-a39f7f0678c9');
+        expect(actualMessage['messageStableSignature']).toBe(
+            'e467510c-ca1f-47df-ace1-a39f7f0678c9',
+        );
     });
 });

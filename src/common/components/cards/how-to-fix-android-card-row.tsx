@@ -13,23 +13,28 @@ export interface HowToFixAndroidCardRowProps extends CardRowProps {
     propertyData: FormattableResolution;
 }
 
-export const HowToFixAndroidCardRow = NamedFC<HowToFixAndroidCardRowProps>('HowToFixAndroidCardRow', props => {
-    return (
-        <SimpleCardRow
-            label="How to fix"
-            content={<span>{getHowToFixContent(props)}</span>}
-            rowKey={`how-to-fix-row-${props.index}`}
-            contentClassName="how-to-fix-card-row"
-        />
-    );
-});
+export const HowToFixAndroidCardRow = NamedFC<HowToFixAndroidCardRowProps>(
+    'HowToFixAndroidCardRow',
+    props => {
+        return (
+            <SimpleCardRow
+                label="How to fix"
+                content={<span>{getHowToFixContent(props)}</span>}
+                rowKey={`how-to-fix-row-${props.index}`}
+                contentClassName="how-to-fix-card-row"
+            />
+        );
+    },
+);
 
 type HowToFixSplit = {
     str?: string;
     match?: string;
 };
 
-function getHowToFixContent(props: HowToFixAndroidCardRowProps): (JSX.Element | string)[] {
+function getHowToFixContent(
+    props: HowToFixAndroidCardRowProps,
+): (JSX.Element | string)[] {
     const propertyData = props.propertyData;
     if (isEmpty(propertyData.howToFix)) {
         return [];
@@ -55,7 +60,9 @@ function getHowToFixContent(props: HowToFixAndroidCardRowProps): (JSX.Element | 
             isEmpty(item.str) ? (
                 <Term key={key}>{item.match}</Term>
             ) : (
-                <span key={key}>{props.deps.fixInstructionProcessor.process(item.str)}</span>
+                <span key={key}>
+                    {props.deps.fixInstructionProcessor.process(item.str)}
+                </span>
             ),
         );
     });
@@ -63,7 +70,10 @@ function getHowToFixContent(props: HowToFixAndroidCardRowProps): (JSX.Element | 
     return result;
 }
 
-function getHowToFixSplitsForPattern(pattern: string, previousHowToFixSplit: HowToFixSplit[]): HowToFixSplit[] {
+function getHowToFixSplitsForPattern(
+    pattern: string,
+    previousHowToFixSplit: HowToFixSplit[],
+): HowToFixSplit[] {
     const newHowToFixSplit: HowToFixSplit[] = [];
 
     previousHowToFixSplit.forEach(prop => {

@@ -5,32 +5,47 @@ import { create, React } from '../../common';
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
         <h1>Cues</h1>
-        <p>If a custom widget adopts certain interactive states, it must provide appropriate cues.</p>
+        <p>
+            If a custom widget adopts certain interactive states, it must
+            provide appropriate cues.
+        </p>
 
         <h2>Why it matters</h2>
         <p>
-            Users need to know whether a widget is disabled or read-only, so they know whether they can interact with it. They need to know
-            whether it is required, so they can decide whether to skip it. To ensure users of assistive technology are aware of these
-            states, the cues must be provided programmatically, and not just visually.
+            Users need to know whether a widget is disabled or read-only, so
+            they know whether they can interact with it. They need to know
+            whether it is required, so they can decide whether to skip it. To
+            ensure users of assistive technology are aware of these states, the
+            cues must be provided programmatically, and not just visually.
         </p>
 
         <h2>How to fix</h2>
-        <p>Make sure each native widget has the appropriate HTML attribute when it is disabled, read-only, or required.</p>
+        <p>
+            Make sure each native widget has the appropriate HTML attribute when
+            it is disabled, read-only, or required.
+        </p>
         <ul>
             <li>
-                The <Markup.Term>disabled</Markup.Term> attribute is supported by all <Markup.Code>{`<button>`}</Markup.Code>,{' '}
-                <Markup.Code>{`<input>`}</Markup.Code>, <Markup.Code>{`<select>`}</Markup.Code>, and{' '}
-                <Markup.Code>{`<textarea>`}</Markup.Code> elements. A disabled widget is non-editable and non-focusable.
+                The <Markup.Term>disabled</Markup.Term> attribute is supported
+                by all <Markup.Code>{`<button>`}</Markup.Code>,{' '}
+                <Markup.Code>{`<input>`}</Markup.Code>,{' '}
+                <Markup.Code>{`<select>`}</Markup.Code>, and{' '}
+                <Markup.Code>{`<textarea>`}</Markup.Code> elements. A disabled
+                widget is non-editable and non-focusable.
             </li>
             <li>
-                The <Markup.Term>readonly</Markup.Term> attribute is supported by <Markup.Code>{`<textarea>`}</Markup.Code> elements and by
+                The <Markup.Term>readonly</Markup.Term> attribute is supported
+                by <Markup.Code>{`<textarea>`}</Markup.Code> elements and by
                 {' ' + ''}
-                <Markup.Code>{`<input>`}</Markup.Code> elements that accept text input. A read-only widget is non-editable, but it is
-                focusable, and users can select its text.
+                <Markup.Code>{`<input>`}</Markup.Code> elements that accept text
+                input. A read-only widget is non-editable, but it is focusable,
+                and users can select its text.
             </li>
             <li>
-                The <Markup.Term>required</Markup.Term> attribute is supported by all <Markup.Code>{`<input>`}</Markup.Code> elements except
-                those that function as buttons. A required widget must have input before a form can be submitted.
+                The <Markup.Term>required</Markup.Term> attribute is supported
+                by all <Markup.Code>{`<input>`}</Markup.Code> elements except
+                those that function as buttons. A required widget must have
+                input before a form can be submitted.
             </li>
         </ul>
 
@@ -38,7 +53,8 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <Markup.PassFail
             failText={
                 <p>
-                    When this custom button is disabled, its background turns light gray, but it doesn't communicate its disabled state
+                    When this custom button is disabled, its background turns
+                    light gray, but it doesn't communicate its disabled state
                     programmatically.
                 </p>
             }
@@ -46,7 +62,12 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             [role="button"]:disabled {border-color: #cccccc; background-color: #cccccc;}
             HTML
             <div tabindex="0" role="button" id="action">Save</div>`}
-            passText={<p>When the button is disabled, it has the aria-disabled attribute.</p>}
+            passText={
+                <p>
+                    When the button is disabled, it has the aria-disabled
+                    attribute.
+                </p>
+            }
             passExample={`CSS
             [role="button"]:disabled {border-color: #cccccc; background-color: #cccccc;}
             HTML

@@ -42,14 +42,18 @@ export class UserConfigMessageCreator {
         });
     };
 
-    public setIssueFilingServiceProperty = (payload: SetIssueFilingServicePropertyPayload) => {
+    public setIssueFilingServiceProperty = (
+        payload: SetIssueFilingServicePropertyPayload,
+    ) => {
         this.dispatcher.dispatchMessage({
             messageType: Messages.UserConfig.SetIssueFilingServiceProperty,
             payload,
         });
     };
 
-    public saveIssueFilingSettings = (payload: SaveIssueFilingSettingsPayload) => {
+    public saveIssueFilingSettings = (
+        payload: SaveIssueFilingSettingsPayload,
+    ) => {
         this.dispatcher.dispatchMessage({
             messageType: Messages.UserConfig.SaveIssueFilingSettings,
             payload,

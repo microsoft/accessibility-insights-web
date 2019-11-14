@@ -32,7 +32,17 @@ export interface CollapsibleComponentCardsProps {
 const CollapsibleComponentCards = NamedFC<CollapsibleComponentCardsProps>(
     'CollapsibleComponentCards',
     (props: CollapsibleComponentCardsProps) => {
-        const { headingLevel, contentClassName, content, isExpanded, deps, buttonAriaLabel, containerClassName, header, id } = props;
+        const {
+            headingLevel,
+            contentClassName,
+            content,
+            isExpanded,
+            deps,
+            buttonAriaLabel,
+            containerClassName,
+            header,
+            id,
+        } = props;
 
         const containerProps = { role: 'heading', 'aria-level': headingLevel };
         let contentWrapper = null;
@@ -41,16 +51,40 @@ const CollapsibleComponentCards = NamedFC<CollapsibleComponentCardsProps>(
         const showContent = isExpanded || false;
 
         if (showContent) {
-            contentWrapper = <div className={css(contentClassName, collapsibleContainerContent)}>{content}</div>;
+            contentWrapper = (
+                <div
+                    className={css(
+                        contentClassName,
+                        collapsibleContainerContent,
+                    )}
+                >
+                    {content}
+                </div>
+            );
             collapsedCSSClassName = null;
         }
 
-        const onClick = (event: React.MouseEvent<HTMLDivElement>) => deps.cardSelectionMessageCreator.toggleRuleExpandCollapse(id, event);
+        const onClick = (event: React.MouseEvent<HTMLDivElement>) =>
+            deps.cardSelectionMessageCreator.toggleRuleExpandCollapse(
+                id,
+                event,
+            );
 
         return (
-            <div className={css(containerClassName, collapsibleContainer, collapsedCSSClassName)}>
+            <div
+                className={css(
+                    containerClassName,
+                    collapsibleContainer,
+                    collapsedCSSClassName,
+                )}
+            >
                 <div {...containerProps}>
-                    <ActionButton className={collapsibleControl} onClick={onClick} aria-expanded={showContent} ariaLabel={buttonAriaLabel}>
+                    <ActionButton
+                        className={collapsibleControl}
+                        onClick={onClick}
+                        aria-expanded={showContent}
+                        ariaLabel={buttonAriaLabel}
+                    >
                         <span className={collapsibleTitle}>{header}</span>
                     </ActionButton>
                 </div>
@@ -60,6 +94,6 @@ const CollapsibleComponentCards = NamedFC<CollapsibleComponentCardsProps>(
     },
 );
 
-export const CardsCollapsibleControl = (collapsibleControlProps: CollapsibleComponentCardsProps) => (
-    <CollapsibleComponentCards {...collapsibleControlProps} />
-);
+export const CardsCollapsibleControl = (
+    collapsibleControlProps: CollapsibleComponentCardsProps,
+) => <CollapsibleComponentCards {...collapsibleControlProps} />;

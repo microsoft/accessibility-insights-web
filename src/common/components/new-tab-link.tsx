@@ -6,8 +6,13 @@ import * as React from 'react';
 
 import { NamedFC } from '../react/named-fc';
 
-export const NewTabLink = NamedFC<ILinkProps>('NewTabLink', ({ className, ...props }) => {
-    const classNames = ['insights-link', className];
+export const NewTabLink = NamedFC<ILinkProps>(
+    'NewTabLink',
+    ({ className, ...props }) => {
+        const classNames = ['insights-link', className];
 
-    return <Link className={css(...classNames)} {...props} target="_blank" />;
-});
+        return (
+            <Link className={css(...classNames)} {...props} target="_blank" />
+        );
+    },
+);

@@ -5,14 +5,19 @@ import { shallow, ShallowWrapper } from 'enzyme';
 import { forEach } from 'lodash';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
-import { VisualizationToggle, VisualizationToggleProps } from '../../../../../common/components/visualization-toggle';
+import {
+    VisualizationToggle,
+    VisualizationToggleProps,
+} from '../../../../../common/components/visualization-toggle';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { visualHelperText } from '../../../../../DetailsView/components/base-visual-helper-toggle';
 import { VisualHelperToggleConfigBuilder } from '../../../common/visual-helper-toggle-config-builder';
 import { VisualizationTogglePropsBuilder } from '../../../common/visualization-toggle-props-builder';
 
 describe('AutomatedChecksVisualizationToggle', () => {
-    const actionMessageCreatorMock: IMock<DetailsViewActionMessageCreator> = Mock.ofType(DetailsViewActionMessageCreator);
+    const actionMessageCreatorMock: IMock<DetailsViewActionMessageCreator> = Mock.ofType(
+        DetailsViewActionMessageCreator,
+    );
 
     it('render with disabled message', () => {
         const props = new VisualHelperToggleConfigBuilder()
@@ -22,7 +27,9 @@ describe('AutomatedChecksVisualizationToggle', () => {
             .withEmptyFilteredMap()
             .build();
 
-        const wrapper = shallow(<AutomatedChecksVisualizationToggle {...props} />);
+        const wrapper = shallow(
+            <AutomatedChecksVisualizationToggle {...props} />,
+        );
 
         const visualHelperClass = 'visual-helper';
         const toggleDiv = wrapper.find(`.${visualHelperClass}`);
@@ -52,7 +59,9 @@ describe('AutomatedChecksVisualizationToggle', () => {
             .withNonEmptyFilteredMap()
             .build();
 
-        const wrapper = shallow(<AutomatedChecksVisualizationToggle {...props} />);
+        const wrapper = shallow(
+            <AutomatedChecksVisualizationToggle {...props} />,
+        );
 
         const visualHelperClass = 'visual-helper';
         const toggleDiv = wrapper.find(`.${visualHelperClass}`);
@@ -83,7 +92,9 @@ describe('AutomatedChecksVisualizationToggle', () => {
             .withPassingFilteredMap()
             .build();
 
-        const wrapper = shallow(<AutomatedChecksVisualizationToggle {...props} />);
+        const wrapper = shallow(
+            <AutomatedChecksVisualizationToggle {...props} />,
+        );
         const visualHelperClass = 'visual-helper';
         const toggleDiv = wrapper.find(`.${visualHelperClass}`);
 
@@ -126,6 +137,8 @@ describe('AutomatedChecksVisualizationToggle', () => {
     }
 
     function getDefaultVisualizationTogglePropsBuilder(): VisualizationTogglePropsBuilder {
-        return new VisualizationTogglePropsBuilder().with('visualizationName', visualHelperText).with('className', 'visual-helper-toggle');
+        return new VisualizationTogglePropsBuilder()
+            .with('visualizationName', visualHelperText)
+            .with('className', 'visual-helper-toggle');
     }
 });

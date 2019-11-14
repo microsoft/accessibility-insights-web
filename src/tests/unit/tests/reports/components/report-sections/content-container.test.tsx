@@ -14,7 +14,9 @@ describe('ContentContainer', () => {
             </div>,
         ];
 
-        const wrapped = shallow(<ContentContainer>{children}</ContentContainer>);
+        const wrapped = shallow(
+            <ContentContainer>{children}</ContentContainer>,
+        );
 
         expect(wrapped.getElement()).toMatchSnapshot();
     });

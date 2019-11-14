@@ -45,13 +45,18 @@ describe('IssuesDetailsPaneTest', () => {
 
     test('renderTitleElement passed to embedded FixInstructionPanels should match snapshot', () => {
         const issuesDetailsPaneProps = generateProps(1, 2);
-        const issuesDetailsPane = shallow(<IssuesDetailsPane {...issuesDetailsPaneProps} />);
+        const issuesDetailsPane = shallow(
+            <IssuesDetailsPane {...issuesDetailsPaneProps} />,
+        );
         const renderTitleElement = issuesDetailsPane
             .find(FixInstructionPanel)
             .first()
             .prop('renderTitleElement');
 
-        const titleElement = renderTitleElement('test title', 'test-class-name');
+        const titleElement = renderTitleElement(
+            'test title',
+            'test-class-name',
+        );
         expect(titleElement).toMatchSnapshot();
     });
 
@@ -66,7 +71,8 @@ describe('IssuesDetailsPaneTest', () => {
                 <div>
                     <h2>Failure details</h2>
                     <div className="issue-detail-select-message">
-                        Select a single failure instance from a group in the table above to see more details here.
+                        Select a single failure instance from a group in the
+                        table above to see more details here.
                     </div>
                 </div>
             </div>
@@ -74,7 +80,10 @@ describe('IssuesDetailsPaneTest', () => {
         expect(actual).toEqual(expected);
     }
 
-    function generateProps(ruleCount: number, linksCount: number): IssuesDetailsPaneProps {
+    function generateProps(
+        ruleCount: number,
+        linksCount: number,
+    ): IssuesDetailsPaneProps {
         const checkResult: FormattedCheckResult[] = [
             {
                 message: 'check-result-message',

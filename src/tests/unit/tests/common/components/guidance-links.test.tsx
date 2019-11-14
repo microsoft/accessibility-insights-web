@@ -3,7 +3,10 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { GuidanceLinks, GuidanceLinksProps } from '../../../../../common/components/guidance-links';
+import {
+    GuidanceLinks,
+    GuidanceLinksProps,
+} from '../../../../../common/components/guidance-links';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
 
 describe('GuidanceLinksTest', () => {

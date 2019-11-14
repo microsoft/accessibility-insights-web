@@ -6,15 +6,25 @@ import { DictionaryStringTo } from '../types/common-types';
 
 export type ImageCodedAs = 'Decorative' | 'Meaningful';
 
-export function getMatchesFromRule(ruleId: string): (node: any, virtualNode: any) => boolean {
-    return axe._audit.defaultConfig.rules.filter(rule => rule.id === ruleId)[0].matches;
+export function getMatchesFromRule(
+    ruleId: string,
+): (node: any, virtualNode: any) => boolean {
+    return axe._audit.defaultConfig.rules.filter(rule => rule.id === ruleId)[0]
+        .matches;
 }
 
-export function getEvaluateFromCheck(checkId: string): (node: any, options: any, virtualNode: any, context: any) => boolean {
-    return axe._audit.defaultConfig.checks.filter(check => check.id === checkId)[0].evaluate;
+export function getEvaluateFromCheck(
+    checkId: string,
+): (node: any, options: any, virtualNode: any, context: any) => boolean {
+    return axe._audit.defaultConfig.checks.filter(
+        check => check.id === checkId,
+    )[0].evaluate;
 }
 
-export function getAccessibleText(node: HTMLElement, isLabelledByContext: boolean): string {
+export function getAccessibleText(
+    node: HTMLElement,
+    isLabelledByContext: boolean,
+): string {
     return axe.commons.text.accessibleText(node, isLabelledByContext);
 }
 
@@ -26,7 +36,10 @@ export function getAccessibleDescription(node: HTMLElement): string {
         .join(' ');
 }
 
-export function getPropertyValuesMatching(node: HTMLElement, regex: RegExp): DictionaryStringTo<string> {
+export function getPropertyValuesMatching(
+    node: HTMLElement,
+    regex: RegExp,
+): DictionaryStringTo<string> {
     const dictionary: DictionaryStringTo<string> = {};
     if (node.hasAttributes()) {
         const attrs = node.attributes;
@@ -40,13 +53,17 @@ export function getPropertyValuesMatching(node: HTMLElement, regex: RegExp): Dic
     return dictionary;
 }
 
-export function getAttributes(node: HTMLElement, attributes: string[]): DictionaryStringTo<string> {
+export function getAttributes(
+    node: HTMLElement,
+    attributes: string[],
+): DictionaryStringTo<string> {
     const retDict: DictionaryStringTo<string> = {};
     attributes
         .filter(atributeName => node.hasAttribute(atributeName))
         .forEach(attributeName => {
             const attributeValue = node.getAttribute(attributeName);
-            retDict[attributeName] = attributeValue.length > 0 ? attributeValue : null;
+            retDict[attributeName] =
+                attributeValue.length > 0 ? attributeValue : null;
         });
 
     return retDict;
@@ -79,7 +96,9 @@ export function isWhiteSpace(text: string): boolean {
 }
 
 export function hasBackgoundImage(node: HTMLElement): boolean {
-    const computedBackgroundImage: string = window.getComputedStyle(node).getPropertyValue('background-image');
+    const computedBackgroundImage: string = window
+        .getComputedStyle(node)
+        .getPropertyValue('background-image');
     return computedBackgroundImage !== 'none';
 }
 

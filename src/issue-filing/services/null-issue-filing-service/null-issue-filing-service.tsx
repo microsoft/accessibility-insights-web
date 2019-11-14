@@ -6,7 +6,10 @@ import { SettingsFormProps } from '../../types/settings-form-props';
 
 const nullServiceKey = 'none';
 
-const settingsForm = NamedFC<SettingsFormProps<{}>>('NullIssueFilingService', () => null);
+const settingsForm = NamedFC<SettingsFormProps<{}>>(
+    'NullIssueFilingService',
+    () => null,
+);
 
 export type NullIssueFilingServiceSettings = null;
 

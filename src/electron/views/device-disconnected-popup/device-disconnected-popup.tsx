@@ -2,10 +2,18 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
-import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
+import {
+    Dialog,
+    DialogFooter,
+    DialogType,
+} from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
 
-import { deviceDisconnectedPopup, titleContainer, titleText } from './device-disconnected-popup.scss';
+import {
+    deviceDisconnectedPopup,
+    titleContainer,
+    titleText,
+} from './device-disconnected-popup.scss';
 import { StatusCautionIcon } from './status-caution-icon';
 
 export type DeviceDisconnectedPopupProps = {
@@ -40,14 +48,24 @@ export const DeviceDisconnectedPopup = NamedFC<DeviceDisconnectedPopupProps>(
             >
                 <div>
                     <p>
-                        Uh-oh! It seems the <strong>{deviceName}</strong> device has disconnected before the snapshot completed its
+                        Uh-oh! It seems the <strong>{deviceName}</strong> device
+                        has disconnected before the snapshot completed its
                         analysis.
                     </p>
-                    <p>Make sure your device is properly connected, and try rescanning or connecting a different device.</p>
+                    <p>
+                        Make sure your device is properly connected, and try
+                        rescanning or connecting a different device.
+                    </p>
                 </div>
                 <DialogFooter>
-                    <DefaultButton text="Connect a new device" onClick={onConnectNewDevice} />
-                    <DefaultButton text="Rescan device" onClick={onRescanDevice} />
+                    <DefaultButton
+                        text="Connect a new device"
+                        onClick={onConnectNewDevice}
+                    />
+                    <DefaultButton
+                        text="Rescan device"
+                        onClick={onRescanDevice}
+                    />
                 </DialogFooter>
             </Dialog>
         );

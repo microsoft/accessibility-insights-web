@@ -14,7 +14,10 @@ import { VisualizationType } from '../../../../../common/types/visualization-typ
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { AssessmentInstanceEditAndRemoveControl } from '../../../../../DetailsView/components/assessment-instance-edit-and-remove-control';
 import { AssessmentInstanceSelectedButton } from '../../../../../DetailsView/components/assessment-instance-selected-button';
-import { AssessmentInstanceRowData, CapturedInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
+import {
+    AssessmentInstanceRowData,
+    CapturedInstanceRowData,
+} from '../../../../../DetailsView/components/assessment-instance-table';
 import { AssessmentTableColumnConfigHandler } from '../../../../../DetailsView/components/assessment-table-column-config-handler';
 import { TestStatusChoiceGroup } from '../../../../../DetailsView/components/test-status-choice-group';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
@@ -31,7 +34,11 @@ describe('AssessmentInstanceTableHandlerTest', () => {
     beforeEach(() => {
         actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
         configFactoryMock = Mock.ofType(AssessmentTableColumnConfigHandler);
-        testSubject = new AssessmentInstanceTableHandler(actionMessageCreatorMock.object, configFactoryMock.object, assessmentsProvider);
+        testSubject = new AssessmentInstanceTableHandler(
+            actionMessageCreatorMock.object,
+            configFactoryMock.object,
+            assessmentsProvider,
+        );
     });
 
     test('createAssessmentInstanceTableItems', () => {
@@ -65,7 +72,11 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             selectedTestType: 5,
         };
 
-        const rows = testSubject.createAssessmentInstanceTableItems(instancesMap, assessmentNavState, true);
+        const rows = testSubject.createAssessmentInstanceTableItems(
+            instancesMap,
+            assessmentNavState,
+            true,
+        );
         const choiceGroup: JSX.Element = (
             <TestStatusChoiceGroup
                 test={5}
@@ -73,8 +84,12 @@ describe('AssessmentInstanceTableHandlerTest', () => {
                 selector={'selector1'}
                 status={ManualTestStatus.FAIL}
                 originalStatus={2}
-                onGroupChoiceChange={actionMessageCreatorMock.object.changeManualTestStatus}
-                onUndoClicked={actionMessageCreatorMock.object.undoManualTestStatusChange}
+                onGroupChoiceChange={
+                    actionMessageCreatorMock.object.changeManualTestStatus
+                }
+                onUndoClicked={
+                    actionMessageCreatorMock.object.undoManualTestStatusChange
+                }
             />
         );
         const selectedButton: JSX.Element = (
@@ -84,7 +99,10 @@ describe('AssessmentInstanceTableHandlerTest', () => {
                 selector={'selector1'}
                 isVisualizationEnabled={false}
                 isVisible={false}
-                onSelected={actionMessageCreatorMock.object.changeAssessmentVisualizationState}
+                onSelected={
+                    actionMessageCreatorMock.object
+                        .changeAssessmentVisualizationState
+                }
             />
         );
 
@@ -149,7 +167,9 @@ describe('AssessmentInstanceTableHandlerTest', () => {
                 onRemove={actionMessageCreatorMock.object.removeFailureInstance}
                 onEdit={actionMessageCreatorMock.object.editFailureInstance}
                 onAddPath={actionMessageCreatorMock.object.addPathForValidation}
-                onClearPathSnippetData={actionMessageCreatorMock.object.clearPathSnippetData}
+                onClearPathSnippetData={
+                    actionMessageCreatorMock.object.clearPathSnippetData
+                }
                 assessmentsProvider={assessmentsProvider}
                 featureFlagStoreData={featureFlagStoreData}
             />
@@ -203,7 +223,9 @@ describe('AssessmentInstanceTableHandlerTest', () => {
                 onRemove={actionMessageCreatorMock.object.removeFailureInstance}
                 onEdit={actionMessageCreatorMock.object.editFailureInstance}
                 onAddPath={actionMessageCreatorMock.object.addPathForValidation}
-                onClearPathSnippetData={actionMessageCreatorMock.object.clearPathSnippetData}
+                onClearPathSnippetData={
+                    actionMessageCreatorMock.object.clearPathSnippetData
+                }
                 assessmentsProvider={assessmentsProvider}
                 featureFlagStoreData={featureFlagStoreData}
             />
@@ -233,9 +255,15 @@ describe('AssessmentInstanceTableHandlerTest', () => {
                 html: '',
             },
         };
-        configFactoryMock.setup(c => c.getColumnConfigs(navState, true, true)).verifiable(Times.once());
+        configFactoryMock
+            .setup(c => c.getColumnConfigs(navState, true, true))
+            .verifiable(Times.once());
 
-        testSubject.getColumnConfigs(instanceMap as DictionaryStringTo<GeneratedAssessmentInstance>, navState, true);
+        testSubject.getColumnConfigs(
+            instanceMap as DictionaryStringTo<GeneratedAssessmentInstance>,
+            navState,
+            true,
+        );
 
         configFactoryMock.verifyAll();
     });
@@ -278,14 +306,18 @@ describe('AssessmentInstanceTableHandlerTest', () => {
 
     test('addPathForValidation', () => {
         const path = 'test path';
-        actionMessageCreatorMock.setup(a => a.addPathForValidation(path)).verifiable(Times.once());
+        actionMessageCreatorMock
+            .setup(a => a.addPathForValidation(path))
+            .verifiable(Times.once());
         testSubject.addPathForValidation(path);
 
         actionMessageCreatorMock.verifyAll();
     });
 
     test('clearPathSnippetData', () => {
-        actionMessageCreatorMock.setup(a => a.clearPathSnippetData()).verifiable(Times.once());
+        actionMessageCreatorMock
+            .setup(a => a.clearPathSnippetData())
+            .verifiable(Times.once());
         testSubject.clearPathSnippetData();
 
         actionMessageCreatorMock.verifyAll();
@@ -300,7 +332,9 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             snippet: 'snippet',
         };
 
-        actionMessageCreatorMock.setup(a => a.addFailureInstance(instanceData, test, requirement)).verifiable(Times.once());
+        actionMessageCreatorMock
+            .setup(a => a.addFailureInstance(instanceData, test, requirement))
+            .verifiable(Times.once());
 
         testSubject.addFailureInstance(instanceData, test, requirement);
 
@@ -310,7 +344,9 @@ describe('AssessmentInstanceTableHandlerTest', () => {
     test('passUnmarkedInstances', () => {
         const test = VisualizationType.HeadingsAssessment;
         const requirement = 'missingHeadings';
-        actionMessageCreatorMock.setup(a => a.passUnmarkedInstances(test, requirement)).verifiable(Times.once());
+        actionMessageCreatorMock
+            .setup(a => a.passUnmarkedInstances(test, requirement))
+            .verifiable(Times.once());
 
         testSubject.passUnmarkedInstances(test, requirement);
 
@@ -319,7 +355,9 @@ describe('AssessmentInstanceTableHandlerTest', () => {
 
     test('updateFocusedInstance', () => {
         const targetStub = ['target'];
-        actionMessageCreatorMock.setup(a => a.updateFocusedInstanceTarget(targetStub)).verifiable(Times.once());
+        actionMessageCreatorMock
+            .setup(a => a.updateFocusedInstanceTarget(targetStub))
+            .verifiable(Times.once());
         testSubject.updateFocusedTarget(targetStub);
 
         actionMessageCreatorMock.verifyAll();
@@ -343,13 +381,19 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             selectedTestType: 5,
         };
 
-        (testSubject as any).renderSelectedButton(instance, null, assessmentNavState);
+        (testSubject as any).renderSelectedButton(
+            instance,
+            null,
+            assessmentNavState,
+        );
 
         configFactoryMock.verifyAll();
     });
 
     test('getColumnConfigsForCapturedInstance', () => {
-        configFactoryMock.setup(c => c.getColumnConfigsForCapturedInstances()).verifiable(Times.once());
+        configFactoryMock
+            .setup(c => c.getColumnConfigsForCapturedInstances())
+            .verifiable(Times.once());
 
         testSubject.getColumnConfigsForCapturedInstance();
 

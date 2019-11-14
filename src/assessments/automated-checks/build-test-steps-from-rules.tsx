@@ -21,15 +21,20 @@ function buildAutomatedCheckStep(rule: ScannerRuleInfo): Requirement {
     const howToTest = (
         <React.Fragment>
             {infoElement}{' '}
-            <NewTabLink href={rule.url} aria-label={`See more info here about ${rule.id} rule`}>
+            <NewTabLink
+                href={rule.url}
+                aria-label={`See more info here about ${rule.id} rule`}
+            >
                 See more info here.
             </NewTabLink>
         </React.Fragment>
     );
     const getAnalyzer = (provider: AnalyzerProvider) => {
         const analyzerConfiguration: RuleAnalyzerConfiguration = {
-            resultProcessor: (scanner: ScannerUtils) => scanner.getFailingOrPassingInstances,
-            telemetryProcessor: telemetryFactory => telemetryFactory.forAssessmentRequirementScan,
+            resultProcessor: (scanner: ScannerUtils) =>
+                scanner.getFailingOrPassingInstances,
+            telemetryProcessor: telemetryFactory =>
+                telemetryFactory.forAssessmentRequirementScan,
             analyzerMessageType: Messages.Assessment.AssessmentScanCompleted,
             rules: [rule.id],
             key: rule.id,
@@ -48,20 +53,27 @@ function buildAutomatedCheckStep(rule: ScannerRuleInfo): Requirement {
         guidanceLinks: rule.a11yCriteria,
         getAnalyzer: getAnalyzer,
         getDrawer: provider => provider.createHighlightBoxDrawer(),
-        generateInstanceIdentifier: InstanceIdentifierGenerator.generateSelectorIdentifier,
+        generateInstanceIdentifier:
+            InstanceIdentifierGenerator.generateSelectorIdentifier,
         columnsConfig: automatedChecksColumns,
         getInstanceStatus: getInstanceStatus,
         getInstanceStatusColumns: () => [],
         renderInstanceTableHeader: () => null,
-        renderRequirementDescription: requirementLink => requirementLink.renderRequirementDescriptionWithoutIndex(),
-        getDefaultMessage: defaultMessageGenerator => defaultMessageGenerator.getNoFailingInstanceMessage,
-        getVisualHelperToggle: props => <AutomatedChecksVisualizationToggle {...props} />,
+        renderRequirementDescription: requirementLink =>
+            requirementLink.renderRequirementDescriptionWithoutIndex(),
+        getDefaultMessage: defaultMessageGenerator =>
+            defaultMessageGenerator.getNoFailingInstanceMessage,
+        getVisualHelperToggle: props => (
+            <AutomatedChecksVisualizationToggle {...props} />
+        ),
     };
 
     return testStepConfig;
 }
 
-export function buildTestStepsFromRules(rules: ScannerRuleInfo[]): Requirement[] {
+export function buildTestStepsFromRules(
+    rules: ScannerRuleInfo[],
+): Requirement[] {
     return rules.map(rule => buildAutomatedCheckStep(rule));
 }
 

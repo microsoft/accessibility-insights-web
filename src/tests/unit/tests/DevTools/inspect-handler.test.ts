@@ -20,15 +20,27 @@ describe('InspectHandlerTests', () => {
         devToolsChromeAdapterMock = new DevToolsChromeAdapterMock();
         devtoolsStoreProxyMock = new StoreMock<DevToolState>();
         backgrountConnectionMock = Mock.ofType(PortStub);
-        testObjec = new InspectHandler(devtoolsStoreProxyMock.getObject(), devToolsChromeAdapterMock.getObject());
+        testObjec = new InspectHandler(
+            devtoolsStoreProxyMock.getObject(),
+            devToolsChromeAdapterMock.getObject(),
+        );
 
-        devToolsChromeAdapterMock.setUpConnect(ConnectionNames.devTools, backgrountConnectionMock.object);
+        devToolsChromeAdapterMock.setUpConnect(
+            ConnectionNames.devTools,
+            backgrountConnectionMock.object,
+        );
     });
 
     test('initialize - send about dev tools open message to background ', () => {
         devtoolsStoreProxyMock.setupAddChangedListener();
-        backgrountConnectionMock.setup(x => x.postMessage(It.isObjectWith({ tabId: inspectedWindowId }))).verifiable();
-        devToolsChromeAdapterMock.setupGetInspectedWindowTabId(inspectedWindowId);
+        backgrountConnectionMock
+            .setup(x =>
+                x.postMessage(It.isObjectWith({ tabId: inspectedWindowId })),
+            )
+            .verifiable();
+        devToolsChromeAdapterMock.setupGetInspectedWindowTabId(
+            inspectedWindowId,
+        );
 
         testObjec.initialize();
 
@@ -40,7 +52,9 @@ describe('InspectHandlerTests', () => {
     test('initialize - do not throw when state is null', () => {
         devtoolsStoreProxyMock.setupAddChangedListener();
         devtoolsStoreProxyMock.setupGetState(null);
-        devToolsChromeAdapterMock.setupGetInspectedWindowTabId(inspectedWindowId);
+        devToolsChromeAdapterMock.setupGetInspectedWindowTabId(
+            inspectedWindowId,
+        );
         testObjec.initialize();
 
         devtoolsStoreProxyMock.invokeChangeListener();
@@ -56,7 +70,9 @@ describe('InspectHandlerTests', () => {
 
         devtoolsStoreProxyMock.setupAddChangedListener();
         devtoolsStoreProxyMock.setupGetState(state);
-        devToolsChromeAdapterMock.setupGetInspectedWindowTabId(inspectedWindowId);
+        devToolsChromeAdapterMock.setupGetInspectedWindowTabId(
+            inspectedWindowId,
+        );
         testObjec.initialize();
 
         devtoolsStoreProxyMock.invokeChangeListener();
@@ -72,9 +88,14 @@ describe('InspectHandlerTests', () => {
         } as DevToolState;
         devtoolsStoreProxyMock.setupAddChangedListener();
         devtoolsStoreProxyMock.setupGetState(state);
-        devToolsChromeAdapterMock.setupGetInspectedWindowTabId(inspectedWindowId);
+        devToolsChromeAdapterMock.setupGetInspectedWindowTabId(
+            inspectedWindowId,
+        );
 
-        devToolsChromeAdapterMock.setupExecuteScriptInInspectedWindow("inspect(document.querySelector('#testElement'))", null);
+        devToolsChromeAdapterMock.setupExecuteScriptInInspectedWindow(
+            "inspect(document.querySelector('#testElement'))",
+            null,
+        );
         testObjec.initialize();
 
         devtoolsStoreProxyMock.invokeChangeListener();
@@ -90,9 +111,14 @@ describe('InspectHandlerTests', () => {
         } as DevToolState;
         devtoolsStoreProxyMock.setupAddChangedListener();
         devtoolsStoreProxyMock.setupGetState(state);
-        devToolsChromeAdapterMock.setupGetInspectedWindowTabId(inspectedWindowId);
+        devToolsChromeAdapterMock.setupGetInspectedWindowTabId(
+            inspectedWindowId,
+        );
 
-        devToolsChromeAdapterMock.setupExecuteScriptInInspectedWindow("inspect(document.querySelector('test'))", 'testUrl');
+        devToolsChromeAdapterMock.setupExecuteScriptInInspectedWindow(
+            "inspect(document.querySelector('test'))",
+            'testUrl',
+        );
         testObjec.initialize();
 
         devtoolsStoreProxyMock.invokeChangeListener();
@@ -108,7 +134,9 @@ describe('InspectHandlerTests', () => {
         } as DevToolState;
         devtoolsStoreProxyMock.setupAddChangedListener();
         devtoolsStoreProxyMock.setupGetState(state);
-        devToolsChromeAdapterMock.setupGetInspectedWindowTabId(inspectedWindowId);
+        devToolsChromeAdapterMock.setupGetInspectedWindowTabId(
+            inspectedWindowId,
+        );
 
         testObjec.initialize();
         devtoolsStoreProxyMock.invokeChangeListener();

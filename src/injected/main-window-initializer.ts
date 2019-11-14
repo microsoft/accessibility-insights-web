@@ -4,7 +4,10 @@ import { Assessments } from 'assessments/assessments';
 import { EnumHelper } from 'common/enum-helper';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { VisualizationType } from 'common/types/visualization-type';
-import { ClientStoreListener, TargetPageStoreData } from 'injected/client-store-listener';
+import {
+    ClientStoreListener,
+    TargetPageStoreData,
+} from 'injected/client-store-listener';
 import { FocusChangeHandler } from 'injected/focus-change-handler';
 import { isVisualizationEnabled } from 'injected/is-visualization-enabled';
 import { TargetPageVisualizationUpdater } from 'injected/target-page-visualization-updater';
@@ -79,7 +82,9 @@ export class MainWindowInitializer extends WindowInitializer {
     private featureFlagStoreProxy: StoreProxy<FeatureFlagStoreData>;
     private userConfigStoreProxy: StoreProxy<UserConfigurationStoreData>;
     private inspectStoreProxy: StoreProxy<InspectStoreData>;
-    private visualizationScanResultStoreProxy: StoreProxy<VisualizationScanResultData>;
+    private visualizationScanResultStoreProxy: StoreProxy<
+        VisualizationScanResultData
+    >;
     private scopingStoreProxy: StoreProxy<ScopingStoreData>;
     private tabStoreProxy: StoreProxy<TabStoreData>;
     private devToolStoreProxy: StoreProxy<DevToolState>;
@@ -95,65 +100,108 @@ export class MainWindowInitializer extends WindowInitializer {
             StoreNames[StoreNames.VisualizationStore],
             this.browserAdapter,
         );
-        this.scopingStoreProxy = new StoreProxy<ScopingStoreData>(StoreNames[StoreNames.ScopingPanelStateStore], this.browserAdapter);
-        this.featureFlagStoreProxy = new StoreProxy<FeatureFlagStoreData>(StoreNames[StoreNames.FeatureFlagStore], this.browserAdapter);
+        this.scopingStoreProxy = new StoreProxy<ScopingStoreData>(
+            StoreNames[StoreNames.ScopingPanelStateStore],
+            this.browserAdapter,
+        );
+        this.featureFlagStoreProxy = new StoreProxy<FeatureFlagStoreData>(
+            StoreNames[StoreNames.FeatureFlagStore],
+            this.browserAdapter,
+        );
         this.userConfigStoreProxy = new StoreProxy<UserConfigurationStoreData>(
             StoreNames[StoreNames.UserConfigurationStore],
             this.browserAdapter,
         );
-        this.visualizationScanResultStoreProxy = new StoreProxy<VisualizationScanResultData>(
+        this.visualizationScanResultStoreProxy = new StoreProxy<
+            VisualizationScanResultData
+        >(
             StoreNames[StoreNames.VisualizationScanResultStore],
             this.browserAdapter,
         );
-        this.assessmentStoreProxy = new StoreProxy<AssessmentStoreData>(StoreNames[StoreNames.AssessmentStore], this.browserAdapter);
-        this.tabStoreProxy = new StoreProxy<TabStoreData>(StoreNames[StoreNames.TabStore], this.browserAdapter);
-        this.devToolStoreProxy = new StoreProxy<DevToolState>(StoreNames[StoreNames.DevToolsStore], this.browserAdapter);
-        this.inspectStoreProxy = new StoreProxy<InspectStoreData>(StoreNames[StoreNames.InspectStore], this.browserAdapter);
-        this.pathSnippetStoreProxy = new StoreProxy<PathSnippetStoreData>(StoreNames[StoreNames.PathSnippetStore], this.browserAdapter);
-        this.unifiedScanResultStoreProxy = new StoreProxy<UnifiedScanResultStoreData>(
-            StoreNames[StoreNames.UnifiedScanResultStore],
+        this.assessmentStoreProxy = new StoreProxy<AssessmentStoreData>(
+            StoreNames[StoreNames.AssessmentStore],
             this.browserAdapter,
         );
+        this.tabStoreProxy = new StoreProxy<TabStoreData>(
+            StoreNames[StoreNames.TabStore],
+            this.browserAdapter,
+        );
+        this.devToolStoreProxy = new StoreProxy<DevToolState>(
+            StoreNames[StoreNames.DevToolsStore],
+            this.browserAdapter,
+        );
+        this.inspectStoreProxy = new StoreProxy<InspectStoreData>(
+            StoreNames[StoreNames.InspectStore],
+            this.browserAdapter,
+        );
+        this.pathSnippetStoreProxy = new StoreProxy<PathSnippetStoreData>(
+            StoreNames[StoreNames.PathSnippetStore],
+            this.browserAdapter,
+        );
+        this.unifiedScanResultStoreProxy = new StoreProxy<
+            UnifiedScanResultStoreData
+        >(StoreNames[StoreNames.UnifiedScanResultStore], this.browserAdapter);
         this.cardSelectionStoreProxy = new StoreProxy<CardSelectionStoreData>(
             StoreNames[StoreNames.CardSelectionStore],
             this.browserAdapter,
         );
 
-        const actionMessageDispatcher = new RemoteActionMessageDispatcher(this.browserAdapter.sendMessageToFrames, null);
+        const actionMessageDispatcher = new RemoteActionMessageDispatcher(
+            this.browserAdapter.sendMessageToFrames,
+            null,
+        );
 
-        const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(actionMessageDispatcher);
+        const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
+            actionMessageDispatcher,
+        );
 
-        const storeActionMessageCreator = storeActionMessageCreatorFactory.fromStores([
-            this.visualizationStoreProxy,
-            this.scopingStoreProxy,
-            this.featureFlagStoreProxy,
-            this.userConfigStoreProxy,
-            this.visualizationScanResultStoreProxy,
-            this.assessmentStoreProxy,
-            this.tabStoreProxy,
-            this.devToolStoreProxy,
-            this.inspectStoreProxy,
-            this.pathSnippetStoreProxy,
-            this.unifiedScanResultStoreProxy,
-            this.cardSelectionStoreProxy,
-        ]);
+        const storeActionMessageCreator = storeActionMessageCreatorFactory.fromStores(
+            [
+                this.visualizationStoreProxy,
+                this.scopingStoreProxy,
+                this.featureFlagStoreProxy,
+                this.userConfigStoreProxy,
+                this.visualizationScanResultStoreProxy,
+                this.assessmentStoreProxy,
+                this.tabStoreProxy,
+                this.devToolStoreProxy,
+                this.inspectStoreProxy,
+                this.pathSnippetStoreProxy,
+                this.unifiedScanResultStoreProxy,
+                this.cardSelectionStoreProxy,
+            ],
+        );
         storeActionMessageCreator.getAllStates();
 
         const telemetryDataFactory = new TelemetryDataFactory();
-        const devToolActionMessageCreator = new DevToolActionMessageCreator(telemetryDataFactory, actionMessageDispatcher);
+        const devToolActionMessageCreator = new DevToolActionMessageCreator(
+            telemetryDataFactory,
+            actionMessageDispatcher,
+        );
 
-        const targetPageActionMessageCreator = new TargetPageActionMessageCreator(telemetryDataFactory, actionMessageDispatcher);
+        const targetPageActionMessageCreator = new TargetPageActionMessageCreator(
+            telemetryDataFactory,
+            actionMessageDispatcher,
+        );
         const issueFilingActionMessageCreator = new IssueFilingActionMessageCreator(
             actionMessageDispatcher,
             telemetryDataFactory,
             TelemetryEventSource.TargetPage,
         );
 
-        const userConfigMessageCreator = new UserConfigMessageCreator(actionMessageDispatcher);
+        const userConfigMessageCreator = new UserConfigMessageCreator(
+            actionMessageDispatcher,
+        );
 
-        const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
+        const browserSpec = new NavigatorUtils(
+            window.navigator,
+        ).getBrowserSpec();
 
-        const environmentInfoProvider = new EnvironmentInfoProvider(this.appDataAdapter.getVersion(), browserSpec, AxeInfo.Default.version);
+        const environmentInfoProvider = new EnvironmentInfoProvider(
+            this.appDataAdapter.getVersion(),
+            browserSpec,
+            AxeInfo.Default.version,
+        );
 
         MainWindowContext.initialize(
             this.devToolStoreProxy,
@@ -167,9 +215,18 @@ export class MainWindowInitializer extends WindowInitializer {
         );
 
         const drawingInitiator = new DrawingInitiator(this.drawingController);
-        const elementBasedViewModelCreator = new ElementBasedViewModelCreator(getDecoratedAxeNode, getCardSelectionViewData);
-        const selectorMapHelper = new SelectorMapHelper(Assessments, elementBasedViewModelCreator.getElementBasedViewModel);
-        const frameUrlMessageDispatcher = new FrameUrlMessageDispatcher(devToolActionMessageCreator, this.frameCommunicator);
+        const elementBasedViewModelCreator = new ElementBasedViewModelCreator(
+            getDecoratedAxeNode,
+            getCardSelectionViewData,
+        );
+        const selectorMapHelper = new SelectorMapHelper(
+            Assessments,
+            elementBasedViewModelCreator.getElementBasedViewModel,
+        );
+        const frameUrlMessageDispatcher = new FrameUrlMessageDispatcher(
+            devToolActionMessageCreator,
+            this.frameCommunicator,
+        );
         frameUrlMessageDispatcher.initialize();
 
         const storeHub = new BaseClientStoresHub<TargetPageStoreData>([
@@ -185,7 +242,10 @@ export class MainWindowInitializer extends WindowInitializer {
 
         const clientStoreListener = new ClientStoreListener(storeHub);
 
-        const focusChangeHandler = new FocusChangeHandler(targetPageActionMessageCreator, this.scrollingController);
+        const focusChangeHandler = new FocusChangeHandler(
+            targetPageActionMessageCreator,
+            this.scrollingController,
+        );
 
         const targetPageVisualizationUpdater = new TargetPageVisualizationUpdater(
             this.visualizationConfigurationFactory,
@@ -201,12 +261,17 @@ export class MainWindowInitializer extends WindowInitializer {
             Assessments,
         );
 
-        clientStoreListener.registerOnReadyToExecuteVisualizationCallback(focusChangeHandler.handleFocusChangeWithStoreData);
+        clientStoreListener.registerOnReadyToExecuteVisualizationCallback(
+            focusChangeHandler.handleFocusChangeWithStoreData,
+        );
         clientStoreListener.registerOnReadyToExecuteVisualizationCallback(
             visualizationStateChangeHandler.updateVisualizationsWithStoreData,
         );
 
-        this.frameUrlSearchInitiator = new FrameUrlSearchInitiator(this.devToolStoreProxy, this.frameUrlFinder);
+        this.frameUrlSearchInitiator = new FrameUrlSearchInitiator(
+            this.devToolStoreProxy,
+            this.frameUrlFinder,
+        );
 
         this.frameUrlSearchInitiator.listenToStore();
 
@@ -230,7 +295,9 @@ export class MainWindowInitializer extends WindowInitializer {
             unifiedResultSender.sendResults,
         );
 
-        const analyzerStateUpdateHandler = new AnalyzerStateUpdateHandler(this.visualizationConfigurationFactory);
+        const analyzerStateUpdateHandler = new AnalyzerStateUpdateHandler(
+            this.visualizationConfigurationFactory,
+        );
         this.analyzerController = new AnalyzerController(
             this.visualizationStoreProxy,
             this.featureFlagStoreProxy,
@@ -245,7 +312,12 @@ export class MainWindowInitializer extends WindowInitializer {
 
         const htmlElementUtils = new HTMLElementUtils();
         const shadowUtils = new ShadowUtils(htmlElementUtils);
-        const scopingListener = new ScopingListener(this.elementFinderByPosition, this.windowUtils, shadowUtils, document);
+        const scopingListener = new ScopingListener(
+            this.elementFinderByPosition,
+            this.windowUtils,
+            shadowUtils,
+            document,
+        );
         const inspectActionMessageCreator = new InspectActionMessageCreator(
             telemetryDataFactory,
             TelemetryEventSource.TargetPage,
@@ -258,7 +330,9 @@ export class MainWindowInitializer extends WindowInitializer {
             actionMessageDispatcher,
         );
 
-        const pathSnippetActionMessageCreator = new PathSnippetActionMessageCreator(actionMessageDispatcher);
+        const pathSnippetActionMessageCreator = new PathSnippetActionMessageCreator(
+            actionMessageDispatcher,
+        );
 
         this.inspectController = new InspectController(
             this.inspectStoreProxy,

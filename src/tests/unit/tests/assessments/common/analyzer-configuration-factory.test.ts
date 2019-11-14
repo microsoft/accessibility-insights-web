@@ -24,7 +24,9 @@ describe('AnalyzerConfigurationFactoryTest', () => {
         expect(baseConfig.testType).toEqual(result.testType);
         expect(isFunction(result.resultProcessor)).toBeTruthy();
         expect(isFunction(result.telemetryProcessor)).toBeTruthy();
-        expect(Messages.Assessment.AssessmentScanCompleted).toEqual(result.analyzerMessageType);
+        expect(Messages.Assessment.AssessmentScanCompleted).toEqual(
+            result.analyzerMessageType,
+        );
     });
 
     test('default resultProcessor', () => {
@@ -38,7 +40,9 @@ describe('AnalyzerConfigurationFactoryTest', () => {
 
         const result = AnalyzerConfigurationFactory.forScanner(baseConfig);
 
-        expect(getInstancesStub).toEqual(result.resultProcessor(scannerMock.object));
+        expect(getInstancesStub).toEqual(
+            result.resultProcessor(scannerMock.object),
+        );
     });
 
     test('default telemetryProcessor', () => {
@@ -49,6 +53,10 @@ describe('AnalyzerConfigurationFactoryTest', () => {
 
         const result = AnalyzerConfigurationFactory.forScanner(baseConfig);
 
-        expect(forRuleAnalyzerScanStub).toEqual(result.telemetryProcessor(telemetryFactoryStub as TelemetryDataFactory));
+        expect(forRuleAnalyzerScanStub).toEqual(
+            result.telemetryProcessor(
+                telemetryFactoryStub as TelemetryDataFactory,
+            ),
+        );
     });
 });

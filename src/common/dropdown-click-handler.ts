@@ -9,20 +9,32 @@ export class DropdownClickHandler {
     private dropdownActionMessageCreator: DropdownActionMessageCreator;
     private source: TelemetryEventSource;
 
-    constructor(dropdownActionMessageCreator: DropdownActionMessageCreator, source: TelemetryEventSource) {
+    constructor(
+        dropdownActionMessageCreator: DropdownActionMessageCreator,
+        source: TelemetryEventSource,
+    ) {
         this.source = source;
         this.dropdownActionMessageCreator = dropdownActionMessageCreator;
     }
 
-    public openPreviewFeaturesPanelHandler = (event: React.MouseEvent<HTMLElement>): void => {
-        this.dropdownActionMessageCreator.openPreviewFeaturesPanel(event, this.source);
+    public openPreviewFeaturesPanelHandler = (
+        event: React.MouseEvent<HTMLElement>,
+    ): void => {
+        this.dropdownActionMessageCreator.openPreviewFeaturesPanel(
+            event,
+            this.source,
+        );
     };
 
-    public openScopingPanelHandler = (event: React.MouseEvent<HTMLElement>): void => {
+    public openScopingPanelHandler = (
+        event: React.MouseEvent<HTMLElement>,
+    ): void => {
         this.dropdownActionMessageCreator.openScopingPanel(event, this.source);
     };
 
-    public openSettingsPanelHandler = (event: React.MouseEvent<HTMLElement>): void => {
+    public openSettingsPanelHandler = (
+        event: React.MouseEvent<HTMLElement>,
+    ): void => {
         this.dropdownActionMessageCreator.openSettingsPanel(event, this.source);
     };
 }

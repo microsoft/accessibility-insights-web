@@ -29,8 +29,12 @@ export class InspectStore extends BaseStoreImpl<InspectStoreData> {
 
     protected addActionListeners(): void {
         this.inspectActions.getCurrentState.addListener(this.onGetCurrentState);
-        this.inspectActions.changeInspectMode.addListener(this.onChangeInspectMode);
-        this.inspectActions.setHoveredOverSelector.addListener(this.onSetHoveredOverSelector);
+        this.inspectActions.changeInspectMode.addListener(
+            this.onChangeInspectMode,
+        );
+        this.inspectActions.setHoveredOverSelector.addListener(
+            this.onSetHoveredOverSelector,
+        );
         this.tabActions.tabChange.addListener(this.onTabChange);
     }
 

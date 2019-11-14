@@ -16,24 +16,31 @@ export interface HighlightBoxProps {
     onClickHandler?: () => void;
 }
 
-export const HighlightBox = NamedFC<HighlightBoxProps>('HighlightBox', props => {
-    const { boxConfig, drawerConfig, className, onClickHandler } = props;
-    if (boxConfig == null) {
-        return null;
-    }
-    const styles: CSSProperties = {
-        background: boxConfig.background,
-        color: boxConfig.fontColor,
-        width: boxConfig.boxWidth,
-        cursor: drawerConfig.cursor,
-        textAlign: drawerConfig.textAlign,
-    };
+export const HighlightBox = NamedFC<HighlightBoxProps>(
+    'HighlightBox',
+    props => {
+        const { boxConfig, drawerConfig, className, onClickHandler } = props;
+        if (boxConfig == null) {
+            return null;
+        }
+        const styles: CSSProperties = {
+            background: boxConfig.background,
+            color: boxConfig.fontColor,
+            width: boxConfig.boxWidth,
+            cursor: drawerConfig.cursor,
+            textAlign: drawerConfig.textAlign,
+        };
 
-    const combinedClass = css('insights-highlight-text', className);
+        const combinedClass = css('insights-highlight-text', className);
 
-    return (
-        <div className={combinedClass} onClick={onClickHandler} style={styles}>
-            {boxConfig.text}
-        </div>
-    );
-});
+        return (
+            <div
+                className={combinedClass}
+                onClick={onClickHandler}
+                style={styles}
+            >
+                {boxConfig.text}
+            </div>
+        );
+    },
+);

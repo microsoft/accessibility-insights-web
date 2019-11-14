@@ -5,21 +5,34 @@ import { create, React } from '../../common';
 export const infoAndExamples = create(({ Markup }) => (
     <>
         <h1>Instructions</h1>
-        <p>If a custom widget has visible label or instructions, they must be programmatically related to it.</p>
+        <p>
+            If a custom widget has visible label or instructions, they must be
+            programmatically related to it.
+        </p>
 
         <h2>Why it matters</h2>
         <p>
-            People with good vision can identify a widget's label and instructions by visually scanning the page and interpreting visual
-            characteristics such as proximity. To provide an equivalent experience for people who use assistive technologies, a widget's
+            People with good vision can identify a widget's label and
+            instructions by visually scanning the page and interpreting visual
+            characteristics such as proximity. To provide an equivalent
+            experience for people who use assistive technologies, a widget's
             label and instructions must be programmatically related to it.
         </p>
 
         <h2>How to fix</h2>
-        <p>Make sure all of the widget's visible label and instructions are included in its accessible name or accessible description.</p>
+        <p>
+            Make sure all of the widget's visible label and instructions are
+            included in its accessible name or accessible description.
+        </p>
 
         <h2>Example</h2>
         <Markup.PassFail
-            failText={<p>This combo box is followed by instructions that are not programmatically related to it.</p>}
+            failText={
+                <p>
+                    This combo box is followed by instructions that are not
+                    programmatically related to it.
+                </p>
+            }
             failExample={`<label for="size-input" id="size-label" class="combobox-label">Shirt size </label>
             <div role="combobox" aria-expanded="false" aria-owns="size-listbox" aria-haspopup="listbox" id="size-combobox">
             <input type="text" aria-autocomplete="list" aria-controls="size-listbox" id="size-input">
@@ -28,7 +41,8 @@ export const infoAndExamples = create(({ Markup }) => (
             men choose s-xxl.</div>]`}
             passText={
                 <p>
-                    The combo box's instructions are programmatically related to it using <Markup.Code>aria-describedby</Markup.Code>.
+                    The combo box's instructions are programmatically related to
+                    it using <Markup.Code>aria-describedby</Markup.Code>.
                 </p>
             }
             passExample={`<label for="size-input" id="size-label" class="combobox-label">Shirt size </label>
@@ -61,23 +75,27 @@ export const infoAndExamples = create(({ Markup }) => (
         </Markup.Links>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA14">
-                Using aria-label to provide an invisible label where a visible label cannot be used
+                Using aria-label to provide an invisible label where a visible
+                label cannot be used
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA16">
-                Using aria-labelledby to provide a name for user interface controls
+                Using aria-labelledby to provide a name for user interface
+                controls
             </Markup.HyperLink>
         </Markup.Links>
         <h4>Common failures</h4>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F96">
-                Failure due to "accessible name" not containing the visible label text
+                Failure due to "accessible name" not containing the visible
+                label text
             </Markup.HyperLink>
         </Markup.Links>
 
         <h3>Additional guidance</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA1">
-                Using the aria-describedby property to provide a descriptive label for user interface controls
+                Using the aria-describedby property to provide a descriptive
+                label for user interface controls
             </Markup.HyperLink>
         </Markup.Links>
     </>

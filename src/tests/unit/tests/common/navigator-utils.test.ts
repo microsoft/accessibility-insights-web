@@ -26,7 +26,10 @@ describe('NavigatorUtils', () => {
             validateBrowserSpecReturnedWithUserAgent(userAgent, userAgent);
         });
 
-        function validateBrowserSpecReturnedWithUserAgent(userAgent: string, expected: string): void {
+        function validateBrowserSpecReturnedWithUserAgent(
+            userAgent: string,
+            expected: string,
+        ): void {
             const navigatorInfo = {
                 userAgent: userAgent,
             };
@@ -43,7 +46,10 @@ describe('NavigatorUtils', () => {
             const mockNavigatorInfo = {
                 clipboard: clipboardMock.object,
             } as Navigator;
-            const testSubject = new NavigatorUtils(mockNavigatorInfo, loggerMock.object);
+            const testSubject = new NavigatorUtils(
+                mockNavigatorInfo,
+                loggerMock.object,
+            );
 
             const testError = new Error('test text');
             clipboardMock
@@ -51,9 +57,15 @@ describe('NavigatorUtils', () => {
                 .returns(() => Promise.reject(testError))
                 .verifiable(Times.once());
 
-            loggerMock.setup(l => l.error('Error during copyToClipboard: Error: test text')).verifiable(Times.once());
+            loggerMock
+                .setup(l =>
+                    l.error('Error during copyToClipboard: Error: test text'),
+                )
+                .verifiable(Times.once());
 
-            await expect(testSubject.copyToClipboard('irrelevant')).rejects.toBe(testError);
+            await expect(
+                testSubject.copyToClipboard('irrelevant'),
+            ).rejects.toBe(testError);
 
             clipboardMock.verifyAll();
             loggerMock.verifyAll();

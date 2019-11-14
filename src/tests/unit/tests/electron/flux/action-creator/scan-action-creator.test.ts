@@ -19,7 +19,9 @@ describe('ScanActionCreator', () => {
 
         scanStartedMock = Mock.ofType<Action<PortPayload>>();
 
-        scanActionsMock.setup(actions => actions.scanStarted).returns(() => scanStartedMock.object);
+        scanActionsMock
+            .setup(actions => actions.scanStarted)
+            .returns(() => scanStartedMock.object);
 
         testSubject = new ScanActionCreator(scanActionsMock.object);
     });
@@ -27,6 +29,9 @@ describe('ScanActionCreator', () => {
     it('scans', () => {
         testSubject.scan(port);
 
-        scanStartedMock.verify(scanStarted => scanStarted.invoke(It.isValue({ port })), Times.once());
+        scanStartedMock.verify(
+            scanStarted => scanStarted.invoke(It.isValue({ port })),
+            Times.once(),
+        );
     });
 });

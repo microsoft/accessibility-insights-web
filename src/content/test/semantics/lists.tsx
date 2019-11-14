@@ -9,9 +9,10 @@ export const infoAndExamples = create(({ Markup, Link }) => (
 
         <h2>Why it matters</h2>
         <p>
-            When lists are coded with semantically correct elements, navigating them is easier for people who use assistive technologies.
-            For example, most assistive technologies allow users to navigate from the first list item to the last, or to jump to the next
-            list.
+            When lists are coded with semantically correct elements, navigating
+            them is easier for people who use assistive technologies. For
+            example, most assistive technologies allow users to navigate from
+            the first list item to the last, or to jump to the next list.
         </p>
 
         <h2>How to fix</h2>
@@ -22,10 +23,12 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                     Unordered lists
                     <ul>
                         <li>
-                            Use the <Markup.Code>{'<ul>'}</Markup.Code> element for the container.
+                            Use the <Markup.Code>{'<ul>'}</Markup.Code> element
+                            for the container.
                         </li>
                         <li>
-                            Use the <Markup.Code>{'<li>'}</Markup.Code> element for list items.
+                            Use the <Markup.Code>{'<li>'}</Markup.Code> element
+                            for list items.
                         </li>
                     </ul>
                 </li>
@@ -33,10 +36,12 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                     Ordered lists
                     <ul>
                         <li>
-                            Use the <Markup.Code>{'<ol>'}</Markup.Code> element for the container.
+                            Use the <Markup.Code>{'<ol>'}</Markup.Code> element
+                            for the container.
                         </li>
                         <li>
-                            Use the <Markup.Code>{'<li>'}</Markup.Code> element for list items.
+                            Use the <Markup.Code>{'<li>'}</Markup.Code> element
+                            for list items.
                         </li>
                     </ul>
                 </li>
@@ -44,13 +49,16 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                     Definition lists
                     <ul>
                         <li>
-                            Use the <Markup.Code>{'<dl>'}</Markup.Code> element for the container.
+                            Use the <Markup.Code>{'<dl>'}</Markup.Code> element
+                            for the container.
                         </li>
                         <li>
-                            Use the <Markup.Code>{'<dt>'}</Markup.Code> element for terms.
+                            Use the <Markup.Code>{'<dt>'}</Markup.Code> element
+                            for terms.
                         </li>
                         <li>
-                            Use the <Markup.Code>{'<dd>'}</Markup.Code> element for definitions.
+                            Use the <Markup.Code>{'<dd>'}</Markup.Code> element
+                            for definitions.
                         </li>
                     </ul>
                 </li>
@@ -58,7 +66,12 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         </p>
 
         <Markup.PassFail
-            failText={<p>These links are visually formatted as an unordered list, but they are not coded list semantics.</p>}
+            failText={
+                <p>
+                    These links are visually formatted as an unordered list, but
+                    they are not coded list semantics.
+                </p>
+            }
             failExample={`<h4>Top Tutorials</h4>
            [<div>]
            <a href="/html/default.asp">HTML Tutorial</a>[<br>]
@@ -68,7 +81,8 @@ export const infoAndExamples = create(({ Markup, Link }) => (
            [</div>]`}
             passText={
                 <p>
-                    The set of links is built using semantically correct <Markup.Code>{'<ul>'}</Markup.Code> and{' '}
+                    The set of links is built using semantically correct{' '}
+                    <Markup.Code>{'<ul>'}</Markup.Code> and{' '}
                     <Markup.Code>{'<li>'}</Markup.Code> elements.
                 </p>
             }

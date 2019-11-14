@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
-import { BaseTelemetryData, TelemetryEventSource } from '../../../../../common/extension-telemetry-events';
+import {
+    BaseTelemetryData,
+    TelemetryEventSource,
+} from '../../../../../common/extension-telemetry-events';
 import { Message } from '../../../../../common/message';
 import { RemoteActionMessageDispatcher } from '../../../../../common/message-creators/remote-action-message-dispatcher';
 import { Messages } from '../../../../../common/messages';
@@ -20,18 +23,30 @@ describe('RemoteActionMessageDispatcher', () => {
 
         it('handles numeric tabId', () => {
             const tabId = -1;
-            const testObject = new RemoteActionMessageDispatcher(postMessageMock.object, tabId);
+            const testObject = new RemoteActionMessageDispatcher(
+                postMessageMock.object,
+                tabId,
+            );
 
             testObject.dispatchMessage(message);
 
-            postMessageMock.verify(post => post(It.isValue({ ...message, tabId })), Times.once());
+            postMessageMock.verify(
+                post => post(It.isValue({ ...message, tabId })),
+                Times.once(),
+            );
         });
 
         it('handles null tabId', () => {
-            const testObject = new RemoteActionMessageDispatcher(postMessageMock.object, null);
+            const testObject = new RemoteActionMessageDispatcher(
+                postMessageMock.object,
+                null,
+            );
             testObject.dispatchMessage(message);
 
-            postMessageMock.verify(post => post(It.isValue(message)), Times.once());
+            postMessageMock.verify(
+                post => post(It.isValue(message)),
+                Times.once(),
+            );
         });
     });
 
@@ -40,7 +55,10 @@ describe('RemoteActionMessageDispatcher', () => {
 
         it('handles numberic tabId', () => {
             const tabId = -1;
-            const testObject = new RemoteActionMessageDispatcher(postMessageMock.object, tabId);
+            const testObject = new RemoteActionMessageDispatcher(
+                postMessageMock.object,
+                tabId,
+            );
 
             testObject.dispatchType(messageType);
 
@@ -49,11 +67,17 @@ describe('RemoteActionMessageDispatcher', () => {
                 tabId,
             };
 
-            postMessageMock.verify(post => post(It.isValue(expectedMessage)), Times.once());
+            postMessageMock.verify(
+                post => post(It.isValue(expectedMessage)),
+                Times.once(),
+            );
         });
 
         it('handles null tabId', () => {
-            const testObject = new RemoteActionMessageDispatcher(postMessageMock.object, null);
+            const testObject = new RemoteActionMessageDispatcher(
+                postMessageMock.object,
+                null,
+            );
 
             testObject.dispatchType(messageType);
 
@@ -61,7 +85,10 @@ describe('RemoteActionMessageDispatcher', () => {
                 messageType,
             };
 
-            postMessageMock.verify(post => post(It.isValue(expectedMessage)), Times.once());
+            postMessageMock.verify(
+                post => post(It.isValue(expectedMessage)),
+                Times.once(),
+            );
         });
     });
 
@@ -74,7 +101,10 @@ describe('RemoteActionMessageDispatcher', () => {
 
         it('handles numeric tabId', () => {
             const tabId = -1;
-            const testObject = new RemoteActionMessageDispatcher(postMessageMock.object, tabId);
+            const testObject = new RemoteActionMessageDispatcher(
+                postMessageMock.object,
+                tabId,
+            );
 
             testObject.sendTelemetry(eventName, eventData);
 
@@ -87,11 +117,17 @@ describe('RemoteActionMessageDispatcher', () => {
                 tabId,
             };
 
-            postMessageMock.verify(post => post(It.isValue(expectedMessage)), Times.once());
+            postMessageMock.verify(
+                post => post(It.isValue(expectedMessage)),
+                Times.once(),
+            );
         });
 
         it('handles null tabId', () => {
-            const testObject = new RemoteActionMessageDispatcher(postMessageMock.object, null);
+            const testObject = new RemoteActionMessageDispatcher(
+                postMessageMock.object,
+                null,
+            );
 
             testObject.sendTelemetry(eventName, eventData);
 
@@ -103,7 +139,10 @@ describe('RemoteActionMessageDispatcher', () => {
                 },
             };
 
-            postMessageMock.verify(post => post(It.isValue(expectedMessage)), Times.once());
+            postMessageMock.verify(
+                post => post(It.isValue(expectedMessage)),
+                Times.once(),
+            );
         });
     });
 });

@@ -4,7 +4,10 @@ import { DevToolActions } from 'background/actions/dev-tools-actions';
 import { DevToolStore } from 'background/stores/dev-tools-store';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { DevToolState } from '../../../../../common/types/store-data/idev-tool-state';
-import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
+import {
+    createStoreWithNullParams,
+    StoreTester,
+} from '../../../common/store-tester';
 
 describe('DevToolsStoreTest', () => {
     test('constructor, no side effect', () => {
@@ -21,7 +24,9 @@ describe('DevToolsStoreTest', () => {
         const initialState = getDefaultState();
         const expectedState = getDefaultState();
 
-        createStoreTesterForDevToolsActions('getCurrentState').testListenerToBeCalledOnce(initialState, expectedState);
+        createStoreTesterForDevToolsActions(
+            'getCurrentState',
+        ).testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     test('on setDevToolState, isOpen value change', () => {
@@ -81,7 +86,9 @@ describe('DevToolsStoreTest', () => {
         return new DevToolStore(null).getDefaultState();
     }
 
-    function createStoreTesterForDevToolsActions(actionName: keyof DevToolActions): StoreTester<DevToolState, DevToolActions> {
+    function createStoreTesterForDevToolsActions(
+        actionName: keyof DevToolActions,
+    ): StoreTester<DevToolState, DevToolActions> {
         const factory = (actions: DevToolActions) => new DevToolStore(actions);
 
         return new StoreTester(DevToolActions, actionName, factory);

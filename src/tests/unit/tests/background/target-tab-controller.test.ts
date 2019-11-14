@@ -21,7 +21,9 @@ describe('TargetTabControllerTest', () => {
     beforeEach(() => {
         browserAdapterMock = Mock.ofType<BrowserAdapter>();
         getSwitchToTargetTabCallbackMock = Mock.ofInstance(() => null);
-        configurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
+        configurationFactoryMock = Mock.ofType(
+            VisualizationConfigurationFactory,
+        );
         configStub = {
             getSwitchToTargetTabOnScan: getSwitchToTargetTabCallbackMock.object,
         } as VisualizationConfiguration;
@@ -29,9 +31,14 @@ describe('TargetTabControllerTest', () => {
         test = -2;
         step = 'some step';
 
-        configurationFactoryMock.setup(cfm => cfm.getConfiguration(test)).returns(() => configStub);
+        configurationFactoryMock
+            .setup(cfm => cfm.getConfiguration(test))
+            .returns(() => configStub);
 
-        testSubject = new TargetTabController(browserAdapterMock.object, configurationFactoryMock.object);
+        testSubject = new TargetTabController(
+            browserAdapterMock.object,
+            configurationFactoryMock.object,
+        );
     });
 
     it('tests the constructor', () => {
@@ -39,7 +46,9 @@ describe('TargetTabControllerTest', () => {
     });
 
     it("showTargetTab: test doesn't switch to target tab", () => {
-        configurationFactoryMock.setup(cfm => cfm.getConfiguration(test)).returns(() => configStub);
+        configurationFactoryMock
+            .setup(cfm => cfm.getConfiguration(test))
+            .returns(() => configStub);
 
         getSwitchToTargetTabCallbackMock
             .setup(cm => cm(null))
@@ -65,6 +74,8 @@ describe('TargetTabControllerTest', () => {
     });
 
     function setupSwitchToTabBrowserCall(times: Times): void {
-        browserAdapterMock.setup(bam => bam.switchToTab(tabId)).verifiable(times);
+        browserAdapterMock
+            .setup(bam => bam.switchToTab(tabId))
+            .verifiable(times);
     }
 });

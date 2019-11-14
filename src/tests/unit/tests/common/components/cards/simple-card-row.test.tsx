@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { SimpleCardRow, SimpleCardRowProps } from 'common/components/cards/simple-card-row';
+import {
+    SimpleCardRow,
+    SimpleCardRowProps,
+} from 'common/components/cards/simple-card-row';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 

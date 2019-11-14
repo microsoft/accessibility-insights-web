@@ -49,24 +49,38 @@ describe('createGitHubIssueFilingUrlTest', () => {
         stringUtilsMock = Mock.ofType<IssueUrlCreationUtils>();
 
         const testTitle = 'test title';
-        stringUtilsMock.setup(utils => utils.getTitle(sampleIssueDetailsData)).returns(() => testTitle);
+        stringUtilsMock
+            .setup(utils => utils.getTitle(sampleIssueDetailsData))
+            .returns(() => testTitle);
 
         issueDetailsGetter = Mock.ofType<IssueDetailsBuilder>();
         const testIssueDetails = 'test issue details';
-        issueDetailsGetter.setup(getter => getter(environmentInfo, sampleIssueDetailsData)).returns(() => testIssueDetails);
+        issueDetailsGetter
+            .setup(getter => getter(environmentInfo, sampleIssueDetailsData))
+            .returns(() => testIssueDetails);
 
         const rectifiedUrl = 'rectified-url';
         rectifyMock = Mock.ofType<UrlRectifier>();
-        rectifyMock.setup(rectifier => rectifier(settingsData.repository)).returns(() => rectifiedUrl);
+        rectifyMock
+            .setup(rectifier => rectifier(settingsData.repository))
+            .returns(() => rectifiedUrl);
 
         queryBuilderMock = Mock.ofType<HTTPQueryBuilder>();
 
-        queryBuilderMock.setup(builder => builder.withBaseUrl(`${rectifiedUrl}/new`)).returns(() => queryBuilderMock.object);
+        queryBuilderMock
+            .setup(builder => builder.withBaseUrl(`${rectifiedUrl}/new`))
+            .returns(() => queryBuilderMock.object);
 
-        queryBuilderMock.setup(builder => builder.withParam('title', testTitle)).returns(() => queryBuilderMock.object);
-        queryBuilderMock.setup(builder => builder.withParam('body', testIssueDetails)).returns(() => queryBuilderMock.object);
+        queryBuilderMock
+            .setup(builder => builder.withParam('title', testTitle))
+            .returns(() => queryBuilderMock.object);
+        queryBuilderMock
+            .setup(builder => builder.withParam('body', testIssueDetails))
+            .returns(() => queryBuilderMock.object);
 
-        queryBuilderMock.setup(builder => builder.build()).returns(() => buildedUrl);
+        queryBuilderMock
+            .setup(builder => builder.build())
+            .returns(() => buildedUrl);
 
         testObject = createGitHubIssueFilingUrlProvider(
             stringUtilsMock.object,
@@ -77,7 +91,11 @@ describe('createGitHubIssueFilingUrlTest', () => {
     });
 
     it('creates url', () => {
-        const result = testObject(settingsData, sampleIssueDetailsData, environmentInfo);
+        const result = testObject(
+            settingsData,
+            sampleIssueDetailsData,
+            environmentInfo,
+        );
 
         expect(result).toEqual(buildedUrl);
     });

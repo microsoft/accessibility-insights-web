@@ -27,7 +27,10 @@ export interface ReportExportComponentState {
     exportData: string;
 }
 
-export class ReportExportComponent extends React.Component<ReportExportComponentProps, ReportExportComponentState> {
+export class ReportExportComponent extends React.Component<
+    ReportExportComponentProps,
+    ReportExportComponentState
+> {
     constructor(props) {
         super(props);
         this.state = {
@@ -55,18 +58,35 @@ export class ReportExportComponent extends React.Component<ReportExportComponent
     };
 
     private onExportButtonClick = () => {
-        const { reportGenerator, exportResultsType, scanDate, pageTitle } = this.props;
-        const exportName = reportGenerator.generateName(exportResultsType, scanDate, pageTitle);
+        const {
+            reportGenerator,
+            exportResultsType,
+            scanDate,
+            pageTitle,
+        } = this.props;
+        const exportName = reportGenerator.generateName(
+            exportResultsType,
+            scanDate,
+            pageTitle,
+        );
         const exportDescription = this.props.getExportDescription();
         this.setState({ exportDescription, exportName, isOpen: true });
     };
 
     public render(): JSX.Element {
         const { deps, exportResultsType } = this.props;
-        const { isOpen, exportName, exportDescription, exportData } = this.state;
+        const {
+            isOpen,
+            exportName,
+            exportDescription,
+            exportData,
+        } = this.state;
         return (
             <>
-                <ActionButton iconProps={{ iconName: 'Export' }} onClick={this.onExportButtonClick}>
+                <ActionButton
+                    iconProps={{ iconName: 'Export' }}
+                    onClick={this.onExportButtonClick}
+                >
                     Export result
                 </ActionButton>
                 <ExportDialog

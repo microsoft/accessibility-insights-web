@@ -6,7 +6,10 @@ import * as React from 'react';
 import { CheckIcon, CheckIconInverted } from 'common/icons/check-icon';
 import { CircleIcon } from 'common/icons/circle-icon';
 import { CrossIconInverted } from 'common/icons/cross-icon';
-import { InapplicableIcon, InapplicableIconInverted } from 'common/icons/inapplicable-icon';
+import {
+    InapplicableIcon,
+    InapplicableIconInverted,
+} from 'common/icons/inapplicable-icon';
 import { OutcomeIcon } from 'reports/components/outcome-icon';
 import { allRequirementOutcomeTypes } from 'reports/components/requirement-outcome-type';
 
@@ -14,14 +17,23 @@ describe('OutcomeIcon', () => {
     describe('render', () => {
         allRequirementOutcomeTypes.forEach(outcomeType => {
             test(outcomeType, () => {
-                const wrapper = shallow(<OutcomeIcon outcomeType={outcomeType} />);
+                const wrapper = shallow(
+                    <OutcomeIcon outcomeType={outcomeType} />,
+                );
                 expect(wrapper.getElement()).toMatchSnapshot();
             });
         });
     });
 });
 
-[CheckIcon, CheckIconInverted, CircleIcon, CrossIconInverted, InapplicableIcon, InapplicableIconInverted].forEach(Icon => {
+[
+    CheckIcon,
+    CheckIconInverted,
+    CircleIcon,
+    CrossIconInverted,
+    InapplicableIcon,
+    InapplicableIconInverted,
+].forEach(Icon => {
     const name = Icon.displayName;
     describe(name, () => {
         test('render', () => {

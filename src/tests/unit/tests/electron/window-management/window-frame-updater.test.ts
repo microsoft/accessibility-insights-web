@@ -16,7 +16,10 @@ describe(WindowFrameUpdater, () => {
         windowFrameActions = new WindowFrameActions();
         browserWindowMock = Mock.ofType(BrowserWindow, MockBehavior.Strict);
 
-        testSubject = new WindowFrameUpdater(windowFrameActions, browserWindowMock.object);
+        testSubject = new WindowFrameUpdater(
+            windowFrameActions,
+            browserWindowMock.object,
+        );
     });
 
     afterEach(() => {
@@ -51,7 +54,9 @@ describe(WindowFrameUpdater, () => {
                 .setup(b => b.isFullScreen())
                 .returns(() => true)
                 .verifiable(Times.once());
-            browserWindowMock.setup(b => b.setFullScreen(false)).verifiable(Times.once());
+            browserWindowMock
+                .setup(b => b.setFullScreen(false))
+                .verifiable(Times.once());
 
             windowFrameActions.restore.invoke(null);
         });
@@ -61,7 +66,9 @@ describe(WindowFrameUpdater, () => {
                 .setup(b => b.isFullScreen())
                 .returns(() => false)
                 .verifiable(Times.once());
-            browserWindowMock.setup(b => b.unmaximize()).verifiable(Times.once());
+            browserWindowMock
+                .setup(b => b.unmaximize())
+                .verifiable(Times.once());
 
             windowFrameActions.restore.invoke(null);
         });
@@ -81,7 +88,9 @@ describe(WindowFrameUpdater, () => {
             browserWindowMock
                 .setup(b => b.setSize(sizePayload.width, sizePayload.height))
                 .verifiable(Times.once(), ExpectedCallType.InSequence);
-            browserWindowMock.setup(b => b.center()).verifiable(Times.once(), ExpectedCallType.InSequence);
+            browserWindowMock
+                .setup(b => b.center())
+                .verifiable(Times.once(), ExpectedCallType.InSequence);
 
             windowFrameActions.setWindowSize.invoke(sizePayload);
         });

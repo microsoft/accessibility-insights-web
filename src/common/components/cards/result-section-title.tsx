@@ -5,7 +5,11 @@ import * as React from 'react';
 
 import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
 import { OutcomeChip } from '../../../reports/components/outcome-chip';
-import { outcomeChipContainer, resultSectionTitle, title } from './result-section-title.scss';
+import {
+    outcomeChipContainer,
+    resultSectionTitle,
+    title,
+} from './result-section-title.scss';
 
 export type ResultSectionTitleProps = {
     title: string;
@@ -14,25 +18,35 @@ export type ResultSectionTitleProps = {
     shouldAlertFailuresCount?: boolean;
 };
 
-export const ResultSectionTitle = NamedFC<ResultSectionTitleProps>('ResultSectionTitle', props => {
-    const failureTerm = props.badgeCount !== 1 ? 'failures were' : 'failure was';
-    const alertingFailuresCount = (
-        <span role="alert">
-            {props.badgeCount} {failureTerm} detected.
-        </span>
-    );
+export const ResultSectionTitle = NamedFC<ResultSectionTitleProps>(
+    'ResultSectionTitle',
+    props => {
+        const failureTerm =
+            props.badgeCount !== 1 ? 'failures were' : 'failure was';
+        const alertingFailuresCount = (
+            <span role="alert">
+                {props.badgeCount} {failureTerm} detected.
+            </span>
+        );
 
-    return (
-        <span className={resultSectionTitle}>
-            <span className="screen-reader-only">
-                {props.title} {props.shouldAlertFailuresCount ? alertingFailuresCount : props.badgeCount}
+        return (
+            <span className={resultSectionTitle}>
+                <span className="screen-reader-only">
+                    {props.title}{' '}
+                    {props.shouldAlertFailuresCount
+                        ? alertingFailuresCount
+                        : props.badgeCount}
+                </span>
+                <span className={title} aria-hidden="true">
+                    {props.title}
+                </span>
+                <span className={outcomeChipContainer} aria-hidden="true">
+                    <OutcomeChip
+                        outcomeType={props.outcomeType}
+                        count={props.badgeCount}
+                    />
+                </span>
             </span>
-            <span className={title} aria-hidden="true">
-                {props.title}
-            </span>
-            <span className={outcomeChipContainer} aria-hidden="true">
-                <OutcomeChip outcomeType={props.outcomeType} count={props.badgeCount} />
-            </span>
-        </span>
-    );
-});
+        );
+    },
+);

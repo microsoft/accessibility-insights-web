@@ -6,17 +6,24 @@ import { IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
 import { createFileIssueHandler } from '../../common/create-file-issue-handler';
 import { createSettingsGetter } from '../../common/create-settings-getter';
 import { IssueFilingServiceWithSettings } from '../../types/issue-filing-service';
-import { AzureBoardsIssueDetailField, AzureBoardsIssueFilingSettings } from './azure-boards-issue-filing-settings';
+import {
+    AzureBoardsIssueDetailField,
+    AzureBoardsIssueFilingSettings,
+} from './azure-boards-issue-filing-settings';
 import { AzureBoardsSettingsForm } from './azure-boards-settings-form';
 import { azureBoardsIssueFilingUrlProvider } from './create-azure-boards-issue-filing-url';
 
 const AzureBoardsIssueFilingServiceKey = 'azureBoards';
 
-export interface AzureBoardsIssueDetailLocationDropdownOption extends IDropdownOption {
+export interface AzureBoardsIssueDetailLocationDropdownOption
+    extends IDropdownOption {
     key: AzureBoardsIssueDetailField;
 }
 
-function buildStoreData(projectURL: string, issueDetailsField: AzureBoardsIssueDetailField): AzureBoardsIssueFilingSettings {
+function buildStoreData(
+    projectURL: string,
+    issueDetailsField: AzureBoardsIssueDetailField,
+): AzureBoardsIssueFilingSettings {
     return {
         projectURL,
         issueDetailsField,
@@ -24,14 +31,20 @@ function buildStoreData(projectURL: string, issueDetailsField: AzureBoardsIssueD
 }
 
 function isSettingsValid(data: AzureBoardsIssueFilingSettings): boolean {
-    return !isEmpty(data) && isStringValid(data.projectURL) && isStringValid(data.issueDetailsField);
+    return (
+        !isEmpty(data) &&
+        isStringValid(data.projectURL) &&
+        isStringValid(data.issueDetailsField)
+    );
 }
 
 function isStringValid(stringToCheck: string): boolean {
     return !isEmpty(stringToCheck) && !isEmpty(stringToCheck.trim());
 }
 
-const settingsGetter = createSettingsGetter<AzureBoardsIssueFilingSettings>(AzureBoardsIssueFilingServiceKey);
+const settingsGetter = createSettingsGetter<AzureBoardsIssueFilingSettings>(
+    AzureBoardsIssueFilingServiceKey,
+);
 
 export const AzureBoardsIssueFilingService: IssueFilingServiceWithSettings<AzureBoardsIssueFilingSettings> = {
     key: AzureBoardsIssueFilingServiceKey,
@@ -40,5 +53,8 @@ export const AzureBoardsIssueFilingService: IssueFilingServiceWithSettings<Azure
     buildStoreData,
     getSettingsFromStoreData: settingsGetter,
     isSettingsValid,
-    fileIssue: createFileIssueHandler(azureBoardsIssueFilingUrlProvider, settingsGetter),
+    fileIssue: createFileIssueHandler(
+        azureBoardsIssueFilingUrlProvider,
+        settingsGetter,
+    ),
 };

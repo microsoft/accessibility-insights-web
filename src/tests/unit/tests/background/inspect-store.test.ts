@@ -1,12 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { InspectActions, InspectPayload } from 'background/actions/inspect-actions';
+import {
+    InspectActions,
+    InspectPayload,
+} from 'background/actions/inspect-actions';
 import { TabActions } from 'background/actions/tab-actions';
 import { InspectMode } from 'background/inspect-modes';
 import { InspectStore } from 'background/stores/inspect-store';
 import { StoreNames } from '../../../../common/stores/store-names';
 import { InspectStoreData } from '../../../../common/types/store-data/inspect-store-data';
-import { createStoreWithNullParams, StoreTester } from '../../common/store-tester';
+import {
+    createStoreWithNullParams,
+    StoreTester,
+} from '../../common/store-tester';
 
 describe('InspectStoreTest', () => {
     test('constructor  no side effects', () => {
@@ -28,7 +34,9 @@ describe('InspectStoreTest', () => {
         const initialState = getDefaultState();
         const finalState = getDefaultState();
 
-        createStoreForInspectActions('getCurrentState').testListenerToBeCalledOnce(initialState, finalState);
+        createStoreForInspectActions(
+            'getCurrentState',
+        ).testListenerToBeCalledOnce(initialState, finalState);
     });
 
     test('on changeMode', () => {
@@ -68,15 +76,21 @@ describe('InspectStoreTest', () => {
         return createStoreWithNullParams(InspectStore).getDefaultState();
     }
 
-    function createStoreForInspectActions(actionName: keyof InspectActions): StoreTester<InspectStoreData, InspectActions> {
+    function createStoreForInspectActions(
+        actionName: keyof InspectActions,
+    ): StoreTester<InspectStoreData, InspectActions> {
         const tabActions = new TabActions();
-        const factory = (actions: InspectActions) => new InspectStore(actions, tabActions);
+        const factory = (actions: InspectActions) =>
+            new InspectStore(actions, tabActions);
 
         return new StoreTester(InspectActions, actionName, factory);
     }
 
-    function createStoreForTabActions(actionName: keyof TabActions): StoreTester<InspectStoreData, TabActions> {
-        const factory = (actions: TabActions) => new InspectStore(new InspectActions(), actions);
+    function createStoreForTabActions(
+        actionName: keyof TabActions,
+    ): StoreTester<InspectStoreData, TabActions> {
+        const factory = (actions: TabActions) =>
+            new InspectStore(new InspectActions(), actions);
         return new StoreTester(TabActions, actionName, factory);
     }
 });

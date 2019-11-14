@@ -15,7 +15,10 @@ export class UrlParser {
             return this.areFileUrlsEqual(urlAObj, urlBObj);
         }
 
-        return this.areUrlProtocolsEqual(urlAObj, urlBObj) && urlAObj.hostname === urlBObj.hostname;
+        return (
+            this.areUrlProtocolsEqual(urlAObj, urlBObj) &&
+            urlAObj.hostname === urlBObj.hostname
+        );
     }
 
     private areFileUrlsEqual(urlAObj: URL, urlBObj: URL): boolean {
@@ -23,7 +26,10 @@ export class UrlParser {
     }
 
     private areBothFileUrls(urlAObj: URL, urlBObj: URL): boolean {
-        return this.areUrlProtocolsEqual(urlAObj, urlBObj) && urlAObj.protocol === 'file:';
+        return (
+            this.areUrlProtocolsEqual(urlAObj, urlBObj) &&
+            urlAObj.protocol === 'file:'
+        );
     }
 
     private areUrlProtocolsEqual(urlAObj: URL, urlBObj: URL): boolean {

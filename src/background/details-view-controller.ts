@@ -14,7 +14,9 @@ export class DetailsViewController {
         this.browserAdapter.addListenerToTabsOnUpdated(this.onUpdateTab);
     }
 
-    public setupDetailsViewTabRemovedHandler(handler: (tabId: number) => void): void {
+    public setupDetailsViewTabRemovedHandler(
+        handler: (tabId: number) => void,
+    ): void {
         this.detailsViewRemovedHandler = handler;
     }
 
@@ -26,12 +28,19 @@ export class DetailsViewController {
             return;
         }
 
-        this.browserAdapter.createTabInNewWindow(this.getDetailsUrl(targetTabId), (tab: chrome.tabs.Tab) => {
-            this.tabIdToDetailsViewMap[targetTabId] = tab.id;
-        });
+        this.browserAdapter.createTabInNewWindow(
+            this.getDetailsUrl(targetTabId),
+            (tab: chrome.tabs.Tab) => {
+                this.tabIdToDetailsViewMap[targetTabId] = tab.id;
+            },
+        );
     }
 
-    private onUpdateTab = (tabId: number, changeInfo: chrome.tabs.TabChangeInfo, tab: chrome.tabs.Tab): void => {
+    private onUpdateTab = (
+        tabId: number,
+        changeInfo: chrome.tabs.TabChangeInfo,
+        tab: chrome.tabs.Tab,
+    ): void => {
         const targetTabId = this.getTargetTabIdForDetailsTabId(tabId);
 
         if (targetTabId == null) {
@@ -46,10 +55,19 @@ export class DetailsViewController {
         }
     };
 
-    private hasUrlChange(changeInfo: chrome.tabs.TabChangeInfo, targetTabId): boolean {
+    private hasUrlChange(
+        changeInfo: chrome.tabs.TabChangeInfo,
+        targetTabId,
+    ): boolean {
         return (
             changeInfo.url &&
-            !changeInfo.url.toLocaleLowerCase().endsWith(this.getDetailsUrlWithExtensionId(targetTabId).toLocaleLowerCase())
+            !changeInfo.url
+                .toLocaleLowerCase()
+                .endsWith(
+                    this.getDetailsUrlWithExtensionId(
+                        targetTabId,
+                    ).toLocaleLowerCase(),
+                )
         );
     }
 
@@ -58,7 +76,9 @@ export class DetailsViewController {
     }
 
     private getDetailsUrlWithExtensionId(tabId: number): string {
-        return `${this.browserAdapter.getRunTimeId()}/${this.getDetailsUrl(tabId)}`;
+        return `${this.browserAdapter.getRunTimeId()}/${this.getDetailsUrl(
+            tabId,
+        )}`;
     }
 
     private getTargetTabIdForDetailsTabId(detailsTabId: number): number {
@@ -72,7 +92,10 @@ export class DetailsViewController {
         return null;
     }
 
-    private onRemoveTab = (tabId: number, removeInfo: chrome.tabs.TabRemoveInfo): void => {
+    private onRemoveTab = (
+        tabId: number,
+        removeInfo: chrome.tabs.TabRemoveInfo,
+    ): void => {
         if (this.tabIdToDetailsViewMap[tabId]) {
             delete this.tabIdToDetailsViewMap[tabId];
         } else {

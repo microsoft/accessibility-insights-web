@@ -14,9 +14,13 @@ export interface CardSelectionViewData {
     visualHelperEnabled: boolean;
 }
 
-export type GetCardSelectionViewData = (storeData: CardSelectionStoreData) => CardSelectionViewData;
+export type GetCardSelectionViewData = (
+    storeData: CardSelectionStoreData,
+) => CardSelectionViewData;
 
-export const getCardSelectionViewData: GetCardSelectionViewData = (storeData: CardSelectionStoreData): CardSelectionViewData => {
+export const getCardSelectionViewData: GetCardSelectionViewData = (
+    storeData: CardSelectionStoreData,
+): CardSelectionViewData => {
     const viewData = getEmptyViewData();
 
     if (!storeData) {
@@ -37,11 +41,17 @@ export const getCardSelectionViewData: GetCardSelectionViewData = (storeData: Ca
         return viewData;
     }
 
-    viewData.selectedResultUids = getOnlyResultUidsFromSelectedCards(storeData.rules, viewData.expandedRuleIds);
+    viewData.selectedResultUids = getOnlyResultUidsFromSelectedCards(
+        storeData.rules,
+        viewData.expandedRuleIds,
+    );
 
     viewData.highlightedResultUids = viewData.selectedResultUids.length
         ? viewData.selectedResultUids
-        : getAllResultUidsFromRuleIdArray(storeData.rules, viewData.expandedRuleIds);
+        : getAllResultUidsFromRuleIdArray(
+              storeData.rules,
+              viewData.expandedRuleIds,
+          );
 
     return viewData;
 };
@@ -57,7 +67,9 @@ function getEmptyViewData(): CardSelectionViewData {
     return viewData;
 }
 
-function getRuleIdsOfExpandedRules(ruleDictionary: RuleExpandCollapseDataDictionary): string[] {
+function getRuleIdsOfExpandedRules(
+    ruleDictionary: RuleExpandCollapseDataDictionary,
+): string[] {
     if (!ruleDictionary) {
         return [];
     }
@@ -73,23 +85,40 @@ function getRuleIdsOfExpandedRules(ruleDictionary: RuleExpandCollapseDataDiction
     return expandedRuleIds;
 }
 
-function getAllResultUids(ruleDictionary: RuleExpandCollapseDataDictionary): string[] {
-    return getAllResultUidsFromRuleIdArray(ruleDictionary, keys(ruleDictionary));
+function getAllResultUids(
+    ruleDictionary: RuleExpandCollapseDataDictionary,
+): string[] {
+    return getAllResultUidsFromRuleIdArray(
+        ruleDictionary,
+        keys(ruleDictionary),
+    );
 }
 
-function getAllResultUidsFromRuleIdArray(ruleDictionary: RuleExpandCollapseDataDictionary, ruleIds: string[]): string[] {
-    return flatMap(ruleIds, key => getAllResultUidsFromRule(ruleDictionary[key]));
+function getAllResultUidsFromRuleIdArray(
+    ruleDictionary: RuleExpandCollapseDataDictionary,
+    ruleIds: string[],
+): string[] {
+    return flatMap(ruleIds, key =>
+        getAllResultUidsFromRule(ruleDictionary[key]),
+    );
 }
 
 function getAllResultUidsFromRule(rule: RuleExpandCollapseData): string[] {
     return keys(rule.cards);
 }
 
-function getOnlyResultUidsFromSelectedCards(ruleDictionary: RuleExpandCollapseDataDictionary, ruleIds: string[]): string[] {
-    return flatMap(ruleIds, key => getResultUidsFromSelectedCards(ruleDictionary[key]));
+function getOnlyResultUidsFromSelectedCards(
+    ruleDictionary: RuleExpandCollapseDataDictionary,
+    ruleIds: string[],
+): string[] {
+    return flatMap(ruleIds, key =>
+        getResultUidsFromSelectedCards(ruleDictionary[key]),
+    );
 }
 
-function getResultUidsFromSelectedCards(rule: RuleExpandCollapseData): string[] {
+function getResultUidsFromSelectedCards(
+    rule: RuleExpandCollapseData,
+): string[] {
     const results: string[] = [];
 
     forOwn(rule.cards, (value, key) => {

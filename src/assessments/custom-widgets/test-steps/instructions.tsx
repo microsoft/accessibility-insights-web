@@ -20,23 +20,37 @@ import { CustomWidgetsColumnRendererFactory } from '../custom-widgets-column-ren
 import { CustomWidgetsTestStep } from './test-steps';
 
 const instructionsDescription: JSX.Element = (
-    <span>If a custom widget has visible instructions, they must be programmatically related to it.</span>
+    <span>
+        If a custom widget has visible instructions, they must be
+        programmatically related to it.
+    </span>
 );
 
 const instructionsHowToTest: JSX.Element = (
     <div>
         <p>
-            The visual helper for this requirement highlights custom widgets. (A custom widget is an element with a valid{' '}
-            <NewTabLink href="https://www.w3.org/TR/wai-aria/#widget_roles">ARIA widget role</NewTabLink>.)
+            The visual helper for this requirement highlights custom widgets. (A
+            custom widget is an element with a valid{' '}
+            <NewTabLink href="https://www.w3.org/TR/wai-aria/#widget_roles">
+                ARIA widget role
+            </NewTabLink>
+            .)
         </p>
         <InstructionsAndLabelsNotes />
         <ol>
-            <li>In the target page, examine each highlighted element to determine whether it has a visible label or instructions.</li>
             <li>
-                Verify that all visible labels and instructions are displayed in the Instances list:
+                In the target page, examine each highlighted element to
+                determine whether it has a visible label or instructions.
+            </li>
+            <li>
+                Verify that all visible labels and instructions are displayed in
+                the Instances list:
                 <ol>
                     <li>Any label should appear in the accessible name.</li>
-                    <li>Any additional instructions should appear in the accessible description.</li>
+                    <li>
+                        Any additional instructions should appear in the
+                        accessible description.
+                    </li>
                 </ol>
             </li>
             <AssistedTestRecordYourResults />
@@ -56,7 +70,9 @@ export const Instructions: Requirement = {
         {
             key: 'instruction-info-custom-widgets',
             name: 'Instructions',
-            onRender: CustomWidgetsColumnRendererFactory.getWithoutLink<CustomWidgetPropertyBag>([
+            onRender: CustomWidgetsColumnRendererFactory.getWithoutLink<
+                CustomWidgetPropertyBag
+            >([
                 {
                     propertyName: 'designPattern',
                     displayName: 'Design pattern',
@@ -76,11 +92,19 @@ export const Instructions: Requirement = {
         },
     ],
     reportInstanceFields: [
-        ReportInstanceField.fromPropertyBagFunction<CustomWidgetPropertyBag>('Design pattern', 'designPattern', pb =>
-            getFlatDesignPatternStringFromRole(pb.role),
+        ReportInstanceField.fromPropertyBagFunction<CustomWidgetPropertyBag>(
+            'Design pattern',
+            'designPattern',
+            pb => getFlatDesignPatternStringFromRole(pb.role),
         ),
-        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>('Accessible name', 'text'),
-        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>('Accessible description', 'describedBy'),
+        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>(
+            'Accessible name',
+            'text',
+        ),
+        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>(
+            'Accessible description',
+            'describedBy',
+        ),
     ],
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(
@@ -88,9 +112,12 @@ export const Instructions: Requirement = {
                 rules: ['custom-widget'],
                 key: CustomWidgetsTestStep.instructions,
                 testType: VisualizationType.CustomWidgets,
-                resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
+                resultProcessor: (scanner: ScannerUtils) =>
+                    scanner.getPassingInstances,
             }),
         ),
     getDrawer: provider => provider.createHighlightBoxDrawer(),
-    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
+    getVisualHelperToggle: props => (
+        <AssessmentVisualizationEnabledToggle {...props} />
+    ),
 };

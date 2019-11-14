@@ -3,7 +3,10 @@
 import { CheckIcon, CheckIconInverted } from 'common/icons/check-icon';
 import { CircleIcon } from 'common/icons/circle-icon';
 import { CrossIcon, CrossIconInverted } from 'common/icons/cross-icon';
-import { InapplicableIcon, InapplicableIconInverted } from 'common/icons/inapplicable-icon';
+import {
+    InapplicableIcon,
+    InapplicableIconInverted,
+} from 'common/icons/inapplicable-icon';
 import * as React from 'react';
 
 import { InstanceOutcomeType } from './instance-outcome-type';
@@ -18,7 +21,9 @@ export interface OutcomeTypeSemantic {
     pastTense: string;
 }
 
-export const outcomeTypeSemantics: { [OT in OutcomeType]: OutcomeTypeSemantic } = {
+export const outcomeTypeSemantics: {
+    [OT in OutcomeType]: OutcomeTypeSemantic;
+} = {
     pass: { pastTense: 'Passed' },
     incomplete: { pastTense: 'Incomplete' },
     fail: { pastTense: 'Failed' },

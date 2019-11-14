@@ -1,6 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CheckboxVisibility, ConstrainMode, DetailsList } from 'office-ui-fabric-react/lib/DetailsList';
+import {
+    CheckboxVisibility,
+    ConstrainMode,
+    DetailsList,
+} from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 import { Mock } from 'typemoq';
 
@@ -12,7 +16,10 @@ import {
     CapturedInstanceActionType,
     FailureInstancePanelControl,
 } from '../../../../../DetailsView/components/failure-instance-panel-control';
-import { ManualTestStepView, ManualTestStepViewProps } from '../../../../../DetailsView/components/manual-test-step-view';
+import {
+    ManualTestStepView,
+    ManualTestStepViewProps,
+} from '../../../../../DetailsView/components/manual-test-step-view';
 import { TestStatusChoiceGroup } from '../../../../../DetailsView/components/test-status-choice-group';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
 import { CreateTestAssessmentProvider } from '../../../common/test-assessment-provider';
@@ -21,11 +28,14 @@ describe('ManualTestStepView', () => {
     const featureFlagStoreData = {} as FeatureFlagStoreData;
 
     test('constructor: default', () => {
-        const assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
+        const assessmentInstanceTableHandlerMock = Mock.ofType(
+            AssessmentInstanceTableHandler,
+        );
         const props: ManualTestStepViewProps = {
             step: 'step',
             test: VisualizationType.HeadingsAssessment,
-            assessmentInstanceTableHandler: assessmentInstanceTableHandlerMock.object,
+            assessmentInstanceTableHandler:
+                assessmentInstanceTableHandlerMock.object,
             manualTestStepResultMap: {
                 step: {
                     status: ManualTestStatus.UNKNOWN,
@@ -45,8 +55,14 @@ describe('ManualTestStepView', () => {
                         step={props.step}
                         status={ManualTestStatus.UNKNOWN}
                         originalStatus={ManualTestStatus.UNKNOWN}
-                        onGroupChoiceChange={props.assessmentInstanceTableHandler.changeRequirementStatus}
-                        onUndoClicked={props.assessmentInstanceTableHandler.undoRequirementStatusChange}
+                        onGroupChoiceChange={
+                            props.assessmentInstanceTableHandler
+                                .changeRequirementStatus
+                        }
+                        onUndoClicked={
+                            props.assessmentInstanceTableHandler
+                                .undoRequirementStatusChange
+                        }
                         isLabelVisible={true}
                     />
                 </div>
@@ -60,7 +76,9 @@ describe('ManualTestStepView', () => {
     test('constructor: user marked fail', () => {
         const instances = [];
         const items = [];
-        const assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
+        const assessmentInstanceTableHandlerMock = Mock.ofType(
+            AssessmentInstanceTableHandler,
+        );
         const cols = [];
 
         const pathSnippetStoreData = {
@@ -77,7 +95,8 @@ describe('ManualTestStepView', () => {
             step: 'step',
             test: VisualizationType.HeadingsAssessment,
             status: ManualTestStatus.FAIL,
-            assessmentInstanceTableHandler: assessmentInstanceTableHandlerMock.object,
+            assessmentInstanceTableHandler:
+                assessmentInstanceTableHandlerMock.object,
             manualTestStepResultMap: {
                 step: {
                     id: 'id',
@@ -89,9 +108,19 @@ describe('ManualTestStepView', () => {
             featureFlagStoreData,
             pathSnippetStoreData,
         };
-        assessmentInstanceTableHandlerMock.setup(a => a.getColumnConfigsForCapturedInstance()).returns(() => cols);
         assessmentInstanceTableHandlerMock
-            .setup(a => a.createCapturedInstanceTableItems(instances, props.test, props.step, featureFlagStoreData, pathSnippetStoreData))
+            .setup(a => a.getColumnConfigsForCapturedInstance())
+            .returns(() => cols);
+        assessmentInstanceTableHandlerMock
+            .setup(a =>
+                a.createCapturedInstanceTableItems(
+                    instances,
+                    props.test,
+                    props.step,
+                    featureFlagStoreData,
+                    pathSnippetStoreData,
+                ),
+            )
             .returns(() => items);
         const testObject = new ManualTestStepView(props);
 
@@ -103,21 +132,38 @@ describe('ManualTestStepView', () => {
                         step={props.step}
                         status={ManualTestStatus.FAIL}
                         originalStatus={ManualTestStatus.UNKNOWN}
-                        onGroupChoiceChange={props.assessmentInstanceTableHandler.changeRequirementStatus}
-                        onUndoClicked={props.assessmentInstanceTableHandler.undoRequirementStatusChange}
+                        onGroupChoiceChange={
+                            props.assessmentInstanceTableHandler
+                                .changeRequirementStatus
+                        }
+                        onUndoClicked={
+                            props.assessmentInstanceTableHandler
+                                .undoRequirementStatusChange
+                        }
                         isLabelVisible={true}
                     />
                 </div>
                 <div className="manual-test-step-table-container">
                     <React.Fragment>
-                        <h3 className="test-step-instances-header">Instances</h3>
+                        <h3 className="test-step-instances-header">
+                            Instances
+                        </h3>
                         <FailureInstancePanelControl
                             step={props.step}
                             test={props.test}
                             actionType={CapturedInstanceActionType.CREATE}
-                            addFailureInstance={props.assessmentInstanceTableHandler.addFailureInstance}
-                            addPathForValidation={props.assessmentInstanceTableHandler.addPathForValidation}
-                            clearPathSnippetData={props.assessmentInstanceTableHandler.clearPathSnippetData}
+                            addFailureInstance={
+                                props.assessmentInstanceTableHandler
+                                    .addFailureInstance
+                            }
+                            addPathForValidation={
+                                props.assessmentInstanceTableHandler
+                                    .addPathForValidation
+                            }
+                            clearPathSnippetData={
+                                props.assessmentInstanceTableHandler
+                                    .clearPathSnippetData
+                            }
                             assessmentsProvider={props.assessmentsProvider}
                             featureFlagStoreData={featureFlagStoreData}
                             failureInstance={failureInstance}

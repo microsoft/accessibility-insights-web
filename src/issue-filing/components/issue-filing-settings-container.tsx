@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { SetIssueFilingServicePayload, SetIssueFilingServicePropertyPayload } from 'background/actions/action-payloads';
+import {
+    SetIssueFilingServicePayload,
+    SetIssueFilingServicePropertyPayload,
+} from 'background/actions/action-payloads';
 import * as React from 'react';
 
 import { NamedFC } from '../../common/react/named-fc';
@@ -10,8 +13,12 @@ import { IssueFilingServiceProvider } from '../issue-filing-service-provider';
 import { IssueFilingService } from '../types/issue-filing-service';
 import { IssueFilingChoiceGroup } from './issue-filing-choice-group';
 
-export type OnPropertyUpdateCallback = (payload: SetIssueFilingServicePropertyPayload) => void;
-export type OnSelectedServiceChange = (payload: SetIssueFilingServicePayload) => void;
+export type OnPropertyUpdateCallback = (
+    payload: SetIssueFilingServicePropertyPayload,
+) => void;
+export type OnSelectedServiceChange = (
+    payload: SetIssueFilingServicePayload,
+) => void;
 
 export interface IssueFilingSettingsContainerProps {
     deps: IssueFilingSettingsContainerDeps;
@@ -25,8 +32,14 @@ export type IssueFilingSettingsContainerDeps = {
     issueFilingServiceProvider: IssueFilingServiceProvider;
 } & SettingsDeps;
 
-export const IssueFilingSettingsContainer = NamedFC<IssueFilingSettingsContainerProps>('IssueFilingSettingsContainer', props => {
-    const { deps, selectedIssueFilingService, selectedIssueFilingServiceData } = props;
+export const IssueFilingSettingsContainer = NamedFC<
+    IssueFilingSettingsContainerProps
+>('IssueFilingSettingsContainer', props => {
+    const {
+        deps,
+        selectedIssueFilingService,
+        selectedIssueFilingServiceData,
+    } = props;
     const SettingsForm = selectedIssueFilingService.settingsForm;
     const issueFilingServices = deps.issueFilingServiceProvider.allVisible();
 
@@ -37,7 +50,11 @@ export const IssueFilingSettingsContainer = NamedFC<IssueFilingSettingsContainer
                 selectedIssueFilingService={selectedIssueFilingService}
                 issueFilingServices={issueFilingServices}
             />
-            <SettingsForm deps={deps} settings={selectedIssueFilingServiceData} onPropertyUpdateCallback={props.onPropertyUpdateCallback} />
+            <SettingsForm
+                deps={deps}
+                settings={selectedIssueFilingServiceData}
+                onPropertyUpdateCallback={props.onPropertyUpdateCallback}
+            />
         </>
     );
 });

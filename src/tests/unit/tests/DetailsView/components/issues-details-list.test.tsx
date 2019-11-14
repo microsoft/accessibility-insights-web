@@ -6,8 +6,15 @@ import * as React from 'react';
 import { Mock } from 'typemoq';
 
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { IssuesDetailsList, IssuesDetailsListProps } from '../../../../../DetailsView/components/issues-details-list';
-import { DetailsGroup, DetailsRowData, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
+import {
+    IssuesDetailsList,
+    IssuesDetailsListProps,
+} from '../../../../../DetailsView/components/issues-details-list';
+import {
+    DetailsGroup,
+    DetailsRowData,
+    IssuesTableHandler,
+} from '../../../../../DetailsView/components/issues-table-handler';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { RuleResult } from '../../../../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../../../../types/common-types';
@@ -28,13 +35,19 @@ describe('IssuesDetailsListTest', () => {
             })
             .withSelectedIdToRuleResultMapForIssues(sampleIdToRuleResultMap)
             .build().issues;
-        const issuesTableHandlerMock = Mock.ofType<IssuesTableHandler>(IssuesTableHandler);
+        const issuesTableHandlerMock = Mock.ofType<IssuesTableHandler>(
+            IssuesTableHandler,
+        );
         const listGroups = {
             groups: groups,
             items: items,
         };
 
-        issuesTableHandlerMock.setup(handler => handler.getListProps(issuesData.scanResult.violations)).returns(failedRules => listGroups);
+        issuesTableHandlerMock
+            .setup(handler =>
+                handler.getListProps(issuesData.scanResult.violations),
+            )
+            .returns(failedRules => listGroups);
 
         const selectionMock = Mock.ofType<ISelection>(Selection);
         const props = new TestPropsBuilder()
@@ -66,15 +79,22 @@ describe('IssuesDetailsListTest', () => {
             ],
         };
 
-        const result: JSX.Element = (testObject as any).onRenderGroupHeader({ testProp: 'testValue', group: group }, null);
+        const result: JSX.Element = (testObject as any).onRenderGroupHeader(
+            { testProp: 'testValue', group: group },
+            null,
+        );
 
         expect((result.type as any).name).toBe('DetailsGroupHeader');
         expect(result.props.testProp).toBe('testValue');
         expect(result.props.countIcon.props.className).toEqual(iconClassName);
-        expect(result.props.countIcon.props.iconName).toEqual('statusErrorFull');
+        expect(result.props.countIcon.props.iconName).toEqual(
+            'statusErrorFull',
+        );
     });
 
-    function getSampleIdToRuleResultMap(): DictionaryStringTo<DecoratedAxeNodeResult> {
+    function getSampleIdToRuleResultMap(): DictionaryStringTo<
+        DecoratedAxeNodeResult
+    > {
         return {
             id1: {} as DecoratedAxeNodeResult,
             id2: {} as DecoratedAxeNodeResult,
@@ -152,7 +172,9 @@ class TestPropsBuilder {
     private issuesTableHandler: IssuesTableHandler;
     private issuesSelection: ISelection;
 
-    public setIssuesTableHandler(issuesTableHandler: IssuesTableHandler): TestPropsBuilder {
+    public setIssuesTableHandler(
+        issuesTableHandler: IssuesTableHandler,
+    ): TestPropsBuilder {
         this.issuesTableHandler = issuesTableHandler;
         return this;
     }

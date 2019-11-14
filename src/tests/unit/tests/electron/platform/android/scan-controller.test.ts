@@ -6,7 +6,11 @@ import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-hand
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { Action } from 'common/flux/action';
 import { Logger } from 'common/logging/logger';
-import { SCAN_COMPLETED, SCAN_FAILED, SCAN_STARTED } from 'electron/common/electron-telemetry-events';
+import {
+    SCAN_COMPLETED,
+    SCAN_FAILED,
+    SCAN_STARTED,
+} from 'electron/common/electron-telemetry-events';
 import { PortPayload } from 'electron/flux/action/device-action-payloads';
 import { ScanActions } from 'electron/flux/action/scan-actions';
 import { FetchScanResultsType } from 'electron/platform/android/fetch-scan-results';
@@ -16,7 +20,14 @@ import { UnifiedScanCompletedPayloadBuilder } from 'electron/platform/android/un
 import { isFunction } from 'lodash';
 import { tick } from 'tests/unit/common/tick';
 import { axeRuleResultExample } from 'tests/unit/tests/electron/flux/action-creator/scan-result-example';
-import { ExpectedCallType, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import {
+    ExpectedCallType,
+    IMock,
+    It,
+    Mock,
+    MockBehavior,
+    Times,
+} from 'typemoq';
 
 describe('ScanController', () => {
     const port = 1111;
@@ -53,21 +64,38 @@ describe('ScanController', () => {
         scanActionsMock = Mock.ofType<ScanActions>();
 
         scanStartedMock = Mock.ofType<Action<PortPayload>>();
-        scanStartedMock.setup(scanStarted => scanStarted.addListener(It.is(isFunction))).callback(listener => listener(payload));
+        scanStartedMock
+            .setup(scanStarted => scanStarted.addListener(It.is(isFunction)))
+            .callback(listener => listener(payload));
 
         scanCompletedMock = Mock.ofType<Action<void>>();
         scanFailedMock = Mock.ofType<Action<void>>();
 
-        scanActionsMock.setup(actions => actions.scanCompleted).returns(() => scanCompletedMock.object);
-        scanActionsMock.setup(actions => actions.scanStarted).returns(() => scanStartedMock.object);
-        scanActionsMock.setup(actions => actions.scanFailed).returns(() => scanFailedMock.object);
+        scanActionsMock
+            .setup(actions => actions.scanCompleted)
+            .returns(() => scanCompletedMock.object);
+        scanActionsMock
+            .setup(actions => actions.scanStarted)
+            .returns(() => scanStartedMock.object);
+        scanActionsMock
+            .setup(actions => actions.scanFailed)
+            .returns(() => scanFailedMock.object);
 
-        getCurrentDateMock = Mock.ofType<() => Date>(undefined, MockBehavior.Strict);
-        getCurrentDateMock.setup(getter => getter()).returns(() => new Date(2019, 10, 8, 9, 0, 0));
-        getCurrentDateMock.setup(getter => getter()).returns(() => new Date(2019, 10, 8, 9, 2, 15));
+        getCurrentDateMock = Mock.ofType<() => Date>(
+            undefined,
+            MockBehavior.Strict,
+        );
+        getCurrentDateMock
+            .setup(getter => getter())
+            .returns(() => new Date(2019, 10, 8, 9, 0, 0));
+        getCurrentDateMock
+            .setup(getter => getter())
+            .returns(() => new Date(2019, 10, 8, 9, 2, 15));
 
         unifiedScanResultActionsMock = Mock.ofType<UnifiedScanResultActions>();
-        unifiedResultsBuilderMock = Mock.ofType<UnifiedScanCompletedPayloadBuilder>(undefined, MockBehavior.Strict);
+        unifiedResultsBuilderMock = Mock.ofType<
+            UnifiedScanCompletedPayloadBuilder
+        >(undefined, MockBehavior.Strict);
 
         loggerMock = Mock.ofType<Logger>();
 
@@ -85,10 +113,17 @@ describe('ScanController', () => {
     it('scans and handle successful response', async () => {
         const scanResults = new ScanResults(axeRuleResultExample);
 
-        fetchScanResultsMock.setup(fetch => fetch(port)).returns(() => Promise.resolve(scanResults));
+        fetchScanResultsMock
+            .setup(fetch => fetch(port))
+            .returns(() => Promise.resolve(scanResults));
 
         telemetryEventHandlerMock
-            .setup(handler => handler.publishTelemetry(SCAN_STARTED, It.isValue(expectedScanStartedTelemetry)))
+            .setup(handler =>
+                handler.publishTelemetry(
+                    SCAN_STARTED,
+                    It.isValue(expectedScanStartedTelemetry),
+                ),
+            )
             .verifiable(Times.once(), ExpectedCallType.InSequence);
 
         telemetryEventHandlerMock
@@ -106,7 +141,12 @@ describe('ScanController', () => {
                                 DontMoveAccessibilityFocus: 1,
                                 TouchSizeWcag: 6,
                             },
-                            FAIL: { ImageViewName: 1, ActiveViewName: 2, TouchSizeWcag: 1, ColorContrast: 1 },
+                            FAIL: {
+                                ImageViewName: 1,
+                                ActiveViewName: 2,
+                                TouchSizeWcag: 1,
+                                ColorContrast: 1,
+                            },
                             INCOMPLETE: {},
                         },
                     }),
@@ -130,28 +170,46 @@ describe('ScanController', () => {
             },
         };
 
-        unifiedResultsBuilderMock.setup(builder => builder(scanResults)).returns(() => unifiedPayload);
+        unifiedResultsBuilderMock
+            .setup(builder => builder(scanResults))
+            .returns(() => unifiedPayload);
 
-        const unifiedScanCompletedMock = Mock.ofType<Action<UnifiedScanCompletedPayload>>();
-        unifiedScanCompletedMock.setup(action => action.invoke(unifiedPayload)).verifiable(Times.once());
+        const unifiedScanCompletedMock = Mock.ofType<
+            Action<UnifiedScanCompletedPayload>
+        >();
+        unifiedScanCompletedMock
+            .setup(action => action.invoke(unifiedPayload))
+            .verifiable(Times.once());
 
-        unifiedScanResultActionsMock.setup(actions => actions.scanCompleted).returns(() => unifiedScanCompletedMock.object);
+        unifiedScanResultActionsMock
+            .setup(actions => actions.scanCompleted)
+            .returns(() => unifiedScanCompletedMock.object);
 
         testSubject.initialize();
 
         await tick();
 
-        scanCompletedMock.verify(scanCompleted => scanCompleted.invoke(null), Times.once());
+        scanCompletedMock.verify(
+            scanCompleted => scanCompleted.invoke(null),
+            Times.once(),
+        );
 
         telemetryEventHandlerMock.verifyAll();
     });
 
     it('scans and handle error ', async () => {
         const errorReason = 'dummy reason';
-        fetchScanResultsMock.setup(fetch => fetch(port)).returns(() => Promise.reject(errorReason));
+        fetchScanResultsMock
+            .setup(fetch => fetch(port))
+            .returns(() => Promise.reject(errorReason));
 
         telemetryEventHandlerMock
-            .setup(handler => handler.publishTelemetry(SCAN_STARTED, It.isValue(expectedScanStartedTelemetry)))
+            .setup(handler =>
+                handler.publishTelemetry(
+                    SCAN_STARTED,
+                    It.isValue(expectedScanStartedTelemetry),
+                ),
+            )
             .verifiable(Times.once(), ExpectedCallType.InSequence);
 
         telemetryEventHandlerMock
@@ -172,8 +230,14 @@ describe('ScanController', () => {
 
         await tick();
 
-        scanFailedMock.verify(scanCompleted => scanCompleted.invoke(null), Times.once());
-        loggerMock.verify(logger => logger.error('scan failed: ', errorReason), Times.once());
+        scanFailedMock.verify(
+            scanCompleted => scanCompleted.invoke(null),
+            Times.once(),
+        );
+        loggerMock.verify(
+            logger => logger.error('scan failed: ', errorReason),
+            Times.once(),
+        );
 
         telemetryEventHandlerMock.verifyAll();
     });

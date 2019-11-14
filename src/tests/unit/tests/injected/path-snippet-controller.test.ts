@@ -15,24 +15,36 @@ describe('InspectControllerTests', () => {
     let elementFinderMock: IMock<ElementFinderByPath>;
     let addCorrespondingSnippetMock: IMock<(snippet: string) => void>;
     let processRequestCallback: (snippet: string, path: string) => void;
-    let processRequestPromiseHandlerMock = Mock.ofInstance((successCb, errorCb) => {});
+    let processRequestPromiseHandlerMock = Mock.ofInstance(
+        (successCb, errorCb) => {},
+    );
     let promiseStub;
 
     beforeEach(() => {
         pathSnippetStoreMock = Mock.ofType(PathSnippetStore);
-        pathSnippetStoreMock.setup(sm => sm.addChangedListener(It.is(isFunction)));
-        pathSnippetStoreMock.setup(sm => sm.getState()).returns(() => pathSnippetStoreState);
+        pathSnippetStoreMock.setup(sm =>
+            sm.addChangedListener(It.is(isFunction)),
+        );
+        pathSnippetStoreMock
+            .setup(sm => sm.getState())
+            .returns(() => pathSnippetStoreState);
 
         elementFinderMock = Mock.ofType(ElementFinderByPath);
 
         addCorrespondingSnippetMock = Mock.ofInstance((snippet: string) => {});
 
-        processRequestPromiseHandlerMock = Mock.ofInstance((successCb, errorCb) => {});
+        processRequestPromiseHandlerMock = Mock.ofInstance(
+            (successCb, errorCb) => {},
+        );
         promiseStub = {
             then: processRequestPromiseHandlerMock.object,
         };
 
-        testObject = new PathSnippetController(pathSnippetStoreMock.object, elementFinderMock.object, addCorrespondingSnippetMock.object);
+        testObject = new PathSnippetController(
+            pathSnippetStoreMock.object,
+            elementFinderMock.object,
+            addCorrespondingSnippetMock.object,
+        );
     });
 
     afterEach(() => {
@@ -65,7 +77,9 @@ describe('InspectControllerTests', () => {
 
         setupGetElementFromPath(givenPath);
 
-        addCorrespondingSnippetMock.setup(sm => sm(retrievedSnippet)).verifiable(Times.once());
+        addCorrespondingSnippetMock
+            .setup(sm => sm(retrievedSnippet))
+            .verifiable(Times.once());
 
         testObject.listenToStore();
         processRequestCallback(retrievedSnippet, pathSnippetStoreState.path);
@@ -76,11 +90,14 @@ describe('InspectControllerTests', () => {
     test('add failure message if no snippet found', async () => {
         const givenPath = '.test path';
         const retrievedSnippet = 'error';
-        const errorMessage = 'No code snippet is mapped to: ' + retrievedSnippet;
+        const errorMessage =
+            'No code snippet is mapped to: ' + retrievedSnippet;
 
         setupGetElementFromPath(givenPath);
 
-        addCorrespondingSnippetMock.setup(sm => sm(errorMessage)).verifiable(Times.once());
+        addCorrespondingSnippetMock
+            .setup(sm => sm(errorMessage))
+            .verifiable(Times.once());
 
         testObject.listenToStore();
         processRequestCallback(errorMessage, pathSnippetStoreState.path);

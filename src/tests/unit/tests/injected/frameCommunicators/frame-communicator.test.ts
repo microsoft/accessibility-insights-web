@@ -5,8 +5,14 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { HTMLElementUtils } from '../../../../../common/html-element-utils';
 import { Logger } from '../../../../../common/logging/logger';
-import { FrameCommunicator, MessageRequest } from '../../../../../injected/frameCommunicators/frame-communicator';
-import { FrameMessageResponseCallback, WindowMessageHandler } from '../../../../../injected/frameCommunicators/window-message-handler';
+import {
+    FrameCommunicator,
+    MessageRequest,
+} from '../../../../../injected/frameCommunicators/frame-communicator';
+import {
+    FrameMessageResponseCallback,
+    WindowMessageHandler,
+} from '../../../../../injected/frameCommunicators/window-message-handler';
 import { HTMLCollectionOfBuilder } from '../../../common/html-collection-of-builder';
 import { IsSameObject } from '../../../common/typemoq-helper';
 import { QStub } from '../../../stubs/q-stub';
@@ -42,7 +48,12 @@ describe('FrameCommunicatorTests', () => {
         mockQ = Mock.ofType(QStub) as any;
         const loggerMock = Mock.ofType<Logger>();
 
-        testSubject = new FrameCommunicator(mockWindowMessageHandler.object, mockHtmlElementUtils.object, mockQ.object, loggerMock.object);
+        testSubject = new FrameCommunicator(
+            mockWindowMessageHandler.object,
+            mockHtmlElementUtils.object,
+            mockQ.object,
+            loggerMock.object,
+        );
 
         mockHtmlElementUtils
             .setup(x => x.getAllElementsByTagName('iframe'))
@@ -86,13 +97,15 @@ describe('FrameCommunicatorTests', () => {
         const frameRequestCompleteDeferred: Q.Deferred<any> = Q.defer<any>();
         const framesCompletedData = {};
 
-        [childFrame1Info, childFrame2Info, childFrameWithoutWindowInfo].forEach(frameInfo => {
-            const frameMessageRequest: MessageRequest<any> = {
-                command: FrameCommunicator.DisposeCommand,
-                frame: frameInfo.frameElement,
-            };
-            frameRequests.push(frameMessageRequest);
-        });
+        [childFrame1Info, childFrame2Info, childFrameWithoutWindowInfo].forEach(
+            frameInfo => {
+                const frameMessageRequest: MessageRequest<any> = {
+                    command: FrameCommunicator.DisposeCommand,
+                    frame: frameInfo.frameElement,
+                };
+                frameRequests.push(frameMessageRequest);
+            },
+        );
 
         const executeForAllFrameRequestsStrictMock = mockExecuteRequestForAllFrameRequestsCall();
         executeForAllFrameRequestsStrictMock
@@ -112,11 +125,15 @@ describe('FrameCommunicatorTests', () => {
             done();
         });
 
-        mockWindowMessageHandler.setup(x => x.dispose()).verifiable(Times.never());
+        mockWindowMessageHandler
+            .setup(x => x.dispose())
+            .verifiable(Times.never());
         mockWindowMessageHandler.verifyAll();
         mockWindowMessageHandler.reset();
 
-        mockWindowMessageHandler.setup(x => x.dispose()).verifiable(Times.once());
+        mockWindowMessageHandler
+            .setup(x => x.dispose())
+            .verifiable(Times.once());
         executeForAllFrameRequestsStrictMock.verifyAll();
         frameRequestCompleteDeferred.resolve(framesCompletedData);
     });
@@ -124,12 +141,14 @@ describe('FrameCommunicatorTests', () => {
     test('verifyDisposeInIframe', () => {
         let disposeCallback: Function;
         const frameRequests: MessageRequest<any>[] = [];
-        const frameRequestCompleteDeferred: Q.Deferred<Q.PromiseState<FrameMessageResponseCallback>[]> = Q.defer<
-            Q.PromiseState<FrameMessageResponseCallback>[]
-        >();
+        const frameRequestCompleteDeferred: Q.Deferred<Q.PromiseState<
+            FrameMessageResponseCallback
+        >[]> = Q.defer<Q.PromiseState<FrameMessageResponseCallback>[]>();
 
         mockWindowMessageHandler
-            .setup(x => x.addSubscriber(FrameCommunicator.DisposeCommand, It.isAny()))
+            .setup(x =>
+                x.addSubscriber(FrameCommunicator.DisposeCommand, It.isAny()),
+            )
             .callback((command, callback) => {
                 disposeCallback = callback;
             })
@@ -146,13 +165,15 @@ describe('FrameCommunicatorTests', () => {
             )
             .verifiable();
 
-        [childFrame1Info, childFrame2Info, childFrameWithoutWindowInfo].forEach(frameInfo => {
-            const frameMessageRequest: MessageRequest<any> = {
-                command: FrameCommunicator.DisposeCommand,
-                frame: frameInfo.frameElement,
-            };
-            frameRequests.push(frameMessageRequest);
-        });
+        [childFrame1Info, childFrame2Info, childFrameWithoutWindowInfo].forEach(
+            frameInfo => {
+                const frameMessageRequest: MessageRequest<any> = {
+                    command: FrameCommunicator.DisposeCommand,
+                    frame: frameInfo.frameElement,
+                };
+                frameRequests.push(frameMessageRequest);
+            },
+        );
 
         const executeForAllFrameRequestsStrictMock = mockExecuteRequestForAllFrameRequestsCall();
         executeForAllFrameRequestsStrictMock
@@ -165,10 +186,14 @@ describe('FrameCommunicatorTests', () => {
 
         testSubject.initialize();
         disposeCallback();
-        mockWindowMessageHandler.setup(x => x.dispose()).verifiable(Times.once());
+        mockWindowMessageHandler
+            .setup(x => x.dispose())
+            .verifiable(Times.once());
         mockHtmlElementUtils.verifyAll();
 
-        mockWindowMessageHandler.setup(x => x.dispose()).verifiable(Times.never());
+        mockWindowMessageHandler
+            .setup(x => x.dispose())
+            .verifiable(Times.never());
 
         executeForAllFrameRequestsStrictMock.verifyAll();
         frameRequestCompleteDeferred.resolve([]);
@@ -182,7 +207,9 @@ describe('FrameCommunicatorTests', () => {
         pingResponseFuncMock.setup(p => p(null)).verifiable();
 
         mockWindowMessageHandler
-            .setup(x => x.addSubscriber(FrameCommunicator.PingCommand, It.isAny()))
+            .setup(x =>
+                x.addSubscriber(FrameCommunicator.PingCommand, It.isAny()),
+            )
             .callback((command, callback) => {
                 pingCallback = callback;
             })
@@ -198,7 +225,9 @@ describe('FrameCommunicatorTests', () => {
     test('verifySubscribe', () => {
         const responseCallback = () => {};
 
-        mockWindowMessageHandler.setup(x => x.addSubscriber('command1', responseCallback)).verifiable();
+        mockWindowMessageHandler
+            .setup(x => x.addSubscriber('command1', responseCallback))
+            .verifiable();
 
         testSubject.initialize();
 
@@ -215,20 +244,22 @@ describe('FrameCommunicatorTests', () => {
         const sendMessageToFrameStrictMock = mockSendMessageToFrameCall();
 
         // mock sending message to each iframe
-        [childFrame1Info, childFrame2Info, childFrameWithoutWindowInfo].forEach(frameInfo => {
-            const frameMessageRequest: MessageRequest<any> = {
-                command: FrameCommunicator.DisposeCommand,
-                frame: frameInfo.frameElement,
-            };
-            frameRequests.push(frameMessageRequest);
-            const deferred = Q.defer<FrameMessageResponseCallback>();
-            frameRequestsPromises.push(deferred.promise);
+        [childFrame1Info, childFrame2Info, childFrameWithoutWindowInfo].forEach(
+            frameInfo => {
+                const frameMessageRequest: MessageRequest<any> = {
+                    command: FrameCommunicator.DisposeCommand,
+                    frame: frameInfo.frameElement,
+                };
+                frameRequests.push(frameMessageRequest);
+                const deferred = Q.defer<FrameMessageResponseCallback>();
+                frameRequestsPromises.push(deferred.promise);
 
-            sendMessageToFrameStrictMock
-                .setup(x => x(IsSameObject(frameMessageRequest)))
-                .returns(() => deferred.promise)
-                .verifiable(Times.once());
-        });
+                sendMessageToFrameStrictMock
+                    .setup(x => x(IsSameObject(frameMessageRequest)))
+                    .returns(() => deferred.promise)
+                    .verifiable(Times.once());
+            },
+        );
 
         mockQ
             .setup(x => x.allSettled(It.isAny()))
@@ -241,13 +272,21 @@ describe('FrameCommunicatorTests', () => {
         const timeoutDeferred = Q.defer<any>();
         const timeoutValue = 50;
         mockQ
-            .setup(x => x.timeout(IsSameObject(allSettledDeferred.promise), timeoutValue))
+            .setup(x =>
+                x.timeout(
+                    IsSameObject(allSettledDeferred.promise),
+                    timeoutValue,
+                ),
+            )
             .returns(() => timeoutDeferred.promise)
             .verifiable();
 
         testSubject.initialize();
 
-        const allFramesExecutedPromise = testSubject.executeRequestForAllFrameRequests(frameRequests, timeoutValue);
+        const allFramesExecutedPromise = testSubject.executeRequestForAllFrameRequests(
+            frameRequests,
+            timeoutValue,
+        );
 
         expect(timeoutDeferred.promise).toEqual(allFramesExecutedPromise);
 
@@ -286,7 +325,15 @@ describe('FrameCommunicatorTests', () => {
         testSubject.initialize();
 
         mockWindowMessageHandler
-            .setup(x => x.post(childFrame1Info.window, FrameCommunicator.PingCommand, null, It.isAny(), undefined))
+            .setup(x =>
+                x.post(
+                    childFrame1Info.window,
+                    FrameCommunicator.PingCommand,
+                    null,
+                    It.isAny(),
+                    undefined,
+                ),
+            )
             .verifiable();
 
         const pingTimeoutDeferred = Q.defer();
@@ -300,7 +347,12 @@ describe('FrameCommunicatorTests', () => {
             .verifiable(Times.once());
 
         mockQ
-            .setup(x => x.timeout(It.isAny(), FrameCommunicator.minWaitTimeForAllFrameResponse))
+            .setup(x =>
+                x.timeout(
+                    It.isAny(),
+                    FrameCommunicator.minWaitTimeForAllFrameResponse,
+                ),
+            )
             .returns((thePromise: Q.Promise<any>, timeout) => {
                 expect(thePromise.isPending()).toBe(true);
                 return Q.timeout(thePromise, timeout);
@@ -330,7 +382,17 @@ describe('FrameCommunicatorTests', () => {
         testSubject.initialize();
 
         // mock posting ping command
-        mockWindowMessageHandler.setup(x => x.post(It.isAny(), It.isAny(), It.isAny(), It.isAny(), It.isAny())).verifiable(Times.never());
+        mockWindowMessageHandler
+            .setup(x =>
+                x.post(
+                    It.isAny(),
+                    It.isAny(),
+                    It.isAny(),
+                    It.isAny(),
+                    It.isAny(),
+                ),
+            )
+            .verifiable(Times.never());
 
         const promise = testSubject.sendMessage(frameMessageRequest);
 
@@ -355,7 +417,15 @@ describe('FrameCommunicatorTests', () => {
 
         // mock posting ping command
         mockWindowMessageHandler
-            .setup(x => x.post(childFrame1Info.window, FrameCommunicator.PingCommand, null, It.isAny(), undefined))
+            .setup(x =>
+                x.post(
+                    childFrame1Info.window,
+                    FrameCommunicator.PingCommand,
+                    null,
+                    It.isAny(),
+                    undefined,
+                ),
+            )
             .callback((win, command, message, callback) => {
                 pingCallback = callback;
             })
@@ -371,12 +441,25 @@ describe('FrameCommunicatorTests', () => {
 
         // mock posting target command
         mockWindowMessageHandler
-            .setup(x => x.post(childFrame1Info.window, windowMessageRequest.command, windowMessageRequest.message, It.isAny(), undefined))
+            .setup(x =>
+                x.post(
+                    childFrame1Info.window,
+                    windowMessageRequest.command,
+                    windowMessageRequest.message,
+                    It.isAny(),
+                    undefined,
+                ),
+            )
             .verifiable();
 
         // mock for the whole request timeout
         mockQ
-            .setup(x => x.timeout(It.isAny(), FrameCommunicator.minWaitTimeForAllFrameResponse))
+            .setup(x =>
+                x.timeout(
+                    It.isAny(),
+                    FrameCommunicator.minWaitTimeForAllFrameResponse,
+                ),
+            )
             .returns((promise: Q.Promise<any>, timeout) => {
                 requestTimeoutDeferred = Q.defer();
                 expect(promise.isPending()).toBe(true);
@@ -385,7 +468,9 @@ describe('FrameCommunicatorTests', () => {
             })
             .verifiable(Times.once());
 
-        const commandCompletepromise = testSubject.sendMessage(windowMessageRequest);
+        const commandCompletepromise = testSubject.sendMessage(
+            windowMessageRequest,
+        );
 
         pingDeferered.promise.then(() => {
             commandCompletepromise.then(null, () => {
@@ -417,7 +502,15 @@ describe('FrameCommunicatorTests', () => {
 
         // mock posting ping command
         mockWindowMessageHandler
-            .setup(x => x.post(childFrame1Info.window, FrameCommunicator.PingCommand, null, It.isAny(), undefined))
+            .setup(x =>
+                x.post(
+                    childFrame1Info.window,
+                    FrameCommunicator.PingCommand,
+                    null,
+                    It.isAny(),
+                    undefined,
+                ),
+            )
             .callback((win, command, message, callback) => {
                 pingCallback = callback;
             })
@@ -432,13 +525,26 @@ describe('FrameCommunicatorTests', () => {
             .verifiable(Times.once());
 
         mockQ
-            .setup(x => x.timeout(It.isAny(), FrameCommunicator.minWaitTimeForAllFrameResponse))
+            .setup(x =>
+                x.timeout(
+                    It.isAny(),
+                    FrameCommunicator.minWaitTimeForAllFrameResponse,
+                ),
+            )
             .returns(Q.timeout)
             .verifiable(Times.once());
 
         // mock posting target command
         mockWindowMessageHandler
-            .setup(x => x.post(childFrame1Info.window, windowMessageRequest.command, windowMessageRequest.message, It.isAny(), undefined))
+            .setup(x =>
+                x.post(
+                    childFrame1Info.window,
+                    windowMessageRequest.command,
+                    windowMessageRequest.message,
+                    It.isAny(),
+                    undefined,
+                ),
+            )
             .callback((win, command, message, callback) => {
                 commandCallback = callback;
             })
@@ -475,7 +581,15 @@ describe('FrameCommunicatorTests', () => {
 
         // mock posting ping command
         mockWindowMessageHandler
-            .setup(x => x.post(childFrame1Info.window, FrameCommunicator.PingCommand, null, It.isAny(), undefined))
+            .setup(x =>
+                x.post(
+                    childFrame1Info.window,
+                    FrameCommunicator.PingCommand,
+                    null,
+                    It.isAny(),
+                    undefined,
+                ),
+            )
             .callback((win, command, message, callback) => {
                 pingCallback = callback;
             })
@@ -490,7 +604,12 @@ describe('FrameCommunicatorTests', () => {
             .verifiable(Times.once());
 
         mockQ
-            .setup(x => x.timeout(It.isAny(), FrameCommunicator.minWaitTimeForAllFrameResponse))
+            .setup(x =>
+                x.timeout(
+                    It.isAny(),
+                    FrameCommunicator.minWaitTimeForAllFrameResponse,
+                ),
+            )
             .returns(Q.timeout)
             .verifiable(Times.once());
 
@@ -498,7 +617,15 @@ describe('FrameCommunicatorTests', () => {
 
         // mock posting target command
         mockWindowMessageHandler
-            .setup(x => x.post(childFrame1Info.window, windowMessageRequest.command, windowMessageRequest.message, It.isAny(), undefined))
+            .setup(x =>
+                x.post(
+                    childFrame1Info.window,
+                    windowMessageRequest.command,
+                    windowMessageRequest.message,
+                    It.isAny(),
+                    undefined,
+                ),
+            )
             .callback((win, command, message, callback) => {
                 commandCallback = callback;
             })
@@ -527,7 +654,10 @@ describe('FrameCommunicatorTests', () => {
             message: {},
         };
 
-        childFrame1Info.frameElement.setAttribute('sandbox', 'allow-forms allow-scripts allow-same-origin');
+        childFrame1Info.frameElement.setAttribute(
+            'sandbox',
+            'allow-forms allow-scripts allow-same-origin',
+        );
 
         let pingCallback: Function;
         const commandMsg = {};
@@ -537,7 +667,15 @@ describe('FrameCommunicatorTests', () => {
 
         // mock posting ping command
         mockWindowMessageHandler
-            .setup(x => x.post(childFrame1Info.window, FrameCommunicator.PingCommand, null, It.isAny(), undefined))
+            .setup(x =>
+                x.post(
+                    childFrame1Info.window,
+                    FrameCommunicator.PingCommand,
+                    null,
+                    It.isAny(),
+                    undefined,
+                ),
+            )
             .callback((win, command, message, callback) => {
                 pingCallback = callback;
             })
@@ -552,7 +690,12 @@ describe('FrameCommunicatorTests', () => {
             .verifiable(Times.once());
 
         mockQ
-            .setup(x => x.timeout(It.isAny(), FrameCommunicator.minWaitTimeForAllFrameResponse))
+            .setup(x =>
+                x.timeout(
+                    It.isAny(),
+                    FrameCommunicator.minWaitTimeForAllFrameResponse,
+                ),
+            )
             .returns(Q.timeout)
             .verifiable(Times.once());
 
@@ -560,7 +703,15 @@ describe('FrameCommunicatorTests', () => {
 
         // mock posting target command
         mockWindowMessageHandler
-            .setup(x => x.post(childFrame1Info.window, frameMessageRequest.command, frameMessageRequest.message, It.isAny(), undefined))
+            .setup(x =>
+                x.post(
+                    childFrame1Info.window,
+                    frameMessageRequest.command,
+                    frameMessageRequest.message,
+                    It.isAny(),
+                    undefined,
+                ),
+            )
             .callback((win, command, message, callback) => {
                 commandCallback = callback;
             })
@@ -588,21 +739,36 @@ describe('FrameCommunicatorTests', () => {
             window: hasWindow ? ({} as Window) : null,
         };
 
-        mockHtmlElementUtils.setup(x => x.getContentWindow(IsSameObject(frameInfo.frameElement))).returns(() => frameInfo.window);
+        mockHtmlElementUtils
+            .setup(x =>
+                x.getContentWindow(IsSameObject(frameInfo.frameElement)),
+            )
+            .returns(() => frameInfo.window);
 
         return frameInfo;
     }
 
-    function mockSendMessageToFrameCall(): IMock<(frameMessageRequest: MessageRequest<any>) => void> {
-        const sendMessageToFrameStrictMock = Mock.ofInstance(testSubject.sendMessage, MockBehavior.Strict);
+    function mockSendMessageToFrameCall(): IMock<
+        (frameMessageRequest: MessageRequest<any>) => void
+    > {
+        const sendMessageToFrameStrictMock = Mock.ofInstance(
+            testSubject.sendMessage,
+            MockBehavior.Strict,
+        );
         (testSubject.sendMessage as any) = sendMessageToFrameStrictMock.object;
         return sendMessageToFrameStrictMock;
     }
 
     function mockExecuteRequestForAllFrameRequestsCall(): IMock<
-        (frameMessageRequests: MessageRequest<any>[], timeOut: number) => Q.IPromise<Q.PromiseState<FrameMessageResponseCallback>[]>
+        (
+            frameMessageRequests: MessageRequest<any>[],
+            timeOut: number,
+        ) => Q.IPromise<Q.PromiseState<FrameMessageResponseCallback>[]>
     > {
-        const executeForAllFrameRequestsStrictMock = Mock.ofInstance(testSubject.executeRequestForAllFrameRequests, MockBehavior.Strict);
+        const executeForAllFrameRequestsStrictMock = Mock.ofInstance(
+            testSubject.executeRequestForAllFrameRequests,
+            MockBehavior.Strict,
+        );
         (testSubject.executeRequestForAllFrameRequests as any) = executeForAllFrameRequestsStrictMock.object;
         return executeForAllFrameRequestsStrictMock;
     }

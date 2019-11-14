@@ -1,6 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DetailsGroup, IssuesTableHandler, ListProps } from '../../../../../DetailsView/components/issues-table-handler';
+import {
+    DetailsGroup,
+    IssuesTableHandler,
+    ListProps,
+} from '../../../../../DetailsView/components/issues-table-handler';
 import { RuleResult } from '../../../../../scanner/iruleresults';
 
 describe('IssuesTableHandlerTests', () => {
@@ -123,6 +127,8 @@ describe('IssuesTableHandlerTests', () => {
             groups: expectedGroups,
             items: [detailsRow1, detailsRow2, detailsRow3],
         };
-        expect(testSubject.getListProps(failedRules)).toEqual(expectedListGroups);
+        expect(testSubject.getListProps(failedRules)).toEqual(
+            expectedListGroups,
+        );
     }
 });

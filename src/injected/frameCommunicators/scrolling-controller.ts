@@ -14,13 +14,19 @@ export class ScrollingController {
     private htmlElementUtils: HTMLElementUtils;
     private frameCommunicator: FrameCommunicator;
 
-    constructor(frameCommunicator: FrameCommunicator, htmlElementUtils: HTMLElementUtils) {
+    constructor(
+        frameCommunicator: FrameCommunicator,
+        htmlElementUtils: HTMLElementUtils,
+    ) {
         this.frameCommunicator = frameCommunicator;
         this.htmlElementUtils = htmlElementUtils;
     }
 
     public initialize(): void {
-        this.frameCommunicator.subscribe(ScrollingController.triggerScrollingCommand, this.onTriggerScrolling);
+        this.frameCommunicator.subscribe(
+            ScrollingController.triggerScrollingCommand,
+            this.onTriggerScrolling,
+        );
     }
 
     private onTriggerScrolling = (
@@ -38,26 +44,38 @@ export class ScrollingController {
             this.scrollElementInCurrentFrame(selector[0]);
         } else {
             const frameSelector: string = selector.splice(0, 1)[0];
-            const frame = this.htmlElementUtils.querySelector(frameSelector) as HTMLIFrameElement;
+            const frame = this.htmlElementUtils.querySelector(
+                frameSelector,
+            ) as HTMLIFrameElement;
 
             this.scrollElementInIFrames(selector, frame);
         }
     }
 
     private scrollElementInCurrentFrame(selector: string): void {
-        const targetElement: Element = this.htmlElementUtils.querySelector(selector);
+        const targetElement: Element = this.htmlElementUtils.querySelector(
+            selector,
+        );
         this.htmlElementUtils.scrollInToView(targetElement);
     }
 
-    private scrollElementInIFrames(focusedTarget: string[], frame: HTMLIFrameElement): void {
+    private scrollElementInIFrames(
+        focusedTarget: string[],
+        frame: HTMLIFrameElement,
+    ): void {
         const message: ScrollingWindowMessage = {
             focusedTarget: focusedTarget,
         };
 
-        this.frameCommunicator.sendMessage(this.createFrameRequestMessage(frame, message));
+        this.frameCommunicator.sendMessage(
+            this.createFrameRequestMessage(frame, message),
+        );
     }
 
-    private createFrameRequestMessage(frame: HTMLIFrameElement, message: ScrollingWindowMessage): MessageRequest<ScrollingWindowMessage> {
+    private createFrameRequestMessage(
+        frame: HTMLIFrameElement,
+        message: ScrollingWindowMessage,
+    ): MessageRequest<ScrollingWindowMessage> {
         return {
             command: ScrollingController.triggerScrollingCommand,
             frame: frame,

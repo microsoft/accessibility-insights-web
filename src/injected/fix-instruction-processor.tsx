@@ -11,20 +11,35 @@ export class FixInstructionProcessor {
     private readonly colorGroupName = 'color';
     private readonly colorValueMatcher = `(?<${this.colorGroupName}>#[0-9a-f]{6})`;
     private readonly foregroundColorText = 'foreground color: ';
-    private readonly foregroundRegExp = new RegExp(`${this.foregroundColorText}${this.colorValueMatcher}`, 'i');
+    private readonly foregroundRegExp = new RegExp(
+        `${this.foregroundColorText}${this.colorValueMatcher}`,
+        'i',
+    );
     private readonly backgroundColorText = 'background color: ';
-    private readonly backgroundRegExp = new RegExp(`${this.backgroundColorText}${this.colorValueMatcher}`, 'i');
+    private readonly backgroundRegExp = new RegExp(
+        `${this.backgroundColorText}${this.colorValueMatcher}`,
+        'i',
+    );
 
     public process(fixInstruction: string): JSX.Element {
-        const foregroundMatch = this.getColorMatch(fixInstruction, this.foregroundRegExp);
-        const backgroundMatch = this.getColorMatch(fixInstruction, this.backgroundRegExp);
+        const foregroundMatch = this.getColorMatch(
+            fixInstruction,
+            this.foregroundRegExp,
+        );
+        const backgroundMatch = this.getColorMatch(
+            fixInstruction,
+            this.backgroundRegExp,
+        );
 
         const matches = [foregroundMatch, backgroundMatch];
 
         return this.splitFixInstruction(fixInstruction, matches);
     }
 
-    private getColorMatch(fixInstruction: string, colorRegex: RegExp): ColorMatch {
+    private getColorMatch(
+        fixInstruction: string,
+        colorRegex: RegExp,
+    ): ColorMatch {
         if (!colorRegex.test(fixInstruction)) {
             return null;
         }
@@ -35,13 +50,21 @@ export class FixInstructionProcessor {
         const colorHexValue = groups[this.colorGroupName];
 
         return {
-            splitIndex: match.index + this.foregroundColorText.length + colorHexValue.length,
+            splitIndex:
+                match.index +
+                this.foregroundColorText.length +
+                colorHexValue.length,
             colorHexValue,
         };
     }
 
-    private splitFixInstruction(fixInstruction: string, matches: ColorMatch[]): JSX.Element {
-        const properMatches = matches.filter(current => current != null).sort((a, b) => a.splitIndex - b.splitIndex);
+    private splitFixInstruction(
+        fixInstruction: string,
+        matches: ColorMatch[],
+    ): JSX.Element {
+        const properMatches = matches
+            .filter(current => current != null)
+            .sort((a, b) => a.splitIndex - b.splitIndex);
 
         if (properMatches.length === 0) {
             return <>{fixInstruction}</>;
@@ -54,9 +77,16 @@ export class FixInstructionProcessor {
 
         properMatches.forEach(match => {
             const endIndex = match.splitIndex - match.colorHexValue.length;
-            const substring = fixInstruction.substring(insertionIndex, endIndex);
+            const substring = fixInstruction.substring(
+                insertionIndex,
+                endIndex,
+            );
 
-            result.push(<span key={`instruction-split-${keyIndex++}`}>{substring}</span>);
+            result.push(
+                <span key={`instruction-split-${keyIndex++}`}>
+                    {substring}
+                </span>,
+            );
 
             result.push(this.createColorBox(match.colorHexValue, keyIndex++));
 
@@ -65,7 +95,9 @@ export class FixInstructionProcessor {
 
         const coda = fixInstruction.substr(insertionIndex);
 
-        result.push(<span key={`instruction-split-${keyIndex++}`}>{coda}</span>);
+        result.push(
+            <span key={`instruction-split-${keyIndex++}`}>{coda}</span>,
+        );
 
         return (
             <>
@@ -75,9 +107,16 @@ export class FixInstructionProcessor {
         );
     }
 
-    private createColorBox(colorHexValue: string, keyIndex: number): JSX.Element {
+    private createColorBox(
+        colorHexValue: string,
+        keyIndex: number,
+    ): JSX.Element {
         return (
-            <span key={`instruction-split-${keyIndex}`} className="fix-instruction-color-box" style={{ backgroundColor: colorHexValue }} />
+            <span
+                key={`instruction-split-${keyIndex}`}
+                className="fix-instruction-color-box"
+                style={{ backgroundColor: colorHexValue }}
+            />
         );
     }
 }

@@ -110,7 +110,10 @@ describe('AssessmentsProviderTest', () => {
         const beta = 'BETA';
         const gamma = 'GAMMA';
         const delta = 'DELTA';
-        const assessments = [makeAssessment(firstType, [alpha, beta]), makeAssessment(secondType, [gamma, delta])];
+        const assessments = [
+            makeAssessment(firstType, [alpha, beta]),
+            makeAssessment(secondType, [gamma, delta]),
+        ];
         const provider = AssessmentsProviderImpl.Create(assessments);
 
         const firstSteps = provider.getStepMap(firstType);
@@ -140,15 +143,25 @@ describe('AssessmentsProviderTest', () => {
 
     function getProvider(): AssessmentsProvider {
         const assessments = [
-            { visualizationType: firstType, key: firstKey, requirements: [{ key: stepOneKey }, { key: stepTwoKey }] } as Assessment,
+            {
+                visualizationType: firstType,
+                key: firstKey,
+                requirements: [{ key: stepOneKey }, { key: stepTwoKey }],
+            } as Assessment,
             { visualizationType: secondType, key: secondKey } as Assessment,
         ];
         const provider = AssessmentsProviderImpl.Create(assessments);
         return provider;
     }
 
-    function makeAssessment(assessmentType: number, stepKeys: string[]): Assessment {
-        return { visualizationType: assessmentType, requirements: stepKeys.map(makeStep) } as Assessment;
+    function makeAssessment(
+        assessmentType: number,
+        stepKeys: string[],
+    ): Assessment {
+        return {
+            visualizationType: assessmentType,
+            requirements: stepKeys.map(makeStep),
+        } as Assessment;
     }
 
     function makeStep(key: string): Requirement {

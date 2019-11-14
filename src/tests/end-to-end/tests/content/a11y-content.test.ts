@@ -32,7 +32,10 @@ describe('A11Y for content pages', () => {
 
             expect(results).toHaveLength(0);
 
-            const mainContentContainer = await formatPageElementForSnapshot(content, GuidanceContentSelectors.mainContentContainer);
+            const mainContentContainer = await formatPageElementForSnapshot(
+                content,
+                GuidanceContentSelectors.mainContentContainer,
+            );
             expect(mainContentContainer).toMatchSnapshot();
 
             await content.close();
@@ -46,7 +49,9 @@ describe('A11Y for content pages', () => {
         beforeAll(async () => {
             browser = await launchBrowser({ suppressFirstTimeDialog: true });
             targetPage = await browser.newTargetPage();
-            const detailsViewPage = await browser.newDetailsViewPage(targetPage);
+            const detailsViewPage = await browser.newDetailsViewPage(
+                targetPage,
+            );
             await detailsViewPage.enableHighContrast();
         });
 
@@ -64,7 +69,10 @@ describe('A11Y for content pages', () => {
 
             expect(results).toHaveLength(0);
 
-            const mainContentContainer = await formatPageElementForSnapshot(content, GuidanceContentSelectors.mainContentContainer);
+            const mainContentContainer = await formatPageElementForSnapshot(
+                content,
+                GuidanceContentSelectors.mainContentContainer,
+            );
             expect(mainContentContainer).toMatchSnapshot();
 
             await content.close();

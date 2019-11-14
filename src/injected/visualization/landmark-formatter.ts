@@ -13,7 +13,9 @@ interface ElemData {
 }
 
 export class LandmarkFormatter extends FailureInstanceFormatter {
-    private static readonly landmarkStyles: { [role: string]: HeadingStyleConfiguration } = {
+    private static readonly landmarkStyles: {
+        [role: string]: HeadingStyleConfiguration;
+    } = {
         banner: {
             borderColor: '#d08311',
             fontColor: '#ffffff',
@@ -53,17 +55,27 @@ export class LandmarkFormatter extends FailureInstanceFormatter {
         fontColor: '#FFFFFF',
     };
 
-    public static getStyleForLandmarkRole(role: string): HeadingStyleConfiguration {
-        return LandmarkFormatter.landmarkStyles[role] || LandmarkFormatter.invalidLandmarkStyle;
+    public static getStyleForLandmarkRole(
+        role: string,
+    ): HeadingStyleConfiguration {
+        return (
+            LandmarkFormatter.landmarkStyles[role] ||
+            LandmarkFormatter.invalidLandmarkStyle
+        );
     }
 
     public getDialogRenderer(): DialogRenderer {
         return null;
     }
 
-    public getDrawerConfiguration(element: Node, data: AssessmentVisualizationInstance): DrawerConfiguration {
+    public getDrawerConfiguration(
+        element: Node,
+        data: AssessmentVisualizationInstance,
+    ): DrawerConfiguration {
         // parse down the IHtmlElementAxeResult to see if it is contained in the map
-        const elemData = this.decorateLabelText(data.propertyBag || this.getLandmarkInfo(data));
+        const elemData = this.decorateLabelText(
+            data.propertyBag || this.getLandmarkInfo(data),
+        );
 
         const style = LandmarkFormatter.getStyleForLandmarkRole(elemData.role);
 

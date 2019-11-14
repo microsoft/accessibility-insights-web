@@ -8,7 +8,10 @@ import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';
 
 import { kebabCase } from 'lodash';
-import { LaunchPadItemRow, LaunchPadItemRowProps } from '../../../../../popup/components/launch-pad-item-row';
+import {
+    LaunchPadItemRow,
+    LaunchPadItemRowProps,
+} from '../../../../../popup/components/launch-pad-item-row';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('LaunchPadItemRow', () => {
@@ -49,8 +52,14 @@ describe('LaunchPadItemRow', () => {
         const expected = (
             <div className="ms-Grid">
                 <div className="ms-Grid-row">
-                    <div className="ms-Grid-col ms-sm3 popup-start-dialog-icon-circle" aria-hidden="true">
-                        <Icon iconName={props.iconName} className="popup-start-dialog-icon" />
+                    <div
+                        className="ms-Grid-col ms-sm3 popup-start-dialog-icon-circle"
+                        aria-hidden="true"
+                    >
+                        <Icon
+                            iconName={props.iconName}
+                            className="popup-start-dialog-icon"
+                        />
                     </div>
                     <div className="ms-Grid-col ms-sm9">
                         <div className="launch-pad-item-title">
@@ -64,7 +73,10 @@ describe('LaunchPadItemRow', () => {
                                 {props.title}
                             </Link>
                         </div>
-                        <div className={descriptionClassName} id={descriptionId}>
+                        <div
+                            className={descriptionClassName}
+                            id={descriptionId}
+                        >
                             {props.description}
                         </div>
                     </div>
@@ -78,11 +90,16 @@ describe('LaunchPadItemRow', () => {
     test('on link click', () => {
         const event = eventStubFactory.createKeypressEvent() as any;
 
-        onClickTitleMock.setup(handler => handler(event)).verifiable(Times.once());
+        onClickTitleMock
+            .setup(handler => handler(event))
+            .verifiable(Times.once());
 
         const component = React.createElement(LaunchPadItemRow, props);
         const testObject = TestUtils.renderIntoDocument(component);
-        const link = TestUtils.findRenderedComponentWithType(testObject, LinkBase);
+        const link = TestUtils.findRenderedComponentWithType(
+            testObject,
+            LinkBase,
+        );
         link.props.onClick(event);
 
         onClickTitleMock.verifyAll();

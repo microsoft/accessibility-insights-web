@@ -20,33 +20,38 @@ export type CardsVisualizationModifierButtonsProps = {
     allCardsCollapsed: boolean;
 };
 
-export const CardsVisualizationModifierButtons = NamedFC<CardsVisualizationModifierButtonsProps>(
-    'CardsVisualizationModifierButtons',
-    props => {
-        const { deps, visualHelperEnabled, allCardsCollapsed } = props;
+export const CardsVisualizationModifierButtons = NamedFC<
+    CardsVisualizationModifierButtonsProps
+>('CardsVisualizationModifierButtons', props => {
+    const { deps, visualHelperEnabled, allCardsCollapsed } = props;
 
-        let expandCollapseAllButtonHandler = deps.cardSelectionMessageCreator.collapseAllRules;
-        let buttonText = 'Collapse all';
-        let iconName = 'ChevronDown';
+    let expandCollapseAllButtonHandler =
+        deps.cardSelectionMessageCreator.collapseAllRules;
+    let buttonText = 'Collapse all';
+    let iconName = 'ChevronDown';
 
-        if (allCardsCollapsed) {
-            expandCollapseAllButtonHandler = deps.cardSelectionMessageCreator.expandAllRules;
-            buttonText = 'Expand all';
-            iconName = 'ChevronRight';
-        }
+    if (allCardsCollapsed) {
+        expandCollapseAllButtonHandler =
+            deps.cardSelectionMessageCreator.expandAllRules;
+        buttonText = 'Expand all';
+        iconName = 'ChevronRight';
+    }
 
-        return (
-            <div className={cardsVisualizationModifiersContainer}>
-                <ActionButton iconProps={{ iconName }} onClick={expandCollapseAllButtonHandler} className={expandCollapseAllButton}>
-                    {buttonText}
-                </ActionButton>
-                <Toggle
-                    onClick={deps.cardSelectionMessageCreator.toggleVisualHelper}
-                    label="Visual helper"
-                    checked={visualHelperEnabled}
-                    className={visualHelperToggle}
-                />
-            </div>
-        );
-    },
-);
+    return (
+        <div className={cardsVisualizationModifiersContainer}>
+            <ActionButton
+                iconProps={{ iconName }}
+                onClick={expandCollapseAllButtonHandler}
+                className={expandCollapseAllButton}
+            >
+                {buttonText}
+            </ActionButton>
+            <Toggle
+                onClick={deps.cardSelectionMessageCreator.toggleVisualHelper}
+                label="Visual helper"
+                checked={visualHelperEnabled}
+                className={visualHelperToggle}
+            />
+        </div>
+    );
+});

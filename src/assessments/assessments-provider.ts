@@ -34,7 +34,10 @@ export class AssessmentsProviderImpl implements AssessmentsProvider {
         return this.forKey(key) != null;
     }
 
-    public getStep(visualizationType: VisualizationType, key: string): Requirement {
+    public getStep(
+        visualizationType: VisualizationType,
+        key: string,
+    ): Requirement {
         const assessment = this.forType(visualizationType);
         if (!assessment) {
             return null;
@@ -47,7 +50,9 @@ export class AssessmentsProviderImpl implements AssessmentsProvider {
         return { ...steps[index], order: index + 1 };
     }
 
-    public getStepMap(visualizationType: VisualizationType): DictionaryStringTo<Requirement> {
+    public getStepMap(
+        visualizationType: VisualizationType,
+    ): DictionaryStringTo<Requirement> {
         const assessment = this.forType(visualizationType);
         if (!assessment) {
             return null;

@@ -27,7 +27,10 @@ export class StoreProxy<TState> extends Store implements BaseStore<TState> {
             return;
         }
 
-        if (message.type === GenericStoreMessageTypes.storeStateChanged && !_.isEqual(this.state, message.payload)) {
+        if (
+            message.type === GenericStoreMessageTypes.storeStateChanged &&
+            !_.isEqual(this.state, message.payload)
+        ) {
             this.state = message.payload;
             this.emitChanged();
         }
@@ -37,17 +40,22 @@ export class StoreProxy<TState> extends Store implements BaseStore<TState> {
         return (
             message.isStoreUpdateMessage &&
             this.isMessageForCurrentStore(message) &&
-            (this.isMessageForCurrentTab(message) || message.storeType === StoreType.GlobalStore)
+            (this.isMessageForCurrentTab(message) ||
+                message.storeType === StoreType.GlobalStore)
         );
     }
 
-    private isMessageForCurrentTab(message: StoreUpdateMessage<TState>): boolean {
+    private isMessageForCurrentTab(
+        message: StoreUpdateMessage<TState>,
+    ): boolean {
         return (
             this.tabId == null || message.tabId === this.tabId // tabid will be null on inital state in content script of target page
         );
     }
 
-    private isMessageForCurrentStore(message: StoreUpdateMessage<TState>): boolean {
+    private isMessageForCurrentStore(
+        message: StoreUpdateMessage<TState>,
+    ): boolean {
         return message.payload && message.storeId === this.getId();
     }
 

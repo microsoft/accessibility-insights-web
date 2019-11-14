@@ -4,7 +4,8 @@ import { TextAlignProperty } from 'csstype';
 import { DialogRenderer } from '../dialog-renderer';
 import { AxeResultsWithFrameLevel } from '../frameCommunicators/html-element-axe-results-helper';
 
-export interface DrawerConfiguration extends SimpleHighlightDrawerConfiguration {
+export interface DrawerConfiguration
+    extends SimpleHighlightDrawerConfiguration {
     outlineStyle?: string;
     outlineWidth?: string;
     borderColor: string;
@@ -77,6 +78,9 @@ export interface Formatter {
     getDrawerConfiguration(
         element: Node,
         data: AxeResultsWithFrameLevel,
-    ): DrawerConfiguration | SVGDrawerConfiguration | SingleTargetDrawerConfiguration;
+    ):
+        | DrawerConfiguration
+        | SVGDrawerConfiguration
+        | SingleTargetDrawerConfiguration;
     getDialogRenderer(): DialogRenderer;
 }

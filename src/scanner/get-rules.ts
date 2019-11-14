@@ -21,7 +21,10 @@ export function getRules(
     const allRules = axe.getRules() as ExpectedGetRuleObject[];
 
     return allRules.reduce((filteredArray: ScannerRuleInfo[], rule) => {
-        const ruleInfoIndex = findIndex(defaultRules, ruleInfo => ruleInfo.id === rule.ruleId);
+        const ruleInfoIndex = findIndex(
+            defaultRules,
+            ruleInfo => ruleInfo.id === rule.ruleId,
+        );
         const foundRuleInfo = defaultRules[ruleInfoIndex];
 
         if (foundRuleInfo) {

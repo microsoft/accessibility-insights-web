@@ -23,59 +23,73 @@ export type FullRuleHeaderProps = {
     outcomeType: InstanceOutcomeType;
 };
 
-export const FullRuleHeader = NamedFC<FullRuleHeaderProps>('FullRuleHeader', props => {
-    const { rule, outcomeType, deps } = props;
+export const FullRuleHeader = NamedFC<FullRuleHeaderProps>(
+    'FullRuleHeader',
+    props => {
+        const { rule, outcomeType, deps } = props;
 
-    const outcomeText = outcomeTypeSemantics[props.outcomeType].pastTense;
-    const ariaDescribedBy = `${kebabCase(outcomeText)}-rule-${rule.id}-description`;
+        const outcomeText = outcomeTypeSemantics[props.outcomeType].pastTense;
+        const ariaDescribedBy = `${kebabCase(outcomeText)}-rule-${
+            rule.id
+        }-description`;
 
-    const renderCountBadge = () => {
-        if (outcomeType !== 'fail') {
-            return null;
-        }
+        const renderCountBadge = () => {
+            if (outcomeType !== 'fail') {
+                return null;
+            }
+
+            return (
+                <span aria-hidden="true">
+                    <OutcomeChip
+                        count={rule.nodes.length}
+                        outcomeType={outcomeType}
+                    />
+                </span>
+            );
+        };
+
+        const renderRuleLink = () => {
+            const ruleId = rule.id;
+            const ruleUrl = rule.helpUrl;
+            return (
+                <span className="rule-details-id">
+                    <NewTabLink
+                        href={ruleUrl}
+                        aria-label={`rule ${ruleId}`}
+                        aria-describedby={ariaDescribedBy}
+                    >
+                        {ruleId}
+                    </NewTabLink>
+                </span>
+            );
+        };
+
+        const renderGuidanceLinks = () => {
+            return <GuidanceLinks links={rule.guidanceLinks} />;
+        };
+
+        const renderDescription = () => {
+            return (
+                <span className="rule-details-description" id={ariaDescribedBy}>
+                    {rule.description}
+                </span>
+            );
+        };
+
+        const renderGuidanceTags = () => {
+            return <GuidanceTags deps={deps} links={rule.guidanceLinks} />;
+        };
 
         return (
-            <span aria-hidden="true">
-                <OutcomeChip count={rule.nodes.length} outcomeType={outcomeType} />
-            </span>
-        );
-    };
-
-    const renderRuleLink = () => {
-        const ruleId = rule.id;
-        const ruleUrl = rule.helpUrl;
-        return (
-            <span className="rule-details-id">
-                <NewTabLink href={ruleUrl} aria-label={`rule ${ruleId}`} aria-describedby={ariaDescribedBy}>
-                    {ruleId}
-                </NewTabLink>
-            </span>
-        );
-    };
-
-    const renderGuidanceLinks = () => {
-        return <GuidanceLinks links={rule.guidanceLinks} />;
-    };
-
-    const renderDescription = () => {
-        return (
-            <span className="rule-details-description" id={ariaDescribedBy}>
-                {rule.description}
-            </span>
-        );
-    };
-
-    const renderGuidanceTags = () => {
-        return <GuidanceTags deps={deps} links={rule.guidanceLinks} />;
-    };
-
-    return (
-        <>
-            <div className="rule-detail">
-                <div>
-                    {renderCountBadge()} {renderRuleLink()}: {renderDescription()} ({renderGuidanceLinks()}){renderGuidanceTags()}
+            <>
+                <div className="rule-detail">
+                    <div>
+                        {renderCountBadge()} {renderRuleLink()}:{' '}
+                        {renderDescription()} ({renderGuidanceLinks()})
+                        {renderGuidanceTags()}
+                    </div>
                 </div>
-            </div>
-        </>
-    );
-});
+            </>
+        );
+    },
+);

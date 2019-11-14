@@ -26,7 +26,10 @@ export type VisualizationRelatedStoreData = Pick<
 >;
 
 export class SelectorMapHelper {
-    constructor(private assessmentsProvider: AssessmentsProvider, private getElementBasedViewModel: GetElementBasedViewModelCallback) {}
+    constructor(
+        private assessmentsProvider: AssessmentsProvider,
+        private getElementBasedViewModel: GetElementBasedViewModelCallback,
+    ) {}
 
     public getSelectorMap(
         visualizationType: VisualizationType,
@@ -54,13 +57,19 @@ export class SelectorMapHelper {
 
         if (this.assessmentsProvider.isValidType(visualizationType)) {
             const key = this.assessmentsProvider.forType(visualizationType).key;
-            selectorMap = this.getFilteredSelectorMap(assessmentStoreData.assessments[key].generatedAssessmentInstancesMap, stepKey);
+            selectorMap = this.getFilteredSelectorMap(
+                assessmentStoreData.assessments[key]
+                    .generatedAssessmentInstancesMap,
+                stepKey,
+            );
         }
 
         return selectorMap;
     }
 
-    private isAdHocVisualization(visualizationType: VisualizationType): boolean {
+    private isAdHocVisualization(
+        visualizationType: VisualizationType,
+    ): boolean {
         return _.includes(
             [
                 VisualizationType.Issues,
@@ -84,22 +93,32 @@ export class SelectorMapHelper {
         switch (visualizationType) {
             case VisualizationType.Issues:
                 if (featureFlagData[FeatureFlags.universalCardsUI] === true) {
-                    selectorMap = this.getElementBasedViewModel(unifiedScanData.rules, unifiedScanData.results, cardSelectionStoreData);
+                    selectorMap = this.getElementBasedViewModel(
+                        unifiedScanData.rules,
+                        unifiedScanData.results,
+                        cardSelectionStoreData,
+                    );
                 } else {
-                    selectorMap = visualizationScanResultData.issues.selectedAxeResultsMap;
+                    selectorMap =
+                        visualizationScanResultData.issues
+                            .selectedAxeResultsMap;
                 }
                 break;
             case VisualizationType.Headings:
-                selectorMap = visualizationScanResultData.headings.fullAxeResultsMap;
+                selectorMap =
+                    visualizationScanResultData.headings.fullAxeResultsMap;
                 break;
             case VisualizationType.Landmarks:
-                selectorMap = visualizationScanResultData.landmarks.fullAxeResultsMap;
+                selectorMap =
+                    visualizationScanResultData.landmarks.fullAxeResultsMap;
                 break;
             case VisualizationType.TabStops:
-                selectorMap = visualizationScanResultData.tabStops.tabbedElements;
+                selectorMap =
+                    visualizationScanResultData.tabStops.tabbedElements;
                 break;
             default:
-                selectorMap = visualizationScanResultData.color.fullAxeResultsMap;
+                selectorMap =
+                    visualizationScanResultData.color.fullAxeResultsMap;
                 break;
         }
 
@@ -107,7 +126,9 @@ export class SelectorMapHelper {
     }
 
     private getFilteredSelectorMap(
-        generatedAssessmentInstancesMap: DictionaryStringTo<GeneratedAssessmentInstance>,
+        generatedAssessmentInstancesMap: DictionaryStringTo<
+            GeneratedAssessmentInstance
+        >,
         testStep: string,
     ): DictionaryStringTo<AssessmentVisualizationInstance> {
         if (generatedAssessmentInstancesMap == null) {

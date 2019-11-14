@@ -7,14 +7,18 @@ import { DetailsViewActionMessageCreator } from './details-view-action-message-c
 import { IssuesSelection } from './issues-selection';
 
 export class IssuesSelectionFactory {
-    public createSelection(messageCreator: DetailsViewActionMessageCreator): ISelection {
+    public createSelection(
+        messageCreator: DetailsViewActionMessageCreator,
+    ): ISelection {
         const selection = new IssuesSelection({
             onSelectionChanged: () => {
                 const items: DetailsRowData[] = selection.getSelection() as DetailsRowData[];
                 const targets = items.map(item => '' + item.key);
                 messageCreator.updateIssuesSelectedTargets(targets);
                 const firstSelectedInstance = items[0];
-                messageCreator.updateFocusedInstanceTarget(firstSelectedInstance ? firstSelectedInstance.target : null);
+                messageCreator.updateFocusedInstanceTarget(
+                    firstSelectedInstance ? firstSelectedInstance.target : null,
+                );
             },
         });
         return selection;

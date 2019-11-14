@@ -4,10 +4,16 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { getDefaultFeatureFlagValues } from '../../../../common/feature-flags';
 import { VisualizationType } from '../../../../common/types/visualization-type';
-import { DrawingController, VisualizationWindowMessage } from '../../../../injected/drawing-controller';
+import {
+    DrawingController,
+    VisualizationWindowMessage,
+} from '../../../../injected/drawing-controller';
 import { DrawingInitiator } from '../../../../injected/drawing-initiator';
 import { AssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
-import { PropertyBags, VisualizationInstanceProcessorCallback } from '../../../../injected/visualization-instance-processor';
+import {
+    PropertyBags,
+    VisualizationInstanceProcessorCallback,
+} from '../../../../injected/visualization-instance-processor';
 import { DictionaryStringTo } from '../../../../types/common-types';
 
 class DrawingControllerStub extends DrawingController {
@@ -16,12 +22,18 @@ class DrawingControllerStub extends DrawingController {
 
 describe('DrawingInitiatorTest', () => {
     let drawingControllerMock: IMock<DrawingController>;
-    let processorMock: IMock<VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags>>;
+    let processorMock: IMock<VisualizationInstanceProcessorCallback<
+        PropertyBags,
+        PropertyBags
+    >>;
     let testObject: DrawingInitiator;
 
     beforeEach(() => {
         processorMock = Mock.ofInstance(() => null);
-        drawingControllerMock = Mock.ofType(DrawingControllerStub, MockBehavior.Strict);
+        drawingControllerMock = Mock.ofType(
+            DrawingControllerStub,
+            MockBehavior.Strict,
+        );
         testObject = new DrawingInitiator(drawingControllerMock.object);
     });
 
@@ -78,7 +90,13 @@ describe('DrawingInitiatorTest', () => {
             })
             .verifiable();
 
-        testObject.enableVisualization(visualizationType, getDefaultFeatureFlagValues(), selectorMap, configId, processorMock.object);
+        testObject.enableVisualization(
+            visualizationType,
+            getDefaultFeatureFlagValues(),
+            selectorMap,
+            configId,
+            processorMock.object,
+        );
 
         verifyAll();
     });
@@ -100,7 +118,11 @@ describe('DrawingInitiatorTest', () => {
             })
             .verifiable();
 
-        testObject.disableVisualization(visualizationType, getDefaultFeatureFlagValues(), configId);
+        testObject.disableVisualization(
+            visualizationType,
+            getDefaultFeatureFlagValues(),
+            configId,
+        );
 
         verifyAll();
     });
@@ -110,9 +132,17 @@ describe('DrawingInitiatorTest', () => {
         const step = null;
         const featureFlagStoreData = {};
 
-        drawingControllerMock.setup(x => x.processRequest(It.isAny())).verifiable(Times.never());
+        drawingControllerMock
+            .setup(x => x.processRequest(It.isAny()))
+            .verifiable(Times.never());
 
-        testObject.enableVisualization(visualizationType, featureFlagStoreData, null, step, processorMock.object);
+        testObject.enableVisualization(
+            visualizationType,
+            featureFlagStoreData,
+            null,
+            step,
+            processorMock.object,
+        );
 
         verifyAll();
     });
@@ -136,7 +166,13 @@ describe('DrawingInitiatorTest', () => {
             })
             .verifiable();
 
-        testObject.enableVisualization(visualizationType, getDefaultFeatureFlagValues(), {}, configId, processorMock.object);
+        testObject.enableVisualization(
+            visualizationType,
+            getDefaultFeatureFlagValues(),
+            {},
+            configId,
+            processorMock.object,
+        );
 
         verifyAll();
     });

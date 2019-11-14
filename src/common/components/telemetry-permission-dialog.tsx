@@ -1,11 +1,21 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { telemetryPopupCheckboxTitle, telemetryPopupTitle } from 'content/settings/improve-accessibility-insights';
+import {
+    telemetryPopupCheckboxTitle,
+    telemetryPopupTitle,
+} from 'content/settings/improve-accessibility-insights';
 import { PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import { Checkbox } from 'office-ui-fabric-react/lib/Checkbox';
-import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
+import {
+    Dialog,
+    DialogFooter,
+    DialogType,
+} from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
-import { PrivacyStatementPopupText, PrivacyStatementTextDeps } from './privacy-statement-text';
+import {
+    PrivacyStatementPopupText,
+    PrivacyStatementTextDeps,
+} from './privacy-statement-text';
 import { TelemetryNotice, TelemetryNoticeDeps } from './telemetry-notice';
 
 export interface TelemetryPermissionDialogState {
@@ -26,7 +36,10 @@ export type TelemetryPermissionDialogDeps = {
 } & TelemetryNoticeDeps &
     PrivacyStatementTextDeps;
 
-export class TelemetryPermissionDialog extends React.Component<TelemetryPermissionDialogProps, TelemetryPermissionDialogState> {
+export class TelemetryPermissionDialog extends React.Component<
+    TelemetryPermissionDialogProps,
+    TelemetryPermissionDialogState
+> {
     constructor(props) {
         super(props);
         this.state = {
@@ -49,7 +62,8 @@ export class TelemetryPermissionDialog extends React.Component<TelemetryPermissi
                 modalProps={{
                     className: 'telemetry-permission-dialog-modal',
                     isBlocking: true,
-                    containerClassName: 'insights-dialog-main-override telemetry-permission-dialog',
+                    containerClassName:
+                        'insights-dialog-main-override telemetry-permission-dialog',
                 }}
             >
                 <div className="telemetry-permission-details">
@@ -62,13 +76,19 @@ export class TelemetryPermissionDialog extends React.Component<TelemetryPermissi
                         checked={this.state.isEnableTelemetryChecked}
                         className="telemetry-agree-checkbox"
                     />
-                    <PrivacyStatementPopupText deps={this.props.deps}></PrivacyStatementPopupText>
+                    <PrivacyStatementPopupText
+                        deps={this.props.deps}
+                    ></PrivacyStatementPopupText>
                 </div>
                 <DialogFooter>
                     <PrimaryButton
                         className="start-using-product-button"
                         text={`OK`}
-                        onClick={() => this.props.deps.userConfigMessageCreator.setTelemetryState(this.state.isEnableTelemetryChecked)}
+                        onClick={() =>
+                            this.props.deps.userConfigMessageCreator.setTelemetryState(
+                                this.state.isEnableTelemetryChecked,
+                            )
+                        }
                     />
                 </DialogFooter>
             </Dialog>

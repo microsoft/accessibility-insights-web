@@ -19,12 +19,16 @@ describe('unique-landmark', () => {
     });
 
     it('returns correct url', () => {
-        expect(uniqueLandmarkConfiguration.rule.helpUrl).toBe('/insights.html#/content/rules/uniqueLandmark');
+        expect(uniqueLandmarkConfiguration.rule.helpUrl).toBe(
+            '/insights.html#/content/rules/uniqueLandmark',
+        );
     });
 
     it('should not match because not a landmark', () => {
         const node = document.createElement('h1');
-        expect(uniqueLandmarkConfiguration.rule.matches(node, null)).toBe(false);
+        expect(uniqueLandmarkConfiguration.rule.matches(node, null)).toBe(
+            false,
+        );
     });
 
     it('should pass because is a landmark', () => {
@@ -38,7 +42,9 @@ describe('unique-landmark', () => {
         const node = document.createElement('div');
         node.setAttribute('role', 'banner');
         node.style.display = 'none';
-        expect(uniqueLandmarkConfiguration.rule.matches(node, null)).toBe(false);
+        expect(uniqueLandmarkConfiguration.rule.matches(node, null)).toBe(
+            false,
+        );
     });
 
     describe('form and section elements must have accessible names to be matched', () => {
@@ -48,15 +54,23 @@ describe('unique-landmark', () => {
             it(`should match because it is a ${elementType} with a label`, () => {
                 fixture.innerHTML = `<${elementType} aria-label="sample label">some ${elementType}</${elementType}>`;
                 const node = fixture.querySelector(`${elementType}`);
-                axe._tree = axe.utils.getFlattenedTree(document.documentElement);
-                expect(uniqueLandmarkConfiguration.rule.matches(node, null)).toEqual(true);
+                axe._tree = axe.utils.getFlattenedTree(
+                    document.documentElement,
+                );
+                expect(
+                    uniqueLandmarkConfiguration.rule.matches(node, null),
+                ).toEqual(true);
             });
 
             it(`should not match because it is a ${elementType} without a label`, () => {
                 fixture.innerHTML = `<${elementType}>some ${elementType}</${elementType}>`;
                 const node = fixture.querySelector(`${elementType}`);
-                axe._tree = axe.utils.getFlattenedTree(document.documentElement);
-                expect(uniqueLandmarkConfiguration.rule.matches(node, null)).toEqual(false);
+                axe._tree = axe.utils.getFlattenedTree(
+                    document.documentElement,
+                );
+                expect(
+                    uniqueLandmarkConfiguration.rule.matches(node, null),
+                ).toEqual(false);
             });
         });
     });

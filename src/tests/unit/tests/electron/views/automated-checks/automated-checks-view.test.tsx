@@ -1,14 +1,28 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CardSelectionViewData, getCardSelectionViewData } from 'common/get-card-selection-view-data';
+import {
+    CardSelectionViewData,
+    getCardSelectionViewData,
+} from 'common/get-card-selection-view-data';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
-import { CardRuleResult, CardRuleResultsByStatus, CardsViewModel } from 'common/types/store-data/card-view-model';
-import { UnifiedResult, UnifiedRule, UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
+import {
+    CardRuleResult,
+    CardRuleResultsByStatus,
+    CardsViewModel,
+} from 'common/types/store-data/card-view-model';
+import {
+    UnifiedResult,
+    UnifiedRule,
+    UnifiedScanResultStoreData,
+} from 'common/types/store-data/unified-data-interface';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { ScanStatus } from 'electron/flux/types/scan-status';
-import { AutomatedChecksView, AutomatedChecksViewProps } from 'electron/views/automated-checks/automated-checks-view';
+import {
+    AutomatedChecksView,
+    AutomatedChecksViewProps,
+} from 'electron/views/automated-checks/automated-checks-view';
 import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
 import { ScreenshotViewModel } from 'electron/views/screenshot/screenshot-view-model';
 import { screenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
@@ -23,7 +37,9 @@ describe('AutomatedChecksView', () => {
         beforeEach(() => {
             bareMinimumProps = {
                 deps: {
-                    windowStateActionCreator: Mock.ofType(WindowStateActionCreator).object,
+                    windowStateActionCreator: Mock.ofType(
+                        WindowStateActionCreator,
+                    ).object,
                     scanActionCreator: Mock.ofType(ScanActionCreator).object,
                 },
                 scanStoreData: {},
@@ -34,12 +50,18 @@ describe('AutomatedChecksView', () => {
             } as AutomatedChecksViewProps;
         });
 
-        const scanStatuses = [undefined, ScanStatus[ScanStatus.Scanning], ScanStatus[ScanStatus.Failed]];
+        const scanStatuses = [
+            undefined,
+            ScanStatus[ScanStatus.Scanning],
+            ScanStatus[ScanStatus.Failed],
+        ];
 
         it.each(scanStatuses)('when status scan <%s>', scanStatusName => {
             bareMinimumProps.scanStoreData.status = ScanStatus[scanStatusName];
 
-            const wrapped = shallow(<AutomatedChecksView {...bareMinimumProps} />);
+            const wrapped = shallow(
+                <AutomatedChecksView {...bareMinimumProps} />,
+            );
 
             expect(wrapped.getElement()).toMatchSnapshot();
         });
@@ -49,13 +71,17 @@ describe('AutomatedChecksView', () => {
             const cardSelectionViewDataStub = {
                 highlightedResultUids: ['highlighted-uid-1'],
             } as CardSelectionViewData;
-            const getCardSelectionViewDataMock = Mock.ofInstance(getCardSelectionViewData);
+            const getCardSelectionViewDataMock = Mock.ofInstance(
+                getCardSelectionViewData,
+            );
             getCardSelectionViewDataMock
                 .setup(getData => getData(cardSelectionStoreData))
                 .returns(() => cardSelectionViewDataStub)
                 .verifiable(Times.once());
 
-            const rulesStub = [{ description: 'test-rule-description' } as UnifiedRule];
+            const rulesStub = [
+                { description: 'test-rule-description' } as UnifiedRule,
+            ];
             const resultsStub = [{ uid: 'highlighted-uid-1' } as UnifiedResult];
             const unifiedScanResultStoreData: UnifiedScanResultStoreData = {
                 targetAppInfo: {
@@ -73,16 +99,28 @@ describe('AutomatedChecksView', () => {
             } as CardsViewModel;
             const getUnifiedRuleResultsMock = Mock.ofInstance(getCardViewData);
             getUnifiedRuleResultsMock
-                .setup(getter => getter(rulesStub, resultsStub, cardSelectionViewDataStub))
+                .setup(getter =>
+                    getter(rulesStub, resultsStub, cardSelectionViewDataStub),
+                )
                 .returns(() => cardsViewData)
                 .verifiable(Times.once());
 
             const screenshotViewModelStub = {
-                screenshotData: { base64PngData: 'this should appear in snapshotted ScreenshotView props' },
+                screenshotData: {
+                    base64PngData:
+                        'this should appear in snapshotted ScreenshotView props',
+                },
             } as ScreenshotViewModel;
-            const screenshotViewModelProviderMock = Mock.ofInstance(screenshotViewModelProvider);
+            const screenshotViewModelProviderMock = Mock.ofInstance(
+                screenshotViewModelProvider,
+            );
             screenshotViewModelProviderMock
-                .setup(provider => provider(unifiedScanResultStoreData, cardSelectionViewDataStub.highlightedResultUids))
+                .setup(provider =>
+                    provider(
+                        unifiedScanResultStoreData,
+                        cardSelectionViewDataStub.highlightedResultUids,
+                    ),
+                )
                 .returns(() => screenshotViewModelStub)
                 .verifiable(Times.once());
 
@@ -90,8 +128,10 @@ describe('AutomatedChecksView', () => {
                 deps: {
                     scanActionCreator: Mock.ofType(ScanActionCreator).object,
                     getCardsViewData: getUnifiedRuleResultsMock.object,
-                    getCardSelectionViewData: getCardSelectionViewDataMock.object,
-                    screenshotViewModelProvider: screenshotViewModelProviderMock.object,
+                    getCardSelectionViewData:
+                        getCardSelectionViewDataMock.object,
+                    screenshotViewModelProvider:
+                        screenshotViewModelProviderMock.object,
                 },
                 cardSelectionStoreData,
                 deviceStoreData: {},
@@ -118,7 +158,9 @@ describe('AutomatedChecksView', () => {
         const port = 11111;
 
         const scanActionCreatorMock = Mock.ofType(ScanActionCreator);
-        scanActionCreatorMock.setup(creator => creator.scan(port)).verifiable(Times.once());
+        scanActionCreatorMock
+            .setup(creator => creator.scan(port))
+            .verifiable(Times.once());
 
         const props: AutomatedChecksViewProps = {
             deps: {
@@ -159,17 +201,23 @@ describe('AutomatedChecksView', () => {
 
             wrapped.find(DeviceDisconnectedPopup).prop('onRescanDevice')();
 
-            scanActionCreatorMock.verify(creator => creator.scan(port), Times.once());
+            scanActionCreatorMock.verify(
+                creator => creator.scan(port),
+                Times.once(),
+            );
         });
 
         it('onConnectNewDevice', () => {
             const scanActionCreatorMock = Mock.ofType(ScanActionCreator);
-            const windowStateActionCreatorMock = Mock.ofType(WindowStateActionCreator);
+            const windowStateActionCreatorMock = Mock.ofType(
+                WindowStateActionCreator,
+            );
 
             const props: AutomatedChecksViewProps = {
                 deps: {
                     scanActionCreator: scanActionCreatorMock.object,
-                    windowStateActionCreator: windowStateActionCreatorMock.object,
+                    windowStateActionCreator:
+                        windowStateActionCreatorMock.object,
                 },
                 scanStoreData: {
                     status: ScanStatus.Failed,
@@ -181,7 +229,13 @@ describe('AutomatedChecksView', () => {
 
             wrapped.find(DeviceDisconnectedPopup).prop('onConnectNewDevice')();
 
-            windowStateActionCreatorMock.verify(creator => creator.setRoute(It.isValue({ routeId: 'deviceConnectView' })), Times.once());
+            windowStateActionCreatorMock.verify(
+                creator =>
+                    creator.setRoute(
+                        It.isValue({ routeId: 'deviceConnectView' }),
+                    ),
+                Times.once(),
+            );
         });
     });
 });

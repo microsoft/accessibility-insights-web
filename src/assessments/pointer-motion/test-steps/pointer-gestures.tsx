@@ -10,29 +10,43 @@ import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { PointerMotionTestStep } from './test-steps';
 
-const description: JSX.Element = <span>Functions must be operable without requiring multipoint or path-based gestures.</span>;
+const description: JSX.Element = (
+    <span>
+        Functions must be operable without requiring multipoint or path-based
+        gestures.
+    </span>
+);
 
 const howToTest: JSX.Element = (
     <div>
         <ol>
             <li>
-                Examine the target page to identify any functions that can be operated using either of the following:
+                Examine the target page to identify any functions that can be
+                operated using either of the following:
                 <ol>
                     <li>
-                        <Markup.Term>Multipoint gestures</Markup.Term>, such as a two-fingered pinch zoom or a three-fingered tap.
+                        <Markup.Term>Multipoint gestures</Markup.Term>, such as
+                        a two-fingered pinch zoom or a three-fingered tap.
                     </li>
                     <li>
-                        <Markup.Term>Path-based gestures</Markup.Term>, such as dragging or swiping.
+                        <Markup.Term>Path-based gestures</Markup.Term>, such as
+                        dragging or swiping.
                     </li>
                 </ol>
             </li>
             <li>
-                Verify that the function is <Markup.Emphasis>also</Markup.Emphasis> operable using a single-point, non-path-based gesture,
-                such as a double-click or a long press.
+                Verify that the function is{' '}
+                <Markup.Emphasis>also</Markup.Emphasis> operable using a
+                single-point, non-path-based gesture, such as a double-click or
+                a long press.
                 <br />
-                Exception: Multi-point and path-based gestures are allowed where they are
-                <NewTabLink href="https://www.w3.org/TR/WCAG21/#dfn-essential"> essential</NewTabLink> to the underlying function, such as
-                freehand drawing.
+                Exception: Multi-point and path-based gestures are allowed where
+                they are
+                <NewTabLink href="https://www.w3.org/TR/WCAG21/#dfn-essential">
+                    {' '}
+                    essential
+                </NewTabLink>{' '}
+                to the underlying function, such as freehand drawing.
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>

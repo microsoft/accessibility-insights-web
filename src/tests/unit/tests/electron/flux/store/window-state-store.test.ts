@@ -5,7 +5,10 @@ import { WindowStateActions } from 'electron/flux/action/window-state-actions';
 import { WindowStatePayload } from 'electron/flux/action/window-state-payload';
 import { WindowStateStore } from 'electron/flux/store/window-state-store';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
-import { createStoreWithNullParams, StoreTester } from 'tests/unit/common/store-tester';
+import {
+    createStoreWithNullParams,
+    StoreTester,
+} from 'tests/unit/common/store-tester';
 
 describe('WindowStateStore', () => {
     describe('constructor', () => {
@@ -31,7 +34,9 @@ describe('WindowStateStore', () => {
             currentWindowState: 'customSize',
         };
 
-        const initialState = createStoreWithNullParams(WindowStateStore).getDefaultState();
+        const initialState = createStoreWithNullParams(
+            WindowStateStore,
+        ).getDefaultState();
 
         createStoreTesterForWindowStateActions('setRoute')
             .withActionParam(payload)
@@ -47,7 +52,9 @@ describe('WindowStateStore', () => {
             currentWindowState: 'customSize',
         };
 
-        const initialState = createStoreWithNullParams(WindowStateStore).getDefaultState();
+        const initialState = createStoreWithNullParams(
+            WindowStateStore,
+        ).getDefaultState();
 
         createStoreTesterForWindowStateActions('setRoute')
             .withActionParam(payload)
@@ -63,7 +70,9 @@ describe('WindowStateStore', () => {
             currentWindowState: 'customSize',
         };
 
-        const initialState = createStoreWithNullParams(WindowStateStore).getDefaultState();
+        const initialState = createStoreWithNullParams(
+            WindowStateStore,
+        ).getDefaultState();
 
         createStoreTesterForWindowStateActions('setWindowState')
             .withActionParam(payload)
@@ -79,7 +88,9 @@ describe('WindowStateStore', () => {
             currentWindowState: payload.currentWindowState,
         };
 
-        const initialState = createStoreWithNullParams(WindowStateStore).getDefaultState();
+        const initialState = createStoreWithNullParams(
+            WindowStateStore,
+        ).getDefaultState();
 
         createStoreTesterForWindowStateActions('setWindowState')
             .withActionParam(payload)
@@ -89,7 +100,8 @@ describe('WindowStateStore', () => {
     function createStoreTesterForWindowStateActions(
         actionName: keyof WindowStateActions,
     ): StoreTester<WindowStateStoreData, WindowStateActions> {
-        const factory = (actions: WindowStateActions) => new WindowStateStore(actions);
+        const factory = (actions: WindowStateActions) =>
+            new WindowStateStore(actions);
 
         return new StoreTester(WindowStateActions, actionName, factory);
     }

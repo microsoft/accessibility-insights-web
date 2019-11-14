@@ -11,10 +11,21 @@ export type ScanningSpinnerProps = {
     ['aria-live']?: 'assertive' | 'polite' | 'off';
 };
 
-export const ScanningSpinner = NamedFC<ScanningSpinnerProps>('ScanningSpinner', props => {
-    if (!props.isSpinning) {
-        return null;
-    }
+export const ScanningSpinner = NamedFC<ScanningSpinnerProps>(
+    'ScanningSpinner',
+    props => {
+        if (!props.isSpinning) {
+            return null;
+        }
 
-    return <Spinner className={scanningSpinner} size={SpinnerSize.large} label={props.label} role="alert" aria-live={props['aria-live']} />;
-});
+        return (
+            <Spinner
+                className={scanningSpinner}
+                size={SpinnerSize.large}
+                label={props.label}
+                role="alert"
+                aria-live={props['aria-live']}
+            />
+        );
+    },
+);

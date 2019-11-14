@@ -5,8 +5,14 @@ import { IMock, It, Mock } from 'typemoq';
 import { AssessmentDataConverter } from 'background/assessment-data-converter';
 import { UniquelyIdentifiableInstances } from 'background/instance-identifier-generator';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
-import { AssessmentInstancesMap, TestStepResult } from '../../../../common/types/store-data/assessment-result-data';
-import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../../../../injected/scanner-utils';
+import {
+    AssessmentInstancesMap,
+    TestStepResult,
+} from '../../../../common/types/store-data/assessment-result-data';
+import {
+    DecoratedAxeNodeResult,
+    HtmlElementAxeResults,
+} from '../../../../injected/scanner-utils';
 import { TabStopEvent } from '../../../../injected/tab-stops-listener';
 import { DictionaryStringTo } from '../../../../types/common-types';
 
@@ -25,7 +31,9 @@ describe('AssessmentDataConverterTest', () => {
     let identifierStub: string;
     let selectorStub: string;
     let htmlStub: string;
-    let generateInstanceIdentifierMock: IMock<(instance: UniquelyIdentifiableInstances) => string>;
+    let generateInstanceIdentifierMock: IMock<(
+        instance: UniquelyIdentifiableInstances,
+    ) => string>;
 
     beforeEach(() => {
         testSubject = new AssessmentDataConverter(() => uid);
@@ -60,7 +68,10 @@ describe('AssessmentDataConverterTest', () => {
             },
         };
 
-        setupGenerateInstanceIdentifierMock({ target: [selectorStub], html: htmlStub }, identifierStub);
+        setupGenerateInstanceIdentifierMock(
+            { target: [selectorStub], html: htmlStub },
+            identifierStub,
+        );
         const instanceMap = testSubject.generateAssessmentInstancesMap(
             null,
             selectorMap,
@@ -69,7 +80,9 @@ describe('AssessmentDataConverterTest', () => {
             () => ManualTestStatus.UNKNOWN,
         );
 
-        expect(instanceMap[identifierStub].propertyBag).toEqual(expectedPropertyBag);
+        expect(instanceMap[identifierStub].propertyBag).toEqual(
+            expectedPropertyBag,
+        );
     });
 
     test(`generateAssessmentInstancesMap: previouslyGeneratedInstances is null,
@@ -110,7 +123,10 @@ describe('AssessmentDataConverterTest', () => {
             },
         };
 
-        setupGenerateInstanceIdentifierMock({ target: [selectorStub], html: htmlStub }, identifierStub);
+        setupGenerateInstanceIdentifierMock(
+            { target: [selectorStub], html: htmlStub },
+            identifierStub,
+        );
         const instanceMap = testSubject.generateAssessmentInstancesMap(
             null,
             selectorMap,
@@ -131,7 +147,13 @@ describe('AssessmentDataConverterTest', () => {
             },
         };
         const expectedResult = {};
-        const instanceMap = testSubject.generateAssessmentInstancesMap(null, selectorMap, testStep, undefined, null);
+        const instanceMap = testSubject.generateAssessmentInstancesMap(
+            null,
+            selectorMap,
+            testStep,
+            undefined,
+            null,
+        );
 
         expect(instanceMap).toEqual(expectedResult);
     });
@@ -187,7 +209,10 @@ describe('AssessmentDataConverterTest', () => {
                 },
             },
         };
-        setupGenerateInstanceIdentifierMock({ target: [selectorStub], html: htmlStub }, identifierStub);
+        setupGenerateInstanceIdentifierMock(
+            { target: [selectorStub], html: htmlStub },
+            identifierStub,
+        );
         const instanceMap = testSubject.generateAssessmentInstancesMap(
             {},
             selectorMap,
@@ -229,7 +254,10 @@ describe('AssessmentDataConverterTest', () => {
                 },
             },
         };
-        setupGenerateInstanceIdentifierMock({ target: [selectorStub], html: htmlStub }, identifierStub);
+        setupGenerateInstanceIdentifierMock(
+            { target: [selectorStub], html: htmlStub },
+            identifierStub,
+        );
         const instanceMap = testSubject.generateAssessmentInstancesMap(
             {},
             selectorMap,
@@ -304,7 +332,10 @@ describe('AssessmentDataConverterTest', () => {
             },
         };
 
-        setupGenerateInstanceIdentifierMock({ target: [selectorStub], html: htmlStub }, identifierStub);
+        setupGenerateInstanceIdentifierMock(
+            { target: [selectorStub], html: htmlStub },
+            identifierStub,
+        );
         const instanceMap = testSubject.generateAssessmentInstancesMap(
             previouslyGeneratedInstances,
             selectorMap,
@@ -451,7 +482,9 @@ describe('AssessmentDataConverterTest', () => {
             selector: path,
         };
 
-        expect(testSubject.generateFailureInstance(description, path, snippet)).toEqual(expectedResult);
+        expect(
+            testSubject.generateFailureInstance(description, path, snippet),
+        ).toEqual(expectedResult);
     });
 
     test('generateFailureInstance with description and path', () => {
@@ -465,10 +498,17 @@ describe('AssessmentDataConverterTest', () => {
             html: snippet,
         };
 
-        expect(testSubject.generateFailureInstance(description, path, snippet)).toEqual(expectedResult);
+        expect(
+            testSubject.generateFailureInstance(description, path, snippet),
+        ).toEqual(expectedResult);
     });
 
-    function setupGenerateInstanceIdentifierMock(instance: UniquelyIdentifiableInstances, identifier: string): void {
-        generateInstanceIdentifierMock.setup(giim => giim(It.isValue(instance))).returns(() => identifier);
+    function setupGenerateInstanceIdentifierMock(
+        instance: UniquelyIdentifiableInstances,
+        identifier: string,
+    ): void {
+        generateInstanceIdentifierMock
+            .setup(giim => giim(It.isValue(instance)))
+            .returns(() => identifier);
     }
 });

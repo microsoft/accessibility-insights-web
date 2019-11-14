@@ -33,7 +33,9 @@ function runTypeAsserts(hub: ActionHub): void {
     expect(hub.scopingActions).toBeInstanceOf(ScopingActions);
     expect(hub.tabActions).toBeInstanceOf(TabActions);
     expect(hub.visualizationActions).toBeInstanceOf(VisualizationActions);
-    expect(hub.visualizationScanResultActions).toBeInstanceOf(VisualizationScanResultActions);
+    expect(hub.visualizationScanResultActions).toBeInstanceOf(
+        VisualizationScanResultActions,
+    );
     expect(hub.inspectActions).toBeInstanceOf(InspectActions);
     expect(hub.contentActions).toBeInstanceOf(ContentActions);
     expect(hub.injectionActions).toBeInstanceOf(InjectionActions);

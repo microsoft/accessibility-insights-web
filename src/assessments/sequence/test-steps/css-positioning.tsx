@@ -13,14 +13,18 @@ import { Requirement } from '../../types/requirement';
 import { SequenceTestStep } from './test-steps';
 
 const description: JSX.Element = (
-    <span>Meaningful content positioned on the page using CSS must retain its meaning when CSS is disabled.</span>
+    <span>
+        Meaningful content positioned on the page using CSS must retain its
+        meaning when CSS is disabled.
+    </span>
 );
 
 const howToTest: JSX.Element = (
     <div>
         <p>
-            The visual helper for this requirement highlights content positioned on the screen using CSS{' '}
-            <Markup.Term>position:absolute</Markup.Term> or <Markup.Term>float:right</Markup.Term>.
+            The visual helper for this requirement highlights content positioned
+            on the screen using CSS <Markup.Term>position:absolute</Markup.Term>{' '}
+            or <Markup.Term>float:right</Markup.Term>.
         </p>
         <p>
             This procedure also uses the{' '}
@@ -31,23 +35,31 @@ const howToTest: JSX.Element = (
         </p>
         <ol>
             <li>
-                Examine the target page to determine whether it has any positioned (highlighted) content that's meaningful:
+                Examine the target page to determine whether it has any
+                positioned (highlighted) content that's meaningful:
                 <ol>
                     <li>
-                        Content is <Markup.Emphasis>meaningful</Markup.Emphasis> if it conveys information that isn't available through
+                        Content is <Markup.Emphasis>meaningful</Markup.Emphasis>{' '}
+                        if it conveys information that isn't available through
                         other page content.
                     </li>
                     <li>
-                        Content is <Markup.Emphasis>decorative</Markup.Emphasis> if it could be removed from the page with no impact on
+                        Content is <Markup.Emphasis>decorative</Markup.Emphasis>{' '}
+                        if it could be removed from the page with no impact on
                         meaning or function.
                     </li>
                 </ol>
             </li>
             <li>
-                If the page does have meaningful positioned content, use the Web Developer browser extension (
-                <Markup.Term>Miscellaneous > Linearize page</Markup.Term>) to show the page in DOM order.
+                If the page does have meaningful positioned content, use the Web
+                Developer browser extension (
+                <Markup.Term>Miscellaneous > Linearize page</Markup.Term>) to
+                show the page in DOM order.
             </li>
-            <li>Verify that the positioned content retains its meaning when the page is linearized.</li>
+            <li>
+                Verify that the positioned content retains its meaning when the
+                page is linearized.
+            </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
     </div>
@@ -72,5 +84,7 @@ export const CssPositioning: Requirement = {
             }),
         ),
     getDrawer: provider => provider.createHighlightBoxDrawer(),
-    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
+    getVisualHelperToggle: props => (
+        <AssessmentVisualizationEnabledToggle {...props} />
+    ),
 };

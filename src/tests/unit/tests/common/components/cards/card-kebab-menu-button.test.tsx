@@ -87,8 +87,12 @@ describe('CardKebabMenuButtonTest', () => {
         actionCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
         navigatorUtilsMock = Mock.ofType<NavigatorUtils>();
         windowUtilsMock = Mock.ofType<WindowUtils>();
-        issueFilingServiceProviderMock = Mock.ofType(IssueFilingServiceProvider);
-        issueFilingActionMessageCreatorMock = Mock.ofType(IssueFilingActionMessageCreator);
+        issueFilingServiceProviderMock = Mock.ofType(
+            IssueFilingServiceProvider,
+        );
+        issueFilingActionMessageCreatorMock = Mock.ofType(
+            IssueFilingActionMessageCreator,
+        );
 
         userConfigurationStoreData = {
             bugService: testKey,
@@ -115,7 +119,8 @@ describe('CardKebabMenuButtonTest', () => {
             navigatorUtils: navigatorUtilsMock.object,
             windowUtils: windowUtilsMock.object,
             issueFilingServiceProvider: issueFilingServiceProviderMock.object,
-            issueFilingActionMessageCreator: issueFilingActionMessageCreatorMock.object,
+            issueFilingActionMessageCreator:
+                issueFilingActionMessageCreatorMock.object,
             issueDetailsTextGenerator: textGeneratorMock.object,
             cardInteractionSupport: allCardInteractionsSupported,
         } as CardKebabMenuButtonDeps;
@@ -129,7 +134,13 @@ describe('CardKebabMenuButtonTest', () => {
 
     it('renders as null with noCardInteractionsSupported', () => {
         const rendered = shallow(
-            <CardKebabMenuButton {...defaultProps} deps={{ ...defaultDeps, cardInteractionSupport: noCardInteractionsSupported }} />,
+            <CardKebabMenuButton
+                {...defaultProps}
+                deps={{
+                    ...defaultDeps,
+                    cardInteractionSupport: noCardInteractionsSupported,
+                }}
+            />,
         );
 
         expect(rendered.getElement()).toBeNull();
@@ -137,7 +148,13 @@ describe('CardKebabMenuButtonTest', () => {
 
     it('renders per snapshot with allCardInteractionsSupported', () => {
         const rendered = shallow(
-            <CardKebabMenuButton {...defaultProps} deps={{ ...defaultDeps, cardInteractionSupport: allCardInteractionsSupported }} />,
+            <CardKebabMenuButton
+                {...defaultProps}
+                deps={{
+                    ...defaultDeps,
+                    cardInteractionSupport: allCardInteractionsSupported,
+                }}
+            />,
         );
 
         expect(rendered.debug()).toMatchSnapshot();
@@ -152,11 +169,19 @@ describe('CardKebabMenuButtonTest', () => {
                 kebabMenuAriaLabel: ariaLabel,
             };
             const rendered = shallow(
-                <CardKebabMenuButton {...newProps} deps={{ ...defaultDeps, cardInteractionSupport: allCardInteractionsSupported }} />,
+                <CardKebabMenuButton
+                    {...newProps}
+                    deps={{
+                        ...defaultDeps,
+                        cardInteractionSupport: allCardInteractionsSupported,
+                    }}
+                />,
             );
 
             expect(rendered.debug()).toMatchSnapshot('component-snapshot');
-            expect(rendered.find(ActionButton).prop('menuProps')).toMatchSnapshot('action button menu props');
+            expect(
+                rendered.find(ActionButton).prop('menuProps'),
+            ).toMatchSnapshot('action button menu props');
         },
     );
 
@@ -164,7 +189,10 @@ describe('CardKebabMenuButtonTest', () => {
         const rendered = shallow(
             <CardKebabMenuButton
                 {...defaultProps}
-                deps={{ ...defaultDeps, cardInteractionSupport: onlyUserConfigAgnosticCardInteractionsSupported }}
+                deps={{
+                    ...defaultDeps,
+                    cardInteractionSupport: onlyUserConfigAgnosticCardInteractionsSupported,
+                }}
             />,
         );
 
@@ -173,10 +201,14 @@ describe('CardKebabMenuButtonTest', () => {
     });
 
     it('copies failure details and show the toast', async () => {
-        actionCreatorMock.setup(creator => creator.copyIssueDetailsClicked(event)).verifiable(Times.once());
+        actionCreatorMock
+            .setup(creator => creator.copyIssueDetailsClicked(event))
+            .verifiable(Times.once());
 
         navigatorUtilsMock
-            .setup(navigatorUtils => navigatorUtils.copyToClipboard(issueDetailsText))
+            .setup(navigatorUtils =>
+                navigatorUtils.copyToClipboard(issueDetailsText),
+            )
             .returns(() => {
                 return Promise.resolve();
             })
@@ -186,7 +218,10 @@ describe('CardKebabMenuButtonTest', () => {
 
         rendered.find(ActionButton).simulate('click', event);
 
-        const copyFailureDetailsMenuItem = getMenuItemWithKey(rendered, 'copyfailuredetails');
+        const copyFailureDetailsMenuItem = getMenuItemWithKey(
+            rendered,
+            'copyfailuredetails',
+        );
 
         // tslint:disable-next-line: await-promise
         await copyFailureDetailsMenuItem.onClick(event);
@@ -196,14 +231,23 @@ describe('CardKebabMenuButtonTest', () => {
         expect(toast.state().toastVisible).toBe(true);
         expect(toast.state().content).toBe('Failure details copied.');
 
-        verifyMocks([actionCreatorMock, navigatorUtilsMock, textGeneratorMock, windowUtilsMock]);
+        verifyMocks([
+            actionCreatorMock,
+            navigatorUtilsMock,
+            textGeneratorMock,
+            windowUtilsMock,
+        ]);
     });
 
     it('shows failure message if copy failed', async () => {
-        actionCreatorMock.setup(creator => creator.copyIssueDetailsClicked(event)).verifiable(Times.once());
+        actionCreatorMock
+            .setup(creator => creator.copyIssueDetailsClicked(event))
+            .verifiable(Times.once());
 
         navigatorUtilsMock
-            .setup(navigatorUtils => navigatorUtils.copyToClipboard(issueDetailsText))
+            .setup(navigatorUtils =>
+                navigatorUtils.copyToClipboard(issueDetailsText),
+            )
             .returns(() => {
                 return Promise.reject();
             })
@@ -213,24 +257,42 @@ describe('CardKebabMenuButtonTest', () => {
 
         rendered.find(ActionButton).simulate('click', event);
 
-        const copyFailureDetailsMenuItem = getMenuItemWithKey(rendered, 'copyfailuredetails');
+        const copyFailureDetailsMenuItem = getMenuItemWithKey(
+            rendered,
+            'copyfailuredetails',
+        );
         // tslint:disable-next-line: await-promise
         await copyFailureDetailsMenuItem.onClick(event);
 
         const toast = rendered.find(Toast);
 
         expect(toast.state().toastVisible).toBe(true);
-        expect(toast.state().content).toBe('Failed to copy failure details. Please try again.');
+        expect(toast.state().content).toBe(
+            'Failed to copy failure details. Please try again.',
+        );
 
-        verifyMocks([actionCreatorMock, navigatorUtilsMock, textGeneratorMock, windowUtilsMock]);
+        verifyMocks([
+            actionCreatorMock,
+            navigatorUtilsMock,
+            textGeneratorMock,
+            windowUtilsMock,
+        ]);
     });
 
     it('should file issue, valid settings', async () => {
         issueFilingActionMessageCreatorMock
-            .setup(creator => creator.fileIssue(event, testKey, defaultProps.issueDetailsData))
+            .setup(creator =>
+                creator.fileIssue(
+                    event,
+                    testKey,
+                    defaultProps.issueDetailsData,
+                ),
+            )
             .verifiable(Times.once());
 
-        const rendered = shallow<CardKebabMenuButton>(<CardKebabMenuButton {...defaultProps} />);
+        const rendered = shallow<CardKebabMenuButton>(
+            <CardKebabMenuButton {...defaultProps} />,
+        );
 
         rendered.find(ActionButton).simulate('click', event);
 
@@ -240,16 +302,27 @@ describe('CardKebabMenuButtonTest', () => {
 
         expect(rendered.state().showNeedsSettingsContent).toBe(false);
 
-        verifyMocks([issueFilingActionMessageCreatorMock, issueFilingServiceProviderMock]);
+        verifyMocks([
+            issueFilingActionMessageCreatorMock,
+            issueFilingServiceProviderMock,
+        ]);
     });
 
     it('should click file issue, invalid settings', () => {
         testIssueFilingServiceStub.isSettingsValid = () => false;
         issueFilingActionMessageCreatorMock
-            .setup(creator => creator.fileIssue(event, testKey, defaultProps.issueDetailsData))
+            .setup(creator =>
+                creator.fileIssue(
+                    event,
+                    testKey,
+                    defaultProps.issueDetailsData,
+                ),
+            )
             .verifiable(Times.never());
 
-        const rendered = shallow<CardKebabMenuButton>(<CardKebabMenuButton {...defaultProps} />);
+        const rendered = shallow<CardKebabMenuButton>(
+            <CardKebabMenuButton {...defaultProps} />,
+        );
 
         expect(rendered.state().showNeedsSettingsContent).toBe(false);
 
@@ -261,10 +334,16 @@ describe('CardKebabMenuButtonTest', () => {
 
         expect(rendered.state().showNeedsSettingsContent).toBe(true);
 
-        verifyMocks([issueFilingActionMessageCreatorMock, issueFilingServiceProviderMock]);
+        verifyMocks([
+            issueFilingActionMessageCreatorMock,
+            issueFilingServiceProviderMock,
+        ]);
     });
 
-    function getMenuItemWithKey(rendered: ReactWrapper | ShallowWrapper, itemKey: string): IContextualMenuItem {
+    function getMenuItemWithKey(
+        rendered: ReactWrapper | ShallowWrapper,
+        itemKey: string,
+    ): IContextualMenuItem {
         return rendered
             .find(ActionButton)
             .prop('menuProps')

@@ -9,13 +9,21 @@ import { GuidanceLink } from '../../scanner/rule-to-links-mappings';
 import { createMarkup, Markup, MarkupDeps } from './markup';
 
 export type HyperlinkDefinition = { href: string; text: string };
-type HyperlinkDefinitionMap = { [KEY in string]: { href: string; text: string } };
-type HyperlinkComponentMap<M extends HyperlinkDefinitionMap> = { [KEY in keyof M]: React.FC };
+type HyperlinkDefinitionMap = {
+    [KEY in string]: { href: string; text: string };
+};
+type HyperlinkComponentMap<M extends HyperlinkDefinitionMap> = {
+    [KEY in keyof M]: React.FC;
+};
 export function linkTo(text: string, href: string): HyperlinkDefinition {
     return { text, href };
 }
 
-export function guidanceLinkTo(text: string, href: string, tags?: GuidanceTag[]): GuidanceLink {
+export function guidanceLinkTo(
+    text: string,
+    href: string,
+    tags?: GuidanceTag[],
+): GuidanceLink {
     return { text, href, tags };
 }
 
@@ -23,8 +31,13 @@ export type ContentPageDeps = MarkupDeps;
 export interface ContentPageOptions {
     setPageTitle?: boolean;
 }
-export type ContentPageProps = { deps: ContentPageDeps; options?: ContentPageOptions };
-export type ContentPageComponent = React.FC<ContentPageProps> & { displayName: 'ContentPageComponent' };
+export type ContentPageProps = {
+    deps: ContentPageDeps;
+    options?: ContentPageOptions;
+};
+export type ContentPageComponent = React.FC<ContentPageProps> & {
+    displayName: 'ContentPageComponent';
+};
 export type ContentReference = string | ContentPageComponent;
 type CreateProps<M extends HyperlinkDefinitionMap> = {
     Markup: Markup;
@@ -37,13 +50,19 @@ export function ContentCreator<M extends HyperlinkDefinitionMap>(
         const map: Partial<HyperlinkComponentMap<M>> = {};
 
         forEach(linkMap, (hyperlink: HyperlinkDefinition, key: keyof M) => {
-            map[key] = ({ children }) => <markup.HyperLink href={hyperlink.href}>{children || hyperlink.text}</markup.HyperLink>;
+            map[key] = ({ children }) => (
+                <markup.HyperLink href={hyperlink.href}>
+                    {children || hyperlink.text}
+                </markup.HyperLink>
+            );
         });
 
         return map as HyperlinkComponentMap<M>;
     }
 
-    function create(fn: (props: CreateProps<M>) => JSX.Element): ContentPageComponent {
+    function create(
+        fn: (props: CreateProps<M>) => JSX.Element,
+    ): ContentPageComponent {
         return NamedFC<ContentPageProps>('ContentPageComponent', props => {
             const { deps, options } = props;
             const markup = createMarkup(deps, options);
@@ -65,25 +84,39 @@ type ContentTree = { [K in string]: ContentTree | ContentPageComponent };
 export function ContentProvider(root: ContentTree): ContentProvider {
     const create = ContentCreator();
 
-    const notFoundPage = (path: string) => create(() => <h1>Cannot find {path}</h1>);
+    const notFoundPage = (path: string) =>
+        create(() => <h1>Cannot find {path}</h1>);
 
-    function isContentPageComponent(leaf: any | ContentPageComponent): leaf is ContentPageComponent {
-        return leaf && (leaf as ContentPageComponent).displayName && (leaf as ContentPageComponent).displayName === 'ContentPageComponent';
+    function isContentPageComponent(
+        leaf: any | ContentPageComponent,
+    ): leaf is ContentPageComponent {
+        return (
+            leaf &&
+            (leaf as ContentPageComponent).displayName &&
+            (leaf as ContentPageComponent).displayName ===
+                'ContentPageComponent'
+        );
     }
 
     type TreeEntry = { path: string; leaf: ContentPageComponent };
     const flattenTree: (ContentTree) => TreeEntry[] = (tree: ContentTree) => {
-        const prefixEntry = (prefix: string) => ({ path, leaf }: TreeEntry) => ({ path: prefix + '/' + path, leaf } as TreeEntry);
+        const prefixEntry = (prefix: string) => ({ path, leaf }: TreeEntry) =>
+            ({ path: prefix + '/' + path, leaf } as TreeEntry);
 
         const entries = toPairs(tree).map(([key, leaf]) =>
-            isContentPageComponent(leaf) ? ({ path: key, leaf } as TreeEntry) : flattenTree(leaf).map(prefixEntry(key)),
+            isContentPageComponent(leaf)
+                ? ({ path: key, leaf } as TreeEntry)
+                : flattenTree(leaf).map(prefixEntry(key)),
         );
 
         return flatten(entries);
     };
     const rootEntries = flattenTree(root);
 
-    function findPage(tree: ContentTree, [head, ...tail]: string[]): ContentPageComponent {
+    function findPage(
+        tree: ContentTree,
+        [head, ...tail]: string[],
+    ): ContentPageComponent {
         if (!tree) {
             return null;
         }
@@ -111,10 +144,18 @@ export function ContentProvider(root: ContentTree): ContentProvider {
         return entry ? entry.path : null;
     };
 
-    const contentFromReference = (reference: ContentReference) => (isContentPageComponent(reference) ? reference : getPage(reference));
-    const pathFromReference = (reference: ContentReference) => (isContentPageComponent(reference) ? pathTo(reference) : reference);
+    const contentFromReference = (reference: ContentReference) =>
+        isContentPageComponent(reference) ? reference : getPage(reference);
+    const pathFromReference = (reference: ContentReference) =>
+        isContentPageComponent(reference) ? pathTo(reference) : reference;
 
-    return { getPage, allPaths, pathTo, contentFromReference, pathFromReference };
+    return {
+        getPage,
+        allPaths,
+        pathTo,
+        contentFromReference,
+        pathFromReference,
+    };
 }
 
 export const ContentPage = {

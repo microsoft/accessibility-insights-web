@@ -18,8 +18,16 @@ export class ReportGenerator {
         private assessmentReportHtmlGenerator: AssessmentReportHtmlGenerator,
     ) {}
 
-    public generateName(baseName: string, scanDate: Date, pageTitle: string): string {
-        return this.reportNameGenerator.generateName(baseName, scanDate, pageTitle);
+    public generateName(
+        baseName: string,
+        scanDate: Date,
+        pageTitle: string,
+    ): string {
+        return this.reportNameGenerator.generateName(
+            baseName,
+            scanDate,
+            pageTitle,
+        );
     }
 
     public generateFastPassAutomatedChecksReport(
@@ -30,7 +38,14 @@ export class ReportGenerator {
         cardsViewData: CardsViewModel,
         description: string,
     ): string {
-        return this.reportHtmlGenerator.generateHtml(scanResult, scanDate, pageTitle, pageUrl, description, cardsViewData);
+        return this.reportHtmlGenerator.generateHtml(
+            scanResult,
+            scanDate,
+            pageTitle,
+            pageUrl,
+            description,
+            cardsViewData,
+        );
     }
 
     public generateAssessmentReport(

@@ -9,7 +9,10 @@ import { WindowUtils } from '../../../../../common/window-utils';
 import { RenderDialog } from '../../../../../injected/dialog-renderer';
 import { AxeResultsWithFrameLevel } from '../../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
-import { DrawerConfiguration, Formatter } from '../../../../../injected/visualization/formatter';
+import {
+    DrawerConfiguration,
+    Formatter,
+} from '../../../../../injected/visualization/formatter';
 import {
     HighlightVisualization,
     HighlightVisualizationDeps,
@@ -49,11 +52,23 @@ describe('HighlightVisualization', () => {
         documentElementStub = {} as HTMLElement;
         bodyStub = {} as HTMLBodyElement;
 
-        drawerUtilsMock.setup(drawerUtils => drawerUtils.getDocumentElement()).returns(() => documentMock.object);
-        documentMock.setup(document => document.querySelector('body')).returns(() => bodyStub);
-        windowUtilsMock.setup(windowUtils => windowUtils.getComputedStyle(bodyStub)).returns(() => bodyStyleStub);
-        documentMock.setup(document => document.documentElement).returns(() => documentElementStub);
-        windowUtilsMock.setup(windowUtils => windowUtils.getComputedStyle(documentElementStub)).returns(() => docStyleStub);
+        drawerUtilsMock
+            .setup(drawerUtils => drawerUtils.getDocumentElement())
+            .returns(() => documentMock.object);
+        documentMock
+            .setup(document => document.querySelector('body'))
+            .returns(() => bodyStub);
+        windowUtilsMock
+            .setup(windowUtils => windowUtils.getComputedStyle(bodyStub))
+            .returns(() => bodyStyleStub);
+        documentMock
+            .setup(document => document.documentElement)
+            .returns(() => documentElementStub);
+        windowUtilsMock
+            .setup(windowUtils =>
+                windowUtils.getComputedStyle(documentElementStub),
+            )
+            .returns(() => docStyleStub);
 
         deps = {
             drawerUtils: drawerUtilsMock.object,
@@ -89,7 +104,11 @@ describe('HighlightVisualization', () => {
 
         elementResults.forEach(elementResultStub => {
             documentMock
-                .setup(document => document.querySelectorAll(elementResultStub.target[elementResultStub.targetIndex]))
+                .setup(document =>
+                    document.querySelectorAll(
+                        elementResultStub.target[elementResultStub.targetIndex],
+                    ),
+                )
                 .returns(() => elementStubList);
         });
 
@@ -111,11 +130,20 @@ describe('HighlightVisualization', () => {
 
         elementResults.forEach(elementResultStub => {
             documentMock
-                .setup(document => document.querySelectorAll(elementResultStub.target[elementResultStub.targetIndex]))
+                .setup(document =>
+                    document.querySelectorAll(
+                        elementResultStub.target[elementResultStub.targetIndex],
+                    ),
+                )
                 .returns(() => elementStubList);
 
             formatterMock
-                .setup(formatter => formatter.getDrawerConfiguration(elementStub, elementResultStub))
+                .setup(formatter =>
+                    formatter.getDrawerConfiguration(
+                        elementStub,
+                        elementResultStub,
+                    ),
+                )
                 .returns(() => drawerConfigStub);
         });
 

@@ -27,7 +27,10 @@ export class ResultDecorator {
         const scanResults: ScanResults = {
             passes: this.decorateAxeRuleResults(results.passes),
             violations: this.decorateAxeRuleResults(results.violations),
-            inapplicable: this.decorateAxeRuleResults(results.inapplicable, true),
+            inapplicable: this.decorateAxeRuleResults(
+                results.inapplicable,
+                true,
+            ),
             incomplete: this.decorateAxeRuleResults(results.incomplete),
             timestamp: results.timestamp,
             targetPageUrl: results.url,
@@ -37,21 +40,30 @@ export class ResultDecorator {
         return scanResults;
     }
 
-    private decorateAxeRuleResults(ruleResults: AxeRule[], isInapplicable: boolean = false): RuleResult[] {
-        return ruleResults.reduce((filteredArray: RuleResult[], result: AxeRule) => {
-            this.messageDecorator.decorateResultWithMessages(result);
-            const processedResult = Processor.suppressChecksByMessages(result, !isInapplicable);
+    private decorateAxeRuleResults(
+        ruleResults: AxeRule[],
+        isInapplicable: boolean = false,
+    ): RuleResult[] {
+        return ruleResults.reduce(
+            (filteredArray: RuleResult[], result: AxeRule) => {
+                this.messageDecorator.decorateResultWithMessages(result);
+                const processedResult = Processor.suppressChecksByMessages(
+                    result,
+                    !isInapplicable,
+                );
 
-            if (processedResult != null) {
-                filteredArray.push({
-                    ...processedResult,
-                    guidanceLinks: this.getMapping(result.id),
-                    helpUrl: this.getHelpUrl(result.id, result.helpUrl),
-                });
-            }
+                if (processedResult != null) {
+                    filteredArray.push({
+                        ...processedResult,
+                        guidanceLinks: this.getMapping(result.id),
+                        helpUrl: this.getHelpUrl(result.id, result.helpUrl),
+                    });
+                }
 
-            return filteredArray;
-        }, []);
+                return filteredArray;
+            },
+            [],
+        );
     }
 
     private getMapping(ruleId: string): HyperlinkDefinition[] {
@@ -62,7 +74,9 @@ export class ResultDecorator {
         return this.ruleToLinkConfiguration[ruleId];
     }
 
-    public setRuleToLinksConfiguration(configuration: DictionaryStringTo<HyperlinkDefinition[]>): void {
+    public setRuleToLinksConfiguration(
+        configuration: DictionaryStringTo<HyperlinkDefinition[]>,
+    ): void {
         this.ruleToLinkConfiguration = configuration;
     }
 }

@@ -30,7 +30,9 @@ describe('UrlParserTest', () => {
         ];
 
         test.each(validCases)('return valid value', (testCase: ValidCase) => {
-            expect(testSubject.getIntParam(testCase.url, testCase.key)).toBe(testCase.expectedValue);
+            expect(testSubject.getIntParam(testCase.url, testCase.key)).toBe(
+                testCase.expectedValue,
+            );
         });
 
         interface InvalidCase {
@@ -52,9 +54,14 @@ describe('UrlParserTest', () => {
             },
         ];
 
-        test.each(invalidCases)('return invalid value', (testCase: ValidCase) => {
-            expect(testSubject.getIntParam(testCase.url, testCase.key)).toBeNaN();
-        });
+        test.each(invalidCases)(
+            'return invalid value',
+            (testCase: ValidCase) => {
+                expect(
+                    testSubject.getIntParam(testCase.url, testCase.key),
+                ).toBeNaN();
+            },
+        );
     });
 
     describe('areURLsEqual', () => {

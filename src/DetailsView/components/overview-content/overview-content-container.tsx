@@ -12,10 +12,16 @@ import { AssessmentStoreData } from '../../../common/types/store-data/assessment
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../../common/types/store-data/tab-store-data';
 import { DetailsViewActionMessageCreator } from '../../actions/details-view-action-message-creator';
-import { TargetChangeDialog, TargetChangeDialogDeps } from '../target-change-dialog';
+import {
+    TargetChangeDialog,
+    TargetChangeDialogDeps,
+} from '../target-change-dialog';
 import { overviewHelpSection } from './overview-content-container.scss';
 import { OverviewHeading } from './overview-heading';
-import { OverviewHelpSection, OverviewHelpSectionDeps } from './overview-help-section';
+import {
+    OverviewHelpSection,
+    OverviewHelpSectionDeps,
+} from './overview-help-section';
 
 const linkDataSource: HyperlinkDefinition[] = [
     {
@@ -40,7 +46,10 @@ export type OverviewContainerDeps = {
     assessmentsProvider: AssessmentsProvider;
     getAssessmentSummaryModelFromProviderAndStoreData: GetAssessmentSummaryModelFromProviderAndStoreData;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-    assessmentsProviderWithFeaturesEnabled: (assessmentProvider: AssessmentsProvider, flags: FeatureFlagStoreData) => AssessmentsProvider;
+    assessmentsProviderWithFeaturesEnabled: (
+        assessmentProvider: AssessmentsProvider,
+        flags: FeatureFlagStoreData,
+    ) => AssessmentsProvider;
 } & OverviewHelpSectionDeps &
     TargetChangeDialogDeps;
 
@@ -51,37 +60,57 @@ export interface OverviewContainerProps {
     featureFlagStoreData: FeatureFlagStoreData;
 }
 
-export const OverviewContainer = NamedFC<OverviewContainerProps>('OverviewContainer', props => {
-    const { deps, assessmentStoreData, tabStoreData, featureFlagStoreData } = props;
-    const { assessmentsProvider, getAssessmentSummaryModelFromProviderAndStoreData, assessmentsProviderWithFeaturesEnabled } = deps;
-    const prevTarget = assessmentStoreData.persistedTabInfo;
-    const currentTarget = {
-        id: tabStoreData.id,
-        url: tabStoreData.url,
-        title: tabStoreData.title,
-    };
-    const filteredProvider = assessmentsProviderWithFeaturesEnabled(assessmentsProvider, featureFlagStoreData);
+export const OverviewContainer = NamedFC<OverviewContainerProps>(
+    'OverviewContainer',
+    props => {
+        const {
+            deps,
+            assessmentStoreData,
+            tabStoreData,
+            featureFlagStoreData,
+        } = props;
+        const {
+            assessmentsProvider,
+            getAssessmentSummaryModelFromProviderAndStoreData,
+            assessmentsProviderWithFeaturesEnabled,
+        } = deps;
+        const prevTarget = assessmentStoreData.persistedTabInfo;
+        const currentTarget = {
+            id: tabStoreData.id,
+            url: tabStoreData.url,
+            title: tabStoreData.title,
+        };
+        const filteredProvider = assessmentsProviderWithFeaturesEnabled(
+            assessmentsProvider,
+            featureFlagStoreData,
+        );
 
-    const summaryData: OverviewSummaryReportModel = getAssessmentSummaryModelFromProviderAndStoreData(
-        filteredProvider,
-        assessmentStoreData,
-    );
+        const summaryData: OverviewSummaryReportModel = getAssessmentSummaryModelFromProviderAndStoreData(
+            filteredProvider,
+            assessmentStoreData,
+        );
 
-    return (
-        <div className="overview">
-            <TargetChangeDialog
-                deps={deps}
-                prevTab={prevTarget}
-                newTab={currentTarget}
-                actionMessageCreator={props.deps.detailsViewActionMessageCreator}
-            />
-            <section className="overview-text-summary-section">
-                <OverviewHeading />
-                <AssessmentReportSummary summary={summaryData} />
-            </section>
-            <section className={overviewHelpSection}>
-                <OverviewHelpSection linkDataSource={linkDataSource} deps={deps} />
-            </section>
-        </div>
-    );
-});
+        return (
+            <div className="overview">
+                <TargetChangeDialog
+                    deps={deps}
+                    prevTab={prevTarget}
+                    newTab={currentTarget}
+                    actionMessageCreator={
+                        props.deps.detailsViewActionMessageCreator
+                    }
+                />
+                <section className="overview-text-summary-section">
+                    <OverviewHeading />
+                    <AssessmentReportSummary summary={summaryData} />
+                </section>
+                <section className={overviewHelpSection}>
+                    <OverviewHelpSection
+                        linkDataSource={linkDataSource}
+                        deps={deps}
+                    />
+                </section>
+            </div>
+        );
+    },
+);

@@ -24,7 +24,8 @@ export class SingleTargetDrawer implements Drawer {
     }
 
     public drawLayout(): void {
-        const injectedClassName = this.formatter.getDrawerConfiguration().injectedClassName;
+        const injectedClassName = this.formatter.getDrawerConfiguration()
+            .injectedClassName;
         if (this.target) {
             this.target.classList.add(injectedClassName);
         }
@@ -36,7 +37,8 @@ export class SingleTargetDrawer implements Drawer {
         if (this.target == null) {
             return;
         }
-        const injectedClassName = this.formatter.getDrawerConfiguration().injectedClassName;
+        const injectedClassName = this.formatter.getDrawerConfiguration()
+            .injectedClassName;
         this.target.classList.remove(injectedClassName);
     }
 
@@ -44,11 +46,16 @@ export class SingleTargetDrawer implements Drawer {
         return this.isEnabled;
     }
 
-    private getFirstElementTarget(document: Document, elementResults: HtmlElementAxeResults[]): HTMLElement {
+    private getFirstElementTarget(
+        document: Document,
+        elementResults: HtmlElementAxeResults[],
+    ): HTMLElement {
         if (!elementResults[0]) {
             return null;
         }
 
-        return document.querySelector(elementResults[0].target[elementResults[0].target.length - 1]) as HTMLElement;
+        return document.querySelector(
+            elementResults[0].target[elementResults[0].target.length - 1],
+        ) as HTMLElement;
     }
 }

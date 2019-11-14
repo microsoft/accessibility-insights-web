@@ -2,17 +2,29 @@
 // Licensed under the MIT License.
 import * as Axe from 'axe-core';
 
-import { IAxeConfiguration, ICheckConfiguration, IRuleConfiguration, RuleConfiguration } from './iruleresults';
+import {
+    IAxeConfiguration,
+    ICheckConfiguration,
+    IRuleConfiguration,
+    RuleConfiguration,
+} from './iruleresults';
 import { localeConfiguration } from './locale-configuration';
 
 export class AxeConfigurator {
-    public configureAxe(axe: typeof Axe, configuration: RuleConfiguration[]): void {
+    public configureAxe(
+        axe: typeof Axe,
+        configuration: RuleConfiguration[],
+    ): void {
         axe.configure({ branding: { brand: 'axe', application: 'msftAI' } });
-        axe.configure(this.createAxeConfigurationFromCustomRules(configuration) as any);
+        axe.configure(
+            this.createAxeConfigurationFromCustomRules(configuration) as any,
+        );
         axe.configure({ locale: localeConfiguration });
     }
 
-    private createAxeConfigurationFromCustomRules(ruleConfigs: RuleConfiguration[]): IAxeConfiguration {
+    private createAxeConfigurationFromCustomRules(
+        ruleConfigs: RuleConfiguration[],
+    ): IAxeConfiguration {
         let checks: ICheckConfiguration[] = [];
         const rules: IRuleConfiguration[] = [];
         ruleConfigs.forEach((ruleConfig: RuleConfiguration) => {

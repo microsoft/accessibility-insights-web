@@ -6,7 +6,10 @@ import { Mock } from 'typemoq';
 
 import { DropdownClickHandler } from '../../../../../common/dropdown-click-handler';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
-import { Header, HeaderProps } from '../../../../../DetailsView/components/header';
+import {
+    Header,
+    HeaderProps,
+} from '../../../../../DetailsView/components/header';
 
 describe('HeaderTest', () => {
     test('render: tabClosed is false', () => {

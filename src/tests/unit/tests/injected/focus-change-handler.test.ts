@@ -4,7 +4,10 @@ import { IMock, It, Mock, Times } from 'typemoq';
 
 import { TargetPageStoreData } from '../../../../injected/client-store-listener';
 import { FocusChangeHandler } from '../../../../injected/focus-change-handler';
-import { ScrollingController, ScrollingWindowMessage } from '../../../../injected/frameCommunicators/scrolling-controller';
+import {
+    ScrollingController,
+    ScrollingWindowMessage,
+} from '../../../../injected/frameCommunicators/scrolling-controller';
 import { TargetPageActionMessageCreator } from '../../../../injected/target-page-action-message-creator';
 
 describe('FocusChangeHandler', () => {
@@ -15,14 +18,19 @@ describe('FocusChangeHandler', () => {
     let sampleMessage: ScrollingWindowMessage;
 
     beforeEach(() => {
-        targetPageActionMessageCreatorMock = Mock.ofType<TargetPageActionMessageCreator>();
+        targetPageActionMessageCreatorMock = Mock.ofType<
+            TargetPageActionMessageCreator
+        >();
         scrollingControllerMock = Mock.ofType<ScrollingController>();
         sampleTarget = ['some', 'target'];
         sampleMessage = {
             focusedTarget: sampleTarget,
         };
 
-        testSubject = new FocusChangeHandler(targetPageActionMessageCreatorMock.object, scrollingControllerMock.object);
+        testSubject = new FocusChangeHandler(
+            targetPageActionMessageCreatorMock.object,
+            scrollingControllerMock.object,
+        );
     });
 
     test('onStoreChange: new target is null', () => {
@@ -32,8 +40,12 @@ describe('FocusChangeHandler', () => {
             },
         } as TargetPageStoreData;
 
-        targetPageActionMessageCreatorMock.setup(acm => acm.scrollRequested()).verifiable(Times.never());
-        scrollingControllerMock.setup(scm => scm.processRequest(It.isAny())).verifiable(Times.never());
+        targetPageActionMessageCreatorMock
+            .setup(acm => acm.scrollRequested())
+            .verifiable(Times.never());
+        scrollingControllerMock
+            .setup(scm => scm.processRequest(It.isAny()))
+            .verifiable(Times.never());
 
         testSubject.handleFocusChangeWithStoreData(storeData);
 
@@ -48,8 +60,12 @@ describe('FocusChangeHandler', () => {
             },
         } as TargetPageStoreData;
 
-        targetPageActionMessageCreatorMock.setup(acm => acm.scrollRequested()).verifiable(Times.once());
-        scrollingControllerMock.setup(scm => scm.processRequest(sampleMessage)).verifiable(Times.once());
+        targetPageActionMessageCreatorMock
+            .setup(acm => acm.scrollRequested())
+            .verifiable(Times.once());
+        scrollingControllerMock
+            .setup(scm => scm.processRequest(sampleMessage))
+            .verifiable(Times.once());
 
         testSubject.handleFocusChangeWithStoreData(storeData);
 
@@ -64,8 +80,12 @@ describe('FocusChangeHandler', () => {
             },
         } as TargetPageStoreData;
 
-        targetPageActionMessageCreatorMock.setup(acm => acm.scrollRequested()).verifiable(Times.once());
-        scrollingControllerMock.setup(scm => scm.processRequest(sampleMessage)).verifiable(Times.once());
+        targetPageActionMessageCreatorMock
+            .setup(acm => acm.scrollRequested())
+            .verifiable(Times.once());
+        scrollingControllerMock
+            .setup(scm => scm.processRequest(sampleMessage))
+            .verifiable(Times.once());
 
         testSubject.handleFocusChangeWithStoreData(storeData);
 
@@ -75,8 +95,12 @@ describe('FocusChangeHandler', () => {
         targetPageActionMessageCreatorMock.reset();
         scrollingControllerMock.reset();
 
-        targetPageActionMessageCreatorMock.setup(acm => acm.scrollRequested()).verifiable(Times.never());
-        scrollingControllerMock.setup(scm => scm.processRequest(It.isAny())).verifiable(Times.never());
+        targetPageActionMessageCreatorMock
+            .setup(acm => acm.scrollRequested())
+            .verifiable(Times.never());
+        scrollingControllerMock
+            .setup(scm => scm.processRequest(It.isAny()))
+            .verifiable(Times.never());
 
         testSubject.handleFocusChangeWithStoreData(storeData);
 

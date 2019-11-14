@@ -6,7 +6,10 @@ import * as React from 'react';
 
 import { DisplayableVisualizationTypeData } from '../../../../../common/configs/visualization-configuration-factory';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { TargetPageChangedView, TargetPageChangedViewProps } from '../../../../../DetailsView/components/target-page-changed-view';
+import {
+    TargetPageChangedView,
+    TargetPageChangedViewProps,
+} from '../../../../../DetailsView/components/target-page-changed-view';
 
 describe('TargetPageChangedView', () => {
     it('renders without optional subtitle', () => {
@@ -18,10 +21,16 @@ describe('TargetPageChangedView', () => {
     });
 
     it('renders with optional subtitle', () => {
-        testRenderWithOptionalSubtitle(<span>test subtitle content</span>, false);
+        testRenderWithOptionalSubtitle(
+            <span>test subtitle content</span>,
+            false,
+        );
     });
 
-    function testRenderWithOptionalSubtitle(subtitle: JSX.Element, featureFlagEnabled: boolean): void {
+    function testRenderWithOptionalSubtitle(
+        subtitle: JSX.Element,
+        featureFlagEnabled: boolean,
+    ): void {
         const visualizationType = VisualizationType.Landmarks;
         const clickHandlerStub: () => void = () => {};
         const displayableData = {

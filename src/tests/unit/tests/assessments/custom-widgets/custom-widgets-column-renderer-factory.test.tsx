@@ -47,7 +47,9 @@ describe('CustomWidgetsColumnRendererFactory', () => {
     });
 
     it('getWithoutLink should render text', () => {
-        const result = CustomWidgetsColumnRendererFactory.getWithoutLink(configs);
+        const result = CustomWidgetsColumnRendererFactory.getWithoutLink(
+            configs,
+        );
 
         checkPropertyBagAndTag(result, 'span');
     });

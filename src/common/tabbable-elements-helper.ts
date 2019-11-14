@@ -10,11 +10,18 @@ export class TabbableElementsHelper {
     }
 
     private isVisible = (element: HTMLElement): boolean => {
-        const style: CSSStyleDeclaration = this.htmlElementUtils.getComputedStyle(element);
+        const style: CSSStyleDeclaration = this.htmlElementUtils.getComputedStyle(
+            element,
+        );
         const offsetHeight = this.htmlElementUtils.getOffsetHeight(element);
         const offsetWidth = this.htmlElementUtils.getOffsetWidth(element);
         const clientRects = this.htmlElementUtils.getClientRects(element);
-        const result = style.visibility !== 'hidden' && style.display !== 'none' && offsetHeight && offsetWidth && clientRects.length > 0;
+        const result =
+            style.visibility !== 'hidden' &&
+            style.display !== 'none' &&
+            offsetHeight &&
+            offsetWidth &&
+            clientRects.length > 0;
         return result;
     };
 
@@ -26,7 +33,9 @@ export class TabbableElementsHelper {
         const parent = element.parentElement;
 
         if (this.htmlElementUtils.getTagName(parent) === 'map') {
-            return this.getMappedImage(parent as HTMLMapElement) ? (parent as HTMLMapElement) : null;
+            return this.getMappedImage(parent as HTMLMapElement)
+                ? (parent as HTMLMapElement)
+                : null;
         }
 
         return this.getAncestorMap(parent);
@@ -39,7 +48,11 @@ export class TabbableElementsHelper {
             return null;
         }
 
-        const image = this.htmlElementUtils.querySelector(`img[usemap='#${mapName}']`);
-        return image && this.isVisible(image as HTMLElement) ? (image as HTMLImageElement) : null;
+        const image = this.htmlElementUtils.querySelector(
+            `img[usemap='#${mapName}']`,
+        );
+        return image && this.isVisible(image as HTMLElement)
+            ? (image as HTMLImageElement)
+            : null;
     }
 }

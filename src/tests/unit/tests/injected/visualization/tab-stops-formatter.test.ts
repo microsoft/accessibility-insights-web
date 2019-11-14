@@ -8,7 +8,10 @@ describe('TabStopsFormatterTests', () => {
     let testSubject: TabStopsFormatter;
     let sandbox: HTMLDivElement;
 
-    function createTestDrawerConfig(showSolidFocusLine = true, showTabIndexedLabel = true): SVGDrawerConfiguration {
+    function createTestDrawerConfig(
+        showSolidFocusLine = true,
+        showTabIndexedLabel = true,
+    ): SVGDrawerConfiguration {
         return {
             circle: {
                 stroke: '#777777',
@@ -61,7 +64,9 @@ describe('TabStopsFormatterTests', () => {
     });
 
     test('getDrawerConfiguration: verify styling For element with large tabindex', () => {
-        const element = createElementFromHtml("<div id = 'id1' tabindex='123456789'></div>");
+        const element = createElementFromHtml(
+            "<div id = 'id1' tabindex='123456789'></div>",
+        );
         const config = testSubject.getDrawerConfiguration(element, null);
         const expectedConfig = createTestDrawerConfig();
         expectedConfig.circle.ellipseRx = '39.1';

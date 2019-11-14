@@ -25,7 +25,9 @@ describe('InjectorControllerTest', () => {
     });
 
     test('initialize: inject occurs', async () => {
-        const visualizationData = new VisualizationStoreDataBuilder().with('injectingInProgress', true).build();
+        const visualizationData = new VisualizationStoreDataBuilder()
+            .with('injectingInProgress', true)
+            .build();
 
         validator
             .setupTabStore({ id: tabId })
@@ -74,7 +76,9 @@ describe('InjectorControllerTest', () => {
     });
 
     test("inject doesn't occur when inspect mode changed to off", async () => {
-        const visualizationData = new VisualizationStoreDataBuilder().with('injectingInProgress', false).build();
+        const visualizationData = new VisualizationStoreDataBuilder()
+            .with('injectingInProgress', false)
+            .build();
 
         validator
             .setupTabStore({ id: tabId })
@@ -128,8 +132,14 @@ describe('InjectorControllerTest', () => {
 });
 
 class InjectorControllerValidator {
-    private mockInjector = Mock.ofType(ContentScriptInjector, MockBehavior.Strict);
-    private mockVisualizationStore = Mock.ofType(VisualizationStore, MockBehavior.Strict);
+    private mockInjector = Mock.ofType(
+        ContentScriptInjector,
+        MockBehavior.Strict,
+    );
+    private mockVisualizationStore = Mock.ofType(
+        VisualizationStore,
+        MockBehavior.Strict,
+    );
     private mockInterpreter = Mock.ofType(Interpreter, MockBehavior.Strict);
     private mockInspectStore = Mock.ofType(InspectStore, MockBehavior.Strict);
     private mockTabStore = Mock.ofType(TabStore, MockBehavior.Strict);
@@ -186,17 +196,39 @@ class InjectorControllerValidator {
         return this;
     }
 
-    public setupVerifyInjectionStartedActionCalled(tabId: number, numTimes: number = 1): InjectorControllerValidator {
+    public setupVerifyInjectionStartedActionCalled(
+        tabId: number,
+        numTimes: number = 1,
+    ): InjectorControllerValidator {
         this.mockInterpreter
-            .setup(x => x.interpret(It.isObjectWith({ messageType: Messages.Visualizations.State.InjectionStarted, tabId: tabId })))
+            .setup(x =>
+                x.interpret(
+                    It.isObjectWith({
+                        messageType:
+                            Messages.Visualizations.State.InjectionStarted,
+                        tabId: tabId,
+                    }),
+                ),
+            )
             .verifiable(Times.exactly(numTimes));
 
         return this;
     }
 
-    public setupVerifyInjectionCompletedActionCalled(tabId: number, numTimes: number = 1): InjectorControllerValidator {
+    public setupVerifyInjectionCompletedActionCalled(
+        tabId: number,
+        numTimes: number = 1,
+    ): InjectorControllerValidator {
         this.mockInterpreter
-            .setup(x => x.interpret(It.isObjectWith({ messageType: Messages.Visualizations.State.InjectionCompleted, tabId: tabId })))
+            .setup(x =>
+                x.interpret(
+                    It.isObjectWith({
+                        messageType:
+                            Messages.Visualizations.State.InjectionCompleted,
+                        tabId: tabId,
+                    }),
+                ),
+            )
             .verifiable(Times.exactly(numTimes));
 
         return this;
@@ -228,7 +260,9 @@ class InjectorControllerValidator {
         return this;
     }
 
-    public setupVizStoreGetState(returnState: VisualizationStoreData): InjectorControllerValidator {
+    public setupVizStoreGetState(
+        returnState: VisualizationStoreData,
+    ): InjectorControllerValidator {
         this.mockVisualizationStore
             .setup(mockVisualizationStore => mockVisualizationStore.getState())
             .returns(() => {
@@ -239,7 +273,10 @@ class InjectorControllerValidator {
         return this;
     }
 
-    public setupInjectScriptsCall(calledWithTabId: number, numTimes: number): InjectorControllerValidator {
+    public setupInjectScriptsCall(
+        calledWithTabId: number,
+        numTimes: number,
+    ): InjectorControllerValidator {
         this.mockInjector
             .setup(injector => injector.injectScripts(calledWithTabId))
             .returns(() => this.injectedScriptsDeferred.promise as any)

@@ -9,7 +9,10 @@ import { StoreNames } from 'common/stores/store-names';
 import { LaunchPanelStoreData } from 'common/types/store-data/launch-panel-store-data';
 import { LaunchPanelType } from 'popup/components/popup-view';
 import { IMock, It, Mock } from 'typemoq';
-import { createStoreWithNullParams, StoreTester } from '../../../../common/store-tester';
+import {
+    createStoreWithNullParams,
+    StoreTester,
+} from '../../../../common/store-tester';
 
 describe('LaunchPanelStateStoreTest', () => {
     let userDataStub: LocalStorageData;
@@ -27,7 +30,9 @@ describe('LaunchPanelStateStoreTest', () => {
 
     test('getId', () => {
         const testObject = createStoreWithNullParams(LaunchPanelStore);
-        expect(testObject.getId()).toEqual(StoreNames[StoreNames.LaunchPanelStateStore]);
+        expect(testObject.getId()).toEqual(
+            StoreNames[StoreNames.LaunchPanelStateStore],
+        );
     });
 
     test('on getCurrentState', () => {
@@ -35,7 +40,9 @@ describe('LaunchPanelStateStoreTest', () => {
 
         const expectedState = getDefaultState();
 
-        createStoreForLaunchPanelStateActions('getCurrentState').testListenerToBeCalledOnce(initialState, expectedState);
+        createStoreForLaunchPanelStateActions(
+            'getCurrentState',
+        ).testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     test('initialize, user data is not null', () => {
@@ -43,7 +50,11 @@ describe('LaunchPanelStateStoreTest', () => {
             launchPanelType: userDataStub.launchPanelSetting,
         };
 
-        const testObject = new LaunchPanelStore(new LaunchPanelStateActions(), null, userDataStub);
+        const testObject = new LaunchPanelStore(
+            new LaunchPanelStateActions(),
+            null,
+            userDataStub,
+        );
         testObject.initialize();
         expect(testObject.getState()).toEqual(expectedState);
     });
@@ -60,7 +71,11 @@ describe('LaunchPanelStateStoreTest', () => {
             [LocalStorageDataKeys.launchPanelSetting]: payload,
         };
 
-        storageAdapterMock.setup(adapter => adapter.setUserData(It.isValue(expectedSetUserData))).returns(() => Promise.resolve());
+        storageAdapterMock
+            .setup(adapter =>
+                adapter.setUserData(It.isValue(expectedSetUserData)),
+            )
+            .returns(() => Promise.resolve());
 
         createStoreForLaunchPanelStateActions('setLaunchPanelType')
             .withActionParam(payload)
@@ -72,7 +87,12 @@ describe('LaunchPanelStateStoreTest', () => {
     function createStoreForLaunchPanelStateActions(
         actionName: keyof LaunchPanelStateActions,
     ): StoreTester<LaunchPanelStoreData, LaunchPanelStateActions> {
-        const factory = (actions: LaunchPanelStateActions) => new LaunchPanelStore(actions, storageAdapterMock.object, userDataStub);
+        const factory = (actions: LaunchPanelStateActions) =>
+            new LaunchPanelStore(
+                actions,
+                storageAdapterMock.object,
+                userDataStub,
+            );
 
         return new StoreTester(LaunchPanelStateActions, actionName, factory);
     }

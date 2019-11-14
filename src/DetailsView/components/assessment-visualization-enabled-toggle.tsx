@@ -5,23 +5,39 @@ import { GeneratedAssessmentInstance } from '../../common/types/store-data/asses
 import { BaseVisualHelperToggle } from './base-visual-helper-toggle';
 
 export class AssessmentVisualizationEnabledToggle extends BaseVisualHelperToggle {
-    protected isDisabled(filteredInstances: GeneratedAssessmentInstance<{}, {}>[]): boolean {
+    protected isDisabled(
+        filteredInstances: GeneratedAssessmentInstance<{}, {}>[],
+    ): boolean {
         return _.isEmpty(filteredInstances);
     }
 
-    protected isChecked(instances: GeneratedAssessmentInstance<{}, {}>[]): boolean {
+    protected isChecked(
+        instances: GeneratedAssessmentInstance<{}, {}>[],
+    ): boolean {
         return this.isAnyInstanceVisible(instances);
     }
 
     protected onClick = (event): void => {
         this.props.actionMessageCreator.changeAssessmentVisualizationStateForAll(
-            !this.isAnyInstanceVisible(this.filterInstancesByTestStep(this.props.assessmentNavState, this.props.instancesMap)),
+            !this.isAnyInstanceVisible(
+                this.filterInstancesByTestStep(
+                    this.props.assessmentNavState,
+                    this.props.instancesMap,
+                ),
+            ),
             this.props.assessmentNavState.selectedTestType,
             this.props.assessmentNavState.selectedTestStep,
         );
     };
 
-    private isAnyInstanceVisible(instances: GeneratedAssessmentInstance<{}, {}>[]): boolean {
-        return instances.some(instance => instance.testStepResults[this.props.assessmentNavState.selectedTestStep].isVisualizationEnabled);
+    private isAnyInstanceVisible(
+        instances: GeneratedAssessmentInstance<{}, {}>[],
+    ): boolean {
+        return instances.some(
+            instance =>
+                instance.testStepResults[
+                    this.props.assessmentNavState.selectedTestStep
+                ].isVisualizationEnabled,
+        );
     }
 }

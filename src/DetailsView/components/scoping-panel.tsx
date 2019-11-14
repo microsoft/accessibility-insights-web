@@ -35,8 +35,12 @@ export class ScopingPanel extends React.Component<ScopingPanelProps> {
                     featureFlagData={this.props.featureFlagData}
                     actionMessageCreator={this.props.actionMessageCreator}
                     scopingSelectorsData={this.props.scopingSelectorsData}
-                    scopingActionMessageCreator={this.props.scopingActionMessageCreator}
-                    inspectActionMessageCreator={this.props.inspectActionMessageCreator}
+                    scopingActionMessageCreator={
+                        this.props.scopingActionMessageCreator
+                    }
+                    inspectActionMessageCreator={
+                        this.props.inspectActionMessageCreator
+                    }
                 />
                 <DefaultButton
                     className="closing-scoping-panel"

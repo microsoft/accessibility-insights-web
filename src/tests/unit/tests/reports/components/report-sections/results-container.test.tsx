@@ -3,13 +3,18 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { ResultsContainer, ResultsContainerProps } from 'reports/components/report-sections/results-container';
+import {
+    ResultsContainer,
+    ResultsContainerProps,
+} from 'reports/components/report-sections/results-container';
 import { Mock } from 'typemoq';
 
 describe('ResultsContainer', () => {
     it('renders', () => {
         const getScriptMock = Mock.ofInstance(() => '');
-        getScriptMock.setup(getScript => getScript()).returns(() => 'test script');
+        getScriptMock
+            .setup(getScript => getScript())
+            .returns(() => 'test script');
 
         const props: ResultsContainerProps = {
             getCollapsibleScript: getScriptMock.object,
@@ -22,7 +27,9 @@ describe('ResultsContainer', () => {
             </div>,
         ];
 
-        const wrapped = shallow(<ResultsContainer {...props}>{children}</ResultsContainer>);
+        const wrapped = shallow(
+            <ResultsContainer {...props}>{children}</ResultsContainer>,
+        );
 
         expect(wrapped.getElement()).toMatchSnapshot();
     });

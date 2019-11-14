@@ -4,7 +4,10 @@ import { ElementHandle } from 'puppeteer';
 
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
-import { TabStopShadowDomSelectors, TargetPageInjectedComponentSelectors } from '../../common/element-identifiers/target-page-selectors';
+import {
+    TabStopShadowDomSelectors,
+    TargetPageInjectedComponentSelectors,
+} from '../../common/element-identifiers/target-page-selectors';
 import { PopupPage } from '../../common/page-controllers/popup-page';
 import { TargetPage } from '../../common/page-controllers/target-page';
 
@@ -15,7 +18,9 @@ describe('tabstop tests', () => {
 
     beforeEach(async () => {
         browser = await launchBrowser({ suppressFirstTimeDialog: true });
-        targetPage = await browser.newTargetPage({ testResourcePath: 'native-widgets/input-type-radio.html' });
+        targetPage = await browser.newTargetPage({
+            testResourcePath: 'native-widgets/input-type-radio.html',
+        });
     });
 
     afterEach(async () => {
@@ -36,14 +41,20 @@ describe('tabstop tests', () => {
         await targetPage.keyPress('Tab');
 
         const shadowRoot = await targetPage.getShadowRoot();
-        await targetPage.waitForDescendentSelector(shadowRoot, TargetPageInjectedComponentSelectors.tabStopVisulizationStart, {
-            visible: true,
-        });
+        await targetPage.waitForDescendentSelector(
+            shadowRoot,
+            TargetPageInjectedComponentSelectors.tabStopVisulizationStart,
+            {
+                visible: true,
+            },
+        );
 
         await validateTabStopVisualizationOnTargetPage(shadowRoot);
     });
 
-    async function validateTabStopVisualizationOnTargetPage(shadowRoot: ElementHandle<Element>): Promise<void> {
+    async function validateTabStopVisualizationOnTargetPage(
+        shadowRoot: ElementHandle<Element>,
+    ): Promise<void> {
         const svgs = await shadowRoot.$$(TabStopShadowDomSelectors.svg);
         const ellipses = await shadowRoot.$$(TabStopShadowDomSelectors.ellipse);
         const lines = await shadowRoot.$$(TabStopShadowDomSelectors.lines);

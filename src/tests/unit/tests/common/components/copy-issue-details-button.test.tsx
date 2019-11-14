@@ -9,7 +9,10 @@ import { IssueDetailsTextGenerator } from 'background/issue-details-text-generat
 import { Toast } from 'common/components/toast';
 import { NavigatorUtils } from 'common/navigator-utils';
 import { WindowUtils } from 'common/window-utils';
-import { CopyIssueDetailsButton, CopyIssueDetailsButtonProps } from '../../../../../common/components/copy-issue-details-button';
+import {
+    CopyIssueDetailsButton,
+    CopyIssueDetailsButtonProps,
+} from '../../../../../common/components/copy-issue-details-button';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 
 describe('CopyIssueDetailsButtonTest', () => {
@@ -42,7 +45,9 @@ describe('CopyIssueDetailsButtonTest', () => {
 
     test('render after click shows toast', async () => {
         navigatorUtilsMock
-            .setup(navigatorUtils => navigatorUtils.copyToClipboard(issueDetailsText))
+            .setup(navigatorUtils =>
+                navigatorUtils.copyToClipboard(issueDetailsText),
+            )
             .returns(() => {
                 return Promise.resolve();
             })

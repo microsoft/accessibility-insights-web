@@ -29,45 +29,86 @@ export interface ElementHighlightProps {
     getBoundingRect: GetBoundingRect;
 }
 
-export const ElementHighlight = NamedFC<ElementHighlightProps>('ElementHighlight', props => {
-    const { deps, drawerConfig, featureFlagStoreData, dialogRender, element, elementResult, bodyStyle, docStyle, getBoundingRect } = props;
-    const { clientUtils, drawerUtils } = deps;
+export const ElementHighlight = NamedFC<ElementHighlightProps>(
+    'ElementHighlight',
+    props => {
+        const {
+            deps,
+            drawerConfig,
+            featureFlagStoreData,
+            dialogRender,
+            element,
+            elementResult,
+            bodyStyle,
+            docStyle,
+            getBoundingRect,
+        } = props;
+        const { clientUtils, drawerUtils } = deps;
 
-    if (!drawerConfig.showVisualization) {
-        return null;
-    }
+        if (!drawerConfig.showVisualization) {
+            return null;
+        }
 
-    const currentDom = drawerUtils.getDocumentElement();
-    const elementBoundingClientRect = getBoundingRect(element);
+        const currentDom = drawerUtils.getDocumentElement();
+        const elementBoundingClientRect = getBoundingRect(element);
 
-    if (drawerUtils.isOutsideOfDocument(elementBoundingClientRect, currentDom, bodyStyle, docStyle)) {
-        return null;
-    }
+        if (
+            drawerUtils.isOutsideOfDocument(
+                elementBoundingClientRect,
+                currentDom,
+                bodyStyle,
+                docStyle,
+            )
+        ) {
+            return null;
+        }
 
-    const onClickFailureBoxHandler = () => {
-        dialogRender(elementResult, featureFlagStoreData);
-    };
+        const onClickFailureBoxHandler = () => {
+            dialogRender(elementResult, featureFlagStoreData);
+        };
 
-    const offset = clientUtils.getOffset(element);
-    const styles: CSSProperties = {
-        outlineStyle: drawerConfig.outlineStyle,
-        outlineColor: drawerConfig.borderColor,
-        top: drawerUtils.getContainerTopOffset(offset),
-        left: drawerUtils.getContainerLeftOffset(offset),
-        minWidth: drawerUtils.getContainerWidth(offset, currentDom, elementBoundingClientRect.width, bodyStyle, docStyle),
-        minHeight: drawerUtils.getContainerHeight(offset, currentDom, elementBoundingClientRect.height, bodyStyle, docStyle),
-    };
+        const offset = clientUtils.getOffset(element);
+        const styles: CSSProperties = {
+            outlineStyle: drawerConfig.outlineStyle,
+            outlineColor: drawerConfig.borderColor,
+            top: drawerUtils.getContainerTopOffset(offset),
+            left: drawerUtils.getContainerLeftOffset(offset),
+            minWidth: drawerUtils.getContainerWidth(
+                offset,
+                currentDom,
+                elementBoundingClientRect.width,
+                bodyStyle,
+                docStyle,
+            ),
+            minHeight: drawerUtils.getContainerHeight(
+                offset,
+                currentDom,
+                elementBoundingClientRect.height,
+                bodyStyle,
+                docStyle,
+            ),
+        };
 
-    return (
-        <div title={drawerConfig.toolTip} className={'insights-highlight-box'} style={styles}>
-            <HighlightBox deps={deps} drawerConfig={drawerConfig} boxConfig={drawerConfig.textBoxConfig} className={'text-label'} />
-            <HighlightBox
-                deps={deps}
-                drawerConfig={drawerConfig}
-                boxConfig={drawerConfig.failureBoxConfig}
-                className={'failure-label'}
-                onClickHandler={onClickFailureBoxHandler}
-            />
-        </div>
-    );
-});
+        return (
+            <div
+                title={drawerConfig.toolTip}
+                className={'insights-highlight-box'}
+                style={styles}
+            >
+                <HighlightBox
+                    deps={deps}
+                    drawerConfig={drawerConfig}
+                    boxConfig={drawerConfig.textBoxConfig}
+                    className={'text-label'}
+                />
+                <HighlightBox
+                    deps={deps}
+                    drawerConfig={drawerConfig}
+                    boxConfig={drawerConfig.failureBoxConfig}
+                    className={'failure-label'}
+                    onClickHandler={onClickFailureBoxHandler}
+                />
+            </div>
+        );
+    },
+);

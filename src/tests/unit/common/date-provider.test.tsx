@@ -4,8 +4,11 @@ import { DateProvider } from '../../../common/date-provider';
 
 describe('DateProviderTest', () => {
     test('getDateFromTimestamp', () => {
-        const timestamp = 'Thu May 30 2019 16:57:54 GMT-0700 (Pacific Daylight Time)';
-        expect(DateProvider.getDateFromTimestamp(timestamp)).toEqual(new Date(timestamp));
+        const timestamp =
+            'Thu May 30 2019 16:57:54 GMT-0700 (Pacific Daylight Time)';
+        expect(DateProvider.getDateFromTimestamp(timestamp)).toEqual(
+            new Date(timestamp),
+        );
     });
 
     test('getCurrentDate', () => {
@@ -25,6 +28,8 @@ describe('DateProviderTest', () => {
     ];
     test.each(differentTimeZonesDates)('getUTCStringFromDate', timestamp => {
         const date = new Date(timestamp);
-        expect(DateProvider.getUTCStringFromDate(date)).toBe('2019-05-30 11:57 PM UTC');
+        expect(DateProvider.getUTCStringFromDate(date)).toBe(
+            '2019-05-30 11:57 PM UTC',
+        );
     });
 });

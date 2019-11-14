@@ -19,7 +19,9 @@ describe('Hamburger menu', () => {
             browser = await launchBrowser({ suppressFirstTimeDialog: true });
             targetPage = await browser.newTargetPage();
             popupPage = await browser.newPopupPage(targetPage);
-            await popupPage.clickSelector(popupPageElementIdentifiers.hamburgerMenuButton);
+            await popupPage.clickSelector(
+                popupPageElementIdentifiers.hamburgerMenuButton,
+            );
         });
 
         afterAll(async () => {
@@ -30,12 +32,18 @@ describe('Hamburger menu', () => {
         });
 
         it('should have content matching snapshot', async () => {
-            const hamburgerMenu = await formatPageElementForSnapshot(popupPage, popupPageElementIdentifiers.hamburgerMenu);
+            const hamburgerMenu = await formatPageElementForSnapshot(
+                popupPage,
+                popupPageElementIdentifiers.hamburgerMenu,
+            );
             expect(hamburgerMenu).toMatchSnapshot();
         });
 
         it('should pass accessibility validation', async () => {
-            const results = await scanForAccessibilityIssues(popupPage, popupPageElementIdentifiers.hamburgerMenu);
+            const results = await scanForAccessibilityIssues(
+                popupPage,
+                popupPageElementIdentifiers.hamburgerMenu,
+            );
             expect(results).toHaveLength(0);
         });
     });
@@ -48,14 +56,20 @@ describe('Hamburger menu', () => {
         beforeAll(async () => {
             browser = await launchBrowser({ suppressFirstTimeDialog: true });
             targetPage = await browser.newTargetPage();
-            const detailsViewPage = await browser.newDetailsViewPage(targetPage);
+            const detailsViewPage = await browser.newDetailsViewPage(
+                targetPage,
+            );
 
             await detailsViewPage.enableHighContrast();
 
             popupPage = await browser.newPopupPage(targetPage);
-            await popupPage.waitForSelector(CommonSelectors.highContrastThemeSelector);
+            await popupPage.waitForSelector(
+                CommonSelectors.highContrastThemeSelector,
+            );
 
-            await popupPage.clickSelector(popupPageElementIdentifiers.hamburgerMenuButton);
+            await popupPage.clickSelector(
+                popupPageElementIdentifiers.hamburgerMenuButton,
+            );
         });
 
         afterAll(async () => {
@@ -66,7 +80,10 @@ describe('Hamburger menu', () => {
         });
 
         it('should pass accessibility validation', async () => {
-            const results = await scanForAccessibilityIssues(popupPage, popupPageElementIdentifiers.hamburgerMenu);
+            const results = await scanForAccessibilityIssues(
+                popupPage,
+                popupPageElementIdentifiers.hamburgerMenu,
+            );
             expect(results).toHaveLength(0);
         });
     });

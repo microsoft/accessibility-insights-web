@@ -6,14 +6,21 @@ import { ChromeEventMock } from './chrome-event-mock';
 import { PortDisconnectStub } from '../stubs/chrome-adapter-stub';
 
 export class PortOnDisconnectMock extends ChromeEventMock {
-    private portOnDisconnectMock = Mock.ofType(PortDisconnectStub, MockBehavior.Strict);
+    private portOnDisconnectMock = Mock.ofType(
+        PortDisconnectStub,
+        MockBehavior.Strict,
+    );
 
     constructor() {
         super(Mock.ofType(PortDisconnectStub, MockBehavior.Strict));
         this.portOnDisconnectMock = this.eventMock as IMock<PortDisconnectStub>;
     }
 
-    public setupAddListenerMock(callback?: (onAddListener: (msg: any, port: chrome.runtime.Port) => void) => void): ChromeEventMock {
+    public setupAddListenerMock(
+        callback?: (
+            onAddListener: (msg: any, port: chrome.runtime.Port) => void,
+        ) => void,
+    ): ChromeEventMock {
         return super.setupAddListenerMock(callback) as PortOnDisconnectMock;
     }
 

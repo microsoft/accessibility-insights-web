@@ -17,12 +17,20 @@ describe('ContentScriptInjector', () => {
         browserAdapterMock = Mock.ofType<BrowserAdapter>();
         promiseFactoryMock = Mock.ofType<PromiseFactory>();
 
-        testSubject = new ContentScriptInjector(browserAdapterMock.object, promiseFactoryMock.object);
+        testSubject = new ContentScriptInjector(
+            browserAdapterMock.object,
+            promiseFactoryMock.object,
+        );
     });
 
     it('uses a timeout promise with the expected timeout constant', async () => {
         promiseFactoryMock
-            .setup(factory => factory.timeout(It.isAny(), ContentScriptInjector.timeoutInMilliSec))
+            .setup(factory =>
+                factory.timeout(
+                    It.isAny(),
+                    ContentScriptInjector.timeoutInMilliSec,
+                ),
+            )
             .returns(() => Promise.resolve({}))
             .verifiable(Times.once());
 
@@ -32,14 +40,20 @@ describe('ContentScriptInjector', () => {
     });
 
     it('rejects if a timeout occurs', async () => {
-        promiseFactoryMock.setup(factory => factory.timeout(It.isAny(), It.isAny())).returns(() => Promise.reject('artificial timeout'));
+        promiseFactoryMock
+            .setup(factory => factory.timeout(It.isAny(), It.isAny()))
+            .returns(() => Promise.reject('artificial timeout'));
 
-        await expect(testSubject.injectScripts(testTabId)).rejects.toBe('artificial timeout');
+        await expect(testSubject.injectScripts(testTabId)).rejects.toBe(
+            'artificial timeout',
+        );
     });
 
     describe('when no timeout occurs', () => {
         beforeEach(() => {
-            promiseFactoryMock.setup(factory => factory.timeout(It.isAny(), It.isAny())).returns(originalPromise => originalPromise);
+            promiseFactoryMock
+                .setup(factory => factory.timeout(It.isAny(), It.isAny()))
+                .returns(originalPromise => originalPromise);
         });
 
         it('injects each CSS file once with the expected parameters', async () => {
@@ -47,7 +61,11 @@ describe('ContentScriptInjector', () => {
 
             ContentScriptInjector.cssFiles.forEach(cssFile => {
                 const expectedDetails = { allFrames: true, file: cssFile };
-                browserAdapterMock.setup(adapter => adapter.insertCSSInTab(testTabId, expectedDetails)).returns(() => Promise.resolve());
+                browserAdapterMock
+                    .setup(adapter =>
+                        adapter.insertCSSInTab(testTabId, expectedDetails),
+                    )
+                    .returns(() => Promise.resolve());
             });
 
             await testSubject.injectScripts(testTabId);
@@ -59,9 +77,15 @@ describe('ContentScriptInjector', () => {
             setupInsertCSSToSucceedImmediately();
 
             ContentScriptInjector.jsFiles.forEach(jsFile => {
-                const expectedDetails: ExtensionTypes.InjectDetails = { allFrames: true, file: jsFile, runAt: 'document_start' };
+                const expectedDetails: ExtensionTypes.InjectDetails = {
+                    allFrames: true,
+                    file: jsFile,
+                    runAt: 'document_start',
+                };
                 browserAdapterMock
-                    .setup(adapter => adapter.executeScriptInTab(testTabId, expectedDetails))
+                    .setup(adapter =>
+                        adapter.executeScriptInTab(testTabId, expectedDetails),
+                    )
                     .returns(() => Promise.resolve([]));
             });
 
@@ -78,7 +102,14 @@ describe('ContentScriptInjector', () => {
             // simulate JS injection taking a while,
             // only completing asynchronously when we explicitly invoke the resolve function from the returned promise
             browserAdapterMock
-                .setup(adapter => adapter.executeScriptInTab(It.isAny(), It.isObjectWith({ file: ContentScriptInjector.jsFiles[0] })))
+                .setup(adapter =>
+                    adapter.executeScriptInTab(
+                        It.isAny(),
+                        It.isObjectWith({
+                            file: ContentScriptInjector.jsFiles[0],
+                        }),
+                    ),
+                )
                 .returns(
                     () =>
                         new Promise(resolve => {
@@ -87,9 +118,11 @@ describe('ContentScriptInjector', () => {
                 );
 
             let returnedPromiseCompleted = false;
-            const returnedPromise = testSubject.injectScripts(testTabId).then(() => {
-                returnedPromiseCompleted = true;
-            });
+            const returnedPromise = testSubject
+                .injectScripts(testTabId)
+                .then(() => {
+                    returnedPromiseCompleted = true;
+                });
 
             expect(returnedPromiseCompleted).toBe(false);
 
@@ -110,11 +143,19 @@ describe('ContentScriptInjector', () => {
         });
 
         function setupInsertCSSToSucceedImmediately(): void {
-            browserAdapterMock.setup(adapter => adapter.insertCSSInTab(It.isAny(), It.isAny())).returns(() => Promise.resolve());
+            browserAdapterMock
+                .setup(adapter =>
+                    adapter.insertCSSInTab(It.isAny(), It.isAny()),
+                )
+                .returns(() => Promise.resolve());
         }
 
         function setupExecuteScriptToSucceedImmediately(): void {
-            browserAdapterMock.setup(adapter => adapter.executeScriptInTab(It.isAny(), It.isAny())).returns(() => Promise.resolve([]));
+            browserAdapterMock
+                .setup(adapter =>
+                    adapter.executeScriptInTab(It.isAny(), It.isAny()),
+                )
+                .returns(() => Promise.resolve([]));
         }
     });
 });

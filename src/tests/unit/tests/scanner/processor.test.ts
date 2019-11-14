@@ -1,6 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AxeNodeResult, AxeRule, FormattedCheckResult } from '../../../../scanner/iruleresults';
+import {
+    AxeNodeResult,
+    AxeRule,
+    FormattedCheckResult,
+} from '../../../../scanner/iruleresults';
 import { Processor } from '../../../../scanner/processor';
 import { DictionaryStringTo } from '../../../../types/common-types';
 
@@ -37,7 +41,11 @@ describe('getDefaultAxeRules', () => {
 
     it('suppressChecksByMessages: removes only suppressed checks.', () => {
         const initialRuleResult: AxeNodeResult = {
-            any: [suppressedChecks.requiredChildrenListbox, suppressedChecks.requiredChildrenTextbox, nonSuppressedCheck],
+            any: [
+                suppressedChecks.requiredChildrenListbox,
+                suppressedChecks.requiredChildrenTextbox,
+                nonSuppressedCheck,
+            ],
             none: [],
             all: [],
             html: null,
@@ -104,7 +112,10 @@ describe('getDefaultAxeRules', () => {
             description: 'description',
         };
 
-        const actual = Processor.suppressChecksByMessages(initialAxeRule, false);
+        const actual = Processor.suppressChecksByMessages(
+            initialAxeRule,
+            false,
+        );
         expect(actual).toEqual(expectedAxeRule);
     });
 

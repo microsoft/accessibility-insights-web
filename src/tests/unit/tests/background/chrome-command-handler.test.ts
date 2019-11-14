@@ -46,21 +46,39 @@ describe('ChromeCommandHandlerTest', () => {
     beforeEach(() => {
         interpreterMock = Mock.ofType(Interpreter);
 
-        visualizationStoreMock = Mock.ofType(VisualizationStore, MockBehavior.Strict);
-        visualizationStoreMock.setup(vs => vs.getState()).returns(() => storeState);
+        visualizationStoreMock = Mock.ofType(
+            VisualizationStore,
+            MockBehavior.Strict,
+        );
+        visualizationStoreMock
+            .setup(vs => vs.getState())
+            .returns(() => storeState);
 
         tabToContextMap = {};
 
         existingTabId = 1;
-        tabToContextMap[existingTabId] = new TabContext(interpreterMock.object, {
-            visualizationStore: visualizationStoreMock.object,
-        } as TabContextStoreHub);
+        tabToContextMap[existingTabId] = new TabContext(
+            interpreterMock.object,
+            {
+                visualizationStore: visualizationStoreMock.object,
+            } as TabContextStoreHub,
+        );
 
         browserAdapterMock = Mock.ofType<BrowserAdapter>();
         browserAdapterMock
-            .setup(ca => ca.tabsQuery(It.isValue({ active: true, currentWindow: true }), It.isAny()))
+            .setup(ca =>
+                ca.tabsQuery(
+                    It.isValue({ active: true, currentWindow: true }),
+                    It.isAny(),
+                ),
+            )
             .returns((_, callback) => {
-                callback([{ id: simulatedActiveTabId, url: simulatedActiveTabUrl } as chrome.tabs.Tab]);
+                callback([
+                    {
+                        id: simulatedActiveTabId,
+                        url: simulatedActiveTabUrl,
+                    } as chrome.tabs.Tab,
+                ]);
             })
             .verifiable();
 
@@ -80,7 +98,10 @@ describe('ChromeCommandHandlerTest', () => {
 
         notificationCreatorMock = Mock.ofType(NotificationCreator);
 
-        const userConfigurationStoreMock = Mock.ofType(UserConfigurationStore, MockBehavior.Strict);
+        const userConfigurationStoreMock = Mock.ofType(
+            UserConfigurationStore,
+            MockBehavior.Strict,
+        );
         userConfigurationStoreMock
             .setup(s => s.getState())
             .returns(() => {
@@ -130,80 +151,102 @@ describe('ChromeCommandHandlerTest', () => {
         ['Color', VisualizationType.Color],
     ];
 
-    const visualizationTypesThatShouldNotNotifyOnEnable = [['TabStops', VisualizationType.TabStops]];
+    const visualizationTypesThatShouldNotNotifyOnEnable = [
+        ['TabStops', VisualizationType.TabStops],
+    ];
 
-    it.each(supportedVisualizationTypes)(`enables previously-disabled '%s' visualizer`, async (_, visualizationType: VisualizationType) => {
-        storeState = new VisualizationStoreDataBuilder().withDisable(visualizationType).build();
-        const configuration = visualizationConfigurationFactory.getConfiguration(visualizationType);
+    it.each(supportedVisualizationTypes)(
+        `enables previously-disabled '%s' visualizer`,
+        async (_, visualizationType: VisualizationType) => {
+            storeState = new VisualizationStoreDataBuilder()
+                .withDisable(visualizationType)
+                .build();
+            const configuration = visualizationConfigurationFactory.getConfiguration(
+                visualizationType,
+            );
 
-        let receivedMessage: Message;
-        interpreterMock
-            .setup(x => x.interpret(It.isAny()))
-            .returns(message => {
-                receivedMessage = message;
-                return true;
-            })
-            .verifiable();
+            let receivedMessage: Message;
+            interpreterMock
+                .setup(x => x.interpret(It.isAny()))
+                .returns(message => {
+                    receivedMessage = message;
+                    return true;
+                })
+                .verifiable();
 
-        await commandCallback(configuration.chromeCommand);
+            await commandCallback(configuration.chromeCommand);
 
-        expect(receivedMessage).toEqual({
-            tabId: existingTabId,
-            messageType: Messages.Visualizations.Common.Toggle,
-            payload: {
-                enabled: true,
-                telemetry: {
-                    triggeredBy: 'shortcut',
+            expect(receivedMessage).toEqual({
+                tabId: existingTabId,
+                messageType: Messages.Visualizations.Common.Toggle,
+                payload: {
                     enabled: true,
-                    source: testSource,
+                    telemetry: {
+                        triggeredBy: 'shortcut',
+                        enabled: true,
+                        source: testSource,
+                    },
+                    test: visualizationType,
                 },
-                test: visualizationType,
-            },
-        });
+            });
 
-        interpreterMock.verifyAll();
-    });
+            interpreterMock.verifyAll();
+        },
+    );
 
-    it.each(supportedVisualizationTypes)(`disables previously-enabled '%s' visualizer`, async (_, visualizationType: VisualizationType) => {
-        storeState = new VisualizationStoreDataBuilder().withEnable(visualizationType).build();
-        const configuration = visualizationConfigurationFactory.getConfiguration(visualizationType);
+    it.each(supportedVisualizationTypes)(
+        `disables previously-enabled '%s' visualizer`,
+        async (_, visualizationType: VisualizationType) => {
+            storeState = new VisualizationStoreDataBuilder()
+                .withEnable(visualizationType)
+                .build();
+            const configuration = visualizationConfigurationFactory.getConfiguration(
+                visualizationType,
+            );
 
-        let receivedMessage: Message;
-        interpreterMock
-            .setup(x => x.interpret(It.isAny()))
-            .returns(message => {
-                receivedMessage = message;
-                return true;
-            })
-            .verifiable();
+            let receivedMessage: Message;
+            interpreterMock
+                .setup(x => x.interpret(It.isAny()))
+                .returns(message => {
+                    receivedMessage = message;
+                    return true;
+                })
+                .verifiable();
 
-        await commandCallback(configuration.chromeCommand);
+            await commandCallback(configuration.chromeCommand);
 
-        expect(receivedMessage).toEqual({
-            tabId: existingTabId,
-            messageType: Messages.Visualizations.Common.Toggle,
-            payload: {
-                enabled: false,
-                telemetry: {
-                    triggeredBy: 'shortcut',
+            expect(receivedMessage).toEqual({
+                tabId: existingTabId,
+                messageType: Messages.Visualizations.Common.Toggle,
+                payload: {
                     enabled: false,
-                    source: testSource,
+                    telemetry: {
+                        triggeredBy: 'shortcut',
+                        enabled: false,
+                        source: testSource,
+                    },
+                    test: visualizationType,
                 },
-                test: visualizationType,
-            },
-        });
+            });
 
-        interpreterMock.verifyAll();
-    });
+            interpreterMock.verifyAll();
+        },
+    );
 
     it.each(visualizationTypesThatShouldNotifyOnEnable)(
         `emits the expected 'enabled' notification when enabling '%s' visualizer`,
         async (_, visualizationType: VisualizationType) => {
-            storeState = new VisualizationStoreDataBuilder().withDisable(visualizationType).build();
-            const configuration = visualizationConfigurationFactory.getConfiguration(visualizationType);
+            storeState = new VisualizationStoreDataBuilder()
+                .withDisable(visualizationType)
+                .build();
+            const configuration = visualizationConfigurationFactory.getConfiguration(
+                visualizationType,
+            );
 
             const enableMessage = configuration.displayableData.enableMessage;
-            notificationCreatorMock.setup(nc => nc.createNotification(enableMessage)).verifiable(Times.once());
+            notificationCreatorMock
+                .setup(nc => nc.createNotification(enableMessage))
+                .verifiable(Times.once());
 
             await commandCallback(configuration.chromeCommand);
 
@@ -214,10 +257,16 @@ describe('ChromeCommandHandlerTest', () => {
     it.each(visualizationTypesThatShouldNotNotifyOnEnable)(
         `does not emit unexpected 'enabled' notification when enabling '%s' visualizer`,
         async (_, visualizationType: VisualizationType) => {
-            storeState = new VisualizationStoreDataBuilder().withDisable(visualizationType).build();
-            const configuration = visualizationConfigurationFactory.getConfiguration(visualizationType);
+            storeState = new VisualizationStoreDataBuilder()
+                .withDisable(visualizationType)
+                .build();
+            const configuration = visualizationConfigurationFactory.getConfiguration(
+                visualizationType,
+            );
 
-            notificationCreatorMock.setup(nc => nc.createNotification(It.isAny())).verifiable(Times.never());
+            notificationCreatorMock
+                .setup(nc => nc.createNotification(It.isAny()))
+                .verifiable(Times.never());
 
             await commandCallback(configuration.chromeCommand);
 
@@ -226,7 +275,9 @@ describe('ChromeCommandHandlerTest', () => {
     );
 
     it('does not emit toggle messages for unknown command strings', async () => {
-        interpreterMock.setup(x => x.interpret(It.isAny())).verifiable(Times.never());
+        interpreterMock
+            .setup(x => x.interpret(It.isAny()))
+            .verifiable(Times.never());
 
         await commandCallback('unknown-command');
 
@@ -236,7 +287,9 @@ describe('ChromeCommandHandlerTest', () => {
     it('does not emit toggle messages if the first-time dialog has not been dismissed yet', async () => {
         simulatedIsFirstTimeUserConfiguration = true;
 
-        interpreterMock.setup(x => x.interpret(It.isAny())).verifiable(Times.never());
+        interpreterMock
+            .setup(x => x.interpret(It.isAny()))
+            .verifiable(Times.never());
 
         await commandCallback(getArbitraryValidChromeCommand());
 
@@ -247,7 +300,9 @@ describe('ChromeCommandHandlerTest', () => {
         simulatedActiveTabId = 12;
         expect(simulatedActiveTabId !== existingTabId);
 
-        interpreterMock.setup(x => x.interpret(It.isAny())).verifiable(Times.never());
+        interpreterMock
+            .setup(x => x.interpret(It.isAny()))
+            .verifiable(Times.never());
 
         await commandCallback(getArbitraryValidChromeCommand());
 
@@ -260,9 +315,13 @@ describe('ChromeCommandHandlerTest', () => {
             .withEnable(VisualizationType.Headings)
             .with('scanning', 'headings')
             .build();
-        const configuration = visualizationConfigurationFactory.getConfiguration(VisualizationType.Issues);
+        const configuration = visualizationConfigurationFactory.getConfiguration(
+            VisualizationType.Issues,
+        );
 
-        interpreterMock.setup(x => x.interpret(It.isAny())).verifiable(Times.never());
+        interpreterMock
+            .setup(x => x.interpret(It.isAny()))
+            .verifiable(Times.never());
 
         await commandCallback(configuration.chromeCommand);
 
@@ -272,7 +331,9 @@ describe('ChromeCommandHandlerTest', () => {
     it("does not emit toggle messages if the active/current tab's URL is not supported", async () => {
         simulatedIsSupportedUrlResponse = false;
 
-        interpreterMock.setup(x => x.interpret(It.isAny())).verifiable(Times.never());
+        interpreterMock
+            .setup(x => x.interpret(It.isAny()))
+            .verifiable(Times.never());
 
         await commandCallback(getArbitraryValidChromeCommand());
 
@@ -289,7 +350,9 @@ describe('ChromeCommandHandlerTest', () => {
             simulatedActiveTabUrl = `${protocol}arbitrary-host`;
             simulatedIsSupportedUrlResponse = false;
 
-            notificationCreatorMock.setup(nc => nc.createNotification(expectedNotificationMessage)).verifiable();
+            notificationCreatorMock
+                .setup(nc => nc.createNotification(expectedNotificationMessage))
+                .verifiable();
 
             await commandCallback(getArbitraryValidChromeCommand());
 
@@ -299,6 +362,8 @@ describe('ChromeCommandHandlerTest', () => {
 });
 
 function getArbitraryValidChromeCommand(): string {
-    const configuration = visualizationConfigurationFactory.getConfiguration(VisualizationType.Issues);
+    const configuration = visualizationConfigurationFactory.getConfiguration(
+        VisualizationType.Issues,
+    );
     return configuration.chromeCommand;
 }

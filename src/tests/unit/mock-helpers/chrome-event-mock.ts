@@ -9,7 +9,9 @@ export class ChromeEventMock {
         this.eventMock = eventMock;
     }
 
-    public setupAddListenerMock(callback?: (onAddListener: Function) => void): ChromeEventMock {
+    public setupAddListenerMock(
+        callback?: (onAddListener: Function) => void,
+    ): ChromeEventMock {
         this.eventMock
             .setup(x => x.addListener(It.isAny()))
             .returns(cb => {
@@ -22,7 +24,9 @@ export class ChromeEventMock {
     }
 
     public setupRemoveListener(): ChromeEventMock {
-        this.eventMock.setup(x => x.removeListener(It.isAny())).verifiable(Times.once());
+        this.eventMock
+            .setup(x => x.removeListener(It.isAny()))
+            .verifiable(Times.once());
 
         return this;
     }

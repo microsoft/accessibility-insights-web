@@ -5,10 +5,16 @@ import {
     DetailsRightPanelConfiguration,
     GetDetailsRightPanelConfiguration,
 } from '../../../../../DetailsView/components/details-view-right-panel';
-import { getOverviewKey, getTestViewKey } from '../../../../../DetailsView/components/left-nav/get-left-nav-selected-key';
+import {
+    getOverviewKey,
+    getTestViewKey,
+} from '../../../../../DetailsView/components/left-nav/get-left-nav-selected-key';
 import { OverviewContainer } from '../../../../../DetailsView/components/overview-content/overview-content-container';
 import { TestViewContainer } from '../../../../../DetailsView/components/test-view-container';
-import { getOverviewTitle, getTestViewTitle } from '../../../../../DetailsView/handlers/get-document-title';
+import {
+    getOverviewTitle,
+    getTestViewTitle,
+} from '../../../../../DetailsView/handlers/get-document-title';
 
 describe('DetailsViewRightPanelTests', () => {
     describe('GetDetailsRightPanelConfiguration', () => {
@@ -49,17 +55,26 @@ describe('DetailsViewRightPanelTests', () => {
         });
     });
 
-    function validateTestView(configuration: DetailsRightPanelConfiguration): void {
+    function validateTestView(
+        configuration: DetailsRightPanelConfiguration,
+    ): void {
         expect(configuration.GetLeftNavSelectedKey).toEqual(getTestViewKey);
         expect(configuration.GetTitle).toEqual(getTestViewTitle);
         expect(configuration.RightPanel).toEqual(TestViewContainer);
-        expect(configuration.GetStartOverContextualMenuItemKeys()).toEqual(['assessment', 'test']);
+        expect(configuration.GetStartOverContextualMenuItemKeys()).toEqual([
+            'assessment',
+            'test',
+        ]);
     }
 
-    function validateOverview(configuration: DetailsRightPanelConfiguration): void {
+    function validateOverview(
+        configuration: DetailsRightPanelConfiguration,
+    ): void {
         expect(configuration.GetLeftNavSelectedKey).toEqual(getOverviewKey);
         expect(configuration.GetTitle).toEqual(getOverviewTitle);
         expect(configuration.RightPanel).toEqual(OverviewContainer);
-        expect(configuration.GetStartOverContextualMenuItemKeys()).toEqual(['assessment']);
+        expect(configuration.GetStartOverContextualMenuItemKeys()).toEqual([
+            'assessment',
+        ]);
     }
 });

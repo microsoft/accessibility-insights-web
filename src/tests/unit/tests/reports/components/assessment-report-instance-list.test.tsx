@@ -12,7 +12,9 @@ describe('AssessmentReportInstanceListTest', () => {
                 instances: AssessmentReportBuilderTestHelper.getInstanceReportModelStep1PassStep2Fail(),
             };
 
-            const wrapper = shallow(<AssessmentReportInstanceList {...props} />);
+            const wrapper = shallow(
+                <AssessmentReportInstanceList {...props} />,
+            );
 
             expect(wrapper.getElement()).toMatchSnapshot();
         });
@@ -22,7 +24,9 @@ describe('AssessmentReportInstanceListTest', () => {
                 instances: AssessmentReportBuilderTestHelper.getInstanceReportModelManualStep4Fail(),
             };
 
-            const wrapper = shallow(<AssessmentReportInstanceList {...props} />);
+            const wrapper = shallow(
+                <AssessmentReportInstanceList {...props} />,
+            );
 
             expect(wrapper.getElement()).toMatchSnapshot();
         });
@@ -32,7 +36,9 @@ describe('AssessmentReportInstanceListTest', () => {
                 instances: AssessmentReportBuilderTestHelper.getInstanceWithObjectValueProp(),
             };
 
-            const wrapper = shallow(<AssessmentReportInstanceList {...props} />);
+            const wrapper = shallow(
+                <AssessmentReportInstanceList {...props} />,
+            );
 
             expect(wrapper.getElement()).toMatchSnapshot();
         });
@@ -42,7 +48,9 @@ describe('AssessmentReportInstanceListTest', () => {
                 instances: AssessmentReportBuilderTestHelper.getInstanceWithMixOfSimpleAndComplexValues(),
             };
 
-            const wrapper = shallow(<AssessmentReportInstanceList {...props} />);
+            const wrapper = shallow(
+                <AssessmentReportInstanceList {...props} />,
+            );
 
             expect(wrapper.getElement()).toMatchSnapshot();
         });

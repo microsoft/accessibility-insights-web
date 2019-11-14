@@ -8,10 +8,22 @@ describe('filterResultsByRules', () => {
         const ruleToKeep = 'rule to keep';
         const ruleToThrowAway = 'rule to throw away';
         const given: ScanResults = {
-            passes: [getRuleResultStub(ruleToKeep), getRuleResultStub(ruleToThrowAway)],
-            inapplicable: [getRuleResultStub(ruleToKeep), getRuleResultStub(ruleToThrowAway)],
-            incomplete: [getRuleResultStub(ruleToKeep), getRuleResultStub(ruleToThrowAway)],
-            violations: [getRuleResultStub(ruleToKeep), getRuleResultStub(ruleToThrowAway)],
+            passes: [
+                getRuleResultStub(ruleToKeep),
+                getRuleResultStub(ruleToThrowAway),
+            ],
+            inapplicable: [
+                getRuleResultStub(ruleToKeep),
+                getRuleResultStub(ruleToThrowAway),
+            ],
+            incomplete: [
+                getRuleResultStub(ruleToKeep),
+                getRuleResultStub(ruleToThrowAway),
+            ],
+            violations: [
+                getRuleResultStub(ruleToKeep),
+                getRuleResultStub(ruleToThrowAway),
+            ],
             timestamp: '100',
             targetPageUrl: 'test url',
             targetPageTitle: 'test title',
@@ -32,10 +44,22 @@ describe('filterResultsByRules', () => {
         const ruleToKeep = 'rule to keep';
         const ruleToKeepTwo = 'rule to keep two';
         const given: ScanResults = {
-            passes: [getRuleResultStub(ruleToKeep), getRuleResultStub(ruleToKeepTwo)],
-            inapplicable: [getRuleResultStub(ruleToKeep), getRuleResultStub(ruleToKeepTwo)],
-            incomplete: [getRuleResultStub(ruleToKeep), getRuleResultStub(ruleToKeepTwo)],
-            violations: [getRuleResultStub(ruleToKeep), getRuleResultStub(ruleToKeepTwo)],
+            passes: [
+                getRuleResultStub(ruleToKeep),
+                getRuleResultStub(ruleToKeepTwo),
+            ],
+            inapplicable: [
+                getRuleResultStub(ruleToKeep),
+                getRuleResultStub(ruleToKeepTwo),
+            ],
+            incomplete: [
+                getRuleResultStub(ruleToKeep),
+                getRuleResultStub(ruleToKeepTwo),
+            ],
+            violations: [
+                getRuleResultStub(ruleToKeep),
+                getRuleResultStub(ruleToKeepTwo),
+            ],
             timestamp: '100',
             targetPageUrl: 'test url',
             targetPageTitle: 'test title',

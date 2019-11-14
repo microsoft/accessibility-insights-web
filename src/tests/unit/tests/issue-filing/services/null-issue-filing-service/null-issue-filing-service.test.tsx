@@ -10,7 +10,12 @@ import {
 import { SettingsFormProps } from '../../../../../../issue-filing/types/settings-form-props';
 
 describe('NullIssueFilingService', () => {
-    const testSettings = [null, {}, undefined, { repository: 'test-repository' }];
+    const testSettings = [
+        null,
+        {},
+        undefined,
+        { repository: 'test-repository' },
+    ];
 
     it('has correct static properties', () => {
         expect(NullIssueFilingService.key).toBe('none');
@@ -23,12 +28,16 @@ describe('NullIssueFilingService', () => {
     });
 
     it('getSettingsFromStoreData', () => {
-        expect(NullIssueFilingService.getSettingsFromStoreData(null)).toBeNull();
+        expect(
+            NullIssueFilingService.getSettingsFromStoreData(null),
+        ).toBeNull();
     });
 
     describe('check settings', () => {
         it.each(testSettings)('with %p', settings => {
-            expect(NullIssueFilingService.isSettingsValid(settings)).toBe(false);
+            expect(NullIssueFilingService.isSettingsValid(settings)).toBe(
+                false,
+            );
         });
     });
 

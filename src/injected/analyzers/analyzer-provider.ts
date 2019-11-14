@@ -7,9 +7,17 @@ import { ScopingStoreData } from '../../common/types/store-data/scoping-store-da
 import { WindowUtils } from '../../common/window-utils';
 import { ScannerUtils } from '../scanner-utils';
 import { TabStopsListener } from '../tab-stops-listener';
-import { Analyzer, AnalyzerConfiguration, FocusAnalyzerConfiguration, RuleAnalyzerConfiguration } from './analyzer';
+import {
+    Analyzer,
+    AnalyzerConfiguration,
+    FocusAnalyzerConfiguration,
+    RuleAnalyzerConfiguration,
+} from './analyzer';
 import { BaseAnalyzer } from './base-analyzer';
-import { BatchedRuleAnalyzer, IResultRuleFilter } from './batched-rule-analyzer';
+import {
+    BatchedRuleAnalyzer,
+    IResultRuleFilter,
+} from './batched-rule-analyzer';
 import { PostResolveCallback, RuleAnalyzer } from './rule-analyzer';
 import { TabStopsAnalyzer } from './tab-stops-analyzer';
 
@@ -55,7 +63,9 @@ export class AnalyzerProvider {
 
     // This analyzer is functionally identical to the rule-analyzer, but it
     // sends an additional message to the unified-scan-results store
-    public createRuleAnalyzerUnifiedScan(config: RuleAnalyzerConfiguration): Analyzer {
+    public createRuleAnalyzerUnifiedScan(
+        config: RuleAnalyzerConfiguration,
+    ): Analyzer {
         return new RuleAnalyzer(
             config,
             this.scanner,
@@ -68,7 +78,9 @@ export class AnalyzerProvider {
         );
     }
 
-    public createBatchedRuleAnalyzer(config: RuleAnalyzerConfiguration): Analyzer {
+    public createBatchedRuleAnalyzer(
+        config: RuleAnalyzerConfiguration,
+    ): Analyzer {
         return new BatchedRuleAnalyzer(
             config,
             this.scanner,
@@ -81,8 +93,15 @@ export class AnalyzerProvider {
         );
     }
 
-    public createFocusTrackingAnalyzer(config: FocusAnalyzerConfiguration): Analyzer {
-        return new TabStopsAnalyzer(config, this.tabStopsListener, new WindowUtils(), this.sendMessageDelegate);
+    public createFocusTrackingAnalyzer(
+        config: FocusAnalyzerConfiguration,
+    ): Analyzer {
+        return new TabStopsAnalyzer(
+            config,
+            this.tabStopsListener,
+            new WindowUtils(),
+            this.sendMessageDelegate,
+        );
     }
 
     public createBaseAnalyzer(config: AnalyzerConfiguration): Analyzer {

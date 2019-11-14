@@ -28,10 +28,17 @@ export function convertScanResultsToUnifiedRules(
     for (const result of scanResults.ruleResults) {
         const ruleId = result.ruleId;
         if (!ruleIds.has(ruleId)) {
-            const ruleInformation = ruleInformationProvider.getRuleInformation(ruleId);
+            const ruleInformation = ruleInformationProvider.getRuleInformation(
+                ruleId,
+            );
 
             if (ruleInformation && ruleInformation.includeThisResult(result)) {
-                unifiedRules.push(createUnifiedRuleFromRuleResult(ruleInformation, uuidGenerator));
+                unifiedRules.push(
+                    createUnifiedRuleFromRuleResult(
+                        ruleInformation,
+                        uuidGenerator,
+                    ),
+                );
                 ruleIds.add(ruleId);
             }
         }
@@ -40,7 +47,10 @@ export function convertScanResultsToUnifiedRules(
     return unifiedRules;
 }
 
-function createUnifiedRuleFromRuleResult(ruleInformation: RuleInformation, uuidGenerator: UUIDGeneratorType): UnifiedRule {
+function createUnifiedRuleFromRuleResult(
+    ruleInformation: RuleInformation,
+    uuidGenerator: UUIDGeneratorType,
+): UnifiedRule {
     return {
         uid: uuidGenerator(),
         id: ruleInformation.ruleId,

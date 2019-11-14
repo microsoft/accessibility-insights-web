@@ -10,12 +10,17 @@ describe('MarkdownFormatter', () => {
     let testSubject: MarkupFormatter;
 
     beforeEach(() => {
-        truncateMock = Mock.ofInstance((text: string) => text, MockBehavior.Strict);
+        truncateMock = Mock.ofInstance(
+            (text: string) => text,
+            MockBehavior.Strict,
+        );
         testSubject = createFormatter(truncateMock.object);
     });
 
     it('returns section header', () => {
-        expect(testSubject.sectionHeader('test-header')).toEqual('#### test-header');
+        expect(testSubject.sectionHeader('test-header')).toEqual(
+            '#### test-header',
+        );
     });
 
     it('returns how to fix section', () => {
@@ -35,7 +40,9 @@ describe('MarkdownFormatter', () => {
     });
 
     it('creates snippet', () => {
-        truncateMock.setup(truncate => truncate(It.isAnyString())).returns(text => text);
+        truncateMock
+            .setup(truncate => truncate(It.isAnyString()))
+            .returns(text => text);
 
         const result = testSubject.snippet('this is code');
 

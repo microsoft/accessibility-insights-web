@@ -25,7 +25,9 @@ describe('HighlightBoxFormatterTests', () => {
         const data = { isFailure: true } as AssessmentVisualizationInstance;
         const config = testSubject.getDrawerConfiguration(htmlElement, data);
 
-        expect(config.failureBoxConfig).toEqual(FailureInstanceFormatter.failureBoxConfig);
+        expect(config.failureBoxConfig).toEqual(
+            FailureInstanceFormatter.failureBoxConfig,
+        );
     });
 
     test('verify getDialogRenderer', () => {

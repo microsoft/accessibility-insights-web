@@ -14,11 +14,23 @@ describe('LandmarkFormatterTests', () => {
     });
 
     test('verifyStyling for an assessment instance', () => {
-        const config = testSubject.getDrawerConfiguration(null, getAssessmentBannerInstance());
+        const config = testSubject.getDrawerConfiguration(
+            null,
+            getAssessmentBannerInstance(),
+        );
         testStyling(config, 'banner');
     });
 
-    const landmarkRoles: string[] = ['banner', 'complementary', 'contentinfo', 'form', 'main', 'navigation', 'region', 'search'];
+    const landmarkRoles: string[] = [
+        'banner',
+        'complementary',
+        'contentinfo',
+        'form',
+        'main',
+        'navigation',
+        'region',
+        'search',
+    ];
 
     test.each(landmarkRoles)('verify styling for landmark role %s', role => {
         const axeData = getAxeData(role);
@@ -26,11 +38,14 @@ describe('LandmarkFormatterTests', () => {
         testStyling(config, role);
     });
 
-    test.each(['application', 'unrecognized-role'])('verify styling for non-landmark-role %s', role => {
-        const axeData = getAxeData(role, true);
-        const config = testSubject.getDrawerConfiguration(null, axeData);
-        testStyling(config, role, true);
-    });
+    test.each(['application', 'unrecognized-role'])(
+        'verify styling for non-landmark-role %s',
+        role => {
+            const axeData = getAxeData(role, true);
+            const config = testSubject.getDrawerConfiguration(null, axeData);
+            testStyling(config, role, true);
+        },
+    );
 
     function getLandmarkStyle(key: string): HeadingStyleConfiguration {
         const landmarkStyle = LandmarkFormatter.getStyleForLandmarkRole(key);
@@ -48,7 +63,10 @@ describe('LandmarkFormatterTests', () => {
         } as AssessmentVisualizationInstance;
     }
 
-    function getAxeData(givenRole: string, isFailure = false): AssessmentVisualizationInstance {
+    function getAxeData(
+        givenRole: string,
+        isFailure = false,
+    ): AssessmentVisualizationInstance {
         const axeData: AssessmentVisualizationInstance = {
             isFailure: isFailure,
             isVisualizationEnabled: true,
@@ -97,7 +115,11 @@ describe('LandmarkFormatterTests', () => {
         return axeData;
     }
 
-    function testStyling(config: DrawerConfiguration, givenRole: string, isFailure = false): void {
+    function testStyling(
+        config: DrawerConfiguration,
+        givenRole: string,
+        isFailure = false,
+    ): void {
         const landmarkStyle = getLandmarkStyle(givenRole);
         expect(config.showVisualization).toBe(true);
         expect(config.outlineStyle).toEqual('dashed');
@@ -106,10 +128,14 @@ describe('LandmarkFormatterTests', () => {
         expect(config.textBoxConfig.fontColor).toEqual(landmarkStyle.fontColor);
         expect(config.textBoxConfig.fontSize).toEqual('14pt !important');
         expect(config.textBoxConfig.fontWeight).toBe('600');
-        expect(config.textBoxConfig.outline).toBe(`3px dashed ${landmarkStyle.borderColor}`);
+        expect(config.textBoxConfig.outline).toBe(
+            `3px dashed ${landmarkStyle.borderColor}`,
+        );
 
         if (isFailure) {
-            expect(config.failureBoxConfig).toEqual(FailureInstanceFormatter.failureBoxConfig);
+            expect(config.failureBoxConfig).toEqual(
+                FailureInstanceFormatter.failureBoxConfig,
+            );
         }
     }
 });

@@ -8,12 +8,18 @@ import { Mock } from 'typemoq';
 describe('ToolDataDelegate', () => {
     it('returns proper tool data', () => {
         const appDataAdapterMock = Mock.ofType<AppDataAdapter>();
-        appDataAdapterMock.setup(adapter => adapter.getVersion()).returns(() => 'test-version');
+        appDataAdapterMock
+            .setup(adapter => adapter.getVersion())
+            .returns(() => 'test-version');
 
         const scanResultsMock = Mock.ofType<ScanResults>();
-        scanResultsMock.setup(results => results.axeVersion).returns(() => 'test-axe-version');
+        scanResultsMock
+            .setup(results => results.axeVersion)
+            .returns(() => 'test-axe-version');
 
-        const testSubject = createGetToolDataDelegate(appDataAdapterMock.object);
+        const testSubject = createGetToolDataDelegate(
+            appDataAdapterMock.object,
+        );
 
         const result = testSubject(scanResultsMock.object);
 

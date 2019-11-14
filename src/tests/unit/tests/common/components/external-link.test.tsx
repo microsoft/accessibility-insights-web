@@ -4,7 +4,10 @@ import { shallow } from 'enzyme';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
 
-import { ExternalLink, ExternalLinkDeps } from '../../../../../common/components/external-link';
+import {
+    ExternalLink,
+    ExternalLinkDeps,
+} from '../../../../../common/components/external-link';
 
 describe('ExternalLink', () => {
     const href = 'about:blank';

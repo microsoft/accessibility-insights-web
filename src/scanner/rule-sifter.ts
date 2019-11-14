@@ -17,20 +17,32 @@ export interface RuleWithA11YCriteria {
 
 export class RuleSifter {
     private readonly bestPracticeText = 'Best Practice';
-    constructor(private ruleSet: RuleInfo[], private ruleToLinksMap: DictionaryStringTo<HyperlinkDefinition[]>) {}
+    constructor(
+        private ruleSet: RuleInfo[],
+        private ruleToLinksMap: DictionaryStringTo<HyperlinkDefinition[]>,
+    ) {}
 
     public getSiftedRules(): RuleWithA11YCriteria[] {
-        return this.ruleSet.reduce((filteredArray: RuleWithA11YCriteria[], rule: RuleInfo) => {
-            const ruleToLinks = this.ruleToLinksMap[rule.id];
+        return this.ruleSet.reduce(
+            (filteredArray: RuleWithA11YCriteria[], rule: RuleInfo) => {
+                const ruleToLinks = this.ruleToLinksMap[rule.id];
 
-            if (!isEmpty(ruleToLinks) && rule.enabled && ruleToLinks.find(elem => elem.text === this.bestPracticeText) == null) {
-                filteredArray.push({
-                    id: rule.id,
-                    a11yCriteria: ruleToLinks,
-                });
-            }
+                if (
+                    !isEmpty(ruleToLinks) &&
+                    rule.enabled &&
+                    ruleToLinks.find(
+                        elem => elem.text === this.bestPracticeText,
+                    ) == null
+                ) {
+                    filteredArray.push({
+                        id: rule.id,
+                        a11yCriteria: ruleToLinks,
+                    });
+                }
 
-            return filteredArray;
-        }, []);
+                return filteredArray;
+            },
+            [],
+        );
     }
 }

@@ -16,7 +16,9 @@ const getCSSModulesLoadersConfig = isDevMode => {
                 loader: 'css-loader',
                 options: {
                     modules: {
-                        localIdentName: isDevMode ? '[local]' : '[local][hash:base64:5]',
+                        localIdentName: isDevMode
+                            ? '[local]'
+                            : '[local][hash:base64:5]',
                     },
                     localsConvention: 'camelCaseOnly',
                 },
@@ -46,16 +48,23 @@ const commonPlugins = [
 ];
 
 const commonEntryFiles = {
-    injected: [path.resolve(__dirname, 'src/injected/stylesheet-init.ts'), path.resolve(__dirname, 'src/injected/client-init.ts')],
+    injected: [
+        path.resolve(__dirname, 'src/injected/stylesheet-init.ts'),
+        path.resolve(__dirname, 'src/injected/client-init.ts'),
+    ],
     popup: path.resolve(__dirname, 'src/popup/popup-init.ts'),
     insights: [path.resolve(__dirname, 'src/views/insights/initializer.ts')],
-    detailsView: [path.resolve(__dirname, 'src/DetailsView/details-view-initializer.ts')],
+    detailsView: [
+        path.resolve(__dirname, 'src/DetailsView/details-view-initializer.ts'),
+    ],
     devtools: [path.resolve(__dirname, 'src/Devtools/dev-tool-init.ts')],
     background: [path.resolve(__dirname, 'src/background/background-init.ts')],
 };
 
 const electronEntryFiles = {
-    renderer: [path.resolve(__dirname, 'src/electron/views/renderer-initializer.ts')],
+    renderer: [
+        path.resolve(__dirname, 'src/electron/views/renderer-initializer.ts'),
+    ],
     main: [path.resolve(__dirname, 'src/electron/main/main.ts')],
 };
 
@@ -79,7 +88,10 @@ const commonConfig = {
         ],
     },
     resolve: {
-        modules: [path.resolve(__dirname, './src'), path.resolve(__dirname, 'node_modules')],
+        modules: [
+            path.resolve(__dirname, './src'),
+            path.resolve(__dirname, 'node_modules'),
+        ],
         extensions: ['.tsx', '.ts', '.js'],
     },
     plugins: commonPlugins,

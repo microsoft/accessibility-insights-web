@@ -7,8 +7,14 @@ import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
 import { ReportHead } from 'reports/components/report-head';
-import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
-import { ReportSectionFactory, SectionDeps } from 'reports/components/report-sections/report-section-factory';
+import {
+    ReportBody,
+    ReportBodyProps,
+} from 'reports/components/report-sections/report-body';
+import {
+    ReportSectionFactory,
+    SectionDeps,
+} from 'reports/components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ScanResults } from 'scanner/iruleresults';
@@ -27,11 +33,14 @@ describe('ReportHtmlGenerator', () => {
         const pageTitle: string = 'page-title';
         const pageUrl: string = 'https://page-url/';
         const description: string = 'description';
-        const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
+        const fixInstructionProcessorMock = Mock.ofType(
+            FixInstructionProcessor,
+        );
         const getPropertyConfigurationStub = (id: string) => null;
         const cardInteractionSupport = noCardInteractionsSupported;
 
-        const getUTCStringFromDateStub: typeof DateProvider.getUTCStringFromDate = () => '';
+        const getUTCStringFromDateStub: typeof DateProvider.getUTCStringFromDate = () =>
+            '';
         const getGuidanceTagsStub: GetGuidanceTagsFromGuidanceLinks = () => [];
 
         const sectionFactoryMock = Mock.ofType<ReportSectionFactory>();
@@ -63,13 +72,20 @@ describe('ReportHtmlGenerator', () => {
             toUtcString: getUTCStringFromDateStub,
             getCollapsibleScript: getScriptMock.object,
             getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
-            cardsViewData: { cards: exampleUnifiedStatusResults, visualHelperEnabled: true, allCardsCollapsed: true },
+            cardsViewData: {
+                cards: exampleUnifiedStatusResults,
+                visualHelperEnabled: true,
+                allCardsCollapsed: true,
+            },
         } as ReportBodyProps;
 
         const headElement: JSX.Element = <ReportHead />;
         const bodyElement: JSX.Element = <ReportBody {...sectionProps} />;
 
-        const rendererMock = Mock.ofType(ReactStaticRenderer, MockBehavior.Strict);
+        const rendererMock = Mock.ofType(
+            ReactStaticRenderer,
+            MockBehavior.Strict,
+        );
         rendererMock
             .setup(r => r.renderToStaticMarkup(It.isObjectWith(headElement)))
             .returns(() => '<head-markup />')
@@ -90,11 +106,18 @@ describe('ReportHtmlGenerator', () => {
             getPropertyConfigurationStub,
         );
 
-        const actual = testObject.generateHtml(scanResult, scanDate, pageTitle, pageUrl, description, {
-            cards: exampleUnifiedStatusResults,
-            visualHelperEnabled: true,
-            allCardsCollapsed: true,
-        });
+        const actual = testObject.generateHtml(
+            scanResult,
+            scanDate,
+            pageTitle,
+            pageUrl,
+            description,
+            {
+                cards: exampleUnifiedStatusResults,
+                visualHelperEnabled: true,
+                allCardsCollapsed: true,
+            },
+        );
 
         expect(actual).toMatchSnapshot();
     });

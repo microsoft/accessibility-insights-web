@@ -7,7 +7,11 @@ import { NamedFC } from '../../../common/react/named-fc';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { BaseLeftNav, onBaseLeftNavItemClick } from '../base-left-nav';
 import { LeftNavIndexIcon } from './left-nav-icon';
-import { AssessmentLinkBuilderDeps, LeftNavLinkBuilder, OverviewLinkBuilderDeps } from './left-nav-link-builder';
+import {
+    AssessmentLinkBuilderDeps,
+    LeftNavLinkBuilder,
+    OverviewLinkBuilderDeps,
+} from './left-nav-link-builder';
 
 export type VisualizationBasedLeftNavDeps = {
     leftNavLinkBuilder: LeftNavLinkBuilder;
@@ -22,16 +26,33 @@ export type VisualizationBasedLeftNavProps = {
     visualizations: VisualizationType[];
 };
 
-export const VisualizationBasedLeftNav = NamedFC<VisualizationBasedLeftNavProps>('VisualizationBasedLeftNav', props => {
+export const VisualizationBasedLeftNav = NamedFC<
+    VisualizationBasedLeftNavProps
+>('VisualizationBasedLeftNav', props => {
     const { deps, selectedKey, onLinkClick, visualizations } = props;
 
     const { leftNavLinkBuilder, visualizationConfigurationFactory } = deps;
 
     const links = [];
     visualizations.forEach((visualizationType, index) => {
-        const config = visualizationConfigurationFactory.getConfiguration(visualizationType);
-        links.push(leftNavLinkBuilder.buildVisualizationConfigurationLink(config, onLinkClick, visualizationType, index + 1));
+        const config = visualizationConfigurationFactory.getConfiguration(
+            visualizationType,
+        );
+        links.push(
+            leftNavLinkBuilder.buildVisualizationConfigurationLink(
+                config,
+                onLinkClick,
+                visualizationType,
+                index + 1,
+            ),
+        );
     });
 
-    return <BaseLeftNav renderIcon={link => <LeftNavIndexIcon item={link} />} selectedKey={selectedKey} links={links} />;
+    return (
+        <BaseLeftNav
+            renderIcon={link => <LeftNavIndexIcon item={link} />}
+            selectedKey={selectedKey}
+            links={links}
+        />
+    );
 });

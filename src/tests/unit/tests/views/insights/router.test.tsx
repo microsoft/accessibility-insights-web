@@ -12,7 +12,10 @@ describe('router', () => {
 
     it('renders content page', () => {
         const result = shallow(
-            <StaticRouter location="/content/the-content-path" context={context}>
+            <StaticRouter
+                location="/content/the-content-path"
+                context={context}
+            >
                 <RouterSwitch deps={deps} />
             </StaticRouter>,
         );

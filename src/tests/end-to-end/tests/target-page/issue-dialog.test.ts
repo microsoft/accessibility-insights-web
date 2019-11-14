@@ -32,11 +32,20 @@ describe('Target Page issue dialog', () => {
         await targetPage.bringToFront();
 
         const shadowRoot = await targetPage.getShadowRoot();
-        await targetPage.clickDescendentSelector(shadowRoot, TargetPageInjectedComponentSelectors.failureLabel, { visible: true });
+        await targetPage.clickDescendentSelector(
+            shadowRoot,
+            TargetPageInjectedComponentSelectors.failureLabel,
+            { visible: true },
+        );
 
-        await targetPage.waitForSelector(TargetPageInjectedComponentSelectors.issueDialog);
+        await targetPage.waitForSelector(
+            TargetPageInjectedComponentSelectors.issueDialog,
+        );
 
-        const results = await scanForAccessibilityIssues(targetPage, TargetPageInjectedComponentSelectors.issueDialog);
+        const results = await scanForAccessibilityIssues(
+            targetPage,
+            TargetPageInjectedComponentSelectors.issueDialog,
+        );
         expect(results).toHaveLength(0);
     });
 });

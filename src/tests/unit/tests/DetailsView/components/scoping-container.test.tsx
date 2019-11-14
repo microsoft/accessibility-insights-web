@@ -10,13 +10,22 @@ import { InspectActionMessageCreator } from '../../../../../common/message-creat
 import { ScopingActionMessageCreator } from '../../../../../common/message-creators/scoping-action-message-creator';
 import { ScopingStoreData } from '../../../../../common/types/store-data/scoping-store-data';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import { ScopingContainer, ScopingContainerProps } from '../../../../../DetailsView/components/scoping-container';
+import {
+    ScopingContainer,
+    ScopingContainerProps,
+} from '../../../../../DetailsView/components/scoping-container';
 
 describe('ScopingContainerTest', () => {
     const scopingSelectorsStub: ScopingStoreData = {
         selectors: {
-            [ScopingInputTypes.include]: [['include selector 0'], ['include selector 1']],
-            [ScopingInputTypes.exclude]: [['exclude selector 0'], ['exclude selector 1']],
+            [ScopingInputTypes.include]: [
+                ['include selector 0'],
+                ['include selector 1'],
+            ],
+            [ScopingInputTypes.exclude]: [
+                ['exclude selector 0'],
+                ['exclude selector 1'],
+            ],
         },
     };
 
@@ -26,9 +35,15 @@ describe('ScopingContainerTest', () => {
     });
 
     test('render', () => {
-        const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
-        const scopingActionMessageCreatorMock = Mock.ofType(ScopingActionMessageCreator);
-        const inspectActionMessageCreatorMock = Mock.ofType(InspectActionMessageCreator);
+        const actionMessageCreatorMock = Mock.ofType(
+            DetailsViewActionMessageCreator,
+        );
+        const scopingActionMessageCreatorMock = Mock.ofType(
+            ScopingActionMessageCreator,
+        );
+        const inspectActionMessageCreatorMock = Mock.ofType(
+            InspectActionMessageCreator,
+        );
         const featureFlagStoreDataStub = {};
         const props: ScopingContainerProps = {
             featureFlagData: featureFlagStoreDataStub,
@@ -44,7 +59,9 @@ describe('ScopingContainerTest', () => {
 
         const description = container.find('.scoping-description');
         expect(description.exists()).toBe(true);
-        expect(description.contains(ScopingContainer.renderInstructions)).toBe(true);
+        expect(description.contains(ScopingContainer.renderInstructions)).toBe(
+            true,
+        );
 
         const selectorLists = container.find(SelectorInputList);
         expect(selectorLists.length).toBe(2);
@@ -88,8 +105,14 @@ describe('ScopingContainerTest', () => {
         expect(list.prop('items')).toEqual(selectors);
         expect(list.prop('instructions')).toEqual(instructions);
         expect(list.prop('inputType')).toEqual(inputType);
-        expect(list.prop('onAddSelector')).toEqual(scopingActionMessageCreator.addSelector);
-        expect(list.prop('onDeleteSelector')).toEqual(scopingActionMessageCreator.deleteSelector);
-        expect(list.prop('onChangeInspectMode')).toEqual(inspectActionMessageCreator.changeInspectMode);
+        expect(list.prop('onAddSelector')).toEqual(
+            scopingActionMessageCreator.addSelector,
+        );
+        expect(list.prop('onDeleteSelector')).toEqual(
+            scopingActionMessageCreator.deleteSelector,
+        );
+        expect(list.prop('onChangeInspectMode')).toEqual(
+            inspectActionMessageCreator.changeInspectMode,
+        );
     }
 });

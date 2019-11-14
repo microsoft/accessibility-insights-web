@@ -11,7 +11,10 @@ import * as React from 'react';
 import * as bundledStyles from '../DetailsView/bundled-details-view-styles';
 import { AssessmentReportModelBuilderFactory } from './assessment-report-model-builder-factory';
 import * as reportStyles from './assessment-report.styles';
-import { AssessmentReport, AssessmentReportDeps } from './components/assessment-report';
+import {
+    AssessmentReport,
+    AssessmentReportDeps,
+} from './components/assessment-report';
 import { ReactStaticRenderer } from './react-static-renderer';
 
 export type AssessmentReportHtmlGeneratorDeps = AssessmentReportDeps;
@@ -35,7 +38,10 @@ export class AssessmentReportHtmlGenerator {
         tabStoreData: TabStoreData,
         description: string,
     ): string {
-        const filteredProvider = assessmentsProviderWithFeaturesEnabled(assessmentsProvider, featureFlagStoreData);
+        const filteredProvider = assessmentsProviderWithFeaturesEnabled(
+            assessmentsProvider,
+            featureFlagStoreData,
+        );
 
         const modelBuilder = this.assessmentReportModelBuilderFactory.create(
             filteredProvider,
@@ -52,8 +58,16 @@ export class AssessmentReportHtmlGenerator {
                 <head>
                     <meta charSet="UTF-8" />
                     <title>Assessment report</title>
-                    <style dangerouslySetInnerHTML={{ __html: reportStyles.styleSheet }} />
-                    <style dangerouslySetInnerHTML={{ __html: bundledStyles.styleSheet }} />
+                    <style
+                        dangerouslySetInnerHTML={{
+                            __html: reportStyles.styleSheet,
+                        }}
+                    />
+                    <style
+                        dangerouslySetInnerHTML={{
+                            __html: bundledStyles.styleSheet,
+                        }}
+                    />
                 </head>
                 <body>
                     <AssessmentReport

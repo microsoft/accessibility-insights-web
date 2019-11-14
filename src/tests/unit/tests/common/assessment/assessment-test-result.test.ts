@@ -4,9 +4,15 @@ import { Mock } from 'typemoq';
 
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
-import { AssessmentTestProviderDeps, AssessmentTestResult } from '../../../../../common/assessment/assessment-test-result';
+import {
+    AssessmentTestProviderDeps,
+    AssessmentTestResult,
+} from '../../../../../common/assessment/assessment-test-result';
 import { RequirementResult } from '../../../../../common/assessment/requirement';
-import { ManualTestStatus, ManualTestStatusData } from '../../../../../common/types/manual-test-status';
+import {
+    ManualTestStatus,
+    ManualTestStatusData,
+} from '../../../../../common/types/manual-test-status';
 import { AssessmentData } from '../../../../../common/types/store-data/assessment-result-data';
 
 describe('AssessmentTestResult', () => {
@@ -26,15 +32,24 @@ describe('AssessmentTestResult', () => {
 
     const requirementsResults = [
         {
-            data: { stepFinalResult: ManualTestStatus.PASS, isStepScanned: true },
+            data: {
+                stepFinalResult: ManualTestStatus.PASS,
+                isStepScanned: true,
+            },
             definition: { key: 'alpha' },
         },
         {
-            data: { stepFinalResult: ManualTestStatus.FAIL, isStepScanned: true },
+            data: {
+                stepFinalResult: ManualTestStatus.FAIL,
+                isStepScanned: true,
+            },
             definition: { key: 'beta' },
         },
         {
-            data: { stepFinalResult: ManualTestStatus.UNKNOWN, isStepScanned: true },
+            data: {
+                stepFinalResult: ManualTestStatus.UNKNOWN,
+                isStepScanned: true,
+            },
             definition: { key: 'gamma' },
         },
     ] as RequirementResult[];
@@ -42,10 +57,25 @@ describe('AssessmentTestResult', () => {
     const outcomeStats = { pass: 1, fail: 2, incomplete: 3 };
 
     const depsMock = Mock.ofType<AssessmentTestProviderDeps>();
-    depsMock.setup(d => d.getRequirementsResults(assessmentProvider, assessmentType, testStepStatus)).returns(() => requirementsResults);
-    depsMock.setup(d => d.outcomeStatsFromManualTestStatus(testStepStatus)).returns(() => outcomeStats);
+    depsMock
+        .setup(d =>
+            d.getRequirementsResults(
+                assessmentProvider,
+                assessmentType,
+                testStepStatus,
+            ),
+        )
+        .returns(() => requirementsResults);
+    depsMock
+        .setup(d => d.outcomeStatsFromManualTestStatus(testStepStatus))
+        .returns(() => outcomeStats);
 
-    const testObject = new AssessmentTestResult(assessmentProvider, assessmentType, assessmentData, depsMock.object);
+    const testObject = new AssessmentTestResult(
+        assessmentProvider,
+        assessmentType,
+        assessmentData,
+        depsMock.object,
+    );
 
     it('provides definition', () => {
         expect(testObject.definition.key).toEqual(key);
@@ -56,7 +86,9 @@ describe('AssessmentTestResult', () => {
     });
 
     it('provides RequirementResult', () => {
-        expect(testObject.getRequirementResult('beta')).toEqual(requirementsResults[1]);
+        expect(testObject.getRequirementResult('beta')).toEqual(
+            requirementsResults[1],
+        );
     });
 
     it('provides requirementResults', () => {

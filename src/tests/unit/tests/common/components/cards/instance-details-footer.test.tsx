@@ -19,9 +19,15 @@ import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
 import { CreateIssueDetailsTextData } from '../../../../../../common/types/create-issue-details-text-data';
-import { TargetAppData, UnifiedRule } from '../../../../../../common/types/store-data/unified-data-interface';
+import {
+    TargetAppData,
+    UnifiedRule,
+} from '../../../../../../common/types/store-data/unified-data-interface';
 import { UnifiedResultToIssueFilingDataConverter } from '../../../../../../issue-filing/unified-result-to-issue-filing-data';
-import { exampleUnifiedResult, exampleUnifiedRuleResult } from './sample-view-model-data';
+import {
+    exampleUnifiedResult,
+    exampleUnifiedRuleResult,
+} from './sample-view-model-data';
 
 describe('InstanceDetailsFooter', () => {
     let resultStub: CardResult;
@@ -34,7 +40,9 @@ describe('InstanceDetailsFooter', () => {
 
     const setupConverterToBeCalled = (times: Times) => {
         converterMock
-            .setup(converter => converter.convert(resultStub, ruleStub, targetAppInfo))
+            .setup(converter =>
+                converter.convert(resultStub, ruleStub, targetAppInfo),
+            )
             .returns(() => issueDetailsData)
             .verifiable(times);
     };
@@ -48,7 +56,11 @@ describe('InstanceDetailsFooter', () => {
     };
 
     beforeEach(() => {
-        resultStub = { ...exampleUnifiedResult, isSelected: true, highlightStatus: 'visible' };
+        resultStub = {
+            ...exampleUnifiedResult,
+            isSelected: true,
+            highlightStatus: 'visible',
+        };
         ruleStub = exampleUnifiedRuleResult;
         issueDetailsData = {} as CreateIssueDetailsTextData;
         targetAppInfo = { name: 'app' };
@@ -103,14 +115,21 @@ describe('InstanceDetailsFooter', () => {
         converterMock.verifyAll();
     });
 
-    const allHighlightStates: HighlightState[] = ['visible', 'hidden', 'unavailable'];
+    const allHighlightStates: HighlightState[] = [
+        'visible',
+        'hidden',
+        'unavailable',
+    ];
 
-    it.each(allHighlightStates)('renders per snapshot with highlightState="%s"', (highlightState: HighlightState) => {
-        resultStub.highlightStatus = highlightState;
-        setupConverterToBeCalledOnce();
-        const testSubject = shallow(<InstanceDetailsFooter {...props} />);
+    it.each(allHighlightStates)(
+        'renders per snapshot with highlightState="%s"',
+        (highlightState: HighlightState) => {
+            resultStub.highlightStatus = highlightState;
+            setupConverterToBeCalledOnce();
+            const testSubject = shallow(<InstanceDetailsFooter {...props} />);
 
-        expect(testSubject.getElement()).toMatchSnapshot();
-        converterMock.verifyAll();
-    });
+            expect(testSubject.getElement()).toMatchSnapshot();
+            converterMock.verifyAll();
+        },
+    );
 });

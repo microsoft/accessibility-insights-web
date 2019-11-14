@@ -47,7 +47,11 @@
     }
 }
 
-@mixin inapplicable-icon-styles($iconSize, $border-size: 1px, $iconColor: $neutral-0) {
+@mixin inapplicable-icon-styles(
+    $iconSize,
+    $border-size: 1px,
+    $iconColor: $neutral-0
+) {
     $true-icon-size: ($iconSize - $border-size * 2);
     $width-value: (1/7 * $true-icon-size);
 

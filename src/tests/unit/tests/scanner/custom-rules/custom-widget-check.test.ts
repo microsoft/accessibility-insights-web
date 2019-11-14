@@ -26,10 +26,14 @@ describe('custom-widget check', () => {
 });
 
 describe('custom-widget check', () => {
-    const axeTextFunctionBackup: (node: Element) => string = axe.commons.text.accessibleText;
-    const textFunctionMock = Mock.ofInstance((node: Element, isLabelledByContext: boolean) => {
-        return '';
-    }, MockBehavior.Strict);
+    const axeTextFunctionBackup: (node: Element) => string =
+        axe.commons.text.accessibleText;
+    const textFunctionMock = Mock.ofInstance(
+        (node: Element, isLabelledByContext: boolean) => {
+            return '';
+        },
+        MockBehavior.Strict,
+    );
 
     beforeEach(() => {
         context._data = null;
@@ -48,7 +52,9 @@ describe('custom-widget check', () => {
         const node = fixture.querySelector('#myElement');
         axe._tree = axe.utils.getFlattenedTree(document.documentElement);
 
-        expect(customWidgetConfiguration.checks[0].evaluate.call(context, node)).toBeTruthy();
+        expect(
+            customWidgetConfiguration.checks[0].evaluate.call(context, node),
+        ).toBeTruthy();
         expect(context._data).toEqual({
             accessibleName: '',
             role: null,
@@ -68,7 +74,9 @@ describe('custom-widget check', () => {
         const node = fixture.querySelector('#myElement');
         axe._tree = axe.utils.getFlattenedTree(document.documentElement);
 
-        expect(customWidgetConfiguration.checks[0].evaluate.call(context, node)).toBeTruthy();
+        expect(
+            customWidgetConfiguration.checks[0].evaluate.call(context, node),
+        ).toBeTruthy();
         expect(context._data.describedBy).toEqual('my description');
     });
 
@@ -83,7 +91,9 @@ describe('custom-widget check', () => {
 
         textFunctionMock.setup(m => m(node, false)).returns(() => 'my text');
 
-        expect(customWidgetConfiguration.checks[0].evaluate.call(context, node)).toBeTruthy();
+        expect(
+            customWidgetConfiguration.checks[0].evaluate.call(context, node),
+        ).toBeTruthy();
         expect(context._data.accessibleName).toEqual('my text');
     });
 
@@ -96,14 +106,18 @@ describe('custom-widget check', () => {
         axe._tree = axe.utils.getFlattenedTree(document.documentElement);
         const node = fixture.querySelector('#myElement');
 
-        expect(customWidgetConfiguration.checks[0].evaluate.call(context, node)).toBeTruthy();
+        expect(
+            customWidgetConfiguration.checks[0].evaluate.call(context, node),
+        ).toBeTruthy();
         expect(context._data.role).toEqual('sandwich');
     });
 });
 
 describe('custom-widget check', () => {
     const selector = customWidgetConfiguration.rule.selector;
-    const allRoles = Object.getOwnPropertyNames(axe.commons.aria.lookupTable.role);
+    const allRoles = Object.getOwnPropertyNames(
+        axe.commons.aria.lookupTable.role,
+    );
     const expectedRoles = [
         'alert',
         'alertdialog',
@@ -166,13 +180,27 @@ describe('custom-widget check', () => {
 });
 
 describe('custom-widget check', () => {
-    const allAriaAttributes = Object.getOwnPropertyNames(axe.commons.aria.lookupTable.attributes);
-    const overlappingHTMLAttributes = map(allAriaAttributes, s => s.replace('aria-', ''));
+    const allAriaAttributes = Object.getOwnPropertyNames(
+        axe.commons.aria.lookupTable.attributes,
+    );
+    const overlappingHTMLAttributes = map(allAriaAttributes, s =>
+        s.replace('aria-', ''),
+    );
     const allAttributes = allAriaAttributes.concat(overlappingHTMLAttributes);
-    const expectedARIAAttributes = ['aria-disabled', 'aria-readonly', 'aria-required'];
-    const unexpectedARIAAttributes = difference(allAttributes, expectedARIAAttributes);
+    const expectedARIAAttributes = [
+        'aria-disabled',
+        'aria-readonly',
+        'aria-required',
+    ];
+    const unexpectedARIAAttributes = difference(
+        allAttributes,
+        expectedARIAAttributes,
+    );
     const expectedHTMLAttributes = ['disabled', 'readonly', 'required'];
-    const unexpectedHTMLAttributes = difference(allAttributes, expectedHTMLAttributes);
+    const unexpectedHTMLAttributes = difference(
+        allAttributes,
+        expectedHTMLAttributes,
+    );
 
     beforeEach(() => {
         context._data = null;

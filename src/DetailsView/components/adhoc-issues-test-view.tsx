@@ -3,25 +3,39 @@
 import * as React from 'react';
 
 import { NamedFC } from '../../common/react/named-fc';
-import { DetailsListIssuesView, DetailsListIssuesViewDeps, DetailsListIssuesViewProps } from './details-list-issues-view';
+import {
+    DetailsListIssuesView,
+    DetailsListIssuesViewDeps,
+    DetailsListIssuesViewProps,
+} from './details-list-issues-view';
 import { TargetPageChangedView } from './target-page-changed-view';
 
 export type AdhocIssuesTestViewDeps = DetailsListIssuesViewDeps;
 
 export type AdhocIssuesTestViewProps = DetailsListIssuesViewProps;
 
-export const AdhocIssuesTestView = NamedFC<AdhocIssuesTestViewProps>('AdhocIssuesTestView', ({ children, ...props }) => {
-    if (props.tabStoreData.isChanged) {
-        return createTargetPageChangedView(props);
-    }
+export const AdhocIssuesTestView = NamedFC<AdhocIssuesTestViewProps>(
+    'AdhocIssuesTestView',
+    ({ children, ...props }) => {
+        if (props.tabStoreData.isChanged) {
+            return createTargetPageChangedView(props);
+        }
 
-    return <DetailsListIssuesView {...props} />;
-});
+        return <DetailsListIssuesView {...props} />;
+    },
+);
 
-function createTargetPageChangedView(props: AdhocIssuesTestViewProps): JSX.Element {
+function createTargetPageChangedView(
+    props: AdhocIssuesTestViewProps,
+): JSX.Element {
     const selectedTest = props.selectedTest;
-    const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
-    const clickHandler = props.clickHandlerFactory.createClickHandler(selectedTest, !scanData.enabled);
+    const scanData = props.configuration.getStoreData(
+        props.visualizationStoreData.tests,
+    );
+    const clickHandler = props.clickHandlerFactory.createClickHandler(
+        selectedTest,
+        !scanData.enabled,
+    );
 
     return (
         <TargetPageChangedView

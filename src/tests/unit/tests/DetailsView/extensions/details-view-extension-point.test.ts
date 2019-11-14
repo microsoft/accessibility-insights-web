@@ -10,7 +10,9 @@ describe('detailsViewExtensionPoint', () => {
     it('supports onAssessmentViewUpdate', () => {
         const onAssessmentViewUpdate = jest.fn();
 
-        const addIn = detailsViewExtensionPoint.define({ onAssessmentViewUpdate });
+        const addIn = detailsViewExtensionPoint.define({
+            onAssessmentViewUpdate,
+        });
 
         const apply = detailsViewExtensionPoint.apply([addIn]);
         apply.onAssessmentViewUpdate(prev, cur);
@@ -21,10 +23,16 @@ describe('detailsViewExtensionPoint', () => {
     it('supports non-add-in items in the list', () => {
         const onAssessmentViewUpdate = jest.fn();
 
-        const addIn = detailsViewExtensionPoint.define({ onAssessmentViewUpdate });
+        const addIn = detailsViewExtensionPoint.define({
+            onAssessmentViewUpdate,
+        });
         const emptyAddIn = detailsViewExtensionPoint.define({});
 
-        const apply = detailsViewExtensionPoint.apply([{ x: 'whatever' }, addIn, emptyAddIn]);
+        const apply = detailsViewExtensionPoint.apply([
+            { x: 'whatever' },
+            addIn,
+            emptyAddIn,
+        ]);
         apply.onAssessmentViewUpdate(prev, cur);
 
         expect(onAssessmentViewUpdate).toBeCalledWith(prev, cur);

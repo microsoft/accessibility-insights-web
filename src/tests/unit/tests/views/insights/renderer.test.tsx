@@ -15,7 +15,8 @@ describe('insights renderer', () => {
     } as Partial<RendererDeps>) as RendererDeps;
 
     beforeEach(() => {
-        document.head.innerHTML = '<link rel="shortcut icon" type="image/x-icon" href="../old-icon.png" />';
+        document.head.innerHTML =
+            '<link rel="shortcut icon" type="image/x-icon" href="../old-icon.png" />';
         document.body.innerHTML = '<div id="insights-root" />';
 
         configMutator.setOption('icon128', 'new-icon.png');
@@ -23,7 +24,9 @@ describe('insights renderer', () => {
 
     it('sets icon as configured', () => {
         renderer(deps);
-        expect(document.querySelector('link').getAttribute('href')).toEqual('../new-icon.png');
+        expect(document.querySelector('link').getAttribute('href')).toEqual(
+            '../new-icon.png',
+        );
     });
 
     it('calls initializeFabricIcons', () => {

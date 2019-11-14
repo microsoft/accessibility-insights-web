@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FeatureFlagActions, FeatureFlagPayload } from 'background/actions/feature-flag-actions';
+import {
+    FeatureFlagActions,
+    FeatureFlagPayload,
+} from 'background/actions/feature-flag-actions';
 import { FeatureFlagsActionCreator } from 'background/global-action-creators/feature-flags-action-creator';
 import { Interpreter } from 'background/interpreter';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
@@ -23,11 +26,17 @@ describe('FeatureFlagsActionCreator', () => {
         telemetryHandlerMock = Mock.ofType<TelemetryEventHandler>();
         featureFlagActionsMock = Mock.ofType<FeatureFlagActions>();
 
-        testSubject = new FeatureFlagsActionCreator(interpreterMock.object, featureFlagActionsMock.object, telemetryHandlerMock.object);
+        testSubject = new FeatureFlagsActionCreator(
+            interpreterMock.object,
+            featureFlagActionsMock.object,
+            telemetryHandlerMock.object,
+        );
     });
 
     it('handles GetFeatureFlags message', () => {
-        const expectedMessage = getStoreStateMessage(StoreNames.FeatureFlagStore);
+        const expectedMessage = getStoreStateMessage(
+            StoreNames.FeatureFlagStore,
+        );
 
         setupInterpreterMock(expectedMessage);
 
@@ -73,9 +82,17 @@ describe('FeatureFlagsActionCreator', () => {
         resetFeatureFlagMock.verifyAll();
     });
 
-    const setupInterpreterMock = <Payload>(expectedMessage: string, payload?: Payload): void => {
+    const setupInterpreterMock = <Payload>(
+        expectedMessage: string,
+        payload?: Payload,
+    ): void => {
         interpreterMock
-            .setup(interpreter => interpreter.registerTypeToPayloadCallback(expectedMessage, It.is(isFunction)))
+            .setup(interpreter =>
+                interpreter.registerTypeToPayloadCallback(
+                    expectedMessage,
+                    It.is(isFunction),
+                ),
+            )
             .callback((message, handler) => {
                 if (payload) {
                     handler(payload);
@@ -89,6 +106,8 @@ describe('FeatureFlagsActionCreator', () => {
         actionName: ActionName,
         action: FeatureFlagActions[ActionName],
     ) => {
-        featureFlagActionsMock.setup(actions => actions[actionName]).returns(() => action);
+        featureFlagActionsMock
+            .setup(actions => actions[actionName])
+            .returns(() => action);
     };
 });

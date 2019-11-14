@@ -26,7 +26,9 @@ export class PopupPage extends Page {
     }
 
     public async gotoAdhocPanel(): Promise<void> {
-        await this.clickSelectorXPath(popupPageElementIdentifiers.adhocLaunchPadLinkXPath);
+        await this.clickSelectorXPath(
+            popupPageElementIdentifiers.adhocLaunchPadLinkXPath,
+        );
         await this.verifyAdhocPanelLoaded();
     }
 

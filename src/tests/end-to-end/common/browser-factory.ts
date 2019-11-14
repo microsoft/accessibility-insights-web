@@ -9,7 +9,10 @@ import { Browser } from './browser';
 import { popupPageElementIdentifiers } from './element-identifiers/popup-page-element-identifiers';
 import { DEFAULT_BROWSER_LAUNCH_TIMEOUT_MS } from './timeouts';
 
-export const chromeLogsPath = path.join(__dirname, '../../../../test-results/e2e/chrome-logs/');
+export const chromeLogsPath = path.join(
+    __dirname,
+    '../../../../test-results/e2e/chrome-logs/',
+);
 
 export function browserLogPath(browserInstanceId: string): string {
     return path.join(chromeLogsPath, browserInstanceId);
@@ -19,7 +22,9 @@ export interface ExtensionOptions {
     suppressFirstTimeDialog: boolean;
 }
 
-export async function launchBrowser(extensionOptions: ExtensionOptions): Promise<Browser> {
+export async function launchBrowser(
+    extensionOptions: ExtensionOptions,
+): Promise<Browser> {
     const browserInstanceId = generateUID();
     const puppeteerBrowser = await launchNewBrowser(browserInstanceId);
     const browser = new Browser(browserInstanceId, puppeteerBrowser);
@@ -34,7 +39,9 @@ async function suppressFirstTimeUsagePrompt(browser: Browser): Promise<void> {
     const targetPage = await browser.newTargetPage();
     const popupPage = await browser.newPopupPage(targetPage);
 
-    await popupPage.clickSelector(popupPageElementIdentifiers.startUsingProductButton);
+    await popupPage.clickSelector(
+        popupPageElementIdentifiers.startUsingProductButton,
+    );
 
     await targetPage.close();
     await popupPage.close();
@@ -55,9 +62,13 @@ async function verifyExtensionIsBuilt(extensionPath: string): Promise<void> {
     }
 }
 
-async function launchNewBrowser(browserInstanceId: string): Promise<Puppeteer.Browser> {
+async function launchNewBrowser(
+    browserInstanceId: string,
+): Promise<Puppeteer.Browser> {
     // only unpacked extension paths are supported
-    const extensionPath = `${(global as any).rootDir}/drop/extension/dev/product`;
+    const extensionPath = `${
+        (global as any).rootDir
+    }/drop/extension/dev/product`;
 
     // It's important that we verify this before calling Puppeteer.launch because its behavior if the
     // extension can't be loaded is "the Chromium instance hangs with an alert and everything on Puppeteer's

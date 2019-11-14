@@ -9,22 +9,34 @@ import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { KeyboardInteractionTestStep } from './test-steps';
 
-const description: JSX.Element = <span>Changing a component's settings must not trigger any unexpected change of context.</span>;
+const description: JSX.Element = (
+    <span>
+        Changing a component's settings must not trigger any unexpected change
+        of context.
+    </span>
+);
 
 const howToTest: JSX.Element = (
     <div>
         <ol>
             <li>
-                Use standard keyboard commands to navigate through all the interactive interface components in the target page.
+                Use standard keyboard commands to navigate through all the
+                interactive interface components in the target page.
                 <ol>
                     <li>
-                        Enter data in each text field and then <Markup.Term>Tab</Markup.Term> away from the field.
+                        Enter data in each text field and then{' '}
+                        <Markup.Term>Tab</Markup.Term> away from the field.
                     </li>
-                    <li>Change selections for selectable components such as toggle buttons, radio buttons, check boxes, and list boxes.</li>
+                    <li>
+                        Change selections for selectable components such as
+                        toggle buttons, radio buttons, check boxes, and list
+                        boxes.
+                    </li>
                 </ol>
             </li>
             <li>
-                Verify that changing the component's settings does not trigger any unexpected change in context, such as:
+                Verify that changing the component's settings does not trigger
+                any unexpected change in context, such as:
                 <ol>
                     <li>Submitting a form automatically</li>
                     <li>Launching a new window</li>

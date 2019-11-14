@@ -5,7 +5,10 @@ import * as React from 'react';
 import { NamedFC } from '../../../common/react/named-fc';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { NavLinkHandler } from './nav-link-handler';
-import { VisualizationBasedLeftNav, VisualizationBasedLeftNavDeps } from './visualization-based-left-nav';
+import {
+    VisualizationBasedLeftNav,
+    VisualizationBasedLeftNavDeps,
+} from './visualization-based-left-nav';
 
 export type FastPassLeftNavDeps = {
     navLinkHandler: NavLinkHandler;
@@ -15,12 +18,21 @@ export type FastPassLeftNavProps = {
     selectedKey: string;
 };
 
-export const FastPassLeftNav = NamedFC<FastPassLeftNavProps>('FastPassLeftNav', props => {
-    const { deps } = props;
+export const FastPassLeftNav = NamedFC<FastPassLeftNavProps>(
+    'FastPassLeftNav',
+    props => {
+        const { deps } = props;
 
-    const { navLinkHandler } = deps;
+        const { navLinkHandler } = deps;
 
-    const tests = [VisualizationType.Issues, VisualizationType.TabStops];
+        const tests = [VisualizationType.Issues, VisualizationType.TabStops];
 
-    return <VisualizationBasedLeftNav {...props} onLinkClick={navLinkHandler.onFastPassTestClick} visualizations={tests} />;
-});
+        return (
+            <VisualizationBasedLeftNav
+                {...props}
+                onLinkClick={navLinkHandler.onFastPassTestClick}
+                visualizations={tests}
+            />
+        );
+    },
+);

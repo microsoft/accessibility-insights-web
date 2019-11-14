@@ -36,34 +36,44 @@ describe('TelemetrySettings', () => {
                 .find(EnableTelemetrySettingDescription);
 
             expect(wrapper.getElement()).toMatchSnapshot();
-            expect(enableTelemetrySettingDescription.prop('deps').LinkComponent).toBe(props.deps.LinkComponent);
+            expect(
+                enableTelemetrySettingDescription.prop('deps').LinkComponent,
+            ).toBe(props.deps.LinkComponent);
         });
     });
 
     describe('user interaction', () => {
-        it.each(enableStates)('handle toggle click, with enabled = %s', enabled => {
-            const userConfigMessageCreatorMock = Mock.ofType<UserConfigMessageCreator>();
-            const deps = {
-                userConfigMessageCreator: userConfigMessageCreatorMock.object,
-            } as TelemetrySettingsProps['deps'];
-            const props: TelemetrySettingsProps = {
-                deps,
-                userConfigurationStoreState: {
-                    enableTelemetry: enabled,
-                } as UserConfigurationStoreData,
-                featureFlagData: {},
-            };
+        it.each(enableStates)(
+            'handle toggle click, with enabled = %s',
+            enabled => {
+                const userConfigMessageCreatorMock = Mock.ofType<
+                    UserConfigMessageCreator
+                >();
+                const deps = {
+                    userConfigMessageCreator:
+                        userConfigMessageCreatorMock.object,
+                } as TelemetrySettingsProps['deps'];
+                const props: TelemetrySettingsProps = {
+                    deps,
+                    userConfigurationStoreState: {
+                        enableTelemetry: enabled,
+                    } as UserConfigurationStoreData,
+                    featureFlagData: {},
+                };
 
-            const wrapper = shallow(<TelemetrySettings {...props} />);
+                const wrapper = shallow(<TelemetrySettings {...props} />);
 
-            userConfigMessageCreatorMock.setup(creator => creator.setTelemetryState(!enabled)).verifiable(Times.once());
+                userConfigMessageCreatorMock
+                    .setup(creator => creator.setTelemetryState(!enabled))
+                    .verifiable(Times.once());
 
-            wrapper
-                .dive()
-                .find(Toggle)
-                .simulate('click');
+                wrapper
+                    .dive()
+                    .find(Toggle)
+                    .simulate('click');
 
-            userConfigMessageCreatorMock.verifyAll();
-        });
+                userConfigMessageCreatorMock.verifyAll();
+            },
+        );
     });
 });

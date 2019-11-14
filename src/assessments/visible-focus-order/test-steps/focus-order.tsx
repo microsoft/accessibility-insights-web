@@ -13,26 +13,38 @@ import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { visibleFfocusOrderTestStep } from './test-steps';
 
-const description: JSX.Element = <span>Components must receive focus in an order that preserves meaning and operability.</span>;
+const description: JSX.Element = (
+    <span>
+        Components must receive focus in an order that preserves meaning and
+        operability.
+    </span>
+);
 
 const howToTest: JSX.Element = (
     <div>
         <p>
-            The visual helper for this requirement records elements in the target page that receive the input focus and their focus order.
+            The visual helper for this requirement records elements in the
+            target page that receive the input focus and their focus order.
         </p>
         <ol>
             <li>
-                Use the keyboard to navigate through all the interactive interface components in the target page.
+                Use the keyboard to navigate through all the interactive
+                interface components in the target page.
                 <ol>
                     <li>
-                        Use <Markup.Term>Tab</Markup.Term> and <Markup.Term>Shift+Tab</Markup.Term> to navigate between widgets both
-                        forwards and backwards.
+                        Use <Markup.Term>Tab</Markup.Term> and{' '}
+                        <Markup.Term>Shift+Tab</Markup.Term> to navigate between
+                        widgets both forwards and backwards.
                     </li>
-                    <li>Use the arrow keys to navigate between the focusable elements within a composite widget.</li>
+                    <li>
+                        Use the arrow keys to navigate between the focusable
+                        elements within a composite widget.
+                    </li>
                 </ol>
             </li>
             <li>
-                If you encounter any trigger component that reveals hidden content:
+                If you encounter any trigger component that reveals hidden
+                content:
                 <ol>
                     <li>Activate the trigger.</li>
                     <li>Navigate through the revealed content.</li>
@@ -41,7 +53,8 @@ const howToTest: JSX.Element = (
                 </ol>
             </li>
             <li>
-                Verify that all interactive interface components receive focus in an order that preserves the meaning and operability of the
+                Verify that all interactive interface components receive focus
+                in an order that preserves the meaning and operability of the
                 web page.
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
@@ -63,12 +76,16 @@ export const FocusOrder: Requirement = {
             testType: VisualizationType.VisibleFocusOrderAssessment,
             analyzerMessageType: Messages.Assessment.AssessmentScanCompleted,
             analyzerProgressMessageType: Messages.Assessment.ScanUpdate,
-            analyzerTerminatedMessageType: Messages.Assessment.TrackingCompleted,
+            analyzerTerminatedMessageType:
+                Messages.Assessment.TrackingCompleted,
         }),
-    getVisualHelperToggle: props => <RestartScanVisualHelperToggle {...props} />,
+    getVisualHelperToggle: props => (
+        <RestartScanVisualHelperToggle {...props} />
+    ),
     getDrawer: provider => provider.createSVGDrawer(),
     visualizationInstanceProcessor: VisualizationInstanceProcessor.addOrder,
-    getNotificationMessage: selectorMap => 'Start pressing Tab to start visualizing tab stops.',
+    getNotificationMessage: selectorMap =>
+        'Start pressing Tab to start visualizing tab stops.',
     doNotScanByDefault: true,
     switchToTargetTabOnScan: true,
     generateInstanceIdentifier: generateUID,

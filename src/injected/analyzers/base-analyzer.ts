@@ -4,7 +4,12 @@ import * as Q from 'q';
 
 import { Message } from '../../common/message';
 import { VisualizationType } from '../../common/types/visualization-type';
-import { Analyzer, AnalyzerConfiguration, AxeAnalyzerResult, ScanCompletedPayload } from './analyzer';
+import {
+    Analyzer,
+    AnalyzerConfiguration,
+    AxeAnalyzerResult,
+    ScanCompletedPayload,
+} from './analyzer';
 
 export class BaseAnalyzer implements Analyzer {
     protected sendMessage: (message: Message) => void;
@@ -15,7 +20,10 @@ export class BaseAnalyzer implements Analyzer {
         originalResult: null,
     };
 
-    constructor(config: AnalyzerConfiguration, sendMessageDelegate: (message) => void) {
+    constructor(
+        config: AnalyzerConfiguration,
+        sendMessageDelegate: (message) => void,
+    ) {
         this.config = config;
         this.sendMessage = sendMessageDelegate;
         this.visualizationType = config.testType;
@@ -41,7 +49,10 @@ export class BaseAnalyzer implements Analyzer {
         this.sendMessage(this.createBaseMessage(analyzerResult, this.config));
     };
 
-    protected createBaseMessage(analyzerResult: AxeAnalyzerResult, config: AnalyzerConfiguration): Message {
+    protected createBaseMessage(
+        analyzerResult: AxeAnalyzerResult,
+        config: AnalyzerConfiguration,
+    ): Message {
         const messageType = config.analyzerMessageType;
         const originalAxeResult = analyzerResult.originalResult;
         const payload: ScanCompletedPayload<any> = {

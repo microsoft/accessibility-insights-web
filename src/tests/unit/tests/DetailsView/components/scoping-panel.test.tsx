@@ -10,7 +10,10 @@ import { ScopingActionMessageCreator } from '../../../../../common/message-creat
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { GenericPanel } from '../../../../../DetailsView/components/generic-panel';
 import { ScopingContainer } from '../../../../../DetailsView/components/scoping-container';
-import { ScopingPanel, ScopingPanelProps } from '../../../../../DetailsView/components/scoping-panel';
+import {
+    ScopingPanel,
+    ScopingPanelProps,
+} from '../../../../../DetailsView/components/scoping-panel';
 
 describe('ScopingPanelTest', () => {
     test('constructor', () => {
@@ -19,9 +22,15 @@ describe('ScopingPanelTest', () => {
     });
 
     test('render', () => {
-        const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
-        const scopingActionMessageCreatorMock = Mock.ofType(ScopingActionMessageCreator);
-        const inspectActionMessageCreatorMock = Mock.ofType(InspectActionMessageCreator);
+        const actionMessageCreatorMock = Mock.ofType(
+            DetailsViewActionMessageCreator,
+        );
+        const scopingActionMessageCreatorMock = Mock.ofType(
+            ScopingActionMessageCreator,
+        );
+        const inspectActionMessageCreatorMock = Mock.ofType(
+            InspectActionMessageCreator,
+        );
 
         const testProps: ScopingPanelProps = {
             isOpen: true,
@@ -52,8 +61,12 @@ describe('ScopingPanelTest', () => {
                     featureFlagData={testProps.featureFlagData}
                     actionMessageCreator={testProps.actionMessageCreator}
                     scopingSelectorsData={testProps.scopingSelectorsData}
-                    scopingActionMessageCreator={testProps.scopingActionMessageCreator}
-                    inspectActionMessageCreator={testProps.inspectActionMessageCreator}
+                    scopingActionMessageCreator={
+                        testProps.scopingActionMessageCreator
+                    }
+                    inspectActionMessageCreator={
+                        testProps.inspectActionMessageCreator
+                    }
                 />
                 <DefaultButton
                     className="closing-scoping-panel"

@@ -1,11 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ScopingActions, ScopingPayload } from 'background/actions/scoping-actions';
+import {
+    ScopingActions,
+    ScopingPayload,
+} from 'background/actions/scoping-actions';
 import { ScopingInputTypes } from 'background/scoping-input-types';
 import { ScopingStore } from 'background/stores/global/scoping-store';
 import { StoreNames } from '../../../../../../common/stores/store-names';
-import { ScopingStoreData, SingleElementSelector } from '../../../../../../common/types/store-data/scoping-store-data';
-import { createStoreWithNullParams, StoreTester } from '../../../../common/store-tester';
+import {
+    ScopingStoreData,
+    SingleElementSelector,
+} from '../../../../../../common/types/store-data/scoping-store-data';
+import {
+    createStoreWithNullParams,
+    StoreTester,
+} from '../../../../common/store-tester';
 
 describe('ScopingStoreTest', () => {
     test('constructor  no side effects', () => {
@@ -15,7 +24,9 @@ describe('ScopingStoreTest', () => {
 
     test('getId', () => {
         const testObject = createStoreWithNullParams(ScopingStore);
-        expect(testObject.getId()).toEqual(StoreNames[StoreNames.ScopingPanelStateStore]);
+        expect(testObject.getId()).toEqual(
+            StoreNames[StoreNames.ScopingPanelStateStore],
+        );
     });
 
     test('test defaultState has empty selectors arrays', () => {
@@ -31,7 +42,9 @@ describe('ScopingStoreTest', () => {
         const initialState = getDefaultState();
         const finalState = getDefaultState();
 
-        createStoreForScopingActions('getCurrentState').testListenerToBeCalledOnce(initialState, finalState);
+        createStoreForScopingActions(
+            'getCurrentState',
+        ).testListenerToBeCalledOnce(initialState, finalState);
     });
 
     test('on addSelector', () => {
@@ -97,7 +110,9 @@ describe('ScopingStoreTest', () => {
         return createStoreWithNullParams(ScopingStore).getDefaultState();
     }
 
-    function createStoreForScopingActions(actionName: keyof ScopingActions): StoreTester<ScopingStoreData, ScopingActions> {
+    function createStoreForScopingActions(
+        actionName: keyof ScopingActions,
+    ): StoreTester<ScopingStoreData, ScopingActions> {
         const factory = (actions: ScopingActions) => new ScopingStore(actions);
 
         return new StoreTester(ScopingActions, actionName, factory);

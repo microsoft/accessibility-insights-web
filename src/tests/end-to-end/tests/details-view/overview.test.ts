@@ -27,7 +27,10 @@ describe('Overview Page', () => {
         });
 
         it('should pass accessibility validation', async () => {
-            const results = await scanForAccessibilityIssues(overviewPage, overviewSelectors.overview);
+            const results = await scanForAccessibilityIssues(
+                overviewPage,
+                overviewSelectors.overview,
+            );
             expect(results).toHaveLength(0);
         });
     });
@@ -52,15 +55,23 @@ describe('Overview Page', () => {
         });
 
         it('should pass accessibility validation', async () => {
-            const results = await scanForAccessibilityIssues(overviewPage, overviewSelectors.overview);
+            const results = await scanForAccessibilityIssues(
+                overviewPage,
+                overviewSelectors.overview,
+            );
             expect(results).toHaveLength(0);
         });
     });
 
-    async function openOverviewPage(browser: Browser, targetPage: TargetPage): Promise<DetailsViewPage> {
+    async function openOverviewPage(
+        browser: Browser,
+        targetPage: TargetPage,
+    ): Promise<DetailsViewPage> {
         const detailsViewPage = await browser.newDetailsViewPage(targetPage);
         await detailsViewPage.switchToAssessment();
-        await detailsViewPage.waitForSelector(overviewSelectors.overviewHeading);
+        await detailsViewPage.waitForSelector(
+            overviewSelectors.overviewHeading,
+        );
 
         return detailsViewPage;
     }

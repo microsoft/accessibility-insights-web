@@ -2,7 +2,10 @@
 // Licensed under the MIT License.
 import { DefaultMessageInterface } from 'assessments/assessment-default-message-generator';
 import { GuidanceLinks } from 'common/components/guidance-links';
-import { GuidanceTags, GuidanceTagsDeps } from 'common/components/guidance-tags';
+import {
+    GuidanceTags,
+    GuidanceTagsDeps,
+} from 'common/components/guidance-tags';
 import { NamedFC } from 'common/react/named-fc';
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import * as React from 'react';
@@ -13,7 +16,9 @@ import { OutcomeTypeSemantic } from './outcome-type';
 import { allRequirementOutcomeTypes } from './requirement-outcome-type';
 
 export type AssessmentReportStepHeaderDeps = GuidanceTagsDeps & {
-    outcomeTypeSemanticsFromTestStatus: (testStatus: ManualTestStatus) => OutcomeTypeSemantic;
+    outcomeTypeSemanticsFromTestStatus: (
+        testStatus: ManualTestStatus,
+    ) => OutcomeTypeSemantic;
 };
 
 export interface AssessmentReportStepHeaderProps {
@@ -24,12 +29,21 @@ export interface AssessmentReportStepHeaderProps {
     defaultMessageComponent: DefaultMessageInterface;
 }
 
-export const AssessmentReportStepHeader = NamedFC<AssessmentReportStepHeaderProps>('AssessmentReportStepHeader', props => {
-    const { deps, header, instanceCount, status, defaultMessageComponent } = props;
+export const AssessmentReportStepHeader = NamedFC<
+    AssessmentReportStepHeaderProps
+>('AssessmentReportStepHeader', props => {
+    const {
+        deps,
+        header,
+        instanceCount,
+        status,
+        defaultMessageComponent,
+    } = props;
     const { outcomeTypeSemanticsFromTestStatus } = deps;
 
     const outcomeType = allRequirementOutcomeTypes[status];
-    const minCount = header.requirementType === 'manual' && outcomeType === 'pass' ? 1 : 0;
+    const minCount =
+        header.requirementType === 'manual' && outcomeType === 'pass' ? 1 : 0;
     let count = Math.max(minCount, instanceCount);
     let message: JSX.Element = null;
 
@@ -38,17 +52,24 @@ export const AssessmentReportStepHeader = NamedFC<AssessmentReportStepHeaderProp
         message = defaultMessageComponent.message;
     }
 
-    const outcomePastTense = outcomeTypeSemanticsFromTestStatus(status).pastTense;
+    const outcomePastTense = outcomeTypeSemanticsFromTestStatus(status)
+        .pastTense;
     const outcomeText = `${count} ${outcomePastTense}`;
 
     return (
         <div className="step-header">
             <h4 className="step-header-name">
-                {header.displayName}:<span className="screen-reader-only">{outcomeText}</span>
+                {header.displayName}:
+                <span className="screen-reader-only">{outcomeText}</span>
             </h4>
-            <span className="step-header-description">{header.description}</span>
+            <span className="step-header-description">
+                {header.description}
+            </span>
             -
-            <GuidanceLinks classNameForDiv={`test-guidance-links-group`} links={header.guidanceLinks} />
+            <GuidanceLinks
+                classNameForDiv={`test-guidance-links-group`}
+                links={header.guidanceLinks}
+            />
             <OutcomeChip count={count} outcomeType={outcomeType} />
             <GuidanceTags deps={deps} links={header.guidanceLinks} />
             {message && <span className="step-header-message">{message}</span>}

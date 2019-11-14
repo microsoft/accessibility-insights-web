@@ -3,7 +3,10 @@
 import * as React from 'react';
 
 import { ReportModel } from '../assessment-report-model';
-import { AssessmentReportBody, AssessmentReportBodyDeps } from './assessment-report-body';
+import {
+    AssessmentReportBody,
+    AssessmentReportBodyDeps,
+} from './assessment-report-body';
 import { AssessmentReportFooter } from './assessment-report-footer';
 import { HeaderSection } from './report-sections/header-section';
 
@@ -22,8 +25,15 @@ export class AssessmentReport extends React.Component<AssessmentReportProps> {
     public render(): JSX.Element {
         return (
             <React.Fragment>
-                <HeaderSection pageTitle={this.props.data.scanDetails.targetPage} pageUrl={this.props.data.scanDetails.url} />
-                <AssessmentReportBody deps={this.props.deps} data={this.props.data} description={this.props.description} />
+                <HeaderSection
+                    pageTitle={this.props.data.scanDetails.targetPage}
+                    pageUrl={this.props.data.scanDetails.url}
+                />
+                <AssessmentReportBody
+                    deps={this.props.deps}
+                    data={this.props.data}
+                    description={this.props.description}
+                />
 
                 <AssessmentReportFooter
                     extensionVersion={this.props.extensionVersion}

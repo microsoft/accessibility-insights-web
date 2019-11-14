@@ -26,9 +26,14 @@ export const IssuesAdHocVisualization: VisualizationConfiguration = {
         title: 'Automated checks',
         subtitle: (
             <>
-                Automated checks can detect some common accessibility problems such as missing or invalid properties. But most accessibility
-                problems can only be discovered through manual testing. The best way to evaluate web accessibility compliance is to complete
-                an <NewTabLink href="https://accessibilityinsights.io/docs/en/web/getstarted/assessment">assessment</NewTabLink>.
+                Automated checks can detect some common accessibility problems
+                such as missing or invalid properties. But most accessibility
+                problems can only be discovered through manual testing. The best
+                way to evaluate web accessibility compliance is to complete an{' '}
+                <NewTabLink href="https://accessibilityinsights.io/docs/en/web/getstarted/assessment">
+                    assessment
+                </NewTabLink>
+                .
             </>
         ),
         enableMessage: 'Running automated checks...',
@@ -42,16 +47,21 @@ export const IssuesAdHocVisualization: VisualizationConfiguration = {
     getAnalyzer: provider =>
         provider.createRuleAnalyzerUnifiedScan({
             rules: null,
-            resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
-            telemetryProcessor: (telemetryFactory: TelemetryDataFactory) => telemetryFactory.forIssuesAnalyzerScan,
+            resultProcessor: (scanner: ScannerUtils) =>
+                scanner.getFailingInstances,
+            telemetryProcessor: (telemetryFactory: TelemetryDataFactory) =>
+                telemetryFactory.forIssuesAnalyzerScan,
             key: AdHocTestkeys.Issues,
             testType: VisualizationType.Issues,
             analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
         }),
     getIdentifier: () => AdHocTestkeys.Issues,
-    visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
+    visualizationInstanceProcessor: () =>
+        VisualizationInstanceProcessor.nullProcessor,
     getNotificationMessage: selectorMap =>
-        isEmpty(selectorMap) ? 'Congratulations!\n\nAutomated checks found no issues on this page.' : null,
+        isEmpty(selectorMap)
+            ? 'Congratulations!\n\nAutomated checks found no issues on this page.'
+            : null,
     getDrawer: provider => provider.createIssuesDrawer(),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,

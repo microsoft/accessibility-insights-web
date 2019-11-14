@@ -9,11 +9,20 @@ import { Messages } from '../messages';
 import { TelemetryDataFactory } from '../telemetry-data-factory';
 
 export class DropdownActionMessageCreator {
-    constructor(private readonly telemetryFactory: TelemetryDataFactory, private readonly dispatcher: ActionMessageDispatcher) {}
+    constructor(
+        private readonly telemetryFactory: TelemetryDataFactory,
+        private readonly dispatcher: ActionMessageDispatcher,
+    ) {}
 
-    public openPreviewFeaturesPanel(event: React.MouseEvent<HTMLElement>, source: TelemetryEventSource): void {
+    public openPreviewFeaturesPanel(
+        event: React.MouseEvent<HTMLElement>,
+        source: TelemetryEventSource,
+    ): void {
         const messageType = Messages.PreviewFeatures.OpenPanel;
-        const telemetry = this.telemetryFactory.withTriggeredByAndSource(event, source);
+        const telemetry = this.telemetryFactory.withTriggeredByAndSource(
+            event,
+            source,
+        );
         const payload: BaseActionPayload = {
             telemetry,
         };
@@ -24,9 +33,15 @@ export class DropdownActionMessageCreator {
         this.dispatcher.dispatchMessage(message);
     }
 
-    public openScopingPanel(event: React.MouseEvent<HTMLElement>, source: TelemetryEventSource): void {
+    public openScopingPanel(
+        event: React.MouseEvent<HTMLElement>,
+        source: TelemetryEventSource,
+    ): void {
         const messageType = Messages.Scoping.OpenPanel;
-        const telemetry = this.telemetryFactory.withTriggeredByAndSource(event, source);
+        const telemetry = this.telemetryFactory.withTriggeredByAndSource(
+            event,
+            source,
+        );
         const payload: BaseActionPayload = {
             telemetry,
         };
@@ -37,9 +52,16 @@ export class DropdownActionMessageCreator {
         this.dispatcher.dispatchMessage(message);
     }
 
-    public openSettingsPanel(event: React.MouseEvent<HTMLElement>, source: TelemetryEventSource): void {
+    public openSettingsPanel(
+        event: React.MouseEvent<HTMLElement>,
+        source: TelemetryEventSource,
+    ): void {
         const messageType = Messages.SettingsPanel.OpenPanel;
-        const telemetry = this.telemetryFactory.forSettingsPanelOpen(event, source, 'menu');
+        const telemetry = this.telemetryFactory.forSettingsPanelOpen(
+            event,
+            source,
+            'menu',
+        );
         const payload: BaseActionPayload = {
             telemetry,
         };

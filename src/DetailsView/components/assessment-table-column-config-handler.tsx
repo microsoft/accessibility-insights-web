@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { ColumnActionsMode, IColumn } from 'office-ui-fabric-react/lib/DetailsList';
+import {
+    ColumnActionsMode,
+    IColumn,
+} from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 import { AssessmentNavState } from '../../common/types/store-data/assessment-result-data';
 import { MasterCheckBoxConfigProvider } from '../handlers/master-checkbox-config-provider';
@@ -49,17 +52,30 @@ export class AssessmentTableColumnConfigHandler {
         },
     ];
 
-    constructor(masterCheckBoxConfigProvider: MasterCheckBoxConfigProvider, assessmentProvider: AssessmentsProvider) {
+    constructor(
+        masterCheckBoxConfigProvider: MasterCheckBoxConfigProvider,
+        assessmentProvider: AssessmentsProvider,
+    ) {
         this.masterCheckBoxConfigProvider = masterCheckBoxConfigProvider;
         this.assessmentProvider = assessmentProvider;
     }
 
-    public getColumnConfigs(assessmentNavState: AssessmentNavState, allEnabled: boolean, hasVisualHelper: boolean): IColumn[] {
+    public getColumnConfigs(
+        assessmentNavState: AssessmentNavState,
+        allEnabled: boolean,
+        hasVisualHelper: boolean,
+    ): IColumn[] {
         let allColumns: IColumn[] = [];
-        const stepConfig = this.assessmentProvider.getStep(assessmentNavState.selectedTestType, assessmentNavState.selectedTestStep);
+        const stepConfig = this.assessmentProvider.getStep(
+            assessmentNavState.selectedTestType,
+            assessmentNavState.selectedTestStep,
+        );
 
         if (hasVisualHelper) {
-            const masterCheckbox = this.getMasterCheckboxColumn(assessmentNavState, allEnabled);
+            const masterCheckbox = this.getMasterCheckboxColumn(
+                assessmentNavState,
+                allEnabled,
+            );
             allColumns.push(masterCheckbox);
         }
 
@@ -76,15 +92,21 @@ export class AssessmentTableColumnConfigHandler {
         return this.defaultCapturedInstanceTableColumnConfigs;
     }
 
-    private getCustomColumns(assessmentNavState: AssessmentNavState): IColumn[] {
-        const stepConfig = this.assessmentProvider.getStep(assessmentNavState.selectedTestType, assessmentNavState.selectedTestStep);
+    private getCustomColumns(
+        assessmentNavState: AssessmentNavState,
+    ): IColumn[] {
+        const stepConfig = this.assessmentProvider.getStep(
+            assessmentNavState.selectedTestType,
+            assessmentNavState.selectedTestStep,
+        );
 
         const customColumns = stepConfig.columnsConfig.map(columnConfig => {
             const column: IColumn = {
                 key: columnConfig.key,
                 name: columnConfig.name,
                 onRender: columnConfig.onRender,
-                fieldName: 'this does not matter as we are using onRender function',
+                fieldName:
+                    'this does not matter as we are using onRender function',
                 minWidth: 200,
                 maxWidth: 400,
                 isResizable: true,
@@ -96,8 +118,14 @@ export class AssessmentTableColumnConfigHandler {
         return customColumns;
     }
 
-    private getMasterCheckboxColumn(assessmentNavState: AssessmentNavState, allEnabled: boolean): IColumn {
-        const masterCheckBoxConfig = this.masterCheckBoxConfigProvider.getMasterCheckBoxProperty(assessmentNavState, allEnabled);
+    private getMasterCheckboxColumn(
+        assessmentNavState: AssessmentNavState,
+        allEnabled: boolean,
+    ): IColumn {
+        const masterCheckBoxConfig = this.masterCheckBoxConfigProvider.getMasterCheckBoxProperty(
+            assessmentNavState,
+            allEnabled,
+        );
 
         const buttonConfig: IColumn = {
             ...AssessmentTableColumnConfigHandler.baseMasterCheckboxColumn,
@@ -107,9 +135,13 @@ export class AssessmentTableColumnConfigHandler {
         return buttonConfig;
     }
 
-    private onRenderCapturedInstanceDetailsColumn(item: CapturedInstanceRowData): JSX.Element {
+    private onRenderCapturedInstanceDetailsColumn(
+        item: CapturedInstanceRowData,
+    ): JSX.Element {
         const headerText = item.instance.description ? 'Comment:' : 'Path:';
-        const textContent = item.instance.description ? item.instance.description : item.instance.selector;
+        const textContent = item.instance.description
+            ? item.instance.description
+            : item.instance.selector;
         return (
             <AssessmentInstanceDetailsColumn
                 background={'#767676'}

@@ -20,7 +20,9 @@ export type CopyIssueDetailsButtonProps = {
     onClick: (clickEvent: React.MouseEvent<any>) => void;
 };
 
-export class CopyIssueDetailsButton extends React.Component<CopyIssueDetailsButtonProps> {
+export class CopyIssueDetailsButton extends React.Component<
+    CopyIssueDetailsButtonProps
+> {
     private toastRef: React.RefObject<Toast>;
     constructor(props: CopyIssueDetailsButtonProps) {
         super(props);
@@ -31,15 +33,21 @@ export class CopyIssueDetailsButton extends React.Component<CopyIssueDetailsButt
         return this.props.deps.issueDetailsTextGenerator.buildText(issueData);
     }
 
-    private copyButtonClicked = async (event: React.MouseEvent<any>): Promise<void> => {
+    private copyButtonClicked = async (
+        event: React.MouseEvent<any>,
+    ): Promise<void> => {
         this.toastRef.current.show('Failure details copied.');
         if (this.props.onClick) {
             this.props.onClick(event);
         }
         try {
-            await this.props.deps.navigatorUtils.copyToClipboard(this.getIssueDetailsText(this.props.issueDetailsData));
+            await this.props.deps.navigatorUtils.copyToClipboard(
+                this.getIssueDetailsText(this.props.issueDetailsData),
+            );
         } catch (error) {
-            this.toastRef.current.show('Failed to copy failure details. Please try again.');
+            this.toastRef.current.show(
+                'Failed to copy failure details. Please try again.',
+            );
             return;
         }
         this.toastRef.current.show('Failure details copied.');
@@ -49,7 +57,10 @@ export class CopyIssueDetailsButton extends React.Component<CopyIssueDetailsButt
         return (
             <>
                 <Toast ref={this.toastRef} deps={this.props.deps} />
-                <DefaultButton className={'copy-issue-details-button'} onClick={this.copyButtonClicked}>
+                <DefaultButton
+                    className={'copy-issue-details-button'}
+                    onClick={this.copyButtonClicked}
+                >
                     <CopyIcon />
                     <div className="ms-Button-label">Copy failure details</div>
                 </DefaultButton>

@@ -4,9 +4,15 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { Message } from '../../../../../common/message';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { WindowUtils } from '../../../../../common/window-utils';
-import { FocusAnalyzerConfiguration, ScanBasePayload } from '../../../../../injected/analyzers/analyzer';
+import {
+    FocusAnalyzerConfiguration,
+    ScanBasePayload,
+} from '../../../../../injected/analyzers/analyzer';
 import { TabStopsAnalyzer } from '../../../../../injected/analyzers/tab-stops-analyzer';
-import { TabStopEvent, TabStopsListener } from '../../../../../injected/tab-stops-listener';
+import {
+    TabStopEvent,
+    TabStopsListener,
+} from '../../../../../injected/tab-stops-listener';
 import { itIsFunction } from '../../../common/it-is-function';
 
 describe('TabStopsAnalyzerTests', () => {
@@ -32,7 +38,12 @@ describe('TabStopsAnalyzerTests', () => {
         tabEventHandler = null;
         setTimeOutCallBack = null;
         tabStopsListenerMock = Mock.ofType(TabStopsListener);
-        testSubject = new TabStopsAnalyzer(configStub, tabStopsListenerMock.object, windowUtilsMock.object, sendMessageMock.object);
+        testSubject = new TabStopsAnalyzer(
+            configStub,
+            tabStopsListenerMock.object,
+            windowUtilsMock.object,
+            sendMessageMock.object,
+        );
         typeStub = -1 as VisualizationType;
     });
 
@@ -128,7 +139,9 @@ describe('TabStopsAnalyzerTests', () => {
     });
 
     test('teardown', () => {
-        tabStopsListenerMock.setup(tslm => tslm.stopListenToTabStops()).verifiable(Times.once());
+        tabStopsListenerMock
+            .setup(tslm => tslm.stopListenToTabStops())
+            .verifiable(Times.once());
 
         const payload: ScanBasePayload = {
             key: configStub.key,
@@ -159,7 +172,9 @@ describe('TabStopsAnalyzerTests', () => {
             })
             .verifiable(Times.once());
 
-        tabStopsListenerMock.setup(t => t.startListenToTabStops()).verifiable(Times.once());
+        tabStopsListenerMock
+            .setup(t => t.startListenToTabStops())
+            .verifiable(Times.once());
     }
 
     function setupWindowUtils(): void {

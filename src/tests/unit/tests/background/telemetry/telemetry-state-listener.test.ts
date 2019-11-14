@@ -21,14 +21,22 @@ describe('TelemetryStateListenerTest', () => {
 
     beforeEach(() => {
         userConfigStoreMock = Mock.ofType(UserConfigurationStore);
-        telemetryEventHandlerStrictMock = Mock.ofType(TelemetryEventHandler, MockBehavior.Strict);
+        telemetryEventHandlerStrictMock = Mock.ofType(
+            TelemetryEventHandler,
+            MockBehavior.Strict,
+        );
         changeListeners = [];
         userConfigState = {} as any;
         setupChangeListener(userConfigStoreMock);
 
-        userConfigStoreMock.setup(f => f.getState()).returns(() => userConfigState);
+        userConfigStoreMock
+            .setup(f => f.getState())
+            .returns(() => userConfigState);
 
-        testSubject = new TelemetryStateListener(userConfigStoreMock.object, telemetryEventHandlerStrictMock.object);
+        testSubject = new TelemetryStateListener(
+            userConfigStoreMock.object,
+            telemetryEventHandlerStrictMock.object,
+        );
     });
 
     it('do nothing if not initialized', () => {
@@ -64,15 +72,18 @@ describe('TelemetryStateListenerTest', () => {
             },
         ];
 
-        test.each(disableCases)('disable telemetry: %p', (testCase: TestCase) => {
-            userConfigState = testCase.userConfigState;
+        test.each(disableCases)(
+            'disable telemetry: %p',
+            (testCase: TestCase) => {
+                userConfigState = testCase.userConfigState;
 
-            setupDisableTelemetry();
+                setupDisableTelemetry();
 
-            changeListeners[0]();
+                changeListeners[0]();
 
-            telemetryEventHandlerStrictMock.verifyAll();
-        });
+                telemetryEventHandlerStrictMock.verifyAll();
+            },
+        );
 
         it('enable telemetry only when enableTelemetry is true', () => {
             userConfigState = {
@@ -95,10 +106,14 @@ describe('TelemetryStateListenerTest', () => {
     }
 
     function setupEnableTelemetry(): void {
-        telemetryEventHandlerStrictMock.setup(t => t.enableTelemetry()).verifiable();
+        telemetryEventHandlerStrictMock
+            .setup(t => t.enableTelemetry())
+            .verifiable();
     }
 
     function setupDisableTelemetry(): void {
-        telemetryEventHandlerStrictMock.setup(t => t.disableTelemetry()).verifiable();
+        telemetryEventHandlerStrictMock
+            .setup(t => t.disableTelemetry())
+            .verifiable();
     }
 });

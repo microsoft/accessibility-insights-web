@@ -5,7 +5,8 @@ import { Tab } from '../../itab';
 import { ManualTestStatus, ManualTestStatusData } from '../manual-test-status';
 import { VisualizationType } from '../visualization-type';
 
-export type TestStepInstance = UserCapturedInstance & GeneratedAssessmentInstance;
+export type TestStepInstance = UserCapturedInstance &
+    GeneratedAssessmentInstance;
 
 export type PersistedTabInfo = Tab & {
     appRefreshed: boolean;
@@ -20,7 +21,9 @@ export interface AssessmentStoreData {
     resultDescription: string;
 }
 
-export type InstanceIdToInstanceDataMap = DictionaryStringTo<GeneratedAssessmentInstance>;
+export type InstanceIdToInstanceDataMap = DictionaryStringTo<
+    GeneratedAssessmentInstance
+>;
 export type RequirementIdToResultMap = DictionaryStringTo<ManualTestStepResult>;
 
 export interface AssessmentData {
@@ -80,6 +83,10 @@ export interface LandmarksAssessmentProperties {
     label: string;
 }
 
-export type AssessmentInstancesMap<T = {}, K = {}> = DictionaryStringTo<GeneratedAssessmentInstance<T, K>>;
+export type AssessmentInstancesMap<T = {}, K = {}> = DictionaryStringTo<
+    GeneratedAssessmentInstance<T, K>
+>;
 
-export type AssessmentResultType<K> = { [testStepName in keyof K]: TestStepResult };
+export type AssessmentResultType<K> = {
+    [testStepName in keyof K]: TestStepResult;
+};

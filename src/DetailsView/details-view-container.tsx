@@ -8,7 +8,10 @@ import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 
 import { ThemeDeps } from '../common/components/theme';
-import { withStoreSubscription, WithStoreSubscriptionDeps } from '../common/components/with-store-subscription';
+import {
+    withStoreSubscription,
+    WithStoreSubscriptionDeps,
+} from '../common/components/with-store-subscription';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
@@ -26,8 +29,14 @@ import { VisualizationScanResultData } from '../common/types/store-data/visualiz
 import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DetailsViewCommandBarDeps } from './components/details-view-command-bar';
-import { DetailsViewOverlay, DetailsViewOverlayDeps } from './components/details-view-overlay';
-import { DetailsRightPanelConfiguration, GetDetailsRightPanelConfiguration } from './components/details-view-right-panel';
+import {
+    DetailsViewOverlay,
+    DetailsViewOverlayDeps,
+} from './components/details-view-overlay';
+import {
+    DetailsRightPanelConfiguration,
+    GetDetailsRightPanelConfiguration,
+} from './components/details-view-right-panel';
 import { GetDetailsSwitcherNavConfiguration } from './components/details-view-switcher-nav';
 import { Header, HeaderDeps } from './components/header';
 import { IssuesTableHandler } from './components/issues-table-handler';
@@ -83,7 +92,9 @@ export interface DetailsViewContainerState {
     cardSelectionStoreData: CardSelectionStoreData;
 }
 
-export class DetailsViewContainer extends React.Component<DetailsViewContainerProps> {
+export class DetailsViewContainer extends React.Component<
+    DetailsViewContainerProps
+> {
     private initialRender: boolean = true;
 
     public render(): JSX.Element {
@@ -102,7 +113,8 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
 
         if (this.initialRender) {
             this.props.deps.detailsViewActionMessageCreator.detailsViewOpened(
-                this.props.storeState.visualizationStoreData.selectedDetailsViewPivot,
+                this.props.storeState.visualizationStoreData
+                    .selectedDetailsViewPivot,
             );
             this.initialRender = false;
         }
@@ -111,11 +123,21 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
     }
 
     private isTargetPageClosed(): boolean {
-        return !this.hasStores() || (this.props.deps.storesHub.hasStoreData() && this.props.storeState.tabStoreData.isClosed);
+        return (
+            !this.hasStores() ||
+            (this.props.deps.storesHub.hasStoreData() &&
+                this.props.storeState.tabStoreData.isClosed)
+        );
     }
 
     private renderSpinner(): JSX.Element {
-        return <Spinner className="details-view-spinner" size={SpinnerSize.large} label="Loading..." />;
+        return (
+            <Spinner
+                className="details-view-spinner"
+                size={SpinnerSize.large}
+                label="Loading..."
+            />
+        );
     }
 
     private renderContent(): JSX.Element {
@@ -130,14 +152,26 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
 
     private renderHeader(): JSX.Element {
         const storeState = this.props.storeState;
-        const visualizationStoreData = storeState ? storeState.visualizationStoreData : null;
+        const visualizationStoreData = storeState
+            ? storeState.visualizationStoreData
+            : null;
         return (
             <Header
                 deps={this.props.deps}
-                selectedPivot={visualizationStoreData ? visualizationStoreData.selectedDetailsViewPivot : null}
-                featureFlagStoreData={this.hasStores() ? storeState.featureFlagStoreData : null}
+                selectedPivot={
+                    visualizationStoreData
+                        ? visualizationStoreData.selectedDetailsViewPivot
+                        : null
+                }
+                featureFlagStoreData={
+                    this.hasStores() ? storeState.featureFlagStoreData : null
+                }
                 dropdownClickHandler={this.props.dropdownClickHandler}
-                tabClosed={this.hasStores() ? this.props.storeState.tabStoreData.isClosed : true}
+                tabClosed={
+                    this.hasStores()
+                        ? this.props.storeState.tabStoreData.isClosed
+                        : true
+                }
             />
         );
     }
@@ -147,33 +181,55 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
         return (
             <DetailsViewOverlay
                 deps={deps}
-                actionMessageCreator={this.props.deps.detailsViewActionMessageCreator}
-                previewFeatureFlagsHandler={this.props.previewFeatureFlagsHandler}
-                scopingActionMessageCreator={this.props.scopingActionMessageCreator}
-                inspectActionMessageCreator={this.props.inspectActionMessageCreator}
+                actionMessageCreator={
+                    this.props.deps.detailsViewActionMessageCreator
+                }
+                previewFeatureFlagsHandler={
+                    this.props.previewFeatureFlagsHandler
+                }
+                scopingActionMessageCreator={
+                    this.props.scopingActionMessageCreator
+                }
+                inspectActionMessageCreator={
+                    this.props.inspectActionMessageCreator
+                }
                 detailsViewStoreData={storeState.detailsViewStoreData}
                 scopingStoreData={storeState.scopingPanelStateStoreData}
                 featureFlagStoreData={storeState.featureFlagStoreData}
-                userConfigurationStoreData={storeState.userConfigurationStoreData}
+                userConfigurationStoreData={
+                    storeState.userConfigurationStoreData
+                }
             />
         );
     }
 
     private renderDetailsView(): JSX.Element {
         const { deps, storeState } = this.props;
-        const selectedDetailsRightPanelConfiguration = this.props.deps.getDetailsRightPanelConfiguration({
-            selectedDetailsViewPivot: storeState.visualizationStoreData.selectedDetailsViewPivot,
-            detailsViewRightContentPanel: storeState.detailsViewStoreData.detailsViewRightContentPanel,
-        });
-        const selectedDetailsViewSwitcherNavConfiguration = this.props.deps.getDetailsSwitcherNavConfiguration({
-            selectedDetailsViewPivot: storeState.visualizationStoreData.selectedDetailsViewPivot,
-        });
-        const selectedTest = selectedDetailsViewSwitcherNavConfiguration.getSelectedDetailsView(storeState);
+        const selectedDetailsRightPanelConfiguration = this.props.deps.getDetailsRightPanelConfiguration(
+            {
+                selectedDetailsViewPivot:
+                    storeState.visualizationStoreData.selectedDetailsViewPivot,
+                detailsViewRightContentPanel:
+                    storeState.detailsViewStoreData
+                        .detailsViewRightContentPanel,
+            },
+        );
+        const selectedDetailsViewSwitcherNavConfiguration = this.props.deps.getDetailsSwitcherNavConfiguration(
+            {
+                selectedDetailsViewPivot:
+                    storeState.visualizationStoreData.selectedDetailsViewPivot,
+            },
+        );
+        const selectedTest = selectedDetailsViewSwitcherNavConfiguration.getSelectedDetailsView(
+            storeState,
+        );
 
         const cardsViewData = this.props.deps.getCardViewData(
             this.props.storeState.unifiedScanResultStoreData.rules,
             this.props.storeState.unifiedScanResultStoreData.results,
-            this.props.deps.getCardSelectionViewData(this.props.storeState.cardSelectionStoreData),
+            this.props.deps.getCardSelectionViewData(
+                this.props.storeState.cardSelectionStoreData,
+            ),
         );
 
         return (
@@ -186,27 +242,46 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
                 selectedTest={selectedTest}
                 detailsViewStoreData={storeState.detailsViewStoreData}
                 visualizationStoreData={storeState.visualizationStoreData}
-                visualizationScanResultData={storeState.visualizationScanResultStoreData}
-                visualizationConfigurationFactory={this.props.visualizationConfigurationFactory}
+                visualizationScanResultData={
+                    storeState.visualizationScanResultStoreData
+                }
+                visualizationConfigurationFactory={
+                    this.props.visualizationConfigurationFactory
+                }
                 assessmentsProvider={this.props.assessmentsProvider}
                 dropdownClickHandler={this.props.dropdownClickHandler}
                 clickHandlerFactory={this.props.clickHandlerFactory}
-                assessmentInstanceTableHandler={this.props.assessmentInstanceTableHandler}
+                assessmentInstanceTableHandler={
+                    this.props.assessmentInstanceTableHandler
+                }
                 issuesSelection={this.props.issuesSelection}
                 issuesTableHandler={this.props.issuesTableHandler}
                 rightPanelConfiguration={selectedDetailsRightPanelConfiguration}
-                switcherNavConfiguration={selectedDetailsViewSwitcherNavConfiguration}
-                userConfigurationStoreData={storeState.userConfigurationStoreData}
+                switcherNavConfiguration={
+                    selectedDetailsViewSwitcherNavConfiguration
+                }
+                userConfigurationStoreData={
+                    storeState.userConfigurationStoreData
+                }
                 cardsViewData={cardsViewData}
-                targetAppInfo={storeState.unifiedScanResultStoreData.targetAppInfo}
+                targetAppInfo={
+                    storeState.unifiedScanResultStoreData.targetAppInfo
+                }
                 cardSelectionStoreData={storeState.cardSelectionStoreData}
             />
         );
     }
 
     private hasStores(): boolean {
-        return this.props.deps !== null && this.props.deps.storesHub !== null && this.props.deps.storesHub.hasStores();
+        return (
+            this.props.deps !== null &&
+            this.props.deps.storesHub !== null &&
+            this.props.deps.storesHub.hasStores()
+        );
     }
 }
 
-export const DetailsView = withStoreSubscription<DetailsViewContainerProps, DetailsViewContainerState>(DetailsViewContainer);
+export const DetailsView = withStoreSubscription<
+    DetailsViewContainerProps,
+    DetailsViewContainerState
+>(DetailsViewContainer);

@@ -8,8 +8,12 @@ export class ShadowUtils {
         this.htmlElementUtils = htmlElementUtils;
     }
     public getShadowContainer(): HTMLElement {
-        const shadowHost = this.htmlElementUtils.querySelector('#insights-shadow-host');
+        const shadowHost = this.htmlElementUtils.querySelector(
+            '#insights-shadow-host',
+        );
 
-        return shadowHost.shadowRoot.querySelector('#insights-shadow-container') as HTMLElement;
+        return shadowHost.shadowRoot.querySelector(
+            '#insights-shadow-container',
+        ) as HTMLElement;
     }
 }

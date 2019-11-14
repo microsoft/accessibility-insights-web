@@ -33,15 +33,24 @@ export class ClientUtils {
         return this.getOffsetFromBoundingRect(elementRect);
     }
 
-    public getOffsetFromBoundingRect(elementRect: ClientRect | ClientRectOffset): ClientRectOffset {
+    public getOffsetFromBoundingRect(
+        elementRect: ClientRect | ClientRectOffset,
+    ): ClientRectOffset {
         return {
             left: elementRect.left + this.scroll.scrollX,
             top: elementRect.top + this.scroll.scrollY,
         };
     }
 
-    public matchesSelector(element: ElementMatcher, selectorString: string): boolean {
-        const selector = (element.matches || element.webkitMatchesSelector || element.msMatchesSelector).bind(element);
+    public matchesSelector(
+        element: ElementMatcher,
+        selectorString: string,
+    ): boolean {
+        const selector = (
+            element.matches ||
+            element.webkitMatchesSelector ||
+            element.msMatchesSelector
+        ).bind(element);
 
         return selector(selectorString);
     }

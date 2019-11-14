@@ -10,19 +10,25 @@ import { SemanticsTestStep } from './test-steps';
 
 const quotesDescription: JSX.Element = (
     <span>
-        The <Markup.Tag tagName="blockquote" /> element must not be used to style non-quote text.
+        The <Markup.Tag tagName="blockquote" /> element must not be used to
+        style non-quote text.
     </span>
 );
 
 const quotesHowToTest: JSX.Element = (
     <div>
-        <p>This procedure uses the browser Developer Tools (F12) to inspect the page's HTML.</p>
+        <p>
+            This procedure uses the browser Developer Tools (F12) to inspect the
+            page's HTML.
+        </p>
         <ol>
             <li>
-                Search the page's HTML to determine whether the page includes any <Markup.Tag tagName="blockquote" /> elements.
+                Search the page's HTML to determine whether the page includes
+                any <Markup.Tag tagName="blockquote" /> elements.
             </li>
             <li>
-                Examine each <Markup.Tag tagName="blockquote" /> element to verify it contains a quote.
+                Examine each <Markup.Tag tagName="blockquote" /> element to
+                verify it contains a quote.
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>

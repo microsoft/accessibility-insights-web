@@ -43,7 +43,9 @@ export type Markup = {
     Include: React.FC<{ content: ContentPageComponent }>;
 };
 
-export type MarkupDeps = { contentActionMessageCreator: ContentActionMessageCreator };
+export type MarkupDeps = {
+    contentActionMessageCreator: ContentActionMessageCreator;
+};
 
 export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
     const { openContentHyperLink } = deps.contentActionMessageCreator;
@@ -70,11 +72,17 @@ export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
         );
     }
 
-    function HyperLink(props: { href: string; children: React.ReactNode }): JSX.Element {
+    function HyperLink(props: {
+        href: string;
+        children: React.ReactNode;
+    }): JSX.Element {
         const { href } = props;
 
         return (
-            <NewTabLink href={href} onClick={e => openContentHyperLink(e, href)}>
+            <NewTabLink
+                href={href}
+                onClick={e => openContentHyperLink(e, href)}
+            >
                 {props.children}
             </NewTabLink>
         );
@@ -83,7 +91,9 @@ export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
     function Links(props: { children: React.ReactNode }): JSX.Element {
         return (
             <>
-                <div className="content-hyperlinks">{React.Children.map(props.children, el => el)}</div>
+                <div className="content-hyperlinks">
+                    {React.Children.map(props.children, el => el)}
+                </div>
             </>
         );
     }
@@ -138,8 +148,15 @@ export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
         );
     }
 
-    function LandmarkLegend(props: { role: string; children: React.ReactNode }): JSX.Element {
-        return <span className={`landmarks-legend ${props.role}-landmark`}>{props.children}</span>;
+    function LandmarkLegend(props: {
+        role: string;
+        children: React.ReactNode;
+    }): JSX.Element {
+        return (
+            <span className={`landmarks-legend ${props.role}-landmark`}>
+                {props.children}
+            </span>
+        );
     }
 
     function Highlight(props: { children: React.ReactNode }): JSX.Element {
@@ -151,7 +168,9 @@ export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
     }
 
     function ProblemList(props: { children: React.ReactNode }): JSX.Element {
-        return <ul className="accessibility-problems-list">{props.children}</ul>;
+        return (
+            <ul className="accessibility-problems-list">{props.children}</ul>
+        );
     }
 
     function Columns(props: { children: React.ReactNode }): JSX.Element {
@@ -165,7 +184,9 @@ export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
     function PassFail(props: PassFailProps): React.ReactNode {
         const { passText, passExample, failText, failExample } = props;
 
-        function formatExample(example: string | React.ReactNode): React.ReactNode {
+        function formatExample(
+            example: string | React.ReactNode,
+        ): React.ReactNode {
             if (typeof example === 'string') {
                 return <CodeExample>{example}</CodeExample>;
             }
@@ -180,14 +201,22 @@ export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
                     </div>
                     {failText}
                 </div>
-                {failExample && <div className="fail-example">{formatExample(failExample)}</div>}
+                {failExample && (
+                    <div className="fail-example">
+                        {formatExample(failExample)}
+                    </div>
+                )}
                 <div className="pass-section">
                     <div className="pass-header">
                         <CheckIcon /> <h3>Pass</h3>
                     </div>
                     {passText}
                 </div>
-                {passExample && <div className="pass-example">{formatExample(passExample)}</div>}
+                {passExample && (
+                    <div className="pass-example">
+                        {formatExample(passExample)}
+                    </div>
+                )}
             </div>
         );
     }

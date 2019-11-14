@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ResultSectionTitle, ResultSectionTitleProps } from 'common/components/cards/result-section-title';
+import {
+    ResultSectionTitle,
+    ResultSectionTitleProps,
+} from 'common/components/cards/result-section-title';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 

@@ -29,9 +29,12 @@ export interface IssueFilingService {
     ) => void;
 }
 
-export interface IssueFilingServiceWithSettings<Settings> extends IssueFilingService {
+export interface IssueFilingServiceWithSettings<Settings>
+    extends IssueFilingService {
     settingsForm: ReactFCWithDisplayName<SettingsFormProps<Settings>>;
     buildStoreData: (...params: any[]) => Settings;
     isSettingsValid: (data: Settings) => boolean;
-    getSettingsFromStoreData: (data: IssueFilingServicePropertiesMap) => Settings;
+    getSettingsFromStoreData: (
+        data: IssueFilingServicePropertiesMap,
+    ) => Settings;
 }

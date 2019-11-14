@@ -6,7 +6,10 @@ import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
 
 import { FeatureFlags } from '../../../../common/feature-flags';
-import { LayeredDetailsDialogComponent, LayeredDetailsDialogProps } from '../../../../injected/layered-details-dialog-component';
+import {
+    LayeredDetailsDialogComponent,
+    LayeredDetailsDialogProps,
+} from '../../../../injected/layered-details-dialog-component';
 import { DictionaryStringTo } from '../../../../types/common-types';
 
 describe('LayeredDetailsDialogComponent', () => {
@@ -29,15 +32,20 @@ describe('LayeredDetailsDialogComponent', () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    test.each([true, false])('render component when shadow dom is enabled - isRTL - %p', isRTL => {
-        featureFlagStoreData[FeatureFlags.shadowDialog] = true;
+    test.each([true, false])(
+        'render component when shadow dom is enabled - isRTL - %p',
+        isRTL => {
+            featureFlagStoreData[FeatureFlags.shadowDialog] = true;
 
-        getRTLMock.setup(g => g()).returns(() => isRTL);
+            getRTLMock.setup(g => g()).returns(() => isRTL);
 
-        const wrapper = shallow(<LayeredDetailsDialogComponent {...props} />);
+            const wrapper = shallow(
+                <LayeredDetailsDialogComponent {...props} />,
+            );
 
-        expect(wrapper.getElement()).toMatchSnapshot();
-    });
+            expect(wrapper.getElement()).toMatchSnapshot();
+        },
+    );
 
     function createLayeredDetailsDialogProps(): LayeredDetailsDialogProps {
         return {

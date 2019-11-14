@@ -33,7 +33,9 @@ export class DocumentTitleUpdater {
         const documentTitle = this.getDocumentTitle();
         const defaultTitle = title;
 
-        this.doc.title = documentTitle ? `${documentTitle} - ${defaultTitle}` : defaultTitle;
+        this.doc.title = documentTitle
+            ? `${documentTitle} - ${defaultTitle}`
+            : defaultTitle;
     };
 
     private getDocumentTitle(): string {
@@ -43,30 +45,40 @@ export class DocumentTitleUpdater {
 
         const assessmentStoreData = this.assessmentStore.getState();
         const visualizationStoreData = this.visualizationStore.getState();
-        const selectedDetailsViewPivot = visualizationStoreData.selectedDetailsViewPivot;
-        const switcherNavConfiguration = this.getDetailsSwitcherNavConfiguration({
-            selectedDetailsViewPivot,
-        });
+        const selectedDetailsViewPivot =
+            visualizationStoreData.selectedDetailsViewPivot;
+        const switcherNavConfiguration = this.getDetailsSwitcherNavConfiguration(
+            {
+                selectedDetailsViewPivot,
+            },
+        );
 
-        const selectedDetailsView = switcherNavConfiguration.getSelectedDetailsView({
-            assessmentStoreData,
-            visualizationStoreData,
-        });
+        const selectedDetailsView = switcherNavConfiguration.getSelectedDetailsView(
+            {
+                assessmentStoreData,
+                visualizationStoreData,
+            },
+        );
 
-        const panel = this.detailsViewStore.getState().detailsViewRightContentPanel;
+        const panel = this.detailsViewStore.getState()
+            .detailsViewRightContentPanel;
 
         return this.getDetailsRightPanelConfiguration({
             detailsViewRightContentPanel: panel,
             selectedDetailsViewPivot: selectedDetailsViewPivot,
         }).GetTitle({
-            visualizationConfigurationFactory: this.visualizationConfigurationFactory,
+            visualizationConfigurationFactory: this
+                .visualizationConfigurationFactory,
             selectedDetailsView,
         });
     }
 
     private hasAllStoreData(): boolean {
-        return [this.tabStore, this.detailsViewStore, this.visualizationStore, this.assessmentStore].every(
-            store => store.getState() != null,
-        );
+        return [
+            this.tabStore,
+            this.detailsViewStore,
+            this.visualizationStore,
+            this.assessmentStore,
+        ].every(store => store.getState() != null);
     }
 }

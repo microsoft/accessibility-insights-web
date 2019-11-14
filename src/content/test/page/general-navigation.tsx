@@ -9,14 +9,19 @@ export const infoAndExamples = create(({ Markup }) => (
 
         <h2>Why it matters</h2>
         <p>
-            All users benefit when they can find content in a way that's convenient for them. A person using a screen reader or magnifier
-            might find it easier to locate a page using search rather than a navigation menu. A person with a reading disability might
-            prefer a site map or a table of contents.
+            All users benefit when they can find content in a way that's
+            convenient for them. A person using a screen reader or magnifier
+            might find it easier to locate a page using search rather than a
+            navigation menu. A person with a reading disability might prefer a
+            site map or a table of contents.
         </p>
 
         <h2>How to fix</h2>
         <ul>
-            <li>Good: Provide two or more methods for users to find and navigate to pages in a website.</li>
+            <li>
+                Good: Provide two or more methods for users to find and navigate
+                to pages in a website.
+            </li>
             <li>Better: Make site search one of the methods.</li>
         </ul>
 
@@ -24,13 +29,15 @@ export const infoAndExamples = create(({ Markup }) => (
         <Markup.PassFail
             failText={
                 <p>
-                    Each page in a website has a navigation menu with links to all other pages in the site. The page offers no other method
+                    Each page in a website has a navigation menu with links to
+                    all other pages in the site. The page offers no other method
                     for locating pages.
                 </p>
             }
             passText={
                 <p>
-                    In addition to the navigation menu, each page has a search mechanism that allows users to find pages that contain
+                    In addition to the navigation menu, each page has a search
+                    mechanism that allows users to find pages that contain
                     specific words or phrases.
                 </p>
             }
@@ -50,8 +57,12 @@ export const infoAndExamples = create(({ Markup }) => (
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G125">
                 Providing links to navigate to related Web pages
             </Markup.HyperLink>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G64">Providing a Table of Contents</Markup.HyperLink>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G63">Providing a site map</Markup.HyperLink>
+            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G64">
+                Providing a Table of Contents
+            </Markup.HyperLink>
+            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G63">
+                Providing a site map
+            </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G161">
                 Providing a search function to help users find content
             </Markup.HyperLink>

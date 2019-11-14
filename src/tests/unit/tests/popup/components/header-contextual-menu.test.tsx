@@ -8,7 +8,10 @@ import { TelemetryEventSource } from '../../../../../common/extension-telemetry-
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { PopupActionMessageCreator } from '../../../../../popup/actions/popup-action-message-creator';
-import { HeaderContextualMenu, HeaderContextualMenuProps } from '../../../../../popup/components/header-contextual-menu';
+import {
+    HeaderContextualMenu,
+    HeaderContextualMenuProps,
+} from '../../../../../popup/components/header-contextual-menu';
 import { LaunchPanelHeader } from '../../../../../popup/components/launch-panel-header';
 import { LaunchPanelHeaderClickHandler } from '../../../../../popup/handlers/launch-panel-header-click-handler';
 import { EventStubFactory } from '../../../common/event-stub-factory';
@@ -38,8 +41,12 @@ describe('HeaderContextualMenu', () => {
         const eventStubFactory = new EventStubFactory();
         const event = eventStubFactory.createMouseClickEvent() as any;
 
-        const popupActionMessageCreatorMock = Mock.ofType<PopupActionMessageCreator>();
-        const launchPanelHeaderClickHandlerMock = Mock.ofType<LaunchPanelHeaderClickHandler>();
+        const popupActionMessageCreatorMock = Mock.ofType<
+            PopupActionMessageCreator
+        >();
+        const launchPanelHeaderClickHandlerMock = Mock.ofType<
+            LaunchPanelHeaderClickHandler
+        >();
 
         const headerMock = Mock.ofType<LaunchPanelHeader>();
         const popupWindowMock = Mock.ofType<Window>();
@@ -50,8 +57,10 @@ describe('HeaderContextualMenu', () => {
 
             props = {
                 deps: {
-                    popupActionMessageCreator: popupActionMessageCreatorMock.object,
-                    launchPanelHeaderClickHandler: launchPanelHeaderClickHandlerMock.object,
+                    popupActionMessageCreator:
+                        popupActionMessageCreatorMock.object,
+                    launchPanelHeaderClickHandler:
+                        launchPanelHeaderClickHandlerMock.object,
                 },
                 featureFlags: {
                     'test-flag': true,
@@ -102,7 +111,9 @@ describe('HeaderContextualMenu', () => {
         });
 
         it('handles ad-hoc-tools', () => {
-            launchPanelHeaderClickHandlerMock.setup(handler => handler.openAdhocToolsPanel(headerMock.object));
+            launchPanelHeaderClickHandlerMock.setup(handler =>
+                handler.openAdhocToolsPanel(headerMock.object),
+            );
 
             const item = testObject.find('button[name="Ad hoc tools"]');
 
@@ -113,7 +124,9 @@ describe('HeaderContextualMenu', () => {
 
         it('handles ad-hoc-tools', () => {
             popupActionMessageCreatorMock
-                .setup(creator => creator.openShortcutConfigureTab(It.isObjectWith(event)))
+                .setup(creator =>
+                    creator.openShortcutConfigureTab(It.isObjectWith(event)),
+                )
                 .verifiable(Times.once());
 
             const item = testObject.find('button[name="Keyboard shortcuts"]');
@@ -134,7 +147,8 @@ describe('HeaderContextualMenu', () => {
                             iconProps: {
                                 iconName: 'Unknown',
                             },
-                            data: 'https://go.microsoft.com/fwlink/?linkid=2077937',
+                            data:
+                                'https://go.microsoft.com/fwlink/?linkid=2077937',
                             name: 'Help',
                         }),
                     ),
@@ -150,7 +164,12 @@ describe('HeaderContextualMenu', () => {
 
         it('handle dismiss of the contextual menu', () => {
             launchPanelHeaderClickHandlerMock
-                .setup(handler => handler.onDismissFeedbackMenu(props.header, It.isObjectWith(event)))
+                .setup(handler =>
+                    handler.onDismissFeedbackMenu(
+                        props.header,
+                        It.isObjectWith(event),
+                    ),
+                )
                 .verifiable(Times.once());
 
             const contextualMenu = testObject.find(ContextualMenu);

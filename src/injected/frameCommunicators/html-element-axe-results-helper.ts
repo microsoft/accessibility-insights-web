@@ -17,24 +17,36 @@ export interface AxeResultsWithFrameLevel extends HtmlElementAxeResults {
     targetIndex?: number;
 }
 
-export interface AssessmentVisualizationInstance extends AxeResultsWithFrameLevel {
+export interface AssessmentVisualizationInstance
+    extends AxeResultsWithFrameLevel {
     isFailure: boolean;
     isVisualizationEnabled: boolean;
     propertyBag?: any;
 }
 
 export class HtmlElementAxeResultsHelper {
-    constructor(private htmlElementUtils: HTMLElementUtils, private logger: Logger = createDefaultLogger()) {}
+    constructor(
+        private htmlElementUtils: HTMLElementUtils,
+        private logger: Logger = createDefaultLogger(),
+    ) {}
 
-    public splitResultsByFrame(elementResults: AxeResultsWithFrameLevel[]): HTMLIFrameResult[] {
-        const frameSelectorToResultsMap = this.getFrameSelectorToResultMap(elementResults);
-        const results = this.getFrameResultsFromSelectorMap(frameSelectorToResultsMap);
+    public splitResultsByFrame(
+        elementResults: AxeResultsWithFrameLevel[],
+    ): HTMLIFrameResult[] {
+        const frameSelectorToResultsMap = this.getFrameSelectorToResultMap(
+            elementResults,
+        );
+        const results = this.getFrameResultsFromSelectorMap(
+            frameSelectorToResultsMap,
+        );
         this.addMissingFrameResults(results);
 
         return results;
     }
 
-    private getFrameResultsFromSelectorMap(selectorMap: DictionaryStringTo<AxeResultsWithFrameLevel[]>): HTMLIFrameResult[] {
+    private getFrameResultsFromSelectorMap(
+        selectorMap: DictionaryStringTo<AxeResultsWithFrameLevel[]>,
+    ): HTMLIFrameResult[] {
         const results: HTMLIFrameResult[] = [];
         forOwn(selectorMap, (frameResults, selectorKey) => {
             if (selectorKey) {
@@ -45,7 +57,10 @@ export class HtmlElementAxeResultsHelper {
                         frame: iframe,
                     } as HTMLIFrameResult);
                 } else {
-                    this.logger.log('unable to find frame to highlight', selectorKey);
+                    this.logger.log(
+                        'unable to find frame to highlight',
+                        selectorKey,
+                    );
                 }
             } else {
                 results.push({
@@ -62,15 +77,25 @@ export class HtmlElementAxeResultsHelper {
         const missingFrames: HTMLIFrameElement[] = [];
 
         const allFramesIncludingCurrentFrames = Array.prototype.slice.call(
-            this.htmlElementUtils.getAllElementsByTagName('iframe') as HTMLCollectionOf<HTMLIFrameElement>,
+            this.htmlElementUtils.getAllElementsByTagName(
+                'iframe',
+            ) as HTMLCollectionOf<HTMLIFrameElement>,
         );
         allFramesIncludingCurrentFrames.push(null); // current frame
 
-        for (let framePos = 0; framePos < allFramesIncludingCurrentFrames.length; framePos++) {
+        for (
+            let framePos = 0;
+            framePos < allFramesIncludingCurrentFrames.length;
+            framePos++
+        ) {
             const frame = allFramesIncludingCurrentFrames[framePos];
             let isMissing = true;
 
-            for (let resultPos = 0; resultPos < frameResults.length; resultPos++) {
+            for (
+                let resultPos = 0;
+                resultPos < frameResults.length;
+                resultPos++
+            ) {
                 if (frameResults[resultPos].frame === frame) {
                     isMissing = false;
                 }
@@ -88,7 +113,9 @@ export class HtmlElementAxeResultsHelper {
         });
     }
 
-    private getFrameSelectorToResultMap(elementResults: AxeResultsWithFrameLevel[]): DictionaryStringTo<AxeResultsWithFrameLevel[]> {
+    private getFrameSelectorToResultMap(
+        elementResults: AxeResultsWithFrameLevel[],
+    ): DictionaryStringTo<AxeResultsWithFrameLevel[]> {
         const elementResultsByFrame: DictionaryStringTo<AxeResultsWithFrameLevel[]> = {};
 
         for (let i = 0; i < elementResults.length; i++) {
@@ -103,11 +130,16 @@ export class HtmlElementAxeResultsHelper {
                 elementResultsByFrame[''] = elementResultsByFrame[''] || [];
                 elementResultsByFrame[''].push(elementResult);
             } else if (targetLength > elementResult.targetIndex + 1) {
-                const frameSelector = elementResult.target[elementResult.targetIndex++];
-                elementResultsByFrame[frameSelector] = elementResultsByFrame[frameSelector] || [];
+                const frameSelector =
+                    elementResult.target[elementResult.targetIndex++];
+                elementResultsByFrame[frameSelector] =
+                    elementResultsByFrame[frameSelector] || [];
                 elementResultsByFrame[frameSelector].push(elementResult);
             } else {
-                this.logger.log('Unable to find selector for result ', elementResult);
+                this.logger.log(
+                    'Unable to find selector for result ',
+                    elementResult,
+                );
             }
         }
 

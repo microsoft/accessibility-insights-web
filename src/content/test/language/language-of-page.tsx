@@ -9,14 +9,18 @@ export const infoAndExamples = create(({ Markup }) => (
 
         <h2>Why it matters</h2>
         <p>
-            When a web page's default language is programmatically identified, browsers and assistive technologies can render the text more
-            accurately; screen readers can use the correct pronunciation; visual browsers can display the correct characters; and media
-            players can show captions correctly. All users find it easier to understand the page's content.
+            When a web page's default language is programmatically identified,
+            browsers and assistive technologies can render the text more
+            accurately; screen readers can use the correct pronunciation; visual
+            browsers can display the correct characters; and media players can
+            show captions correctly. All users find it easier to understand the
+            page's content.
         </p>
 
         <h2>How to fix</h2>
         <p>
-            Make sure the page's <Markup.Code>{'<html>'}</Markup.Code> tag has the correct{' '}
+            Make sure the page's <Markup.Code>{'<html>'}</Markup.Code> tag has
+            the correct{' '}
             <Markup.HyperLink href="http://www.iana.org/assignments/language-subtag-registry/language-subtag-registry">
                 lang attribute
             </Markup.HyperLink>
@@ -26,7 +30,8 @@ export const infoAndExamples = create(({ Markup }) => (
         <h3>From a user's perspective</h3>
         <p>
             <Markup.Emphasis>
-                "If you do not define the language for a web page, the software I use to enjoy content may get stuck or not work at all."
+                "If you do not define the language for a web page, the software
+                I use to enjoy content may get stuck or not work at all."
             </Markup.Emphasis>
         </p>
 
@@ -34,13 +39,15 @@ export const infoAndExamples = create(({ Markup }) => (
         <Markup.PassFail
             failText={
                 <p>
-                    The page's <Markup.Code>{'<html>'}</Markup.Code> tag has English attribute but the content is in Spanish.
+                    The page's <Markup.Code>{'<html>'}</Markup.Code> tag has
+                    English attribute but the content is in Spanish.
                 </p>
             }
             failExample={`<html [lang="en"] style="height: 100%;>…</html>`}
             passText={
                 <p>
-                    The page's <Markup.Code>{'<html>'}</Markup.Code> tag has the correct language attribute. (Most of the page's content is
+                    The page's <Markup.Code>{'<html>'}</Markup.Code> tag has the
+                    correct language attribute. (Most of the page's content is
                     in Spanish.)
                 </p>
             }

@@ -28,7 +28,10 @@ describe('Headings Page', () => {
         });
 
         it('should pass accessibility validation', async () => {
-            const results = await scanForAccessibilityIssues(headingsPage, detailsViewSelectors.mainContent);
+            const results = await scanForAccessibilityIssues(
+                headingsPage,
+                detailsViewSelectors.mainContent,
+            );
             expect(results).toHaveLength(0);
         });
     });
@@ -53,21 +56,32 @@ describe('Headings Page', () => {
         });
 
         it('should pass accessibility validation', async () => {
-            const results = await scanForAccessibilityIssues(headingsPage, detailsViewSelectors.mainContent);
+            const results = await scanForAccessibilityIssues(
+                headingsPage,
+                detailsViewSelectors.mainContent,
+            );
             expect(results).toHaveLength(0);
         });
     });
 
-    async function openHeadingsPage(browser: Browser, targetPage: TargetPage): Promise<DetailsViewPage> {
+    async function openHeadingsPage(
+        browser: Browser,
+        targetPage: TargetPage,
+    ): Promise<DetailsViewPage> {
         const detailsViewPage = await browser.newDetailsViewPage(targetPage);
         await detailsViewPage.switchToAssessment();
 
-        await detailsViewPage.clickSelector(detailsViewSelectors.testNavLink('Headings'));
+        await detailsViewPage.clickSelector(
+            detailsViewSelectors.testNavLink('Headings'),
+        );
 
         // Populating the instance table requires scanning the target page
-        await detailsViewPage.waitForSelector(detailsViewSelectors.instanceTableTextContent, {
-            timeout: DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS,
-        });
+        await detailsViewPage.waitForSelector(
+            detailsViewSelectors.instanceTableTextContent,
+            {
+                timeout: DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS,
+            },
+        );
 
         return detailsViewPage;
     }

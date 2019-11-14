@@ -1,7 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-import { ContentPanel, ContentPanelDeps, ContentPanelProps } from 'views/content/content-panel';
+import {
+    ContentPanel,
+    ContentPanelDeps,
+    ContentPanelProps,
+} from 'views/content/content-panel';
 import { InspectActionMessageCreator } from '../../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../../common/message-creators/scoping-action-message-creator';
 import { DetailsViewData } from '../../common/types/store-data/details-view-data';
@@ -10,9 +14,16 @@ import { ScopingStoreData } from '../../common/types/store-data/scoping-store-da
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { PreviewFeatureFlagsHandler } from '../handlers/preview-feature-flags-handler';
-import { PreviewFeaturesPanel, PreviewFeaturesPanelProps } from './preview-features-panel';
+import {
+    PreviewFeaturesPanel,
+    PreviewFeaturesPanelProps,
+} from './preview-features-panel';
 import { ScopingPanel, ScopingPanelProps } from './scoping-panel';
-import { SettingsPanel, SettingsPanelDeps, SettingsPanelProps } from './settings-panel/settings-panel';
+import {
+    SettingsPanel,
+    SettingsPanelDeps,
+    SettingsPanelProps,
+} from './settings-panel/settings-panel';
 
 export type DetailsViewOverlayDeps = ContentPanelDeps & SettingsPanelDeps;
 
@@ -28,7 +39,9 @@ export interface DetailsViewOverlayProps {
     userConfigurationStoreData: UserConfigurationStoreData;
 }
 
-export class DetailsViewOverlay extends React.Component<DetailsViewOverlayProps> {
+export class DetailsViewOverlay extends React.Component<
+    DetailsViewOverlayProps
+> {
     public render(): JSX.Element {
         return (
             <React.Fragment>
@@ -55,7 +68,8 @@ export class DetailsViewOverlay extends React.Component<DetailsViewOverlayProps>
         const previewProps: PreviewFeaturesPanelProps = {
             actionMessageCreator: this.props.actionMessageCreator,
             featureFlagData: this.props.featureFlagStoreData,
-            isOpen: this.props.detailsViewStoreData.currentPanel.isPreviewFeaturesOpen,
+            isOpen: this.props.detailsViewStoreData.currentPanel
+                .isPreviewFeaturesOpen,
             previewFeatureFlagsHandler: this.props.previewFeatureFlagsHandler,
         };
 

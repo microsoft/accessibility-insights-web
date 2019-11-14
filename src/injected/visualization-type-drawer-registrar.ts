@@ -17,7 +17,9 @@ export class VisualizationTypeDrawerRegistrar {
     ) {}
 
     public registerType = (visualizationType: VisualizationType) => {
-        const config = this.visualizationConfigurationFactory.getConfiguration(visualizationType);
+        const config = this.visualizationConfigurationFactory.getConfiguration(
+            visualizationType,
+        );
         if (this.assessmentProvider.isValidType(visualizationType)) {
             const steps = this.assessmentProvider.getStepMap(visualizationType);
             Object.keys(steps).forEach(key => {

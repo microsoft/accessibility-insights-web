@@ -11,11 +11,15 @@ describe('PlainTextFormatter', () => {
     });
 
     it('returns section header', () => {
-        expect(testSubject.sectionHeader('test-section-header')).toEqual('test-section-header');
+        expect(testSubject.sectionHeader('test-section-header')).toEqual(
+            'test-section-header',
+        );
     });
 
     it('returns how to fix section', () => {
-        expect(testSubject.howToFixSection('test-failure-summary')).toEqual('\ntest-failure-summary');
+        expect(testSubject.howToFixSection('test-failure-summary')).toEqual(
+            '\ntest-failure-summary',
+        );
     });
 
     it('returns section header separator', () => {
@@ -27,7 +31,9 @@ describe('PlainTextFormatter', () => {
     });
 
     it('returns snippet', () => {
-        expect(testSubject.snippet('   snippet with      spaces  ')).toEqual('snippet with spaces');
+        expect(testSubject.snippet('   snippet with      spaces  ')).toEqual(
+            'snippet with spaces',
+        );
     });
 
     it('return new line', () => {
@@ -40,7 +46,9 @@ describe('PlainTextFormatter', () => {
         });
 
         it('handles href and text', () => {
-            expect(testSubject.link('test-href', 'test-text')).toEqual('test-text - test-href');
+            expect(testSubject.link('test-href', 'test-text')).toEqual(
+                'test-text - test-href',
+            );
         });
     });
 });

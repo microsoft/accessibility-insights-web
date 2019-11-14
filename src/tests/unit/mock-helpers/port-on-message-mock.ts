@@ -13,7 +13,11 @@ export class PortOnMessageMock extends ChromeEventMock {
         this.portOnMessageMock = this.eventMock as IMock<PortOnMessageStub>;
     }
 
-    public setupAddListenerMock(callback?: (onAddListener: (msg: any, port: chrome.runtime.Port) => void) => void): PortOnMessageMock {
+    public setupAddListenerMock(
+        callback?: (
+            onAddListener: (msg: any, port: chrome.runtime.Port) => void,
+        ) => void,
+    ): PortOnMessageMock {
         return super.setupAddListenerMock(callback) as PortOnMessageMock;
     }
 

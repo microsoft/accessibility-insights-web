@@ -28,9 +28,13 @@ describe('BlockingDialog', () => {
             },
         };
 
-        const wrapper = shallow(<BlockingDialog {...propsThatBlockingDialogShouldntModify} />);
+        const wrapper = shallow(
+            <BlockingDialog {...propsThatBlockingDialogShouldntModify} />,
+        );
         const dialogProps = wrapper.find(Dialog).props();
 
-        expect(dialogProps).toMatchObject(propsThatBlockingDialogShouldntModify);
+        expect(dialogProps).toMatchObject(
+            propsThatBlockingDialogShouldntModify,
+        );
     });
 });

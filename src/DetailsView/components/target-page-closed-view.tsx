@@ -9,7 +9,10 @@ export class TargetPageClosedView extends React.Component {
         return (
             <main className={targetPageClosed}>
                 <h1>No content available</h1>
-                <p>The target page was closed. You can close this tab or reuse it for something else.</p>
+                <p>
+                    The target page was closed. You can close this tab or reuse
+                    it for something else.
+                </p>
             </main>
         );
     }

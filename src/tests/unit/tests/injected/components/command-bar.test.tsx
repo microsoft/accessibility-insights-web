@@ -4,11 +4,18 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { It, Mock, Times } from 'typemoq';
 
-import { BaseButton, Button } from '../../../../../../node_modules/office-ui-fabric-react';
+import {
+    BaseButton,
+    Button,
+} from '../../../../../../node_modules/office-ui-fabric-react';
 import { CopyIssueDetailsButton } from '../../../../../common/components/copy-issue-details-button';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
-import { CommandBar, CommandBarDeps, CommandBarProps } from '../../../../../injected/components/command-bar';
+import {
+    CommandBar,
+    CommandBarDeps,
+    CommandBarProps,
+} from '../../../../../injected/components/command-bar';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { AxeResultToIssueFilingDataConverter } from '../../../../../issue-filing/rule-result-to-issue-filing-data';
 import { EventStubFactory } from '../../../common/event-stub-factory';
@@ -21,7 +28,10 @@ describe('CommandBar', () => {
                 text: 'WCAG-1.4.1',
                 tags: [
                     { id: 'some-id', displayText: 'some displayText' },
-                    { id: 'some-other-id', displayText: 'some other displayText' },
+                    {
+                        id: 'some-other-id',
+                        displayText: 'some other displayText',
+                    },
                 ],
             },
             { text: 'wcag-2.8.2' },
@@ -41,7 +51,10 @@ describe('CommandBar', () => {
         onClickInspectButton: undefined,
         onClickCopyIssueDetailsButton: undefined,
         shouldShowInspectButtonMessage: () => false,
-        userConfigurationStoreData: { isFirstTime: false, bugService: 'None' } as UserConfigurationStoreData,
+        userConfigurationStoreData: {
+            isFirstTime: false,
+            bugService: 'None',
+        } as UserConfigurationStoreData,
         devToolsShortcut: 'dev-tools-shortcut',
         currentRuleIndex: 0,
         failedRules: {
@@ -51,7 +64,9 @@ describe('CommandBar', () => {
 
     beforeAll(() => {
         axeConverterMock
-            .setup(m => m.convert(ruleResult, It.isAnyString(), It.isAnyString()))
+            .setup(m =>
+                m.convert(ruleResult, It.isAnyString(), It.isAnyString()),
+            )
             .returns(_ => issueData)
             .verifiable(Times.atLeastOnce());
     });
@@ -59,18 +74,21 @@ describe('CommandBar', () => {
     describe('renders', () => {
         const showInspectButtonMessage = [true, false];
 
-        it.each(showInspectButtonMessage)('renders, shows inspect button message: %s', show => {
-            const props = {
-                ...defaultCommandBarProps,
+        it.each(showInspectButtonMessage)(
+            'renders, shows inspect button message: %s',
+            show => {
+                const props = {
+                    ...defaultCommandBarProps,
 
-                shouldShowInspectButtonMessage: () => show,
-            };
+                    shouldShowInspectButtonMessage: () => show,
+                };
 
-            const wrapper = shallow(<CommandBar {...props} />);
+                const wrapper = shallow(<CommandBar {...props} />);
 
-            expect(wrapper.getElement()).toMatchSnapshot();
-            axeConverterMock.verifyAll();
-        });
+                expect(wrapper.getElement()).toMatchSnapshot();
+                axeConverterMock.verifyAll();
+            },
+        );
     });
 
     describe('click handlers', () => {
@@ -78,7 +96,16 @@ describe('CommandBar', () => {
 
         test('for inspect button', () => {
             const onClickMock = Mock.ofInstance(
-                (event: React.MouseEvent<Button | BaseButton | HTMLDivElement | HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => {},
+                (
+                    event: React.MouseEvent<
+                        | Button
+                        | BaseButton
+                        | HTMLDivElement
+                        | HTMLAnchorElement
+                        | HTMLButtonElement,
+                        MouseEvent
+                    >,
+                ) => {},
             );
 
             const props = {
@@ -97,7 +124,9 @@ describe('CommandBar', () => {
         });
 
         test('for copy issue details button', () => {
-            const onClickMock = Mock.ofInstance((event: React.MouseEvent<any, MouseEvent>) => {});
+            const onClickMock = Mock.ofInstance(
+                (event: React.MouseEvent<any, MouseEvent>) => {},
+            );
 
             const props = {
                 ...defaultCommandBarProps,

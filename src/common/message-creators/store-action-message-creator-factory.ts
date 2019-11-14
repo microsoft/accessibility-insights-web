@@ -12,7 +12,9 @@ export class StoreActionMessageCreatorFactory {
     constructor(private readonly dispatcher: ActionMessageDispatcher) {}
 
     public fromStores(stores: BaseStore<any>[]): StoreActionMessageCreator {
-        const messages = stores.map(store => getStoreStateMessage(StoreNames[store.getId()]));
+        const messages = stores.map(store =>
+            getStoreStateMessage(StoreNames[store.getId()]),
+        );
 
         return new StoreActionMessageCreatorImpl(messages, this.dispatcher);
     }

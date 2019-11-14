@@ -3,11 +3,22 @@
 
 import { VisualizationType } from 'common/types/visualization-type';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
-import { ReportExportComponent, ReportExportComponentProps } from 'DetailsView/components/report-export-component';
+import {
+    ReportExportComponent,
+    ReportExportComponentProps,
+} from 'DetailsView/components/report-export-component';
 import * as React from 'react';
 
-export function getReportExportComponentForAssessment(props: CommandBarProps): JSX.Element {
-    const { deps, assessmentStoreData, assessmentsProvider, featureFlagStoreData, tabStoreData } = props;
+export function getReportExportComponentForAssessment(
+    props: CommandBarProps,
+): JSX.Element {
+    const {
+        deps,
+        assessmentStoreData,
+        assessmentsProvider,
+        featureFlagStoreData,
+        tabStoreData,
+    } = props;
     const reportGenerator = deps.reportGenerator;
     const reportExportComponentProps: ReportExportComponentProps = {
         deps: deps,
@@ -23,21 +34,25 @@ export function getReportExportComponentForAssessment(props: CommandBarProps): J
                 tabStoreData,
                 description,
             ),
-        updatePersistedDescription: value => props.actionMessageCreator.addResultDescription(value),
+        updatePersistedDescription: value =>
+            props.actionMessageCreator.addResultDescription(value),
         getExportDescription: () => props.assessmentStoreData.resultDescription,
     };
 
     return <ReportExportComponent {...reportExportComponentProps} />;
 }
 
-export function getReportExportComponentForFastPass(props: CommandBarProps): JSX.Element {
+export function getReportExportComponentForFastPass(
+    props: CommandBarProps,
+): JSX.Element {
     const scanResult = props.visualizationScanResultData.issues.scanResult;
 
     if (!scanResult) {
         return null;
     }
 
-    const selectedTest = props.visualizationStoreData.selectedFastPassDetailsView;
+    const selectedTest =
+        props.visualizationStoreData.selectedFastPassDetailsView;
 
     if (selectedTest !== VisualizationType.Issues) {
         return null;

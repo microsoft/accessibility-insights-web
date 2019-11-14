@@ -1,7 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { css, IRenderFunction } from '@uifabric/utilities';
-import { IPanelProps, Panel, PanelType } from 'office-ui-fabric-react/lib/Panel';
+import {
+    IPanelProps,
+    Panel,
+    PanelType,
+} from 'office-ui-fabric-react/lib/Panel';
 import * as React from 'react';
 
 export interface GenericPanelProps {

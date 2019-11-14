@@ -1,6 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GlobalMock, GlobalScope, IGlobalMock, IMock, It, Mock, MockBehavior } from 'typemoq';
+import {
+    GlobalMock,
+    GlobalScope,
+    IGlobalMock,
+    IMock,
+    It,
+    Mock,
+    MockBehavior,
+} from 'typemoq';
 
 import * as AxeUtils from '../../../../../scanner/axe-utils';
 import { textContrastConfiguration } from '../../../../../scanner/custom-rules/text-contrast';
@@ -15,13 +23,21 @@ function testTextContrast(
 ): void {
     windowMock
         .setup(m => m(It.isAny()))
-        .returns(currentNode => ({ getPropertyValue: property => currentNode[property] } as CSSStyleDeclaration));
+        .returns(
+            currentNode =>
+                ({
+                    getPropertyValue: property => currentNode[property],
+                } as CSSStyleDeclaration),
+        );
 
     dataSetterMock.setup(d => d(expectedData));
 
     let result;
     GlobalScope.using(windowMock, axeUtilsMock).with(() => {
-        result = textContrastConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, node);
+        result = textContrastConfiguration.checks[0].evaluate.call(
+            { data: dataSetterMock.object },
+            node,
+        );
     });
     expect(result).toBe(false);
 
@@ -37,18 +53,32 @@ describe('text contrast', () => {
             expect(textContrastConfiguration.rule.all).toEqual([]);
             expect(textContrastConfiguration.rule.all.length).toBe(0);
             expect(textContrastConfiguration.rule.any.length).toBe(1);
-            expect(textContrastConfiguration.checks[0].id).toBe('text-contrast');
+            expect(textContrastConfiguration.checks[0].id).toBe(
+                'text-contrast',
+            );
         });
     });
 
     describe('verify evaluate', () => {
         let dataSetterMock: IMock<(data) => void>;
-        const axeUtilsMock = GlobalMock.ofInstance(AxeUtils.getEvaluateFromCheck, 'getEvaluateFromCheck', AxeUtils, MockBehavior.Strict);
-        const windowMock = GlobalMock.ofInstance(window.getComputedStyle, 'getComputedStyle', window, MockBehavior.Strict);
+        const axeUtilsMock = GlobalMock.ofInstance(
+            AxeUtils.getEvaluateFromCheck,
+            'getEvaluateFromCheck',
+            AxeUtils,
+            MockBehavior.Strict,
+        );
+        const windowMock = GlobalMock.ofInstance(
+            window.getComputedStyle,
+            'getComputedStyle',
+            window,
+            MockBehavior.Strict,
+        );
 
         beforeEach(() => {
             dataSetterMock = Mock.ofInstance(data => {});
-            axeUtilsMock.setup(m => m(It.isAnyString())).returns(_ => (node, options, virtualNode, context) => false);
+            axeUtilsMock
+                .setup(m => m(It.isAnyString()))
+                .returns(_ => (node, options, virtualNode, context) => false);
         });
 
         it('large font size / regular font weight', () => {
@@ -61,7 +91,13 @@ describe('text contrast', () => {
                 textString: 'hello',
                 size: 'large',
             };
-            testTextContrast(node, expectedData, axeUtilsMock, windowMock, dataSetterMock);
+            testTextContrast(
+                node,
+                expectedData,
+                axeUtilsMock,
+                windowMock,
+                dataSetterMock,
+            );
         });
 
         it('set size to be large for font size >= 14pt bold text', () => {
@@ -74,7 +110,13 @@ describe('text contrast', () => {
                 textString: 'hello',
                 size: 'large',
             };
-            testTextContrast(node, expectedData, axeUtilsMock, windowMock, dataSetterMock);
+            testTextContrast(
+                node,
+                expectedData,
+                axeUtilsMock,
+                windowMock,
+                dataSetterMock,
+            );
         });
 
         it('set size to be regular for font size < 18pt non bold text', () => {
@@ -87,7 +129,13 @@ describe('text contrast', () => {
                 textString: 'hello',
                 size: 'regular',
             };
-            testTextContrast(node, expectedData, axeUtilsMock, windowMock, dataSetterMock);
+            testTextContrast(
+                node,
+                expectedData,
+                axeUtilsMock,
+                windowMock,
+                dataSetterMock,
+            );
         });
     });
 });

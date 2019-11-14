@@ -16,8 +16,13 @@ describe('HeadingRule', () => {
                 headingText: 'H5',
             };
             const dataSetterMock = Mock.ofInstance(data => {});
-            dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
-            headingConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, elementStub);
+            dataSetterMock
+                .setup(d => d(It.isValue(expectedData)))
+                .verifiable(Times.once());
+            headingConfiguration.checks[0].evaluate.call(
+                { data: dataSetterMock.object },
+                elementStub,
+            );
             dataSetterMock.verifyAll();
         });
     });
@@ -36,8 +41,13 @@ describe('HeadingRule', () => {
                 headingText: 'H2',
             };
             const dataSetterMock = Mock.ofInstance(data => {});
-            dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
-            headingConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, elementStub);
+            dataSetterMock
+                .setup(d => d(It.isValue(expectedData)))
+                .verifiable(Times.once());
+            headingConfiguration.checks[0].evaluate.call(
+                { data: dataSetterMock.object },
+                elementStub,
+            );
             dataSetterMock.verifyAll();
         });
     });

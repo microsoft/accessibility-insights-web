@@ -2,12 +2,21 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
-import { AssessmentNavState, AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
+import {
+    AssessmentNavState,
+    AssessmentStoreData,
+} from 'common/types/store-data/assessment-result-data';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
-import { DetailsViewCommandBarDeps, DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
-import { getStartOverComponentForAssessment, getStartOverComponentForFastPass } from 'DetailsView/components/start-over-component-factory';
+import {
+    DetailsViewCommandBarDeps,
+    DetailsViewCommandBarProps,
+} from 'DetailsView/components/details-view-command-bar';
+import {
+    getStartOverComponentForAssessment,
+    getStartOverComponentForFastPass,
+} from 'DetailsView/components/start-over-component-factory';
 import { ScanResults } from 'scanner/iruleresults';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
@@ -24,7 +33,10 @@ describe('StartOverComponentPropsFactory', () => {
     let scanning: string;
 
     beforeEach(() => {
-        assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(undefined, MockBehavior.Loose);
+        assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(
+            undefined,
+            MockBehavior.Loose,
+        );
         scanResult = null;
         scanning = null;
     });
@@ -40,7 +52,9 @@ describe('StartOverComponentPropsFactory', () => {
                 title: theTitle,
             } as Readonly<Assessment>;
             selectedTestType = theTestType;
-            assessmentsProviderMock.setup(apm => apm.forType(theTestType)).returns(() => assessment);
+            assessmentsProviderMock
+                .setup(apm => apm.forType(theTestType))
+                .returns(() => assessment);
         } else {
             visualizationStoreData = {
                 selectedFastPassDetailsView: theTestType,

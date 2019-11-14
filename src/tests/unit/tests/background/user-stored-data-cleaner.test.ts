@@ -10,7 +10,10 @@ describe('cleanKeysFromStorage', () => {
     const testObject = cleanKeysFromStorage;
 
     beforeEach(() => {
-        storageAdapterMock = Mock.ofType<StorageAdapter>(undefined, MockBehavior.Strict);
+        storageAdapterMock = Mock.ofType<StorageAdapter>(
+            undefined,
+            MockBehavior.Strict,
+        );
     });
 
     it('removes keys properly', async () => {
@@ -19,8 +22,12 @@ describe('cleanKeysFromStorage', () => {
             exist: 'yes it does',
         };
 
-        storageAdapterMock.setup(storage => storage.getUserData(keys)).returns(() => Promise.resolve(data));
-        storageAdapterMock.setup(storage => storage.removeUserData('exist')).returns(() => Promise.resolve());
+        storageAdapterMock
+            .setup(storage => storage.getUserData(keys))
+            .returns(() => Promise.resolve(data));
+        storageAdapterMock
+            .setup(storage => storage.removeUserData('exist'))
+            .returns(() => Promise.resolve());
 
         await testObject(storageAdapterMock.object, keys);
     });

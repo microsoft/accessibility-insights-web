@@ -21,7 +21,10 @@ import { CustomWidgetsColumnRendererFactory } from '../custom-widgets-column-ren
 import { CustomWidgetsTestStep } from './test-steps';
 
 const cuesDescription: JSX.Element = (
-    <span>If a custom widget adopts certain interactive states, it must communicate those states programmatically.</span>
+    <span>
+        If a custom widget adopts certain interactive states, it must
+        communicate those states programmatically.
+    </span>
 );
 
 const cuesHowToTest: JSX.Element = (
@@ -30,7 +33,8 @@ const cuesHowToTest: JSX.Element = (
         <TestAutomaticallyPassedNotice />
         <ol>
             <li>
-                In the target page, interact with each custom widget to determine whether it adopts any of these states:
+                In the target page, interact with each custom widget to
+                determine whether it adopts any of these states:
                 <ol>
                     <li>Disabled</li>
                     <li>Read-only</li>
@@ -38,15 +42,19 @@ const cuesHowToTest: JSX.Element = (
                 </ol>
             </li>
             <li>
-                If a widget <Markup.Emphasis>does</Markup.Emphasis> adopt any of these states, inspect its HTML using the browser Developer
-                Tools to verify that the states are appropriately coded.
+                If a widget <Markup.Emphasis>does</Markup.Emphasis> adopt any of
+                these states, inspect its HTML using the browser Developer Tools
+                to verify that the states are appropriately coded.
                 <ol>
                     <li>
-                        HTML properties (e.g., <Markup.CodeTerm>readonly</Markup.CodeTerm>) should be used on elements that support them.
+                        HTML properties (e.g.,{' '}
+                        <Markup.CodeTerm>readonly</Markup.CodeTerm>) should be
+                        used on elements that support them.
                     </li>
                     <li>
-                        ARIA properties (e.g., <Markup.CodeTerm>aria-readonly</Markup.CodeTerm>) should be used on elements that don't
-                        support HTML properties.
+                        ARIA properties (e.g.,{' '}
+                        <Markup.CodeTerm>aria-readonly</Markup.CodeTerm>) should
+                        be used on elements that don't support HTML properties.
                     </li>
                 </ol>
             </li>
@@ -66,7 +74,9 @@ export const Cues: Requirement = {
         {
             key: 'cues-info-custom-widgets',
             name: 'Cues',
-            onRender: CustomWidgetsColumnRendererFactory.getWithoutLink<CustomWidgetPropertyBag>([
+            onRender: CustomWidgetsColumnRendererFactory.getWithoutLink<
+                CustomWidgetPropertyBag
+            >([
                 {
                     propertyName: 'role',
                     displayName: 'Widget role',
@@ -93,12 +103,23 @@ export const Cues: Requirement = {
         },
     ],
     reportInstanceFields: [
-        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>('Widget role', 'role'),
-        ReportInstanceField.fromPropertyBagFunction<CustomWidgetPropertyBag>('Design pattern', 'designPattern', pb =>
-            getFlatDesignPatternStringFromRole(pb.role),
+        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>(
+            'Widget role',
+            'role',
         ),
-        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>('HTML cues', 'htmlCues'),
-        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>('ARIA cues', 'ariaCues'),
+        ReportInstanceField.fromPropertyBagFunction<CustomWidgetPropertyBag>(
+            'Design pattern',
+            'designPattern',
+            pb => getFlatDesignPatternStringFromRole(pb.role),
+        ),
+        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>(
+            'HTML cues',
+            'htmlCues',
+        ),
+        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>(
+            'ARIA cues',
+            'ariaCues',
+        ),
     ],
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(
@@ -106,9 +127,12 @@ export const Cues: Requirement = {
                 rules: ['custom-widget'],
                 key: CustomWidgetsTestStep.cues,
                 testType: VisualizationType.CustomWidgets,
-                resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
+                resultProcessor: (scanner: ScannerUtils) =>
+                    scanner.getPassingInstances,
             }),
         ),
     getDrawer: provider => provider.createHighlightBoxDrawer(),
-    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
+    getVisualHelperToggle: props => (
+        <AssessmentVisualizationEnabledToggle {...props} />
+    ),
 };

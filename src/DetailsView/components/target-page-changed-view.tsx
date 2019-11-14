@@ -16,26 +16,39 @@ export interface TargetPageChangedViewProps {
     featureFlagStoreData: FeatureFlagStoreData;
 }
 
-export const TargetPageChangedView = NamedFC<TargetPageChangedViewProps>('TargetPageChangedView', props => {
-    const { title = '', toggleLabel = '', subtitle } = props.displayableData;
+export const TargetPageChangedView = NamedFC<TargetPageChangedViewProps>(
+    'TargetPageChangedView',
+    props => {
+        const {
+            title = '',
+            toggleLabel = '',
+            subtitle,
+        } = props.displayableData;
 
-    const toggleText = 'The target page was changed. Use the toggle to enable the visualization in the current target page.';
-    const startOverText = 'The target page has changed. Use the start over button to scan the new target page.';
-    const displayedText = props.featureFlagStoreData[FeatureFlags.universalCardsUI] ? startOverText : toggleText;
+        const toggleText =
+            'The target page was changed. Use the toggle to enable the visualization in the current target page.';
+        const startOverText =
+            'The target page has changed. Use the start over button to scan the new target page.';
+        const displayedText = props.featureFlagStoreData[
+            FeatureFlags.universalCardsUI
+        ]
+            ? startOverText
+            : toggleText;
 
-    return (
-        <div className="target-page-changed">
-            <h1>{title}</h1>
-            <div className="target-page-changed-subtitle">{subtitle}</div>
-            <Toggle
-                onText="On"
-                offText="Off"
-                checked={false}
-                onClick={props.toggleClickHandler}
-                label={toggleLabel}
-                className="details-view-toggle"
-            />
-            <p>{displayedText}</p>
-        </div>
-    );
-});
+        return (
+            <div className="target-page-changed">
+                <h1>{title}</h1>
+                <div className="target-page-changed-subtitle">{subtitle}</div>
+                <Toggle
+                    onText="On"
+                    offText="Off"
+                    checked={false}
+                    onClick={props.toggleClickHandler}
+                    label={toggleLabel}
+                    className="details-view-toggle"
+                />
+                <p>{displayedText}</p>
+            </div>
+        );
+    },
+);

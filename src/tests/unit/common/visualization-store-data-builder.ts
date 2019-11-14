@@ -5,14 +5,24 @@ import * as _ from 'lodash';
 import { VisualizationStore } from 'background/stores/visualization-store';
 import { VisualizationConfigurationFactory } from '../../../common/configs/visualization-configuration-factory';
 import { DetailsViewPivotType } from '../../../common/types/details-view-pivot-type';
-import { AssessmentScanData, VisualizationStoreData } from '../../../common/types/store-data/visualization-store-data';
+import {
+    AssessmentScanData,
+    VisualizationStoreData,
+} from '../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { BaseDataBuilder } from './base-data-builder';
 
-export class VisualizationStoreDataBuilder extends BaseDataBuilder<VisualizationStoreData> {
+export class VisualizationStoreDataBuilder extends BaseDataBuilder<
+    VisualizationStoreData
+> {
     constructor() {
         super();
-        this.data = new VisualizationStore(null, null, null, new VisualizationConfigurationFactory()).getDefaultState();
+        this.data = new VisualizationStore(
+            null,
+            null,
+            null,
+            new VisualizationConfigurationFactory(),
+        ).getDefaultState();
     }
 
     public withFocusedTarget(target: string[]): VisualizationStoreDataBuilder {
@@ -35,8 +45,15 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<Visualization
         return this;
     }
 
-    public withLandmarksAssessment(enable: boolean, step: string): VisualizationStoreDataBuilder {
-        return this.withAssessment(this.data.tests.assessments.landmarksAssessment, enable, step);
+    public withLandmarksAssessment(
+        enable: boolean,
+        step: string,
+    ): VisualizationStoreDataBuilder {
+        return this.withAssessment(
+            this.data.tests.assessments.landmarksAssessment,
+            enable,
+            step,
+        );
     }
 
     public withTabStopsEnable(): VisualizationStoreDataBuilder {
@@ -49,18 +66,29 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<Visualization
         return this;
     }
 
-    public withHeadingsAssessment(enable: boolean, step: string): VisualizationStoreDataBuilder {
-        return this.withAssessment(this.data.tests.assessments.headingsAssessment, enable, step);
+    public withHeadingsAssessment(
+        enable: boolean,
+        step: string,
+    ): VisualizationStoreDataBuilder {
+        return this.withAssessment(
+            this.data.tests.assessments.headingsAssessment,
+            enable,
+            step,
+        );
     }
 
-    public withAllAdhocTestsTo(enabled: boolean): VisualizationStoreDataBuilder {
+    public withAllAdhocTestsTo(
+        enabled: boolean,
+    ): VisualizationStoreDataBuilder {
         _.forOwn(this.data.tests.adhoc, testData => {
             testData.enabled = enabled;
         });
         return this;
     }
 
-    public withEnable(visualizationType: VisualizationType): VisualizationStoreDataBuilder {
+    public withEnable(
+        visualizationType: VisualizationType,
+    ): VisualizationStoreDataBuilder {
         switch (visualizationType) {
             case VisualizationType.Headings:
                 this.data.tests.adhoc.headings.enabled = true;
@@ -87,7 +115,9 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<Visualization
         return this;
     }
 
-    public withDisable(visualizationType: VisualizationType): VisualizationStoreDataBuilder {
+    public withDisable(
+        visualizationType: VisualizationType,
+    ): VisualizationStoreDataBuilder {
         switch (visualizationType) {
             case VisualizationType.Headings:
                 this.data.tests.adhoc.headings.enabled = false;
@@ -114,13 +144,21 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<Visualization
         return this;
     }
 
-    private withAssessment(assessment: AssessmentScanData, enabled: boolean, step: string): VisualizationStoreDataBuilder {
+    private withAssessment(
+        assessment: AssessmentScanData,
+        enabled: boolean,
+        step: string,
+    ): VisualizationStoreDataBuilder {
         assessment.stepStatus[step] = enabled;
-        assessment.enabled = Object.keys(assessment.stepStatus).some(currentStep => assessment.stepStatus[currentStep] === true);
+        assessment.enabled = Object.keys(assessment.stepStatus).some(
+            currentStep => assessment.stepStatus[currentStep] === true,
+        );
         return this;
     }
 
-    public withSelectedDetailsViewPivot(pivot: DetailsViewPivotType): VisualizationStoreDataBuilder {
+    public withSelectedDetailsViewPivot(
+        pivot: DetailsViewPivotType,
+    ): VisualizationStoreDataBuilder {
         this.data.selectedDetailsViewPivot = pivot;
         return this;
     }

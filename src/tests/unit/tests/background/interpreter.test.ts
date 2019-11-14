@@ -6,11 +6,15 @@ import { PayloadCallback } from '../../../../common/message';
 import { DictionaryStringTo } from '../../../../types/common-types';
 
 class TestableInterpreter extends Interpreter {
-    public getMessageToActionMapping(): DictionaryStringTo<PayloadCallback<any>> {
+    public getMessageToActionMapping(): DictionaryStringTo<
+        PayloadCallback<any>
+    > {
         return this.messageToActionMapping;
     }
 
-    public setMessageToActionMapping(messageToActionMapping: DictionaryStringTo<PayloadCallback<any>>): void {
+    public setMessageToActionMapping(
+        messageToActionMapping: DictionaryStringTo<PayloadCallback<any>>,
+    ): void {
         this.messageToActionMapping = messageToActionMapping;
     }
 }
@@ -20,7 +24,9 @@ describe('InterpreterTest', () => {
         const testSubject = new TestableInterpreter();
         const sampleCallback = () => {};
         testSubject.registerTypeToPayloadCallback('test', sampleCallback);
-        expect(testSubject.getMessageToActionMapping()).toEqual({ test: sampleCallback });
+        expect(testSubject.getMessageToActionMapping()).toEqual({
+            test: sampleCallback,
+        });
     });
 
     test('interpret', () => {

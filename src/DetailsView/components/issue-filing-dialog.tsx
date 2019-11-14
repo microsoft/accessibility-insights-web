@@ -1,7 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { cloneDeep, isEqual } from 'lodash';
-import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
+import {
+    Dialog,
+    DialogFooter,
+    DialogType,
+} from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
 
 import { EnvironmentInfoProvider } from '../../common/environment-info-provider';
@@ -42,7 +46,10 @@ export interface IssueFilingDialogState {
     issueFilingServicePropertiesMap: IssueFilingServicePropertiesMap;
 }
 
-export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, IssueFilingDialogState> {
+export class IssueFilingDialog extends React.Component<
+    IssueFilingDialogProps,
+    IssueFilingDialogState
+> {
     constructor(props: IssueFilingDialogProps) {
         super(props);
         this.state = this.getState(props);
@@ -50,7 +57,9 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
 
     private getState(props: IssueFilingDialogProps): IssueFilingDialogState {
         return {
-            issueFilingServicePropertiesMap: cloneDeep(props.issueFilingServicePropertiesMap),
+            issueFilingServicePropertiesMap: cloneDeep(
+                props.issueFilingServicePropertiesMap,
+            ),
             selectedIssueFilingService: props.selectedIssueFilingService,
         };
     }
@@ -61,7 +70,9 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
         const selectedIssueFilingServiceData = this.state.selectedIssueFilingService.getSettingsFromStoreData(
             this.state.issueFilingServicePropertiesMap,
         );
-        const isSettingsValid = selectedIssueFilingService.isSettingsValid(selectedIssueFilingServiceData);
+        const isSettingsValid = selectedIssueFilingService.isSettingsValid(
+            selectedIssueFilingServiceData,
+        );
 
         return (
             <Dialog
@@ -69,7 +80,8 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
                 dialogContentProps={{
                     type: DialogType.normal,
                     title: titleLabel,
-                    subText: 'This configuration can be changed again in settings.',
+                    subText:
+                        'This configuration can be changed again in settings.',
                     showCloseButton: false,
                 }}
                 modalProps={{
@@ -82,7 +94,9 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
                 <IssueFilingSettingsContainer
                     deps={deps}
                     selectedIssueFilingService={selectedIssueFilingService}
-                    selectedIssueFilingServiceData={selectedIssueFilingServiceData}
+                    selectedIssueFilingServiceData={
+                        selectedIssueFilingServiceData
+                    }
                     onPropertyUpdateCallback={this.onPropertyUpdateCallback}
                     onSelectedServiceChange={this.onSelectedServiceChange}
                 />
@@ -99,28 +113,42 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
         );
     }
 
-    private onPrimaryButtonClick = (ev: React.SyntheticEvent<Element, Event>) => {
-        const newData = this.state.selectedIssueFilingService.getSettingsFromStoreData(this.state.issueFilingServicePropertiesMap);
+    private onPrimaryButtonClick = (
+        ev: React.SyntheticEvent<Element, Event>,
+    ) => {
+        const newData = this.state.selectedIssueFilingService.getSettingsFromStoreData(
+            this.state.issueFilingServicePropertiesMap,
+        );
         const service = this.state.selectedIssueFilingService.key;
         const payload = {
             issueFilingServiceName: service,
             issueFilingSettings: newData,
         };
-        this.props.deps.userConfigMessageCreator.saveIssueFilingSettings(payload);
-        this.props.deps.issueFilingActionMessageCreator.fileIssue(ev, service, this.props.selectedIssueData);
+        this.props.deps.userConfigMessageCreator.saveIssueFilingSettings(
+            payload,
+        );
+        this.props.deps.issueFilingActionMessageCreator.fileIssue(
+            ev,
+            service,
+            this.props.selectedIssueData,
+        );
         this.props.onClose(ev);
     };
 
     private onSelectedServiceChange: OnSelectedServiceChange = service => {
         this.setState(() => ({
-            selectedIssueFilingService: this.props.deps.issueFilingServiceProvider.forKey(service.issueFilingServiceName),
+            selectedIssueFilingService: this.props.deps.issueFilingServiceProvider.forKey(
+                service.issueFilingServiceName,
+            ),
         }));
     };
 
     private onPropertyUpdateCallback: OnPropertyUpdateCallback = payload => {
         const { issueFilingServiceName, propertyName, propertyValue } = payload;
         const selectedServiceData =
-            this.state.selectedIssueFilingService.getSettingsFromStoreData(this.state.issueFilingServicePropertiesMap) || {};
+            this.state.selectedIssueFilingService.getSettingsFromStoreData(
+                this.state.issueFilingServicePropertiesMap,
+            ) || {};
         selectedServiceData[propertyName] = propertyValue;
         const newIssueFilingServicePropertiesMap = {
             ...this.state.issueFilingServicePropertiesMap,
@@ -131,7 +159,9 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
         }));
     };
 
-    public componentDidUpdate(prevProps: Readonly<IssueFilingDialogProps>): void {
+    public componentDidUpdate(
+        prevProps: Readonly<IssueFilingDialogProps>,
+    ): void {
         if (this.props.isOpen && isEqual(prevProps, this.props) === false) {
             this.setState(() => this.getState(this.props));
         }

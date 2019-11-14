@@ -32,28 +32,46 @@ describe('First time Dialog', () => {
         const firstPopupPage = await newPopupPage();
         await firstPopupPage.bringToFront();
 
-        await firstPopupPage.clickSelector(popupPageElementIdentifiers.startUsingProductButton);
-        await firstPopupPage.waitForSelectorToDisappear(popupPageElementIdentifiers.telemetryDialog);
+        await firstPopupPage.clickSelector(
+            popupPageElementIdentifiers.startUsingProductButton,
+        );
+        await firstPopupPage.waitForSelectorToDisappear(
+            popupPageElementIdentifiers.telemetryDialog,
+        );
         await firstPopupPage.close();
 
         const secondPopupPage = await newPopupPage();
-        await secondPopupPage.waitForSelector(popupPageElementIdentifiers.launchPad);
-        await secondPopupPage.waitForSelectorToDisappear(popupPageElementIdentifiers.telemetryDialog);
+        await secondPopupPage.waitForSelector(
+            popupPageElementIdentifiers.launchPad,
+        );
+        await secondPopupPage.waitForSelectorToDisappear(
+            popupPageElementIdentifiers.telemetryDialog,
+        );
     });
 
     it('content should match snapshot', async () => {
         const popupPage = await newPopupPage();
-        await popupPage.waitForSelector(popupPageElementIdentifiers.telemetryDialog);
+        await popupPage.waitForSelector(
+            popupPageElementIdentifiers.telemetryDialog,
+        );
 
-        const element = await formatPageElementForSnapshot(popupPage, popupPageElementIdentifiers.telemetryDialog);
+        const element = await formatPageElementForSnapshot(
+            popupPage,
+            popupPageElementIdentifiers.telemetryDialog,
+        );
         expect(element).toMatchSnapshot();
     });
 
     it('should pass accessibility validation', async () => {
         const popupPage = await newPopupPage();
-        await popupPage.waitForSelector(popupPageElementIdentifiers.telemetryDialog);
+        await popupPage.waitForSelector(
+            popupPageElementIdentifiers.telemetryDialog,
+        );
 
-        const results = await scanForAccessibilityIssues(popupPage, popupPageElementIdentifiers.telemetryDialog);
+        const results = await scanForAccessibilityIssues(
+            popupPage,
+            popupPageElementIdentifiers.telemetryDialog,
+        );
         expect(results).toHaveLength(0);
     });
 });

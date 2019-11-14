@@ -15,7 +15,10 @@ interface CollapsibleComponentState {
     showContent: boolean;
 }
 
-export class CollapsibleComponent extends React.Component<CollapsibleComponentProps, CollapsibleComponentState> {
+export class CollapsibleComponent extends React.Component<
+    CollapsibleComponentProps,
+    CollapsibleComponentState
+> {
     private readonly iconNameDown = 'ChevronDown';
     private readonly iconNameUp = 'ChevronRight';
 
@@ -36,18 +39,37 @@ export class CollapsibleComponent extends React.Component<CollapsibleComponentPr
 
         if (showContent) {
             iconName = this.iconNameDown;
-            content = <div className={css(this.props.contentClassName, 'collapsible-content')}>{this.props.content}</div>;
+            content = (
+                <div
+                    className={css(
+                        this.props.contentClassName,
+                        'collapsible-content',
+                    )}
+                >
+                    {this.props.content}
+                </div>
+            );
         }
 
         return (
-            <div className={css(this.props.containerClassName, 'collapsible-component')}>
+            <div
+                className={css(
+                    this.props.containerClassName,
+                    'collapsible-component',
+                )}
+            >
                 <ActionButton
                     className="collapsible"
-                    iconProps={{ iconName: iconName, class: 'collapsible-icon' }}
+                    iconProps={{
+                        iconName: iconName,
+                        class: 'collapsible-icon',
+                    }}
                     onClick={this.onClick}
                     aria-expanded={showContent}
                 >
-                    <span className="collapsible-title">{this.props.header}</span>
+                    <span className="collapsible-title">
+                        {this.props.header}
+                    </span>
                 </ActionButton>
                 {content}
             </div>

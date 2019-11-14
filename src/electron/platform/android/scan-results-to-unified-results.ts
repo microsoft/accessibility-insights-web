@@ -1,7 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { InstanceResultStatus, UnifiedDescriptors, UnifiedResult } from 'common/types/store-data/unified-data-interface';
+import {
+    InstanceResultStatus,
+    UnifiedDescriptors,
+    UnifiedResult,
+} from 'common/types/store-data/unified-data-interface';
 import { UUIDGeneratorType } from 'common/uid-generator';
 import { DictionaryStringTo } from 'types/common-types';
 import { RuleInformation } from './rule-information';
@@ -23,7 +27,11 @@ export function convertScanResultsToUnifiedResults(
         return [];
     }
 
-    return createUnifiedResultsFromScanResults(scanResults, ruleInformationProvider, uuidGenerator);
+    return createUnifiedResultsFromScanResults(
+        scanResults,
+        ruleInformationProvider,
+        uuidGenerator,
+    );
 }
 
 function createUnifiedResultsFromScanResults(
@@ -31,21 +39,34 @@ function createUnifiedResultsFromScanResults(
     ruleInformationProvider: RuleInformationProviderType,
     uuidGenerator: UUIDGeneratorType,
 ): UnifiedResult[] {
-    const viewElementLookup: DictionaryStringTo<ViewElementData> = createViewElementLookup(scanResults);
+    const viewElementLookup: DictionaryStringTo<ViewElementData> = createViewElementLookup(
+        scanResults,
+    );
     const unifiedResults: UnifiedResult[] = [];
 
     for (const ruleResult of scanResults.ruleResults) {
-        const ruleInformation: RuleInformation = ruleInformationProvider.getRuleInformation(ruleResult.ruleId);
+        const ruleInformation: RuleInformation = ruleInformationProvider.getRuleInformation(
+            ruleResult.ruleId,
+        );
 
         if (ruleInformation && ruleInformation.includeThisResult(ruleResult)) {
-            unifiedResults.push(createUnifiedResult(ruleInformation, ruleResult, viewElementLookup, uuidGenerator));
+            unifiedResults.push(
+                createUnifiedResult(
+                    ruleInformation,
+                    ruleResult,
+                    viewElementLookup,
+                    uuidGenerator,
+                ),
+            );
         }
     }
 
     return unifiedResults;
 }
 
-function createViewElementLookup(scanResults: ScanResults): DictionaryStringTo<ViewElementData> {
+function createViewElementLookup(
+    scanResults: ScanResults,
+): DictionaryStringTo<ViewElementData> {
     const viewElementLookup = {};
 
     addViewElementAndChildren(viewElementLookup, scanResults.viewElementTree);
@@ -53,7 +74,10 @@ function createViewElementLookup(scanResults: ScanResults): DictionaryStringTo<V
     return viewElementLookup;
 }
 
-function addViewElementAndChildren(viewElementLookup: DictionaryStringTo<ViewElementData>, element: ViewElementData): void {
+function addViewElementAndChildren(
+    viewElementLookup: DictionaryStringTo<ViewElementData>,
+    element: ViewElementData,
+): void {
     if (element) {
         viewElementLookup[element.axeViewId] = element;
         if (element.children) {

@@ -32,20 +32,25 @@ export const ColorAdHocVisualization: VisualizationConfiguration = {
     chromeCommand: '05_toggle-color',
     launchPanelDisplayOrder: 5,
     adhocToolsPanelDisplayOrder: 2,
-    resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
+    resultProcessor: (scanner: ScannerUtils) =>
+        scanner.getAllCompletedInstances,
     getAnalyzer: provider =>
         provider.createRuleAnalyzer({
             rules: ['select-body'],
-            resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
-            telemetryProcessor: (telemetryFactory: TelemetryDataFactory) => telemetryFactory.forTestScan,
+            resultProcessor: (scanner: ScannerUtils) =>
+                scanner.getAllCompletedInstances,
+            telemetryProcessor: (telemetryFactory: TelemetryDataFactory) =>
+                telemetryFactory.forTestScan,
             key: AdHocTestkeys.Color,
             testType: VisualizationType.Color,
             analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
         }),
     getIdentifier: () => AdHocTestkeys.Color,
-    visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
+    visualizationInstanceProcessor: () =>
+        VisualizationInstanceProcessor.nullProcessor,
     getNotificationMessage: selectorMap => null,
-    getDrawer: provider => provider.createSingleTargetDrawer('insights-grey-scale-container'),
+    getDrawer: provider =>
+        provider.createSingleTargetDrawer('insights-grey-scale-container'),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,
     guidance,

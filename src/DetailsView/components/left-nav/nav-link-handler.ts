@@ -7,18 +7,38 @@ import { DetailsViewActionMessageCreator } from '../../actions/details-view-acti
 import { BaseLeftNavLink } from '../base-left-nav';
 
 export class NavLinkHandler {
-    constructor(private detailsViewActionMessageCreator: DetailsViewActionMessageCreator) {}
+    constructor(
+        private detailsViewActionMessageCreator: DetailsViewActionMessageCreator,
+    ) {}
 
     public onOverviewClick = (): void => {
-        this.detailsViewActionMessageCreator.changeRightContentPanel('Overview');
+        this.detailsViewActionMessageCreator.changeRightContentPanel(
+            'Overview',
+        );
     };
 
-    public onFastPassTestClick = (event: React.MouseEvent<HTMLElement>, item: BaseLeftNavLink) => {
-        this.detailsViewActionMessageCreator.selectDetailsView(event, VisualizationType[item.key], DetailsViewPivotType.fastPass);
+    public onFastPassTestClick = (
+        event: React.MouseEvent<HTMLElement>,
+        item: BaseLeftNavLink,
+    ) => {
+        this.detailsViewActionMessageCreator.selectDetailsView(
+            event,
+            VisualizationType[item.key],
+            DetailsViewPivotType.fastPass,
+        );
     };
 
-    public onAssessmentTestClick = (event: React.MouseEvent<HTMLElement>, item: BaseLeftNavLink) => {
-        this.detailsViewActionMessageCreator.selectDetailsView(event, VisualizationType[item.key], DetailsViewPivotType.assessment);
-        this.detailsViewActionMessageCreator.changeRightContentPanel('TestView');
+    public onAssessmentTestClick = (
+        event: React.MouseEvent<HTMLElement>,
+        item: BaseLeftNavLink,
+    ) => {
+        this.detailsViewActionMessageCreator.selectDetailsView(
+            event,
+            VisualizationType[item.key],
+            DetailsViewPivotType.assessment,
+        );
+        this.detailsViewActionMessageCreator.changeRightContentPanel(
+            'TestView',
+        );
     };
 }

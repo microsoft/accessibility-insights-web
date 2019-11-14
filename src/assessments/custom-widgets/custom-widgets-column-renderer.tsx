@@ -9,15 +9,22 @@ import { DictionaryStringTo } from 'types/common-types';
 import { PropertyBagColumnRendererConfig } from '../common/property-bag-column-renderer';
 import { PropertyBagColumnRendererFactory } from '../common/property-bag-column-renderer-factory';
 
-export function customWidgetsColumnRenderer<TPropertyBag extends ColumnValueBag>(
+export function customWidgetsColumnRenderer<
+    TPropertyBag extends ColumnValueBag
+>(
     item: AssessmentInstanceRowData<any>,
     configs: PropertyBagColumnRendererConfig<TPropertyBag>[],
     includeLink: boolean,
 ): JSX.Element {
     const mapDesignPatterns = (pattern: DesignPattern) => {
         return (
-            <div key={`pattern-${pattern.designPattern}`} className="expanded-property-div">
-                {includeLink ? renderDesignPatternWithLink(pattern) : renderDesignPatternWithoutLink(pattern)}
+            <div
+                key={`pattern-${pattern.designPattern}`}
+                className="expanded-property-div"
+            >
+                {includeLink
+                    ? renderDesignPatternWithLink(pattern)
+                    : renderDesignPatternWithoutLink(pattern)}
             </div>
         );
     };
@@ -28,7 +35,9 @@ export function customWidgetsColumnRenderer<TPropertyBag extends ColumnValueBag>
         propertyBag.designPattern = patterns.map(mapDesignPatterns);
     }
 
-    const propertyBagRenderer = PropertyBagColumnRendererFactory.getRenderer<TPropertyBag>(configs);
+    const propertyBagRenderer = PropertyBagColumnRendererFactory.getRenderer<
+        TPropertyBag
+    >(configs);
 
     return propertyBagRenderer(item);
 }
@@ -53,32 +62,140 @@ function makeFlatDesignPatternString(patterns: DesignPattern[]): string {
 }
 
 const roleToDesignPatternsMapping: DictionaryStringTo<DesignPattern[]> = {
-    alert: [{ designPattern: 'Alert', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#alert' }],
-    alertdialog: [{ designPattern: 'Alert or Message Dialog', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#alertdialog' }],
+    alert: [
+        {
+            designPattern: 'Alert',
+            URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#alert',
+        },
+    ],
+    alertdialog: [
+        {
+            designPattern: 'Alert or Message Dialog',
+            URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#alertdialog',
+        },
+    ],
     button: [
-        { designPattern: 'Accordion', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#accordion' },
-        { designPattern: 'Button', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#button' },
-        { designPattern: 'Disclosure (Show/Hide)', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#disclosure' },
-        { designPattern: 'Menu Button', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#menubutton' },
+        {
+            designPattern: 'Accordion',
+            URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#accordion',
+        },
+        {
+            designPattern: 'Button',
+            URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#button',
+        },
+        {
+            designPattern: 'Disclosure (Show/Hide)',
+            URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#disclosure',
+        },
+        {
+            designPattern: 'Menu Button',
+            URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#menubutton',
+        },
     ],
-    checkbox: [{ designPattern: 'Checkbox', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#checkbox' }],
-    combobox: [{ designPattern: 'Combo Box', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#combobox' }],
-    dialog: [{ designPattern: 'Dialog (Modal)', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal' }],
-    feed: [{ designPattern: 'Feed', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#feed' }],
-    grid: [{ designPattern: 'Grid', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#grid' }],
-    link: [{ designPattern: 'Link', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#link' }],
-    listbox: [{ designPattern: 'Listbox', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#Listbox' }],
-    menu: [{ designPattern: 'Menu', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#menu' }],
-    menubar: [{ designPattern: 'Menu Bar', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#menu' }],
-    radiogroup: [{ designPattern: 'Radio Group', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#radiobutton' }],
-    separator: [{ designPattern: 'Window Splitter', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#windowsplitter' }],
+    checkbox: [
+        {
+            designPattern: 'Checkbox',
+            URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#checkbox',
+        },
+    ],
+    combobox: [
+        {
+            designPattern: 'Combo Box',
+            URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#combobox',
+        },
+    ],
+    dialog: [
+        {
+            designPattern: 'Dialog (Modal)',
+            URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal',
+        },
+    ],
+    feed: [
+        {
+            designPattern: 'Feed',
+            URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#feed',
+        },
+    ],
+    grid: [
+        {
+            designPattern: 'Grid',
+            URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#grid',
+        },
+    ],
+    link: [
+        {
+            designPattern: 'Link',
+            URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#link',
+        },
+    ],
+    listbox: [
+        {
+            designPattern: 'Listbox',
+            URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#Listbox',
+        },
+    ],
+    menu: [
+        {
+            designPattern: 'Menu',
+            URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#menu',
+        },
+    ],
+    menubar: [
+        {
+            designPattern: 'Menu Bar',
+            URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#menu',
+        },
+    ],
+    radiogroup: [
+        {
+            designPattern: 'Radio Group',
+            URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#radiobutton',
+        },
+    ],
+    separator: [
+        {
+            designPattern: 'Window Splitter',
+            URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#windowsplitter',
+        },
+    ],
     slider: [
-        { designPattern: 'Slider', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#slider' },
-        { designPattern: 'Slider (Multi-thumb)', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#sliderwothumb' },
+        {
+            designPattern: 'Slider',
+            URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#slider',
+        },
+        {
+            designPattern: 'Slider (Multi-thumb)',
+            URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#sliderwothumb',
+        },
     ],
-    spinbutton: [{ designPattern: 'Spinbutton', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#spinbutton' }],
-    tablist: [{ designPattern: 'Tabs', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel' }],
-    toolbar: [{ designPattern: 'Toolbar', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#toolbar' }],
-    tooltip: [{ designPattern: 'Tooltip', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#tooltip' }],
-    tree: [{ designPattern: 'Tree View', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#TreeView' }],
+    spinbutton: [
+        {
+            designPattern: 'Spinbutton',
+            URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#spinbutton',
+        },
+    ],
+    tablist: [
+        {
+            designPattern: 'Tabs',
+            URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel',
+        },
+    ],
+    toolbar: [
+        {
+            designPattern: 'Toolbar',
+            URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#toolbar',
+        },
+    ],
+    tooltip: [
+        {
+            designPattern: 'Tooltip',
+            URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#tooltip',
+        },
+    ],
+    tree: [
+        {
+            designPattern: 'Tree View',
+            URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#TreeView',
+        },
+    ],
 };

@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CheckMessageTransformer } from '../../../../scanner/check-message-transformer';
-import { FormattedCheckResult, ICheckConfiguration } from '../../../../scanner/iruleresults';
+import {
+    FormattedCheckResult,
+    ICheckConfiguration,
+} from '../../../../scanner/iruleresults';
 
 describe('CheckMessageTransformer', () => {
     describe('constructor', () => {
@@ -90,7 +93,10 @@ describe('CheckMessageTransformer', () => {
         });
     });
 
-    function getCheckStub(id = 'fake id', status = false): FormattedCheckResult {
+    function getCheckStub(
+        id = 'fake id',
+        status = false,
+    ): FormattedCheckResult {
         return {
             id: id,
             result: status,

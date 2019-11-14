@@ -11,7 +11,11 @@ import {
 
 describe('AssessmentInstanceDetailsColumn', () => {
     test('constructor', () => {
-        expect(new AssessmentInstanceDetailsColumn({} as AssessmentInstanceDetailsColumnProps)).toBeDefined();
+        expect(
+            new AssessmentInstanceDetailsColumn(
+                {} as AssessmentInstanceDetailsColumnProps,
+            ),
+        ).toBeDefined();
     });
 
     test('render: heading instance', () => {
@@ -22,13 +26,17 @@ describe('AssessmentInstanceDetailsColumn', () => {
             tooltipId: undefined,
         };
 
-        const wrapper = Enzyme.shallow(<AssessmentInstanceDetailsColumn {...props} />);
+        const wrapper = Enzyme.shallow(
+            <AssessmentInstanceDetailsColumn {...props} />,
+        );
 
         verifyBaseRender(wrapper, props);
 
         const label = wrapper.find('.assessment-instance-label');
         expect(label.getElement().props.children).toBe(props.labelText);
-        expect(label.getElement().props.className).toBe('assessment-instance-label');
+        expect(label.getElement().props.className).toBe(
+            'assessment-instance-label',
+        );
     });
 
     test('render: N/A instance', () => {
@@ -39,7 +47,9 @@ describe('AssessmentInstanceDetailsColumn', () => {
             tooltipId: undefined,
         };
 
-        const wrapper = Enzyme.shallow(<AssessmentInstanceDetailsColumn {...props} />);
+        const wrapper = Enzyme.shallow(
+            <AssessmentInstanceDetailsColumn {...props} />,
+        );
 
         verifyBaseRender(wrapper, props);
 
@@ -56,7 +66,9 @@ describe('AssessmentInstanceDetailsColumn', () => {
             tooltipId: undefined,
         };
 
-        const wrapper = Enzyme.shallow(<AssessmentInstanceDetailsColumn {...props} />);
+        const wrapper = Enzyme.shallow(
+            <AssessmentInstanceDetailsColumn {...props} />,
+        );
 
         verifyBaseRender(wrapper, props);
     });
@@ -70,7 +82,9 @@ describe('AssessmentInstanceDetailsColumn', () => {
             customClassName: 'custom-class-name',
         };
 
-        const wrapper = Enzyme.shallow(<AssessmentInstanceDetailsColumn {...props} />);
+        const wrapper = Enzyme.shallow(
+            <AssessmentInstanceDetailsColumn {...props} />,
+        );
 
         verifyBaseRender(wrapper, props);
 
@@ -78,13 +92,25 @@ describe('AssessmentInstanceDetailsColumn', () => {
         expect(label.hasClass(props.customClassName)).toEqual(true);
     });
 
-    function verifyBaseRender(wrapper: Enzyme.ShallowWrapper, props: AssessmentInstanceDetailsColumnProps): void {
+    function verifyBaseRender(
+        wrapper: Enzyme.ShallowWrapper,
+        props: AssessmentInstanceDetailsColumnProps,
+    ): void {
         const hasLabel = wrapper.find('.assessment-instance-label').exists();
-        !!props.labelText ? expect(hasLabel).toEqual(true) : expect(hasLabel).toEqual(false);
+        !!props.labelText
+            ? expect(hasLabel).toEqual(true)
+            : expect(hasLabel).toEqual(false);
         expect(wrapper.find(TooltipHost).exists()).toBe(true);
-        expect(wrapper.find(TooltipHost).props().content).toEqual(props.textContent);
+        expect(wrapper.find(TooltipHost).props().content).toEqual(
+            props.textContent,
+        );
         expect(wrapper.find(TooltipHost).props().id).toEqual(props.tooltipId);
-        expect(wrapper.find('.assessment-instance-textContent').exists()).toEqual(true);
-        expect(wrapper.find('.assessment-instance-textContent').getElement().props.children).toEqual(props.textContent);
+        expect(
+            wrapper.find('.assessment-instance-textContent').exists(),
+        ).toEqual(true);
+        expect(
+            wrapper.find('.assessment-instance-textContent').getElement().props
+                .children,
+        ).toEqual(props.textContent);
     }
 });

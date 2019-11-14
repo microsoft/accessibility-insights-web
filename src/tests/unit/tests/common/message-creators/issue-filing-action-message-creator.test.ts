@@ -33,13 +33,26 @@ describe('IssueFilingActionMessageCreator', () => {
         telemetryFactoryMock = Mock.ofType<TelemetryDataFactory>();
         dispatcherMock = Mock.ofType<ActionMessageDispatcher>();
 
-        testSubject = new IssueFilingActionMessageCreator(dispatcherMock.object, telemetryFactoryMock.object, source);
+        testSubject = new IssueFilingActionMessageCreator(
+            dispatcherMock.object,
+            telemetryFactoryMock.object,
+            source,
+        );
     });
 
     it('dispatches message for openSettingsPanel', () => {
-        const telemetry = { ...telemetryStub, sourceItem: 'sourceItem' as SettingsOpenSourceItem };
+        const telemetry = {
+            ...telemetryStub,
+            sourceItem: 'sourceItem' as SettingsOpenSourceItem,
+        };
         telemetryFactoryMock
-            .setup(factory => factory.forSettingsPanelOpen(eventStub, source, 'fileIssueSettingsPrompt'))
+            .setup(factory =>
+                factory.forSettingsPanelOpen(
+                    eventStub,
+                    source,
+                    'fileIssueSettingsPrompt',
+                ),
+            )
             .returns(() => telemetry);
 
         dispatcherMock
@@ -62,9 +75,17 @@ describe('IssueFilingActionMessageCreator', () => {
         const testService: string = 'test file issue service';
         const telemetry = { ...telemetryStub, service: testService };
 
-        telemetryFactoryMock.setup(factory => factory.forFileIssueClick(eventStub, source, testService)).returns(() => telemetry);
+        telemetryFactoryMock
+            .setup(factory =>
+                factory.forFileIssueClick(eventStub, source, testService),
+            )
+            .returns(() => telemetry);
 
-        dispatcherMock.setup(dispatcher => dispatcher.sendTelemetry(FILE_ISSUE_CLICK, telemetry)).verifiable(Times.once());
+        dispatcherMock
+            .setup(dispatcher =>
+                dispatcher.sendTelemetry(FILE_ISSUE_CLICK, telemetry),
+            )
+            .verifiable(Times.once());
 
         testSubject.trackFileIssueClick(eventStub, testService);
 
@@ -75,7 +96,11 @@ describe('IssueFilingActionMessageCreator', () => {
         const testService: string = 'test file issue service';
         const telemetry = { ...telemetryStub, service: testService };
 
-        telemetryFactoryMock.setup(factory => factory.forFileIssueClick(eventStub, source, testService)).returns(() => telemetry);
+        telemetryFactoryMock
+            .setup(factory =>
+                factory.forFileIssueClick(eventStub, source, testService),
+            )
+            .returns(() => telemetry);
         const issueDetailsData: CreateIssueDetailsTextData = {} as any;
 
         testSubject.fileIssue(eventStub, testService, issueDetailsData);

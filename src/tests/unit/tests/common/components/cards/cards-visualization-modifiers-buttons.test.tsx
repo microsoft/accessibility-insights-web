@@ -15,23 +15,32 @@ describe('CardsVisualizationModifierButtons', () => {
     let cardSelectionMessageCreatorMock: IMock<CardSelectionMessageCreator>;
 
     beforeEach(() => {
-        cardSelectionMessageCreatorMock = Mock.ofType<CardSelectionMessageCreator>();
+        cardSelectionMessageCreatorMock = Mock.ofType<
+            CardSelectionMessageCreator
+        >();
     });
 
     test('with all cards collapsed', () => {
         const props: CardsVisualizationModifierButtonsProps = {
             deps: {
-                cardSelectionMessageCreator: cardSelectionMessageCreatorMock.object,
+                cardSelectionMessageCreator:
+                    cardSelectionMessageCreatorMock.object,
             },
             visualHelperEnabled: true,
             allCardsCollapsed: true,
         };
         const eventStub = {} as SupportedMouseEvent;
 
-        cardSelectionMessageCreatorMock.setup(mock => mock.expandAllRules(eventStub)).verifiable();
-        cardSelectionMessageCreatorMock.setup(mock => mock.toggleVisualHelper(eventStub)).verifiable();
+        cardSelectionMessageCreatorMock
+            .setup(mock => mock.expandAllRules(eventStub))
+            .verifiable();
+        cardSelectionMessageCreatorMock
+            .setup(mock => mock.toggleVisualHelper(eventStub))
+            .verifiable();
 
-        const testSubject = shallow(<CardsVisualizationModifierButtons {...props} />);
+        const testSubject = shallow(
+            <CardsVisualizationModifierButtons {...props} />,
+        );
 
         const expandCollapseAllButton = testSubject.find(ActionButton);
         expandCollapseAllButton.simulate('click', eventStub);
@@ -46,17 +55,24 @@ describe('CardsVisualizationModifierButtons', () => {
     test('with all cards not collapsed', () => {
         const props: CardsVisualizationModifierButtonsProps = {
             deps: {
-                cardSelectionMessageCreator: cardSelectionMessageCreatorMock.object,
+                cardSelectionMessageCreator:
+                    cardSelectionMessageCreatorMock.object,
             },
             visualHelperEnabled: true,
             allCardsCollapsed: false,
         };
         const eventStub = {} as SupportedMouseEvent;
 
-        cardSelectionMessageCreatorMock.setup(mock => mock.collapseAllRules(eventStub)).verifiable();
-        cardSelectionMessageCreatorMock.setup(mock => mock.toggleVisualHelper(eventStub)).verifiable();
+        cardSelectionMessageCreatorMock
+            .setup(mock => mock.collapseAllRules(eventStub))
+            .verifiable();
+        cardSelectionMessageCreatorMock
+            .setup(mock => mock.toggleVisualHelper(eventStub))
+            .verifiable();
 
-        const testSubject = shallow(<CardsVisualizationModifierButtons {...props} />);
+        const testSubject = shallow(
+            <CardsVisualizationModifierButtons {...props} />,
+        );
 
         const expandCollapseAllButton = testSubject.find(ActionButton);
         expandCollapseAllButton.simulate('click', eventStub);

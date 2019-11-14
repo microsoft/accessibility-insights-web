@@ -9,9 +9,14 @@ describe('ShortcutsPageController', () => {
     it('opens the shortcuts tab', () => {
         const browserAdapterMock = Mock.ofType<BrowserAdapter>();
 
-        const testSubject = new ShortcutsPageController(browserAdapterMock.object);
+        const testSubject = new ShortcutsPageController(
+            browserAdapterMock.object,
+        );
         testSubject.openShortcutsTab();
 
-        browserAdapterMock.verify(adapter => adapter.createTab('chrome://extensions/shortcuts'), Times.once());
+        browserAdapterMock.verify(
+            adapter => adapter.createTab('chrome://extensions/shortcuts'),
+            Times.once(),
+        );
     });
 });

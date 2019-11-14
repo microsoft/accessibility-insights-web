@@ -14,14 +14,20 @@ import { DeviceStoreData } from 'electron/flux/types/device-store-data';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
-import { TitleBar, TitleBarDeps } from 'electron/views/automated-checks/components/title-bar';
+import {
+    TitleBar,
+    TitleBarDeps,
+} from 'electron/views/automated-checks/components/title-bar';
 import { mainContentWrapper } from 'electron/views/device-connect-view/device-connect-view.scss';
 import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
 import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
 import { ScreenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
 import * as React from 'react';
 
-import { automatedChecksPanelLayout, automatedChecksView } from './automated-checks-view.scss';
+import {
+    automatedChecksPanelLayout,
+    automatedChecksView,
+} from './automated-checks-view.scss';
 import { CommandBar, CommandBarDeps } from './components/command-bar';
 import { HeaderSection } from './components/header-section';
 
@@ -45,7 +51,9 @@ export type AutomatedChecksViewProps = {
     cardSelectionStoreData: CardSelectionStoreData;
 };
 
-export class AutomatedChecksView extends React.Component<AutomatedChecksViewProps> {
+export class AutomatedChecksView extends React.Component<
+    AutomatedChecksViewProps
+> {
     public componentDidMount(): void {
         this.props.deps.scanActionCreator.scan(this.props.deviceStoreData.port);
     }
@@ -55,25 +63,44 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
         if (status === ScanStatus.Failed) {
             return this.renderLayout(this.renderDeviceDisconnected());
         } else if (status === ScanStatus.Completed) {
-            const { unifiedScanResultStoreData, cardSelectionStoreData, deps } = this.props;
+            const {
+                unifiedScanResultStoreData,
+                cardSelectionStoreData,
+                deps,
+            } = this.props;
             const { rules, results } = unifiedScanResultStoreData;
-            const cardSelectionViewData = deps.getCardSelectionViewData(cardSelectionStoreData);
-            const cardsViewData = deps.getCardsViewData(rules, results, cardSelectionViewData);
+            const cardSelectionViewData = deps.getCardSelectionViewData(
+                cardSelectionStoreData,
+            );
+            const cardsViewData = deps.getCardsViewData(
+                rules,
+                results,
+                cardSelectionViewData,
+            );
             const screenshotViewModel = deps.screenshotViewModelProvider(
                 unifiedScanResultStoreData,
                 cardSelectionViewData.highlightedResultUids,
             );
 
-            return this.renderLayout(this.renderResults(cardsViewData), <ScreenshotView viewModel={screenshotViewModel} />);
+            return this.renderLayout(
+                this.renderResults(cardsViewData),
+                <ScreenshotView viewModel={screenshotViewModel} />,
+            );
         } else {
             return this.renderLayout(this.renderScanningSpinner());
         }
     }
 
-    private renderLayout(primaryContent: JSX.Element, optionalSidePanel?: JSX.Element): JSX.Element {
+    private renderLayout(
+        primaryContent: JSX.Element,
+        optionalSidePanel?: JSX.Element,
+    ): JSX.Element {
         return (
             <div className={automatedChecksView}>
-                <TitleBar deps={this.props.deps} windowStateStoreData={this.props.windowStateStoreData}></TitleBar>
+                <TitleBar
+                    deps={this.props.deps}
+                    windowStateStoreData={this.props.windowStateStoreData}
+                ></TitleBar>
                 <div className={automatedChecksPanelLayout}>
                     <div className={mainContentWrapper}>
                         <CommandBar
@@ -96,8 +123,16 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
         return (
             <DeviceDisconnectedPopup
                 deviceName={this.props.deviceStoreData.connectedDevice}
-                onConnectNewDevice={() => this.props.deps.windowStateActionCreator.setRoute({ routeId: 'deviceConnectView' })}
-                onRescanDevice={() => this.props.deps.scanActionCreator.scan(this.props.deviceStoreData.port)}
+                onConnectNewDevice={() =>
+                    this.props.deps.windowStateActionCreator.setRoute({
+                        routeId: 'deviceConnectView',
+                    })
+                }
+                onRescanDevice={() =>
+                    this.props.deps.scanActionCreator.scan(
+                        this.props.deviceStoreData.port,
+                    )
+                }
             />
         );
     }
@@ -105,7 +140,9 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
     private renderScanningSpinner(): JSX.Element {
         return (
             <ScanningSpinner
-                isSpinning={this.props.scanStoreData.status === ScanStatus.Scanning}
+                isSpinning={
+                    this.props.scanStoreData.status === ScanStatus.Scanning
+                }
                 label="Scanning..."
                 aria-live="assertive"
             />
@@ -116,8 +153,12 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
         return (
             <CardsView
                 deps={this.props.deps}
-                targetAppInfo={this.props.unifiedScanResultStoreData.targetAppInfo}
-                userConfigurationStoreData={this.props.userConfigurationStoreData}
+                targetAppInfo={
+                    this.props.unifiedScanResultStoreData.targetAppInfo
+                }
+                userConfigurationStoreData={
+                    this.props.userConfigurationStoreData
+                }
                 cardsViewData={cardsViewData}
             />
         );

@@ -16,9 +16,15 @@ export class InspectActionMessageCreator {
         private readonly dispatcher: ActionMessageDispatcher,
     ) {}
 
-    public changeInspectMode = (event: React.MouseEvent<HTMLElement> | MouseEvent, inspectMode: InspectMode): void => {
+    public changeInspectMode = (
+        event: React.MouseEvent<HTMLElement> | MouseEvent,
+        inspectMode: InspectMode,
+    ): void => {
         const messageType = Messages.Inspect.ChangeInspectMode;
-        const telemetry = this.telemetryFactory.withTriggeredByAndSource(event, this.source);
+        const telemetry = this.telemetryFactory.withTriggeredByAndSource(
+            event,
+            this.source,
+        );
         const payload: InspectPayload = {
             inspectMode,
             telemetry,

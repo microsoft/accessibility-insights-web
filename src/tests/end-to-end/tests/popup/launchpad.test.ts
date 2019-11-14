@@ -20,7 +20,9 @@ describe('Launch Pad', () => {
             targetPage = await browser.newTargetPage();
             popupPage = await browser.newPopupPage(targetPage);
             await popupPage.bringToFront();
-            await popupPage.waitForSelector(popupPageElementIdentifiers.launchPad);
+            await popupPage.waitForSelector(
+                popupPageElementIdentifiers.launchPad,
+            );
         });
 
         afterAll(async () => {
@@ -31,7 +33,10 @@ describe('Launch Pad', () => {
         });
 
         it('content should match snapshot', async () => {
-            const element = await formatPageElementForSnapshot(popupPage, popupPageElementIdentifiers.launchPad);
+            const element = await formatPageElementForSnapshot(
+                popupPage,
+                popupPageElementIdentifiers.launchPad,
+            );
             expect(element).toMatchSnapshot();
         });
 
@@ -48,14 +53,20 @@ describe('Launch Pad', () => {
         beforeAll(async () => {
             browser = await launchBrowser({ suppressFirstTimeDialog: true });
             targetPage = await browser.newTargetPage();
-            const detailsViewPage = await browser.newDetailsViewPage(targetPage);
+            const detailsViewPage = await browser.newDetailsViewPage(
+                targetPage,
+            );
             await detailsViewPage.enableHighContrast();
 
             popupPage = await browser.newPopupPage(targetPage);
             await popupPage.bringToFront();
 
-            await popupPage.waitForSelector(CommonSelectors.highContrastThemeSelector);
-            await popupPage.waitForSelector(popupPageElementIdentifiers.launchPad);
+            await popupPage.waitForSelector(
+                CommonSelectors.highContrastThemeSelector,
+            );
+            await popupPage.waitForSelector(
+                popupPageElementIdentifiers.launchPad,
+            );
         });
 
         afterAll(async () => {

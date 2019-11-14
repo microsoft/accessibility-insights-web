@@ -17,9 +17,13 @@ describe('PopupViewControllerHandlerTest', () => {
         const testSubject: PopupViewControllerHandler = new PopupViewControllerHandler();
 
         const actionMessageCreatorMock = Mock.ofType(PopupActionMessageCreator);
-        actionMessageCreatorMock.setup(a => a.setLaunchPanelType(testPanelType)).verifiable(Times.once());
+        actionMessageCreatorMock
+            .setup(a => a.setLaunchPanelType(testPanelType))
+            .verifiable(Times.once());
 
-        setlaunchPanelTypeMock.setup(cM => cM(testPanelType)).verifiable(Times.once());
+        setlaunchPanelTypeMock
+            .setup(cM => cM(testPanelType))
+            .verifiable(Times.once());
 
         const component = {
             props: {
@@ -47,9 +51,13 @@ describe('PopupViewControllerHandlerTest', () => {
         const testSubject: PopupViewControllerHandler = new PopupViewControllerHandler();
 
         const actionMessageCreatorMock = Mock.ofType(PopupActionMessageCreator);
-        actionMessageCreatorMock.setup(a => a.setLaunchPanelType(testPanelType)).verifiable(Times.once());
+        actionMessageCreatorMock
+            .setup(a => a.setLaunchPanelType(testPanelType))
+            .verifiable(Times.once());
 
-        setlaunchPanelTypeMock.setup(cM => cM(testPanelType)).verifiable(Times.once());
+        setlaunchPanelTypeMock
+            .setup(cM => cM(testPanelType))
+            .verifiable(Times.once());
 
         const component = {
             props: {
@@ -70,7 +78,9 @@ describe('PopupViewControllerHandlerTest', () => {
     test('triggerRerender', () => {
         const testPanelType: LaunchPanelType = LaunchPanelType.LaunchPad;
         const setlaunchPanelTypeMock = Mock.ofInstance(panelType => {});
-        setlaunchPanelTypeMock.setup(t => t(It.isValue(testPanelType))).verifiable();
+        setlaunchPanelTypeMock
+            .setup(t => t(It.isValue(testPanelType)))
+            .verifiable();
 
         const forceUpdateMock = Mock.ofInstance(() => {});
         forceUpdateMock.setup(t => t()).verifiable();

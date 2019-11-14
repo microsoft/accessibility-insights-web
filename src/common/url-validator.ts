@@ -7,7 +7,10 @@ export class UrlValidator {
 
     public async isSupportedUrl(url: string): Promise<boolean> {
         const lowerCasedUrl: string = url.toLowerCase();
-        if (lowerCasedUrl.startsWith('http://') || lowerCasedUrl.startsWith('https://')) {
+        if (
+            lowerCasedUrl.startsWith('http://') ||
+            lowerCasedUrl.startsWith('https://')
+        ) {
             return this.hasSupportedPrefix(lowerCasedUrl);
         } else if (UrlValidator.isFileUrl(lowerCasedUrl)) {
             return await this.checkAccessToFileUrl();
@@ -17,8 +20,13 @@ export class UrlValidator {
     }
 
     private hasSupportedPrefix(lowerCasedUrl: string): boolean {
-        const unsupportedPrefixes = ['https://chrome.google.com/', 'https://microsoftedge.microsoft.com/'];
-        return unsupportedPrefixes.every(prefix => !lowerCasedUrl.startsWith(prefix));
+        const unsupportedPrefixes = [
+            'https://chrome.google.com/',
+            'https://microsoftedge.microsoft.com/',
+        ];
+        return unsupportedPrefixes.every(
+            prefix => !lowerCasedUrl.startsWith(prefix),
+        );
     }
 
     public static isFileUrl(url: string): boolean {

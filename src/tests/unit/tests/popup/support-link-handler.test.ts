@@ -17,7 +17,9 @@ describe('SupportLinkHandlerTest', () => {
         configMutator.setOption('emailHelpAlias', alias);
 
         const testTitle: string = 'test title';
-        const expectedEmail: string = encodeURI(`mailto:${alias}?subject=Question about ${testTitle}`);
+        const expectedEmail: string = encodeURI(
+            `mailto:${alias}?subject=Question about ${testTitle}`,
+        );
         const tabStub = {
             id: 101,
         };
@@ -40,7 +42,10 @@ describe('SupportLinkHandlerTest', () => {
             })
             .verifiable();
 
-        const testObject = new SupportLinkHandler(browserAdapterMock.object, windowUtilsMock.object);
+        const testObject = new SupportLinkHandler(
+            browserAdapterMock.object,
+            windowUtilsMock.object,
+        );
 
         testObject.sendEmail(testTitle);
 

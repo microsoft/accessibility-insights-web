@@ -38,7 +38,12 @@ export class HTTPQueryBuilder {
         }
 
         const queryParameters = values(this.parameters)
-            .map(param => `${encodeURIComponent(param.name)}=${encodeURIComponent(param.value)}`)
+            .map(
+                param =>
+                    `${encodeURIComponent(param.name)}=${encodeURIComponent(
+                        param.value,
+                    )}`,
+            )
             .join('&');
 
         const fullUrl = `${this.baseUrl}?${queryParameters}`;

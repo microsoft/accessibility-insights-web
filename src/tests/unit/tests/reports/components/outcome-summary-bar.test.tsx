@@ -2,7 +2,10 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { OutcomeSummaryBar, OutcomeSummaryBarProps } from 'reports/components/outcome-summary-bar';
+import {
+    OutcomeSummaryBar,
+    OutcomeSummaryBarProps,
+} from 'reports/components/outcome-summary-bar';
 import { OutcomeType } from 'reports/components/outcome-type';
 
 describe('OutcomeSummaryBar', () => {
@@ -14,7 +17,11 @@ describe('OutcomeSummaryBar', () => {
     };
 
     it('show by percentage', () => {
-        const props: OutcomeSummaryBarProps = { outcomeStats, allOutcomeTypes, countSuffix: '%' };
+        const props: OutcomeSummaryBarProps = {
+            outcomeStats,
+            allOutcomeTypes,
+            countSuffix: '%',
+        };
         const wrapper = shallow(<OutcomeSummaryBar {...props} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();
@@ -28,7 +35,11 @@ describe('OutcomeSummaryBar', () => {
     });
 
     it('render inverted badges', () => {
-        const props: OutcomeSummaryBarProps = { outcomeStats, allOutcomeTypes, iconStyleInverted: true };
+        const props: OutcomeSummaryBarProps = {
+            outcomeStats,
+            allOutcomeTypes,
+            iconStyleInverted: true,
+        };
         const wrapper = shallow(<OutcomeSummaryBar {...props} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();

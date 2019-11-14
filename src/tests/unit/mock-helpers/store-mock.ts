@@ -6,7 +6,9 @@ import { DevToolStore } from 'background/stores/dev-tools-store';
 import { BaseStore } from '../../../common/base-store';
 
 export class StoreMock<TStoreState> {
-    private store: IMock<BaseStore<TStoreState>> = Mock.ofType(DevToolStore as any);
+    private store: IMock<BaseStore<TStoreState>> = Mock.ofType(
+        DevToolStore as any,
+    );
 
     private listeners: Function[] = [];
     public setupGetId(id: string, times: number = 1): StoreMock<TStoreState> {
@@ -18,7 +20,10 @@ export class StoreMock<TStoreState> {
         return this;
     }
 
-    public setupGetState(state: TStoreState, times: number = 1): StoreMock<TStoreState> {
+    public setupGetState(
+        state: TStoreState,
+        times: number = 1,
+    ): StoreMock<TStoreState> {
         this.store
             .setup(x => x.getState())
             .returns(() => state)
@@ -40,7 +45,9 @@ export class StoreMock<TStoreState> {
         this.store
             .setup(x => x.removeChangedListener(It.isAny()))
             .callback(cb => {
-                this.listeners = this.listeners.filter(listener => listener !== cb);
+                this.listeners = this.listeners.filter(
+                    listener => listener !== cb,
+                );
             })
             .verifiable(Times.exactly(times));
 

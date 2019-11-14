@@ -8,7 +8,10 @@ import { DisplayableStrings } from '../../../../../common/constants/displayable-
 import { DisplayableFeatureFlag } from '../../../../../common/types/store-data/displayable-feature-flag';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { NoDisplayableFeatureFlagMessage } from '../../../../../DetailsView/components/no-displayable-preview-features-message';
-import { PreviewFeaturesContainer, PreviewFeaturesContainerProps } from '../../../../../DetailsView/components/preview-features-container';
+import {
+    PreviewFeaturesContainer,
+    PreviewFeaturesContainerProps,
+} from '../../../../../DetailsView/components/preview-features-container';
 import { PreviewFeaturesToggleList } from '../../../../../DetailsView/components/preview-features-toggle-list';
 import { PreviewFeatureFlagsHandler } from '../../../../../DetailsView/handlers/preview-feature-flags-handler';
 
@@ -27,8 +30,12 @@ describe('PreviewFeaturesContainerTest', () => {
             enabled: false,
         },
     ];
-    const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
-    const previewFeatureFlagsHandlerMock = Mock.ofType(PreviewFeatureFlagsHandler);
+    const actionMessageCreatorMock = Mock.ofType(
+        DetailsViewActionMessageCreator,
+    );
+    const previewFeatureFlagsHandlerMock = Mock.ofType(
+        PreviewFeatureFlagsHandler,
+    );
     const featureFlagStoreDataStub = {};
     const props: PreviewFeaturesContainerProps = {
         featureFlagData: featureFlagStoreDataStub,
@@ -37,13 +44,17 @@ describe('PreviewFeaturesContainerTest', () => {
     };
 
     test('constructor', () => {
-        const testSubject = new PreviewFeaturesContainer({} as PreviewFeaturesContainerProps);
+        const testSubject = new PreviewFeaturesContainer(
+            {} as PreviewFeaturesContainerProps,
+        );
         expect(testSubject).toBeDefined();
     });
 
     test('render', () => {
         previewFeatureFlagsHandlerMock
-            .setup(pffm => pffm.getDisplayableFeatureFlags(featureFlagStoreDataStub))
+            .setup(pffm =>
+                pffm.getDisplayableFeatureFlags(featureFlagStoreDataStub),
+            )
             .returns(() => displayableFeatureFlagsStub)
             .verifiable();
 
@@ -51,7 +62,9 @@ describe('PreviewFeaturesContainerTest', () => {
 
         const expectedComponent = (
             <div>
-                <div className="preview-features-description">{DisplayableStrings.previewFeaturesDescription}</div>
+                <div className="preview-features-description">
+                    {DisplayableStrings.previewFeaturesDescription}
+                </div>
                 <PreviewFeaturesToggleList
                     displayedFeatureFlags={displayableFeatureFlagsStub}
                     actionMessageCreator={actionMessageCreatorMock.object}
@@ -67,11 +80,15 @@ describe('PreviewFeaturesContainerTest', () => {
         displayableFeatureFlagsStub = [];
 
         previewFeatureFlagsHandlerMock
-            .setup(pffm => pffm.getDisplayableFeatureFlags(featureFlagStoreDataStub))
+            .setup(pffm =>
+                pffm.getDisplayableFeatureFlags(featureFlagStoreDataStub),
+            )
             .returns(() => displayableFeatureFlagsStub)
             .verifiable();
 
         const testSubject = shallow(<PreviewFeaturesContainer {...props} />);
-        expect(testSubject.getElement()).toEqual(<NoDisplayableFeatureFlagMessage />);
+        expect(testSubject.getElement()).toEqual(
+            <NoDisplayableFeatureFlagMessage />,
+        );
     });
 });

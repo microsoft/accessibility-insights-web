@@ -15,7 +15,10 @@ export class FlaggedComponent extends React.Component<FlaggedComponentProps> {
     public render(): JSX.Element {
         const flagName = this.props.featureFlag;
 
-        if (this.props.featureFlagStoreData != null && this.props.featureFlagStoreData[flagName]) {
+        if (
+            this.props.featureFlagStoreData != null &&
+            this.props.featureFlagStoreData[flagName]
+        ) {
             return this.props.enableJSXElement;
         }
 

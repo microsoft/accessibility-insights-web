@@ -6,7 +6,11 @@ import { ActionMessageDispatcher } from 'common/message-creators/types/dispatche
 import * as React from 'react';
 
 import { ActionInitiators } from '../action/action-initiator';
-import { CONTENT_HYPERLINK_OPENED, CONTENT_PAGE_OPENED, TelemetryEventSource } from '../extension-telemetry-events';
+import {
+    CONTENT_HYPERLINK_OPENED,
+    CONTENT_PAGE_OPENED,
+    TelemetryEventSource,
+} from '../extension-telemetry-events';
 import { Messages } from '../messages';
 import { TelemetryDataFactory } from '../telemetry-data-factory';
 
@@ -17,9 +21,15 @@ export class ContentActionMessageCreator {
         private readonly dispatcher: ActionMessageDispatcher,
     ) {}
 
-    public openContentPage = (event: React.MouseEvent<any> | MouseEvent, contentPath: string): void => {
+    public openContentPage = (
+        event: React.MouseEvent<any> | MouseEvent,
+        contentPath: string,
+    ): void => {
         const messageType = Messages.Telemetry.Send;
-        const telemetry = this.telemetryFactory.withTriggeredByAndSource(event, this.source);
+        const telemetry = this.telemetryFactory.withTriggeredByAndSource(
+            event,
+            this.source,
+        );
         const payload = {
             eventName: CONTENT_PAGE_OPENED,
             telemetry: { ...telemetry, contentPath },
@@ -31,9 +41,15 @@ export class ContentActionMessageCreator {
         });
     };
 
-    public openContentHyperLink = (event: React.MouseEvent<any> | MouseEvent, href: string): void => {
+    public openContentHyperLink = (
+        event: React.MouseEvent<any> | MouseEvent,
+        href: string,
+    ): void => {
         const messageType = Messages.Telemetry.Send;
-        const telemetry = this.telemetryFactory.withTriggeredByAndSource(event, this.source);
+        const telemetry = this.telemetryFactory.withTriggeredByAndSource(
+            event,
+            this.source,
+        );
         const payload = {
             eventName: CONTENT_HYPERLINK_OPENED,
             telemetry: { ...telemetry, href },
@@ -44,9 +60,15 @@ export class ContentActionMessageCreator {
         });
     };
 
-    public openContentPanel = (event: React.MouseEvent<HTMLElement> | MouseEvent, contentPath: string): void => {
+    public openContentPanel = (
+        event: React.MouseEvent<HTMLElement> | MouseEvent,
+        contentPath: string,
+    ): void => {
         const messageType = Messages.ContentPanel.OpenPanel;
-        const telemetry = this.telemetryFactory.withTriggeredByAndSource(event, this.source);
+        const telemetry = this.telemetryFactory.withTriggeredByAndSource(
+            event,
+            this.source,
+        );
         const payload: ContentPayload = {
             telemetry,
             contentPath,
@@ -71,7 +93,10 @@ export class ContentActionMessageCreator {
         });
     };
 
-    private openExternalLink = (event: React.MouseEvent<any> | MouseEvent, details: { href: string }): void => {
+    private openExternalLink = (
+        event: React.MouseEvent<any> | MouseEvent,
+        details: { href: string },
+    ): void => {
         this.openContentHyperLink(event, details.href);
     };
 

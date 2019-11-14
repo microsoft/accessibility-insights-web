@@ -6,11 +6,21 @@ import { VisualizationConfigurationFactory } from '../../../../../common/configs
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { WindowUtils } from '../../../../../common/window-utils';
-import { AnalyzerConfiguration, FocusAnalyzerConfiguration, RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
+import {
+    AnalyzerConfiguration,
+    FocusAnalyzerConfiguration,
+    RuleAnalyzerConfiguration,
+} from '../../../../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../../../../injected/analyzers/analyzer-provider';
 import { BaseAnalyzer } from '../../../../../injected/analyzers/base-analyzer';
-import { BatchedRuleAnalyzer, IResultRuleFilter } from '../../../../../injected/analyzers/batched-rule-analyzer';
-import { PostResolveCallback, RuleAnalyzer } from '../../../../../injected/analyzers/rule-analyzer';
+import {
+    BatchedRuleAnalyzer,
+    IResultRuleFilter,
+} from '../../../../../injected/analyzers/batched-rule-analyzer';
+import {
+    PostResolveCallback,
+    RuleAnalyzer,
+} from '../../../../../injected/analyzers/rule-analyzer';
 import { ScannerUtils } from '../../../../../injected/scanner-utils';
 import { TabStopsListener } from '../../../../../injected/tab-stops-listener';
 
@@ -39,7 +49,9 @@ describe('AnalyzerProviderTests', () => {
         scopingStoreMock = Mock.ofType(ScopingStore);
         telemetryFactoryMock = Mock.ofType(TelemetryDataFactory);
         scannerMock = Mock.ofType(ScannerUtils);
-        visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
+        visualizationConfigurationFactoryMock = Mock.ofType(
+            VisualizationConfigurationFactory,
+        );
         filterResultsByRulesMock = Mock.ofInstance(() => null);
         sendConvertedResultsMock = Mock.ofInstance(() => null);
         testObject = new AnalyzerProvider(
@@ -82,7 +94,9 @@ describe('AnalyzerProviderTests', () => {
         const analyzer = testObject.createRuleAnalyzerUnifiedScan(config);
         expect(analyzer).toBeInstanceOf(RuleAnalyzer);
         validateRuleAnalyzer(analyzer, config);
-        expect((analyzer as any).postOnResolve).toEqual(sendConvertedResultsMock.object);
+        expect((analyzer as any).postOnResolve).toEqual(
+            sendConvertedResultsMock.object,
+        );
     });
 
     test('createBatchedRuleAnalyzer', () => {
@@ -98,7 +112,9 @@ describe('AnalyzerProviderTests', () => {
         const openAnalyzer = analyzer as any;
         expect(analyzer).toBeInstanceOf(BatchedRuleAnalyzer);
         validateRuleAnalyzer(analyzer, config);
-        expect(openAnalyzer.postScanFilter).toEqual(filterResultsByRulesMock.object);
+        expect(openAnalyzer.postScanFilter).toEqual(
+            filterResultsByRulesMock.object,
+        );
     });
 
     test('createFocusTrackingAnalyzer', () => {
@@ -137,7 +153,9 @@ describe('AnalyzerProviderTests', () => {
         expect(openAnalyzer.scanner).toEqual(scannerMock.object);
         expect(openAnalyzer.scopingStore).toEqual(scopingStoreMock.object);
         expect(openAnalyzer.dateGetter).toEqual(dateGetterMock.object);
-        expect(openAnalyzer.telemetryFactory).toEqual(telemetryFactoryMock.object);
+        expect(openAnalyzer.telemetryFactory).toEqual(
+            telemetryFactoryMock.object,
+        );
         expect(openAnalyzer.config).toEqual(config);
         expect(openAnalyzer.sendMessage).toEqual(sendMessageMock.object);
     }

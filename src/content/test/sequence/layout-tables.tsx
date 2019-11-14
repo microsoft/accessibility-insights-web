@@ -5,24 +5,34 @@ import { create, React } from '../../common';
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
         <h1>Layout tables</h1>
-        <p>The content in an HTML layout table must make sense when presented in DOM order.</p>
+        <p>
+            The content in an HTML layout table must make sense when presented
+            in DOM order.
+        </p>
 
         <h2>Why it matters</h2>
         <p>
-            Assistive technologies present content in DOM order (the order that content appears in the HTML). Because layout tables are
-            structured in HTML as a series of rows, they are presented to users row-by-row. If a layout table's expected reading order is
-            different from the DOM order, it won't make sense to people who use assistive technologies.
+            Assistive technologies present content in DOM order (the order that
+            content appears in the HTML). Because layout tables are structured
+            in HTML as a series of rows, they are presented to users row-by-row.
+            If a layout table's expected reading order is different from the DOM
+            order, it won't make sense to people who use assistive technologies.
         </p>
 
         <h2>How to fix</h2>
-        <p>Restructure the layout table so the DOM order matches the expected reading order.</p>
+        <p>
+            Restructure the layout table so the DOM order matches the expected
+            reading order.
+        </p>
 
         <Markup.PassFail
             failText={
                 <p>
-                    The expected reading order of this layout table is column-by-column instead of row-by-row. When read column-by-column,
-                    it says, "When life gives you lemons, make lemonade." When read in DOM order, it says, "When gives you make life lemons
-                    lemonade."{' '}
+                    The expected reading order of this layout table is
+                    column-by-column instead of row-by-row. When read
+                    column-by-column, it says, "When life gives you lemons, make
+                    lemonade." When read in DOM order, it says, "When gives you
+                    make life lemons lemonade."{' '}
                 </p>
             }
             failExample={`<table role="presentation" width="100%">
@@ -38,7 +48,12 @@ export const infoAndExamples = create(({ Markup, Link }) => (
            </tr>
            </table>
            `}
-            passText={<p>The layout table is simplified so that the DOM order matches the expected reading order. </p>}
+            passText={
+                <p>
+                    The layout table is simplified so that the DOM order matches
+                    the expected reading order.{' '}
+                </p>
+            }
             passExample={`<table role="presentation" width="100%">
             <tr>
             [<td width="33%">When<br>LIFE</td>
@@ -70,7 +85,8 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <h3>Common failures</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F49">
-                Failure of Success Criterion 1.3.2 due to using an HTML layout table that does not make sense when linearized
+                Failure of Success Criterion 1.3.2 due to using an HTML layout
+                table that does not make sense when linearized
             </Markup.HyperLink>
         </Markup.Links>
     </>

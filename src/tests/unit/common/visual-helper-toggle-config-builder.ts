@@ -2,13 +2,19 @@
 // Licensed under the MIT License.
 import { VisualHelperToggleConfig } from 'assessments/types/requirement';
 import { ManualTestStatus } from '../../../common/types/manual-test-status';
-import { AssessmentResultType, GeneratedAssessmentInstance, TestStepResult } from '../../../common/types/store-data/assessment-result-data';
+import {
+    AssessmentResultType,
+    GeneratedAssessmentInstance,
+    TestStepResult,
+} from '../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../DetailsView/actions/details-view-action-message-creator';
 import { DictionaryStringTo } from '../../../types/common-types';
 import { BaseDataBuilder } from './base-data-builder';
 
-export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<VisualHelperToggleConfig> {
+export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<
+    VisualHelperToggleConfig
+> {
     private stepKey = 'assessment-1-step-1';
     private otherKey = 'assessment-1-step-2';
     constructor() {
@@ -30,19 +36,27 @@ export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<VisualHelpe
             isStepScanned: false,
         };
     }
-    public withActionMessageCreator(actionMessageCreator: DetailsViewActionMessageCreator): VisualHelperToggleConfigBuilder {
+    public withActionMessageCreator(
+        actionMessageCreator: DetailsViewActionMessageCreator,
+    ): VisualHelperToggleConfigBuilder {
         this.data.actionMessageCreator = actionMessageCreator;
         return this;
     }
-    public withToggleStepEnabled(stepEnabled: boolean): VisualHelperToggleConfigBuilder {
+    public withToggleStepEnabled(
+        stepEnabled: boolean,
+    ): VisualHelperToggleConfigBuilder {
         this.data.isStepEnabled = stepEnabled;
         return this;
     }
-    public withToggleStepScanned(stepScanned: boolean): VisualHelperToggleConfigBuilder {
+    public withToggleStepScanned(
+        stepScanned: boolean,
+    ): VisualHelperToggleConfigBuilder {
         this.data.isStepScanned = stepScanned;
         return this;
     }
-    public withNonEmptyFilteredMap(isVisualizationEnabled: boolean = false): VisualHelperToggleConfigBuilder {
+    public withNonEmptyFilteredMap(
+        isVisualizationEnabled: boolean = false,
+    ): VisualHelperToggleConfigBuilder {
         this.data.instancesMap = {
             'selector-1': {
                 testStepResults: {

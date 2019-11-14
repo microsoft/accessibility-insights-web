@@ -7,7 +7,13 @@ import { PlatformInfo } from 'electron/window-management/platform-info';
 import { isEmpty } from 'lodash';
 import * as React from 'react';
 
-import { actionableIconsContainer, headerText, macWindowTitle, titleContainer, windowTitle } from './window-title.scss';
+import {
+    actionableIconsContainer,
+    headerText,
+    macWindowTitle,
+    titleContainer,
+    windowTitle,
+} from './window-title.scss';
 
 export interface WindowTitleDeps {
     platformInfo: PlatformInfo;
@@ -21,30 +27,37 @@ export interface WindowTitleProps {
     windowStateStoreData: WindowStateStoreData;
 }
 
-export const WindowTitle = NamedFC<WindowTitleProps>('WindowTitle', (props: WindowTitleProps) => {
-    if (props.windowStateStoreData.currentWindowState === 'fullScreen') {
-        return null;
-    }
+export const WindowTitle = NamedFC<WindowTitleProps>(
+    'WindowTitle',
+    (props: WindowTitleProps) => {
+        if (props.windowStateStoreData.currentWindowState === 'fullScreen') {
+            return null;
+        }
 
-    const windowTitleClassNames = [windowTitle, props.className];
+        const windowTitleClassNames = [windowTitle, props.className];
 
-    if (props.deps.platformInfo.isMac()) {
-        windowTitleClassNames.push(macWindowTitle);
-    }
-    return (
-        <header className={css(...windowTitleClassNames)}>
-            <div className={titleContainer}>
-                {props.children}
-                <h1 className={headerText}>{props.title}</h1>
-            </div>
-            {getIconsContainer(props)}
-        </header>
-    );
-});
+        if (props.deps.platformInfo.isMac()) {
+            windowTitleClassNames.push(macWindowTitle);
+        }
+        return (
+            <header className={css(...windowTitleClassNames)}>
+                <div className={titleContainer}>
+                    {props.children}
+                    <h1 className={headerText}>{props.title}</h1>
+                </div>
+                {getIconsContainer(props)}
+            </header>
+        );
+    },
+);
 
 function getIconsContainer(props: WindowTitleProps): JSX.Element {
     if (!props.deps.platformInfo.isMac() && !isEmpty(props.actionableIcons)) {
-        return <div className={actionableIconsContainer}>{props.actionableIcons}</div>;
+        return (
+            <div className={actionableIconsContainer}>
+                {props.actionableIcons}
+            </div>
+        );
     }
 
     return null;

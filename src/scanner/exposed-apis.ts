@@ -20,19 +20,40 @@ import { ScanOptions } from './scan-options';
 import { ScanParameterGenerator } from './scan-parameter-generator';
 import { ScannerRuleInfo } from './scanner-rule-info';
 
-export let scan = (options: ScanOptions, successCallback: (results: ScanResults) => void, errorCallback: (results: Error) => void) => {
+export let scan = (
+    options: ScanOptions,
+    successCallback: (results: ScanResults) => void,
+    errorCallback: (results: Error) => void,
+) => {
     options = options || {};
 
-    const messageDecorator = new MessageDecorator(configuration, new CheckMessageTransformer());
-    const ruleSifter = new RuleSifter((axe as any)._audit.rules, ruleToLinkConfiguration);
+    const messageDecorator = new MessageDecorator(
+        configuration,
+        new CheckMessageTransformer(),
+    );
+    const ruleSifter = new RuleSifter(
+        (axe as any)._audit.rules,
+        ruleToLinkConfiguration,
+    );
     const scanParameterGenerator = new ScanParameterGenerator(ruleSifter);
     const documentUtils: DocumentUtils = new DocumentUtils(document);
     const helpUrlGetter = new HelpUrlGetter(configuration);
-    const resultDecorator = new ResultDecorator(documentUtils, messageDecorator, (ruleId, axeHelpUrl) =>
-        helpUrlGetter.getHelpUrl(ruleId, axeHelpUrl),
+    const resultDecorator = new ResultDecorator(
+        documentUtils,
+        messageDecorator,
+        (ruleId, axeHelpUrl) => helpUrlGetter.getHelpUrl(ruleId, axeHelpUrl),
     );
-    const launcher = new Launcher(axe, scanParameterGenerator, document, options);
-    const axeResponseHandler = new AxeResponseHandler(successCallback, errorCallback, resultDecorator);
+    const launcher = new Launcher(
+        axe,
+        scanParameterGenerator,
+        document,
+        options,
+    );
+    const axeResponseHandler = new AxeResponseHandler(
+        successCallback,
+        errorCallback,
+        resultDecorator,
+    );
 
     resultDecorator.setRuleToLinksConfiguration(ruleToLinkConfiguration);
     launcher.runScan(axeResponseHandler);
@@ -43,9 +64,16 @@ export let getVersion = (): string => {
 };
 
 export let getDefaultRules = (): ScannerRuleInfo[] => {
-    const ruleSifter = new RuleSifter((axe as any)._audit.rules, ruleToLinkConfiguration);
+    const ruleSifter = new RuleSifter(
+        (axe as any)._audit.rules,
+        ruleToLinkConfiguration,
+    );
     const helpUrlGetter = new HelpUrlGetter(configuration);
-    return getRules(axe, (ruleId, axeHelpUrl) => helpUrlGetter.getHelpUrl(ruleId, axeHelpUrl), ruleSifter);
+    return getRules(
+        axe,
+        (ruleId, axeHelpUrl) => helpUrlGetter.getHelpUrl(ruleId, axeHelpUrl),
+        ruleSifter,
+    );
 };
 
 AxeRuleOverrides.override(axe);

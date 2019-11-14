@@ -1,13 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
-import { ChoiceGroup, IChoiceGroup, IChoiceGroupOption } from 'office-ui-fabric-react/lib/ChoiceGroup';
+import {
+    ChoiceGroup,
+    IChoiceGroup,
+    IChoiceGroupOption,
+} from 'office-ui-fabric-react/lib/ChoiceGroup';
 import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';
 
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
-import { TestStatusChoiceGroup, TestStatusChoiceGroupProps } from '../../../../../DetailsView/components/test-status-choice-group';
+import {
+    TestStatusChoiceGroup,
+    TestStatusChoiceGroupProps,
+} from '../../../../../DetailsView/components/test-status-choice-group';
 import { undoButton } from '../../../../../DetailsView/components/test-status-choice-group.scss';
 
 describe('TestStatusChoiceGroup', () => {
@@ -40,7 +47,9 @@ describe('TestStatusChoiceGroup', () => {
             onGroupChoiceChange: null,
             onUndoClicked: null,
         };
-        const component = shallow(<TestStatusChoiceGroup {...props} />).instance() as TestStatusChoiceGroup;
+        const component = shallow(
+            <TestStatusChoiceGroup {...props} />,
+        ).instance() as TestStatusChoiceGroup;
         component.componentDidUpdate(props);
         expect(component.state).toMatchObject({ selectedKey: 'PASS' });
     });
@@ -55,14 +64,20 @@ describe('TestStatusChoiceGroup', () => {
             onGroupChoiceChange: null,
             onUndoClicked: null,
         };
-        const component = shallow(<TestStatusChoiceGroup {...props} />).instance() as TestStatusChoiceGroup;
+        const component = shallow(
+            <TestStatusChoiceGroup {...props} />,
+        ).instance() as TestStatusChoiceGroup;
         component.setState({ selectedKey: 'PASS' });
-        component.componentDidUpdate({ status: ManualTestStatus.PASS } as TestStatusChoiceGroupProps);
+        component.componentDidUpdate({
+            status: ManualTestStatus.PASS,
+        } as TestStatusChoiceGroupProps);
         expect(component.state).toMatchObject({ selectedKey: 'FAIL' });
     });
 
     test('render', () => {
-        const onGroupChoiceChangeMock = Mock.ofInstance((status, test, step, selector) => {});
+        const onGroupChoiceChangeMock = Mock.ofInstance(
+            (status, test, step, selector) => {},
+        );
         const onUndoMock = Mock.ofInstance((test, step, selector) => {});
         const props: TestStatusChoiceGroupProps = {
             test: 1,
@@ -73,7 +88,9 @@ describe('TestStatusChoiceGroup', () => {
             onGroupChoiceChange: onGroupChoiceChangeMock.object,
             onUndoClicked: onUndoMock.object,
         };
-        onGroupChoiceChangeMock.setup(o => o(props.status, props.test, props.step, props.selector)).verifiable(Times.once());
+        onGroupChoiceChangeMock
+            .setup(o => o(props.status, props.test, props.step, props.selector))
+            .verifiable(Times.once());
 
         const wrapper = shallow(<TestStatusChoiceGroup {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
@@ -100,7 +117,9 @@ describe('TestStatusChoiceGroup', () => {
     });
 
     test('verify onChange', () => {
-        const onGroupChoiceChangeMock = Mock.ofInstance((status, test, step, selector) => {});
+        const onGroupChoiceChangeMock = Mock.ofInstance(
+            (status, test, step, selector) => {},
+        );
         const onUndoMock = Mock.ofInstance((test, step, selector) => {});
         const props: TestStatusChoiceGroupProps = {
             test: 1,
@@ -111,9 +130,20 @@ describe('TestStatusChoiceGroup', () => {
             onGroupChoiceChange: onGroupChoiceChangeMock.object,
             onUndoClicked: onUndoMock.object,
         };
-        onGroupChoiceChangeMock.setup(o => o(ManualTestStatus.PASS, props.test, props.step, props.selector)).verifiable(Times.once());
+        onGroupChoiceChangeMock
+            .setup(o =>
+                o(
+                    ManualTestStatus.PASS,
+                    props.test,
+                    props.step,
+                    props.selector,
+                ),
+            )
+            .verifiable(Times.once());
 
-        const testObject = shallow(<TestableTestStatusChoiceGroup {...props} />);
+        const testObject = shallow(
+            <TestableTestStatusChoiceGroup {...props} />,
+        );
         const choiceGroup = testObject.find(ChoiceGroup);
         choiceGroup.prop('onChange')(null, options[0]);
 
@@ -122,7 +152,9 @@ describe('TestStatusChoiceGroup', () => {
 
     test('verify undo button', () => {
         const focusMock = Mock.ofInstance(() => {});
-        const onGroupChoiceChangeMock = Mock.ofInstance((status, test, step, selector) => {});
+        const onGroupChoiceChangeMock = Mock.ofInstance(
+            (status, test, step, selector) => {},
+        );
         const onUndoMock = Mock.ofInstance((test, step, selector) => {});
         const props: TestStatusChoiceGroupProps = {
             test: 1,
@@ -134,11 +166,19 @@ describe('TestStatusChoiceGroup', () => {
             onUndoClicked: onUndoMock.object,
         };
 
-        onUndoMock.setup(o => o(props.test, props.step, props.selector)).verifiable(Times.once());
+        onUndoMock
+            .setup(o => o(props.test, props.step, props.selector))
+            .verifiable(Times.once());
 
-        const component = React.createElement(TestableTestStatusChoiceGroup, props);
+        const component = React.createElement(
+            TestableTestStatusChoiceGroup,
+            props,
+        );
         const testObject = TestUtils.renderIntoDocument(component);
-        const link = TestUtils.findRenderedDOMComponentWithClass(testObject, undoButton);
+        const link = TestUtils.findRenderedDOMComponentWithClass(
+            testObject,
+            undoButton,
+        );
 
         expect(link).toBeDefined();
 
@@ -154,7 +194,10 @@ describe('TestStatusChoiceGroup', () => {
 });
 
 class TestableTestStatusChoiceGroup extends TestStatusChoiceGroup {
-    public getOnChange(): (ev: React.FocusEvent<HTMLElement>, option: IChoiceGroupOption) => void {
+    public getOnChange(): (
+        ev: React.FocusEvent<HTMLElement>,
+        option: IChoiceGroupOption,
+    ) => void {
         return this.onChange;
     }
 

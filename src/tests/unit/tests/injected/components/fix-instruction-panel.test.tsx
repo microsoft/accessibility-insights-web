@@ -4,15 +4,23 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
 import { CheckType } from '../../../../../injected/components/details-dialog';
-import { FixInstructionPanel, FixInstructionPanelProps } from '../../../../../injected/components/fix-instruction-panel';
+import {
+    FixInstructionPanel,
+    FixInstructionPanelProps,
+} from '../../../../../injected/components/fix-instruction-panel';
 import { FixInstructionProcessor } from '../../../../../injected/fix-instruction-processor';
 
 describe('FixInstructionPanelTests', () => {
     let fixInstructionProcessorMock: IMock<FixInstructionProcessor>;
 
     beforeEach(() => {
-        fixInstructionProcessorMock = Mock.ofType<FixInstructionProcessor>(undefined, MockBehavior.Strict);
-        fixInstructionProcessorMock.setup(processor => processor.process(It.isAnyString())).returns(instruction => <>{instruction}</>);
+        fixInstructionProcessorMock = Mock.ofType<FixInstructionProcessor>(
+            undefined,
+            MockBehavior.Strict,
+        );
+        fixInstructionProcessorMock
+            .setup(processor => processor.process(It.isAnyString()))
+            .returns(instruction => <>{instruction}</>);
     });
 
     test('render all checks', () => {
@@ -111,7 +119,10 @@ describe('FixInstructionPanelTests', () => {
         expect(wrapped.getElement()).toMatchSnapshot();
     });
 
-    function renderTitleAsDiv(titleText: string, className: string): JSX.Element {
+    function renderTitleAsDiv(
+        titleText: string,
+        className: string,
+    ): JSX.Element {
         return <div className={className}>{titleText}</div>;
     }
 });

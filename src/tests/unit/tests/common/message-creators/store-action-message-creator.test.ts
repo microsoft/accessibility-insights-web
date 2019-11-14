@@ -13,7 +13,10 @@ describe('StoreActionMessageCreatorImpl', () => {
 
         messages.forEach(message => setupDispatcherMock(message));
 
-        const testObject = new StoreActionMessageCreatorImpl(messages, dispatcherMock.object);
+        const testObject = new StoreActionMessageCreatorImpl(
+            messages,
+            dispatcherMock.object,
+        );
 
         testObject.getAllStates();
 

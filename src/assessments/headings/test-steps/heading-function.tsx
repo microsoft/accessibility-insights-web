@@ -19,26 +19,35 @@ import { HeadingsTestStep } from './test-steps';
 
 const headingFunctionDescription: JSX.Element = (
     <span>
-        An element <Markup.Emphasis>coded</Markup.Emphasis> as a heading must <Markup.Emphasis>function</Markup.Emphasis> as a heading.
+        An element <Markup.Emphasis>coded</Markup.Emphasis> as a heading must{' '}
+        <Markup.Emphasis>function</Markup.Emphasis> as a heading.
     </span>
 );
 
 const headingFunctionHowToTest: JSX.Element = (
     <div>
         <p>
-            For this requirement, {productName} highlights coded headings in the target page. Coded headings include HTML tags{' '}
-            <Markup.Tag tagName="h1" /> through <Markup.Tag tagName="h6" /> and elements with <Markup.Term>role="heading"</Markup.Term>.
+            For this requirement, {productName} highlights coded headings in the
+            target page. Coded headings include HTML tags{' '}
+            <Markup.Tag tagName="h1" /> through <Markup.Tag tagName="h6" /> and
+            elements with <Markup.Term>role="heading"</Markup.Term>.
         </p>
         <TestAutomaticallyPassedNotice />
         <ol>
             <li>
-                In the target page, examine each highlighted element to verify that it <Markup.Emphasis>functions</Markup.Emphasis> as a
+                In the target page, examine each highlighted element to verify
+                that it <Markup.Emphasis>functions</Markup.Emphasis> as a
                 heading:
                 <ol>
                     <li>
-                        An element functions as a heading if it serves as a descriptive label for the section of content that follows it.
+                        An element functions as a heading if it serves as a
+                        descriptive label for the section of content that
+                        follows it.
                     </li>
-                    <li>An element does not function as a heading if it serves any other purpose.</li>
+                    <li>
+                        An element does not function as a heading if it serves
+                        any other purpose.
+                    </li>
                 </ol>
             </li>
             <AssistedTestRecordYourResults />
@@ -61,7 +70,12 @@ export const HeadingFunction: Requirement = {
             onRender: headingsAssessmentInstanceDetailsColumnRenderer,
         },
     ],
-    reportInstanceFields: [ReportInstanceField.fromPropertyBagField<HeadingsAssessmentProperties>('Heading text', 'headingText')],
+    reportInstanceFields: [
+        ReportInstanceField.fromPropertyBagField<HeadingsAssessmentProperties>(
+            'Heading text',
+            'headingText',
+        ),
+    ],
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
@@ -71,5 +85,7 @@ export const HeadingFunction: Requirement = {
             }),
         ),
     getDrawer: provider => provider.createHeadingsDrawer(),
-    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
+    getVisualHelperToggle: props => (
+        <AssessmentVisualizationEnabledToggle {...props} />
+    ),
 };

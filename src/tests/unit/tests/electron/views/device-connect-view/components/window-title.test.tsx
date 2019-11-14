@@ -2,7 +2,10 @@
 // Licensed under the MIT License.
 
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
-import { WindowTitle, WindowTitleProps } from 'electron/views/device-connect-view/components/window-title';
+import {
+    WindowTitle,
+    WindowTitleProps,
+} from 'electron/views/device-connect-view/components/window-title';
 import { PlatformInfo } from 'electron/window-management/platform-info';
 import { shallow } from 'enzyme';
 import * as React from 'react';
@@ -15,13 +18,19 @@ describe('WindowTitleTest', () => {
 
     beforeEach(() => {
         platformInfoMock = Mock.ofType(PlatformInfo);
-        windowStateStoreData = { currentWindowState: 'maximized', routeId: 'deviceConnectView' };
+        windowStateStoreData = {
+            currentWindowState: 'maximized',
+            routeId: 'deviceConnectView',
+        };
 
         props = {
             title: 'title 1',
             deps: { platformInfo: platformInfoMock.object },
             children: <span>logo</span>,
-            actionableIcons: [<div key="key1">icon1</div>, <div key="key2">icon2</div>],
+            actionableIcons: [
+                <div key="key1">icon1</div>,
+                <div key="key2">icon2</div>,
+            ],
             windowStateStoreData,
         };
     });

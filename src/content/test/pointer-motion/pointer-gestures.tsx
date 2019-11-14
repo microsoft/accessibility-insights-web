@@ -5,33 +5,45 @@ import { create, React } from '../../common';
 export const infoAndExamples = create(({ Markup }) => (
     <>
         <h1>Pointer gestures</h1>
-        <p>Functions must be operable without requiring multipoint or path-based gestures.</p>
+        <p>
+            Functions must be operable without requiring multipoint or
+            path-based gestures.
+        </p>
 
         <h2>Why it matters</h2>
         <p>
-            Multipoint and path-based gestures can be difficult or impossible to execute for people who have limited fine motor control or
-            who use head tracking, gaze tracking, or speech commands to control their mouse pointer. Moreover, many users might not be aware
-            that such gestures are supported, especially if they have cognitive or learning disabilities.
+            Multipoint and path-based gestures can be difficult or impossible to
+            execute for people who have limited fine motor control or who use
+            head tracking, gaze tracking, or speech commands to control their
+            mouse pointer. Moreover, many users might not be aware that such
+            gestures are supported, especially if they have cognitive or
+            learning disabilities.
         </p>
 
         <h2>How to fix</h2>
         <p>
-            For any function that can be operated using multipoint or path-based gestures, provide an alternative method that (1) requires
-            only a single pointer, and (2) doesn't depend on the path of the pointer's movement.
+            For any function that can be operated using multipoint or path-based
+            gestures, provide an alternative method that (1) requires only a
+            single pointer, and (2) doesn't depend on the path of the pointer's
+            movement.
         </p>
 
         <h2>Example</h2>
         <Markup.PassFail
             failText={
                 <p>
-                    An online survey requires respondents to rank the importance of certain list items by dragging and dropping them into
-                    priority order. Dragging requires path-based input, and no alternative method is provided.
+                    An online survey requires respondents to rank the importance
+                    of certain list items by dragging and dropping them into
+                    priority order. Dragging requires path-based input, and no
+                    alternative method is provided.
                 </p>
             }
             passText={
                 <p>
-                    Respondents can reorder list items either by dragging them or by selecting <Markup.Term>Up</Markup.Term> and{' '}
-                    <Markup.Term>Down</Markup.Term> buttons associated with each item. The buttons can be selected using touch, mouse, or
+                    Respondents can reorder list items either by dragging them
+                    or by selecting <Markup.Term>Up</Markup.Term> and{' '}
+                    <Markup.Term>Down</Markup.Term> buttons associated with each
+                    item. The buttons can be selected using touch, mouse, or
                     keyboard.
                 </p>
             }

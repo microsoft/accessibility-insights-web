@@ -18,7 +18,9 @@ export interface DeviceConnectConnectedDeviceProps {
     connectedDevice?: string;
 }
 
-export const DeviceConnectConnectedDevice = NamedFC<DeviceConnectConnectedDeviceProps>(
+export const DeviceConnectConnectedDevice = NamedFC<
+    DeviceConnectConnectedDeviceProps
+>(
     'DeviceConnectConnectedDevice',
     (props: DeviceConnectConnectedDeviceProps) => {
         const renderContents = (): JSX.Element => {
@@ -36,8 +38,15 @@ export const DeviceConnectConnectedDevice = NamedFC<DeviceConnectConnectedDevice
             if (props.deviceConnectState === DeviceConnectState.Error) {
                 return (
                     <>
-                        <Icon iconName="statusErrorFull" className={connectionErrorIcon} ariaLabel="Connection failed"></Icon>
-                        <span className={scannedText}>No active applications were found at the provided local host.</span>
+                        <Icon
+                            iconName="statusErrorFull"
+                            className={connectionErrorIcon}
+                            ariaLabel="Connection failed"
+                        ></Icon>
+                        <span className={scannedText}>
+                            No active applications were found at the provided
+                            local host.
+                        </span>
                     </>
                 );
             }
@@ -47,7 +56,9 @@ export const DeviceConnectConnectedDevice = NamedFC<DeviceConnectConnectedDevice
             }
 
             if (props.connectedDevice) {
-                return <span className={scannedText}>{props.connectedDevice}</span>;
+                return (
+                    <span className={scannedText}>{props.connectedDevice}</span>
+                );
             }
         };
 

@@ -1,12 +1,26 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { allCardInteractionsSupported, noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
-import { InstanceDetails, InstanceDetailsDeps, InstanceDetailsProps } from 'common/components/cards/instance-details';
-import { AllPropertyTypes, CardRowProps, PropertyConfiguration } from 'common/configs/unified-result-property-configurations';
+import {
+    allCardInteractionsSupported,
+    noCardInteractionsSupported,
+} from 'common/components/cards/card-interaction-support';
+import {
+    InstanceDetails,
+    InstanceDetailsDeps,
+    InstanceDetailsProps,
+} from 'common/components/cards/instance-details';
+import {
+    AllPropertyTypes,
+    CardRowProps,
+    PropertyConfiguration,
+} from 'common/configs/unified-result-property-configurations';
 import { KeyCodeConstants } from 'common/constants/keycode-constants';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
-import { UnifiedResolution, UnifiedResult } from 'common/types/store-data/unified-data-interface';
+import {
+    UnifiedResolution,
+    UnifiedResult,
+} from 'common/types/store-data/unified-data-interface';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { instanceDetailsCard } from 'reports/components/instance-details.scss';
@@ -24,7 +38,9 @@ describe('InstanceDetails', () => {
 
     beforeEach(() => {
         getPropertyConfigByIdMock = Mock.ofInstance(_ => null);
-        cardSelectionMessageCreatorMock = Mock.ofType(CardSelectionMessageCreator);
+        cardSelectionMessageCreatorMock = Mock.ofType(
+            CardSelectionMessageCreator,
+        );
         resultStub = exampleUnifiedResult;
         indexStub = 22;
 
@@ -43,7 +59,13 @@ describe('InstanceDetails', () => {
     it('renders', () => {
         setupGetPropertyConfigByIdMock();
         cardSelectionMessageCreatorMock
-            .setup(mock => mock.toggleCardSelection(It.isAnyString(), It.isAnyString(), It.isAny()))
+            .setup(mock =>
+                mock.toggleCardSelection(
+                    It.isAnyString(),
+                    It.isAnyString(),
+                    It.isAny(),
+                ),
+            )
             .verifiable(Times.never());
 
         const testSubject = shallow(<InstanceDetails {...props} />);
@@ -57,7 +79,13 @@ describe('InstanceDetails', () => {
         const eventStub = {} as React.SyntheticEvent;
 
         cardSelectionMessageCreatorMock
-            .setup(mock => mock.toggleCardSelection(It.isAnyString(), It.isAnyString(), eventStub))
+            .setup(mock =>
+                mock.toggleCardSelection(
+                    It.isAnyString(),
+                    It.isAnyString(),
+                    eventStub,
+                ),
+            )
             .verifiable(Times.once());
 
         const wrapper = shallow(<InstanceDetails {...props} />);
@@ -82,7 +110,13 @@ describe('InstanceDetails', () => {
         setupGetPropertyConfigByIdMock();
 
         cardSelectionMessageCreatorMock
-            .setup(mock => mock.toggleCardSelection(It.isAnyString(), It.isAnyString(), It.isAny()))
+            .setup(mock =>
+                mock.toggleCardSelection(
+                    It.isAnyString(),
+                    It.isAnyString(),
+                    It.isAny(),
+                ),
+            )
             .verifiable(Times.never());
 
         const wrapper = shallow(<InstanceDetails {...props} />);
@@ -94,25 +128,40 @@ describe('InstanceDetails', () => {
         cardSelectionMessageCreatorMock.verifyAll();
     });
 
-    const supportedKeyCodes = [KeyCodeConstants.ENTER, KeyCodeConstants.SPACEBAR];
-    it.each(supportedKeyCodes)('dispatches the card selection message when key with keycode %s is pressed', keyCode => {
-        const preventDefaultMock = jest.fn();
-        const eventStub = { keyCode: keyCode, preventDefault: preventDefaultMock } as any;
-        setupGetPropertyConfigByIdMock();
+    const supportedKeyCodes = [
+        KeyCodeConstants.ENTER,
+        KeyCodeConstants.SPACEBAR,
+    ];
+    it.each(supportedKeyCodes)(
+        'dispatches the card selection message when key with keycode %s is pressed',
+        keyCode => {
+            const preventDefaultMock = jest.fn();
+            const eventStub = {
+                keyCode: keyCode,
+                preventDefault: preventDefaultMock,
+            } as any;
+            setupGetPropertyConfigByIdMock();
 
-        cardSelectionMessageCreatorMock
-            .setup(mock => mock.toggleCardSelection(It.isAnyString(), It.isAnyString(), eventStub))
-            .verifiable(Times.once());
+            cardSelectionMessageCreatorMock
+                .setup(mock =>
+                    mock.toggleCardSelection(
+                        It.isAnyString(),
+                        It.isAnyString(),
+                        eventStub,
+                    ),
+                )
+                .verifiable(Times.once());
 
-        const wrapper = shallow(<InstanceDetails {...props} />);
-        const divElem = wrapper.find(`.${instanceDetailsCard}`);
-        expect(divElem.length).toBe(1);
+            const wrapper = shallow(<InstanceDetails {...props} />);
+            const divElem = wrapper.find(`.${instanceDetailsCard}`);
+            expect(divElem.length).toBe(1);
 
-        divElem.simulate('keydown', eventStub);
+            divElem.simulate('keydown', eventStub);
 
-        cardSelectionMessageCreatorMock.verifyAll();
-        expect(preventDefaultMock).toHaveBeenCalled();
-    });
+            cardSelectionMessageCreatorMock.verifyAll();
+            expect(preventDefaultMock).toHaveBeenCalled();
+        },
+    );
 
     it('renders nothing when there is no card row config for the property / no property', () => {
         props.result.identifiers = {
@@ -129,15 +178,20 @@ describe('InstanceDetails', () => {
         expect(testSubject.getElement()).toMatchSnapshot();
     });
 
-    it.each([true, false])('isSelected drives the styling for the card', isSelected => {
-        props.result.isSelected = isSelected;
-        setupGetPropertyConfigByIdMock();
+    it.each([true, false])(
+        'isSelected drives the styling for the card',
+        isSelected => {
+            props.result.isSelected = isSelected;
+            setupGetPropertyConfigByIdMock();
 
-        const testSubject = shallow(<InstanceDetails {...props} />);
-        expect(testSubject.getElement()).toMatchSnapshot();
-    });
+            const testSubject = shallow(<InstanceDetails {...props} />);
+            expect(testSubject.getElement()).toMatchSnapshot();
+        },
+    );
 
-    function getCardRowStub(name: string): ReactFCWithDisplayName<CardRowProps> {
+    function getCardRowStub(
+        name: string,
+    ): ReactFCWithDisplayName<CardRowProps> {
         return NamedFC<CardRowProps>(name, _ => null);
     }
 
@@ -146,7 +200,9 @@ describe('InstanceDetails', () => {
             const propertyConfigurationStub: PropertyConfiguration = {
                 cardRow: getCardRowStub(propertyType),
             };
-            getPropertyConfigByIdMock.setup(mock => mock(propertyType)).returns(() => propertyConfigurationStub);
+            getPropertyConfigByIdMock
+                .setup(mock => mock(propertyType))
+                .returns(() => propertyConfigurationStub);
         });
     }
 });

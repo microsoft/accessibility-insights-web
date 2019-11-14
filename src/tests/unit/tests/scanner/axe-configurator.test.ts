@@ -11,7 +11,10 @@ describe('AxeConfigurator', () => {
     describe('configureAxe', () => {
         it('should call axe.configure with expected config', () => {
             const testObject = new AxeConfigurator();
-            const configureMock = Mock.ofInstance((config: Axe.Spec) => null, MockBehavior.Strict);
+            const configureMock = Mock.ofInstance(
+                (config: Axe.Spec) => null,
+                MockBehavior.Strict,
+            );
             const rulesStub: RuleConfiguration[] = [
                 {
                     checks: [
@@ -72,9 +75,19 @@ describe('AxeConfigurator', () => {
 
             configureMock.setup(c => c(It.isValue(axeConfig))).verifiable();
 
-            configureMock.setup(cm => cm(It.isValue({ locale: localeConfiguration }))).verifiable();
+            configureMock
+                .setup(cm => cm(It.isValue({ locale: localeConfiguration })))
+                .verifiable();
 
-            configureMock.setup(cm => cm(It.isValue({ branding: { brand: 'axe', application: 'msftAI' } }))).verifiable();
+            configureMock
+                .setup(cm =>
+                    cm(
+                        It.isValue({
+                            branding: { brand: 'axe', application: 'msftAI' },
+                        }),
+                    ),
+                )
+                .verifiable();
 
             const axeStub = {
                 configure: configureMock.object,

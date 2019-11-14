@@ -4,7 +4,10 @@ import * as React from 'react';
 
 import { title } from 'content/strings/application';
 import { GearOptionsButtonComponent } from '../../common/components/gear-options-button-component';
-import { HeaderIcon, HeaderIconDeps } from '../../common/components/header-icon';
+import {
+    HeaderIcon,
+    HeaderIconDeps,
+} from '../../common/components/header-icon';
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
@@ -37,7 +40,12 @@ export class Header extends React.Component<HeaderProps> {
             return null;
         }
 
-        return <Switcher deps={this.props.deps} pivotKey={this.props.selectedPivot} />;
+        return (
+            <Switcher
+                deps={this.props.deps}
+                pivotKey={this.props.selectedPivot}
+            />
+        );
     }
 
     private renderButton(): JSX.Element {

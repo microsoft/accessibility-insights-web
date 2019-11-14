@@ -28,7 +28,10 @@ export interface AssessmentInstanceTableProps {
     instancesMap: DictionaryStringTo<GeneratedAssessmentInstance>;
     assessmentNavState: AssessmentNavState;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
-    renderInstanceTableHeader: (table: AssessmentInstanceTable, items: AssessmentInstanceRowData[]) => JSX.Element;
+    renderInstanceTableHeader: (
+        table: AssessmentInstanceTable,
+        items: AssessmentInstanceRowData[],
+    ) => JSX.Element;
     getDefaultMessage: Function;
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
     hasVisualHelper: boolean;
@@ -45,10 +48,18 @@ export interface CapturedInstanceRowData extends IObjectWithKey {
     instanceActionButtons: JSX.Element;
 }
 
-export class AssessmentInstanceTable extends React.Component<AssessmentInstanceTableProps> {
+export class AssessmentInstanceTable extends React.Component<
+    AssessmentInstanceTableProps
+> {
     public render(): JSX.Element {
         if (this.props.instancesMap == null) {
-            return <Spinner className="details-view-spinner" size={SpinnerSize.large} label={'Scanning'} />;
+            return (
+                <Spinner
+                    className="details-view-spinner"
+                    size={SpinnerSize.large}
+                    label={'Scanning'}
+                />
+            );
         }
 
         const items: AssessmentInstanceRowData[] = this.props.assessmentInstanceTableHandler.createAssessmentInstanceTableItems(
@@ -63,8 +74,13 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
             this.props.hasVisualHelper,
         );
 
-        const getDefaultMessage = this.props.getDefaultMessage(this.props.assessmentDefaultMessageGenerator);
-        const defaultMessageComponent = getDefaultMessage(this.props.instancesMap, this.props.assessmentNavState.selectedTestStep);
+        const getDefaultMessage = this.props.getDefaultMessage(
+            this.props.assessmentDefaultMessageGenerator,
+        );
+        const defaultMessageComponent = getDefaultMessage(
+            this.props.instancesMap,
+            this.props.assessmentNavState.selectedTestStep,
+        );
 
         if (defaultMessageComponent) {
             return defaultMessageComponent.message;
@@ -90,27 +106,51 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
         this.updateFocusedTarget(item);
     };
 
-    public renderRow = (props: IDetailsRowProps, defaultRender: IRenderFunction<IDetailsRowProps>): JSX.Element => {
-        return <div onClick={() => this.updateFocusedTarget(props.item)}>{defaultRender(props)}</div>;
+    public renderRow = (
+        props: IDetailsRowProps,
+        defaultRender: IRenderFunction<IDetailsRowProps>,
+    ): JSX.Element => {
+        return (
+            <div onClick={() => this.updateFocusedTarget(props.item)}>
+                {defaultRender(props)}
+            </div>
+        );
     };
 
     public updateFocusedTarget = (item: AssessmentInstanceRowData): void => {
-        this.props.assessmentInstanceTableHandler.updateFocusedTarget(item.instance.target);
+        this.props.assessmentInstanceTableHandler.updateFocusedTarget(
+            item.instance.target,
+        );
     };
 
-    public renderDefaultInstanceTableHeader(items: AssessmentInstanceRowData[]): JSX.Element {
-        const disabled = !this.isAnyInstanceStatusUnknown(items, this.props.assessmentNavState.selectedTestStep);
+    public renderDefaultInstanceTableHeader(
+        items: AssessmentInstanceRowData[],
+    ): JSX.Element {
+        const disabled = !this.isAnyInstanceStatusUnknown(
+            items,
+            this.props.assessmentNavState.selectedTestStep,
+        );
 
         return (
-            <ActionButton iconProps={{ iconName: 'skypeCheck' }} onClick={this.onPassUnmarkedInstances} disabled={disabled}>
+            <ActionButton
+                iconProps={{ iconName: 'skypeCheck' }}
+                onClick={this.onPassUnmarkedInstances}
+                disabled={disabled}
+            >
                 Pass unmarked instances
             </ActionButton>
         );
     }
 
-    private isAnyInstanceStatusUnknown(items: AssessmentInstanceRowData[], step: string): boolean {
+    private isAnyInstanceStatusUnknown(
+        items: AssessmentInstanceRowData[],
+        step: string,
+    ): boolean {
         return items.some(
-            item => has(item.instance.testStepResults, step) && item.instance.testStepResults[step].status === ManualTestStatus.UNKNOWN,
+            item =>
+                has(item.instance.testStepResults, step) &&
+                item.instance.testStepResults[step].status ===
+                    ManualTestStatus.UNKNOWN,
         );
     }
 

@@ -24,8 +24,12 @@ export class DevToolStore extends BaseStoreImpl<DevToolState> {
     }
 
     protected addActionListeners(): void {
-        this.devToolActions.setDevToolState.addListener(this.onDevToolStatusChanged);
-        this.devToolActions.setInspectElement.addListener(this.onInspectElement);
+        this.devToolActions.setDevToolState.addListener(
+            this.onDevToolStatusChanged,
+        );
+        this.devToolActions.setInspectElement.addListener(
+            this.onInspectElement,
+        );
         this.devToolActions.setFrameUrl.addListener(this.onSetFrameUrl);
 
         this.devToolActions.getCurrentState.addListener(this.onGetCurrentState);

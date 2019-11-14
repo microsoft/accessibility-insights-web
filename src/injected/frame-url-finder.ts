@@ -2,7 +2,10 @@
 // Licensed under the MIT License.
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { WindowUtils } from '../common/window-utils';
-import { FrameCommunicator, MessageRequest } from './frameCommunicators/frame-communicator';
+import {
+    FrameCommunicator,
+    MessageRequest,
+} from './frameCommunicators/frame-communicator';
 
 export interface TargetMessage {
     target: string[];
@@ -14,20 +17,28 @@ export interface FrameUrlMessage {
 
 export class FrameUrlFinder {
     public static readonly SetFrameUrlCommand: string = 'SetTargetFrameUrl';
-    public static readonly GetTargetFrameUrlCommand: string = 'GetTargetFrameUrl';
+    public static readonly GetTargetFrameUrlCommand: string =
+        'GetTargetFrameUrl';
 
     private frameCommunicator: FrameCommunicator;
     private windowUtils: WindowUtils;
     private htmlElementUtils: HTMLElementUtils;
 
-    constructor(frameCommunicator: FrameCommunicator, windowUtils: WindowUtils, htmlElementUtils: HTMLElementUtils) {
+    constructor(
+        frameCommunicator: FrameCommunicator,
+        windowUtils: WindowUtils,
+        htmlElementUtils: HTMLElementUtils,
+    ) {
         this.frameCommunicator = frameCommunicator;
         this.windowUtils = windowUtils;
         this.htmlElementUtils = htmlElementUtils;
     }
 
     public initialize(): void {
-        this.frameCommunicator.subscribe(FrameUrlFinder.GetTargetFrameUrlCommand, this.processRequest);
+        this.frameCommunicator.subscribe(
+            FrameUrlFinder.GetTargetFrameUrlCommand,
+            this.processRequest,
+        );
     }
 
     public processRequest = (message: TargetMessage): void => {
@@ -44,7 +55,9 @@ export class FrameUrlFinder {
         } else if (target.length > 1) {
             this.frameCommunicator.sendMessage({
                 command: FrameUrlFinder.GetTargetFrameUrlCommand,
-                frame: this.htmlElementUtils.querySelector(target[0]) as HTMLIFrameElement,
+                frame: this.htmlElementUtils.querySelector(
+                    target[0],
+                ) as HTMLIFrameElement,
                 message: {
                     target: target.slice(1),
                 },

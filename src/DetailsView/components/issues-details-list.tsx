@@ -12,9 +12,16 @@ import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import * as React from 'react';
 
 import { RuleResult } from '../../scanner/iruleresults';
-import { DetailsGroupHeader, DetailsGroupHeaderProps } from './details-group-header';
+import {
+    DetailsGroupHeader,
+    DetailsGroupHeaderProps,
+} from './details-group-header';
 import { FailureDetails } from './failure-details';
-import { DetailsGroup, DetailsRowData, IssuesTableHandler } from './issues-table-handler';
+import {
+    DetailsGroup,
+    DetailsRowData,
+    IssuesTableHandler,
+} from './issues-table-handler';
 
 export interface IssuesDetailsListProps {
     violations: RuleResult[];
@@ -65,7 +72,9 @@ export class IssuesDetailsList extends React.Component<IssuesDetailsListProps> {
     }
 
     public render(): JSX.Element {
-        const detailListProps = this.props.issuesTableHandler.getListProps(this.props.violations);
+        const detailListProps = this.props.issuesTableHandler.getListProps(
+            this.props.violations,
+        );
 
         this.items = detailListProps.items;
         this.groups = detailListProps.groups;
@@ -95,10 +104,17 @@ export class IssuesDetailsList extends React.Component<IssuesDetailsListProps> {
         );
     }
 
-    private onRenderGroupHeader = (props?: DetailsGroupHeaderProps): JSX.Element => {
+    private onRenderGroupHeader = (
+        props?: DetailsGroupHeaderProps,
+    ): JSX.Element => {
         const groupHeaderProps: DetailsGroupHeaderProps = {
             ...props,
-            countIcon: <Icon iconName="statusErrorFull" className="details-icon-error" />,
+            countIcon: (
+                <Icon
+                    iconName="statusErrorFull"
+                    className="details-icon-error"
+                />
+            ),
         };
 
         return <DetailsGroupHeader {...groupHeaderProps} />;

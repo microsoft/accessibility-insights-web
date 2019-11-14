@@ -2,14 +2,24 @@
 // Licensed under the MIT License.
 import { BaseActionPayload } from 'background/actions/action-payloads';
 import { ContentActionCreator } from 'background/actions/content-action-creator';
-import { ContentActions, ContentPayload } from 'background/actions/content-actions';
+import {
+    ContentActions,
+    ContentPayload,
+} from 'background/actions/content-actions';
 import { DetailsViewController } from 'background/details-view-controller';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
-import { CONTENT_PANEL_CLOSED, CONTENT_PANEL_OPENED, TelemetryEventSource } from 'common/extension-telemetry-events';
+import {
+    CONTENT_PANEL_CLOSED,
+    CONTENT_PANEL_OPENED,
+    TelemetryEventSource,
+} from 'common/extension-telemetry-events';
 import { Messages } from 'common/messages';
 import { IMock, Mock, Times } from 'typemoq';
 
-import { createActionMock, createInterpreterMock } from '../global-action-creators/action-creator-test-helpers';
+import {
+    createActionMock,
+    createInterpreterMock,
+} from '../global-action-creators/action-creator-test-helpers';
 
 describe('ContentPanelActionMessageCreator', () => {
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
@@ -30,8 +40,15 @@ describe('ContentPanelActionMessageCreator', () => {
         const tabId = -2;
 
         const openContentPanelMock = createActionMock(payload);
-        const actionsMock = createActionsMock('openContentPanel', openContentPanelMock.object);
-        const interpreterMock = createInterpreterMock(Messages.ContentPanel.OpenPanel, payload, tabId);
+        const actionsMock = createActionsMock(
+            'openContentPanel',
+            openContentPanelMock.object,
+        );
+        const interpreterMock = createInterpreterMock(
+            Messages.ContentPanel.OpenPanel,
+            payload,
+            tabId,
+        );
 
         const detailsViewControllerMock = Mock.ofType<DetailsViewController>();
 
@@ -45,8 +62,14 @@ describe('ContentPanelActionMessageCreator', () => {
         testSubject.registerCallbacks();
 
         openContentPanelMock.verifyAll();
-        telemetryEventHandlerMock.verify(handler => handler.publishTelemetry(CONTENT_PANEL_OPENED, payload), Times.once());
-        detailsViewControllerMock.verify(controller => controller.showDetailsView(tabId), Times.once());
+        telemetryEventHandlerMock.verify(
+            handler => handler.publishTelemetry(CONTENT_PANEL_OPENED, payload),
+            Times.once(),
+        );
+        detailsViewControllerMock.verify(
+            controller => controller.showDetailsView(tabId),
+            Times.once(),
+        );
     });
 
     it('handles ClosePanel message', () => {
@@ -58,15 +81,29 @@ describe('ContentPanelActionMessageCreator', () => {
         };
 
         const closeContentPanelMock = createActionMock<void>(null);
-        const actionsMock = createActionsMock('closeContentPanel', closeContentPanelMock.object);
-        const interpreterMock = createInterpreterMock(Messages.ContentPanel.ClosePanel, payload);
+        const actionsMock = createActionsMock(
+            'closeContentPanel',
+            closeContentPanelMock.object,
+        );
+        const interpreterMock = createInterpreterMock(
+            Messages.ContentPanel.ClosePanel,
+            payload,
+        );
 
-        const testSubject = new ContentActionCreator(interpreterMock.object, actionsMock.object, telemetryEventHandlerMock.object, null);
+        const testSubject = new ContentActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+            null,
+        );
 
         testSubject.registerCallbacks();
 
         closeContentPanelMock.verifyAll();
-        telemetryEventHandlerMock.verify(handler => handler.publishTelemetry(CONTENT_PANEL_CLOSED, payload), Times.once());
+        telemetryEventHandlerMock.verify(
+            handler => handler.publishTelemetry(CONTENT_PANEL_CLOSED, payload),
+            Times.once(),
+        );
     });
 
     function createActionsMock<ActionName extends keyof ContentActions>(

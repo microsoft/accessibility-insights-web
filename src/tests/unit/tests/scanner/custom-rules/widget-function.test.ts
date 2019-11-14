@@ -1,10 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { difference, map } from 'lodash';
-import { GlobalMock, GlobalScope, It, Mock, MockBehavior, Times } from 'typemoq';
+import {
+    GlobalMock,
+    GlobalScope,
+    It,
+    Mock,
+    MockBehavior,
+    Times,
+} from 'typemoq';
 
 import * as AxeUtils from '../../../../../scanner/axe-utils';
-import { evaluateWidgetFunction, widgetFunctionConfiguration } from '../../../../../scanner/custom-rules/widget-function';
+import {
+    evaluateWidgetFunction,
+    widgetFunctionConfiguration,
+} from '../../../../../scanner/custom-rules/widget-function';
 import { createNodeStub, testNativeWidgetConfiguration } from '../helpers';
 
 declare let axe;
@@ -23,7 +33,12 @@ describe('widget function', () => {
 
     describe('evaluate', () => {
         it('sets correct data and returns true', () => {
-            const getAttributesMock = GlobalMock.ofInstance(AxeUtils.getAttributes, 'getAttributes', AxeUtils, MockBehavior.Strict);
+            const getAttributesMock = GlobalMock.ofInstance(
+                AxeUtils.getAttributes,
+                'getAttributes',
+                AxeUtils,
+                MockBehavior.Strict,
+            );
             const getAccessibleTextMock = GlobalMock.ofInstance(
                 AxeUtils.getAccessibleText,
                 'getAccessibleText',
@@ -48,14 +63,25 @@ describe('widget function', () => {
                 'aria-property': 'value',
             });
 
-            dataSetterMock.setup(m => m(It.isValue(expectedData))).verifiable(Times.once());
-            getAttributesMock.setup(m => m(It.isValue(nodeStub), It.isAny())).returns(v => expectedData.ariaAttributes);
-            getAccessibleTextMock.setup(m => m(nodeStub, false)).returns(n => expectedData.accessibleName);
+            dataSetterMock
+                .setup(m => m(It.isValue(expectedData)))
+                .verifiable(Times.once());
+            getAttributesMock
+                .setup(m => m(It.isValue(nodeStub), It.isAny()))
+                .returns(v => expectedData.ariaAttributes);
+            getAccessibleTextMock
+                .setup(m => m(nodeStub, false))
+                .returns(n => expectedData.accessibleName);
 
             let result;
-            GlobalScope.using(getAttributesMock, getAccessibleTextMock).with(() => {
-                result = widgetFunctionConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, nodeStub);
-            });
+            GlobalScope.using(getAttributesMock, getAccessibleTextMock).with(
+                () => {
+                    result = widgetFunctionConfiguration.checks[0].evaluate.call(
+                        { data: dataSetterMock.object },
+                        nodeStub,
+                    );
+                },
+            );
             expect(result).toBe(true);
             dataSetterMock.verifyAll();
         });
@@ -63,12 +89,21 @@ describe('widget function', () => {
 });
 
 describe('verify widget function data', () => {
-    const getAccessibleTextMock = GlobalMock.ofInstance(AxeUtils.getAccessibleText, 'getAccessibleText', AxeUtils, MockBehavior.Loose);
+    const getAccessibleTextMock = GlobalMock.ofInstance(
+        AxeUtils.getAccessibleText,
+        'getAccessibleText',
+        AxeUtils,
+        MockBehavior.Loose,
+    );
 
     const fixture = createTestFixture('test_fixture', '');
 
-    const allAriaAttributes = Object.getOwnPropertyNames(axe.commons.aria.lookupTable.attributes);
-    const overlappingHTMLAttributes = map(allAriaAttributes, s => s.replace('aria-', ''));
+    const allAriaAttributes = Object.getOwnPropertyNames(
+        axe.commons.aria.lookupTable.attributes,
+    );
+    const overlappingHTMLAttributes = map(allAriaAttributes, s =>
+        s.replace('aria-', ''),
+    );
     const allAttributes = allAriaAttributes.concat(overlappingHTMLAttributes);
     const expectedAttributes = [
         'aria-autocomplete',
@@ -117,7 +152,10 @@ describe('verify widget function data', () => {
             const node = fixture.querySelector('#myElement');
 
             GlobalScope.using(getAccessibleTextMock).with(() => {
-                widgetFunctionConfiguration.checks[0].evaluate.call(context, node);
+                widgetFunctionConfiguration.checks[0].evaluate.call(
+                    context,
+                    node,
+                );
             });
             expect(context._data.ariaAttributes[attribute]).toEqual('value');
         });
@@ -136,7 +174,10 @@ describe('verify widget function data', () => {
             const node = fixture.querySelector('#myElement');
 
             GlobalScope.using(getAccessibleTextMock).with(() => {
-                widgetFunctionConfiguration.checks[0].evaluate.call(context, node);
+                widgetFunctionConfiguration.checks[0].evaluate.call(
+                    context,
+                    node,
+                );
             });
             expect(context._data.ariaAttributes[attribute]).toBeUndefined();
         });

@@ -13,7 +13,10 @@ import { DropdownClickHandler } from '../../../../common/dropdown-click-handler'
 import { InspectActionMessageCreator } from '../../../../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../../../../common/message-creators/scoping-action-message-creator';
 import { IssuesTableHandler } from '../../../../DetailsView/components/issues-table-handler';
-import { DetailsView, DetailsViewContainerDeps } from '../../../../DetailsView/details-view-container';
+import {
+    DetailsView,
+    DetailsViewContainerDeps,
+} from '../../../../DetailsView/details-view-container';
 import { DetailsViewRenderer } from '../../../../DetailsView/details-view-renderer';
 import { AssessmentInstanceTableHandler } from '../../../../DetailsView/handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
@@ -25,26 +28,46 @@ describe('DetailsViewRendererTest', () => {
     test('render', () => {
         const deps = Mock.ofType<DetailsViewContainerDeps>().object;
 
-        const scopingActionMessageCreatorStrictMock = Mock.ofType<ScopingActionMessageCreator>(null, MockBehavior.Strict);
-        const inspectActionMessageCreatorStrictMock = Mock.ofType<InspectActionMessageCreator>(null, MockBehavior.Strict);
+        const scopingActionMessageCreatorStrictMock = Mock.ofType<
+            ScopingActionMessageCreator
+        >(null, MockBehavior.Strict);
+        const inspectActionMessageCreatorStrictMock = Mock.ofType<
+            InspectActionMessageCreator
+        >(null, MockBehavior.Strict);
 
-        const fakeDocument = TestDocumentCreator.createTestDocument('<div id="details-container"></div>');
+        const fakeDocument = TestDocumentCreator.createTestDocument(
+            '<div id="details-container"></div>',
+        );
 
-        const renderMock: IMock<typeof ReactDOM.render> = Mock.ofInstance(() => null);
+        const renderMock: IMock<typeof ReactDOM.render> = Mock.ofInstance(
+            () => null,
+        );
         const selectionMock = Mock.ofType<ISelection>(Selection);
-        const clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory);
-        const visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
+        const clickHandlerFactoryMock = Mock.ofType(
+            DetailsViewToggleClickHandlerFactory,
+        );
+        const visualizationConfigurationFactoryMock = Mock.ofType(
+            VisualizationConfigurationFactory,
+        );
         const issuesTableHandlerMock = Mock.ofType(IssuesTableHandler);
-        const previewFeatureFlagsHandlerMock = Mock.ofType(PreviewFeatureFlagsHandler);
+        const previewFeatureFlagsHandlerMock = Mock.ofType(
+            PreviewFeatureFlagsHandler,
+        );
         const scopingFlagsHandlerMock = Mock.ofType(PreviewFeatureFlagsHandler);
         const dropdownClickHandlerMock = Mock.ofType(DropdownClickHandler);
-        const assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
-        const assessmentsProviderMock = Mock.ofInstance(CreateTestAssessmentProvider());
+        const assessmentInstanceTableHandlerMock = Mock.ofType(
+            AssessmentInstanceTableHandler,
+        );
+        const assessmentsProviderMock = Mock.ofInstance(
+            CreateTestAssessmentProvider(),
+        );
 
         const expectedIcon16 = 'icon128.png';
         configMutator.setOption('icon128', expectedIcon16);
         const documentManipulatorMock = Mock.ofType(DocumentManipulator);
-        documentManipulatorMock.setup(des => des.setShortcutIcon('../' + expectedIcon16)).verifiable();
+        documentManipulatorMock
+            .setup(des => des.setShortcutIcon('../' + expectedIcon16))
+            .verifiable();
 
         renderMock
             .setup(r =>
@@ -54,17 +77,37 @@ describe('DetailsViewRendererTest', () => {
                             <Theme deps={deps} />
                             <DetailsView
                                 deps={deps}
-                                scopingActionMessageCreator={scopingActionMessageCreatorStrictMock.object}
-                                inspectActionMessageCreator={inspectActionMessageCreatorStrictMock.object}
+                                scopingActionMessageCreator={
+                                    scopingActionMessageCreatorStrictMock.object
+                                }
+                                inspectActionMessageCreator={
+                                    inspectActionMessageCreatorStrictMock.object
+                                }
                                 issuesSelection={selectionMock.object}
-                                clickHandlerFactory={clickHandlerFactoryMock.object}
-                                visualizationConfigurationFactory={visualizationConfigurationFactoryMock.object}
-                                issuesTableHandler={issuesTableHandlerMock.object}
-                                assessmentInstanceTableHandler={assessmentInstanceTableHandlerMock.object}
-                                previewFeatureFlagsHandler={previewFeatureFlagsHandlerMock.object}
-                                scopingFlagsHandler={scopingFlagsHandlerMock.object}
-                                dropdownClickHandler={dropdownClickHandlerMock.object}
-                                assessmentsProvider={assessmentsProviderMock.object}
+                                clickHandlerFactory={
+                                    clickHandlerFactoryMock.object
+                                }
+                                visualizationConfigurationFactory={
+                                    visualizationConfigurationFactoryMock.object
+                                }
+                                issuesTableHandler={
+                                    issuesTableHandlerMock.object
+                                }
+                                assessmentInstanceTableHandler={
+                                    assessmentInstanceTableHandlerMock.object
+                                }
+                                previewFeatureFlagsHandler={
+                                    previewFeatureFlagsHandlerMock.object
+                                }
+                                scopingFlagsHandler={
+                                    scopingFlagsHandlerMock.object
+                                }
+                                dropdownClickHandler={
+                                    dropdownClickHandlerMock.object
+                                }
+                                assessmentsProvider={
+                                    assessmentsProviderMock.object
+                                }
                             />
                         </>,
                     ),

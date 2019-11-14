@@ -24,7 +24,9 @@ describe('MessageDistributorTest', () => {
         tabToInterpreterMap = {};
 
         globalContextMock = Mock.ofType(GlobalContext);
-        globalContextMock.setup(x => x.interpreter).returns(() => globalInterpreter);
+        globalContextMock
+            .setup(x => x.interpreter)
+            .returns(() => globalInterpreter);
 
         consoleLoggerMock = Mock.ofType<Logger>();
         testSubject = new MessageDistributor(
@@ -48,7 +50,10 @@ describe('MessageDistributorTest', () => {
         const globalInterpreterMock = createInterpreterMockWithInteraction();
         globalInterpreter = globalInterpreterMock.object;
         const tabContextInterpreterMock = createInterpreterMockWithInteraction();
-        tabToInterpreterMap[tabId] = new TabContext(tabContextInterpreterMock.object as any, null);
+        tabToInterpreterMap[tabId] = new TabContext(
+            tabContextInterpreterMock.object as any,
+            null,
+        );
         const message = { tabId: tabId, payload: {} };
 
         testSubject.initialize();
@@ -65,7 +70,10 @@ describe('MessageDistributorTest', () => {
         const globalInterpreterMock = createInterpreterMockWithInteraction();
         globalInterpreter = globalInterpreterMock.object;
         const tabContextInterpreterMock = createInterpreterMockWithoutInteraction();
-        tabToInterpreterMap[tabId] = new TabContext(tabContextInterpreterMock.object as any, null);
+        tabToInterpreterMap[tabId] = new TabContext(
+            tabContextInterpreterMock.object as any,
+            null,
+        );
 
         testSubject.initialize();
         const message = { payload: {} };
@@ -82,7 +90,10 @@ describe('MessageDistributorTest', () => {
         const globalInterpreterMock = createInterpreterMockWithInteraction();
         globalInterpreter = globalInterpreterMock.object;
         const tabContextInterpreterMock = createInterpreterMockWithoutInteraction();
-        tabToInterpreterMap[tabId] = new TabContext(tabContextInterpreterMock.object as any, null);
+        tabToInterpreterMap[tabId] = new TabContext(
+            tabContextInterpreterMock.object as any,
+            null,
+        );
 
         testSubject.initialize();
         const message = { payload: {} };
@@ -101,7 +112,10 @@ describe('MessageDistributorTest', () => {
         const globalInterpreterMock = createInterpreterMockWithInteraction();
         globalInterpreter = globalInterpreterMock.object;
         const tabContextInterpreterMock = createInterpreterMockWithInteraction();
-        tabToInterpreterMap[tabId] = new TabContext(tabContextInterpreterMock.object as any, null);
+        tabToInterpreterMap[tabId] = new TabContext(
+            tabContextInterpreterMock.object as any,
+            null,
+        );
 
         testSubject.initialize();
         const sender: Sender = { tab: { id: 1 } };
@@ -120,7 +134,10 @@ describe('MessageDistributorTest', () => {
         globalInterpreter = globalInterpreterMock.object;
 
         const tabContextInterpreterMock = createInterpreterMockWithoutInteraction();
-        tabToInterpreterMap[1] = new TabContext(tabContextInterpreterMock.object as any, null);
+        tabToInterpreterMap[1] = new TabContext(
+            tabContextInterpreterMock.object as any,
+            null,
+        );
 
         testSubject.initialize();
         const message = { tabId: anotherTabId, payload: {} };
@@ -134,7 +151,9 @@ describe('MessageDistributorTest', () => {
     function createInterpreterMockWithoutInteraction(): IMock<Interpreter> {
         const interpreterMock = Mock.ofType(Interpreter);
 
-        interpreterMock.setup(x => x.interpret(It.isAny())).verifiable(Times.never());
+        interpreterMock
+            .setup(x => x.interpret(It.isAny()))
+            .verifiable(Times.never());
 
         return interpreterMock;
     }
@@ -142,7 +161,9 @@ describe('MessageDistributorTest', () => {
     function createInterpreterMockWithInteraction(): IMock<Interpreter> {
         const interpreterMock = Mock.ofType(Interpreter);
 
-        interpreterMock.setup(x => x.interpret(It.isAny())).verifiable(Times.once());
+        interpreterMock
+            .setup(x => x.interpret(It.isAny()))
+            .verifiable(Times.once());
 
         return interpreterMock;
     }

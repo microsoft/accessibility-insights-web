@@ -13,7 +13,9 @@ describe('PathSnippetActionMessageCreatorTest', () => {
 
     beforeEach(() => {
         dispatcherMock.reset();
-        testSubject = new PathSnippetActionMessageCreator(dispatcherMock.object);
+        testSubject = new PathSnippetActionMessageCreator(
+            dispatcherMock.object,
+        );
     });
 
     it('dispatches message for addCorrespondingSnippet', () => {
@@ -25,6 +27,9 @@ describe('PathSnippetActionMessageCreatorTest', () => {
         };
 
         testSubject.addCorrespondingSnippet(snippet);
-        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
     });
 });

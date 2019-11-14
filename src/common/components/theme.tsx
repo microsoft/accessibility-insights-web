@@ -7,7 +7,10 @@ import { Helmet } from 'react-helmet';
 import { DefaultThemePalette } from '../styles/default-theme-palette';
 import { HighContrastThemePalette } from '../styles/high-contrast-theme-palette';
 import { UserConfigurationStoreData } from '../types/store-data/user-configuration-store';
-import { withStoreSubscription, WithStoreSubscriptionDeps } from './with-store-subscription';
+import {
+    withStoreSubscription,
+    WithStoreSubscriptionDeps,
+} from './with-store-subscription';
 
 export interface ThemeInnerState {
     userConfigurationStoreData: UserConfigurationStoreData;
@@ -27,12 +30,19 @@ export class ThemeInner extends React.Component<ThemeInnerProps> {
         if (enableHighContrastCurr === enableHighContrastPrev) {
             return;
         }
-        this.props.deps.loadTheme(enableHighContrastCurr ? HighContrastThemePalette : DefaultThemePalette);
+        this.props.deps.loadTheme(
+            enableHighContrastCurr
+                ? HighContrastThemePalette
+                : DefaultThemePalette,
+        );
     }
 
     public render(): JSX.Element {
         const enableHighContrast = this.isHighContrastEnabled(this.props);
-        const className = css('theme-switcher', enableHighContrast && 'high-contrast-theme');
+        const className = css(
+            'theme-switcher',
+            enableHighContrast && 'high-contrast-theme',
+        );
 
         return (
             <Helmet>
@@ -45,10 +55,15 @@ export class ThemeInner extends React.Component<ThemeInnerProps> {
         const { storeState } = props;
         const { userConfigurationStoreData } = storeState;
 
-        const enableHighContrastFlag = storeState && userConfigurationStoreData && userConfigurationStoreData.enableHighContrast;
+        const enableHighContrastFlag =
+            storeState &&
+            userConfigurationStoreData &&
+            userConfigurationStoreData.enableHighContrast;
 
         return enableHighContrastFlag;
     }
 }
 
-export const Theme = withStoreSubscription<ThemeInnerProps, ThemeInnerState>(ThemeInner);
+export const Theme = withStoreSubscription<ThemeInnerProps, ThemeInnerState>(
+    ThemeInner,
+);

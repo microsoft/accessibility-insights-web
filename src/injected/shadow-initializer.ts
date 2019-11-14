@@ -7,8 +7,10 @@ import { HTMLElementUtils } from './../common/html-element-utils';
 import { rootContainerId } from './constants';
 
 export class ShadowInitializer {
-    public static readonly injectedCssPath: string = 'injected/styles/default/injected.css';
-    public static readonly generatedBundleInjectedCssPath: string = 'bundle/injected.css';
+    public static readonly injectedCssPath: string =
+        'injected/styles/default/injected.css';
+    public static readonly generatedBundleInjectedCssPath: string =
+        'bundle/injected.css';
 
     constructor(
         private browserAdapter: BrowserAdapter,
@@ -19,14 +21,23 @@ export class ShadowInitializer {
     public async initialize(): Promise<void> {
         try {
             const shadowContainer = this.createShadowContainer();
-            this.addLinkElement(ShadowInitializer.injectedCssPath, shadowContainer);
-            this.addLinkElement(ShadowInitializer.generatedBundleInjectedCssPath, shadowContainer);
+            this.addLinkElement(
+                ShadowInitializer.injectedCssPath,
+                shadowContainer,
+            );
+            this.addLinkElement(
+                ShadowInitializer.generatedBundleInjectedCssPath,
+                shadowContainer,
+            );
         } catch (err) {
             this.logger.log('unable to insert styles under shadow', err);
         }
     }
 
-    private addLinkElement(relativeCssPath: string, container: HTMLElement): void {
+    private addLinkElement(
+        relativeCssPath: string,
+        container: HTMLElement,
+    ): void {
         const styleElement = document.createElement('link');
         styleElement.rel = 'stylesheet';
         styleElement.href = this.browserAdapter.getUrl(relativeCssPath);
@@ -35,7 +46,9 @@ export class ShadowInitializer {
     }
 
     private createShadowHost(): HTMLElement {
-        const rootContainer = this.htmlElementUtils.querySelector(`#${rootContainerId}`);
+        const rootContainer = this.htmlElementUtils.querySelector(
+            `#${rootContainerId}`,
+        );
 
         const shadowHostElement = this.createDivWithId('insights-shadow-host');
 

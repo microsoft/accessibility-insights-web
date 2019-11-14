@@ -1,37 +1,46 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
-import { ContextualMenu, IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
+import {
+    ContextualMenu,
+    IContextualMenuItem,
+} from 'office-ui-fabric-react/lib/ContextualMenu';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
 
-import { DetailsViewDropDown, DetailsViewDropDownProps } from '../../../../../DetailsView/components/details-view-dropdown';
+import {
+    DetailsViewDropDown,
+    DetailsViewDropDownProps,
+} from '../../../../../DetailsView/components/details-view-dropdown';
 
 describe('DetailsViewDropDownTest', () => {
     describe('renders', () => {
         const contextMenuVisibleValues = [true, false];
 
-        it.each(contextMenuVisibleValues)('with isContextMenuVisible = %s', isContextMenuVisible => {
-            const menuItemsStub: IContextualMenuItem[] = [
-                {
-                    key: 'my-test-item',
-                    iconProps: {
-                        iconName: 'contactCard',
+        it.each(contextMenuVisibleValues)(
+            'with isContextMenuVisible = %s',
+            isContextMenuVisible => {
+                const menuItemsStub: IContextualMenuItem[] = [
+                    {
+                        key: 'my-test-item',
+                        iconProps: {
+                            iconName: 'contactCard',
+                        },
+                        onClick: null,
+                        name: 'My test item',
                     },
-                    onClick: null,
-                    name: 'My test item',
-                },
-            ];
+                ];
 
-            const props: DetailsViewDropDownProps = {
-                menuItems: menuItemsStub,
-            };
+                const props: DetailsViewDropDownProps = {
+                    menuItems: menuItemsStub,
+                };
 
-            const wrapper = shallow(<DetailsViewDropDown {...props} />);
-            wrapper.setState({ isContextMenuVisible });
+                const wrapper = shallow(<DetailsViewDropDown {...props} />);
+                wrapper.setState({ isContextMenuVisible });
 
-            expect(wrapper.getElement()).toMatchSnapshot();
-        });
+                expect(wrapper.getElement()).toMatchSnapshot();
+            },
+        );
     });
 
     test('verify open/close menu', () => {

@@ -14,7 +14,9 @@ export interface AssessmentInstanceSelectedButtonProps {
     onSelected: (selected, test, step, selector) => void;
 }
 
-export class AssessmentInstanceSelectedButton extends React.Component<AssessmentInstanceSelectedButtonProps> {
+export class AssessmentInstanceSelectedButton extends React.Component<
+    AssessmentInstanceSelectedButtonProps
+> {
     public render(): JSX.Element {
         const { isVisualizationEnabled, isVisible } = this.props;
 
@@ -25,8 +27,10 @@ export class AssessmentInstanceSelectedButton extends React.Component<Assessment
 
         const iconPropsStyling = classNames({
             'test-instance-selected': isVisualizationEnabled,
-            'test-instance-selected-hidden': !isVisible && isVisualizationEnabled,
-            'test-instance-selected-visible': isVisible && isVisualizationEnabled,
+            'test-instance-selected-hidden':
+                !isVisible && isVisualizationEnabled,
+            'test-instance-selected-visible':
+                isVisible && isVisualizationEnabled,
         });
 
         return (
@@ -34,7 +38,11 @@ export class AssessmentInstanceSelectedButton extends React.Component<Assessment
                 className={iconStyling}
                 iconProps={{
                     className: iconPropsStyling,
-                    iconName: isVisible ? (isVisualizationEnabled ? 'view' : 'checkBox') : 'hide2',
+                    iconName: isVisible
+                        ? isVisualizationEnabled
+                            ? 'view'
+                            : 'checkBox'
+                        : 'hide2',
                 }}
                 disabled={!isVisible}
                 onClick={this.onButtonClicked}
@@ -48,7 +56,12 @@ export class AssessmentInstanceSelectedButton extends React.Component<Assessment
     private onButtonClicked = (event: React.MouseEvent<any>): void => {
         if (this.props.isVisible) {
             const checked = !this.props.isVisualizationEnabled;
-            this.props.onSelected(checked, this.props.test, this.props.step, this.props.selector);
+            this.props.onSelected(
+                checked,
+                this.props.test,
+                this.props.step,
+                this.props.selector,
+            );
         }
     };
 }

@@ -10,7 +10,9 @@ export interface PrintableAxeResult {
     nodes: PrintableAxeResultNode[];
 }
 
-export function prettyPrintAxeViolations(axeResults: AxeResult): PrintableAxeResult[] {
+export function prettyPrintAxeViolations(
+    axeResults: AxeResult,
+): PrintableAxeResult[] {
     const violations = axeResults.violations;
     const printableViolations: PrintableAxeResult[] = violations.map(result => {
         const nodeResults: PrintableAxeResultNode[] = result.nodes.map(node => {

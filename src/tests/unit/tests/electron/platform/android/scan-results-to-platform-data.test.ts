@@ -7,7 +7,11 @@ import { axeRuleResultExample } from 'tests/unit/tests/electron/flux/action-crea
 
 describe('convertScanResultsToPlatformData', () => {
     it('produces the pinned output for the pinned example input', () => {
-        expect(convertScanResultsToPlatformData(new ScanResults(axeRuleResultExample))).toMatchSnapshot();
+        expect(
+            convertScanResultsToPlatformData(
+                new ScanResults(axeRuleResultExample),
+            ),
+        ).toMatchSnapshot();
     });
 
     it('populates output from the ScanResults axeDevice properties', () => {
@@ -48,15 +52,34 @@ describe('convertScanResultsToPlatformData', () => {
         expect(convertScanResultsToPlatformData(input)).toEqual(expectedOutput);
     });
 
-    it.each([null, undefined, {}])('outputs null if scanResults is %p', emptyObject => {
-        expect(convertScanResultsToPlatformData(new ScanResults(emptyObject))).toBeNull();
-    });
+    it.each([null, undefined, {}])(
+        'outputs null if scanResults is %p',
+        emptyObject => {
+            expect(
+                convertScanResultsToPlatformData(new ScanResults(emptyObject)),
+            ).toBeNull();
+        },
+    );
 
-    it.each([null, undefined, {}])('outputs null if scanResults.axeContext is %p', emptyObject => {
-        expect(convertScanResultsToPlatformData(new ScanResults({ axeContext: emptyObject }))).toBeNull();
-    });
+    it.each([null, undefined, {}])(
+        'outputs null if scanResults.axeContext is %p',
+        emptyObject => {
+            expect(
+                convertScanResultsToPlatformData(
+                    new ScanResults({ axeContext: emptyObject }),
+                ),
+            ).toBeNull();
+        },
+    );
 
-    it.each([null, undefined])('outputs null if scanResults.axeContext.axeDevice is %p', emptyObject => {
-        expect(convertScanResultsToPlatformData(new ScanResults({ axeContext: { axeDevice: emptyObject } }))).toBeNull();
-    });
+    it.each([null, undefined])(
+        'outputs null if scanResults.axeContext.axeDevice is %p',
+        emptyObject => {
+            expect(
+                convertScanResultsToPlatformData(
+                    new ScanResults({ axeContext: { axeDevice: emptyObject } }),
+                ),
+            ).toBeNull();
+        },
+    );
 });

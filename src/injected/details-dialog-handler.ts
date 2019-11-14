@@ -25,10 +25,16 @@ export class DetailsDialogHandler {
         });
     };
 
-    public inspectButtonClickHandler = (dialog: DetailsDialog, event: React.SyntheticEvent<MouseEvent>): void => {
+    public inspectButtonClickHandler = (
+        dialog: DetailsDialog,
+        event: React.SyntheticEvent<MouseEvent>,
+    ): void => {
         if (this.canInspect(dialog)) {
             this.hideDialog(dialog);
-            dialog.props.devToolActionMessageCreator.setInspectElement(event, dialog.props.target);
+            dialog.props.devToolActionMessageCreator.setInspectElement(
+                event,
+                dialog.props.target,
+            );
         } else {
             dialog.setState({ showInspectMessage: true });
         }
@@ -43,7 +49,10 @@ export class DetailsDialogHandler {
     };
 
     public isNextButtonDisabled = (dialog: DetailsDialog): boolean => {
-        return dialog.state.currentRuleIndex >= Object.keys(dialog.props.failedRules).length - 1;
+        return (
+            dialog.state.currentRuleIndex >=
+            Object.keys(dialog.props.failedRules).length - 1
+        );
     };
 
     public isBackButtonDisabled = (dialog: DetailsDialog): boolean => {
@@ -63,7 +72,9 @@ export class DetailsDialogHandler {
         return devToolState && devToolState.isOpen;
     };
 
-    public shouldShowInspectButtonMessage = (dialog: DetailsDialog): boolean => {
+    public shouldShowInspectButtonMessage = (
+        dialog: DetailsDialog,
+    ): boolean => {
         return dialog.state.showInspectMessage;
     };
 
@@ -75,11 +86,15 @@ export class DetailsDialogHandler {
     };
 
     public getFailureInfo = (dialog: DetailsDialog): string => {
-        return `Failure ${dialog.state.currentRuleIndex + 1} of ${Object.keys(dialog.props.failedRules).length} for this target`;
+        return `Failure ${dialog.state.currentRuleIndex + 1} of ${
+            Object.keys(dialog.props.failedRules).length
+        } for this target`;
     };
 
     public onLayoutDidMount = (): void => {
-        const dialogContainer = this.htmlElementUtils.querySelector('.insights-dialog-main-override') as HTMLElement;
+        const dialogContainer = this.htmlElementUtils.querySelector(
+            '.insights-dialog-main-override',
+        ) as HTMLElement;
 
         if (dialogContainer == null) {
             return;
@@ -104,13 +119,17 @@ export class DetailsDialogHandler {
         this.onDevToolChangedHandler = () => {
             this.onDevToolChanged(dialog);
         };
-        dialog.props.devToolStore.addChangedListener(this.onDevToolChangedHandler);
+        dialog.props.devToolStore.addChangedListener(
+            this.onDevToolChangedHandler,
+        );
         this.onDevToolChanged(dialog);
 
         this.onUserConfigChangedHandler = () => {
             this.onUserConfigChanged(dialog);
         };
-        dialog.props.userConfigStore.addChangedListener(this.onUserConfigChangedHandler);
+        dialog.props.userConfigStore.addChangedListener(
+            this.onUserConfigChangedHandler,
+        );
         this.onUserConfigChanged(dialog);
 
         if (dialog.props.featureFlagStoreData[FeatureFlags.shadowDialog]) {
@@ -119,7 +138,9 @@ export class DetailsDialogHandler {
     };
 
     private addListenerForDialogInShadowDom(dialog: DetailsDialog): void {
-        const shadowRoot = this.htmlElementUtils.querySelector('#insights-shadow-host').shadowRoot;
+        const shadowRoot = this.htmlElementUtils.querySelector(
+            '#insights-shadow-host',
+        ).shadowRoot;
 
         this.addEventListenerToCloseContainer(shadowRoot);
         this.addEventListenerToBackAndNextButton(shadowRoot, dialog);
@@ -130,9 +151,15 @@ export class DetailsDialogHandler {
         const closeButtonListener = () => {
             this.closeWindow(shadowRoot);
         };
-        this.addShadowClickEventListener(shadowRoot, '.insights-dialog-close', closeButtonListener);
+        this.addShadowClickEventListener(
+            shadowRoot,
+            '.insights-dialog-close',
+            closeButtonListener,
+        );
 
-        const modal = shadowRoot.querySelector('.insights-dialog-main-override-shadow');
+        const modal = shadowRoot.querySelector(
+            '.insights-dialog-main-override-shadow',
+        );
         if (modal != null) {
             document.body.classList.add('insights-modal');
             modal.addEventListener('click', ev => {
@@ -143,7 +170,10 @@ export class DetailsDialogHandler {
         }
     }
 
-    private addEventListenerToBackAndNextButton(shadowRoot: ShadowRoot, dialog: DetailsDialog): void {
+    private addEventListenerToBackAndNextButton(
+        shadowRoot: ShadowRoot,
+        dialog: DetailsDialog,
+    ): void {
         const leftButtonListener = () => {
             if (!dialog.isBackButtonDisabled()) {
                 dialog.onClickBackButton();
@@ -156,30 +186,53 @@ export class DetailsDialogHandler {
             }
         };
 
-        this.addShadowClickEventListener(shadowRoot, '.insights-dialog-button-left', leftButtonListener);
-        this.addShadowClickEventListener(shadowRoot, '.insights-dialog-button-right', rightButtonListener);
+        this.addShadowClickEventListener(
+            shadowRoot,
+            '.insights-dialog-button-left',
+            leftButtonListener,
+        );
+        this.addShadowClickEventListener(
+            shadowRoot,
+            '.insights-dialog-button-right',
+            rightButtonListener,
+        );
     }
 
-    private addEventListenerToInspectButton(shadowRoot: ShadowRoot, dialog: DetailsDialog): void {
+    private addEventListenerToInspectButton(
+        shadowRoot: ShadowRoot,
+        dialog: DetailsDialog,
+    ): void {
         const inspectButtonListener = ev => {
             if (!dialog.isInspectButtonDisabled()) {
                 dialog.onClickInspectButton(ev);
                 this.closeWindow(shadowRoot);
             }
         };
-        this.addShadowClickEventListener(shadowRoot, '.insights-dialog-button-inspect', inspectButtonListener);
+        this.addShadowClickEventListener(
+            shadowRoot,
+            '.insights-dialog-button-inspect',
+            inspectButtonListener,
+        );
     }
 
     public componentWillUnmount = (dialog: DetailsDialog): void => {
-        dialog.props.devToolStore.removeChangedListener(this.onDevToolChangedHandler);
-        dialog.props.userConfigStore.removeChangedListener(this.onUserConfigChangedHandler);
+        dialog.props.devToolStore.removeChangedListener(
+            this.onDevToolChangedHandler,
+        );
+        dialog.props.userConfigStore.removeChangedListener(
+            this.onUserConfigChangedHandler,
+        );
     };
 
     private hasStore(dialog: DetailsDialog): boolean {
         return dialog.props != null && dialog.props.devToolStore != null;
     }
 
-    private addShadowClickEventListener(shadowRoot: ShadowRoot, selector: string, listener: (ev?) => void): void {
+    private addShadowClickEventListener(
+        shadowRoot: ShadowRoot,
+        selector: string,
+        listener: (ev?) => void,
+    ): void {
         const clickable = shadowRoot.querySelector(selector);
         if (clickable != null) {
             clickable.addEventListener('click', listener);
@@ -187,8 +240,12 @@ export class DetailsDialogHandler {
     }
 
     private closeWindow(shadowRoot: ShadowRoot): void {
-        const shadowContainer = shadowRoot.querySelector('#insights-shadow-container');
-        const dialogContainer = shadowContainer.querySelector('.insights-shadow-dialog-container');
+        const shadowContainer = shadowRoot.querySelector(
+            '#insights-shadow-container',
+        );
+        const dialogContainer = shadowContainer.querySelector(
+            '.insights-shadow-dialog-container',
+        );
         if (dialogContainer) {
             dialogContainer.parentNode.removeChild(dialogContainer);
         }

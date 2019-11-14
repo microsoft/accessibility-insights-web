@@ -20,10 +20,14 @@ describe('IssuesFormatterTests', () => {
     let htmlElementUtilsMock: IMock<HTMLElementUtils>;
     beforeEach(() => {
         issuesStyle = IssuesFormatter.style;
-        const frameCommunicator: IMock<FrameCommunicator> = Mock.ofType(FrameCommunicator);
+        const frameCommunicator: IMock<FrameCommunicator> = Mock.ofType(
+            FrameCommunicator,
+        );
         htmlElementUtilsMock = Mock.ofType(HTMLElementUtils);
         const windowUtils: IMock<WindowUtils> = Mock.ofType(WindowUtils);
-        const navigatorUtils: IMock<NavigatorUtils> = Mock.ofType(NavigatorUtils);
+        const navigatorUtils: IMock<NavigatorUtils> = Mock.ofType(
+            NavigatorUtils,
+        );
         const shadowUtils: IMock<ShadowUtils> = Mock.ofType(ShadowUtils);
         const browserAdapter = Mock.ofType<BrowserAdapter>();
         const getRTLMock = Mock.ofInstance(() => null);
@@ -79,7 +83,9 @@ describe('IssuesFormatterTests', () => {
 
         expect(config.showVisualization).toBe(true);
         expect(config.borderColor).toEqual(issuesStyle.borderColor);
-        expect(config.failureBoxConfig.fontColor).toEqual(issuesStyle.fontColor);
+        expect(config.failureBoxConfig.fontColor).toEqual(
+            issuesStyle.fontColor,
+        );
         expect(config.failureBoxConfig.text).toEqual('!');
         expect(config.failureBoxConfig.boxWidth).toEqual('2em');
         expect(config.textAlign).toEqual('center');

@@ -13,26 +13,43 @@ export interface AssessmentInstanceDetailsColumnProps {
     customClassName?: string;
 }
 
-export class AssessmentInstanceDetailsColumn extends React.Component<AssessmentInstanceDetailsColumnProps> {
+export class AssessmentInstanceDetailsColumn extends React.Component<
+    AssessmentInstanceDetailsColumnProps
+> {
     public render(): JSX.Element {
         const showLabel = !!this.props.labelText;
         const showHeader = !!this.props.headerText;
         const textContent = this.props.textContent;
 
-        const classNames = css('assessment-instance-label', this.props.customClassName);
+        const classNames = css(
+            'assessment-instance-label',
+            this.props.customClassName,
+        );
 
         return (
             <div>
                 {showLabel ? (
-                    <div className={classNames} style={{ background: this.props.background }}>
+                    <div
+                        className={classNames}
+                        style={{ background: this.props.background }}
+                    >
                         {this.props.labelText}
                     </div>
                 ) : null}
                 <div>
-                    <TooltipHost content={textContent} calloutProps={{ gapSpace: 0 }}>
+                    <TooltipHost
+                        content={textContent}
+                        calloutProps={{ gapSpace: 0 }}
+                    >
                         <div className="all-content">
-                            {showHeader ? <strong className="instance-header">{this.props.headerText} </strong> : null}
-                            <div className="assessment-instance-textContent">{textContent}</div>
+                            {showHeader ? (
+                                <strong className="instance-header">
+                                    {this.props.headerText}{' '}
+                                </strong>
+                            ) : null}
+                            <div className="assessment-instance-textContent">
+                                {textContent}
+                            </div>
                         </div>
                     </TooltipHost>
                 </div>

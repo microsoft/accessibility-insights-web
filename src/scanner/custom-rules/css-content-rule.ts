@@ -42,7 +42,10 @@ function getAllPseudoElements(node: HTMLElement): HTMLElement[] {
         const beforeStyles = window.getComputedStyle(element, ':before');
         const afterStyles = window.getComputedStyle(element, ':after');
 
-        if (axe.commons.dom.isVisible(element) && (hasContent(beforeStyles) || hasContent(afterStyles))) {
+        if (
+            axe.commons.dom.isVisible(element) &&
+            (hasContent(beforeStyles) || hasContent(afterStyles))
+        ) {
             pseudoElements.push(element);
         }
     }

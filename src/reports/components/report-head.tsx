@@ -12,8 +12,12 @@ export const ReportHead = NamedFC('ReportHead', () => {
         <head>
             <meta charSet="UTF-8" />
             <title>{title} automated checks result</title>
-            <style dangerouslySetInnerHTML={{ __html: reportStyles.styleSheet }} />
-            <style dangerouslySetInnerHTML={{ __html: bundledStyles.styleSheet }} />
+            <style
+                dangerouslySetInnerHTML={{ __html: reportStyles.styleSheet }}
+            />
+            <style
+                dangerouslySetInnerHTML={{ __html: bundledStyles.styleSheet }}
+            />
         </head>
     );
 });

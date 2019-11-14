@@ -10,7 +10,9 @@ export class BackgroundPage extends Page {
 }
 
 export function isBackgroundPageTarget(target: Puppeteer.Target): boolean {
-    return target.type() === 'background_page' && isBackgroundPageUrl(target.url());
+    return (
+        target.type() === 'background_page' && isBackgroundPageUrl(target.url())
+    );
 }
 
 export function isBackgroundPageUrl(url: string): boolean {

@@ -17,9 +17,12 @@ const title = 'Contrast';
 const gettingStarted: JSX.Element = (
     <>
         <p>
-            Contrast ratio describes the relative brightness of foreground and background colors on a computer display. In general, higher
-            contrast ratios make text and graphics easier to perceive and read. Black and white have the highest possible contrast ratio,
-            21:1. Identical colors have the lowest possible contrast ratio, 1:1. All other color combinations fall somewhere in between.
+            Contrast ratio describes the relative brightness of foreground and
+            background colors on a computer display. In general, higher contrast
+            ratios make text and graphics easier to perceive and read. Black and
+            white have the highest possible contrast ratio, 21:1. Identical
+            colors have the lowest possible contrast ratio, 1:1. All other color
+            combinations fall somewhere in between.
         </p>
     </>
 );

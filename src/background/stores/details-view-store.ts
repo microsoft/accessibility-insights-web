@@ -36,25 +36,49 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewData> {
     }
 
     protected addActionListeners(): void {
-        this.previewFeaturesActions.openPreviewFeatures.addListener(() => this.onOpen('isPreviewFeaturesOpen'));
-        this.previewFeaturesActions.closePreviewFeatures.addListener(() => this.onClose('isPreviewFeaturesOpen'));
+        this.previewFeaturesActions.openPreviewFeatures.addListener(() =>
+            this.onOpen('isPreviewFeaturesOpen'),
+        );
+        this.previewFeaturesActions.closePreviewFeatures.addListener(() =>
+            this.onClose('isPreviewFeaturesOpen'),
+        );
 
-        this.scopingActions.openScopingPanel.addListener(() => this.onOpen('isScopingOpen'));
-        this.scopingActions.closeScopingPanel.addListener(() => this.onClose('isScopingOpen'));
+        this.scopingActions.openScopingPanel.addListener(() =>
+            this.onOpen('isScopingOpen'),
+        );
+        this.scopingActions.closeScopingPanel.addListener(() =>
+            this.onClose('isScopingOpen'),
+        );
 
-        this.detailsViewActions.openSettingsPanel.addListener(() => this.onOpen('isSettingsOpen'));
-        this.detailsViewActions.closeSettingsPanel.addListener(() => this.onClose('isSettingsOpen'));
+        this.detailsViewActions.openSettingsPanel.addListener(() =>
+            this.onOpen('isSettingsOpen'),
+        );
+        this.detailsViewActions.closeSettingsPanel.addListener(() =>
+            this.onClose('isSettingsOpen'),
+        );
 
         this.contentActions.openContentPanel.addListener(contentPayload =>
-            this.onOpen('isContentOpen', state => (state.contentPath = contentPayload.contentPath)),
+            this.onOpen(
+                'isContentOpen',
+                state => (state.contentPath = contentPayload.contentPath),
+            ),
         );
-        this.contentActions.closeContentPanel.addListener(() => this.onClose('isContentOpen', state => (state.contentPath = null)));
+        this.contentActions.closeContentPanel.addListener(() =>
+            this.onClose('isContentOpen', state => (state.contentPath = null)),
+        );
 
-        this.detailsViewActions.setSelectedDetailsViewRightContentPanel.addListener(this.onSetSelectedDetailsViewRightContentPanel);
-        this.detailsViewActions.getCurrentState.addListener(this.onGetCurrentState);
+        this.detailsViewActions.setSelectedDetailsViewRightContentPanel.addListener(
+            this.onSetSelectedDetailsViewRightContentPanel,
+        );
+        this.detailsViewActions.getCurrentState.addListener(
+            this.onGetCurrentState,
+        );
     }
 
-    private onOpen = (flagName: keyof CurrentPanel, mutator?: (IDetailsViewData) => void): void => {
+    private onOpen = (
+        flagName: keyof CurrentPanel,
+        mutator?: (IDetailsViewData) => void,
+    ): void => {
         Object.keys(this.state.currentPanel).forEach(key => {
             this.state.currentPanel[key] = false;
         });
@@ -67,7 +91,10 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewData> {
         this.emitChanged();
     };
 
-    private onClose = (flagName: keyof CurrentPanel, mutator?: (IDetailsViewData) => void): void => {
+    private onClose = (
+        flagName: keyof CurrentPanel,
+        mutator?: (IDetailsViewData) => void,
+    ): void => {
         this.state.currentPanel[flagName] = false;
 
         if (mutator != null) {
@@ -76,7 +103,9 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewData> {
         this.emitChanged();
     };
 
-    private onSetSelectedDetailsViewRightContentPanel = (view: DetailsViewRightContentPanelType): void => {
+    private onSetSelectedDetailsViewRightContentPanel = (
+        view: DetailsViewRightContentPanelType,
+    ): void => {
         this.state.detailsViewRightContentPanel = view;
         this.emitChanged();
     };

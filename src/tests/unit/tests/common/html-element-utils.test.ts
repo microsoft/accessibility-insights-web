@@ -37,7 +37,9 @@ describe('HTMLElementUtilsTest', () => {
 
         const expectedElement = 'element' as any;
         const getElementsMock = Mock.ofInstance((_: string) => new Element());
-        getElementsMock.setup(getter => getter(tagName)).returns(() => expectedElement);
+        getElementsMock
+            .setup(getter => getter(tagName))
+            .returns(() => expectedElement);
 
         const dom = {
             getElementsByTagName: getElementsMock.object,
@@ -55,7 +57,9 @@ describe('HTMLElementUtilsTest', () => {
 
         const expectedElement = 'element' as any;
         const querySelectorMock = Mock.ofInstance((_: string) => new Element());
-        querySelectorMock.setup(qs => qs(selector)).returns(() => expectedElement);
+        querySelectorMock
+            .setup(qs => qs(selector))
+            .returns(() => expectedElement);
 
         const dom = {
             querySelector: querySelectorMock.object,
@@ -75,8 +79,12 @@ describe('HTMLElementUtilsTest', () => {
 
         const expectedElements = HTMLCollectionOfBuilder.create(elements);
 
-        const querySelectorAllMock = Mock.ofInstance((_: string) => null as HTMLCollectionOf<Element>);
-        querySelectorAllMock.setup(qs => qs(selector)).returns(() => expectedElements);
+        const querySelectorAllMock = Mock.ofInstance(
+            (_: string) => null as HTMLCollectionOf<Element>,
+        );
+        querySelectorAllMock
+            .setup(qs => qs(selector))
+            .returns(() => expectedElements);
 
         const dom = {
             querySelectorAll: querySelectorAllMock.object,
@@ -91,7 +99,9 @@ describe('HTMLElementUtilsTest', () => {
 
     test('attachShadow', () => {
         const attachMock = Mock.ofInstance((_: { mode: string }) => {});
-        attachMock.setup(a => a(It.isValue({ mode: 'open' }))).verifiable(Times.once());
+        attachMock
+            .setup(a => a(It.isValue({ mode: 'open' })))
+            .verifiable(Times.once());
 
         const element = {
             attachShadow: attachMock.object,
@@ -152,7 +162,9 @@ describe('HTMLElementUtilsTest', () => {
 
         const getComputedStyle = Mock.ofInstance((_: Element) => style);
         getComputedStyle.setup(fn => fn(element)).returns(() => style);
-        const win = ({ getComputedStyle: getComputedStyle.object } as any) as Window;
+        const win = ({
+            getComputedStyle: getComputedStyle.object,
+        } as any) as Window;
 
         const utils = new HTMLElementUtils(null, win);
 
@@ -200,16 +212,26 @@ describe('HTMLElementUtilsTest', () => {
     test('deleteAllElements', () => {
         const containerElement = createElementWithId('container');
 
-        containerElement.appendChild(createElementWithClassName('to-be-deleted'));
-        containerElement.appendChild(createElementWithClassName('to-be-deleted'));
-        containerElement.appendChild(createElementWithClassName('do-not-delete'));
+        containerElement.appendChild(
+            createElementWithClassName('to-be-deleted'),
+        );
+        containerElement.appendChild(
+            createElementWithClassName('to-be-deleted'),
+        );
+        containerElement.appendChild(
+            createElementWithClassName('do-not-delete'),
+        );
 
         const utils = new HTMLElementUtils(containerElement as any, null);
 
         utils.deleteAllElements('.to-be-deleted');
 
-        expect(containerElement.querySelectorAll('.to-be-deleted').length).toBe(0);
-        expect(containerElement.querySelectorAll('.do-not-delete').length).toBe(1);
+        expect(containerElement.querySelectorAll('.to-be-deleted').length).toBe(
+            0,
+        );
+        expect(containerElement.querySelectorAll('.do-not-delete').length).toBe(
+            1,
+        );
     });
 
     function createElementWithId(id: string): Element {

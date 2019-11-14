@@ -78,11 +78,14 @@ describe('BaseClientStoresHubTest', () => {
     test('hasStores with stores being null (several scenarios)', () => {
         const constructorArgs = getConstructorArgsForHasStoresReturningFalse();
 
-        forEach(constructorArgs, (args: BaseStore<TestStoreData>[], index: number) => {
-            const testObject = buildClientStoresHub(args);
+        forEach(
+            constructorArgs,
+            (args: BaseStore<TestStoreData>[], index: number) => {
+                const testObject = buildClientStoresHub(args);
 
-            expect(testObject.hasStores()).toBe(false);
-        });
+                expect(testObject.hasStores()).toBe(false);
+            },
+        );
     });
 
     test('hasStoreData: all stores has data', () => {
@@ -140,7 +143,11 @@ describe('BaseClientStoresHubTest', () => {
     }
 
     function createDefaultClientStoreHub(): BaseClientStoresHub<TestStoreData> {
-        return new BaseClientStoresHub([store1Mock.getObject(), store2Mock.getObject(), store3Mock.getObject()]);
+        return new BaseClientStoresHub([
+            store1Mock.getObject(),
+            store2Mock.getObject(),
+            store3Mock.getObject(),
+        ]);
     }
 
     function invokeChangedListeners(): void {
@@ -161,8 +168,14 @@ describe('BaseClientStoresHubTest', () => {
         store3Mock.verifyAll();
     }
 
-    function getConstructorArgsForHasStoresReturningFalse(): BaseStore<TestStoreData>[][] {
-        const argsPrototype: BaseStore<TestStoreData>[] = [store1Mock.getObject(), store2Mock.getObject(), store3Mock.getObject()];
+    function getConstructorArgsForHasStoresReturningFalse(): BaseStore<
+        TestStoreData
+    >[][] {
+        const argsPrototype: BaseStore<TestStoreData>[] = [
+            store1Mock.getObject(),
+            store2Mock.getObject(),
+            store3Mock.getObject(),
+        ];
 
         const argsLength = size(argsPrototype);
 
@@ -170,7 +183,11 @@ describe('BaseClientStoresHubTest', () => {
 
         const falseReturningCombination = Math.pow(2, argsLength) - 1; // last combination will have all the stores
 
-        for (let combinationIndex = 0; combinationIndex < falseReturningCombination; combinationIndex++) {
+        for (
+            let combinationIndex = 0;
+            combinationIndex < falseReturningCombination;
+            combinationIndex++
+        ) {
             const combinationArgs: BaseStore<any>[] = clone(argsPrototype);
 
             for (let bitmaskPow = 0; bitmaskPow < argsLength; bitmaskPow++) {
@@ -188,7 +205,9 @@ describe('BaseClientStoresHubTest', () => {
         return result;
     }
 
-    function buildClientStoresHub(stores: BaseStore<TestStoreData>[]): BaseClientStoresHub<TestStoreData> {
+    function buildClientStoresHub(
+        stores: BaseStore<TestStoreData>[],
+    ): BaseClientStoresHub<TestStoreData> {
         return new BaseClientStoresHub<TestStoreData>(stores);
     }
 });

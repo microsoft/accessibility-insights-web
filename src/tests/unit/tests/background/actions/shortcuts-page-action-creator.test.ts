@@ -39,13 +39,28 @@ describe('ShortcutsPageActionCreator', () => {
 
         testSubject.registerCallbacks();
 
-        shortcutsPageControllerMock.verify(controller => controller.openShortcutsTab(), Times.once());
-        telemetryHandlerMock.verify(handler => handler.publishTelemetry(SHORTCUT_CONFIGURE_OPEN, payload), Times.once());
+        shortcutsPageControllerMock.verify(
+            controller => controller.openShortcutsTab(),
+            Times.once(),
+        );
+        telemetryHandlerMock.verify(
+            handler =>
+                handler.publishTelemetry(SHORTCUT_CONFIGURE_OPEN, payload),
+            Times.once(),
+        );
     });
 
-    const setupInterpreterMock = <Payload>(expectedMessage: string, payload?: Payload): void => {
+    const setupInterpreterMock = <Payload>(
+        expectedMessage: string,
+        payload?: Payload,
+    ): void => {
         interpreterMock
-            .setup(interpreter => interpreter.registerTypeToPayloadCallback(expectedMessage, It.is(isFunction)))
+            .setup(interpreter =>
+                interpreter.registerTypeToPayloadCallback(
+                    expectedMessage,
+                    It.is(isFunction),
+                ),
+            )
             .callback((message, handler) => {
                 if (payload) {
                     handler(payload);

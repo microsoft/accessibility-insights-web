@@ -11,16 +11,27 @@ import { Message } from '../../../../../common/message';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { ScopingStoreData } from '../../../../../common/types/store-data/scoping-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { AxeAnalyzerResult, RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
-import { PostResolveCallback, RuleAnalyzer } from '../../../../../injected/analyzers/rule-analyzer';
-import { HtmlElementAxeResults, ScannerUtils } from '../../../../../injected/scanner-utils';
+import {
+    AxeAnalyzerResult,
+    RuleAnalyzerConfiguration,
+} from '../../../../../injected/analyzers/analyzer';
+import {
+    PostResolveCallback,
+    RuleAnalyzer,
+} from '../../../../../injected/analyzers/rule-analyzer';
+import {
+    HtmlElementAxeResults,
+    ScannerUtils,
+} from '../../../../../injected/scanner-utils';
 import { ScanResults } from '../../../../../scanner/iruleresults';
 import { ScanOptions } from '../../../../../scanner/scan-options';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 
 describe('RuleAnalyzer', () => {
     let scannerUtilsMock: IMock<ScannerUtils>;
-    let resultProcessorMock: IMock<(results: ScanResults) => DictionaryStringTo<HtmlElementAxeResults>>;
+    let resultProcessorMock: IMock<(
+        results: ScanResults,
+    ) => DictionaryStringTo<HtmlElementAxeResults>>;
     let dateGetterMock: IMock<() => Date>;
     let dateMock: IMock<Date>;
     let scopingStoreMock: IMock<ScopingStore>;
@@ -44,7 +55,9 @@ describe('RuleAnalyzer', () => {
         scannerUtilsMock = Mock.ofType(ScannerUtils);
         scopingStoreMock = Mock.ofType(ScopingStore);
         telemetryDataFactoryMock = Mock.ofType(TelemetryDataFactory);
-        visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
+        visualizationConfigurationFactoryMock = Mock.ofType(
+            VisualizationConfigurationFactory,
+        );
         postResolveCallbackMock = Mock.ofInstance(results => null);
 
         const dateStub = {
@@ -79,7 +92,11 @@ describe('RuleAnalyzer', () => {
         testGetResults(done);
     });
 
-    function createTelemetryStub(elapsedTime: number, testName: string, requirementName: string): RuleAnalyzerScanTelemetryData {
+    function createTelemetryStub(
+        elapsedTime: number,
+        testName: string,
+        requirementName: string,
+    ): RuleAnalyzerScanTelemetryData {
         const telemetryStub: RuleAnalyzerScanTelemetryData = {
             scanDuration: elapsedTime,
             NumberOfElementsScanned: 2,
@@ -98,7 +115,11 @@ describe('RuleAnalyzer', () => {
         };
         const startTime = 10;
         const endTime = 20;
-        const expectedTelemetryStub = createTelemetryStub(endTime - startTime, name, key);
+        const expectedTelemetryStub = createTelemetryStub(
+            endTime - startTime,
+            name,
+            key,
+        );
 
         configStub = {
             rules: ['fake-rule'],
@@ -134,7 +155,9 @@ describe('RuleAnalyzer', () => {
             },
         };
 
-        resultProcessorMock.setup(processor => processor(scanResults)).returns(() => allInstancesMock);
+        resultProcessorMock
+            .setup(processor => processor(scanResults))
+            .returns(() => allInstancesMock);
         const axeAnalyzerResults: AxeAnalyzerResult = {
             results: allInstancesMock,
             include: scopingState.selectors.include,
@@ -185,10 +208,17 @@ describe('RuleAnalyzer', () => {
         };
 
         scannerUtilsMock
-            .setup((scanner: ScannerUtils) => scanner.scan(It.isValue(scanOptions), It.is(isFunction)))
-            .callback((theRules: string[], callback: (results: ScanResults) => void) => {
-                scanCallback = callback;
-            })
+            .setup((scanner: ScannerUtils) =>
+                scanner.scan(It.isValue(scanOptions), It.is(isFunction)),
+            )
+            .callback(
+                (
+                    theRules: string[],
+                    callback: (results: ScanResults) => void,
+                ) => {
+                    scanCallback = callback;
+                },
+            )
             .verifiable(Times.once());
     }
 

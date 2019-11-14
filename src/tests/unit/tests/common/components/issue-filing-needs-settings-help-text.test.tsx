@@ -11,7 +11,9 @@ import {
 describe('IssueFilingNeedsSettingsHelpTextTest', () => {
     test.each([true, false])('render with isOpen = %s', isOpen => {
         const props: IssueFilingNeedsSettingsHelpTextProps = { isOpen: isOpen };
-        const wrapper = shallow(<IssueFilingNeedsSettingsHelpText {...props} />);
+        const wrapper = shallow(
+            <IssueFilingNeedsSettingsHelpText {...props} />,
+        );
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 });

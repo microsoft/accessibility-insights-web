@@ -9,7 +9,10 @@ describe('selectFirstRequirementAfterAutomatedChecks', () => {
     const second = 'second';
     const assessmentType = -2112;
 
-    const getRequirementResults = () => [{ definition: { key: first } }, { definition: { key: second } }];
+    const getRequirementResults = () => [
+        { definition: { key: first } },
+        { definition: { key: second } },
+    ];
 
     const actionMessageCreator = {
         selectRequirement: jest.fn(),
@@ -17,7 +20,9 @@ describe('selectFirstRequirementAfterAutomatedChecks', () => {
 
     const scanningProps = ({
         deps: {
-            detailsViewActionMessageCreator: actionMessageCreator as Partial<DetailsViewActionMessageCreator>,
+            detailsViewActionMessageCreator: actionMessageCreator as Partial<
+                DetailsViewActionMessageCreator
+            >,
         },
         assessmentTestResult: {
             getOutcomeStats: () => ({ pass: 0, incomplete: 1, fail: 0 }),
@@ -28,7 +33,9 @@ describe('selectFirstRequirementAfterAutomatedChecks', () => {
 
     const notScanningProps = ({
         deps: {
-            detailsViewActionMessageCreator: actionMessageCreator as Partial<DetailsViewActionMessageCreator>,
+            detailsViewActionMessageCreator: actionMessageCreator as Partial<
+                DetailsViewActionMessageCreator
+            >,
         },
         assessmentTestResult: {
             getOutcomeStats: () => ({ pass: 1, incomplete: 0, fail: 0 }),
@@ -41,12 +48,18 @@ describe('selectFirstRequirementAfterAutomatedChecks', () => {
         actionMessageCreator.selectRequirement.mockClear();
     });
 
-    const testObject = selectFirstRequirementAfterAutomatedChecks.component.onAssessmentViewUpdate;
+    const testObject =
+        selectFirstRequirementAfterAutomatedChecks.component
+            .onAssessmentViewUpdate;
 
     it('selects the first test step when transitioning from scanning to not scanning', () => {
         testObject(scanningProps, notScanningProps);
 
-        expect(actionMessageCreator.selectRequirement).toBeCalledWith(null, first, assessmentType);
+        expect(actionMessageCreator.selectRequirement).toBeCalledWith(
+            null,
+            first,
+            assessmentType,
+        );
     });
 
     it('does not select the first test step when remaining scanning', () => {

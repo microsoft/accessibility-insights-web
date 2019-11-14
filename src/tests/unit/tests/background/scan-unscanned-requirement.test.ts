@@ -9,7 +9,10 @@ describe('ScanUnscannedRequirement', () => {
     let scheduleScanMock: IMock<(step: string) => void>;
 
     beforeEach(() => {
-        scheduleScanMock = Mock.ofInstance((step: string) => null, MockBehavior.Strict);
+        scheduleScanMock = Mock.ofInstance(
+            (step: string) => null,
+            MockBehavior.Strict,
+        );
     });
 
     it('exists', () => {
@@ -50,7 +53,9 @@ describe('ScanUnscannedRequirement', () => {
             },
         };
 
-        scheduleScanMock.setup(ssm => ssm(It.isAny())).verifiable(Times.never());
+        scheduleScanMock
+            .setup(ssm => ssm(It.isAny()))
+            .verifiable(Times.never());
 
         ScanUnscannedRequirement(scheduleScanMock.object, assessmentData);
 

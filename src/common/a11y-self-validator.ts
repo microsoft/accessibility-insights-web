@@ -22,7 +22,11 @@ export interface LoggedNode {
 }
 
 export class A11YSelfValidator {
-    constructor(private scannerUtils: ScannerUtils, private docUtils: HTMLElementUtils, private logger: Logger = createDefaultLogger()) {}
+    constructor(
+        private scannerUtils: ScannerUtils,
+        private docUtils: HTMLElementUtils,
+        private logger: Logger = createDefaultLogger(),
+    ) {}
 
     public validate(): void {
         this.scannerUtils.scan(null, this.logAxeResults);
@@ -39,7 +43,9 @@ export class A11YSelfValidator {
                     description: violation.description,
                     nodes: violation.nodes.map(node => {
                         return {
-                            domElement: this.docUtils.querySelector(node.target[0]) as HTMLElement,
+                            domElement: this.docUtils.querySelector(
+                                node.target[0],
+                            ) as HTMLElement,
                             all: node.all,
                             any: node.any,
                             none: node.none,

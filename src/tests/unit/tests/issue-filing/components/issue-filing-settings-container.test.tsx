@@ -5,7 +5,10 @@ import * as React from 'react';
 import { Mock } from 'typemoq';
 
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
-import { IssueFilingServiceProperties, UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
+import {
+    IssueFilingServiceProperties,
+    UserConfigurationStoreData,
+} from '../../../../../common/types/store-data/user-configuration-store';
 import {
     IssueFilingSettingsContainer,
     IssueFilingSettingsContainerDeps,
@@ -15,7 +18,9 @@ import { IssueFilingServiceProvider } from '../../../../../issue-filing/issue-fi
 import { IssueFilingService } from '../../../../../issue-filing/types/issue-filing-service';
 
 describe('IssueFilingSettingsContainerTest', () => {
-    const issueFilingServicesProviderMock = Mock.ofType(IssueFilingServiceProvider);
+    const issueFilingServicesProviderMock = Mock.ofType(
+        IssueFilingServiceProvider,
+    );
     const selectedIssueFilingService: IssueFilingService = {
         key: 'test',
         displayName: 'TEST',
@@ -44,7 +49,9 @@ describe('IssueFilingSettingsContainerTest', () => {
     };
 
     test('render', () => {
-        issueFilingServicesProviderMock.setup(mock => mock.allVisible()).returns(() => issueFilingServices);
+        issueFilingServicesProviderMock
+            .setup(mock => mock.allVisible())
+            .returns(() => issueFilingServices);
         const wrapper = shallow(<IssueFilingSettingsContainer {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });

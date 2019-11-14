@@ -3,23 +3,42 @@
 import * as Puppeteer from 'puppeteer';
 import { browserLogPath } from './browser-factory';
 import { forceTestFailure } from './force-test-failure';
-import { BackgroundPage, isBackgroundPageTarget } from './page-controllers/background-page';
-import { ContentPage, contentPageRelativeUrl } from './page-controllers/content-page';
-import { DetailsViewPage, detailsViewRelativeUrl } from './page-controllers/details-view-page';
+import {
+    BackgroundPage,
+    isBackgroundPageTarget,
+} from './page-controllers/background-page';
+import {
+    ContentPage,
+    contentPageRelativeUrl,
+} from './page-controllers/content-page';
+import {
+    DetailsViewPage,
+    detailsViewRelativeUrl,
+} from './page-controllers/details-view-page';
 import { Page } from './page-controllers/page';
 import { PopupPage, popupPageRelativeUrl } from './page-controllers/popup-page';
-import { TargetPage, targetPageUrl, TargetPageUrlOptions } from './page-controllers/target-page';
+import {
+    TargetPage,
+    targetPageUrl,
+    TargetPageUrlOptions,
+} from './page-controllers/target-page';
 
 export class Browser {
     private memoizedBackgroundPage: BackgroundPage;
     private pages: Array<Page> = [];
 
-    constructor(private readonly browserInstanceId: string, private readonly underlyingBrowser: Puppeteer.Browser) {
+    constructor(
+        private readonly browserInstanceId: string,
+        private readonly underlyingBrowser: Puppeteer.Browser,
+    ) {
         underlyingBrowser.on('disconnected', onBrowserDisconnected);
     }
 
     public async close(): Promise<void> {
-        this.underlyingBrowser.removeListener('disconnected', onBrowserDisconnected);
+        this.underlyingBrowser.removeListener(
+            'disconnected',
+            onBrowserDisconnected,
+        );
         await this.underlyingBrowser.close();
     }
 
@@ -28,22 +47,31 @@ export class Browser {
             return this.memoizedBackgroundPage;
         }
 
-        const backgroundPageTarget = await this.underlyingBrowser.waitForTarget(isBackgroundPageTarget);
+        const backgroundPageTarget = await this.underlyingBrowser.waitForTarget(
+            isBackgroundPageTarget,
+        );
 
-        this.memoizedBackgroundPage = new BackgroundPage(await backgroundPageTarget.page(), { onPageCrash: this.onPageCrash });
+        this.memoizedBackgroundPage = new BackgroundPage(
+            await backgroundPageTarget.page(),
+            { onPageCrash: this.onPageCrash },
+        );
 
         return this.memoizedBackgroundPage;
     }
 
     public async newPage(url: string): Promise<Page> {
         const underlyingPage = await this.underlyingBrowser.newPage();
-        const page = new Page(underlyingPage, { onPageCrash: this.onPageCrash });
+        const page = new Page(underlyingPage, {
+            onPageCrash: this.onPageCrash,
+        });
         this.pages.push(page);
         await page.goto(url);
         return page;
     }
 
-    public async newTargetPage(urlOptions?: TargetPageUrlOptions): Promise<TargetPage> {
+    public async newTargetPage(
+        urlOptions?: TargetPageUrlOptions,
+    ): Promise<TargetPage> {
         const underlyingPage = await this.underlyingBrowser.newPage();
         await underlyingPage.bringToFront();
         const tabId = await this.getActivePageTabId();
@@ -55,35 +83,57 @@ export class Browser {
 
     public async newPopupPage(targetPage: TargetPage): Promise<PopupPage> {
         const underlyingPage = await this.underlyingBrowser.newPage();
-        const page = new PopupPage(underlyingPage, { onPageCrash: this.onPageCrash });
-        const url = await this.getExtensionUrl(popupPageRelativeUrl(targetPage.tabId));
+        const page = new PopupPage(underlyingPage, {
+            onPageCrash: this.onPageCrash,
+        });
+        const url = await this.getExtensionUrl(
+            popupPageRelativeUrl(targetPage.tabId),
+        );
         this.pages.push(page);
         await page.goto(url);
         return page;
     }
 
-    public async newDetailsViewPage(targetPage: TargetPage): Promise<DetailsViewPage> {
+    public async newDetailsViewPage(
+        targetPage: TargetPage,
+    ): Promise<DetailsViewPage> {
         const underlyingPage = await this.underlyingBrowser.newPage();
-        const page = new DetailsViewPage(underlyingPage, { onPageCrash: this.onPageCrash });
-        const url = await this.getExtensionUrl(detailsViewRelativeUrl(targetPage.tabId));
+        const page = new DetailsViewPage(underlyingPage, {
+            onPageCrash: this.onPageCrash,
+        });
+        const url = await this.getExtensionUrl(
+            detailsViewRelativeUrl(targetPage.tabId),
+        );
         this.pages.push(page);
         await page.goto(url);
         return page;
     }
 
-    public async waitForDetailsViewPage(targetPage: TargetPage): Promise<DetailsViewPage> {
-        const expectedUrl = await this.getExtensionUrl(detailsViewRelativeUrl(targetPage.tabId));
-        const underlyingTarget = await this.underlyingBrowser.waitForTarget(t => t.url().toLowerCase() === expectedUrl.toLowerCase());
+    public async waitForDetailsViewPage(
+        targetPage: TargetPage,
+    ): Promise<DetailsViewPage> {
+        const expectedUrl = await this.getExtensionUrl(
+            detailsViewRelativeUrl(targetPage.tabId),
+        );
+        const underlyingTarget = await this.underlyingBrowser.waitForTarget(
+            t => t.url().toLowerCase() === expectedUrl.toLowerCase(),
+        );
         const underlyingPage = await underlyingTarget.page();
-        const page = new DetailsViewPage(underlyingPage, { onPageCrash: this.onPageCrash });
+        const page = new DetailsViewPage(underlyingPage, {
+            onPageCrash: this.onPageCrash,
+        });
         this.pages.push(page);
         return page;
     }
 
     public async newContentPage(contentPath: string): Promise<ContentPage> {
         const underlyingPage = await this.underlyingBrowser.newPage();
-        const page = new ContentPage(underlyingPage, { onPageCrash: this.onPageCrash });
-        const url = await this.getExtensionUrl(contentPageRelativeUrl(contentPath));
+        const page = new ContentPage(underlyingPage, {
+            onPageCrash: this.onPageCrash,
+        });
+        const url = await this.getExtensionUrl(
+            contentPageRelativeUrl(contentPath),
+        );
         this.pages.push(page);
         await page.goto(url);
         return page;
@@ -99,7 +149,9 @@ export class Browser {
         const backgroundPage = await this.backgroundPage();
         return await backgroundPage.evaluate(() => {
             return new Promise(resolve => {
-                chrome.tabs.query({ active: true, currentWindow: true }, tabs => resolve(tabs[0].id));
+                chrome.tabs.query({ active: true, currentWindow: true }, tabs =>
+                    resolve(tabs[0].id),
+                );
             });
         });
     }
@@ -113,7 +165,9 @@ export class Browser {
     }
 
     private onPageCrash = () => {
-        const errorMessage = `!!! Browser.onPageCrashed: see detailed chrome logs '${browserLogPath(this.browserInstanceId)}'`;
+        const errorMessage = `!!! Browser.onPageCrashed: see detailed chrome logs '${browserLogPath(
+            this.browserInstanceId,
+        )}'`;
         console.error(errorMessage);
     };
 }

@@ -6,24 +6,35 @@ import { NamedFC } from '../../../../../common/react/named-fc';
 import { IssueFilingSettingsContainer } from '../../../../../issue-filing/components/issue-filing-settings-container';
 import { SettingsProps } from '../settings-props';
 
-export const IssueFilingSettings = NamedFC<SettingsProps>('IssueFilingSettings', props => {
-    const { deps, userConfigurationStoreState } = props;
-    const { issueFilingServiceProvider, userConfigMessageCreator } = deps;
-    const selectedIssueFilingService = issueFilingServiceProvider.forKey(userConfigurationStoreState.bugService);
-    const selectedIssueFilingServiceData = selectedIssueFilingService.getSettingsFromStoreData(
-        userConfigurationStoreState.bugServicePropertiesMap,
-    );
+export const IssueFilingSettings = NamedFC<SettingsProps>(
+    'IssueFilingSettings',
+    props => {
+        const { deps, userConfigurationStoreState } = props;
+        const { issueFilingServiceProvider, userConfigMessageCreator } = deps;
+        const selectedIssueFilingService = issueFilingServiceProvider.forKey(
+            userConfigurationStoreState.bugService,
+        );
+        const selectedIssueFilingServiceData = selectedIssueFilingService.getSettingsFromStoreData(
+            userConfigurationStoreState.bugServicePropertiesMap,
+        );
 
-    return (
-        <>
-            <h3>Issue filing</h3>
-            <IssueFilingSettingsContainer
-                deps={deps}
-                selectedIssueFilingService={selectedIssueFilingService}
-                selectedIssueFilingServiceData={selectedIssueFilingServiceData}
-                onPropertyUpdateCallback={userConfigMessageCreator.setIssueFilingServiceProperty}
-                onSelectedServiceChange={userConfigMessageCreator.setIssueFilingService}
-            />
-        </>
-    );
-});
+        return (
+            <>
+                <h3>Issue filing</h3>
+                <IssueFilingSettingsContainer
+                    deps={deps}
+                    selectedIssueFilingService={selectedIssueFilingService}
+                    selectedIssueFilingServiceData={
+                        selectedIssueFilingServiceData
+                    }
+                    onPropertyUpdateCallback={
+                        userConfigMessageCreator.setIssueFilingServiceProperty
+                    }
+                    onSelectedServiceChange={
+                        userConfigMessageCreator.setIssueFilingService
+                    }
+                />
+            </>
+        );
+    },
+);

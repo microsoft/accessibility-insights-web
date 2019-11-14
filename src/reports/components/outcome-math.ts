@@ -27,7 +27,9 @@ function sum(statsArray: RequirementOutcomeStats[]): RequirementOutcomeStats {
     };
 }
 
-function weightedPercentage(statsArray: RequirementOutcomeStats[]): RequirementOutcomeStats {
+function weightedPercentage(
+    statsArray: RequirementOutcomeStats[],
+): RequirementOutcomeStats {
     return percentize(sum(statsArray.map(normalize)));
 }
 

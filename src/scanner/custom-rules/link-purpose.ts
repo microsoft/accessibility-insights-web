@@ -28,9 +28,16 @@ export const linkPurposeConfiguration: RuleConfiguration = {
     },
 };
 
-function evaluateLinkPurpose(node: HTMLElement, options: any, virtualNode: any, context: any): boolean {
+function evaluateLinkPurpose(
+    node: HTMLElement,
+    options: any,
+    virtualNode: any,
+    context: any,
+): boolean {
     const accessibleName: string = AxeUtils.getAccessibleText(node, false);
-    const accessibleDescription: string = AxeUtils.getAccessibleDescription(node);
+    const accessibleDescription: string = AxeUtils.getAccessibleDescription(
+        node,
+    );
     const url = node.getAttribute('href');
 
     const data = {

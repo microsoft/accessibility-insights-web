@@ -6,13 +6,21 @@ import { Mock } from 'typemoq';
 
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { ManualTestStatus } from 'common/types/manual-test-status';
-import { RequirementHeaderReportModel, RequirementType } from 'reports/assessment-report-model';
-import { AssessmentReportStepHeader, AssessmentReportStepHeaderDeps } from 'reports/components/assessment-report-step-header';
+import {
+    RequirementHeaderReportModel,
+    RequirementType,
+} from 'reports/assessment-report-model';
+import {
+    AssessmentReportStepHeader,
+    AssessmentReportStepHeaderDeps,
+} from 'reports/components/assessment-report-step-header';
 import { OutcomeChip } from 'reports/components/outcome-chip';
 import { RequirementOutcomeType } from 'reports/components/requirement-outcome-type';
 
 describe('AssessmentReportStepHeader', () => {
-    function genHeader(requirementType: RequirementType): RequirementHeaderReportModel {
+    function genHeader(
+        requirementType: RequirementType,
+    ): RequirementHeaderReportModel {
         return {
             description: <p>DESCRIPTION</p>,
             displayName: 'REQUIREMENT',
@@ -27,14 +35,22 @@ describe('AssessmentReportStepHeader', () => {
         outcomeTypeSemanticsFromTestStatus: testStatus => {
             return { pastTense: ManualTestStatus[testStatus] + '-tested' };
         },
-        getGuidanceTagsFromGuidanceLinks: Mock.ofInstance(GetGuidanceTagsFromGuidanceLinks).object,
+        getGuidanceTagsFromGuidanceLinks: Mock.ofInstance(
+            GetGuidanceTagsFromGuidanceLinks,
+        ).object,
     };
 
     test('matches snapshot', () => {
         const header = genHeader('assisted');
 
         const actual = shallow(
-            <AssessmentReportStepHeader deps={deps} status={FAIL} header={header} instanceCount={42} defaultMessageComponent={null} />,
+            <AssessmentReportStepHeader
+                deps={deps}
+                status={FAIL}
+                header={header}
+                instanceCount={42}
+                defaultMessageComponent={null}
+            />,
         );
         expect(actual.getElement()).toMatchSnapshot();
     });
@@ -55,14 +71,22 @@ describe('AssessmentReportStepHeader', () => {
                         describe(`with instance count of ${instanceCount}`, () => {
                             let expectedCount = instanceCount;
 
-                            if (outcomeType === 'pass' && requirementType === 'manual' && expectedCount === 0) {
+                            if (
+                                outcomeType === 'pass' &&
+                                requirementType === 'manual' &&
+                                expectedCount === 0
+                            ) {
                                 expectedCount = 1;
                             }
 
                             const header = genHeader(requirementType);
 
                             const defaultMessageComponent = {
-                                message: <div className="no-failure-view">No failing instances</div>,
+                                message: (
+                                    <div className="no-failure-view">
+                                        No failing instances
+                                    </div>
+                                ),
                                 instanceCount: expectedCount,
                             };
                             const component = (
@@ -71,24 +95,40 @@ describe('AssessmentReportStepHeader', () => {
                                     status={status}
                                     header={header}
                                     instanceCount={instanceCount}
-                                    defaultMessageComponent={defaultMessageComponent}
+                                    defaultMessageComponent={
+                                        defaultMessageComponent
+                                    }
                                 />
                             );
 
                             const wrapper = shallow(component);
 
                             it(`will have OutcomeChip with count of ${expectedCount} and outcomeType of ${outcomeType}`, () => {
-                                const chip = wrapper.find(OutcomeChip).getElement();
-                                expect(chip).toEqual(<OutcomeChip count={expectedCount} outcomeType={outcomeType} />);
+                                const chip = wrapper
+                                    .find(OutcomeChip)
+                                    .getElement();
+                                expect(chip).toEqual(
+                                    <OutcomeChip
+                                        count={expectedCount}
+                                        outcomeType={outcomeType}
+                                    />,
+                                );
                             });
 
-                            const messageWrapper = wrapper.find('.no-failure-view');
+                            const messageWrapper = wrapper.find(
+                                '.no-failure-view',
+                            );
 
-                            if (defaultMessageComponent && outcomeType === 'pass') {
+                            if (
+                                defaultMessageComponent &&
+                                outcomeType === 'pass'
+                            ) {
                                 it('will have a message about no instances', () => {
                                     expect(messageWrapper.exists()).toBe(true);
                                     expect(messageWrapper.getElement()).toEqual(
-                                        <div className="no-failure-view">No failing instances</div>,
+                                        <div className="no-failure-view">
+                                            No failing instances
+                                        </div>,
                                     );
                                 });
                             } else {

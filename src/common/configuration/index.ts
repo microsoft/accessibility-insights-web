@@ -3,18 +3,26 @@
 import { defaultsDeep } from 'lodash';
 
 import { defaults } from './configuration-defaults';
-import { InsightsConfiguration, InsightsConfigurationOptions } from './configuration-types';
+import {
+    InsightsConfiguration,
+    InsightsConfigurationOptions,
+} from './configuration-types';
 
 const globalVariableName = 'insights';
 
 interface ConfigAccessor {
     readonly config: InsightsConfiguration;
-    getOption<K extends keyof InsightsConfigurationOptions>(name: K): InsightsConfigurationOptions[K];
+    getOption<K extends keyof InsightsConfigurationOptions>(
+        name: K,
+    ): InsightsConfigurationOptions[K];
 }
 
 interface ConfigMutator extends ConfigAccessor {
     reset(): ConfigMutator;
-    setOption<K extends keyof InsightsConfigurationOptions>(name: K, value: InsightsConfigurationOptions[K]): ConfigMutator;
+    setOption<K extends keyof InsightsConfigurationOptions>(
+        name: K,
+        value: InsightsConfigurationOptions[K],
+    ): ConfigMutator;
 }
 
 class Configuration implements ConfigAccessor, ConfigMutator {
@@ -22,7 +30,10 @@ class Configuration implements ConfigAccessor, ConfigMutator {
         window[globalVariableName] = value;
     }
     public get config(): InsightsConfiguration {
-        return (window[globalVariableName] = defaultsDeep(window[globalVariableName], defaults));
+        return (window[globalVariableName] = defaultsDeep(
+            window[globalVariableName],
+            defaults,
+        ));
     }
 
     public reset(): ConfigMutator {
@@ -30,11 +41,16 @@ class Configuration implements ConfigAccessor, ConfigMutator {
         return this;
     }
 
-    public getOption<K extends keyof InsightsConfigurationOptions>(name: K): InsightsConfigurationOptions[K] {
+    public getOption<K extends keyof InsightsConfigurationOptions>(
+        name: K,
+    ): InsightsConfigurationOptions[K] {
         return this.config.options[name];
     }
 
-    public setOption<K extends keyof InsightsConfigurationOptions>(name: K, value: InsightsConfigurationOptions[K]): Configuration {
+    public setOption<K extends keyof InsightsConfigurationOptions>(
+        name: K,
+        value: InsightsConfigurationOptions[K],
+    ): Configuration {
         this.config.options[name] = value;
         return this;
     }

@@ -5,7 +5,10 @@ import { HTMLElementUtils } from '../common/html-element-utils';
 import { WindowUtils } from '../common/window-utils';
 import { VisualizationWindowMessage } from './drawing-controller';
 import { ErrorMessageContent } from './frameCommunicators/error-message-content';
-import { FrameCommunicator, MessageRequest } from './frameCommunicators/frame-communicator';
+import {
+    FrameCommunicator,
+    MessageRequest,
+} from './frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from './frameCommunicators/window-message-handler';
 import { ScannerUtils } from './scanner-utils';
 
@@ -21,9 +24,12 @@ export class TabStopsListener {
     private scannerUtils: ScannerUtils;
     private windowUtils: WindowUtils;
     private dom: Document;
-    public static readonly startListeningCommand = 'insights.startListenToTabstops';
-    public static readonly stopListeningCommand = 'insights.stopListenToTabstops';
-    public static readonly getTabbedElementsCommand = 'insights.getTabbedElements';
+    public static readonly startListeningCommand =
+        'insights.startListenToTabstops';
+    public static readonly stopListeningCommand =
+        'insights.stopListenToTabstops';
+    public static readonly getTabbedElementsCommand =
+        'insights.getTabbedElements';
 
     private tabEventListener: (tabbedItems: TabStopEvent) => void;
 
@@ -42,16 +48,29 @@ export class TabStopsListener {
     }
 
     public initialize(): void {
-        this.frameCommunicator.subscribe(TabStopsListener.startListeningCommand, this.onStartListenToTabStops);
-        this.frameCommunicator.subscribe(TabStopsListener.getTabbedElementsCommand, this.onGetTabbedElements);
-        this.frameCommunicator.subscribe(TabStopsListener.stopListeningCommand, this.onStopListenToTabStops);
+        this.frameCommunicator.subscribe(
+            TabStopsListener.startListeningCommand,
+            this.onStartListenToTabStops,
+        );
+        this.frameCommunicator.subscribe(
+            TabStopsListener.getTabbedElementsCommand,
+            this.onGetTabbedElements,
+        );
+        this.frameCommunicator.subscribe(
+            TabStopsListener.stopListeningCommand,
+            this.onStopListenToTabStops,
+        );
     }
 
-    public setTabEventListenerOnMainWindow(callback: (tabbedItems: TabStopEvent) => void): void {
+    public setTabEventListenerOnMainWindow(
+        callback: (tabbedItems: TabStopEvent) => void,
+    ): void {
         if (this.windowUtils.isTopWindow()) {
             this.tabEventListener = callback;
         } else {
-            throw new Error('Tabstop Listener callback only supported on main window');
+            throw new Error(
+                'Tabstop Listener callback only supported on main window',
+            );
         }
     }
 
@@ -69,15 +88,21 @@ export class TabStopsListener {
         messageSourceWin: Window,
         responder?: FrameMessageResponseCallback,
     ): void => {
-        const messageSourceFrame = this.getFrameElementForWindow(messageSourceWin);
+        const messageSourceFrame = this.getFrameElementForWindow(
+            messageSourceWin,
+        );
 
         if (messageSourceFrame != null) {
-            const frameSelector = this.scannerUtils.getUniqueSelector(messageSourceFrame);
+            const frameSelector = this.scannerUtils.getUniqueSelector(
+                messageSourceFrame,
+            );
             tabStopEvent.target.splice(0, 0, frameSelector);
 
             this.sendTabbedElements(tabStopEvent);
         } else {
-            throw new Error('unable to get frame element for the tabbed element');
+            throw new Error(
+                'unable to get frame element for the tabbed element',
+            );
         }
     };
 
@@ -169,6 +194,8 @@ export class TabStopsListener {
     };
 
     private getAllFrames(): HTMLCollectionOf<HTMLIFrameElement> {
-        return this.htmlElementUtils.getAllElementsByTagName('iframe') as HTMLCollectionOf<HTMLIFrameElement>;
+        return this.htmlElementUtils.getAllElementsByTagName(
+            'iframe',
+        ) as HTMLCollectionOf<HTMLIFrameElement>;
     }
 }

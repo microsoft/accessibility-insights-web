@@ -10,12 +10,19 @@ export interface ElementFinderByPathMessage {
 }
 
 export class ElementFinderByPath {
-    public static readonly findElementByPathCommand = 'insights.findElementByPathCommand';
+    public static readonly findElementByPathCommand =
+        'insights.findElementByPathCommand';
 
-    constructor(private readonly htmlElementUtils: HTMLElementUtils, private readonly frameCommunicator: FrameCommunicator) {}
+    constructor(
+        private readonly htmlElementUtils: HTMLElementUtils,
+        private readonly frameCommunicator: FrameCommunicator,
+    ) {}
 
     public initialize = (): void => {
-        this.frameCommunicator.subscribe(ElementFinderByPath.findElementByPathCommand, this.onFindElementByPath);
+        this.frameCommunicator.subscribe(
+            ElementFinderByPath.findElementByPathCommand,
+            this.onFindElementByPath,
+        );
     };
 
     protected onFindElementByPath = (
@@ -34,22 +41,32 @@ export class ElementFinderByPath {
         );
     };
 
-    public processRequest = (message: ElementFinderByPathMessage): PromiseLike<string> => {
+    public processRequest = (
+        message: ElementFinderByPathMessage,
+    ): PromiseLike<string> => {
         if (!this.checkSyntax(message.path[0])) {
             return Promise.reject();
         }
 
-        const element = this.htmlElementUtils.querySelector(message.path[0]) as HTMLElement;
+        const element = this.htmlElementUtils.querySelector(
+            message.path[0],
+        ) as HTMLElement;
 
         if (element == null) {
             return Promise.reject();
         }
 
-        if (element.tagName.toLocaleLowerCase() !== 'iframe' && message.path.length > 1) {
+        if (
+            element.tagName.toLocaleLowerCase() !== 'iframe' &&
+            message.path.length > 1
+        ) {
             return Promise.reject();
         }
 
-        if (element.tagName.toLocaleLowerCase() !== 'iframe' && message.path.length === 1) {
+        if (
+            element.tagName.toLocaleLowerCase() !== 'iframe' &&
+            message.path.length === 1
+        ) {
             const response = element.outerHTML;
             return Promise.resolve(response);
         }
@@ -57,10 +74,16 @@ export class ElementFinderByPath {
         return this.iterateDeeperOnIframe(element, message);
     };
 
-    private iterateDeeperOnIframe = (element: HTMLElement, message: ElementFinderByPathMessage): PromiseLike<string> => {
+    private iterateDeeperOnIframe = (
+        element: HTMLElement,
+        message: ElementFinderByPathMessage,
+    ): PromiseLike<string> => {
         message.path.shift();
 
-        return this.frameCommunicator.sendMessage<ElementFinderByPathMessage, string>({
+        return this.frameCommunicator.sendMessage<
+            ElementFinderByPathMessage,
+            string
+        >({
             command: ElementFinderByPath.findElementByPathCommand,
             frame: element as HTMLIFrameElement,
             message: {

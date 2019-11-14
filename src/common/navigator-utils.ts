@@ -4,7 +4,10 @@ import { createDefaultLogger } from 'common/logging/default-logger';
 import { Logger } from 'common/logging/logger';
 
 export class NavigatorUtils {
-    constructor(private navigatorInfo: Navigator, private logger: Logger = createDefaultLogger()) {}
+    constructor(
+        private navigatorInfo: Navigator,
+        private logger: Logger = createDefaultLogger(),
+    ) {}
 
     public getBrowserSpec(): string {
         const userAgent = this.navigatorInfo.userAgent;
@@ -28,7 +31,9 @@ export class NavigatorUtils {
             return null;
         }
 
-        return userAgent.substring(versionOffset + versionPrefix.length + 1).split(' ')[0];
+        return userAgent
+            .substring(versionOffset + versionPrefix.length + 1)
+            .split(' ')[0];
     }
 
     public copyToClipboard(data: string): Promise<void> {

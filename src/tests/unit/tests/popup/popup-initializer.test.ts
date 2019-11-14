@@ -6,7 +6,10 @@ import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adap
 import { IsSupportedBrowser } from '../../../../common/is-supported-browser';
 import { Logger } from '../../../../common/logging/logger';
 import { PopupInitializer } from '../../../../popup/popup-initializer';
-import { TargetTabFinder, TargetTabInfo } from '../../../../popup/target-tab-finder';
+import {
+    TargetTabFinder,
+    TargetTabInfo,
+} from '../../../../popup/target-tab-finder';
 
 describe('PopupInitializerTests', () => {
     let targetTabStub: TargetTabInfo;
@@ -56,7 +59,9 @@ describe('PopupInitializerTests', () => {
     });
 
     test('initializePopup: invalid browser', async () => {
-        const useIncompatibleBrowserRendererMock = Mock.ofInstance(result => {});
+        const useIncompatibleBrowserRendererMock = Mock.ofInstance(
+            result => {},
+        );
         isSupportedBrowserMock.setup(isValid => isValid()).returns(() => false);
 
         targetTabFinderMock
@@ -64,14 +69,17 @@ describe('PopupInitializerTests', () => {
             .returns(() => Promise.resolve(targetTabStub))
             .verifiable(Times.never());
 
-        useIncompatibleBrowserRendererMock.setup(renderer => renderer(It.isAny())).verifiable();
+        useIncompatibleBrowserRendererMock
+            .setup(renderer => renderer(It.isAny()))
+            .verifiable();
         const testSubject: PopupInitializer = new PopupInitializer(
             browserAdapterMock.object,
             targetTabFinderMock.object,
             isSupportedBrowserMock.object,
             loggerMock.object,
         );
-        (testSubject as any).useIncompatibleBrowserRenderer = useIncompatibleBrowserRendererMock.object;
+        (testSubject as any).useIncompatibleBrowserRenderer =
+            useIncompatibleBrowserRendererMock.object;
 
         const promise = await testSubject.initialize();
 

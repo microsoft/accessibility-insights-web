@@ -13,20 +13,32 @@ export class IssueDetailsTextGenerator {
     ) {}
 
     public buildText(data: CreateIssueDetailsTextData): string {
-        const standardTags = this.issueFilingUrlStringUtils.standardizeTags(data);
+        const standardTags = this.issueFilingUrlStringUtils.standardizeTags(
+            data,
+        );
 
         const text = [
             `Title: ${this.issueFilingUrlStringUtils.getTitle(data)}`,
             `Tags: ${this.buildTags(data, standardTags)}`,
             ``,
-            this.issueDetailsBuilder(this.environmentInfoProvider.getEnvironmentInfo(), data),
+            this.issueDetailsBuilder(
+                this.environmentInfoProvider.getEnvironmentInfo(),
+                data,
+            ),
         ].join('\n');
 
         return text;
     }
 
-    public buildTags(createIssueData: CreateIssueDetailsTextData, standardTags: string[]): string {
-        const tags = ['Accessibility', ...standardTags, createIssueData.rule.id];
+    public buildTags(
+        createIssueData: CreateIssueDetailsTextData,
+        standardTags: string[],
+    ): string {
+        const tags = [
+            'Accessibility',
+            ...standardTags,
+            createIssueData.rule.id,
+        ];
         return tags.join(', ');
     }
 }

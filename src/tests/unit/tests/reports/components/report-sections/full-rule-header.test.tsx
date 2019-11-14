@@ -3,7 +3,11 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { allInstanceOutcomeTypes } from 'reports/components/instance-outcome-type';
-import { FullRuleHeader, FullRuleHeaderDeps, FullRuleHeaderProps } from 'reports/components/report-sections/full-rule-header';
+import {
+    FullRuleHeader,
+    FullRuleHeaderDeps,
+    FullRuleHeaderProps,
+} from 'reports/components/report-sections/full-rule-header';
 import { RuleResult } from 'scanner/iruleresults';
 
 describe('FullRuleHeader', () => {
@@ -25,15 +29,18 @@ describe('FullRuleHeader', () => {
         nodes: [{} as AxeNodeResult],
     } as RuleResult;
 
-    it.each(allInstanceOutcomeTypes)('renders, outcomeType = %s', outcomeType => {
-        const props: FullRuleHeaderProps = {
-            deps: depsStub,
-            rule: rule,
-            outcomeType,
-        };
+    it.each(allInstanceOutcomeTypes)(
+        'renders, outcomeType = %s',
+        outcomeType => {
+            const props: FullRuleHeaderProps = {
+                deps: depsStub,
+                rule: rule,
+                outcomeType,
+            };
 
-        const wrapped = shallow(<FullRuleHeader {...props} />);
+            const wrapped = shallow(<FullRuleHeader {...props} />);
 
-        expect(wrapped.getElement()).toMatchSnapshot();
-    });
+            expect(wrapped.getElement()).toMatchSnapshot();
+        },
+    );
 });

@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FeatureFlagActions, FeatureFlagPayload } from 'background/actions/feature-flag-actions';
+import {
+    FeatureFlagActions,
+    FeatureFlagPayload,
+} from 'background/actions/feature-flag-actions';
 import { LocalStorageDataKeys } from 'background/local-storage-data-keys';
 import { LocalStorageData } from 'background/storage-data';
 import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
@@ -10,7 +13,10 @@ import { StoreNames } from 'common/stores/store-names';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { IMock, It, Mock } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
-import { createStoreWithNullParams, StoreTester } from '../../../../common/store-tester';
+import {
+    createStoreWithNullParams,
+    StoreTester,
+} from '../../../../common/store-tester';
 
 describe('FeatureFlagStoreTest', () => {
     let storageAdapterMock: IMock<StorageAdapter>;
@@ -35,19 +41,29 @@ describe('FeatureFlagStoreTest', () => {
 
     test('getId', () => {
         const testObject = createStoreWithNullParams(FeatureFlagStore);
-        expect(testObject.getId()).toEqual(StoreNames[StoreNames.FeatureFlagStore]);
+        expect(testObject.getId()).toEqual(
+            StoreNames[StoreNames.FeatureFlagStore],
+        );
     });
 
     test('initialize, no user data', () => {
         const expectedState = getDefaultFeatureFlagValues();
-        const testObject = new FeatureFlagStore(new FeatureFlagActions(), null, null);
+        const testObject = new FeatureFlagStore(
+            new FeatureFlagActions(),
+            null,
+            null,
+        );
         testObject.initialize();
         expect(testObject.getState()).toEqual(expectedState);
     });
 
     test('initialize, no feature flags on user data', () => {
         const expectedState = getDefaultFeatureFlagValues();
-        const testObject = new FeatureFlagStore(new FeatureFlagActions(), null, {});
+        const testObject = new FeatureFlagStore(
+            new FeatureFlagActions(),
+            null,
+            {},
+        );
         testObject.initialize();
         expect(testObject.getState()).toEqual(expectedState);
     });
@@ -82,7 +98,9 @@ describe('FeatureFlagStoreTest', () => {
         const initialState = getDefaultFeatureFlagValues();
         const finalState = getDefaultFeatureFlagValues();
 
-        createStoreTesterForFeatureFlagActions('getCurrentState').testListenerToBeCalledOnce(initialState, finalState);
+        createStoreTesterForFeatureFlagActions(
+            'getCurrentState',
+        ).testListenerToBeCalledOnce(initialState, finalState);
     });
 
     test('on setFeatureFlag', () => {
@@ -101,7 +119,13 @@ describe('FeatureFlagStoreTest', () => {
         };
 
         storageAdapterMock
-            .setup(ba => ba.setUserData(It.isValue({ [LocalStorageDataKeys.featureFlags]: finalState })))
+            .setup(ba =>
+                ba.setUserData(
+                    It.isValue({
+                        [LocalStorageDataKeys.featureFlags]: finalState,
+                    }),
+                ),
+            )
             .returns(() => Promise.resolve());
 
         createStoreTesterForFeatureFlagActions('setFeatureFlag', userDataStub)
@@ -116,18 +140,27 @@ describe('FeatureFlagStoreTest', () => {
 
         const finalState = getDefaultFeatureFlagValues();
 
-        createStoreTesterForFeatureFlagActions('resetFeatureFlags').testListenerToBeCalledOnce(initialState, finalState);
+        createStoreTesterForFeatureFlagActions(
+            'resetFeatureFlags',
+        ).testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    function createDefaultTestObject(userDataStub: LocalStorageData): FeatureFlagStore {
-        return new FeatureFlagStore(new FeatureFlagActions(), storageAdapterMock.object, userDataStub);
+    function createDefaultTestObject(
+        userDataStub: LocalStorageData,
+    ): FeatureFlagStore {
+        return new FeatureFlagStore(
+            new FeatureFlagActions(),
+            storageAdapterMock.object,
+            userDataStub,
+        );
     }
 
     function createStoreTesterForFeatureFlagActions(
         actionName: keyof FeatureFlagActions,
         userData: LocalStorageData = null,
     ): StoreTester<DictionaryStringTo<boolean>, FeatureFlagActions> {
-        const factory = (actions: FeatureFlagActions) => new FeatureFlagStore(actions, storageAdapterMock.object, userData);
+        const factory = (actions: FeatureFlagActions) =>
+            new FeatureFlagStore(actions, storageAdapterMock.object, userData);
         return new StoreTester(FeatureFlagActions, actionName, factory);
     }
 });

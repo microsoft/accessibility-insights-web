@@ -83,7 +83,9 @@
         overflow: hidden !important;
     }
 
-    .insights-dialog-main-override .insights-dialog-main-container .ms-Dialog-title {
+    .insights-dialog-main-override
+        .insights-dialog-main-container
+        .ms-Dialog-title {
         padding-left: 19px;
     }
 
@@ -97,7 +99,9 @@
         }
     }
 
-    .insights-dialog-main-override .insights-dialog-main-container .ms-Dialog-inner {
+    .insights-dialog-main-override
+        .insights-dialog-main-container
+        .ms-Dialog-inner {
         padding: 0 19px 20px !important;
     }
 
@@ -110,15 +114,24 @@
         fill: $primary-text !important;
     }
 
-    .insights-dialog-main-override .insights-dialog-button-inspect.is-disabled svg path {
+    .insights-dialog-main-override
+        .insights-dialog-button-inspect.is-disabled
+        svg
+        path {
         fill: $neutral-30 !important;
     }
 
-    .insights-dialog-main-override-shadow .insights-dialog-button-inspect svg path {
+    .insights-dialog-main-override-shadow
+        .insights-dialog-button-inspect
+        svg
+        path {
         fill: $communication-primary !important;
     }
 
-    .insights-dialog-main-override-shadow .insights-dialog-button-inspect.is-disabled svg path {
+    .insights-dialog-main-override-shadow
+        .insights-dialog-button-inspect.is-disabled
+        svg
+        path {
         fill: $neutral-30 !important;
     }
 
@@ -157,7 +170,8 @@
         width: 35em;
         min-width: 27%;
         text-align: left;
-        box-shadow: 0 4px 8px 0 $neutral-alpha-20, 0 6px 20px 0 $neutral-alpha-20;
+        box-shadow: 0 4px 8px 0 $neutral-alpha-20,
+            0 6px 20px 0 $neutral-alpha-20;
         animation-name: animatetop;
         animation-duration: 0.4s;
         align-items: center;
@@ -232,7 +246,8 @@
         }
     }
 
-    .insights-dialog-main-override-shadow .insights-dialog-target-button-container {
+    .insights-dialog-main-override-shadow
+        .insights-dialog-target-button-container {
         margin-top: 4px;
 
         button {
@@ -407,7 +422,9 @@
         pointer-events: none !important;
     }
 
-    .insights-highlight-container .insights-highlight-box .insights-highlight-text {
+    .insights-highlight-container
+        .insights-highlight-box
+        .insights-highlight-text {
         cursor: default !important;
         pointer-events: all !important;
         font-size: 1em !important;

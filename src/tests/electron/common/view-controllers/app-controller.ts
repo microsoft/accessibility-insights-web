@@ -26,20 +26,30 @@ export class AppController {
         return await this.app.webContents.getTitle();
     }
 
-    public async openDeviceConnectionDialog(): Promise<DeviceConnectionDialogController> {
+    public async openDeviceConnectionDialog(): Promise<
+        DeviceConnectionDialogController
+    > {
         await dismissTelemetryOptInDialog(this.app);
 
-        const deviceConnectionDialog = new DeviceConnectionDialogController(this.client);
+        const deviceConnectionDialog = new DeviceConnectionDialogController(
+            this.client,
+        );
         await deviceConnectionDialog.waitForVisible();
 
         return deviceConnectionDialog;
     }
 
-    public async openAutomatedChecksView(): Promise<AutomatedChecksViewController> {
+    public async openAutomatedChecksView(): Promise<
+        AutomatedChecksViewController
+    > {
         const deviceConnectionDialog = await this.openDeviceConnectionDialog();
-        await deviceConnectionDialog.connectToPort(testResourceServerConfig.port);
+        await deviceConnectionDialog.connectToPort(
+            testResourceServerConfig.port,
+        );
 
-        const automatedChecksView = new AutomatedChecksViewController(this.client);
+        const automatedChecksView = new AutomatedChecksViewController(
+            this.client,
+        );
         await automatedChecksView.waitForVisible();
 
         return automatedChecksView;

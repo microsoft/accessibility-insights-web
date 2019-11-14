@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { HowToFixWebPropertyData } from 'common/components/cards/how-to-fix-card-row';
-import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
+import {
+    UnifiedResult,
+    UnifiedRule,
+} from 'common/types/store-data/unified-data-interface';
 import { getDecoratedAxeNode } from 'injected/get-decorated-axe-node';
 import { GuidanceLink } from 'scanner/rule-to-links-mappings';
 import { exampleUnifiedResult } from 'tests/unit/tests/common/components/cards/sample-view-model-data';
@@ -17,7 +20,9 @@ describe('GetDecoratedAxeNodeResult', () => {
         };
         const selectorStub = 'some selector';
 
-        const howToFixData = unifiedResult.resolution['how-to-fix-web'] as HowToFixWebPropertyData;
+        const howToFixData = unifiedResult.resolution[
+            'how-to-fix-web'
+        ] as HowToFixWebPropertyData;
         const expectedResult = {
             status: false,
             ruleId: unifiedResult.ruleId,
@@ -45,6 +50,8 @@ describe('GetDecoratedAxeNodeResult', () => {
             }),
         };
 
-        expect(getDecoratedAxeNode(unifiedResult, unifiedRule, selectorStub)).toEqual(expectedResult);
+        expect(
+            getDecoratedAxeNode(unifiedResult, unifiedRule, selectorStub),
+        ).toEqual(expectedResult);
     });
 });

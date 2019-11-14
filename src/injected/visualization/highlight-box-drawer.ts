@@ -39,7 +39,14 @@ export class HighlightBoxDrawer extends BaseDrawer {
         clientUtils: ClientUtils,
         formatter: Formatter = null,
     ) {
-        super(dom, containerClass, windowUtils, shadowUtils, drawerUtils, formatter);
+        super(
+            dom,
+            containerClass,
+            windowUtils,
+            shadowUtils,
+            drawerUtils,
+            formatter,
+        );
         this.clientUtils = clientUtils;
         if (this.formatter) {
             this.dialogRenderer = this.formatter.getDialogRenderer();
@@ -56,20 +63,32 @@ export class HighlightBoxDrawer extends BaseDrawer {
         const highlightElements = this.getHighlightElements();
 
         if (highlightElements.length > 0) {
-            for (let elementPos = 0; elementPos < highlightElements.length; elementPos++) {
-                this.containerElement.appendChild(highlightElements[elementPos]);
+            for (
+                let elementPos = 0;
+                elementPos < highlightElements.length;
+                elementPos++
+            ) {
+                this.containerElement.appendChild(
+                    highlightElements[elementPos],
+                );
             }
         }
     }
 
-    protected createHighlightElement(element: Element, data: HtmlElementAxeResults): HTMLElement {
+    protected createHighlightElement(
+        element: Element,
+        data: HtmlElementAxeResults,
+    ): HTMLElement {
         const currentDom = this.drawerUtils.getDocumentElement();
         const body = currentDom.querySelector('body');
         const bodyStyle = this.windowUtils.getComputedStyle(body);
 
         let drawerConfig = HighlightBoxDrawer.defaultConfiguration;
         if (this.formatter) {
-            drawerConfig = this.formatter.getDrawerConfiguration(element, data) as DrawerConfiguration;
+            drawerConfig = this.formatter.getDrawerConfiguration(
+                element,
+                data,
+            ) as DrawerConfiguration;
         }
 
         let elementBoundingClientRect: ClientRect = element.getBoundingClientRect();
@@ -77,10 +96,21 @@ export class HighlightBoxDrawer extends BaseDrawer {
             elementBoundingClientRect = drawerConfig.getBoundingRect(element);
         }
 
-        const offset = this.clientUtils.getOffsetFromBoundingRect(elementBoundingClientRect);
+        const offset = this.clientUtils.getOffsetFromBoundingRect(
+            elementBoundingClientRect,
+        );
 
-        const docStyle = this.windowUtils.getComputedStyle(currentDom.documentElement);
-        if (this.drawerUtils.isOutsideOfDocument(elementBoundingClientRect, currentDom, bodyStyle, docStyle)) {
+        const docStyle = this.windowUtils.getComputedStyle(
+            currentDom.documentElement,
+        );
+        if (
+            this.drawerUtils.isOutsideOfDocument(
+                elementBoundingClientRect,
+                currentDom,
+                bodyStyle,
+                docStyle,
+            )
+        ) {
             return;
         }
 
@@ -93,27 +123,57 @@ export class HighlightBoxDrawer extends BaseDrawer {
         wrapper.style.outlineStyle = drawerConfig.outlineStyle;
         wrapper.style.outlineColor = drawerConfig.borderColor;
         wrapper.style.outlineWidth = drawerConfig.outlineWidth;
-        wrapper.style.top = this.drawerUtils.getContainerTopOffset(offset).toString() + 'px';
-        wrapper.style.left = this.drawerUtils.getContainerLeftOffset(offset).toString() + 'px';
+        wrapper.style.top =
+            this.drawerUtils.getContainerTopOffset(offset).toString() + 'px';
+        wrapper.style.left =
+            this.drawerUtils.getContainerLeftOffset(offset).toString() + 'px';
         wrapper.style.minWidth =
-            this.drawerUtils.getContainerWidth(offset, currentDom, elementBoundingClientRect.width, bodyStyle, docStyle).toString() + 'px';
+            this.drawerUtils
+                .getContainerWidth(
+                    offset,
+                    currentDom,
+                    elementBoundingClientRect.width,
+                    bodyStyle,
+                    docStyle,
+                )
+                .toString() + 'px';
         wrapper.style.minHeight =
-            this.drawerUtils.getContainerHeight(offset, currentDom, elementBoundingClientRect.height, bodyStyle, docStyle).toString() +
-            'px';
+            this.drawerUtils
+                .getContainerHeight(
+                    offset,
+                    currentDom,
+                    elementBoundingClientRect.height,
+                    bodyStyle,
+                    docStyle,
+                )
+                .toString() + 'px';
 
         if (drawerConfig.textBoxConfig) {
-            const textBox = this.createtBox(wrapper, drawerConfig, drawerConfig.textBoxConfig, currentDom);
+            const textBox = this.createtBox(
+                wrapper,
+                drawerConfig,
+                drawerConfig.textBoxConfig,
+                currentDom,
+            );
             textBox.classList.add('text-label');
             wrapper.appendChild(textBox);
         }
 
         if (drawerConfig.failureBoxConfig) {
-            const failureBox = this.createtBox(wrapper, drawerConfig, drawerConfig.failureBoxConfig, currentDom);
+            const failureBox = this.createtBox(
+                wrapper,
+                drawerConfig,
+                drawerConfig.failureBoxConfig,
+                currentDom,
+            );
             failureBox.classList.add('failure-label');
 
             if (drawerConfig.failureBoxConfig.hasDialogView) {
                 failureBox.addEventListener('click', () => {
-                    this.dialogRenderer.render(data as any, this.featureFlagStoreData);
+                    this.dialogRenderer.render(
+                        data as any,
+                        this.featureFlagStoreData,
+                    );
                 });
             }
             wrapper.appendChild(failureBox);
@@ -139,7 +199,11 @@ export class HighlightBoxDrawer extends BaseDrawer {
         box.style.outline = boxConfig.outline;
         box.style.setProperty('width', boxConfig.boxWidth, 'important');
         box.style.setProperty('cursor', drawerConfig.cursor, 'important');
-        box.style.setProperty('text-align', drawerConfig.textAlign, 'important');
+        box.style.setProperty(
+            'text-align',
+            drawerConfig.textAlign,
+            'important',
+        );
 
         return box;
     }
@@ -149,10 +213,19 @@ export class HighlightBoxDrawer extends BaseDrawer {
 
         for (let i = 0; i < this.elementResults.length; i++) {
             const elementResult = this.elementResults[i];
-            const elementsFound = this.dom.querySelectorAll(elementResult.target[elementResult.targetIndex]);
+            const elementsFound = this.dom.querySelectorAll(
+                elementResult.target[elementResult.targetIndex],
+            );
 
-            for (let elementPos = 0; elementPos < elementsFound.length; elementPos++) {
-                const element = this.createHighlightElement(elementsFound[elementPos], elementResult);
+            for (
+                let elementPos = 0;
+                elementPos < elementsFound.length;
+                elementPos++
+            ) {
+                const element = this.createHighlightElement(
+                    elementsFound[elementPos],
+                    elementResult,
+                );
                 if (element) {
                     highlightElements.push(element);
                 }

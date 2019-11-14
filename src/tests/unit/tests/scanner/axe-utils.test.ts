@@ -1,7 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as axe from 'axe-core';
-import { GlobalMock, GlobalScope, IGlobalMock, It, MockBehavior, Times } from 'typemoq';
+import {
+    GlobalMock,
+    GlobalScope,
+    IGlobalMock,
+    It,
+    MockBehavior,
+    Times,
+} from 'typemoq';
 
 import * as AxeUtils from '../../../../scanner/axe-utils';
 import { setAxeGlobalTreeTo } from '../../common/axe-internals';
@@ -19,7 +26,9 @@ describe('AxeUtils', () => {
 
     describe('getEvaluateFromCheck', () => {
         it('should find color-contrast rule', () => {
-            expect(AxeUtils.getEvaluateFromCheck('color-contrast')).toBeDefined();
+            expect(
+                AxeUtils.getEvaluateFromCheck('color-contrast'),
+            ).toBeDefined();
         });
 
         it('should fail if rule does not exist', () => {
@@ -28,12 +37,18 @@ describe('AxeUtils', () => {
     });
 
     describe('getAccessibleText', () => {
-        const accessibleTextMock = GlobalMock.ofInstance(axe.commons.text.accessibleText, 'accessibleText', axe.commons.text);
+        const accessibleTextMock = GlobalMock.ofInstance(
+            axe.commons.text.accessibleText,
+            'accessibleText',
+            axe.commons.text,
+        );
         it('should call mock when labelledbycontext true', () => {
             GlobalScope.using(accessibleTextMock).with(() => {
                 const elementStub = {} as HTMLElement;
                 const isLabelledByContext = true;
-                accessibleTextMock.setup(m => m(It.isValue(elementStub), isLabelledByContext)).verifiable(Times.once());
+                accessibleTextMock
+                    .setup(m => m(It.isValue(elementStub), isLabelledByContext))
+                    .verifiable(Times.once());
                 AxeUtils.getAccessibleText(elementStub, isLabelledByContext);
             });
             accessibleTextMock.verifyAll();
@@ -43,7 +58,9 @@ describe('AxeUtils', () => {
             GlobalScope.using(accessibleTextMock).with(() => {
                 const elementStub = {} as HTMLElement;
                 const isLabelledByContext = false;
-                accessibleTextMock.setup(m => m(It.isValue(elementStub), isLabelledByContext)).verifiable(Times.once());
+                accessibleTextMock
+                    .setup(m => m(It.isValue(elementStub), isLabelledByContext))
+                    .verifiable(Times.once());
                 AxeUtils.getAccessibleText(elementStub, isLabelledByContext);
             });
             accessibleTextMock.verifyAll();
@@ -68,7 +85,9 @@ describe('AxeUtils', () => {
             const element1 = fixture.querySelector('#el1');
             setAxeGlobalTreeTo(document.documentElement);
 
-            const result = AxeUtils.getAccessibleDescription(element1 as HTMLElement);
+            const result = AxeUtils.getAccessibleDescription(
+                element1 as HTMLElement,
+            );
             expect(result).toEqual('');
         });
 
@@ -81,7 +100,9 @@ describe('AxeUtils', () => {
             const element1 = fixture.querySelector('#el1');
             setAxeGlobalTreeTo(document.documentElement);
 
-            const result = AxeUtils.getAccessibleDescription(element1 as HTMLElement);
+            const result = AxeUtils.getAccessibleDescription(
+                element1 as HTMLElement,
+            );
             expect(result).toEqual('hello');
         });
 
@@ -94,7 +115,9 @@ describe('AxeUtils', () => {
             const element1 = fixture.querySelector('#el1');
             setAxeGlobalTreeTo(document.documentElement);
 
-            const result = AxeUtils.getAccessibleDescription(element1 as HTMLElement);
+            const result = AxeUtils.getAccessibleDescription(
+                element1 as HTMLElement,
+            );
             expect(result).toEqual('hello world');
         });
     });
@@ -229,7 +252,12 @@ describe('AxeUtils', () => {
 
         beforeEach(() => {
             fixture = createTestFixture('test-fixture', '');
-            windowMock = GlobalMock.ofInstance(window.getComputedStyle, 'getComputedStyle', window, MockBehavior.Strict);
+            windowMock = GlobalMock.ofInstance(
+                window.getComputedStyle,
+                'getComputedStyle',
+                window,
+                MockBehavior.Strict,
+            );
         });
 
         afterEach(() => {
@@ -241,7 +269,14 @@ describe('AxeUtils', () => {
                 <img id="el1" alt="" />
             `;
             const element1 = fixture.querySelector('#el1');
-            windowMock.setup(m => m(It.isAny())).returns(node => ({ getPropertyValue: property => 'some-value' } as CSSStyleDeclaration));
+            windowMock
+                .setup(m => m(It.isAny()))
+                .returns(
+                    node =>
+                        ({
+                            getPropertyValue: property => 'some-value',
+                        } as CSSStyleDeclaration),
+                );
             let result;
             GlobalScope.using(windowMock).with(() => {
                 result = AxeUtils.hasBackgoundImage(element1 as HTMLElement);
@@ -254,7 +289,14 @@ describe('AxeUtils', () => {
                 <img id="el1" alt="" />
             `;
             const element1 = fixture.querySelector('#el1');
-            windowMock.setup(m => m(It.isAny())).returns(node => ({ getPropertyValue: property => 'none' } as CSSStyleDeclaration));
+            windowMock
+                .setup(m => m(It.isAny()))
+                .returns(
+                    node =>
+                        ({
+                            getPropertyValue: property => 'none',
+                        } as CSSStyleDeclaration),
+                );
             let result;
             GlobalScope.using(windowMock).with(() => {
                 result = AxeUtils.hasBackgoundImage(element1 as HTMLElement);
@@ -269,7 +311,12 @@ describe('AxeUtils', () => {
 
         beforeEach(() => {
             fixture = createTestFixture('test-fixture', '');
-            windowMock = GlobalMock.ofInstance(window.getComputedStyle, 'getComputedStyle', window, MockBehavior.Strict);
+            windowMock = GlobalMock.ofInstance(
+                window.getComputedStyle,
+                'getComputedStyle',
+                window,
+                MockBehavior.Strict,
+            );
         });
 
         afterEach(() => {
@@ -281,7 +328,14 @@ describe('AxeUtils', () => {
                 <img id="el1"/>
             `;
             const element1 = fixture.querySelector('#el1');
-            windowMock.setup(m => m(It.isAny())).returns(node => ({ getPropertyValue: property => 'none' } as CSSStyleDeclaration));
+            windowMock
+                .setup(m => m(It.isAny()))
+                .returns(
+                    node =>
+                        ({
+                            getPropertyValue: property => 'none',
+                        } as CSSStyleDeclaration),
+                );
             let result;
             GlobalScope.using(windowMock).with(() => {
                 result = AxeUtils.getImageType(element1 as HTMLElement);
@@ -294,7 +348,14 @@ describe('AxeUtils', () => {
                 <i id="el1" />
             `;
             const element1 = fixture.querySelector('#el1');
-            windowMock.setup(m => m(It.isAny())).returns(node => ({ getPropertyValue: property => 'none' } as CSSStyleDeclaration));
+            windowMock
+                .setup(m => m(It.isAny()))
+                .returns(
+                    node =>
+                        ({
+                            getPropertyValue: property => 'none',
+                        } as CSSStyleDeclaration),
+                );
             let result;
             GlobalScope.using(windowMock).with(() => {
                 result = AxeUtils.getImageType(element1 as HTMLElement);
@@ -307,7 +368,14 @@ describe('AxeUtils', () => {
                 <div id="el1" role='img'/> <div>
             `;
             const element1 = fixture.querySelector('#el1');
-            windowMock.setup(m => m(It.isAny())).returns(node => ({ getPropertyValue: property => 'none' } as CSSStyleDeclaration));
+            windowMock
+                .setup(m => m(It.isAny()))
+                .returns(
+                    node =>
+                        ({
+                            getPropertyValue: property => 'none',
+                        } as CSSStyleDeclaration),
+                );
             let result;
             GlobalScope.using(windowMock).with(() => {
                 result = AxeUtils.getImageType(element1 as HTMLElement);
@@ -320,7 +388,14 @@ describe('AxeUtils', () => {
                 <div id="el1"/> <div>
             `;
             const element1 = fixture.querySelector('#el1');
-            windowMock.setup(m => m(It.isAny())).returns(node => ({ getPropertyValue: property => 'imgUrl' } as CSSStyleDeclaration));
+            windowMock
+                .setup(m => m(It.isAny()))
+                .returns(
+                    node =>
+                        ({
+                            getPropertyValue: property => 'imgUrl',
+                        } as CSSStyleDeclaration),
+                );
             let result;
             GlobalScope.using(windowMock).with(() => {
                 result = AxeUtils.getImageType(element1 as HTMLElement);
@@ -345,7 +420,10 @@ describe('AxeUtils', () => {
                 <img id="el1" />
             `;
             const element1 = fixture.querySelector('#el1');
-            const result = AxeUtils.getPropertyValuesMatching(element1 as HTMLElement, /^test^/);
+            const result = AxeUtils.getPropertyValuesMatching(
+                element1 as HTMLElement,
+                /^test^/,
+            );
             expect(result).toEqual({});
         });
 
@@ -354,7 +432,10 @@ describe('AxeUtils', () => {
                 <img id="el1" />
             `;
             const element1 = fixture.querySelector('#el1');
-            const result = AxeUtils.getPropertyValuesMatching(element1 as HTMLElement, /^id/);
+            const result = AxeUtils.getPropertyValuesMatching(
+                element1 as HTMLElement,
+                /^id/,
+            );
             expect(result).toEqual({
                 id: 'el1',
             });
@@ -365,7 +446,10 @@ describe('AxeUtils', () => {
                 <img id="el1" />
             `;
             const element1 = fixture.querySelector('#el1');
-            const result = AxeUtils.getPropertyValuesMatching(element1 as HTMLElement, /^height/);
+            const result = AxeUtils.getPropertyValuesMatching(
+                element1 as HTMLElement,
+                /^height/,
+            );
             expect(result).toEqual({});
         });
 
@@ -374,7 +458,10 @@ describe('AxeUtils', () => {
                 <img id="el1" height="40px" />
             `;
             const element1 = fixture.querySelector('#el1');
-            const result = AxeUtils.getPropertyValuesMatching(element1 as HTMLElement, /^.*/);
+            const result = AxeUtils.getPropertyValuesMatching(
+                element1 as HTMLElement,
+                /^.*/,
+            );
             expect(result).toEqual({
                 id: 'el1',
                 height: '40px',
@@ -386,7 +473,10 @@ describe('AxeUtils', () => {
                 <img id="el1" height="40px" />
             `;
             const element1 = fixture.querySelector('#el1');
-            const result = AxeUtils.getPropertyValuesMatching(element1 as HTMLElement, /^id/);
+            const result = AxeUtils.getPropertyValuesMatching(
+                element1 as HTMLElement,
+                /^id/,
+            );
             expect(result).toEqual({
                 id: 'el1',
             });
@@ -397,7 +487,10 @@ describe('AxeUtils', () => {
                 <img id="el1" aria-label="hello" aria-owns="world" />
             `;
             const element1 = fixture.querySelector('#el1');
-            const result = AxeUtils.getPropertyValuesMatching(element1 as HTMLElement, /^aria*/);
+            const result = AxeUtils.getPropertyValuesMatching(
+                element1 as HTMLElement,
+                /^aria*/,
+            );
             expect(result).toEqual({
                 'aria-label': 'hello',
                 'aria-owns': 'world',
@@ -420,7 +513,9 @@ describe('AxeUtils', () => {
                 <select id="el1" tabindex="-1" />
             `;
             const element = fixture.querySelector('#el1');
-            const result = AxeUtils.hasCustomWidgetMarkup(element as HTMLElement);
+            const result = AxeUtils.hasCustomWidgetMarkup(
+                element as HTMLElement,
+            );
             expect(result).toBe(true);
         });
 
@@ -429,7 +524,9 @@ describe('AxeUtils', () => {
                 <select id="el1" tabindex="0" />
             `;
             const element = fixture.querySelector('#el1');
-            const result = AxeUtils.hasCustomWidgetMarkup(element as HTMLElement);
+            const result = AxeUtils.hasCustomWidgetMarkup(
+                element as HTMLElement,
+            );
             expect(result).toBe(false);
         });
 
@@ -438,7 +535,9 @@ describe('AxeUtils', () => {
                 <select id="el1" aria-label="label" />
             `;
             const element = fixture.querySelector('#el1');
-            const result = AxeUtils.hasCustomWidgetMarkup(element as HTMLElement);
+            const result = AxeUtils.hasCustomWidgetMarkup(
+                element as HTMLElement,
+            );
             expect(result).toBe(true);
         });
 
@@ -447,7 +546,9 @@ describe('AxeUtils', () => {
                 <select id="el1" role="application" />
             `;
             const element = fixture.querySelector('#el1');
-            const result = AxeUtils.hasCustomWidgetMarkup(element as HTMLElement);
+            const result = AxeUtils.hasCustomWidgetMarkup(
+                element as HTMLElement,
+            );
             expect(result).toBe(true);
         });
     });

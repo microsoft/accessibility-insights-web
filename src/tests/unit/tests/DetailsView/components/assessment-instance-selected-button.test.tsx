@@ -12,7 +12,9 @@ import {
 
 describe('AssessmentInstanceSelectedButton', () => {
     test('constructor', () => {
-        const testObject = new AssessmentInstanceSelectedButton({} as AssessmentInstanceSelectedButtonProps);
+        const testObject = new AssessmentInstanceSelectedButton(
+            {} as AssessmentInstanceSelectedButtonProps,
+        );
         expect(testObject).toBeInstanceOf(React.Component);
     });
 
@@ -34,7 +36,11 @@ describe('AssessmentInstanceSelectedButton', () => {
         const expected = (
             <IconButton
                 className={'instance-visibility-button'}
-                iconProps={{ className: 'test-instance-selected test-instance-selected-visible', iconName: 'view' }}
+                iconProps={{
+                    className:
+                        'test-instance-selected test-instance-selected-visible',
+                    iconName: 'view',
+                }}
                 onClick={onButtonClickedStub}
                 disabled={false}
                 role="checkbox"
@@ -63,8 +69,14 @@ describe('AssessmentInstanceSelectedButton', () => {
 
         const expected = (
             <IconButton
-                className={'instance-visibility-button test-instance-selected-hidden-button'}
-                iconProps={{ className: 'test-instance-selected test-instance-selected-hidden', iconName: 'hide2' }}
+                className={
+                    'instance-visibility-button test-instance-selected-hidden-button'
+                }
+                iconProps={{
+                    className:
+                        'test-instance-selected test-instance-selected-hidden',
+                    iconName: 'hide2',
+                }}
                 onClick={onButtonClickedStub}
                 disabled={true}
                 role="checkbox"
@@ -123,7 +135,9 @@ describe('AssessmentInstanceSelectedButton', () => {
 
         const expected = (
             <IconButton
-                className={'instance-visibility-button test-instance-selected-hidden-button'}
+                className={
+                    'instance-visibility-button test-instance-selected-hidden-button'
+                }
                 iconProps={{ className: '', iconName: 'hide2' }}
                 onClick={onButtonClickedStub}
                 disabled={true}
@@ -138,9 +152,13 @@ describe('AssessmentInstanceSelectedButton', () => {
 
     test('onButtonClicked: true', () => {
         const eventStub = {} as any;
-        const onSelectedMock = Mock.ofInstance((selected, test, step, selector) => {});
+        const onSelectedMock = Mock.ofInstance(
+            (selected, test, step, selector) => {},
+        );
 
-        onSelectedMock.setup(s => s(It.isAny(), It.isAny(), It.isAny(), It.isAny())).verifiable(Times.once());
+        onSelectedMock
+            .setup(s => s(It.isAny(), It.isAny(), It.isAny(), It.isAny()))
+            .verifiable(Times.once());
 
         const props: AssessmentInstanceSelectedButtonProps = {
             test: VisualizationType.HeadingsAssessment,
@@ -159,9 +177,13 @@ describe('AssessmentInstanceSelectedButton', () => {
 
     test('onButtonClicked: false', () => {
         const eventStub = {} as any;
-        const onSelectedMock = Mock.ofInstance((selected, test, step, selector) => {});
+        const onSelectedMock = Mock.ofInstance(
+            (selected, test, step, selector) => {},
+        );
 
-        onSelectedMock.setup(s => s(It.isAny(), It.isAny(), It.isAny(), It.isAny())).verifiable(Times.once());
+        onSelectedMock
+            .setup(s => s(It.isAny(), It.isAny(), It.isAny(), It.isAny()))
+            .verifiable(Times.once());
 
         const props: AssessmentInstanceSelectedButtonProps = {
             test: VisualizationType.HeadingsAssessment,
@@ -180,9 +202,13 @@ describe('AssessmentInstanceSelectedButton', () => {
 
     test('onButtonClicked: invisible', () => {
         const eventStub = {} as any;
-        const onSelectedMock = Mock.ofInstance((selected, test, step, selector) => {});
+        const onSelectedMock = Mock.ofInstance(
+            (selected, test, step, selector) => {},
+        );
 
-        onSelectedMock.setup(s => s(It.isAny(), It.isAny(), It.isAny(), It.isAny())).verifiable(Times.never());
+        onSelectedMock
+            .setup(s => s(It.isAny(), It.isAny(), It.isAny(), It.isAny()))
+            .verifiable(Times.never());
 
         const props: AssessmentInstanceSelectedButtonProps = {
             test: VisualizationType.HeadingsAssessment,

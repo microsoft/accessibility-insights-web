@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IAxeCheckResultFrameExtraData, RuleConfiguration } from '../iruleresults';
+import {
+    IAxeCheckResultFrameExtraData,
+    RuleConfiguration,
+} from '../iruleresults';
 
 const frameTitleId: string = 'get-frame-title';
 

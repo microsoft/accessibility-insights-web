@@ -12,8 +12,10 @@ export const FooterSection = NamedFC('FooterSection', () => {
     return (
         <div className={reportFooterContainer}>
             <div className={reportFooter} role="contentinfo">
-                This automated checks result was generated using <b id="tool-name">{toolName}</b>, a tool that helps debug and find
-                accessibility issues earlier. Get more information & download this tool at{' '}
+                This automated checks result was generated using{' '}
+                <b id="tool-name">{toolName}</b>, a tool that helps debug and
+                find accessibility issues earlier. Get more information &
+                download this tool at{' '}
                 <NewTabLink
                     href="http://aka.ms/AccessibilityInsights"
                     aria-labelledby="tool-name"

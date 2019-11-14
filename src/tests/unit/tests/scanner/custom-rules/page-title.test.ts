@@ -17,7 +17,9 @@ describe('PageTitleRule', () => {
                 pageTitle: pageTitle,
             };
             const dataSetterMock = Mock.ofInstance(data => {});
-            dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
+            dataSetterMock
+                .setup(d => d(It.isValue(expectedData)))
+                .verifiable(Times.once());
 
             expect(document.documentElement.matches(selector)).toBeTruthy();
             check.evaluate.call({ data: dataSetterMock.object }, null);

@@ -27,7 +27,11 @@ export function targetPageUrl(options?: TargetPageUrlOptions): string {
 }
 
 export class TargetPage extends Page {
-    constructor(underlyingPage: Puppeteer.Page, public readonly tabId: number, options?: PageOptions) {
+    constructor(
+        underlyingPage: Puppeteer.Page,
+        public readonly tabId: number,
+        options?: PageOptions,
+    ) {
         super(underlyingPage, options);
     }
 
@@ -37,6 +41,9 @@ export class TargetPage extends Page {
 
     public async getShadowRootHtmlSnapshot(): Promise<Node> {
         const shadowRoot = await this.getShadowRoot();
-        return await formatChildElementForSnapshot(shadowRoot, '#insights-shadow-container');
+        return await formatChildElementForSnapshot(
+            shadowRoot,
+            '#insights-shadow-container',
+        );
     }
 }

@@ -21,9 +21,14 @@ describe('SVGSolidShadowFilterFactoryTest', () => {
         const filterIdPrefix = 'test-class';
 
         const drawerUtilsMock = Mock.ofType(DrawerUtils);
-        drawerUtilsMock.setup(du => du.getDocumentElement()).returns(() => htmlElement.ownerDocument);
+        drawerUtilsMock
+            .setup(du => du.getDocumentElement())
+            .returns(() => htmlElement.ownerDocument);
 
-        const testObject = new SVGSolidShadowFilterFactory(drawerUtilsMock.object, filterIdPrefix);
+        const testObject = new SVGSolidShadowFilterFactory(
+            drawerUtilsMock.object,
+            filterIdPrefix,
+        );
 
         const filter = testObject.createFilter();
 
@@ -84,7 +89,9 @@ describe('SVGSolidShadowFilterFactoryTest', () => {
 
         const flood = filter.childNodes[feElementIndex++] as Element;
 
-        new FeElementAsserter<FeFloodParams>().setupExpectedParam('flood-color', 'white').assertElement(flood, 'flood');
+        new FeElementAsserter<FeFloodParams>()
+            .setupExpectedParam('flood-color', 'white')
+            .assertElement(flood, 'flood');
 
         const composite = filter.childNodes[feElementIndex++] as Element;
 
@@ -96,7 +103,9 @@ describe('SVGSolidShadowFilterFactoryTest', () => {
 
         const finalMerge = filter.childNodes[feElementIndex++] as Element;
 
-        new FeElementAsserter<FeMergeParams>().setupExpectedChildrenCount(2).assertElement(finalMerge, 'merge (final)');
+        new FeElementAsserter<FeMergeParams>()
+            .setupExpectedChildrenCount(2)
+            .assertElement(finalMerge, 'merge (final)');
 
         const finalMergeNodeIns = ['shadow', 'SourceGraphic'];
 
@@ -118,15 +127,17 @@ class FeElementAsserter<TParams> {
         this.expectedParams = {} as TParams;
     }
 
-    public setupExpectedParam<TKey extends keyof TParams, TType extends TParams[TKey]>(
-        paramKey: TKey,
-        paramValue: TType,
-    ): FeElementAsserter<TParams> {
+    public setupExpectedParam<
+        TKey extends keyof TParams,
+        TType extends TParams[TKey]
+    >(paramKey: TKey, paramValue: TType): FeElementAsserter<TParams> {
         this.expectedParams[paramKey] = paramValue;
         return this;
     }
 
-    public setupExpectedChildrenCount(count: number): FeElementAsserter<TParams> {
+    public setupExpectedChildrenCount(
+        count: number,
+    ): FeElementAsserter<TParams> {
         this.expectedChildrenCount = count;
         return this;
     }
@@ -134,23 +145,41 @@ class FeElementAsserter<TParams> {
     public assertElement(actualElement: Element, messageSuffix?: string): void {
         this.assertElementIsNotNullOrUndefined(actualElement, messageSuffix);
 
-        const actualElementAttributeNames = _.map(actualElement.attributes, 'name');
+        const actualElementAttributeNames = _.map(
+            actualElement.attributes,
+            'name',
+        );
         const expectedAttributeNames = _.keys(this.expectedParams);
 
-        this.assertThereAreNoUnexpectedAttributes(actualElementAttributeNames, expectedAttributeNames, messageSuffix);
-        this.assertThereAreNotMissingAttributes(actualElementAttributeNames, expectedAttributeNames, messageSuffix);
+        this.assertThereAreNoUnexpectedAttributes(
+            actualElementAttributeNames,
+            expectedAttributeNames,
+            messageSuffix,
+        );
+        this.assertThereAreNotMissingAttributes(
+            actualElementAttributeNames,
+            expectedAttributeNames,
+            messageSuffix,
+        );
 
         this.assertAttributeValuesAreAsExpected(actualElement, messageSuffix);
 
         this.assertChildrenCountIsAsExpected(actualElement, messageSuffix);
     }
 
-    private assertChildrenCountIsAsExpected(actualElement: Element, messageSuffix: string): void {
-        const expectedChildrenCount = this.expectedChildrenCount != null ? this.expectedChildrenCount : 0;
+    private assertChildrenCountIsAsExpected(
+        actualElement: Element,
+        messageSuffix: string,
+    ): void {
+        const expectedChildrenCount =
+            this.expectedChildrenCount != null ? this.expectedChildrenCount : 0;
         expect(actualElement.childElementCount).toEqual(expectedChildrenCount);
     }
 
-    private assertAttributeValuesAreAsExpected(actualElement: Element, messageSuffix: string): void {
+    private assertAttributeValuesAreAsExpected(
+        actualElement: Element,
+        messageSuffix: string,
+    ): void {
         _.forOwn(this.expectedParams, (value, name) => {
             const actualValue = actualElement.getAttributeNS(null, name);
             expect(actualValue).toEqual(value.toString());
@@ -162,11 +191,17 @@ class FeElementAsserter<TParams> {
         expectedAttributeNames: string[],
         messageSuffix: string,
     ): void {
-        const actualButNotExpected = _.difference(actualElementAttributeNames, expectedAttributeNames);
+        const actualButNotExpected = _.difference(
+            actualElementAttributeNames,
+            expectedAttributeNames,
+        );
 
         if (!_.isEmpty(actualButNotExpected)) {
             const extraAttributes = actualButNotExpected.join(', ');
-            const message = this.prependIfNotNull(messageSuffix, `found the following unexpected attributes: <${extraAttributes}>`);
+            const message = this.prependIfNotNull(
+                messageSuffix,
+                `found the following unexpected attributes: <${extraAttributes}>`,
+            );
             expect(message).toBeFalsy();
         }
     }
@@ -176,15 +211,23 @@ class FeElementAsserter<TParams> {
         expectedAttributeNames: string[],
         messageSuffix: string,
     ): void {
-        const expectedButNotPresent = _.difference(expectedAttributeNames, actualElementAttributeNames);
+        const expectedButNotPresent = _.difference(
+            expectedAttributeNames,
+            actualElementAttributeNames,
+        );
 
         if (!_.isEmpty(expectedButNotPresent)) {
             const missingAttributes = expectedButNotPresent.join(', ');
-            expect(`the following expected attributes are missing: <${missingAttributes}>`).toBeFalsy();
+            expect(
+                `the following expected attributes are missing: <${missingAttributes}>`,
+            ).toBeFalsy();
         }
     }
 
-    private assertElementIsNotNullOrUndefined(actualElement: Element, messageSuffix: string): void {
+    private assertElementIsNotNullOrUndefined(
+        actualElement: Element,
+        messageSuffix: string,
+    ): void {
         expect(actualElement).toBeDefined();
     }
 

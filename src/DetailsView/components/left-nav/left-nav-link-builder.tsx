@@ -8,14 +8,23 @@ import { OutcomeTypeSemantic } from 'reports/components/outcome-type';
 import { RequirementOutcomeStats } from 'reports/components/requirement-outcome-type';
 import { GetAssessmentSummaryModelFromProviderAndStatusData } from 'reports/get-assessment-summary-model';
 import { VisualizationConfiguration } from '../../../common/configs/visualization-configuration';
-import { ManualTestStatus, ManualTestStatusData } from '../../../common/types/manual-test-status';
+import {
+    ManualTestStatus,
+    ManualTestStatusData,
+} from '../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../../types/common-types';
-import { BaseLeftNavLink, onBaseLeftNavItemClick, onBaseLeftNavItemRender } from '../base-left-nav';
+import {
+    BaseLeftNavLink,
+    onBaseLeftNavItemClick,
+    onBaseLeftNavItemRender,
+} from '../base-left-nav';
 import { OverviewLeftNavLink } from './overview-left-nav-link';
 import { TestViewLeftNavLink } from './test-view-left-nav-link';
 
-export type LeftNavLinkBuilderDeps = OverviewLinkBuilderDeps & AssessmentLinkBuilderDeps & VisualizationConfigurationLinkBuilderDeps;
+export type LeftNavLinkBuilderDeps = OverviewLinkBuilderDeps &
+    AssessmentLinkBuilderDeps &
+    VisualizationConfigurationLinkBuilderDeps;
 
 export type OverviewLinkBuilderDeps = {
     getAssessmentSummaryModelFromProviderAndStatusData: GetAssessmentSummaryModelFromProviderAndStatusData;
@@ -23,8 +32,12 @@ export type OverviewLinkBuilderDeps = {
 
 export type AssessmentLinkBuilderDeps = {
     getStatusForTest: (stats: RequirementOutcomeStats) => ManualTestStatus;
-    outcomeTypeSemanticsFromTestStatus: (testStatus: ManualTestStatus) => OutcomeTypeSemantic;
-    outcomeStatsFromManualTestStatus: (testStepStatus: ManualTestStatusData) => RequirementOutcomeStats;
+    outcomeTypeSemanticsFromTestStatus: (
+        testStatus: ManualTestStatus,
+    ) => OutcomeTypeSemantic;
+    outcomeStatsFromManualTestStatus: (
+        testStepStatus: ManualTestStatusData,
+    ) => RequirementOutcomeStats;
 };
 
 export type VisualizationConfigurationLinkBuilderDeps = {};
@@ -39,7 +52,10 @@ export class LeftNavLinkBuilder {
     ): BaseLeftNavLink {
         const { getAssessmentSummaryModelFromProviderAndStatusData } = deps;
 
-        const reportModel = getAssessmentSummaryModelFromProviderAndStatusData(assessmentsProvider, assessmentsData);
+        const reportModel = getAssessmentSummaryModelFromProviderAndStatusData(
+            assessmentsProvider,
+            assessmentsData,
+        );
         const percentComplete = 100 - reportModel.byPercentage.incomplete;
 
         const baselink = this.buildLink(
@@ -66,7 +82,11 @@ export class LeftNavLinkBuilder {
         assessmentsData: DictionaryStringTo<ManualTestStatusData>,
         startingIndex: number,
     ): BaseLeftNavLink[] {
-        const { getStatusForTest, outcomeTypeSemanticsFromTestStatus, outcomeStatsFromManualTestStatus } = deps;
+        const {
+            getStatusForTest,
+            outcomeTypeSemanticsFromTestStatus,
+            outcomeStatsFromManualTestStatus,
+        } = deps;
 
         const assessments = assessmentsProvider.all();
         let index = startingIndex;
@@ -75,7 +95,9 @@ export class LeftNavLinkBuilder {
             const stepStatus = assessmentsData[assessment.key];
             const stats = outcomeStatsFromManualTestStatus(stepStatus);
             const status = getStatusForTest(stats);
-            const narratorTestStatus = outcomeTypeSemanticsFromTestStatus(status).pastTense;
+            const narratorTestStatus = outcomeTypeSemanticsFromTestStatus(
+                status,
+            ).pastTense;
             const name = assessment.title;
 
             const baselink = this.buildLink(

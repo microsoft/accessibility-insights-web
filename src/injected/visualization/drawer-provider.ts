@@ -32,7 +32,9 @@ import { SVGShapeFactory } from './svg-shape-factory';
 import { SVGSolidShadowFilterFactory } from './svg-solid-shadow-filter-factory';
 import { TabStopsFormatter } from './tab-stops-formatter';
 
-export type IPartialSVGDrawerConfiguration = DeepPartial<SVGDrawerConfiguration>;
+export type IPartialSVGDrawerConfiguration = DeepPartial<
+    SVGDrawerConfiguration
+>;
 
 export class DrawerProvider {
     constructor(
@@ -54,11 +56,18 @@ export class DrawerProvider {
     }
 
     public createSingleTargetDrawer(className: string): Drawer {
-        return new SingleTargetDrawer(this.drawerUtils, new SingleTargetFormatter(className));
+        return new SingleTargetDrawer(
+            this.drawerUtils,
+            new SingleTargetFormatter(className),
+        );
     }
 
-    public createSVGDrawer(config: IPartialSVGDrawerConfiguration = null): Drawer {
-        const tabbableElementsHelper = new TabbableElementsHelper(this.htmlElementUtils);
+    public createSVGDrawer(
+        config: IPartialSVGDrawerConfiguration = null,
+    ): Drawer {
+        const tabbableElementsHelper = new TabbableElementsHelper(
+            this.htmlElementUtils,
+        );
         const centerPositionCalculator = new CenterPositionCalculator(
             this.drawerUtils,
             this.windowUtils,

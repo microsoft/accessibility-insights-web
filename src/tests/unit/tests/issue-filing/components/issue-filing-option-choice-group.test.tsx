@@ -1,12 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
-import { ChoiceGroup, IChoiceGroupOption } from 'office-ui-fabric-react/lib/ChoiceGroup';
+import {
+    ChoiceGroup,
+    IChoiceGroupOption,
+} from 'office-ui-fabric-react/lib/ChoiceGroup';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
 import { SetIssueFilingServicePayload } from 'background/actions/action-payloads';
-import { IssueFilingChoiceGroup, IssueFilingChoiceGroupProps } from '../../../../../issue-filing/components/issue-filing-choice-group';
+import {
+    IssueFilingChoiceGroup,
+    IssueFilingChoiceGroupProps,
+} from '../../../../../issue-filing/components/issue-filing-choice-group';
 import { OnSelectedServiceChange } from '../../../../../issue-filing/components/issue-filing-settings-container';
 import { IssueFilingService } from '../../../../../issue-filing/types/issue-filing-service';
 

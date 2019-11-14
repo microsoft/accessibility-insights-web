@@ -16,10 +16,13 @@ describe('axe.Check: unique-landmark', () => {
             this._data = d;
         },
     };
-    const axeLabelFunctionBackup: (node: Element) => string = axe.commons.aria.label;
-    const labelFunctionMock: IMock<(node: Element) => string> = Mock.ofInstance((node: Element) => {
-        return '';
-    });
+    const axeLabelFunctionBackup: (node: Element) => string =
+        axe.commons.aria.label;
+    const labelFunctionMock: IMock<(node: Element) => string> = Mock.ofInstance(
+        (node: Element) => {
+            return '';
+        },
+    );
 
     beforeEach(() => {
         check = axe._audit.defaultConfig.checks.find(elem => {
@@ -48,7 +51,9 @@ describe('axe.Check: unique-landmark', () => {
 
         const node = fixture.querySelector('#landmark1');
 
-        labelFunctionMock.setup(lfm => lfm(node)).returns(() => 'header landmark');
+        labelFunctionMock
+            .setup(lfm => lfm(node))
+            .returns(() => 'header landmark');
 
         expectCheckTrue(node);
         expect(checkContext._data).toEqual({
@@ -64,7 +69,9 @@ describe('axe.Check: unique-landmark', () => {
             `;
 
         const node = fixture.querySelector('#landmark1');
-        labelFunctionMock.setup(lfm => lfm(node)).returns(() => 'section landmark');
+        labelFunctionMock
+            .setup(lfm => lfm(node))
+            .returns(() => 'section landmark');
 
         expectCheckTrue(node);
         expect(checkContext._data).toEqual({
@@ -83,7 +90,9 @@ describe('axe.Check: unique-landmark', () => {
         const expectedNode: Element = fixture.querySelector('#landmark1');
 
         labelFunctionMock.setup(lfm => lfm(node)).returns(() => null);
-        labelFunctionMock.setup(lfm => lfm(It.isObjectWith(expectedNode))).returns(() => 'header landmark');
+        labelFunctionMock
+            .setup(lfm => lfm(It.isObjectWith(expectedNode)))
+            .returns(() => 'header landmark');
 
         expectCheckTrue(node);
     });
@@ -105,9 +114,15 @@ describe('axe.Check: unique-landmark', () => {
             duplicateLandmark2 = fixture.querySelector('#landmark2');
             uniqueLandmark = fixture.querySelector('#landmark3');
 
-            labelFunctionMock.setup(lfm => lfm(duplicateLandmark1)).returns(() => duplicateLandmarkLabel);
-            labelFunctionMock.setup(lfm => lfm(duplicateLandmark2)).returns(() => duplicateLandmarkLabel);
-            labelFunctionMock.setup(lfm => lfm(uniqueLandmark)).returns(() => 'some other landmark');
+            labelFunctionMock
+                .setup(lfm => lfm(duplicateLandmark1))
+                .returns(() => duplicateLandmarkLabel);
+            labelFunctionMock
+                .setup(lfm => lfm(duplicateLandmark2))
+                .returns(() => duplicateLandmarkLabel);
+            labelFunctionMock
+                .setup(lfm => lfm(uniqueLandmark))
+                .returns(() => 'some other landmark');
         });
 
         it('false for duplicate landmark', () => {
@@ -129,7 +144,12 @@ describe('axe.Check: unique-landmark', () => {
     }
 
     function expectCheckValue(node, value: boolean): void {
-        expect(uniqueLandmarkConfiguration.checks[0].evaluate.call(checkContext, node)).toBe(value);
+        expect(
+            uniqueLandmarkConfiguration.checks[0].evaluate.call(
+                checkContext,
+                node,
+            ),
+        ).toBe(value);
     }
 
     function createTestFixture(id: string, content: string): HTMLDivElement {

@@ -28,7 +28,10 @@ import {
     TriggeredBy,
     TriggeredByNotApplicable,
 } from './extension-telemetry-events';
-import { ForIssuesAnalyzerScanCallback, ForRuleAnalyzerScanCallback } from './types/analyzer-telemetry-callbacks';
+import {
+    ForIssuesAnalyzerScanCallback,
+    ForRuleAnalyzerScanCallback,
+} from './types/analyzer-telemetry-callbacks';
 import { DetailsViewPivotType } from './types/details-view-pivot-type';
 import { VisualizationType } from './types/visualization-type';
 
@@ -41,7 +44,9 @@ export type SupportedMouseEvent =
     | React.SyntheticEvent<Element, Event>;
 
 export class TelemetryDataFactory {
-    public forVisualizationToggleByCommand(enabled: boolean): ToggleTelemetryData {
+    public forVisualizationToggleByCommand(
+        enabled: boolean,
+    ): ToggleTelemetryData {
         return {
             triggeredBy: 'shortcut',
             enabled,
@@ -49,7 +54,11 @@ export class TelemetryDataFactory {
         };
     }
 
-    public forToggle(event: SupportedMouseEvent, enabled: boolean, source: TelemetryEventSource): ToggleTelemetryData {
+    public forToggle(
+        event: SupportedMouseEvent,
+        enabled: boolean,
+        source: TelemetryEventSource,
+    ): ToggleTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, source),
             enabled,
@@ -82,23 +91,37 @@ export class TelemetryDataFactory {
         };
     }
 
-    public forAddSelector(event: SupportedMouseEvent, inputType: string, source: TelemetryEventSource): ScopingTelemetryData {
+    public forAddSelector(
+        event: SupportedMouseEvent,
+        inputType: string,
+        source: TelemetryEventSource,
+    ): ScopingTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, source),
             inputType,
         };
     }
 
-    public forDeleteSelector(event: SupportedMouseEvent, inputType: string, source: TelemetryEventSource): ScopingTelemetryData {
+    public forDeleteSelector(
+        event: SupportedMouseEvent,
+        inputType: string,
+        source: TelemetryEventSource,
+    ): ScopingTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, source),
             inputType,
         };
     }
 
-    public forSelectDetailsView(event: SupportedMouseEvent, visualizationType: VisualizationType): DetailsViewOpenTelemetryData {
+    public forSelectDetailsView(
+        event: SupportedMouseEvent,
+        visualizationType: VisualizationType,
+    ): DetailsViewOpenTelemetryData {
         return {
-            ...this.withTriggeredByAndSource(event, TelemetryEventSource.DetailsView),
+            ...this.withTriggeredByAndSource(
+                event,
+                TelemetryEventSource.DetailsView,
+            ),
             selectedTest: VisualizationType[visualizationType],
         };
     }
@@ -109,7 +132,10 @@ export class TelemetryDataFactory {
         requirement: string,
     ): RequirementSelectTelemetryData {
         return {
-            ...this.withTriggeredByAndSource(event, TelemetryEventSource.DetailsView),
+            ...this.withTriggeredByAndSource(
+                event,
+                TelemetryEventSource.DetailsView,
+            ),
             selectedTest: VisualizationType[visualizationType],
             selectedRequirement: requirement,
         };
@@ -142,7 +168,9 @@ export class TelemetryDataFactory {
         };
     }
 
-    public forDetailsViewOpened(selectedPivot: DetailsViewPivotType): DetailsViewOpenedTelemetryData {
+    public forDetailsViewOpened(
+        selectedPivot: DetailsViewPivotType,
+    ): DetailsViewOpenedTelemetryData {
         return {
             ...this.fromDetailsViewNoTriggeredBy(),
             selectedDetailsViewPivot: DetailsViewPivotType[selectedPivot],
@@ -160,28 +188,46 @@ export class TelemetryDataFactory {
         };
     }
 
-    public forFileIssueClick(event: SupportedMouseEvent, source: TelemetryEventSource, service: string): FileIssueClickTelemetryData {
+    public forFileIssueClick(
+        event: SupportedMouseEvent,
+        source: TelemetryEventSource,
+        service: string,
+    ): FileIssueClickTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, source),
             service,
         };
     }
 
-    public forInspectElement(event: SupportedMouseEvent, target: string[]): InspectTelemetryData {
+    public forInspectElement(
+        event: SupportedMouseEvent,
+        target: string[],
+    ): InspectTelemetryData {
         return {
-            ...this.withTriggeredByAndSource(event, TelemetryEventSource.IssueDetailsDialog),
+            ...this.withTriggeredByAndSource(
+                event,
+                TelemetryEventSource.IssueDetailsDialog,
+            ),
             target: target,
         };
     }
 
-    public forDetailsViewNavPivotActivated(event: SupportedMouseEvent, pivotKey: string): DetailsViewPivotSelectedTelemetryData {
+    public forDetailsViewNavPivotActivated(
+        event: SupportedMouseEvent,
+        pivotKey: string,
+    ): DetailsViewPivotSelectedTelemetryData {
         return {
-            ...this.withTriggeredByAndSource(event, TelemetryEventSource.DetailsView),
+            ...this.withTriggeredByAndSource(
+                event,
+                TelemetryEventSource.DetailsView,
+            ),
             pivotKey,
         };
     }
 
-    public forAssessmentActionFromDetailsViewNoTriggeredBy(visualizationType: VisualizationType): AssessmentTelemetryData {
+    public forAssessmentActionFromDetailsViewNoTriggeredBy(
+        visualizationType: VisualizationType,
+    ): AssessmentTelemetryData {
         return {
             triggeredBy: TriggeredByNotApplicable,
             source: TelemetryEventSource.DetailsView,
@@ -189,14 +235,23 @@ export class TelemetryDataFactory {
         };
     }
 
-    public forAssessmentActionFromDetailsView(visualizationType: VisualizationType, event: SupportedMouseEvent): AssessmentTelemetryData {
+    public forAssessmentActionFromDetailsView(
+        visualizationType: VisualizationType,
+        event: SupportedMouseEvent,
+    ): AssessmentTelemetryData {
         return {
-            ...this.withTriggeredByAndSource(event, TelemetryEventSource.DetailsView),
+            ...this.withTriggeredByAndSource(
+                event,
+                TelemetryEventSource.DetailsView,
+            ),
             selectedTest: VisualizationType[visualizationType],
         };
     }
 
-    public forRequirementFromDetailsView(test: VisualizationType, requirement: string): RequirementActionTelemetryData {
+    public forRequirementFromDetailsView(
+        test: VisualizationType,
+        requirement: string,
+    ): RequirementActionTelemetryData {
         return {
             triggeredBy: TriggeredByNotApplicable,
             source: TelemetryEventSource.DetailsView,
@@ -205,7 +260,11 @@ export class TelemetryDataFactory {
         };
     }
 
-    public forCancelStartOver(event: SupportedMouseEvent, test: VisualizationType, requirement: string): RequirementSelectTelemetryData {
+    public forCancelStartOver(
+        event: SupportedMouseEvent,
+        test: VisualizationType,
+        requirement: string,
+    ): RequirementSelectTelemetryData {
         return {
             ...this.fromDetailsView(event),
             selectedTest: VisualizationType[test],
@@ -221,18 +280,30 @@ export class TelemetryDataFactory {
     }
 
     public fromDetailsView(event: SupportedMouseEvent): BaseTelemetryData {
-        return this.withTriggeredByAndSource(event, TelemetryEventSource.DetailsView);
+        return this.withTriggeredByAndSource(
+            event,
+            TelemetryEventSource.DetailsView,
+        );
     }
 
     public fromHamburgerMenu(event: SupportedMouseEvent): BaseTelemetryData {
-        return this.withTriggeredByAndSource(event, TelemetryEventSource.HamburgerMenu);
+        return this.withTriggeredByAndSource(
+            event,
+            TelemetryEventSource.HamburgerMenu,
+        );
     }
 
     public fromLaunchPad(event: SupportedMouseEvent): BaseTelemetryData {
-        return this.withTriggeredByAndSource(event, TelemetryEventSource.LaunchPad);
+        return this.withTriggeredByAndSource(
+            event,
+            TelemetryEventSource.LaunchPad,
+        );
     }
 
-    public withTriggeredByAndSource(event: SupportedMouseEvent, source: TelemetryEventSource): BaseTelemetryData {
+    public withTriggeredByAndSource(
+        event: SupportedMouseEvent,
+        source: TelemetryEventSource,
+    ): BaseTelemetryData {
         return {
             triggeredBy: this.getTriggeredBy(event),
             source: source,
@@ -247,14 +318,24 @@ export class TelemetryDataFactory {
         requirementName,
     ) => {
         const telemetry: AssessmentRequirementScanTelemetryData = {
-            ...this.forTestScan(analyzerResult, scanDuration, elementsScanned, testName),
+            ...this.forTestScan(
+                analyzerResult,
+                scanDuration,
+                elementsScanned,
+                testName,
+            ),
             requirementName,
         };
 
         return telemetry;
     };
 
-    public forTestScan: ForRuleAnalyzerScanCallback = (analyzerResult, scanDuration, elementsScanned, testName) => {
+    public forTestScan: ForRuleAnalyzerScanCallback = (
+        analyzerResult,
+        scanDuration,
+        elementsScanned,
+        testName,
+    ) => {
         const telemetry: RuleAnalyzerScanTelemetryData = {
             scanDuration: scanDuration,
             NumberOfElementsScanned: elementsScanned,
@@ -266,11 +347,25 @@ export class TelemetryDataFactory {
         return telemetry;
     };
 
-    public forIssuesAnalyzerScan: ForIssuesAnalyzerScanCallback = (analyzerResult, scanDuration, elementsScanned, testName) => {
-        const passedRuleResults: DictionaryStringTo<number> = this.generateTelemetryRuleResult(analyzerResult.originalResult.passes);
-        const failedRuleResults: DictionaryStringTo<number> = this.generateTelemetryRuleResult(analyzerResult.originalResult.violations);
+    public forIssuesAnalyzerScan: ForIssuesAnalyzerScanCallback = (
+        analyzerResult,
+        scanDuration,
+        elementsScanned,
+        testName,
+    ) => {
+        const passedRuleResults: DictionaryStringTo<number> = this.generateTelemetryRuleResult(
+            analyzerResult.originalResult.passes,
+        );
+        const failedRuleResults: DictionaryStringTo<number> = this.generateTelemetryRuleResult(
+            analyzerResult.originalResult.violations,
+        );
         const telemetry: IssuesAnalyzerScanTelemetryData = {
-            ...this.forTestScan(analyzerResult, scanDuration, elementsScanned, testName),
+            ...this.forTestScan(
+                analyzerResult,
+                scanDuration,
+                elementsScanned,
+                testName,
+            ),
             passedRuleResults: JSON.stringify(passedRuleResults),
             failedRuleResults: JSON.stringify(failedRuleResults),
         };
@@ -290,7 +385,9 @@ export class TelemetryDataFactory {
         return mouseEvent.detail === 0 ? 'keypress' : 'mouseclick';
     }
 
-    private generateTelemetryRuleResult(axeRule: AxeRule[]): DictionaryStringTo<number> {
+    private generateTelemetryRuleResult(
+        axeRule: AxeRule[],
+    ): DictionaryStringTo<number> {
         const ruleResults: DictionaryStringTo<number> = {};
         axeRule.forEach(element => {
             const key: string = element.id;

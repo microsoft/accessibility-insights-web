@@ -8,7 +8,9 @@ import { AxeResultToIssueFilingDataConverter } from '../../../../issue-filing/ru
 describe('AxeResultToIssueFilingDataConverter', () => {
     test('constructor', () => {
         const shortenSelector = selector => 'short';
-        const converter = new AxeResultToIssueFilingDataConverter(shortenSelector);
+        const converter = new AxeResultToIssueFilingDataConverter(
+            shortenSelector,
+        );
         expect(converter).not.toBeNull();
     });
 
@@ -20,7 +22,10 @@ describe('AxeResultToIssueFilingDataConverter', () => {
                     text: 'WCAG-1.4.1',
                     tags: [
                         { id: 'some-id', displayText: 'some displayText' },
-                        { id: 'some-other-id', displayText: 'some other displayText' },
+                        {
+                            id: 'some-other-id',
+                            displayText: 'some other displayText',
+                        },
                     ],
                 },
                 { text: 'wcag-2.8.2' },
@@ -58,7 +63,9 @@ describe('AxeResultToIssueFilingDataConverter', () => {
             .setup(m => m(It.isAnyString()))
             .returns(_ => 'short')
             .verifiable(Times.once());
-        const converter = new AxeResultToIssueFilingDataConverter(shortenSelector.object);
+        const converter = new AxeResultToIssueFilingDataConverter(
+            shortenSelector.object,
+        );
         const textData = converter.convert(result, fakePageTitle, fakePageUrl);
         expect(textData).toEqual(expected);
         shortenSelector.verifyAll();

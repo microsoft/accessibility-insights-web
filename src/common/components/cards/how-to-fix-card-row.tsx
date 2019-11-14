@@ -20,35 +20,47 @@ export interface HowToFixWebCardRowProps extends CardRowProps {
     propertyData: HowToFixWebPropertyData;
 }
 
-export const HowToFixWebCardRow = NamedFC<HowToFixWebCardRowProps>('HowToFixWebCardRow', ({ deps, ...props }) => {
-    const { any: anyOf, all, none } = props.propertyData;
+export const HowToFixWebCardRow = NamedFC<HowToFixWebCardRowProps>(
+    'HowToFixWebCardRow',
+    ({ deps, ...props }) => {
+        const { any: anyOf, all, none } = props.propertyData;
 
-    const renderFixInstructionsContent = () => {
+        const renderFixInstructionsContent = () => {
+            return (
+                <div className={howToFixContent}>
+                    <FixInstructionPanel
+                        deps={deps}
+                        checkType={CheckType.All}
+                        checks={all.concat(none).map(turnStringToMessageObject)}
+                        renderTitleElement={renderFixInstructionsTitleElement}
+                    />
+                    <FixInstructionPanel
+                        deps={deps}
+                        checkType={CheckType.Any}
+                        checks={anyOf.map(turnStringToMessageObject)}
+                        renderTitleElement={renderFixInstructionsTitleElement}
+                    />
+                </div>
+            );
+        };
+
+        const turnStringToMessageObject = (s: string) => {
+            return { message: s };
+        };
+
+        const renderFixInstructionsTitleElement = (
+            titleText: string,
+            className: string,
+        ) => {
+            return <div className={className}>{titleText}</div>;
+        };
+
         return (
-            <div className={howToFixContent}>
-                <FixInstructionPanel
-                    deps={deps}
-                    checkType={CheckType.All}
-                    checks={all.concat(none).map(turnStringToMessageObject)}
-                    renderTitleElement={renderFixInstructionsTitleElement}
-                />
-                <FixInstructionPanel
-                    deps={deps}
-                    checkType={CheckType.Any}
-                    checks={anyOf.map(turnStringToMessageObject)}
-                    renderTitleElement={renderFixInstructionsTitleElement}
-                />
-            </div>
+            <SimpleCardRow
+                label="How to fix"
+                content={renderFixInstructionsContent()}
+                rowKey={`how-to-fix-row-${props.index}`}
+            />
         );
-    };
-
-    const turnStringToMessageObject = (s: string) => {
-        return { message: s };
-    };
-
-    const renderFixInstructionsTitleElement = (titleText: string, className: string) => {
-        return <div className={className}>{titleText}</div>;
-    };
-
-    return <SimpleCardRow label="How to fix" content={renderFixInstructionsContent()} rowKey={`how-to-fix-row-${props.index}`} />;
-});
+    },
+);

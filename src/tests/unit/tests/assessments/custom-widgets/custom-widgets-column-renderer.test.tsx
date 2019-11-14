@@ -52,15 +52,29 @@ describe('CustomWidgetsColumnRenderer', () => {
         expect(designPatternSpan).not.toBeUndefined();
         expect(designPatternSpan.hasClass('property-bag-div')).toBeTruthy();
         expect(designPatternSpan.children()).toHaveLength(2);
-        expect(designPatternSpan.text()).toEqual(`${configs[0].displayName}: ${item.instance.propertyBag.a}`);
+        expect(designPatternSpan.text()).toEqual(
+            `${configs[0].displayName}: ${item.instance.propertyBag.a}`,
+        );
     });
 
     it('should render expected links when role is set', () => {
         const expectedValues = [
-            { designPattern: 'Accordion', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#accordion' },
-            { designPattern: 'Button', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#button' },
-            { designPattern: 'Disclosure (Show/Hide)', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#disclosure' },
-            { designPattern: 'Menu Button', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#menubutton' },
+            {
+                designPattern: 'Accordion',
+                URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#accordion',
+            },
+            {
+                designPattern: 'Button',
+                URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#button',
+            },
+            {
+                designPattern: 'Disclosure (Show/Hide)',
+                URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#disclosure',
+            },
+            {
+                designPattern: 'Menu Button',
+                URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#menubutton',
+            },
         ];
         item.instance.propertyBag.role = 'button';
 
@@ -80,18 +94,30 @@ describe('CustomWidgetsColumnRenderer', () => {
         expect(links).toHaveLength(4);
 
         for (let i = 0; i < links.length; i++) {
-            checkLink(links.get(i), expectedValues[i].designPattern, expectedValues[i].URL);
+            checkLink(
+                links.get(i),
+                expectedValues[i].designPattern,
+                expectedValues[i].URL,
+            );
         }
     });
 
     it('should render expected spans when role is set', () => {
         const expectedValues = [
-            { designPattern: 'Slider', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#slider' },
-            { designPattern: 'Slider (Multi-thumb)', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#sliderwothumb' },
+            {
+                designPattern: 'Slider',
+                URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#slider',
+            },
+            {
+                designPattern: 'Slider (Multi-thumb)',
+                URL:
+                    'https://www.w3.org/TR/wai-aria-practices-1.1/#sliderwothumb',
+            },
         ];
         item.instance.propertyBag.role = 'slider';
 
-        const renderer = () => customWidgetsColumnRenderer(item, configs, false);
+        const renderer = () =>
+            customWidgetsColumnRenderer(item, configs, false);
 
         const wrapper = shallow(<RendererWrapper render={renderer} />);
 
@@ -102,11 +128,17 @@ describe('CustomWidgetsColumnRenderer', () => {
         expect(spans).toHaveLength(2);
 
         for (let i = 0; i < spans.length; i++) {
-            expect(spans.get(i).props.children).toEqual(expectedValues[i].designPattern);
+            expect(spans.get(i).props.children).toEqual(
+                expectedValues[i].designPattern,
+            );
         }
     });
 
-    function checkLink(link: React.ReactElement<any>, name: string, url: string): void {
+    function checkLink(
+        link: React.ReactElement<any>,
+        name: string,
+        url: string,
+    ): void {
         expect(link.props.href).toEqual(url);
         expect(link.props.children).toEqual(name);
     }

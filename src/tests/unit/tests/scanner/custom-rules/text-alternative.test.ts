@@ -1,7 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Axe from 'axe-core';
-import { GlobalMock, GlobalScope, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import {
+    GlobalMock,
+    GlobalScope,
+    IMock,
+    It,
+    Mock,
+    MockBehavior,
+    Times,
+} from 'typemoq';
 
 import * as AxeUtils from '../../../../../scanner/axe-utils';
 import { textAlternativeConfiguration } from '../../../../../scanner/custom-rules/text-alternative';
@@ -9,13 +17,19 @@ import { textAlternativeConfiguration } from '../../../../../scanner/custom-rule
 describe('text alternative', () => {
     describe('verify text alternative configs', () => {
         it('should have correct props', () => {
-            expect(textAlternativeConfiguration.rule.id).toBe('accessible-image');
+            expect(textAlternativeConfiguration.rule.id).toBe(
+                'accessible-image',
+            );
             expect(textAlternativeConfiguration.rule.selector).toBe('*');
-            expect(textAlternativeConfiguration.rule.any[0]).toBe('text-alternative-data-collector');
+            expect(textAlternativeConfiguration.rule.any[0]).toBe(
+                'text-alternative-data-collector',
+            );
             expect(textAlternativeConfiguration.rule.all).toEqual([]);
             expect(textAlternativeConfiguration.rule.all.length).toBe(0);
             expect(textAlternativeConfiguration.rule.any.length).toBe(1);
-            expect(textAlternativeConfiguration.checks[0].id).toBe('text-alternative-data-collector');
+            expect(textAlternativeConfiguration.checks[0].id).toBe(
+                'text-alternative-data-collector',
+            );
         });
     });
 
@@ -41,9 +55,13 @@ describe('text alternative', () => {
 
             const element1 = fixture.querySelector('#el1');
 
-            axeReference._tree = axeReference.utils.getFlattenedTree(document.documentElement);
+            axeReference._tree = axeReference.utils.getFlattenedTree(
+                document.documentElement,
+            );
 
-            expect(textAlternativeConfiguration.rule.matches(element1, null)).toBeTruthy();
+            expect(
+                textAlternativeConfiguration.rule.matches(element1, null),
+            ).toBeTruthy();
         });
 
         it('should not match img elements with alt = "" ', () => {
@@ -55,9 +73,13 @@ describe('text alternative', () => {
 
             const element2 = fixture.querySelector('#el2');
 
-            axeReference._tree = axeReference.utils.getFlattenedTree(document.documentElement);
+            axeReference._tree = axeReference.utils.getFlattenedTree(
+                document.documentElement,
+            );
 
-            expect(textAlternativeConfiguration.rule.matches(element2, null)).toBeFalsy();
+            expect(
+                textAlternativeConfiguration.rule.matches(element2, null),
+            ).toBeFalsy();
         });
 
         it('should match img elements with space as alt', () => {
@@ -67,9 +89,13 @@ describe('text alternative', () => {
 
             const element = fixture.querySelector('#el1');
 
-            axeReference._tree = axeReference.utils.getFlattenedTree(document.documentElement);
+            axeReference._tree = axeReference.utils.getFlattenedTree(
+                document.documentElement,
+            );
 
-            expect(textAlternativeConfiguration.rule.matches(element, null)).toBeTruthy();
+            expect(
+                textAlternativeConfiguration.rule.matches(element, null),
+            ).toBeTruthy();
         });
     });
 
@@ -99,14 +125,21 @@ describe('text alternative', () => {
                 <div id="el1" alt="hello"></div>
             `;
             const element1 = fixture.querySelector('#el1');
-            axeReference._tree = axeReference.utils.getFlattenedTree(document.documentElement);
+            axeReference._tree = axeReference.utils.getFlattenedTree(
+                document.documentElement,
+            );
 
-            getAccessibleDescriptionMock.setup(getter => getter(It.isAny())).returns(() => '');
+            getAccessibleDescriptionMock
+                .setup(getter => getter(It.isAny()))
+                .returns(() => '');
 
             dataSetterMock.setup(d => d(It.isAny()));
             let result;
             GlobalScope.using(getAccessibleDescriptionMock).with(() => {
-                result = textAlternativeConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, element1);
+                result = textAlternativeConfiguration.checks[0].evaluate.call(
+                    { data: dataSetterMock.object },
+                    element1,
+                );
             });
             expect(result).toBe(true);
         });
@@ -120,18 +153,27 @@ describe('text alternative', () => {
 
             const element1 = fixture.querySelector('#el1');
 
-            axeReference._tree = axeReference.utils.getFlattenedTree(document.documentElement);
-            getAccessibleDescriptionMock.setup(geter => geter(It.isAny())).returns(() => 'hello');
+            axeReference._tree = axeReference.utils.getFlattenedTree(
+                document.documentElement,
+            );
+            getAccessibleDescriptionMock
+                .setup(geter => geter(It.isAny()))
+                .returns(() => 'hello');
 
             const expectedData = {
                 imageType: '<img>',
                 accessibleName: 'accessibleName',
                 accessibleDescription: 'hello',
             };
-            dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
+            dataSetterMock
+                .setup(d => d(It.isValue(expectedData)))
+                .verifiable(Times.once());
             let result;
             GlobalScope.using(getAccessibleDescriptionMock).with(() => {
-                result = textAlternativeConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, element1);
+                result = textAlternativeConfiguration.checks[0].evaluate.call(
+                    { data: dataSetterMock.object },
+                    element1,
+                );
             });
             expect(result).toBe(true);
             dataSetterMock.verifyAll();

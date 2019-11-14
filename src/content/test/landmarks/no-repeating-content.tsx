@@ -5,18 +5,23 @@ import { create, React } from '../../common';
 export const infoAndExamples = create(({ Markup }) => (
     <>
         <h1>No repeating content</h1>
-        <p>The main landmark must not contain any blocks of content that repeat across pages.</p>
+        <p>
+            The main landmark must not contain any blocks of content that repeat
+            across pages.
+        </p>
 
         <h2>Why it matters</h2>
         <p>
-            People with good vision can quickly skip over blocks of content that repeat on multiple pages (such as site navigation links) to
-            get to the page's primary content. Users of assistive technologies can't easily skip over repeating content within the main
-            landmark.
+            People with good vision can quickly skip over blocks of content that
+            repeat on multiple pages (such as site navigation links) to get to
+            the page's primary content. Users of assistive technologies can't
+            easily skip over repeating content within the main landmark.
         </p>
 
         <h2>How to fix</h2>
         <p>
-            Re-implement so no repeating blocks of content are contained within the <Markup.Term>main</Markup.Term> landmark.
+            Re-implement so no repeating blocks of content are contained within
+            the <Markup.Term>main</Markup.Term> landmark.
         </p>
 
         <h2>Example</h2>
@@ -24,7 +29,9 @@ export const infoAndExamples = create(({ Markup }) => (
         <Markup.PassFail
             failText={
                 <p>
-                    Site navigation links, which appear on every page, are contained within the <Markup.Term>main</Markup.Term> landmark.
+                    Site navigation links, which appear on every page, are
+                    contained within the <Markup.Term>main</Markup.Term>{' '}
+                    landmark.
                 </p>
             }
             failExample={`<header>…</header>
@@ -37,7 +44,8 @@ export const infoAndExamples = create(({ Markup }) => (
             <footer>…</footer>`}
             passText={
                 <p>
-                    The site navigation links precede the <Markup.Term>main</Markup.Term> landmark.
+                    The site navigation links precede the{' '}
+                    <Markup.Term>main</Markup.Term> landmark.
                 </p>
             }
             passExample={`<header>…</header>

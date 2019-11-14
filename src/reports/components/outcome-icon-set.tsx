@@ -6,7 +6,10 @@ import * as React from 'react';
 
 import { OutcomeIcon } from './outcome-icon';
 import { outcomeTypeSemantics } from './outcome-type';
-import { allRequirementOutcomeTypes, RequirementOutcomeStats } from './requirement-outcome-type';
+import {
+    allRequirementOutcomeTypes,
+    RequirementOutcomeStats,
+} from './requirement-outcome-type';
 
 function getText(stats: RequirementOutcomeStats): string {
     function textForOutcome(outcomeType): string {
@@ -17,19 +20,27 @@ function getText(stats: RequirementOutcomeStats): string {
     return join(allRequirementOutcomeTypes.map(textForOutcome), ', ');
 }
 
-export const OutcomeIconSet = NamedFC<RequirementOutcomeStats>('OutcomeIconSet', props => {
-    const text = getText(props);
+export const OutcomeIconSet = NamedFC<RequirementOutcomeStats>(
+    'OutcomeIconSet',
+    props => {
+        const text = getText(props);
 
-    return (
-        <div className="outcome-icon-set" title={text}>
-            {allRequirementOutcomeTypes.map(outcomeType =>
-                times(props[outcomeType], index => (
-                    <span className={'outcome-icon outcome-icon-' + outcomeType} key={`outcome-icon-index-${index}`}>
-                        <OutcomeIcon outcomeType={outcomeType} />
-                    </span>
-                )),
-            )}
-            <span className="screen-reader-only">{text}</span>
-        </div>
-    );
-});
+        return (
+            <div className="outcome-icon-set" title={text}>
+                {allRequirementOutcomeTypes.map(outcomeType =>
+                    times(props[outcomeType], index => (
+                        <span
+                            className={
+                                'outcome-icon outcome-icon-' + outcomeType
+                            }
+                            key={`outcome-icon-index-${index}`}
+                        >
+                            <OutcomeIcon outcomeType={outcomeType} />
+                        </span>
+                    )),
+                )}
+                <span className="screen-reader-only">{text}</span>
+            </div>
+        );
+    },
+);

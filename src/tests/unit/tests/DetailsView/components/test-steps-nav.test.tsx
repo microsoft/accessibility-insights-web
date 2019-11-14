@@ -12,12 +12,21 @@ import { outcomeTypeSemanticsFromTestStatus } from 'reports/components/requireme
 import { getInnerTextFromJsxElement } from '../../../../../common/get-inner-text-from-jsx-element';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import { TestStepNavProps, TestStepsNav } from '../../../../../DetailsView/components/test-steps-nav';
+import {
+    TestStepNavProps,
+    TestStepsNav,
+} from '../../../../../DetailsView/components/test-steps-nav';
 import { EventStubFactory } from '../../../common/event-stub-factory';
-import { CreateTestAssessmentProvider, CreateTestAssessmentProviderAutomated } from '../../../common/test-assessment-provider';
+import {
+    CreateTestAssessmentProvider,
+    CreateTestAssessmentProviderAutomated,
+} from '../../../common/test-assessment-provider';
 
 class TestableTestStepsNav extends TestStepsNav {
-    public getOnTestStepSelected(): (event?: React.MouseEvent<HTMLElement>, item?: INavLink) => void {
+    public getOnTestStepSelected(): (
+        event?: React.MouseEvent<HTMLElement>,
+        item?: INavLink,
+    ) => void {
         return this.onTestStepSelected;
     }
 
@@ -37,7 +46,9 @@ describe('TestStepsNav', () => {
 
     function runTest(assessmentProvider: AssessmentsProvider): void {
         const eventFactory = new EventStubFactory();
-        const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+        const actionMessageCreatorMock = Mock.ofType(
+            DetailsViewActionMessageCreator,
+        );
         const eventStub = eventFactory.createKeypressEvent() as any;
 
         const all = assessmentProvider.all();
@@ -51,12 +62,14 @@ describe('TestStepsNav', () => {
             url: '',
             index: 1,
             forceAnchor: true,
-            renderRequirementDescription: firstStep.renderRequirementDescription,
+            renderRequirementDescription:
+                firstStep.renderRequirementDescription,
         };
 
         const props: TestStepNavProps = {
             deps: {
-                detailsViewActionMessageCreator: actionMessageCreatorMock.object,
+                detailsViewActionMessageCreator:
+                    actionMessageCreatorMock.object,
                 assessmentsProvider: assessmentProvider,
                 getInnerTextFromJsxElement: getInnerTextFromJsxElementStub(),
                 outcomeTypeSemanticsFromTestStatus: createOutcomeTypeSemanticsFromTestStatusStub(),
@@ -70,7 +83,11 @@ describe('TestStepsNav', () => {
 
         generateStepStatus(assessment.requirements, props);
 
-        actionMessageCreatorMock.setup(a => a.selectRequirement(eventStub, item.key, props.selectedTest)).verifiable(Times.once());
+        actionMessageCreatorMock
+            .setup(a =>
+                a.selectRequirement(eventStub, item.key, props.selectedTest),
+            )
+            .verifiable(Times.once());
 
         const component = React.createElement(TestableTestStepsNav, props);
         const testObject = TestUtils.renderIntoDocument(component);
@@ -78,21 +95,31 @@ describe('TestStepsNav', () => {
         rendered.props.onLinkClick(eventStub, item);
 
         expect(rendered).toMatchSnapshot('render');
-        expect(testObject.getRenderNavLink()(item)).toMatchSnapshot('getRenderNavLink');
+        expect(testObject.getRenderNavLink()(item)).toMatchSnapshot(
+            'getRenderNavLink',
+        );
         actionMessageCreatorMock.verifyAll();
     }
 
-    function generateStepStatus(testSteps: Requirement[], props: TestStepNavProps): void {
+    function generateStepStatus(
+        testSteps: Requirement[],
+        props: TestStepNavProps,
+    ): void {
         testSteps.forEach((step, index) => {
             props.stepStatus[step.key] = {
-                stepFinalResult: index % 2 === 0 ? ManualTestStatus.UNKNOWN : ManualTestStatus.PASS,
+                stepFinalResult:
+                    index % 2 === 0
+                        ? ManualTestStatus.UNKNOWN
+                        : ManualTestStatus.PASS,
                 isStepScanned: false,
                 name: step.name,
             };
         });
     }
     function createOutcomeTypeSemanticsFromTestStatusStub(): typeof outcomeTypeSemanticsFromTestStatus {
-        const outcomeTypeSemanticsFromTestStatusMock = Mock.ofInstance(outcomeTypeSemanticsFromTestStatus);
+        const outcomeTypeSemanticsFromTestStatusMock = Mock.ofInstance(
+            outcomeTypeSemanticsFromTestStatus,
+        );
 
         outcomeTypeSemanticsFromTestStatusMock
             .setup(f => f(ManualTestStatus.PASS))

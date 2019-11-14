@@ -4,4 +4,6 @@ import * as React from 'react';
 
 import { NamedFC } from '../react/named-fc';
 
-export const CircleIcon = NamedFC('CircleIcon', () => <span className="check-container" />);
+export const CircleIcon = NamedFC('CircleIcon', () => (
+    <span className="check-container" />
+));

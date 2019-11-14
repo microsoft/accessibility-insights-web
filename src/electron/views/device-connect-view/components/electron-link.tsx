@@ -11,6 +11,9 @@ export type ElectronLinkProps = {
     children: React.ReactNode;
 };
 
-export const ElectronLink = NamedFC<ElectronLinkProps>('ElectronLink', props => {
-    return <ElectronExternalLink {...props} shell={shell} />;
-});
+export const ElectronLink = NamedFC<ElectronLinkProps>(
+    'ElectronLink',
+    props => {
+        return <ElectronExternalLink {...props} shell={shell} />;
+    },
+);

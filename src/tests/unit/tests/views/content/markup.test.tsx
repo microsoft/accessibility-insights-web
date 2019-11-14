@@ -9,8 +9,12 @@ import { create } from '../../../../../../src/content/common';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
 
 describe('ContentPage', () => {
-    const contentActionMessageCreatorMock = Mock.ofType<ContentActionMessageCreator>();
-    const deps = { contentActionMessageCreator: contentActionMessageCreatorMock.object };
+    const contentActionMessageCreatorMock = Mock.ofType<
+        ContentActionMessageCreator
+    >();
+    const deps = {
+        contentActionMessageCreator: contentActionMessageCreatorMock.object,
+    };
 
     beforeEach(() => {
         contentActionMessageCreatorMock.reset();
@@ -51,7 +55,9 @@ describe('ContentPage', () => {
         );
 
         it('<LandmarkLegend> renders', () => {
-            const wrapper = shallow(<LandmarkLegend role="main">TEST</LandmarkLegend>);
+            const wrapper = shallow(
+                <LandmarkLegend role="main">TEST</LandmarkLegend>,
+            );
             expect(wrapper.getElement()).toMatchSnapshot();
         });
 
@@ -133,7 +139,11 @@ describe('ContentPage', () => {
                 const wrapper = shallow(
                     <PassFail
                         failText={<p>I FAILED :(</p>}
-                        failExample={<CodeExample title="How I failed">This is the failure [example].</CodeExample>}
+                        failExample={
+                            <CodeExample title="How I failed">
+                                This is the failure [example].
+                            </CodeExample>
+                        }
                         passText={<p>I PASSED!</p>}
                         passExample={
                             <CodeExample
@@ -155,7 +165,9 @@ describe('ContentPage', () => {
         describe('<HyperLink>', () => {
             const href = 'http://my.link';
 
-            const wrapper = shallow(<HyperLink href={href}>LINK TEXT</HyperLink>);
+            const wrapper = shallow(
+                <HyperLink href={href}>LINK TEXT</HyperLink>,
+            );
 
             it('renders', () => {
                 expect(wrapper.getElement()).toMatchSnapshot();
@@ -164,7 +176,10 @@ describe('ContentPage', () => {
             it('registers click with event', () => {
                 wrapper.simulate('click');
 
-                contentActionMessageCreatorMock.verify(m => m.openContentHyperLink(It.isAny(), href), Times.once());
+                contentActionMessageCreatorMock.verify(
+                    m => m.openContentHyperLink(It.isAny(), href),
+                    Times.once(),
+                );
             });
         });
 

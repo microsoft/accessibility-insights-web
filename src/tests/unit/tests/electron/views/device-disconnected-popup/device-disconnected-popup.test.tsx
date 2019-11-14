@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DeviceDisconnectedPopup, DeviceDisconnectedPopupProps } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
+import {
+    DeviceDisconnectedPopup,
+    DeviceDisconnectedPopupProps,
+} from 'electron/views/device-disconnected-popup/device-disconnected-popup';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 

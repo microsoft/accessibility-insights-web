@@ -15,7 +15,11 @@ export class StoreTester<TStoreData, TActions> {
     private storeFactory: (actions) => BaseStoreImpl<TStoreData>;
     private postListenerMock: IMock<any>;
 
-    constructor(actions: DefaultConstructor<TActions>, actionName: keyof TActions, storeFactory: (actions) => BaseStoreImpl<TStoreData>) {
+    constructor(
+        actions: DefaultConstructor<TActions>,
+        actionName: keyof TActions,
+        storeFactory: (actions) => BaseStoreImpl<TStoreData>,
+    ) {
         this.actionName = actionName as string;
         this.storeFactory = storeFactory;
         this.actions = actions;
@@ -26,20 +30,32 @@ export class StoreTester<TStoreData, TActions> {
         return this;
     }
 
-    public withPostListenerMock(mock: IMock<any>): StoreTester<TStoreData, TActions> {
+    public withPostListenerMock(
+        mock: IMock<any>,
+    ): StoreTester<TStoreData, TActions> {
         this.postListenerMock = mock;
         return this;
     }
 
-    public testListenerToNeverBeCalled(initial: TStoreData, expected: TStoreData): void {
+    public testListenerToNeverBeCalled(
+        initial: TStoreData,
+        expected: TStoreData,
+    ): void {
         this.testListenerToBeCalled(initial, expected, Times.never());
     }
 
-    public testListenerToBeCalledOnce(initial: TStoreData, expected: TStoreData): void {
+    public testListenerToBeCalledOnce(
+        initial: TStoreData,
+        expected: TStoreData,
+    ): void {
         this.testListenerToBeCalled(initial, expected, Times.once());
     }
 
-    public testListenerToBeCalled(initial: TStoreData, expected: TStoreData, times: Times): void {
+    public testListenerToBeCalled(
+        initial: TStoreData,
+        expected: TStoreData,
+        times: Times,
+    ): void {
         const actionsMock = this.createActionsMock();
 
         const testObject = this.storeFactory(actionsMock.object);
@@ -69,7 +85,9 @@ export class StoreTester<TStoreData, TActions> {
         const actionMock = this.createActionMock();
 
         const actionsMock = Mock.ofType(this.actions, MockBehavior.Loose);
-        actionsMock.setup(a => a[this.actionName]).returns(() => actionMock.object);
+        actionsMock
+            .setup(a => a[this.actionName])
+            .returns(() => actionMock.object);
 
         return actionsMock;
     }
@@ -77,21 +95,34 @@ export class StoreTester<TStoreData, TActions> {
     private createActionMock(): IMock<Action<{}>> {
         const actionMock = Mock.ofType(Action);
 
-        actionMock.setup(a => a.addListener(It.is(param => param instanceof Function))).callback(listener => (this.listener = listener));
+        actionMock
+            .setup(a =>
+                a.addListener(It.is(param => param instanceof Function)),
+            )
+            .callback(listener => (this.listener = listener));
 
         return actionMock;
     }
 
-    private createChangeListener(store: BaseStore<TStoreData>, times: Times): IMock<(store, args) => void> {
+    private createChangeListener(
+        store: BaseStore<TStoreData>,
+        times: Times,
+    ): IMock<(store, args) => void> {
         const listenerMock = Mock.ofInstance((theStore, args) => {});
 
-        listenerMock.setup(l => l(this.isSameStoreTypeMatcher(store), It.isAny())).verifiable(times);
+        listenerMock
+            .setup(l => l(this.isSameStoreTypeMatcher(store), It.isAny()))
+            .verifiable(times);
 
         return listenerMock;
     }
 
-    private isSameStoreTypeMatcher(expectedStore: BaseStore<TStoreData>): BaseStore<TStoreData> {
-        return It.is(actualStore => expectedStore.getId() === actualStore.getId());
+    private isSameStoreTypeMatcher(
+        expectedStore: BaseStore<TStoreData>,
+    ): BaseStore<TStoreData> {
+        return It.is(
+            actualStore => expectedStore.getId() === actualStore.getId(),
+        );
     }
 }
 
@@ -100,6 +131,8 @@ export type CtorWithArgs<T> = {
     prototype: Object;
 };
 
-export function createStoreWithNullParams<TStore>(ctor: CtorWithArgs<TStore>): TStore {
+export function createStoreWithNullParams<TStore>(
+    ctor: CtorWithArgs<TStore>,
+): TStore {
     return new ctor();
 }

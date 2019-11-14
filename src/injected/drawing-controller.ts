@@ -7,7 +7,10 @@ import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-st
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryNumberTo } from '../types/common-types';
 import { ErrorMessageContent } from './frameCommunicators/error-message-content';
-import { FrameCommunicator, MessageRequest } from './frameCommunicators/frame-communicator';
+import {
+    FrameCommunicator,
+    MessageRequest,
+} from './frameCommunicators/frame-communicator';
 import {
     AssessmentVisualizationInstance,
     HtmlElementAxeResultsHelper,
@@ -38,7 +41,10 @@ export class DrawingController {
     ) {}
 
     public initialize(): void {
-        this.frameCommunicator.subscribe(DrawingController.triggerVisualizationCommand, this.onTriggerVisualization);
+        this.frameCommunicator.subscribe(
+            DrawingController.triggerVisualizationCommand,
+            this.onTriggerVisualization,
+        );
     }
 
     public registerDrawer: RegisterDrawer = (id: string, drawer: Drawer) => {
@@ -52,7 +58,9 @@ export class DrawingController {
         this.featureFlagStoreData = message.featureFlagStoreData;
         if (message.isEnabled) {
             const elementResultsByFrames = message.elementResults
-                ? this.axeResultsHelper.splitResultsByFrame(message.elementResults)
+                ? this.axeResultsHelper.splitResultsByFrame(
+                      message.elementResults,
+                  )
                 : null;
             this.enableVisualization(elementResultsByFrames, message.configId);
         } else {
@@ -70,14 +78,24 @@ export class DrawingController {
         this.invokeMethodIfExists(responder, null);
     };
 
-    private enableVisualization(elementResultsByFrames: HTMLIFrameResult[], configId: string): void {
+    private enableVisualization(
+        elementResultsByFrames: HTMLIFrameResult[],
+        configId: string,
+    ): void {
         if (elementResultsByFrames) {
             for (let pos = 0; pos < elementResultsByFrames.length; pos++) {
                 const resultsForFrame = elementResultsByFrames[pos];
                 if (resultsForFrame.frame == null) {
-                    this.enableVisualizationInCurrentFrame(resultsForFrame.elementResults, configId);
+                    this.enableVisualizationInCurrentFrame(
+                        resultsForFrame.elementResults,
+                        configId,
+                    );
                 } else {
-                    this.enableVisualizationInIFrames(resultsForFrame.frame, resultsForFrame.elementResults, configId);
+                    this.enableVisualizationInIFrames(
+                        resultsForFrame.frame,
+                        resultsForFrame.elementResults,
+                        configId,
+                    );
                 }
             }
         } else {
@@ -90,7 +108,10 @@ export class DrawingController {
         }
     }
 
-    private enableVisualizationInCurrentFrame(currentFrameResults: AssessmentVisualizationInstance[], configId: string): void {
+    private enableVisualizationInCurrentFrame(
+        currentFrameResults: AssessmentVisualizationInstance[],
+        configId: string,
+    ): void {
         const drawer = this.getDrawer(configId);
         drawer.initialize({
             data: this.getInitialElements(currentFrameResults),
@@ -111,7 +132,9 @@ export class DrawingController {
             configId: configId,
         };
 
-        this.frameCommunicator.sendMessage(this.createFrameRequestMessage(frame, message));
+        this.frameCommunicator.sendMessage(
+            this.createFrameRequestMessage(frame, message),
+        );
     }
 
     private disableVisualization(configId: string): void {
@@ -141,7 +164,9 @@ export class DrawingController {
                     configId: configId,
                 };
 
-                this.frameCommunicator.sendMessage(this.createFrameRequestMessage(iframe, message));
+                this.frameCommunicator.sendMessage(
+                    this.createFrameRequestMessage(iframe, message),
+                );
             }
         }
     }
@@ -152,7 +177,9 @@ export class DrawingController {
     }
 
     private getAllFrames(): HTMLCollectionOf<HTMLIFrameElement> {
-        return this.htmlElementUtils.getAllElementsByTagName('iframe') as HTMLCollectionOf<HTMLIFrameElement>;
+        return this.htmlElementUtils.getAllElementsByTagName(
+            'iframe',
+        ) as HTMLCollectionOf<HTMLIFrameElement>;
     }
 
     private getDrawer(configId: string): Drawer {
@@ -165,7 +192,9 @@ export class DrawingController {
         }
     }
 
-    private getInitialElements(currentFrameResults: AssessmentVisualizationInstance[]): AssessmentVisualizationInstance[] {
+    private getInitialElements(
+        currentFrameResults: AssessmentVisualizationInstance[],
+    ): AssessmentVisualizationInstance[] {
         if (currentFrameResults == null) {
             return null;
         }

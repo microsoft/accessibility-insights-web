@@ -15,16 +15,22 @@ export class StateDispatcher {
     }
 
     public initialize(): void {
-        this.stores.getAllStores().forEach(store => this.addDispatchListenerToStore(store));
+        this.stores
+            .getAllStores()
+            .forEach(store => this.addDispatchListenerToStore(store));
     }
 
     private addDispatchListenerToStore(store: BaseStore<any>): void {
-        const dispatchStateUpdateDelegate = this.getDispatchStateUpdateEvent(store);
+        const dispatchStateUpdateDelegate = this.getDispatchStateUpdateEvent(
+            store,
+        );
         store.addChangedListener(dispatchStateUpdateDelegate);
         dispatchStateUpdateDelegate();
     }
 
-    private getDispatchStateUpdateEvent = (store: BaseStore<any>): (() => void) => {
+    private getDispatchStateUpdateEvent = (
+        store: BaseStore<any>,
+    ): (() => void) => {
         return () => {
             this.broadcastMessage({
                 isStoreUpdateMessage: true,

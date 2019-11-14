@@ -15,7 +15,13 @@ import * as React from 'react';
 const { guidance, extraGuidance } = content.tabstops;
 
 export const TabStopsAdHocVisualization: VisualizationConfiguration = {
-    getTestView: props => <AdhocStaticTestView content={createHowToTest(2)} guidance={extraGuidance} {...props} />,
+    getTestView: props => (
+        <AdhocStaticTestView
+            content={createHowToTest(2)}
+            guidance={extraGuidance}
+            {...props}
+        />
+    ),
     key: AdHocTestkeys.TabStops,
     testMode: TestMode.Adhoc,
     getStoreData: data => data.adhoc.tabStops,
@@ -31,20 +37,26 @@ export const TabStopsAdHocVisualization: VisualizationConfiguration = {
     chromeCommand: '04_toggle-tabStops',
     launchPanelDisplayOrder: 4,
     adhocToolsPanelDisplayOrder: 5,
-    analyzerProgressMessageType: Messages.Visualizations.TabStops.TabbedElementAdded,
-    analyzerTerminatedMessageType: Messages.Visualizations.TabStops.TerminateScan,
+    analyzerProgressMessageType:
+        Messages.Visualizations.TabStops.TabbedElementAdded,
+    analyzerTerminatedMessageType:
+        Messages.Visualizations.TabStops.TerminateScan,
     getAnalyzer: provider =>
         provider.createFocusTrackingAnalyzer({
             key: AdHocTestkeys.TabStops,
             testType: VisualizationType.TabStops,
             analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
-            analyzerProgressMessageType: Messages.Visualizations.TabStops.TabbedElementAdded,
-            analyzerTerminatedMessageType: Messages.Visualizations.TabStops.TerminateScan,
+            analyzerProgressMessageType:
+                Messages.Visualizations.TabStops.TabbedElementAdded,
+            analyzerTerminatedMessageType:
+                Messages.Visualizations.TabStops.TerminateScan,
         }),
     getIdentifier: () => AdHocTestkeys.TabStops,
-    visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
+    visualizationInstanceProcessor: () =>
+        VisualizationInstanceProcessor.nullProcessor,
     getDrawer: provider => provider.createSVGDrawer(),
-    getNotificationMessage: selectorMap => 'Start pressing Tab to start visualizing tab stops.',
+    getNotificationMessage: selectorMap =>
+        'Start pressing Tab to start visualizing tab stops.',
     getSwitchToTargetTabOnScan: () => true,
     getInstanceIdentiferGenerator: () => generateUID,
     guidance,

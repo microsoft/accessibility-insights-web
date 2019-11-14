@@ -15,7 +15,9 @@ import { AssessmentReportBuilderTestHelper } from '../../DetailsView/assessment-
 
 describe('AssessmentReportAssessmentListTest', () => {
     const deps: AssessmentReportAssessmentListDeps = {
-        outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
+        outcomeTypeSemanticsFromTestStatus: {
+            stub: 'outcomeTypeSemanticsFromTestStatus',
+        } as any,
     } as AssessmentReportStepListDeps;
 
     test('render: pass', () => {
@@ -48,8 +50,12 @@ describe('AssessmentReportAssessmentListTest', () => {
         testAssessments(assessments);
     });
 
-    function testAssessments(assessments: AssessmentReportAssessmentListProps): void {
-        const wrapper = Enzyme.shallow(<AssessmentReportAssessmentList {...assessments} />);
+    function testAssessments(
+        assessments: AssessmentReportAssessmentListProps,
+    ): void {
+        const wrapper = Enzyme.shallow(
+            <AssessmentReportAssessmentList {...assessments} />,
+        );
 
         assessments.assessments.forEach((assessment, index) => {
             const assessmentDiv = wrapper.childAt(index);
@@ -63,7 +69,10 @@ describe('AssessmentReportAssessmentListTest', () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     }
 
-    function testAssessmentHeader(assessment: AssessmentDetailsReportModel, assessmentHeader: Enzyme.ShallowWrapper<any, any>): void {
+    function testAssessmentHeader(
+        assessment: AssessmentDetailsReportModel,
+        assessmentHeader: Enzyme.ShallowWrapper<any, any>,
+    ): void {
         expect(assessmentHeader.hasClass('assessment-header')).toBe(true);
         expect(assessmentHeader.children()).toHaveLength(2);
 

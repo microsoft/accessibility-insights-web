@@ -20,7 +20,10 @@ describe('Preview Features Panel', () => {
         beforeAll(async () => {
             browser = await launchBrowser({ suppressFirstTimeDialog: true });
             targetPage = await browser.newTargetPage();
-            detailsViewPage = await openPreviewFeaturesPanel(browser, targetPage);
+            detailsViewPage = await openPreviewFeaturesPanel(
+                browser,
+                targetPage,
+            );
         });
 
         afterAll(async () => {
@@ -31,12 +34,18 @@ describe('Preview Features Panel', () => {
         });
 
         it('should match content in snapshot', async () => {
-            const previewFeaturesPanel = await formatPageElementForSnapshot(detailsViewPage, detailsViewSelectors.previewFeaturesPanel);
+            const previewFeaturesPanel = await formatPageElementForSnapshot(
+                detailsViewPage,
+                detailsViewSelectors.previewFeaturesPanel,
+            );
             expect(previewFeaturesPanel).toMatchSnapshot();
         });
 
         it('should pass accessibility validation', async () => {
-            const results = await scanForAccessibilityIssues(detailsViewPage, detailsViewSelectors.previewFeaturesPanel);
+            const results = await scanForAccessibilityIssues(
+                detailsViewPage,
+                detailsViewSelectors.previewFeaturesPanel,
+            );
             expect(results).toHaveLength(0);
         });
     });
@@ -51,7 +60,10 @@ describe('Preview Features Panel', () => {
 
             await setupHighContrastMode();
 
-            detailsViewPage = await openPreviewFeaturesPanel(browser, targetPage);
+            detailsViewPage = await openPreviewFeaturesPanel(
+                browser,
+                targetPage,
+            );
         });
 
         afterAll(async () => {
@@ -62,23 +74,35 @@ describe('Preview Features Panel', () => {
         });
 
         it('should pass accessibility validation', async () => {
-            const results = await scanForAccessibilityIssues(detailsViewPage, detailsViewSelectors.previewFeaturesPanel);
+            const results = await scanForAccessibilityIssues(
+                detailsViewPage,
+                detailsViewSelectors.previewFeaturesPanel,
+            );
             expect(results).toHaveLength(0);
         });
 
         async function setupHighContrastMode(): Promise<void> {
-            const tempDetailsViewPage = await browser.newDetailsViewPage(targetPage);
+            const tempDetailsViewPage = await browser.newDetailsViewPage(
+                targetPage,
+            );
             await tempDetailsViewPage.enableHighContrast();
             await tempDetailsViewPage.close();
         }
     });
 
-    async function openPreviewFeaturesPanel(browser: Browser, targetPage: TargetPage): Promise<DetailsViewPage> {
+    async function openPreviewFeaturesPanel(
+        browser: Browser,
+        targetPage: TargetPage,
+    ): Promise<DetailsViewPage> {
         const popupPage = await browser.newPopupPage(targetPage);
 
         await popupPage.clickSelector(CommonSelectors.settingsGearButton);
 
-        const detailsViewPage = await waitForDetailsViewWithPreviewFeaturesPanel(browser, popupPage, targetPage);
+        const detailsViewPage = await waitForDetailsViewWithPreviewFeaturesPanel(
+            browser,
+            popupPage,
+            targetPage,
+        );
 
         await detailsViewPage.waitForId(componentId);
 
@@ -93,8 +117,12 @@ describe('Preview Features Panel', () => {
         let detailsViewPage: DetailsViewPage;
 
         await Promise.all([
-            browser.waitForDetailsViewPage(targetPage).then(page => (detailsViewPage = page)),
-            popupPage.clickSelector(CommonSelectors.previewFeaturesDropdownButton),
+            browser
+                .waitForDetailsViewPage(targetPage)
+                .then(page => (detailsViewPage = page)),
+            popupPage.clickSelector(
+                CommonSelectors.previewFeaturesDropdownButton,
+            ),
         ]);
 
         return detailsViewPage;

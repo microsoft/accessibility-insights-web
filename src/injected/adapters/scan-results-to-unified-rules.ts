@@ -3,16 +3,22 @@
 import { UnifiedRule } from '../../common/types/store-data/unified-data-interface';
 import { RuleResult, ScanResults } from '../../scanner/iruleresults';
 
-export type ConvertScanResultsToUnifiedRulesDelegate = (scanResults: ScanResults) => UnifiedRule[];
+export type ConvertScanResultsToUnifiedRulesDelegate = (
+    scanResults: ScanResults,
+) => UnifiedRule[];
 
-export function convertScanResultsToUnifiedRules(scanResults: ScanResults): UnifiedRule[] {
+export function convertScanResultsToUnifiedRules(
+    scanResults: ScanResults,
+): UnifiedRule[] {
     if (!scanResults) {
         return [] as UnifiedRule[];
     }
     return createUnifiedRulesFromScanResults(scanResults);
 }
 
-function createUnifiedRulesFromScanResults(scanResults: ScanResults): UnifiedRule[] {
+function createUnifiedRulesFromScanResults(
+    scanResults: ScanResults,
+): UnifiedRule[] {
     const unifiedRules: UnifiedRule[] = [];
     const ruleIds: Set<string> = new Set();
     const allRuleResults = getAllRuleResults(scanResults);
@@ -28,7 +34,12 @@ function createUnifiedRulesFromScanResults(scanResults: ScanResults): UnifiedRul
 }
 
 function getAllRuleResults(scanResults: ScanResults): RuleResult[] {
-    return [...scanResults.passes, ...scanResults.violations, ...scanResults.incomplete, ...scanResults.inapplicable];
+    return [
+        ...scanResults.passes,
+        ...scanResults.violations,
+        ...scanResults.incomplete,
+        ...scanResults.inapplicable,
+    ];
 }
 
 function createUnifiedRuleFromRuleResult(ruleResult: RuleResult): UnifiedRule {

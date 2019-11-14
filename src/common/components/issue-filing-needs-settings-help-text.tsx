@@ -8,17 +8,20 @@ export type IssueFilingNeedsSettingsHelpTextProps = {
     isOpen: boolean;
 };
 
-export const IssueFilingNeedsSettingsHelpText = NamedFC<IssueFilingNeedsSettingsHelpTextProps>(
-    'IssueFilingNeedsSettingsHelpText',
-    props => {
-        if (props.isOpen) {
-            return (
-                <div role="alert" aria-live="polite" className="file-issue-button-help">
-                    Go to Settings to configure issue filing.
-                </div>
-            );
-        }
+export const IssueFilingNeedsSettingsHelpText = NamedFC<
+    IssueFilingNeedsSettingsHelpTextProps
+>('IssueFilingNeedsSettingsHelpText', props => {
+    if (props.isOpen) {
+        return (
+            <div
+                role="alert"
+                aria-live="polite"
+                className="file-issue-button-help"
+            >
+                Go to Settings to configure issue filing.
+            </div>
+        );
+    }
 
-        return null;
-    },
-);
+    return null;
+});

@@ -25,13 +25,26 @@ export const textContrastConfiguration: RuleConfiguration = {
     },
 };
 
-function evaluateTextContrast(node: HTMLElement, options: any, virtualNode: any, context: any): boolean {
-    // tslint:disable-next-line:no-invalid-this
-    const checkResult = AxeUtils.getEvaluateFromCheck('color-contrast').call(this, node, options, virtualNode, context);
+function evaluateTextContrast(
+    node: HTMLElement,
+    options: any,
+    virtualNode: any,
+    context: any,
+): boolean {
+    const checkResult = AxeUtils.getEvaluateFromCheck('color-contrast').call(
+        // tslint:disable-next-line:no-invalid-this
+        this,
+        node,
+        options,
+        virtualNode,
+        context,
+    );
     const nodeStyle = window.getComputedStyle(node);
     const fontSize = parseFloat(nodeStyle.getPropertyValue('font-size'));
     const fontWeight = nodeStyle.getPropertyValue('font-weight');
-    const bold = ['bold', 'bolder', '600', '700', '800', '900'].indexOf(fontWeight) !== -1;
+    const bold =
+        ['bold', 'bolder', '600', '700', '800', '900'].indexOf(fontWeight) !==
+        -1;
 
     const data = {
         textString: node.innerText,

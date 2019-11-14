@@ -8,7 +8,10 @@ export class FrameUrlSearchInitiator {
     private devToolStore: BaseStore<DevToolState>;
     private frameUrlFinder: FrameUrlFinder;
 
-    constructor(devToolStore: BaseStore<DevToolState>, frameUrlFinder: FrameUrlFinder) {
+    constructor(
+        devToolStore: BaseStore<DevToolState>,
+        frameUrlFinder: FrameUrlFinder,
+    ) {
         this.devToolStore = devToolStore;
         this.frameUrlFinder = frameUrlFinder;
     }
@@ -20,8 +23,14 @@ export class FrameUrlSearchInitiator {
     private handleDevToolStateChange = (): void => {
         const storeState = this.devToolStore.getState();
 
-        if (storeState.inspectElement != null && storeState.inspectElement.length > 1 && storeState.frameUrl == null) {
-            this.frameUrlFinder.processRequest({ target: storeState.inspectElement });
+        if (
+            storeState.inspectElement != null &&
+            storeState.inspectElement.length > 1 &&
+            storeState.frameUrl == null
+        ) {
+            this.frameUrlFinder.processRequest({
+                target: storeState.inspectElement,
+            });
         }
     };
 }

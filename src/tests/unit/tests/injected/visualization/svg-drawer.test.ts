@@ -43,7 +43,9 @@ describe('SVGDrawer', () => {
         svgShapeFactoryMock = Mock.ofType(SVGShapeFactory);
         shadowUtilsMock = Mock.ofType(ShadowUtils);
         shadowContainer = fakeDocument.createElement('div');
-        shadowUtilsMock.setup(x => x.getShadowContainer()).returns(() => shadowContainer);
+        shadowUtilsMock
+            .setup(x => x.getShadowContainer())
+            .returns(() => shadowContainer);
     });
 
     function createDrawerInfo<T>(elementResults: T[]): DrawerInitData<T> {
@@ -75,7 +77,10 @@ describe('SVGDrawer', () => {
             },
         ];
 
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub).build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(
+            fakeDocument,
+            styleStub,
+        ).build();
 
         const testSubject = new SVGDrawer(
             fakeDocument,
@@ -90,7 +95,9 @@ describe('SVGDrawer', () => {
         );
 
         testSubject.initialize(createDrawerInfo(tabbedElements));
-        expect((testSubject as any).tabbedElements).toEqual(expectedTabbedElements);
+        expect((testSubject as any).tabbedElements).toEqual(
+            expectedTabbedElements,
+        );
         drawerUtilsMock.verifyAll();
     });
 
@@ -120,7 +127,10 @@ describe('SVGDrawer', () => {
             },
         ];
 
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub).build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(
+            fakeDocument,
+            styleStub,
+        ).build();
 
         const testSubject = new SVGDrawer(
             fakeDocument,
@@ -135,7 +145,9 @@ describe('SVGDrawer', () => {
         );
 
         testSubject.initialize(createDrawerInfo(tabbedElements));
-        expect((testSubject as any).tabbedElements).toEqual(expectedTabbedElements);
+        expect((testSubject as any).tabbedElements).toEqual(
+            expectedTabbedElements,
+        );
         drawerUtilsMock.verifyAll();
     });
 
@@ -191,7 +203,10 @@ describe('SVGDrawer', () => {
             },
         ];
 
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub).build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(
+            fakeDocument,
+            styleStub,
+        ).build();
 
         const testSubject = new SVGDrawer(
             fakeDocument,
@@ -208,7 +223,9 @@ describe('SVGDrawer', () => {
         (testSubject as any).tabbedElements = existingTabbedElements;
 
         testSubject.initialize(createDrawerInfo(tabbedElements));
-        expect((testSubject as any).tabbedElements).toEqual(expectedTabbedElements);
+        expect((testSubject as any).tabbedElements).toEqual(
+            expectedTabbedElements,
+        );
         drawerUtilsMock.verifyAll();
     });
 
@@ -272,7 +289,10 @@ describe('SVGDrawer', () => {
             },
         ];
 
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub).build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(
+            fakeDocument,
+            styleStub,
+        ).build();
 
         const testSubject = new SVGDrawer(
             fakeDocument,
@@ -289,7 +309,9 @@ describe('SVGDrawer', () => {
         (testSubject as any).tabbedElements = existingTabbedElements;
 
         testSubject.initialize(createDrawerInfo(tabbedElements));
-        expect((testSubject as any).tabbedElements).toEqual(expectedTabbedElements);
+        expect((testSubject as any).tabbedElements).toEqual(
+            expectedTabbedElements,
+        );
         drawerUtilsMock.verifyAll();
     });
 
@@ -388,7 +410,10 @@ describe('SVGDrawer', () => {
             },
         ];
 
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub).build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(
+            fakeDocument,
+            styleStub,
+        ).build();
 
         const testSubject = new SVGDrawer(
             fakeDocument,
@@ -405,7 +430,9 @@ describe('SVGDrawer', () => {
         (testSubject as any).tabbedElements = existingTabbedElements;
 
         testSubject.initialize(createDrawerInfo(tabbedElements));
-        expect((testSubject as any).tabbedElements).toEqual(expectedTabbedElements);
+        expect((testSubject as any).tabbedElements).toEqual(
+            expectedTabbedElements,
+        );
         drawerUtilsMock.verifyAll();
     });
 
@@ -453,7 +480,12 @@ describe('SVGDrawer', () => {
                 target: ['#id1'],
             },
         ];
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub).setupGetDocSize(100).build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(
+            fakeDocument,
+            styleStub,
+        )
+            .setupGetDocSize(100)
+            .build();
 
         setupFilterFactoryDefault(fakeDocument);
         setupWindowUtilsMockDefault(styleStub);
@@ -514,7 +546,12 @@ describe('SVGDrawer', () => {
             },
         ];
 
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub).setupGetDocSize(100).build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(
+            fakeDocument,
+            styleStub,
+        )
+            .setupGetDocSize(100)
+            .build();
         setupWindowUtilsMockDefault(styleStub);
         setupFilterFactoryDefault(fakeDocument);
         setupCenterPositionCalculatorDefault();
@@ -559,7 +596,10 @@ describe('SVGDrawer', () => {
             <div id='id2'></div>
         `;
 
-        const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig(false, false);
+        const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig(
+            false,
+            false,
+        );
         const tabbedElements: TabbedElementData[] = [
             {
                 tabOrder: 1,
@@ -575,7 +615,12 @@ describe('SVGDrawer', () => {
             },
         ];
 
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub).setupGetDocSize(100).build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(
+            fakeDocument,
+            styleStub,
+        )
+            .setupGetDocSize(100)
+            .build();
         setupWindowUtilsMockDefault(styleStub);
         setupFilterFactoryDefault(fakeDocument);
         setupCenterPositionCalculatorDefault();
@@ -638,7 +683,12 @@ describe('SVGDrawer', () => {
             },
         ];
 
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub).setupGetDocSize(100).build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(
+            fakeDocument,
+            styleStub,
+        )
+            .setupGetDocSize(100)
+            .build();
         setupWindowUtilsMockDefault(styleStub);
         setupFilterFactoryDefault(fakeDocument);
         setupCenterPositionCalculatorDefault();
@@ -701,7 +751,12 @@ describe('SVGDrawer', () => {
             },
         ];
 
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub).setupGetDocSize(100).build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(
+            fakeDocument,
+            styleStub,
+        )
+            .setupGetDocSize(100)
+            .build();
         setupWindowUtilsMockDefault(styleStub);
         setupFilterFactoryDefault(fakeDocument);
         setupCenterPositionCalculatorDefault();
@@ -711,7 +766,9 @@ describe('SVGDrawer', () => {
             .returns(() => drawerConfig)
             .verifiable();
         centerPositionCalculatorMock
-            .setup(c => c.getElementCenterPosition(fakeDocument.getElementById('id1')))
+            .setup(c =>
+                c.getElementCenterPosition(fakeDocument.getElementById('id1')),
+            )
             .returns(element => null)
             .verifiable();
         const testSubject = new SVGDrawer(
@@ -766,7 +823,12 @@ describe('SVGDrawer', () => {
             },
         ];
 
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub).setupGetDocSize(100).build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(
+            fakeDocument,
+            styleStub,
+        )
+            .setupGetDocSize(100)
+            .build();
         setupWindowUtilsMockDefault(styleStub);
         setupFilterFactoryDefault(fakeDocument);
         setupCenterPositionCalculatorDefault();
@@ -828,7 +890,12 @@ describe('SVGDrawer', () => {
             },
         ];
 
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub).setupGetDocSize(100).build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(
+            fakeDocument,
+            styleStub,
+        )
+            .setupGetDocSize(100)
+            .build();
         setupWindowUtilsMockDefault(styleStub);
         setupFilterFactoryDefault(fakeDocument);
         setupCenterPositionCalculatorDefault();
@@ -870,7 +937,10 @@ describe('SVGDrawer', () => {
         expect(labels.length).toBe(0);
     });
 
-    function createTestDrawingConfig(showSolidFocusLine = true, showTabIndexedLabel = true): SVGDrawerConfiguration {
+    function createTestDrawingConfig(
+        showSolidFocusLine = true,
+        showTabIndexedLabel = true,
+    ): SVGDrawerConfiguration {
         const drawerConfig: SVGDrawerConfiguration = {
             circle: {
                 stroke: '#777777',
@@ -912,12 +982,16 @@ describe('SVGDrawer', () => {
     }
 
     function findFocusIndicatorCircles(): NodeListOf<Element> {
-        const circles = shadowContainer.querySelectorAll('.insights-svg-focus-indicator');
+        const circles = shadowContainer.querySelectorAll(
+            '.insights-svg-focus-indicator',
+        );
         return circles;
     }
 
     function findFocusIndicatorLabels(): NodeListOf<Element> {
-        const labels = shadowContainer.querySelectorAll('.insights-svg-focus-indicator-text');
+        const labels = shadowContainer.querySelectorAll(
+            '.insights-svg-focus-indicator-text',
+        );
         return labels;
     }
 
@@ -935,7 +1009,9 @@ describe('SVGDrawer', () => {
     function setupWindowUtilsMockDefault(style): void {
         const windowMock = {};
 
-        windowUtilsMock.setup(it => it.getComputedStyle(It.isAny())).returns(() => style as any);
+        windowUtilsMock
+            .setup(it => it.getComputedStyle(It.isAny()))
+            .returns(() => style as any);
 
         windowUtilsMock
             .setup(w => w.getTopWindow())
@@ -967,12 +1043,24 @@ describe('SVGDrawer', () => {
             .setup(s => s.createCircle(It.isAny(), It.isAny()))
             .returns(() => {
                 const circle = doc.createElementNS(SVGNamespaceUrl, 'ellipse');
-                circle.setAttributeNS(null, 'class', 'insights-svg-focus-indicator');
+                circle.setAttributeNS(
+                    null,
+                    'class',
+                    'insights-svg-focus-indicator',
+                );
                 return circle;
             });
 
         svgShapeFactoryMock
-            .setup(s => s.createLine(It.isAny(), It.isAny(), It.isAny(), It.isAny(), It.isAny()))
+            .setup(s =>
+                s.createLine(
+                    It.isAny(),
+                    It.isAny(),
+                    It.isAny(),
+                    It.isAny(),
+                    It.isAny(),
+                ),
+            )
             .returns(() => {
                 const line = doc.createElementNS(SVGNamespaceUrl, 'line');
                 line.setAttributeNS(null, 'class', 'insights-svg-line');
@@ -980,10 +1068,16 @@ describe('SVGDrawer', () => {
             });
 
         svgShapeFactoryMock
-            .setup(s => s.createTabIndexLabel(It.isAny(), It.isAny(), It.isAny()))
+            .setup(s =>
+                s.createTabIndexLabel(It.isAny(), It.isAny(), It.isAny()),
+            )
             .returns((center, config, tabOrder) => {
                 const text = doc.createElementNS(SVGNamespaceUrl, 'text');
-                text.setAttributeNS(null, 'class', 'insights-svg-focus-indicator-text');
+                text.setAttributeNS(
+                    null,
+                    'class',
+                    'insights-svg-focus-indicator-text',
+                );
                 text.innerHTML = `<span>${tabOrder}</span>`;
                 return text;
             });

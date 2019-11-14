@@ -11,19 +11,28 @@ import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/ass
 import { ScannerUtils } from 'injected/scanner-utils';
 import * as React from 'react';
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
-import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
+import {
+    NoValue,
+    PropertyBagColumnRendererConfig,
+} from '../../common/property-bag-column-renderer';
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { Requirement } from '../../types/requirement';
 import { NativeWidgetsTestStep } from './test-steps';
 
-const description: JSX.Element = <span>If a native widget adopts certain interactive states, it must provide appropriate cues.</span>;
+const description: JSX.Element = (
+    <span>
+        If a native widget adopts certain interactive states, it must provide
+        appropriate cues.
+    </span>
+);
 
 const howToTest: JSX.Element = (
     <div>
         <p>
-            For this requirement, {productName} highlights native widgets. Native widgets include
+            For this requirement, {productName} highlights native widgets.
+            Native widgets include
             <Markup.NonBreakingSpace />
             <Markup.Tag tagName="button" isBold={true} />,
             <Markup.NonBreakingSpace />
@@ -36,7 +45,8 @@ const howToTest: JSX.Element = (
         <TestAutomaticallyPassedNotice />
         <ol>
             <li>
-                In the target page, interact with each native widget to determine whether it adopts any of these states:
+                In the target page, interact with each native widget to
+                determine whether it adopts any of these states:
                 <ol>
                     <li>Disabled</li>
                     <li>Read-only</li>
@@ -44,15 +54,19 @@ const howToTest: JSX.Element = (
                 </ol>
             </li>
             <li>
-                If a widget <Markup.Emphasis>does</Markup.Emphasis> adopt any of these states, inspect its HTML using the browser Developer
-                Tools to verify that the states are appropriately coded.
+                If a widget <Markup.Emphasis>does</Markup.Emphasis> adopt any of
+                these states, inspect its HTML using the browser Developer Tools
+                to verify that the states are appropriately coded.
                 <ol>
                     <li>
-                        HTML properties (e.g., <Markup.CodeTerm>readonly</Markup.CodeTerm>) should be used on elements that support them.
+                        HTML properties (e.g.,{' '}
+                        <Markup.CodeTerm>readonly</Markup.CodeTerm>) should be
+                        used on elements that support them.
                     </li>
                     <li>
-                        ARIA properties (e.g., <Markup.CodeTerm>aria-readonly</Markup.CodeTerm>) should be used on elements that don't
-                        support HTML properties.
+                        ARIA properties (e.g.,{' '}
+                        <Markup.CodeTerm>aria-readonly</Markup.CodeTerm>) should
+                        be used on elements that don't support HTML properties.
                     </li>
                 </ol>
             </li>
@@ -98,7 +112,9 @@ export const Cues: Requirement = {
         {
             key: 'cues-info',
             name: 'Cues',
-            onRender: PropertyBagColumnRendererFactory.getRenderer<CuesPropertyBag>(propertyBagConfig),
+            onRender: PropertyBagColumnRendererFactory.getRenderer<
+                CuesPropertyBag
+            >(propertyBagConfig),
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),
@@ -108,9 +124,12 @@ export const Cues: Requirement = {
                 rules: ['cues'],
                 key: NativeWidgetsTestStep.cues,
                 testType: VisualizationType.NativeWidgets,
-                resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
+                resultProcessor: (scanner: ScannerUtils) =>
+                    scanner.getPassingInstances,
             }),
         ),
     getDrawer: provider => provider.createHighlightBoxDrawer(),
-    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
+    getVisualHelperToggle: props => (
+        <AssessmentVisualizationEnabledToggle {...props} />
+    ),
 };

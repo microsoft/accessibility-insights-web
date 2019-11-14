@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { RuleSifter, RuleWithA11YCriteria } from '../../../../scanner/rule-sifter';
+import {
+    RuleSifter,
+    RuleWithA11YCriteria,
+} from '../../../../scanner/rule-sifter';
 
 describe('RuleSifter', () => {
     describe('constructor', () => {

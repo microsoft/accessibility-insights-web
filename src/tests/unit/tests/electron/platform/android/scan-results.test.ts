@@ -3,7 +3,11 @@
 import { ScreenshotData } from 'common/types/store-data/unified-data-interface';
 import { DeviceInfo } from 'electron/platform/android/scan-results';
 
-import { buildRuleResultObject, buildScanResultsObject, buildViewElement } from './scan-results-helpers';
+import {
+    buildRuleResultObject,
+    buildScanResultsObject,
+    buildViewElement,
+} from './scan-results-helpers';
 
 describe('ScanResults', () => {
     test('axeVersion is "no-version" if missing from input', () => {
@@ -13,7 +17,13 @@ describe('ScanResults', () => {
 
     test('axeVersion is correct if specified in input', () => {
         const axeVersion = 'test-axe-version';
-        const scanResults = buildScanResultsObject(null, null, null, null, axeVersion);
+        const scanResults = buildScanResultsObject(
+            null,
+            null,
+            null,
+            null,
+            axeVersion,
+        );
         expect(scanResults.axeVersion).toEqual(axeVersion);
     });
 
@@ -30,7 +40,15 @@ describe('ScanResults', () => {
             screenHeight: 1,
             screenWidth: 2,
         };
-        const scanResults = buildScanResultsObject(null, null, null, null, null, null, expectedDeviceInfo);
+        const scanResults = buildScanResultsObject(
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            expectedDeviceInfo,
+        );
         expect(scanResults.deviceInfo).toEqual(expectedDeviceInfo);
     });
 
@@ -62,7 +80,10 @@ describe('ScanResults', () => {
     });
 
     test('ruleResults is correct if specified in input', () => {
-        const resultsArray = [buildRuleResultObject('Rule1', 'PASS'), buildRuleResultObject('Rule2', 'FAIL')];
+        const resultsArray = [
+            buildRuleResultObject('Rule1', 'PASS'),
+            buildRuleResultObject('Rule2', 'FAIL'),
+        ];
         const scanResults = buildScanResultsObject(null, null, resultsArray);
         expect(scanResults.ruleResults).toHaveLength(2);
         expect(scanResults.ruleResults).toEqual(resultsArray);
@@ -80,8 +101,17 @@ describe('ScanResults', () => {
 
     test('screenshotData is correct if specified in input', () => {
         const screenshotBase64 = 'expected-string';
-        const expectedScreenshotData: ScreenshotData = { base64PngData: screenshotBase64 };
-        const scanResults = buildScanResultsObject(null, null, null, null, null, screenshotBase64);
+        const expectedScreenshotData: ScreenshotData = {
+            base64PngData: screenshotBase64,
+        };
+        const scanResults = buildScanResultsObject(
+            null,
+            null,
+            null,
+            null,
+            null,
+            screenshotBase64,
+        );
         expect(scanResults.screenshot).toEqual(expectedScreenshotData);
     });
 
@@ -92,7 +122,10 @@ describe('ScanResults', () => {
             'myClass1',
             'myDescription1',
             'myText1',
-            [buildViewElement('id2', null, null, null, null, null), buildViewElement('id3', null, null, null, null, null)],
+            [
+                buildViewElement('id2', null, null, null, null, null),
+                buildViewElement('id3', null, null, null, null, null),
+            ],
         );
         expect(viewElementTree).toMatchSnapshot();
     });

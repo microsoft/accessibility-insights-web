@@ -5,8 +5,14 @@ import { NamedFC } from 'common/react/named-fc';
 import { shallow } from 'enzyme';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
-import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
-import { ReportSectionFactory, SectionProps } from 'reports/components/report-sections/report-section-factory';
+import {
+    ReportBody,
+    ReportBodyProps,
+} from 'reports/components/report-sections/report-body';
+import {
+    ReportSectionFactory,
+    SectionProps,
+} from 'reports/components/report-sections/report-section-factory';
 import { Mock } from 'typemoq';
 
 import { exampleUnifiedStatusResults } from '../../../common/components/cards/sample-view-model-data';
@@ -17,7 +23,9 @@ describe('ReportBody', () => {
         const pageUrl = 'url:target-page';
         const getScriptStub = () => '';
         const getGuidanceTagsStub = () => [];
-        const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
+        const fixInstructionProcessorMock = Mock.ofType(
+            FixInstructionProcessor,
+        );
 
         const detailsProps: SectionProps = {
             deps: {} as FailedInstancesSectionDeps,
@@ -43,7 +51,11 @@ describe('ReportBody', () => {
             toUtcString: () => '',
             getCollapsibleScript: getScriptStub,
             getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
-            cardsViewData: { cards: exampleUnifiedStatusResults, visualHelperEnabled: true, allCardsCollapsed: true },
+            cardsViewData: {
+                cards: exampleUnifiedStatusResults,
+                visualHelperEnabled: true,
+                allCardsCollapsed: true,
+            },
             userConfigurationStoreData: null,
             targetAppInfo: { name: 'app' },
             shouldAlertFailuresCount: false,
@@ -73,9 +85,13 @@ describe('ReportBody', () => {
         const Summary = createBasicComponent('summary-section');
         const Details = createBasicComponent('details-section');
         const ResultSection = createBasicComponent('result-section');
-        const FailedInstances = createBasicComponent('failed-instances-section');
+        const FailedInstances = createBasicComponent(
+            'failed-instances-section',
+        );
         const PassedChecks = createBasicComponent('passed-checks-section');
-        const NotApplicableChecks = createBasicComponent('not-applicable-checks-section');
+        const NotApplicableChecks = createBasicComponent(
+            'not-applicable-checks-section',
+        );
         const Footer = createBasicComponent('footer-section');
 
         const sectionFactoryStub: ReportSectionFactory = {

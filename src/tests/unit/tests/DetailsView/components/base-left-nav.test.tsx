@@ -4,10 +4,17 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock, MockBehavior } from 'typemoq';
 
-import { BaseLeftNav, BaseLeftNavLink, BaseLeftNavProps } from '../../../../../DetailsView/components/base-left-nav';
+import {
+    BaseLeftNav,
+    BaseLeftNavLink,
+    BaseLeftNavProps,
+} from '../../../../../DetailsView/components/base-left-nav';
 
 class TestableBaseLeftNav extends BaseLeftNav {
-    public getOnNavLinkClick(): (event: React.MouseEvent<HTMLElement>, item: BaseLeftNavLink) => void {
+    public getOnNavLinkClick(): (
+        event: React.MouseEvent<HTMLElement>,
+        item: BaseLeftNavLink,
+    ) => void {
         return this.onNavLinkClick;
     }
 
@@ -39,13 +46,18 @@ describe('BaseLeftNav', () => {
         const props = {} as BaseLeftNavProps;
         const actual = new TestableBaseLeftNav(props);
         const eventStub = {} as React.MouseEvent<HTMLElement>;
-        const onClickNavLinkMock = Mock.ofInstance((event, item) => null, MockBehavior.Strict);
+        const onClickNavLinkMock = Mock.ofInstance(
+            (event, item) => null,
+            MockBehavior.Strict,
+        );
         const itemStub = {
             onClickNavLink: onClickNavLinkMock.object,
         } as BaseLeftNavLink;
         const onLinkClickCallback = actual.getOnNavLinkClick();
 
-        onClickNavLinkMock.setup(ocnlm => ocnlm(eventStub, itemStub)).verifiable();
+        onClickNavLinkMock
+            .setup(ocnlm => ocnlm(eventStub, itemStub))
+            .verifiable();
 
         onLinkClickCallback(eventStub, itemStub);
 
@@ -58,13 +70,18 @@ describe('BaseLeftNav', () => {
         } as BaseLeftNavProps;
         const actual = new TestableBaseLeftNav(props);
         const elemnentStub = {} as JSX.Element;
-        const onRenderNavLinkMock = Mock.ofInstance((link, renderIcon) => null, MockBehavior.Strict);
+        const onRenderNavLinkMock = Mock.ofInstance(
+            (link, renderIcon) => null,
+            MockBehavior.Strict,
+        );
         const itemStub = {
             onRenderNavLink: onRenderNavLinkMock.object,
         } as BaseLeftNavLink;
         const onRenderLinkCallback = actual.getOnRenderLink();
 
-        onRenderNavLinkMock.setup(ocnlm => ocnlm(itemStub, props.renderIcon)).returns(() => elemnentStub);
+        onRenderNavLinkMock
+            .setup(ocnlm => ocnlm(itemStub, props.renderIcon))
+            .returns(() => elemnentStub);
 
         expect(onRenderLinkCallback(itemStub)).toEqual(elemnentStub);
     });

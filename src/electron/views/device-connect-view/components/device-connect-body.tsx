@@ -7,11 +7,21 @@ import * as React from 'react';
 import { DeviceConnectState } from '../../../flux/types/device-connect-state';
 import { deviceConnectBody } from './device-connect-body.scss';
 import { DeviceConnectConnectedDevice } from './device-connect-connected-device';
-import { DeviceConnectFooter, DeviceConnectFooterDeps } from './device-connect-footer';
+import {
+    DeviceConnectFooter,
+    DeviceConnectFooterDeps,
+} from './device-connect-footer';
 import { DeviceConnectHeader } from './device-connect-header';
-import { DeviceConnectPortEntry, DeviceConnectPortEntryDeps, DeviceConnectPortEntryViewState } from './device-connect-port-entry';
+import {
+    DeviceConnectPortEntry,
+    DeviceConnectPortEntryDeps,
+    DeviceConnectPortEntryViewState,
+} from './device-connect-port-entry';
 
-export type UpdateStateCallback = (newState: DeviceConnectState, deviceName?: string) => void;
+export type UpdateStateCallback = (
+    newState: DeviceConnectState,
+    deviceName?: string,
+) => void;
 
 export type DeviceConnectBodyState = DeviceConnectPortEntryViewState & {
     connectedDevice?: string;
@@ -27,22 +37,31 @@ export interface DeviceConnectBodyProps {
     viewState: DeviceConnectBodyState;
 }
 
-export const DeviceConnectBody = NamedFC<DeviceConnectBodyProps>('DeviceConnectBody', props => {
-    const canStartTesting = props.viewState.deviceConnectState === DeviceConnectState.Connected;
+export const DeviceConnectBody = NamedFC<DeviceConnectBodyProps>(
+    'DeviceConnectBody',
+    props => {
+        const canStartTesting =
+            props.viewState.deviceConnectState === DeviceConnectState.Connected;
 
-    return (
-        <div className={deviceConnectBody}>
-            <DeviceConnectHeader />
-            <DeviceConnectPortEntry deps={props.deps} viewState={{ deviceConnectState: props.viewState.deviceConnectState }} />
-            <DeviceConnectConnectedDevice
-                connectedDevice={props.viewState.connectedDevice}
-                deviceConnectState={props.viewState.deviceConnectState}
-            />
-            <DeviceConnectFooter
-                deps={props.deps}
-                cancelClick={props.deps.currentWindow.close}
-                canStartTesting={canStartTesting}
-            ></DeviceConnectFooter>
-        </div>
-    );
-});
+        return (
+            <div className={deviceConnectBody}>
+                <DeviceConnectHeader />
+                <DeviceConnectPortEntry
+                    deps={props.deps}
+                    viewState={{
+                        deviceConnectState: props.viewState.deviceConnectState,
+                    }}
+                />
+                <DeviceConnectConnectedDevice
+                    connectedDevice={props.viewState.connectedDevice}
+                    deviceConnectState={props.viewState.deviceConnectState}
+                />
+                <DeviceConnectFooter
+                    deps={props.deps}
+                    cancelClick={props.deps.currentWindow.close}
+                    canStartTesting={canStartTesting}
+                ></DeviceConnectFooter>
+            </div>
+        );
+    },
+);

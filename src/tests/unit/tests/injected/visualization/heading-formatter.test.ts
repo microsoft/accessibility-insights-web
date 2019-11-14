@@ -4,7 +4,11 @@ import { It, Mock } from 'typemoq';
 import { ClientUtils } from '../../../../../injected/client-utils';
 import { AssessmentVisualizationInstance } from '../../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { DrawerConfiguration } from '../../../../../injected/visualization/formatter';
-import { HeadingFormatter, HeadingStyleConfiguration, StyleComputer } from '../../../../../injected/visualization/heading-formatter';
+import {
+    HeadingFormatter,
+    HeadingStyleConfiguration,
+    StyleComputer,
+} from '../../../../../injected/visualization/heading-formatter';
 
 describe('HeadingFormatterTests', () => {
     let testSubject: HeadingFormatter;
@@ -18,11 +22,19 @@ describe('HeadingFormatterTests', () => {
         styleComputer = {
             getComputedStyle: window.getComputedStyle,
         };
-        testSubject = new HeadingFormatter(styleComputer, new ClientUtils(window));
+        testSubject = new HeadingFormatter(
+            styleComputer,
+            new ClientUtils(window),
+        );
         sandbox = document.createElement('div');
         document.body.appendChild(sandbox);
-        failedInstanceResult = { isFailure: true } as AssessmentVisualizationInstance;
-        failedInstanceNotSelected = { isFailure: true, isVisualizationEnabled: false } as AssessmentVisualizationInstance;
+        failedInstanceResult = {
+            isFailure: true,
+        } as AssessmentVisualizationInstance;
+        failedInstanceNotSelected = {
+            isFailure: true,
+            isVisualizationEnabled: false,
+        } as AssessmentVisualizationInstance;
     });
 
     afterEach(() => {
@@ -89,7 +101,9 @@ describe('HeadingFormatterTests', () => {
     });
 
     test('verifyStylingForValidArialLevel', () => {
-        const headingElement = createHeadingWithInnerText(`<div aria-level='3'>HEADING</div>`);
+        const headingElement = createHeadingWithInnerText(
+            `<div aria-level='3'>HEADING</div>`,
+        );
         headingElement.setAttribute('aria-level', '3');
         const config = testSubject.getDrawerConfiguration(headingElement, null);
 
@@ -98,7 +112,9 @@ describe('HeadingFormatterTests', () => {
     });
 
     test('verifyStylingForInvalidValidArialLevel', () => {
-        const headingElement = createHeadingWithInnerText(`<div aria-level='10'>HEADING</div>`);
+        const headingElement = createHeadingWithInnerText(
+            `<div aria-level='10'>HEADING</div>`,
+        );
         const config = testSubject.getDrawerConfiguration(headingElement, null);
 
         const headingStyle = getHeadingStyle('blank');
@@ -118,7 +134,10 @@ describe('HeadingFormatterTests', () => {
     test('verifyStylingForFailedInstance', () => {
         const headingElement = createHeadingWithInnerText('<div>HEADING</div>');
 
-        const config = testSubject.getDrawerConfiguration(headingElement, failedInstanceResult);
+        const config = testSubject.getDrawerConfiguration(
+            headingElement,
+            failedInstanceResult,
+        );
 
         const headingStyle = getHeadingStyle('blank');
 
@@ -134,8 +153,13 @@ describe('HeadingFormatterTests', () => {
     });
 
     test('verifyHideHiddenHeading', () => {
-        const headingElement = createHeadingWithInnerText(`<h1 hidden="true">HEADING</h1>`);
-        const formatter = new HeadingFormatter(createDisplayNoneStyleComputer(), new ClientUtils(window));
+        const headingElement = createHeadingWithInnerText(
+            `<h1 hidden="true">HEADING</h1>`,
+        );
+        const formatter = new HeadingFormatter(
+            createDisplayNoneStyleComputer(),
+            new ClientUtils(window),
+        );
         const config = formatter.getDrawerConfiguration(headingElement, null);
 
         expect(config.showVisualization).toBe(false);
@@ -143,35 +167,49 @@ describe('HeadingFormatterTests', () => {
 
     test('verifyHideHiddenHeading because not selected', () => {
         const headingElement = createHeadingWithInnerText(`<h1>HEADING</h1>`);
-        const config = testSubject.getDrawerConfiguration(headingElement, failedInstanceNotSelected);
+        const config = testSubject.getDrawerConfiguration(
+            headingElement,
+            failedInstanceNotSelected,
+        );
 
         expect(config.showVisualization).toBe(false);
     });
 
     test('verifyHideHiddenNoValueHeading', () => {
-        const headingElement = createHeadingWithInnerText(`<h1 hidden>HEADING</h1>`);
-        const formatter = new HeadingFormatter(createDisplayNoneStyleComputer(), new ClientUtils(window));
+        const headingElement = createHeadingWithInnerText(
+            `<h1 hidden>HEADING</h1>`,
+        );
+        const formatter = new HeadingFormatter(
+            createDisplayNoneStyleComputer(),
+            new ClientUtils(window),
+        );
         const config = formatter.getDrawerConfiguration(headingElement, null);
 
         expect(config.showVisualization).toBe(false);
     });
 
     test('verifyHideAriaHiddenHeading', () => {
-        const headingElement = createHeadingWithInnerText(`<h1 aria-hidden="true">HEADING</h1>`);
+        const headingElement = createHeadingWithInnerText(
+            `<h1 aria-hidden="true">HEADING</h1>`,
+        );
         const config = testSubject.getDrawerConfiguration(headingElement, null);
 
         expect(config.showVisualization).toBe(false);
     });
 
     test('verifyHideDisplayNoneHeading', () => {
-        const headingElement = createHeadingWithInnerText(`<h1 style="display:none">HEADING</h1>`);
+        const headingElement = createHeadingWithInnerText(
+            `<h1 style="display:none">HEADING</h1>`,
+        );
         const config = testSubject.getDrawerConfiguration(headingElement, null);
 
         expect(config.showVisualization).toBe(false);
     });
 
     test('verifyHideDisplayNoneContainedHeading', () => {
-        const containerElement = createHeadingWithInnerText(`<div style="display:none"><h1 style="display:none">HEADING</h1></div>`);
+        const containerElement = createHeadingWithInnerText(
+            `<div style="display:none"><h1 style="display:none">HEADING</h1></div>`,
+        );
         const headingElement = containerElement.getElementsByTagName('h1')[0];
         const config = testSubject.getDrawerConfiguration(headingElement, null);
 
@@ -179,15 +217,22 @@ describe('HeadingFormatterTests', () => {
     });
 
     test('verifyHideHiddenNoValueHeadingWithAriaHiddenFalse', () => {
-        const headingElement = createHeadingWithInnerText(`<h1 hidden aria-hidden="false">HEADING</h1>`);
-        const formatter = new HeadingFormatter(createDisplayNoneStyleComputer(), new ClientUtils(window));
+        const headingElement = createHeadingWithInnerText(
+            `<h1 hidden aria-hidden="false">HEADING</h1>`,
+        );
+        const formatter = new HeadingFormatter(
+            createDisplayNoneStyleComputer(),
+            new ClientUtils(window),
+        );
         const config = formatter.getDrawerConfiguration(headingElement, null);
 
         expect(config.showVisualization).toBe(false);
     });
 
     test('verifyHideDisplayNoneHeadingWithAriaHiddenFalse', () => {
-        const headingElement = createHeadingWithInnerText(`<h1 style="display:none" aria-hidden="false">HEADING</h1>`);
+        const headingElement = createHeadingWithInnerText(
+            `<h1 style="display:none" aria-hidden="false">HEADING</h1>`,
+        );
         const config = testSubject.getDrawerConfiguration(headingElement, null);
 
         expect(config.showVisualization).toBe(false);
@@ -209,7 +254,11 @@ describe('HeadingFormatterTests', () => {
         return computedStyle as StyleComputer;
     }
 
-    function verifyHeadingStyle(config: DrawerConfiguration, headingStyle: HeadingStyleConfiguration, text: string): void {
+    function verifyHeadingStyle(
+        config: DrawerConfiguration,
+        headingStyle: HeadingStyleConfiguration,
+        text: string,
+    ): void {
         expect(config.showVisualization).toBe(true);
         expect(config.borderColor).toBe(headingStyle.borderColor);
         expect(config.textBoxConfig.fontColor).toBe(headingStyle.fontColor);

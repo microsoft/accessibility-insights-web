@@ -17,7 +17,10 @@ export class TelemetryEventHandler {
         this.telemetryClient.disableTelemetry();
     }
 
-    public publishTelemetry(eventName: string, payload: BaseActionPayload): void {
+    public publishTelemetry(
+        eventName: string,
+        payload: BaseActionPayload,
+    ): void {
         if (payload.telemetry == null) {
             return;
         }
@@ -25,7 +28,9 @@ export class TelemetryEventHandler {
         const telemetryInfo: any = payload.telemetry;
         this.addBasicDataToTelemetry(telemetryInfo);
 
-        const flattenTelemetryInfo: DictionaryStringTo<string> = this.flattenTelemetryInfo(telemetryInfo);
+        const flattenTelemetryInfo: DictionaryStringTo<string> = this.flattenTelemetryInfo(
+            telemetryInfo,
+        );
         this.telemetryClient.trackEvent(eventName, flattenTelemetryInfo);
     }
 
@@ -33,13 +38,18 @@ export class TelemetryEventHandler {
         telemetryInfo.source = TelemetryEventSource[telemetryInfo.source];
     }
 
-    private flattenTelemetryInfo(telemetryInfo: any): DictionaryStringTo<string> {
-        const flattenTelemetryInfo: DictionaryStringTo<string> = _.mapValues(telemetryInfo, (value, key) => {
-            if (typeof value !== 'string') {
-                return JSON.stringify(value);
-            }
-            return value;
-        });
+    private flattenTelemetryInfo(
+        telemetryInfo: any,
+    ): DictionaryStringTo<string> {
+        const flattenTelemetryInfo: DictionaryStringTo<string> = _.mapValues(
+            telemetryInfo,
+            (value, key) => {
+                if (typeof value !== 'string') {
+                    return JSON.stringify(value);
+                }
+                return value;
+            },
+        );
 
         return flattenTelemetryInfo;
     }

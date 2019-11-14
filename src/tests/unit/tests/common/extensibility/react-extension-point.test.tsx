@@ -3,14 +3,19 @@
 import { render } from 'enzyme';
 import * as React from 'react';
 
-import { Extension, reactExtensionPoint } from '../../../../../common/extensibility/react-extension-point';
+import {
+    Extension,
+    reactExtensionPoint,
+} from '../../../../../common/extensibility/react-extension-point';
 
 describe('ReactExtensionPoint', () => {
     type Props = { title: string };
 
     const TestExtensionPoint = reactExtensionPoint<Props>('TestExtensionPoint');
     const OtherExtensionPoint = reactExtensionPoint<{}>('OtherExtensionPoint');
-    const FakeExtensionPoint = ({ other: 'stuff' } as Partial<Extension<any>>) as Extension<any>;
+    const FakeExtensionPoint = ({ other: 'stuff' } as Partial<
+        Extension<any>
+    >) as Extension<any>;
 
     const TestExtension = props => {
         const { title, children } = props;
@@ -34,7 +39,11 @@ describe('ReactExtensionPoint', () => {
         );
     };
 
-    const extensions = [TestExtensionPoint.create(TestExtension), OtherExtensionPoint.create(OtherExtension), FakeExtensionPoint];
+    const extensions = [
+        TestExtensionPoint.create(TestExtension),
+        OtherExtensionPoint.create(OtherExtension),
+        FakeExtensionPoint,
+    ];
 
     const myTitle = 'My Title';
     const myChild = 'My Child';

@@ -11,7 +11,9 @@ module.exports = function(grunt) {
     function mustExist(file, reason) {
         const normalizedFile = path.normalize(file);
         if (!grunt.file.exists(normalizedFile)) {
-            grunt.fail.fatal(`Missing required file ${normalizedFile}\n${reason}`);
+            grunt.fail.fatal(
+                `Missing required file ${normalizedFile}\n${reason}`,
+            );
         }
     }
 
@@ -23,7 +25,11 @@ module.exports = function(grunt) {
             intermediates: ['dist', extensionPath],
         },
         concurrent: {
-            'webpack-all': ['exec:webpack-dev', 'exec:webpack-electron', 'exec:webpack-prod'],
+            'webpack-all': [
+                'exec:webpack-dev',
+                'exec:webpack-electron',
+                'exec:webpack-prod',
+            ],
         },
         copy: {
             code: {
@@ -75,19 +81,28 @@ module.exports = function(grunt) {
                     {
                         cwd: './dist/src/DetailsView/Styles',
                         src: '*.css',
-                        dest: path.join(extensionPath, 'DetailsView/styles/default'),
+                        dest: path.join(
+                            extensionPath,
+                            'DetailsView/styles/default',
+                        ),
                         expand: true,
                     },
                     {
                         cwd: './dist/src/electron/views/device-connect-view',
                         src: '*.css',
-                        dest: path.join(extensionPath, 'electron/views/device-connect-view/styles/default'),
+                        dest: path.join(
+                            extensionPath,
+                            'electron/views/device-connect-view/styles/default',
+                        ),
                         expand: true,
                     },
                     {
                         cwd: './dist/src/injected/styles',
                         src: '*.css',
-                        dest: path.join(extensionPath, 'injected/styles/default'),
+                        dest: path.join(
+                            extensionPath,
+                            'injected/styles/default',
+                        ),
                         expand: true,
                     },
                     {
@@ -106,10 +121,18 @@ module.exports = function(grunt) {
             },
         },
         exec: {
-            'webpack-dev': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name dev`,
-            'webpack-prod': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name prod`,
-            'webpack-electron': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name electron`,
-            'generate-scss-typings': `"${path.resolve('./node_modules/.bin/tsm')}" src`,
+            'webpack-dev': `"${path.resolve(
+                './node_modules/.bin/webpack',
+            )}" --config-name dev`,
+            'webpack-prod': `"${path.resolve(
+                './node_modules/.bin/webpack',
+            )}" --config-name prod`,
+            'webpack-electron': `"${path.resolve(
+                './node_modules/.bin/webpack',
+            )}" --config-name electron`,
+            'generate-scss-typings': `"${path.resolve(
+                './node_modules/.bin/tsm',
+            )}" src`,
         },
         sass: {
             options: {
@@ -170,8 +193,14 @@ module.exports = function(grunt) {
             },
             configure: {
                 [targetName]: {
-                    configJSPath: path.join(dropExtensionPath, 'insights.config.js'),
-                    configJSONPath: path.join(dropExtensionPath, 'insights.config.json'),
+                    configJSPath: path.join(
+                        dropExtensionPath,
+                        'insights.config.js',
+                    ),
+                    configJSONPath: path.join(
+                        dropExtensionPath,
+                        'insights.config.json',
+                    ),
                     config,
                 },
             },
@@ -248,7 +277,10 @@ module.exports = function(grunt) {
             const input = grunt.file.read(src, fileOptions);
             const rex = /\<\<CSS:([a-zA-Z\-\.\/]+)\>\>/g;
             const output = input.replace(rex, (_, cssName) => {
-                const bundledFolderPath = path.resolve(extensionPath, bundleFolder);
+                const bundledFolderPath = path.resolve(
+                    extensionPath,
+                    bundleFolder,
+                );
                 const cssFile = path.resolve(bundledFolderPath, cssName);
                 grunt.log.writeln(`    embedding from ${cssFile}`);
                 const styles = grunt.file.read(cssFile, fileOptions);
@@ -263,7 +295,8 @@ module.exports = function(grunt) {
         const { config, configJSONPath, configJSPath } = this.data;
         const configJSON = JSON.stringify(config, undefined, 4);
         grunt.file.write(configJSONPath, configJSON);
-        const copyrightHeader = '// Copyright (c) Microsoft Corporation. All rights reserved.\n// Licensed under the MIT License.\n';
+        const copyrightHeader =
+            '// Copyright (c) Microsoft Corporation. All rights reserved.\n// Licensed under the MIT License.\n';
         const configJS = `${copyrightHeader}window.insights = ${configJSON}`;
         grunt.file.write(configJSPath, configJS);
     });
@@ -286,7 +319,10 @@ module.exports = function(grunt) {
                 },
             },
         });
-        grunt.file.write(manifestDest, JSON.stringify(manifestJSON, undefined, 2));
+        grunt.file.write(
+            manifestDest,
+            JSON.stringify(manifestJSON, undefined, 2),
+        );
     });
 
     grunt.registerMultiTask('drop', function() {
@@ -298,7 +334,11 @@ module.exports = function(grunt) {
         const dropPath = path.join(`drop/${productCategory}`, targetName);
         const dropExtensionPath = path.join(dropPath, 'product');
 
-        const mustExistPath = path.join(extensionPath, bundleFolder, mustExistFile);
+        const mustExistPath = path.join(
+            extensionPath,
+            bundleFolder,
+            mustExistFile,
+        );
 
         mustExist(mustExistPath, 'Have you run webpack?');
 
@@ -316,10 +356,21 @@ module.exports = function(grunt) {
         });
     });
 
-    grunt.registerTask('build-assets', ['sass', 'copy:code', 'copy:styles', 'copy:images']);
+    grunt.registerTask('build-assets', [
+        'sass',
+        'copy:code',
+        'copy:styles',
+        'copy:images',
+    ]);
 
     // Main entry points for npm scripts:
-    grunt.registerTask('build-dev', ['clean:intermediates', 'exec:generate-scss-typings', 'exec:webpack-dev', 'build-assets', 'drop:dev']);
+    grunt.registerTask('build-dev', [
+        'clean:intermediates',
+        'exec:generate-scss-typings',
+        'exec:webpack-dev',
+        'build-assets',
+        'drop:dev',
+    ]);
     grunt.registerTask('build-prod', [
         'clean:intermediates',
         'exec:generate-scss-typings',

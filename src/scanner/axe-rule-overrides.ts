@@ -9,7 +9,11 @@ export namespace AxeRuleOverrides {
             {
                 id: 'aria-allowed-attr',
                 options: {
-                    separator: ['aria-valuenow', 'aria-valuemin', 'aria-valuemax'],
+                    separator: [
+                        'aria-valuenow',
+                        'aria-valuemin',
+                        'aria-valuemax',
+                    ],
                 },
             },
         ],
