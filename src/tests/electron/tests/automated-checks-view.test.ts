@@ -93,14 +93,19 @@ describe('AutomatedChecksView', () => {
 
         const highlightBoxes = await automatedChecksView.client.$$(ScreenshotViewSelectors.highlightBox);
 
-        const highlightBoxStyles: PositionStyles[] = [];
+        const actualHighlightBoxStyles: PositionStyles[] = [];
         for (let i = 1; i <= highlightBoxes.length; i++) {
             const style = await automatedChecksView.findElement(ScreenshotViewSelectors.getHighlightBoxByIndex(i)).getAttribute('style');
-            highlightBoxStyles.push(extractPositionStyles(style));
+            actualHighlightBoxStyles.push(extractPositionStyles(style));
         }
 
-        expect(highlightBoxes).toHaveLength(5);
-        verifyHighlightBoxStyles(highlightBoxStyles);
+        verifyHighlightBoxStyles(actualHighlightBoxStyles, [
+            { width: 10.7407, height: 6.04167, top: 3.28125, left: 89.2593 },
+            { width: 10.7407, height: 6.04167, top: 3.28125, left: 89.2593 },
+            { width: 10.7407, height: 6.04167, top: 10.4167, left: 13.4259 },
+            { width: 48.6111, height: 4.94792, top: 23.5417, left: 25.6481 },
+            { width: 49.8148, height: 16.4063, top: 30.1042, left: 0 },
+        ]);
     });
 
     type PositionStyles = {
@@ -123,29 +128,14 @@ describe('AutomatedChecksView', () => {
         return parseFloat(RegExp(`${propertyName}: (-?\\d+(\\.\\d+)?)%`).exec(styleValue)[1]);
     }
 
-    function verifyHighlightBoxStyles(highlightBoxStyles: PositionStyles[]): void {
-        const expectedStyles: PositionStyles[] = [
-            createHighlightBoxPositionStyle(10.7407, 6.04167, 3.28125, 89.2593),
-            createHighlightBoxPositionStyle(10.7407, 6.04167, 3.28125, 89.2593),
-            createHighlightBoxPositionStyle(10.7407, 6.04167, 10.4167, 13.4259),
-            createHighlightBoxPositionStyle(48.6111, 4.94792, 23.5417, 25.6481),
-            createHighlightBoxPositionStyle(49.8148, 16.4063, 30.1042, 0),
-        ];
+    function verifyHighlightBoxStyles(actualHighlightBoxStyles: PositionStyles[], expectedHighlightBoxStyles: PositionStyles[]): void {
+        expect(actualHighlightBoxStyles).toHaveLength(expectedHighlightBoxStyles.length);
 
-        highlightBoxStyles.forEach((boxStyle, index) => {
-            expect(boxStyle.top).toBeCloseTo(expectedStyles[index].top);
-            expect(boxStyle.left).toBeCloseTo(expectedStyles[index].left);
-            expect(boxStyle.width).toBeCloseTo(expectedStyles[index].width);
-            expect(boxStyle.height).toBeCloseTo(expectedStyles[index].height);
+        actualHighlightBoxStyles.forEach((boxStyle, index) => {
+            expect(boxStyle.top).toBeCloseTo(expectedHighlightBoxStyles[index].top);
+            expect(boxStyle.left).toBeCloseTo(expectedHighlightBoxStyles[index].left);
+            expect(boxStyle.width).toBeCloseTo(expectedHighlightBoxStyles[index].width);
+            expect(boxStyle.height).toBeCloseTo(expectedHighlightBoxStyles[index].height);
         });
-    }
-
-    function createHighlightBoxPositionStyle(width: number, height: number, top: number, left: number): PositionStyles {
-        return {
-            width: width,
-            height: height,
-            top: top,
-            left: left,
-        };
     }
 });
