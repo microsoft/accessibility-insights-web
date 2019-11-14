@@ -30,7 +30,7 @@ import { MessageDistributor } from './message-distributor';
 import { TabToContextMap } from './tab-context';
 import { TabContextBroadcaster } from './tab-context-broadcaster';
 import { TabContextFactory } from './tab-context-factory';
-import { TabController } from './tab-controller';
+import { TargetPageController } from './target-page-controller';
 import { TargetTabController } from './target-tab-controller';
 import { getTelemetryClient } from './telemetry/telemetry-client-provider';
 import { TelemetryEventHandler } from './telemetry/telemetry-event-handler';
@@ -124,7 +124,7 @@ async function initialize(): Promise<void> {
         promiseFactory,
     );
 
-    const clientHandler = new TabController(
+    const clientHandler = new TargetPageController(
         tabToContextMap,
         broadcaster,
         browserAdapter,

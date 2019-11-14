@@ -1,23 +1,22 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { DetailsViewController } from 'background/details-view-controller';
 import { Interpreter } from 'background/interpreter';
 import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { TabToContextMap } from 'background/tab-context';
 import { TabContextBroadcaster } from 'background/tab-context-broadcaster';
 import { TabContextFactory } from 'background/tab-context-factory';
-import { TabController } from 'background/tab-controller';
+import { TargetPageController } from 'background/target-page-controller';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
-import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
-import { Message } from '../../../../common/message';
-import { Messages } from '../../../../common/messages';
-import { DictionaryStringTo } from '../../../../types/common-types';
-import { Logger } from './../../../../common/logging/logger';
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { Logger } from 'common/logging/logger';
+import { Message } from 'common/message';
+import { Messages } from 'common/messages';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { DictionaryStringTo } from 'types/common-types';
 
-describe('TabControllerTest', () => {
-    let testSubject: TabController;
+describe('TargetPageControllerTest', () => {
+    let testSubject: TargetPageController;
     let mockBroadcasterStrictMock: IMock<TabContextBroadcaster>;
     let mockChromeAdapter: IMock<BrowserAdapter>;
     let mockDetailsViewController: IMock<DetailsViewController>;
@@ -37,8 +36,8 @@ describe('TabControllerTest', () => {
             .verifiable(Times.once());
     }
 
-    function createTabControllerWithoutFeatureFlag(tabContextMap: TabToContextMap): TabController {
-        return new TabController(
+    function createTabControllerWithoutFeatureFlag(tabContextMap: TabToContextMap): TargetPageController {
+        return new TargetPageController(
             tabContextMap,
             mockBroadcasterStrictMock.object,
             mockChromeAdapter.object,
@@ -65,7 +64,7 @@ describe('TabControllerTest', () => {
             })
             .verifiable(Times.once());
 
-        testSubject = new TabController(
+        testSubject = new TargetPageController(
             tabInterpreterMap,
             mockBroadcasterStrictMock.object,
             mockChromeAdapter.object,
