@@ -34,8 +34,10 @@ describe('PreviewFeaturesToggleListTest', () => {
         ];
         const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
         const props: PreviewFeaturesToggleListProps = {
+            deps: {
+                detailsViewActionMessageCreator: actionMessageCreatorMock.object,
+            },
             displayedFeatureFlags: displayableFeatureFlagsStub,
-            actionMessageCreator: actionMessageCreatorMock.object,
         };
 
         const testSubject = shallow(<PreviewFeaturesToggleList {...props} />);

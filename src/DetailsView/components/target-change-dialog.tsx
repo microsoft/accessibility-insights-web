@@ -18,13 +18,13 @@ import { DetailsViewActionMessageCreator } from '../actions/details-view-action-
 
 export type TargetChangeDialogDeps = {
     urlParser: UrlParser;
+    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
 };
 
 export interface TargetChangeDialogProps {
     deps: TargetChangeDialogDeps;
     prevTab: PersistedTabInfo;
     newTab: Tab;
-    actionMessageCreator: DetailsViewActionMessageCreator;
 }
 
 export class TargetChangeDialog extends React.Component<TargetChangeDialogProps> {
@@ -63,14 +63,17 @@ export class TargetChangeDialog extends React.Component<TargetChangeDialogProps>
                 <DialogFooter>
                     <div className="target-change-dialog-button-container">
                         <div className="button ms-Grid-col  action-cancel-button-col restart-button">
-                            <DefaultButton text="Start new" onClick={this.props.actionMessageCreator.startOverAllAssessments} />
+                            <DefaultButton
+                                text="Start new"
+                                onClick={this.props.deps.detailsViewActionMessageCreator.startOverAllAssessments}
+                            />
                         </div>
 
                         <div className="button ms-Grid-col  action-cancel-button-col continue-button">
                             <DefaultButton
                                 autoFocus={true}
                                 text="Continue previous"
-                                onClick={this.props.actionMessageCreator.continuePreviousAssessment}
+                                onClick={this.props.deps.detailsViewActionMessageCreator.continuePreviousAssessment}
                             />
                         </div>
                     </div>
@@ -95,7 +98,7 @@ export class TargetChangeDialog extends React.Component<TargetChangeDialogProps>
                 <Link
                     role="link"
                     className={css('insights-link', 'target-page-link')}
-                    onClick={this.props.actionMessageCreator.switchToTargetTab}
+                    onClick={this.props.deps.detailsViewActionMessageCreator.switchToTargetTab}
                 >
                     {tab.title}
                 </Link>

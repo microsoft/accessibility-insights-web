@@ -30,10 +30,12 @@ describe('TargetChangeDialog test set for prev tab null', () => {
             .verifiable(Times.never());
 
         const targetChangeProps: TargetChangeDialogProps = {
-            deps: { urlParser: urlParserMock.object },
+            deps: {
+                urlParser: urlParserMock.object,
+                detailsViewActionMessageCreator: actionMessageCreatorMock.object,
+            },
             prevTab: prevTab,
             newTab: newTab,
-            actionMessageCreator: actionMessageCreatorMock.object,
         };
 
         const wrapper = Enzyme.shallow(<TargetChangeDialog {...targetChangeProps} />);
@@ -75,10 +77,12 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
             .verifiable(Times.once());
 
         const targetChangeProps: TargetChangeDialogProps = {
-            deps: { urlParser: urlParserMock.object },
+            deps: {
+                urlParser: urlParserMock.object,
+                detailsViewActionMessageCreator: actionMessageCreatorMock.object,
+            },
             prevTab,
             newTab,
-            actionMessageCreator: actionMessageCreatorMock.object,
         };
 
         const wrapper = Enzyme.shallow(<TargetChangeDialog {...targetChangeProps} />);
@@ -101,10 +105,12 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
             .verifiable();
 
         const targetChangeProps: TargetChangeDialogProps = {
-            deps: { urlParser: urlParserMock.object },
+            deps: {
+                urlParser: urlParserMock.object,
+                detailsViewActionMessageCreator: actionMessageCreatorMock.object,
+            },
             prevTab,
             newTab,
-            actionMessageCreator: actionMessageCreatorMock.object,
         };
 
         const wrapper = Enzyme.shallow(<TargetChangeDialog {...targetChangeProps} />);
@@ -125,10 +131,12 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
             .verifiable(Times.never());
 
         const targetChangeProps: TargetChangeDialogProps = {
-            deps: { urlParser: urlParserMock.object },
+            deps: {
+                urlParser: urlParserMock.object,
+                detailsViewActionMessageCreator: actionMessageCreatorMock.object,
+            },
             prevTab,
             newTab,
-            actionMessageCreator: actionMessageCreatorMock.object,
         };
 
         const component = new TargetChangeDialog(targetChangeProps);
@@ -153,10 +161,12 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
             .verifiable();
 
         const targetChangeProps: TargetChangeDialogProps = {
-            deps: { urlParser: urlParserMock.object },
+            deps: {
+                urlParser: urlParserMock.object,
+                detailsViewActionMessageCreator: actionMessageCreatorMock.object,
+            },
             prevTab,
             newTab,
-            actionMessageCreator: actionMessageCreatorMock.object,
         };
 
         const component = new TargetChangeDialog(targetChangeProps);
@@ -180,10 +190,12 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
             .verifiable(Times.never());
 
         const targetChangeProps: TargetChangeDialogProps = {
-            deps: { urlParser: urlParserMock.object },
+            deps: {
+                urlParser: urlParserMock.object,
+                detailsViewActionMessageCreator: actionMessageCreatorMock.object,
+            },
             prevTab,
             newTab,
-            actionMessageCreator: actionMessageCreatorMock.object,
         };
 
         const component = new TargetChangeDialog(targetChangeProps);
@@ -206,10 +218,12 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
             .verifiable(Times.never());
 
         const targetChangeProps: TargetChangeDialogProps = {
-            deps: { urlParser: urlParserMock.object },
+            deps: {
+                urlParser: urlParserMock.object,
+                detailsViewActionMessageCreator: actionMessageCreatorMock.object,
+            },
             prevTab,
             newTab,
-            actionMessageCreator: actionMessageCreatorMock.object,
         };
 
         const component = new TargetChangeDialog(targetChangeProps);

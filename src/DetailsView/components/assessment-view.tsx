@@ -127,14 +127,7 @@ export class AssessmentView extends React.Component<AssessmentViewProps> {
     }
 
     private renderTargetChangeDialog(): JSX.Element {
-        return (
-            <TargetChangeDialog
-                deps={this.props.deps}
-                prevTab={this.props.prevTarget}
-                newTab={this.props.currentTarget}
-                actionMessageCreator={this.props.deps.detailsViewActionMessageCreator}
-            />
-        );
+        return <TargetChangeDialog deps={this.props.deps} prevTab={this.props.prevTarget} newTab={this.props.currentTarget} />;
     }
 
     private disableVisualHelpersForTest(test: VisualizationType): void {
@@ -195,7 +188,6 @@ export class AssessmentView extends React.Component<AssessmentViewProps> {
                         assessmentNavState={this.props.assessmentNavState}
                         assessmentInstanceTableHandler={this.props.assessmentInstanceTableHandler}
                         manualTestStepResultMap={this.props.assessmentData.manualTestStepResultMap}
-                        actionMessageCreator={this.props.deps.detailsViewActionMessageCreator}
                         assessmentsProvider={this.props.deps.assessmentsProvider}
                         isStepEnabled={this.props.isEnabled}
                         isStepScanned={isStepScanned}

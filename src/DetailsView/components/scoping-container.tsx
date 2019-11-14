@@ -12,8 +12,10 @@ import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag
 import { ScopingStoreData } from '../../common/types/store-data/scoping-store-data';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 
+export interface ScopingContainerDeps {
+    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+}
 export interface ScopingContainerProps {
-    actionMessageCreator: DetailsViewActionMessageCreator;
     featureFlagData: FeatureFlagStoreData;
     scopingSelectorsData: ScopingStoreData;
     scopingActionMessageCreator: ScopingActionMessageCreator;

@@ -56,7 +56,6 @@ describe('DetailsViewOverlay', () => {
         detailsViewStoreData,
         scopingStoreData,
         featureFlagStoreData,
-        actionMessageCreator: actionMessageCreatorStub,
         previewFeatureFlagsHandler: previewFeatureFlagsHandlerStub,
         scopingActionMessageCreator: scopingActionMessageCreatorStub,
         inspectActionMessageCreator: inspectActionMessageCreatorStub,

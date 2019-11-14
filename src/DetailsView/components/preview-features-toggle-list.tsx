@@ -6,9 +6,13 @@ import { DisplayableFeatureFlag } from '../../common/types/store-data/displayabl
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { GenericToggle } from './generic-toggle';
 
+export interface PreviewFeaturesToggleListDeps {
+    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+}
+
 export interface PreviewFeaturesToggleListProps {
+    deps: PreviewFeaturesToggleListDeps;
     displayedFeatureFlags: DisplayableFeatureFlag[];
-    actionMessageCreator: DetailsViewActionMessageCreator;
 }
 
 export class PreviewFeaturesToggleList extends React.Component<PreviewFeaturesToggleListProps> {
@@ -23,7 +27,7 @@ export class PreviewFeaturesToggleList extends React.Component<PreviewFeaturesTo
                 name={displayableFlag.displayableName}
                 description={displayableFlag.displayableDescription}
                 enabled={displayableFlag.enabled}
-                onClick={this.props.actionMessageCreator.setFeatureFlag}
+                onClick={this.props.deps.detailsViewActionMessageCreator.setFeatureFlag}
                 key={this.getToggleKey(displayableFlag.id)}
                 id={displayableFlag.id}
             />

@@ -18,9 +18,13 @@ export interface StartOverState {
     dialogState: DialogState;
 }
 
+export interface StartOverDeps {
+    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+}
+
 export interface StartOverProps {
+    deps: StartOverDeps;
     testName: string;
-    actionMessageCreator: DetailsViewActionMessageCreator;
     test: VisualizationType;
     requirementKey: string;
     rightPanelConfiguration: DetailsRightPanelConfiguration;
@@ -123,31 +127,33 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
     }
 
     private onDismissStartOverDialog = (event: React.MouseEvent<any>): void => {
-        const { actionMessageCreator, requirementKey, test } = this.props;
+        const detailsViewActionMessageCreator = this.props.deps.detailsViewActionMessageCreator;
+        const { requirementKey, test } = this.props;
 
         if (this.state.dialogState === 'assessment') {
-            actionMessageCreator.cancelStartOverAllAssessments(event);
+            detailsViewActionMessageCreator.cancelStartOverAllAssessments(event);
         }
 
         if (this.state.dialogState === 'test') {
-            actionMessageCreator.cancelStartOver(event, test, requirementKey);
+            detailsViewActionMessageCreator.cancelStartOver(event, test, requirementKey);
         }
 
         this.setState({ dialogState: 'none' });
     };
 
     private onStartTestOver = (event: React.MouseEvent<any>): void => {
-        const { actionMessageCreator, test, requirementKey } = this.props;
+        const detailsViewActionMessageCreator = this.props.deps.detailsViewActionMessageCreator;
+        const { requirementKey, test } = this.props;
 
-        actionMessageCreator.startOverAssessment(event, test, requirementKey);
+        detailsViewActionMessageCreator.startOverAssessment(event, test, requirementKey);
 
         this.setState({ dialogState: 'none' });
     };
 
     private onStartOverAllTests = (event: React.MouseEvent<any>): void => {
-        const { actionMessageCreator } = this.props;
+        const detailsViewActionMessageCreator = this.props.deps.detailsViewActionMessageCreator;
 
-        actionMessageCreator.startOverAllAssessments(event);
+        detailsViewActionMessageCreator.startOverAllAssessments(event);
 
         this.setState({ dialogState: 'none' });
     };

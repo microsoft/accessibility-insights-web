@@ -73,7 +73,6 @@ describe('ReportExportComponentPropsFactory', () => {
             deps,
             featureFlagStoreData,
             tabStoreData,
-            actionMessageCreator: actionMessageCreatorMock.object,
             assessmentStoreData,
             assessmentsProvider: assessmentsProviderMock.object,
             visualizationScanResultData,

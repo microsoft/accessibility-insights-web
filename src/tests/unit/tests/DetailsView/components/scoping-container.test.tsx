@@ -31,8 +31,10 @@ describe('ScopingContainerTest', () => {
         const inspectActionMessageCreatorMock = Mock.ofType(InspectActionMessageCreator);
         const featureFlagStoreDataStub = {};
         const props: ScopingContainerProps = {
+            deps: {
+                detailsViewActionMessageCreator: actionMessageCreatorMock.object,
+            },
             featureFlagData: featureFlagStoreDataStub,
-            actionMessageCreator: actionMessageCreatorMock.object,
             scopingSelectorsData: scopingSelectorsStub,
             scopingActionMessageCreator: scopingActionMessageCreatorMock.object,
             inspectActionMessageCreator: inspectActionMessageCreatorMock.object,

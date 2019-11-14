@@ -261,7 +261,6 @@ class AssessmentViewPropsBuilder {
             isScanning: false,
             isEnabled: this.isEnabled,
             content: this.content,
-            actionMessageCreator: this.actionMessageCreatorMock.object,
             assessmentNavState,
             assessmentInstanceTableHandler: this.assessmentInstanceTableHandlerMock.object,
             assessmentProvider: this.provider,

@@ -22,7 +22,10 @@ import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-
 import { AssessmentInstanceTable } from './assessment-instance-table';
 import { ManualTestStepView } from './manual-test-step-view';
 
-export type TestStepViewDeps = ContentPanelButtonDeps & GuidanceTagsDeps;
+export type TestStepViewDeps = ContentPanelButtonDeps &
+    GuidanceTagsDeps & {
+        detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    };
 
 export interface TestStepViewProps {
     deps: TestStepViewDeps;
@@ -35,7 +38,6 @@ export interface TestStepViewProps {
     assessmentNavState: AssessmentNavState;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
     manualTestStepResultMap: DictionaryStringTo<ManualTestStepResult>;
-    actionMessageCreator: DetailsViewActionMessageCreator;
     assessmentsProvider: AssessmentsProvider;
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
     featureFlagStoreData: FeatureFlagStoreData;
@@ -124,9 +126,9 @@ export class TestStepView extends React.Component<TestStepViewProps> {
         }
 
         const visualHelperToggleConfig: VisualHelperToggleConfig = {
+            deps: this.props.deps,
             assessmentNavState: this.props.assessmentNavState,
             instancesMap: this.props.instancesMap,
-            actionMessageCreator: this.props.actionMessageCreator,
             isStepEnabled: this.props.isStepEnabled,
             isStepScanned: this.props.isStepScanned,
         };

@@ -49,10 +49,14 @@ export interface Requirement {
     renderRequirementDescription?: (requirementLink: RequirementLink) => JSX.Element;
 }
 
+export interface VisualHelperToggleConfigDeps {
+    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+}
+
 export interface VisualHelperToggleConfig {
+    deps: VisualHelperToggleConfigDeps;
     assessmentNavState: AssessmentNavState;
     instancesMap: DictionaryStringTo<GeneratedAssessmentInstance>;
-    actionMessageCreator: DetailsViewActionMessageCreator;
     isStepEnabled: boolean;
     isStepScanned: boolean;
 }

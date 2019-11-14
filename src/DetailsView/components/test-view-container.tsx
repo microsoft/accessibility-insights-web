@@ -21,10 +21,10 @@ import { IssuesTableHandler } from './issues-table-handler';
 import { OverviewContainerDeps } from './overview-content/overview-content-container';
 import { TestViewDeps } from './test-view';
 
-export type TestViewContainerDeps = {
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-} & TestViewDeps &
-    OverviewContainerDeps;
+export type TestViewContainerDeps = TestViewDeps &
+    OverviewContainerDeps & {
+        detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    };
 
 export interface TestViewContainerProps {
     deps: TestViewContainerDeps;

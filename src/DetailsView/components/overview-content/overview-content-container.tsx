@@ -69,12 +69,7 @@ export const OverviewContainer = NamedFC<OverviewContainerProps>('OverviewContai
 
     return (
         <div className="overview">
-            <TargetChangeDialog
-                deps={deps}
-                prevTab={prevTarget}
-                newTab={currentTarget}
-                actionMessageCreator={props.deps.detailsViewActionMessageCreator}
-            />
+            <TargetChangeDialog deps={deps} prevTab={prevTarget} newTab={currentTarget} />
             <section className="overview-text-summary-section">
                 <OverviewHeading />
                 <AssessmentReportSummary summary={summaryData} />

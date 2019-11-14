@@ -8,9 +8,13 @@ import { PreviewFeatureFlagsHandler } from '../handlers/preview-feature-flags-ha
 import { GenericPanel } from './generic-panel';
 import { PreviewFeaturesContainer } from './preview-features-container';
 
+export interface PreviewFeaturesPanelDeps {
+    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+}
+
 export interface PreviewFeaturesPanelProps {
+    deps: PreviewFeaturesPanelDeps;
     isOpen: boolean;
-    actionMessageCreator: DetailsViewActionMessageCreator;
     featureFlagData: FeatureFlagStoreData;
     previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
 }
@@ -22,13 +26,13 @@ export class PreviewFeaturesPanel extends React.Component<PreviewFeaturesPanelPr
                 title="Preview features"
                 isOpen={this.props.isOpen}
                 className="preview-features-panel"
-                onDismiss={this.props.actionMessageCreator.closePreviewFeaturesPanel}
+                onDismiss={this.props.deps.detailsViewActionMessageCreator.closePreviewFeaturesPanel}
                 closeButtonAriaLabel="Close preview features panel"
                 hasCloseButton={true}
             >
                 <PreviewFeaturesContainer
+                    deps={this.props.deps}
                     featureFlagData={this.props.featureFlagData}
-                    actionMessageCreator={this.props.actionMessageCreator}
                     previewFeatureFlagsHandler={this.props.previewFeatureFlagsHandler}
                 />
             </GenericPanel>

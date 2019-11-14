@@ -39,7 +39,6 @@ describe('ExportDialog', () => {
             description: 'description',
             onClose: onCloseMock.object,
             onDescriptionChange: onDescriptionChangeMock.object,
-            actionMessageCreator: actionMessageCreatorMock.object,
             exportResultsType: 'Assessment',
             onExportClick: onExportClickMock.object,
         };

@@ -32,7 +32,7 @@ describe('DetailsListIssuesView', () => {
     let visualizationStoreDataStub: VisualizationStoreData;
     let visualizationScanResultStoreDataStub: VisualizationScanResultData;
     let selectedTest: VisualizationType;
-    let actionMessageCreatorStub: DetailsViewActionMessageCreator;
+    let detailsViewActionMessageCreatorStub: DetailsViewActionMessageCreator;
     let issuesSelectionStub: ISelection;
     let issuesTableHandlerStub: IssuesTableHandler;
 
@@ -53,14 +53,14 @@ describe('DetailsListIssuesView', () => {
             scanning: 'test-scanning',
         } as VisualizationStoreData;
         clickHandlerStub = () => {};
-        actionMessageCreatorStub = {} as DetailsViewActionMessageCreator;
+        detailsViewActionMessageCreatorStub = {} as DetailsViewActionMessageCreator;
         issuesSelectionStub = {} as ISelection;
         issuesTableHandlerStub = {} as IssuesTableHandler;
         selectedTest = -1;
 
         props = {
             deps: {
-                detailsViewActionMessageCreator: actionMessageCreatorStub,
+                detailsViewActionMessageCreator: detailsViewActionMessageCreatorStub,
             } as DetailsListIssuesViewDeps,
             configuration: {
                 getStoreData: getStoreDataMock.object,

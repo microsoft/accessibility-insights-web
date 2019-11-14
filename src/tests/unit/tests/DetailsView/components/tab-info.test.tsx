@@ -28,9 +28,11 @@ describe('TabInfo', () => {
                 dropdownClickHandlerMock = Mock.ofType(DropdownClickHandler);
 
                 testProps = {
+                    deps: {
+                        detailsViewActionMessageCreator: actionCreatorMock.object,
+                    },
                     title: 'test title',
                     url: 'test url',
-                    actionCreator: actionCreatorMock.object,
                     isTargetPageHidden: false,
                     selectedPivot: DetailsViewPivotType.allTest,
                     dropdownClickHandler: dropdownClickHandlerMock.object,

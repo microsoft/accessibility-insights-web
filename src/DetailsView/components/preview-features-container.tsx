@@ -10,8 +10,12 @@ import { PreviewFeatureFlagsHandler } from '../handlers/preview-feature-flags-ha
 import { NoDisplayableFeatureFlagMessage } from './no-displayable-preview-features-message';
 import { PreviewFeaturesToggleList } from './preview-features-toggle-list';
 
+export interface PreviewFeaturesContainerDeps {
+    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+}
+
 export interface PreviewFeaturesContainerProps {
-    actionMessageCreator: DetailsViewActionMessageCreator;
+    deps: PreviewFeaturesContainerDeps;
     featureFlagData: FeatureFlagStoreData;
     previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
 }
@@ -27,10 +31,7 @@ export class PreviewFeaturesContainer extends React.Component<PreviewFeaturesCon
         return (
             <div>
                 <div className="preview-features-description">{DisplayableStrings.previewFeaturesDescription}</div>
-                <PreviewFeaturesToggleList
-                    displayedFeatureFlags={displayableFeatureFlags}
-                    actionMessageCreator={this.props.actionMessageCreator}
-                />
+                <PreviewFeaturesToggleList deps={this.props.deps} displayedFeatureFlags={displayableFeatureFlags} />
             </div>
         );
     }

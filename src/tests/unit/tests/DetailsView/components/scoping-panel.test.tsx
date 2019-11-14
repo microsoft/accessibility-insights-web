@@ -24,8 +24,10 @@ describe('ScopingPanelTest', () => {
         const inspectActionMessageCreatorMock = Mock.ofType(InspectActionMessageCreator);
 
         const testProps: ScopingPanelProps = {
+            deps: {
+                detailsViewActionMessageCreator: actionMessageCreatorMock.object,
+            },
             isOpen: true,
-            actionMessageCreator: actionMessageCreatorMock.object,
             scopingActionMessageCreator: scopingActionMessageCreatorMock.object,
             featureFlagData: {},
             scopingSelectorsData: {
@@ -43,14 +45,14 @@ describe('ScopingPanelTest', () => {
             <GenericPanel
                 isOpen={true}
                 className={'scoping-panel'}
-                onDismiss={testProps.actionMessageCreator.closeScopingPanel}
+                onDismiss={testProps.deps.detailsViewActionMessageCreator.closeScopingPanel}
                 closeButtonAriaLabel={'Close scoping feature panel'}
                 hasCloseButton={true}
                 title="Scoping"
             >
                 <ScopingContainer
+                    deps={testProps.deps}
                     featureFlagData={testProps.featureFlagData}
-                    actionMessageCreator={testProps.actionMessageCreator}
                     scopingSelectorsData={testProps.scopingSelectorsData}
                     scopingActionMessageCreator={testProps.scopingActionMessageCreator}
                     inspectActionMessageCreator={testProps.inspectActionMessageCreator}
@@ -59,7 +61,7 @@ describe('ScopingPanelTest', () => {
                     className="closing-scoping-panel"
                     primary={true}
                     text="OK"
-                    onClick={testProps.actionMessageCreator.closeScopingPanel}
+                    onClick={testProps.deps.detailsViewActionMessageCreator.closeScopingPanel}
                 />
             </GenericPanel>
         );

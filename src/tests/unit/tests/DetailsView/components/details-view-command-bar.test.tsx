@@ -40,7 +40,9 @@ describe('DetailsViewCommandBar', () => {
         } as DetailsViewSwitcherNavConfiguration;
 
         return {
-            actionMessageCreator: actionMessageCreatorMock.object,
+            deps: {
+                detailsViewActionMessageCreator: actionMessageCreatorMock.object,
+            },
             tabStoreData,
             switcherNavConfiguration: switcherNavConfiguration,
         } as DetailsViewCommandBarProps;
