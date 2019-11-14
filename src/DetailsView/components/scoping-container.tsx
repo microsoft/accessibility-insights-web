@@ -10,11 +10,7 @@ import { InspectActionMessageCreator } from '../../common/message-creators/inspe
 import { ScopingActionMessageCreator } from '../../common/message-creators/scoping-action-message-creator';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { ScopingStoreData } from '../../common/types/store-data/scoping-store-data';
-import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 
-export interface ScopingContainerDeps {
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-}
 export interface ScopingContainerProps {
     featureFlagData: FeatureFlagStoreData;
     scopingSelectorsData: ScopingStoreData;
