@@ -19,6 +19,7 @@ describe('AutomatedChecksView', () => {
     beforeEach(async () => {
         app = await createApplication();
         automatedChecksView = await app.openAutomatedChecksView();
+        await automatedChecksView.waitForScreenshotViewVisible();
     });
 
     afterEach(async () => {
@@ -77,8 +78,6 @@ describe('AutomatedChecksView', () => {
     }
 
     it('ScreenshotView renders screenshot image from specified source', async () => {
-        await automatedChecksView.waitForScreenshotViewVisible();
-
         const resultExamplePath = path.join(testResourceServerConfig.absolutePath, 'axe/result.json');
         const axeRuleResultExample = JSON.parse(fs.readFileSync(resultExamplePath, { encoding: 'utf-8' }));
 
