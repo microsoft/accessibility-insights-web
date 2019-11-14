@@ -5,6 +5,7 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { StartOverDeps } from 'DetailsView/components/start-over-dropdown';
 import { Link } from 'office-ui-fabric-react/lib/Link';
@@ -21,6 +22,7 @@ export type DetailsViewCommandBarDeps = ReportExportComponentDeps &
         getCurrentDate: () => Date;
         reportGenerator: ReportGenerator;
         getDateFromTimestamp: (timestamp: string) => Date;
+        detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     };
 
 export type CommandBarProps = DetailsViewCommandBarProps;
