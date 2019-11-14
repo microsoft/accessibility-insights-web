@@ -45,7 +45,7 @@ describe('ReportGenerator', () => {
             .returns(() => 'returned-data');
 
         const testObject = new ReportGenerator(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
-        const actual = testObject.generateFastPassAutomateChecksReport(scanResult, date, title, url, cardsViewDataStub, description);
+        const actual = testObject.generateFastPassAutomatedChecksReport(scanResult, date, title, url, cardsViewDataStub, description);
 
         expect(actual).toMatchSnapshot();
     });

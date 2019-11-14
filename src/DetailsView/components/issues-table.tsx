@@ -116,7 +116,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
                     reportGenerator={reportGenerator}
                     pageTitle={pageTitle}
                     exportResultsType={'AutomatedChecks'}
-                    htmlGenerator={reportGenerator.generateFastPassAutomateChecksReport.bind(
+                    htmlGenerator={reportGenerator.generateFastPassAutomatedChecksReport.bind(
                         reportGenerator,
                         scanResult,
                         scanDate,
