@@ -11,23 +11,23 @@ steps:
           ELECTRON_MIRROR: $(ELECTRON_MIRROR)
           ELECTRON_CUSTOM_DIR: $(ELECTRON_CUSTOM_DIR)
 
-    # - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
-    #   displayName: 'sign dist'
-    #   inputs:
-    #       ConnectedServiceName: 'ESRP Code Signing'
-    #       FolderPath: '$(System.DefaultWorkingDirectory)/dist'
-    #       Pattern: '*.dmg, *.zip'
-    #       signConfigType: inlineSignParams
-    #       inlineOperation: |
-    #           [
-    #               {
-    #                   "keyCode": "CP-401337-Apple",
-    #                   "operationSetCode": "MacAppDeveloperSign",
-    #                   "parameters": [],
-    #                   "toolName": "sign",
-    #                   "toolVersion": "1.0"
-    #               }
-    #           ]
+    - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
+      displayName: 'sign dist'
+      inputs:
+          ConnectedServiceName: 'ESRP Code Signing'
+          FolderPath: '$(System.DefaultWorkingDirectory)/dist'
+          Pattern: '*.dmg, *.zip'
+          signConfigType: inlineSignParams
+          inlineOperation: |
+              [
+                  {
+                      "keyCode": "CP-401337-Apple",
+                      "operationSetCode": "MacAppDeveloperSign",
+                      "parameters": [],
+                      "toolName": "sign",
+                      "toolVersion": "1.0"
+                  }
+              ]
 
     - task: PublishBuildArtifacts@1
       inputs:
