@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
+import { FeatureFlags } from 'common/feature-flags';
 import { AssessmentNavState, AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
@@ -78,7 +79,7 @@ describe('StartOverComponentPropsFactory', () => {
     }
 
     function setCardsUiFlag(flag: boolean): void {
-        featureFlagStoreData['universalCardsUI'] = true;
+        featureFlagStoreData[FeatureFlags.universalCardsUI] = true;
     }
 
     test('getStartOverComponentPropsForAssessment, component matches snapshot', () => {

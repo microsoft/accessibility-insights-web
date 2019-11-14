@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { FeatureFlags } from 'common/feature-flags';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
@@ -112,7 +113,7 @@ describe('ReportExportComponentPropsFactory', () => {
     }
 
     function setCardsUiFlag(flag: boolean): void {
-        featureFlagStoreData['universalCardsUI'] = true;
+        featureFlagStoreData[FeatureFlags.universalCardsUI] = true;
     }
 
     function setSelectedFastPassDetailsView(test: VisualizationType): void {
