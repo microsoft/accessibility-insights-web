@@ -1,6 +1,6 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-appId: com.aimobile.app
+appId: com.aiandroid.app
 directories:
     app: drop/electron/electron
     buildResources: src/electron/resources
