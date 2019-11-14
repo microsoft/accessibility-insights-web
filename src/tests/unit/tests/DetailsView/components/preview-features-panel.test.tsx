@@ -16,12 +16,12 @@ describe('PreviewFeaturesPanelTest', () => {
     });
 
     test('render', () => {
-        const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+        const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
         const previewFeatureFlagsHandler = Mock.ofType(PreviewFeatureFlagsHandler);
 
         const testProps: PreviewFeaturesPanelProps = {
             deps: {
-                detailsViewActionMessageCreator: actionMessageCreatorMock.object,
+                detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
             },
             isOpen: true,
             previewFeatureFlagsHandler: previewFeatureFlagsHandler.object,

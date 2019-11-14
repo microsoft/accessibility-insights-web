@@ -300,7 +300,7 @@ if (isNaN(tabId) === false) {
                 issueFilingActionMessageCreator,
                 contentProvider: contentPages,
                 contentActionMessageCreator,
-                detailsViewActionMessageCreator: detailsViewActionMessageCreator,
+                detailsViewActionMessageCreator,
                 assessmentsProvider: Assessments,
                 actionInitiators,
                 assessmentDefaultMessageGenerator: assessmentDefaultMessageGenerator,

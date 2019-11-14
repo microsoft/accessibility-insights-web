@@ -13,7 +13,7 @@ import { ExportDialog, ExportDialogProps } from '../../../../../DetailsView/comp
 describe('ExportDialog', () => {
     const onCloseMock = Mock.ofInstance(() => {});
     const onDescriptionChangeMock = Mock.ofInstance((value: string) => {});
-    const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator, MockBehavior.Strict);
+    const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator, MockBehavior.Strict);
     const fileProviderMock = Mock.ofType<FileURLProvider>();
     const eventStub = 'event stub' as any;
     const onExportClickMock = Mock.ofInstance(() => {});
@@ -22,12 +22,12 @@ describe('ExportDialog', () => {
     beforeEach(() => {
         onCloseMock.reset();
         onDescriptionChangeMock.reset();
-        actionMessageCreatorMock.reset();
+        detailsViewActionMessageCreatorMock.reset();
         onExportClickMock.reset();
         fileProviderMock.reset();
 
         const deps = {
-            detailsViewActionMessageCreator: actionMessageCreatorMock.object,
+            detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
             fileURLProvider: fileProviderMock.object,
         };
 
@@ -74,7 +74,7 @@ describe('ExportDialog', () => {
             fileProviderMock.verifyAll();
             onCloseMock.verifyAll();
             onDescriptionChangeMock.verifyAll();
-            actionMessageCreatorMock.verifyAll();
+            detailsViewActionMessageCreatorMock.verifyAll();
             onExportClickMock.verifyAll();
         });
 
@@ -89,7 +89,7 @@ describe('ExportDialog', () => {
                 .verifiable(Times.once());
             onExportClickMock.setup(getter => getter()).verifiable(Times.once());
 
-            actionMessageCreatorMock
+            detailsViewActionMessageCreatorMock
                 .setup(a => a.exportResultsClicked(props.exportResultsType, props.html, eventStub))
                 .verifiable(Times.once());
 
@@ -100,7 +100,7 @@ describe('ExportDialog', () => {
             fileProviderMock.verifyAll();
             onCloseMock.verifyAll();
             onDescriptionChangeMock.verifyAll();
-            actionMessageCreatorMock.verifyAll();
+            detailsViewActionMessageCreatorMock.verifyAll();
             onExportClickMock.verifyAll();
         });
 
@@ -121,7 +121,7 @@ describe('ExportDialog', () => {
             fileProviderMock.verifyAll();
             onCloseMock.verifyAll();
             onDescriptionChangeMock.verifyAll();
-            actionMessageCreatorMock.verifyAll();
+            detailsViewActionMessageCreatorMock.verifyAll();
             onExportClickMock.verifyAll();
         });
     });

@@ -11,14 +11,14 @@ import { Switcher, SwitcherProps } from '../../../../../DetailsView/components/s
 
 describe('Switcher', () => {
     let defaultProps: SwitcherProps;
-    let actionCreatorMock: IMock<DetailsViewActionMessageCreator>;
+    let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
 
     beforeEach(() => {
-        actionCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
+        detailsViewActionMessageCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
         defaultProps = {
             pivotKey: DetailsViewPivotType.fastPass,
             deps: {
-                detailsViewActionMessageCreator: actionCreatorMock.object,
+                detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
             },
         };
     });
@@ -37,7 +37,7 @@ describe('Switcher', () => {
     });
 
     test('onOptionChange', () => {
-        actionCreatorMock
+        detailsViewActionMessageCreatorMock
             .setup(creator => creator.sendPivotItemClicked(DetailsViewPivotType[DetailsViewPivotType.assessment]))
             .verifiable(Times.once());
         const wrapper = shallow<Switcher>(<Switcher {...defaultProps} />);
@@ -50,7 +50,7 @@ describe('Switcher', () => {
         } as IDropdownOption);
 
         expect(wrapper.state().selectedKey).toBe(DetailsViewPivotType.assessment);
-        actionCreatorMock.verifyAll();
+        detailsViewActionMessageCreatorMock.verifyAll();
     });
 
     test('componentDidUpdate: pivotKey has changed', () => {

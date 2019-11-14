@@ -29,7 +29,7 @@ describe('ReportExportComponentPropsFactory', () => {
 
     let assessmentsProviderMock: IMock<AssessmentsProvider>;
     let featureFlagStoreData: FeatureFlagStoreData;
-    let actionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
+    let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let tabStoreData: TabStoreData;
     let assessmentStoreData: AssessmentStoreData;
     let reportGeneratorMock: IMock<ReportGenerator>;
@@ -40,7 +40,7 @@ describe('ReportExportComponentPropsFactory', () => {
 
     beforeEach(() => {
         featureFlagStoreData = {};
-        actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator, MockBehavior.Strict);
+        detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator, MockBehavior.Strict);
         tabStoreData = {
             title: thePageTitle,
             url: thePageUrl,
@@ -57,7 +57,7 @@ describe('ReportExportComponentPropsFactory', () => {
 
     function getProps(): DetailsViewCommandBarProps {
         const deps = {
-            detailsViewActionMessageCreator: actionMessageCreatorMock.object,
+            detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
             getCurrentDate: () => theDate,
             reportGenerator: reportGeneratorMock.object,
             getDateFromTimestamp: value => theDate,
@@ -130,7 +130,7 @@ describe('ReportExportComponentPropsFactory', () => {
         expect(wrapper.debug()).toMatchSnapshot();
 
         reportGeneratorMock.verifyAll();
-        actionMessageCreatorMock.verifyAll();
+        detailsViewActionMessageCreatorMock.verifyAll();
     });
 
     test('getReportExportComponentForFastPass, scanResults is null, props is null', () => {
@@ -160,6 +160,6 @@ describe('ReportExportComponentPropsFactory', () => {
         expect(wrapper.debug()).toMatchSnapshot();
 
         reportGeneratorMock.verifyAll();
-        actionMessageCreatorMock.verifyAll();
+        detailsViewActionMessageCreatorMock.verifyAll();
     });
 });

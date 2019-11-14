@@ -17,10 +17,10 @@ describe('DetailsViewCommandBar', () => {
     let tabStoreData: TabStoreData;
     let startOverComponent: JSX.Element;
     let reportExportComponent: JSX.Element;
-    let actionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
+    let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
 
     beforeEach(() => {
-        actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator, MockBehavior.Loose);
+        detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator, MockBehavior.Loose);
         tabStoreData = {
             title: thePageTitle,
             isClosed: false,
@@ -41,7 +41,7 @@ describe('DetailsViewCommandBar', () => {
 
         return {
             deps: {
-                detailsViewActionMessageCreator: actionMessageCreatorMock.object,
+                detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
             },
             tabStoreData,
             switcherNavConfiguration: switcherNavConfiguration,

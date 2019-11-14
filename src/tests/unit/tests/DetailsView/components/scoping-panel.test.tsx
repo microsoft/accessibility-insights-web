@@ -19,13 +19,13 @@ describe('ScopingPanelTest', () => {
     });
 
     test('render', () => {
-        const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+        const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
         const scopingActionMessageCreatorMock = Mock.ofType(ScopingActionMessageCreator);
         const inspectActionMessageCreatorMock = Mock.ofType(InspectActionMessageCreator);
 
         const testProps: ScopingPanelProps = {
             deps: {
-                detailsViewActionMessageCreator: actionMessageCreatorMock.object,
+                detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
             },
             isOpen: true,
             scopingActionMessageCreator: scopingActionMessageCreatorMock.object,
