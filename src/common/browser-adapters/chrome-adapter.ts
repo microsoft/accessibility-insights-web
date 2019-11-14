@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { browser, ExtensionTypes } from 'webextension-polyfill-ts';
+import { browser, ExtensionTypes, Permissions } from 'webextension-polyfill-ts';
 import { BrowserAdapter } from './browser-adapter';
 import { CommandsAdapter } from './commands-adapter';
 import { StorageAdapter } from './storage-adapter';
@@ -51,6 +51,10 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
                 onReject();
             }
         });
+    }
+
+    public requestPermissions(permissions: Permissions.Permissions): Promise<boolean> {
+        return browser.permissions.request(permissions);
     }
 
     public executeScriptInTab(tabId: number, details: ExtensionTypes.InjectDetails): Promise<any[]> {

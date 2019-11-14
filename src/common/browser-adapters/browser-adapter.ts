@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ExtensionTypes } from 'webextension-polyfill-ts';
+import { ExtensionTypes, Permissions } from 'webextension-polyfill-ts';
 
 export interface BrowserAdapter {
     getAllWindows(getInfo: chrome.windows.GetInfo, callback: (chromeWindows: chrome.windows.Window[]) => void): void;
@@ -19,6 +19,7 @@ export interface BrowserAdapter {
     sendMessageToTab(tabId: number, message: any): void;
     sendMessageToFrames(message: any): void;
     sendMessageToAllFramesAndTabs(message: any): void;
+    requestPermissions(permissions: Permissions.Permissions): Promise<boolean>;
     executeScriptInTab(tabId: number, details: ExtensionTypes.InjectDetails): Promise<any[]>;
     insertCSSInTab(tabId: number, details: ExtensionTypes.InjectDetails): Promise<void>;
     getRunTimeId(): string;
