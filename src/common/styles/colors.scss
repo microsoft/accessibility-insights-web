@@ -92,6 +92,7 @@
     --menu-background: --acrylic-light;
     --menu-border: --menu-background;
     --screenshot-image-outline: #8b8b8b;
+    --card-border: transparent;
 
     // Landmark colors
     --landmark-contentinfo: #00a88c;
@@ -160,6 +161,7 @@
         --menu-background: var(--light-black);
         --menu-border: var(--grey);
         --screenshot-image-outline: var(--white);
+        --card-border: var(--white);
     }
 }
 
@@ -256,6 +258,7 @@ $menu-item-background-active: var(--menu-item-background-active);
 $menu-border: var(--menu-border);
 $menu-background: var(--menu-background);
 $screenshot-image-outline: var(--screenshot-image-outline);
+$card-border: var(--card-border);
 
 // consistent colors
 $always-white: #ffffff;
