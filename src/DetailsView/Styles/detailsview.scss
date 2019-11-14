@@ -234,10 +234,6 @@ div.insights-file-issue-details-dialog-container {
 #details-container {
     display: flex;
     flex-direction: column;
-
-    .details-view-body {
-        margin-top: $detailsViewHeaderBarHeight;
-    }
     .ms-Nav-compositeLink a {
         border-left: $pivotItemLeftBorderWidth $pivotItemBorderStyle $neutral-0;
         border-top: 0px;
@@ -308,8 +304,18 @@ div.insights-file-issue-details-dialog-container {
     }
     .header-bar {
         padding-left: 12px;
-        position: fixed;
+        position: relative;
         z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        min-width: 550px;
+        .header-text {
+            padding-top: unset;
+        }
+        .header-text-switcher {
+            display: flex;
+            align-items: center;
+        }
         .gear-options-button-component {
             float: right;
             margin-right: 16px;

@@ -24,9 +24,11 @@ export class Header extends React.Component<HeaderProps> {
     public render(): JSX.Element {
         return (
             <header className="header-bar">
-                <HeaderIcon deps={this.props.deps} />
-                <div className="ms-font-m header-text">{title}</div>
-                {this.renderSwitcher()}
+                <div className="header-text-switcher">
+                    <HeaderIcon deps={this.props.deps} />
+                    <div className="ms-font-m header-text">{title}</div>
+                    {this.renderSwitcher()}
+                </div>
                 {this.renderButton()}
             </header>
         );

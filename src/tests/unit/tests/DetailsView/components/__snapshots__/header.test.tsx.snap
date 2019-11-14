@@ -2,9 +2,11 @@
 
 exports[`HeaderTest render: no feature flag store data 1`] = `
 "<header className=\\"header-bar\\">
-  <Component deps={{...}} />
-  <div className=\\"ms-font-m header-text\\">
-    Accessibility Insights for Web
+  <div className=\\"header-text-switcher\\">
+    <Component deps={{...}} />
+    <div className=\\"ms-font-m header-text\\">
+      Accessibility Insights for Web
+    </div>
   </div>
 </header>"
 `;
@@ -13,18 +15,22 @@ exports[`HeaderTest render: tabClosed is false 1`] = `
 <header
   className="header-bar"
 >
-  <Component
-    deps={null}
-  />
   <div
-    className="ms-font-m header-text"
+    className="header-text-switcher"
   >
-    Accessibility Insights for Web
+    <Component
+      deps={null}
+    />
+    <div
+      className="ms-font-m header-text"
+    >
+      Accessibility Insights for Web
+    </div>
+    <Switcher
+      deps={null}
+      pivotKey={2}
+    />
   </div>
-  <Switcher
-    deps={null}
-    pivotKey={2}
-  />
   <GearOptionsButtonComponent
     dropdownClickHandler={
       proxy {
@@ -49,13 +55,17 @@ exports[`HeaderTest render: tabClosed is true 1`] = `
 <header
   className="header-bar"
 >
-  <Component
-    deps={null}
-  />
   <div
-    className="ms-font-m header-text"
+    className="header-text-switcher"
   >
-    Accessibility Insights for Web
+    <Component
+      deps={null}
+    />
+    <div
+      className="ms-font-m header-text"
+    >
+      Accessibility Insights for Web
+    </div>
   </div>
 </header>
 `;
