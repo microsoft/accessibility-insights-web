@@ -26,11 +26,7 @@ describe('TabControllerTest', () => {
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
     let tabContextFactoryMock: IMock<TabContextFactory>;
     let onDetailsViewTabRemoved: (tabId: number) => void;
-    let logMock: IMock<(msg: string) => void>;
-    const LoggerStub: Logger = {
-        log: null,
-        error: null,
-    };
+    let loggerMock: IMock<Logger>;
 
     function setupCreateTabContextMock(broadCastDelegate: () => void, tabContext, tabId: number): void {
         tabContextFactoryMock
@@ -41,20 +37,19 @@ describe('TabControllerTest', () => {
             .verifiable(Times.once());
     }
 
-    function createTabControllerWithoutFeatureFlag(tabcContextMap: TabToContextMap): TabController {
+    function createTabControllerWithoutFeatureFlag(tabContextMap: TabToContextMap): TabController {
         return new TabController(
-            tabcContextMap,
+            tabContextMap,
             mockBroadcasterStrictMock.object,
             mockChromeAdapter.object,
             mockDetailsViewController.object,
             tabContextFactoryMock.object,
-            LoggerStub,
+            loggerMock.object,
         );
     }
 
     beforeEach(() => {
-        logMock = Mock.ofInstance((msg: string) => {});
-        LoggerStub.log = logMock.object;
+        loggerMock = Mock.ofType<Logger>();
         mockBroadcasterStrictMock = Mock.ofType<TabContextBroadcaster>(undefined, MockBehavior.Strict);
         mockChromeAdapter = Mock.ofType<BrowserAdapter>();
         mockDetailsViewController = Mock.ofType<DetailsViewController>();
@@ -76,7 +71,7 @@ describe('TabControllerTest', () => {
             mockChromeAdapter.object,
             mockDetailsViewController.object,
             tabContextFactoryMock.object,
-            LoggerStub,
+            loggerMock.object,
         );
 
         mockChromeAdapter.reset();
@@ -154,7 +149,7 @@ describe('TabControllerTest', () => {
                 rejectCallback = reject;
             })
             .verifiable(Times.once());
-        logMock.setup(log => log(`updated tab with Id ${tabId} not found`)).verifiable(Times.once());
+        loggerMock.setup(logger => logger.log(`updated tab with Id ${tabId} not found`)).verifiable(Times.once());
 
         setupCreateTabContextMock(broadcastDelegate, tabContextMock, tabId);
 
@@ -169,7 +164,7 @@ describe('TabControllerTest', () => {
         mockBroadcasterStrictMock.verifyAll();
         mockChromeAdapter.verifyAll();
         tabContextFactoryMock.verifyAll();
-        logMock.verifyAll();
+        loggerMock.verifyAll();
         expect(tabInterpreterMap[tabId]).toBe(tabContextMock);
     });
 
@@ -205,11 +200,11 @@ describe('TabControllerTest', () => {
             payload: null,
             tabId: tabId,
         };
-        const boradcastMessageDelegateMock = Mock.ofInstance(() => {});
+        const broadcastMessageDelegateMock = Mock.ofInstance(() => {});
 
         mockBroadcasterStrictMock
             .setup(mca => mca.getBroadcastMessageDelegate(tabId))
-            .returns(() => boradcastMessageDelegateMock.object)
+            .returns(() => broadcastMessageDelegateMock.object)
             .verifiable(Times.once());
 
         const interpreterMock = Mock.ofType(Interpreter);
@@ -231,7 +226,7 @@ describe('TabControllerTest', () => {
                 tabRemovedCallback = cb;
             });
 
-        setupCreateTabContextMock(boradcastMessageDelegateMock.object, tabContextMock, tabId);
+        setupCreateTabContextMock(broadcastMessageDelegateMock.object, tabContextMock, tabId);
         testSubject.initialize();
 
         tabUpdatedCallback({ tabId: tabId, frameId: 0 } as chrome.webNavigation.WebNavigationFramedCallbackDetails);
@@ -251,10 +246,10 @@ describe('TabControllerTest', () => {
             payload: null,
             tabId: tabId,
         };
-        const boradcastMessageDelegateMock = Mock.ofInstance(() => {});
+        const broadcastMessageDelegateMock = Mock.ofInstance(() => {});
         mockBroadcasterStrictMock
             .setup(mb => mb.getBroadcastMessageDelegate(tabId))
-            .returns(() => boradcastMessageDelegateMock.object)
+            .returns(() => broadcastMessageDelegateMock.object)
             .verifiable(Times.once());
 
         const interpreterMock = Mock.ofType(Interpreter);
@@ -271,7 +266,7 @@ describe('TabControllerTest', () => {
             })
             .verifiable(Times.once());
 
-        setupCreateTabContextMock(boradcastMessageDelegateMock.object, tabContextMock, tabId);
+        setupCreateTabContextMock(broadcastMessageDelegateMock.object, tabContextMock, tabId);
         testSubject.initialize();
 
         tabUpdatedCallback({ tabId: tabId, frameId: 0 } as chrome.webNavigation.WebNavigationFramedCallbackDetails);
@@ -388,7 +383,7 @@ describe('TabControllerTest', () => {
                 onReject = reject;
             })
             .verifiable(Times.once());
-        logMock.setup(log => log(`changed tab with Id ${tabId} not found`)).verifiable(Times.once());
+        loggerMock.setup(logger => logger.log(`changed tab with Id ${tabId} not found`)).verifiable(Times.once());
 
         testSubject = createTabControllerWithoutFeatureFlag(tabInterpreterMap);
         testSubject.initialize();
@@ -396,7 +391,7 @@ describe('TabControllerTest', () => {
         getTabCallback(getTabCallbackInput as any);
         onReject();
 
-        logMock.verifyAll();
+        loggerMock.verifyAll();
         interpreterMock.verifyAll();
         mockChromeAdapter.verifyAll();
     });
@@ -718,14 +713,14 @@ describe('TabControllerTest', () => {
                 onReject = reject;
             })
             .verifiable(Times.once());
-        logMock.setup(log => log(`changed tab with Id ${tabId} not found`)).verifiable(Times.once());
+        loggerMock.setup(logger => logger.log(`changed tab with Id ${tabId} not found`)).verifiable(Times.once());
 
         testSubject = createTabControllerWithoutFeatureFlag({ [tabId]: null });
         testSubject.initialize();
         tabUpdatedCallback(tabId, { url: 'some url' });
         onReject();
 
-        logMock.verifyAll();
+        loggerMock.verifyAll();
         mockChromeAdapter.verifyAll();
     });
 
@@ -749,7 +744,6 @@ describe('TabControllerTest', () => {
         testSubject.initialize();
         tabUpdatedCallback(tabId, {});
 
-        logMock.verifyAll();
         interpreterMock.verifyAll();
         mockChromeAdapter.verifyAll();
     });
