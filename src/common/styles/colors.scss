@@ -93,6 +93,7 @@
     --menu-border: --menu-background;
     --screenshot-image-outline: #8b8b8b;
     --card-border: transparent;
+    --card-footer-border: var(--neutral-10);
 
     // Landmark colors
     --landmark-contentinfo: #00a88c;
@@ -162,6 +163,7 @@
         --menu-border: var(--grey);
         --screenshot-image-outline: var(--white);
         --card-border: var(--white);
+        --card-footer-border: var(--white);
     }
 }
 
@@ -259,6 +261,7 @@ $menu-border: var(--menu-border);
 $menu-background: var(--menu-background);
 $screenshot-image-outline: var(--screenshot-image-outline);
 $card-border: var(--card-border);
+$card-footer-border: var(--card-footer-border);
 
 // consistent colors
 $always-white: #ffffff;
