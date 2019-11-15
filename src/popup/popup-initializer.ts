@@ -208,7 +208,7 @@ export class PopupInitializer {
             dropdownClickHandler,
         );
         renderer.render();
-        popupActionMessageCreator.popupInitialized();
+        popupActionMessageCreator.popupInitialized(this.targetTabInfo.tab);
 
         const a11ySelfValidator = new A11YSelfValidator(new ScannerUtils(scan), new HTMLElementUtils());
         window.A11YSelfValidator = a11ySelfValidator;

@@ -34,6 +34,7 @@ import { TabContextStoreHub } from './stores/tab-context-store-hub';
 import { TabContext } from './tab-context';
 import { TargetTabController } from './target-tab-controller';
 import { TelemetryEventHandler } from './telemetry/telemetry-event-handler';
+import { PopupActionCreator } from 'background/actions/popup-action-creator';
 
 export class TabContextFactory {
     constructor(
@@ -78,7 +79,7 @@ export class TabContextFactory {
         );
 
         const tabActionCreator = new TabActionCreator(interpreter, actionsHub.tabActions, browserAdapter, this.telemetryEventHandler);
-
+        const popupActionCreator = new PopupActionCreator(interpreter, actionsHub.tabActions, this.telemetryEventHandler);
         const devToolsActionCreator = new DevToolsActionCreator(interpreter, actionsHub.devToolActions, this.telemetryEventHandler);
 
         const inspectActionsCreator = new InspectActionCreator(
@@ -140,6 +141,7 @@ export class TabContextFactory {
         inspectActionsCreator.registerCallbacks();
         pathSnippetActionCreator.registerCallbacks();
         tabActionCreator.registerCallbacks();
+        popupActionCreator.registerCallbacks();
         scopingPanelActionCreator.registerCallbacks();
         contentActionCreator.registerCallbacks();
         scanResultActionCreator.registerCallbacks();

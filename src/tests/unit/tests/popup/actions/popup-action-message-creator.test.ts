@@ -52,7 +52,7 @@ describe('PopupActionMessageCreatorTest', () => {
             triggeredBy: 'N/A',
         };
 
-        testSubject.popupInitialized();
+        testSubject.popupInitialized({});
 
         actionMessageDispatcherMock.verify(dispatcher => dispatcher.sendTelemetry(POPUP_INITIALIZED, It.isValue(telemetry)), Times.once());
     });

@@ -92,7 +92,6 @@ export class TargetPageController {
             this.sendExistingTabUpdatedAction(tabId);
         } else {
             this.addTabContext(tabId);
-            this.sendNewTabCreatedAction(tabId);
         }
     };
 
