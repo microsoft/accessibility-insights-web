@@ -10,9 +10,9 @@ import { PreviewFeatureFlagsHandler } from '../handlers/preview-feature-flags-ha
 import { NoDisplayableFeatureFlagMessage } from './no-displayable-preview-features-message';
 import { PreviewFeaturesToggleList } from './preview-features-toggle-list';
 
-export interface PreviewFeaturesContainerDeps {
+export type PreviewFeaturesContainerDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-}
+};
 
 export interface PreviewFeaturesContainerProps {
     deps: PreviewFeaturesContainerDeps;

@@ -18,9 +18,9 @@ export interface StartOverState {
     dialogState: DialogState;
 }
 
-export interface StartOverDeps {
+export type StartOverDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-}
+};
 
 export interface StartOverProps {
     deps: StartOverDeps;

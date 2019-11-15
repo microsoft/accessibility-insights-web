@@ -17,13 +17,13 @@ import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
 import { ReportExportComponentDeps } from './report-export-component';
 
-export type DetailsViewCommandBarDeps = ReportExportComponentDeps &
-    StartOverDeps & {
-        getCurrentDate: () => Date;
-        reportGenerator: ReportGenerator;
-        getDateFromTimestamp: (timestamp: string) => Date;
-        detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-    };
+export type DetailsViewCommandBarDeps = {
+    getCurrentDate: () => Date;
+    reportGenerator: ReportGenerator;
+    getDateFromTimestamp: (timestamp: string) => Date;
+    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+} & ReportExportComponentDeps &
+    StartOverDeps;
 
 export type CommandBarProps = DetailsViewCommandBarProps;
 

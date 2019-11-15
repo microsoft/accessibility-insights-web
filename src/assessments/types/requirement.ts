@@ -49,9 +49,9 @@ export interface Requirement {
     renderRequirementDescription?: (requirementLink: RequirementLink) => JSX.Element;
 }
 
-export interface VisualHelperToggleConfigDeps {
+export type VisualHelperToggleConfigDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-}
+};
 
 export interface VisualHelperToggleConfig {
     deps: VisualHelperToggleConfigDeps;

@@ -8,9 +8,9 @@ import { PreviewFeatureFlagsHandler } from '../handlers/preview-feature-flags-ha
 import { GenericPanel } from './generic-panel';
 import { PreviewFeaturesContainer } from './preview-features-container';
 
-export interface PreviewFeaturesPanelDeps {
+export type PreviewFeaturesPanelDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-}
+};
 
 export interface PreviewFeaturesPanelProps {
     deps: PreviewFeaturesPanelDeps;

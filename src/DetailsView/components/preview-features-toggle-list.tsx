@@ -6,9 +6,9 @@ import { DisplayableFeatureFlag } from '../../common/types/store-data/displayabl
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { GenericToggle } from './generic-toggle';
 
-export interface PreviewFeaturesToggleListDeps {
+export type PreviewFeaturesToggleListDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-}
+};
 
 export interface PreviewFeaturesToggleListProps {
     deps: PreviewFeaturesToggleListDeps;

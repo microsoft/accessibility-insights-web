@@ -11,9 +11,9 @@ import { DetailsViewActionMessageCreator } from '../actions/details-view-action-
 import { GenericPanel } from './generic-panel';
 import { ScopingContainer } from './scoping-container';
 
-export interface ScopingPanelDeps {
+export type ScopingPanelDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-}
+};
 
 export interface ScopingPanelProps {
     deps: ScopingPanelDeps;

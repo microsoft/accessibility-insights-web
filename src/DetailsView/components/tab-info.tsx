@@ -6,9 +6,9 @@ import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 
-export interface TabInfoDeps {
+export type TabInfoDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-}
+};
 
 export interface TabInfoProps {
     deps: TabInfoDeps;
