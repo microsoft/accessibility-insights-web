@@ -7,6 +7,7 @@ exports[`IssueFilingChoiceGroupTest render 1`] = `
   options={
     Array [
       Object {
+        "ariaLabel": "test bug service name for issue filing",
         "key": "test bug service key",
         "text": "test bug service name",
       },
