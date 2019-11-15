@@ -20,7 +20,7 @@ describe('TabStoreTest', () => {
         expect(testObject.getId()).toBe(StoreNames[StoreNames.TabStore]);
     });
 
-    test('onTabUpdate', () => {
+    test('onNewTabCreated', () => {
         const initialState = new TabStoreDataBuilder().build();
 
         const payload: Tab = {
@@ -35,7 +35,7 @@ describe('TabStoreTest', () => {
             .with('url', payload.url)
             .build();
 
-        createStoreTesterForTabActions('tabUpdate')
+        createStoreTesterForTabActions('newTabCreated')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
@@ -55,7 +55,7 @@ describe('TabStoreTest', () => {
         createStoreTesterForTabActions('tabRemove').testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onTabChange', () => {
+    test('onExistingTabUpdated', () => {
         const initialState: TabStoreData = new TabStoreDataBuilder()
             .with('url', 'url 1')
             .with('title', 'title 1')
@@ -72,7 +72,7 @@ describe('TabStoreTest', () => {
             .with('isChanged', true)
             .build();
 
-        createStoreTesterForTabActions('tabChange')
+        createStoreTesterForTabActions('existingTabUpdated')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, finalState);
     });

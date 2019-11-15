@@ -52,7 +52,7 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
         this.visualizationActions.scrollRequested.addListener(this.onScrollRequested);
 
         this.visualizationActions.getCurrentState.addListener(this.onGetCurrentState);
-        this.tabActions.tabChange.addListener(this.onTabChange);
+        this.tabActions.existingTabUpdated.addListener(this.onExistingTabUpdated);
 
         this.visualizationActions.updateSelectedPivotChild.addListener(this.onUpdateSelectedPivotChild);
         this.visualizationActions.updateSelectedPivot.addListener(this.onUpdateSelectedPivot);
@@ -128,7 +128,7 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
         return isStateChanged;
     }
 
-    private onTabChange = (payload: Tab): void => {
+    private onExistingTabUpdated = (payload: Tab): void => {
         this.state = {
             ...this.getDefaultState(),
             selectedFastPassDetailsView: this.state.selectedFastPassDetailsView,

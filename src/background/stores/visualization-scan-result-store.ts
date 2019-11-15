@@ -54,7 +54,7 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         this.visualizationScanResultsActions.addTabbedElement.addListener(this.onAddTabbedElement);
         this.visualizationScanResultsActions.disableTabStop.addListener(this.onTabStopsDisabled);
 
-        this.tabActions.tabChange.addListener(this.onTabChange);
+        this.tabActions.existingTabUpdated.addListener(this.onExistingTabUpdated);
     }
 
     private onTabStopsDisabled = (): void => {
@@ -125,7 +125,7 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         this.emitChanged();
     };
 
-    private onTabChange = (): void => {
+    private onExistingTabUpdated = (): void => {
         this.state = this.getDefaultState();
         this.emitChanged();
     };
