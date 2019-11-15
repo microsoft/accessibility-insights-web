@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import * as React from 'react';
 import { ContentPanel, ContentPanelDeps, ContentPanelProps } from 'views/content/content-panel';
 import { InspectActionMessageCreator } from '../../common/message-creators/inspect-action-message-creator';
@@ -13,7 +14,10 @@ import { PreviewFeaturesPanel, PreviewFeaturesPanelProps } from './preview-featu
 import { ScopingPanel, ScopingPanelProps } from './scoping-panel';
 import { SettingsPanel, SettingsPanelDeps, SettingsPanelProps } from './settings-panel/settings-panel';
 
-export type DetailsViewOverlayDeps = ContentPanelDeps & SettingsPanelDeps;
+export type DetailsViewOverlayDeps = {
+    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+} & ContentPanelDeps &
+    SettingsPanelDeps;
 
 export interface DetailsViewOverlayProps {
     deps: DetailsViewOverlayDeps;
