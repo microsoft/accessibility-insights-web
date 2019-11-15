@@ -10,6 +10,7 @@ import {
     UpdateSelectedDetailsViewPayload,
     UpdateSelectedPivot,
 } from 'background/actions/action-payloads';
+import { InjectionActions } from 'background/actions/injection-actions';
 import { TabActions } from 'background/actions/tab-actions';
 import { VisualizationActions } from 'background/actions/visualization-actions';
 import { VisualizationStore } from 'background/stores/visualization-store';
@@ -662,7 +663,7 @@ describe('VisualizationStoreTest ', () => {
             .testListenerToNeverBeCalled(initialState, expectedState);
     });
 
-    test('injectionCompleted', () => {
+    test('onInjectionCompleted', () => {
         const actionName = 'injectionCompleted';
 
         const initialState = new VisualizationStoreDataBuilder().build();
@@ -672,10 +673,10 @@ describe('VisualizationStoreTest ', () => {
             .with('injectingStarted', false)
             .build();
 
-        createStoreTesterForVisualizationActions(actionName).testListenerToBeCalledOnce(initialState, expectedState);
+        createStoreTesterForInjectionActions(actionName).testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('injectionStarted when injectingStarted is false', () => {
+    test('onInjectionStarted when injectingStarted is false', () => {
         const actionName = 'injectionStarted';
 
         const initialState = new VisualizationStoreDataBuilder().with('injectingStarted', false).build();
@@ -685,10 +686,10 @@ describe('VisualizationStoreTest ', () => {
             .with('injectingStarted', true)
             .build();
 
-        createStoreTesterForVisualizationActions(actionName).testListenerToBeCalledOnce(initialState, expectedState);
+        createStoreTesterForInjectionActions(actionName).testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('injectionStarted when injectingStarted is true', () => {
+    test('onInjectionStarted when injectingStarted is true', () => {
         const actionName = 'injectionStarted';
 
         const initialState = new VisualizationStoreDataBuilder().with('injectingStarted', true).build();
@@ -698,7 +699,7 @@ describe('VisualizationStoreTest ', () => {
             .with('injectingStarted', true)
             .build();
 
-        createStoreTesterForVisualizationActions(actionName).testListenerToNeverBeCalled(initialState, expectedState);
+        createStoreTesterForInjectionActions(actionName).testListenerToNeverBeCalled(initialState, expectedState);
     });
 
     test('onScrollRequested', () => {
@@ -802,7 +803,7 @@ describe('VisualizationStoreTest ', () => {
 
     function createStoreTesterForTabActions(actionName: keyof TabActions): StoreTester<VisualizationStoreData, TabActions> {
         const factory = (actions: TabActions) =>
-            new VisualizationStore(new VisualizationActions(), actions, new VisualizationConfigurationFactory());
+            new VisualizationStore(new VisualizationActions(), actions, new InjectionActions(), new VisualizationConfigurationFactory());
 
         return new StoreTester(TabActions, actionName, factory);
     }
@@ -811,8 +812,17 @@ describe('VisualizationStoreTest ', () => {
         actionName: keyof VisualizationActions,
     ): StoreTester<VisualizationStoreData, VisualizationActions> {
         const factory = (actions: VisualizationActions) =>
-            new VisualizationStore(actions, new TabActions(), new VisualizationConfigurationFactory());
+            new VisualizationStore(actions, new TabActions(), new InjectionActions(), new VisualizationConfigurationFactory());
 
         return new StoreTester(VisualizationActions, actionName, factory);
+    }
+
+    function createStoreTesterForInjectionActions(
+        actionName: keyof InjectionActions,
+    ): StoreTester<VisualizationStoreData, InjectionActions> {
+        const factory = (actions: InjectionActions) =>
+            new VisualizationStore(new VisualizationActions(), new TabActions(), actions, new VisualizationConfigurationFactory());
+
+        return new StoreTester(InjectionActions, actionName, factory);
     }
 });

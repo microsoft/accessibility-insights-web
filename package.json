@@ -20,7 +20,6 @@
         "build:prod": "grunt build-prod",
         "copyright:check": "license-check-and-add check -f copyright-header.config.json",
         "copyright:fix": "license-check-and-add add -f copyright-header.config.json",
-        "dist:electron": "yarn build:electron && electron-builder -p never",
         "pack:electron": "electron-builder -p never",
         "fastpass": "npm-run-all --print-label --parallel copyright:check lint:check format:check",
         "fastpass:fix": "npm-run-all --print-label --serial copyright:fix lint:fix format:fix",
@@ -55,9 +54,9 @@
         "@types/chrome": "0.0.91",
         "@types/enzyme": "^3.10.3",
         "@types/enzyme-adapter-react-16": "^1.0.5",
-        "@types/jest": "^24.0.22",
+        "@types/jest": "^24.0.23",
         "@types/jsdom": "^12.2.4",
-        "@types/lodash": "^4.14.146",
+        "@types/lodash": "^4.14.147",
         "@types/make-dir": "^2.1.0",
         "@types/moment": "^2.13.0",
         "@types/puppeteer": "^1.20.2",
@@ -71,7 +70,7 @@
         "@types/ua-parser-js": "^0.7.33",
         "@types/uuid": "^3.4.6",
         "case-sensitive-paths-webpack-plugin": "^2.2.0",
-        "core-js-bundle": "^3.4.0",
+        "core-js-bundle": "^3.4.1",
         "cross-env": "^6.0.3",
         "css-loader": "^3.2.0",
         "electron": "7.0.1",
@@ -138,6 +137,6 @@
         "react-router-dom": "^5.1.2",
         "ua-parser-js": "^0.7.20",
         "uuid": "^3.3.3",
-        "webextension-polyfill-ts": "^0.10.0"
+        "webextension-polyfill-ts": "^0.11.0"
     }
 }

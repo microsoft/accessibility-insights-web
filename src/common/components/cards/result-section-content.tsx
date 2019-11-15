@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NamedFC } from 'common/react/named-fc';
+import { CardsVisualizationModifierButtonsProps } from 'common/components/cards/cards-visualization-modifier-buttons';
+import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
 
@@ -11,7 +12,9 @@ import { CardRuleResult } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { RulesWithInstances, RulesWithInstancesDeps } from './rules-with-instances';
 
-export type ResultSectionContentDeps = RulesWithInstancesDeps;
+export type ResultSectionContentDeps = RulesWithInstancesDeps & {
+    cardsVisualizationModifierButtons: ReactFCWithDisplayName<CardsVisualizationModifierButtonsProps>;
+};
 
 export type ResultSectionContentProps = {
     deps: ResultSectionContentDeps;
@@ -24,14 +27,15 @@ export type ResultSectionContentProps = {
     allCardsCollapsed: boolean;
 };
 
-export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
-    'ResultSectionContent',
-    ({ results, outcomeType, fixInstructionProcessor, deps, userConfigurationStoreData, targetAppInfo }) => {
-        if (results.length === 0) {
-            return <NoFailedInstancesCongrats />;
-        }
+export const ResultSectionContent = NamedFC<ResultSectionContentProps>('ResultSectionContent', props => {
+    const { results, outcomeType, fixInstructionProcessor, deps, userConfigurationStoreData, targetAppInfo } = props;
+    if (results.length === 0) {
+        return <NoFailedInstancesCongrats />;
+    }
 
-        return (
+    return (
+        <>
+            <deps.cardsVisualizationModifierButtons {...props} />
             <RulesWithInstances
                 deps={deps}
                 rules={results}
@@ -40,6 +44,6 @@ export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
                 userConfigurationStoreData={userConfigurationStoreData}
                 targetAppInfo={targetAppInfo}
             />
-        );
-    },
-);
+        </>
+    );
+});

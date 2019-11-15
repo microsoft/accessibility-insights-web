@@ -86,12 +86,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
             return this.renderSpinner('Loading...');
         }
 
-        return (
-            <div className="issues-table-content">
-                {this.renderCommandBar()}
-                {this.renderComponent()}
-            </div>
-        );
+        return <div className="issues-table-content">{this.renderComponent()}</div>;
     }
 
     private renderCommandBar(): JSX.Element {
@@ -121,7 +116,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
                     reportGenerator={reportGenerator}
                     pageTitle={pageTitle}
                     exportResultsType={'AutomatedChecks'}
-                    htmlGenerator={reportGenerator.generateFastPassAutomateChecksReport.bind(
+                    htmlGenerator={reportGenerator.generateFastPassAutomatedChecksReport.bind(
                         reportGenerator,
                         scanResult,
                         scanDate,
@@ -195,14 +190,17 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
 
     private renderDetails(): JSX.Element {
         return (
-            <div className="issues-table-details">
-                <IssuesDetailsList
-                    violations={this.props.violations}
-                    issuesTableHandler={this.props.issuesTableHandler}
-                    issuesSelection={this.props.issuesSelection}
-                />
-                <div className="issue-detail-outer-container ms-Fabric">{this.getIssueDetailPane()}</div>
-            </div>
+            <>
+                {this.renderCommandBar()}
+                <div className="issues-table-details">
+                    <IssuesDetailsList
+                        violations={this.props.violations}
+                        issuesTableHandler={this.props.issuesTableHandler}
+                        issuesSelection={this.props.issuesSelection}
+                    />
+                    <div className="issue-detail-outer-container ms-Fabric">{this.getIssueDetailPane()}</div>
+                </div>
+            </>
         );
     }
 

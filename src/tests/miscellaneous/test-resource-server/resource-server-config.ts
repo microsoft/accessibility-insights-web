@@ -2,6 +2,6 @@
 // Licensed under the MIT License.
 export type ResourceServerConfig = {
     port: number;
-    path: string;
+    absolutePath: string;
     extensions?: string[];
 };

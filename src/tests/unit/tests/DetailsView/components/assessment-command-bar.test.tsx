@@ -9,8 +9,8 @@ import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/deta
 
 function getProps(): CommandBarProps {
     const switcherNavConfiguration: DetailsViewSwitcherNavConfiguration = ({
-        ReportExportComponentPropertyFactory: (p: DetailsViewCommandBarProps) => null,
-        StartOverComponentPropertyFactory: (p: DetailsViewCommandBarProps) => null,
+        ReportExportComponentFactory: (p: DetailsViewCommandBarProps) => null,
+        StartOverComponentFactory: (p: DetailsViewCommandBarProps) => null,
     } as unknown) as DetailsViewSwitcherNavConfiguration;
 
     const props = {

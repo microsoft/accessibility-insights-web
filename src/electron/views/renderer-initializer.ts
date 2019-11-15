@@ -43,6 +43,7 @@ import { WindowFrameUpdater } from 'electron/window-management/window-frame-upda
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as ReactDOM from 'react-dom';
 
+import { CardsVisualizationModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
 import { IndexedDBDataKeys } from '../../background/IndexedDBDataKeys';
@@ -183,6 +184,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
         cardInteractionSupport: onlyHighlightingSupported, // once we have a working settings experience, switch to allCardInteractionsSupported
         getCardSelectionViewData: getCardSelectionViewData,
         collapsibleControl: CardsCollapsibleControl,
+        cardsVisualizationModifierButtons: CardsVisualizationModifierButtons,
         fixInstructionProcessor,
         getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks, // I don't think we have guidance links for axe-android
 

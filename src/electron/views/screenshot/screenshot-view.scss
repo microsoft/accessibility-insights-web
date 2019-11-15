@@ -14,12 +14,9 @@
     background-color: $neutral-6-5;
 
     .header {
+        @include text-style-title-s;
         margin-top: 0;
         margin-bottom: 16px;
-        font-family: $semiBoldFontFamily;
-        font-weight: $fontWeightSemiBold;
-        font-size: $fontSizeL;
-        line-height: 21px;
         color: $primary-text;
         word-wrap: break-word;
     }

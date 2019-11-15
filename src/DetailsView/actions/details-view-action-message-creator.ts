@@ -18,7 +18,9 @@ import {
     ToggleActionPayload,
 } from 'background/actions/action-payloads';
 import { FeatureFlagPayload } from 'background/actions/feature-flag-actions';
+import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import * as React from 'react';
+
 import { ExportResultType } from '../../common/extension-telemetry-events';
 import * as TelemetryEvents from '../../common/extension-telemetry-events';
 import { Message } from '../../common/message';
@@ -483,4 +485,18 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
 
         this.dispatcher.dispatchMessage(message);
     }
+
+    public rescanVisualization = (test: VisualizationType, event: SupportedMouseEvent) => {
+        const payload: ToggleActionPayload = {
+            test: test,
+            telemetry: this.telemetryFactory.withTriggeredByAndSource(event, TelemetryEvents.TelemetryEventSource.DetailsView),
+        };
+
+        const message: Message = {
+            messageType: Messages.Visualizations.Common.RescanVisualization,
+            payload,
+        };
+
+        this.dispatcher.dispatchMessage(message);
+    };
 }

@@ -11,18 +11,6 @@ exports[`IssuesTableTest automated checks disabled 1`] = `
     className="issues-table-content"
   >
     <div
-      className="details-view-command-bar"
-    >
-      <VisualizationToggle
-        checked={false}
-        className="automated-checks-details-view-toggle"
-        disabled={false}
-        label="Show failures"
-        onClick={[Function]}
-        visualizationName="Automated checks"
-      />
-    </div>
-    <div
       className="details-disabled-message"
       role="alert"
     >
@@ -54,9 +42,6 @@ exports[`IssuesTableTest spinner for scanning state 1`] = `
     test title
   </h1>
   <div className=\\"issues-table-content\\">
-    <div className=\\"details-view-command-bar\\">
-      <VisualizationToggle label=\\"Show failures\\" checked={true} disabled={true} onClick={[Function: proxy]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
-    </div>
     <ScanningSpinner isSpinning={true} label=\\"Scanning...\\" />
   </div>
 </div>"
@@ -77,10 +62,6 @@ exports[`IssuesTableTest spinner, issuesEnabled is an empty object 1`] = `
     test title
   </h1>
   <div className=\\"issues-table-content\\">
-    <div className=\\"details-view-command-bar\\">
-      <VisualizationToggle label=\\"Show failures\\" checked={{...}} disabled={false} onClick={[undefined]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
-      <ReportExportComponent deps={{...}} scanDate={{...}} reportGenerator={{...}} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound proxy]} updatePersistedDescription={[Function: nullUpdatePersistedDescription]} getExportDescription={[Function]} />
-    </div>
     <ScanningSpinner isSpinning={true} label=\\"Loading data...\\" />
   </div>
 </div>"
@@ -96,108 +77,21 @@ exports[`IssuesTableTest table with 0 issues 1`] = `
   <div
     className="issues-table-content"
   >
-    <div
-      className="details-view-command-bar"
-    >
-      <VisualizationToggle
-        checked={true}
-        className="automated-checks-details-view-toggle"
-        disabled={false}
-        label="Show failures"
-        onClick={[Function]}
-        visualizationName="Automated checks"
-      />
-      <ReportExportComponent
-        deps={
-          Object {
-            "getDateFromTimestamp": [Function],
-            "reportGenerator": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "assessmentReportHtmlGenerator": undefined,
-              "reportHtmlGenerator": undefined,
-              "reportNameGenerator": undefined,
-            },
-          }
-        }
-        exportResultsType="AutomatedChecks"
-        getExportDescription={[Function]}
-        htmlGenerator={[Function]}
-        pageTitle="pageTitle"
-        reportGenerator={
-          proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "assessmentReportHtmlGenerator": undefined,
-            "reportHtmlGenerator": undefined,
-            "reportNameGenerator": undefined,
-          }
-        }
-        scanDate={Date { NaN }}
-        updatePersistedDescription={[Function]}
-      />
-    </div>
     <FlaggedComponent
       disableJSXElement={
-        <div
-          className="issues-table-details"
-        >
-          <IssuesDetailsList
-            issuesSelection={
-              proxy {
-                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                "_anchoredIndex": 0,
-                "_canSelectItem": [Function],
-                "_change": [Function],
-                "_changeEventSuppressionCount": 0,
-                "_exemptedCount": 0,
-                "_exemptedIndices": Object {},
-                "_getKey": [Function],
-                "_isModal": false,
-                "_items": Array [],
-                "_keyToIndexMap": Object {},
-                "_onSelectionChanged": undefined,
-                "_selectedItems": null,
-                "_setAllSelected": [Function],
-                "_unselectableCount": 0,
-                "_unselectableIndices": Object {},
-                "_updateCount": [Function],
-                "canSelectItem": [Function],
-                "count": 0,
-                "getItems": [Function],
-                "getKey": [Function],
-                "getSelectedCount": [Function],
-                "getSelectedIndices": [Function],
-                "getSelection": [Function],
-                "isAllSelected": [Function],
-                "isIndexSelected": [Function],
-                "isKeySelected": [Function],
-                "isModal": [Function],
-                "isRangeSelected": [Function],
-                "mode": 2,
-                "selectToIndex": [Function],
-                "selectToKey": [Function],
-                "setAllSelected": [Function],
-                "setChangeEvents": [Function],
-                "setIndexSelected": [Function],
-                "setItems": [Function],
-                "setKeySelected": [Function],
-                "setModal": [Function],
-                "toggleAllSelected": [Function],
-                "toggleIndexSelected": [Function],
-                "toggleKeySelected": [Function],
-                "toggleRangeSelected": [Function],
-              }
-            }
-            issuesTableHandler={
-              proxy {
-                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              }
-            }
-            violations={Array []}
-          />
+        <React.Fragment>
           <div
-            className="issue-detail-outer-container ms-Fabric"
+            className="details-view-command-bar"
           >
-            <IssuesDetailsPane
+            <VisualizationToggle
+              checked={true}
+              className="automated-checks-details-view-toggle"
+              disabled={false}
+              label="Show failures"
+              onClick={[Function]}
+              visualizationName="Automated checks"
+            />
+            <ReportExportComponent
               deps={
                 Object {
                   "getDateFromTimestamp": [Function],
@@ -209,18 +103,107 @@ exports[`IssuesTableTest table with 0 issues 1`] = `
                   },
                 }
               }
-              featureFlagData={Object {}}
+              exportResultsType="AutomatedChecks"
+              getExportDescription={[Function]}
+              htmlGenerator={[Function]}
               pageTitle="pageTitle"
-              pageUrl="http://pageUrl"
-              selectedIdToRuleResultMap={Object {}}
-              userConfigurationStoreData={
-                Object {
-                  "bugService": "gitHub",
+              reportGenerator={
+                proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "assessmentReportHtmlGenerator": undefined,
+                  "reportHtmlGenerator": undefined,
+                  "reportNameGenerator": undefined,
                 }
               }
+              scanDate={Date { NaN }}
+              updatePersistedDescription={[Function]}
             />
           </div>
-        </div>
+          <div
+            className="issues-table-details"
+          >
+            <IssuesDetailsList
+              issuesSelection={
+                proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "_anchoredIndex": 0,
+                  "_canSelectItem": [Function],
+                  "_change": [Function],
+                  "_changeEventSuppressionCount": 0,
+                  "_exemptedCount": 0,
+                  "_exemptedIndices": Object {},
+                  "_getKey": [Function],
+                  "_isModal": false,
+                  "_items": Array [],
+                  "_keyToIndexMap": Object {},
+                  "_onSelectionChanged": undefined,
+                  "_selectedItems": null,
+                  "_setAllSelected": [Function],
+                  "_unselectableCount": 0,
+                  "_unselectableIndices": Object {},
+                  "_updateCount": [Function],
+                  "canSelectItem": [Function],
+                  "count": 0,
+                  "getItems": [Function],
+                  "getKey": [Function],
+                  "getSelectedCount": [Function],
+                  "getSelectedIndices": [Function],
+                  "getSelection": [Function],
+                  "isAllSelected": [Function],
+                  "isIndexSelected": [Function],
+                  "isKeySelected": [Function],
+                  "isModal": [Function],
+                  "isRangeSelected": [Function],
+                  "mode": 2,
+                  "selectToIndex": [Function],
+                  "selectToKey": [Function],
+                  "setAllSelected": [Function],
+                  "setChangeEvents": [Function],
+                  "setIndexSelected": [Function],
+                  "setItems": [Function],
+                  "setKeySelected": [Function],
+                  "setModal": [Function],
+                  "toggleAllSelected": [Function],
+                  "toggleIndexSelected": [Function],
+                  "toggleKeySelected": [Function],
+                  "toggleRangeSelected": [Function],
+                }
+              }
+              issuesTableHandler={
+                proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                }
+              }
+              violations={Array []}
+            />
+            <div
+              className="issue-detail-outer-container ms-Fabric"
+            >
+              <IssuesDetailsPane
+                deps={
+                  Object {
+                    "getDateFromTimestamp": [Function],
+                    "reportGenerator": proxy {
+                      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                      "assessmentReportHtmlGenerator": undefined,
+                      "reportHtmlGenerator": undefined,
+                      "reportNameGenerator": undefined,
+                    },
+                  }
+                }
+                featureFlagData={Object {}}
+                pageTitle="pageTitle"
+                pageUrl="http://pageUrl"
+                selectedIdToRuleResultMap={Object {}}
+                userConfigurationStoreData={
+                  Object {
+                    "bugService": "gitHub",
+                  }
+                }
+              />
+            </div>
+          </div>
+        </React.Fragment>
       }
       enableJSXElement={
         <CardsView
@@ -315,127 +298,21 @@ exports[`IssuesTableTest table with 1 issues 1`] = `
   <div
     className="issues-table-content"
   >
-    <div
-      className="details-view-command-bar"
-    >
-      <VisualizationToggle
-        checked={true}
-        className="automated-checks-details-view-toggle"
-        disabled={false}
-        label="Show failures"
-        onClick={[Function]}
-        visualizationName="Automated checks"
-      />
-      <ReportExportComponent
-        deps={
-          Object {
-            "getDateFromTimestamp": [Function],
-            "reportGenerator": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "assessmentReportHtmlGenerator": undefined,
-              "reportHtmlGenerator": undefined,
-              "reportNameGenerator": undefined,
-            },
-          }
-        }
-        exportResultsType="AutomatedChecks"
-        getExportDescription={[Function]}
-        htmlGenerator={[Function]}
-        pageTitle="pageTitle"
-        reportGenerator={
-          proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "assessmentReportHtmlGenerator": undefined,
-            "reportHtmlGenerator": undefined,
-            "reportNameGenerator": undefined,
-          }
-        }
-        scanDate={Date { NaN }}
-        updatePersistedDescription={[Function]}
-      />
-    </div>
     <FlaggedComponent
       disableJSXElement={
-        <div
-          className="issues-table-details"
-        >
-          <IssuesDetailsList
-            issuesSelection={
-              proxy {
-                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                "_anchoredIndex": 0,
-                "_canSelectItem": [Function],
-                "_change": [Function],
-                "_changeEventSuppressionCount": 0,
-                "_exemptedCount": 0,
-                "_exemptedIndices": Object {},
-                "_getKey": [Function],
-                "_isModal": false,
-                "_items": Array [],
-                "_keyToIndexMap": Object {},
-                "_onSelectionChanged": undefined,
-                "_selectedItems": null,
-                "_setAllSelected": [Function],
-                "_unselectableCount": 0,
-                "_unselectableIndices": Object {},
-                "_updateCount": [Function],
-                "canSelectItem": [Function],
-                "count": 0,
-                "getItems": [Function],
-                "getKey": [Function],
-                "getSelectedCount": [Function],
-                "getSelectedIndices": [Function],
-                "getSelection": [Function],
-                "isAllSelected": [Function],
-                "isIndexSelected": [Function],
-                "isKeySelected": [Function],
-                "isModal": [Function],
-                "isRangeSelected": [Function],
-                "mode": 2,
-                "selectToIndex": [Function],
-                "selectToKey": [Function],
-                "setAllSelected": [Function],
-                "setChangeEvents": [Function],
-                "setIndexSelected": [Function],
-                "setItems": [Function],
-                "setKeySelected": [Function],
-                "setModal": [Function],
-                "toggleAllSelected": [Function],
-                "toggleIndexSelected": [Function],
-                "toggleKeySelected": [Function],
-                "toggleRangeSelected": [Function],
-              }
-            }
-            issuesTableHandler={
-              proxy {
-                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              }
-            }
-            violations={
-              Array [
-                Object {
-                  "description": "rule description",
-                  "help": "rule help",
-                  "id": "rule name",
-                  "nodes": Array [
-                    Object {
-                      "all": Array [],
-                      "any": Array [],
-                      "html": "",
-                      "none": Array [],
-                      "target": Array [
-                        "#target-1",
-                      ],
-                    },
-                  ],
-                },
-              ]
-            }
-          />
+        <React.Fragment>
           <div
-            className="issue-detail-outer-container ms-Fabric"
+            className="details-view-command-bar"
           >
-            <IssuesDetailsPane
+            <VisualizationToggle
+              checked={true}
+              className="automated-checks-details-view-toggle"
+              disabled={false}
+              label="Show failures"
+              onClick={[Function]}
+              visualizationName="Automated checks"
+            />
+            <ReportExportComponent
               deps={
                 Object {
                   "getDateFromTimestamp": [Function],
@@ -447,18 +324,126 @@ exports[`IssuesTableTest table with 1 issues 1`] = `
                   },
                 }
               }
-              featureFlagData={Object {}}
+              exportResultsType="AutomatedChecks"
+              getExportDescription={[Function]}
+              htmlGenerator={[Function]}
               pageTitle="pageTitle"
-              pageUrl="http://pageUrl"
-              selectedIdToRuleResultMap={Object {}}
-              userConfigurationStoreData={
-                Object {
-                  "bugService": "gitHub",
+              reportGenerator={
+                proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "assessmentReportHtmlGenerator": undefined,
+                  "reportHtmlGenerator": undefined,
+                  "reportNameGenerator": undefined,
                 }
               }
+              scanDate={Date { NaN }}
+              updatePersistedDescription={[Function]}
             />
           </div>
-        </div>
+          <div
+            className="issues-table-details"
+          >
+            <IssuesDetailsList
+              issuesSelection={
+                proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "_anchoredIndex": 0,
+                  "_canSelectItem": [Function],
+                  "_change": [Function],
+                  "_changeEventSuppressionCount": 0,
+                  "_exemptedCount": 0,
+                  "_exemptedIndices": Object {},
+                  "_getKey": [Function],
+                  "_isModal": false,
+                  "_items": Array [],
+                  "_keyToIndexMap": Object {},
+                  "_onSelectionChanged": undefined,
+                  "_selectedItems": null,
+                  "_setAllSelected": [Function],
+                  "_unselectableCount": 0,
+                  "_unselectableIndices": Object {},
+                  "_updateCount": [Function],
+                  "canSelectItem": [Function],
+                  "count": 0,
+                  "getItems": [Function],
+                  "getKey": [Function],
+                  "getSelectedCount": [Function],
+                  "getSelectedIndices": [Function],
+                  "getSelection": [Function],
+                  "isAllSelected": [Function],
+                  "isIndexSelected": [Function],
+                  "isKeySelected": [Function],
+                  "isModal": [Function],
+                  "isRangeSelected": [Function],
+                  "mode": 2,
+                  "selectToIndex": [Function],
+                  "selectToKey": [Function],
+                  "setAllSelected": [Function],
+                  "setChangeEvents": [Function],
+                  "setIndexSelected": [Function],
+                  "setItems": [Function],
+                  "setKeySelected": [Function],
+                  "setModal": [Function],
+                  "toggleAllSelected": [Function],
+                  "toggleIndexSelected": [Function],
+                  "toggleKeySelected": [Function],
+                  "toggleRangeSelected": [Function],
+                }
+              }
+              issuesTableHandler={
+                proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                }
+              }
+              violations={
+                Array [
+                  Object {
+                    "description": "rule description",
+                    "help": "rule help",
+                    "id": "rule name",
+                    "nodes": Array [
+                      Object {
+                        "all": Array [],
+                        "any": Array [],
+                        "html": "",
+                        "none": Array [],
+                        "target": Array [
+                          "#target-1",
+                        ],
+                      },
+                    ],
+                  },
+                ]
+              }
+            />
+            <div
+              className="issue-detail-outer-container ms-Fabric"
+            >
+              <IssuesDetailsPane
+                deps={
+                  Object {
+                    "getDateFromTimestamp": [Function],
+                    "reportGenerator": proxy {
+                      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                      "assessmentReportHtmlGenerator": undefined,
+                      "reportHtmlGenerator": undefined,
+                      "reportNameGenerator": undefined,
+                    },
+                  }
+                }
+                featureFlagData={Object {}}
+                pageTitle="pageTitle"
+                pageUrl="http://pageUrl"
+                selectedIdToRuleResultMap={Object {}}
+                userConfigurationStoreData={
+                  Object {
+                    "bugService": "gitHub",
+                  }
+                }
+              />
+            </div>
+          </div>
+        </React.Fragment>
       }
       enableJSXElement={
         <CardsView
@@ -553,136 +538,21 @@ exports[`IssuesTableTest table with 2 issues 1`] = `
   <div
     className="issues-table-content"
   >
-    <div
-      className="details-view-command-bar"
-    >
-      <VisualizationToggle
-        checked={true}
-        className="automated-checks-details-view-toggle"
-        disabled={false}
-        label="Show failures"
-        onClick={[Function]}
-        visualizationName="Automated checks"
-      />
-      <ReportExportComponent
-        deps={
-          Object {
-            "getDateFromTimestamp": [Function],
-            "reportGenerator": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "assessmentReportHtmlGenerator": undefined,
-              "reportHtmlGenerator": undefined,
-              "reportNameGenerator": undefined,
-            },
-          }
-        }
-        exportResultsType="AutomatedChecks"
-        getExportDescription={[Function]}
-        htmlGenerator={[Function]}
-        pageTitle="pageTitle"
-        reportGenerator={
-          proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "assessmentReportHtmlGenerator": undefined,
-            "reportHtmlGenerator": undefined,
-            "reportNameGenerator": undefined,
-          }
-        }
-        scanDate={Date { NaN }}
-        updatePersistedDescription={[Function]}
-      />
-    </div>
     <FlaggedComponent
       disableJSXElement={
-        <div
-          className="issues-table-details"
-        >
-          <IssuesDetailsList
-            issuesSelection={
-              proxy {
-                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                "_anchoredIndex": 0,
-                "_canSelectItem": [Function],
-                "_change": [Function],
-                "_changeEventSuppressionCount": 0,
-                "_exemptedCount": 0,
-                "_exemptedIndices": Object {},
-                "_getKey": [Function],
-                "_isModal": false,
-                "_items": Array [],
-                "_keyToIndexMap": Object {},
-                "_onSelectionChanged": undefined,
-                "_selectedItems": null,
-                "_setAllSelected": [Function],
-                "_unselectableCount": 0,
-                "_unselectableIndices": Object {},
-                "_updateCount": [Function],
-                "canSelectItem": [Function],
-                "count": 0,
-                "getItems": [Function],
-                "getKey": [Function],
-                "getSelectedCount": [Function],
-                "getSelectedIndices": [Function],
-                "getSelection": [Function],
-                "isAllSelected": [Function],
-                "isIndexSelected": [Function],
-                "isKeySelected": [Function],
-                "isModal": [Function],
-                "isRangeSelected": [Function],
-                "mode": 2,
-                "selectToIndex": [Function],
-                "selectToKey": [Function],
-                "setAllSelected": [Function],
-                "setChangeEvents": [Function],
-                "setIndexSelected": [Function],
-                "setItems": [Function],
-                "setKeySelected": [Function],
-                "setModal": [Function],
-                "toggleAllSelected": [Function],
-                "toggleIndexSelected": [Function],
-                "toggleKeySelected": [Function],
-                "toggleRangeSelected": [Function],
-              }
-            }
-            issuesTableHandler={
-              proxy {
-                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              }
-            }
-            violations={
-              Array [
-                Object {
-                  "description": "rule description",
-                  "help": "rule help",
-                  "id": "rule name",
-                  "nodes": Array [
-                    Object {
-                      "all": Array [],
-                      "any": Array [],
-                      "html": "",
-                      "none": Array [],
-                      "target": Array [
-                        "#target-1",
-                      ],
-                    },
-                    Object {
-                      "all": Array [],
-                      "any": Array [],
-                      "html": "",
-                      "none": Array [],
-                      "target": Array [
-                        "#target-2",
-                      ],
-                    },
-                  ],
-                },
-              ]
-            }
-          />
+        <React.Fragment>
           <div
-            className="issue-detail-outer-container ms-Fabric"
+            className="details-view-command-bar"
           >
-            <IssuesDetailsPane
+            <VisualizationToggle
+              checked={true}
+              className="automated-checks-details-view-toggle"
+              disabled={false}
+              label="Show failures"
+              onClick={[Function]}
+              visualizationName="Automated checks"
+            />
+            <ReportExportComponent
               deps={
                 Object {
                   "getDateFromTimestamp": [Function],
@@ -694,18 +564,135 @@ exports[`IssuesTableTest table with 2 issues 1`] = `
                   },
                 }
               }
-              featureFlagData={Object {}}
+              exportResultsType="AutomatedChecks"
+              getExportDescription={[Function]}
+              htmlGenerator={[Function]}
               pageTitle="pageTitle"
-              pageUrl="http://pageUrl"
-              selectedIdToRuleResultMap={Object {}}
-              userConfigurationStoreData={
-                Object {
-                  "bugService": "gitHub",
+              reportGenerator={
+                proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "assessmentReportHtmlGenerator": undefined,
+                  "reportHtmlGenerator": undefined,
+                  "reportNameGenerator": undefined,
                 }
               }
+              scanDate={Date { NaN }}
+              updatePersistedDescription={[Function]}
             />
           </div>
-        </div>
+          <div
+            className="issues-table-details"
+          >
+            <IssuesDetailsList
+              issuesSelection={
+                proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "_anchoredIndex": 0,
+                  "_canSelectItem": [Function],
+                  "_change": [Function],
+                  "_changeEventSuppressionCount": 0,
+                  "_exemptedCount": 0,
+                  "_exemptedIndices": Object {},
+                  "_getKey": [Function],
+                  "_isModal": false,
+                  "_items": Array [],
+                  "_keyToIndexMap": Object {},
+                  "_onSelectionChanged": undefined,
+                  "_selectedItems": null,
+                  "_setAllSelected": [Function],
+                  "_unselectableCount": 0,
+                  "_unselectableIndices": Object {},
+                  "_updateCount": [Function],
+                  "canSelectItem": [Function],
+                  "count": 0,
+                  "getItems": [Function],
+                  "getKey": [Function],
+                  "getSelectedCount": [Function],
+                  "getSelectedIndices": [Function],
+                  "getSelection": [Function],
+                  "isAllSelected": [Function],
+                  "isIndexSelected": [Function],
+                  "isKeySelected": [Function],
+                  "isModal": [Function],
+                  "isRangeSelected": [Function],
+                  "mode": 2,
+                  "selectToIndex": [Function],
+                  "selectToKey": [Function],
+                  "setAllSelected": [Function],
+                  "setChangeEvents": [Function],
+                  "setIndexSelected": [Function],
+                  "setItems": [Function],
+                  "setKeySelected": [Function],
+                  "setModal": [Function],
+                  "toggleAllSelected": [Function],
+                  "toggleIndexSelected": [Function],
+                  "toggleKeySelected": [Function],
+                  "toggleRangeSelected": [Function],
+                }
+              }
+              issuesTableHandler={
+                proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                }
+              }
+              violations={
+                Array [
+                  Object {
+                    "description": "rule description",
+                    "help": "rule help",
+                    "id": "rule name",
+                    "nodes": Array [
+                      Object {
+                        "all": Array [],
+                        "any": Array [],
+                        "html": "",
+                        "none": Array [],
+                        "target": Array [
+                          "#target-1",
+                        ],
+                      },
+                      Object {
+                        "all": Array [],
+                        "any": Array [],
+                        "html": "",
+                        "none": Array [],
+                        "target": Array [
+                          "#target-2",
+                        ],
+                      },
+                    ],
+                  },
+                ]
+              }
+            />
+            <div
+              className="issue-detail-outer-container ms-Fabric"
+            >
+              <IssuesDetailsPane
+                deps={
+                  Object {
+                    "getDateFromTimestamp": [Function],
+                    "reportGenerator": proxy {
+                      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                      "assessmentReportHtmlGenerator": undefined,
+                      "reportHtmlGenerator": undefined,
+                      "reportNameGenerator": undefined,
+                    },
+                  }
+                }
+                featureFlagData={Object {}}
+                pageTitle="pageTitle"
+                pageUrl="http://pageUrl"
+                selectedIdToRuleResultMap={Object {}}
+                userConfigurationStoreData={
+                  Object {
+                    "bugService": "gitHub",
+                  }
+                }
+              />
+            </div>
+          </div>
+        </React.Fragment>
       }
       enableJSXElement={
         <CardsView

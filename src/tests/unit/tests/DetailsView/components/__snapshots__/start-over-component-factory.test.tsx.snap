@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StartOverComponentPropsFactory getStartOverComponentPropsForAssessment, component matches snapshot 1`] = `
+<StartOverDropdown
+  deps={Object {}}
+  requirementKey="test step"
+  test={6}
+  testName="the title"
+/>
+`;
+
+exports[`StartOverComponentPropsFactory getStartOverComponentPropsForFastPass, scanResults is not null, scanning is false, component matches snapshot 1`] = `
+<CustomizedActionButton
+  disabled={false}
+  iconProps={
+    Object {
+      "iconName": "Refresh",
+    }
+  }
+  onClick={[Function]}
+>
+  Start over
+</CustomizedActionButton>
+`;
+
+exports[`StartOverComponentPropsFactory getStartOverComponentPropsForFastPass, scanResults is not null, scanning is true, component matches snapshot 1`] = `
+<CustomizedActionButton
+  disabled={true}
+  iconProps={
+    Object {
+      "iconName": "Refresh",
+    }
+  }
+  onClick={[Function]}
+>
+  Start over
+</CustomizedActionButton>
+`;

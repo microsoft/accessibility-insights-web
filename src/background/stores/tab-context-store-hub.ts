@@ -31,6 +31,7 @@ export class TabContextStoreHub implements StoreHub {
         this.visualizationStore = new VisualizationStore(
             actionHub.visualizationActions,
             actionHub.tabActions,
+            actionHub.injectionActions,
             visualizationConfigurationFactory,
         );
         this.visualizationStore.initialize();

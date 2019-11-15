@@ -4,7 +4,7 @@ import { BaseActionPayload, CardSelectionPayload, RuleExpandCollapsePayload } fr
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { Messages } from 'common/messages';
-import { TelemetryDataFactory } from 'common/telemetry-data-factory';
+import { SupportedMouseEvent, TelemetryDataFactory } from 'common/telemetry-data-factory';
 
 export class CardSelectionMessageCreator {
     constructor(
@@ -13,7 +13,7 @@ export class CardSelectionMessageCreator {
         private readonly source: TelemetryEventSource,
     ) {}
 
-    public toggleCardSelection(ruleId: string, resultInstanceUid: string, event: React.SyntheticEvent): void {
+    public toggleCardSelection = (ruleId: string, resultInstanceUid: string, event: React.SyntheticEvent) => {
         const payload: CardSelectionPayload = {
             resultInstanceUid,
             ruleId,
@@ -24,9 +24,9 @@ export class CardSelectionMessageCreator {
             messageType: Messages.CardSelection.CardSelectionToggled,
             payload,
         });
-    }
+    };
 
-    public toggleRuleExpandCollapse(ruleId: string, event: React.SyntheticEvent): void {
+    public toggleRuleExpandCollapse = (ruleId: string, event: React.SyntheticEvent) => {
         const payload: RuleExpandCollapsePayload = {
             ruleId,
             telemetry: this.telemetryFactory.withTriggeredByAndSource(event, this.source),
@@ -36,9 +36,9 @@ export class CardSelectionMessageCreator {
             messageType: Messages.CardSelection.RuleExpansionToggled,
             payload,
         });
-    }
+    };
 
-    public collapseAllRules(event: React.SyntheticEvent): void {
+    public collapseAllRules = (event: SupportedMouseEvent) => {
         const payload: BaseActionPayload = {
             telemetry: this.telemetryFactory.withTriggeredByAndSource(event, this.source),
         };
@@ -47,9 +47,9 @@ export class CardSelectionMessageCreator {
             messageType: Messages.CardSelection.CollapseAllRules,
             payload,
         });
-    }
+    };
 
-    public expandAllRules(event: React.SyntheticEvent): void {
+    public expandAllRules = (event: SupportedMouseEvent) => {
         const payload: BaseActionPayload = {
             telemetry: this.telemetryFactory.withTriggeredByAndSource(event, this.source),
         };
@@ -58,9 +58,9 @@ export class CardSelectionMessageCreator {
             messageType: Messages.CardSelection.ExpandAllRules,
             payload,
         });
-    }
+    };
 
-    public toggleVisualHelper(event: React.SyntheticEvent): void {
+    public toggleVisualHelper = (event: SupportedMouseEvent) => {
         const payload: BaseActionPayload = {
             telemetry: this.telemetryFactory.withTriggeredByAndSource(event, this.source),
         };
@@ -69,5 +69,5 @@ export class CardSelectionMessageCreator {
             messageType: Messages.CardSelection.ToggleVisualHelper,
             payload,
         });
-    }
+    };
 }
