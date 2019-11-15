@@ -19,6 +19,7 @@ export const IssueFilingChoiceGroup = NamedFC<IssueFilingChoiceGroupProps>('Issu
             return {
                 key: service.key,
                 text: service.displayName,
+                ariaLabel: `${service.displayName} for issue filing`,
             };
         });
     };
