@@ -11,9 +11,9 @@ import { TabToContextMap } from './tab-context';
 import { TabContextBroadcaster } from './tab-context-broadcaster';
 import { TabContextFactory } from './tab-context-factory';
 
-export class TabController {
+export class TargetPageController {
     constructor(
-        private readonly tabIdToContextMap: TabToContextMap,
+        private readonly targetPageTabIdToContextMap: TabToContextMap,
         private readonly broadcaster: TabContextBroadcaster,
         private readonly browserAdapter: BrowserAdapter,
         private readonly detailsViewController: DetailsViewController,
@@ -103,14 +103,14 @@ export class TabController {
     };
 
     private hasTabContext(tabId: number): boolean {
-        return tabId in this.tabIdToContextMap;
+        return tabId in this.targetPageTabIdToContextMap;
     }
 
     private sendTabAction(tabId: number, messageType: string, errorMessagePrefix: string): void {
         this.browserAdapter.getTab(
             tabId,
             (tab: chrome.tabs.Tab) => {
-                const tabContext = this.tabIdToContextMap[tabId];
+                const tabContext = this.targetPageTabIdToContextMap[tabId];
                 if (tabContext) {
                     const interpreter = tabContext.interpreter;
                     interpreter.interpret({
@@ -138,7 +138,7 @@ export class TabController {
         if (!this.hasTabContext(tabId)) {
             return;
         }
-        const tabContext = this.tabIdToContextMap[tabId];
+        const tabContext = this.targetPageTabIdToContextMap[tabId];
         if (tabContext == null) {
             return;
         }
@@ -155,7 +155,7 @@ export class TabController {
     }
 
     private addTabContext(tabId: number): void {
-        this.tabIdToContextMap[tabId] = this.tabContextFactory.createTabContext(
+        this.targetPageTabIdToContextMap[tabId] = this.tabContextFactory.createTabContext(
             this.broadcaster.getBroadcastMessageDelegate(tabId),
             this.browserAdapter,
             this.detailsViewController,
@@ -164,7 +164,7 @@ export class TabController {
     }
 
     private onTabRemoved = (tabId: number, messageType: string): void => {
-        const tabContext = this.tabIdToContextMap[tabId];
+        const tabContext = this.targetPageTabIdToContextMap[tabId];
         if (tabContext) {
             const interpreter = tabContext.interpreter;
             interpreter.interpret({
@@ -177,7 +177,7 @@ export class TabController {
 
     private onTargetTabRemoved = (tabId: number): void => {
         this.onTabRemoved(tabId, Messages.Tab.Remove);
-        delete this.tabIdToContextMap[tabId];
+        delete this.targetPageTabIdToContextMap[tabId];
     };
 
     private onDetailsViewTabRemoved = (tabId: number): void => {

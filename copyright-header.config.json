@@ -7,6 +7,8 @@
         "./.vscode",
         "./dist",
         "./docs/LICENSE.txt",
+        "./src/electron/resources/license_en.txt",
+        "./src/electron/resources/license.txt",
         "./docs/NOTICE.html",
         "./drop",
         "./extension",
