@@ -9,7 +9,7 @@ exports[`ReportExportComponentPropsFactory getReportExportComponentForAssessment
 </Fragment>"
 `;
 
-exports[`ReportExportComponentPropsFactory getReportExportComponentForFastPass, scanResults is not null, test is Issues, properties are set 1`] = `
+exports[`ReportExportComponentPropsFactory getReportExportComponentForFastPass, CardsUI is true, scanResults is not null, test is Issues, properties are set 1`] = `
 "<Fragment>
   <CustomizedActionButton iconProps={{...}} onClick={[Function]}>
     Export result

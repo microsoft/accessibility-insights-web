@@ -2,7 +2,9 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
+import { FeatureFlags } from 'common/feature-flags';
 import { AssessmentNavState, AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
@@ -18,6 +20,7 @@ describe('StartOverComponentPropsFactory', () => {
 
     let assessment: Readonly<Assessment>;
     let assessmentsProviderMock: IMock<AssessmentsProvider>;
+    let featureFlagStoreData: FeatureFlagStoreData;
     let assessmentStoreData: AssessmentStoreData;
     let visualizationScanResultData: VisualizationScanResultData;
     let scanResult: ScanResults;
@@ -25,6 +28,7 @@ describe('StartOverComponentPropsFactory', () => {
 
     beforeEach(() => {
         assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(undefined, MockBehavior.Loose);
+        featureFlagStoreData = {};
         scanResult = null;
         scanning = null;
     });
@@ -62,6 +66,7 @@ describe('StartOverComponentPropsFactory', () => {
 
         return {
             deps,
+            featureFlagStoreData,
             assessmentStoreData,
             assessmentsProvider: assessmentsProviderMock.object,
             visualizationScanResultData,
@@ -73,6 +78,10 @@ describe('StartOverComponentPropsFactory', () => {
         scanResult = {} as ScanResults;
     }
 
+    function setCardsUiFlag(flagValue: boolean): void {
+        featureFlagStoreData[FeatureFlags.universalCardsUI] = flagValue;
+    }
+
     test('getStartOverComponentPropsForAssessment, component matches snapshot', () => {
         const props = getProps(true);
         const rendered = getStartOverComponentForAssessment(props);
@@ -80,23 +89,41 @@ describe('StartOverComponentPropsFactory', () => {
         expect(rendered).toMatchSnapshot();
     });
 
-    test('getStartOverComponentPropsForFastPass, scanResults is null, component is null', () => {
+    test('getStartOverComponentPropsForFastPass, CardsUI is undefined, component  is null', () => {
         const props = getProps(false);
         const rendered = getStartOverComponentForFastPass(props);
 
         expect(rendered).toBeNull();
     });
 
-    test('getStartOverComponentPropsForFastPass, scanResults is not null, scanning is false, component matches snapshot', () => {
+    test('getStartOverComponentPropsForFastPass, CardsUI is false, component  is null', () => {
+        setCardsUiFlag(false);
+        const props = getProps(false);
+        const rendered = getStartOverComponentForFastPass(props);
+
+        expect(rendered).toBeNull();
+    });
+
+    test('getStartOverComponentPropsForFastPass, CardsUI is true, scanResults is null, component is null', () => {
+        setCardsUiFlag(true);
+        const props = getProps(false);
+        const rendered = getStartOverComponentForFastPass(props);
+
+        expect(rendered).toBeNull();
+    });
+
+    test('getStartOverComponentPropsForFastPass, CardsUI is true, scanResults is not null, scanning is false, component matches snapshot', () => {
         setScanResult();
+        setCardsUiFlag(true);
         const props = getProps(false);
         const rendered = getStartOverComponentForFastPass(props);
 
         expect(rendered).toMatchSnapshot();
     });
 
-    test('getStartOverComponentPropsForFastPass, scanResults is not null, scanning is true, component matches snapshot', () => {
+    test('getStartOverComponentPropsForFastPass, CardsUI is true, scanResults is not null, scanning is true, component matches snapshot', () => {
         setScanResult();
+        setCardsUiFlag(true);
         scanning = 'some string';
         const props = getProps(false);
         const rendered = getStartOverComponentForFastPass(props);
