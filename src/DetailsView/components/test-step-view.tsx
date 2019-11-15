@@ -22,10 +22,10 @@ import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-
 import { AssessmentInstanceTable } from './assessment-instance-table';
 import { ManualTestStepView } from './manual-test-step-view';
 
-export type TestStepViewDeps = ContentPanelButtonDeps &
-    GuidanceTagsDeps & {
-        detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-    };
+export type TestStepViewDeps = {
+    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+} & ContentPanelButtonDeps &
+    GuidanceTagsDeps;
 
 export interface TestStepViewProps {
     deps: TestStepViewDeps;

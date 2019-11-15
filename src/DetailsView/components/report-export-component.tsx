@@ -8,9 +8,9 @@ import { ReportGenerator } from 'reports/report-generator';
 import { ExportResultType } from '../../common/extension-telemetry-events';
 import { ExportDialog, ExportDialogDeps } from './export-dialog';
 
-export type ReportExportComponentDeps = ExportDialogDeps & {
+export type ReportExportComponentDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-};
+} & ExportDialogDeps;
 
 export interface ReportExportComponentProps {
     deps: ReportExportComponentDeps;
