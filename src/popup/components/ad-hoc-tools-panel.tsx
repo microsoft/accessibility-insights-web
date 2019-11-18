@@ -24,8 +24,15 @@ export class AdHocToolsPanel extends React.Component<AdHocToolsPanelProps, {}> {
                     <div className="ms-Grid-row">{groups}</div>
                 </main>
                 <div role="navigation" className="ad-hoc-tools-panel-footer">
-                    <Link className="insights-link" onClick={this.props.backLinkHandler} id="back-to-launchpad-link">
-                        <Icon className="back-to-launch-pad-icon" iconName="back" />
+                    <Link
+                        className="insights-link"
+                        onClick={this.props.backLinkHandler}
+                        id="back-to-launchpad-link"
+                    >
+                        <Icon
+                            className="back-to-launch-pad-icon"
+                            iconName="back"
+                        />
                         Back to launch pad
                     </Link>
                 </div>
@@ -61,7 +68,10 @@ export class AdHocToolsPanel extends React.Component<AdHocToolsPanelProps, {}> {
             toggles.splice(
                 index,
                 0,
-                <div key={`diagnostic-view-toggle-divider-${groupIndex}-${index}`} className="ms-fontColor-neutralLight launch-panel-hr" />,
+                <div
+                    key={`diagnostic-view-toggle-divider-${groupIndex}-${index}`}
+                    className="ms-fontColor-neutralLight launch-panel-hr"
+                />,
             );
         }
     }
