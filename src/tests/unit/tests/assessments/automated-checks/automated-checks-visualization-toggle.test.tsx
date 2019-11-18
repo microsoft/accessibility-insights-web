@@ -12,13 +12,13 @@ import { VisualHelperToggleConfigBuilder } from '../../../common/visual-helper-t
 import { VisualizationTogglePropsBuilder } from '../../../common/visualization-toggle-props-builder';
 
 describe('AutomatedChecksVisualizationToggle', () => {
-    const actionMessageCreatorMock: IMock<DetailsViewActionMessageCreator> = Mock.ofType(DetailsViewActionMessageCreator);
+    const detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator> = Mock.ofType(DetailsViewActionMessageCreator);
 
     it('render with disabled message', () => {
         const props = new VisualHelperToggleConfigBuilder()
             .withToggleStepEnabled(true)
             .withToggleStepScanned(false)
-            .withActionMessageCreator(actionMessageCreatorMock.object)
+            .withActionMessageCreator(detailsViewActionMessageCreatorMock.object)
             .withEmptyFilteredMap()
             .build();
 
@@ -48,7 +48,7 @@ describe('AutomatedChecksVisualizationToggle', () => {
         const props = new VisualHelperToggleConfigBuilder()
             .withToggleStepEnabled(true)
             .withToggleStepScanned(false)
-            .withActionMessageCreator(actionMessageCreatorMock.object)
+            .withActionMessageCreator(detailsViewActionMessageCreatorMock.object)
             .withNonEmptyFilteredMap()
             .build();
 
@@ -79,7 +79,7 @@ describe('AutomatedChecksVisualizationToggle', () => {
         const props = new VisualHelperToggleConfigBuilder()
             .withToggleStepEnabled(true)
             .withToggleStepScanned(false)
-            .withActionMessageCreator(actionMessageCreatorMock.object)
+            .withActionMessageCreator(detailsViewActionMessageCreatorMock.object)
             .withPassingFilteredMap()
             .build();
 

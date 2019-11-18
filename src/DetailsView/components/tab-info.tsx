@@ -6,11 +6,15 @@ import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 
+export type TabInfoDeps = {
+    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+};
+
 export interface TabInfoProps {
+    deps: TabInfoDeps;
     isTargetPageHidden: boolean;
     url: string;
     title: string;
-    actionCreator: DetailsViewActionMessageCreator;
     selectedPivot: DetailsViewPivotType;
     dropdownClickHandler: DropdownClickHandler;
 }

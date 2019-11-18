@@ -18,7 +18,7 @@ import { SettingsProvider } from '../../../../../DetailsView/components/settings
 import { PreviewFeatureFlagsHandler } from '../../../../../DetailsView/handlers/preview-feature-flags-handler';
 
 describe('DetailsViewOverlay', () => {
-    const actionMessageCreatorStub = {
+    const detailsViewActionMessageCreator = {
         addFailureInstance: null,
     } as DetailsViewActionMessageCreator;
     const previewFeatureFlagsHandlerStub = {
@@ -46,7 +46,7 @@ describe('DetailsViewOverlay', () => {
     const deps: DetailsViewOverlayDeps = {
         contentProvider: {} as ContentProvider,
         contentActionMessageCreator: {} as ContentActionMessageCreator,
-        detailsViewActionMessageCreator: actionMessageCreatorStub,
+        detailsViewActionMessageCreator,
         userConfigMessageCreator: userConfigMessageCreatorStub,
         settingsProvider: {} as SettingsProvider,
     } as DetailsViewOverlayDeps;
@@ -56,7 +56,6 @@ describe('DetailsViewOverlay', () => {
         detailsViewStoreData,
         scopingStoreData,
         featureFlagStoreData,
-        actionMessageCreator: actionMessageCreatorStub,
         previewFeatureFlagsHandler: previewFeatureFlagsHandlerStub,
         scopingActionMessageCreator: scopingActionMessageCreatorStub,
         inspectActionMessageCreator: inspectActionMessageCreatorStub,

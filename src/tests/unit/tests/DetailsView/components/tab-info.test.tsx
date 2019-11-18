@@ -19,18 +19,20 @@ describe('TabInfo', () => {
 
     scenarios.forEach(scenario => {
         describe(scenario.name, () => {
-            let actionCreatorMock: IMock<DetailsViewActionMessageCreator>;
+            let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
             let dropdownClickHandlerMock: IMock<DropdownClickHandler>;
             let testProps: TabInfoProps;
 
             beforeEach(() => {
-                actionCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+                detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
                 dropdownClickHandlerMock = Mock.ofType(DropdownClickHandler);
 
                 testProps = {
+                    deps: {
+                        detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
+                    },
                     title: 'test title',
                     url: 'test url',
-                    actionCreator: actionCreatorMock.object,
                     isTargetPageHidden: false,
                     selectedPivot: DetailsViewPivotType.allTest,
                     dropdownClickHandler: dropdownClickHandlerMock.object,

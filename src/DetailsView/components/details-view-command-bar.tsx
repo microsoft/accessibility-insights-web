@@ -5,22 +5,25 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
+import { StartOverDeps } from 'DetailsView/components/start-over-dropdown';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
-import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
 import { ReportExportComponentDeps } from './report-export-component';
 
-export type DetailsViewCommandBarDeps = ReportExportComponentDeps & {
+export type DetailsViewCommandBarDeps = {
     getCurrentDate: () => Date;
     reportGenerator: ReportGenerator;
     getDateFromTimestamp: (timestamp: string) => Date;
-};
+    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+} & ReportExportComponentDeps &
+    StartOverDeps;
 
 export type CommandBarProps = DetailsViewCommandBarProps;
 
@@ -32,7 +35,6 @@ export interface DetailsViewCommandBarProps {
     deps: DetailsViewCommandBarDeps;
     featureFlagStoreData: FeatureFlagStoreData;
     tabStoreData: TabStoreData;
-    actionMessageCreator: DetailsViewActionMessageCreator;
     assessmentStoreData: AssessmentStoreData;
     assessmentsProvider: AssessmentsProvider;
     rightPanelConfiguration: DetailsRightPanelConfiguration;
@@ -65,7 +67,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
                     role="link"
                     title="Switch to target page"
                     className={css('insights-link', 'target-page-link')}
-                    onClick={this.props.actionMessageCreator.switchToTargetTab}
+                    onClick={this.props.deps.detailsViewActionMessageCreator.switchToTargetTab}
                 >
                     {targetPageTitle}
                 </Link>

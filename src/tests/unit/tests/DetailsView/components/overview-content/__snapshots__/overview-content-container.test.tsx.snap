@@ -5,7 +5,6 @@ exports[`OverviewContainer component is defined and matches snapshot 1`] = `
   className="overview"
 >
   <TargetChangeDialog
-    actionMessageCreator={Object {}}
     deps={
       Object {
         "actionInitiators": Object {
