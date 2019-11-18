@@ -111,7 +111,7 @@ export function buildRuleInformation(ruleId: string, includeResults: boolean = t
             const summary: string = 'How to fix ' + ruleId;
             return ({ howtoFixSummary: summary } as unknown) as UnifiedResolution;
         },
-        includeThisResultDelegate: r => {
+        shouldIncludeResult: r => {
             expect('includeThisResultDelegate').toBe('This code should never execute');
             return null;
         },

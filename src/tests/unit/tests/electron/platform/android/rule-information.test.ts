@@ -1,11 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
 import { UnifiedFormattableResolution } from 'common/types/store-data/unified-data-interface';
 import {
     GetUnifiedFormattableResolutionDelegate,
-    IncludeThisResultDelegate,
     RuleInformation,
+    ShouldIncludeResultPredicate,
 } from 'electron/platform/android/rule-information';
 import { RuleResultsData } from 'electron/platform/android/scan-results';
 import { Mock } from 'typemoq';
@@ -65,7 +64,7 @@ describe('RuleInformation', () => {
         };
 
         for (const expectedResult of expectedResults) {
-            const includeThisResultMock = Mock.ofType<IncludeThisResultDelegate>();
+            const includeThisResultMock = Mock.ofType<ShouldIncludeResultPredicate>();
             includeThisResultMock.setup(func => func(testData)).returns(() => expectedResult);
 
             const ruleInformation = new RuleInformation(null, null, null, includeThisResultMock.object);

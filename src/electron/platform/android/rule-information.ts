@@ -6,14 +6,14 @@ import { RuleResultsData } from './scan-results';
 
 export type GetUnifiedFormattableResolutionDelegate = (ruleResultsData: RuleResultsData) => UnifiedFormattableResolution;
 
-export type IncludeThisResultDelegate = (ruleResultsData: RuleResultsData) => boolean;
+export type ShouldIncludeResultPredicate = (ruleResultsData: RuleResultsData) => boolean;
 
 export class RuleInformation {
     constructor(
         readonly ruleId: string,
         readonly ruleDescription: string,
         readonly getUnifiedFormattableResolutionDelegate: GetUnifiedFormattableResolutionDelegate,
-        readonly includeThisResultDelegate: IncludeThisResultDelegate,
+        readonly shouldIncludeResult: ShouldIncludeResultPredicate,
     ) {}
 
     public getUnifiedFormattableResolution(ruleResultsData: RuleResultsData): UnifiedFormattableResolution {
@@ -21,6 +21,6 @@ export class RuleInformation {
     }
 
     public includeThisResult(ruleResultsData: RuleResultsData): boolean {
-        return this.includeThisResultDelegate(ruleResultsData);
+        return this.shouldIncludeResult(ruleResultsData);
     }
 }
