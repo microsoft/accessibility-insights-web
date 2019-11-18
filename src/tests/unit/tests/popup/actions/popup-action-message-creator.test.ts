@@ -21,6 +21,7 @@ import { WindowUtils } from '../../../../../common/window-utils';
 import { PopupActionMessageCreator } from '../../../../../popup/actions/popup-action-message-creator';
 import { LaunchPanelType } from '../../../../../popup/components/popup-view';
 import { EventStubFactory } from '../../../common/event-stub-factory';
+import { Tab } from 'common/itab';
 
 describe('PopupActionMessageCreatorTest', () => {
     const eventStubFactory = new EventStubFactory();
@@ -47,14 +48,23 @@ describe('PopupActionMessageCreatorTest', () => {
     });
 
     it('dispatches for popupInitialized', () => {
+        const stubTab: Tab = { url: 'stub-url' };
         const telemetry: BaseTelemetryData = {
             source: TelemetryEventSource.LaunchPad,
             triggeredBy: 'N/A',
         };
 
-        testSubject.popupInitialized({});
+        const expectedMessage = {
+            messageType: Messages.Popup.Initialized,
+            payload: {
+                telemetry,
+                tab: stubTab,
+            },
+        };
 
-        actionMessageDispatcherMock.verify(dispatcher => dispatcher.sendTelemetry(POPUP_INITIALIZED, It.isValue(telemetry)), Times.once());
+        testSubject.popupInitialized(stubTab);
+
+        actionMessageDispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
     });
 
     it('dispatches for openLaunchPad', () => {
