@@ -20,7 +20,7 @@ describe('TabStoreTest', () => {
         expect(testObject.getId()).toBe(StoreNames[StoreNames.TabStore]);
     });
 
-    test('onNewTabCreated', () => {
+    test('onNewTabCreated with empty initial state', () => {
         const initialState = new TabStoreDataBuilder().build();
 
         const payload: Tab = {
@@ -33,12 +33,55 @@ describe('TabStoreTest', () => {
             .with('id', payload.id)
             .with('title', payload.title)
             .with('url', payload.url)
+            .with('isClosed', false)
+            .with('isChanged', false)
             .build();
 
         createStoreTesterForTabActions('newTabCreated')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
+
+    test.each`
+        payloadUrl                               | differentId | originalIsClosed | originalIsChanged
+        ${'https://original-host/original-path'} | ${true}     | ${false}         | ${false}
+        ${'https://original-host/original-path'} | ${false}    | ${false}         | ${false}
+        ${'https://original-host/new-path'}      | ${false}    | ${false}         | ${false}
+        ${'https://new-host/new-path'}           | ${false}    | ${false}         | ${false}
+        ${'https://original-host/original-path'} | ${false}    | ${false}         | ${true}
+        ${'https://original-host/original-path'} | ${false}    | ${true}          | ${true}
+    `(
+        'onNewTabCreated for differentId=$differentId, payloadUrl=$payloadUrl re-initializes from scratch ' +
+            'regardless of existing initial state isClosed=$originalIsClosed, isChanged=$originalIsChanged',
+        ({ payloadUrl, differentId, originalIsClosed, originalIsChanged }) => {
+            const originalId = 1;
+            const initialState = new TabStoreDataBuilder()
+                .with('id', originalId)
+                .with('url', 'https://original-host/original-path')
+                .with('title', 'title 1')
+                .with('isClosed', originalIsClosed)
+                .with('isChanged', originalIsChanged)
+                .build();
+
+            const payload: Tab = {
+                id: differentId ? originalId + 1 : originalId,
+                title: 'test-title',
+                url: payloadUrl,
+            };
+
+            const expectedState: TabStoreData = new TabStoreDataBuilder()
+                .with('id', payload.id)
+                .with('title', payload.title)
+                .with('url', payload.url)
+                .with('isClosed', false)
+                .with('isChanged', false)
+                .build();
+
+            createStoreTesterForTabActions('newTabCreated')
+                .withActionParam(payload)
+                .testListenerToBeCalledOnce(initialState, expectedState);
+        },
+    );
 
     test('onGetCurrentState', () => {
         const initialState = new TabStoreDataBuilder().build();
