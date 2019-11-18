@@ -5,6 +5,7 @@ import { Messages } from 'common/messages';
 
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
+import { PopupInitializedPayload } from './action-payloads';
 import { TabActions } from './tab-actions';
 
 export class PopupActionCreator {
@@ -15,9 +16,9 @@ export class PopupActionCreator {
     ) {}
 
     public registerCallbacks(): void {
-        this.interpreter.registerTypeToPayloadCallback(Messages.Popup.Initialized, payload => {
+        this.interpreter.registerTypeToPayloadCallback(Messages.Popup.Initialized, (payload: PopupInitializedPayload) => {
             this.telemetryEventHandler.publishTelemetry(POPUP_INITIALIZED, payload);
-            this.tabActions.newTabCreated.invoke((payload as any).tab);
+            this.tabActions.newTabCreated.invoke(payload.tab);
         });
     }
 }
