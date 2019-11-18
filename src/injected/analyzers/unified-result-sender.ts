@@ -3,7 +3,7 @@
 import { UnifiedScanCompletedPayload } from '../../background/actions/action-payloads';
 import { EnvironmentInfoProvider } from '../../common/environment-info-provider';
 import { Messages } from '../../common/messages';
-import { UUIDGeneratorType } from '../../common/uid-generator';
+import { UUIDGenerator } from '../../common/uid-generator';
 import { ConvertScanResultsToUnifiedResultsDelegate } from '../adapters/scan-results-to-unified-results';
 import { ConvertScanResultsToUnifiedRulesDelegate } from '../adapters/scan-results-to-unified-rules';
 import { AxeAnalyzerResult } from './analyzer';
@@ -15,7 +15,7 @@ export class UnifiedResultSender {
         private readonly convertScanResultsToUnifiedResults: ConvertScanResultsToUnifiedResultsDelegate,
         private readonly convertScanResultsToUnifiedRules: ConvertScanResultsToUnifiedRulesDelegate,
         private readonly environmentInfoProvider: EnvironmentInfoProvider,
-        private readonly generateUID: UUIDGeneratorType,
+        private readonly generateUID: UUIDGenerator,
     ) {}
 
     public sendResults: PostResolveCallback = (axeResults: AxeAnalyzerResult) => {

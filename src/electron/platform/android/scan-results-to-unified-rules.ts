@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { UnifiedRule } from 'common/types/store-data/unified-data-interface';
-import { UUIDGeneratorType } from 'common/uid-generator';
+import { UUIDGenerator } from 'common/uid-generator';
 import { RuleInformation } from './rule-information';
 import { RuleInformationProviderType } from './rule-information-provider-type';
 import { ScanResults } from './scan-results';
@@ -10,13 +10,13 @@ import { ScanResults } from './scan-results';
 export type ConvertScanResultsToUnifiedRulesDelegate = (
     scanResults: ScanResults,
     ruleInformationProvider: RuleInformationProviderType,
-    uuidGenerator: UUIDGeneratorType,
+    uuidGenerator: UUIDGenerator,
 ) => UnifiedRule[];
 
 export function convertScanResultsToUnifiedRules(
     scanResults: ScanResults,
     ruleInformationProvider: RuleInformationProviderType,
-    uuidGenerator: UUIDGeneratorType,
+    uuidGenerator: UUIDGenerator,
 ): UnifiedRule[] {
     if (!scanResults) {
         return [];
@@ -40,7 +40,7 @@ export function convertScanResultsToUnifiedRules(
     return unifiedRules;
 }
 
-function createUnifiedRuleFromRuleResult(ruleInformation: RuleInformation, uuidGenerator: UUIDGeneratorType): UnifiedRule {
+function createUnifiedRuleFromRuleResult(ruleInformation: RuleInformation, uuidGenerator: UUIDGenerator): UnifiedRule {
     return {
         uid: uuidGenerator(),
         id: ruleInformation.ruleId,

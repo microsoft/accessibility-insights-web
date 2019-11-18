@@ -3,11 +3,11 @@
 import { flatMap } from 'lodash';
 
 import { InstanceResultStatus, UnifiedResult } from '../../common/types/store-data/unified-data-interface';
-import { UUIDGeneratorType } from '../../common/uid-generator';
+import { UUIDGenerator } from '../../common/uid-generator';
 import { AxeNodeResult, RuleResult, ScanResults } from '../../scanner/iruleresults';
 import { IssueFilingUrlStringUtils } from './../../issue-filing/common/issue-filing-url-string-utils';
 
-export type ConvertScanResultsToUnifiedResultsDelegate = (scanResults: ScanResults, uuidGenerator: UUIDGeneratorType) => UnifiedResult[];
+export type ConvertScanResultsToUnifiedResultsDelegate = (scanResults: ScanResults, uuidGenerator: UUIDGenerator) => UnifiedResult[];
 
 interface RuleResultData {
     status: InstanceResultStatus;
@@ -25,14 +25,14 @@ interface CreationData extends RuleResultData {
     };
 }
 
-export const convertScanResultsToUnifiedResults = (scanResults: ScanResults, uuidGenerator: UUIDGeneratorType): UnifiedResult[] => {
+export const convertScanResultsToUnifiedResults = (scanResults: ScanResults, uuidGenerator: UUIDGenerator): UnifiedResult[] => {
     if (!scanResults) {
         return [];
     }
     return createUnifiedResultsFromScanResults(scanResults, uuidGenerator);
 };
 
-const createUnifiedResultsFromScanResults = (scanResults: ScanResults, uuidGenerator: UUIDGeneratorType): UnifiedResult[] => {
+const createUnifiedResultsFromScanResults = (scanResults: ScanResults, uuidGenerator: UUIDGenerator): UnifiedResult[] => {
     return [
         ...createUnifiedResultsFromRuleResults(scanResults.violations, 'fail', uuidGenerator),
         ...createUnifiedResultsFromRuleResults(scanResults.passes, 'pass', uuidGenerator),
@@ -42,7 +42,7 @@ const createUnifiedResultsFromScanResults = (scanResults: ScanResults, uuidGener
 const createUnifiedResultsFromRuleResults = (
     ruleResults: RuleResult[],
     status: InstanceResultStatus,
-    uuidGenerator: UUIDGeneratorType,
+    uuidGenerator: UUIDGenerator,
 ): UnifiedResult[] => {
     const unifiedResultFromRuleResults = (ruleResults || []).map(result =>
         createUnifiedResultsFromRuleResult(result, status, uuidGenerator),
@@ -54,7 +54,7 @@ const createUnifiedResultsFromRuleResults = (
 const createUnifiedResultsFromRuleResult = (
     ruleResult: RuleResult,
     status: InstanceResultStatus,
-    uuidGenerator: UUIDGeneratorType,
+    uuidGenerator: UUIDGenerator,
 ): UnifiedResult[] => {
     return ruleResult.nodes.map(node => {
         const data: RuleResultData = {
@@ -69,7 +69,7 @@ const createUnifiedResultsFromRuleResult = (
 const createUnifiedResultFromNode = (
     nodeResult: AxeNodeResult,
     ruleResultData: RuleResultData,
-    uuidGenerator: UUIDGeneratorType,
+    uuidGenerator: UUIDGenerator,
 ): UnifiedResult => {
     return createUnifiedResult(
         {
@@ -87,7 +87,7 @@ const createUnifiedResultFromNode = (
     );
 };
 
-const createUnifiedResult = (data: CreationData, uuidGenerator: UUIDGeneratorType): UnifiedResult => {
+const createUnifiedResult = (data: CreationData, uuidGenerator: UUIDGenerator): UnifiedResult => {
     return {
         uid: uuidGenerator(),
         status: data.status,
