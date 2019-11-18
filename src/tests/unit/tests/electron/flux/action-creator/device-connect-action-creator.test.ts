@@ -7,7 +7,7 @@ import { VALIDATE_PORT } from 'electron/common/electron-telemetry-events';
 import { DeviceConnectActionCreator } from 'electron/flux/action-creator/device-connect-action-creator';
 import { ConnectedDevicePayload, PortPayload } from 'electron/flux/action/device-action-payloads';
 import { DeviceActions } from 'electron/flux/action/device-actions';
-import { FetchScanResultsType } from 'electron/platform/android/fetch-scan-results';
+import { ScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { ScanResults } from 'electron/platform/android/scan-results';
 import { IMock, It, Mock, Times } from 'typemoq';
 
@@ -18,7 +18,7 @@ describe('DeviceConnectActionCreator', () => {
 
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
     let deviceActionsMock: IMock<DeviceActions>;
-    let fetchScanResultsMock: IMock<FetchScanResultsType>;
+    let fetchScanResultsMock: IMock<ScanResultsFetcher>;
     let connectingMock: IMock<Action<PortPayload>>;
 
     let testSubject: DeviceConnectActionCreator;
@@ -27,7 +27,7 @@ describe('DeviceConnectActionCreator', () => {
         telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();
         deviceActionsMock = Mock.ofType<DeviceActions>();
         connectingMock = Mock.ofType<Action<PortPayload>>();
-        fetchScanResultsMock = Mock.ofType<FetchScanResultsType>();
+        fetchScanResultsMock = Mock.ofType<ScanResultsFetcher>();
 
         deviceActionsMock.setup(actions => actions.connecting).returns(() => connectingMock.object);
 
