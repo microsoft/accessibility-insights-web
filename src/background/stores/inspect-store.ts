@@ -31,7 +31,7 @@ export class InspectStore extends BaseStoreImpl<InspectStoreData> {
         this.inspectActions.getCurrentState.addListener(this.onGetCurrentState);
         this.inspectActions.changeInspectMode.addListener(this.onChangeInspectMode);
         this.inspectActions.setHoveredOverSelector.addListener(this.onSetHoveredOverSelector);
-        this.tabActions.tabChange.addListener(this.onTabChange);
+        this.tabActions.existingTabUpdated.addListener(this.onTabChange);
     }
 
     private onChangeInspectMode = (payload: InspectPayload): void => {

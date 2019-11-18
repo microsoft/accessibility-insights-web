@@ -89,10 +89,10 @@ export class TargetPageController {
 
     private postTabUpdate = (tabId: number): void => {
         if (this.hasTabContext(tabId)) {
-            this.sendTabChangedAction(tabId);
+            this.sendExistingTabUpdatedAction(tabId);
         } else {
             this.addTabContext(tabId);
-            this.sendTabUpdateAction(tabId);
+            this.sendNewTabCreatedAction(tabId);
         }
     };
 
@@ -106,7 +106,7 @@ export class TargetPageController {
         return tabId in this.targetPageTabIdToContextMap;
     }
 
-    private sendTabAction(tabId: number, messageType: string, errorMessagePrefix: string): void {
+    private sendTabAction(tabId: number, messageType: string): void {
         this.browserAdapter.getTab(
             tabId,
             (tab: chrome.tabs.Tab) => {
@@ -121,17 +121,17 @@ export class TargetPageController {
                 }
             },
             () => {
-                this.logger.log(`${errorMessagePrefix} tab with Id ${tabId} not found`);
+                this.logger.log(`${messageType}: tab with Id ${tabId} not found`);
             },
         );
     }
 
-    private sendTabChangedAction(tabId: number): void {
-        this.sendTabAction(tabId, Messages.Tab.Change, 'changed');
+    private sendExistingTabUpdatedAction(tabId: number): void {
+        this.sendTabAction(tabId, Messages.Tab.ExistingTabUpdated);
     }
 
-    private sendTabUpdateAction(tabId: number): void {
-        this.sendTabAction(tabId, Messages.Tab.Update, 'updated');
+    private sendNewTabCreatedAction(tabId: number): void {
+        this.sendTabAction(tabId, Messages.Tab.NewTabCreated);
     }
 
     private sendTabVisibilityChangeAction(tabId: number, isHidden: boolean): void {

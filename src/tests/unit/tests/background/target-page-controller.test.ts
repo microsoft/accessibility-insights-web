@@ -114,7 +114,7 @@ describe('TargetPageControllerTest', () => {
             data: 'abc',
         };
         const interpretInput: Message = {
-            messageType: Messages.Tab.Update,
+            messageType: Messages.Tab.NewTabCreated,
             payload: getTabCallbackInput,
             tabId: tabId,
         };
@@ -148,7 +148,7 @@ describe('TargetPageControllerTest', () => {
                 rejectCallback = reject;
             })
             .verifiable(Times.once());
-        loggerMock.setup(logger => logger.log(`updated tab with Id ${tabId} not found`)).verifiable(Times.once());
+        loggerMock.setup(logger => logger.log(It.is(s => s.endsWith(`tab with Id ${tabId} not found`)))).verifiable(Times.once());
 
         setupCreateTabContextMock(broadcastDelegate, tabContextMock, tabId);
 
@@ -290,7 +290,7 @@ describe('TargetPageControllerTest', () => {
 
         openTabIds.forEach((tabId, index) => {
             const interpretInput: Message = {
-                messageType: Messages.Tab.Update,
+                messageType: Messages.Tab.NewTabCreated,
                 payload: tabs[tabId],
                 tabId: tabId,
             };
@@ -355,7 +355,7 @@ describe('TargetPageControllerTest', () => {
         };
 
         const interpretInput: Message = {
-            messageType: Messages.Tab.Change,
+            messageType: Messages.Tab.ExistingTabUpdated,
             payload: getTabCallbackInput,
             tabId: tabId,
         };
@@ -382,7 +382,7 @@ describe('TargetPageControllerTest', () => {
                 onReject = reject;
             })
             .verifiable(Times.once());
-        loggerMock.setup(logger => logger.log(`changed tab with Id ${tabId} not found`)).verifiable(Times.once());
+        loggerMock.setup(logger => logger.log(It.is(s => s.endsWith(`tab with Id ${tabId} not found`)))).verifiable(Times.once());
 
         testSubject = createTabControllerWithoutFeatureFlag(tabInterpreterMap);
         testSubject.initialize();
@@ -658,7 +658,7 @@ describe('TargetPageControllerTest', () => {
         };
 
         const interpretInput: Message = {
-            messageType: Messages.Tab.Change,
+            messageType: Messages.Tab.ExistingTabUpdated,
             payload: getTabCallbackInput,
             tabId: tabId,
         };
@@ -712,7 +712,7 @@ describe('TargetPageControllerTest', () => {
                 onReject = reject;
             })
             .verifiable(Times.once());
-        loggerMock.setup(logger => logger.log(`changed tab with Id ${tabId} not found`)).verifiable(Times.once());
+        loggerMock.setup(logger => logger.log(It.is(s => s.endsWith(`tab with Id ${tabId} not found`)))).verifiable(Times.once());
 
         testSubject = createTabControllerWithoutFeatureFlag({ [tabId]: null });
         testSubject.initialize();

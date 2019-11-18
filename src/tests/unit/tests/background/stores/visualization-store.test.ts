@@ -783,8 +783,8 @@ describe('VisualizationStoreTest ', () => {
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onTabChange', () => {
-        const actionName = 'tabChange';
+    test('onExistingTabUpdated', () => {
+        const actionName = 'existingTabUpdated';
         const visualizationType = VisualizationType.Headings;
         const pivot = DetailsViewPivotType.allTest;
         const expectedState = new VisualizationStoreDataBuilder()
