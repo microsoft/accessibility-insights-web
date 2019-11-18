@@ -55,27 +55,40 @@ describe('TabStoreTest', () => {
         createStoreTesterForTabActions('tabRemove').testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onExistingTabUpdated', () => {
-        const initialState: TabStoreData = new TabStoreDataBuilder()
-            .with('url', 'url 1')
-            .with('title', 'title 1')
-            .build();
+    test.each`
+        payloadUrl                               | originalIsClosed | expectedIsClosed
+        ${'https://original-host/original-path'} | ${false}         | ${false}
+        ${'https://original-host/new-path'}      | ${false}         | ${false}
+        ${'https://new-host/new-path'}           | ${false}         | ${true}
+        ${'https://original-host/original-path'} | ${true}          | ${true}
+        ${'https://original-host/new-path'}      | ${true}          | ${true}
+        ${'https://new-host/new-path'}           | ${true}          | ${true}
+    `(
+        'onExistingTabUpdated from isClosed=$originalIsClosed with payload url $payloadUrl should result in isClosed=$expectedIsClosed',
+        ({ payloadUrl, originalIsClosed, expectedIsClosed }) => {
+            const initialState: TabStoreData = new TabStoreDataBuilder()
+                .with('url', 'https://original-host/original-path')
+                .with('title', 'title 1')
+                .with('isClosed', originalIsClosed)
+                .build();
 
-        const payload: Tab = {
-            title: 'title 2',
-            url: 'url 2',
-        };
+            const payload: Tab = {
+                title: 'title 2',
+                url: payloadUrl,
+            };
 
-        const finalState: TabStoreData = new TabStoreDataBuilder()
-            .with('url', payload.url)
-            .with('title', payload.title)
-            .with('isChanged', true)
-            .build();
+            const expectedState: TabStoreData = new TabStoreDataBuilder()
+                .with('url', payload.url)
+                .with('title', payload.title)
+                .with('isChanged', true)
+                .with('isClosed', expectedIsClosed)
+                .build();
 
-        createStoreTesterForTabActions('existingTabUpdated')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
-    });
+            createStoreTesterForTabActions('existingTabUpdated')
+                .withActionParam(payload)
+                .testListenerToBeCalledOnce(initialState, expectedState);
+        },
+    );
 
     test('onVisibilityChange, hidden is true', () => {
         const initialState: TabStoreData = new TabStoreDataBuilder().build();
