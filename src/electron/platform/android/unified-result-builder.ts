@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { UnifiedScanCompletedPayload } from 'background/actions/action-payloads';
 import { generateUID, UUIDGeneratorType } from 'common/uid-generator';
-import { ToolDataDelegate } from 'electron/common/application-properties-provider';
+import { ToolDataGetter } from 'electron/common/application-properties-provider';
 import { RuleInformationProvider } from 'electron/platform/android/rule-information-provider';
 import { RuleInformationProviderType } from 'electron/platform/android/rule-information-provider-type';
 import { ScanResults } from 'electron/platform/android/scan-results';
@@ -27,7 +27,7 @@ export const createBuilder = (
     getPlatformData: ConvertScanResultsToPlatformDataDelegate,
     ruleInformationProvider: RuleInformationProviderType,
     uuidGenerator: UUIDGeneratorType,
-    getToolData: ToolDataDelegate,
+    getToolData: ToolDataGetter,
 ) => (scanResults: ScanResults): UnifiedScanCompletedPayload => {
     const payload: UnifiedScanCompletedPayload = {
         scanResult: getUnifiedResults(scanResults, ruleInformationProvider, uuidGenerator),
@@ -42,7 +42,7 @@ export const createBuilder = (
     return payload;
 };
 
-export const createDefaultBuilder = (getToolData: ToolDataDelegate) => {
+export const createDefaultBuilder = (getToolData: ToolDataGetter) => {
     return createBuilder(
         convertScanResultsToUnifiedResults,
         convertScanResultsToUnifiedRules,

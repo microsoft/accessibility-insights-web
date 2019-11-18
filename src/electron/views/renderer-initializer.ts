@@ -24,7 +24,7 @@ import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { CardsViewDeps } from 'DetailsView/components/cards-view';
 import { remote } from 'electron';
 import { DirectActionMessageDispatcher } from 'electron/adapters/direct-action-message-dispatcher';
-import { createGetToolDataDelegate } from 'electron/common/application-properties-provider';
+import { createToolDataGetter } from 'electron/common/application-properties-provider';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
@@ -163,7 +163,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
     const windowFrameListener = new WindowFrameListener(windowStateActionCreator, currentWindow);
     windowFrameListener.initialize();
 
-    const getToolData = createGetToolDataDelegate(appDataAdapter);
+    const getToolData = createToolDataGetter(appDataAdapter);
     const unifiedResultsBuilder = createDefaultBuilder(getToolData);
     const scanController = new ScanController(
         scanActions,

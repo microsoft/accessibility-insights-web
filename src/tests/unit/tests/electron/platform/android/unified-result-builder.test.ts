@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { UUIDGeneratorType } from 'common/uid-generator';
-import { ToolDataDelegate } from 'electron/common/application-properties-provider';
+import { ToolDataGetter } from 'electron/common/application-properties-provider';
 import { RuleInformationProviderType } from 'electron/platform/android/rule-information-provider-type';
 import { ScanResults } from 'electron/platform/android/scan-results';
 import { ConvertScanResultsToPlatformDataDelegate } from 'electron/platform/android/scan-results-to-platform-data';
@@ -58,7 +58,7 @@ describe('buildUnifiedScanCompletedPayload', () => {
                 deviceName: 'test-device-name',
             }));
 
-        const getToolDataMock = Mock.ofType<ToolDataDelegate>();
+        const getToolDataMock = Mock.ofType<ToolDataGetter>();
         getToolDataMock
             .setup(getter => getter(exampleScanResults))
             .returns(() => {

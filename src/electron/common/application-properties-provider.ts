@@ -5,9 +5,9 @@ import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { androidAppTitle } from 'content/strings/application';
 import { ScanResults } from 'electron/platform/android/scan-results';
 
-export type ToolDataDelegate = (scanResults: ScanResults) => ToolData;
+export type ToolDataGetter = (scanResults: ScanResults) => ToolData;
 
-export const createGetToolDataDelegate = (appDataAdapter: AppDataAdapter): ToolDataDelegate => {
+export const createToolDataGetter = (appDataAdapter: AppDataAdapter): ToolDataGetter => {
     return scanResults => {
         return {
             scanEngineProperties: {
