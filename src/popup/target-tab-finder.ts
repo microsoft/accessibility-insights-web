@@ -25,7 +25,10 @@ export class TargetTabFinder {
 
     private getTabInfo = (): Promise<Tab> => {
         return new Promise((resolve, reject) => {
-            const tabIdInUrl = this.urlParser.getIntParam(this.win.location.href, 'tabId');
+            const tabIdInUrl = this.urlParser.getIntParam(
+                this.win.location.href,
+                'tabId',
+            );
 
             if (isNaN(tabIdInUrl)) {
                 this.browserAdapter.tabsQuery(

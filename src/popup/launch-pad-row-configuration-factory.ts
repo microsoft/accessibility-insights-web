@@ -17,7 +17,8 @@ export class LaunchPadRowConfigurationFactory {
         const fastPassRowConfig = {
             iconName: 'Rocket',
             title: 'FastPass',
-            description: 'Run two tests to find the most common accessibility issues in less than 5 minutes.',
+            description:
+                'Run two tests to find the most common accessibility issues in less than 5 minutes.',
             onClickTitle: event =>
                 actionMessageCreator.openDetailsView(
                     event,
@@ -29,13 +30,15 @@ export class LaunchPadRowConfigurationFactory {
         const adhocRowConfig = {
             iconName: 'Medical',
             title: 'Ad hoc tools',
-            description: 'Get quick access to visualizations that help you identify accessibility issues.',
+            description:
+                'Get quick access to visualizations that help you identify accessibility issues.',
             onClickTitle: () => handler.openAdhocToolsPanel(component),
         };
         const assessmentRowConfig = {
             iconName: 'testBeaker',
             title: 'Assessment',
-            description: 'Walk through a guided process for assessing accessibility compliance.',
+            description:
+                'Walk through a guided process for assessing accessibility compliance.',
             onClickTitle: event =>
                 actionMessageCreator.openDetailsView(
                     event,
