@@ -32,7 +32,7 @@
         "serve:mock-axe-android": "http-server -p 9051 -e json ./src/tests/miscellaneous/mock-axe-android",
         "start:electron": "electron drop/electron/electron/product/bundle/main.bundle.js",
         "start:electron:dev": "cross-env DEV_MODE=true electron drop/electron/electron/product/bundle/main.bundle.js",
-        "test": "jest --projects src/tests/unit --logHeapUsage --max-old-space-size=8192",
+        "test": "jest --projects src/tests/unit --max-old-space-size=16384",
         "test:e2e": "jest --projects src/tests/end-to-end --runInBand",
         "test:e2e:docker:build": "docker build -t accessibility-insights-web-e2e .",
         "test:e2e:docker:run": "docker run -t accessibility-insights-web-e2e",
