@@ -4,7 +4,7 @@ jobs:
     - job: 'unit_tests_and_lints'
 
       pool:
-          vmImage: 'macOS-10.14'
+          vmImage: 'macOS-latest'
 
       steps:
           - template: pipeline/install-node-prerequisites.yaml
@@ -66,7 +66,7 @@ jobs:
 
     - job: 'e2e_mac_web_electron'
       pool:
-          vmImage: macOS-10.14
+          vmImage: macOS-latest
       steps:
           - template: pipeline/install-node-prerequisites.yaml
           - template: pipeline/e2e-test-from-agent.yaml

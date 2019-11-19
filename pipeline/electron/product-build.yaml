@@ -23,7 +23,7 @@ jobs:
 
     - job: 'build_product_mac'
       pool:
-          vmImage: macOS-10.14
+          vmImage: 'macOS-latest'
       steps:
           - template: ../install-node-prerequisites.yaml
           - template: electron-e2e-test-interactive.yaml
