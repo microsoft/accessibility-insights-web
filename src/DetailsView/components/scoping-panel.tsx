@@ -11,9 +11,13 @@ import { DetailsViewActionMessageCreator } from '../actions/details-view-action-
 import { GenericPanel } from './generic-panel';
 import { ScopingContainer } from './scoping-container';
 
+export type ScopingPanelDeps = {
+    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+};
+
 export interface ScopingPanelProps {
+    deps: ScopingPanelDeps;
     isOpen: boolean;
-    actionMessageCreator: DetailsViewActionMessageCreator;
     scopingActionMessageCreator: ScopingActionMessageCreator;
     inspectActionMessageCreator: InspectActionMessageCreator;
     featureFlagData: FeatureFlagStoreData;
@@ -27,13 +31,13 @@ export class ScopingPanel extends React.Component<ScopingPanelProps> {
                 title="Scoping"
                 isOpen={this.props.isOpen}
                 className="scoping-panel"
-                onDismiss={this.props.actionMessageCreator.closeScopingPanel}
+                onDismiss={this.props.deps.detailsViewActionMessageCreator.closeScopingPanel}
                 closeButtonAriaLabel="Close scoping feature panel"
                 hasCloseButton={true}
             >
                 <ScopingContainer
+                    deps={this.props.deps}
                     featureFlagData={this.props.featureFlagData}
-                    actionMessageCreator={this.props.actionMessageCreator}
                     scopingSelectorsData={this.props.scopingSelectorsData}
                     scopingActionMessageCreator={this.props.scopingActionMessageCreator}
                     inspectActionMessageCreator={this.props.inspectActionMessageCreator}
@@ -42,7 +46,7 @@ export class ScopingPanel extends React.Component<ScopingPanelProps> {
                     className="closing-scoping-panel"
                     primary={true}
                     text="OK"
-                    onClick={this.props.actionMessageCreator.closeScopingPanel}
+                    onClick={this.props.deps.detailsViewActionMessageCreator.closeScopingPanel}
                 />
             </GenericPanel>
         );

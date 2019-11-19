@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { FeatureFlags } from 'common/feature-flags';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { StartOverDropdown, StartOverProps } from 'DetailsView/components/start-over-dropdown';
@@ -16,7 +17,6 @@ export function getStartOverComponentForAssessment(props: CommandBarProps): JSX.
         testName: test.title,
         test: selectedTest,
         requirementKey: props.assessmentStoreData.assessmentNavState.selectedTestStep,
-        actionMessageCreator: props.actionMessageCreator,
         rightPanelConfiguration: props.rightPanelConfiguration,
     };
 
@@ -24,17 +24,21 @@ export function getStartOverComponentForAssessment(props: CommandBarProps): JSX.
 }
 
 export function getStartOverComponentForFastPass(props: CommandBarProps): JSX.Element {
+    if (!props.featureFlagStoreData[FeatureFlags.universalCardsUI]) {
+        return null;
+    }
+
     if (!props.visualizationScanResultData.issues.scanResult) {
         return null;
     }
 
     const selectedTest = props.visualizationStoreData.selectedFastPassDetailsView;
-    const actionMessageCreator = props.actionMessageCreator;
+    const detailsViewActionMessageCreator = props.deps.detailsViewActionMessageCreator;
 
     return (
         <ActionButton
             iconProps={{ iconName: 'Refresh' }}
-            onClick={(event: SupportedMouseEvent) => actionMessageCreator.rescanVisualization(selectedTest, event)}
+            onClick={(event: SupportedMouseEvent) => detailsViewActionMessageCreator.rescanVisualization(selectedTest, event)}
             disabled={props.visualizationStoreData.scanning !== null}
         >
             Start over

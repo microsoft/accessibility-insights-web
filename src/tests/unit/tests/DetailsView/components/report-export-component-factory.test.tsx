@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { FeatureFlags } from 'common/feature-flags';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
@@ -29,7 +30,7 @@ describe('ReportExportComponentPropsFactory', () => {
 
     let assessmentsProviderMock: IMock<AssessmentsProvider>;
     let featureFlagStoreData: FeatureFlagStoreData;
-    let actionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
+    let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let tabStoreData: TabStoreData;
     let assessmentStoreData: AssessmentStoreData;
     let reportGeneratorMock: IMock<ReportGenerator>;
@@ -40,7 +41,7 @@ describe('ReportExportComponentPropsFactory', () => {
 
     beforeEach(() => {
         featureFlagStoreData = {};
-        actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator, MockBehavior.Strict);
+        detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator, MockBehavior.Strict);
         tabStoreData = {
             title: thePageTitle,
             url: thePageUrl,
@@ -57,7 +58,7 @@ describe('ReportExportComponentPropsFactory', () => {
 
     function getProps(): DetailsViewCommandBarProps {
         const deps = {
-            detailsViewActionMessageCreator: actionMessageCreatorMock.object,
+            detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
             getCurrentDate: () => theDate,
             reportGenerator: reportGeneratorMock.object,
             getDateFromTimestamp: value => theDate,
@@ -73,7 +74,6 @@ describe('ReportExportComponentPropsFactory', () => {
             deps,
             featureFlagStoreData,
             tabStoreData,
-            actionMessageCreator: actionMessageCreatorMock.object,
             assessmentStoreData,
             assessmentsProvider: assessmentsProviderMock.object,
             visualizationScanResultData,
@@ -111,6 +111,10 @@ describe('ReportExportComponentPropsFactory', () => {
             .returns(() => theGeneratorOutput);
     }
 
+    function setCardsUiFlag(flagValue: boolean): void {
+        featureFlagStoreData[FeatureFlags.universalCardsUI] = flagValue;
+    }
+
     function setSelectedFastPassDetailsView(test: VisualizationType): void {
         visualizationStoreData = {
             selectedFastPassDetailsView: test,
@@ -131,17 +135,34 @@ describe('ReportExportComponentPropsFactory', () => {
         expect(wrapper.debug()).toMatchSnapshot();
 
         reportGeneratorMock.verifyAll();
-        actionMessageCreatorMock.verifyAll();
+        detailsViewActionMessageCreatorMock.verifyAll();
     });
 
-    test('getReportExportComponentForFastPass, scanResults is null, props is null', () => {
+    test('getReportExportComponentForFastPass, CardsUI is undefined, props is null', () => {
         const props = getProps();
         const component: JSX.Element = getReportExportComponentForFastPass(props);
 
         expect(component).toBeNull();
     });
 
-    test('getReportExportComponentForFastPass, scanResults is not null, test is Tabstop, props is null', () => {
+    test('getReportExportComponentForFastPass, CardsUI is false, props is null', () => {
+        setCardsUiFlag(false);
+        const props = getProps();
+        const component: JSX.Element = getReportExportComponentForFastPass(props);
+
+        expect(component).toBeNull();
+    });
+
+    test('getReportExportComponentForFastPass, CardsUI is true, scanResults is null, props is null', () => {
+        setCardsUiFlag(true);
+        const props = getProps();
+        const component: JSX.Element = getReportExportComponentForFastPass(props);
+
+        expect(component).toBeNull();
+    });
+
+    test('getReportExportComponentForFastPass, CardsUI is true, scanResults is not null, test is Tabstop, props is null', () => {
+        setCardsUiFlag(true);
         setScanResults();
         setSelectedFastPassDetailsView(VisualizationType.TabStops);
         const props = getProps();
@@ -150,8 +171,9 @@ describe('ReportExportComponentPropsFactory', () => {
         expect(component).toBeNull();
     });
 
-    test('getReportExportComponentForFastPass, scanResults is not null, test is Issues, properties are set', () => {
+    test('getReportExportComponentForFastPass, CardsUI is true, scanResults is not null, test is Issues, properties are set', () => {
         cardsViewData = {} as CardsViewModel;
+        setCardsUiFlag(true);
         setScanResults();
         setSelectedFastPassDetailsView(VisualizationType.Issues);
         setAutomatedChecksReportGenerator();
@@ -161,6 +183,6 @@ describe('ReportExportComponentPropsFactory', () => {
         expect(wrapper.debug()).toMatchSnapshot();
 
         reportGeneratorMock.verifyAll();
-        actionMessageCreatorMock.verifyAll();
+        detailsViewActionMessageCreatorMock.verifyAll();
     });
 });

@@ -32,10 +32,10 @@ export class TabStore extends BaseStoreImpl<TabStoreData> {
     }
 
     protected addActionListeners(): void {
-        this.tabActions.tabUpdate.addListener(this.onTabUpdate);
+        this.tabActions.newTabCreated.addListener(this.onNewTabCreated);
         this.tabActions.getCurrentState.addListener(this.onGetCurrentState);
         this.tabActions.tabRemove.addListener(this.onTabRemove);
-        this.tabActions.tabChange.addListener(this.onTabChange);
+        this.tabActions.existingTabUpdated.addListener(this.onExistingTabUpdated);
         this.tabActions.tabVisibilityChange.addListener(this.onVisibilityChange);
         this.visualizationActions.updateSelectedPivotChild.addListener(this.resetTabChange);
 
@@ -52,7 +52,7 @@ export class TabStore extends BaseStoreImpl<TabStoreData> {
         this.emitChanged();
     };
 
-    private onTabUpdate = (payload: Tab): void => {
+    private onNewTabCreated = (payload: Tab): void => {
         this.state.id = payload.id;
         this.state.title = payload.title;
         this.state.url = payload.url;
@@ -64,7 +64,7 @@ export class TabStore extends BaseStoreImpl<TabStoreData> {
         this.emitChanged();
     };
 
-    private onTabChange = (payload: Tab): void => {
+    private onExistingTabUpdated = (payload: Tab): void => {
         this.state.title = payload.title;
         this.state.url = payload.url;
         this.state.isChanged = true;

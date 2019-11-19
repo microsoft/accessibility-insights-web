@@ -27,13 +27,15 @@ describe('PreviewFeaturesContainerTest', () => {
             enabled: false,
         },
     ];
-    const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+    const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
     const previewFeatureFlagsHandlerMock = Mock.ofType(PreviewFeatureFlagsHandler);
     const featureFlagStoreDataStub = {};
     const props: PreviewFeaturesContainerProps = {
+        deps: {
+            detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
+        },
         featureFlagData: featureFlagStoreDataStub,
         previewFeatureFlagsHandler: previewFeatureFlagsHandlerMock.object,
-        actionMessageCreator: actionMessageCreatorMock.object,
     };
 
     test('constructor', () => {
@@ -49,13 +51,13 @@ describe('PreviewFeaturesContainerTest', () => {
 
         const testSubject = new PreviewFeaturesContainer(props);
 
+        const deps = {
+            detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
+        };
         const expectedComponent = (
             <div>
                 <div className="preview-features-description">{DisplayableStrings.previewFeaturesDescription}</div>
-                <PreviewFeaturesToggleList
-                    displayedFeatureFlags={displayableFeatureFlagsStub}
-                    actionMessageCreator={actionMessageCreatorMock.object}
-                />
+                <PreviewFeaturesToggleList deps={deps} displayedFeatureFlags={displayableFeatureFlagsStub} />
             </div>
         );
 

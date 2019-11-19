@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import * as React from 'react';
 import { ContentPanel, ContentPanelDeps, ContentPanelProps } from 'views/content/content-panel';
 import { InspectActionMessageCreator } from '../../common/message-creators/inspect-action-message-creator';
@@ -8,17 +9,18 @@ import { DetailsViewData } from '../../common/types/store-data/details-view-data
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { ScopingStoreData } from '../../common/types/store-data/scoping-store-data';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
-import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { PreviewFeatureFlagsHandler } from '../handlers/preview-feature-flags-handler';
 import { PreviewFeaturesPanel, PreviewFeaturesPanelProps } from './preview-features-panel';
 import { ScopingPanel, ScopingPanelProps } from './scoping-panel';
 import { SettingsPanel, SettingsPanelDeps, SettingsPanelProps } from './settings-panel/settings-panel';
 
-export type DetailsViewOverlayDeps = ContentPanelDeps & SettingsPanelDeps;
+export type DetailsViewOverlayDeps = {
+    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+} & ContentPanelDeps &
+    SettingsPanelDeps;
 
 export interface DetailsViewOverlayProps {
     deps: DetailsViewOverlayDeps;
-    actionMessageCreator: DetailsViewActionMessageCreator;
     detailsViewStoreData: DetailsViewData;
     featureFlagStoreData: FeatureFlagStoreData;
     previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
@@ -53,7 +55,7 @@ export class DetailsViewOverlay extends React.Component<DetailsViewOverlayProps>
 
     private getPreviewFeaturesPanel(): JSX.Element {
         const previewProps: PreviewFeaturesPanelProps = {
-            actionMessageCreator: this.props.actionMessageCreator,
+            deps: this.props.deps,
             featureFlagData: this.props.featureFlagStoreData,
             isOpen: this.props.detailsViewStoreData.currentPanel.isPreviewFeaturesOpen,
             previewFeatureFlagsHandler: this.props.previewFeatureFlagsHandler,
@@ -78,7 +80,7 @@ export class DetailsViewOverlay extends React.Component<DetailsViewOverlayProps>
 
     private getScopingPanel(): JSX.Element {
         const scopingProps: ScopingPanelProps = {
-            actionMessageCreator: this.props.actionMessageCreator,
+            deps: this.props.deps,
             featureFlagData: this.props.featureFlagStoreData,
             isOpen: this.props.detailsViewStoreData.currentPanel.isScopingOpen,
             scopingSelectorsData: this.props.scopingStoreData,

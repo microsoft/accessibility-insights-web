@@ -16,12 +16,14 @@ describe('PreviewFeaturesPanelTest', () => {
     });
 
     test('render', () => {
-        const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+        const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
         const previewFeatureFlagsHandler = Mock.ofType(PreviewFeatureFlagsHandler);
 
         const testProps: PreviewFeaturesPanelProps = {
+            deps: {
+                detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
+            },
             isOpen: true,
-            actionMessageCreator: actionMessageCreatorMock.object,
             previewFeatureFlagsHandler: previewFeatureFlagsHandler.object,
             featureFlagData: {},
         };
@@ -33,13 +35,13 @@ describe('PreviewFeaturesPanelTest', () => {
                 title="Preview features"
                 isOpen={true}
                 className={'preview-features-panel'}
-                onDismiss={testProps.actionMessageCreator.closePreviewFeaturesPanel}
+                onDismiss={testProps.deps.detailsViewActionMessageCreator.closePreviewFeaturesPanel}
                 closeButtonAriaLabel={'Close preview features panel'}
                 hasCloseButton={true}
             >
                 <PreviewFeaturesContainer
+                    deps={testProps.deps}
                     featureFlagData={testProps.featureFlagData}
-                    actionMessageCreator={testProps.actionMessageCreator}
                     previewFeatureFlagsHandler={testProps.previewFeatureFlagsHandler}
                 />
             </GenericPanel>

@@ -165,10 +165,10 @@ describe('DetailsViewBody', () => {
     function buildTabInfo(givenProps: DetailsViewBodyProps): JSX.Element {
         return (
             <TabInfo
+                deps={givenProps.deps}
                 isTargetPageHidden={givenProps.tabStoreData.isPageHidden}
                 url={givenProps.tabStoreData.url}
                 title={givenProps.tabStoreData.title}
-                actionCreator={givenProps.deps.detailsViewActionMessageCreator}
                 selectedPivot={givenProps.visualizationStoreData.selectedDetailsViewPivot}
                 dropdownClickHandler={givenProps.dropdownClickHandler}
             />
@@ -176,6 +176,6 @@ describe('DetailsViewBody', () => {
     }
 
     function buildCommandBar(givenProps: DetailsViewBodyProps): JSX.Element {
-        return <switcherNavConfig.CommandBar actionMessageCreator={props.deps.detailsViewActionMessageCreator} {...props} />;
+        return <switcherNavConfig.CommandBar {...props} />;
     }
 });

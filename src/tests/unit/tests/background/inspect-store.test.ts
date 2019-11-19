@@ -54,12 +54,12 @@ describe('InspectStoreTest', () => {
             .testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on tabChange', () => {
+    test('on existingTabUpdated', () => {
         const initialState = getDefaultState();
         initialState.hoveredOverSelector = ['some selector'];
         initialState.inspectMode = InspectMode.scopingAddInclude;
         const finalState = getDefaultState();
-        createStoreForTabActions('tabChange')
+        createStoreForTabActions('existingTabUpdated')
             .withActionParam(null)
             .testListenerToBeCalledOnce(initialState, finalState);
     });

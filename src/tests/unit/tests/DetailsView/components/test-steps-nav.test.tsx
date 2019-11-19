@@ -37,7 +37,7 @@ describe('TestStepsNav', () => {
 
     function runTest(assessmentProvider: AssessmentsProvider): void {
         const eventFactory = new EventStubFactory();
-        const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+        const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
         const eventStub = eventFactory.createKeypressEvent() as any;
 
         const all = assessmentProvider.all();
@@ -56,7 +56,7 @@ describe('TestStepsNav', () => {
 
         const props: TestStepNavProps = {
             deps: {
-                detailsViewActionMessageCreator: actionMessageCreatorMock.object,
+                detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
                 assessmentsProvider: assessmentProvider,
                 getInnerTextFromJsxElement: getInnerTextFromJsxElementStub(),
                 outcomeTypeSemanticsFromTestStatus: createOutcomeTypeSemanticsFromTestStatusStub(),
@@ -70,7 +70,9 @@ describe('TestStepsNav', () => {
 
         generateStepStatus(assessment.requirements, props);
 
-        actionMessageCreatorMock.setup(a => a.selectRequirement(eventStub, item.key, props.selectedTest)).verifiable(Times.once());
+        detailsViewActionMessageCreatorMock
+            .setup(a => a.selectRequirement(eventStub, item.key, props.selectedTest))
+            .verifiable(Times.once());
 
         const component = React.createElement(TestableTestStepsNav, props);
         const testObject = TestUtils.renderIntoDocument(component);
@@ -79,7 +81,7 @@ describe('TestStepsNav', () => {
 
         expect(rendered).toMatchSnapshot('render');
         expect(testObject.getRenderNavLink()(item)).toMatchSnapshot('getRenderNavLink');
-        actionMessageCreatorMock.verifyAll();
+        detailsViewActionMessageCreatorMock.verifyAll();
     }
 
     function generateStepStatus(testSteps: Requirement[], props: TestStepNavProps): void {

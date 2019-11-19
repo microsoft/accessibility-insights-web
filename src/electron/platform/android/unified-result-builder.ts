@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { UnifiedScanCompletedPayload } from 'background/actions/action-payloads';
-import { generateUID, UUIDGeneratorType } from 'common/uid-generator';
+import { generateUID, UUIDGenerator } from 'common/uid-generator';
 import { ToolDataDelegate } from 'electron/common/application-properties-provider';
 import { RuleInformationProvider } from 'electron/platform/android/rule-information-provider';
 import { RuleInformationProviderType } from 'electron/platform/android/rule-information-provider-type';
@@ -26,7 +26,7 @@ export const createBuilder = (
     getUnifiedRules: ConvertScanResultsToUnifiedRulesDelegate,
     getPlatformData: ConvertScanResultsToPlatformDataDelegate,
     ruleInformationProvider: RuleInformationProviderType,
-    uuidGenerator: UUIDGeneratorType,
+    uuidGenerator: UUIDGenerator,
     getToolData: ToolDataDelegate,
 ) => (scanResults: ScanResults): UnifiedScanCompletedPayload => {
     const payload: UnifiedScanCompletedPayload = {

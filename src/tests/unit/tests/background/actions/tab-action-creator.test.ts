@@ -22,22 +22,22 @@ describe('TestActionCreatorTest', () => {
         telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();
     });
 
-    it('handles Tab.Update message', () => {
+    it('handles Tab.NewTabCreated message', () => {
         const payload: Tab = {
             id: -1,
             title: 'test tab title',
             url: 'test url',
         };
 
-        const tabUpdateMock = createActionMock(payload);
-        const actionsMock = createActionsMock('tabUpdate', tabUpdateMock.object);
-        const interpreterMock = createInterpreterMock(Messages.Tab.Update, payload);
+        const actionMock = createActionMock(payload);
+        const actionsMock = createActionsMock('newTabCreated', actionMock.object);
+        const interpreterMock = createInterpreterMock(Messages.Tab.NewTabCreated, payload);
 
         const testSubject = new TabActionCreator(interpreterMock.object, actionsMock.object, null, null);
 
         testSubject.registerCallbacks();
 
-        tabUpdateMock.verifyAll();
+        actionMock.verifyAll();
     });
 
     it('handles Tab.GetCurrent message', () => {
@@ -64,22 +64,22 @@ describe('TestActionCreatorTest', () => {
         tabRemoveMock.verifyAll();
     });
 
-    it('handles Tab.Change message', () => {
+    it('handles Tab.ExistingTabUpdated message', () => {
         const payload: Tab = {
             id: -1,
             title: 'test tab title',
             url: 'test url',
         };
 
-        const tabChangeMock = createActionMock(payload);
-        const actionsMock = createActionsMock('tabChange', tabChangeMock.object);
-        const interpreterMock = createInterpreterMock(Messages.Tab.Change, payload);
+        const actionMock = createActionMock(payload);
+        const actionsMock = createActionsMock('existingTabUpdated', actionMock.object);
+        const interpreterMock = createInterpreterMock(Messages.Tab.ExistingTabUpdated, payload);
 
         const testSubject = new TabActionCreator(interpreterMock.object, actionsMock.object, null, null);
 
         testSubject.registerCallbacks();
 
-        tabChangeMock.verifyAll();
+        actionMock.verifyAll();
     });
 
     it('handles Tab.Switch message', () => {
