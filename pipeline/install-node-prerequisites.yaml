@@ -9,9 +9,6 @@ steps:
     - script: npm install -g npm@6.11.1
       displayName: install npm 6.11.1
 
-    - script: npm install -g increase-memory-limit
-      displayName: install increase-memory-limit
-
     - script: npm install yarn@1.17.3 -g
       displayName: install yarn as a global dependency
 
