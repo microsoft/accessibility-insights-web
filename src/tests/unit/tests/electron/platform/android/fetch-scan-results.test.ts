@@ -1,20 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AxiosResponse } from 'axios';
-import { createFetchScanResults, FetchScanResultsType, HttpGet } from 'electron/platform/android/fetch-scan-results';
+import { createScanResultsFetcher, HttpGet, ScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { ScanResults } from 'electron/platform/android/scan-results';
 import { IMock, Mock } from 'typemoq';
 
 describe('fetchScanResults', () => {
     let httpGetMock: IMock<HttpGet>;
 
-    let testSubject: FetchScanResultsType;
+    let testSubject: ScanResultsFetcher;
 
     const port = 10101;
 
     beforeEach(() => {
         httpGetMock = Mock.ofType<HttpGet>();
-        testSubject = createFetchScanResults(httpGetMock.object);
+        testSubject = createScanResultsFetcher(httpGetMock.object);
     });
 
     it('returns a ScanResults instance', async () => {

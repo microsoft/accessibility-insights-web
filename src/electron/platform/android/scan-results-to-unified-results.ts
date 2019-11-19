@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { InstanceResultStatus, UnifiedDescriptors, UnifiedResult } from 'common/types/store-data/unified-data-interface';
-import { UUIDGeneratorType } from 'common/uid-generator';
+import { UUIDGenerator } from 'common/uid-generator';
 import { DictionaryStringTo } from 'types/common-types';
 import { RuleInformation } from './rule-information';
 import { RuleInformationProviderType } from './rule-information-provider-type';
@@ -11,13 +11,13 @@ import { RuleResultsData, ScanResults, ViewElementData } from './scan-results';
 export type ConvertScanResultsToUnifiedResultsDelegate = (
     scanResults: ScanResults,
     ruleInformationProvider: RuleInformationProviderType,
-    uuidGenerator: UUIDGeneratorType,
+    uuidGenerator: UUIDGenerator,
 ) => UnifiedResult[];
 
 export function convertScanResultsToUnifiedResults(
     scanResults: ScanResults,
     ruleInformationProvider: RuleInformationProviderType,
-    uuidGenerator: UUIDGeneratorType,
+    uuidGenerator: UUIDGenerator,
 ): UnifiedResult[] {
     if (!scanResults || !scanResults.ruleResults) {
         return [];
@@ -29,7 +29,7 @@ export function convertScanResultsToUnifiedResults(
 function createUnifiedResultsFromScanResults(
     scanResults: ScanResults,
     ruleInformationProvider: RuleInformationProviderType,
-    uuidGenerator: UUIDGeneratorType,
+    uuidGenerator: UUIDGenerator,
 ): UnifiedResult[] {
     const viewElementLookup: DictionaryStringTo<ViewElementData> = createViewElementLookup(scanResults);
     const unifiedResults: UnifiedResult[] = [];
@@ -68,7 +68,7 @@ function createUnifiedResult(
     ruleInformation: RuleInformation,
     ruleResult: RuleResultsData,
     viewElementLookup: DictionaryStringTo<ViewElementData>,
-    uuidGenerator: UUIDGeneratorType,
+    uuidGenerator: UUIDGenerator,
 ): UnifiedResult {
     return {
         uid: uuidGenerator(),
