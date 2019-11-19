@@ -3,8 +3,8 @@
 steps:
     - task: NodeTool@0
       inputs:
-          versionSpec: '10.16.3'
-      displayName: use node 10.16.3
+          versionSpec: '12.13.0'
+      displayName: use node 12.13.0
 
     - script: npm install -g npm@6.11.1
       displayName: install npm 6.11.1
@@ -15,5 +15,5 @@ steps:
     - script: npm install yarn@1.17.3 -g
       displayName: install yarn as a global dependency
 
-    - script: yarn install --frozen-lockfile
+    - script: yarn install
       displayName: install packages and dependencies
