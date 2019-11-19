@@ -21,13 +21,11 @@ exports[`IncompatibleBrowserRenderer renders 1`] = `
           We don’t currently support your browser.
           <br />
           Please check
-           
           <NewTabLink
             href="https://accessibilityinsights.io/"
           >
             accessibilityinsights.io
           </NewTabLink>
-           
           for download options.
         </div>
       </div>

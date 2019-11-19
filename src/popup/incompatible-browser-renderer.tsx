@@ -26,10 +26,10 @@ export class IncompatibleBrowserRenderer {
                             <div className="incompatible-browser-message">
                                 We don’t currently support your browser.
                                 <br />
-                                Please check{' '}
+                                Please check
                                 <NewTabLink href="https://accessibilityinsights.io/">
                                     accessibilityinsights.io
-                                </NewTabLink>{' '}
+                                </NewTabLink>
                                 for download options.
                             </div>
                         </div>
