@@ -28,21 +28,23 @@ describe('TestActionCreatorTest', () => {
     });
 
     it('handles Tab.NewTabCreated message', () => {
-        const payload: Tab = {
+        const payload = {
             id: -1,
             title: 'test tab title',
             url: 'test url',
+            telemetry: null,
         };
 
         const actionMock = createActionMock(payload);
         const actionsMock = createActionsMock('newTabCreated', actionMock.object);
         const interpreterMock = createInterpreterMock(Messages.Tab.NewTabCreated, payload);
 
-        const testSubject = new TabActionCreator(interpreterMock.object, actionsMock.object, null, null);
+        const testSubject = new TabActionCreator(interpreterMock.object, actionsMock.object, null, telemetryEventHandlerMock.object);
 
         testSubject.registerCallbacks();
 
         actionMock.verifyAll();
+        telemetryEventHandlerMock.verify(handler => handler.publishTelemetry(null, payload), Times.never());
     });
 
     it('handles Tab.GetCurrent message', () => {
