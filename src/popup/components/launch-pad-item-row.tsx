@@ -14,14 +14,23 @@ export interface LaunchPadItemRowProps {
 
 const descriptionClassName = 'launch-pad-item-description';
 
-export class LaunchPadItemRow extends React.Component<LaunchPadItemRowProps, undefined> {
+export class LaunchPadItemRow extends React.Component<
+    LaunchPadItemRowProps,
+    undefined
+> {
     private descriptionId = uniqueId(`${descriptionClassName}-`);
     public render(): JSX.Element {
         return (
             <div className="ms-Grid">
                 <div className="ms-Grid-row">
-                    <div className="ms-Grid-col ms-sm3 popup-start-dialog-icon-circle" aria-hidden="true">
-                        <Icon iconName={this.props.iconName} className="popup-start-dialog-icon" />
+                    <div
+                        className="ms-Grid-col ms-sm3 popup-start-dialog-icon-circle"
+                        aria-hidden="true"
+                    >
+                        <Icon
+                            iconName={this.props.iconName}
+                            className="popup-start-dialog-icon"
+                        />
                     </div>
                     <div className="ms-Grid-col ms-sm9">
                         <div className="launch-pad-item-title">
@@ -35,7 +44,10 @@ export class LaunchPadItemRow extends React.Component<LaunchPadItemRowProps, und
                                 {this.props.title}
                             </Link>
                         </div>
-                        <div id={this.descriptionId} className={descriptionClassName}>
+                        <div
+                            id={this.descriptionId}
+                            className={descriptionClassName}
+                        >
                             {this.props.description}
                         </div>
                     </div>
