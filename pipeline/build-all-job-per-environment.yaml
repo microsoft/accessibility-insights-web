@@ -3,7 +3,7 @@
 parameters:
     jobNameSuffix: ''
     windowsImage: 'windows-2019'
-    macImage: 'macOS-latest'
+    # macImage: 'macOS-latest'
     linuxImage: 'ubuntu-16.04'
 
 jobs:
