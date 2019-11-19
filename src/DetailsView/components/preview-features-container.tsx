@@ -25,9 +25,11 @@ export class PreviewFeaturesContainer extends React.Component<PreviewFeaturesCon
         const displayableFeatureFlags: DisplayableFeatureFlag[] = this.props.previewFeatureFlagsHandler.getDisplayableFeatureFlags(
             this.props.featureFlagData,
         );
+
         if (displayableFeatureFlags.length === 0) {
             return <NoDisplayableFeatureFlagMessage />;
         }
+
         return (
             <div>
                 <div className="preview-features-description">{DisplayableStrings.previewFeaturesDescription}</div>
