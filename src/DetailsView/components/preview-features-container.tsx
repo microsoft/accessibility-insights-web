@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
 import { DisplayableStrings } from '../../common/constants/displayable-strings';
@@ -20,21 +21,19 @@ export interface PreviewFeaturesContainerProps {
     previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
 }
 
-export class PreviewFeaturesContainer extends React.Component<PreviewFeaturesContainerProps> {
-    public render(): JSX.Element {
-        const displayableFeatureFlags: DisplayableFeatureFlag[] = this.props.previewFeatureFlagsHandler.getDisplayableFeatureFlags(
-            this.props.featureFlagData,
-        );
+export const PreviewFeaturesContainer = NamedFC<PreviewFeaturesContainerProps>('PreviewFeaturesContainer', props => {
+    const displayableFeatureFlags: DisplayableFeatureFlag[] = props.previewFeatureFlagsHandler.getDisplayableFeatureFlags(
+        props.featureFlagData,
+    );
 
-        if (displayableFeatureFlags.length === 0) {
-            return <NoDisplayableFeatureFlagMessage />;
-        }
-
-        return (
-            <div>
-                <div className="preview-features-description">{DisplayableStrings.previewFeaturesDescription}</div>
-                <PreviewFeaturesToggleList deps={this.props.deps} displayedFeatureFlags={displayableFeatureFlags} />
-            </div>
-        );
+    if (displayableFeatureFlags.length === 0) {
+        return <NoDisplayableFeatureFlagMessage />;
     }
-}
+
+    return (
+        <div>
+            <div className="preview-features-description">{DisplayableStrings.previewFeaturesDescription}</div>
+            <PreviewFeaturesToggleList deps={props.deps} displayedFeatureFlags={displayableFeatureFlags} />
+        </div>
+    );
+});

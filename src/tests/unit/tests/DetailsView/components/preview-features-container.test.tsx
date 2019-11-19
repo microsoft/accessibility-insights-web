@@ -23,6 +23,7 @@ describe('PreviewFeaturesContainerTest', () => {
             enabled: false,
         },
     ];
+
     const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
     const previewFeatureFlagsHandlerMock = Mock.ofType(PreviewFeatureFlagsHandler);
 
