@@ -30,7 +30,7 @@ import { DetailsViewActionMessageCreator } from '../../../../../../DetailsView/a
 describe('CardKebabMenuButtonTest', () => {
     let defaultProps: CardKebabMenuButtonProps;
     let defaultDeps: CardKebabMenuButtonDeps;
-    let actionCreatorMock: IMock<DetailsViewActionMessageCreator>;
+    let detailsViewActionCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let navigatorUtilsMock: IMock<NavigatorUtils>;
     let windowUtilsMock: IMock<WindowUtils>;
     let userConfigurationStoreData: UserConfigurationStoreData;
@@ -84,7 +84,7 @@ describe('CardKebabMenuButtonTest', () => {
             snippet: 'snippet',
         };
         textGeneratorMock = Mock.ofType<IssueDetailsTextGenerator>();
-        actionCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
+        detailsViewActionCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
         navigatorUtilsMock = Mock.ofType<NavigatorUtils>();
         windowUtilsMock = Mock.ofType<WindowUtils>();
         issueFilingServiceProviderMock = Mock.ofType(IssueFilingServiceProvider);
@@ -111,7 +111,7 @@ describe('CardKebabMenuButtonTest', () => {
             .verifiable();
 
         defaultDeps = {
-            detailsViewActionMessageCreator: actionCreatorMock.object,
+            detailsViewActionMessageCreator: detailsViewActionCreatorMock.object,
             navigatorUtils: navigatorUtilsMock.object,
             windowUtils: windowUtilsMock.object,
             issueFilingServiceProvider: issueFilingServiceProviderMock.object,
@@ -173,7 +173,7 @@ describe('CardKebabMenuButtonTest', () => {
     });
 
     it('copies failure details and show the toast', async () => {
-        actionCreatorMock.setup(creator => creator.copyIssueDetailsClicked(event)).verifiable(Times.once());
+        detailsViewActionCreatorMock.setup(creator => creator.copyIssueDetailsClicked(event)).verifiable(Times.once());
 
         navigatorUtilsMock
             .setup(navigatorUtils => navigatorUtils.copyToClipboard(issueDetailsText))
@@ -196,11 +196,11 @@ describe('CardKebabMenuButtonTest', () => {
         expect(toast.state().toastVisible).toBe(true);
         expect(toast.state().content).toBe('Failure details copied.');
 
-        verifyMocks([actionCreatorMock, navigatorUtilsMock, textGeneratorMock, windowUtilsMock]);
+        verifyMocks([detailsViewActionCreatorMock, navigatorUtilsMock, textGeneratorMock, windowUtilsMock]);
     });
 
     it('shows failure message if copy failed', async () => {
-        actionCreatorMock.setup(creator => creator.copyIssueDetailsClicked(event)).verifiable(Times.once());
+        detailsViewActionCreatorMock.setup(creator => creator.copyIssueDetailsClicked(event)).verifiable(Times.once());
 
         navigatorUtilsMock
             .setup(navigatorUtils => navigatorUtils.copyToClipboard(issueDetailsText))
@@ -222,7 +222,7 @@ describe('CardKebabMenuButtonTest', () => {
         expect(toast.state().toastVisible).toBe(true);
         expect(toast.state().content).toBe('Failed to copy failure details. Please try again.');
 
-        verifyMocks([actionCreatorMock, navigatorUtilsMock, textGeneratorMock, windowUtilsMock]);
+        verifyMocks([detailsViewActionCreatorMock, navigatorUtilsMock, textGeneratorMock, windowUtilsMock]);
     });
 
     it('should file issue, valid settings', async () => {

@@ -24,7 +24,7 @@ describe('AssessmentTestView', () => {
     let getTestStatusMock: IMock<(data: ScanData, step: string) => boolean>;
     let scanDataStub: ScanData;
     let visualizationStoreDataStub: VisualizationStoreData;
-    let actionMessageCreatorStub: DetailsViewActionMessageCreator;
+    let detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     let assessmentInstanceHandlerStub: AssessmentInstanceTableHandler;
     let configuration: VisualizationConfiguration;
     let featureFlagStoreDataStub: FeatureFlagStoreData;
@@ -58,14 +58,14 @@ describe('AssessmentTestView', () => {
             },
         } as AssessmentStoreData;
         featureFlagStoreDataStub = {} as FeatureFlagStoreData;
-        actionMessageCreatorStub = {} as DetailsViewActionMessageCreator;
+        detailsViewActionMessageCreator = {} as DetailsViewActionMessageCreator;
         assessmentInstanceHandlerStub = {} as AssessmentInstanceTableHandler;
         assessmentDataStub = {} as AssessmentData;
         pathSnippetStoreDataStub = {} as PathSnippetStoreData;
 
         props = {
             deps: {
-                detailsViewActionMessageCreator: actionMessageCreatorStub,
+                detailsViewActionMessageCreator,
             } as AssessmentTestViewDeps,
             configuration,
             visualizationStoreData: visualizationStoreDataStub,

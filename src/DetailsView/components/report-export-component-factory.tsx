@@ -24,7 +24,7 @@ export function getReportExportComponentForAssessment(props: CommandBarProps): J
                 tabStoreData,
                 description,
             ),
-        updatePersistedDescription: value => props.actionMessageCreator.addResultDescription(value),
+        updatePersistedDescription: value => props.deps.detailsViewActionMessageCreator.addResultDescription(value),
         getExportDescription: () => props.assessmentStoreData.resultDescription,
     };
 

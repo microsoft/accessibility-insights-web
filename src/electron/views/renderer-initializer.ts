@@ -33,7 +33,7 @@ import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
 import { WindowStateActions } from 'electron/flux/action/window-state-actions';
 import { ScanStore } from 'electron/flux/store/scan-store';
 import { WindowStateStore } from 'electron/flux/store/window-state-store';
-import { createFetchScanResults } from 'electron/platform/android/fetch-scan-results';
+import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { ScanController } from 'electron/platform/android/scan-controller';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
 import { RootContainerProps, RootContainerState } from 'electron/views/root-container/components/root-container';
@@ -138,7 +138,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
     const telemetryStateListener = new TelemetryStateListener(userConfigurationStore, telemetryEventHandler);
     telemetryStateListener.initialize();
 
-    const fetchScanResults = createFetchScanResults(axios.get);
+    const fetchScanResults = createScanResultsFetcher(axios.get);
 
     const interpreter = new Interpreter();
     const dispatcher = new DirectActionMessageDispatcher(interpreter);

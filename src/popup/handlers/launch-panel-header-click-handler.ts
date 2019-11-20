@@ -6,7 +6,11 @@ import * as React from 'react';
 import { LaunchPanelHeader } from '../components/launch-panel-header';
 
 export class LaunchPanelHeaderClickHandler {
-    public onClickLink(popupWindow: Window, ev?: React.MouseEvent<HTMLElement>, item?: IContextualMenuItem): void {
+    public onClickLink(
+        popupWindow: Window,
+        ev?: React.MouseEvent<HTMLElement>,
+        item?: IContextualMenuItem,
+    ): void {
         if (item == null) {
             return;
         }
@@ -14,8 +18,14 @@ export class LaunchPanelHeaderClickHandler {
         popupWindow.open(url);
     }
 
-    public onOpenContextualMenu(header: LaunchPanelHeader, event: React.MouseEvent<any>): void {
-        header.setState({ target: event.currentTarget, isContextMenuVisible: true });
+    public onOpenContextualMenu(
+        header: LaunchPanelHeader,
+        event: React.MouseEvent<any>,
+    ): void {
+        header.setState({
+            target: event.currentTarget,
+            isContextMenuVisible: true,
+        });
     }
 
     public onDismissFeedbackMenu(header: LaunchPanelHeader, event?: any): void {
@@ -24,6 +34,8 @@ export class LaunchPanelHeaderClickHandler {
 
     public openAdhocToolsPanel(header: LaunchPanelHeader): void {
         header.props.openAdhocToolsPanel();
-        header.props.deps.launchPanelHeaderClickHandler.onDismissFeedbackMenu(header);
+        header.props.deps.launchPanelHeaderClickHandler.onDismissFeedbackMenu(
+            header,
+        );
     }
 }

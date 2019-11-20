@@ -8,7 +8,10 @@ import { NewTabLink } from '../common/components/new-tab-link';
 import { Header } from './components/header';
 
 export class IncompatibleBrowserRenderer {
-    constructor(private readonly renderer: typeof ReactDOM.render, private readonly dom: Document) {}
+    constructor(
+        private readonly renderer: typeof ReactDOM.render,
+        private readonly dom: Document,
+    ) {}
 
     public render(): void {
         const container = this.dom.querySelector('#popup-container');
@@ -23,8 +26,11 @@ export class IncompatibleBrowserRenderer {
                             <div className="incompatible-browser-message">
                                 We don’t currently support your browser.
                                 <br />
-                                Please check <NewTabLink href="https://accessibilityinsights.io/">accessibilityinsights.io</NewTabLink> for
-                                download options.
+                                Please check
+                                <NewTabLink href="https://accessibilityinsights.io/">
+                                    accessibilityinsights.io
+                                </NewTabLink>
+                                for download options.
                             </div>
                         </div>
                     </div>

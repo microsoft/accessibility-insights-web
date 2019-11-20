@@ -13,17 +13,17 @@ import { VisualizationTogglePropsBuilder } from '../../../common/visualization-t
 
 describe('RestartScanVisualHelperToggleTest', () => {
     const stepKey = 'assessment-1-step-1';
-    let actionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
+    let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
 
     beforeEach(() => {
-        actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+        detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
     });
 
     test('render', () => {
         const props = new VisualHelperToggleConfigBuilder()
             .withToggleStepEnabled(true)
             .withToggleStepScanned(false)
-            .withActionMessageCreator(actionMessageCreatorMock.object)
+            .withActionMessageCreator(detailsViewActionMessageCreatorMock.object)
             .build();
 
         const wrapper = shallow(<RestartScanVisualHelperToggle {...props} />);
@@ -52,11 +52,11 @@ describe('RestartScanVisualHelperToggleTest', () => {
         const props = new VisualHelperToggleConfigBuilder()
             .withToggleStepEnabled(stepIsEnabled)
             .withToggleStepScanned(false)
-            .withActionMessageCreator(actionMessageCreatorMock.object)
+            .withActionMessageCreator(detailsViewActionMessageCreatorMock.object)
             .build();
         const wrapper = shallow(<RestartScanVisualHelperToggle {...props} />);
-        actionMessageCreatorMock.reset();
-        actionMessageCreatorMock
+        detailsViewActionMessageCreatorMock.reset();
+        detailsViewActionMessageCreatorMock
             .setup(acm => {
                 return stepIsEnabled
                     ? acm.disableVisualHelper(props.assessmentNavState.selectedTestType, props.assessmentNavState.selectedTestStep)
@@ -66,7 +66,7 @@ describe('RestartScanVisualHelperToggleTest', () => {
 
         wrapper.find(VisualizationToggle).simulate('click');
 
-        actionMessageCreatorMock.verifyAll();
+        detailsViewActionMessageCreatorMock.verifyAll();
         assertSnapshotMatch(wrapper);
     });
 
