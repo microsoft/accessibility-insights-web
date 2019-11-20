@@ -5,13 +5,12 @@ import { Interpreter } from 'background/interpreter';
 import { TabContextBroadcaster } from 'background/tab-context-broadcaster';
 import { TabContextFactory } from 'background/tab-context-factory';
 import { TargetPageController } from 'background/target-page-controller';
-import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { Logger } from 'common/logging/logger';
 import { Messages } from 'common/messages';
-import { some, values } from 'lodash';
+import { values } from 'lodash';
+import { createSimulatedBrowserAdapter, SimulatedBrowserAdapter } from 'tests/unit/common/simulated-browser-adapter';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DictionaryNumberTo } from 'types/common-types';
-import { SimulatedBrowserAdapter, createSimulatedBrowserAdapter } from 'tests/unit/common/simulated-browser-adapter';
 
 describe('TargetPageController', () => {
     let testSubject: TargetPageController;

@@ -8,15 +8,16 @@ import { PromiseFactory } from 'common/promises/promise-factory';
 import { StateDispatcher } from 'common/state-dispatcher';
 import { WindowUtils } from 'common/window-utils';
 
-import { InjectionActionCreator } from 'background/actions/injection-action-creator';
 import { ActionCreator } from './actions/action-creator';
 import { ActionHub } from './actions/action-hub';
 import { CardSelectionActionCreator } from './actions/card-selection-action-creator';
 import { ContentActionCreator } from './actions/content-action-creator';
 import { DetailsViewActionCreator } from './actions/details-view-action-creator';
 import { DevToolsActionCreator } from './actions/dev-tools-action-creator';
+import { InjectionActionCreator } from './actions/injection-action-creator';
 import { InspectActionCreator } from './actions/inspect-action-creator';
 import { PathSnippetActionCreator } from './actions/path-snippet-action-creator';
+import { PopupActionCreator } from './actions/popup-action-creator';
 import { ScopingPanelActionCreator } from './actions/scoping-panel-action-creator';
 import { ShortcutsPageActionCreator } from './actions/shortcuts-page-action-creator';
 import { TabActionCreator } from './actions/tab-action-creator';
@@ -34,7 +35,6 @@ import { TabContextStoreHub } from './stores/tab-context-store-hub';
 import { TabContext } from './tab-context';
 import { TargetTabController } from './target-tab-controller';
 import { TelemetryEventHandler } from './telemetry/telemetry-event-handler';
-import { PopupActionCreator } from 'background/actions/popup-action-creator';
 
 export class TabContextFactory {
     constructor(
