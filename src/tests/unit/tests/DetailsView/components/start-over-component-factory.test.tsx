@@ -13,7 +13,7 @@ import { getStartOverComponentForAssessment, getStartOverComponentForFastPass } 
 import { ScanResults } from 'scanner/iruleresults';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
-describe('StartOverComponentPropsFactory', () => {
+describe('StartOverComponentFactory', () => {
     const theTitle = 'the title';
     const theTestStep = 'test step';
     const theTestType = VisualizationType.ColorSensoryAssessment;
@@ -82,52 +82,58 @@ describe('StartOverComponentPropsFactory', () => {
         featureFlagStoreData[FeatureFlags.universalCardsUI] = flagValue;
     }
 
-    test('getStartOverComponentPropsForAssessment, component matches snapshot', () => {
-        const props = getProps(true);
-        const rendered = getStartOverComponentForAssessment(props);
+    describe('getStartOverComponentForAssessments', () => {
+        it('renders', () => {
+            const props = getProps(true);
+            const rendered = getStartOverComponentForAssessment(props);
 
-        expect(rendered).toMatchSnapshot();
+            expect(rendered).toMatchSnapshot();
+        });
     });
 
-    test('getStartOverComponentPropsForFastPass, CardsUI is undefined, component  is null', () => {
-        const props = getProps(false);
-        const rendered = getStartOverComponentForFastPass(props);
+    describe('getStartOverComponentPropsForFastPass', () => {
+        describe('renders', () => {
+            test('CardsUI is undefined => component is null', () => {
+                const props = getProps(false);
+                const rendered = getStartOverComponentForFastPass(props);
 
-        expect(rendered).toBeNull();
-    });
+                expect(rendered).toMatchSnapshot();
+            });
 
-    test('getStartOverComponentPropsForFastPass, CardsUI is false, component  is null', () => {
-        setCardsUiFlag(false);
-        const props = getProps(false);
-        const rendered = getStartOverComponentForFastPass(props);
+            test('CardsUI is false => component is null', () => {
+                setCardsUiFlag(false);
+                const props = getProps(false);
+                const rendered = getStartOverComponentForFastPass(props);
 
-        expect(rendered).toBeNull();
-    });
+                expect(rendered).toMatchSnapshot();
+            });
 
-    test('getStartOverComponentPropsForFastPass, CardsUI is true, scanResults is null, component is null', () => {
-        setCardsUiFlag(true);
-        const props = getProps(false);
-        const rendered = getStartOverComponentForFastPass(props);
+            test('CardsUI is true, scanResults is null => component is null', () => {
+                setCardsUiFlag(true);
+                const props = getProps(false);
+                const rendered = getStartOverComponentForFastPass(props);
 
-        expect(rendered).toBeNull();
-    });
+                expect(rendered).toMatchSnapshot();
+            });
 
-    test('getStartOverComponentPropsForFastPass, CardsUI is true, scanResults is not null, scanning is false, component matches snapshot', () => {
-        setScanResult();
-        setCardsUiFlag(true);
-        const props = getProps(false);
-        const rendered = getStartOverComponentForFastPass(props);
+            test('CardsUI is true, scanResults is not null, scanning is false => component matches snapshot', () => {
+                setScanResult();
+                setCardsUiFlag(true);
+                const props = getProps(false);
+                const rendered = getStartOverComponentForFastPass(props);
 
-        expect(rendered).toMatchSnapshot();
-    });
+                expect(rendered).toMatchSnapshot();
+            });
 
-    test('getStartOverComponentPropsForFastPass, CardsUI is true, scanResults is not null, scanning is true, component matches snapshot', () => {
-        setScanResult();
-        setCardsUiFlag(true);
-        scanning = 'some string';
-        const props = getProps(false);
-        const rendered = getStartOverComponentForFastPass(props);
+            test('CardsUI is true, scanResults is not null, scanning is true => component matches snapshot', () => {
+                setScanResult();
+                setCardsUiFlag(true);
+                scanning = 'some string';
+                const props = getProps(false);
+                const rendered = getStartOverComponentForFastPass(props);
 
-        expect(rendered).toMatchSnapshot();
+                expect(rendered).toMatchSnapshot();
+            });
+        });
     });
 });
