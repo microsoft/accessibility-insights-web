@@ -3,15 +3,20 @@
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { FeatureFlags } from 'common/feature-flags';
+import { NamedFC } from 'common/react/named-fc';
 import { AssessmentNavState, AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
-import { DetailsViewCommandBarDeps, DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { CommandBarProps, DetailsViewCommandBarDeps, DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { getStartOverComponentForAssessment, getStartOverComponentForFastPass } from 'DetailsView/components/start-over-component-factory';
+import { shallow } from 'enzyme';
+import * as React from 'react';
 import { ScanResults } from 'scanner/iruleresults';
-import { IMock, Mock, MockBehavior } from 'typemoq';
+import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
+import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('StartOverComponentFactory', () => {
     const theTitle = 'the title';
@@ -133,6 +138,24 @@ describe('StartOverComponentFactory', () => {
                 const rendered = getStartOverComponentForFastPass(props);
 
                 expect(rendered).toMatchSnapshot();
+            });
+        });
+
+        describe('user interaction', () => {
+            it('handles action button on click properly', () => {
+                const event = new EventStubFactory().createKeypressEvent() as any;
+
+                const actionMessageCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
+
+                setCardsUiFlag(true);
+                const props = getProps(false);
+                props.deps.detailsViewActionMessageCreator = actionMessageCreatorMock.object;
+
+                const Wrapper = NamedFC<CommandBarProps>('WrappedStartOver', getStartOverComponentForFastPass);
+                const wrapped = shallow(<Wrapper {...props} />);
+                wrapped.simulate('click', event);
+
+                actionMessageCreatorMock.verify(creator => creator.rescanVisualization(theTestType, event), Times.once());
             });
         });
     });
