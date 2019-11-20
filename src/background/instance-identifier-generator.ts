@@ -16,11 +16,15 @@ export interface InstanceWithHtmlAndSelector {
 }
 
 export class InstanceIdentifierGenerator {
-    public static generateSelectorIdentifier(instance: SelectorInstance): string {
+    public static generateSelectorIdentifier(
+        instance: SelectorInstance,
+    ): string {
         return instance.target.join(';');
     }
 
-    public static defaultHtmlSelectorIdentifier(instance: InstanceWithHtmlAndSelector): string {
+    public static defaultHtmlSelectorIdentifier(
+        instance: InstanceWithHtmlAndSelector,
+    ): string {
         return instance.html + ',' + instance.target.join(';');
     }
 }

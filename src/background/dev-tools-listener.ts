@@ -15,31 +15,44 @@ export class DevToolsListener {
     private tabIdToContextMap: TabToContextMap;
     private browserAdapter: BrowserAdapter;
 
-    constructor(tabIdToContextMap: TabToContextMap, browserAdapter: BrowserAdapter) {
+    constructor(
+        tabIdToContextMap: TabToContextMap,
+        browserAdapter: BrowserAdapter,
+    ) {
         this.tabIdToContextMap = tabIdToContextMap;
         this.browserAdapter = browserAdapter;
     }
 
     public initialize(): void {
-        this.browserAdapter.addListenerOnConnect((devToolsConnection: PortWithTabId) => {
-            if (devToolsConnection.name === ConnectionNames.devTools) {
-                const devToolsListener = (message: DevToolsOpenMessage, port: chrome.runtime.Port) => {
-                    devToolsConnection.targetPageTabId = message.tabId;
-                    this.sendDevToolStatus(devToolsConnection, true);
-                };
+        this.browserAdapter.addListenerOnConnect(
+            (devToolsConnection: PortWithTabId) => {
+                if (devToolsConnection.name === ConnectionNames.devTools) {
+                    const devToolsListener = (
+                        message: DevToolsOpenMessage,
+                        port: chrome.runtime.Port,
+                    ) => {
+                        devToolsConnection.targetPageTabId = message.tabId;
+                        this.sendDevToolStatus(devToolsConnection, true);
+                    };
 
-                devToolsConnection.onMessage.addListener(devToolsListener);
+                    devToolsConnection.onMessage.addListener(devToolsListener);
 
-                devToolsConnection.onDisconnect.addListener(() => {
-                    this.sendDevToolStatus(devToolsConnection, false);
+                    devToolsConnection.onDisconnect.addListener(() => {
+                        this.sendDevToolStatus(devToolsConnection, false);
 
-                    devToolsConnection.onMessage.removeListener(devToolsListener);
-                });
-            }
-        });
+                        devToolsConnection.onMessage.removeListener(
+                            devToolsListener,
+                        );
+                    });
+                }
+            },
+        );
     }
 
-    private sendDevToolStatus(devToolsConnection: PortWithTabId, status: boolean): void {
+    private sendDevToolStatus(
+        devToolsConnection: PortWithTabId,
+        status: boolean,
+    ): void {
         const tabId = devToolsConnection.targetPageTabId;
         const tabContext = this.tabIdToContextMap[tabId];
 

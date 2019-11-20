@@ -1,7 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as TelemetryEvents from 'common/extension-telemetry-events';
-import { BaseTelemetryData, TelemetryData, ToggleTelemetryData } from 'common/extension-telemetry-events';
+import {
+    BaseTelemetryData,
+    TelemetryData,
+    ToggleTelemetryData,
+} from 'common/extension-telemetry-events';
 import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { ManualTestStatus } from 'common/types/manual-test-status';
@@ -32,15 +36,18 @@ export interface AssessmentToggleActionPayload extends ToggleActionPayload {
     requirement: string;
 }
 
-export interface AssessmentActionInstancePayload extends AssessmentToggleActionPayload {
+export interface AssessmentActionInstancePayload
+    extends AssessmentToggleActionPayload {
     selector: string;
 }
 
-export interface ChangeRequirementStatusPayload extends AssessmentToggleActionPayload {
+export interface ChangeRequirementStatusPayload
+    extends AssessmentToggleActionPayload {
     status?: ManualTestStatus;
 }
 
-export interface AddFailureInstancePayload extends AssessmentToggleActionPayload {
+export interface AddFailureInstancePayload
+    extends AssessmentToggleActionPayload {
     instanceData: FailureInstanceData;
 }
 
@@ -48,7 +55,8 @@ export interface AddResultDescriptionPayload extends BaseActionPayload {
     description: string;
 }
 
-export interface RemoveFailureInstancePayload extends AssessmentToggleActionPayload {
+export interface RemoveFailureInstancePayload
+    extends AssessmentToggleActionPayload {
     id: string;
 }
 
@@ -56,11 +64,13 @@ export interface EditFailureInstancePayload extends AddFailureInstancePayload {
     id: string;
 }
 
-export interface ChangeInstanceStatusPayload extends AssessmentActionInstancePayload {
+export interface ChangeInstanceStatusPayload
+    extends AssessmentActionInstancePayload {
     status: ManualTestStatus;
 }
 
-export interface ChangeInstanceSelectionPayload extends AssessmentActionInstancePayload {
+export interface ChangeInstanceSelectionPayload
+    extends AssessmentActionInstancePayload {
     isVisualizationEnabled: boolean;
 }
 
@@ -77,7 +87,8 @@ export interface PayloadWithEventName extends BaseActionPayload {
     eventName: string;
 }
 
-export interface OnDetailsViewOpenPayload extends UpdateSelectedDetailsViewPayload {
+export interface OnDetailsViewOpenPayload
+    extends UpdateSelectedDetailsViewPayload {
     telemetry: TelemetryEvents.DetailsViewOpenTelemetryData;
 }
 
@@ -136,11 +147,13 @@ export interface SetIssueFilingServicePayload extends BaseActionPayload {
     issueFilingServiceName: string;
 }
 
-export interface SaveIssueFilingSettingsPayload extends SetIssueFilingServicePayload {
+export interface SaveIssueFilingSettingsPayload
+    extends SetIssueFilingServicePayload {
     issueFilingSettings: IssueFilingServiceProperties;
 }
 
-export interface SetIssueFilingServicePropertyPayload extends BaseActionPayload {
+export interface SetIssueFilingServicePropertyPayload
+    extends BaseActionPayload {
     issueFilingServiceName: string;
     propertyName: string;
     propertyValue: string;

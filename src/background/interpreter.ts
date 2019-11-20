@@ -4,15 +4,23 @@ import { InterpreterMessage, PayloadCallback } from '../common/message';
 import { DictionaryStringTo } from '../types/common-types';
 
 export class Interpreter {
-    protected messageToActionMapping: DictionaryStringTo<PayloadCallback<any>> = {};
+    protected messageToActionMapping: DictionaryStringTo<
+        PayloadCallback<any>
+    > = {};
 
-    public registerTypeToPayloadCallback = <Payload>(messageType: string, callback: PayloadCallback<Payload>): void => {
+    public registerTypeToPayloadCallback = <Payload>(
+        messageType: string,
+        callback: PayloadCallback<Payload>,
+    ): void => {
         this.messageToActionMapping[messageType] = callback;
     };
 
     public interpret(message: InterpreterMessage): boolean {
         if (this.messageToActionMapping[message.messageType]) {
-            this.messageToActionMapping[message.messageType](message.payload, message.tabId);
+            this.messageToActionMapping[message.messageType](
+                message.payload,
+                message.tabId,
+            );
             return true;
         }
         return false;

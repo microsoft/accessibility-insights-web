@@ -10,7 +10,10 @@ import {
     TestStepResult,
     UserCapturedInstance,
 } from '../common/types/store-data/assessment-result-data';
-import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../injected/scanner-utils';
+import {
+    DecoratedAxeNodeResult,
+    HtmlElementAxeResults,
+} from '../injected/scanner-utils';
 import { PartialTabOrderPropertyBag } from '../injected/tab-order-property-bag';
 import { TabStopEvent } from '../injected/tab-stops-listener';
 import { DictionaryStringTo } from '../types/common-types';
@@ -27,7 +30,9 @@ export class AssessmentDataConverter {
         previouslyGeneratedInstances: AssessmentInstancesMap,
         selectorMap: DictionaryStringTo<HtmlElementAxeResults>,
         stepName: string,
-        generateInstanceIdentifier: (instance: UniquelyIdentifiableInstances) => string,
+        generateInstanceIdentifier: (
+            instance: UniquelyIdentifiableInstances,
+        ) => string,
         getInstanceStatus: (result: DecoratedAxeNodeResult) => ManualTestStatus,
     ): AssessmentInstancesMap {
         let instancesMap: AssessmentInstancesMap = {};
@@ -40,7 +45,10 @@ export class AssessmentDataConverter {
             const rule = Object.keys(elementAxeResult.ruleResults).pop();
             if (rule) {
                 const ruleResult = elementAxeResult.ruleResults[rule];
-                const identifier = generateInstanceIdentifier({ target: elementAxeResult.target, html: ruleResult.html });
+                const identifier = generateInstanceIdentifier({
+                    target: elementAxeResult.target,
+                    html: ruleResult.html,
+                });
                 const matchingInstance = instancesMap[identifier];
                 instancesMap[identifier] = this.getInitialAssessmentInstance(
                     matchingInstance,
@@ -59,7 +67,9 @@ export class AssessmentDataConverter {
         previouslyGeneratedInstances: AssessmentInstancesMap,
         events: TabStopEvent[],
         stepName: string,
-        generateInstanceIdentifier: (instance: UniquelyIdentifiableInstances) => string,
+        generateInstanceIdentifier: (
+            instance: UniquelyIdentifiableInstances,
+        ) => string,
     ): AssessmentInstancesMap {
         let instancesMap: AssessmentInstancesMap = {};
 
@@ -70,7 +80,12 @@ export class AssessmentDataConverter {
         events.forEach(event => {
             const identifier = generateInstanceIdentifier(event);
             const matchingInstance = instancesMap[identifier];
-            instancesMap[identifier] = this.getInitialAssessmentFromEvent(matchingInstance, event, stepName, event.target.join(';'));
+            instancesMap[identifier] = this.getInitialAssessmentFromEvent(
+                matchingInstance,
+                event,
+                stepName,
+                event.target.join(';'),
+            );
         });
 
         return instancesMap;
@@ -102,13 +117,19 @@ export class AssessmentDataConverter {
             propertyBag = currentInstance.propertyBag;
         }
 
-        testStepResults[testStep] = this.getTestStepResults(ruleResult, elementAxeResult, getInstanceStatus);
+        testStepResults[testStep] = this.getTestStepResults(
+            ruleResult,
+            elementAxeResult,
+            getInstanceStatus,
+        );
 
         let actualPropertyBag = {
             ...this.getPropertyBagFromAnyChecks(ruleResult),
             ...propertyBag,
         };
-        actualPropertyBag = _.isEmpty(actualPropertyBag) ? null : actualPropertyBag;
+        actualPropertyBag = _.isEmpty(actualPropertyBag)
+            ? null
+            : actualPropertyBag;
 
         return {
             target: target,
@@ -127,7 +148,9 @@ export class AssessmentDataConverter {
         let testStepResults = {};
         const target: string[] = event.target;
         const html: string = event.html;
-        let propertyBag: PartialTabOrderPropertyBag = { timestamp: event.timestamp };
+        let propertyBag: PartialTabOrderPropertyBag = {
+            timestamp: event.timestamp,
+        };
 
         if (matchingInstance != null) {
             testStepResults = matchingInstance.testStepResults;
@@ -171,19 +194,32 @@ export class AssessmentDataConverter {
         };
     }
 
-    private getPropertyBagFromAnyChecks(ruleResult: DecoratedAxeNodeResult): any {
+    private getPropertyBagFromAnyChecks(
+        ruleResult: DecoratedAxeNodeResult,
+    ): any {
         return this.getPropertyBagFrom(ruleResult, 'any');
     }
 
-    private getPropertyBagFrom(ruleResult: DecoratedAxeNodeResult, checkName: ChecksType): any {
-        if (ruleResult[checkName] && !_.isEmpty(ruleResult[checkName]) && ruleResult[checkName][0].data) {
+    private getPropertyBagFrom(
+        ruleResult: DecoratedAxeNodeResult,
+        checkName: ChecksType,
+    ): any {
+        if (
+            ruleResult[checkName] &&
+            !_.isEmpty(ruleResult[checkName]) &&
+            ruleResult[checkName][0].data
+        ) {
             return ruleResult[checkName][0].data;
         }
 
         return null;
     }
 
-    public generateFailureInstance(description: string, path: string, snippet: string): UserCapturedInstance {
+    public generateFailureInstance(
+        description: string,
+        path: string,
+        snippet: string,
+    ): UserCapturedInstance {
         const instance: UserCapturedInstance = {
             id: this.generateUID(),
             description,

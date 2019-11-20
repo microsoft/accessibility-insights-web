@@ -17,13 +17,20 @@ export class ScopingPanelActionCreator {
     ) {}
 
     public registerCallbacks(): void {
-        this.interpreter.registerTypeToPayloadCallback(Messages.Scoping.OpenPanel, (payload, tabId) =>
-            this.onOpenScopingPanel(payload, tabId),
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Scoping.OpenPanel,
+            (payload, tabId) => this.onOpenScopingPanel(payload, tabId),
         );
-        this.interpreter.registerTypeToPayloadCallback(Messages.Scoping.ClosePanel, payload => this.onCloseScopingPanel(payload));
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Scoping.ClosePanel,
+            payload => this.onCloseScopingPanel(payload),
+        );
     }
 
-    private onOpenScopingPanel(payload: BaseActionPayload, tabId: number): void {
+    private onOpenScopingPanel(
+        payload: BaseActionPayload,
+        tabId: number,
+    ): void {
         this.scopingActions.openScopingPanel.invoke(null);
         this.showDetailsView(tabId);
         this.telemetryEventHandler.publishTelemetry(SCOPING_OPEN, payload);

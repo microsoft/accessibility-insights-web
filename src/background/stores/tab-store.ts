@@ -11,7 +11,10 @@ export class TabStore extends BaseStoreImpl<TabStoreData> {
     private tabActions: TabActions;
     private visualizationActions: VisualizationActions;
 
-    constructor(tabActions: TabActions, visualizationActions: VisualizationActions) {
+    constructor(
+        tabActions: TabActions,
+        visualizationActions: VisualizationActions,
+    ) {
         super(StoreNames.TabStore);
 
         this.tabActions = tabActions;
@@ -35,13 +38,23 @@ export class TabStore extends BaseStoreImpl<TabStoreData> {
         this.tabActions.newTabCreated.addListener(this.onNewTabCreated);
         this.tabActions.getCurrentState.addListener(this.onGetCurrentState);
         this.tabActions.tabRemove.addListener(this.onTabRemove);
-        this.tabActions.existingTabUpdated.addListener(this.onExistingTabUpdated);
-        this.tabActions.tabVisibilityChange.addListener(this.onVisibilityChange);
-        this.visualizationActions.updateSelectedPivotChild.addListener(this.resetTabChange);
+        this.tabActions.existingTabUpdated.addListener(
+            this.onExistingTabUpdated,
+        );
+        this.tabActions.tabVisibilityChange.addListener(
+            this.onVisibilityChange,
+        );
+        this.visualizationActions.updateSelectedPivotChild.addListener(
+            this.resetTabChange,
+        );
 
-        this.visualizationActions.enableVisualization.addListener(this.resetTabChange);
+        this.visualizationActions.enableVisualization.addListener(
+            this.resetTabChange,
+        );
 
-        this.visualizationActions.updateSelectedPivot.addListener(this.resetTabChange);
+        this.visualizationActions.updateSelectedPivot.addListener(
+            this.resetTabChange,
+        );
     }
 
     private onVisibilityChange = (hidden: boolean): void => {

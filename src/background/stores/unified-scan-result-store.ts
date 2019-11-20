@@ -6,8 +6,12 @@ import { UnifiedScanCompletedPayload } from '../actions/action-payloads';
 import { UnifiedScanResultActions } from '../actions/unified-scan-result-actions';
 import { BaseStoreImpl } from './base-store-impl';
 
-export class UnifiedScanResultStore extends BaseStoreImpl<UnifiedScanResultStoreData> {
-    constructor(private readonly unifiedScanResultActions: UnifiedScanResultActions) {
+export class UnifiedScanResultStore extends BaseStoreImpl<
+    UnifiedScanResultStoreData
+> {
+    constructor(
+        private readonly unifiedScanResultActions: UnifiedScanResultActions,
+    ) {
         super(StoreNames.UnifiedScanResultStore);
     }
 
@@ -25,8 +29,12 @@ export class UnifiedScanResultStore extends BaseStoreImpl<UnifiedScanResultStore
     }
 
     protected addActionListeners(): void {
-        this.unifiedScanResultActions.getCurrentState.addListener(this.onGetCurrentState);
-        this.unifiedScanResultActions.scanCompleted.addListener(this.onScanCompleted);
+        this.unifiedScanResultActions.getCurrentState.addListener(
+            this.onGetCurrentState,
+        );
+        this.unifiedScanResultActions.scanCompleted.addListener(
+            this.onScanCompleted,
+        );
     }
 
     private onScanCompleted = (payload: UnifiedScanCompletedPayload): void => {

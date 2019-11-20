@@ -10,7 +10,8 @@ export interface TelemetryData {
     baseData: TelemetryBaseData;
 }
 
-export interface ExtendedEnvelop extends Microsoft.ApplicationInsights.IEnvelope {
+export interface ExtendedEnvelop
+    extends Microsoft.ApplicationInsights.IEnvelope {
     data: TelemetryData;
 }
 
@@ -40,7 +41,10 @@ export class AppInsightsTelemetryClient implements TelemetryClient {
         }
     }
 
-    public trackEvent(name: string, properties?: { [name: string]: string }): void {
+    public trackEvent(
+        name: string,
+        properties?: { [name: string]: string },
+    ): void {
         if (this.enabled) {
             this.appInsights.trackEvent(name, properties);
         }
@@ -54,7 +58,9 @@ export class AppInsightsTelemetryClient implements TelemetryClient {
         this.initialized = true;
 
         this.appInsights.downloadAndSetup({
-            instrumentationKey: config.getOption('appInsightsInstrumentationKey'),
+            instrumentationKey: config.getOption(
+                'appInsightsInstrumentationKey',
+            ),
             disableAjaxTracking: true,
             // start with telemetry disabled, to avoid sending past queued telemetry data
             disableTelemetry: true,
@@ -78,15 +84,17 @@ export class AppInsightsTelemetryClient implements TelemetryClient {
     }
 
     private initializeInternal(): void {
-        this.appInsights.context.addTelemetryInitializer((envelope: ExtendedEnvelop) => {
-            const baseData = envelope.data.baseData;
-            baseData.properties = {
-                ...baseData.properties,
-                ...this.coreTelemetryDataFactory.getData(),
-            };
+        this.appInsights.context.addTelemetryInitializer(
+            (envelope: ExtendedEnvelop) => {
+                const baseData = envelope.data.baseData;
+                baseData.properties = {
+                    ...baseData.properties,
+                    ...this.coreTelemetryDataFactory.getData(),
+                };
 
-            this.logger.log(baseData);
-            return true;
-        });
+                this.logger.log(baseData);
+                return true;
+            },
+        );
     }
 }

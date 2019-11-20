@@ -20,13 +20,22 @@ export class PathSnippetStore extends BaseStoreImpl<PathSnippetStoreData> {
     }
 
     protected addActionListeners(): void {
-        this.pathSnippetActions.getCurrentState.addListener(this.onGetCurrentState);
-        this.pathSnippetActions.onAddPath.addListener(payload => this.onChangeProperty('path', payload));
-        this.pathSnippetActions.onAddSnippet.addListener(payload => this.onChangeProperty('snippet', payload));
+        this.pathSnippetActions.getCurrentState.addListener(
+            this.onGetCurrentState,
+        );
+        this.pathSnippetActions.onAddPath.addListener(payload =>
+            this.onChangeProperty('path', payload),
+        );
+        this.pathSnippetActions.onAddSnippet.addListener(payload =>
+            this.onChangeProperty('snippet', payload),
+        );
         this.pathSnippetActions.onClearData.addListener(this.onClearState);
     }
 
-    private onChangeProperty = (property: keyof PathSnippetStoreData, payload: string): void => {
+    private onChangeProperty = (
+        property: keyof PathSnippetStoreData,
+        payload: string,
+    ): void => {
         this.state[property] = payload;
         this.emitChanged();
     };

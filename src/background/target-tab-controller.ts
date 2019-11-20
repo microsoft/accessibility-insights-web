@@ -8,12 +8,19 @@ export class TargetTabController {
     private browserAdapter: BrowserAdapter;
     private configurationFactory: VisualizationConfigurationFactory;
 
-    constructor(adapter: BrowserAdapter, configurationFactory: VisualizationConfigurationFactory) {
+    constructor(
+        adapter: BrowserAdapter,
+        configurationFactory: VisualizationConfigurationFactory,
+    ) {
         this.browserAdapter = adapter;
         this.configurationFactory = configurationFactory;
     }
 
-    public showTargetTab(targetTabId: number, testType: VisualizationType, testStep: string = null): void {
+    public showTargetTab(
+        targetTabId: number,
+        testType: VisualizationType,
+        testStep: string = null,
+    ): void {
         const config = this.configurationFactory.getConfiguration(testType);
         const switchToTargetTab = config.getSwitchToTargetTabOnScan(testStep);
 

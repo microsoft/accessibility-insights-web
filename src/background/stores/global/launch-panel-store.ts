@@ -23,7 +23,9 @@ export class LaunchPanelStore extends BaseStoreImpl<LaunchPanelStoreData> {
             launchPanelType: LaunchPanelType.LaunchPad,
         };
 
-        const stateFromLocalStorage = this.userData ? this.userData.launchPanelSetting : null;
+        const stateFromLocalStorage = this.userData
+            ? this.userData.launchPanelSetting
+            : null;
         if (stateFromLocalStorage != null) {
             defaultValues.launchPanelType = stateFromLocalStorage;
         }
@@ -32,13 +34,21 @@ export class LaunchPanelStore extends BaseStoreImpl<LaunchPanelStoreData> {
     }
 
     protected addActionListeners(): void {
-        this.launchPanelStateActions.setLaunchPanelType.addListener(this.onSetLaunchPanelType);
-        this.launchPanelStateActions.getCurrentState.addListener(this.onGetCurrentState);
+        this.launchPanelStateActions.setLaunchPanelType.addListener(
+            this.onSetLaunchPanelType,
+        );
+        this.launchPanelStateActions.getCurrentState.addListener(
+            this.onGetCurrentState,
+        );
     }
 
     private onSetLaunchPanelType = (panelType: LaunchPanelType): void => {
         this.state.launchPanelType = panelType;
-        this.storageAdapter.setUserData({ [LocalStorageDataKeys.launchPanelSetting]: panelType }).catch(console.error);
+        this.storageAdapter
+            .setUserData({
+                [LocalStorageDataKeys.launchPanelSetting]: panelType,
+            })
+            .catch(console.error);
         this.emitChanged();
     };
 }

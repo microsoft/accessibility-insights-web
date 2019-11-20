@@ -34,16 +34,24 @@ export class TargetPageController {
             // do not remove this. We need this to detect if the extension is reloaded from the content scripts
         });
 
-        this.browserAdapter.addListenerToWebNavigationUpdated(this.onTabNavigated);
+        this.browserAdapter.addListenerToWebNavigationUpdated(
+            this.onTabNavigated,
+        );
         this.browserAdapter.addListenerToTabsOnRemoved(this.onTargetTabRemoved);
-        this.browserAdapter.addListenerOnWindowsFocusChanged(this.onWindowFocusChanged);
+        this.browserAdapter.addListenerOnWindowsFocusChanged(
+            this.onWindowFocusChanged,
+        );
         this.browserAdapter.addListenerToTabsOnActivated(this.onTabActivated);
         this.browserAdapter.addListenerToTabsOnUpdated(this.handleTabUpdate);
 
-        this.detailsViewController.setupDetailsViewTabRemovedHandler(this.onDetailsViewTabRemoved);
+        this.detailsViewController.setupDetailsViewTabRemovedHandler(
+            this.onDetailsViewTabRemoved,
+        );
     }
 
-    private onTabNavigated = (details: chrome.webNavigation.WebNavigationFramedCallbackDetails): void => {
+    private onTabNavigated = (
+        details: chrome.webNavigation.WebNavigationFramedCallbackDetails,
+    ): void => {
         if (details.frameId === 0) {
             this.postTabUpdate(details.tabId);
         }
@@ -55,13 +63,16 @@ export class TargetPageController {
 
         this.sendTabVisibilityChangeAction(activeTabId, false);
 
-        this.browserAdapter.tabsQuery({ windowId: windowId }, (tabs: chrome.tabs.Tab[]) => {
-            tabs.forEach((tab: chrome.tabs.Tab) => {
-                if (!tab.active) {
-                    this.sendTabVisibilityChangeAction(tab.id, true);
-                }
-            });
-        });
+        this.browserAdapter.tabsQuery(
+            { windowId: windowId },
+            (tabs: chrome.tabs.Tab[]) => {
+                tabs.forEach((tab: chrome.tabs.Tab) => {
+                    if (!tab.active) {
+                        this.sendTabVisibilityChangeAction(tab.id, true);
+                    }
+                });
+            },
+        );
     };
 
     private onWindowFocusChanged = (windowId: number): void => {
@@ -77,7 +88,10 @@ export class TargetPageController {
                         (activeTabs: chrome.tabs.Tab[]) => {
                             if (!this.browserAdapter.getRuntimeLastError()) {
                                 for (const activeTab of activeTabs) {
-                                    this.sendTabVisibilityChangeAction(activeTab.id, chromeWindow.state === 'minimized');
+                                    this.sendTabVisibilityChangeAction(
+                                        activeTab.id,
+                                        chromeWindow.state === 'minimized',
+                                    );
                                 }
                             }
                         },
@@ -96,7 +110,10 @@ export class TargetPageController {
         }
     };
 
-    private handleTabUpdate = (tabId: number, changeInfo: chrome.tabs.TabChangeInfo): void => {
+    private handleTabUpdate = (
+        tabId: number,
+        changeInfo: chrome.tabs.TabChangeInfo,
+    ): void => {
         if (changeInfo.url) {
             this.postTabUpdate(tabId);
         }
@@ -121,7 +138,9 @@ export class TargetPageController {
                 }
             },
             () => {
-                this.logger.log(`${messageType}: tab with Id ${tabId} not found`);
+                this.logger.log(
+                    `${messageType}: tab with Id ${tabId} not found`,
+                );
             },
         );
     }
@@ -134,7 +153,10 @@ export class TargetPageController {
         this.sendTabAction(tabId, Messages.Tab.NewTabCreated);
     }
 
-    private sendTabVisibilityChangeAction(tabId: number, isHidden: boolean): void {
+    private sendTabVisibilityChangeAction(
+        tabId: number,
+        isHidden: boolean,
+    ): void {
         if (!this.hasTabContext(tabId)) {
             return;
         }
@@ -155,7 +177,9 @@ export class TargetPageController {
     }
 
     private addTabContext(tabId: number): void {
-        this.targetPageTabIdToContextMap[tabId] = this.tabContextFactory.createTabContext(
+        this.targetPageTabIdToContextMap[
+            tabId
+        ] = this.tabContextFactory.createTabContext(
             this.broadcaster.getBroadcastMessageDelegate(tabId),
             this.browserAdapter,
             this.detailsViewController,

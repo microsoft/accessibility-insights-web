@@ -47,7 +47,8 @@ export class InjectorController {
         const inspectStoreState = this.inspectStore.getState();
 
         if (
-            ((this.oldInspectType !== inspectStoreState.inspectMode && inspectStoreState.inspectMode !== InspectMode.off) ||
+            ((this.oldInspectType !== inspectStoreState.inspectMode &&
+                inspectStoreState.inspectMode !== InspectMode.off) ||
                 visualizationStoreState.injectingInProgress === true) &&
             !visualizationStoreState.injectingStarted
         ) {
@@ -61,7 +62,8 @@ export class InjectorController {
             // tslint:disable-next-line:no-floating-promises - grandfathered
             this.injector.injectScripts(tabId).then(() => {
                 this.interpreter.interpret({
-                    messageType: Messages.Visualizations.State.InjectionCompleted,
+                    messageType:
+                        Messages.Visualizations.State.InjectionCompleted,
                     tabId: tabId,
                 });
             });

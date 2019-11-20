@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { SETTINGS_PANEL_CLOSE, SETTINGS_PANEL_OPEN } from 'common/extension-telemetry-events';
+import {
+    SETTINGS_PANEL_CLOSE,
+    SETTINGS_PANEL_OPEN,
+} from 'common/extension-telemetry-events';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
 import { DetailsViewRightContentPanelType } from 'DetailsView/components/left-nav/details-view-right-content-panel-type';
@@ -20,8 +23,14 @@ export class DetailsViewActionCreator {
     ) {}
 
     public registerCallback(): void {
-        this.interpreter.registerTypeToPayloadCallback(Messages.SettingsPanel.OpenPanel, this.onOpenSettingsPanel);
-        this.interpreter.registerTypeToPayloadCallback(Messages.SettingsPanel.ClosePanel, this.onCloseSettingsPanel);
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.SettingsPanel.OpenPanel,
+            this.onOpenSettingsPanel,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.SettingsPanel.ClosePanel,
+            this.onCloseSettingsPanel,
+        );
         this.interpreter.registerTypeToPayloadCallback(
             getStoreStateMessage(StoreNames.DetailsViewStore),
             this.onGetDetailsViewCurrentState,
@@ -32,19 +41,32 @@ export class DetailsViewActionCreator {
         );
     }
 
-    private onOpenSettingsPanel = (payload: BaseActionPayload, tabId: number): void => {
+    private onOpenSettingsPanel = (
+        payload: BaseActionPayload,
+        tabId: number,
+    ): void => {
         this.detailsViewActions.openSettingsPanel.invoke(null);
         this.detailsViewController.showDetailsView(tabId);
-        this.telemetryEventHandler.publishTelemetry(SETTINGS_PANEL_OPEN, payload);
+        this.telemetryEventHandler.publishTelemetry(
+            SETTINGS_PANEL_OPEN,
+            payload,
+        );
     };
 
     private onCloseSettingsPanel = (payload: BaseActionPayload): void => {
         this.detailsViewActions.closeSettingsPanel.invoke(null);
-        this.telemetryEventHandler.publishTelemetry(SETTINGS_PANEL_CLOSE, payload);
+        this.telemetryEventHandler.publishTelemetry(
+            SETTINGS_PANEL_CLOSE,
+            payload,
+        );
     };
 
-    private onSetDetailsViewRightContentPanel = (payload: DetailsViewRightContentPanelType): void => {
-        this.detailsViewActions.setSelectedDetailsViewRightContentPanel.invoke(payload);
+    private onSetDetailsViewRightContentPanel = (
+        payload: DetailsViewRightContentPanelType,
+    ): void => {
+        this.detailsViewActions.setSelectedDetailsViewRightContentPanel.invoke(
+            payload,
+        );
     };
 
     private onGetDetailsViewCurrentState = (): void => {

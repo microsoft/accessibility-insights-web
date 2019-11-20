@@ -15,11 +15,17 @@ export class ShortcutsPageActionCreator {
     ) {}
 
     public registerCallbacks(): void {
-        this.interpreter.registerTypeToPayloadCallback(Messages.Shortcuts.ConfigureShortcuts, this.onConfigureShortcuts);
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Shortcuts.ConfigureShortcuts,
+            this.onConfigureShortcuts,
+        );
     }
 
     private onConfigureShortcuts = (payload: BaseActionPayload): void => {
         this.shortcutsPageController.openShortcutsTab();
-        this.telemetryEventHandler.publishTelemetry(SHORTCUT_CONFIGURE_OPEN, payload);
+        this.telemetryEventHandler.publishTelemetry(
+            SHORTCUT_CONFIGURE_OPEN,
+            payload,
+        );
     };
 }

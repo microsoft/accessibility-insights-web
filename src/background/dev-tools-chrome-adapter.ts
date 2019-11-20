@@ -8,12 +8,18 @@ export interface DevToolsChromeAdapter extends BrowserAdapter {
     executeScriptInInspectedWindow(script: string, frameUrl: string): void;
 }
 
-export class DevToolsChromeAdapterImpl extends ChromeAdapter implements DevToolsChromeAdapter {
+export class DevToolsChromeAdapterImpl extends ChromeAdapter
+    implements DevToolsChromeAdapter {
     public getInspectedWindowTabId(): number {
         return chrome.devtools.inspectedWindow.tabId;
     }
 
-    public executeScriptInInspectedWindow(script: string, frameUrl: string): void {
-        chrome.devtools.inspectedWindow.eval(script, { frameURL: frameUrl } as any);
+    public executeScriptInInspectedWindow(
+        script: string,
+        frameUrl: string,
+    ): void {
+        chrome.devtools.inspectedWindow.eval(script, {
+            frameURL: frameUrl,
+        } as any);
     }
 }

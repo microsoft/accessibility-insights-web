@@ -16,8 +16,17 @@ export class TelemetryLogger {
     }
 
     public log(data: TelemetryBaseData): void {
-        if (this.featureFlagChecker.isEnabled(FeatureFlags.logTelemetryToConsole)) {
-            this.logger.log('eventName: ', data.name, '; customProperties: ', data.properties);
+        if (
+            this.featureFlagChecker.isEnabled(
+                FeatureFlags.logTelemetryToConsole,
+            )
+        ) {
+            this.logger.log(
+                'eventName: ',
+                data.name,
+                '; customProperties: ',
+                data.properties,
+            );
         }
     }
 }

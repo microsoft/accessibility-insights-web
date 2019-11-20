@@ -32,7 +32,10 @@ export class FeatureFlagsController {
         return this.toggleFeatureFlag(feature, true);
     }
 
-    private toggleFeatureFlag(feature: string, enabled: boolean): FeatureFlagStoreData {
+    private toggleFeatureFlag(
+        feature: string,
+        enabled: boolean,
+    ): FeatureFlagStoreData {
         const payload: FeatureFlagPayload = {
             feature,
             enabled,

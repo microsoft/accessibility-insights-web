@@ -11,8 +11,16 @@ import {
 export class UserConfigurationActions {
     public readonly setTelemetryState = new Action<boolean>();
     public readonly getCurrentState = new Action<void>();
-    public readonly setHighContrastMode = new Action<SetHighContrastModePayload>();
-    public readonly setIssueFilingService = new Action<SetIssueFilingServicePayload>();
-    public readonly setIssueFilingServiceProperty = new Action<SetIssueFilingServicePropertyPayload>();
-    public readonly saveIssueFilingSettings = new Action<SaveIssueFilingSettingsPayload>();
+    public readonly setHighContrastMode = new Action<
+        SetHighContrastModePayload
+    >();
+    public readonly setIssueFilingService = new Action<
+        SetIssueFilingServicePayload
+    >();
+    public readonly setIssueFilingServiceProperty = new Action<
+        SetIssueFilingServicePropertyPayload
+    >();
+    public readonly saveIssueFilingSettings = new Action<
+        SaveIssueFilingSettingsPayload
+    >();
 }

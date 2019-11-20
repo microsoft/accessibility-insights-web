@@ -9,9 +9,16 @@ import { Interpreter } from './interpreter';
 
 export class ScannerUtility {
     public static scanTimeoutMilliSeconds = 0;
-    constructor(private interpreter: Interpreter, private windowUtils: WindowUtils) {}
+    constructor(
+        private interpreter: Interpreter,
+        private windowUtils: WindowUtils,
+    ) {}
 
-    public executeScan = (test: VisualizationType, requirement: string, tabId: number): void => {
+    public executeScan = (
+        test: VisualizationType,
+        requirement: string,
+        tabId: number,
+    ): void => {
         const payload: AssessmentToggleActionPayload = {
             test: test,
             requirement: requirement,
