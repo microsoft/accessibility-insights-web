@@ -60,14 +60,6 @@ exports[`TargetPageChangedView renders with subtitle=undefined and feature flag=
   <div
     className="target-page-changed-subtitle"
   />
-  <StyledToggleBase
-    checked={false}
-    className="details-view-toggle"
-    label="test toggle label"
-    offText="Off"
-    onClick={[Function]}
-    onText="On"
-  />
   <p>
     The target page has changed. Use the start over button to scan the new target page.
   </p>
