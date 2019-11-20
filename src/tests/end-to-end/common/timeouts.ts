@@ -8,7 +8,7 @@
 // more actionable than test failures of the form "such and such test timed out".
 //
 // Every other default timeout should be lower than this!
-export const DEFAULT_E2E_TEST_TIMEOUT_MS: number = 30000;
+export const DEFAULT_E2E_TEST_TIMEOUT_MS: number = 50000;
 
 // How long to wait for a new browser instance to initialize.
 export const DEFAULT_BROWSER_LAUNCH_TIMEOUT_MS = 15000;
