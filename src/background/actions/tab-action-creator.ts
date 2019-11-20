@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
-import { EXISTING_TAB_UPDATED, SWITCH_BACK_TO_TARGET } from 'common/extension-telemetry-events';
+import { EXISTING_TAB_URL_UPDATED, SWITCH_BACK_TO_TARGET } from 'common/extension-telemetry-events';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
 import { Interpreter } from '../interpreter';
@@ -39,6 +39,6 @@ export class TabActionCreator {
 
     private onExistingTabUpdated = (payload: ExistingTabUpdatedPayload): void => {
         this.tabActions.existingTabUpdated.invoke(payload);
-        this.telemetryEventHandler.publishTelemetry(EXISTING_TAB_UPDATED, payload);
+        this.telemetryEventHandler.publishTelemetry(EXISTING_TAB_URL_UPDATED, payload);
     };
 }

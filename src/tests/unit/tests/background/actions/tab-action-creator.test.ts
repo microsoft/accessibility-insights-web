@@ -6,7 +6,7 @@ import { TabActions } from 'background/actions/tab-actions';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import {
-    EXISTING_TAB_UPDATED,
+    EXISTING_TAB_URL_UPDATED,
     SWITCH_BACK_TO_TARGET,
     TelemetryEventSource,
     TriggeredBy,
@@ -91,7 +91,7 @@ describe('TestActionCreatorTest', () => {
         testSubject.registerCallbacks();
 
         actionMock.verifyAll();
-        telemetryEventHandlerMock.verify(handler => handler.publishTelemetry(EXISTING_TAB_UPDATED, payload), Times.once());
+        telemetryEventHandlerMock.verify(handler => handler.publishTelemetry(EXISTING_TAB_URL_UPDATED, payload), Times.once());
     });
 
     it('handles Tab.Switch message', () => {
