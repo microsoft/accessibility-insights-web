@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { isFunction } from 'lodash';
 import { IMock, It, Mock } from 'typemoq';
 
 // This is a mock BrowserAdapter that maintains simulated state about which "windows" and "tabs"
@@ -33,12 +34,12 @@ export function createSimulatedBrowserAdapter(tabs: chrome.tabs.Tab[], windows: 
     const mock: Partial<SimulatedBrowserAdapter> = Mock.ofType<BrowserAdapter>();
     mock.tabs = [...tabs];
     mock.windows = [...windows];
-    mock.setup(m => m.addListenerOnConnect(It.isAny())).callback(c => (mock.notifyOnConnect = c));
-    mock.setup(m => m.addListenerToTabsOnActivated(It.isAny())).callback(c => (mock.notifyTabsOnActivated = c));
-    mock.setup(m => m.addListenerToTabsOnUpdated(It.isAny())).callback(c => (mock.notifyTabsOnUpdated = c));
-    mock.setup(m => m.addListenerToTabsOnRemoved(It.isAny())).callback(c => (mock.notifyTabsOnRemoved = c));
-    mock.setup(m => m.addListenerToWebNavigationUpdated(It.isAny())).callback(c => (mock.notifyWebNavigationUpdated = c));
-    mock.setup(m => m.addListenerOnWindowsFocusChanged(It.isAny())).callback(c => (mock.notifyWindowsFocusChanged = c));
+    mock.setup(m => m.addListenerOnConnect(It.is(isFunction))).callback(c => (mock.notifyOnConnect = c));
+    mock.setup(m => m.addListenerToTabsOnActivated(It.is(isFunction))).callback(c => (mock.notifyTabsOnActivated = c));
+    mock.setup(m => m.addListenerToTabsOnUpdated(It.is(isFunction))).callback(c => (mock.notifyTabsOnUpdated = c));
+    mock.setup(m => m.addListenerToTabsOnRemoved(It.is(isFunction))).callback(c => (mock.notifyTabsOnRemoved = c));
+    mock.setup(m => m.addListenerToWebNavigationUpdated(It.is(isFunction))).callback(c => (mock.notifyWebNavigationUpdated = c));
+    mock.setup(m => m.addListenerOnWindowsFocusChanged(It.is(isFunction))).callback(c => (mock.notifyWindowsFocusChanged = c));
 
     mock.setup(m => m.getRuntimeLastError()).returns(() => null);
     mock.setup(m => m.getAllWindows(It.isAny(), It.isAny())).callback((_, c) => c(mock.windows));

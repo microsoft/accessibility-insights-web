@@ -7,7 +7,7 @@ import { TabContextFactory } from 'background/tab-context-factory';
 import { TargetPageController } from 'background/target-page-controller';
 import { Logger } from 'common/logging/logger';
 import { Messages } from 'common/messages';
-import { values } from 'lodash';
+import { isFunction, values } from 'lodash';
 import { createSimulatedBrowserAdapter, SimulatedBrowserAdapter } from 'tests/unit/common/simulated-browser-adapter';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DictionaryNumberTo } from 'types/common-types';
@@ -314,7 +314,7 @@ describe('TargetPageController', () => {
 
     function setupMockDetailsViewController(): SimulatedDetailsViewController {
         const mock: SimulatedDetailsViewController = Mock.ofType<DetailsViewController>();
-        mock.setup(m => m.setupDetailsViewTabRemovedHandler(It.isAny())).callback(c => (mock.notifyDetailsViewTabRemoved = c));
+        mock.setup(m => m.setupDetailsViewTabRemovedHandler(It.is(isFunction))).callback(c => (mock.notifyDetailsViewTabRemoved = c));
         return mock;
     }
 
