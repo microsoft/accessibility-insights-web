@@ -1,16 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { PageVisibilityChangeTabPayload, SwitchToTargetTabPayload } from 'background/actions/action-payloads';
+import { ExistingTabUpdatedPayload, PageVisibilityChangeTabPayload, SwitchToTargetTabPayload } from 'background/actions/action-payloads';
 import { TabActionCreator } from 'background/actions/tab-action-creator';
 import { TabActions } from 'background/actions/tab-actions';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
-import { SWITCH_BACK_TO_TARGET, TelemetryEventSource, TriggeredBy } from 'common/extension-telemetry-events';
-import { Tab } from 'common/itab';
+import {
+    EXISTING_TAB_URL_UPDATED,
+    SWITCH_BACK_TO_TARGET,
+    TelemetryEventSource,
+    TriggeredBy,
+    TriggeredByNotApplicable,
+} from 'common/extension-telemetry-events';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
 import { IMock, Mock, Times } from 'typemoq';
-
 import { createActionMock, createInterpreterMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('TestActionCreatorTest', () => {
@@ -23,21 +27,23 @@ describe('TestActionCreatorTest', () => {
     });
 
     it('handles Tab.NewTabCreated message', () => {
-        const payload: Tab = {
+        const payload = {
             id: -1,
             title: 'test tab title',
             url: 'test url',
+            telemetry: null,
         };
 
         const actionMock = createActionMock(payload);
         const actionsMock = createActionsMock('newTabCreated', actionMock.object);
         const interpreterMock = createInterpreterMock(Messages.Tab.NewTabCreated, payload);
 
-        const testSubject = new TabActionCreator(interpreterMock.object, actionsMock.object, null, null);
+        const testSubject = new TabActionCreator(interpreterMock.object, actionsMock.object, null, telemetryEventHandlerMock.object);
 
         testSubject.registerCallbacks();
 
         actionMock.verifyAll();
+        telemetryEventHandlerMock.verify(handler => handler.publishTelemetry(null, payload), Times.never());
     });
 
     it('handles Tab.GetCurrent message', () => {
@@ -65,21 +71,26 @@ describe('TestActionCreatorTest', () => {
     });
 
     it('handles Tab.ExistingTabUpdated message', () => {
-        const payload: Tab = {
+        const payload: ExistingTabUpdatedPayload = {
             id: -1,
             title: 'test tab title',
             url: 'test url',
+            telemetry: {
+                source: null,
+                triggeredBy: TriggeredByNotApplicable,
+            },
         };
 
         const actionMock = createActionMock(payload);
         const actionsMock = createActionsMock('existingTabUpdated', actionMock.object);
         const interpreterMock = createInterpreterMock(Messages.Tab.ExistingTabUpdated, payload);
 
-        const testSubject = new TabActionCreator(interpreterMock.object, actionsMock.object, null, null);
+        const testSubject = new TabActionCreator(interpreterMock.object, actionsMock.object, null, telemetryEventHandlerMock.object);
 
         testSubject.registerCallbacks();
 
         actionMock.verifyAll();
+        telemetryEventHandlerMock.verify(handler => handler.publishTelemetry(EXISTING_TAB_URL_UPDATED, payload), Times.once());
     });
 
     it('handles Tab.Switch message', () => {
