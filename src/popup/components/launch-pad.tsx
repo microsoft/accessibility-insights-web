@@ -3,7 +3,10 @@
 import * as React from 'react';
 
 import { AxeInfo } from '../../common/axe-info';
-import { ExternalLink, ExternalLinkDeps } from '../../common/components/external-link';
+import {
+    ExternalLink,
+    ExternalLinkDeps,
+} from '../../common/components/external-link';
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
 import { LaunchPadItemRow } from './launch-pad-item-row';
 
@@ -28,26 +31,31 @@ export interface LaunchPadRowConfiguration {
 }
 
 export class LaunchPad extends React.Component<LaunchPadProps, undefined> {
-    public static demoLink: string = 'https://go.microsoft.com/fwlink/?linkid=2082374';
+    public static demoLink: string =
+        'https://go.microsoft.com/fwlink/?linkid=2082374';
 
     constructor(props: LaunchPadProps) {
         super(props);
     }
 
-    private renderLaunchPadItemRows(rowConfigs: LaunchPadRowConfiguration[]): JSX.Element[] {
-        const launchPadItemRows: JSX.Element[] = rowConfigs.map((config: LaunchPadRowConfiguration, index: number) => {
-            return (
-                <div key={`row-item-${index + 1}`}>
-                    <LaunchPadItemRow
-                        iconName={config.iconName}
-                        description={config.description}
-                        title={config.title}
-                        onClickTitle={config.onClickTitle}
-                    />
-                    <hr className="ms-fontColor-neutralTertiaryAlt launch-pad-hr" />
-                </div>
-            );
-        });
+    private renderLaunchPadItemRows(
+        rowConfigs: LaunchPadRowConfiguration[],
+    ): JSX.Element[] {
+        const launchPadItemRows: JSX.Element[] = rowConfigs.map(
+            (config: LaunchPadRowConfiguration, index: number) => {
+                return (
+                    <div key={`row-item-${index + 1}`}>
+                        <LaunchPadItemRow
+                            iconName={config.iconName}
+                            description={config.description}
+                            title={config.title}
+                            onClickTitle={config.onClickTitle}
+                        />
+                        <hr className="ms-fontColor-neutralTertiaryAlt launch-pad-hr" />
+                    </div>
+                );
+            },
+        );
 
         return launchPadItemRows;
     }
@@ -57,11 +65,17 @@ export class LaunchPad extends React.Component<LaunchPadProps, undefined> {
         return (
             <div className="ms-Grid main-section">
                 <main>
-                    <div role="heading" aria-level={2} className="launch-pad-title ms-fontWeight-semibold">
+                    <div
+                        role="heading"
+                        aria-level={2}
+                        className="launch-pad-title ms-fontWeight-semibold"
+                    >
                         Launch pad
                     </div>
                     <hr className="ms-fontColor-neutralTertiaryAlt launch-pad-hr" />
-                    <div className="launch-pad-main-section">{this.renderLaunchPadItemRows(this.props.rowConfigs)}</div>
+                    <div className="launch-pad-main-section">
+                        {this.renderLaunchPadItemRows(this.props.rowConfigs)}
+                    </div>
                 </main>
                 <div role="complementary" className="launch-pad-footer">
                     <div>

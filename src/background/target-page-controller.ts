@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { BaseTelemetryData, TriggeredByNotApplicable } from 'common/extension-telemetry-events';
 import { Logger } from 'common/logging/logger';
 import { Message } from 'common/message';
 import { Messages } from 'common/messages';
-
 import { PageVisibilityChangeTabPayload } from './actions/action-payloads';
 import { DetailsViewController } from './details-view-controller';
 import { TabToContextMap } from './tab-context';
@@ -87,9 +87,9 @@ export class TargetPageController {
         );
     };
 
-    private postTabUpdate = (tabId: number): void => {
+    private postTabUpdate = (tabId: number, telemetry?: BaseTelemetryData): void => {
         if (this.hasTabContext(tabId)) {
-            this.sendExistingTabUpdatedAction(tabId);
+            this.sendExistingTabUpdatedAction(tabId, telemetry);
         } else {
             this.addTabContext(tabId);
             this.sendNewTabCreatedAction(tabId);
@@ -98,7 +98,11 @@ export class TargetPageController {
 
     private handleTabUpdate = (tabId: number, changeInfo: chrome.tabs.TabChangeInfo): void => {
         if (changeInfo.url) {
-            this.postTabUpdate(tabId);
+            const telemetry: BaseTelemetryData = {
+                source: null,
+                triggeredBy: TriggeredByNotApplicable,
+            };
+            this.postTabUpdate(tabId, telemetry);
         }
     };
 
@@ -106,7 +110,7 @@ export class TargetPageController {
         return tabId in this.targetPageTabIdToContextMap;
     }
 
-    private sendTabAction(tabId: number, messageType: string): void {
+    private sendTabAction(tabId: number, messageType: string, telemetry?: BaseTelemetryData): void {
         this.browserAdapter.getTab(
             tabId,
             (tab: chrome.tabs.Tab) => {
@@ -115,7 +119,7 @@ export class TargetPageController {
                     const interpreter = tabContext.interpreter;
                     interpreter.interpret({
                         messageType,
-                        payload: tab,
+                        payload: { ...tab, telemetry },
                         tabId: tabId,
                     });
                 }
@@ -126,8 +130,8 @@ export class TargetPageController {
         );
     }
 
-    private sendExistingTabUpdatedAction(tabId: number): void {
-        this.sendTabAction(tabId, Messages.Tab.ExistingTabUpdated);
+    private sendExistingTabUpdatedAction(tabId: number, telemetry?: BaseTelemetryData): void {
+        this.sendTabAction(tabId, Messages.Tab.ExistingTabUpdated, telemetry);
     }
 
     private sendNewTabCreatedAction(tabId: number): void {

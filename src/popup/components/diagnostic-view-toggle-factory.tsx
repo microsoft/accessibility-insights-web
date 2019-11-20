@@ -12,7 +12,10 @@ import { VisualizationStoreData } from '../../common/types/store-data/visualizat
 import { VisualizationType } from '../../common/types/visualization-type';
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
 import { DiagnosticViewClickHandler } from '../handlers/diagnostic-view-toggle-click-handler';
-import { DiagnosticViewToggle, DiagnosticViewToggleDeps } from './diagnostic-view-toggle';
+import {
+    DiagnosticViewToggle,
+    DiagnosticViewToggleDeps,
+} from './diagnostic-view-toggle';
 
 export class DiagnosticViewToggleFactory {
     private visualizationTypes: VisualizationType[];
@@ -47,10 +50,17 @@ export class DiagnosticViewToggleFactory {
 
     public createTogglesForLaunchPanel(): JSX.Element[] {
         const sorting = (typeA, typeB) => {
-            const configA = this.visualizationConfigurationFactory.getConfiguration(typeA);
-            const configB = this.visualizationConfigurationFactory.getConfiguration(typeB);
+            const configA = this.visualizationConfigurationFactory.getConfiguration(
+                typeA,
+            );
+            const configB = this.visualizationConfigurationFactory.getConfiguration(
+                typeB,
+            );
 
-            return configA.launchPanelDisplayOrder - configB.launchPanelDisplayOrder;
+            return (
+                configA.launchPanelDisplayOrder -
+                configB.launchPanelDisplayOrder
+            );
         };
 
         const source = TelemetryEventSource.OldLaunchPanel;
@@ -60,10 +70,17 @@ export class DiagnosticViewToggleFactory {
 
     public createTogglesForAdhocToolsPanel(): JSX.Element[] {
         const sorting = (typeA, typeB) => {
-            const configA = this.visualizationConfigurationFactory.getConfiguration(typeA);
-            const configB = this.visualizationConfigurationFactory.getConfiguration(typeB);
+            const configA = this.visualizationConfigurationFactory.getConfiguration(
+                typeA,
+            );
+            const configB = this.visualizationConfigurationFactory.getConfiguration(
+                typeB,
+            );
 
-            return configA.adhocToolsPanelDisplayOrder - configB.adhocToolsPanelDisplayOrder;
+            return (
+                configA.adhocToolsPanelDisplayOrder -
+                configB.adhocToolsPanelDisplayOrder
+            );
         };
 
         const source = TelemetryEventSource.AdHocTools;
@@ -72,7 +89,10 @@ export class DiagnosticViewToggleFactory {
     }
 
     private createToggles(
-        sortingFunction: (typeA: VisualizationType, typeB: VisualizationType) => number,
+        sortingFunction: (
+            typeA: VisualizationType,
+            typeB: VisualizationType,
+        ) => number,
         telemetrySource: TelemetryEventSource,
     ): JSX.Element[] {
         const enabledTypes: VisualizationType[] = this.getEnabledTypes();
@@ -90,7 +110,9 @@ export class DiagnosticViewToggleFactory {
                     visualizationType={visualizationType}
                     key={this.getToggleKey(visualizationType)}
                     shortcutCommands={commandStoreData.commands}
-                    visualizationConfigurationFactory={this.visualizationConfigurationFactory}
+                    visualizationConfigurationFactory={
+                        this.visualizationConfigurationFactory
+                    }
                     actionMessageCreator={this.actionMessageCreator}
                     clickHandler={this.clickHandler}
                     visualizationStoreData={visualizationStoreData}
@@ -105,18 +127,22 @@ export class DiagnosticViewToggleFactory {
     private getEnabledTypes(): VisualizationType[] {
         const featureFlags = this.featureFlagsStore.getState();
 
-        const enabledTypes: VisualizationType[] = this.visualizationTypes.filter(visualizationType => {
-            const config = this.visualizationConfigurationFactory.getConfiguration(visualizationType);
-            if (config.testMode !== TestMode.Adhoc) {
-                return false;
-            }
+        const enabledTypes: VisualizationType[] = this.visualizationTypes.filter(
+            visualizationType => {
+                const config = this.visualizationConfigurationFactory.getConfiguration(
+                    visualizationType,
+                );
+                if (config.testMode !== TestMode.Adhoc) {
+                    return false;
+                }
 
-            if (config.featureFlagToEnable == null) {
-                return true;
-            }
+                if (config.featureFlagToEnable == null) {
+                    return true;
+                }
 
-            return featureFlags[config.featureFlagToEnable];
-        });
+                return featureFlags[config.featureFlagToEnable];
+            },
+        );
 
         return enabledTypes;
     }
