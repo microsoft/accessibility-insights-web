@@ -26,13 +26,15 @@ describe('ScopingContainerTest', () => {
     });
 
     test('render', () => {
-        const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+        const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
         const scopingActionMessageCreatorMock = Mock.ofType(ScopingActionMessageCreator);
         const inspectActionMessageCreatorMock = Mock.ofType(InspectActionMessageCreator);
         const featureFlagStoreDataStub = {};
         const props: ScopingContainerProps = {
+            deps: {
+                detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
+            },
             featureFlagData: featureFlagStoreDataStub,
-            actionMessageCreator: actionMessageCreatorMock.object,
             scopingSelectorsData: scopingSelectorsStub,
             scopingActionMessageCreator: scopingActionMessageCreatorMock.object,
             inspectActionMessageCreator: inspectActionMessageCreatorMock.object,

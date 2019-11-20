@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PreviewFeaturesContainerTest renders all available preview features 1`] = `
+<div>
+  <div
+    className="preview-features-description"
+  >
+    The following preview features are available for your evalution. Help us make them better!
+  </div>
+  <PreviewFeaturesToggleList
+    deps={
+      Object {
+        "detailsViewActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "addPathForValidation": [Function],
+          "cancelStartOver": [Function],
+          "cancelStartOverAllAssessments": [Function],
+          "changeAssessmentVisualizationState": [Function],
+          "changeManualRequirementStatus": [Function],
+          "changeManualTestStatus": [Function],
+          "clearPathSnippetData": [Function],
+          "closePreviewFeaturesPanel": [Function],
+          "closeScopingPanel": [Function],
+          "closeSettingsPanel": [Function],
+          "continuePreviousAssessment": [Function],
+          "copyIssueDetailsClicked": [Function],
+          "dispatcher": undefined,
+          "editFailureInstance": [Function],
+          "removeFailureInstance": [Function],
+          "rescanVisualization": [Function],
+          "setFeatureFlag": [Function],
+          "startOverAllAssessments": [Function],
+          "switchToTargetTab": [Function],
+          "telemetryFactory": undefined,
+          "undoManualRequirementStatusChange": [Function],
+          "undoManualTestStatusChange": [Function],
+        },
+      }
+    }
+    displayedFeatureFlags={
+      Array [
+        Object {
+          "displayableDescription": "test description 1",
+          "displayableName": "test name 1",
+          "enabled": true,
+          "id": "test-id-1",
+        },
+        Object {
+          "displayableDescription": "test description 2",
+          "displayableName": "test name 2",
+          "enabled": false,
+          "id": "test-id-2",
+        },
+      ]
+    }
+  />
+</div>
+`;
+
+exports[`PreviewFeaturesContainerTest renders special message when there is no preview features available 1`] = `<NoDisplayableFeatureFlagMessage />`;

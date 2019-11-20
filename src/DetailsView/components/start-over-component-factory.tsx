@@ -17,7 +17,6 @@ export function getStartOverComponentForAssessment(props: CommandBarProps): JSX.
         testName: test.title,
         test: selectedTest,
         requirementKey: props.assessmentStoreData.assessmentNavState.selectedTestStep,
-        actionMessageCreator: props.actionMessageCreator,
         rightPanelConfiguration: props.rightPanelConfiguration,
     };
 
@@ -34,12 +33,12 @@ export function getStartOverComponentForFastPass(props: CommandBarProps): JSX.El
     }
 
     const selectedTest = props.visualizationStoreData.selectedFastPassDetailsView;
-    const actionMessageCreator = props.actionMessageCreator;
+    const detailsViewActionMessageCreator = props.deps.detailsViewActionMessageCreator;
 
     return (
         <ActionButton
             iconProps={{ iconName: 'Refresh' }}
-            onClick={(event: SupportedMouseEvent) => actionMessageCreator.rescanVisualization(selectedTest, event)}
+            onClick={(event: SupportedMouseEvent) => detailsViewActionMessageCreator.rescanVisualization(selectedTest, event)}
             disabled={props.visualizationStoreData.scanning !== null}
         >
             Start over

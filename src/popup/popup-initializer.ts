@@ -78,7 +78,10 @@ export class PopupInitializer {
     }
 
     private useIncompatibleBrowserRenderer = () => {
-        const incompatibleBrowserRenderer = new IncompatibleBrowserRenderer(ReactDOM.render, document);
+        const incompatibleBrowserRenderer = new IncompatibleBrowserRenderer(
+            ReactDOM.render,
+            document,
+        );
         incompatibleBrowserRenderer.render();
     };
 
@@ -88,12 +91,20 @@ export class PopupInitializer {
             this.browserAdapter.sendMessageToFrames,
             this.targetTabInfo.tab.id,
         );
-        const visualizationActionCreator = new VisualizationActionMessageCreator(actionMessageDispatcher);
+        const visualizationActionCreator = new VisualizationActionMessageCreator(
+            actionMessageDispatcher,
+        );
 
         const windowUtils = new WindowUtils();
-        const popupActionMessageCreator = new PopupActionMessageCreator(telemetryFactory, actionMessageDispatcher, windowUtils);
+        const popupActionMessageCreator = new PopupActionMessageCreator(
+            telemetryFactory,
+            actionMessageDispatcher,
+            windowUtils,
+        );
 
-        const userConfigMessageCreator = new UserConfigMessageCreator(actionMessageDispatcher);
+        const userConfigMessageCreator = new UserConfigMessageCreator(
+            actionMessageDispatcher,
+        );
 
         const contentActionMessageCreator = new ContentActionMessageCreator(
             telemetryFactory,
@@ -101,29 +112,53 @@ export class PopupInitializer {
             actionMessageDispatcher,
         );
 
-        const dropdownActionMessageCreator = new DropdownActionMessageCreator(telemetryFactory, actionMessageDispatcher);
+        const dropdownActionMessageCreator = new DropdownActionMessageCreator(
+            telemetryFactory,
+            actionMessageDispatcher,
+        );
 
-        const visualizationStoreName = StoreNames[StoreNames.VisualizationStore];
+        const visualizationStoreName =
+            StoreNames[StoreNames.VisualizationStore];
         const commandStoreName = StoreNames[StoreNames.CommandStore];
         const featureFlagStoreName = StoreNames[StoreNames.FeatureFlagStore];
-        const launchPanelStateStoreName = StoreNames[StoreNames.LaunchPanelStateStore];
-        const userConfigurationStoreName = StoreNames[StoreNames.UserConfigurationStore];
+        const launchPanelStateStoreName =
+            StoreNames[StoreNames.LaunchPanelStateStore];
+        const userConfigurationStoreName =
+            StoreNames[StoreNames.UserConfigurationStore];
 
-        const visualizationStore = new StoreProxy<VisualizationStoreData>(visualizationStoreName, this.browserAdapter);
-        const launchPanelStateStore = new StoreProxy<LaunchPanelStoreData>(launchPanelStateStoreName, this.browserAdapter);
-        const commandStore = new StoreProxy<CommandStoreData>(commandStoreName, this.browserAdapter);
-        const featureFlagStore = new StoreProxy<FeatureFlagStoreData>(featureFlagStoreName, this.browserAdapter);
-        const userConfigurationStore = new StoreProxy<UserConfigurationStoreData>(userConfigurationStoreName, this.browserAdapter);
+        const visualizationStore = new StoreProxy<VisualizationStoreData>(
+            visualizationStoreName,
+            this.browserAdapter,
+        );
+        const launchPanelStateStore = new StoreProxy<LaunchPanelStoreData>(
+            launchPanelStateStoreName,
+            this.browserAdapter,
+        );
+        const commandStore = new StoreProxy<CommandStoreData>(
+            commandStoreName,
+            this.browserAdapter,
+        );
+        const featureFlagStore = new StoreProxy<FeatureFlagStoreData>(
+            featureFlagStoreName,
+            this.browserAdapter,
+        );
+        const userConfigurationStore = new StoreProxy<
+            UserConfigurationStoreData
+        >(userConfigurationStoreName, this.browserAdapter);
 
-        const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(actionMessageDispatcher);
+        const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
+            actionMessageDispatcher,
+        );
 
-        const storeActionMessageCreator = storeActionMessageCreatorFactory.fromStores([
-            visualizationStore,
-            launchPanelStateStore,
-            commandStore,
-            featureFlagStore,
-            userConfigurationStore,
-        ]);
+        const storeActionMessageCreator = storeActionMessageCreatorFactory.fromStores(
+            [
+                visualizationStore,
+                launchPanelStateStore,
+                commandStore,
+                featureFlagStore,
+                userConfigurationStore,
+            ],
+        );
 
         visualizationStore.setTabId(this.targetTabInfo.tab.id);
         commandStore.setTabId(this.targetTabInfo.tab.id);
@@ -141,9 +176,15 @@ export class PopupInitializer {
         );
 
         const popupViewControllerHandler = new PopupViewControllerHandler();
-        const dropdownClickHandler = new DropdownClickHandler(dropdownActionMessageCreator, TelemetryEventSource.LaunchPad);
+        const dropdownClickHandler = new DropdownClickHandler(
+            dropdownActionMessageCreator,
+            TelemetryEventSource.LaunchPad,
+        );
         const launchPanelHeaderClickHandler = new LaunchPanelHeaderClickHandler();
-        const supportLinkHandler = new SupportLinkHandler(this.browserAdapter, windowUtils);
+        const supportLinkHandler = new SupportLinkHandler(
+            this.browserAdapter,
+            windowUtils,
+        );
 
         const popupHandlers: IPopupHandlers = {
             diagnosticViewClickHandler,
@@ -156,7 +197,9 @@ export class PopupInitializer {
             ...contentActionMessageCreator.initiators,
         };
 
-        const visualizationTypes = EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
+        const visualizationTypes = EnumHelper.getNumericValues<
+            VisualizationType
+        >(VisualizationType);
         const storesHub = new BaseClientStoresHub<PopupViewControllerState>([
             visualizationStore,
             launchPanelStateStore,
@@ -210,7 +253,10 @@ export class PopupInitializer {
         renderer.render();
         popupActionMessageCreator.popupInitialized(this.targetTabInfo.tab);
 
-        const a11ySelfValidator = new A11YSelfValidator(new ScannerUtils(scan), new HTMLElementUtils());
+        const a11ySelfValidator = new A11YSelfValidator(
+            new ScannerUtils(scan),
+            new HTMLElementUtils(),
+        );
         window.A11YSelfValidator = a11ySelfValidator;
     };
 }

@@ -90,11 +90,11 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
         },
         {
             id: FeatureFlags.universalCardsUI,
-            defaultValue: false,
+            defaultValue: true,
             displayableName: 'Enable universal cards UI',
             displayableDescription: 'Show results in cards using the universal cards UI.',
             isPreviewFeature: false,
-            forceDefault: false,
+            forceDefault: true,
         },
     ];
 }

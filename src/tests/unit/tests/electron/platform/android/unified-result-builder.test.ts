@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { UUIDGeneratorType } from 'common/uid-generator';
+import { UUIDGenerator } from 'common/uid-generator';
 import { ToolDataDelegate } from 'electron/common/application-properties-provider';
 import { RuleInformationProviderType } from 'electron/platform/android/rule-information-provider-type';
 import { ScanResults } from 'electron/platform/android/scan-results';
@@ -15,7 +15,7 @@ describe('buildUnifiedScanCompletedPayload', () => {
     const exampleScanResults = new ScanResults(axeRuleResultExample);
 
     it('builds the payload', () => {
-        const generateUIDMock = Mock.ofType<UUIDGeneratorType>();
+        const generateUIDMock = Mock.ofType<UUIDGenerator>();
 
         const ruleInformationProviderMock = Mock.ofType<RuleInformationProviderType>();
 

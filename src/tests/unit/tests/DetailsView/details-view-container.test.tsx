@@ -345,7 +345,6 @@ describe('DetailsViewContainer', () => {
         return (
             <DetailsViewOverlay
                 deps={props.deps}
-                actionMessageCreator={props.deps.detailsViewActionMessageCreator}
                 previewFeatureFlagsHandler={props.previewFeatureFlagsHandler}
                 scopingActionMessageCreator={props.scopingActionMessageCreator}
                 inspectActionMessageCreator={props.inspectActionMessageCreator}

@@ -7,13 +7,13 @@ import { IssuesSelectionFactory } from '../../../../../DetailsView/actions/issue
 
 describe('IssuesSelectionFactoryTest', () => {
     test('createSelection', () => {
-        const messageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
-        messageCreatorMock.setup(mc => mc.updateIssuesSelectedTargets(It.isValue(['key1', 'key2', 'key3']))).verifiable();
+        const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+        detailsViewActionMessageCreatorMock.setup(mc => mc.updateIssuesSelectedTargets(It.isValue(['key1', 'key2', 'key3']))).verifiable();
 
-        messageCreatorMock.setup(mc => mc.updateFocusedInstanceTarget(It.isValue(['target1']))).verifiable();
+        detailsViewActionMessageCreatorMock.setup(mc => mc.updateFocusedInstanceTarget(It.isValue(['target1']))).verifiable();
 
         const testObject = new IssuesSelectionFactory();
-        const selection = testObject.createSelection(messageCreatorMock.object);
+        const selection = testObject.createSelection(detailsViewActionMessageCreatorMock.object);
 
         const items = [
             {
@@ -32,19 +32,19 @@ describe('IssuesSelectionFactoryTest', () => {
 
         selection.setItems(items, true);
 
-        messageCreatorMock.verifyAll();
+        detailsViewActionMessageCreatorMock.verifyAll();
     });
 
     test('clear selection', () => {
-        const messageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
-        messageCreatorMock.setup(mc => mc.updateIssuesSelectedTargets(It.isValue(['key1', 'key2', 'key3']))).verifiable();
+        const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+        detailsViewActionMessageCreatorMock.setup(mc => mc.updateIssuesSelectedTargets(It.isValue(['key1', 'key2', 'key3']))).verifiable();
 
-        messageCreatorMock.setup(mc => mc.updateFocusedInstanceTarget(It.isValue(['target1']))).verifiable();
+        detailsViewActionMessageCreatorMock.setup(mc => mc.updateFocusedInstanceTarget(It.isValue(['target1']))).verifiable();
 
-        messageCreatorMock.setup(mc => mc.updateFocusedInstanceTarget(It.isValue(null))).verifiable();
+        detailsViewActionMessageCreatorMock.setup(mc => mc.updateFocusedInstanceTarget(It.isValue(null))).verifiable();
 
         const testObject = new IssuesSelectionFactory();
-        const selection = testObject.createSelection(messageCreatorMock.object);
+        const selection = testObject.createSelection(detailsViewActionMessageCreatorMock.object);
 
         const items = [
             {
@@ -64,6 +64,6 @@ describe('IssuesSelectionFactoryTest', () => {
         selection.setItems(items, true);
         selection.setAllSelected(false);
 
-        messageCreatorMock.verifyAll();
+        detailsViewActionMessageCreatorMock.verifyAll();
     });
 });

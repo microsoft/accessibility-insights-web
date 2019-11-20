@@ -147,7 +147,6 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
         return (
             <DetailsViewOverlay
                 deps={deps}
-                actionMessageCreator={this.props.deps.detailsViewActionMessageCreator}
                 previewFeatureFlagsHandler={this.props.previewFeatureFlagsHandler}
                 scopingActionMessageCreator={this.props.scopingActionMessageCreator}
                 inspectActionMessageCreator={this.props.inspectActionMessageCreator}
