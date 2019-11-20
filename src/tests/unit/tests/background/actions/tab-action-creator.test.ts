@@ -12,7 +12,6 @@ import {
     TriggeredBy,
     TriggeredByNotApplicable,
 } from 'common/extension-telemetry-events';
-import { Tab } from 'common/itab';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
 import { IMock, Mock, Times } from 'typemoq';

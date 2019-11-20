@@ -405,12 +405,7 @@ describe('DialogRendererTests', () => {
 
     function setupRenderMockForNeverVisited(): void {
         renderMock
-            .setup(it =>
-                it(
-                    It.is((detailsDialog: any) => detailsDialog != null),
-                    It.is((container: any) => container != null),
-                ),
-            )
+            .setup(it => it(It.is((detailsDialog: any) => detailsDialog != null), It.is((container: any) => container != null)))
             .verifiable(Times.never());
     }
 

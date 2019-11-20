@@ -425,12 +425,7 @@ describe('DetailsDialogHandlerTest', () => {
         } as any;
 
         clickableMock
-            .setup(cM =>
-                cM.addEventListener(
-                    'click',
-                    It.is(param => typeof param === 'function'),
-                ),
-            )
+            .setup(cM => cM.addEventListener('click', It.is(param => typeof param === 'function')))
             .callback((ev, cb) => {
                 cb(evt);
             })
@@ -552,11 +547,9 @@ describe('DetailsDialogHandlerTest', () => {
     });
 
     describe('hasStore', () => {
-        it.each([
-            [undefined, false],
-            [{}, false],
-            [{ devToolStore: {} }, true],
-        ])('', (props, expected: boolean) => testHasStoreGivenPropsReturns(props, expected));
+        it.each([[undefined, false], [{}, false], [{ devToolStore: {} }, true]])('', (props, expected: boolean) =>
+            testHasStoreGivenPropsReturns(props, expected),
+        );
     });
 
     test('closeWindow will remove listener', () => {
