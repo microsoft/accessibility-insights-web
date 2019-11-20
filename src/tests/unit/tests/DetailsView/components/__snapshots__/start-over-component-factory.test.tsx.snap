@@ -39,6 +39,18 @@ exports[`StartOverComponentFactory getStartOverComponentPropsForFastPass renders
 </CustomizedActionButton>
 `;
 
-exports[`StartOverComponentFactory getStartOverComponentPropsForFastPass renders CardsUI is true, scanResults is null => component is null 1`] = `null`;
+exports[`StartOverComponentFactory getStartOverComponentPropsForFastPass renders CardsUI is true, scanResults is null => component matches snapshot 1`] = `
+<CustomizedActionButton
+  disabled={false}
+  iconProps={
+    Object {
+      "iconName": "Refresh",
+    }
+  }
+  onClick={[Function]}
+>
+  Start over
+</CustomizedActionButton>
+`;
 
 exports[`StartOverComponentFactory getStartOverComponentPropsForFastPass renders CardsUI is undefined => component is null 1`] = `null`;

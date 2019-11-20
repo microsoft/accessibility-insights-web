@@ -108,7 +108,7 @@ describe('StartOverComponentFactory', () => {
                 expect(rendered).toMatchSnapshot();
             });
 
-            test('CardsUI is true, scanResults is null => component is null', () => {
+            test('CardsUI is true, scanResults is null => component matches snapshot', () => {
                 setCardsUiFlag(true);
                 const props = getProps(false);
                 const rendered = getStartOverComponentForFastPass(props);

@@ -28,10 +28,6 @@ export function getStartOverComponentForFastPass(props: CommandBarProps): JSX.El
         return null;
     }
 
-    if (!props.visualizationScanResultData.issues.scanResult) {
-        return null;
-    }
-
     const selectedTest = props.visualizationStoreData.selectedFastPassDetailsView;
     const detailsViewActionMessageCreator = props.deps.detailsViewActionMessageCreator;
 
