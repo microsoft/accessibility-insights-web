@@ -104,13 +104,16 @@ exports[`LaunchPanelHeaderTest render contextual menu renders with new assessmen
                 "useCallback": [Function],
                 "useContext": [Function],
                 "useDebugValue": [Function],
+                "useDeferredValue": [Function],
                 "useEffect": [Function],
                 "useImperativeHandle": [Function],
                 "useLayoutEffect": [Function],
                 "useMemo": [Function],
                 "useReducer": [Function],
                 "useRef": [Function],
+                "useResponder": [Function],
                 "useState": [Function],
+                "useTransition": [Function],
               },
               "_element": <LaunchPanelHeader
                 deps={
@@ -267,13 +270,16 @@ exports[`LaunchPanelHeaderTest render contextual menu renders without new assess
                 "useCallback": [Function],
                 "useContext": [Function],
                 "useDebugValue": [Function],
+                "useDeferredValue": [Function],
                 "useEffect": [Function],
                 "useImperativeHandle": [Function],
                 "useLayoutEffect": [Function],
                 "useMemo": [Function],
                 "useReducer": [Function],
                 "useRef": [Function],
+                "useResponder": [Function],
                 "useState": [Function],
+                "useTransition": [Function],
               },
               "_element": <LaunchPanelHeader
                 deps={

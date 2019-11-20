@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RuleResources renders with { url: 'test-url',
-  guidanceLinks: [ { href: 'test-href' }, [length]: 1 ] } 1`] = `
+exports[`RuleResources renders with {
+  url: 'test-url',
+  guidanceLinks: [ { href: 'test-href' }, [length]: 1 ]
+} 1`] = `
 <div
   className="ruleMoreResources"
 >
@@ -106,8 +108,9 @@ exports[`RuleResources renders with { url: 'test-url', guidanceLinks: null } 1`]
 </div>
 `;
 
-exports[`RuleResources renders with { url: null,
-  guidanceLinks: [ { href: 'test-href' }, [length]: 1 ] } 1`] = `
+exports[`RuleResources renders with { url: null, guidanceLinks: [ [length]: 0 ] } 1`] = `null`;
+
+exports[`RuleResources renders with { url: null, guidanceLinks: [ { href: 'test-href' }, [length]: 1 ] } 1`] = `
 <div
   className="ruleMoreResources"
 >
@@ -139,7 +142,5 @@ exports[`RuleResources renders with { url: null,
   </span>
 </div>
 `;
-
-exports[`RuleResources renders with { url: null, guidanceLinks: [ [length]: 0 ] } 1`] = `null`;
 
 exports[`RuleResources renders with { url: null, guidanceLinks: null } 1`] = `null`;
