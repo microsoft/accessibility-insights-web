@@ -1,12 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DisplayableVisualizationTypeData } from 'common/configs/visualization-configuration-factory';
 import { FeatureFlags } from 'common/feature-flags';
+import { VisualizationType } from 'common/types/visualization-type';
+import { TargetPageChangedView, TargetPageChangedViewProps } from 'DetailsView/components/target-page-changed-view';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-
-import { DisplayableVisualizationTypeData } from '../../../../../common/configs/visualization-configuration-factory';
-import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { TargetPageChangedView, TargetPageChangedViewProps } from '../../../../../DetailsView/components/target-page-changed-view';
 
 describe('TargetPageChangedView', () => {
     it('renders without optional subtitle', () => {
