@@ -9,6 +9,7 @@ import { TabContextFactory } from 'background/tab-context-factory';
 import { TargetPageController } from 'background/target-page-controller';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { TriggeredByNotApplicable } from 'common/extension-telemetry-events';
 import { Logger } from 'common/logging/logger';
 import { Message } from 'common/message';
 import { Messages } from 'common/messages';
@@ -112,6 +113,7 @@ describe('TargetPageControllerTest', () => {
         const tabId = 1;
         const getTabCallbackInput = {
             data: 'abc',
+            telemetry: undefined,
         };
         const interpretInput: Message = {
             messageType: Messages.Tab.NewTabCreated,
@@ -291,7 +293,10 @@ describe('TargetPageControllerTest', () => {
         openTabIds.forEach((tabId, index) => {
             const interpretInput: Message = {
                 messageType: Messages.Tab.NewTabCreated,
-                payload: tabs[tabId],
+                payload: {
+                    ...tabs[tabId],
+                    telemetry: undefined,
+                },
                 tabId: tabId,
             };
 
@@ -352,6 +357,7 @@ describe('TargetPageControllerTest', () => {
             title: 'new title',
             url: 'new url',
             id: tabId,
+            telemetry: undefined,
         };
 
         const interpretInput: Message = {
@@ -655,6 +661,10 @@ describe('TargetPageControllerTest', () => {
             title: 'new title',
             url: 'new url',
             id: tabId,
+            telemetry: {
+                source: null,
+                triggeredBy: TriggeredByNotApplicable,
+            },
         };
 
         const interpretInput: Message = {
