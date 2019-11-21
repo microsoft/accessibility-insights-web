@@ -10,16 +10,30 @@ exports[`IssuesTableTest automated checks disabled 1`] = `
   <div
     className="issues-table-content"
   >
-    <div
-      className="details-disabled-message"
-      role="alert"
-    >
-      Turn on 
-      <Term>
-        Automated checks
-      </Term>
-       to see a list of failures.
-    </div>
+    <React.Fragment>
+      <div
+        className="details-view-command-bar"
+      >
+        <VisualizationToggle
+          checked={false}
+          className="automated-checks-details-view-toggle"
+          disabled={false}
+          label="Show failures"
+          onClick={[Function]}
+          visualizationName="Automated checks"
+        />
+      </div>
+      <div
+        className="details-disabled-message"
+        role="alert"
+      >
+        Turn on 
+        <Term>
+          Automated checks
+        </Term>
+         to see a list of failures.
+      </div>
+    </React.Fragment>
   </div>
 </div>
 `;
