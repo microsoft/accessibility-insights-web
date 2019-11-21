@@ -5,7 +5,8 @@ parameters:
     jobNameSuffix: ''
     windowsImage: 'windows-2019'
     macImage: 'macOS-10.14'
-    linuxImage: 'ubuntu-16.04'
+    linuxImage: 'ubuntu-18.04'
+    dockerImage: 'cypress/base:12.13.0'
 
 jobs:
     - job: 'e2e_tests_windows${{ parameters.jobNameSuffix }}'
@@ -25,6 +26,18 @@ jobs:
           - template: ./e2e-test-publish-results.yaml
 
     - job: 'e2e_tests_linux${{ parameters.jobNameSuffix }}'
+      pool:
+          vmImage: ${{ parameters.linuxImage }}
+      container: ${{ parameters.dockerImage }}
+      steps:
+          - template: ./install-node-prerequisites.yaml
+          - script: yarn build:dev
+            displayName: build:dev
+          - script: xvfb-run --server-args=\"-screen 0 1024x768x24\" yarn test:e2e --ci
+            displayName: run e2e tests
+          - template: ./e2e-test-publish-results.yaml
+
+    - job: 'e2e_tests_docker${{ parameters.jobNameSuffix }}'
       pool:
           vmImage: ${{ parameters.linuxImage }}
       steps:
