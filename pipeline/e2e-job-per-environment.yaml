@@ -33,7 +33,7 @@ jobs:
           - template: ./install-node-prerequisites.yaml
           - script: yarn build:dev
             displayName: build:dev
-          - script: xvfb-run -e /dev/stdout --server-args=\"-screen 0 1024x768x24\" yarn test:e2e --ci
+          - script: 'xvfb-run -e /dev/stdout --server-args="-screen 0 1024x768x24" yarn test:e2e --ci'
             displayName: run e2e tests
           - template: ./e2e-test-publish-results.yaml
 
