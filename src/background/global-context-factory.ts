@@ -55,7 +55,10 @@ export class GlobalContextFactory {
             storageAdapter,
         );
 
-        const featureFlagsController = new FeatureFlagsController(globalStoreHub.featureFlagStore, interpreter);
+        const featureFlagsController = new FeatureFlagsController(
+            globalStoreHub.featureFlagStore,
+            interpreter,
+        );
 
         globalStoreHub.initialize();
 
@@ -66,11 +69,29 @@ export class GlobalContextFactory {
             globalStoreHub.userConfigurationStore,
         );
 
-        const scopingActionCreator = new ScopingActionCreator(interpreter, globalActionsHub.scopingActions);
-        const issueFilingActionCreator = new IssueFilingActionCreator(interpreter, telemetryEventHandler, issueFilingController);
-        const actionCreator = new GlobalActionCreator(globalActionsHub, interpreter, commandsAdapter, telemetryEventHandler);
-        const assessmentActionCreator = new AssessmentActionCreator(interpreter, globalActionsHub.assessmentActions, telemetryEventHandler);
-        const userConfigurationActionCreator = new UserConfigurationActionCreator(globalActionsHub.userConfigurationActions);
+        const scopingActionCreator = new ScopingActionCreator(
+            interpreter,
+            globalActionsHub.scopingActions,
+        );
+        const issueFilingActionCreator = new IssueFilingActionCreator(
+            interpreter,
+            telemetryEventHandler,
+            issueFilingController,
+        );
+        const actionCreator = new GlobalActionCreator(
+            globalActionsHub,
+            interpreter,
+            commandsAdapter,
+            telemetryEventHandler,
+        );
+        const assessmentActionCreator = new AssessmentActionCreator(
+            interpreter,
+            globalActionsHub.assessmentActions,
+            telemetryEventHandler,
+        );
+        const userConfigurationActionCreator = new UserConfigurationActionCreator(
+            globalActionsHub.userConfigurationActions,
+        );
         const featureFlagsActionCreator = new FeatureFlagsActionCreator(
             interpreter,
             globalActionsHub.featureFlagActions,
@@ -84,7 +105,10 @@ export class GlobalContextFactory {
         scopingActionCreator.registerCallback();
         featureFlagsActionCreator.registerCallbacks();
 
-        const dispatcher = new StateDispatcher(browserAdapter.sendMessageToAllFramesAndTabs, globalStoreHub);
+        const dispatcher = new StateDispatcher(
+            browserAdapter.sendMessageToAllFramesAndTabs,
+            globalStoreHub,
+        );
         dispatcher.initialize();
 
         const assessmentChangeHandler = new CompletedTestStepTelemetryCreator(

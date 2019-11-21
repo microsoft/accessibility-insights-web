@@ -43,7 +43,9 @@ export class TargetPageController {
         this.detailsViewController.setupDetailsViewTabRemovedHandler(this.onDetailsViewTabRemoved);
     }
 
-    private onTabNavigated = (details: chrome.webNavigation.WebNavigationFramedCallbackDetails): void => {
+    private onTabNavigated = (
+        details: chrome.webNavigation.WebNavigationFramedCallbackDetails,
+    ): void => {
         if (details.frameId === 0) {
             this.postTabUpdate(details.tabId);
         }
@@ -77,7 +79,10 @@ export class TargetPageController {
                         (activeTabs: chrome.tabs.Tab[]) => {
                             if (!this.browserAdapter.getRuntimeLastError()) {
                                 for (const activeTab of activeTabs) {
-                                    this.sendTabVisibilityChangeAction(activeTab.id, chromeWindow.state === 'minimized');
+                                    this.sendTabVisibilityChangeAction(
+                                        activeTab.id,
+                                        chromeWindow.state === 'minimized',
+                                    );
                                 }
                             }
                         },

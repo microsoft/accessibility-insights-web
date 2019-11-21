@@ -6,7 +6,11 @@ import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
-import { ExistingTabUpdatedPayload, PageVisibilityChangeTabPayload, SwitchToTargetTabPayload } from './action-payloads';
+import {
+    ExistingTabUpdatedPayload,
+    PageVisibilityChangeTabPayload,
+    SwitchToTargetTabPayload,
+} from './action-payloads';
 import { TabActions } from './tab-actions';
 
 export class TabActionCreator {
@@ -21,14 +25,25 @@ export class TabActionCreator {
         this.interpreter.registerTypeToPayloadCallback(Messages.Tab.NewTabCreated, payload =>
             this.tabActions.newTabCreated.invoke(payload),
         );
-        this.interpreter.registerTypeToPayloadCallback(getStoreStateMessage(StoreNames.TabStore), () =>
-            this.tabActions.getCurrentState.invoke(null),
+        this.interpreter.registerTypeToPayloadCallback(
+            getStoreStateMessage(StoreNames.TabStore),
+            () => this.tabActions.getCurrentState.invoke(null),
         );
-        this.interpreter.registerTypeToPayloadCallback(Messages.Tab.Remove, () => this.tabActions.tabRemove.invoke(null));
-        this.interpreter.registerTypeToPayloadCallback(Messages.Tab.ExistingTabUpdated, this.onExistingTabUpdated);
-        this.interpreter.registerTypeToPayloadCallback(Messages.Tab.Switch, this.onSwitchToTargetTab);
-        this.interpreter.registerTypeToPayloadCallback(Messages.Tab.VisibilityChange, (payload: PageVisibilityChangeTabPayload) =>
-            this.tabActions.tabVisibilityChange.invoke(payload.hidden),
+        this.interpreter.registerTypeToPayloadCallback(Messages.Tab.Remove, () =>
+            this.tabActions.tabRemove.invoke(null),
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Tab.ExistingTabUpdated,
+            this.onExistingTabUpdated,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Tab.Switch,
+            this.onSwitchToTargetTab,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Tab.VisibilityChange,
+            (payload: PageVisibilityChangeTabPayload) =>
+                this.tabActions.tabVisibilityChange.invoke(payload.hidden),
         );
     }
 

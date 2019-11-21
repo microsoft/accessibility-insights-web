@@ -9,7 +9,11 @@ export class GlobalContext {
     public readonly featureFlagsController: FeatureFlagsController;
     public readonly stores: GlobalStoreHub;
 
-    constructor(interpreter: Interpreter, storeHub: GlobalStoreHub, featureFlagsController: FeatureFlagsController) {
+    constructor(
+        interpreter: Interpreter,
+        storeHub: GlobalStoreHub,
+        featureFlagsController: FeatureFlagsController,
+    ) {
         this.interpreter = interpreter;
         this.stores = storeHub;
         this.featureFlagsController = featureFlagsController;
