@@ -1,18 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CardRuleResult } from 'common/types/store-data/card-view-model';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { allInstanceOutcomeTypes } from 'reports/components/instance-outcome-type';
 import { FullRuleHeader, FullRuleHeaderDeps, FullRuleHeaderProps } from 'reports/components/report-sections/full-rule-header';
-import { RuleResult } from 'scanner/iruleresults';
 
 describe('FullRuleHeader', () => {
     const depsStub = {} as FullRuleHeaderDeps;
-    const rule = {
-        helpUrl: 'url://help.url',
+    const rule: CardRuleResult = {
+        url: 'url://help.url',
         id: 'rule id',
         description: 'rule description',
-        guidanceLinks: [
+        guidance: [
             {
                 href: 'url://guidance-01.link',
                 text: 'guidance-01',
@@ -22,13 +22,13 @@ describe('FullRuleHeader', () => {
                 text: 'guidance-02',
             },
         ],
-        nodes: [{} as AxeNodeResult],
-    } as RuleResult;
+        nodes: [{}],
+    } as CardRuleResult;
 
     it.each(allInstanceOutcomeTypes)('renders, outcomeType = %s', outcomeType => {
         const props: FullRuleHeaderProps = {
             deps: depsStub,
-            rule: rule,
+            cardResult: rule,
             outcomeType,
         };
 

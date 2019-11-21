@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { kebabCase } from 'lodash';
-import * as React from 'react';
-
 import { GuidanceLinks } from 'common/components/guidance-links';
 import { GuidanceTags } from 'common/components/guidance-tags';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { NamedFC } from 'common/react/named-fc';
-import { RuleResult } from 'scanner/iruleresults';
+import { CardRuleResult } from 'common/types/store-data/card-view-model';
+import { kebabCase } from 'lodash';
+import * as React from 'react';
+
 import { InstanceOutcomeType } from '../instance-outcome-type';
 import { OutcomeChip } from '../outcome-chip';
 import { outcomeTypeSemantics } from '../outcome-type';
@@ -19,15 +19,15 @@ export type FullRuleHeaderDeps = {
 
 export type FullRuleHeaderProps = {
     deps: FullRuleHeaderDeps;
-    rule: RuleResult;
+    cardResult: CardRuleResult;
     outcomeType: InstanceOutcomeType;
 };
 
 export const FullRuleHeader = NamedFC<FullRuleHeaderProps>('FullRuleHeader', props => {
-    const { rule, outcomeType, deps } = props;
+    const { outcomeType, deps, cardResult } = props;
 
     const outcomeText = outcomeTypeSemantics[props.outcomeType].pastTense;
-    const ariaDescribedBy = `${kebabCase(outcomeText)}-rule-${rule.id}-description`;
+    const ariaDescribedBy = `${kebabCase(outcomeText)}-rule-${cardResult.id}-description`;
 
     const renderCountBadge = () => {
         if (outcomeType !== 'fail') {
@@ -36,14 +36,14 @@ export const FullRuleHeader = NamedFC<FullRuleHeaderProps>('FullRuleHeader', pro
 
         return (
             <span aria-hidden="true">
-                <OutcomeChip count={rule.nodes.length} outcomeType={outcomeType} />
+                <OutcomeChip count={cardResult.nodes.length} outcomeType={outcomeType} />
             </span>
         );
     };
 
     const renderRuleLink = () => {
-        const ruleId = rule.id;
-        const ruleUrl = rule.helpUrl;
+        const ruleId = cardResult.id;
+        const ruleUrl = cardResult.url;
         return (
             <span className="rule-details-id">
                 <NewTabLink href={ruleUrl} aria-label={`rule ${ruleId}`} aria-describedby={ariaDescribedBy}>
@@ -54,19 +54,19 @@ export const FullRuleHeader = NamedFC<FullRuleHeaderProps>('FullRuleHeader', pro
     };
 
     const renderGuidanceLinks = () => {
-        return <GuidanceLinks links={rule.guidanceLinks} />;
+        return <GuidanceLinks links={cardResult.guidance} />;
     };
 
     const renderDescription = () => {
         return (
             <span className="rule-details-description" id={ariaDescribedBy}>
-                {rule.description}
+                {cardResult.description}
             </span>
         );
     };
 
     const renderGuidanceTags = () => {
-        return <GuidanceTags deps={deps} links={rule.guidanceLinks} />;
+        return <GuidanceTags deps={deps} links={cardResult.guidance} />;
     };
 
     return (

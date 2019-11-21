@@ -8,20 +8,23 @@ import { SectionProps } from './report-section-factory';
 
 export type NotApplicableChecksSectionDeps = CollapsibleResultSectionDeps;
 
-export type NotApplicableChecksSectionProps = Pick<SectionProps, 'scanResult' | 'deps'>;
+export type NotApplicableChecksSectionProps = Pick<SectionProps, 'deps' | 'cardsViewData'>;
 
-export const NotApplicableChecksSection = NamedFC<NotApplicableChecksSectionProps>('NotApplicableChecksSection', ({ scanResult, deps }) => {
-    const rules = scanResult.inapplicable;
+export const NotApplicableChecksSection = NamedFC<NotApplicableChecksSectionProps>(
+    'NotApplicableChecksSection',
+    ({ deps, cardsViewData }) => {
+        const cardResults = cardsViewData.cards.inapplicable;
 
-    return (
-        <CollapsibleResultSection
-            deps={deps}
-            title="Not applicable checks"
-            rules={rules}
-            containerClassName="result-section"
-            outcomeType="inapplicable"
-            badgeCount={rules.length}
-            containerId="not-applicable-checks-section"
-        />
-    );
-});
+        return (
+            <CollapsibleResultSection
+                deps={deps}
+                title="Not applicable checks"
+                cardResults={cardResults}
+                containerClassName="result-section"
+                outcomeType="inapplicable"
+                badgeCount={cardResults.length}
+                containerId="not-applicable-checks-section"
+            />
+        );
+    },
+);
