@@ -14,7 +14,7 @@ const createWindow = () => {
         titleBarStyle: 'hidden',
         width: 600,
         height: 391,
-        frame: os === OSType.Mac ? true : false,
+        frame: os === OSType.Mac,
         minHeight: 300,
         minWidth: 400,
         icon: path.resolve(__dirname, '../icons/brand/blue/brand-blue-512px.png'),
