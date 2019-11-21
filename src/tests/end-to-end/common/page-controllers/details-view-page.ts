@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as Puppeteer from 'puppeteer';
 import { CommonSelectors } from '../element-identifiers/common-selectors';
-import { detailsViewSelectors } from '../element-identifiers/details-view-selectors';
+import { detailsViewSelectors, settingsPanelSelectors } from '../element-identifiers/details-view-selectors';
 import { Page, PageOptions } from './page';
 
 export class DetailsViewPage extends Page {
@@ -33,22 +33,39 @@ export class DetailsViewPage extends Page {
 
         await this.clickSelector(detailsViewSelectors.gearButton);
         await this.clickSelector(detailsViewSelectors.settingsButton);
-        await this.waitForSelector(detailsViewSelectors.settingsPanel);
+        await this.waitForSelector(settingsPanelSelectors.settingsPanel);
     }
 
     public async closeSettingsPanel(): Promise<void> {
-        await this.waitForSelector(detailsViewSelectors.settingsPanel);
+        await this.waitForSelector(settingsPanelSelectors.settingsPanel);
 
-        await this.clickSelector(detailsViewSelectors.settingsPanelClose);
-        await this.waitForSelectorToDisappear(detailsViewSelectors.settingsPanel);
+        await this.clickSelector(settingsPanelSelectors.closeButton);
+        await this.waitForSelectorToDisappear(settingsPanelSelectors.settingsPanel);
     }
 
+    public async setToggleState(toggleSelector: string, newState: boolean): Promise<void> {
+        const toggle = await this.waitForSelector(toggleSelector);
+        const oldState = (await (await toggle.getProperty('checked')).jsonValue()) as boolean;
+        if (oldState !== newState) {
+            await this.clickSelector(toggleSelector);
+            await this.expectToggleState(toggleSelector, newState);
+        }
+    }
+
+    public async expectToggleState(toggleSelector: string, expectedState: boolean): Promise<void> {
+        const toggleInStateSelector = expectedState
+            ? settingsPanelSelectors.enabledToggle(toggleSelector)
+            : settingsPanelSelectors.disabledToggle(toggleSelector);
+
+        await this.waitForSelector(toggleInStateSelector);
+    }
+
+    // TODO: replace usages with backgroundPage()
     public async enableHighContrast(): Promise<void> {
         await this.openSettingsPanel();
-        await this.waitForSelector(detailsViewSelectors.settingsPanelClose);
+        await this.waitForSelector(settingsPanelSelectors.closeButton);
 
-        await this.clickSelector(detailsViewSelectors.highContrastToggle);
-        await this.waitForSelector(detailsViewSelectors.highContrastToggleCheckedStateSelector);
+        await this.setToggleState(settingsPanelSelectors.highContrastModeToggle, true);
         await this.waitForSelector(CommonSelectors.highContrastThemeSelector);
 
         await this.closeSettingsPanel();
