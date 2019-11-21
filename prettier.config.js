@@ -13,5 +13,11 @@ module.exports = {
                 printWidth: 80,
             },
         },
+        {
+            files: 'src/background/**/*',
+            options: {
+                printWidth: 120,
+            },
+        },
     ],
 };

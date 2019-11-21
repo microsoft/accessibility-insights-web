@@ -75,7 +75,8 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
             this.state.bugServicePropertiesMap[payload.issueFilingServiceName] = {};
         }
 
-        this.state.bugServicePropertiesMap[payload.issueFilingServiceName][payload.propertyName] = payload.propertyValue;
+        this.state.bugServicePropertiesMap[payload.issueFilingServiceName][payload.propertyName] =
+            payload.propertyValue;
 
         this.saveAndEmitChanged();
     };

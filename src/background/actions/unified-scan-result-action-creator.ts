@@ -8,11 +8,17 @@ import { UnifiedScanCompletedPayload } from './action-payloads';
 import { UnifiedScanResultActions } from './unified-scan-result-actions';
 
 export class UnifiedScanResultActionCreator {
-    constructor(private readonly interpreter: Interpreter, private readonly unifiedScanResultActions: UnifiedScanResultActions) {}
+    constructor(
+        private readonly interpreter: Interpreter,
+        private readonly unifiedScanResultActions: UnifiedScanResultActions,
+    ) {}
 
     public registerCallbacks(): void {
         this.interpreter.registerTypeToPayloadCallback(Messages.UnifiedScan.ScanCompleted, this.onScanCompleted);
-        this.interpreter.registerTypeToPayloadCallback(getStoreStateMessage(StoreNames.UnifiedScanResultStore), this.onGetScanCurrentState);
+        this.interpreter.registerTypeToPayloadCallback(
+            getStoreStateMessage(StoreNames.UnifiedScanResultStore),
+            this.onGetScanCurrentState,
+        );
     }
 
     private onScanCompleted = (payload: UnifiedScanCompletedPayload): void => {

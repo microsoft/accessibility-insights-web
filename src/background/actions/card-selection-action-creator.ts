@@ -17,12 +17,27 @@ export class CardSelectionActionCreator {
     ) {}
 
     public registerCallbacks(): void {
-        this.interpreter.registerTypeToPayloadCallback(Messages.CardSelection.CardSelectionToggled, this.onCardSelectionToggle);
-        this.interpreter.registerTypeToPayloadCallback(Messages.CardSelection.RuleExpansionToggled, this.onRuleExpansionToggle);
-        this.interpreter.registerTypeToPayloadCallback(getStoreStateMessage(StoreNames.CardSelectionStore), this.onGetCurrentState);
-        this.interpreter.registerTypeToPayloadCallback(Messages.CardSelection.ToggleVisualHelper, this.onToggleVisualHelper);
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.CardSelection.CardSelectionToggled,
+            this.onCardSelectionToggle,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.CardSelection.RuleExpansionToggled,
+            this.onRuleExpansionToggle,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            getStoreStateMessage(StoreNames.CardSelectionStore),
+            this.onGetCurrentState,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.CardSelection.ToggleVisualHelper,
+            this.onToggleVisualHelper,
+        );
         this.interpreter.registerTypeToPayloadCallback(Messages.CardSelection.ExpandAllRules, this.onExpandAllRules);
-        this.interpreter.registerTypeToPayloadCallback(Messages.CardSelection.CollapseAllRules, this.onCollapseAllRules);
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.CardSelection.CollapseAllRules,
+            this.onCollapseAllRules,
+        );
     }
 
     private onGetCurrentState = (): void => {

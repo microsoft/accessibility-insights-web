@@ -13,9 +13,18 @@ export class PathSnippetActionCreator {
             getStoreStateMessage(StoreNames.PathSnippetStore),
             this.onGetPathSnippetCurrentState,
         );
-        this.interpreter.registerTypeToPayloadCallback(Messages.PathSnippet.AddPathForValidation, this.onAddPathForValidation);
-        this.interpreter.registerTypeToPayloadCallback(Messages.PathSnippet.AddCorrespondingSnippet, this.onAddCorrespondingSnippet);
-        this.interpreter.registerTypeToPayloadCallback(Messages.PathSnippet.ClearPathSnippetData, this.onClearPathSnippetData);
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.PathSnippet.AddPathForValidation,
+            this.onAddPathForValidation,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.PathSnippet.AddCorrespondingSnippet,
+            this.onAddCorrespondingSnippet,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.PathSnippet.ClearPathSnippetData,
+            this.onClearPathSnippetData,
+        );
     }
 
     private onAddPathForValidation = (payload: string): void => {

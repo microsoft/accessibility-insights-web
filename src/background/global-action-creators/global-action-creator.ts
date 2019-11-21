@@ -32,9 +32,15 @@ export class GlobalActionCreator {
     }
 
     public registerCallbacks(): void {
-        this.interpreter.registerTypeToPayloadCallback(getStoreStateMessage(StoreNames.CommandStore), this.onGetCommands);
+        this.interpreter.registerTypeToPayloadCallback(
+            getStoreStateMessage(StoreNames.CommandStore),
+            this.onGetCommands,
+        );
 
-        this.interpreter.registerTypeToPayloadCallback(getStoreStateMessage(StoreNames.LaunchPanelStateStore), this.onGetLaunchPanelState);
+        this.interpreter.registerTypeToPayloadCallback(
+            getStoreStateMessage(StoreNames.LaunchPanelStateStore),
+            this.onGetLaunchPanelState,
+        );
         this.interpreter.registerTypeToPayloadCallback(Messages.LaunchPanel.Set, this.onSetLaunchPanelState);
 
         this.interpreter.registerTypeToPayloadCallback(Messages.Telemetry.Send, this.onSendTelemetry);

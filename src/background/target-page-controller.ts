@@ -77,7 +77,10 @@ export class TargetPageController {
                         (activeTabs: chrome.tabs.Tab[]) => {
                             if (!this.browserAdapter.getRuntimeLastError()) {
                                 for (const activeTab of activeTabs) {
-                                    this.sendTabVisibilityChangeAction(activeTab.id, chromeWindow.state === 'minimized');
+                                    this.sendTabVisibilityChangeAction(
+                                        activeTab.id,
+                                        chromeWindow.state === 'minimized',
+                                    );
                                 }
                             }
                         },

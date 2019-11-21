@@ -48,9 +48,13 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewData> {
         this.contentActions.openContentPanel.addListener(contentPayload =>
             this.onOpen('isContentOpen', state => (state.contentPath = contentPayload.contentPath)),
         );
-        this.contentActions.closeContentPanel.addListener(() => this.onClose('isContentOpen', state => (state.contentPath = null)));
+        this.contentActions.closeContentPanel.addListener(() =>
+            this.onClose('isContentOpen', state => (state.contentPath = null)),
+        );
 
-        this.detailsViewActions.setSelectedDetailsViewRightContentPanel.addListener(this.onSetSelectedDetailsViewRightContentPanel);
+        this.detailsViewActions.setSelectedDetailsViewRightContentPanel.addListener(
+            this.onSetSelectedDetailsViewRightContentPanel,
+        );
         this.detailsViewActions.getCurrentState.addListener(this.onGetCurrentState);
     }
 

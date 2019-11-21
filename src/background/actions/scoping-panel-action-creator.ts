@@ -20,7 +20,9 @@ export class ScopingPanelActionCreator {
         this.interpreter.registerTypeToPayloadCallback(Messages.Scoping.OpenPanel, (payload, tabId) =>
             this.onOpenScopingPanel(payload, tabId),
         );
-        this.interpreter.registerTypeToPayloadCallback(Messages.Scoping.ClosePanel, payload => this.onCloseScopingPanel(payload));
+        this.interpreter.registerTypeToPayloadCallback(Messages.Scoping.ClosePanel, payload =>
+            this.onCloseScopingPanel(payload),
+        );
     }
 
     private onOpenScopingPanel(payload: BaseActionPayload, tabId: number): void {

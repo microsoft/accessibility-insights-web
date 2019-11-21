@@ -22,7 +22,12 @@ export const getTelemetryClient = (
     appInsights: Microsoft.ApplicationInsights.IAppInsights,
     storageAdapter: StorageAdapter,
 ): TelemetryClient => {
-    const installDataGenerator = new InstallDataGenerator(installationData, generateUID, DateProvider.getCurrentDate, storageAdapter);
+    const installDataGenerator = new InstallDataGenerator(
+        installationData,
+        generateUID,
+        DateProvider.getCurrentDate,
+        storageAdapter,
+    );
     const applicationBuildGenerator = new ApplicationBuildGenerator();
     const coreTelemetryDataFactory = new ApplicationTelemetryDataFactory(
         appDataAdapter.getVersion(),

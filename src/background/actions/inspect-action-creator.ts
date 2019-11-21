@@ -18,8 +18,9 @@ export class InspectActionCreator {
     ) {}
 
     public registerCallbacks(): void {
-        this.interpreter.registerTypeToPayloadCallback(Messages.Inspect.ChangeInspectMode, (payload: InspectPayload, tabId: number) =>
-            this.onChangeInspectMode(payload, tabId),
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Inspect.ChangeInspectMode,
+            (payload: InspectPayload, tabId: number) => this.onChangeInspectMode(payload, tabId),
         );
         this.interpreter.registerTypeToPayloadCallback(getStoreStateMessage(StoreNames.InspectStore), () =>
             this.onGetInspectCurrentState(),

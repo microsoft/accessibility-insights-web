@@ -62,12 +62,23 @@ async function initialize(): Promise<void> {
     const telemetryLogger = new TelemetryLogger();
 
     const { installationData } = userData;
-    const telemetryClient = getTelemetryClient(title, installationData, browserAdapter, telemetryLogger, AppInsights, browserAdapter);
+    const telemetryClient = getTelemetryClient(
+        title,
+        installationData,
+        browserAdapter,
+        telemetryLogger,
+        AppInsights,
+        browserAdapter,
+    );
 
     const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
 
     const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
-    const environmentInfoProvider = new EnvironmentInfoProvider(browserAdapter.getVersion(), browserSpec, AxeInfo.Default.version);
+    const environmentInfoProvider = new EnvironmentInfoProvider(
+        browserAdapter.getVersion(),
+        browserSpec,
+        AxeInfo.Default.version,
+    );
 
     const globalContext = GlobalContextFactory.createContext(
         browserAdapter,
@@ -84,7 +95,10 @@ async function initialize(): Promise<void> {
     );
     telemetryLogger.initialize(globalContext.featureFlagsController);
 
-    const telemetryStateListener = new TelemetryStateListener(globalContext.stores.userConfigurationStore, telemetryEventHandler);
+    const telemetryStateListener = new TelemetryStateListener(
+        globalContext.stores.userConfigurationStore,
+        telemetryEventHandler,
+    );
     telemetryStateListener.initialize();
 
     const broadcaster = new TabContextBroadcaster(browserAdapter);

@@ -40,7 +40,10 @@ export class AssessmentDataConverter {
             const rule = Object.keys(elementAxeResult.ruleResults).pop();
             if (rule) {
                 const ruleResult = elementAxeResult.ruleResults[rule];
-                const identifier = generateInstanceIdentifier({ target: elementAxeResult.target, html: ruleResult.html });
+                const identifier = generateInstanceIdentifier({
+                    target: elementAxeResult.target,
+                    html: ruleResult.html,
+                });
                 const matchingInstance = instancesMap[identifier];
                 instancesMap[identifier] = this.getInitialAssessmentInstance(
                     matchingInstance,
@@ -70,7 +73,12 @@ export class AssessmentDataConverter {
         events.forEach(event => {
             const identifier = generateInstanceIdentifier(event);
             const matchingInstance = instancesMap[identifier];
-            instancesMap[identifier] = this.getInitialAssessmentFromEvent(matchingInstance, event, stepName, event.target.join(';'));
+            instancesMap[identifier] = this.getInitialAssessmentFromEvent(
+                matchingInstance,
+                event,
+                stepName,
+                event.target.join(';'),
+            );
         });
 
         return instancesMap;

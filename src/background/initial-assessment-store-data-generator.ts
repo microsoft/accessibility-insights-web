@@ -4,7 +4,11 @@ import { head } from 'lodash';
 
 import { Assessment } from 'assessments/types/iassessment';
 import { Requirement } from 'assessments/types/requirement';
-import { AssessmentData, AssessmentStoreData, PersistedTabInfo } from '../common/types/store-data/assessment-result-data';
+import {
+    AssessmentData,
+    AssessmentStoreData,
+    PersistedTabInfo,
+} from '../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../types/common-types';
 
 export class InitialAssessmentStoreDataGenerator {

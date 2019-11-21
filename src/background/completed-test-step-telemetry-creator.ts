@@ -23,7 +23,12 @@ export class CompletedTestStepTelemetryCreator {
     private interpreter: Interpreter;
     private oldTestStates: DictionaryStringTo<ManualTestStatusData>;
 
-    constructor(store: AssessmentStore, provider: AssessmentsProvider, factory: TelemetryDataFactory, interpreter: Interpreter) {
+    constructor(
+        store: AssessmentStore,
+        provider: AssessmentsProvider,
+        factory: TelemetryDataFactory,
+        interpreter: Interpreter,
+    ) {
         this.store = store;
         this.provider = provider;
         this.telemetryFactory = factory;
@@ -94,7 +99,9 @@ export class CompletedTestStepTelemetryCreator {
 
     private updateOldTestStatusState(): void {
         this.provider.all().forEach(assessment => {
-            this.oldTestStates[assessment.key] = _.cloneDeep(this.store.getState().assessments[assessment.key].testStepStatus);
+            this.oldTestStates[assessment.key] = _.cloneDeep(
+                this.store.getState().assessments[assessment.key].testStepStatus,
+            );
         });
     }
 }

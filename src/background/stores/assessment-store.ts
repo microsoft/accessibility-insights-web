@@ -103,12 +103,16 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         this.assessmentActions.changeRequirementStatus.addListener(this.onChangeStepStatus);
         this.assessmentActions.undoRequirementStatusChange.addListener(this.onUndoStepStatusChange);
         this.assessmentActions.undoInstanceStatusChange.addListener(this.onUndoInstanceStatusChange);
-        this.assessmentActions.changeAssessmentVisualizationState.addListener(this.onChangeAssessmentVisualizationState);
+        this.assessmentActions.changeAssessmentVisualizationState.addListener(
+            this.onChangeAssessmentVisualizationState,
+        );
         this.assessmentActions.addFailureInstance.addListener(this.onAddFailureInstance);
         this.assessmentActions.addResultDescription.addListener(this.onAddResultDescription);
         this.assessmentActions.removeFailureInstance.addListener(this.onRemoveFailureInstance);
         this.assessmentActions.editFailureInstance.addListener(this.onEditFailureInstance);
-        this.assessmentActions.changeAssessmentVisualizationStateForAll.addListener(this.onChangeAssessmentVisualizationStateForAll);
+        this.assessmentActions.changeAssessmentVisualizationStateForAll.addListener(
+            this.onChangeAssessmentVisualizationStateForAll,
+        );
         this.assessmentActions.passUnmarkedInstance.addListener(this.onPassUnmarkedInstances);
         this.assessmentActions.trackingCompleted.addListener(this.onTrackingCompleted);
         this.assessmentActions.updateSelectedPivotChild.addListener(this.onUpdateSelectedTest);
@@ -158,7 +162,10 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         const step = payload.key;
         const config = this.assessmentsProvider.forType(test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
-        this.assessmentDataRemover.deleteDataFromGeneratedMapWithStepKey(assessmentData.generatedAssessmentInstancesMap, step);
+        this.assessmentDataRemover.deleteDataFromGeneratedMapWithStepKey(
+            assessmentData.generatedAssessmentInstancesMap,
+            step,
+        );
 
         this.emitChanged();
     };
@@ -167,8 +174,13 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         const config = this.assessmentsProvider.forType(payload.test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
         forEach(Object.keys(assessmentData.generatedAssessmentInstancesMap), key => {
-            const testStepResult: TestStepResult = assessmentData.generatedAssessmentInstancesMap[key].testStepResults[payload.requirement];
-            if (testStepResult && testStepResult.status === ManualTestStatus.UNKNOWN && testStepResult.originalStatus == null) {
+            const testStepResult: TestStepResult =
+                assessmentData.generatedAssessmentInstancesMap[key].testStepResults[payload.requirement];
+            if (
+                testStepResult &&
+                testStepResult.status === ManualTestStatus.UNKNOWN &&
+                testStepResult.originalStatus == null
+            ) {
                 testStepResult.originalStatus = testStepResult.status;
                 testStepResult.status = ManualTestStatus.PASS;
             }
@@ -358,14 +370,21 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         return this.assessmentsProvider.forType(testType).requirements[0].key;
     }
 
-    private updateTestStepStatusOnScanUpdate(assessmentData: AssessmentData, testStepName: string, testType: VisualizationType): void {
+    private updateTestStepStatusOnScanUpdate(
+        assessmentData: AssessmentData,
+        testStepName: string,
+        testType: VisualizationType,
+    ): void {
         const isManual = this.assessmentsProvider.getStep(testType, testStepName).isManual;
         if (isManual !== true) {
             this.updateTestStepStatusForGeneratedInstances(assessmentData, testStepName);
         }
     }
 
-    private getGroupResult(instanceMap: DictionaryStringTo<GeneratedAssessmentInstance>, testStepName: string): ManualTestStatus {
+    private getGroupResult(
+        instanceMap: DictionaryStringTo<GeneratedAssessmentInstance>,
+        testStepName: string,
+    ): ManualTestStatus {
         let groupResult = ManualTestStatus.PASS;
         for (let keyIndex = 0; keyIndex < Object.keys(instanceMap).length; keyIndex++) {
             const key = Object.keys(instanceMap)[keyIndex];
@@ -391,7 +410,11 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         assessmentData.testStepStatus[testStepName].stepFinalResult = groupResult;
     }
 
-    private updateManualTestStepStatus(assessmentData: AssessmentData, testStepName: string, testType: VisualizationType): void {
+    private updateManualTestStepStatus(
+        assessmentData: AssessmentData,
+        testStepName: string,
+        testType: VisualizationType,
+    ): void {
         const manualResult = assessmentData.manualTestStepResultMap[testStepName];
         const testStepStatus = assessmentData.testStepStatus[testStepName];
 

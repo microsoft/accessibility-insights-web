@@ -19,8 +19,14 @@ export class DevToolsActionCreator {
     public registerCallbacks(): void {
         this.interpreter.registerTypeToPayloadCallback(Messages.DevTools.DevtoolStatus, this.onDevToolOpened);
         this.interpreter.registerTypeToPayloadCallback(Messages.DevTools.InspectElement, this.onDevToolInspectElement);
-        this.interpreter.registerTypeToPayloadCallback(Messages.DevTools.InspectFrameUrl, this.onDevToolInspectFrameUrl);
-        this.interpreter.registerTypeToPayloadCallback(getStoreStateMessage(StoreNames.DevToolsStore), this.onDevToolGetCurrentState);
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.DevTools.InspectFrameUrl,
+            this.onDevToolInspectFrameUrl,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            getStoreStateMessage(StoreNames.DevToolsStore),
+            this.onDevToolGetCurrentState,
+        );
     }
 
     private onDevToolOpened = (payload: OnDevToolOpenPayload): void => {

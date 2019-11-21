@@ -8,8 +8,14 @@ export class InjectionActionCreator {
     constructor(private readonly interpreter: Interpreter, private readonly injectionActions: InjectionActions) {}
 
     public registerCallbacks(): void {
-        this.interpreter.registerTypeToPayloadCallback(Messages.Visualizations.State.InjectionStarted, this.injectionStarted);
-        this.interpreter.registerTypeToPayloadCallback(Messages.Visualizations.State.InjectionCompleted, this.injectionCompleted);
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Visualizations.State.InjectionStarted,
+            this.injectionStarted,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Visualizations.State.InjectionCompleted,
+            this.injectionCompleted,
+        );
     }
 
     private injectionStarted = (): void => this.injectionActions.injectionStarted.invoke(null);

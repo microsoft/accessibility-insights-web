@@ -113,7 +113,10 @@ export class ChromeCommandHandler {
         return this.commandToVisualizationType[commandId];
     }
 
-    private createEnableNotificationIfCurrentStateIsDisabled(visualizationType: VisualizationType, data: VisualizationStoreData): void {
+    private createEnableNotificationIfCurrentStateIsDisabled(
+        visualizationType: VisualizationType,
+        data: VisualizationStoreData,
+    ): void {
         if (!this.shouldNotifyOnEnable(visualizationType)) {
             return;
         }
@@ -134,7 +137,11 @@ export class ChromeCommandHandler {
         return visualizationType !== VisualizationType.TabStops;
     }
 
-    private invokeToggleAction(visualizationType: VisualizationType, state: VisualizationStoreData, tabId: number): void {
+    private invokeToggleAction(
+        visualizationType: VisualizationType,
+        state: VisualizationStoreData,
+        tabId: number,
+    ): void {
         const configuration = this.visualizationConfigurationFactory.getConfiguration(visualizationType);
         const scanData: ScanData = configuration.getStoreData(state.tests);
         const tabContext = this.tabToContextMap[tabId];

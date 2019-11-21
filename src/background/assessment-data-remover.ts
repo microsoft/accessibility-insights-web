@@ -6,7 +6,10 @@ import { GeneratedAssessmentInstance } from '../common/types/store-data/assessme
 import { DictionaryStringTo } from '../types/common-types';
 
 export class AssessmentDataRemover {
-    public deleteDataFromGeneratedMapWithStepKey(instancesMap: DictionaryStringTo<GeneratedAssessmentInstance>, step: string): void {
+    public deleteDataFromGeneratedMapWithStepKey(
+        instancesMap: DictionaryStringTo<GeneratedAssessmentInstance>,
+        step: string,
+    ): void {
         Object.keys(instancesMap).forEach(key => {
             const generatedAssessmentInstance = instancesMap[key];
             delete generatedAssessmentInstance.testStepResults[step];

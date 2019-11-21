@@ -8,7 +8,11 @@ import { EnumHelper } from 'common/enum-helper';
 import { Tab } from 'common/itab';
 import { StoreNames } from 'common/stores/store-names';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
-import { AssessmentScanData, TestsEnabledState, VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import {
+    AssessmentScanData,
+    TestsEnabledState,
+    VisualizationStoreData,
+} from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 
 import {
@@ -251,7 +255,10 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
             return updated;
         }
 
-        if (this.state.selectedAdhocDetailsView !== payload.detailsViewType && payload.pivotType === DetailsViewPivotType.allTest) {
+        if (
+            this.state.selectedAdhocDetailsView !== payload.detailsViewType &&
+            payload.pivotType === DetailsViewPivotType.allTest
+        ) {
             this.state.selectedAdhocDetailsView = payload.detailsViewType;
             updated = true;
         } else if (

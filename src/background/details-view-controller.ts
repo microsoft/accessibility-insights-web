@@ -49,7 +49,9 @@ export class DetailsViewController {
     private hasUrlChange(changeInfo: chrome.tabs.TabChangeInfo, targetTabId): boolean {
         return (
             changeInfo.url &&
-            !changeInfo.url.toLocaleLowerCase().endsWith(this.getDetailsUrlWithExtensionId(targetTabId).toLocaleLowerCase())
+            !changeInfo.url
+                .toLocaleLowerCase()
+                .endsWith(this.getDetailsUrlWithExtensionId(targetTabId).toLocaleLowerCase())
         );
     }
 

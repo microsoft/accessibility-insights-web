@@ -49,7 +49,9 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
     protected addActionListeners(): void {
         this.visualizationScanResultsActions.scanCompleted.addListener(this.onScanCompleted);
         this.visualizationScanResultsActions.getCurrentState.addListener(this.onGetCurrentState);
-        this.visualizationScanResultsActions.updateIssuesSelectedTargets.addListener(this.onUpdateIssuesSelectedTargets);
+        this.visualizationScanResultsActions.updateIssuesSelectedTargets.addListener(
+            this.onUpdateIssuesSelectedTargets,
+        );
         this.visualizationScanResultsActions.disableIssues.addListener(this.onIssuesDisabled);
         this.visualizationScanResultsActions.addTabbedElement.addListener(this.onAddTabbedElement);
         this.visualizationScanResultsActions.disableTabStop.addListener(this.onTabStopsDisabled);
@@ -130,7 +132,9 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         this.emitChanged();
     };
 
-    private getRowToRuleResultMap(selectorMap: DictionaryStringTo<HtmlElementAxeResults>): DictionaryStringTo<DecoratedAxeNodeResult> {
+    private getRowToRuleResultMap(
+        selectorMap: DictionaryStringTo<HtmlElementAxeResults>,
+    ): DictionaryStringTo<DecoratedAxeNodeResult> {
         const selectedRows: DictionaryStringTo<DecoratedAxeNodeResult> = {};
 
         forOwn(selectorMap, (selector: HtmlElementAxeResults) => {
@@ -144,7 +148,9 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         return selectedRows;
     }
 
-    private getSelectorMap(selectedRows: DictionaryStringTo<DecoratedAxeNodeResult>): DictionaryStringTo<HtmlElementAxeResults> {
+    private getSelectorMap(
+        selectedRows: DictionaryStringTo<DecoratedAxeNodeResult>,
+    ): DictionaryStringTo<HtmlElementAxeResults> {
         const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {};
         forOwn(selectedRows, (selectedRow: DecoratedAxeNodeResult) => {
             const ruleResult = selectedRow;

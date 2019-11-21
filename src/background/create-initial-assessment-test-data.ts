@@ -14,7 +14,10 @@ import { DictionaryStringTo } from '../types/common-types';
 
 export type InitialDataCreator = (test: Readonly<Assessment>, persistedTest: AssessmentData) => AssessmentData;
 
-export const createInitialAssessmentTestData: InitialDataCreator = (test: Readonly<Assessment>, persistedTest: AssessmentData) => {
+export const createInitialAssessmentTestData: InitialDataCreator = (
+    test: Readonly<Assessment>,
+    persistedTest: AssessmentData,
+) => {
     const requirements = test.requirements.map(val => val.key);
     if (persistedTest) {
         return getInitialTestDataUsingPersistedData(
@@ -58,18 +61,28 @@ function getInitialTestDataUsingPersistedData(
     const testData: AssessmentData = getDefaultTestResult();
     testData.testStepStatus = constructRequirementStatus(requirements, persistedRequirementsStatus);
     testData.manualTestStepResultMap = constructManualRequirementResultMap(requirements, persistedManualMap);
-    testData.generatedAssessmentInstancesMap = constructGeneratedAssessmentInstancesMap(requirements, persistedGeneratedMap);
+    testData.generatedAssessmentInstancesMap = constructGeneratedAssessmentInstancesMap(
+        requirements,
+        persistedGeneratedMap,
+    );
     return testData;
 }
 
 function allRequirementsAreScanned(requirements: string[], persistedTest: AssessmentData): boolean {
     return requirements.every(
-        requirement => persistedTest.testStepStatus[requirement] && persistedTest.testStepStatus[requirement].isStepScanned === true,
+        requirement =>
+            persistedTest.testStepStatus[requirement] &&
+            persistedTest.testStepStatus[requirement].isStepScanned === true,
     );
 }
 
 function getDefaultTestResult(): AssessmentData {
-    return { fullAxeResultsMap: null, generatedAssessmentInstancesMap: null, manualTestStepResultMap: {}, testStepStatus: {} };
+    return {
+        fullAxeResultsMap: null,
+        generatedAssessmentInstancesMap: null,
+        manualTestStepResultMap: {},
+        testStepStatus: {},
+    };
 }
 
 function getDefaultRequirementStatus(): TestStepData {
@@ -84,8 +97,15 @@ function constructRequirementStatus(requirements: string[], persistedMap: Manual
     return constructMapFromRequirementTo<TestStepData>(requirements, persistedMap, getDefaultRequirementStatus);
 }
 
-function constructManualRequirementResultMap(requirements: string[], persistedMap: RequirementIdToResultMap): RequirementIdToResultMap {
-    return constructMapFromRequirementTo<ManualTestStepResult>(requirements, persistedMap, getDefaultManualRequirementResult);
+function constructManualRequirementResultMap(
+    requirements: string[],
+    persistedMap: RequirementIdToResultMap,
+): RequirementIdToResultMap {
+    return constructMapFromRequirementTo<ManualTestStepResult>(
+        requirements,
+        persistedMap,
+        getDefaultManualRequirementResult,
+    );
 }
 
 function constructMapFromRequirementTo<T>(

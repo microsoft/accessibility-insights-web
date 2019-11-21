@@ -58,7 +58,11 @@ export class TabContextFactory {
         const notificationCreator = new NotificationCreator(browserAdapter, this.visualizationConfigurationFactory);
         const shortcutsPageController = new ShortcutsPageController(browserAdapter);
 
-        const shortcutsPageActionCreator = new ShortcutsPageActionCreator(interpreter, shortcutsPageController, this.telemetryEventHandler);
+        const shortcutsPageActionCreator = new ShortcutsPageActionCreator(
+            interpreter,
+            shortcutsPageController,
+            this.telemetryEventHandler,
+        );
 
         const actionCreator = new ActionCreator(
             interpreter,
@@ -77,9 +81,18 @@ export class TabContextFactory {
             this.telemetryEventHandler,
         );
 
-        const tabActionCreator = new TabActionCreator(interpreter, actionsHub.tabActions, browserAdapter, this.telemetryEventHandler);
+        const tabActionCreator = new TabActionCreator(
+            interpreter,
+            actionsHub.tabActions,
+            browserAdapter,
+            this.telemetryEventHandler,
+        );
 
-        const devToolsActionCreator = new DevToolsActionCreator(interpreter, actionsHub.devToolActions, this.telemetryEventHandler);
+        const devToolsActionCreator = new DevToolsActionCreator(
+            interpreter,
+            actionsHub.devToolActions,
+            this.telemetryEventHandler,
+        );
 
         const inspectActionsCreator = new InspectActionCreator(
             interpreter,
