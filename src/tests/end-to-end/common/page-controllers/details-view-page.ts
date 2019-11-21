@@ -39,7 +39,7 @@ export class DetailsViewPage extends Page {
     public async closeSettingsPanel(): Promise<void> {
         await this.waitForSelector(settingsPanelSelectors.settingsPanel);
 
-        await this.keyPress('Escape');
+        await this.clickSelector(settingsPanelSelectors.closeButton);
         await this.waitForSelectorToDisappear(settingsPanelSelectors.settingsPanel);
     }
 
@@ -63,6 +63,7 @@ export class DetailsViewPage extends Page {
     // TODO: replace usages with backgroundPage()
     public async enableHighContrast(): Promise<void> {
         await this.openSettingsPanel();
+        await this.waitForSelector(settingsPanelSelectors.closeButton);
 
         await this.setToggleState(settingsPanelSelectors.highContrastModeToggle, true);
         await this.waitForSelector(CommonSelectors.highContrastThemeSelector);

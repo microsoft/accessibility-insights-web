@@ -21,6 +21,7 @@ export const overviewSelectors = {
 
 export const settingsPanelSelectors = {
     settingsPanel: '.settings-panel',
+    closeButton: 'button[title="Close settings panel"]',
     highContrastModeToggle: 'button#enable-high-contrast-mode',
     telemetryStateToggle: 'button#enable-telemetry',
     enabledToggle: (toggleSelector: string) => `${toggleSelector}[aria-checked="true"]`,

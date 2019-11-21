@@ -21,20 +21,25 @@ export const TargetPageChangedView = NamedFC<TargetPageChangedViewProps>('Target
 
     const toggleText = 'The target page was changed. Use the toggle to enable the visualization in the current target page.';
     const startOverText = 'The target page has changed. Use the start over button to scan the new target page.';
-    const displayedText = props.featureFlagStoreData[FeatureFlags.universalCardsUI] ? startOverText : toggleText;
+
+    const isCardsUIEnabled = props.featureFlagStoreData[FeatureFlags.universalCardsUI];
+    const displayedText = isCardsUIEnabled ? startOverText : toggleText;
+    const toggle = !isCardsUIEnabled ? (
+        <Toggle
+            onText="On"
+            offText="Off"
+            checked={false}
+            onClick={props.toggleClickHandler}
+            label={toggleLabel}
+            className="details-view-toggle"
+        />
+    ) : null;
 
     return (
         <div className="target-page-changed">
             <h1>{title}</h1>
             <div className="target-page-changed-subtitle">{subtitle}</div>
-            <Toggle
-                onText="On"
-                offText="Off"
-                checked={false}
-                onClick={props.toggleClickHandler}
-                label={toggleLabel}
-                className="details-view-toggle"
-            />
+            {toggle}
             <p>{displayedText}</p>
         </div>
     );
