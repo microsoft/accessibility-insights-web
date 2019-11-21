@@ -13,6 +13,7 @@ export const detailsViewSelectors = {
     gearButton: '.gear-options-icon',
     settingsButton: 'button[name="Settings"]',
     settingsPanel: '.settings-panel',
+    settingsPanelClose: 'button[title="Close settings panel"]',
     highContrastToggle: 'button#enable-high-contrast-mode',
     highContrastToggleCheckedStateSelector: 'button#enable-high-contrast-mode[aria-checked="true"]',
 };
