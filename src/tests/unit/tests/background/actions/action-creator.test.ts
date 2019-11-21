@@ -8,6 +8,7 @@ import {
     ChangeInstanceStatusPayload,
     OnDetailsViewOpenPayload,
     OnDetailsViewPivotSelected,
+    RescanVisualizationPayload,
     ToggleActionPayload,
     VisualizationTogglePayload,
 } from 'background/actions/action-payloads';
@@ -494,34 +495,6 @@ describe('ActionCreatorTest', () => {
         testScanCompleteWithExpectedParams(key, message, actionName, telemetryEventName);
     });
 
-    test('registerCallback for injectionCompleted', () => {
-        const actionName = 'injectionCompleted';
-        const builder = new ActionCreatorValidator()
-            .setupRegistrationCallback(VisualizationMessage.State.InjectionCompleted)
-            .setupActionOnVisualizationActions(actionName)
-            .setupVisualizationActionWithInvokeParameter(actionName, null);
-
-        const actionCreator = builder.buildActionCreator();
-
-        actionCreator.registerCallbacks();
-
-        builder.verifyAll();
-    });
-
-    test('registerCallback for injectionStarted', () => {
-        const actionName = 'injectionStarted';
-        const builder = new ActionCreatorValidator()
-            .setupRegistrationCallback(VisualizationMessage.State.InjectionStarted)
-            .setupActionOnVisualizationActions(actionName)
-            .setupVisualizationActionWithInvokeParameter(actionName, null);
-
-        const actionCreator = builder.buildActionCreator();
-
-        actionCreator.registerCallbacks();
-
-        builder.verifyAll();
-    });
-
     test('registerCallback for tabbed element added', () => {
         const tabbedElement: AddTabbedElementPayload = {
             tabbedElements: [
@@ -766,6 +739,28 @@ describe('ActionCreatorTest', () => {
         validator.verifyAll();
     });
 
+    test('registerCallback for onRescanVisualization', () => {
+        const tabId = 1;
+        const payload: RescanVisualizationPayload = {
+            test: VisualizationType.HeadingsAssessment,
+        };
+        const disableActionName = 'disableVisualization';
+        const enableActionName = 'enableVisualization';
+
+        const validator = new ActionCreatorValidator()
+            .setupRegistrationCallback(Messages.Visualizations.Common.RescanVisualization, [payload, tabId])
+            .setupActionOnVisualizationActions(disableActionName)
+            .setupActionOnVisualizationActions(enableActionName)
+            .setupVisualizationActionWithInvokeParameter(disableActionName, payload.test)
+            .setupVisualizationActionWithInvokeParameter(enableActionName, payload)
+            .setupTelemetrySend(TelemetryEvents.RESCAN_VISUALIZATION, payload, tabId);
+        const actionCreator = validator.buildActionCreator();
+
+        actionCreator.registerCallbacks();
+
+        validator.verifyAll();
+    });
+
     test('registerCallback for onEnableVisualHelper', () => {
         const tabId = 1;
         const payload: ToggleActionPayload = {
@@ -973,6 +968,7 @@ class ActionCreatorValidator {
         pathSnippetActions: null,
         scanResultActions: null,
         cardSelectionActions: null,
+        injectionActions: null,
     };
 
     private telemetryEventHandlerStrictMock = Mock.ofType<TelemetryEventHandler>(null, MockBehavior.Strict);

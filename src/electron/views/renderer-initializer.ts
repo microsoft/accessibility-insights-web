@@ -33,7 +33,7 @@ import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
 import { WindowStateActions } from 'electron/flux/action/window-state-actions';
 import { ScanStore } from 'electron/flux/store/scan-store';
 import { WindowStateStore } from 'electron/flux/store/window-state-store';
-import { createFetchScanResults } from 'electron/platform/android/fetch-scan-results';
+import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { ScanController } from 'electron/platform/android/scan-controller';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
 import { RootContainerProps, RootContainerState } from 'electron/views/root-container/components/root-container';
@@ -43,6 +43,7 @@ import { WindowFrameUpdater } from 'electron/window-management/window-frame-upda
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as ReactDOM from 'react-dom';
 
+import { CardsVisualizationModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
 import { IndexedDBDataKeys } from '../../background/IndexedDBDataKeys';
@@ -137,7 +138,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
     const telemetryStateListener = new TelemetryStateListener(userConfigurationStore, telemetryEventHandler);
     telemetryStateListener.initialize();
 
-    const fetchScanResults = createFetchScanResults(axios.get);
+    const fetchScanResults = createScanResultsFetcher(axios.get);
 
     const interpreter = new Interpreter();
     const dispatcher = new DirectActionMessageDispatcher(interpreter);
@@ -183,6 +184,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
         cardInteractionSupport: onlyHighlightingSupported, // once we have a working settings experience, switch to allCardInteractionsSupported
         getCardSelectionViewData: getCardSelectionViewData,
         collapsibleControl: CardsCollapsibleControl,
+        cardsVisualizationModifierButtons: CardsVisualizationModifierButtons,
         fixInstructionProcessor,
         getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks, // I don't think we have guidance links for axe-android
 

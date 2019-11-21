@@ -72,10 +72,9 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
     }
 
     private renderCommandBar(): JSX.Element {
-        const { deps, switcherNavConfiguration } = this.props;
+        const { switcherNavConfiguration } = this.props;
 
         const detailsViewCommandBarProps: DetailsViewCommandBarProps = {
-            actionMessageCreator: deps.detailsViewActionMessageCreator,
             ...this.props,
         };
 
@@ -99,10 +98,10 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
 
         return (
             <TabInfo
+                deps={this.props.deps}
                 isTargetPageHidden={this.props.tabStoreData.isPageHidden}
                 url={this.props.tabStoreData.url}
                 title={this.props.tabStoreData.title}
-                actionCreator={this.props.deps.detailsViewActionMessageCreator}
                 selectedPivot={this.props.visualizationStoreData.selectedDetailsViewPivot}
                 dropdownClickHandler={this.props.dropdownClickHandler}
             />

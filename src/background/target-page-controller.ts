@@ -1,36 +1,25 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
-import { Message } from '../common/message';
-import { Messages } from '../common/messages';
-import { Logger } from './../common/logging/logger';
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { BaseTelemetryData, TriggeredByNotApplicable } from 'common/extension-telemetry-events';
+import { Logger } from 'common/logging/logger';
+import { Message } from 'common/message';
+import { Messages } from 'common/messages';
 import { PageVisibilityChangeTabPayload } from './actions/action-payloads';
 import { DetailsViewController } from './details-view-controller';
 import { TabToContextMap } from './tab-context';
 import { TabContextBroadcaster } from './tab-context-broadcaster';
 import { TabContextFactory } from './tab-context-factory';
 
-export class TabController {
-    private browserAdapter: BrowserAdapter;
-    private readonly tabIdToContextMap: TabToContextMap;
-    private readonly broadcaster: TabContextBroadcaster;
-    private readonly detailsViewController: DetailsViewController;
-    private tabContextFactory: TabContextFactory;
-
+export class TargetPageController {
     constructor(
-        tabToInterpreterMap: TabToContextMap,
-        broadcaster: TabContextBroadcaster,
-        browserAdapter: BrowserAdapter,
-        detailsViewController: DetailsViewController,
-        tabContextFactory: TabContextFactory,
+        private readonly targetPageTabIdToContextMap: TabToContextMap,
+        private readonly broadcaster: TabContextBroadcaster,
+        private readonly browserAdapter: BrowserAdapter,
+        private readonly detailsViewController: DetailsViewController,
+        private readonly tabContextFactory: TabContextFactory,
         private readonly logger: Logger,
-    ) {
-        this.tabIdToContextMap = tabToInterpreterMap;
-        this.broadcaster = broadcaster;
-        this.browserAdapter = browserAdapter;
-        this.detailsViewController = detailsViewController;
-        this.tabContextFactory = tabContextFactory;
-    }
+    ) {}
 
     public initialize(): void {
         this.browserAdapter.tabsQuery({}, (tabs: chrome.tabs.Tab[]) => {
@@ -98,70 +87,62 @@ export class TabController {
         );
     };
 
-    private postTabUpdate = (tabId: number): void => {
+    private postTabUpdate = (tabId: number, telemetry?: BaseTelemetryData): void => {
         if (this.hasTabContext(tabId)) {
-            this.sendTabChangedAction(tabId);
+            this.sendExistingTabUpdatedAction(tabId, telemetry);
         } else {
             this.addTabContext(tabId);
-            this.sendTabUpdateAction(tabId);
+            this.sendNewTabCreatedAction(tabId);
         }
     };
 
     private handleTabUpdate = (tabId: number, changeInfo: chrome.tabs.TabChangeInfo): void => {
         if (changeInfo.url) {
-            this.postTabUpdate(tabId);
+            const telemetry: BaseTelemetryData = {
+                source: null,
+                triggeredBy: TriggeredByNotApplicable,
+            };
+            this.postTabUpdate(tabId, telemetry);
         }
     };
 
     private hasTabContext(tabId: number): boolean {
-        return tabId in this.tabIdToContextMap;
+        return tabId in this.targetPageTabIdToContextMap;
     }
 
-    private sendTabChangedAction(tabId: number): void {
+    private sendTabAction(tabId: number, messageType: string, telemetry?: BaseTelemetryData): void {
         this.browserAdapter.getTab(
             tabId,
             (tab: chrome.tabs.Tab) => {
-                const tabContext = this.tabIdToContextMap[tabId];
+                const tabContext = this.targetPageTabIdToContextMap[tabId];
                 if (tabContext) {
                     const interpreter = tabContext.interpreter;
                     interpreter.interpret({
-                        messageType: Messages.Tab.Change,
-                        payload: tab,
+                        messageType,
+                        payload: { ...tab, telemetry },
                         tabId: tabId,
                     });
                 }
             },
             () => {
-                this.logger.log(`changed tab with Id ${tabId} not found`);
+                this.logger.log(`${messageType}: tab with Id ${tabId} not found`);
             },
         );
     }
 
-    private sendTabUpdateAction(tabId: number): void {
-        this.browserAdapter.getTab(
-            tabId,
-            (tab: chrome.tabs.Tab) => {
-                const tabContext = this.tabIdToContextMap[tabId];
-                if (tabContext) {
-                    const interpreter = tabContext.interpreter;
-                    interpreter.interpret({
-                        messageType: Messages.Tab.Update,
-                        payload: tab,
-                        tabId: tabId,
-                    });
-                }
-            },
-            () => {
-                this.logger.log(`updated tab with Id ${tabId} not found`);
-            },
-        );
+    private sendExistingTabUpdatedAction(tabId: number, telemetry?: BaseTelemetryData): void {
+        this.sendTabAction(tabId, Messages.Tab.ExistingTabUpdated, telemetry);
+    }
+
+    private sendNewTabCreatedAction(tabId: number): void {
+        this.sendTabAction(tabId, Messages.Tab.NewTabCreated);
     }
 
     private sendTabVisibilityChangeAction(tabId: number, isHidden: boolean): void {
         if (!this.hasTabContext(tabId)) {
             return;
         }
-        const tabContext = this.tabIdToContextMap[tabId];
+        const tabContext = this.targetPageTabIdToContextMap[tabId];
         if (tabContext == null) {
             return;
         }
@@ -178,7 +159,7 @@ export class TabController {
     }
 
     private addTabContext(tabId: number): void {
-        this.tabIdToContextMap[tabId] = this.tabContextFactory.createTabContext(
+        this.targetPageTabIdToContextMap[tabId] = this.tabContextFactory.createTabContext(
             this.broadcaster.getBroadcastMessageDelegate(tabId),
             this.browserAdapter,
             this.detailsViewController,
@@ -187,7 +168,7 @@ export class TabController {
     }
 
     private onTabRemoved = (tabId: number, messageType: string): void => {
-        const tabContext = this.tabIdToContextMap[tabId];
+        const tabContext = this.targetPageTabIdToContextMap[tabId];
         if (tabContext) {
             const interpreter = tabContext.interpreter;
             interpreter.interpret({
@@ -200,7 +181,7 @@ export class TabController {
 
     private onTargetTabRemoved = (tabId: number): void => {
         this.onTabRemoved(tabId, Messages.Tab.Remove);
-        delete this.tabIdToContextMap[tabId];
+        delete this.targetPageTabIdToContextMap[tabId];
     };
 
     private onDetailsViewTabRemoved = (tabId: number): void => {

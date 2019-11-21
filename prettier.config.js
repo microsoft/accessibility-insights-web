@@ -6,4 +6,12 @@ module.exports = {
     singleQuote: true,
     tabWidth: 4,
     trailingComma: 'all',
+    overrides: [
+        {
+            files: 'src/popup/**/*',
+            options: {
+                printWidth: 80,
+            },
+        },
+    ],
 };

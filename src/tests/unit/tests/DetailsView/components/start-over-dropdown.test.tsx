@@ -14,17 +14,19 @@ import { StartOverDropdown, StartOverProps } from '../../../../../DetailsView/co
 
 describe('StartOverDropdownTest', () => {
     let defaultProps: StartOverProps;
-    let actionCreatorMock: IMock<DetailsViewActionMessageCreator>;
+    let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
 
     const event = {
         currentTarget: 'test target',
     } as React.MouseEvent<any>;
 
     beforeEach(() => {
-        actionCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
+        detailsViewActionMessageCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
         defaultProps = {
+            deps: {
+                detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
+            },
             testName: 'test name',
-            actionMessageCreator: actionCreatorMock.object,
             test: -1 as VisualizationType,
             requirementKey: 'test key',
             rightPanelConfiguration: {
@@ -79,7 +81,7 @@ describe('StartOverDropdownTest', () => {
     });
 
     it('should dismiss the start test over dialog', () => {
-        actionCreatorMock
+        detailsViewActionMessageCreatorMock
             .setup(creator => creator.cancelStartOver(event, defaultProps.test, defaultProps.requirementKey))
             .verifiable(Times.once());
 
@@ -93,11 +95,11 @@ describe('StartOverDropdownTest', () => {
         rendered.find(GenericDialog).prop('onCancelButtonClick')(event);
 
         expect(rendered.state().dialogState).toEqual('none');
-        actionCreatorMock.verifyAll();
+        detailsViewActionMessageCreatorMock.verifyAll();
     });
 
     it('should dismiss the start assessment over dialog', () => {
-        actionCreatorMock.setup(creator => creator.cancelStartOverAllAssessments(event)).verifiable(Times.once());
+        detailsViewActionMessageCreatorMock.setup(creator => creator.cancelStartOverAllAssessments(event)).verifiable(Times.once());
 
         const rendered = shallow<StartOverDropdown>(<StartOverDropdown {...defaultProps} />);
         rendered.find(ActionButton).simulate('click', event);
@@ -109,11 +111,11 @@ describe('StartOverDropdownTest', () => {
         rendered.find(GenericDialog).prop('onCancelButtonClick')(event);
 
         expect(rendered.state().dialogState).toEqual('none');
-        actionCreatorMock.verifyAll();
+        detailsViewActionMessageCreatorMock.verifyAll();
     });
 
     it('should start over a test', () => {
-        actionCreatorMock
+        detailsViewActionMessageCreatorMock
             .setup(creator => creator.startOverAssessment(event, defaultProps.test, defaultProps.requirementKey))
             .verifiable(Times.once());
 
@@ -127,11 +129,11 @@ describe('StartOverDropdownTest', () => {
         rendered.find(GenericDialog).prop('onPrimaryButtonClick')(event);
 
         expect(rendered.state().dialogState).toEqual('none');
-        actionCreatorMock.verifyAll();
+        detailsViewActionMessageCreatorMock.verifyAll();
     });
 
     it('should start over the whole assessment', () => {
-        actionCreatorMock.setup(creator => creator.startOverAllAssessments(event)).verifiable(Times.once());
+        detailsViewActionMessageCreatorMock.setup(creator => creator.startOverAllAssessments(event)).verifiable(Times.once());
 
         const rendered = shallow<StartOverDropdown>(<StartOverDropdown {...defaultProps} />);
         rendered.find(ActionButton).simulate('click', event);
@@ -143,7 +145,7 @@ describe('StartOverDropdownTest', () => {
         rendered.find(GenericDialog).prop('onPrimaryButtonClick')(event);
 
         expect(rendered.state().dialogState).toEqual('none');
-        actionCreatorMock.verifyAll();
+        detailsViewActionMessageCreatorMock.verifyAll();
     });
 
     it('should dismiss the contextMenu', () => {

@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
 
+import { InjectionActions } from 'background/actions/injection-actions';
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationActions } from '../actions/visualization-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
@@ -29,6 +30,7 @@ export class ActionHub {
     public pathSnippetActions: PathSnippetActions;
     public scanResultActions: UnifiedScanResultActions;
     public cardSelectionActions: CardSelectionActions;
+    public injectionActions: InjectionActions;
 
     constructor() {
         this.visualizationActions = new VisualizationActions();
@@ -44,5 +46,6 @@ export class ActionHub {
         this.pathSnippetActions = new PathSnippetActions();
         this.scanResultActions = new UnifiedScanResultActions();
         this.cardSelectionActions = new CardSelectionActions();
+        this.injectionActions = new InjectionActions();
     }
 }

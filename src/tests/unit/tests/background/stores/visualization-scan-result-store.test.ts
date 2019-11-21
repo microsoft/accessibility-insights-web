@@ -503,7 +503,7 @@ describe('VisualizationScanResultStoreTest', () => {
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onTabChange', () => {
+    test('onExistingTabUpdated', () => {
         const initialState = new VisualizationScanResultStoreDataBuilder()
             .withIssuesSelectedTargets({})
             .withScanResult(VisualizationType.Headings, [])
@@ -512,7 +512,7 @@ describe('VisualizationScanResultStoreTest', () => {
 
         const expectedState = new VisualizationScanResultStoreDataBuilder().build();
 
-        createStoreTesterForTabActions('tabChange').testListenerToBeCalledOnce(initialState, expectedState);
+        createStoreTesterForTabActions('existingTabUpdated').testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     function createStoreTesterForVisualizationScanResultActions(

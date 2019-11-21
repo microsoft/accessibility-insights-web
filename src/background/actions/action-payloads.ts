@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import * as TelemetryEvents from 'common/extension-telemetry-events';
 import { BaseTelemetryData, TelemetryData, ToggleTelemetryData } from 'common/extension-telemetry-events';
+import { Tab } from 'common/itab';
 import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { ManualTestStatus } from 'common/types/manual-test-status';
@@ -89,6 +90,8 @@ export interface ToggleActionPayload extends BaseActionPayload {
     test: VisualizationType;
 }
 
+export type RescanVisualizationPayload = ToggleActionPayload;
+
 export interface VisualizationTogglePayload extends ToggleActionPayload {
     enabled: boolean;
     telemetry: ToggleTelemetryData;
@@ -166,3 +169,5 @@ export interface CardSelectionPayload extends BaseActionPayload {
     ruleId: string;
     resultInstanceUid: string;
 }
+
+export type ExistingTabUpdatedPayload = BaseActionPayload & Tab;

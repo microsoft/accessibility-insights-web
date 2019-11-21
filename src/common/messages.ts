@@ -30,6 +30,7 @@ export interface VisualizationCommonMessages {
     Toggle: string;
     ScanCompleted: string;
     ScrollRequested: string;
+    RescanVisualization: string;
 }
 
 export interface DevToolsMessages {
@@ -57,6 +58,7 @@ export class Messages {
             Toggle: `${messagePrefix}/visualization/toggle`,
             ScanCompleted: `${messagePrefix}/visualization/scanCompleted`,
             ScrollRequested: `${messagePrefix}/visualization/scrollRequested`,
+            RescanVisualization: `${messagePrefix}/visualization/rescanVisualization`,
         },
         TabStops: {
             TabbedElementAdded: `${messagePrefix}/visualization/tab-stops/element-added`,
@@ -99,11 +101,11 @@ export class Messages {
     };
 
     public static readonly Tab = {
-        Update: `${messagePrefix}/tab/update`,
+        NewTabCreated: `${messagePrefix}/tab/newTabCreated`,
         Remove: `${messagePrefix}/tab/remove`,
-        Change: `${messagePrefix}/targetTab/changed`,
-        Switch: `${messagePrefix}/targetTab/switch`,
-        VisibilityChange: `${messagePrefix}/targetTab/visibilitychange`,
+        ExistingTabUpdated: `${messagePrefix}/tab/existingTabUpdated`,
+        Switch: `${messagePrefix}/tab/switch`,
+        VisibilityChange: `${messagePrefix}/tab/visibilitychange`,
     };
 
     public static readonly Assessment = {

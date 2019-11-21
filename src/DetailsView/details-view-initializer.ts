@@ -27,6 +27,7 @@ import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ReportNameGenerator } from 'reports/report-name-generator';
 
+import { CardsVisualizationModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AxeInfo } from '../common/axe-info';
 import { provideBlob } from '../common/blob-provider';
@@ -159,7 +160,7 @@ if (isNaN(tabId) === false) {
 
             const actionMessageDispatcher = new RemoteActionMessageDispatcher(browserAdapter.sendMessageToFrames, tab.id);
 
-            const actionMessageCreator = new DetailsViewActionMessageCreator(telemetryFactory, actionMessageDispatcher);
+            const detailsViewActionMessageCreator = new DetailsViewActionMessageCreator(telemetryFactory, actionMessageDispatcher);
             const scopingActionMessageCreator = new ScopingActionMessageCreator(
                 telemetryFactory,
                 TelemetryEventSource.DetailsView,
@@ -191,13 +192,13 @@ if (isNaN(tabId) === false) {
 
             const visualizationActionCreator = new VisualizationActionMessageCreator(actionMessageDispatcher);
 
-            const issuesSelection = new IssuesSelectionFactory().createSelection(actionMessageCreator);
+            const issuesSelection = new IssuesSelectionFactory().createSelection(detailsViewActionMessageCreator);
             const clickHandlerFactory = new DetailsViewToggleClickHandlerFactory(visualizationActionCreator, telemetryFactory);
             const visualizationConfigurationFactory = new VisualizationConfigurationFactory();
             const assessmentDefaultMessageGenerator = new AssessmentDefaultMessageGenerator();
             const assessmentInstanceTableHandler = new AssessmentInstanceTableHandler(
-                actionMessageCreator,
-                new AssessmentTableColumnConfigHandler(new MasterCheckBoxConfigProvider(actionMessageCreator), Assessments),
+                detailsViewActionMessageCreator,
+                new AssessmentTableColumnConfigHandler(new MasterCheckBoxConfigProvider(detailsViewActionMessageCreator), Assessments),
                 Assessments,
             );
             const issuesTableHandler = new IssuesTableHandler();
@@ -299,7 +300,7 @@ if (isNaN(tabId) === false) {
                 issueFilingActionMessageCreator,
                 contentProvider: contentPages,
                 contentActionMessageCreator,
-                detailsViewActionMessageCreator: actionMessageCreator,
+                detailsViewActionMessageCreator,
                 assessmentsProvider: Assessments,
                 actionInitiators,
                 assessmentDefaultMessageGenerator: assessmentDefaultMessageGenerator,
@@ -310,7 +311,7 @@ if (isNaN(tabId) === false) {
                 getAssessmentSummaryModelFromProviderAndStatusData: getAssessmentSummaryModelFromProviderAndStatusData,
                 visualizationConfigurationFactory,
                 getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration,
-                navLinkHandler: new NavLinkHandler(actionMessageCreator),
+                navLinkHandler: new NavLinkHandler(detailsViewActionMessageCreator),
                 getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration,
                 userConfigMessageCreator,
                 leftNavLinkBuilder: new LeftNavLinkBuilder(),
@@ -339,6 +340,7 @@ if (isNaN(tabId) === false) {
                 navigatorUtils: navigatorUtils,
                 cardSelectionMessageCreator,
                 getCardSelectionViewData: getCardSelectionViewData,
+                cardsVisualizationModifierButtons: CardsVisualizationModifierButtons,
             };
 
             const renderer = new DetailsViewRenderer(

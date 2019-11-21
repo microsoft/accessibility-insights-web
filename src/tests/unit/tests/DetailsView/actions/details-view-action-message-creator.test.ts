@@ -22,7 +22,7 @@ import {
 } from '../../../../../common/extension-telemetry-events';
 import { Message } from '../../../../../common/message';
 import { Messages } from '../../../../../common/messages';
-import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
+import { SupportedMouseEvent, TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
@@ -844,6 +844,29 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         };
 
         testSubject.changeRightContentPanel(viewTypeStub);
+
+        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
+    });
+
+    test('rescanVisualization', () => {
+        const testStub = -1;
+        const eventStub = {} as SupportedMouseEvent;
+        const telemetryStub = {
+            source: TelemetryEventSource.DetailsView,
+        } as BaseTelemetryData;
+        const expectedMessage = {
+            messageType: Messages.Visualizations.Common.RescanVisualization,
+            payload: {
+                test: testStub,
+                telemetry: telemetryStub,
+            },
+        };
+
+        telemetryFactoryMock
+            .setup(tf => tf.withTriggeredByAndSource(eventStub, TelemetryEventSource.DetailsView))
+            .returns(() => telemetryStub);
+
+        testSubject.rescanVisualization(testStub, eventStub);
 
         dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
     });

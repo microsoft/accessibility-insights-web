@@ -21,6 +21,7 @@
         :global(.rule-details-id) {
             font-family: $semiBoldFontFamily;
             color: $primary-text;
+            word-break: break-all;
 
             a {
                 font-family: $semiBoldFontFamily;
@@ -30,6 +31,7 @@
 
         :global(.rule-detail-description) {
             color: $secondary-text !important;
+            word-break: break-all;
         }
 
         :global(.guidance-links) {

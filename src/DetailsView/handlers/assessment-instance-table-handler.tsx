@@ -23,46 +23,46 @@ import { FailureInstanceData } from '../components/failure-instance-panel-contro
 import { TestStatusChoiceGroup } from '../components/test-status-choice-group';
 
 export class AssessmentInstanceTableHandler {
-    private actionMessageCreator: DetailsViewActionMessageCreator;
+    private detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     private assessmentTableColumnConfigHandler: AssessmentTableColumnConfigHandler;
     private assessmentsProvider: AssessmentsProvider;
 
     constructor(
-        actionMessageCreator: DetailsViewActionMessageCreator,
+        detailsViewActionMessageCreator: DetailsViewActionMessageCreator,
         assessmentTableColumnConfigHandler: AssessmentTableColumnConfigHandler,
         assessmentsProvider: AssessmentsProvider,
     ) {
-        this.actionMessageCreator = actionMessageCreator;
+        this.detailsViewActionMessageCreator = detailsViewActionMessageCreator;
         this.assessmentTableColumnConfigHandler = assessmentTableColumnConfigHandler;
         this.assessmentsProvider = assessmentsProvider;
     }
 
     public changeRequirementStatus = (status: ManualTestStatus, test: VisualizationType, step: string): void => {
-        this.actionMessageCreator.changeManualRequirementStatus(status, test, step);
+        this.detailsViewActionMessageCreator.changeManualRequirementStatus(status, test, step);
     };
 
     public undoRequirementStatusChange = (test: VisualizationType, step: string): void => {
-        this.actionMessageCreator.undoManualRequirementStatusChange(test, step);
+        this.detailsViewActionMessageCreator.undoManualRequirementStatusChange(test, step);
     };
 
     public addFailureInstance = (instanceData: FailureInstanceData, test: VisualizationType, step: string): void => {
-        this.actionMessageCreator.addFailureInstance(instanceData, test, step);
+        this.detailsViewActionMessageCreator.addFailureInstance(instanceData, test, step);
     };
 
     public addPathForValidation = (path: string): void => {
-        this.actionMessageCreator.addPathForValidation(path);
+        this.detailsViewActionMessageCreator.addPathForValidation(path);
     };
 
     public clearPathSnippetData = (): void => {
-        this.actionMessageCreator.clearPathSnippetData();
+        this.detailsViewActionMessageCreator.clearPathSnippetData();
     };
 
     public passUnmarkedInstances(test: VisualizationType, step: string): void {
-        this.actionMessageCreator.passUnmarkedInstances(test, step);
+        this.detailsViewActionMessageCreator.passUnmarkedInstances(test, step);
     }
 
     public updateFocusedTarget(target: string[]): void {
-        this.actionMessageCreator.updateFocusedInstanceTarget(target);
+        this.detailsViewActionMessageCreator.updateFocusedInstanceTarget(target);
     }
 
     public createAssessmentInstanceTableItems(
@@ -134,8 +134,8 @@ export class AssessmentInstanceTableHandler {
                 selector={key}
                 status={instance.testStepResults[step].status}
                 originalStatus={instance.testStepResults[step].originalStatus}
-                onGroupChoiceChange={this.actionMessageCreator.changeManualTestStatus}
-                onUndoClicked={this.actionMessageCreator.undoManualTestStatusChange}
+                onGroupChoiceChange={this.detailsViewActionMessageCreator.changeManualTestStatus}
+                onUndoClicked={this.detailsViewActionMessageCreator.undoManualTestStatusChange}
             />
         );
     };
@@ -155,7 +155,7 @@ export class AssessmentInstanceTableHandler {
                 selector={key}
                 isVisualizationEnabled={instance.testStepResults[step].isVisualizationEnabled}
                 isVisible={instance.testStepResults[step].isVisible}
-                onSelected={this.actionMessageCreator.changeAssessmentVisualizationState}
+                onSelected={this.detailsViewActionMessageCreator.changeAssessmentVisualizationState}
             />
         );
     };
@@ -178,10 +178,10 @@ export class AssessmentInstanceTableHandler {
                 step={step}
                 id={instance.id}
                 currentInstance={currentInstance}
-                onRemove={this.actionMessageCreator.removeFailureInstance}
-                onEdit={this.actionMessageCreator.editFailureInstance}
-                onClearPathSnippetData={this.actionMessageCreator.clearPathSnippetData}
-                onAddPath={this.actionMessageCreator.addPathForValidation}
+                onRemove={this.detailsViewActionMessageCreator.removeFailureInstance}
+                onEdit={this.detailsViewActionMessageCreator.editFailureInstance}
+                onClearPathSnippetData={this.detailsViewActionMessageCreator.clearPathSnippetData}
+                onAddPath={this.detailsViewActionMessageCreator.addPathForValidation}
                 assessmentsProvider={this.assessmentsProvider}
                 featureFlagStoreData={featureFlagStoreData}
             />

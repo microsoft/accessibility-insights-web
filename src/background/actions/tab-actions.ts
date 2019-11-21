@@ -5,10 +5,10 @@ import { Action } from '../../common/flux/action';
 import { Tab } from '../../common/itab.d';
 
 export class TabActions {
-    public readonly tabUpdate = new Action<Tab>();
+    public readonly newTabCreated = new Action<Tab>();
     public readonly getCurrentState = new Action();
     public readonly injectedScripts = new Action();
     public readonly tabRemove = new Action();
-    public readonly tabChange = new Action<Tab>();
+    public readonly existingTabUpdated = new Action<Tab>();
     public readonly tabVisibilityChange = new Action<boolean>();
 }
