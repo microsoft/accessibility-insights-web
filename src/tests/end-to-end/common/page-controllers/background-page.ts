@@ -26,17 +26,13 @@ export class BackgroundPage extends Page {
         await this.waitForInitialization();
         await this.evaluate(enable => {
             window.insightsUserConfiguration.setHighContrastMode(enable);
-            return Promise.resolve();
         }, enableHighContrast);
     }
 
     public async setTelemetryState(enableTelemetry: boolean): Promise<void> {
         await this.waitForInitialization();
         await this.evaluate(enable => {
-            console.log('inside in-browser setTelemetryState');
             window.insightsUserConfiguration.setTelemetryState(enable);
-            console.log('finishing in-browser setTelemetryState');
-            return Promise.resolve();
         }, enableTelemetry);
     }
 
