@@ -1,12 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { generateUID } from 'common/uid-generator';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as Puppeteer from 'puppeteer';
 import * as util from 'util';
-import { generateUID } from '../../../common/uid-generator';
 import { Browser } from './browser';
-import { popupPageElementIdentifiers } from './element-identifiers/popup-page-element-identifiers';
 import { DEFAULT_BROWSER_LAUNCH_TIMEOUT_MS } from './timeouts';
 
 export const chromeLogsPath = path.join(__dirname, '../../../../test-results/e2e/chrome-logs/');
@@ -17,6 +16,7 @@ export function browserLogPath(browserInstanceId: string): string {
 
 export interface ExtensionOptions {
     suppressFirstTimeDialog: boolean;
+    enableHighContrast?: boolean;
 }
 
 export async function launchBrowser(extensionOptions: ExtensionOptions): Promise<Browser> {
@@ -24,20 +24,15 @@ export async function launchBrowser(extensionOptions: ExtensionOptions): Promise
     const puppeteerBrowser = await launchNewBrowser(browserInstanceId);
     const browser = new Browser(browserInstanceId, puppeteerBrowser);
 
+    const backgroundPage = await browser.backgroundPage();
     if (extensionOptions.suppressFirstTimeDialog) {
-        await suppressFirstTimeUsagePrompt(browser);
+        await backgroundPage.setTelemetryState(false);
     }
+    if (extensionOptions.enableHighContrast) {
+        await backgroundPage.setHighContrastMode(true);
+    }
+
     return browser;
-}
-
-async function suppressFirstTimeUsagePrompt(browser: Browser): Promise<void> {
-    const targetPage = await browser.newTargetPage();
-    const popupPage = await browser.newPopupPage(targetPage);
-
-    await popupPage.clickSelector(popupPageElementIdentifiers.startUsingProductButton);
-
-    await targetPage.close();
-    await popupPage.close();
 }
 
 function fileExists(filePath: string): Promise<boolean> {
