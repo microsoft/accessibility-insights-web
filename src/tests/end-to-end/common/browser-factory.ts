@@ -16,7 +16,6 @@ export function browserLogPath(browserInstanceId: string): string {
 
 export interface ExtensionOptions {
     suppressFirstTimeDialog: boolean;
-    enableHighContrast?: boolean;
 }
 
 export async function launchBrowser(extensionOptions: ExtensionOptions): Promise<Browser> {
@@ -27,9 +26,6 @@ export async function launchBrowser(extensionOptions: ExtensionOptions): Promise
     const backgroundPage = await browser.backgroundPage();
     if (extensionOptions.suppressFirstTimeDialog) {
         await backgroundPage.setTelemetryState(false);
-    }
-    if (extensionOptions.enableHighContrast) {
-        await backgroundPage.setHighContrastMode(true);
     }
 
     return browser;

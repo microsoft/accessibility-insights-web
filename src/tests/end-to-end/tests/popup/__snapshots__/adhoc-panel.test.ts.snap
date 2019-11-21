@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Ad hoc tools should display the pinned target page visualizations when enabling the "Automated checks" toggle 1`] = `
+exports[`Popup -> Ad-hoc tools should display the pinned target page visualizations when enabling the "Automated checks" toggle 1`] = `
 <DocumentFragment>
   <div
     id="insights-shadow-container"
@@ -59,7 +59,7 @@ exports[`Ad hoc tools should display the pinned target page visualizations when 
 </DocumentFragment>
 `;
 
-exports[`Ad hoc tools should display the pinned target page visualizations when enabling the "Color" toggle 1`] = `
+exports[`Popup -> Ad-hoc tools should display the pinned target page visualizations when enabling the "Color" toggle 1`] = `
 <DocumentFragment>
   <div
     id="insights-shadow-container"
@@ -78,7 +78,7 @@ exports[`Ad hoc tools should display the pinned target page visualizations when 
 </DocumentFragment>
 `;
 
-exports[`Ad hoc tools should display the pinned target page visualizations when enabling the "Headings" toggle 1`] = `
+exports[`Popup -> Ad-hoc tools should display the pinned target page visualizations when enabling the "Headings" toggle 1`] = `
 <DocumentFragment>
   <div
     id="insights-shadow-container"
@@ -125,7 +125,7 @@ exports[`Ad hoc tools should display the pinned target page visualizations when 
 </DocumentFragment>
 `;
 
-exports[`Ad hoc tools should display the pinned target page visualizations when enabling the "Landmarks" toggle 1`] = `
+exports[`Popup -> Ad-hoc tools should display the pinned target page visualizations when enabling the "Landmarks" toggle 1`] = `
 <DocumentFragment>
   <div
     id="insights-shadow-container"

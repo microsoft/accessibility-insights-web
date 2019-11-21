@@ -95,6 +95,11 @@ export class Browser {
         }
     }
 
+    public async setHighContrastMode(highContrastMode: boolean): Promise<void> {
+        const backgroundPage = await this.backgroundPage();
+        await backgroundPage.setHighContrastMode(highContrastMode);
+    }
+
     private async getActivePageTabId(): Promise<number> {
         const backgroundPage = await this.backgroundPage();
         return await backgroundPage.evaluate(() => {
