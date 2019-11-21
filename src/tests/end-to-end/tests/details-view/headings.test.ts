@@ -28,6 +28,7 @@ describe('Details View -> Assessment -> Headings', () => {
 
     it.each([true, false])('should pass accessibility validation with highContrastMode=%s', async highContrastMode => {
         await browser.setHighContrastMode(highContrastMode);
+        await headingsPage.waitForHighContrastMode(highContrastMode);
 
         const results = await scanForAccessibilityIssues(headingsPage, detailsViewSelectors.mainContent);
         expect(results).toHaveLength(0);

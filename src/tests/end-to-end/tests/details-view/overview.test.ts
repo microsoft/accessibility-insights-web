@@ -27,6 +27,7 @@ describe('Details View -> Overview Page', () => {
 
     it.each([true, false])('should pass accessibility validation with highContrastMode=%s', async highContrastMode => {
         await browser.setHighContrastMode(highContrastMode);
+        await overviewPage.waitForHighContrastMode(highContrastMode);
 
         const results = await scanForAccessibilityIssues(overviewPage, overviewSelectors.overview);
         expect(results).toHaveLength(0);

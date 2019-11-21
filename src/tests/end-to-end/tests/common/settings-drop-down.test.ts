@@ -46,8 +46,9 @@ describe('Settings Dropdown', () => {
 
     it.each([true, false])('should pass accessibility validation in popup with highContrastMode=%s', async highContrastMode => {
         await browser.setHighContrastMode(highContrastMode);
-
         const popupPage = await browser.newPopupPage(targetPage);
+        await popupPage.waitForHighContrastMode(highContrastMode);
+
         await popupPage.clickSelector(CommonSelectors.settingsGearButton);
 
         const results = await scanForAccessibilityIssues(popupPage, CommonSelectors.settingsDropdownMenu);
@@ -56,8 +57,9 @@ describe('Settings Dropdown', () => {
 
     it.each([true, false])('should pass accessibility validation in details view with highContrastMode=%s', async highContrastMode => {
         await browser.setHighContrastMode(highContrastMode);
-
         const detailsViewPage = await browser.newDetailsViewPage(targetPage);
+        await detailsViewPage.waitForHighContrastMode(highContrastMode);
+
         await detailsViewPage.clickSelector(CommonSelectors.settingsGearButton);
 
         const results = await scanForAccessibilityIssues(detailsViewPage, CommonSelectors.settingsDropdownMenu);

@@ -3,6 +3,7 @@
 import { includes } from 'lodash';
 import * as Puppeteer from 'puppeteer';
 
+import { CommonSelectors } from '../element-identifiers/common-selectors';
 import { forceTestFailure } from '../force-test-failure';
 import { takeScreenshot } from '../generate-screenshot';
 import { DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS, DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from '../timeouts';
@@ -235,6 +236,14 @@ export class Page {
             });
             return await this.underlyingPage.evaluate(el => el.outerHTML, element);
         });
+    }
+
+    public async waitForHighContrastMode(expectedHighContrastMode: boolean): Promise<void> {
+        if (expectedHighContrastMode) {
+            await this.waitForSelector(CommonSelectors.highContrastThemeSelector);
+        } else {
+            await this.waitForSelectorToDisappear(CommonSelectors.highContrastThemeSelector);
+        }
     }
 
     private async screenshotOnError<T>(fn: () => Promise<T>): Promise<T> {

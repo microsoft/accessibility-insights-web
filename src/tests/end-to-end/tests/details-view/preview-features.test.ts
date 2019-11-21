@@ -36,6 +36,7 @@ describe('Details View -> Preview Features Panel', () => {
 
     it.each([true, false])('should pass accessibility validation with highContrastMode=%s', async highContrastMode => {
         await browser.setHighContrastMode(highContrastMode);
+        await detailsViewPage.waitForHighContrastMode(highContrastMode);
 
         const results = await scanForAccessibilityIssues(detailsViewPage, detailsViewSelectors.previewFeaturesPanel);
         expect(results).toHaveLength(0);

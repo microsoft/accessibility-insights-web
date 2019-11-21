@@ -49,6 +49,7 @@ describe('Popup -> Ad-hoc tools', () => {
 
     it.each([true, false])('should pass accessibility validation with highContrastMode=%s', async highContrastMode => {
         await browser.setHighContrastMode(highContrastMode);
+        await popupPage.waitForHighContrastMode(highContrastMode);
 
         await popupPage.gotoAdhocPanel();
 

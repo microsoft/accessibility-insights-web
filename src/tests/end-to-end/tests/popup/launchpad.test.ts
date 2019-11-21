@@ -35,6 +35,7 @@ describe('Popup -> Launch Pad', () => {
 
     it.each([true, false])('should pass accessibility validation with highContrastMode=%s', async highContrastMode => {
         await browser.setHighContrastMode(highContrastMode);
+        await popupPage.waitForHighContrastMode(highContrastMode);
 
         const results = await scanForAccessibilityIssues(popupPage, '*');
         expect(results).toHaveLength(0);
