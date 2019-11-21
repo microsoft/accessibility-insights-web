@@ -31,14 +31,14 @@ describe('tabstop tests', () => {
 
         await targetPage.bringToFront();
 
-        await targetPage.keyPress('Tab');
-        await targetPage.keyPress('Tab');
-        await targetPage.keyPress('Tab');
-
         const shadowRoot = await targetPage.getShadowRoot();
         await targetPage.waitForDescendentSelector(shadowRoot, TargetPageInjectedComponentSelectors.tabStopVisulizationStart, {
             visible: true,
         });
+
+        await targetPage.keyPress('Tab');
+        await targetPage.keyPress('Tab');
+        await targetPage.keyPress('Tab');
 
         await validateTabStopVisualizationOnTargetPage(shadowRoot);
     });
