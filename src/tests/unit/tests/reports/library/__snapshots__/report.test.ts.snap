@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Report returns HTML 1`] = `"<div>Report coming soon!</div>"`;
