@@ -8,7 +8,7 @@ import { IssueFilingServicePropertiesMap, UserConfigurationStoreData } from 'com
 import { IssueFilingControllerImpl } from 'issue-filing/common/issue-filing-controller-impl';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
-import { Mock, Times } from 'typemoq';
+import { Mock } from 'typemoq';
 
 describe('IssueFilingControllerImpl', () => {
     it('fileIssue', async () => {
