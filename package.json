@@ -70,7 +70,7 @@
         "@types/ua-parser-js": "^0.7.33",
         "@types/uuid": "^3.4.6",
         "case-sensitive-paths-webpack-plugin": "^2.2.0",
-        "core-js-bundle": "^3.4.1",
+        "core-js-bundle": "^3.4.2",
         "cross-env": "^6.0.3",
         "css-loader": "^3.2.0",
         "electron": "7.0.1",
