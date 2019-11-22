@@ -5,7 +5,6 @@ import { EnvironmentInfo } from 'common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { ReactFCWithDisplayName } from 'common/react/named-fc';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
-import { ScanResults } from 'scanner/iruleresults';
 
 import { CardsViewModel } from '../../../common/types/store-data/card-view-model';
 import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
