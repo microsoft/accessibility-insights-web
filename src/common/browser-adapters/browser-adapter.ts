@@ -10,7 +10,6 @@ export interface BrowserAdapter {
     addListenerToWebNavigationUpdated(callback: (details: chrome.webNavigation.WebNavigationFramedCallbackDetails) => void): void;
     addListenerOnWindowsFocusChanged(callback: (windowId: number) => void): void;
     tabsQuery(query: chrome.tabs.QueryInfo, callback: (result: chrome.tabs.Tab[]) => void): void;
-    createTab(url: string, callback?: (tab: chrome.tabs.Tab) => void): void;
     createTabP(url: string): Promise<Tabs.Tab>;
     createTabInNewWindow(url: string, callback?: (tab: chrome.tabs.Tab) => void): void;
     createInactiveTab(url: string, callback: (tab: chrome.tabs.Tab) => void): void;
