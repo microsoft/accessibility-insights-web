@@ -6,9 +6,9 @@ import { ReportHtmlGenerator } from "reports/report-html-generator";
 describe('ReportHtmlGeneratorInitializer', () => {
 
     it('returns a valid generator', () => {
-        const initalizer = reportHtmlGeneratorInitializer();
+        const generator = reportHtmlGeneratorInitializer();
 
-        expect(initalizer).toBeInstanceOf(ReportHtmlGenerator);
+        expect(generator).toBeInstanceOf(ReportHtmlGenerator);
     })
 
 });
