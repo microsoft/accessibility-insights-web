@@ -20,6 +20,6 @@ export const createFileIssueHandler = <Settings>(
         const serviceConfig = getSettings(servicePropertiesMap);
 
         const url = getUrl(serviceConfig, issueData, environmentInfo);
-        await browserAdapter.createTabP(url);
+        await browserAdapter.createActiveTab(url);
     };
 };

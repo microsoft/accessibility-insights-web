@@ -17,7 +17,7 @@ describe('ShortcutsPageController', () => {
 
     it('opens the shortcuts tab', async () => {
         browserAdapterMock
-            .setup(adapter => adapter.createTabP(ShortcutsPageController.configureCommandTabUrl))
+            .setup(adapter => adapter.createActiveTab(ShortcutsPageController.configureCommandTabUrl))
             .returns(() => Promise.resolve({} as Tabs.Tab));
 
         await expect(testSubject.openShortcutsTab()).resolves.toBe(undefined);
@@ -27,7 +27,7 @@ describe('ShortcutsPageController', () => {
         const errorMessage = 'dummy error';
 
         browserAdapterMock
-            .setup(adapter => adapter.createTabP(ShortcutsPageController.configureCommandTabUrl))
+            .setup(adapter => adapter.createActiveTab(ShortcutsPageController.configureCommandTabUrl))
             .returns(() => Promise.reject(errorMessage));
 
         await expect(testSubject.openShortcutsTab()).rejects.toEqual(errorMessage);

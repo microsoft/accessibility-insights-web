@@ -22,7 +22,9 @@ export const FileUrlUnsupportedMessagePanel = NamedFC<
     const { browserAdapter } = deps;
 
     const openExtensionPage = async () => {
-        await browserAdapter.createTabP(browserAdapter.getManageExtensionUrl());
+        await browserAdapter.createActiveTab(
+            browserAdapter.getManageExtensionUrl(),
+        );
     };
 
     return (

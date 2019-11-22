@@ -65,7 +65,7 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         return browser.tabs.insertCSS(tabId, details);
     }
 
-    public createTabP(url: string): Promise<Tabs.Tab> {
+    public createActiveTab(url: string): Promise<Tabs.Tab> {
         return browser.tabs.create({ url, active: true, pinned: false });
     }
 

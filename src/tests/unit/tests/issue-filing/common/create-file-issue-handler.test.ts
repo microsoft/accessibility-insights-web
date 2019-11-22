@@ -41,7 +41,7 @@ describe('createFileIssueHandler', () => {
     });
 
     it('properly files an issue', async () => {
-        browserAdapterMock.setup(adapter => adapter.createTabP(urlStub)).returns(() => Promise.resolve({} as Tabs.Tab));
+        browserAdapterMock.setup(adapter => adapter.createActiveTab(urlStub)).returns(() => Promise.resolve({} as Tabs.Tab));
 
         const testSubject = createFileIssueHandler(urlProviderMock.object, settingsGetterMock.object);
 
@@ -51,7 +51,7 @@ describe('createFileIssueHandler', () => {
     it('properly surfaces errors', async () => {
         const errorMessage = 'dummy error';
 
-        browserAdapterMock.setup(adapter => adapter.createTabP(urlStub)).returns(() => Promise.reject(errorMessage));
+        browserAdapterMock.setup(adapter => adapter.createActiveTab(urlStub)).returns(() => Promise.reject(errorMessage));
 
         const testSubject = createFileIssueHandler(urlProviderMock.object, settingsGetterMock.object);
 

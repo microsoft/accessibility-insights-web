@@ -8,6 +8,6 @@ export class ShortcutsPageController {
     constructor(private readonly browserAdapter: BrowserAdapter) {}
 
     public async openShortcutsTab(): Promise<void> {
-        await this.browserAdapter.createTabP(ShortcutsPageController.configureCommandTabUrl);
+        await this.browserAdapter.createActiveTab(ShortcutsPageController.configureCommandTabUrl);
     }
 }
