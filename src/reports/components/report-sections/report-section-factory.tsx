@@ -23,7 +23,6 @@ export type SectionProps = {
     description: string;
     scanDate: Date;
     environmentInfo: EnvironmentInfo;
-    scanResult: ScanResults;
     toUtcString: (date: Date) => string;
     getCollapsibleScript: () => string;
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;

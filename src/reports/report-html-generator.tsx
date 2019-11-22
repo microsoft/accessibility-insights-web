@@ -8,7 +8,6 @@ import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
-import { ScanResults } from 'scanner/iruleresults';
 
 import { ReportHead } from './components/report-head';
 import { ReportBody, ReportBodyProps } from './components/report-sections/report-body';
@@ -21,21 +20,14 @@ export class ReportHtmlGenerator {
         private readonly sectionFactory: ReportSectionFactory,
         private readonly reactStaticRenderer: ReactStaticRenderer,
         private readonly environmentInfo: EnvironmentInfo,
-        private readonly getCollpasibleScript: () => string,
+        private readonly getCollapsibleScript: () => string,
         private readonly utcDateConverter: (scanDate: Date) => string,
         private readonly getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
         private readonly fixInstructionProcessor: FixInstructionProcessor,
         private readonly getPropertyConfiguration: (id: string) => Readonly<PropertyConfiguration>,
     ) {}
 
-    public generateHtml(
-        scanResult: ScanResults,
-        scanDate: Date,
-        pageTitle: string,
-        pageUrl: string,
-        description: string,
-        cardsViewData: CardsViewModel,
-    ): string {
+    public generateHtml(scanDate: Date, pageTitle: string, pageUrl: string, description: string, cardsViewData: CardsViewModel): string {
         const headElement: JSX.Element = <ReportHead />;
         const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(headElement);
 
@@ -44,7 +36,6 @@ export class ReportHtmlGenerator {
             pageUrl,
             description,
             scanDate,
-            scanResult,
             deps: {
                 fixInstructionProcessor: this.fixInstructionProcessor,
                 collapsibleControl: ReportCollapsibleContainerControl,
@@ -56,7 +47,7 @@ export class ReportHtmlGenerator {
             cardsViewData: cardsViewData,
             environmentInfo: this.environmentInfo,
             toUtcString: this.utcDateConverter,
-            getCollapsibleScript: this.getCollpasibleScript,
+            getCollapsibleScript: this.getCollapsibleScript,
             getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,
             fixInstructionProcessor: this.fixInstructionProcessor,
         } as SectionProps;
