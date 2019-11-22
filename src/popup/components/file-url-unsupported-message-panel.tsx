@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { NewTabLink } from 'common/components/new-tab-link';
+import { DisplayableStrings } from 'common/constants/displayable-strings';
+import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
-
-import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
-import { NewTabLink } from '../../common/components/new-tab-link';
-import { DisplayableStrings } from '../../common/constants/displayable-strings';
-import { NamedFC } from '../../common/react/named-fc';
 
 export type FileUrlUnsupportedMessagePanelDeps = {
     browserAdapter: BrowserAdapter;
 };
+
 export type FileUrlUnsupportedMessagePanelProps = {
     deps: FileUrlUnsupportedMessagePanelDeps;
     header: JSX.Element;
@@ -21,8 +21,8 @@ export const FileUrlUnsupportedMessagePanel = NamedFC<
 >('FileUrlUnsupportedMessagePanel', ({ deps, header, title }) => {
     const { browserAdapter } = deps;
 
-    const openExtensionPage = () => {
-        browserAdapter.createTab(browserAdapter.getManageExtensionUrl());
+    const openExtensionPage = async () => {
+        await browserAdapter.createTabP(browserAdapter.getManageExtensionUrl());
     };
 
     return (
