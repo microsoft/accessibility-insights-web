@@ -4,5 +4,3 @@
 export interface Report {
     asHTML(): string;
 }
-
-

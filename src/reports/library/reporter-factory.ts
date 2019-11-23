@@ -25,7 +25,6 @@ const browserSpec = 'PLACEHOLDER_FOR_BROWSER_SPEC';
 const axeVersion = 'PLACEHOLDER_FOR_AXE_VERSION';
 
 const reportHtmlGeneratorFactory = () => {
-
     initializeFabricIcons();
 
     const environmentInfoProvider = new EnvironmentInfoProvider(browserVersion, browserSpec, axeVersion);
@@ -47,7 +46,6 @@ const reportHtmlGeneratorFactory = () => {
 };
 
 const resultDecoratorFactory = () => {
-
     const messageDecorator = new MessageDecorator(configuration, new CheckMessageTransformer());
     const documentUtils: DocumentUtils = new DocumentUtils(document);
     const helpUrlGetter = new HelpUrlGetter(configuration);
@@ -58,6 +56,7 @@ const resultDecoratorFactory = () => {
     return resultDecorator;
 };
 
-const axeResultsReportGenerator = (results: axe.AxeResults) => new AxeResultReport(results, reportHtmlGeneratorFactory(), resultDecoratorFactory());
+const axeResultsReportGenerator = (results: axe.AxeResults) =>
+    new AxeResultReport(results, reportHtmlGeneratorFactory(), resultDecoratorFactory());
 
 export const reporterFactory = () => new Reporter(axeResultsReportGenerator);
