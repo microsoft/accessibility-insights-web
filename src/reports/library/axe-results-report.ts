@@ -14,6 +14,11 @@ export class AxeResultReport implements Report {
     ) {}
 
     public asHTML(): string {
-        return '<div>Report coming soon!</div>';
+        const scanResults = this.resultDecorator.decorateResults(this.results);
+
+        const scanDate = new Date(this.results.timestamp);
+        const html = this.reportHtmlGenerator.generateHtml(scanResults, scanDate, 'PAGE TITLE', this.results.url, 'DESCRIPTION', null);
+
+        return html;
     }
 }

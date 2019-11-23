@@ -23,6 +23,7 @@ import { FixInstructionProcessor } from '../../injected/fix-instruction-processo
 const browserVersion = 'PLACEHOLDER_FOR_BROWSER_VERSION';
 const browserSpec = 'PLACEHOLDER_FOR_BROWSER_SPEC';
 const axeVersion = 'PLACEHOLDER_FOR_AXE_VERSION';
+const targetPageTitle = 'PLACEHOLDER_FOR_TARGET_PAGE_TITLE';
 
 const reportHtmlGeneratorFactory = () => {
     initializeFabricIcons();
@@ -46,10 +47,12 @@ const reportHtmlGeneratorFactory = () => {
 };
 
 const resultDecoratorFactory = () => {
+    const titleProvider = {
+        title: () => targetPageTitle,
+    } as DocumentUtils;
     const messageDecorator = new MessageDecorator(configuration, new CheckMessageTransformer());
-    const documentUtils: DocumentUtils = new DocumentUtils(document);
     const helpUrlGetter = new HelpUrlGetter(configuration);
-    const resultDecorator = new ResultDecorator(documentUtils, messageDecorator, (ruleId, axeHelpUrl) =>
+    const resultDecorator = new ResultDecorator(titleProvider, messageDecorator, (ruleId, axeHelpUrl) =>
         helpUrlGetter.getHelpUrl(ruleId, axeHelpUrl),
     );
 
