@@ -1,7 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import axe from 'axe-core';
 import { AutomatedChecksReportSectionFactory } from 'reports/components/report-sections/automated-checks-report-section-factory';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
+import { AxeResultReport } from 'reports/library/axe-results-report';
 import { Reporter } from 'reports/library/reporter';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
@@ -17,12 +19,10 @@ import { EnvironmentInfoProvider } from '../../common/environment-info-provider'
 import { initializeFabricIcons } from '../../common/fabric-icons';
 import { GetGuidanceTagsFromGuidanceLinks } from '../../common/get-guidance-tags-from-guidance-links';
 import { FixInstructionProcessor } from '../../injected/fix-instruction-processor';
-import axe = require('axe-core');
-import { AxeResultReport } from 'reports/library/axe-results-report';
 
-const browserVersion = "PLACEHOLDER_FOR_BROWSER_VERSION";
-const browserSpec = "PLACEHOLDER_FOR_BROWSER_SPEC";
-const axeVersion = "PLACEHOLDER_FOR_AXE_VERSION";
+const browserVersion = 'PLACEHOLDER_FOR_BROWSER_VERSION';
+const browserSpec = 'PLACEHOLDER_FOR_BROWSER_SPEC';
+const axeVersion = 'PLACEHOLDER_FOR_AXE_VERSION';
 
 const reportHtmlGeneratorFactory = () => {
 
