@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import axe from 'axe-core';
+import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { AxeResultReport } from 'reports/library/axe-results-report';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
+import { ScanResults } from 'scanner/iruleresults';
 import { ResultDecorator } from 'scanner/result-decorator';
 import { Mock } from 'typemoq';
-import { ScanResults } from 'scanner/iruleresults';
-import { CardsViewModel } from 'common/types/store-data/card-view-model';
 
 describe('AxeResultReport', () => {
     const expectedHTML = '<div>The Report!</div>';
