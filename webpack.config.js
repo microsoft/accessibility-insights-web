@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 const path = require('path');
 const webpack = require('webpack');
+const nodeExternals = require('webpack-node-externals');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
@@ -168,5 +169,28 @@ const prodConfig = {
     },
 };
 
+const packageConfig = {
+    entry: {
+        reporter: [path.resolve(__dirname, 'src/reports/library/reporter-factory.ts')],
+    },
+    module: {
+        rules: [...commonConfig.module.rules, getCSSModulesLoadersConfig(false)],
+    },
+    externals: [nodeExternals()],
+    plugins: commonPlugins,
+    resolve: commonConfig.resolve,
+    name: 'package',
+    mode: 'development',
+    devtool: false,
+    output: {
+        path: path.join(__dirname, 'package/bundle'),
+        filename: '[name].bundle.js',
+        pathinfo: false,
+        library: '[name]',
+        libraryTarget: 'umd',
+    },
+    target: 'node',
+};
+
 // Use "webpack --config-name dev", "webpack --config-name prod" or "webpack --config-name electron" to use just one or the other
-module.exports = [devConfig, prodConfig, electronConfig];
+module.exports = [devConfig, prodConfig, electronConfig, packageConfig];

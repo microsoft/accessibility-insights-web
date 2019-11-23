@@ -104,11 +104,27 @@ module.exports = function(grunt) {
                     },
                 ],
             },
+            package: {
+                files: [
+                    {
+                        cwd: '.',
+                        src: './package/bundle/reporter.bundle.js',
+                        dest: path.join('package', 'drop', 'index.js'),
+                    },
+                    {
+                        cwd: './src/reports/library/root',
+                        src: '*',
+                        dest: path.join('package', 'drop'),
+                        expand: true,
+                    },
+                ],
+            },
         },
         exec: {
             'webpack-dev': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name dev`,
             'webpack-prod': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name prod`,
             'webpack-electron': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name electron`,
+            'webpack-package': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name package`,
             'generate-scss-typings': `"${path.resolve('./node_modules/.bin/tsm')}" src`,
         },
         sass: {
@@ -125,6 +141,15 @@ module.exports = function(grunt) {
                         ext: '.css',
                     },
                 ],
+            },
+        },
+        'embed-styles-ver2': {
+            package: {
+                cwd: path.resolve('package', 'bundle'),
+                src: '**/*bundle.js',
+                dest: path.resolve('package', 'bundle'),
+                expand: true,
+                cssPath: path.resolve('extension', 'devBundle'),
             },
         },
         watch: {
@@ -184,6 +209,7 @@ module.exports = function(grunt) {
             },
             clean: {
                 [targetName]: dropPath,
+                package: path.join('package', 'drop'),
                 scss: path.join('src', '**/*.scss.d.ts'),
             },
             'embed-styles': {
@@ -238,6 +264,7 @@ module.exports = function(grunt) {
     grunt.registerMultiTask('embed-styles', function() {
         const targetName = this.target;
         const { bundleFolder } = targets[targetName];
+        const cssPath = path.resolve(extensionPath, bundleFolder);
         this.files.forEach(file => {
             const {
                 src: [src],
@@ -248,8 +275,29 @@ module.exports = function(grunt) {
             const input = grunt.file.read(src, fileOptions);
             const rex = /\<\<CSS:([a-zA-Z\-\.\/]+)\>\>/g;
             const output = input.replace(rex, (_, cssName) => {
-                const bundledFolderPath = path.resolve(extensionPath, bundleFolder);
-                const cssFile = path.resolve(bundledFolderPath, cssName);
+                const cssFile = path.resolve(cssPath, cssName);
+                grunt.log.writeln(`    embedding from ${cssFile}`);
+                const styles = grunt.file.read(cssFile, fileOptions);
+                return styles.replace(/\n/g, '\\\n');
+            });
+            grunt.file.write(dest, output, fileOptions);
+            grunt.log.writeln(`    written to ${dest}`);
+        });
+    });
+
+    grunt.registerMultiTask('embed-styles-ver2', function() {
+        const { cssPath } = this.data;
+        this.files.forEach(file => {
+            const {
+                src: [src],
+                dest,
+            } = file;
+            grunt.log.writeln(`embedding style in ${src}`);
+            const fileOptions = { options: { encoding: 'utf8' } };
+            const input = grunt.file.read(src, fileOptions);
+            const rex = /\<\<CSS:([a-zA-Z\-\.\/]+)\>\>/g;
+            const output = input.replace(rex, (_, cssName) => {
+                const cssFile = path.resolve(cssPath, cssName);
                 grunt.log.writeln(`    embedding from ${cssFile}`);
                 const styles = grunt.file.read(cssFile, fileOptions);
                 return styles.replace(/\n/g, '\\\n');
@@ -308,6 +356,17 @@ module.exports = function(grunt) {
         grunt.task.run('configure:' + targetName);
         grunt.task.run('manifest:' + targetName);
         console.log(`${targetName} extension is in ${dropExtensionPath}`);
+    });
+
+    grunt.registerTask('package', function() {
+        const mustExistPath = path.join('package', 'bundle', 'reporter.bundle.js');
+
+        mustExist(mustExistPath, 'Have you run webpack?');
+
+        grunt.task.run('embed-styles-ver2:package');
+        grunt.task.run('clean:package');
+        grunt.task.run('copy:package');
+        console.log(`package is in ${path.join('package', 'drop')}`);
     });
 
     grunt.registerTask('release-drops', function() {
