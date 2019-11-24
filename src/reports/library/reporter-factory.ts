@@ -19,13 +19,12 @@ import { EnvironmentInfoProvider } from '../../common/environment-info-provider'
 import { initializeFabricIcons } from '../../common/fabric-icons';
 import { GetGuidanceTagsFromGuidanceLinks } from '../../common/get-guidance-tags-from-guidance-links';
 import { FixInstructionProcessor } from '../../injected/fix-instruction-processor';
+import AccessibilityInsightsReport from './accessibilityInsightsReport';
 
-const browserVersion = 'PLACEHOLDER_FOR_BROWSER_VERSION';
-const browserSpec = 'PLACEHOLDER_FOR_BROWSER_SPEC';
-const axeVersion = 'PLACEHOLDER_FOR_AXE_VERSION';
-const targetPageTitle = 'PLACEHOLDER_FOR_TARGET_PAGE_TITLE';
+const axeResultsReportGenerator = (results: axe.AxeResults, options: AccessibilityInsightsReport.ReportOptions) => {
+    const { browserVersion, browserSpec, pageTitle: targetPageTitle } = options;
+    const axeVersion = results.testEngine.version;
 
-const reportHtmlGeneratorFactory = () => {
     initializeFabricIcons();
 
     const environmentInfoProvider = new EnvironmentInfoProvider(browserVersion, browserSpec, axeVersion);
@@ -43,10 +42,6 @@ const reportHtmlGeneratorFactory = () => {
         getPropertyConfiguration,
     );
 
-    return reportHtmlGenerator;
-};
-
-const resultDecoratorFactory = () => {
     const titleProvider = {
         title: () => targetPageTitle,
     } as DocumentUtils;
@@ -56,10 +51,7 @@ const resultDecoratorFactory = () => {
         helpUrlGetter.getHelpUrl(ruleId, axeHelpUrl),
     );
 
-    return resultDecorator;
+    return new AxeResultReport(results, options, reportHtmlGenerator, resultDecorator);
 };
 
-const axeResultsReportGenerator = (results: axe.AxeResults) =>
-    new AxeResultReport(results, reportHtmlGeneratorFactory(), resultDecoratorFactory());
-
-export const reporterFactory = () => new Reporter(axeResultsReportGenerator);
+export const reporterFactory: AccessibilityInsightsReport.ReporterFactory = () => new Reporter(axeResultsReportGenerator);

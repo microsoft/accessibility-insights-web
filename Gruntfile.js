@@ -112,6 +112,11 @@ module.exports = function(grunt) {
                         dest: path.join('package', 'drop', 'index.js'),
                     },
                     {
+                        cwd: '.',
+                        src: './src/reports/library/accessibilityInsightsReport.d.ts',
+                        dest: path.join('package', 'drop', 'index.d.ts'),
+                    },
+                    {
                         cwd: './src/reports/library/root',
                         src: '*',
                         dest: path.join('package', 'drop'),

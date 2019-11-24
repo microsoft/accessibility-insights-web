@@ -13,7 +13,13 @@ describe('ReporterFactory', () => {
 
     it('works end-to-end with results object', () => {
         const reporter = reporterFactory();
-        const html = reporter.fromAxeResult(scan).asHTML();
+        const options = {
+            browserVersion: 'BROWSER_VERSION',
+            browserSpec: 'BROWSER_SPEC',
+            pageTitle: 'PAGE_TITLE',
+            description: 'DESCRIPTION',
+        };
+        const html = reporter.fromAxeResult(scan, options).asHTML();
         expect(html).toMatchSnapshot();
     });
 });
