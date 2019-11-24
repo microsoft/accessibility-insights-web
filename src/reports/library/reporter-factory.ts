@@ -1,9 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import axe from 'axe-core';
+import { getCardViewData } from 'common/rule-based-view-model-provider';
+import { generateUID } from 'common/uid-generator';
+import { convertScanResultsToUnifiedResults } from 'injected/adapters/scan-results-to-unified-results';
+import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results-to-unified-rules';
 import { AutomatedChecksReportSectionFactory } from 'reports/components/report-sections/automated-checks-report-section-factory';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
-import { AxeResultReport } from 'reports/library/axe-results-report';
+import { AxeResultReport, AxeResultReportDeps } from 'reports/library/axe-results-report';
 import { Reporter } from 'reports/library/reporter';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
@@ -51,7 +55,16 @@ const axeResultsReportGenerator = (results: axe.AxeResults, options: Accessibili
         helpUrlGetter.getHelpUrl(ruleId, axeHelpUrl),
     );
 
-    return new AxeResultReport(results, options, reportHtmlGenerator, resultDecorator);
+    const deps: AxeResultReportDeps = {
+        reportHtmlGenerator,
+        resultDecorator,
+        getRules: convertScanResultsToUnifiedRules,
+        getResults: convertScanResultsToUnifiedResults,
+        getCards: getCardViewData,
+        getUUID: generateUID,
+    };
+
+    return new AxeResultReport(results, options, deps);
 };
 
 export const reporterFactory: AccessibilityInsightsReport.ReporterFactory = () => new Reporter(axeResultsReportGenerator);

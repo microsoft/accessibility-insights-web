@@ -2,30 +2,56 @@
 // Licensed under the MIT License.
 
 import axe from 'axe-core';
+import { CardSelectionViewData } from 'common/get-card-selection-view-data';
+import { getCardViewData } from 'common/rule-based-view-model-provider';
+import { UUIDGenerator } from 'common/uid-generator';
+import { convertScanResultsToUnifiedResults } from 'injected/adapters/scan-results-to-unified-results';
+import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results-to-unified-rules';
 import { ResultDecorator } from 'scanner/result-decorator';
 import { ReportHtmlGenerator } from '../report-html-generator';
 import AccessibilityInsightsReport from './accessibilityInsightsReport';
 
+export type AxeResultReportDeps = {
+    reportHtmlGenerator: ReportHtmlGenerator;
+    resultDecorator: ResultDecorator;
+    getRules: typeof convertScanResultsToUnifiedRules;
+    getResults: typeof convertScanResultsToUnifiedResults;
+    getCards: typeof getCardViewData;
+    getUUID: UUIDGenerator;
+};
+
 export class AxeResultReport implements AccessibilityInsightsReport.Report {
     constructor(
-        private readonly results: axe.AxeResults,
+        private readonly axeResults: axe.AxeResults,
         private readonly options: AccessibilityInsightsReport.ReportOptions,
-        private readonly reportHtmlGenerator: ReportHtmlGenerator,
-        private readonly resultDecorator: ResultDecorator,
+        private readonly deps: AxeResultReportDeps,
     ) {}
 
     public asHTML(): string {
-        const scanDate = new Date(this.results.timestamp);
+        const { resultDecorator, getRules, getResults, getCards, getUUID, reportHtmlGenerator } = this.deps;
 
-        const scanResults = this.resultDecorator.decorateResults(this.results);
+        const scanDate = new Date(this.axeResults.timestamp);
 
-        const cardsViewModel = null; // working on getting this!
+        const scanResults = resultDecorator.decorateResults(this.axeResults);
 
-        const html = this.reportHtmlGenerator.generateHtml(
+        const rules = getRules(scanResults);
+
+        const results = getResults(scanResults, getUUID);
+
+        const cardSelectionViewData: CardSelectionViewData = {
+            highlightedResultUids: [],
+            selectedResultUids: [],
+            expandedRuleIds: [],
+            visualHelperEnabled: false,
+        };
+
+        const cardsViewModel = getCards(rules, results, cardSelectionViewData);
+
+        const html = reportHtmlGenerator.generateHtml(
             scanResults,
             scanDate,
             this.options.pageTitle,
-            this.results.url,
+            this.axeResults.url,
             this.options.description,
             cardsViewModel,
         );

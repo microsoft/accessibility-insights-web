@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`AxeResultReport returns HTML 1`] = `"<div>The Report!</div>"`;
