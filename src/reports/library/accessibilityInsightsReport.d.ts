@@ -1,3 +1,5 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 declare namespace AccessibilityInsightsReport {
     export type Report = {
         asHTML(): string;

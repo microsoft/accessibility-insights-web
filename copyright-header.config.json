@@ -13,6 +13,7 @@
         "./drop",
         "./extension",
         "./node_modules",
+        "./package",
         "./src/assessments/color/test-steps/flashing-text-example.html",
         "./test-results",
         ".gitattribute",
