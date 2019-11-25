@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ContentPage } from 'tests/end-to-end/common/page-controllers/content-page';
+import { ContentPage, contentPageRelativeUrl } from 'tests/end-to-end/common/page-controllers/content-page';
 import { contentPages } from '../../../../content';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
@@ -12,9 +12,11 @@ describe('Guidance Content pages', () => {
     const contentPaths = contentPages.allPaths();
 
     let browser: Browser;
+    let contentPage: ContentPage;
 
     beforeAll(async () => {
         browser = await launchBrowser({ suppressFirstTimeDialog: true });
+        contentPage = await browser.newContentPage(contentPaths[0]);
     });
 
     afterAll(async () => {
@@ -25,14 +27,11 @@ describe('Guidance Content pages', () => {
     });
 
     describe.each(contentPaths)('%s', path => {
-        let contentPage: ContentPage;
-
         beforeAll(async () => {
-            contentPage = await browser.newContentPage(path);
-        });
-
-        afterAll(async () => {
-            await contentPage.close();
+            // It's important that we re-use the same tab/page for each test case;
+            // spawning a new tab/page per case hits a resource leak in the linux/docker
+            // test environments that causes spurious test failures in 90% of runs.
+            await contentPage.gotoContentPath(path);
         });
 
         it('matches the snapshot', async () => {
@@ -42,6 +41,7 @@ describe('Guidance Content pages', () => {
 
         it.each([true, false])('has no accessibility issues with highContrastMode=%s', async highContrastMode => {
             await browser.setHighContrastMode(highContrastMode);
+            await contentPage.bringToFront();
             await contentPage.waitForHighContrastMode(highContrastMode);
 
             const results = await scanForAccessibilityIssues(contentPage, '*');

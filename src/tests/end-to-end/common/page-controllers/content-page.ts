@@ -7,8 +7,15 @@ export class ContentPage extends Page {
     constructor(underlyingPage: Puppeteer.Page, options?: PageOptions) {
         super(underlyingPage, options);
     }
+
+    public async gotoContentPath(relativeContentPath: string): Promise<void> {
+        await this.goto(contentPageAnchorUrl(relativeContentPath));
+    }
 }
 
+export function contentPageAnchorUrl(contentPath: string): string {
+    return `#/content/${contentPath}`;
+}
 export function contentPageRelativeUrl(contentPath: string): string {
-    return `insights.html#/content/${contentPath}`;
+    return `insights.html${contentPageAnchorUrl(contentPath)}`;
 }
