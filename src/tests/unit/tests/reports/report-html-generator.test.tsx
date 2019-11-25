@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
 import { NullComponent } from 'common/components/null-component';
 import { DateProvider } from 'common/date-provider';
 import { EnvironmentInfo } from 'common/environment-info-provider';
@@ -8,13 +9,11 @@ import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
 import { ReportHead } from 'reports/components/report-head';
 import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
+import { ReportCollapsibleContainerControl } from 'reports/components/report-sections/report-collapsible-container';
 import { ReportSectionFactory, SectionDeps } from 'reports/components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
-import { ScanResults } from 'scanner/iruleresults';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
-import { noCardInteractionsSupported } from '../../../../common/components/cards/card-interaction-support';
-import { ReportCollapsibleContainerControl } from '../../../../reports/components/report-sections/report-collapsible-container';
 import { exampleUnifiedStatusResults } from '../common/components/cards/sample-view-model-data';
 
 describe('ReportHtmlGenerator', () => {
@@ -22,7 +21,6 @@ describe('ReportHtmlGenerator', () => {
         const browserSpec: string = 'browser-spect';
         const extensionVersion: string = 'extension-version';
         const axeCoreVersion: string = 'axe-version';
-        const scanResult: ScanResults = {} as any;
         const scanDate: Date = new Date(2018, 2, 12, 16, 24);
         const pageTitle: string = 'page-title';
         const pageUrl: string = 'https://page-url/';
@@ -58,7 +56,6 @@ describe('ReportHtmlGenerator', () => {
             pageUrl,
             description,
             scanDate,
-            scanResult,
             environmentInfo,
             toUtcString: getUTCStringFromDateStub,
             getCollapsibleScript: getScriptMock.object,
@@ -90,7 +87,7 @@ describe('ReportHtmlGenerator', () => {
             getPropertyConfigurationStub,
         );
 
-        const actual = testObject.generateHtml(scanResult, scanDate, pageTitle, pageUrl, description, {
+        const actual = testObject.generateHtml(scanDate, pageTitle, pageUrl, description, {
             cards: exampleUnifiedStatusResults,
             visualHelperEnabled: true,
             allCardsCollapsed: true,
