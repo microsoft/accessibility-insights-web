@@ -2,7 +2,8 @@
 // Licensed under the MIT License.
 import { Reporter } from 'reports/library/reporter';
 import { reporterFactory } from 'reports/library/reporter-factory';
-import { scan } from 'tests/unit/tests/reports/library/scans/scan';
+import { scanNoIssues } from 'tests/unit/tests/reports/library/scans/scan-no-issues';
+import { scanIssues } from 'tests/unit/tests/reports/library/scans/scan-issues';
 
 describe('ReporterFactory', () => {
     it('returns a valid reporter', () => {
@@ -11,15 +12,22 @@ describe('ReporterFactory', () => {
         expect(reporter).toBeInstanceOf(Reporter);
     });
 
-    it('works end-to-end with results object', () => {
+    const options = {
+        browserVersion: 'BROWSER_VERSION',
+        browserSpec: 'BROWSER_SPEC',
+        pageTitle: 'PAGE_TITLE',
+        description: 'DESCRIPTION',
+    };
+
+    it('works end-to-end with no issues scan', () => {
         const reporter = reporterFactory();
-        const options = {
-            browserVersion: 'BROWSER_VERSION',
-            browserSpec: 'BROWSER_SPEC',
-            pageTitle: 'PAGE_TITLE',
-            description: 'DESCRIPTION',
-        };
-        const html = reporter.fromAxeResult(scan, options).asHTML();
+        const html = reporter.fromAxeResult(scanNoIssues, options).asHTML();
+        expect(html).toMatchSnapshot();
+    });
+
+    it('works end-to-end with issues scan', () => {
+        const reporter = reporterFactory();
+        const html = reporter.fromAxeResult(scanIssues, options).asHTML();
         expect(html).toMatchSnapshot();
     });
 });
