@@ -57,6 +57,8 @@ describe('Settings Dropdown', () => {
 
     it.each([true, false])('should pass accessibility validation in details view with highContrastMode=%s', async highContrastMode => {
         await browser.setHighContrastMode(highContrastMode);
+        await browser.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
+
         const detailsViewPage = await browser.newDetailsViewPage(targetPage);
         await detailsViewPage.waitForHighContrastMode(highContrastMode);
 
