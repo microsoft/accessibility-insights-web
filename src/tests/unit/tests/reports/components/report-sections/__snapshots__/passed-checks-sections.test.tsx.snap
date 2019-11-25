@@ -3,7 +3,7 @@
 exports[`PassedChecksSection renders 1`] = `
 <CollapsibleResultSection
   badgeCount={3}
-  cardResults={
+  cardRuleResults={
     Array [
       Object {},
       Object {},

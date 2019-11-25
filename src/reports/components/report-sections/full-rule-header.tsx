@@ -19,12 +19,12 @@ export type FullRuleHeaderDeps = {
 
 export type FullRuleHeaderProps = {
     deps: FullRuleHeaderDeps;
-    cardResult: CardRuleResult;
+    cardRuleResult: CardRuleResult;
     outcomeType: InstanceOutcomeType;
 };
 
 export const FullRuleHeader = NamedFC<FullRuleHeaderProps>('FullRuleHeader', props => {
-    const { outcomeType, deps, cardResult } = props;
+    const { outcomeType, deps, cardRuleResult: cardResult } = props;
 
     const outcomeText = outcomeTypeSemantics[props.outcomeType].pastTense;
     const ariaDescribedBy = `${kebabCase(outcomeText)}-rule-${cardResult.id}-description`;

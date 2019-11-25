@@ -11,15 +11,15 @@ export type RulesOnlyDeps = FullRuleHeaderDeps;
 
 export type RulesOnlyProps = {
     deps: RulesOnlyDeps;
-    cardResults: CardRuleResult[];
+    cardRuleResults: CardRuleResult[];
     outcomeType: InstanceOutcomeType;
 };
 
-export const RulesOnly = NamedFC<RulesOnlyProps>('RulesOnly', ({ outcomeType, deps, cardResults }) => {
+export const RulesOnly = NamedFC<RulesOnlyProps>('RulesOnly', ({ outcomeType, deps, cardRuleResults: cardResults }) => {
     return (
         <div className="rule-details-group">
-            {cardResults.map(cardResult => (
-                <FullRuleHeader deps={deps} key={cardResult.id} cardResult={cardResult} outcomeType={outcomeType} />
+            {cardResults.map(cardRuleResult => (
+                <FullRuleHeader deps={deps} key={cardRuleResult.id} cardRuleResult={cardRuleResult} outcomeType={outcomeType} />
             ))}
         </div>
     );

@@ -28,7 +28,7 @@ describe('FullRuleHeader', () => {
     it.each(allInstanceOutcomeTypes)('renders, outcomeType = %s', outcomeType => {
         const props: FullRuleHeaderProps = {
             deps: depsStub,
-            cardResult: rule,
+            cardRuleResult: rule,
             outcomeType,
         };
 

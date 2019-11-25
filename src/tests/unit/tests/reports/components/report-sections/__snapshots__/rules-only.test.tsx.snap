@@ -5,7 +5,7 @@ exports[`RulesOnly renders 1`] = `
   className="rule-details-group"
 >
   <FullRuleHeader
-    cardResult={
+    cardRuleResult={
       Object {
         "id": "1",
       }
@@ -14,7 +14,7 @@ exports[`RulesOnly renders 1`] = `
     outcomeType="pass"
   />
   <FullRuleHeader
-    cardResult={
+    cardRuleResult={
       Object {
         "id": "2",
       }
@@ -23,7 +23,7 @@ exports[`RulesOnly renders 1`] = `
     outcomeType="pass"
   />
   <FullRuleHeader
-    cardResult={
+    cardRuleResult={
       Object {
         "id": "3",
       }

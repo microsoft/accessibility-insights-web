@@ -11,16 +11,16 @@ export type PassedChecksSectionDeps = CollapsibleResultSectionDeps;
 export type PassedChecksSectionProps = Pick<SectionProps, 'deps' | 'cardsViewData'>;
 
 export const PassedChecksSection = NamedFC<PassedChecksSectionProps>('PassedChecksSection', ({ deps, cardsViewData }) => {
-    const cardResults = cardsViewData.cards.pass;
+    const cardRuleResults = cardsViewData.cards.pass;
 
     return (
         <CollapsibleResultSection
             deps={deps}
             title="Passed checks"
-            cardResults={cardResults}
+            cardRuleResults={cardRuleResults}
             containerClassName="result-section"
             outcomeType="pass"
-            badgeCount={cardResults.length}
+            badgeCount={cardRuleResults.length}
             containerId="passed-checks-section"
         />
     );

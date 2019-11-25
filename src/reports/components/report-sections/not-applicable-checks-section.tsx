@@ -13,16 +13,16 @@ export type NotApplicableChecksSectionProps = Pick<SectionProps, 'deps' | 'cards
 export const NotApplicableChecksSection = NamedFC<NotApplicableChecksSectionProps>(
     'NotApplicableChecksSection',
     ({ deps, cardsViewData }) => {
-        const cardResults = cardsViewData.cards.inapplicable;
+        const cardRuleResults = cardsViewData.cards.inapplicable;
 
         return (
             <CollapsibleResultSection
                 deps={deps}
                 title="Not applicable checks"
-                cardResults={cardResults}
+                cardRuleResults={cardRuleResults}
                 containerClassName="result-section"
                 outcomeType="inapplicable"
-                badgeCount={cardResults.length}
+                badgeCount={cardRuleResults.length}
                 containerId="not-applicable-checks-section"
             />
         );
