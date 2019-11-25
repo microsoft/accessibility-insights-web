@@ -6,7 +6,7 @@ import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-te
 import { IssueFilingServicePropertiesMap } from 'common/types/store-data/user-configuration-store';
 import { createFileIssueHandler } from 'issue-filing/common/create-file-issue-handler';
 import { IssueFilingUrlProvider } from 'issue-filing/types/issue-filing-service';
-import { IMock, Mock, MockBehavior } from 'typemoq';
+import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 import { Tabs } from 'webextension-polyfill-ts';
 
 describe('createFileIssueHandler', () => {
@@ -41,11 +41,16 @@ describe('createFileIssueHandler', () => {
     });
 
     it('properly files an issue', async () => {
-        browserAdapterMock.setup(adapter => adapter.createActiveTab(urlStub)).returns(() => Promise.resolve({} as Tabs.Tab));
+        browserAdapterMock
+            .setup(adapter => adapter.createActiveTab(urlStub))
+            .returns(() => Promise.resolve({} as Tabs.Tab))
+            .verifiable(Times.once());
 
         const testSubject = createFileIssueHandler(urlProviderMock.object, settingsGetterMock.object);
 
         await expect(testSubject(browserAdapterMock.object, serviceMap, issueData, environmentInfoStub)).resolves.toBe(undefined);
+
+        browserAdapterMock.verifyAll();
     });
 
     it('properly surfaces errors', async () => {
