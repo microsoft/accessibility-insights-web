@@ -7,61 +7,37 @@ import { DetailsViewPage } from '../../common/page-controllers/details-view-page
 import { TargetPage } from '../../common/page-controllers/target-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
-describe('Overview Page', () => {
-    describe('Normal mode', () => {
-        let browser: Browser;
-        let targetPage: TargetPage;
-        let overviewPage: DetailsViewPage;
+describe('Details View -> Overview Page', () => {
+    let browser: Browser;
+    let targetPage: TargetPage;
+    let overviewPage: DetailsViewPage;
 
-        beforeAll(async () => {
-            browser = await launchBrowser({ suppressFirstTimeDialog: true });
-            targetPage = await browser.newTargetPage();
-            overviewPage = await openOverviewPage(browser, targetPage);
-        });
-
-        afterAll(async () => {
-            if (browser) {
-                await browser.close();
-                browser = undefined;
-            }
-        });
-
-        it('should pass accessibility validation', async () => {
-            const results = await scanForAccessibilityIssues(overviewPage, overviewSelectors.overview);
-            expect(results).toHaveLength(0);
-        });
+    beforeAll(async () => {
+        browser = await launchBrowser({ suppressFirstTimeDialog: true });
+        targetPage = await browser.newTargetPage();
+        overviewPage = await openOverviewPage(browser, targetPage);
     });
 
-    describe('High contrast mode', () => {
-        let browser: Browser;
-        let targetPage: TargetPage;
-        let overviewPage: DetailsViewPage;
-
-        beforeAll(async () => {
-            browser = await launchBrowser({ suppressFirstTimeDialog: true });
-            targetPage = await browser.newTargetPage();
-            overviewPage = await openOverviewPage(browser, targetPage);
-            await overviewPage.enableHighContrast();
-        });
-
-        afterAll(async () => {
-            if (browser) {
-                await browser.close();
-                browser = undefined;
-            }
-        });
-
-        it('should pass accessibility validation', async () => {
-            const results = await scanForAccessibilityIssues(overviewPage, overviewSelectors.overview);
-            expect(results).toHaveLength(0);
-        });
+    afterAll(async () => {
+        if (browser) {
+            await browser.close();
+            browser = undefined;
+        }
     });
 
-    async function openOverviewPage(browser: Browser, targetPage: TargetPage): Promise<DetailsViewPage> {
-        const detailsViewPage = await browser.newDetailsViewPage(targetPage);
-        await detailsViewPage.switchToAssessment();
-        await detailsViewPage.waitForSelector(overviewSelectors.overviewHeading);
+    it.each([true, false])('should pass accessibility validation with highContrastMode=%s', async highContrastMode => {
+        await browser.setHighContrastMode(highContrastMode);
+        await overviewPage.waitForHighContrastMode(highContrastMode);
 
-        return detailsViewPage;
-    }
+        const results = await scanForAccessibilityIssues(overviewPage, overviewSelectors.overview);
+        expect(results).toHaveLength(0);
+    });
 });
+
+async function openOverviewPage(browser: Browser, targetPage: TargetPage): Promise<DetailsViewPage> {
+    const detailsViewPage = await browser.newDetailsViewPage(targetPage);
+    await detailsViewPage.switchToAssessment();
+    await detailsViewPage.waitForSelector(overviewSelectors.overviewHeading);
+
+    return detailsViewPage;
+}

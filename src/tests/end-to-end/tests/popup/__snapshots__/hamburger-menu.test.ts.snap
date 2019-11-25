@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Hamburger menu Normal mode should have content matching snapshot 1`] = `
+exports[`Popup -> Hamburger menu should have content matching snapshot 1`] = `
 <DocumentFragment>
   <div
     class="ms-FocusZone css-000 ms-ContextualMenu is-open popup-menu root-000"
