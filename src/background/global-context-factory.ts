@@ -26,6 +26,7 @@ import { Interpreter } from './interpreter';
 import { LocalStorageData } from './storage-data';
 import { GlobalStoreHub } from './stores/global/global-store-hub';
 import { TelemetryEventHandler } from './telemetry/telemetry-event-handler';
+import { UserConfigurationController } from './user-configuration-controller';
 
 export class GlobalContextFactory {
     public static createContext(
@@ -59,6 +60,7 @@ export class GlobalContextFactory {
             globalStoreHub.featureFlagStore,
             interpreter,
         );
+        const userConfigurationController = new UserConfigurationController(interpreter);
 
         globalStoreHub.initialize();
 
@@ -119,6 +121,11 @@ export class GlobalContextFactory {
         );
         assessmentChangeHandler.initialize();
 
-        return new GlobalContext(interpreter, globalStoreHub, featureFlagsController);
+        return new GlobalContext(
+            interpreter,
+            globalStoreHub,
+            featureFlagsController,
+            userConfigurationController,
+        );
     }
 }

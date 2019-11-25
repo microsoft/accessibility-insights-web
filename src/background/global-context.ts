@@ -3,19 +3,13 @@
 import { FeatureFlagsController } from './feature-flags-controller';
 import { Interpreter } from './interpreter';
 import { GlobalStoreHub } from './stores/global/global-store-hub';
+import { UserConfigurationController } from './user-configuration-controller';
 
 export class GlobalContext {
-    public readonly interpreter: Interpreter;
-    public readonly featureFlagsController: FeatureFlagsController;
-    public readonly stores: GlobalStoreHub;
-
     constructor(
-        interpreter: Interpreter,
-        storeHub: GlobalStoreHub,
-        featureFlagsController: FeatureFlagsController,
-    ) {
-        this.interpreter = interpreter;
-        this.stores = storeHub;
-        this.featureFlagsController = featureFlagsController;
-    }
+        public readonly interpreter: Interpreter,
+        public readonly stores: GlobalStoreHub,
+        public readonly featureFlagsController: FeatureFlagsController,
+        public readonly userConfigurationController: UserConfigurationController,
+    ) {}
 }

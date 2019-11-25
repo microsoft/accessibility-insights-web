@@ -9,7 +9,7 @@ import { VisualizationConfigurationFactory } from '../common/configs/visualizati
 import { EnvironmentInfoProvider } from '../common/environment-info-provider';
 import { getIndexedDBStore } from '../common/indexedDB/get-indexeddb-store';
 import { IndexedDBAPI, IndexedDBUtil } from '../common/indexedDB/indexedDB';
-import { InsightsFeatureFlags } from '../common/insights-feature-flags';
+import { InsightsWindowExtensions } from '../common/insights-window-extensions';
 import { createDefaultLogger } from '../common/logging/default-logger';
 import { NavigatorUtils } from '../common/navigator-utils';
 import { NotificationCreator } from '../common/notification-creator';
@@ -38,7 +38,7 @@ import { TelemetryLogger } from './telemetry/telemetry-logger';
 import { TelemetryStateListener } from './telemetry/telemetry-state-listener';
 import { cleanKeysFromStorage } from './user-stored-data-cleaner';
 
-declare var window: Window & InsightsFeatureFlags;
+declare var window: Window & InsightsWindowExtensions;
 
 async function initialize(): Promise<void> {
     const browserAdapter = new ChromeAdapter();
@@ -169,6 +169,7 @@ async function initialize(): Promise<void> {
     devToolsBackgroundListener.initialize();
 
     window.insightsFeatureFlags = globalContext.featureFlagsController;
+    window.insightsUserConfiguration = globalContext.userConfigurationController;
 
     await cleanKeysFromStoragePromise;
 }

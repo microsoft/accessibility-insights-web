@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
 import { FeatureFlags } from 'common/feature-flags';
-import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { StartOverDropdown, StartOverProps } from 'DetailsView/components/start-over-dropdown';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
@@ -28,17 +26,13 @@ export function getStartOverComponentForFastPass(props: CommandBarProps): JSX.El
         return null;
     }
 
-    if (!props.visualizationScanResultData.issues.scanResult) {
-        return null;
-    }
-
     const selectedTest = props.visualizationStoreData.selectedFastPassDetailsView;
     const detailsViewActionMessageCreator = props.deps.detailsViewActionMessageCreator;
 
     return (
         <ActionButton
             iconProps={{ iconName: 'Refresh' }}
-            onClick={(event: SupportedMouseEvent) => detailsViewActionMessageCreator.rescanVisualization(selectedTest, event)}
+            onClick={event => detailsViewActionMessageCreator.rescanVisualization(selectedTest, event)}
             disabled={props.visualizationStoreData.scanning !== null}
         >
             Start over
