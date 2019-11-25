@@ -60,6 +60,7 @@ export const VISUAL_HELPER_TOGGLED: string = 'visualHelperToggled';
 export const ALL_RULES_EXPANDED: string = 'allRulesExpanded';
 export const ALL_RULES_COLLAPSED: string = 'allRulesCollapsed';
 export const RESCAN_VISUALIZATION: string = 'rescanVisualization';
+export const EXISTING_TAB_URL_UPDATED: string = 'existingTabUrlUpdated';
 
 export const TriggeredByNotApplicable: TriggeredBy = 'N/A';
 export type TriggeredBy = 'mouseclick' | 'keypress' | 'shortcut' | 'N/A';

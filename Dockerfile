@@ -7,7 +7,7 @@
 # We use Puppeteer, not Cypress; however, Cypress's docker images are up to date baselines that already contain both node and
 # the system dependencies required to run headful Chromium, so we use them to avoid the performance hit of having our own
 # build agents running apt-get for all those dependencies.
-FROM cypress/base:10.16.0
+FROM cypress/base:12.13.0
 
 RUN npm install -g yarn@1.17.3
 
@@ -19,7 +19,7 @@ RUN yarn install --frozen-lockfile
 
 COPY . /app
 
-RUN yarn build:dev
+RUN yarn build:dev --no-cache
 
 # since we need our chromium to run in 'headful' mode (for testing chrome extension)
 # we need a fake display (to run headful chromium), which we create by starting a Virtualized X server environment using xvfb-run

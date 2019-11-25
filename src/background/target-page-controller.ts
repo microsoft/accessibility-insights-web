@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { BaseTelemetryData, TriggeredByNotApplicable } from 'common/extension-telemetry-events';
 import { Logger } from 'common/logging/logger';
 import { Message } from 'common/message';
 import { Messages } from 'common/messages';
-
 import { PageVisibilityChangeTabPayload } from './actions/action-payloads';
 import { DetailsViewController } from './details-view-controller';
 import { TabToContextMap } from './tab-context';
@@ -43,7 +43,9 @@ export class TargetPageController {
         this.detailsViewController.setupDetailsViewTabRemovedHandler(this.onDetailsViewTabRemoved);
     }
 
-    private onTabNavigated = (details: chrome.webNavigation.WebNavigationFramedCallbackDetails): void => {
+    private onTabNavigated = (
+        details: chrome.webNavigation.WebNavigationFramedCallbackDetails,
+    ): void => {
         if (details.frameId === 0) {
             this.handleTabUrlUpdate(details.tabId);
         }
@@ -51,7 +53,11 @@ export class TargetPageController {
 
     private onTabUpdated = (tabId: number, changeInfo: chrome.tabs.TabChangeInfo): void => {
         if (changeInfo.url) {
-            this.handleTabUrlUpdate(tabId);
+            const telemetry: BaseTelemetryData = {
+                source: null,
+                triggeredBy: TriggeredByNotApplicable,
+            };
+            this.handleTabUrlUpdate(tabId, telemetry);
         }
     };
 
@@ -83,7 +89,10 @@ export class TargetPageController {
                         (activeTabs: chrome.tabs.Tab[]) => {
                             if (!this.browserAdapter.getRuntimeLastError()) {
                                 for (const activeTab of activeTabs) {
-                                    this.sendTabVisibilityChangeAction(activeTab.id, chromeWindow.state === 'minimized');
+                                    this.sendTabVisibilityChangeAction(
+                                        activeTab.id,
+                                        chromeWindow.state === 'minimized',
+                                    );
                                 }
                             }
                         },
@@ -93,12 +102,12 @@ export class TargetPageController {
         );
     };
 
-    private handleTabUrlUpdate = (tabId: number): void => {
+    private handleTabUrlUpdate = (tabId: number, telemetry?: BaseTelemetryData): void => {
         if (!this.hasTabContext(tabId)) {
             this.addTabContext(tabId);
         }
 
-        this.sendTabUrlUpdatedAction(tabId);
+        this.sendTabUrlUpdatedAction(tabId, telemetry);
     };
 
     private hasTabContext(tabId: number): boolean {
@@ -114,7 +123,7 @@ export class TargetPageController {
         );
     }
 
-    private sendTabUrlUpdatedAction(tabId: number): void {
+    private sendTabUrlUpdatedAction(tabId: number, telemetry?: BaseTelemetryData): void {
         this.browserAdapter.getTab(
             tabId,
             (tab: chrome.tabs.Tab) => {
@@ -123,13 +132,15 @@ export class TargetPageController {
                     const interpreter = tabContext.interpreter;
                     interpreter.interpret({
                         messageType: Messages.Tab.ExistingTabUpdated,
-                        payload: tab,
+                        payload: { ...tab, telemetry },
                         tabId: tabId,
                     });
                 }
             },
             () => {
-                this.logger.log(`sendTabUrlUpdatedAction: tab with ID ${tabId} not found, skipping action message`);
+                this.logger.log(
+                    `sendTabUrlUpdatedAction: tab with ID ${tabId} not found, skipping action message`,
+                );
             },
         );
     }

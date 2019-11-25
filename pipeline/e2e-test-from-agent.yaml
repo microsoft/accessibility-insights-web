@@ -1,7 +1,6 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 steps:
-    # e2e tests depend drop folder. run build:all will create said folder
     - script: yarn build:dev
       displayName: build:dev
 

@@ -3,17 +3,17 @@
 exports[`PassedChecksSection renders 1`] = `
 <CollapsibleResultSection
   badgeCount={3}
-  containerClassName="result-section"
-  containerId="passed-checks-section"
-  deps={Object {}}
-  outcomeType="pass"
-  rules={
+  cardRuleResults={
     Array [
       Object {},
       Object {},
       Object {},
     ]
   }
+  containerClassName="result-section"
+  containerId="passed-checks-section"
+  deps={Object {}}
+  outcomeType="pass"
   title="Passed checks"
 />
 `;

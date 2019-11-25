@@ -7,7 +7,7 @@ import { PopupPage } from '../../common/page-controllers/popup-page';
 import { TargetPage } from '../../common/page-controllers/target-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
-describe('Ad hoc tools', () => {
+describe('Popup -> Ad-hoc tools', () => {
     let browser: Browser;
     let targetPage: TargetPage;
     let popupPage: PopupPage;
@@ -21,7 +21,7 @@ describe('Ad hoc tools', () => {
 
     describe('navigation', () => {
         beforeEach(async () => {
-            browser = await launchBrowser({ suppressFirstTimeDialog: true });
+            browser = await launchBrowser({ suppressFirstTimeDialog: true, addLocalhostToPermissions: true });
             targetPage = await browser.newTargetPage();
             popupPage = await browser.newPopupPage(targetPage);
             await popupPage.bringToFront();
@@ -40,27 +40,11 @@ describe('Ad hoc tools', () => {
             await popupPage.clickSelectorXPath(popupPageElementIdentifiers.adhocLaunchPadLinkXPath);
             await popupPage.clickSelector(popupPageElementIdentifiers.backToLaunchPadLink);
 
-            await popupPage.verifyLaunchPadLoaded();
+    it.each([true, false])('should pass accessibility validation with highContrastMode=%s', async highContrastMode => {
+        await browser.setHighContrastMode(highContrastMode);
+        await popupPage.waitForHighContrastMode(highContrastMode);
 
-            // verify ad hoc panel state is sticky
-            targetPage = await browser.newTargetPage();
-            popupPage = await browser.newPopupPage(targetPage);
-            await popupPage.verifyLaunchPadLoaded();
-        });
-    });
-
-    describe('ad hoc toggles', () => {
-        beforeEach(async () => {
-            browser = await launchBrowser({ suppressFirstTimeDialog: true, addLocalhostToPermissions: true });
-            targetPage = await browser.newTargetPage();
-            popupPage = await browser.newPopupPage(targetPage);
-            await popupPage.bringToFront();
-        });
-
-        it.each(['Automated checks', 'Landmarks', 'Headings', 'Color'])(
-            'should display the pinned target page visualizations when enabling the "%s" toggle',
-            async (toggleAriaLabel: string) => {
-                await popupPage.gotoAdhocPanel();
+        await popupPage.gotoAdhocPanel();
 
                 await popupPage.enableToggleByAriaLabel(toggleAriaLabel);
 
@@ -69,30 +53,15 @@ describe('Ad hoc tools', () => {
         );
     });
 
-    describe('a11y scan', () => {
-        beforeEach(async () => {
-            browser = await launchBrowser({ suppressFirstTimeDialog: true, addLocalhostToPermissions: true });
-            targetPage = await browser.newTargetPage();
-            popupPage = await browser.newPopupPage(targetPage);
-            await popupPage.bringToFront();
-        });
-
-        it('should pass accessibility validation', async () => {
-            await popupPage.gotoAdhocPanel();
-
-            const results = await scanForAccessibilityIssues(popupPage, '*');
-            expect(results).toHaveLength(0);
-        });
-
-        it('should pass accessibility validation in high contrast', async () => {
-            const detailsViewPage = await browser.newDetailsViewPage(targetPage);
-            await detailsViewPage.enableHighContrast();
-
+    it.each(['Automated checks', 'Landmarks', 'Headings', 'Color'])(
+        'should display the pinned target page visualizations when enabling the "%s" toggle',
+        async (toggleAriaLabel: string) => {
             await popupPage.bringToFront();
             await popupPage.gotoAdhocPanel();
+            await popupPage.enableToggleByAriaLabel(toggleAriaLabel);
 
-            const results = await scanForAccessibilityIssues(popupPage, '*');
-            expect(results).toHaveLength(0);
-        });
-    });
+            await targetPage.bringToFront();
+            expect(await targetPage.getShadowRootHtmlSnapshot()).toMatchSnapshot();
+        },
+    );
 });

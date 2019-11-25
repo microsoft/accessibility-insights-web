@@ -5,8 +5,6 @@ import { AssessmentStoreData } from 'common/types/store-data/assessment-result-d
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
-import { ScanResults } from 'scanner/iruleresults';
-
 import { AssessmentReportHtmlGenerator } from './assessment-report-html-generator';
 import { ReportHtmlGenerator } from './report-html-generator';
 import { ReportNameGenerator } from './report-name-generator';
@@ -23,14 +21,13 @@ export class ReportGenerator {
     }
 
     public generateFastPassAutomatedChecksReport(
-        scanResult: ScanResults,
         scanDate: Date,
         pageTitle: string,
         pageUrl: string,
         cardsViewData: CardsViewModel,
         description: string,
     ): string {
-        return this.reportHtmlGenerator.generateHtml(scanResult, scanDate, pageTitle, pageUrl, description, cardsViewData);
+        return this.reportHtmlGenerator.generateHtml(scanDate, pageTitle, pageUrl, description, cardsViewData);
     }
 
     public generateAssessmentReport(

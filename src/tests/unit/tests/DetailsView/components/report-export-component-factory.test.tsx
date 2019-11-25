@@ -100,7 +100,6 @@ describe('ReportExportComponentPropsFactory', () => {
         reportGeneratorMock
             .setup(reportGenerator =>
                 reportGenerator.generateFastPassAutomatedChecksReport(
-                    scanResult,
                     theDate,
                     tabStoreData.title,
                     tabStoreData.url,

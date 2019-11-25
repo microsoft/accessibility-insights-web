@@ -41,8 +41,16 @@ export class GlobalStoreHub implements StoreHub {
         storageAdapter: StorageAdapter,
     ) {
         this.commandStore = new CommandStore(globalActionHub.commandActions, telemetryEventHandler);
-        this.featureFlagStore = new FeatureFlagStore(globalActionHub.featureFlagActions, storageAdapter, userData);
-        this.launchPanelStore = new LaunchPanelStore(globalActionHub.launchPanelStateActions, storageAdapter, userData);
+        this.featureFlagStore = new FeatureFlagStore(
+            globalActionHub.featureFlagActions,
+            storageAdapter,
+            userData,
+        );
+        this.launchPanelStore = new LaunchPanelStore(
+            globalActionHub.launchPanelStateActions,
+            storageAdapter,
+            userData,
+        );
         this.scopingStore = new ScopingStore(globalActionHub.scopingActions);
         this.assessmentStore = new AssessmentStore(
             browserAdapter,
