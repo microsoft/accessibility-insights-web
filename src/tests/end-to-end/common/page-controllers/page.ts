@@ -6,7 +6,12 @@ import * as Puppeteer from 'puppeteer';
 import { CommonSelectors } from '../element-identifiers/common-selectors';
 import { forceTestFailure } from '../force-test-failure';
 import { takeScreenshot } from '../generate-screenshot';
-import { DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS, DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from '../timeouts';
+import {
+    DEFAULT_CLICK_HOVER_DELAY_MS,
+    DEFAULT_CLICK_MOUSEUP_DELAY_MS,
+    DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS,
+    DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
+} from '../timeouts';
 
 export type PageOptions = {
     onPageCrash?: () => void;
@@ -186,16 +191,12 @@ export class Page {
 
     public async clickSelector(selector: string): Promise<void> {
         const element = await this.waitForSelector(selector);
-        await this.screenshotOnError(async () => {
-            await element.click();
-        });
+        await this.clickElementHandle(element);
     }
 
     public async clickSelectorXPath(xpath: string): Promise<void> {
         const element = await this.waitForSelectorXPath(xpath);
-        await this.screenshotOnError(async () => {
-            await element.click();
-        });
+        await this.clickElementHandle(element);
     }
 
     public async clickDescendentSelector(
@@ -208,9 +209,14 @@ export class Page {
         await this.clickElementHandle(element);
     }
 
+    // We use logic closer to Cypress's than Puppeteer's, where we artificially inject
+    // human-like delays between hovering the element, mouse-down, and mouse-up, to
+    // improve reliability.
     public async clickElementHandle(element: Puppeteer.ElementHandle<Element>): Promise<void> {
         await this.screenshotOnError(async () => {
-            await element.click();
+            await element.hover();
+            await this.underlyingPage.waitFor(DEFAULT_CLICK_HOVER_DELAY_MS);
+            await element.click({ delay: DEFAULT_CLICK_MOUSEUP_DELAY_MS });
         });
     }
 
