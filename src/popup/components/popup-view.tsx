@@ -29,15 +29,8 @@ import {
     FileUrlUnsupportedMessagePanelProps,
 } from './file-url-unsupported-message-panel';
 import { Header } from './header';
-import {
-    LaunchPad,
-    LaunchPadDeps,
-    LaunchPadRowConfiguration,
-} from './launch-pad';
-import {
-    LaunchPanelHeader,
-    LaunchPanelHeaderDeps,
-} from './launch-panel-header';
+import { LaunchPad, LaunchPadDeps, LaunchPadRowConfiguration } from './launch-pad';
+import { LaunchPanelHeader, LaunchPanelHeaderDeps } from './launch-panel-header';
 
 export interface PopupViewProps {
     deps: PopupViewControllerDeps;
@@ -103,10 +96,7 @@ export class PopupView extends React.Component<PopupViewProps> {
                     {this.renderLaunchPanel()}
                     <TelemetryPermissionDialog
                         deps={this.props.deps}
-                        isFirstTime={
-                            this.props.storeState.userConfigurationStoreData
-                                .isFirstTime
-                        }
+                        isFirstTime={this.props.storeState.userConfigurationStoreData.isFirstTime}
                     />
                 </React.Fragment>
             );
@@ -123,9 +113,7 @@ export class PopupView extends React.Component<PopupViewProps> {
                 this.props.storeState.launchPanelStateStoreData.launchPanelType,
             );
         }
-        switch (
-            this.props.storeState.launchPanelStateStoreData.launchPanelType
-        ) {
+        switch (this.props.storeState.launchPanelStateStoreData.launchPanelType) {
             case LaunchPanelType.LaunchPad:
                 return this.renderLaunchPad();
             case LaunchPanelType.AdhocToolsPanel:
@@ -141,18 +129,14 @@ export class PopupView extends React.Component<PopupViewProps> {
                 <LaunchPanelHeader
                     deps={this.props.deps}
                     title={this.props.title}
-                    supportLinkHandler={
-                        this.props.popupHandlers.supportLinkHandler
-                    }
+                    supportLinkHandler={this.props.popupHandlers.supportLinkHandler}
                     popupWindow={this.props.popupWindow}
                     openAdhocToolsPanel={this.openAdhocToolsPanel}
                     featureFlags={this.props.storeState.featureFlagStoreData}
                 />
                 <AdHocToolsPanel
                     backLinkHandler={this.openTogglesView}
-                    diagnosticViewToggleFactory={
-                        this.props.diagnosticViewToggleFactory
-                    }
+                    diagnosticViewToggleFactory={this.props.diagnosticViewToggleFactory}
                 />
             </div>
         );
@@ -167,8 +151,7 @@ export class PopupView extends React.Component<PopupViewProps> {
             this.props.popupHandlers.popupViewControllerHandler,
         );
 
-        const onClickTutorialLink = event =>
-            popupActionMessageCreator.openTutorial(event);
+        const onClickTutorialLink = event => popupActionMessageCreator.openTutorial(event);
 
         return (
             <div className="ms-Fabric launch-panel" id="new-launch-pad">
@@ -187,9 +170,7 @@ export class PopupView extends React.Component<PopupViewProps> {
                             </NewTabLink>{' '}
                         </>
                     }
-                    supportLinkHandler={
-                        this.props.popupHandlers.supportLinkHandler
-                    }
+                    supportLinkHandler={this.props.popupHandlers.supportLinkHandler}
                     popupWindow={this.props.popupWindow}
                     openAdhocToolsPanel={this.openAdhocToolsPanel}
                     featureFlags={this.props.storeState.featureFlagStoreData}
@@ -205,13 +186,7 @@ export class PopupView extends React.Component<PopupViewProps> {
     }
 
     private renderSpinner(): JSX.Element {
-        return (
-            <Spinner
-                size={SpinnerSize.large}
-                label="Loading..."
-                className="insights-spinner"
-            />
-        );
+        return <Spinner size={SpinnerSize.large} label="Loading..." className="insights-spinner" />;
     }
 
     private renderUnsupportedMsgPanelForChromeUrl(): JSX.Element {
@@ -222,9 +197,7 @@ export class PopupView extends React.Component<PopupViewProps> {
                     <div
                         className="launch-panel-general-container"
                         dangerouslySetInnerHTML={{
-                            __html: DisplayableStrings.urlNotScannable.join(
-                                '</br>',
-                            ),
+                            __html: DisplayableStrings.urlNotScannable.join('</br>'),
                         }}
                     />
                 </div>
