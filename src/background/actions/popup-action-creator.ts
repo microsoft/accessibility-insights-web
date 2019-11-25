@@ -16,9 +16,12 @@ export class PopupActionCreator {
     ) {}
 
     public registerCallbacks(): void {
-        this.interpreter.registerTypeToPayloadCallback(Messages.Popup.Initialized, (payload: PopupInitializedPayload) => {
-            this.telemetryEventHandler.publishTelemetry(POPUP_INITIALIZED, payload);
-            this.tabActions.newTabCreated.invoke(payload.tab);
-        });
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Popup.Initialized,
+            (payload: PopupInitializedPayload) => {
+                this.telemetryEventHandler.publishTelemetry(POPUP_INITIALIZED, payload);
+                this.tabActions.newTabCreated.invoke(payload.tab);
+            },
+        );
     }
 }

@@ -12,6 +12,13 @@ describe('Popup -> Ad-hoc tools', () => {
     let targetPage: TargetPage;
     let popupPage: PopupPage;
 
+    beforeEach(async () => {
+        browser = await launchBrowser({ suppressFirstTimeDialog: true });
+        targetPage = await browser.newTargetPage();
+        popupPage = await browser.newPopupPage(targetPage);
+        await popupPage.bringToFront();
+    });
+
     afterEach(async () => {
         if (browser) {
             await browser.close();
@@ -19,26 +26,26 @@ describe('Popup -> Ad-hoc tools', () => {
         }
     });
 
-    describe('navigation', () => {
-        beforeEach(async () => {
-            browser = await launchBrowser({ suppressFirstTimeDialog: true, addLocalhostToPermissions: true });
-            targetPage = await browser.newTargetPage();
-            popupPage = await browser.newPopupPage(targetPage);
-            await popupPage.bringToFront();
-        });
+    it('should have launchpad link that takes us to adhoc panel & is sticky', async () => {
+        await popupPage.gotoAdhocPanel();
 
-        it('should have launchpad link that takes us to adhoc panel & is sticky', async () => {
-            await popupPage.gotoAdhocPanel();
+        // verify adhoc panel state is sticky
+        targetPage = await browser.newTargetPage();
+        popupPage = await browser.newPopupPage(targetPage);
+        await popupPage.verifyAdhocPanelLoaded();
+    });
 
-            // verify ad hoc panel state is sticky
-            targetPage = await browser.newTargetPage();
-            popupPage = await browser.newPopupPage(targetPage);
-            await popupPage.verifyAdhocPanelLoaded();
-        });
+    it('should take back to Launch pad on clicking "Back to Launch pad" link & is sticky', async () => {
+        await popupPage.clickSelectorXPath(popupPageElementIdentifiers.adhocLaunchPadLinkXPath);
+        await popupPage.clickSelector(popupPageElementIdentifiers.backToLaunchPadLink);
 
-        it('should take back to Launch pad on clicking "Back to Launch pad" link & is sticky', async () => {
-            await popupPage.clickSelectorXPath(popupPageElementIdentifiers.adhocLaunchPadLinkXPath);
-            await popupPage.clickSelector(popupPageElementIdentifiers.backToLaunchPadLink);
+        await popupPage.verifyLaunchPadLoaded();
+
+        // verify adhoc panel state is sticky
+        targetPage = await browser.newTargetPage();
+        popupPage = await browser.newPopupPage(targetPage);
+        await popupPage.verifyLaunchPadLoaded();
+    });
 
     it.each([true, false])('should pass accessibility validation with highContrastMode=%s', async highContrastMode => {
         await browser.setHighContrastMode(highContrastMode);
@@ -46,11 +53,8 @@ describe('Popup -> Ad-hoc tools', () => {
 
         await popupPage.gotoAdhocPanel();
 
-                await popupPage.enableToggleByAriaLabel(toggleAriaLabel);
-
-                expect(await targetPage.getShadowRootHtmlSnapshot()).toMatchSnapshot();
-            },
-        );
+        const results = await scanForAccessibilityIssues(popupPage, '*');
+        expect(results).toHaveLength(0);
     });
 
     it.each(['Automated checks', 'Landmarks', 'Headings', 'Color'])(

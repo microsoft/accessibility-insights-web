@@ -6,13 +6,13 @@ import { TabContext } from 'background/tab-context';
 import { TabContextBroadcaster } from 'background/tab-context-broadcaster';
 import { TabContextFactory } from 'background/tab-context-factory';
 import { TargetPageController } from 'background/target-page-controller';
+import { TriggeredByNotApplicable } from 'common/extension-telemetry-events';
 import { Logger } from 'common/logging/logger';
 import { Messages } from 'common/messages';
 import { isFunction, values } from 'lodash';
 import { createSimulatedBrowserAdapter, SimulatedBrowserAdapter } from 'tests/unit/common/simulated-browser-adapter';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DictionaryNumberTo } from 'types/common-types';
-import { TriggeredByNotApplicable } from 'common/extension-telemetry-events';
 
 describe('TargetPageController', () => {
     let testSubject: TargetPageController;
