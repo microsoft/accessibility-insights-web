@@ -7,8 +7,8 @@ import { convertScanResultsToUnifiedResults } from 'injected/adapters/scan-resul
 import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results-to-unified-rules';
 import { AutomatedChecksReportSectionFactory } from 'reports/components/report-sections/automated-checks-report-section-factory';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
-import { AxeResultReport, AxeResultReportDeps } from 'reports/library/axe-results-report';
-import { Reporter } from 'reports/library/reporter';
+import { AxeResultReport, AxeResultReportDeps } from 'reports/package/axe-results-report';
+import { Reporter } from 'reports/package/reporter';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { CheckMessageTransformer } from 'scanner/check-message-transformer';

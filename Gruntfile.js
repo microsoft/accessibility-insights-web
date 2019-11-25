@@ -113,11 +113,11 @@ module.exports = function(grunt) {
                     },
                     {
                         cwd: '.',
-                        src: './src/reports/library/accessibilityInsightsReport.d.ts',
+                        src: './src/reports/package/accessibilityInsightsReport.d.ts',
                         dest: path.join('package', 'drop', 'index.d.ts'),
                     },
                     {
-                        cwd: './src/reports/library/root',
+                        cwd: './src/reports/package/root',
                         src: '*',
                         dest: path.join('package', 'drop'),
                         expand: true,

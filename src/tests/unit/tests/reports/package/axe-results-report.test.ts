@@ -7,8 +7,8 @@ import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data
 import { generateUID } from 'common/uid-generator';
 import { convertScanResultsToUnifiedResults } from 'injected/adapters/scan-results-to-unified-results';
 import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results-to-unified-rules';
-import AccessibilityInsightsReport from 'reports/library/accessibilityInsightsReport';
-import { AxeResultReport, AxeResultReportDeps } from 'reports/library/axe-results-report';
+import AccessibilityInsightsReport from 'reports/package/accessibilityInsightsReport';
+import { AxeResultReport, AxeResultReportDeps } from 'reports/package/axe-results-report';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ScanResults } from 'scanner/iruleresults';
 import { ResultDecorator } from 'scanner/result-decorator';

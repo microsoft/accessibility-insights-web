@@ -171,7 +171,7 @@ const prodConfig = {
 
 const packageConfig = {
     entry: {
-        reporter: [path.resolve(__dirname, 'src/reports/library/reporter-factory.ts')],
+        reporter: [path.resolve(__dirname, 'src/reports/package/reporter-factory.ts')],
     },
     module: {
         rules: [...commonConfig.module.rules, getCSSModulesLoadersConfig(false)],

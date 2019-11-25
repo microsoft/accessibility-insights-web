@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Reporter } from 'reports/library/reporter';
-import { reporterFactory } from 'reports/library/reporter-factory';
-import { scanNoIssues } from 'tests/unit/tests/reports/library/scans/scan-no-issues';
-import { scanIssues } from 'tests/unit/tests/reports/library/scans/scan-issues';
+import { Reporter } from 'reports/package/reporter';
+import { reporterFactory } from 'reports/package/reporter-factory';
+import { scanNoIssues } from 'tests/unit/tests/reports/package/scans/scan-no-issues';
+import { scanIssues } from 'tests/unit/tests/reports/package/scans/scan-issues';
 
 describe('ReporterFactory', () => {
     it('returns a valid reporter', () => {
