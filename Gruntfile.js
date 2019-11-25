@@ -148,13 +148,13 @@ module.exports = function(grunt) {
                 ],
             },
         },
-        'embed-styles-ver2': {
+        'embed-styles': {
             package: {
                 cwd: path.resolve('package', 'bundle'),
                 src: '**/*bundle.js',
                 dest: path.resolve('package', 'bundle'),
                 expand: true,
-                cssPath: path.resolve('extension', 'devBundle'),
+                cssPath: path.resolve('extension', 'prodBundle'),
             },
         },
         watch: {
@@ -222,6 +222,7 @@ module.exports = function(grunt) {
                     cwd: path.resolve(extensionPath, bundleFolder),
                     src: '**/*bundle.js',
                     dest: path.resolve(extensionPath, bundleFolder),
+                    cssPath: path.resolve(extensionPath, bundleFolder),
                     expand: true,
                 },
             },
@@ -267,30 +268,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-sass');
 
     grunt.registerMultiTask('embed-styles', function() {
-        const targetName = this.target;
-        const { bundleFolder } = targets[targetName];
-        const cssPath = path.resolve(extensionPath, bundleFolder);
-        this.files.forEach(file => {
-            const {
-                src: [src],
-                dest,
-            } = file;
-            grunt.log.writeln(`embedding style in ${src}`);
-            const fileOptions = { options: { encoding: 'utf8' } };
-            const input = grunt.file.read(src, fileOptions);
-            const rex = /\<\<CSS:([a-zA-Z\-\.\/]+)\>\>/g;
-            const output = input.replace(rex, (_, cssName) => {
-                const cssFile = path.resolve(cssPath, cssName);
-                grunt.log.writeln(`    embedding from ${cssFile}`);
-                const styles = grunt.file.read(cssFile, fileOptions);
-                return styles.replace(/\n/g, '\\\n');
-            });
-            grunt.file.write(dest, output, fileOptions);
-            grunt.log.writeln(`    written to ${dest}`);
-        });
-    });
-
-    grunt.registerMultiTask('embed-styles-ver2', function() {
         const { cssPath } = this.data;
         this.files.forEach(file => {
             const {
@@ -368,7 +345,7 @@ module.exports = function(grunt) {
 
         mustExist(mustExistPath, 'Have you run webpack?');
 
-        grunt.task.run('embed-styles-ver2:package');
+        grunt.task.run('embed-styles:package');
         grunt.task.run('clean:package');
         grunt.task.run('copy:package');
         console.log(`package is in ${path.join('package', 'drop')}`);
