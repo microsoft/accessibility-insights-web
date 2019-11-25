@@ -29,7 +29,7 @@ const axeResultsReportGenerator = (results: axe.AxeResults, options: Accessibili
     const { browserVersion, browserSpec, pageTitle: targetPageTitle } = options;
     const axeVersion = results.testEngine.version;
 
-    initializeFabricIcons();
+    initializeFabricIcons({ disableWarnings: true });
 
     const environmentInfoProvider = new EnvironmentInfoProvider(browserVersion, browserSpec, axeVersion);
     const reactStaticRenderer = new ReactStaticRenderer();
