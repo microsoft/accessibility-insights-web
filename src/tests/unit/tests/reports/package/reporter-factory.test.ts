@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { Reporter } from 'reports/package/reporter';
 import { reporterFactory } from 'reports/package/reporter-factory';
-import { scanNoIssues } from 'tests/unit/tests/reports/package/scans/scan-no-issues';
 import { scanIssues } from 'tests/unit/tests/reports/package/scans/scan-issues';
+import { scanNoIssues } from 'tests/unit/tests/reports/package/scans/scan-no-issues';
 
 describe('ReporterFactory', () => {
     it('returns a valid reporter', () => {
