@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ContentPage, contentPageRelativeUrl } from 'tests/end-to-end/common/page-controllers/content-page';
+import { ContentPage } from 'tests/end-to-end/common/page-controllers/content-page';
 import { contentPages } from '../../../../content';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
