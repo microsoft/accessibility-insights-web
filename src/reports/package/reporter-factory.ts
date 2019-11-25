@@ -29,8 +29,6 @@ const axeResultsReportGenerator = (results: axe.AxeResults, options: Accessibili
     const { browserVersion, browserSpec, pageTitle: targetPageTitle } = options;
     const axeVersion = results.testEngine.version;
 
-    initializeFabricIcons({ disableWarnings: true });
-
     const environmentInfoProvider = new EnvironmentInfoProvider(browserVersion, browserSpec, axeVersion);
     const reactStaticRenderer = new ReactStaticRenderer();
     const fixInstructionProcessor = new FixInstructionProcessor();
@@ -67,4 +65,8 @@ const axeResultsReportGenerator = (results: axe.AxeResults, options: Accessibili
     return new AxeResultReport(results, options, deps);
 };
 
-export const reporterFactory: AccessibilityInsightsReport.ReporterFactory = () => new Reporter(axeResultsReportGenerator);
+export const reporterFactory: AccessibilityInsightsReport.ReporterFactory = () => {
+    initializeFabricIcons();
+
+    return new Reporter(axeResultsReportGenerator);
+}
