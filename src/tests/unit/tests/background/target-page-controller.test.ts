@@ -12,6 +12,7 @@ import { isFunction, values } from 'lodash';
 import { createSimulatedBrowserAdapter, SimulatedBrowserAdapter } from 'tests/unit/common/simulated-browser-adapter';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DictionaryNumberTo } from 'types/common-types';
+import { TriggeredByNotApplicable } from 'common/extension-telemetry-events';
 
 describe('TargetPageController', () => {
     let testSubject: TargetPageController;
@@ -141,7 +142,7 @@ describe('TargetPageController', () => {
 
                 const expectedMessage = {
                     messageType: Messages.Tab.ExistingTabUpdated,
-                    payload: EXISTING_ACTIVE_TAB,
+                    payload: { ...EXISTING_ACTIVE_TAB, telemetry: undefined },
                     tabId: EXISTING_ACTIVE_TAB_ID,
                 };
                 mockTabInterpreters[EXISTING_ACTIVE_TAB_ID].verify(i => i.interpret(expectedMessage), Times.once());
@@ -308,7 +309,14 @@ describe('TargetPageController', () => {
             it('should send a Tab.ExistingTabUpdated message for url changes in tracked tabs', () => {
                 const expectedMessage = {
                     messageType: Messages.Tab.ExistingTabUpdated,
-                    payload: { ...EXISTING_ACTIVE_TAB, url: changeInfoWithUrl.url },
+                    payload: {
+                        ...EXISTING_ACTIVE_TAB,
+                        url: changeInfoWithUrl.url,
+                        telemetry: {
+                            source: null,
+                            triggeredBy: TriggeredByNotApplicable,
+                        },
+                    },
                     tabId: EXISTING_ACTIVE_TAB_ID,
                 };
                 mockBrowserAdapter.updateTab(EXISTING_ACTIVE_TAB_ID, changeInfoWithUrl);

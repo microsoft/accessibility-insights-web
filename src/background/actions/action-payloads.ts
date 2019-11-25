@@ -177,3 +177,5 @@ export interface CardSelectionPayload extends BaseActionPayload {
 export interface PopupInitializedPayload extends BaseActionPayload {
     tab: Tab;
 }
+
+export type ExistingTabUpdatedPayload = BaseActionPayload & Tab;
