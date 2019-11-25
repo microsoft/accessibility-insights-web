@@ -31,7 +31,7 @@ describe('Guidance Content pages', () => {
             // It's important that we re-use the same tab/page for each test case;
             // spawning a new tab/page per case hits a resource leak in the linux/docker
             // test environments that causes spurious test failures in 90% of runs.
-            await contentPage.gotoContentPath(path);
+            await browser.gotoContentPage(contentPage, path);
         });
 
         it('matches the snapshot', async () => {
