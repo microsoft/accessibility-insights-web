@@ -21,3 +21,7 @@ export const DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS = 15000;
 
 // How long to wait for a new page to load in response to the UI action that launched it
 export const DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS = 5000;
+
+// How long of a wait to artificially inject between element hover/mousedown/mouseup during clicks
+export const DEFAULT_CLICK_HOVER_DELAY_MS = 100;
+export const DEFAULT_CLICK_MOUSEUP_DELAY_MS = 50;

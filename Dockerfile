@@ -19,7 +19,7 @@ RUN yarn install --frozen-lockfile
 
 COPY . /app
 
-RUN yarn build:dev
+RUN yarn build:dev --no-cache
 
 # since we need our chromium to run in 'headful' mode (for testing chrome extension)
 # we need a fake display (to run headful chromium), which we create by starting a Virtualized X server environment using xvfb-run

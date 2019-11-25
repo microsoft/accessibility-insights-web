@@ -30,7 +30,10 @@ export class InstallDataGenerator {
         const currentMonth = currentDate.getUTCMonth();
         const currentYear = currentDate.getUTCFullYear();
 
-        return currentMonth !== this.installationData.month || currentYear !== this.installationData.year;
+        return (
+            currentMonth !== this.installationData.month ||
+            currentYear !== this.installationData.year
+        );
     }
 
     private generateInstallationData(currentDate: Date): string {
@@ -40,7 +43,9 @@ export class InstallDataGenerator {
             year: currentDate.getUTCFullYear(),
         };
 
-        this.storageAdapter.setUserData({ [LocalStorageDataKeys.installationData]: this.installationData }).catch(console.error);
+        this.storageAdapter
+            .setUserData({ [LocalStorageDataKeys.installationData]: this.installationData })
+            .catch(console.error);
         return this.installationData.id;
     }
 }

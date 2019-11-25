@@ -118,7 +118,6 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
                     exportResultsType={'AutomatedChecks'}
                     htmlGenerator={reportGenerator.generateFastPassAutomatedChecksReport.bind(
                         reportGenerator,
-                        scanResult,
                         scanDate,
                         pageTitle,
                         pageUrl,
@@ -181,10 +180,16 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
     }
 
     private renderDisabledMessage(): JSX.Element {
+        const isCardsUIEnabled = this.props.featureFlags[FeatureFlags.universalCardsUI];
+        const commandBar = !isCardsUIEnabled ? this.renderCommandBar() : null;
+
         return (
-            <div className="details-disabled-message" role="alert">
-                Turn on <Markup.Term>{this.configuration.displayableData.title}</Markup.Term> to see a list of failures.
-            </div>
+            <>
+                {commandBar}
+                <div className="details-disabled-message" role="alert">
+                    Turn on <Markup.Term>{this.configuration.displayableData.title}</Markup.Term> to see a list of failures.
+                </div>
+            </>
         );
     }
 

@@ -12,12 +12,18 @@ export const detailsViewSelectors = {
 
     gearButton: '.gear-options-icon',
     settingsButton: 'button[name="Settings"]',
-    settingsPanel: '.settings-panel',
-    highContrastToggle: 'button#enable-high-contrast-mode',
-    highContrastToggleCheckedStateSelector: 'button#enable-high-contrast-mode[aria-checked="true"]',
 };
 
 export const overviewSelectors = {
     overview: '.overview',
     overviewHeading: '.overview-heading',
+};
+
+export const settingsPanelSelectors = {
+    settingsPanel: '.settings-panel',
+    closeButton: 'button[title="Close settings panel"]',
+    highContrastModeToggle: 'button#enable-high-contrast-mode',
+    telemetryStateToggle: 'button#enable-telemetry',
+    enabledToggle: (toggleSelector: string) => `${toggleSelector}[aria-checked="true"]`,
+    disabledToggle: (toggleSelector: string) => `${toggleSelector}[aria-checked="false"]`,
 };

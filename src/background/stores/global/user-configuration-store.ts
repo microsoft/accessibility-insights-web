@@ -32,7 +32,9 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         super(StoreNames.UserConfigurationStore);
     }
 
-    private generateDefaultState(persisted: UserConfigurationStoreData): UserConfigurationStoreData {
+    private generateDefaultState(
+        persisted: UserConfigurationStoreData,
+    ): UserConfigurationStoreData {
         const persistedState = cloneDeep(persisted);
         const defaultState = cloneDeep(UserConfigurationStore.defaultState);
         return Object.assign(defaultState, persistedState);
@@ -47,7 +49,9 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         this.userConfigActions.setTelemetryState.addListener(this.onSetTelemetryState);
         this.userConfigActions.setHighContrastMode.addListener(this.onSetHighContrastMode);
         this.userConfigActions.setIssueFilingService.addListener(this.onSetIssueFilingService);
-        this.userConfigActions.setIssueFilingServiceProperty.addListener(this.onSetIssueFilingServiceProperty);
+        this.userConfigActions.setIssueFilingServiceProperty.addListener(
+            this.onSetIssueFilingServiceProperty,
+        );
         this.userConfigActions.saveIssueFilingSettings.addListener(this.onSaveIssueSettings);
     }
 
@@ -67,7 +71,9 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         this.saveAndEmitChanged();
     };
 
-    private onSetIssueFilingServiceProperty = (payload: SetIssueFilingServicePropertyPayload): void => {
+    private onSetIssueFilingServiceProperty = (
+        payload: SetIssueFilingServicePropertyPayload,
+    ): void => {
         if (!isPlainObject(this.state.bugServicePropertiesMap)) {
             this.state.bugServicePropertiesMap = {};
         }
@@ -75,7 +81,8 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
             this.state.bugServicePropertiesMap[payload.issueFilingServiceName] = {};
         }
 
-        this.state.bugServicePropertiesMap[payload.issueFilingServiceName][payload.propertyName] = payload.propertyValue;
+        this.state.bugServicePropertiesMap[payload.issueFilingServiceName][payload.propertyName] =
+            payload.propertyValue;
 
         this.saveAndEmitChanged();
     };
