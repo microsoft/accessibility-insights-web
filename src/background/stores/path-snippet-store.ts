@@ -21,8 +21,12 @@ export class PathSnippetStore extends BaseStoreImpl<PathSnippetStoreData> {
 
     protected addActionListeners(): void {
         this.pathSnippetActions.getCurrentState.addListener(this.onGetCurrentState);
-        this.pathSnippetActions.onAddPath.addListener(payload => this.onChangeProperty('path', payload));
-        this.pathSnippetActions.onAddSnippet.addListener(payload => this.onChangeProperty('snippet', payload));
+        this.pathSnippetActions.onAddPath.addListener(payload =>
+            this.onChangeProperty('path', payload),
+        );
+        this.pathSnippetActions.onAddSnippet.addListener(payload =>
+            this.onChangeProperty('snippet', payload),
+        );
         this.pathSnippetActions.onClearData.addListener(this.onClearState);
     }
 

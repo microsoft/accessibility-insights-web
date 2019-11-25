@@ -18,7 +18,10 @@ const keyToPersistedDataMapping = {
     [IndexedDBDataKeys.installation]: 'installationData',
 };
 
-export function getPersistedData(indexedDBInstance: IndexedDBAPI, dataKeysToFetch: string[]): Promise<PersistedData> {
+export function getPersistedData(
+    indexedDBInstance: IndexedDBAPI,
+    dataKeysToFetch: string[],
+): Promise<PersistedData> {
     const persistedData = {} as PersistedData;
 
     const promises: Array<Promise<any>> = dataKeysToFetch.map(key => {

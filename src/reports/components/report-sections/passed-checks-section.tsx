@@ -8,18 +8,19 @@ import { SectionProps } from './report-section-factory';
 
 export type PassedChecksSectionDeps = CollapsibleResultSectionDeps;
 
-export type PassedChecksSectionProps = Pick<SectionProps, 'scanResult' | 'deps'>;
+export type PassedChecksSectionProps = Pick<SectionProps, 'deps' | 'cardsViewData'>;
 
-export const PassedChecksSection = NamedFC<PassedChecksSectionProps>('PassedChecksSection', ({ scanResult, deps }) => {
-    const rules = scanResult.passes;
+export const PassedChecksSection = NamedFC<PassedChecksSectionProps>('PassedChecksSection', ({ deps, cardsViewData }) => {
+    const cardRuleResults = cardsViewData.cards.pass;
+
     return (
         <CollapsibleResultSection
             deps={deps}
             title="Passed checks"
-            rules={rules}
+            cardRuleResults={cardRuleResults}
             containerClassName="result-section"
             outcomeType="pass"
-            badgeCount={rules.length}
+            badgeCount={cardRuleResults.length}
             containerId="passed-checks-section"
         />
     );

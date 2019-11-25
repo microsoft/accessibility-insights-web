@@ -44,11 +44,17 @@ async function initialize(): Promise<void> {
     const browserAdapter = new ChromeAdapter();
 
     // This only removes keys that are unused by current versions of the extension, so it's okay for it to race with everything else
-    const cleanKeysFromStoragePromise = cleanKeysFromStorage(browserAdapter, deprecatedStorageDataKeys);
+    const cleanKeysFromStoragePromise = cleanKeysFromStorage(
+        browserAdapter,
+        deprecatedStorageDataKeys,
+    );
 
     const urlValidator = new UrlValidator(browserAdapter);
     const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil(getIndexedDBStore());
-    const indexedDBDataKeysToFetch = [IndexedDBDataKeys.assessmentStore, IndexedDBDataKeys.userConfiguration];
+    const indexedDBDataKeysToFetch = [
+        IndexedDBDataKeys.assessmentStore,
+        IndexedDBDataKeys.userConfiguration,
+    ];
 
     // These can run concurrently, both because they are read-only and because they use different types of underlying storage
     const persistedDataPromise = getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch);
@@ -62,12 +68,23 @@ async function initialize(): Promise<void> {
     const telemetryLogger = new TelemetryLogger();
 
     const { installationData } = userData;
-    const telemetryClient = getTelemetryClient(title, installationData, browserAdapter, telemetryLogger, AppInsights, browserAdapter);
+    const telemetryClient = getTelemetryClient(
+        title,
+        installationData,
+        browserAdapter,
+        telemetryLogger,
+        AppInsights,
+        browserAdapter,
+    );
 
     const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
 
     const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
-    const environmentInfoProvider = new EnvironmentInfoProvider(browserAdapter.getVersion(), browserSpec, AxeInfo.Default.version);
+    const environmentInfoProvider = new EnvironmentInfoProvider(
+        browserAdapter.getVersion(),
+        browserSpec,
+        AxeInfo.Default.version,
+    );
 
     const globalContext = GlobalContextFactory.createContext(
         browserAdapter,
@@ -84,7 +101,10 @@ async function initialize(): Promise<void> {
     );
     telemetryLogger.initialize(globalContext.featureFlagsController);
 
-    const telemetryStateListener = new TelemetryStateListener(globalContext.stores.userConfigurationStore, telemetryEventHandler);
+    const telemetryStateListener = new TelemetryStateListener(
+        globalContext.stores.userConfigurationStore,
+        telemetryEventHandler,
+    );
     telemetryStateListener.initialize();
 
     const broadcaster = new TabContextBroadcaster(browserAdapter);
@@ -93,7 +113,10 @@ async function initialize(): Promise<void> {
     const tabToContextMap: TabToContextMap = {};
 
     const visualizationConfigurationFactory = new VisualizationConfigurationFactory();
-    const notificationCreator = new NotificationCreator(browserAdapter, visualizationConfigurationFactory);
+    const notificationCreator = new NotificationCreator(
+        browserAdapter,
+        visualizationConfigurationFactory,
+    );
 
     const chromeCommandHandler = new ChromeCommandHandler(
         tabToContextMap,
@@ -107,10 +130,17 @@ async function initialize(): Promise<void> {
     );
     chromeCommandHandler.initialize();
 
-    const messageDistributor = new MessageDistributor(globalContext, tabToContextMap, browserAdapter);
+    const messageDistributor = new MessageDistributor(
+        globalContext,
+        tabToContextMap,
+        browserAdapter,
+    );
     messageDistributor.initialize();
 
-    const targetTabController = new TargetTabController(browserAdapter, visualizationConfigurationFactory);
+    const targetTabController = new TargetTabController(
+        browserAdapter,
+        visualizationConfigurationFactory,
+    );
 
     const promiseFactory = createDefaultPromiseFactory();
 

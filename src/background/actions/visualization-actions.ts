@@ -2,7 +2,11 @@
 // Licensed under the MIT License.
 import { Action } from 'common/flux/action';
 import { VisualizationType } from 'common/types/visualization-type';
-import { ToggleActionPayload, UpdateSelectedDetailsViewPayload, UpdateSelectedPivot } from './action-payloads';
+import {
+    ToggleActionPayload,
+    UpdateSelectedDetailsViewPayload,
+    UpdateSelectedPivot,
+} from './action-payloads';
 
 export class VisualizationActions {
     public readonly enableVisualization = new Action<ToggleActionPayload>();

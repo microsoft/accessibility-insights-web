@@ -13,11 +13,14 @@ export class UserConfigurationActionCreator {
 
     public getUserConfigurationState = () => this.userConfigActions.getCurrentState.invoke(null);
 
-    public setTelemetryState = (enableTelemetry: boolean) => this.userConfigActions.setTelemetryState.invoke(enableTelemetry);
+    public setTelemetryState = (enableTelemetry: boolean) =>
+        this.userConfigActions.setTelemetryState.invoke(enableTelemetry);
 
-    public setHighContrastMode = (payload: SetHighContrastModePayload) => this.userConfigActions.setHighContrastMode.invoke(payload);
+    public setHighContrastMode = (payload: SetHighContrastModePayload) =>
+        this.userConfigActions.setHighContrastMode.invoke(payload);
 
-    public setIssueFilingService = (payload: SetIssueFilingServicePayload) => this.userConfigActions.setIssueFilingService.invoke(payload);
+    public setIssueFilingService = (payload: SetIssueFilingServicePayload) =>
+        this.userConfigActions.setIssueFilingService.invoke(payload);
 
     public setIssueFilingServiceProperty = (payload: SetIssueFilingServicePropertyPayload) =>
         this.userConfigActions.setIssueFilingServiceProperty.invoke(payload);

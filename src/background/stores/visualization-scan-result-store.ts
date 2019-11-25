@@ -17,7 +17,10 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
     private visualizationScanResultsActions: VisualizationScanResultActions;
     private tabActions: TabActions;
 
-    constructor(visualizationScanResultActions: VisualizationScanResultActions, tabActions: TabActions) {
+    constructor(
+        visualizationScanResultActions: VisualizationScanResultActions,
+        tabActions: TabActions,
+    ) {
         super(StoreNames.VisualizationScanResultStore);
 
         this.visualizationScanResultsActions = visualizationScanResultActions;
@@ -49,7 +52,9 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
     protected addActionListeners(): void {
         this.visualizationScanResultsActions.scanCompleted.addListener(this.onScanCompleted);
         this.visualizationScanResultsActions.getCurrentState.addListener(this.onGetCurrentState);
-        this.visualizationScanResultsActions.updateIssuesSelectedTargets.addListener(this.onUpdateIssuesSelectedTargets);
+        this.visualizationScanResultsActions.updateIssuesSelectedTargets.addListener(
+            this.onUpdateIssuesSelectedTargets,
+        );
         this.visualizationScanResultsActions.disableIssues.addListener(this.onIssuesDisabled);
         this.visualizationScanResultsActions.addTabbedElement.addListener(this.onAddTabbedElement);
         this.visualizationScanResultsActions.disableTabStop.addListener(this.onTabStopsDisabled);
@@ -67,25 +72,33 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
             this.state.tabStops.tabbedElements = [];
         }
 
-        let tabbedElementsWithoutTabOrder: TabStopEvent[] = _.map(this.state.tabStops.tabbedElements, element => {
-            return {
-                timestamp: element.timestamp,
-                target: element.target,
-                html: element.html,
-            };
-        });
+        let tabbedElementsWithoutTabOrder: TabStopEvent[] = _.map(
+            this.state.tabStops.tabbedElements,
+            element => {
+                return {
+                    timestamp: element.timestamp,
+                    target: element.target,
+                    html: element.html,
+                };
+            },
+        );
 
-        tabbedElementsWithoutTabOrder = tabbedElementsWithoutTabOrder.concat(payload.tabbedElements);
+        tabbedElementsWithoutTabOrder = tabbedElementsWithoutTabOrder.concat(
+            payload.tabbedElements,
+        );
         tabbedElementsWithoutTabOrder.sort((left, right) => left.timestamp - right.timestamp);
 
-        this.state.tabStops.tabbedElements = _.map(tabbedElementsWithoutTabOrder, (element, index) => {
-            return {
-                timestamp: element.timestamp,
-                target: element.target,
-                html: element.html,
-                tabOrder: index + 1,
-            };
-        });
+        this.state.tabStops.tabbedElements = _.map(
+            tabbedElementsWithoutTabOrder,
+            (element, index) => {
+                return {
+                    timestamp: element.timestamp,
+                    target: element.target,
+                    html: element.html,
+                    tabOrder: index + 1,
+                };
+            },
+        );
 
         this.emitChanged();
     };
@@ -130,7 +143,9 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         this.emitChanged();
     };
 
-    private getRowToRuleResultMap(selectorMap: DictionaryStringTo<HtmlElementAxeResults>): DictionaryStringTo<DecoratedAxeNodeResult> {
+    private getRowToRuleResultMap(
+        selectorMap: DictionaryStringTo<HtmlElementAxeResults>,
+    ): DictionaryStringTo<DecoratedAxeNodeResult> {
         const selectedRows: DictionaryStringTo<DecoratedAxeNodeResult> = {};
 
         forOwn(selectorMap, (selector: HtmlElementAxeResults) => {
@@ -144,11 +159,15 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         return selectedRows;
     }
 
-    private getSelectorMap(selectedRows: DictionaryStringTo<DecoratedAxeNodeResult>): DictionaryStringTo<HtmlElementAxeResults> {
+    private getSelectorMap(
+        selectedRows: DictionaryStringTo<DecoratedAxeNodeResult>,
+    ): DictionaryStringTo<HtmlElementAxeResults> {
         const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {};
         forOwn(selectedRows, (selectedRow: DecoratedAxeNodeResult) => {
             const ruleResult = selectedRow;
-            const ruleResults = selectorMap[ruleResult.selector] ? selectorMap[ruleResult.selector].ruleResults : {};
+            const ruleResults = selectorMap[ruleResult.selector]
+                ? selectorMap[ruleResult.selector].ruleResults
+                : {};
 
             ruleResults[ruleResult.ruleId] = ruleResult;
             selectorMap[ruleResult.selector] = {
