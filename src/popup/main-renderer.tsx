@@ -8,10 +8,7 @@ import { Theme, ThemeDeps, ThemeInnerState } from '../common/components/theme';
 import { WithStoreSubscriptionDeps } from '../common/components/with-store-subscription';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { DiagnosticViewToggleFactory } from './components/diagnostic-view-toggle-factory';
-import {
-    PopupViewControllerDeps,
-    PopupViewWithStoreSubscription,
-} from './components/popup-view';
+import { PopupViewControllerDeps, PopupViewWithStoreSubscription } from './components/popup-view';
 import { IPopupHandlers } from './handlers/ipopup-handlers';
 import { LaunchPadRowConfigurationFactory } from './launch-pad-row-configuration-factory';
 
@@ -46,12 +43,8 @@ export class MainRenderer {
                     popupWindow={this.popupWindow}
                     targetTabUrl={this.targetTabUrl}
                     hasAccess={this.hasAccess}
-                    launchPadRowConfigurationFactory={
-                        this.launchPadRowConfigurationFactory
-                    }
-                    diagnosticViewToggleFactory={
-                        this.diagnosticViewToggleFactory
-                    }
+                    launchPadRowConfigurationFactory={this.launchPadRowConfigurationFactory}
+                    diagnosticViewToggleFactory={this.diagnosticViewToggleFactory}
                     dropdownClickHandler={this.dropdownClickHandler}
                 />
             </>,

@@ -89,10 +89,20 @@ export class Browser {
         return page;
     }
 
+    public async gotoContentPage(existingPage: ContentPage, newContentPath: string): Promise<void> {
+        const url = await this.getExtensionUrl(contentPageRelativeUrl(newContentPath));
+        await existingPage.goto(url);
+    }
+
     public async closeAllPages(): Promise<void> {
         for (let pos = 0; pos < this.pages.length; pos++) {
             await this.pages[pos].close(true);
         }
+    }
+
+    public async setHighContrastMode(highContrastMode: boolean): Promise<void> {
+        const backgroundPage = await this.backgroundPage();
+        await backgroundPage.setHighContrastMode(highContrastMode);
     }
 
     private async getActivePageTabId(): Promise<number> {

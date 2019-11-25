@@ -47,7 +47,8 @@ export class InjectorController {
         const inspectStoreState = this.inspectStore.getState();
 
         if (
-            ((this.oldInspectType !== inspectStoreState.inspectMode && inspectStoreState.inspectMode !== InspectMode.off) ||
+            ((this.oldInspectType !== inspectStoreState.inspectMode &&
+                inspectStoreState.inspectMode !== InspectMode.off) ||
                 visualizationStoreState.injectingInProgress === true) &&
             !visualizationStoreState.injectingStarted
         ) {

@@ -15,9 +15,18 @@ export class FeatureFlagsActionCreator {
     ) {}
 
     public registerCallbacks(): void {
-        this.interpreter.registerTypeToPayloadCallback(getStoreStateMessage(StoreNames.FeatureFlagStore), this.onGetFeatureFlags);
-        this.interpreter.registerTypeToPayloadCallback(Messages.FeatureFlags.SetFeatureFlag, this.onSetFeatureFlags);
-        this.interpreter.registerTypeToPayloadCallback(Messages.FeatureFlags.ResetFeatureFlag, this.onResetFeatureFlags);
+        this.interpreter.registerTypeToPayloadCallback(
+            getStoreStateMessage(StoreNames.FeatureFlagStore),
+            this.onGetFeatureFlags,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.FeatureFlags.SetFeatureFlag,
+            this.onSetFeatureFlags,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.FeatureFlags.ResetFeatureFlag,
+            this.onResetFeatureFlags,
+        );
     }
 
     private onGetFeatureFlags = (): void => {

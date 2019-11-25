@@ -18,7 +18,10 @@ export class ShortcutsPageActionCreator {
     ) {}
 
     public registerCallbacks(): void {
-        this.interpreter.registerTypeToPayloadCallback(Messages.Shortcuts.ConfigureShortcuts, this.onConfigureShortcuts);
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Shortcuts.ConfigureShortcuts,
+            this.onConfigureShortcuts,
+        );
     }
 
     private onConfigureShortcuts = async (payload: BaseActionPayload): Promise<void> => {

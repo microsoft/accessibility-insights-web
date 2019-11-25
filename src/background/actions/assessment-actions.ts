@@ -1,7 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Action } from '../../common/flux/action';
-import { ScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from '../../injected/analyzers/analyzer';
+import {
+    ScanBasePayload,
+    ScanCompletedPayload,
+    ScanUpdatePayload,
+} from '../../injected/analyzers/analyzer';
 import {
     AddFailureInstancePayload,
     AddResultDescriptionPayload,
@@ -25,8 +29,12 @@ export class AssessmentActions {
     public readonly removeFailureInstance = new Action<RemoveFailureInstancePayload>();
     public readonly editFailureInstance = new Action<EditFailureInstancePayload>();
     public readonly passUnmarkedInstance = new Action<ToggleActionPayload>();
-    public readonly changeAssessmentVisualizationState = new Action<ChangeInstanceSelectionPayload>();
-    public readonly changeAssessmentVisualizationStateForAll = new Action<ChangeInstanceSelectionPayload>();
+    public readonly changeAssessmentVisualizationState = new Action<
+        ChangeInstanceSelectionPayload
+    >();
+    public readonly changeAssessmentVisualizationStateForAll = new Action<
+        ChangeInstanceSelectionPayload
+    >();
     public readonly undoInstanceStatusChange = new Action<AssessmentActionInstancePayload>();
     public readonly undoRequirementStatusChange = new Action<ChangeRequirementStatusPayload>();
     public readonly getCurrentState = new Action<void>();

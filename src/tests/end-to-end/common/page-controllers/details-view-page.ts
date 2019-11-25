@@ -59,17 +59,6 @@ export class DetailsViewPage extends Page {
 
         await this.waitForSelector(toggleInStateSelector);
     }
-
-    // TODO: replace usages with backgroundPage()
-    public async enableHighContrast(): Promise<void> {
-        await this.openSettingsPanel();
-        await this.waitForSelector(settingsPanelSelectors.closeButton);
-
-        await this.setToggleState(settingsPanelSelectors.highContrastModeToggle, true);
-        await this.waitForSelector(CommonSelectors.highContrastThemeSelector);
-
-        await this.closeSettingsPanel();
-    }
 }
 
 export function detailsViewRelativeUrl(targetTabId: number): string {

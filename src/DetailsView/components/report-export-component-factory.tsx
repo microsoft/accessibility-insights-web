@@ -60,7 +60,6 @@ export function getReportExportComponentForFastPass(props: CommandBarProps): JSX
         exportResultsType: 'AutomatedChecks',
         htmlGenerator: description =>
             reportGenerator.generateFastPassAutomatedChecksReport(
-                scanResult,
                 scanDate,
                 tabStoreData.title,
                 tabStoreData.url,

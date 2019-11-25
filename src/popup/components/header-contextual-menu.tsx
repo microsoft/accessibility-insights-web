@@ -35,10 +35,7 @@ export const HeaderContextualMenu = NamedFC<HeaderContextualMenuProps>(
     'HeaderContextualMenu',
     props => {
         const { deps, header, popupWindow } = props;
-        const {
-            popupActionMessageCreator,
-            launchPanelHeaderClickHandler,
-        } = deps;
+        const { popupActionMessageCreator, launchPanelHeaderClickHandler } = deps;
 
         const getItems = (): IContextualMenuItem[] => [
             {
@@ -75,8 +72,7 @@ export const HeaderContextualMenu = NamedFC<HeaderContextualMenuProps>(
                     iconName: 'Medical',
                 },
                 name: 'Ad hoc tools',
-                onClick: () =>
-                    launchPanelHeaderClickHandler.openAdhocToolsPanel(header),
+                onClick: () => launchPanelHeaderClickHandler.openAdhocToolsPanel(header),
             },
             {
                 key: 'divider_1',
@@ -85,10 +81,7 @@ export const HeaderContextualMenu = NamedFC<HeaderContextualMenuProps>(
             {
                 key: 'modify-shortcuts',
                 name: 'Keyboard shortcuts',
-                onClick: event =>
-                    popupActionMessageCreator.openShortcutConfigureTab(
-                        event as any,
-                    ),
+                onClick: event => popupActionMessageCreator.openShortcutConfigureTab(event as any),
             },
             {
                 key: 'help',
@@ -97,11 +90,7 @@ export const HeaderContextualMenu = NamedFC<HeaderContextualMenuProps>(
                 },
                 data: 'https://go.microsoft.com/fwlink/?linkid=2077937',
                 onClick: (event, item) =>
-                    launchPanelHeaderClickHandler.onClickLink(
-                        popupWindow,
-                        event as any,
-                        item,
-                    ),
+                    launchPanelHeaderClickHandler.onClickLink(popupWindow, event as any, item),
                 name: 'Help',
             },
         ];
@@ -112,15 +101,10 @@ export const HeaderContextualMenu = NamedFC<HeaderContextualMenuProps>(
                 shouldFocusOnMount={true}
                 target={props.target}
                 onDismiss={event =>
-                    launchPanelHeaderClickHandler.onDismissFeedbackMenu(
-                        header,
-                        event,
-                    )
+                    launchPanelHeaderClickHandler.onDismissFeedbackMenu(header, event)
                 }
                 directionalHint={
-                    getRTL()
-                        ? DirectionalHint.bottomRightEdge
-                        : DirectionalHint.bottomLeftEdge
+                    getRTL() ? DirectionalHint.bottomRightEdge : DirectionalHint.bottomLeftEdge
                 }
                 items={getItems()}
             />

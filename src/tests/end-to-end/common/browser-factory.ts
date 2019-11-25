@@ -16,7 +16,6 @@ export function browserLogPath(browserInstanceId: string): string {
 
 export interface ExtensionOptions {
     suppressFirstTimeDialog: boolean;
-    enableHighContrast?: boolean;
 }
 
 export async function launchBrowser(extensionOptions: ExtensionOptions): Promise<Browser> {
@@ -27,9 +26,6 @@ export async function launchBrowser(extensionOptions: ExtensionOptions): Promise
     const backgroundPage = await browser.backgroundPage();
     if (extensionOptions.suppressFirstTimeDialog) {
         await backgroundPage.setTelemetryState(false);
-    }
-    if (extensionOptions.enableHighContrast) {
-        await backgroundPage.setHighContrastMode(true);
     }
 
     return browser;
@@ -71,6 +67,10 @@ async function launchNewBrowser(browserInstanceId: string): Promise<Puppeteer.Br
         headless: false,
         defaultViewport: null,
         args: [
+            // We use the smallest size we support both because we want to ensure functionality works there
+            // and also because it improves test runtime to render fewer pixels, especially in environments
+            // that can't hardware-accelerate rendering (eg, docker)
+            '--window-size=320x240',
             // Required to work around https://github.com/GoogleChrome/puppeteer/pull/774
             `--disable-extensions-except=${extensionPath}`,
             `--load-extension=${extensionPath}`,
