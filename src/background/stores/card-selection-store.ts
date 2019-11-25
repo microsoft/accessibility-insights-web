@@ -2,8 +2,15 @@
 // Licensed under the MIT License.
 import { forOwn } from 'lodash';
 import { StoreNames } from '../../common/stores/store-names';
-import { CardSelectionStoreData, RuleExpandCollapseData } from '../../common/types/store-data/card-selection-store-data';
-import { CardSelectionPayload, RuleExpandCollapsePayload, UnifiedScanCompletedPayload } from '../actions/action-payloads';
+import {
+    CardSelectionStoreData,
+    RuleExpandCollapseData,
+} from '../../common/types/store-data/card-selection-store-data';
+import {
+    CardSelectionPayload,
+    RuleExpandCollapsePayload,
+    UnifiedScanCompletedPayload,
+} from '../actions/action-payloads';
 import { CardSelectionActions } from '../actions/card-selection-actions';
 import { UnifiedScanResultActions } from '../actions/unified-scan-result-actions';
 import { BaseStoreImpl } from './base-store-impl';
@@ -17,7 +24,9 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
     }
 
     protected addActionListeners(): void {
-        this.cardSelectionActions.toggleRuleExpandCollapse.addListener(this.toggleRuleExpandCollapse);
+        this.cardSelectionActions.toggleRuleExpandCollapse.addListener(
+            this.toggleRuleExpandCollapse,
+        );
         this.cardSelectionActions.toggleCardSelection.addListener(this.toggleCardSelection);
         this.cardSelectionActions.collapseAllRules.addListener(this.collapseAllRules);
         this.cardSelectionActions.expandAllRules.addListener(this.expandAllRules);

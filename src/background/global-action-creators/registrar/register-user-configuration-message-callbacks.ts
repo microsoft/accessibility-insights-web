@@ -14,8 +14,9 @@ export const registerUserConfigurationMessageCallback = (
         getStoreStateMessage(StoreNames.UserConfigurationStore),
         userConfigurationActionCreator.getUserConfigurationState,
     );
-    interpreter.registerTypeToPayloadCallback<SetTelemetryStatePayload>(Messages.UserConfig.SetTelemetryConfig, payload =>
-        userConfigurationActionCreator.setTelemetryState(payload.enableTelemetry),
+    interpreter.registerTypeToPayloadCallback<SetTelemetryStatePayload>(
+        Messages.UserConfig.SetTelemetryConfig,
+        payload => userConfigurationActionCreator.setTelemetryState(payload.enableTelemetry),
     );
     interpreter.registerTypeToPayloadCallback(
         Messages.UserConfig.SetHighContrastConfig,

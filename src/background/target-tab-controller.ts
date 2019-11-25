@@ -13,7 +13,11 @@ export class TargetTabController {
         this.configurationFactory = configurationFactory;
     }
 
-    public showTargetTab(targetTabId: number, testType: VisualizationType, testStep: string = null): void {
+    public showTargetTab(
+        targetTabId: number,
+        testType: VisualizationType,
+        testStep: string = null,
+    ): void {
         const config = this.configurationFactory.getConfiguration(testType);
         const switchToTargetTab = config.getSwitchToTargetTabOnScan(testStep);
 

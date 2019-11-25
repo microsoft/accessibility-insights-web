@@ -23,7 +23,10 @@ export class DevToolsListener {
     public initialize(): void {
         this.browserAdapter.addListenerOnConnect((devToolsConnection: PortWithTabId) => {
             if (devToolsConnection.name === ConnectionNames.devTools) {
-                const devToolsListener = (message: DevToolsOpenMessage, port: chrome.runtime.Port) => {
+                const devToolsListener = (
+                    message: DevToolsOpenMessage,
+                    port: chrome.runtime.Port,
+                ) => {
                     devToolsConnection.targetPageTabId = message.tabId;
                     this.sendDevToolStatus(devToolsConnection, true);
                 };
