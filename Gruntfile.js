@@ -375,6 +375,14 @@ module.exports = function(grunt) {
         'build-assets',
         'drop:electron',
     ]);
+    grunt.registerTask('build-package', [
+        'clean:intermediates',
+        'exec:generate-scss-typings',
+        'exec:webpack-prod', // required to get the css assets
+        'exec:webpack-package',
+        'build-assets',
+        'package',
+    ]);
     grunt.registerTask('build-all', [
         'clean:intermediates',
         'exec:generate-scss-typings',

@@ -17,6 +17,7 @@
         "build:all": "grunt build-all",
         "build:dev": "grunt build-dev",
         "build:electron": "grunt build-electron",
+        "build:package": "grunt build-package",
         "build:prod": "grunt build-prod",
         "copyright:check": "license-check-and-add check -f copyright-header.config.json",
         "copyright:fix": "license-check-and-add add -f copyright-header.config.json",
