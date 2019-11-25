@@ -29,7 +29,7 @@ describe('FileUrlUnsupportedMessagePanel', () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    it('has a NewTabLink that uses createTab to open the manage extension page', async () => {
+    it('has a NewTabLink that uses createActiveTab to open the manage extension page', async () => {
         const stubExtensionPageUrl = 'protocol://extension-page';
         const browserAdapterMock = Mock.ofType<BrowserAdapter>(null, MockBehavior.Strict);
         browserAdapterMock.setup(adapter => adapter.getManageExtensionUrl()).returns(() => stubExtensionPageUrl);
