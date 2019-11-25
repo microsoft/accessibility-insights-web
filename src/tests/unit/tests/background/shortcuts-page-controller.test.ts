@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { ShortcutsPageController } from 'background/shortcuts-page-controller';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
-import { IMock, Mock } from 'typemoq';
+import { IMock, Mock, Times } from 'typemoq';
 import { Tabs } from 'webextension-polyfill-ts';
 
 describe('ShortcutsPageController', () => {
@@ -18,9 +18,12 @@ describe('ShortcutsPageController', () => {
     it('opens the shortcuts tab', async () => {
         browserAdapterMock
             .setup(adapter => adapter.createActiveTab(ShortcutsPageController.configureCommandTabUrl))
-            .returns(() => Promise.resolve({} as Tabs.Tab));
+            .returns(() => Promise.resolve({} as Tabs.Tab))
+            .verifiable(Times.once());
 
         await expect(testSubject.openShortcutsTab()).resolves.toBe(undefined);
+
+        browserAdapterMock.verifyAll();
     });
 
     it('surface error', async () => {
@@ -28,8 +31,11 @@ describe('ShortcutsPageController', () => {
 
         browserAdapterMock
             .setup(adapter => adapter.createActiveTab(ShortcutsPageController.configureCommandTabUrl))
-            .returns(() => Promise.reject(errorMessage));
+            .returns(() => Promise.reject(errorMessage))
+            .verifiable(Times.once());
 
         await expect(testSubject.openShortcutsTab()).rejects.toEqual(errorMessage);
+
+        browserAdapterMock.verifyAll();
     });
 });
