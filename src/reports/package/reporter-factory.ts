@@ -69,4 +69,4 @@ export const reporterFactory: AccessibilityInsightsReport.ReporterFactory = () =
     initializeFabricIcons();
 
     return new Reporter(axeResultsReportGenerator);
-}
+};
