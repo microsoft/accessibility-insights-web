@@ -63,8 +63,8 @@ export class Page {
             // "some button had been loaded into the DOM, but when we clicked on it, nothing happened". We would prefer to use a more
             // reliable mechanism to wait for those elements being interactable; #1011 tracks adding and using such a mechanism.
             //
-            // 200ms was chosen based on experimentation; it was the lowest value that reliably worked around the class of issue.
-            await this.underlyingPage.waitFor(200);
+            // 300ms was chosen based on experimentation; it was the lowest value that reliably worked around the class of issue.
+            await this.underlyingPage.waitFor(300);
         });
         await this.disableAnimations();
     }
@@ -93,7 +93,16 @@ export class Page {
     }
 
     public async evaluate(fn: Puppeteer.EvaluateFn, ...args: any[]): Promise<any> {
-        return await this.screenshotOnError(async () => await this.underlyingPage.evaluate(fn, ...args));
+        const timeout = DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS;
+        return await this.screenshotOnError(
+            async () =>
+                await Promise.race([
+                    this.underlyingPage.evaluate(fn, ...args),
+                    this.underlyingPage.waitFor(timeout).then(() => {
+                        throw new Error(`Timed out after ${timeout} waiting for page.evaluate() to resolve`);
+                    }),
+                ]),
+        );
     }
 
     public async getMatchingElements<T>(selector: string, elementProperty?: keyof Element): Promise<T[]> {
@@ -126,6 +135,28 @@ export class Page {
         return this.waitForSelector(`#${id}`);
     }
 
+    public async waitForSelectorToAppear(selector: string): Promise<void> {
+        await this.screenshotOnError(
+            async () =>
+                await this.underlyingPage.waitFor(
+                    selectorInEvaluate => document.querySelector(selectorInEvaluate),
+                    { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS },
+                    selector,
+                ),
+        );
+    }
+
+    public async waitForSelectorToDisappear(selector: string): Promise<void> {
+        await this.screenshotOnError(
+            async () =>
+                await this.underlyingPage.waitFor(
+                    selectorInEvaluate => !document.querySelector(selectorInEvaluate),
+                    { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS },
+                    selector,
+                ),
+        );
+    }
+
     public async waitForDescendentSelector(
         parentElement: Puppeteer.ElementHandle<Element>,
         descendentSelector: string,
@@ -150,17 +181,6 @@ export class Page {
             (
                 await this.underlyingPage.evaluateHandle(selectorInEval => document.querySelector(selectorInEval).shadowRoot, selector)
             ).asElement(),
-        );
-    }
-
-    public async waitForSelectorToDisappear(selector: string): Promise<void> {
-        await this.screenshotOnError(
-            async () =>
-                await this.underlyingPage.waitFor(
-                    selectorInEvaluate => !document.querySelector(selectorInEvaluate),
-                    { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS },
-                    selector,
-                ),
         );
     }
 
@@ -240,7 +260,7 @@ export class Page {
 
     public async waitForHighContrastMode(expectedHighContrastMode: boolean): Promise<void> {
         if (expectedHighContrastMode) {
-            await this.waitForSelector(CommonSelectors.highContrastThemeSelector);
+            await this.waitForSelectorToAppear(CommonSelectors.highContrastThemeSelector);
         } else {
             await this.waitForSelectorToDisappear(CommonSelectors.highContrastThemeSelector);
         }
