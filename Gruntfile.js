@@ -8,6 +8,10 @@ const merge = require('lodash/merge');
 module.exports = function(grunt) {
     const extensionPath = 'extension';
 
+    const packageReportPath = path.join('package', 'report');
+    const packageReportBundlePath = path.join(packageReportPath, 'bundle');
+    const packageReportDropPath = path.join(packageReportPath, 'drop');
+
     function mustExist(file, reason) {
         const normalizedFile = path.normalize(file);
         if (!grunt.file.exists(normalizedFile)) {
@@ -104,22 +108,22 @@ module.exports = function(grunt) {
                     },
                 ],
             },
-            package: {
+            'package-report': {
                 files: [
                     {
                         cwd: '.',
-                        src: './package/bundle/reporter.bundle.js',
-                        dest: path.join('package', 'drop', 'index.js'),
+                        src: path.join(packageReportBundlePath, 'report.bundle.js'),
+                        dest: path.join(packageReportDropPath, 'index.js'),
                     },
                     {
                         cwd: '.',
                         src: './src/reports/package/accessibilityInsightsReport.d.ts',
-                        dest: path.join('package', 'drop', 'index.d.ts'),
+                        dest: path.join(packageReportDropPath, 'index.d.ts'),
                     },
                     {
                         cwd: './src/reports/package/root',
                         src: '*',
-                        dest: path.join('package', 'drop'),
+                        dest: packageReportDropPath,
                         expand: true,
                     },
                 ],
@@ -129,7 +133,7 @@ module.exports = function(grunt) {
             'webpack-dev': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name dev`,
             'webpack-prod': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name prod`,
             'webpack-electron': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name electron`,
-            'webpack-package': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name package`,
+            'webpack-package-report': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name package-report`,
             'generate-scss-typings': `"${path.resolve('./node_modules/.bin/tsm')}" src`,
         },
         sass: {
@@ -149,10 +153,10 @@ module.exports = function(grunt) {
             },
         },
         'embed-styles': {
-            package: {
-                cwd: path.resolve('package', 'bundle'),
+            'package-report': {
+                cwd: packageReportBundlePath,
                 src: '**/*bundle.js',
-                dest: path.resolve('package', 'bundle'),
+                dest: packageReportBundlePath,
                 expand: true,
                 cssPath: path.resolve('extension', 'prodBundle'),
             },
@@ -214,7 +218,7 @@ module.exports = function(grunt) {
             },
             clean: {
                 [targetName]: dropPath,
-                package: path.join('package', 'drop'),
+                'package-report': packageReportDropPath,
                 scss: path.join('src', '**/*.scss.d.ts'),
             },
             'embed-styles': {
@@ -340,15 +344,15 @@ module.exports = function(grunt) {
         console.log(`${targetName} extension is in ${dropExtensionPath}`);
     });
 
-    grunt.registerTask('package', function() {
-        const mustExistPath = path.join('package', 'bundle', 'reporter.bundle.js');
+    grunt.registerTask('package-report', function() {
+        const mustExistPath = path.join(packageReportBundlePath, 'report.bundle.js');
 
         mustExist(mustExistPath, 'Have you run webpack?');
 
-        grunt.task.run('embed-styles:package');
-        grunt.task.run('clean:package');
-        grunt.task.run('copy:package');
-        console.log(`package is in ${path.join('package', 'drop')}`);
+        grunt.task.run('embed-styles:package-report');
+        grunt.task.run('clean:package-report');
+        grunt.task.run('copy:package-report');
+        console.log(`package is in ${packageReportDropPath}`);
     });
 
     grunt.registerTask('release-drops', function() {
@@ -375,13 +379,13 @@ module.exports = function(grunt) {
         'build-assets',
         'drop:electron',
     ]);
-    grunt.registerTask('build-package', [
+    grunt.registerTask('build-package-report', [
         'clean:intermediates',
         'exec:generate-scss-typings',
         'exec:webpack-prod', // required to get the css assets
-        'exec:webpack-package',
+        'exec:webpack-package-report',
         'build-assets',
-        'package',
+        'package-report',
     ]);
     grunt.registerTask('build-all', [
         'clean:intermediates',

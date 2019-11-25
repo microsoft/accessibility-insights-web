@@ -169,9 +169,9 @@ const prodConfig = {
     },
 };
 
-const packageConfig = {
+const packageReportConfig = {
     entry: {
-        reporter: [path.resolve(__dirname, 'src/reports/package/reporter-factory.ts')],
+        report: [path.resolve(__dirname, 'src/reports/package/reporter-factory.ts')],
     },
     module: {
         rules: [...commonConfig.module.rules, getCSSModulesLoadersConfig(false)],
@@ -179,11 +179,11 @@ const packageConfig = {
     externals: [nodeExternals()],
     plugins: commonPlugins,
     resolve: commonConfig.resolve,
-    name: 'package',
+    name: 'package-report',
     mode: 'development',
     devtool: false,
     output: {
-        path: path.join(__dirname, 'package/bundle'),
+        path: path.join(__dirname, 'package/report/bundle'),
         filename: '[name].bundle.js',
         pathinfo: false,
         library: '[name]',
@@ -193,4 +193,4 @@ const packageConfig = {
 };
 
 // Use "webpack --config-name dev", "webpack --config-name prod" or "webpack --config-name electron" to use just one or the other
-module.exports = [devConfig, prodConfig, electronConfig, packageConfig];
+module.exports = [devConfig, prodConfig, electronConfig, packageReportConfig];
