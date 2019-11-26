@@ -121,6 +121,10 @@ export class Page {
         );
     }
 
+    public async waitForDuration(durationMs: number): Promise<void> {
+        await this.screenshotOnError(async () => await this.underlyingPage.waitFor(durationMs));
+    }
+
     public async waitForSelector(selector: string, options?: Puppeteer.WaitForSelectorOptions): Promise<Puppeteer.ElementHandle<Element>> {
         return await this.screenshotOnError(
             async () => await this.underlyingPage.waitForSelector(selector, { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS, ...options }),
