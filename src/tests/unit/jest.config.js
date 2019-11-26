@@ -13,7 +13,12 @@ module.exports = {
     rootDir: rootDir,
     roots: [currentDir],
     collectCoverage: true,
-    collectCoverageFrom: ['<rootDir>/src/**/*.{ts,tsx}', '!<rootDir>/src/tests/**/*', '!<rootDir>/src/**/*.d.ts'],
+    collectCoverageFrom: [
+        '<rootDir>/src/**/*.{ts,tsx}',
+        '!<rootDir>/src/tests/**/*',
+        '!<rootDir>/src/**/*.d.ts',
+        '!<rootDir>/src/tests/unit/tests/reports/package/integration.test.ts',
+    ],
     coverageReporters: ['json', 'lcov', 'text', 'cobertura'],
     testEnvironment: 'jsdom',
     testMatch: [`${currentDir}/**/*.test.(ts|tsx|js)`],
