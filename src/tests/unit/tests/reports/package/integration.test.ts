@@ -12,15 +12,19 @@ describe('ReporterFactory', () => {
         description: 'DESCRIPTION',
     };
 
+    // Removing script block to address issues with istanbul code coverage
+    // constructs interfering with snapshot determinism.
+    const rexScriptBlock = /\<script\>.*\<\/script\>/ms;
+
     it('works end-to-end with no issues scan', () => {
         const reporter = reporterFactory();
-        const html = reporter.fromAxeResult(scanNoIssues, options).asHTML();
+        const html = reporter.fromAxeResult(scanNoIssues, options).asHTML().replace(rexScriptBlock, '');
         expect(html).toMatchSnapshot();
     });
 
     it('works end-to-end with issues scan', () => {
         const reporter = reporterFactory();
-        const html = reporter.fromAxeResult(scanIssues, options).asHTML();
+        const html = reporter.fromAxeResult(scanIssues, options).asHTML().replace(rexScriptBlock, '');
         expect(html).toMatchSnapshot();
     });
 });
