@@ -6,12 +6,13 @@ import { scanIssues } from 'tests/unit/tests/reports/package/scans/scan-issues';
 import { scanNoIssues } from 'tests/unit/tests/reports/package/scans/scan-no-issues';
 
 describe('report package integration', () => {
-    const options = {
+    const scanContext = {
         browserVersion: 'BROWSER_VERSION',
         browserSpec: 'BROWSER_SPEC',
         pageTitle: 'PAGE_TITLE',
-        description: 'DESCRIPTION',
     };
+    const description = 'DESCRIPTION';
+
 
     // Removing script block to address issues with istanbul code coverage
     // constructs interfering with snapshot determinism.
@@ -24,7 +25,12 @@ describe('report package integration', () => {
 
     scans.forEach(({ scan, name }) => it(name, () => {
         const reporter = reporterFactory();
-        const html = reporter.fromAxeResult(scan as AxeResults, options).asHTML().replace(rexScriptBlock, '');
+        const request = {
+            results: scan as AxeResults,
+            description,
+            scanContext,
+        };
+        const html = reporter.fromAxeResult(request).asHTML().replace(rexScriptBlock, '');
         expect(html).toMatchSnapshot();
     }));
 });

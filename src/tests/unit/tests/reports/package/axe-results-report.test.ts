@@ -7,8 +7,8 @@ import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data
 import { generateUID } from 'common/uid-generator';
 import { convertScanResultsToUnifiedResults } from 'injected/adapters/scan-results-to-unified-results';
 import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results-to-unified-rules';
-import AccessibilityInsightsReport from 'reports/package/accessibilityInsightsReport';
-import { AxeResultReport, AxeResultReportDeps } from 'reports/package/axe-results-report';
+import { AxeReportRequest } from 'reports/package/accessibilityInsightsReport';
+import { AxeResultsReport, AxeResultsReportDeps } from 'reports/package/axe-results-report';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ScanResults } from 'scanner/iruleresults';
 import { ResultDecorator } from 'scanner/result-decorator';
@@ -20,22 +20,25 @@ describe('AxeResultReport', () => {
     const pageTitle = 'PAGE_TITLE';
     const description = 'DESCRIPTION';
 
-    const reportOptions: AccessibilityInsightsReport.ReportOptions = {
-        browserSpec: 'BROWSER_SPEC',
-        browserVersion: 'BROWSER_VERSION',
-        pageTitle,
-        description,
-    };
-
-    const axeResults = {
+    const results = {
         timestamp: reportDateTime.toISOString(),
         url,
     } as AxeResults;
 
+    const request: AxeReportRequest = {
+        results,
+        description,
+        scanContext: {
+            browserSpec: 'BROWSER_SPEC',
+            browserVersion: 'BROWSER_VERSION',
+            pageTitle,
+        },
+    };
+
     const mockScanResults = Mock.ofType<ScanResults>();
 
     const mockResultDecorator = Mock.ofType<ResultDecorator>(null, MockBehavior.Strict);
-    mockResultDecorator.setup(dec => dec.decorateResults(axeResults)).returns(() => mockScanResults.object);
+    mockResultDecorator.setup(dec => dec.decorateResults(results)).returns(() => mockScanResults.object);
 
     const mockRules = Mock.ofType<UnifiedRule[]>();
     const mockGetRules = Mock.ofType<typeof convertScanResultsToUnifiedRules>(null, MockBehavior.Strict);
@@ -61,17 +64,17 @@ describe('AxeResultReport', () => {
         .setup(gen => gen.generateHtml(reportDateTime, pageTitle, url, description, mockCardsViewModel.object))
         .returns(() => expectedHTML);
 
-    const deps: AxeResultReportDeps = {
+    const deps: AxeResultsReportDeps = {
         reportHtmlGenerator: mockReportHtmlGenerator.object,
         resultDecorator: mockResultDecorator.object,
-        getRules: mockGetRules.object,
-        getResults: mockGetResults.object,
+        getUnifiedRules: mockGetRules.object,
+        getUnifiedResults: mockGetResults.object,
         getCards: mockGetCards.object,
         getUUID: generateUID,
     };
 
     it('returns HTML', () => {
-        const report = new AxeResultReport(axeResults, reportOptions, deps);
+        const report = new AxeResultsReport(deps, request);
 
         const html = report.asHTML();
 

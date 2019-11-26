@@ -1,13 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import axe from 'axe-core';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { generateUID } from 'common/uid-generator';
 import { convertScanResultsToUnifiedResults } from 'injected/adapters/scan-results-to-unified-results';
 import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results-to-unified-rules';
 import { AutomatedChecksReportSectionFactory } from 'reports/components/report-sections/automated-checks-report-section-factory';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
-import { AxeResultReport, AxeResultReportDeps } from 'reports/package/axe-results-report';
+import { AxeResultsReport, AxeResultsReportDeps } from 'reports/package/axe-results-report';
 import { Reporter } from 'reports/package/reporter';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
@@ -25,9 +24,17 @@ import { GetGuidanceTagsFromGuidanceLinks } from '../../common/get-guidance-tags
 import { FixInstructionProcessor } from '../../injected/fix-instruction-processor';
 import AccessibilityInsightsReport from './accessibilityInsightsReport';
 
-const axeResultsReportGenerator = (results: axe.AxeResults, options: AccessibilityInsightsReport.ReportOptions) => {
-    const { browserVersion, browserSpec, pageTitle: targetPageTitle } = options;
-    const axeVersion = results.testEngine.version;
+const axeResultsReportGenerator = (request: AccessibilityInsightsReport.AxeReportRequest) => {
+    const {
+        results: {
+            testEngine: {
+                version: axeVersion,
+            },
+        },
+        scanContext: {
+            browserVersion, browserSpec, pageTitle: targetPageTitle,
+        },
+    } = request;
 
     const environmentInfoProvider = new EnvironmentInfoProvider(browserVersion, browserSpec, axeVersion);
     const reactStaticRenderer = new ReactStaticRenderer();
@@ -53,16 +60,16 @@ const axeResultsReportGenerator = (results: axe.AxeResults, options: Accessibili
         helpUrlGetter.getHelpUrl(ruleId, axeHelpUrl),
     );
 
-    const deps: AxeResultReportDeps = {
+    const deps: AxeResultsReportDeps = {
         reportHtmlGenerator,
         resultDecorator,
-        getRules: convertScanResultsToUnifiedRules,
-        getResults: convertScanResultsToUnifiedResults,
+        getUnifiedRules: convertScanResultsToUnifiedRules,
+        getUnifiedResults: convertScanResultsToUnifiedResults,
         getCards: getCardViewData,
         getUUID: generateUID,
     };
 
-    return new AxeResultReport(results, options, deps);
+    return new AxeResultsReport(deps, request);
 };
 
 export const reporterFactory: AccessibilityInsightsReport.ReporterFactory = () => {

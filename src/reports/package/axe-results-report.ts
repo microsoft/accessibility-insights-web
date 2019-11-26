@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
-import axe from 'axe-core';
 import { CardSelectionViewData } from 'common/get-card-selection-view-data';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { UUIDGenerator } from 'common/uid-generator';
@@ -11,32 +9,32 @@ import { ResultDecorator } from 'scanner/result-decorator';
 import { ReportHtmlGenerator } from '../report-html-generator';
 import AccessibilityInsightsReport from './accessibilityInsightsReport';
 
-export type AxeResultReportDeps = {
+export type AxeResultsReportDeps = {
     reportHtmlGenerator: ReportHtmlGenerator;
     resultDecorator: ResultDecorator;
-    getRules: typeof convertScanResultsToUnifiedRules;
-    getResults: typeof convertScanResultsToUnifiedResults;
+    getUnifiedRules: typeof convertScanResultsToUnifiedRules;
+    getUnifiedResults: typeof convertScanResultsToUnifiedResults;
     getCards: typeof getCardViewData;
     getUUID: UUIDGenerator;
 };
 
-export class AxeResultReport implements AccessibilityInsightsReport.Report {
+export class AxeResultsReport implements AccessibilityInsightsReport.Report {
     constructor(
-        private readonly axeResults: axe.AxeResults,
-        private readonly options: AccessibilityInsightsReport.ReportOptions,
-        private readonly deps: AxeResultReportDeps,
-    ) {}
+        private readonly deps: AxeResultsReportDeps,
+        private readonly reqeust: AccessibilityInsightsReport.AxeReportRequest,
+    ) { }
 
     public asHTML(): string {
-        const { resultDecorator, getRules, getResults, getCards, getUUID, reportHtmlGenerator } = this.deps;
+        const { resultDecorator, getUnifiedRules, getUnifiedResults, getCards, getUUID, reportHtmlGenerator } = this.deps;
+        const { results, description, scanContext: { pageTitle } } = this.reqeust;
 
-        const scanDate = new Date(this.axeResults.timestamp);
+        const scanDate = new Date(results.timestamp);
 
-        const scanResults = resultDecorator.decorateResults(this.axeResults);
+        const scanResults = resultDecorator.decorateResults(results);
 
-        const rules = getRules(scanResults);
+        const unifiedRules = getUnifiedRules(scanResults);
 
-        const results = getResults(scanResults, getUUID);
+        const unifiedResults = getUnifiedResults(scanResults, getUUID);
 
         const cardSelectionViewData: CardSelectionViewData = {
             highlightedResultUids: [],
@@ -45,13 +43,13 @@ export class AxeResultReport implements AccessibilityInsightsReport.Report {
             visualHelperEnabled: false,
         };
 
-        const cardsViewModel = getCards(rules, results, cardSelectionViewData);
+        const cardsViewModel = getCards(unifiedRules, unifiedResults, cardSelectionViewData);
 
         const html = reportHtmlGenerator.generateHtml(
             scanDate,
-            this.options.pageTitle,
-            this.axeResults.url,
-            this.options.description,
+            pageTitle,
+            results.url,
+            description,
             cardsViewModel,
         );
 

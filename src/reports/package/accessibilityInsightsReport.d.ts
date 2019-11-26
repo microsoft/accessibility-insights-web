@@ -1,19 +1,27 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+
+import axe from 'axe-core';
+
 declare namespace AccessibilityInsightsReport {
     export type Report = {
         asHTML(): string;
     };
 
-    export type ReportOptions = {
+    export type ScanContext = {
         browserVersion: string;
         browserSpec: string;
         pageTitle: string;
-        description: string;
     };
 
+    export type AxeReportRequest = {
+        results: axe.AxeResults,
+        description: string;
+        scanContext: ScanContext;
+    }
+
     export type Reporter = {
-        fromAxeResult: (results: axe.AxeResults, options: AccessibilityInsightsReport.ReportOptions) => Report;
+        fromAxeResult: (request: AxeReportRequest) => Report;
     };
 
     export type ReporterFactory = () => Reporter;
