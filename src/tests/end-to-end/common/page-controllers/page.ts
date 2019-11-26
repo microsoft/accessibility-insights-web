@@ -181,12 +181,18 @@ export class Page {
         });
     }
 
-    public async getShadowRootOfSelector(selector: string): Promise<Puppeteer.ElementHandle<Element>> {
-        return await this.screenshotOnError(async () =>
-            (
-                await this.underlyingPage.evaluateHandle(selectorInEval => document.querySelector(selectorInEval).shadowRoot, selector)
-            ).asElement(),
-        );
+    public async waitForShadowRootOfSelector(selector: string): Promise<Puppeteer.ElementHandle<Element>> {
+        return await this.screenshotOnError(async () => {
+            const shadowRootHandle = await this.underlyingPage.waitForFunction(
+                selectorInEval => {
+                    const container = document.querySelector(selectorInEval);
+                    return container == undefined ? undefined : container.shadowRoot;
+                },
+                { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS },
+                selector,
+            );
+            return shadowRootHandle.asElement();
+        });
     }
 
     public async clickSelector(selector: string): Promise<void> {
