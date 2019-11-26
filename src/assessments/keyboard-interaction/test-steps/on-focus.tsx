@@ -9,15 +9,20 @@ import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { KeyboardInteractionTestStep } from './test-steps';
 
-const description: JSX.Element = <span>Navigating to a component must not trigger any unexpected change of context.</span>;
+const description: JSX.Element = (
+    <span>Navigating to a component must not trigger any unexpected change of context.</span>
+);
 
 const howToTest: JSX.Element = (
     <div>
         <ol>
-            <li>Use standard keyboard commands to navigate through all the interactive interface components in the target page.</li>
             <li>
-                Verify that moving focus to a component does not trigger any <Markup.Emphasis>unexpected</Markup.Emphasis> change of
-                context, such as:
+                Use standard keyboard commands to navigate through all the interactive interface
+                components in the target page.
+            </li>
+            <li>
+                Verify that moving focus to a component does not trigger any{' '}
+                <Markup.Emphasis>unexpected</Markup.Emphasis> change of context, such as:
                 <ol>
                     <li>Submitting a form automatically</li>
                     <li>Launching a new window</li>

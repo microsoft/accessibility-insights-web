@@ -8,18 +8,22 @@ import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { SequenceTestStep } from './test-steps';
 
-const description: JSX.Element = <span>White space characters must not be used to create the appearance of columns.</span>;
+const description: JSX.Element = (
+    <span>White space characters must not be used to create the appearance of columns.</span>
+);
 
 const howToTest: JSX.Element = (
     <div>
         <p>This procedure uses the browser Developer Tools (F12) to inspect the page's HTML.</p>
         <ol>
             <li>
-                Search the page's HTML to determine whether the page includes any <Markup.Tag tagName="pre" /> elements.
+                Search the page's HTML to determine whether the page includes any{' '}
+                <Markup.Tag tagName="pre" /> elements.
             </li>
             <li>
-                Examine each <Markup.Tag tagName="pre" /> element to verify that white space characters are not used to arrange the text
-                into a column. White space characters include spaces, tabs, line breaks, and carriage returns.
+                Examine each <Markup.Tag tagName="pre" /> element to verify that white space
+                characters are not used to arrange the text into a column. White space characters
+                include spaces, tabs, line breaks, and carriage returns.
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>

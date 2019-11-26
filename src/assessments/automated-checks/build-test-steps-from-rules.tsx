@@ -53,8 +53,10 @@ function buildAutomatedCheckStep(rule: ScannerRuleInfo): Requirement {
         getInstanceStatus: getInstanceStatus,
         getInstanceStatusColumns: () => [],
         renderInstanceTableHeader: () => null,
-        renderRequirementDescription: requirementLink => requirementLink.renderRequirementDescriptionWithoutIndex(),
-        getDefaultMessage: defaultMessageGenerator => defaultMessageGenerator.getNoFailingInstanceMessage,
+        renderRequirementDescription: requirementLink =>
+            requirementLink.renderRequirementDescriptionWithoutIndex(),
+        getDefaultMessage: defaultMessageGenerator =>
+            defaultMessageGenerator.getNoFailingInstanceMessage,
         getVisualHelperToggle: props => <AutomatedChecksVisualizationToggle {...props} />,
     };
 

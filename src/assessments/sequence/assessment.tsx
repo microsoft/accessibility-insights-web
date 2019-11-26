@@ -16,10 +16,11 @@ const { guidance } = content.sequence;
 const gettingStarted: JSX.Element = (
     <React.Fragment>
         <p>
-            By default, browsers and assistive technologies present content to users in DOM order (the order that it appears in the HTML).
-            When coding is added to modify the apparent order of content, assistive technologies might not be able to programmatically
-            determine the intended reading order of content. As a result, people who use assistive technologies might encounter content in
-            an order that doesn't make sense.
+            By default, browsers and assistive technologies present content to users in DOM order
+            (the order that it appears in the HTML). When coding is added to modify the apparent
+            order of content, assistive technologies might not be able to programmatically determine
+            the intended reading order of content. As a result, people who use assistive
+            technologies might encounter content in an order that doesn't make sense.
         </p>
     </React.Fragment>
 );

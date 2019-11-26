@@ -19,14 +19,17 @@ const { guidance } = content.semantics;
 const gettingStarted: JSX.Element = (
     <React.Fragment>
         <p>
-            Information and relationships that are implied through visual formatting must be available to non-sighted users. Using semantic
-            markup helps achieve this by introducing meaning into a web page rather than just presentation. For example, HTML tags like{' '}
-            <Markup.Tag tagName="b" /> and <Markup.Tag tagName="i" /> are not semantic because they define only the{' '}
-            <Markup.Emphasis>visual appearance </Markup.Emphasis>of text. On the other hand, tags like <Markup.Tag tagName="blockquote" />
+            Information and relationships that are implied through visual formatting must be
+            available to non-sighted users. Using semantic markup helps achieve this by introducing
+            meaning into a web page rather than just presentation. For example, HTML tags like{' '}
+            <Markup.Tag tagName="b" /> and <Markup.Tag tagName="i" /> are not semantic because they
+            define only the <Markup.Emphasis>visual appearance </Markup.Emphasis>of text. On the
+            other hand, tags like <Markup.Tag tagName="blockquote" />
             {', '}
             <Markup.Tag tagName="em" /> {' and '}
-            <Markup.Tag tagName="ol" /> communicate the meaning of the text. Access to semantic information allows browsers and assistive
-            technologies to present the content appropriately to users. Using semantic elements correctly ensures all users have equal
+            <Markup.Tag tagName="ol" /> communicate the meaning of the text. Access to semantic
+            information allows browsers and assistive technologies to present the content
+            appropriately to users. Using semantic elements correctly ensures all users have equal
             access to the meaning of content.
         </p>
     </React.Fragment>
@@ -38,6 +41,13 @@ export const SemanticsAssessment = AssessmentBuilder.Assisted({
     gettingStarted,
     guidance,
     visualizationType: VisualizationType.SemanticsAssessment,
-    requirements: [CssContent, DataTables, SemanticsLists, SemanticsEmphasis, SemanticsQuotes, SemanticsLetterSpacing],
+    requirements: [
+        CssContent,
+        DataTables,
+        SemanticsLists,
+        SemanticsEmphasis,
+        SemanticsQuotes,
+        SemanticsLetterSpacing,
+    ],
     storeDataKey: 'semanticsAssessment',
 });

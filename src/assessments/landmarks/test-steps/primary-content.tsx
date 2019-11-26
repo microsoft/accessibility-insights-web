@@ -12,15 +12,17 @@ import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { LandmarkTestStep } from './test-steps';
 
-const description: JSX.Element = <span>The main landmark must contain all of the page's primary content.</span>;
+const description: JSX.Element = (
+    <span>The main landmark must contain all of the page's primary content.</span>
+);
 
 const howToTest: JSX.Element = (
     <div>
         <p>The visual helper for this requirement highlights the page's main landmark.</p>
         <ol>
             <li>
-                In the target page, examine the <Markup.CodeTerm>main</Markup.CodeTerm> landmark to verify that it contains all of the
-                page's primary content.
+                In the target page, examine the <Markup.CodeTerm>main</Markup.CodeTerm> landmark to
+                verify that it contains all of the page's primary content.
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
