@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ExtensionTypes, Permissions } from 'webextension-polyfill-ts';
+import { ExtensionTypes, Permissions, Tabs } from 'webextension-polyfill-ts';
 
 export interface BrowserAdapter {
     getAllWindows(getInfo: chrome.windows.GetInfo, callback: (chromeWindows: chrome.windows.Window[]) => void): void;
@@ -10,7 +10,7 @@ export interface BrowserAdapter {
     addListenerToWebNavigationUpdated(callback: (details: chrome.webNavigation.WebNavigationFramedCallbackDetails) => void): void;
     addListenerOnWindowsFocusChanged(callback: (windowId: number) => void): void;
     tabsQuery(query: chrome.tabs.QueryInfo, callback: (result: chrome.tabs.Tab[]) => void): void;
-    createTab(url: string, callback?: (tab: chrome.tabs.Tab) => void): void;
+    createActiveTab(url: string): Promise<Tabs.Tab>;
     createTabInNewWindow(url: string, callback?: (tab: chrome.tabs.Tab) => void): void;
     createInactiveTab(url: string, callback: (tab: chrome.tabs.Tab) => void): void;
     closeTab(tabId: number): void;
