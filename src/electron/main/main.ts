@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AutoUpdater } from 'auto-update/auto-updater';
 import { app, BrowserWindow } from 'electron';
 import { autoUpdater } from 'electron-updater';
+import { AutoUpdater } from 'electron/auto-update/auto-updater';
 import { OSType, PlatformInfo } from 'electron/window-management/platform-info';
 import * as path from 'path';
 
