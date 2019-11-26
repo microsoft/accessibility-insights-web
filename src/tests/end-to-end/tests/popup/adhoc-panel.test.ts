@@ -60,10 +60,8 @@ describe('Popup -> Ad-hoc tools', () => {
     it.each(['Automated checks', 'Landmarks', 'Headings', 'Color'])(
         'should display the pinned target page visualizations when enabling the "%s" toggle',
         async (toggleAriaLabel: string) => {
-            await popupPage.withTracing(async () => {
-                await popupPage.gotoAdhocPanel();
-                await popupPage.enableToggleByAriaLabel(toggleAriaLabel);
-            });
+            await popupPage.gotoAdhocPanel();
+            await popupPage.enableToggleByAriaLabel(toggleAriaLabel);
 
             await targetPage.bringToFront();
             expect(await targetPage.waitForShadowRootHtmlSnapshot()).toMatchSnapshot();
