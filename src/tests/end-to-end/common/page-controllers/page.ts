@@ -4,6 +4,9 @@ import { includes } from 'lodash';
 import * as Puppeteer from 'puppeteer';
 
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
+import { generateUID } from 'common/uid-generator';
+import * as makeDir from 'make-dir';
+import * as path from 'path';
 import { CommonSelectors } from '../element-identifiers/common-selectors';
 import { forceTestFailure } from '../force-test-failure';
 import { takeScreenshot } from '../generate-screenshot';
@@ -294,5 +297,38 @@ export class Page {
         await this.screenshotOnError(async () => {
             await this.underlyingPage.addScriptTag({ path: filePath });
         });
+    }
+
+    public async withTracing<T>(wrappedFn: () => Promise<T>): Promise<T> {
+        const tracingPath = path.resolve(__dirname, '../../../../../test-results/e2e/tracing');
+        const toFilename = (s: string) => s.replace(/[^a-z0-9.-]+/gi, '_');
+        await makeDir(tracingPath);
+        const traceName = generateUID();
+        const filePath = path.join(tracingPath, toFilename(`${traceName}.json`));
+        const options: Puppeteer.TracingStartOptions = { path: filePath, screenshots: true };
+        await this.underlyingPage.tracing.start(options);
+
+        let retVal: T;
+        try {
+            retVal = await wrappedFn();
+        } catch (originalError) {
+            try {
+                await this.underlyingPage.tracing.stop();
+                // Only log this after tracing.stop succeeds!
+                console.log(`Trace file (from error) is located at: ${filePath}`);
+            } catch (secondaryTracingStopError) {
+                console.error(
+                    `withTracing: Detected an error, and then *additionally* hit a second error while trying to call tracing.stop() after the first error.\n` +
+                        `withTracing: The secondary error from tracing.stop() is: ${secondaryTracingStopError.stack}\n` +
+                        `withTracing: rethrowing the original error...`,
+                );
+            }
+            throw originalError;
+        }
+        await this.underlyingPage.tracing.stop();
+
+        // Only log this after tracing.stop!
+        console.log(`Trace file (from success) is located at: ${filePath}`);
+        return retVal;
     }
 }
