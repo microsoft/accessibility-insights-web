@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
-import { TabStopShadowDomSelectors, TargetPageInjectedComponentSelectors } from '../../common/element-identifiers/target-page-selectors';
+import { TabStopShadowDomSelectors } from '../../common/element-identifiers/target-page-selectors';
 import { PopupPage } from '../../common/page-controllers/popup-page';
 import { TargetPage } from '../../common/page-controllers/target-page';
 
