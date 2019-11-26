@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { browser, ExtensionTypes, Permissions } from 'webextension-polyfill-ts';
+import { browser, ExtensionTypes, Permissions, Tabs } from 'webextension-polyfill-ts';
 import { BrowserAdapter } from './browser-adapter';
 import { CommandsAdapter } from './commands-adapter';
 import { StorageAdapter } from './storage-adapter';
@@ -65,15 +65,8 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         return browser.tabs.insertCSS(tabId, details);
     }
 
-    public createTab(url: string, callback?: (tab: chrome.tabs.Tab) => void): void {
-        chrome.tabs.create(
-            {
-                url: url,
-                active: true,
-                pinned: false,
-            },
-            callback,
-        );
+    public createActiveTab(url: string): Promise<Tabs.Tab> {
+        return browser.tabs.create({ url, active: true, pinned: false });
     }
 
     public createTabInNewWindow(url: string, callback?: (tab: chrome.tabs.Tab) => void): void {

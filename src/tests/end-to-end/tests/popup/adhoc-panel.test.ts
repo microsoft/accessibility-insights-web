@@ -66,7 +66,7 @@ describe('Popup -> Ad-hoc tools', () => {
             });
 
             await targetPage.bringToFront();
-            expect(await targetPage.getShadowRootHtmlSnapshot()).toMatchSnapshot();
+            expect(await targetPage.waitForShadowRootHtmlSnapshot()).toMatchSnapshot();
         },
     );
 });

@@ -1,31 +1,27 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import {
     allCardInteractionsSupported,
     noCardInteractionsSupported,
     onlyUserConfigAgnosticCardInteractionsSupported,
 } from 'common/components/cards/card-interaction-support';
+import { CardKebabMenuButton, CardKebabMenuButtonDeps, CardKebabMenuButtonProps } from 'common/components/cards/card-kebab-menu-button';
 import { Toast } from 'common/components/toast';
 import { IssueFilingActionMessageCreator } from 'common/message-creators/issue-filing-action-message-creator';
+import { NavigatorUtils } from 'common/navigator-utils';
 import { NamedFC } from 'common/react/named-fc';
+import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { WindowUtils } from 'common/window-utils';
 import { guidanceTags } from 'content/guidance-tags';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { mount, ReactWrapper, shallow, ShallowWrapper } from 'enzyme';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
 import { ActionButton, IContextualMenuItem } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
-import { IssueDetailsTextGenerator } from '../../../../../../background/issue-details-text-generator';
-import {
-    CardKebabMenuButton,
-    CardKebabMenuButtonDeps,
-    CardKebabMenuButtonProps,
-} from '../../../../../../common/components/cards/card-kebab-menu-button';
-import { NavigatorUtils } from '../../../../../../common/navigator-utils';
-import { CreateIssueDetailsTextData } from '../../../../../../common/types/create-issue-details-text-data';
-import { DetailsViewActionMessageCreator } from '../../../../../../DetailsView/actions/details-view-action-message-creator';
 
 describe('CardKebabMenuButtonTest', () => {
     let defaultProps: CardKebabMenuButtonProps;
@@ -57,7 +53,7 @@ describe('CardKebabMenuButtonTest', () => {
                 return { testField };
             },
             getSettingsFromStoreData: data => data[testKey],
-            fileIssue: () => {},
+            fileIssue: () => Promise.resolve(),
         };
         issueDetailsData = {
             rule: {

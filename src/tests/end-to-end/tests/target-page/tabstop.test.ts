@@ -1,14 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ElementHandle } from 'puppeteer';
-
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
-import { TabStopShadowDomSelectors, TargetPageInjectedComponentSelectors } from '../../common/element-identifiers/target-page-selectors';
+import { TabStopShadowDomSelectors } from '../../common/element-identifiers/target-page-selectors';
 import { PopupPage } from '../../common/page-controllers/popup-page';
 import { TargetPage } from '../../common/page-controllers/target-page';
 
-describe('tabstop tests', () => {
+describe('Tab stops visualization', () => {
     let browser: Browser;
     let targetPage: TargetPage;
     let popupPage: PopupPage;
@@ -24,36 +22,35 @@ describe('tabstop tests', () => {
         }
     });
 
-    test('works when tabstop is triggered from adhoc panel', async () => {
+    it('should show the expected visuals in the target page after enabling from popup and tabbing through target page', async () => {
         popupPage = await browser.newPopupPage(targetPage);
         await popupPage.gotoAdhocPanel();
         await popupPage.enableToggleByAriaLabel('Tab stops');
 
         await targetPage.bringToFront();
+        await targetPage.waitForShadowRoot();
 
+        // Should highlight first element with a transparent circle
         await targetPage.keyPress('Tab');
-        await targetPage.keyPress('Tab');
-        await targetPage.keyPress('Tab');
+        await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.svg);
+        await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.transparentEllipse);
 
-        const shadowRoot = await targetPage.getShadowRoot();
-        await targetPage.waitForDescendentSelector(shadowRoot, TargetPageInjectedComponentSelectors.tabStopVisulizationStart, {
-            visible: true,
-        });
+        // Should highlight second element with a transparent circle and change first element's
+        // highlight to an opaque circle with a "1" in it, connected by a line
+        await targetPage.keyPress('Tab');
+        await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.svg);
+        await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.transparentEllipse);
+        await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.opaqueEllipse);
+        await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.lines);
+        await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.text);
 
-        await validateTabStopVisualizationOnTargetPage(shadowRoot);
+        // Only 2 focusable elements on this test page, so should move focus to the browser chrome
+        // without changing the visualizations
+        await targetPage.keyPress('Tab');
+        await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.svg);
+        await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.transparentEllipse);
+        await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.opaqueEllipse);
+        await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.lines);
+        await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.text);
     });
-
-    async function validateTabStopVisualizationOnTargetPage(shadowRoot: ElementHandle<Element>): Promise<void> {
-        const svgs = await shadowRoot.$$(TabStopShadowDomSelectors.svg);
-        const ellipses = await shadowRoot.$$(TabStopShadowDomSelectors.ellipse);
-        const lines = await shadowRoot.$$(TabStopShadowDomSelectors.lines);
-        const texts = await shadowRoot.$$(TabStopShadowDomSelectors.text);
-
-        // 3 tabs produce 1 svg, 2 ellipses, 1 texts and 1 line between them
-
-        expect(svgs).toHaveLength(1);
-        expect(ellipses).toHaveLength(2);
-        expect(lines).toHaveLength(1);
-        expect(texts).toHaveLength(1);
-    }
 });

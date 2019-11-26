@@ -8,7 +8,7 @@ module.exports = {
     trailingComma: 'all',
     overrides: [
         {
-            files: ['src/popup/**/*', 'src/background/**/*'],
+            files: ['src/popup/**/*', 'src/background/**/*', 'src/ad-hoc-visualizations/**/*'],
             options: {
                 printWidth: 100,
             },
