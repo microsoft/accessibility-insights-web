@@ -24,7 +24,7 @@ import { GetGuidanceTagsFromGuidanceLinks } from '../../common/get-guidance-tags
 import { FixInstructionProcessor } from '../../injected/fix-instruction-processor';
 import AccessibilityInsightsReport from './accessibilityInsightsReport';
 
-const axeResultsReportGenerator = (request: AccessibilityInsightsReport.AxeReportRequest) => {
+const axeResultsReportGenerator = (parameters: AccessibilityInsightsReport.AxeReportParameters) => {
     const {
         results: {
             testEngine: {
@@ -34,7 +34,7 @@ const axeResultsReportGenerator = (request: AccessibilityInsightsReport.AxeRepor
         scanContext: {
             browserVersion, browserSpec, pageTitle: targetPageTitle,
         },
-    } = request;
+    } = parameters;
 
     const environmentInfoProvider = new EnvironmentInfoProvider(browserVersion, browserSpec, axeVersion);
     const reactStaticRenderer = new ReactStaticRenderer();
@@ -69,7 +69,7 @@ const axeResultsReportGenerator = (request: AccessibilityInsightsReport.AxeRepor
         getUUID: generateUID,
     };
 
-    return new AxeResultsReport(deps, request);
+    return new AxeResultsReport(deps, parameters);
 };
 
 export const reporterFactory: AccessibilityInsightsReport.ReporterFactory = () => {

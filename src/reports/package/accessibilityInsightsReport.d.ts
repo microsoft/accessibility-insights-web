@@ -14,14 +14,14 @@ declare namespace AccessibilityInsightsReport {
         pageTitle: string;
     };
 
-    export type AxeReportRequest = {
+    export type AxeReportParameters = {
         results: axe.AxeResults,
         description: string;
         scanContext: ScanContext;
     }
 
     export type Reporter = {
-        fromAxeResult: (request: AxeReportRequest) => Report;
+        fromAxeResult: (parameters: AxeReportParameters) => Report;
     };
 
     export type ReporterFactory = () => Reporter;

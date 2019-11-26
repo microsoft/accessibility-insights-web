@@ -3,12 +3,12 @@
 import AccessibilityInsightsReport from './accessibilityInsightsReport';
 import { AxeResultsReport } from './axe-results-report';
 
-export type AxeResultsReportGenerator = (request: AccessibilityInsightsReport.AxeReportRequest) => AxeResultsReport;
+export type AxeResultsReportGenerator = (parameters: AccessibilityInsightsReport.AxeReportParameters) => AxeResultsReport;
 
 export class Reporter implements AccessibilityInsightsReport.Reporter {
     constructor(private readonly axeResultsReportGenerator: AxeResultsReportGenerator) { }
 
-    public fromAxeResult(request: AccessibilityInsightsReport.AxeReportRequest): AxeResultsReport {
-        return this.axeResultsReportGenerator(request);
+    public fromAxeResult(parameters: AccessibilityInsightsReport.AxeReportParameters): AxeResultsReport {
+        return this.axeResultsReportGenerator(parameters);
     }
 }

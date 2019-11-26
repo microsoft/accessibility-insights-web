@@ -7,7 +7,7 @@ import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data
 import { generateUID } from 'common/uid-generator';
 import { convertScanResultsToUnifiedResults } from 'injected/adapters/scan-results-to-unified-results';
 import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results-to-unified-rules';
-import { AxeReportRequest } from 'reports/package/accessibilityInsightsReport';
+import { AxeReportParameters } from 'reports/package/accessibilityInsightsReport';
 import { AxeResultsReport, AxeResultsReportDeps } from 'reports/package/axe-results-report';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ScanResults } from 'scanner/iruleresults';
@@ -25,7 +25,7 @@ describe('AxeResultReport', () => {
         url,
     } as AxeResults;
 
-    const request: AxeReportRequest = {
+    const parameters: AxeReportParameters = {
         results,
         description,
         scanContext: {
@@ -74,7 +74,7 @@ describe('AxeResultReport', () => {
     };
 
     it('returns HTML', () => {
-        const report = new AxeResultsReport(deps, request);
+        const report = new AxeResultsReport(deps, parameters);
 
         const html = report.asHTML();
 

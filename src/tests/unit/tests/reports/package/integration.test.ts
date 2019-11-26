@@ -25,12 +25,12 @@ describe('report package integration', () => {
 
     scans.forEach(({ scan, name }) => it(name, () => {
         const reporter = reporterFactory();
-        const request = {
+        const parameters = {
             results: scan as AxeResults,
             description,
             scanContext,
         };
-        const html = reporter.fromAxeResult(request).asHTML().replace(rexScriptBlock, '');
+        const html = reporter.fromAxeResult(parameters).asHTML().replace(rexScriptBlock, '');
         expect(html).toMatchSnapshot();
     }));
 });

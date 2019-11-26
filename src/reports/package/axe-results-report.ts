@@ -21,12 +21,12 @@ export type AxeResultsReportDeps = {
 export class AxeResultsReport implements AccessibilityInsightsReport.Report {
     constructor(
         private readonly deps: AxeResultsReportDeps,
-        private readonly reqeust: AccessibilityInsightsReport.AxeReportRequest,
+        private readonly parameters: AccessibilityInsightsReport.AxeReportParameters,
     ) { }
 
     public asHTML(): string {
         const { resultDecorator, getUnifiedRules, getUnifiedResults, getCards, getUUID, reportHtmlGenerator } = this.deps;
-        const { results, description, scanContext: { pageTitle } } = this.reqeust;
+        const { results, description, scanContext: { pageTitle } } = this.parameters;
 
         const scanDate = new Date(results.timestamp);
 
