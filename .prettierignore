@@ -28,5 +28,4 @@ new-appx.ps1
 test-results/
 yarn.lock
 
-.gitconfig
 .ignoredRevs
