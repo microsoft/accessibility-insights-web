@@ -194,8 +194,12 @@ export class Page {
     }
 
     public async clickSelector(selector: string): Promise<void> {
-        const element = await this.waitForSelector(selector);
-        await this.clickElementHandle(element);
+        await this.screenshotOnError(async () => {
+            await this.underlyingPage.waitForSelector(selector, { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS });
+            await this.underlyingPage.hover(selector);
+            await this.underlyingPage.waitFor(DEFAULT_CLICK_HOVER_DELAY_MS);
+            await this.underlyingPage.click(selector, { delay: DEFAULT_CLICK_MOUSEUP_DELAY_MS });
+        });
     }
 
     public async clickSelectorXPath(xpath: string): Promise<void> {
@@ -213,13 +217,8 @@ export class Page {
         await this.clickElementHandle(element);
     }
 
-    // We use logic closer to Cypress's than Puppeteer's, where we artificially inject
-    // human-like delays between hovering the element, mouse-down, and mouse-up, to
-    // improve reliability.
     public async clickElementHandle(element: Puppeteer.ElementHandle<Element>): Promise<void> {
         await this.screenshotOnError(async () => {
-            await element.hover();
-            await this.underlyingPage.waitFor(DEFAULT_CLICK_HOVER_DELAY_MS);
             await element.click({ delay: DEFAULT_CLICK_MOUSEUP_DELAY_MS });
         });
     }
