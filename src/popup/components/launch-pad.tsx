@@ -3,10 +3,7 @@
 import * as React from 'react';
 
 import { AxeInfo } from '../../common/axe-info';
-import {
-    ExternalLink,
-    ExternalLinkDeps,
-} from '../../common/components/external-link';
+import { ExternalLink, ExternalLinkDeps } from '../../common/components/external-link';
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
 import { LaunchPadItemRow } from './launch-pad-item-row';
 
@@ -31,16 +28,13 @@ export interface LaunchPadRowConfiguration {
 }
 
 export class LaunchPad extends React.Component<LaunchPadProps, undefined> {
-    public static demoLink: string =
-        'https://go.microsoft.com/fwlink/?linkid=2082374';
+    public static demoLink: string = 'https://go.microsoft.com/fwlink/?linkid=2082374';
 
     constructor(props: LaunchPadProps) {
         super(props);
     }
 
-    private renderLaunchPadItemRows(
-        rowConfigs: LaunchPadRowConfiguration[],
-    ): JSX.Element[] {
+    private renderLaunchPadItemRows(rowConfigs: LaunchPadRowConfiguration[]): JSX.Element[] {
         const launchPadItemRows: JSX.Element[] = rowConfigs.map(
             (config: LaunchPadRowConfiguration, index: number) => {
                 return (

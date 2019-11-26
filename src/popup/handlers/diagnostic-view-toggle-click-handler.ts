@@ -31,17 +31,11 @@ export class DiagnosticViewClickHandler {
         const configuration = this.visualizationConfigurationFactory.getConfiguration(
             visualizationType,
         );
-        const scanData = configuration.getStoreData(
-            visualizationStoreData.tests,
-        );
+        const scanData = configuration.getStoreData(visualizationStoreData.tests);
         const newValue = !scanData.enabled;
         const source = TelemetryEventSource.AdHocTools;
 
-        const telemetryInfo = this.telemetryFactory.forToggle(
-            event,
-            newValue,
-            source,
-        );
+        const telemetryInfo = this.telemetryFactory.forToggle(event, newValue, source);
         this.visualizationActionCreator.setVisualizationState(
             visualizationType,
             newValue,
