@@ -2,14 +2,14 @@
 // Licensed under the MIT License.
 import { app, BrowserWindow } from 'electron';
 import { autoUpdater } from 'electron-updater';
-import { AutoUpdater } from 'electron/auto-update/auto-updater';
+import { AutoUpdaterClient } from 'electron/auto-update/auto-updater-client';
 import { OSType, PlatformInfo } from 'electron/window-management/platform-info';
 import * as path from 'path';
 
 let mainWindow: BrowserWindow;
 const platformInfo = new PlatformInfo(process);
 
-const electronAutoUpdateCheck = new AutoUpdater(autoUpdater);
+const electronAutoUpdateCheck = new AutoUpdaterClient(autoUpdater);
 let recurringUpdateCheck;
 
 const createWindow = () => {
@@ -52,7 +52,9 @@ const enableDevMode = (window: BrowserWindow) => {
 };
 
 const setupRecurringUpdateCheck = () => {
-    return setInterval(() => electronAutoUpdateCheck.check(), 60 * 60 * 1000);
+    return setInterval(async () => {
+        await electronAutoUpdateCheck.check();
+    }, 60 * 60 * 1000);
 };
 
 app.on('ready', createWindow);
