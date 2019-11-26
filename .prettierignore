@@ -27,3 +27,5 @@ LICENSE
 new-appx.ps1
 test-results/
 yarn.lock
+
+.ignoredRevs
