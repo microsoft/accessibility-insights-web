@@ -22,7 +22,7 @@ import { initializeFabricIcons } from '../../common/fabric-icons';
 import { GetGuidanceTagsFromGuidanceLinks } from '../../common/get-guidance-tags-from-guidance-links';
 import { FixInstructionProcessor } from '../../injected/fix-instruction-processor';
 import { AxeReportParameters, ReporterFactory } from './accessibilityInsightsReport';
-import { PackageReportFooter } from './package-report-footer';
+import { getReportFooterText } from './get-report-footer-text';
 import { Reporter } from './reporter';
 
 const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
@@ -33,19 +33,17 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
             },
         },
         scanContext: {
-            browserVersion, browserSpec, pageTitle: targetPageTitle,
+            browserSpec, pageTitle: targetPageTitle,
         },
+        serviceName,
     } = parameters;
 
-    const environmentInfoProvider = new EnvironmentInfoProvider(browserVersion, browserSpec, axeVersion);
+    const environmentInfoProvider = new EnvironmentInfoProvider('', browserSpec, axeVersion);
     const reactStaticRenderer = new ReactStaticRenderer();
     const fixInstructionProcessor = new FixInstructionProcessor();
 
-    const sectionFactory = { ...AutomatedChecksReportSectionFactory,
-        FooterSection: PackageReportFooter};
-
     const reportHtmlGenerator = new ReportHtmlGenerator(
-        sectionFactory,
+        AutomatedChecksReportSectionFactory,
         reactStaticRenderer,
         environmentInfoProvider.getEnvironmentInfo(),
         getDefaultAddListenerForCollapsibleSection,
@@ -53,6 +51,7 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
         GetGuidanceTagsFromGuidanceLinks,
         fixInstructionProcessor,
         getPropertyConfiguration,
+        getReportFooterText(serviceName),
     );
 
     const titleProvider = {

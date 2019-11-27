@@ -7,12 +7,11 @@ import { scanNoIssues } from 'tests/unit/tests/reports/package/scans/scan-no-iss
 
 describe('report package integration', () => {
     const scanContext = {
-        browserVersion: 'BROWSER_VERSION',
         browserSpec: 'BROWSER_SPEC',
         pageTitle: 'PAGE_TITLE',
     };
     const description = 'DESCRIPTION';
-
+    const serviceName = 'Accessibility Insights Service';
 
     // Removing script block to address issues with istanbul code coverage
     // constructs interfering with snapshot determinism.
@@ -28,6 +27,7 @@ describe('report package integration', () => {
         const parameters = {
             results: scan as AxeResults,
             description,
+            serviceName,
             scanContext,
         };
         const html = reporter.fromAxeResult(parameters).asHTML().replace(rexScriptBlock, '');

@@ -3,20 +3,19 @@
 import { EnvironmentInfo } from 'common/environment-info-provider';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { SectionProps } from 'reports/components/report-sections/report-section-factory';
-import { PackageReportFooter } from 'reports/package/package-report-footer';
+import { getReportFooterText } from 'reports/package/get-report-footer-text';
 
-describe('PackageReportFooter', () => {
+describe('getReportFooterText', () => {
     it('renders', () => {
         const environmentInfo: EnvironmentInfo = {
             extensionVersion: '1.2.3',
             browserSpec: 'dummy browser version 1.0.1',
             axeCoreVersion: '4.5.6',
         };
-        const props: SectionProps = {
-            environmentInfo,
-        } as SectionProps;
-        const wrapper = shallow(<PackageReportFooter {...props} />);
+
+        const Footer = getReportFooterText('THE SERVICE NAME');
+
+        const wrapper = shallow(<Footer {...environmentInfo} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });

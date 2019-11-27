@@ -9,6 +9,7 @@ import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
 
+import { ReportFooterText } from 'reports/components/report-sections/report-footer-text';
 import { ReportHead } from './components/report-head';
 import { ReportBody, ReportBodyProps } from './components/report-sections/report-body';
 import { ReportCollapsibleContainerControl } from './components/report-sections/report-collapsible-container';
@@ -25,6 +26,7 @@ export class ReportHtmlGenerator {
         private readonly getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
         private readonly fixInstructionProcessor: FixInstructionProcessor,
         private readonly getPropertyConfiguration: (id: string) => Readonly<PropertyConfiguration>,
+        private readonly footerText: ReportFooterText,
     ) {}
 
     public generateHtml(scanDate: Date, pageTitle: string, pageUrl: string, description: string, cardsViewData: CardsViewModel): string {
@@ -50,6 +52,7 @@ export class ReportHtmlGenerator {
             getCollapsibleScript: this.getCollapsibleScript,
             getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,
             fixInstructionProcessor: this.fixInstructionProcessor,
+            footerText: this.footerText,
         } as SectionProps;
 
         const props: ReportBodyProps = {

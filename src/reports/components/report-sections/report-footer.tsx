@@ -3,20 +3,15 @@
 import * as React from 'react';
 
 import { NamedFC } from 'common/react/named-fc';
-import { toolName } from 'content/strings/application';
-import { ToolLink } from 'reports/components/report-sections/tool-link';
 import { SectionProps } from './report-section-factory';
 
-export type ReportFooterProps = Pick<SectionProps, 'environmentInfo'>;
+export type ReportFooterProps = Pick<SectionProps, 'environmentInfo'> & Pick<SectionProps, 'footerText'>;
 
-export const ReportFooter = NamedFC<ReportFooterProps>('ReportFooter', ({ environmentInfo }) => {
-    const { extensionVersion, browserSpec, axeCoreVersion } = environmentInfo;
+export const ReportFooter = NamedFC<ReportFooterProps>('ReportFooter', ({ environmentInfo, footerText: Text }) => {
     return (
         <div className="report-footer-container">
             <div className="report-footer" role="contentinfo">
-                This automated checks result was generated using {`${toolName} ${extensionVersion} (Axe ${axeCoreVersion})`}, a tool that
-                helps debug and find accessibility issues earlier on {browserSpec}. Get more information & download this tool at{' '}
-                <ToolLink />.
+                <Text {...environmentInfo} />
             </div>
         </div>
     );

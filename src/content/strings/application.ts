@@ -6,4 +6,3 @@ export const productName = title;
 export const toolName = title;
 export const windowsProductName = `${brand} for Windows`;
 export const androidAppTitle = `${brand} for Android`;
-export const serviceTitle = `${brand} Service`;
