@@ -27,11 +27,13 @@ exports[`IssuesTableTest automated checks disabled 1`] = `
         className="details-disabled-message"
         role="alert"
       >
-        Turn on 
-        <Term>
-          Automated checks
-        </Term>
-         to see a list of failures.
+        <span>
+          Turn on 
+          <Term>
+            Automated checks
+          </Term>
+           to see a list of failures.
+        </span>
       </div>
     </React.Fragment>
   </div>
