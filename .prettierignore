@@ -23,6 +23,7 @@ src/electron/resources/license.txt
 docs/NOTICE.html
 drop/
 extension/
+package/
 LICENSE
 new-appx.ps1
 test-results/

@@ -17,6 +17,7 @@
         "build:all": "grunt build-all",
         "build:dev": "grunt build-dev",
         "build:electron": "grunt build-electron",
+        "build:package:report": "grunt build-package-report",
         "build:prod": "grunt build-prod",
         "copyright:check": "license-check-and-add check -f copyright-header.config.json",
         "copyright:fix": "license-check-and-add add -f copyright-header.config.json",
@@ -118,7 +119,8 @@
         "typescript": "^3.7.2",
         "webdriverio": "^4.13.0",
         "webpack": "^4.41.2",
-        "webpack-cli": "^3.3.10"
+        "webpack-cli": "^3.3.10",
+        "webpack-node-externals": "^1.7.2"
     },
     "dependencies": {
         "applicationinsights-js": "^1.0.20",
