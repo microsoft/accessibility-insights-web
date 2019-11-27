@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`StaleView render stale view for default 1`] = `
+exports[`NoContentAvailable renders stale view for default 1`] = `
 <main
   className="targetPageClosed"
 >

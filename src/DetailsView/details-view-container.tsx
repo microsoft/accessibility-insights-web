@@ -6,7 +6,6 @@ import { CardSelectionStoreData } from 'common/types/store-data/card-selection-s
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
-
 import { ThemeDeps } from '../common/components/theme';
 import { withStoreSubscription, WithStoreSubscriptionDeps } from '../common/components/with-store-subscription';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -32,7 +31,7 @@ import { GetDetailsSwitcherNavConfiguration } from './components/details-view-sw
 import { Header, HeaderDeps } from './components/header';
 import { IssuesTableHandler } from './components/issues-table-handler';
 import { TargetChangeDialogDeps } from './components/target-change-dialog';
-import { TargetPageClosedView } from './components/target-page-closed-view';
+import { NoContentAvailable } from './components/target-page-closed-view';
 import { DetailsViewBody, DetailsViewBodyDeps } from './details-view-body';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
@@ -91,7 +90,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
             return (
                 <>
                     {this.renderHeader()}
-                    <TargetPageClosedView />
+                    <NoContentAvailable />
                 </>
             );
         }
