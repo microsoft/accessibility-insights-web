@@ -5,7 +5,7 @@ import * as React from 'react';
 import { NamedFC } from 'common/react/named-fc';
 import { SectionProps } from './report-section-factory';
 
-export type ReportFooterProps = Pick<SectionProps, 'environmentInfo'> & Pick<SectionProps, 'footerText'>;
+export type ReportFooterProps = Pick<SectionProps, 'environmentInfo' | 'footerText'>;
 
 export const ReportFooter = NamedFC<ReportFooterProps>('ReportFooter', ({ environmentInfo, footerText: Text }) => {
     return (
