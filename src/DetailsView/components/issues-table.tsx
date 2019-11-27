@@ -183,11 +183,21 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
         const isCardsUIEnabled = this.props.featureFlags[FeatureFlags.universalCardsUI];
         const commandBar = !isCardsUIEnabled ? this.renderCommandBar() : null;
 
+        const disabledMessage = isCardsUIEnabled ? (
+            <span>
+                Use the <Markup.Term>Start over</Markup.Term> button to scan the target page.
+            </span>
+        ) : (
+            <span>
+                Turn on <Markup.Term>{this.configuration.displayableData.title}</Markup.Term> to see a list of failures.
+            </span>
+        );
+
         return (
             <>
                 {commandBar}
                 <div className="details-disabled-message" role="alert">
-                    Turn on <Markup.Term>{this.configuration.displayableData.title}</Markup.Term> to see a list of failures.
+                    {disabledMessage}
                 </div>
             </>
         );
