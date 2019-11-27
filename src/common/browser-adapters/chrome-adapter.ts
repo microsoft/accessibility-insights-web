@@ -140,10 +140,6 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         return chrome.runtime.lastError;
     }
 
-    public createNotification(options: chrome.notifications.NotificationOptions): void {
-        chrome.notifications.create(options);
-    }
-
     public createNotificationP(options: Notifications.CreateNotificationOptions): Promise<string> {
         return browser.notifications.create(options);
     }
