@@ -14,13 +14,7 @@ exports[`ReportFooter renders 1`] = `
     dummy browser version 1.0.1
     . Get more information & download this tool at
      
-    <NewTabLink
-      className="tool-name-link"
-      href="http://aka.ms/AccessibilityInsights"
-      title="Get more information and download Accessibility Insights for Web"
-    >
-      http://aka.ms/AccessibilityInsights
-    </NewTabLink>
+    <ToolLink />
     .
   </div>
 </div>
