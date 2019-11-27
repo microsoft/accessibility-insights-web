@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 steps:
     - script: yarn download:electron-internal
-      displayName: replace open source build with public build
+      displayName: replace open source build with internal build
 
     - script: yarn build:electron
       displayName: build:electron
