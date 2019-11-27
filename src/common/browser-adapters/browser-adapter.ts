@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ExtensionTypes, Permissions, Tabs } from 'webextension-polyfill-ts';
+import { ExtensionTypes, Notifications, Permissions, Tabs } from 'webextension-polyfill-ts';
 
 export interface BrowserAdapter {
     getAllWindows(getInfo: chrome.windows.GetInfo, callback: (chromeWindows: chrome.windows.Window[]) => void): void;
@@ -24,6 +24,7 @@ export interface BrowserAdapter {
     insertCSSInTab(tabId: number, details: ExtensionTypes.InjectDetails): Promise<void>;
     getRunTimeId(): string;
     createNotification(options: chrome.notifications.NotificationOptions): void;
+    createNotificationP(options: Notifications.CreateNotificationOptions): Promise<string>;
     getRuntimeLastError(): chrome.runtime.LastError;
     isAllowedFileSchemeAccess(callback: Function): void;
     addListenerToLocalStorage(callback: (changes: object) => void): void;
