@@ -13,7 +13,7 @@ self-contained HTML files in the same format as
 
 Before using accessibility-insights-report, you will need to run an [axe](https://github.com/dequelabs/axe-core) accessibility scan to produce some axe results to convert. Typically, you would do this by using an axe integration library for your favorite browser automation tool ([axe-puppeteer](https://github.com/dequelabs/axe-puppeteer), [axe-webdriverjs](https://github.com/dequelabs/axe-webdriverjs), [cypress-axe](https://github.com/avanslaars/cypress-axe)).
 
-axe-sarif-converter exports a factory that can be used to create a report object and output its results as HTML.
+accessibility-insights-report exports a factory that can be used to create a report object and output its results as HTML.
 
 Use it like this:
 
@@ -31,6 +31,9 @@ test('my accessibility test', async () => {
     // that outputs axe scan results in the default axe output format
     const testPage: Puppeteer.Page = /* ... set up your test page ... */;
     const axeResults: Axe.AxeResults = await new AxePuppeteer(testPage).analyze();
+
+    // Construct the reporter object from the factory
+    const reporter = reporterFactory();
 
     // Perform the conversion
     const html = reporter.fromAxeResult(axeResults).asHTML();
