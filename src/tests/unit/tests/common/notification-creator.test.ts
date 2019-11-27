@@ -35,7 +35,7 @@ describe('NotificationCreator', () => {
 
         browserAdapterMock
             .setup(adapter =>
-                adapter.createNotificationP(
+                adapter.createNotification(
                     It.isValue({
                         type: 'basic',
                         message: notificationMessage,
@@ -58,7 +58,7 @@ describe('NotificationCreator', () => {
 
         browserAdapterMock
             .setup(adapter =>
-                adapter.createNotificationP(
+                adapter.createNotification(
                     It.isValue({
                         type: 'basic',
                         message: notificationMessage,

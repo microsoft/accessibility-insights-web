@@ -23,7 +23,7 @@ export interface BrowserAdapter {
     executeScriptInTab(tabId: number, details: ExtensionTypes.InjectDetails): Promise<any[]>;
     insertCSSInTab(tabId: number, details: ExtensionTypes.InjectDetails): Promise<void>;
     getRunTimeId(): string;
-    createNotificationP(options: Notifications.CreateNotificationOptions): Promise<string>;
+    createNotification(options: Notifications.CreateNotificationOptions): Promise<string>;
     getRuntimeLastError(): chrome.runtime.LastError;
     isAllowedFileSchemeAccess(callback: Function): void;
     addListenerToLocalStorage(callback: (changes: object) => void): void;

@@ -20,7 +20,7 @@ export class NotificationCreator {
         if (message) {
             const manifest = this.browserAdapter.getManifest();
             this.browserAdapter
-                .createNotificationP({
+                .createNotification({
                     type: 'basic',
                     message: message,
                     title: manifest.name,
