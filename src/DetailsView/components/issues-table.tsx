@@ -185,7 +185,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
 
         const disabledMessage = isCardsUIEnabled ? (
             <span>
-                Use the <Markup.Term>start over</Markup.Term> button to scan the target page.
+                Use the <Markup.Term>Start over</Markup.Term> button to scan the target page.
             </span>
         ) : (
             <span>
