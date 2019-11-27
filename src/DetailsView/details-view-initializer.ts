@@ -28,6 +28,7 @@ import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ReportNameGenerator } from 'reports/report-name-generator';
 
 import { CardsVisualizationModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
+import { DefaultFooterText } from 'reports/components/report-sections/report-footer-text';
 import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AxeInfo } from '../common/axe-info';
 import { provideBlob } from '../common/blob-provider';
@@ -227,6 +228,7 @@ if (isNaN(tabId) === false) {
                 GetGuidanceTagsFromGuidanceLinks,
                 fixInstructionProcessor,
                 getPropertyConfiguration,
+                DefaultFooterText,
             );
 
             const assessmentReportHtmlGeneratorDeps = {

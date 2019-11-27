@@ -10,6 +10,6 @@ export const getReportFooterText = (serviceTitle: string) =>
     NamedFC<ReportFooterTextProps>('PackageFooterText', ({ axeCoreVersion, browserSpec }) => <>
         This automated checks result was generated using the {serviceTitle}{' '}
         that helps find some of the most common accessibility issues. The scan was
-        performed using axe-core {axeCoreVersion} and {browserSpec}. To more deeply
-        investigate your accessibility issues please visit{' '}<ToolLink />.
+        performed using axe-core {axeCoreVersion} and {browserSpec}. For a complete
+        WCAG 2.1 compliance assessment please visit{' '}<ToolLink />.
 </>);

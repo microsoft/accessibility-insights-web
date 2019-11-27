@@ -6,9 +6,9 @@ import { shallow } from 'enzyme';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
 import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
+import { ReportFooterText } from 'reports/components/report-sections/report-footer-text';
 import { ReportSectionFactory, SectionProps } from 'reports/components/report-sections/report-section-factory';
 import { Mock } from 'typemoq';
-
 import { exampleUnifiedStatusResults } from '../../../common/components/cards/sample-view-model-data';
 
 describe('ReportBody', () => {
@@ -18,6 +18,7 @@ describe('ReportBody', () => {
         const getScriptStub = () => '';
         const getGuidanceTagsStub = () => [];
         const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
+        const footerText: ReportFooterText = () => <>FOOTER TEXT</>;
 
         const detailsProps: SectionProps = {
             deps: {} as FailedInstancesSectionDeps,
@@ -47,6 +48,7 @@ describe('ReportBody', () => {
             userConfigurationStoreData: null,
             targetAppInfo: { name: 'app' },
             shouldAlertFailuresCount: false,
+            footerText,
         };
 
         const props: ReportBodyProps = {
