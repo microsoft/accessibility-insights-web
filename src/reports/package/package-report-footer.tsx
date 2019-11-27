@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { NamedFC } from 'common/react/named-fc';
-import { serviceTitle, toolName } from 'content/strings/application';
+import { serviceTitle } from 'content/strings/application';
 import { SectionProps } from 'reports/components/report-sections/report-section-factory';
 import { ToolLink } from 'reports/components/report-sections/tool-link';
 
