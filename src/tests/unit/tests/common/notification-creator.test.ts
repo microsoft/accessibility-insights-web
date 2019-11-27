@@ -1,12 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { NotificationCreator } from 'common/notification-creator';
+import { VisualizationType } from 'common/types/visualization-type';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
-import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
-import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
-import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
-import { NotificationCreator } from '../../../../common/notification-creator';
-import { VisualizationType } from '../../../../common/types/visualization-type';
 
 describe('NotificationCreator', () => {
     let browserAdapterMock: IMock<BrowserAdapter>;
@@ -15,6 +14,7 @@ describe('NotificationCreator', () => {
     let testObject: NotificationCreator;
     const key: string = 'the-key';
     const visualizationType: VisualizationType = -1;
+    const manifestStub: chrome.runtime.Manifest = { name: 'testname', icons: { 128: 'iconUrl' } } as any;
 
     beforeEach(() => {
         browserAdapterMock = Mock.ofType<BrowserAdapter>(undefined, MockBehavior.Strict);
@@ -31,24 +31,20 @@ describe('NotificationCreator', () => {
     test('createNotification, happy path', () => {
         const notificationMessage = 'the-message';
 
-        browserAdapterMock
-            .setup(x => x.getManifest())
-            .returns(() => {
-                return { name: 'testname', icons: { 128: 'iconUrl' } } as any;
-            })
-            .verifiable(Times.once());
+        browserAdapterMock.setup(adapter => adapter.getManifest()).returns(() => manifestStub);
 
         browserAdapterMock
-            .setup(x => x.createNotification(It.isAny()))
-            .returns(message => {
-                const expectedMessage = {
-                    type: 'basic',
-                    message: notificationMessage,
-                    title: 'testname',
-                    iconUrl: '../iconUrl',
-                };
-                expect(message).toEqual(expectedMessage);
-            })
+            .setup(adapter =>
+                adapter.createNotificationP(
+                    It.isValue({
+                        type: 'basic',
+                        message: notificationMessage,
+                        title: 'testname',
+                        iconUrl: '../iconUrl',
+                    }),
+                ),
+            )
+            .returns(() => Promise.resolve('test-notification-id'))
             .verifiable(Times.once());
 
         testObject.createNotification(notificationMessage);
@@ -58,24 +54,20 @@ describe('NotificationCreator', () => {
     test('createNotificationByVisualizationKey, happy path', () => {
         const notificationMessage = 'the-message';
 
-        browserAdapterMock
-            .setup(x => x.getManifest())
-            .returns(() => {
-                return { name: 'testname', icons: { 128: 'iconUrl' } } as any;
-            })
-            .verifiable(Times.once());
+        browserAdapterMock.setup(adapter => adapter.getManifest()).returns(() => manifestStub);
 
         browserAdapterMock
-            .setup(x => x.createNotification(It.isAny()))
-            .returns(message => {
-                const expectedMessage = {
-                    type: 'basic',
-                    message: notificationMessage,
-                    title: 'testname',
-                    iconUrl: '../iconUrl',
-                };
-                expect(message).toEqual(expectedMessage);
-            })
+            .setup(adapter =>
+                adapter.createNotificationP(
+                    It.isValue({
+                        type: 'basic',
+                        message: notificationMessage,
+                        title: 'testname',
+                        iconUrl: '../iconUrl',
+                    }),
+                ),
+            )
+            .returns(() => Promise.resolve('test-notification-id'))
             .verifiable(Times.once());
 
         const selectorStub = {};

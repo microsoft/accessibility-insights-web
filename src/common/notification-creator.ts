@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { VisualizationType } from 'common/types/visualization-type';
 import * as _ from 'lodash';
+import { DictionaryStringTo } from 'types/common-types';
 
-import { VisualizationType } from '../common/types/visualization-type';
-import { DictionaryStringTo } from '../types/common-types';
 import { BrowserAdapter } from './browser-adapters/browser-adapter';
 import { VisualizationConfigurationFactory } from './configs/visualization-configuration-factory';
 
@@ -19,12 +19,14 @@ export class NotificationCreator {
     public createNotification(message: string): void {
         if (message) {
             const manifest = this.browserAdapter.getManifest();
-            this.browserAdapter.createNotification({
-                type: 'basic',
-                message: message,
-                title: manifest.name,
-                iconUrl: '../' + manifest.icons[128],
-            });
+            this.browserAdapter
+                .createNotificationP({
+                    type: 'basic',
+                    message: message,
+                    title: manifest.name,
+                    iconUrl: '../' + manifest.icons[128],
+                })
+                .catch(console.error);
         }
     }
 
