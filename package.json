@@ -12,6 +12,7 @@
         "yarn": "^1.17.3"
     },
     "scripts": {
+        "download:electron-internal": "node use-internal-build.js",
         "assessment": "npm-run-all --serial scss:clean fastpass build:all test test:e2e test:electron",
         "build": "grunt",
         "build:all": "grunt build-all",
@@ -125,6 +126,7 @@
         "axe-core": "3.3.2",
         "axios": "^0.19.0",
         "classnames": "^2.2.6",
+        "electron-download": "^4.1.1",
         "idb-keyval": "^3.2.0",
         "lodash": "^4.17.15",
         "moment": "^2.24.0",
@@ -136,6 +138,7 @@
         "react-helmet": "^5.2.0",
         "react-router-dom": "^5.1.2",
         "ua-parser-js": "^0.7.20",
+        "unzipper": "^0.10.5",
         "uuid": "^3.3.3",
         "webextension-polyfill-ts": "^0.11.0"
     }
