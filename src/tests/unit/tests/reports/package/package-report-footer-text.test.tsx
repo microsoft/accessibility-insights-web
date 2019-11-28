@@ -3,9 +3,9 @@
 import { EnvironmentInfo } from 'common/environment-info-provider';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { getReportFooterText } from 'reports/package/get-report-footer-text';
+import { PackageReportFooter } from 'reports/package/package-report-footer-text';
 
-describe('getReportFooterText', () => {
+describe('PackageReportFooter', () => {
     it('renders', () => {
         const environmentInfo: EnvironmentInfo = {
             extensionVersion: '1.2.3',
@@ -13,9 +13,11 @@ describe('getReportFooterText', () => {
             axeCoreVersion: '4.5.6',
         };
 
-        const Footer = getReportFooterText('THE SERVICE NAME');
+        const BaseFooter = () => <></>;
+        const Footer = PackageReportFooter('The Service', BaseFooter);
 
-        const wrapper = shallow(<Footer {...environmentInfo} />);
+        const props = { environmentInfo };
+        const wrapper = shallow(<Footer {...props} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });

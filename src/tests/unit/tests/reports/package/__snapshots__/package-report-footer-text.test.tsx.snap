@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PackageReportFooter renders 1`] = `
+<BaseFooter
+  environmentInfo={
+    Object {
+      "axeCoreVersion": "4.5.6",
+      "browserSpec": "dummy browser version 1.0.1",
+      "extensionVersion": "1.2.3",
+    }
+  }
+  footerText={[Function]}
+/>
+`;

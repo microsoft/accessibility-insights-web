@@ -10,7 +10,6 @@ import * as React from 'react';
 import { ReportHead } from 'reports/components/report-head';
 import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
 import { ReportCollapsibleContainerControl } from 'reports/components/report-sections/report-collapsible-container';
-import { ReportFooterText } from 'reports/components/report-sections/report-footer-text';
 import { ReportSectionFactory, SectionDeps } from 'reports/components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
@@ -42,8 +41,6 @@ describe('ReportHtmlGenerator', () => {
 
         const getScriptMock = Mock.ofInstance(() => '');
 
-        const footerText: ReportFooterText = () => <>Footer Text</>;
-
         const sectionProps: ReportBodyProps = {
             deps: {
                 fixInstructionProcessor: fixInstructionProcessorMock.object,
@@ -64,7 +61,6 @@ describe('ReportHtmlGenerator', () => {
             getCollapsibleScript: getScriptMock.object,
             getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
             cardsViewData: { cards: exampleUnifiedStatusResults, visualHelperEnabled: true, allCardsCollapsed: true },
-            footerText,
         } as ReportBodyProps;
 
         const headElement: JSX.Element = <ReportHead />;
@@ -89,7 +85,6 @@ describe('ReportHtmlGenerator', () => {
             getGuidanceTagsStub,
             fixInstructionProcessorMock.object,
             getPropertyConfigurationStub,
-            footerText,
         );
 
         const actual = testObject.generateHtml(scanDate, pageTitle, pageUrl, description, {

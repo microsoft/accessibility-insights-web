@@ -7,6 +7,7 @@ import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results
 import { AutomatedChecksReportSectionFactory } from 'reports/components/report-sections/automated-checks-report-section-factory';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
 import { AxeResultsReport, AxeResultsReportDeps } from 'reports/package/axe-results-report';
+import { PackageReportFooter } from 'reports/package/package-report-footer-text';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { CheckMessageTransformer } from 'scanner/check-message-transformer';
@@ -22,7 +23,6 @@ import { initializeFabricIcons } from '../../common/fabric-icons';
 import { GetGuidanceTagsFromGuidanceLinks } from '../../common/get-guidance-tags-from-guidance-links';
 import { FixInstructionProcessor } from '../../injected/fix-instruction-processor';
 import { AxeReportParameters, ReporterFactory } from './accessibilityInsightsReport';
-import { getReportFooterText } from './get-report-footer-text';
 import { Reporter } from './reporter';
 
 const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
@@ -42,8 +42,15 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
     const reactStaticRenderer = new ReactStaticRenderer();
     const fixInstructionProcessor = new FixInstructionProcessor();
 
+    const FooterSection = PackageReportFooter(serviceName, AutomatedChecksReportSectionFactory.FooterSection);
+
+    const sectionFactory = {
+         ...AutomatedChecksReportSectionFactory,
+          FooterSection,
+    };
+
     const reportHtmlGenerator = new ReportHtmlGenerator(
-        AutomatedChecksReportSectionFactory,
+        sectionFactory,
         reactStaticRenderer,
         environmentInfoProvider.getEnvironmentInfo(),
         getDefaultAddListenerForCollapsibleSection,
@@ -51,7 +58,6 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
         GetGuidanceTagsFromGuidanceLinks,
         fixInstructionProcessor,
         getPropertyConfiguration,
-        getReportFooterText(serviceName),
     );
 
     const titleProvider = {

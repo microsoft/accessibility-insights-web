@@ -1,6 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ReportFooter renders 1`] = `
+exports[`ReportFooter renders with default footerText 1`] = `
+<div
+  className="report-footer-container"
+>
+  <div
+    className="report-footer"
+    role="contentinfo"
+  >
+    <DefaultFooterText
+      axeCoreVersion="4.5.6"
+      browserSpec="dummy browser version 1.0.1"
+      extensionVersion="1.2.3"
+    />
+  </div>
+</div>
+`;
+
+exports[`ReportFooter renders with override footerText 1`] = `
 <div
   className="report-footer-container"
 >

@@ -6,7 +6,6 @@ import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-
 import { ReactFCWithDisplayName } from 'common/react/named-fc';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 
-import { ReportFooterText } from 'reports/components/report-sections/report-footer-text';
 import { CardsViewModel } from '../../../common/types/store-data/card-view-model';
 import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
@@ -30,7 +29,6 @@ export type SectionProps = {
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
     shouldAlertFailuresCount?: boolean;
-    footerText: ReportFooterText;
 };
 
 export type ReportSectionFactory = {

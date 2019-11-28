@@ -74,7 +74,6 @@ exports[`ReportBody renders 1`] = `
         "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
       }
     }
-    footerText={[Function]}
     getCollapsibleScript={[Function]}
     getGuidanceTagsFromGuidanceLinks={[Function]}
     pageTitle="page-title"
@@ -174,7 +173,6 @@ exports[`ReportBody renders 1`] = `
           "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
         }
       }
-      footerText={[Function]}
       getCollapsibleScript={[Function]}
       getGuidanceTagsFromGuidanceLinks={[Function]}
       pageTitle="page-title"
@@ -272,7 +270,6 @@ exports[`ReportBody renders 1`] = `
           "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
         }
       }
-      footerText={[Function]}
       getCollapsibleScript={[Function]}
       getGuidanceTagsFromGuidanceLinks={[Function]}
       pageTitle="page-title"
@@ -370,7 +367,6 @@ exports[`ReportBody renders 1`] = `
           "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
         }
       }
-      footerText={[Function]}
       getCollapsibleScript={[Function]}
       getGuidanceTagsFromGuidanceLinks={[Function]}
       pageTitle="page-title"
@@ -468,7 +464,6 @@ exports[`ReportBody renders 1`] = `
             "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
           }
         }
-        footerText={[Function]}
         getCollapsibleScript={[Function]}
         getGuidanceTagsFromGuidanceLinks={[Function]}
         pageTitle="page-title"
@@ -566,7 +561,6 @@ exports[`ReportBody renders 1`] = `
             "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
           }
         }
-        footerText={[Function]}
         getCollapsibleScript={[Function]}
         getGuidanceTagsFromGuidanceLinks={[Function]}
         pageTitle="page-title"
@@ -664,7 +658,6 @@ exports[`ReportBody renders 1`] = `
             "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
           }
         }
-        footerText={[Function]}
         getCollapsibleScript={[Function]}
         getGuidanceTagsFromGuidanceLinks={[Function]}
         pageTitle="page-title"
@@ -764,7 +757,6 @@ exports[`ReportBody renders 1`] = `
         "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
       }
     }
-    footerText={[Function]}
     getCollapsibleScript={[Function]}
     getGuidanceTagsFromGuidanceLinks={[Function]}
     pageTitle="page-title"
