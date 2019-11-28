@@ -7,7 +7,7 @@ import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results
 import { AutomatedChecksReportSectionFactory } from 'reports/components/report-sections/automated-checks-report-section-factory';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
 import { AxeResultsReport, AxeResultsReportDeps } from 'reports/package/axe-results-report';
-import { Reporter } from 'reports/package/reporter';
+import { PackageReportFooter } from 'reports/package/package-report-footer-text';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { CheckMessageTransformer } from 'scanner/check-message-transformer';
@@ -22,9 +22,10 @@ import { EnvironmentInfoProvider } from '../../common/environment-info-provider'
 import { initializeFabricIcons } from '../../common/fabric-icons';
 import { GetGuidanceTagsFromGuidanceLinks } from '../../common/get-guidance-tags-from-guidance-links';
 import { FixInstructionProcessor } from '../../injected/fix-instruction-processor';
-import AccessibilityInsightsReport from './accessibilityInsightsReport';
+import { AxeReportParameters, ReporterFactory } from './accessibilityInsightsReport';
+import { Reporter } from './reporter';
 
-const axeResultsReportGenerator = (parameters: AccessibilityInsightsReport.AxeReportParameters) => {
+const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
     const {
         results: {
             testEngine: {
@@ -32,16 +33,24 @@ const axeResultsReportGenerator = (parameters: AccessibilityInsightsReport.AxeRe
             },
         },
         scanContext: {
-            browserVersion, browserSpec, pageTitle: targetPageTitle,
+            browserSpec, pageTitle: targetPageTitle,
         },
+        serviceName,
     } = parameters;
 
-    const environmentInfoProvider = new EnvironmentInfoProvider(browserVersion, browserSpec, axeVersion);
+    const environmentInfoProvider = new EnvironmentInfoProvider('', browserSpec, axeVersion);
     const reactStaticRenderer = new ReactStaticRenderer();
     const fixInstructionProcessor = new FixInstructionProcessor();
 
+    const FooterSection = PackageReportFooter(serviceName, AutomatedChecksReportSectionFactory.FooterSection);
+
+    const sectionFactory = {
+         ...AutomatedChecksReportSectionFactory,
+          FooterSection,
+    };
+
     const reportHtmlGenerator = new ReportHtmlGenerator(
-        AutomatedChecksReportSectionFactory,
+        sectionFactory,
         reactStaticRenderer,
         environmentInfoProvider.getEnvironmentInfo(),
         getDefaultAddListenerForCollapsibleSection,
@@ -72,7 +81,7 @@ const axeResultsReportGenerator = (parameters: AccessibilityInsightsReport.AxeRe
     return new AxeResultsReport(deps, parameters);
 };
 
-export const reporterFactory: AccessibilityInsightsReport.ReporterFactory = () => {
+export const reporterFactory: ReporterFactory = () => {
     initializeFabricIcons();
 
     return new Reporter(axeResultsReportGenerator);

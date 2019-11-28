@@ -6022,7 +6022,7 @@ exports[`report package integration with issues 1`] = `
       class="report-footer"
       role="contentinfo"
     >
-      This automated checks result was generated using Accessibility Insights for Web BROWSER_VERSION (Axe 3.3.2), a tool that helps debug and find accessibility issues earlier on BROWSER_SPEC. Get more information & download this tool at 
+      This automated checks result was generated using the Accessibility Insights Service that helps find some of the most common accessibility issues. The scan was performed using axe-core 3.3.2 and BROWSER_SPEC. For a complete WCAG 2.1 compliance assessment please visit 
       <a
         class="ms-Link insights-link tool-name-link root-000"
         href="http://aka.ms/AccessibilityInsights"
@@ -8907,7 +8907,7 @@ exports[`report package integration with no issues 1`] = `
       class="report-footer"
       role="contentinfo"
     >
-      This automated checks result was generated using Accessibility Insights for Web BROWSER_VERSION (Axe 3.3.2), a tool that helps debug and find accessibility issues earlier on BROWSER_SPEC. Get more information & download this tool at 
+      This automated checks result was generated using the Accessibility Insights Service that helps find some of the most common accessibility issues. The scan was performed using axe-core 3.3.2 and BROWSER_SPEC. For a complete WCAG 2.1 compliance assessment please visit 
       <a
         class="ms-Link insights-link tool-name-link root-000"
         href="http://aka.ms/AccessibilityInsights"

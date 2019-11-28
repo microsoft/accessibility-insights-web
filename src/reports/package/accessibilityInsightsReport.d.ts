@@ -9,7 +9,6 @@ declare namespace AccessibilityInsightsReport {
     };
 
     export type ScanContext = {
-        browserVersion: string;
         browserSpec: string;
         pageTitle: string;
     };
@@ -17,6 +16,7 @@ declare namespace AccessibilityInsightsReport {
     export type AxeReportParameters = {
         results: axe.AxeResults,
         description: string;
+        serviceName: string;
         scanContext: ScanContext;
     }
 

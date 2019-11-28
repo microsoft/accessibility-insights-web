@@ -28,9 +28,9 @@ describe('AxeResultReport', () => {
     const parameters: AxeReportParameters = {
         results,
         description,
+        serviceName: 'THE_SERVICE',
         scanContext: {
             browserSpec: 'BROWSER_SPEC',
-            browserVersion: 'BROWSER_VERSION',
             pageTitle,
         },
     };
