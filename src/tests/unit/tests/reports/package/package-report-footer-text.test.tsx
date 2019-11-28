@@ -3,6 +3,7 @@
 import { EnvironmentInfo } from 'common/environment-info-provider';
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { ReportFooterProps } from 'reports/components/report-sections/report-footer';
 import { PackageReportFooter } from 'reports/package/package-report-footer-text';
 
 describe('PackageReportFooter', () => {
@@ -13,12 +14,13 @@ describe('PackageReportFooter', () => {
             axeCoreVersion: '4.5.6',
         };
 
-        const BaseFooter = () => <></>;
-        const Footer = PackageReportFooter('The Service', BaseFooter);
+        const BaseFooter = (props: ReportFooterProps) => <props.footerText {...(props.environmentInfo)} />;
+        const Footer = PackageReportFooter('ClientService', BaseFooter);
 
-        const props = { environmentInfo };
-        const wrapper = shallow(<Footer {...props} />);
+        const footerWrapper = shallow(<Footer {...{ environmentInfo }} />);
+        expect(footerWrapper.getElement()).toMatchSnapshot('footer');
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        const footerTextWrapper = footerWrapper.find('footerText').shallow();
+        expect(footerTextWrapper.getElement()).toMatchSnapshot('footerText');
     });
 });

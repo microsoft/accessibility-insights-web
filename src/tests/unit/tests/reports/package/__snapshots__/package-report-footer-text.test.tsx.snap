@@ -1,14 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PackageReportFooter renders 1`] = `
-<BaseFooter
-  environmentInfo={
-    Object {
-      "axeCoreVersion": "4.5.6",
-      "browserSpec": "dummy browser version 1.0.1",
-      "extensionVersion": "1.2.3",
-    }
-  }
-  footerText={[Function]}
+exports[`PackageReportFooter renders: footer 1`] = `
+<footerText
+  axeCoreVersion="4.5.6"
+  browserSpec="dummy browser version 1.0.1"
+  extensionVersion="1.2.3"
 />
+`;
+
+exports[`PackageReportFooter renders: footerText 1`] = `
+<React.Fragment>
+  This automated checks result was generated using the 
+  ClientService
+   
+  that helps find some of the most common accessibility issues. The scan was performed using axe-core 
+  4.5.6
+   and 
+  dummy browser version 1.0.1
+  . For a complete WCAG 2.1 compliance assessment please visit
+   
+  <ToolLink />
+  .
+</React.Fragment>
 `;
