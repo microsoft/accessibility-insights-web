@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { AxeResults } from 'axe-core';
 import { reporterFactory } from 'reports/package/reporter-factory';
-import { formatHtmlForSnapshot } from 'tests/end-to-end/common/element-snapshot-formatter';
+import { formatHtmlForSnapshot } from 'tests/common/element-snapshot-formatter';
 import { scanIssues } from 'tests/unit/tests/reports/package/scans/scan-issues';
 import { scanNoIssues } from 'tests/unit/tests/reports/package/scans/scan-no-issues';
 

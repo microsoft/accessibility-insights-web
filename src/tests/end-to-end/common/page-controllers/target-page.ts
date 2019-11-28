@@ -3,7 +3,7 @@
 import { ElementHandle } from 'puppeteer';
 import * as Puppeteer from 'puppeteer';
 
-import { formatChildElementForSnapshot } from '../element-snapshot-formatter';
+import { formatChildElementForSnapshot } from 'tests/common/element-snapshot-formatter';
 import { getTestResourceUrl } from '../test-resources';
 import { Page, PageOptions } from './page';
 
