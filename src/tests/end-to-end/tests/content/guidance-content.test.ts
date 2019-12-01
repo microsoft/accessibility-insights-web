@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { formatPageElementForSnapshot } from 'tests/common/element-snapshot-formatter';
 import { ContentPage } from 'tests/end-to-end/common/page-controllers/content-page';
 import { contentPages } from '../../../../content';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { GuidanceContentSelectors } from '../../common/element-identifiers/common-selectors';
-import { formatPageElementForSnapshot } from '../../common/element-snapshot-formatter';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
 describe('Guidance Content pages', () => {

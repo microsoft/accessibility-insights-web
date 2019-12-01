@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { formatPageElementForSnapshot } from 'tests/common/element-snapshot-formatter';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { CommonSelectors } from '../../common/element-identifiers/common-selectors';
-import { formatPageElementForSnapshot } from '../../common/element-snapshot-formatter';
 import { Page } from '../../common/page-controllers/page';
 import { TargetPage } from '../../common/page-controllers/target-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
