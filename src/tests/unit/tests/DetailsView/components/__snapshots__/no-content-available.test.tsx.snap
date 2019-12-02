@@ -2,7 +2,7 @@
 
 exports[`NoContentAvailable renders stale view for default 1`] = `
 <main
-  className="targetPageClosed"
+  className="noContentAvailable"
 >
   <h1>
     No content available
