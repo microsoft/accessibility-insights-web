@@ -3,7 +3,7 @@
 import * as makeDir from 'make-dir';
 import * as path from 'path';
 
-import { generateUID } from '../../../common/uid-generator';
+import { generateUID } from 'common/uid-generator';
 
 function sanitizeFilename(s: string): string {
     return s.replace(/[^a-z0-9.-]+/gi, '_');
