@@ -3,6 +3,9 @@
 steps:
     - script: yarn download:electron-internal
       displayName: replace open source build with internal build
+      env:
+          ELECTRON_MIRROR: $(ELECTRON_MIRROR)
+          ELECTRON_CUSTOM_DIR: $(ELECTRON_CUSTOM_DIR)
 
     - script: yarn build:electron
       displayName: build:electron
