@@ -12,7 +12,7 @@
         "yarn": "^1.17.3"
     },
     "scripts": {
-        "download:electron-internal": "node use-internal-build.js",
+        "download:electron-internal": "node ./pipeline/scripts/use-internal-build.js",
         "assessment": "npm-run-all --serial scss:clean fastpass build:all test test:e2e test:electron",
         "build": "grunt",
         "build:all": "grunt build-all",
