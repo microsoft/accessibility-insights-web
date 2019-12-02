@@ -8,13 +8,10 @@ import { BrowserAdapter } from './browser-adapters/browser-adapter';
 import { VisualizationConfigurationFactory } from './configs/visualization-configuration-factory';
 
 export class NotificationCreator {
-    private browserAdapter: BrowserAdapter;
-    private visualizationConfigurationFactory: VisualizationConfigurationFactory;
-
-    constructor(browserAdapter: BrowserAdapter, visualizationConfigurationFactory: VisualizationConfigurationFactory) {
-        this.browserAdapter = browserAdapter;
-        this.visualizationConfigurationFactory = visualizationConfigurationFactory;
-    }
+    constructor(
+        private readonly browserAdapter: BrowserAdapter,
+        private readonly visualizationConfigurationFactory: VisualizationConfigurationFactory,
+    ) {}
 
     public createNotification(message: string): void {
         if (message) {
