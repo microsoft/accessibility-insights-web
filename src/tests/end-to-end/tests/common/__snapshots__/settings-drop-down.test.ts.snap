@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Settings Dropdown Normal mode content should match snapshot 1`] = `
+exports[`Settings Dropdown content should match snapshot 1`] = `
 <DocumentFragment>
   <div
     class="ms-ContextualMenu-container container-000"

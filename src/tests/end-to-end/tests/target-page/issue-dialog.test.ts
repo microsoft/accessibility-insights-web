@@ -13,7 +13,7 @@ describe('Target Page issue dialog', () => {
     let popupPage: PopupPage;
 
     beforeAll(async () => {
-        browser = await launchBrowser({ suppressFirstTimeDialog: true });
+        browser = await launchBrowser({ suppressFirstTimeDialog: true, addLocalhostToPermissions: true });
         targetPage = await browser.newTargetPage();
         popupPage = await browser.newPopupPage(targetPage);
     });
@@ -31,9 +31,7 @@ describe('Target Page issue dialog', () => {
 
         await targetPage.bringToFront();
 
-        const shadowRoot = await targetPage.getShadowRoot();
-        await targetPage.clickDescendentSelector(shadowRoot, TargetPageInjectedComponentSelectors.failureLabel, { visible: true });
-
+        await targetPage.clickSelectorInShadowRoot(TargetPageInjectedComponentSelectors.failureLabel);
         await targetPage.waitForSelector(TargetPageInjectedComponentSelectors.issueDialog);
 
         const results = await scanForAccessibilityIssues(targetPage, TargetPageInjectedComponentSelectors.issueDialog);

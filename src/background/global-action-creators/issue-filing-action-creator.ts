@@ -15,7 +15,10 @@ export class IssueFilingActionCreator {
     ) {}
 
     public registerCallbacks(): void {
-        this.interpreter.registerTypeToPayloadCallback(Messages.IssueFiling.FileIssue, this.onFileIssue);
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.IssueFiling.FileIssue,
+            this.onFileIssue,
+        );
     }
 
     private onFileIssue = (payload: FileIssuePayload) => {

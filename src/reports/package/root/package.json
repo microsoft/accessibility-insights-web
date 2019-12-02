@@ -1,0 +1,20 @@
+{
+    "name": "accessibility-insights-report",
+    "version": "0.1.0",
+    "description": "Accessibility Insights Report",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Microsoft/accessibility-insights-web"
+    },
+    "dependencies": {
+        "axe-core": "3.3.2",
+        "classnames": "^2.2.6",
+        "lodash": "^4.17.15",
+        "moment": "^2.24.0",
+        "office-ui-fabric-react": "6.210.5",
+        "react": "^16.12.0",
+        "react-dom": "^16.12.0",
+        "uuid": "^3.3.3"
+    }
+}

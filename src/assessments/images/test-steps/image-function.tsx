@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NoValue, PropertyBagColumnRendererConfig } from 'assessments/common/property-bag-column-renderer';
+import {
+    NoValue,
+    PropertyBagColumnRendererConfig,
+} from 'assessments/common/property-bag-column-renderer';
 import { ImageFunctionPropertyBag } from 'common/types/property-bag/image-function';
 import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
@@ -16,27 +19,32 @@ import { ReportInstanceField } from '../../types/report-instance-field';
 import { Requirement } from '../../types/requirement';
 import { ImagesTestStep } from './test-steps';
 
-const description: JSX.Element = <span>Every image must be coded as either meaningful or decorative.</span>;
+const description: JSX.Element = (
+    <span>Every image must be coded as either meaningful or decorative.</span>
+);
 
 const howToTest: JSX.Element = (
     <div>
-        For this requirement, {productName} highlights images that are coded as meaningful or decorative.
+        For this requirement, {productName} highlights images that are coded as meaningful or
+        decorative.
         <br />
         <Markup.Emphasis>
-            Notes: (1) If an image has no code to identify it as meaningful or decorative, it will fail an automated check. (2) Assistive
-            technologies will ignore any image coded as decorative, even if it has an accessible name.
+            Notes: (1) If an image has no code to identify it as meaningful or decorative, it will
+            fail an automated check. (2) Assistive technologies will ignore any image coded as
+            decorative, even if it has an accessible name.
         </Markup.Emphasis>
         <ol>
             <li>
                 Examine each image to verify that its coded function is correct.
                 <ol>
                     <li>
-                        An image should be coded as <Markup.Emphasis>meaningful</Markup.Emphasis> if it conveys information that isn't
-                        available through other page content.
+                        An image should be coded as <Markup.Emphasis>meaningful</Markup.Emphasis> if
+                        it conveys information that isn't available through other page content.
                     </li>
                     <li>
-                        An image should be coded as <Markup.Emphasis>decorative</Markup.Emphasis> if it could be removed from the page with{' '}
-                        <Markup.Emphasis>no</Markup.Emphasis> impact on meaning or function.
+                        An image should be coded as <Markup.Emphasis>decorative</Markup.Emphasis> if
+                        it could be removed from the page with <Markup.Emphasis>no</Markup.Emphasis>{' '}
+                        impact on meaning or function.
                     </li>
                 </ol>
             </li>

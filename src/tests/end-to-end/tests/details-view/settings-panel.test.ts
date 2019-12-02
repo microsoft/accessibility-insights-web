@@ -69,6 +69,7 @@ describe('Details View -> Settings Panel', () => {
 
     it.each([true, false])('should pass accessibility validation with highContrastMode=%s', async highContrastMode => {
         await backgroundPage.setHighContrastMode(highContrastMode);
+        await detailsViewPage.waitForHighContrastMode(highContrastMode);
 
         const results = await scanForAccessibilityIssues(detailsViewPage, settingsPanelSelectors.settingsPanel);
         expect(results).toHaveLength(0);

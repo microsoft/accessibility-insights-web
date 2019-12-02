@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { SummarySection, SummarySectionProps } from 'reports/components/report-sections/summary-section';
-import { ScanResults } from 'scanner/iruleresults';
 
 describe('SummarySection', () => {
     const noViolations = [];
@@ -20,68 +20,82 @@ describe('SummarySection', () => {
     ];
     const passes = [{}, {}];
     const nonApplicable = [{}, {}, {}];
-    const scenarios: [string, ScanResults][] = [
+    const scenarios: [string, CardsViewModel][] = [
         [
             'failure only',
             {
-                violations,
-                passes: noPasses,
-                inapplicable: noNonApplicable,
-            } as ScanResults,
+                cards: {
+                    fail: violations,
+                    pass: noPasses,
+                    inapplicable: noNonApplicable,
+                },
+            } as CardsViewModel,
         ],
         [
             'not applicable only',
             {
-                violations: noViolations,
-                passes,
-                inapplicable: noNonApplicable,
-            } as ScanResults,
+                cards: {
+                    fail: noViolations,
+                    pass: passes,
+                    inapplicable: noNonApplicable,
+                },
+            } as CardsViewModel,
         ],
         [
             'passes only',
             {
-                violations: noViolations,
-                passes,
-                inapplicable: noNonApplicable,
-            } as ScanResults,
+                cards: {
+                    fail: noViolations,
+                    pass: passes,
+                    inapplicable: noNonApplicable,
+                },
+            } as CardsViewModel,
         ],
         [
             'failures + not applicable only',
             {
-                violations: violations,
-                passes: noPasses,
-                inapplicable: nonApplicable,
-            } as ScanResults,
+                cards: {
+                    fail: violations,
+                    pass: noPasses,
+                    inapplicable: nonApplicable,
+                },
+            } as CardsViewModel,
         ],
         [
             'failures + passes only',
             {
-                violations: violations,
-                passes: passes,
-                inapplicable: noNonApplicable,
-            } as ScanResults,
+                cards: {
+                    fail: violations,
+                    pass: passes,
+                    inapplicable: noNonApplicable,
+                },
+            } as CardsViewModel,
         ],
         [
             'not applicable + passes only',
             {
-                violations: noViolations,
-                passes: passes,
-                inapplicable: nonApplicable,
-            } as ScanResults,
+                cards: {
+                    fail: noViolations,
+                    pass: passes,
+                    inapplicable: nonApplicable,
+                },
+            } as CardsViewModel,
         ],
         [
             'failures + not applicable + passes',
             {
-                violations: violations,
-                passes: passes,
-                inapplicable: nonApplicable,
-            } as ScanResults,
+                cards: {
+                    fail: violations,
+                    pass: passes,
+                    inapplicable: nonApplicable,
+                },
+            } as CardsViewModel,
         ],
     ];
 
-    it.each(scenarios)('%s', (_, scanResult) => {
+    it.each(scenarios)('%s', (_, cardsViewData) => {
         const props: SummarySectionProps = {
-            scanResult,
+            cardsViewData: cardsViewData,
         };
         const wrapper = shallow(<SummarySection {...props} />);
 

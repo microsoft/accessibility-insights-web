@@ -60,16 +60,31 @@ export class ActionCreator {
     }
 
     public registerCallbacks(): void {
-        this.interpreter.registerTypeToPayloadCallback(visualizationMessages.Common.Toggle, this.onVisualizationToggle);
-        this.interpreter.registerTypeToPayloadCallback(visualizationMessages.Common.ScanCompleted, this.onScanCompleted);
-        this.interpreter.registerTypeToPayloadCallback(visualizationMessages.Common.ScrollRequested, this.onScrollRequested);
-        this.interpreter.registerTypeToPayloadCallback(visualizationMessages.Common.RescanVisualization, this.onRescanVisualization);
+        this.interpreter.registerTypeToPayloadCallback(
+            visualizationMessages.Common.Toggle,
+            this.onVisualizationToggle,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            visualizationMessages.Common.ScanCompleted,
+            this.onScanCompleted,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            visualizationMessages.Common.ScrollRequested,
+            this.onScrollRequested,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            visualizationMessages.Common.RescanVisualization,
+            this.onRescanVisualization,
+        );
 
         this.interpreter.registerTypeToPayloadCallback(
             visualizationMessages.Issues.UpdateSelectedTargets,
             this.onUpdateIssuesSelectedTargets,
         );
-        this.interpreter.registerTypeToPayloadCallback(visualizationMessages.Issues.UpdateFocusedInstance, this.onUpdateFocusedInstance);
+        this.interpreter.registerTypeToPayloadCallback(
+            visualizationMessages.Issues.UpdateFocusedInstance,
+            this.onUpdateFocusedInstance,
+        );
 
         this.interpreter.registerTypeToPayloadCallback(
             getStoreStateMessage(StoreNames.VisualizationStore),
@@ -80,35 +95,86 @@ export class ActionCreator {
             this.getScanResultsCurrentState,
         );
 
-        this.interpreter.registerTypeToPayloadCallback(visualizationMessages.TabStops.TabbedElementAdded, this.onTabbedElementAdded);
-        this.interpreter.registerTypeToPayloadCallback(visualizationMessages.TabStops.RecordingCompleted, this.onRecordingCompleted);
-        this.interpreter.registerTypeToPayloadCallback(visualizationMessages.TabStops.TerminateScan, this.onRecordingTerminated);
+        this.interpreter.registerTypeToPayloadCallback(
+            visualizationMessages.TabStops.TabbedElementAdded,
+            this.onTabbedElementAdded,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            visualizationMessages.TabStops.RecordingCompleted,
+            this.onRecordingCompleted,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            visualizationMessages.TabStops.TerminateScan,
+            this.onRecordingTerminated,
+        );
 
-        this.interpreter.registerTypeToPayloadCallback(visualizationMessages.DetailsView.Open, this.onDetailsViewOpen);
-        this.interpreter.registerTypeToPayloadCallback(visualizationMessages.DetailsView.Select, this.onPivotChildSelected);
-        this.interpreter.registerTypeToPayloadCallback(visualizationMessages.DetailsView.PivotSelect, this.onDetailsViewPivotSelected);
-        this.interpreter.registerTypeToPayloadCallback(visualizationMessages.DetailsView.Close, this.onDetailsViewClosed);
+        this.interpreter.registerTypeToPayloadCallback(
+            visualizationMessages.DetailsView.Open,
+            this.onDetailsViewOpen,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            visualizationMessages.DetailsView.Select,
+            this.onPivotChildSelected,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            visualizationMessages.DetailsView.PivotSelect,
+            this.onDetailsViewPivotSelected,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            visualizationMessages.DetailsView.Close,
+            this.onDetailsViewClosed,
+        );
 
-        this.interpreter.registerTypeToPayloadCallback(Messages.PreviewFeatures.OpenPanel, this.onOpenPreviewFeaturesPanel);
-        this.interpreter.registerTypeToPayloadCallback(Messages.PreviewFeatures.ClosePanel, this.onClosePreviewFeaturesPanel);
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.PreviewFeatures.OpenPanel,
+            this.onOpenPreviewFeaturesPanel,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.PreviewFeatures.ClosePanel,
+            this.onClosePreviewFeaturesPanel,
+        );
 
-        this.interpreter.registerTypeToPayloadCallback(Messages.Assessment.AssessmentScanCompleted, this.onAssessmentScanCompleted);
-        this.interpreter.registerTypeToPayloadCallback(Messages.Assessment.StartOver, this.onStartOver);
-        this.interpreter.registerTypeToPayloadCallback(Messages.Assessment.CancelStartOver, this.onCancelStartOver);
-        this.interpreter.registerTypeToPayloadCallback(Messages.Assessment.StartOverAllAssessments, this.onStartOverAllAssessments);
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Assessment.AssessmentScanCompleted,
+            this.onAssessmentScanCompleted,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Assessment.StartOver,
+            this.onStartOver,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Assessment.CancelStartOver,
+            this.onCancelStartOver,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Assessment.StartOverAllAssessments,
+            this.onStartOverAllAssessments,
+        );
         this.interpreter.registerTypeToPayloadCallback(
             Messages.Assessment.CancelStartOverAllAssessments,
             this.onCancelStartOverAllAssessments,
         );
-        this.interpreter.registerTypeToPayloadCallback(Messages.Assessment.EnableVisualHelper, this.onEnableVisualHelper);
-        this.interpreter.registerTypeToPayloadCallback(Messages.Assessment.DisableVisualHelperForTest, this.onDisableVisualHelpersForTest);
-        this.interpreter.registerTypeToPayloadCallback(Messages.Assessment.DisableVisualHelper, this.onDisableVisualHelper);
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Assessment.EnableVisualHelper,
+            this.onEnableVisualHelper,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Assessment.DisableVisualHelperForTest,
+            this.onDisableVisualHelpersForTest,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Assessment.DisableVisualHelper,
+            this.onDisableVisualHelper,
+        );
         this.interpreter.registerTypeToPayloadCallback(
             Messages.Assessment.EnableVisualHelperWithoutScan,
             this.onEnableVisualHelperWithoutScan,
         );
 
-        this.interpreter.registerTypeToPayloadCallback(Messages.Inspect.SetHoveredOverSelector, this.onSetHoveredOverSelector);
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Inspect.SetHoveredOverSelector,
+            this.onSetHoveredOverSelector,
+        );
     }
 
     private onEnableVisualHelperWithoutScan = (payload: ToggleActionPayload): void => {
@@ -155,11 +221,18 @@ export class ActionCreator {
         this.visualizationActions.disableAssessmentVisualizations.invoke(null);
     };
 
-    private onAssessmentScanCompleted = (payload: ScanCompletedPayload<any>, tabId: number): void => {
+    private onAssessmentScanCompleted = (
+        payload: ScanCompletedPayload<any>,
+        tabId: number,
+    ): void => {
         const eventName = TelemetryEvents.ASSESSMENT_SCAN_COMPLETED;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.visualizationActions.scanCompleted.invoke(null);
-        this.notificationCreator.createNotificationByVisualizationKey(payload.selectorMap, payload.key, payload.testType);
+        this.notificationCreator.createNotificationByVisualizationKey(
+            payload.selectorMap,
+            payload.key,
+            payload.testType,
+        );
         this.targetTabController.showTargetTab(tabId, payload.testType, payload.key);
     };
 
@@ -171,7 +244,10 @@ export class ActionCreator {
 
     private onClosePreviewFeaturesPanel = (payload: BaseActionPayload): void => {
         this.previewFeaturesActions.closePreviewFeatures.invoke(null);
-        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.PREVIEW_FEATURES_CLOSE, payload);
+        this.telemetryEventHandler.publishTelemetry(
+            TelemetryEvents.PREVIEW_FEATURES_CLOSE,
+            payload,
+        );
     };
 
     private onTabbedElementAdded = (payload: AddTabbedElementPayload): void => {
@@ -179,7 +255,10 @@ export class ActionCreator {
     };
 
     private onRecordingCompleted = (payload: BaseActionPayload): void => {
-        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.TABSTOPS_RECORDING_COMPLETE, payload);
+        this.telemetryEventHandler.publishTelemetry(
+            TelemetryEvents.TABSTOPS_RECORDING_COMPLETE,
+            payload,
+        );
     };
 
     private onRecordingTerminated = (payload: BaseActionPayload): void => {
@@ -199,7 +278,11 @@ export class ActionCreator {
         this.telemetryEventHandler.publishTelemetry(telemetryEventName, payload);
         this.visualizationScanResultActions.scanCompleted.invoke(payload);
         this.visualizationActions.scanCompleted.invoke(null);
-        this.notificationCreator.createNotificationByVisualizationKey(payload.selectorMap, payload.key, payload.testType);
+        this.notificationCreator.createNotificationByVisualizationKey(
+            payload.selectorMap,
+            payload.key,
+            payload.testType,
+        );
         this.targetTabController.showTargetTab(tabId, payload.testType, payload.key);
     };
 
@@ -219,16 +302,21 @@ export class ActionCreator {
         return (
             visualizationType != null &&
             visualizationType !== VisualizationType.TabStops &&
-            this.visualizationConfigurationFactory.getConfiguration(visualizationType).testMode !== TestMode.Assessments
+            this.visualizationConfigurationFactory.getConfiguration(visualizationType).testMode !==
+                TestMode.Assessments
         );
     }
 
     private enableToggleOnDetailsViewOpen(test: VisualizationType, tabId: number): void {
-        const payload: VisualizationTogglePayload = this.createVisualizationTogglePayloadWithNullTelemetry(test);
+        const payload: VisualizationTogglePayload = this.createVisualizationTogglePayloadWithNullTelemetry(
+            test,
+        );
         this.onVisualizationToggle(payload);
     }
 
-    private createVisualizationTogglePayloadWithNullTelemetry(test: VisualizationType): VisualizationTogglePayload {
+    private createVisualizationTogglePayloadWithNullTelemetry(
+        test: VisualizationType,
+    ): VisualizationTogglePayload {
         return {
             test,
             enabled: true,
@@ -245,7 +333,10 @@ export class ActionCreator {
 
     private onDetailsViewPivotSelected = (payload: OnDetailsViewPivotSelected): void => {
         this.visualizationActions.updateSelectedPivot.invoke(payload);
-        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.DETAILS_VIEW_PIVOT_ACTIVATED, payload);
+        this.telemetryEventHandler.publishTelemetry(
+            TelemetryEvents.DETAILS_VIEW_PIVOT_ACTIVATED,
+            payload,
+        );
     };
 
     private showDetailsView = (tabId: number): void => {

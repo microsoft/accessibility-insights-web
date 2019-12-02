@@ -29,7 +29,11 @@ export function propertyBagColumnRenderer<TPropertyBag extends ColumnValueBag>(
         return render(config, value, index);
     };
 
-    const render = (config: PropertyBagColumnRendererConfig<TPropertyBag>, value: any, index: number) => {
+    const render = (
+        config: PropertyBagColumnRendererConfig<TPropertyBag>,
+        value: any,
+        index: number,
+    ) => {
         return (
             <div key={`property-${index}`} className="property-bag-div">
                 <span className="display-name">{`${config.displayName}: `}</span>
@@ -46,7 +50,10 @@ export function propertyBagColumnRenderer<TPropertyBag extends ColumnValueBag>(
         return <React.Fragment>{value || config.defaultValue}</React.Fragment>;
     };
 
-    const renderProperties = (config: PropertyBagColumnRendererConfig<TPropertyBag>, propertyMap: DictionaryStringTo<string>) => {
+    const renderProperties = (
+        config: PropertyBagColumnRendererConfig<TPropertyBag>,
+        propertyMap: DictionaryStringTo<string>,
+    ) => {
         if (isEmpty(propertyMap)) {
             return <React.Fragment>{config.defaultValue}</React.Fragment>;
         }

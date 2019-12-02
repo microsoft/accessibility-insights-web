@@ -18,10 +18,7 @@ export class LaunchPanelHeaderClickHandler {
         popupWindow.open(url);
     }
 
-    public onOpenContextualMenu(
-        header: LaunchPanelHeader,
-        event: React.MouseEvent<any>,
-    ): void {
+    public onOpenContextualMenu(header: LaunchPanelHeader, event: React.MouseEvent<any>): void {
         header.setState({
             target: event.currentTarget,
             isContextMenuVisible: true,
@@ -34,8 +31,6 @@ export class LaunchPanelHeaderClickHandler {
 
     public openAdhocToolsPanel(header: LaunchPanelHeader): void {
         header.props.openAdhocToolsPanel();
-        header.props.deps.launchPanelHeaderClickHandler.onDismissFeedbackMenu(
-            header,
-        );
+        header.props.deps.launchPanelHeaderClickHandler.onDismissFeedbackMenu(header);
     }
 }

@@ -11,6 +11,7 @@ export const TargetPageInjectedComponentSelectors = {
 export const TabStopShadowDomSelectors = {
     svg: 'svg',
     lines: 'line',
-    ellipse: 'ellipse',
+    opaqueEllipse: 'ellipse:not([fill="transparent"])',
+    transparentEllipse: 'ellipse[fill="transparent"]',
     text: 'text',
 };

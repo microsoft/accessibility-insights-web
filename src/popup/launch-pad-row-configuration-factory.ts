@@ -37,8 +37,7 @@ export class LaunchPadRowConfigurationFactory {
         const assessmentRowConfig = {
             iconName: 'testBeaker',
             title: 'Assessment',
-            description:
-                'Walk through a guided process for assessing accessibility compliance.',
+            description: 'Walk through a guided process for assessing accessibility compliance.',
             onClickTitle: event =>
                 actionMessageCreator.openDetailsView(
                     event,

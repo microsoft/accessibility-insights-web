@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { MacContrastCheckerAppLink, WindowsContrastCheckerAppLink } from 'common/components/contrast-checker-app-links';
+import {
+    MacContrastCheckerAppLink,
+    WindowsContrastCheckerAppLink,
+} from 'common/components/contrast-checker-app-links';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { MeaningfulImagePropertyBag } from 'common/types/property-bag/meaningful-image';
 import { VisualizationType } from 'common/types/visualization-type';
@@ -11,7 +14,10 @@ import * as React from 'react';
 
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
-import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
+import {
+    NoValue,
+    PropertyBagColumnRendererConfig,
+} from '../../common/property-bag-column-renderer';
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { Requirement } from '../../types/requirement';
@@ -24,7 +30,8 @@ const howToTest: JSX.Element = (
         <p>The visual helper for this requirement highlights images coded as meaningful.</p>
         <ol>
             <li>
-                In the target page, examine each highlighted image to identify any of the following graphics:
+                In the target page, examine each highlighted image to identify any of the following
+                graphics:
                 <ol>
                     <li>Stand-alone icons (no text)</li>
                     <li>Charts</li>
@@ -32,16 +39,24 @@ const howToTest: JSX.Element = (
                     <li>Illustrations</li>
                 </ol>
             </li>
-            <li>For each graphic, identify the parts that are necessary for the graphic to be understood. (This is subjective.)</li>
+            <li>
+                For each graphic, identify the parts that are necessary for the graphic to be
+                understood. (This is subjective.)
+            </li>
             <li>
                 <p>
-                    Use <WindowsContrastCheckerAppLink /> to verify that each necessary part has a contrast ratio of at least 3:1 against
-                    the adjacent background. (If you are testing on a Mac, you can use the <MacContrastCheckerAppLink />
+                    Use <WindowsContrastCheckerAppLink /> to verify that each necessary part has a
+                    contrast ratio of at least 3:1 against the adjacent background. (If you are
+                    testing on a Mac, you can use the <MacContrastCheckerAppLink />
                     .)
                 </p>
                 <p>
-                    Exception: A lower contrast ratio is allowed for logos, photos, and other cases where a specific visual presentation is{' '}
-                    <NewTabLink href="https://www.w3.org/TR/WCAG21/#dfn-essential">essential</NewTabLink>.
+                    Exception: A lower contrast ratio is allowed for logos, photos, and other cases
+                    where a specific visual presentation is{' '}
+                    <NewTabLink href="https://www.w3.org/TR/WCAG21/#dfn-essential">
+                        essential
+                    </NewTabLink>
+                    .
                 </p>
             </li>
             <AssistedTestRecordYourResults />

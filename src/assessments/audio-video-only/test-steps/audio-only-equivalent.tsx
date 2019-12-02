@@ -8,7 +8,11 @@ import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { AudioVideoOnlyTestStep } from './test-steps';
 
-const description: JSX.Element = <span>Pre-recorded audio-only content must be accompanied by an equivalent text alternative.</span>;
+const description: JSX.Element = (
+    <span>
+        Pre-recorded audio-only content must be accompanied by an equivalent text alternative.
+    </span>
+);
 
 const howToTest: JSX.Element = (
     <div>
@@ -19,23 +23,30 @@ const howToTest: JSX.Element = (
                     <li>
                         Audio-only content <Markup.Emphasis>does not</Markup.Emphasis> include:
                         <ol>
-                            <li>Audio synchronized with video, slides, animations, or other time-based visuals.</li>
+                            <li>
+                                Audio synchronized with video, slides, animations, or other
+                                time-based visuals.
+                            </li>
                             <li>Short sounds such as confirmation beeps or error notifications.</li>
                         </ol>
                     </li>
                     <li>
-                        Audio-only content <Markup.Emphasis>does</Markup.Emphasis> include audio accompanied by simple static visuals, such
-                        as the title of a speech and the speaker's name.
+                        Audio-only content <Markup.Emphasis>does</Markup.Emphasis> include audio
+                        accompanied by simple static visuals, such as the title of a speech and the
+                        speaker's name.
                     </li>
                 </ol>
             </li>
             <li>Determine whether the audio-only content is accompanied by a text transcript.</li>
             <li>
-                If you find any audio-only content that doesn't have a transcript, select <Markup.Term>Fail</Markup.Term>, then add the
-                failure instance.
+                If you find any audio-only content that doesn't have a transcript, select{' '}
+                <Markup.Term>Fail</Markup.Term>, then add the failure instance.
             </li>
             <li>Compare the audio-only content to the transcript.</li>
-            <li>Verify that the transcript provides an accurate and complete description of the audio content.</li>
+            <li>
+                Verify that the transcript provides an accurate and complete description of the
+                audio content.
+            </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
     </div>
