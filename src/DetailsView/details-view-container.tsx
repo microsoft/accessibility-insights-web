@@ -31,8 +31,8 @@ import { DetailsRightPanelConfiguration, GetDetailsRightPanelConfiguration } fro
 import { GetDetailsSwitcherNavConfiguration } from './components/details-view-switcher-nav';
 import { Header, HeaderDeps } from './components/header';
 import { IssuesTableHandler } from './components/issues-table-handler';
+import { NoContentAvailable } from './components/no-content-available';
 import { TargetChangeDialogDeps } from './components/target-change-dialog';
-import { TargetPageClosedView } from './components/target-page-closed-view';
 import { DetailsViewBody, DetailsViewBodyDeps } from './details-view-body';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
@@ -91,7 +91,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
             return (
                 <>
                     {this.renderHeader()}
-                    <TargetPageClosedView />
+                    <NoContentAvailable />
                 </>
             );
         }
