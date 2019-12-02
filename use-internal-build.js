@@ -17,7 +17,11 @@ download(
         // downloading and call the cb with the cached zip path.
         // If it wasn't cached it will download the zip and save
         // it in the cache path.
-        console.log('zipPath= ', zipPath);
-        fs.createReadStream(zipPath).pipe(unzipper.Extract({ path: 'node_modules/electron/dist' }));
+        if (err) {
+            console.log('Failed to download: ', err);
+        } else {
+            console.log('zipPath= ', zipPath);
+            fs.createReadStream(zipPath).pipe(unzipper.Extract({ path: 'node_modules/electron/dist' }));
+        }
     },
 );
