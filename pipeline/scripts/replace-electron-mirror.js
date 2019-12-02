@@ -4,8 +4,6 @@ const download = require('electron-download');
 const unzipper = require('unzipper');
 const fs = require('fs');
 
-console.log('env var:', process.env.ASDF);
-
 download(
     {
         version: '7.1.1',

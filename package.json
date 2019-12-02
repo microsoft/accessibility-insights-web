@@ -12,7 +12,7 @@
         "yarn": "^1.17.3"
     },
     "scripts": {
-        "download:electron-internal": "node ./pipeline/scripts/use-internal-build.js",
+        "replace:electron-mirror": "node ./pipeline/scripts/replace-electron-mirror.js",
         "assessment": "npm-run-all --serial scss:clean fastpass build:all test test:e2e test:electron",
         "build": "grunt",
         "build:all": "grunt build-all",
