@@ -16,12 +16,12 @@ const { guidance } = content.repetitiveContent;
 const gettingStartedText: JSX.Element = (
     <React.Fragment>
         <p>
-            When interacting with a website or web app, keyboard users need a way to skip repetitive content and navigate directly to the
-            page's primary content.
+            When interacting with a website or web app, keyboard users need a way to skip repetitive
+            content and navigate directly to the page's primary content.
         </p>
         <p>
-            Content that appears repeatedly within a website or web app must be presented consistently to allow users to locate specific
-            information efficiently.
+            Content that appears repeatedly within a website or web app must be presented
+            consistently to allow users to locate specific information efficiently.
         </p>
     </React.Fragment>
 );

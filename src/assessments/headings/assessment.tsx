@@ -18,12 +18,15 @@ const { guidance } = content.headings;
 const gettingStarted: JSX.Element = (
     <React.Fragment>
         <p>
-            The function of a heading is to label a section of content. Headings should not be used as a convenient way to style other text.
+            The function of a heading is to label a section of content. Headings should not be used
+            as a convenient way to style other text.
         </p>
         <p>
-            Assistive technologies use markup tags to help users navigate pages and find content more quickly. Screen readers recognize
-            coded headings, and can announce the heading along with its level, or provide another audible cue like a beep. Other assistive
-            technologies can change the visual display of a page, using properly coded headings to display an outline or alternate view.
+            Assistive technologies use markup tags to help users navigate pages and find content
+            more quickly. Screen readers recognize coded headings, and can announce the heading
+            along with its level, or provide another audible cue like a beep. Other assistive
+            technologies can change the visual display of a page, using properly coded headings to
+            display an outline or alternate view.
         </p>
         <p>
             For more information about how to make headings accessible, see
@@ -33,8 +36,12 @@ const gettingStarted: JSX.Element = (
         </p>
         <p>
             See
-            <NewTabLink href="https://go.microsoft.com/fwlink/?linkid=2080372"> this fun video </NewTabLink>
-            to learn how landmarks, headings, and tab stops work together to provide efficient navigation.{' '}
+            <NewTabLink href="https://go.microsoft.com/fwlink/?linkid=2080372">
+                {' '}
+                this fun video{' '}
+            </NewTabLink>
+            to learn how landmarks, headings, and tab stops work together to provide efficient
+            navigation.{' '}
         </p>
     </React.Fragment>
 );

@@ -8,7 +8,6 @@ import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
-
 import { ReportHead } from './components/report-head';
 import { ReportBody, ReportBodyProps } from './components/report-sections/report-body';
 import { ReportCollapsibleContainerControl } from './components/report-sections/report-collapsible-container';

@@ -17,5 +17,12 @@ export function landmarksAssessmentInstanceDetailsColumnRenderer(
         textContent += `: ${propertyBag.label}`;
     }
 
-    return <AssessmentInstanceDetailsColumn background={background} textContent={textContent} tooltipId={null} customClassName="radio" />;
+    return (
+        <AssessmentInstanceDetailsColumn
+            background={background}
+            textContent={textContent}
+            tooltipId={null}
+            customClassName="radio"
+        />
+    );
 }

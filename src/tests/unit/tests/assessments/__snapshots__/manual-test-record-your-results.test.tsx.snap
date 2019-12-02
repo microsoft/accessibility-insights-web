@@ -7,7 +7,8 @@ exports[`ManualTestRecordYourResultsTest render: isMultipleFailurePossible = fal
     <li>
       If you find 
       a failure
-      , select 
+      , select
+       
       <Term>
         Fail
       </Term>
@@ -33,7 +34,8 @@ exports[`ManualTestRecordYourResultsTest render: isMultipleFailurePossible = tru
     <li>
       If you find 
       any failures
-      , select 
+      , select
+       
       <Term>
         Fail
       </Term>

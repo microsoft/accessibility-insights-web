@@ -100,6 +100,10 @@ export class Messages {
         SaveIssueFilingSettings: `${messagePrefix}/userConfig/saveIssueFilingSettings`,
     };
 
+    public static readonly Popup = {
+        Initialized: `${messagePrefix}/popup/initialized`,
+    };
+
     public static readonly Tab = {
         NewTabCreated: `${messagePrefix}/tab/newTabCreated`,
         Remove: `${messagePrefix}/tab/remove`,

@@ -8,7 +8,6 @@ import * as React from 'react';
 import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
 import { ReportSectionFactory, SectionProps } from 'reports/components/report-sections/report-section-factory';
 import { Mock } from 'typemoq';
-
 import { exampleUnifiedStatusResults } from '../../../common/components/cards/sample-view-model-data';
 
 describe('ReportBody', () => {

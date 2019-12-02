@@ -5,23 +5,45 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as Puppeteer from 'puppeteer';
 import * as util from 'util';
+import { testResourceServerConfig } from '../setup/test-resource-server-config';
 import { Browser } from './browser';
 import { DEFAULT_BROWSER_LAUNCH_TIMEOUT_MS } from './timeouts';
 
 export const chromeLogsPath = path.join(__dirname, '../../../../test-results/e2e/chrome-logs/');
 
-export function browserLogPath(browserInstanceId: string): string {
-    return path.join(chromeLogsPath, browserInstanceId);
-}
+export const browserLogPath = (browserInstanceId: string): string => path.join(chromeLogsPath, browserInstanceId);
+
+const fileExists = util.promisify(fs.exists);
+const writeFile = util.promisify(fs.writeFile);
+const readFile = util.promisify(fs.readFile);
 
 export interface ExtensionOptions {
     suppressFirstTimeDialog: boolean;
+    addLocalhostToPermissions?: boolean;
 }
 
 export async function launchBrowser(extensionOptions: ExtensionOptions): Promise<Browser> {
     const browserInstanceId = generateUID();
-    const puppeteerBrowser = await launchNewBrowser(browserInstanceId);
-    const browser = new Browser(browserInstanceId, puppeteerBrowser);
+
+    // only unpacked extension paths are supported
+    const devExtensionPath = `${(global as any).rootDir}/drop/extension/dev/product`;
+    const manifestPath = getManifestPath(devExtensionPath);
+
+    let onClose: () => Promise<void>;
+
+    if (extensionOptions.addLocalhostToPermissions) {
+        const originalManifest = await readFile(manifestPath);
+
+        const permissiveManifest = addLocalhostPermissionsToManifest(originalManifest.toString());
+
+        await writeFile(manifestPath, permissiveManifest);
+
+        onClose = async () => await writeFile(manifestPath, originalManifest.toString());
+    }
+
+    const puppeteerBrowser = await launchNewBrowser(browserInstanceId, devExtensionPath);
+
+    const browser = new Browser(browserInstanceId, puppeteerBrowser, onClose);
 
     const backgroundPage = await browser.backgroundPage();
     if (extensionOptions.suppressFirstTimeDialog) {
@@ -31,12 +53,12 @@ export async function launchBrowser(extensionOptions: ExtensionOptions): Promise
     return browser;
 }
 
-function fileExists(filePath: string): Promise<boolean> {
-    return new Promise(resolve => fs.exists(filePath, resolve));
+function getManifestPath(extensionPath: string): string {
+    return `${extensionPath}/manifest.json`;
 }
 
 async function verifyExtensionIsBuilt(extensionPath: string): Promise<void> {
-    const manifestPath = `${extensionPath}/manifest.json`;
+    const manifestPath = getManifestPath(extensionPath);
     if (!(await fileExists(manifestPath))) {
         throw new Error(
             `Cannot launch extension-enabled browser instance because extension has not been built.\n` +
@@ -46,10 +68,15 @@ async function verifyExtensionIsBuilt(extensionPath: string): Promise<void> {
     }
 }
 
-async function launchNewBrowser(browserInstanceId: string): Promise<Puppeteer.Browser> {
-    // only unpacked extension paths are supported
-    const extensionPath = `${(global as any).rootDir}/drop/extension/dev/product`;
+function addLocalhostPermissionsToManifest(originalManifest: string): string {
+    const manifest = JSON.parse(originalManifest);
 
+    manifest['permissions'].push(`http://localhost:${testResourceServerConfig.port}/*`);
+
+    return JSON.stringify(manifest, null, 2);
+}
+
+async function launchNewBrowser(browserInstanceId: string, extensionPath: string): Promise<Puppeteer.Browser> {
     // It's important that we verify this before calling Puppeteer.launch because its behavior if the
     // extension can't be loaded is "the Chromium instance hangs with an alert and everything on Puppeteer's
     // end shows up as a generic timeout error with no meaningful logging".

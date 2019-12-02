@@ -13,7 +13,7 @@ describe('Popup -> Ad-hoc tools', () => {
     let popupPage: PopupPage;
 
     beforeEach(async () => {
-        browser = await launchBrowser({ suppressFirstTimeDialog: true });
+        browser = await launchBrowser({ suppressFirstTimeDialog: true, addLocalhostToPermissions: true });
         targetPage = await browser.newTargetPage();
         popupPage = await browser.newPopupPage(targetPage);
         await popupPage.bringToFront();
@@ -60,7 +60,6 @@ describe('Popup -> Ad-hoc tools', () => {
     it.each(['Automated checks', 'Landmarks', 'Headings', 'Color'])(
         'should display the pinned target page visualizations when enabling the "%s" toggle',
         async (toggleAriaLabel: string) => {
-            await popupPage.bringToFront();
             await popupPage.gotoAdhocPanel();
             await popupPage.enableToggleByAriaLabel(toggleAriaLabel);
 

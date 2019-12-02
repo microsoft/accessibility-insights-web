@@ -11,7 +11,8 @@ import { LanguageTestStep } from './test-steps';
 
 const languageOfPartsDescription: JSX.Element = (
     <span>
-        If the language of a passage differs from the default language of the page, the passage must have its own language attribute.
+        If the language of a passage differs from the default language of the page, the passage must
+        have its own language attribute.
     </span>
 );
 
@@ -19,14 +20,18 @@ const languageOfPartsHowToTest: JSX.Element = (
     <div>
         <p>
             <Markup.Emphasis>
-                Note: if an element has an invalid <Markup.Term>lang</Markup.Term> attribute, it will fail an automated check
+                Note: if an element has an invalid <Markup.Term>lang</Markup.Term> attribute, it
+                will fail an automated check
             </Markup.Emphasis>
         </p>
         <ol>
-            <li>Examine the target page to identify any passages in a language different from the default language of the page.</li>
             <li>
-                If you find such a passage, examine the containing element's HTML to verify that it has the correct{' '}
-                <LanguageAttributeLink />.
+                Examine the target page to identify any passages in a language different from the
+                default language of the page.
+            </li>
+            <li>
+                If you find such a passage, examine the containing element's HTML to verify that it
+                has the correct <LanguageAttributeLink />.
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>

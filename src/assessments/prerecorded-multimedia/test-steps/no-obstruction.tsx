@@ -7,15 +7,23 @@ import { ManualTestRecordYourResults } from '../../common/manual-test-record-you
 import { Requirement } from '../../types/requirement';
 import { PrerecordedMultimediaTestStep } from './test-steps';
 
-const noObstructionDescription: JSX.Element = <span>Captions must not obscure or obstruct relevant information in the video.</span>;
+const noObstructionDescription: JSX.Element = (
+    <span>Captions must not obscure or obstruct relevant information in the video.</span>
+);
 
 const noObstructionHowToTest: JSX.Element = (
     <div>
         <ol>
-            <li>Examine the target page to identify any pre-recorded multimedia content with captions.</li>
+            <li>
+                Examine the target page to identify any pre-recorded multimedia content with
+                captions.
+            </li>
             <li>Determine whether the multimedia content has captions.</li>
             <li>Enable captions, then play the multimedia content.</li>
-            <li>Verify that the captions do not obscure or obstruct relevant information in the video.</li>
+            <li>
+                Verify that the captions do not obscure or obstruct relevant information in the
+                video.
+            </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
     </div>

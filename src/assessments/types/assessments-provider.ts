@@ -12,5 +12,7 @@ export interface AssessmentsProvider {
     isValidKey(key: string): boolean;
     forKey(key: string): Readonly<Assessment>;
     getStep(visualizationType: VisualizationType, key: string): Readonly<Requirement>;
-    getStepMap(visualizationType: VisualizationType): Readonly<DictionaryStringTo<Readonly<Requirement>>>;
+    getStepMap(
+        visualizationType: VisualizationType,
+    ): Readonly<DictionaryStringTo<Readonly<Requirement>>>;
 }

@@ -18,7 +18,8 @@ const highContrastModeHowToTest: JSX.Element = (
         <ol>
             <li>Open the target page in Microsoft Edge.</li>
             <li>
-                Use <Markup.Term>Windows Settings</Markup.Term> > <Markup.Term>Ease of Access</Markup.Term> >{' '}
+                Use <Markup.Term>Windows Settings</Markup.Term> >{' '}
+                <Markup.Term>Ease of Access</Markup.Term> >{' '}
                 <Markup.Term>Color & high contrast</Markup.Term> to apply a high contrast theme.
             </li>
             <li>Verify that the target page adopts the colors specified for the theme.</li>
