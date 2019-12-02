@@ -12,7 +12,7 @@ describe('Tab stops visualization', () => {
     let popupPage: PopupPage;
 
     beforeEach(async () => {
-        browser = await launchBrowser({ suppressFirstTimeDialog: true });
+        browser = await launchBrowser({ suppressFirstTimeDialog: true, addLocalhostToPermissions: true });
         targetPage = await browser.newTargetPage({ testResourcePath: 'native-widgets/input-type-radio.html' });
     });
 

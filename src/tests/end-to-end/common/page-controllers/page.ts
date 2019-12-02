@@ -3,6 +3,7 @@
 import { includes } from 'lodash';
 import * as Puppeteer from 'puppeteer';
 
+import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { CommonSelectors } from '../element-identifiers/common-selectors';
 import { forceTestFailure } from '../force-test-failure';
 import { takeScreenshot } from '../generate-screenshot';
@@ -12,6 +13,8 @@ import {
     DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS,
     DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
 } from '../timeouts';
+
+const promiseFactory = createDefaultPromiseFactory();
 
 export type PageOptions = {
     onPageCrash?: () => void;
@@ -99,15 +102,9 @@ export class Page {
 
     public async evaluate(fn: Puppeteer.EvaluateFn, ...args: any[]): Promise<any> {
         const timeout = DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS;
-        return await this.screenshotOnError(
-            async () =>
-                await Promise.race([
-                    this.underlyingPage.evaluate(fn, ...args),
-                    this.underlyingPage.waitFor(timeout).then(() => {
-                        throw new Error(`Timed out after ${timeout} waiting for page.evaluate() to resolve`);
-                    }),
-                ]),
-        );
+        // We don't wrap this in screenshotOnError because Puppeteer serializes evaluate() and
+        // screenshot() such that screenshot() will always time out if evaluate is still running.
+        return await promiseFactory.timeout(this.underlyingPage.evaluate(fn, ...args), timeout);
     }
 
     public async getMatchingElements<T>(selector: string, elementProperty?: keyof Element): Promise<T[]> {
@@ -122,6 +119,10 @@ export class Page {
                     elementProperty,
                 ),
         );
+    }
+
+    public async waitForDuration(durationMs: number): Promise<void> {
+        await this.screenshotOnError(async () => await this.underlyingPage.waitFor(durationMs));
     }
 
     public async waitForSelector(selector: string, options?: Puppeteer.WaitForSelectorOptions): Promise<Puppeteer.ElementHandle<Element>> {
@@ -196,8 +197,12 @@ export class Page {
     }
 
     public async clickSelector(selector: string): Promise<void> {
-        const element = await this.waitForSelector(selector);
-        await this.clickElementHandle(element);
+        await this.screenshotOnError(async () => {
+            await this.underlyingPage.waitForSelector(selector, { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS });
+            await this.underlyingPage.hover(selector);
+            await this.underlyingPage.waitFor(DEFAULT_CLICK_HOVER_DELAY_MS);
+            await this.underlyingPage.click(selector, { delay: DEFAULT_CLICK_MOUSEUP_DELAY_MS });
+        });
     }
 
     public async clickSelectorXPath(xpath: string): Promise<void> {
@@ -215,13 +220,8 @@ export class Page {
         await this.clickElementHandle(element);
     }
 
-    // We use logic closer to Cypress's than Puppeteer's, where we artificially inject
-    // human-like delays between hovering the element, mouse-down, and mouse-up, to
-    // improve reliability.
     public async clickElementHandle(element: Puppeteer.ElementHandle<Element>): Promise<void> {
         await this.screenshotOnError(async () => {
-            await element.hover();
-            await this.underlyingPage.waitFor(DEFAULT_CLICK_HOVER_DELAY_MS);
             await element.click({ delay: DEFAULT_CLICK_MOUSEUP_DELAY_MS });
         });
     }

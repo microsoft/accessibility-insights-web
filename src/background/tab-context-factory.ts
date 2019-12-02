@@ -8,15 +8,16 @@ import { PromiseFactory } from 'common/promises/promise-factory';
 import { StateDispatcher } from 'common/state-dispatcher';
 import { WindowUtils } from 'common/window-utils';
 
-import { InjectionActionCreator } from 'background/actions/injection-action-creator';
 import { ActionCreator } from './actions/action-creator';
 import { ActionHub } from './actions/action-hub';
 import { CardSelectionActionCreator } from './actions/card-selection-action-creator';
 import { ContentActionCreator } from './actions/content-action-creator';
 import { DetailsViewActionCreator } from './actions/details-view-action-creator';
 import { DevToolsActionCreator } from './actions/dev-tools-action-creator';
+import { InjectionActionCreator } from './actions/injection-action-creator';
 import { InspectActionCreator } from './actions/inspect-action-creator';
 import { PathSnippetActionCreator } from './actions/path-snippet-action-creator';
+import { PopupActionCreator } from './actions/popup-action-creator';
 import { ScopingPanelActionCreator } from './actions/scoping-panel-action-creator';
 import { ShortcutsPageActionCreator } from './actions/shortcuts-page-action-creator';
 import { TabActionCreator } from './actions/tab-action-creator';
@@ -90,50 +91,47 @@ export class TabContextFactory {
             browserAdapter,
             this.telemetryEventHandler,
         );
-
+        const popupActionCreator = new PopupActionCreator(
+            interpreter,
+            actionsHub.tabActions,
+            this.telemetryEventHandler,
+        );
         const devToolsActionCreator = new DevToolsActionCreator(
             interpreter,
             actionsHub.devToolActions,
             this.telemetryEventHandler,
         );
-
         const inspectActionsCreator = new InspectActionCreator(
             interpreter,
             actionsHub.inspectActions,
             this.telemetryEventHandler,
             browserAdapter,
         );
-
         const pathSnippetActionCreator = new PathSnippetActionCreator(
             interpreter,
             actionsHub.pathSnippetActions,
         );
-
         const scanResultActionCreator = new UnifiedScanResultActionCreator(
             interpreter,
             actionsHub.scanResultActions,
         );
-
         const scopingPanelActionCreator = new ScopingPanelActionCreator(
             interpreter,
             actionsHub.scopingActions,
             this.telemetryEventHandler,
             detailsViewController,
         );
-
         const contentActionCreator = new ContentActionCreator(
             interpreter,
             actionsHub.contentActions,
             this.telemetryEventHandler,
             detailsViewController,
         );
-
         const cardSelectionActionCreator = new CardSelectionActionCreator(
             interpreter,
             actionsHub.cardSelectionActions,
             this.telemetryEventHandler,
         );
-
         const injectionActionCreator = new InjectionActionCreator(
             interpreter,
             actionsHub.injectionActions,
@@ -165,6 +163,7 @@ export class TabContextFactory {
         inspectActionsCreator.registerCallbacks();
         pathSnippetActionCreator.registerCallbacks();
         tabActionCreator.registerCallbacks();
+        popupActionCreator.registerCallbacks();
         scopingPanelActionCreator.registerCallbacks();
         contentActionCreator.registerCallbacks();
         scanResultActionCreator.registerCallbacks();
