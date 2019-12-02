@@ -7,22 +7,23 @@ import { allInstanceOutcomeTypes, InstanceOutcomeType } from '../instance-outcom
 import { OutcomeSummaryBar } from '../outcome-summary-bar';
 import { SectionProps } from './report-section-factory';
 
-export type SummarySectionProps = Pick<SectionProps, 'scanResult'>;
+export type SummarySectionProps = Pick<SectionProps, 'cardsViewData'>;
 
 export const SummarySection = NamedFC<SummarySectionProps>('SummarySection', props => {
-    const scanResult = props.scanResult;
+    const { cards } = props.cardsViewData;
+
     const countSummary: { [type in InstanceOutcomeType]: number } = {
-        fail: scanResult.violations.reduce((total, violation) => {
-            return total + violation.nodes.length;
+        fail: cards.fail.reduce((total, currentFail) => {
+            return total + currentFail.nodes.length;
         }, 0),
-        pass: scanResult.passes.length,
-        inapplicable: scanResult.inapplicable.length,
+        pass: cards.pass.length,
+        inapplicable: cards.inapplicable.length,
     };
 
     return (
         <div className="summary-section">
             <h2>Summary</h2>
-            <OutcomeSummaryBar {...props} outcomeStats={countSummary} iconStyleInverted={true} allOutcomeTypes={allInstanceOutcomeTypes} />
+            <OutcomeSummaryBar outcomeStats={countSummary} iconStyleInverted={true} allOutcomeTypes={allInstanceOutcomeTypes} />
         </div>
     );
 });

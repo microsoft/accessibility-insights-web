@@ -1,19 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IssueFilingButton, IssueFilingButtonDeps, IssueFilingButtonProps } from 'common/components/issue-filing-button';
+import { EnvironmentInfoProvider } from 'common/environment-info-provider';
+import { IssueFilingActionMessageCreator } from 'common/message-creators/issue-filing-action-message-creator';
+import { NamedFC } from 'common/react/named-fc';
+import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
+import { IssueFilingNeedsSettingsContentRenderer } from 'common/types/issue-filing-needs-setting-content';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { shallow } from 'enzyme';
+import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
+import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
 import { DefaultButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
-import { IssueFilingButton, IssueFilingButtonDeps, IssueFilingButtonProps } from '../../../../../common/components/issue-filing-button';
-import { EnvironmentInfoProvider } from '../../../../../common/environment-info-provider';
-import { IssueFilingActionMessageCreator } from '../../../../../common/message-creators/issue-filing-action-message-creator';
-import { NamedFC } from '../../../../../common/react/named-fc';
-import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
-import { IssueFilingNeedsSettingsContentRenderer } from '../../../../../common/types/issue-filing-needs-setting-content';
-import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
-import { IssueFilingServiceProvider } from '../../../../../issue-filing/issue-filing-service-provider';
-import { IssueFilingService } from '../../../../../issue-filing/types/issue-filing-service';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('IssueFilingButtonTest', () => {
@@ -36,7 +36,7 @@ describe('IssueFilingButtonTest', () => {
                 return { testField };
             },
             getSettingsFromStoreData: data => data[testKey],
-            fileIssue: () => {},
+            fileIssue: () => Promise.resolve(),
         };
         userConfigurationStoreData = {
             bugService: testKey,

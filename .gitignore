@@ -11,6 +11,7 @@
 /ref/
 /extension/
 /test-results/
+/package/
 /drop/
 *.scss.d.ts
 # Dependency directories

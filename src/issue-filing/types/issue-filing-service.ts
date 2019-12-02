@@ -26,7 +26,7 @@ export interface IssueFilingService {
         servicePropertiesMap: IssueFilingServicePropertiesMap,
         issueData: CreateIssueDetailsTextData,
         environmentInfo: EnvironmentInfo,
-    ) => void;
+    ) => Promise<void>;
 }
 
 export interface IssueFilingServiceWithSettings<Settings> extends IssueFilingService {

@@ -10,10 +10,7 @@ import { PopupActionMessageCreator } from '../actions/popup-action-message-creat
 import { LaunchPanelHeaderClickHandler } from '../handlers/launch-panel-header-click-handler';
 import { SupportLinkHandler } from '../support-link-handler';
 import { Header } from './header';
-import {
-    HeaderContextualMenu,
-    HeaderContextualMenuDeps,
-} from './header-contextual-menu';
+import { HeaderContextualMenu, HeaderContextualMenuDeps } from './header-contextual-menu';
 
 export type LaunchPanelHeaderDeps = {
     popupActionMessageCreator: PopupActionMessageCreator;
@@ -60,10 +57,7 @@ export class LaunchPanelHeader extends React.Component<
     }
 
     private renderGearOptionsButton(): JSX.Element {
-        const {
-            dropdownClickHandler,
-            launchPanelHeaderClickHandler,
-        } = this.props.deps;
+        const { dropdownClickHandler, launchPanelHeaderClickHandler } = this.props.deps;
 
         return (
             <div className="ms-Grid-col ms-u-sm2 feedback-collapseMenuButton-col">
@@ -75,10 +69,7 @@ export class LaunchPanelHeader extends React.Component<
                     iconProps={{ iconName: 'GlobalNavButton' }}
                     id="feedback-collapse-menu-button"
                     onClick={event =>
-                        launchPanelHeaderClickHandler.onOpenContextualMenu(
-                            this,
-                            event,
-                        )
+                        launchPanelHeaderClickHandler.onOpenContextualMenu(this, event)
                     }
                     ariaLabel="Help and Feedback menu"
                 />

@@ -55,10 +55,17 @@ export class TabContextFactory {
         const interpreter = new Interpreter();
         const actionsHub = new ActionHub();
         const storeHub = new TabContextStoreHub(actionsHub, this.visualizationConfigurationFactory);
-        const notificationCreator = new NotificationCreator(browserAdapter, this.visualizationConfigurationFactory);
+        const notificationCreator = new NotificationCreator(
+            browserAdapter,
+            this.visualizationConfigurationFactory,
+        );
         const shortcutsPageController = new ShortcutsPageController(browserAdapter);
 
-        const shortcutsPageActionCreator = new ShortcutsPageActionCreator(interpreter, shortcutsPageController, this.telemetryEventHandler);
+        const shortcutsPageActionCreator = new ShortcutsPageActionCreator(
+            interpreter,
+            shortcutsPageController,
+            this.telemetryEventHandler,
+        );
 
         const actionCreator = new ActionCreator(
             interpreter,
@@ -77,9 +84,18 @@ export class TabContextFactory {
             this.telemetryEventHandler,
         );
 
-        const tabActionCreator = new TabActionCreator(interpreter, actionsHub.tabActions, browserAdapter, this.telemetryEventHandler);
+        const tabActionCreator = new TabActionCreator(
+            interpreter,
+            actionsHub.tabActions,
+            browserAdapter,
+            this.telemetryEventHandler,
+        );
 
-        const devToolsActionCreator = new DevToolsActionCreator(interpreter, actionsHub.devToolActions, this.telemetryEventHandler);
+        const devToolsActionCreator = new DevToolsActionCreator(
+            interpreter,
+            actionsHub.devToolActions,
+            this.telemetryEventHandler,
+        );
 
         const inspectActionsCreator = new InspectActionCreator(
             interpreter,
@@ -88,9 +104,15 @@ export class TabContextFactory {
             browserAdapter,
         );
 
-        const pathSnippetActionCreator = new PathSnippetActionCreator(interpreter, actionsHub.pathSnippetActions);
+        const pathSnippetActionCreator = new PathSnippetActionCreator(
+            interpreter,
+            actionsHub.pathSnippetActions,
+        );
 
-        const scanResultActionCreator = new UnifiedScanResultActionCreator(interpreter, actionsHub.scanResultActions);
+        const scanResultActionCreator = new UnifiedScanResultActionCreator(
+            interpreter,
+            actionsHub.scanResultActions,
+        );
 
         const scopingPanelActionCreator = new ScopingPanelActionCreator(
             interpreter,
@@ -112,7 +134,10 @@ export class TabContextFactory {
             this.telemetryEventHandler,
         );
 
-        const injectionActionCreator = new InjectionActionCreator(interpreter, actionsHub.injectionActions);
+        const injectionActionCreator = new InjectionActionCreator(
+            interpreter,
+            actionsHub.injectionActions,
+        );
 
         const injectorController = new InjectorController(
             new ContentScriptInjector(browserAdapter, this.promiseFactory),

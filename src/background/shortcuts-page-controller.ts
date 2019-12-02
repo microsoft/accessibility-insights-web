@@ -7,7 +7,7 @@ export class ShortcutsPageController {
 
     constructor(private readonly browserAdapter: BrowserAdapter) {}
 
-    public openShortcutsTab(): void {
-        this.browserAdapter.createTab(ShortcutsPageController.configureCommandTabUrl);
+    public async openShortcutsTab(): Promise<void> {
+        await this.browserAdapter.createActiveTab(ShortcutsPageController.configureCommandTabUrl);
     }
 }

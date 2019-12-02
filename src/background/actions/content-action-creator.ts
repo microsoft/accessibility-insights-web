@@ -18,8 +18,14 @@ export class ContentActionCreator {
     ) {}
 
     public registerCallbacks(): void {
-        this.interpreter.registerTypeToPayloadCallback(Messages.ContentPanel.OpenPanel, this.onOpenContentPanel);
-        this.interpreter.registerTypeToPayloadCallback(Messages.ContentPanel.ClosePanel, this.onCloseContentPanel);
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.ContentPanel.OpenPanel,
+            this.onOpenContentPanel,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.ContentPanel.ClosePanel,
+            this.onCloseContentPanel,
+        );
     }
 
     private onOpenContentPanel = (payload: ContentPayload, tabId: number): void => {

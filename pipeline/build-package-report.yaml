@@ -1,0 +1,59 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+jobs:
+    - job: 'build_and_publish_package'
+
+      pool:
+          vmImage: 'macOS-10.14'
+
+      steps:
+          - template: install-node-prerequisites.yaml
+
+          - script: yarn lint:check
+            displayName: check lint errors
+
+          - script: yarn format:check
+            displayName: check formatting errors
+
+          - script: yarn copyright:check
+            displayName: check copyrightheaders
+
+          - script: yarn scss:build
+            displayName: generate typings for scss files
+
+          - script: yarn test --ci
+            displayName: run unit tests
+
+          - task: PublishTestResults@2
+            inputs:
+                testResultsFiles: $(System.DefaultWorkingDirectory)/test-results/unit/junit.xml
+                testRunTitle: $(Agent.JobName)
+            condition: always()
+            displayName: publish test results
+
+          - task: PublishCodeCoverageResults@1
+            inputs:
+                codeCoverageTool: Cobertura
+                summaryFileLocation: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/cobertura-coverage.xml
+                failIfCoverageEmpty: true
+                # We care most about the summary information; adding the detailed files doesn't give enough extra information
+                # to be worth the 1min it adds to the build.
+                # Consider re-enabling this once https://github.com/Microsoft/azure-pipelines-tasks/issues/4945 is resolved.
+                # reportDirectory: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/lcov-report
+            displayName: publish code coverage
+
+          # CI build only
+          - task: ComponentGovernanceComponentDetection@0
+            displayName: 'Component Detection'
+            condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
+            inputs:
+                verbosity: Normal
+
+          - script: yarn build:package:report
+            displayName: build:package:report
+
+          - task: Npm@1
+            inputs:
+                command: 'publish'
+                publishEndpoint: 'npmjs.com (accessibility-insights-team)'
+                workingDir: '$(System.DefaultWorkingDirectory)/package/report/drop'

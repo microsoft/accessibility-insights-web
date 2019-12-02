@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { DateProvider } from 'common/date-provider';
+import { FeatureFlags } from 'common/feature-flags';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { IssuesTable, IssuesTableDeps, IssuesTableProps } from 'DetailsView/components/issues-table';
 import { DetailsRowData, IssuesTableHandler } from 'DetailsView/components/issues-table-handler';
@@ -44,22 +45,25 @@ describe('IssuesTableTest', () => {
         expect(wrapped.debug()).toMatchSnapshot();
     });
 
-    it('automated checks disabled', () => {
-        const issuesEnabled = false;
-        const selectionMock = Mock.ofType<ISelection>(Selection);
+    describe('automated checks disabled', () => {
+        it.each([false, true])('universalCardsUI = %s', universalCardsUI => {
+            const issuesEnabled = false;
+            const selectionMock = Mock.ofType<ISelection>(Selection);
 
-        const toggleClickHandlerMock = Mock.ofInstance(event => {});
+            const toggleClickHandlerMock = Mock.ofInstance(event => {});
 
-        const props = new TestPropsBuilder()
-            .setDeps(deps)
-            .setIssuesEnabled(issuesEnabled)
-            .setIssuesSelection(selectionMock.object)
-            .setToggleClickHandler(toggleClickHandlerMock.object)
-            .build();
+            const props = new TestPropsBuilder()
+                .setFeatureFlag(FeatureFlags.universalCardsUI, universalCardsUI)
+                .setDeps(deps)
+                .setIssuesEnabled(issuesEnabled)
+                .setIssuesSelection(selectionMock.object)
+                .setToggleClickHandler(toggleClickHandlerMock.object)
+                .build();
 
-        const wrapped = shallow(<IssuesTable {...props} />);
+            const wrapped = shallow(<IssuesTable {...props} />);
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+            expect(wrapped.getElement()).toMatchSnapshot();
+        });
     });
 
     it('spinner for scanning state', () => {
