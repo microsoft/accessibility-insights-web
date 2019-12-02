@@ -11,9 +11,9 @@ async function takeScreenshot(pageInstance: Puppeteer.Page): Promise<void> {
     console.log(`Screenshot file is located at: ${path}`);
 }
 
-export async function screenshotOnError<T>(pageInstance: Puppeteer.Page, wrappedFn: () => Promise<T>): Promise<T> {
+export async function screenshotOnError<T>(pageInstance: Puppeteer.Page, wrappedFunction: () => Promise<T>): Promise<T> {
     try {
-        return await wrappedFn();
+        return await wrappedFunction();
     } catch (originalError) {
         try {
             await takeScreenshot(pageInstance);

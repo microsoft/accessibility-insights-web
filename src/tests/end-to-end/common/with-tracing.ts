@@ -16,12 +16,12 @@ async function stopTracing(tracing: Puppeteer.Tracing, traceFilePath: string, lo
     console.log(`Trace file (${logLabel}) is located at: ${traceFilePath}`);
 }
 
-export async function withTracing<T>(tracing: Puppeteer.Tracing, wrappedFn: () => Promise<T>): Promise<T> {
+export async function withTracing<T>(tracing: Puppeteer.Tracing, wrappedFunction: () => Promise<T>): Promise<T> {
     const traceFilePath = await startTracing(tracing);
 
     let retVal: T;
     try {
-        retVal = await wrappedFn();
+        retVal = await wrappedFunction();
     } catch (originalError) {
         try {
             await stopTracing(tracing, traceFilePath, 'from error path');

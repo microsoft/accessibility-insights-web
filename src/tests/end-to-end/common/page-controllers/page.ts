@@ -285,11 +285,11 @@ export class Page {
         });
     }
 
-    public async withTracing<T>(wrappedFn: () => Promise<T>): Promise<T> {
-        return await withTracing(this.underlyingPage.tracing, wrappedFn);
+    public async withTracing<T>(wrappedFunction: () => Promise<T>): Promise<T> {
+        return await withTracing(this.underlyingPage.tracing, wrappedFunction);
     }
 
-    private async screenshotOnError<T>(fn: () => Promise<T>): Promise<T> {
-        return await screenshotOnError(this.underlyingPage, fn);
+    private async screenshotOnError<T>(wrappedFunction: () => Promise<T>): Promise<T> {
+        return await screenshotOnError(this.underlyingPage, wrappedFunction);
     }
 }
