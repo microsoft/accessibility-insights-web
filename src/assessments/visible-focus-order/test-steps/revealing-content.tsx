@@ -9,20 +9,24 @@ import { Requirement } from '../../types/requirement';
 import { visibleFfocusOrderTestStep } from './test-steps';
 
 const description: JSX.Element = (
-    <span>Activating a component that reveals hidden content must move input focus into the revealed content.</span>
+    <span>
+        Activating a component that reveals hidden content must move input focus into the revealed
+        content.
+    </span>
 );
 
 const howToTest: JSX.Element = (
     <div>
         <ol>
             <li>
-                Examine the target page to identify any "trigger" components that reveal hidden content, such as menus, dialogs, expandable
-                tree views, etc.
+                Examine the target page to identify any "trigger" components that reveal hidden
+                content, such as menus, dialogs, expandable tree views, etc.
             </li>
             <li>Use the keyboard to activate each trigger component.</li>
             <li>
-                Verify that focus is moved into the revealed content. (It is acceptable to <Markup.Term>Tab</Markup.Term> once or use an
-                arrow key to move focus into the revealed content.)
+                Verify that focus is moved into the revealed content. (It is acceptable to{' '}
+                <Markup.Term>Tab</Markup.Term> once or use an arrow key to move focus into the
+                revealed content.)
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>

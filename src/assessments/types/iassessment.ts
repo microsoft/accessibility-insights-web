@@ -17,7 +17,10 @@ interface BaseAssessment {
     guidance?: ContentPageComponent;
     requirements: Requirement[];
     featureFlag?: { required?: string[] };
-    executeAssessmentScanPolicy?: (scheduleScan: (step: string) => void, data: AssessmentData) => void;
+    executeAssessmentScanPolicy?: (
+        scheduleScan: (step: string) => void,
+        data: AssessmentData,
+    ) => void;
     requirementOrder?: RequirementOrdering;
     extensions?: AnyExtension[];
     initialDataCreator?: InitialDataCreator;

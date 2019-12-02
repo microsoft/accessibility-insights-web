@@ -19,10 +19,12 @@ const quotesHowToTest: JSX.Element = (
         <p>This procedure uses the browser Developer Tools (F12) to inspect the page's HTML.</p>
         <ol>
             <li>
-                Search the page's HTML to determine whether the page includes any <Markup.Tag tagName="blockquote" /> elements.
+                Search the page's HTML to determine whether the page includes any{' '}
+                <Markup.Tag tagName="blockquote" /> elements.
             </li>
             <li>
-                Examine each <Markup.Tag tagName="blockquote" /> element to verify it contains a quote.
+                Examine each <Markup.Tag tagName="blockquote" /> element to verify it contains a
+                quote.
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>

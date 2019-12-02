@@ -7,14 +7,20 @@ import { AssessmentsProviderImpl } from './assessments-provider';
 import { AssessmentsProvider } from './types/assessments-provider';
 import { Assessment } from './types/iassessment';
 
-function assessmentIsFeatureEnabled(flags: FeatureFlagStoreData): (assessment: Assessment) => boolean {
+function assessmentIsFeatureEnabled(
+    flags: FeatureFlagStoreData,
+): (assessment: Assessment) => boolean {
     return assessment =>
-        !assessment.featureFlag || !assessment.featureFlag.required || _.every(assessment.featureFlag.required, f => flags[f]);
+        !assessment.featureFlag ||
+        !assessment.featureFlag.required ||
+        _.every(assessment.featureFlag.required, f => flags[f]);
 }
 
 export function assessmentsProviderWithFeaturesEnabled(
     assessmentProvider: AssessmentsProvider,
     flags: FeatureFlagStoreData,
 ): AssessmentsProvider {
-    return AssessmentsProviderImpl.Create(assessmentProvider.all().filter(assessmentIsFeatureEnabled(flags)));
+    return AssessmentsProviderImpl.Create(
+        assessmentProvider.all().filter(assessmentIsFeatureEnabled(flags)),
+    );
 }

@@ -19,10 +19,11 @@ const { guidance } = content.sensory;
 const colorSensoryGettingStartedText: JSX.Element = (
     <React.Fragment>
         <p>
-            When color, shape, location, audio, or other sensory characteristics are the only means used to convey information, people with
-            disabilities do not have access to the same information that others have. Meaning communicated through sensory characteristics
-            must <Markup.Emphasis>also</Markup.Emphasis> be available in a textual format that can be viewed by all users and read by screen
-            reader software.{' '}
+            When color, shape, location, audio, or other sensory characteristics are the only means
+            used to convey information, people with disabilities do not have access to the same
+            information that others have. Meaning communicated through sensory characteristics must{' '}
+            <Markup.Emphasis>also</Markup.Emphasis> be available in a textual format that can be
+            viewed by all users and read by screen reader software.{' '}
         </p>
     </React.Fragment>
 );

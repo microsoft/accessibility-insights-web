@@ -15,8 +15,9 @@ const { guidance } = content.language;
 
 const gettingStartedText: JSX.Element = (
     <React.Fragment>
-        Screen reader technologies can adjust their pronunciation based on language, but only if the language is coded correctly. If
-        language changes are not identified, for a screen reader user, the speech will sound awkward at best, or unintelligible at worst.
+        Screen reader technologies can adjust their pronunciation based on language, but only if the
+        language is coded correctly. If language changes are not identified, for a screen reader
+        user, the speech will sound awkward at best, or unintelligible at worst.
     </React.Fragment>
 );
 

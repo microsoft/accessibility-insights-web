@@ -21,18 +21,22 @@ const { guidance } = content.textLegibility;
 const gettingStarted: JSX.Element = (
     <React.Fragment>
         <p>
-            In general, larger fonts and ample spacing make it easier to read text, especially for people with low vision, dyslexia,
-            or presbyopia. A 2018 study found that 1.8 billion people worldwide have presbyopia. (All people are affected by presbyopia to
-            some degree as they age.)
+            In general, larger fonts and ample spacing make it easier to read text, especially for
+            people with low vision, dyslexia, or presbyopia. A 2018 study found that 1.8 billion
+            people worldwide have presbyopia. (All people are affected by presbyopia to some degree
+            as they age.)
         </p>
         <p>
-            People with low vision use high contrast mode to ease eye strain or to make the screen easier to read by removing extraneous
-            information.
+            People with low vision use high contrast mode to ease eye strain or to make the screen
+            easier to read by removing extraneous information.
         </p>
-        <p>People with low vision and people who need cognitive assistance benefit from increased text size.</p>
         <p>
-            Many factors affect peoples' ability to discern between colors/shades, including screen brightness, ambient light, age, color
-            blindness, and some types of low vision.
+            People with low vision and people who need cognitive assistance benefit from increased
+            text size.
+        </p>
+        <p>
+            Many factors affect peoples' ability to discern between colors/shades, including screen
+            brightness, ambient light, age, color blindness, and some types of low vision.
         </p>
     </React.Fragment>
 );
@@ -43,6 +47,14 @@ export const TextLegibilityAssessment: Assessment = AssessmentBuilder.Assisted({
     title,
     gettingStarted,
     guidance,
-    requirements: [HighContrastMode, ResizeText, Contrast, Orientation, Reflow, TextSpacing, HoverFocusContent],
+    requirements: [
+        HighContrastMode,
+        ResizeText,
+        Contrast,
+        Orientation,
+        Reflow,
+        TextSpacing,
+        HoverFocusContent,
+    ],
     storeDataKey: 'textLegibilityAssessment',
 });

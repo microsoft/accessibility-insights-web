@@ -16,8 +16,7 @@ exports[`AssistedTestRecordYourResults renders 1`] = `
       <Term>
         Pass
       </Term>
-      . Or, after you have marked all failures, select
-       
+      . Or, after you have marked all failures, select 
       <Term>
         Pass unmarked instances.
       </Term>

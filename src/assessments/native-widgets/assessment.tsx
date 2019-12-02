@@ -19,9 +19,11 @@ const { guidance } = content.nativeWidgets;
 const gettingStarted: JSX.Element = (
     <React.Fragment>
         <p>
-            <Markup.Emphasis>Widgets</Markup.Emphasis> are interactive interface components, such as links, buttons, and combo boxes.
+            <Markup.Emphasis>Widgets</Markup.Emphasis> are interactive interface components, such as
+            links, buttons, and combo boxes.
         </p>
-        <Markup.Emphasis>Native widgets</Markup.Emphasis> include the following simple, interactive HTML elements:
+        <Markup.Emphasis>Native widgets</Markup.Emphasis> include the following simple, interactive
+        HTML elements:
         <ul>
             <li>button</li>
             <li>input</li>
@@ -29,8 +31,10 @@ const gettingStarted: JSX.Element = (
             <li>textarea</li>
         </ul>
         <p>
-            However, native widgets can function as <Markup.Emphasis>custom widgets</Markup.Emphasis>. For example, a button might function
-            as part of an accordion control or menu; or a text field, a button, and a listbox might function together as a combo box.
+            However, native widgets can function as{' '}
+            <Markup.Emphasis>custom widgets</Markup.Emphasis>. For example, a button might function
+            as part of an accordion control or menu; or a text field, a button, and a listbox might
+            function together as a combo box.
         </p>
         <p>Elements with valid widget roles are addressed in the Custom widgets test.</p>
     </React.Fragment>

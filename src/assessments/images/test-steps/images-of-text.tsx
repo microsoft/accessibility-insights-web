@@ -10,13 +10,20 @@ import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/ass
 import * as React from 'react';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
-import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
+import {
+    NoValue,
+    PropertyBagColumnRendererConfig,
+} from '../../common/property-bag-column-renderer';
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { Requirement } from '../../types/requirement';
 import { ImagesTestStep } from './test-steps';
 
-const description: JSX.Element = <span>Images of text are allowed only where a specific appearance is required (e.g., logotypes).</span>;
+const description: JSX.Element = (
+    <span>
+        Images of text are allowed only where a specific appearance is required (e.g., logotypes).
+    </span>
+);
 
 const howToTest: JSX.Element = (
     <div>
@@ -24,7 +31,10 @@ const howToTest: JSX.Element = (
         <TestAutomaticallyPassedNotice />
         <ol>
             <li>In the target page, examine each image to identify any images of text.</li>
-            <li>If you find an image of text, verify that it is used only where a specific appearance required, such as text in a logo.</li>
+            <li>
+                If you find an image of text, verify that it is used only where a specific
+                appearance required, such as text in a logo.
+            </li>
             <AssistedTestRecordYourResults />
         </ol>
     </div>
