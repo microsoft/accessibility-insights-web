@@ -38,13 +38,18 @@ export class AssessmentScanPolicyRunner {
             return;
         }
 
-        const assessmentConfig = this.assessmentProvider.forType(assessmentState.assessmentNavState.selectedTestType);
+        const assessmentConfig = this.assessmentProvider.forType(
+            assessmentState.assessmentNavState.selectedTestType,
+        );
         const visualizationConfig = assessmentConfig.getVisualizationConfiguration();
 
         const scanStep = (step: string) => {
             this.scheduleScan(assessmentConfig.visualizationType, step, this.tabId);
         };
 
-        assessmentConfig.executeAssessmentScanPolicy(scanStep, visualizationConfig.getAssessmentData(assessmentState));
+        assessmentConfig.executeAssessmentScanPolicy(
+            scanStep,
+            visualizationConfig.getAssessmentData(assessmentState),
+        );
     };
 }

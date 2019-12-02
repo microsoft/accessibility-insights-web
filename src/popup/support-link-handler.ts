@@ -15,9 +15,7 @@ export class SupportLinkHandler {
 
     public sendEmail(title: string): void {
         const emailHelpAlias = config.getOption('emailHelpAlias');
-        const mailToLink = encodeURI(
-            `mailto:${emailHelpAlias}?subject=Question about ${title}`,
-        );
+        const mailToLink = encodeURI(`mailto:${emailHelpAlias}?subject=Question about ${title}`);
 
         this.browserAdapter.createInactiveTab(mailToLink, tab => {
             this.windowUtils.setTimeout(() => {

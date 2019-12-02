@@ -8,7 +8,11 @@ import { EnumHelper } from 'common/enum-helper';
 import { Tab } from 'common/itab';
 import { StoreNames } from 'common/stores/store-names';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
-import { AssessmentScanData, TestsEnabledState, VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import {
+    AssessmentScanData,
+    TestsEnabledState,
+    VisualizationStoreData,
+} from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 
 import {
@@ -43,9 +47,13 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
 
     protected addActionListeners(): void {
         this.visualizationActions.enableVisualization.addListener(this.onEnableVisualization);
-        this.visualizationActions.enableVisualizationWithoutScan.addListener(this.onEnableVisualizationWithoutScan);
+        this.visualizationActions.enableVisualizationWithoutScan.addListener(
+            this.onEnableVisualizationWithoutScan,
+        );
         this.visualizationActions.disableVisualization.addListener(this.onDisableVisualization);
-        this.visualizationActions.disableAssessmentVisualizations.addListener(this.onDisableAssessmentVisualizations);
+        this.visualizationActions.disableAssessmentVisualizations.addListener(
+            this.onDisableAssessmentVisualizations,
+        );
 
         this.visualizationActions.scanCompleted.addListener(this.onScanCompleted);
         this.visualizationActions.updateFocusedInstance.addListener(this.onUpdateFocusedInstance);
@@ -54,7 +62,9 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
         this.visualizationActions.getCurrentState.addListener(this.onGetCurrentState);
         this.tabActions.existingTabUpdated.addListener(this.onExistingTabUpdated);
 
-        this.visualizationActions.updateSelectedPivotChild.addListener(this.onUpdateSelectedPivotChild);
+        this.visualizationActions.updateSelectedPivotChild.addListener(
+            this.onUpdateSelectedPivotChild,
+        );
         this.visualizationActions.updateSelectedPivot.addListener(this.onUpdateSelectedPivot);
 
         this.injectionActions.injectionCompleted.addListener(this.onInjectionCompleted);
@@ -110,7 +120,9 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
         const scanData = configuration.getStoreData(this.state.tests);
 
         if (this.isAssessment(configuration)) {
-            const assessmentScanData = configuration.getStoreData(this.state.tests) as AssessmentScanData;
+            const assessmentScanData = configuration.getStoreData(
+                this.state.tests,
+            ) as AssessmentScanData;
             Object.keys(assessmentScanData.stepStatus).forEach(step => {
                 if (assessmentScanData.enabled) {
                     configuration.disableTest(assessmentScanData, step);
@@ -251,7 +263,10 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
             return updated;
         }
 
-        if (this.state.selectedAdhocDetailsView !== payload.detailsViewType && payload.pivotType === DetailsViewPivotType.allTest) {
+        if (
+            this.state.selectedAdhocDetailsView !== payload.detailsViewType &&
+            payload.pivotType === DetailsViewPivotType.allTest
+        ) {
             this.state.selectedAdhocDetailsView = payload.detailsViewType;
             updated = true;
         } else if (

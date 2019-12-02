@@ -11,10 +11,7 @@ export class PopupViewControllerHandler {
         this.triggerRerender(component, LaunchPanelType.AdhocToolsPanel);
     }
 
-    public triggerRerender(
-        component: PopupView,
-        panelType: LaunchPanelType,
-    ): void {
+    public triggerRerender(component: PopupView, panelType: LaunchPanelType): void {
         component.setlaunchPanelType(panelType);
         component.forceUpdate();
     }

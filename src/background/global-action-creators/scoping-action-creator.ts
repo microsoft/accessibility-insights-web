@@ -6,12 +6,24 @@ import { ScopingActions, ScopingPayload } from '../actions/scoping-actions';
 import { Interpreter } from '../interpreter';
 
 export class ScopingActionCreator {
-    constructor(private readonly interpreter: Interpreter, private readonly scopingActions: ScopingActions) {}
+    constructor(
+        private readonly interpreter: Interpreter,
+        private readonly scopingActions: ScopingActions,
+    ) {}
 
     public registerCallback(): void {
-        this.interpreter.registerTypeToPayloadCallback(getStoreStateMessage(StoreNames.ScopingPanelStateStore), this.onGetScopingState);
-        this.interpreter.registerTypeToPayloadCallback(Messages.Scoping.AddSelector, this.onAddSelector);
-        this.interpreter.registerTypeToPayloadCallback(Messages.Scoping.DeleteSelector, this.onDeleteSelector);
+        this.interpreter.registerTypeToPayloadCallback(
+            getStoreStateMessage(StoreNames.ScopingPanelStateStore),
+            this.onGetScopingState,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Scoping.AddSelector,
+            this.onAddSelector,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Scoping.DeleteSelector,
+            this.onDeleteSelector,
+        );
     }
 
     private onGetScopingState = (): void => {

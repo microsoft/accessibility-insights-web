@@ -3,7 +3,11 @@
 import * as TelemetryEvents from 'common/extension-telemetry-events';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
-import { ScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from 'injected/analyzers/analyzer';
+import {
+    ScanBasePayload,
+    ScanCompletedPayload,
+    ScanUpdatePayload,
+} from 'injected/analyzers/analyzer';
 import { capitalize } from 'lodash';
 
 import { Interpreter } from '../interpreter';
@@ -34,12 +38,30 @@ export class AssessmentActionCreator {
     ) {}
 
     public registerCallbacks(): void {
-        this.interpreter.registerTypeToPayloadCallback(AssessmentMessages.SelectTestRequirement, this.onSelectTestStep);
-        this.interpreter.registerTypeToPayloadCallback(getStoreStateMessage(StoreNames.AssessmentStore), this.onGetAssessmentCurrentState);
-        this.interpreter.registerTypeToPayloadCallback(AssessmentMessages.AssessmentScanCompleted, this.onAssessmentScanCompleted);
-        this.interpreter.registerTypeToPayloadCallback(AssessmentMessages.StartOver, this.onStartOverAssessment);
-        this.interpreter.registerTypeToPayloadCallback(AssessmentMessages.StartOverAllAssessments, this.onStartOverAllAssessments);
-        this.interpreter.registerTypeToPayloadCallback(AssessmentMessages.ChangeStatus, this.onChangeAssessmentInstanceStatus);
+        this.interpreter.registerTypeToPayloadCallback(
+            AssessmentMessages.SelectTestRequirement,
+            this.onSelectTestStep,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            getStoreStateMessage(StoreNames.AssessmentStore),
+            this.onGetAssessmentCurrentState,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            AssessmentMessages.AssessmentScanCompleted,
+            this.onAssessmentScanCompleted,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            AssessmentMessages.StartOver,
+            this.onStartOverAssessment,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            AssessmentMessages.StartOverAllAssessments,
+            this.onStartOverAllAssessments,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            AssessmentMessages.ChangeStatus,
+            this.onChangeAssessmentInstanceStatus,
+        );
         this.interpreter.registerTypeToPayloadCallback(
             AssessmentMessages.ChangeVisualizationState,
             this.onChangeAssessmentVisualizationState,
@@ -48,21 +70,54 @@ export class AssessmentActionCreator {
             AssessmentMessages.ChangeVisualizationStateForAll,
             this.onChangeVisualizationStateForAll,
         );
-        this.interpreter.registerTypeToPayloadCallback(AssessmentMessages.Undo, this.onUndoAssessmentInstanceStatusChange);
-        this.interpreter.registerTypeToPayloadCallback(AssessmentMessages.ChangeRequirementStatus, this.onChangeManualRequirementStatus);
+        this.interpreter.registerTypeToPayloadCallback(
+            AssessmentMessages.Undo,
+            this.onUndoAssessmentInstanceStatusChange,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            AssessmentMessages.ChangeRequirementStatus,
+            this.onChangeManualRequirementStatus,
+        );
         this.interpreter.registerTypeToPayloadCallback(
             AssessmentMessages.UndoChangeRequirementStatus,
             this.onUndoChangeManualRequirementStatus,
         );
-        this.interpreter.registerTypeToPayloadCallback(AssessmentMessages.AddFailureInstance, this.onAddFailureInstance);
-        this.interpreter.registerTypeToPayloadCallback(AssessmentMessages.AddResultDescription, this.onAddResultDescription);
-        this.interpreter.registerTypeToPayloadCallback(AssessmentMessages.RemoveFailureInstance, this.onRemoveFailureInstance);
-        this.interpreter.registerTypeToPayloadCallback(AssessmentMessages.EditFailureInstance, this.onEditFailureInstance);
-        this.interpreter.registerTypeToPayloadCallback(AssessmentMessages.PassUnmarkedInstances, this.onPassUnmarkedInstances);
-        this.interpreter.registerTypeToPayloadCallback(AssessmentMessages.ScanUpdate, this.onScanUpdate);
-        this.interpreter.registerTypeToPayloadCallback(AssessmentMessages.TrackingCompleted, this.onTrackingCompleted);
-        this.interpreter.registerTypeToPayloadCallback(AssessmentMessages.ContinuePreviousAssessment, this.onContinuePreviousAssessment);
-        this.interpreter.registerTypeToPayloadCallback(Messages.Visualizations.DetailsView.Select, this.onPivotChildSelected);
+        this.interpreter.registerTypeToPayloadCallback(
+            AssessmentMessages.AddFailureInstance,
+            this.onAddFailureInstance,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            AssessmentMessages.AddResultDescription,
+            this.onAddResultDescription,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            AssessmentMessages.RemoveFailureInstance,
+            this.onRemoveFailureInstance,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            AssessmentMessages.EditFailureInstance,
+            this.onEditFailureInstance,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            AssessmentMessages.PassUnmarkedInstances,
+            this.onPassUnmarkedInstances,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            AssessmentMessages.ScanUpdate,
+            this.onScanUpdate,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            AssessmentMessages.TrackingCompleted,
+            this.onTrackingCompleted,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            AssessmentMessages.ContinuePreviousAssessment,
+            this.onContinuePreviousAssessment,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Visualizations.DetailsView.Select,
+            this.onPivotChildSelected,
+        );
     }
 
     private onContinuePreviousAssessment = (payload: BaseActionPayload, tabId: number): void => {
@@ -100,33 +155,45 @@ export class AssessmentActionCreator {
         this.assessmentActions.addResultDescription.invoke(payload);
     };
 
-    private onChangeManualRequirementStatus = (payload: ChangeRequirementStatusPayload, tabId: number): void => {
+    private onChangeManualRequirementStatus = (
+        payload: ChangeRequirementStatusPayload,
+        tabId: number,
+    ): void => {
         const eventName = TelemetryEvents.CHANGE_INSTANCE_STATUS;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.assessmentActions.updateTargetTabId.invoke(tabId);
         this.assessmentActions.changeRequirementStatus.invoke(payload);
     };
 
-    private onUndoChangeManualRequirementStatus = (payload: ChangeRequirementStatusPayload): void => {
+    private onUndoChangeManualRequirementStatus = (
+        payload: ChangeRequirementStatusPayload,
+    ): void => {
         const eventName = TelemetryEvents.UNDO_REQUIREMENT_STATUS_CHANGE;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.assessmentActions.undoRequirementStatusChange.invoke(payload);
     };
 
-    private onUndoAssessmentInstanceStatusChange = (payload: AssessmentActionInstancePayload): void => {
+    private onUndoAssessmentInstanceStatusChange = (
+        payload: AssessmentActionInstancePayload,
+    ): void => {
         const eventName = TelemetryEvents.UNDO_TEST_STATUS_CHANGE;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.assessmentActions.undoInstanceStatusChange.invoke(payload);
     };
 
-    private onChangeAssessmentInstanceStatus = (payload: ChangeInstanceStatusPayload, tabId: number): void => {
+    private onChangeAssessmentInstanceStatus = (
+        payload: ChangeInstanceStatusPayload,
+        tabId: number,
+    ): void => {
         const eventName = TelemetryEvents.CHANGE_INSTANCE_STATUS;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.assessmentActions.updateTargetTabId.invoke(tabId);
         this.assessmentActions.changeInstanceStatus.invoke(payload);
     };
 
-    private onChangeAssessmentVisualizationState = (payload: ChangeInstanceSelectionPayload): void => {
+    private onChangeAssessmentVisualizationState = (
+        payload: ChangeInstanceSelectionPayload,
+    ): void => {
         const eventName = TelemetryEvents.CHANGE_ASSESSMENT_VISUALIZATION_STATUS;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.assessmentActions.changeAssessmentVisualizationState.invoke(payload);
@@ -146,7 +213,10 @@ export class AssessmentActionCreator {
         this.assessmentActions.resetAllAssessmentsData.invoke(tabId);
     };
 
-    private onAssessmentScanCompleted = (payload: ScanCompletedPayload<any>, tabId: number): void => {
+    private onAssessmentScanCompleted = (
+        payload: ScanCompletedPayload<any>,
+        tabId: number,
+    ): void => {
         this.assessmentActions.updateTargetTabId.invoke(tabId);
         this.assessmentActions.scanCompleted.invoke(payload);
     };

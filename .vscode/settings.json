@@ -2,7 +2,6 @@
     "tslint.configFile": "tslint.json",
     "typescript.reportStyleChecksAsWarnings": true,
     "typescript.preferences.importModuleSpecifier": "non-relative",
-
     "psi-header.changes-tracking": {
         "autoHeader": "autoSave",
         "isActive": true
@@ -35,6 +34,6 @@
     "files.insertFinalNewline": true,
     "prettier.requireConfig": true,
     "editor.formatOnSave": true,
-    "editor.rulers": [140],
+    "editor.rulers": [100, 140],
     "typescript.tsdk": "node_modules/typescript/lib"
 }

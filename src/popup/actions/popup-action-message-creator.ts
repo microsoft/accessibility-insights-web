@@ -11,10 +11,7 @@ import * as React from 'react';
 import { TelemetryEventSource } from '../../common/extension-telemetry-events';
 import * as TelemetryEvents from '../../common/extension-telemetry-events';
 import { Messages } from '../../common/messages';
-import {
-    SupportedMouseEvent,
-    TelemetryDataFactory,
-} from '../../common/telemetry-data-factory';
+import { SupportedMouseEvent, TelemetryDataFactory } from '../../common/telemetry-data-factory';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { WindowUtils } from '../../common/window-utils';
@@ -58,11 +55,7 @@ export class PopupActionMessageCreator {
         pivotType: DetailsViewPivotType,
     ): void {
         const payload: OnDetailsViewOpenPayload = {
-            telemetry: this.telemetryFactory.forOpenDetailsView(
-                event,
-                viewType,
-                source,
-            ),
+            telemetry: this.telemetryFactory.forOpenDetailsView(event, viewType, source),
             detailsViewType: viewType,
             pivotType: pivotType,
         };

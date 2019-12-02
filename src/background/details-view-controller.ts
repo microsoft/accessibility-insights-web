@@ -26,12 +26,19 @@ export class DetailsViewController {
             return;
         }
 
-        this.browserAdapter.createTabInNewWindow(this.getDetailsUrl(targetTabId), (tab: chrome.tabs.Tab) => {
-            this.tabIdToDetailsViewMap[targetTabId] = tab.id;
-        });
+        this.browserAdapter.createTabInNewWindow(
+            this.getDetailsUrl(targetTabId),
+            (tab: chrome.tabs.Tab) => {
+                this.tabIdToDetailsViewMap[targetTabId] = tab.id;
+            },
+        );
     }
 
-    private onUpdateTab = (tabId: number, changeInfo: chrome.tabs.TabChangeInfo, tab: chrome.tabs.Tab): void => {
+    private onUpdateTab = (
+        tabId: number,
+        changeInfo: chrome.tabs.TabChangeInfo,
+        tab: chrome.tabs.Tab,
+    ): void => {
         const targetTabId = this.getTargetTabIdForDetailsTabId(tabId);
 
         if (targetTabId == null) {
@@ -49,7 +56,9 @@ export class DetailsViewController {
     private hasUrlChange(changeInfo: chrome.tabs.TabChangeInfo, targetTabId): boolean {
         return (
             changeInfo.url &&
-            !changeInfo.url.toLocaleLowerCase().endsWith(this.getDetailsUrlWithExtensionId(targetTabId).toLocaleLowerCase())
+            !changeInfo.url
+                .toLocaleLowerCase()
+                .endsWith(this.getDetailsUrlWithExtensionId(targetTabId).toLocaleLowerCase())
         );
     }
 

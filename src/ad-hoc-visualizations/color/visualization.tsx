@@ -37,7 +37,8 @@ export const ColorAdHocVisualization: VisualizationConfiguration = {
         provider.createRuleAnalyzer({
             rules: ['select-body'],
             resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
-            telemetryProcessor: (telemetryFactory: TelemetryDataFactory) => telemetryFactory.forTestScan,
+            telemetryProcessor: (telemetryFactory: TelemetryDataFactory) =>
+                telemetryFactory.forTestScan,
             key: AdHocTestkeys.Color,
             testType: VisualizationType.Color,
             analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,

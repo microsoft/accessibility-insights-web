@@ -5,31 +5,31 @@ exports[`RulesOnly renders 1`] = `
   className="rule-details-group"
 >
   <FullRuleHeader
-    deps={Object {}}
-    outcomeType="pass"
-    rule={
+    cardRuleResult={
       Object {
         "id": "1",
       }
     }
-  />
-  <FullRuleHeader
     deps={Object {}}
     outcomeType="pass"
-    rule={
+  />
+  <FullRuleHeader
+    cardRuleResult={
       Object {
         "id": "2",
       }
     }
-  />
-  <FullRuleHeader
     deps={Object {}}
     outcomeType="pass"
-    rule={
+  />
+  <FullRuleHeader
+    cardRuleResult={
       Object {
         "id": "3",
       }
     }
+    deps={Object {}}
+    outcomeType="pass"
   />
 </div>
 `;

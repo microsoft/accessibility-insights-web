@@ -6,7 +6,10 @@ import { TelemetryClient } from './telemetry-client';
 import { TelemetryLogger } from './telemetry-logger';
 
 export class NullTelemetryClient implements TelemetryClient {
-    constructor(private readonly telemetryDataFactory: ApplicationTelemetryDataFactory, private readonly logger: TelemetryLogger) {}
+    constructor(
+        private readonly telemetryDataFactory: ApplicationTelemetryDataFactory,
+        private readonly logger: TelemetryLogger,
+    ) {}
 
     public enableTelemetry(): void {
         // no op
