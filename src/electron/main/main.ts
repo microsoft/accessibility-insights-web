@@ -1,12 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { app, BrowserWindow } from 'electron';
+import { autoUpdater } from 'electron-updater';
+import { AutoUpdaterClient } from 'electron/auto-update/auto-updater-client';
 import { OSType, PlatformInfo } from 'electron/window-management/platform-info';
 import * as path from 'path';
 
 let mainWindow: BrowserWindow;
 const platformInfo = new PlatformInfo(process);
+
+const electronAutoUpdateCheck = new AutoUpdaterClient(autoUpdater);
+let recurringUpdateCheck;
+
 const createWindow = () => {
+    recurringUpdateCheck = setupRecurringUpdateCheck();
     const os = platformInfo.getOs();
     mainWindow = new BrowserWindow({
         show: false,
@@ -44,4 +51,14 @@ const enableDevMode = (window: BrowserWindow) => {
     }
 };
 
+const setupRecurringUpdateCheck = () => {
+    return setInterval(async () => {
+        await electronAutoUpdateCheck.check();
+    }, 60 * 60 * 1000);
+};
+
 app.on('ready', createWindow);
+
+app.on('window-all-closed', () => {
+    clearInterval(recurringUpdateCheck);
+});
