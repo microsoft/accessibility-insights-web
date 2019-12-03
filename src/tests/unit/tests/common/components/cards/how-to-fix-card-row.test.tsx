@@ -1,11 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { HowToFixWebCardRow, HowToFixWebCardRowProps } from 'common/components/cards/how-to-fix-card-row';
+import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
-
-import { FixInstructionProcessor } from '../../../../../../common/components/fix-instruction-processor';
 
 describe('HowToFixWebCardRow', () => {
     it('renders', () => {
