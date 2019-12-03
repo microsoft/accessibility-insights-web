@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
-import { It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { AssessmentBuilder } from 'assessments/assessment-builder';
 import { AssistedAssessment, ManualAssessment } from 'assessments/types/iassessment';
 import { ReportInstanceField } from 'assessments/types/report-instance-field';
 import { Requirement } from 'assessments/types/requirement';
 import { createInitialAssessmentTestData } from 'background/create-initial-assessment-test-data';
 import { InstanceIdentifierGenerator } from 'background/instance-identifier-generator';
+import { cloneDeep } from 'lodash';
+import * as React from 'react';
+import { It, Mock, MockBehavior, Times } from 'typemoq';
 import { RequirementComparer } from '../../../../common/assessment/requirement-comparer';
 import { Messages } from '../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
@@ -24,7 +24,6 @@ import { AnalyzerProvider } from '../../../../injected/analyzers/analyzer-provid
 import { DecoratedAxeNodeResult, ScannerUtils } from '../../../../injected/scanner-utils';
 import { VisualizationInstanceProcessor } from '../../../../injected/visualization-instance-processor';
 import { DrawerProvider } from '../../../../injected/visualization/drawer-provider';
-import { cloneDeep } from 'lodash';
 
 describe('AssessmentBuilderTest', () => {
     test('Manual', () => {

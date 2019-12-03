@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { each, size, map, keys, forOwn, difference, isEmpty } from 'lodash';
+import { difference, each, forOwn, isEmpty, keys, map, size } from 'lodash';
 import { Mock } from 'typemoq';
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
 import {
