@@ -5,12 +5,15 @@ import { BaseTelemetryData, TelemetryEventSource } from '../../../../../common/e
 import { Message } from '../../../../../common/message';
 import { RemoteActionMessageDispatcher } from '../../../../../common/message-creators/remote-action-message-dispatcher';
 import { Messages } from '../../../../../common/messages';
+import { Resolver } from 'dns';
+import { Logger } from 'common/logging/logger';
 
 describe('RemoteActionMessageDispatcher', () => {
-    let postMessageMock: IMock<(message: Message) => void>;
+    let postMessageMock: IMock<(message: Message) => Promise<void>>;
 
     beforeEach(() => {
-        postMessageMock = Mock.ofInstance((message: Message) => {});
+        postMessageMock = Mock.ofType<(message: Message) => Promise<void>>();
+        postMessageMock.setup(m => m(It.isAny())).returns(() => Promise.resolve());
     });
 
     describe('dispatchMessage', () => {
@@ -32,6 +35,18 @@ describe('RemoteActionMessageDispatcher', () => {
             testObject.dispatchMessage(message);
 
             postMessageMock.verify(post => post(It.isValue(message)), Times.once());
+        });
+
+        it('propagates errors from postMessage to logger.error', () => {
+            const loggerMock = Mock.ofType<Logger>();
+            const expectedError = 'expected error';
+            postMessageMock.reset();
+            postMessageMock.setup(m => m(It.isAny())).returns(() => Promise.reject(expectedError));
+            const testObject = new RemoteActionMessageDispatcher(postMessageMock.object, null, loggerMock.object);
+
+            testObject.dispatchMessage(message);
+
+            loggerMock.verify(m => m.error(expectedError), Times.once());
         });
     });
 
