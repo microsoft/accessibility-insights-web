@@ -6,7 +6,7 @@ import { CardRowProps } from '../../../common/configs/unified-result-property-co
 import { NamedFC } from '../../../common/react/named-fc';
 import { CheckType } from '../../../injected/components/details-dialog';
 import { FixInstructionPanel } from '../../../injected/components/fix-instruction-panel';
-import { howToFixContent } from './how-to-fix-card-row.scss';
+import * as styles from './how-to-fix-card-row.scss';
 import { SimpleCardRow } from './simple-card-row';
 
 export interface HowToFixWebPropertyData {
@@ -25,7 +25,7 @@ export const HowToFixWebCardRow = NamedFC<HowToFixWebCardRowProps>('HowToFixWebC
 
     const renderFixInstructionsContent = () => {
         return (
-            <div className={howToFixContent}>
+            <div className={styles.howToFixContent}>
                 <FixInstructionPanel
                     deps={deps}
                     checkType={CheckType.All}

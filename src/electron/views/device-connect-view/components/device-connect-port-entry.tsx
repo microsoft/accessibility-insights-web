@@ -7,7 +7,7 @@ import * as React from 'react';
 
 import { DeviceConnectActionCreator } from '../../../flux/action-creator/device-connect-action-creator';
 import { DeviceConnectState } from '../../../flux/types/device-connect-state';
-import { deviceConnectPortEntry, portNumberField } from './device-connect-port-entry.scss';
+import * as styles from './device-connect-port-entry.scss';
 
 export type DeviceConnectPortEntryViewState = {
     deviceConnectState: DeviceConnectState;
@@ -34,13 +34,13 @@ export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEnt
 
     public render(): JSX.Element {
         return (
-            <div className={deviceConnectPortEntry}>
+            <div className={styles.deviceConnectPortEntry}>
                 <h3>Android device port number</h3>
                 <MaskedTextField
                     ariaLabel="Port number"
                     onChange={this.onPortTextChanged}
                     placeholder="12345"
-                    className={portNumberField}
+                    className={styles.portNumberField}
                     maskChar=""
                     mask="99999"
                     onKeyDown={this.onEnterKey}

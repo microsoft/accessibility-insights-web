@@ -5,7 +5,7 @@ import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
 
-import { deviceDisconnectedPopup, titleContainer, titleText } from './device-disconnected-popup.scss';
+import * as styles from './device-disconnected-popup.scss';
 import { StatusCautionIcon } from './status-caution-icon';
 
 export type DeviceDisconnectedPopupProps = {
@@ -18,9 +18,9 @@ export const DeviceDisconnectedPopup = NamedFC<DeviceDisconnectedPopupProps>(
     'DeviceDisconnectedPopup',
     ({ deviceName, onConnectNewDevice, onRescanDevice }) => {
         const title: JSX.Element = (
-            <div className={titleContainer}>
+            <div className={styles.titleContainer}>
                 <StatusCautionIcon />
-                <span className={titleText}>Device disconnected</span>
+                <span className={styles.titleText}>Device disconnected</span>
             </div>
         );
 
@@ -33,7 +33,7 @@ export const DeviceDisconnectedPopup = NamedFC<DeviceDisconnectedPopupProps>(
                 }}
                 modalProps={{
                     isBlocking: true,
-                    className: deviceDisconnectedPopup,
+                    className: styles.deviceDisconnectedPopup,
                 }}
                 hidden={false}
                 minWidth={416}

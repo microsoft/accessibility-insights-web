@@ -5,7 +5,7 @@ import { HyperlinkDefinition } from 'views/content/content-page';
 
 import { ExternalLink, ExternalLinkDeps } from '../../../common/components/external-link';
 import { NamedFC } from '../../../common/react/named-fc';
-import { helpLink } from './help-links.scss';
+import * as styles from './help-links.scss';
 
 export type HelpLinksDeps = ExternalLinkDeps;
 
@@ -19,7 +19,7 @@ export const HelpLinks = NamedFC('HelpLinks', (props: HelpLinksProps) => {
     return (
         <>
             {linkInformation.map((link: HyperlinkDefinition) => (
-                <div className={helpLink} key={link.href}>
+                <div className={styles.helpLink} key={link.href}>
                     <ExternalLink deps={props.deps} href={link.href}>
                         {link.text}
                     </ExternalLink>

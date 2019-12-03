@@ -5,11 +5,11 @@ import { NamedFC } from 'common/react/named-fc';
 import { productName } from 'content/strings/application';
 import * as React from 'react';
 
-import { noContentAvailable } from './no-content-available.scss';
+import * as styles from './no-content-available.scss';
 
 export const NoContentAvailable = NamedFC('NoContentAvailable', () => {
     return (
-        <main className={noContentAvailable}>
+        <main className={styles.noContentAvailable}>
             <h1>No content available</h1>
             <ul>
                 <li>If the target page was closed, you can close this tab or reuse it for something else.</li>

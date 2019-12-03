@@ -13,7 +13,7 @@ import { CardRuleResult } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { CollapsibleComponentCardsProps } from './collapsible-component-cards';
 import { RuleContent, RuleContentDeps } from './rule-content';
-import { collapsibleRuleDetailsGroup, ruleDetailsGroup } from './rules-with-instances.scss';
+import * as styles from './rules-with-instances.scss';
 
 export type RulesWithInstancesDeps = RuleContentDeps & {
     collapsibleControl: (props: CollapsibleComponentCardsProps) => JSX.Element;
@@ -46,7 +46,7 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                         targetAppInfo={targetAppInfo}
                     />
                 ),
-                containerClassName: css(collapsibleRuleDetailsGroup),
+                containerClassName: css(styles.collapsibleRuleDetailsGroup),
                 buttonAriaLabel: buttonAriaLabel,
                 headingLevel: 3,
                 deps: deps,
@@ -55,7 +55,7 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
         };
 
         return (
-            <div className={ruleDetailsGroup}>
+            <div className={styles.ruleDetailsGroup}>
                 {rules.map((rule, idx) => {
                     const { pastTense } = outcomeTypeSemantics[outcomeType];
                     const buttonAriaLabel = `${rule.id} ${rule.nodes.length} ${pastTense} ${rule.description}`;

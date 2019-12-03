@@ -5,7 +5,7 @@ import { BrowserWindow } from 'electron';
 import * as React from 'react';
 
 import { DeviceConnectState } from '../../../flux/types/device-connect-state';
-import { deviceConnectBody } from './device-connect-body.scss';
+import * as styles from './device-connect-body.scss';
 import { DeviceConnectConnectedDevice } from './device-connect-connected-device';
 import { DeviceConnectFooter, DeviceConnectFooterDeps } from './device-connect-footer';
 import { DeviceConnectHeader } from './device-connect-header';
@@ -31,7 +31,7 @@ export const DeviceConnectBody = NamedFC<DeviceConnectBodyProps>('DeviceConnectB
     const canStartTesting = props.viewState.deviceConnectState === DeviceConnectState.Connected;
 
     return (
-        <div className={deviceConnectBody}>
+        <div className={styles.deviceConnectBody}>
             <DeviceConnectHeader />
             <DeviceConnectPortEntry deps={props.deps} viewState={{ deviceConnectState: props.viewState.deviceConnectState }} />
             <DeviceConnectConnectedDevice
