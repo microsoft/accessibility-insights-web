@@ -42,6 +42,6 @@ export type ReportSectionFactory = {
     FailedInstancesSection: ReactFCWithDisplayName<SectionProps>;
     PassedChecksSection: ReactFCWithDisplayName<SectionProps>;
     NotApplicableChecksSection: ReactFCWithDisplayName<SectionProps>;
-    FooterSection: ReactFCWithDisplayName<SectionProps>;
+    FooterSection: ReactFCWithDisplayName;
     FooterText: ReactFCWithDisplayName<SectionProps>;
 };
