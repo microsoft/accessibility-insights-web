@@ -16,9 +16,9 @@ export interface BrowserAdapter {
     closeTab(tabId: number): void;
     switchToTab(tabId: number): void;
     getTab(tabId: number, onResolve: (tab: chrome.tabs.Tab) => void, onReject?: () => void): void;
-    sendMessageToTab(tabId: number, message: any): void;
-    sendMessageToFrames(message: any): void;
-    sendMessageToAllFramesAndTabs(message: any): void;
+    sendMessageToTab(tabId: number, message: any): Promise<void>;
+    sendMessageToFrames(message: any): Promise<void>;
+    sendMessageToAllFramesAndTabs(message: any): Promise<void>;
     executeScriptInTab(tabId: number, details: ExtensionTypes.InjectDetails): Promise<any[]>;
     insertCSSInTab(tabId: number, details: ExtensionTypes.InjectDetails): Promise<void>;
     getRunTimeId(): string;

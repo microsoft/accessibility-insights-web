@@ -102,22 +102,17 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         });
     }
 
-    public sendMessageToTab(tabId: number, message: any): void {
-        chrome.tabs.sendMessage(tabId, message);
+    public sendMessageToTab(tabId: number, message: any): Promise<void> {
+        return browser.tabs.sendMessage(tabId, message);
     }
 
-    public sendMessageToAllFramesAndTabs(message: any): void {
-        chrome.runtime.sendMessage(message);
-
-        chrome.tabs.query({}, tabs => {
-            for (let i = 0; i < tabs.length; ++i) {
-                chrome.tabs.sendMessage(tabs[i].id, message);
-            }
-        });
+    public async sendMessageToAllFramesAndTabs(message: any): Promise<void> {
+        const allTabs = await browser.tabs.query({});
+        await Promise.all([browser.runtime.sendMessage(message), ...allTabs.map(tab => browser.tabs.sendMessage(tab.id, message))]);
     }
 
-    public sendMessageToFrames(message: any): void {
-        chrome.runtime.sendMessage(message);
+    public sendMessageToFrames(message: any): Promise<void> {
+        return browser.runtime.sendMessage(message);
     }
 
     public setUserData(items: Object): Promise<void> {

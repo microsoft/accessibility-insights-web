@@ -48,7 +48,7 @@ export class TabContextFactory {
     ) {}
 
     public createTabContext(
-        broadcastMessage: (message) => void,
+        broadcastMessage: (message) => Promise<void>,
         browserAdapter: BrowserAdapter,
         detailsViewController: DetailsViewController,
         tabId: number,
