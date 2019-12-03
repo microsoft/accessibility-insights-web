@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BaseStoreImpl } from 'background/stores/base-store-impl';
+import { Action } from 'common/flux/action';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { BaseStoreImpl } from 'background/stores/base-store-impl';
 import { BaseStore } from '../../../common/base-store';
-import { Action } from '../../../common/flux/action';
 import { DefaultConstructor } from '../../../common/types/idefault-constructor';
 
 export class StoreTester<TStoreData, TActions> {
