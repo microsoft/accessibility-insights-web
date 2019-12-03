@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Action } from 'common/flux/action';
 import { IMock, Mock, Times } from 'typemoq';
-
-import { Action } from '../../../../../common/flux/action';
 
 describe('ActionTest', () => {
     let listenerMock: IMock<(payload: TestPayload) => void>;
