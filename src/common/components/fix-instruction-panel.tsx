@@ -3,6 +3,7 @@
 import { CheckType } from 'injected/components/details-dialog';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
+import * as styles from './fix-instruction-panel.scss';
 
 import { NamedFC } from '../react/named-fc';
 
@@ -47,8 +48,8 @@ export const FixInstructionPanel = NamedFC<FixInstructionPanelProps>('FixInstruc
 
     return (
         <div>
-            {props.renderTitleElement(title, 'insights-fix-instruction-title')}
-            <ul className="insights-fix-instruction-list">{renderInstructions(props.checkType)}</ul>
+            {props.renderTitleElement(title, null)}
+            <ul className={styles.insightsFixInstructionList}>{renderInstructions(props.checkType)}</ul>
         </div>
     );
 });
