@@ -18,7 +18,7 @@ describe('TargetPageController', () => {
     let testSubject: TargetPageController;
 
     let mockLogger: IMock<Logger>;
-    const stubBroadcastDelegate = (message: any) => {};
+    const stubBroadcastDelegate = (message: any) => Promise.resolve();
     let mockBroadcasterStrictMock: IMock<TabContextBroadcaster>;
     let mockTabContextFactory: IMock<TabContextFactory>;
     let mockBrowserAdapter: SimulatedBrowserAdapter;

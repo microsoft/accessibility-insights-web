@@ -31,11 +31,8 @@ const headingLevelHowToTest: JSX.Element = (
         <ol>
             <li>
                 In the target page, examine each heading to verify that its{' '}
-                <Markup.Emphasis>programmatic</Markup.Emphasis>
-                level matches the level that's presented <Markup.Emphasis>
-                    visually
-                </Markup.Emphasis>{' '}
-                (through font style).
+                <Markup.Emphasis>programmatic</Markup.Emphasis> level matches the level that's
+                presented <Markup.Emphasis>visually</Markup.Emphasis> (through font style).
                 <ol>
                     <li>
                         Lower-level headings should be more prominent than higher-level headings.

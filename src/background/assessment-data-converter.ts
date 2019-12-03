@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
+import { forOwn, isEmpty } from 'lodash';
 
 import { ManualTestStatus } from '../common/types/manual-test-status';
 import {
@@ -36,7 +36,7 @@ export class AssessmentDataConverter {
             instancesMap = previouslyGeneratedInstances;
         }
 
-        _.forOwn(selectorMap, elementAxeResult => {
+        forOwn(selectorMap, elementAxeResult => {
             const rule = Object.keys(elementAxeResult.ruleResults).pop();
             if (rule) {
                 const ruleResult = elementAxeResult.ruleResults[rule];
@@ -120,7 +120,7 @@ export class AssessmentDataConverter {
             ...this.getPropertyBagFromAnyChecks(ruleResult),
             ...propertyBag,
         };
-        actualPropertyBag = _.isEmpty(actualPropertyBag) ? null : actualPropertyBag;
+        actualPropertyBag = isEmpty(actualPropertyBag) ? null : actualPropertyBag;
 
         return {
             target: target,
@@ -190,7 +190,7 @@ export class AssessmentDataConverter {
     private getPropertyBagFrom(ruleResult: DecoratedAxeNodeResult, checkName: ChecksType): any {
         if (
             ruleResult[checkName] &&
-            !_.isEmpty(ruleResult[checkName]) &&
+            !isEmpty(ruleResult[checkName]) &&
             ruleResult[checkName][0].data
         ) {
             return ruleResult[checkName][0].data;

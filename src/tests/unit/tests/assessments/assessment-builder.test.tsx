@@ -1,15 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
-import * as React from 'react';
-import { It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { AssessmentBuilder } from 'assessments/assessment-builder';
 import { AssistedAssessment, ManualAssessment } from 'assessments/types/iassessment';
 import { ReportInstanceField } from 'assessments/types/report-instance-field';
 import { Requirement } from 'assessments/types/requirement';
 import { createInitialAssessmentTestData } from 'background/create-initial-assessment-test-data';
 import { InstanceIdentifierGenerator } from 'background/instance-identifier-generator';
+import { cloneDeep } from 'lodash';
+import * as React from 'react';
+import { It, Mock, MockBehavior, Times } from 'typemoq';
 import { RequirementComparer } from '../../../../common/assessment/requirement-comparer';
 import { Messages } from '../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
@@ -49,7 +48,7 @@ describe('AssessmentBuilderTest', () => {
             generateInstanceIdentifier: getInstanceIdentifierMock.object,
         };
 
-        const requirement2: Requirement = _.cloneDeep(requirement);
+        const requirement2: Requirement = cloneDeep(requirement);
         requirement2.key = 'requirement2';
         requirement2.generateInstanceIdentifier = null;
 
@@ -174,15 +173,15 @@ describe('AssessmentBuilderTest', () => {
         const telemetryFactoryStub = {
             forAssessmentRequirementScan: {},
         };
-        const requirement2: Requirement = _.cloneDeep(requirement1);
+        const requirement2: Requirement = cloneDeep(requirement1);
         requirement2.key = 'requirement2';
-        const requirement3: Requirement = _.cloneDeep(requirement1);
+        const requirement3: Requirement = cloneDeep(requirement1);
         requirement3.key = 'requirement3';
-        const requirement4: Requirement = _.cloneDeep(requirement1);
+        const requirement4: Requirement = cloneDeep(requirement1);
         requirement4.key = 'requirement4';
         const extraField = { key: 'extra', label: 'extra', getValue: i => 'extra' };
         requirement4.reportInstanceFields = [extraField];
-        const requirement5: Requirement = _.cloneDeep(requirement1);
+        const requirement5: Requirement = cloneDeep(requirement1);
         requirement5.key = 'requirement5';
         requirement5.getAnalyzer = null;
         requirement5.visualizationInstanceProcessor = null;
@@ -190,7 +189,7 @@ describe('AssessmentBuilderTest', () => {
         requirement5.switchToTargetTabOnScan = null;
         requirement5.generateInstanceIdentifier = null;
         requirement5.isManual = false;
-        const requirement6: Requirement = _.cloneDeep(requirement1);
+        const requirement6: Requirement = cloneDeep(requirement1);
         requirement6.key = 'requirement6';
         const getInstanceStatus6 = () => ManualTestStatus.PASS;
         requirement6.getInstanceStatus = getInstanceStatus6;
