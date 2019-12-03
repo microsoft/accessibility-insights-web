@@ -1,11 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
-
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { Requirement } from 'assessments/types/requirement';
+import { includes, keys } from 'lodash';
 
 describe('AssessmentsProviderTest', () => {
     const firstType = 45;
@@ -117,18 +116,18 @@ describe('AssessmentsProviderTest', () => {
         const secondSteps = provider.getStepMap(secondType);
         const invalidSteps = provider.getStepMap(invalidType);
 
-        expect(_.keys(firstSteps).length).toBe(2);
-        expect(_.includes(_.keys(firstSteps), alpha)).toBeTruthy();
-        expect(_.includes(_.keys(firstSteps), beta)).toBeTruthy();
+        expect(keys(firstSteps).length).toBe(2);
+        expect(includes(keys(firstSteps), alpha)).toBeTruthy();
+        expect(includes(keys(firstSteps), beta)).toBeTruthy();
 
         expect(firstSteps[alpha].key).toBe(alpha);
         expect(firstSteps[alpha].order).toBe(1);
         expect(firstSteps[beta].key).toBe(beta);
         expect(firstSteps[beta].order).toBe(2);
 
-        expect(_.keys(secondSteps).length).toBe(2);
-        expect(_.includes(_.keys(secondSteps), gamma)).toBeTruthy();
-        expect(_.includes(_.keys(secondSteps), delta)).toBeTruthy();
+        expect(keys(secondSteps).length).toBe(2);
+        expect(includes(keys(secondSteps), gamma)).toBeTruthy();
+        expect(includes(keys(secondSteps), delta)).toBeTruthy();
 
         expect(secondSteps[gamma].key).toEqual(gamma);
         expect(secondSteps[gamma].order).toEqual(1);

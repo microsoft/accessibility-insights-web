@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
+import { each, size, map, keys, forOwn, difference, isEmpty } from 'lodash';
 import { Mock } from 'typemoq';
-
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
 import {
     FeCompositeParams,
@@ -51,7 +50,7 @@ describe('SVGSolidShadowFilterFactoryTest', () => {
             { dx: 0, dy: -1, result: 'shadow_4', index: 4 },
         ];
 
-        _.each(offsetProps, props => {
+        each(offsetProps, props => {
             const offsetElement = filter.childNodes[props.index] as Element;
 
             new FeElementAsserter<FeOffsetParams>()
@@ -62,19 +61,19 @@ describe('SVGSolidShadowFilterFactoryTest', () => {
                 .assertElement(offsetElement, `feOffset: ${props.index} =>`);
         });
 
-        feElementIndex += _.size(offsetProps);
+        feElementIndex += size(offsetProps);
 
         const shadowMerge = filter.childNodes[feElementIndex++] as Element;
 
         new FeElementAsserter<FeMergeParams>()
             .setupExpectedParam('result', 'shadow')
-            .setupExpectedChildrenCount(_.size(offsetProps) + 1)
+            .setupExpectedChildrenCount(size(offsetProps) + 1)
             .assertElement(shadowMerge, 'merge (shadow)');
 
-        const shadowMergeNodeIns = _.map(offsetProps, 'result');
+        const shadowMergeNodeIns = map(offsetProps, 'result');
         shadowMergeNodeIns.push('expand');
 
-        _.each(shadowMergeNodeIns, (value, index) => {
+        each(shadowMergeNodeIns, (value, index) => {
             const mergeNode = shadowMerge.childNodes[index] as Element;
 
             new FeElementAsserter<FeMergeNodeParams>()
@@ -100,7 +99,7 @@ describe('SVGSolidShadowFilterFactoryTest', () => {
 
         const finalMergeNodeIns = ['shadow', 'SourceGraphic'];
 
-        _.each(finalMergeNodeIns, (value, index) => {
+        each(finalMergeNodeIns, (value, index) => {
             const mergeNode = finalMerge.childNodes[index] as Element;
 
             new FeElementAsserter<FeMergeNodeParams>()
@@ -134,8 +133,8 @@ class FeElementAsserter<TParams> {
     public assertElement(actualElement: Element, messageSuffix?: string): void {
         this.assertElementIsNotNullOrUndefined(actualElement, messageSuffix);
 
-        const actualElementAttributeNames = _.map(actualElement.attributes, 'name');
-        const expectedAttributeNames = _.keys(this.expectedParams);
+        const actualElementAttributeNames = map(actualElement.attributes, 'name');
+        const expectedAttributeNames = keys(this.expectedParams);
 
         this.assertThereAreNoUnexpectedAttributes(actualElementAttributeNames, expectedAttributeNames, messageSuffix);
         this.assertThereAreNotMissingAttributes(actualElementAttributeNames, expectedAttributeNames, messageSuffix);
@@ -151,7 +150,7 @@ class FeElementAsserter<TParams> {
     }
 
     private assertAttributeValuesAreAsExpected(actualElement: Element, messageSuffix: string): void {
-        _.forOwn(this.expectedParams, (value, name) => {
+        forOwn(this.expectedParams, (value, name) => {
             const actualValue = actualElement.getAttributeNS(null, name);
             expect(actualValue).toEqual(value.toString());
         });
@@ -162,9 +161,9 @@ class FeElementAsserter<TParams> {
         expectedAttributeNames: string[],
         messageSuffix: string,
     ): void {
-        const actualButNotExpected = _.difference(actualElementAttributeNames, expectedAttributeNames);
+        const actualButNotExpected = difference(actualElementAttributeNames, expectedAttributeNames);
 
-        if (!_.isEmpty(actualButNotExpected)) {
+        if (!isEmpty(actualButNotExpected)) {
             const extraAttributes = actualButNotExpected.join(', ');
             const message = this.prependIfNotNull(messageSuffix, `found the following unexpected attributes: <${extraAttributes}>`);
             expect(message).toBeFalsy();
@@ -176,9 +175,9 @@ class FeElementAsserter<TParams> {
         expectedAttributeNames: string[],
         messageSuffix: string,
     ): void {
-        const expectedButNotPresent = _.difference(expectedAttributeNames, actualElementAttributeNames);
+        const expectedButNotPresent = difference(expectedAttributeNames, actualElementAttributeNames);
 
-        if (!_.isEmpty(expectedButNotPresent)) {
+        if (!isEmpty(expectedButNotPresent)) {
             const missingAttributes = expectedButNotPresent.join(', ');
             expect(`the following expected attributes are missing: <${missingAttributes}>`).toBeFalsy();
         }

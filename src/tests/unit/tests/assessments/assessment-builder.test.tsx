@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
 import * as React from 'react';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 
@@ -25,6 +24,7 @@ import { AnalyzerProvider } from '../../../../injected/analyzers/analyzer-provid
 import { DecoratedAxeNodeResult, ScannerUtils } from '../../../../injected/scanner-utils';
 import { VisualizationInstanceProcessor } from '../../../../injected/visualization-instance-processor';
 import { DrawerProvider } from '../../../../injected/visualization/drawer-provider';
+import { cloneDeep } from 'lodash';
 
 describe('AssessmentBuilderTest', () => {
     test('Manual', () => {
@@ -49,7 +49,7 @@ describe('AssessmentBuilderTest', () => {
             generateInstanceIdentifier: getInstanceIdentifierMock.object,
         };
 
-        const requirement2: Requirement = _.cloneDeep(requirement);
+        const requirement2: Requirement = cloneDeep(requirement);
         requirement2.key = 'requirement2';
         requirement2.generateInstanceIdentifier = null;
 
@@ -174,15 +174,15 @@ describe('AssessmentBuilderTest', () => {
         const telemetryFactoryStub = {
             forAssessmentRequirementScan: {},
         };
-        const requirement2: Requirement = _.cloneDeep(requirement1);
+        const requirement2: Requirement = cloneDeep(requirement1);
         requirement2.key = 'requirement2';
-        const requirement3: Requirement = _.cloneDeep(requirement1);
+        const requirement3: Requirement = cloneDeep(requirement1);
         requirement3.key = 'requirement3';
-        const requirement4: Requirement = _.cloneDeep(requirement1);
+        const requirement4: Requirement = cloneDeep(requirement1);
         requirement4.key = 'requirement4';
         const extraField = { key: 'extra', label: 'extra', getValue: i => 'extra' };
         requirement4.reportInstanceFields = [extraField];
-        const requirement5: Requirement = _.cloneDeep(requirement1);
+        const requirement5: Requirement = cloneDeep(requirement1);
         requirement5.key = 'requirement5';
         requirement5.getAnalyzer = null;
         requirement5.visualizationInstanceProcessor = null;
@@ -190,7 +190,7 @@ describe('AssessmentBuilderTest', () => {
         requirement5.switchToTargetTabOnScan = null;
         requirement5.generateInstanceIdentifier = null;
         requirement5.isManual = false;
-        const requirement6: Requirement = _.cloneDeep(requirement1);
+        const requirement6: Requirement = cloneDeep(requirement1);
         requirement6.key = 'requirement6';
         const getInstanceStatus6 = () => ManualTestStatus.PASS;
         requirement6.getInstanceStatus = getInstanceStatus6;

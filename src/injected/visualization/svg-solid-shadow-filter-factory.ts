@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
+import { each, forOwn, map } from 'lodash';
 
 import { DrawerUtils } from './drawer-utils';
 import { SVGNamespaceUrl } from './svg-constants';
@@ -34,10 +34,10 @@ export class SVGSolidShadowFilterFactory {
             { dx: 0, dy: -1, result: 'shadow_4' },
         ];
 
-        const offsets = _.map(offsetProps, offset => this.createOffsetElement(doc, offset));
-        _.each(offsets, offset => filter.appendChild(offset));
+        const offsets = map(offsetProps, offset => this.createOffsetElement(doc, offset));
+        each(offsets, offset => filter.appendChild(offset));
 
-        const mergeIns = _.map(offsetProps, 'result');
+        const mergeIns = map(offsetProps, 'result');
         mergeIns.push('expand');
         const mergeOffsets = this.createMergeElement(doc, mergeIns, 'shadow');
 
@@ -70,7 +70,7 @@ export class SVGSolidShadowFilterFactory {
     }
 
     private createMergeElement(doc: Document, mergeNodeIns: string[], result?: string): Element {
-        const mergeNodes: Element[] = _.map(mergeNodeIns, inParam => {
+        const mergeNodes: Element[] = map(mergeNodeIns, inParam => {
             return new FeElementBuilder<FeMergeNodeParams>(this.drawerUtils, 'feMergeNode').setupParam('in', inParam).build();
         });
 
@@ -123,13 +123,13 @@ class FeElementBuilder<TParams> {
         const doc = this.drawerUtils.getDocumentElement();
         const element = doc.createElementNS(SVGNamespaceUrl, this.elementName);
 
-        _.forOwn(this.params, (paramValue, paramName) => {
+        forOwn(this.params, (paramValue, paramName) => {
             if (paramValue != null) {
                 element.setAttributeNS(null, paramName, paramValue.toString());
             }
         });
 
-        _.each(this.children, child => {
+        each(this.children, child => {
             element.appendChild(child);
         });
 

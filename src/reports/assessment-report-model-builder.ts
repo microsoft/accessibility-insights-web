@@ -6,7 +6,8 @@ import { Assessment } from 'assessments/types/iassessment';
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import { AssessmentData, AssessmentStoreData, TestStepInstance } from 'common/types/store-data/assessment-result-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
-import * as _ from 'lodash';
+import { keys } from 'lodash';
+import { find } from 'office-ui-fabric-react';
 
 import { assessmentReportExtensionPoint } from '../DetailsView/extensions/assessment-report-extension-point';
 import {
@@ -98,7 +99,7 @@ export class AssessmentReportModelBuilder {
 
         function getInstances(assessment: AssessmentResult, stepKey: string): InstanceReportModel[] {
             const { storeData } = assessment;
-            const { reportInstanceFields } = _.find(assessment.requirements, s => s.key === stepKey);
+            const { reportInstanceFields } = find(assessment.requirements, s => s.key === stepKey);
 
             function getInstanceReportModel(instance: Partial<TestStepInstance>): InstanceReportModel {
                 const props = reportInstanceFields
@@ -122,7 +123,7 @@ export class AssessmentReportModelBuilder {
                     return [];
                 }
 
-                return _.keys(storeData.generatedAssessmentInstancesMap)
+                return keys(storeData.generatedAssessmentInstancesMap)
                     .filter(key => {
                         const testStepResult = storeData.generatedAssessmentInstancesMap[key].testStepResults[stepKey];
                         return testStepResult != undefined && testStepResult.status === storeData.testStepStatus[stepKey].stepFinalResult;

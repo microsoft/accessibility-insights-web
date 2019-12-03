@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
-
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { Requirement } from 'assessments/types/requirement';
@@ -15,6 +13,7 @@ import { DictionaryStringTo } from '../types/common-types';
 import { PayloadWithEventName } from './actions/action-payloads';
 import { Interpreter } from './interpreter';
 import { AssessmentStore } from './stores/assessment-store';
+import { cloneDeep, filter } from 'lodash';
 
 export class CompletedTestStepTelemetryCreator {
     private store: AssessmentStore;
@@ -97,7 +96,7 @@ export class CompletedTestStepTelemetryCreator {
     private getNumInstances(step: Requirement, assessmentData: AssessmentData): number {
         let numInstances = 0;
         if (!step.isManual) {
-            numInstances = _.filter(
+            numInstances = filter(
                 Object.keys(assessmentData.generatedAssessmentInstancesMap),
                 key => {
                     return (
@@ -114,7 +113,7 @@ export class CompletedTestStepTelemetryCreator {
 
     private updateOldTestStatusState(): void {
         this.provider.all().forEach(assessment => {
-            this.oldTestStates[assessment.key] = _.cloneDeep(
+            this.oldTestStates[assessment.key] = cloneDeep(
                 this.store.getState().assessments[assessment.key].testStepStatus,
             );
         });

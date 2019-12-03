@@ -1,9 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
-import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
-import * as React from 'react';
-
 import { AssessmentToggleActionPayload } from 'background/actions/action-payloads';
 import { createInitialAssessmentTestData } from 'background/create-initial-assessment-test-data';
 import {
@@ -30,7 +26,11 @@ import {
     VisualizationInstanceProcessorCallback,
 } from 'injected/visualization-instance-processor';
 import { DrawerProvider } from 'injected/visualization/drawer-provider';
+import { cloneDeep } from 'lodash';
+import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
+import * as React from 'react';
 import { DictionaryStringTo } from 'types/common-types';
+
 import { Assessment, AssistedAssessment, ManualAssessment } from './types/iassessment';
 import { ReportInstanceField } from './types/report-instance-field';
 import { Requirement } from './types/requirement';
@@ -354,7 +354,7 @@ export class AssessmentBuilder {
     private static buildRequirementReportDescription(requirements: Requirement[]): void {
         requirements.forEach(requirement => {
             requirement.renderReportDescription = () => {
-                const descriptionCopy = _.cloneDeep(requirement.description);
+                const descriptionCopy = cloneDeep(requirement.description);
                 const children = AssessmentBuilder.removeLastDotFromDescription(
                     descriptionCopy.props.children,
                 );

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
+import { isEqual } from 'lodash';
 
 import { BaseStore } from './base-store';
 import { BrowserAdapter } from './browser-adapters/browser-adapter';
@@ -27,7 +27,7 @@ export class StoreProxy<TState> extends Store implements BaseStore<TState> {
             return;
         }
 
-        if (message.type === GenericStoreMessageTypes.storeStateChanged && !_.isEqual(this.state, message.payload)) {
+        if (message.type === GenericStoreMessageTypes.storeStateChanged && !isEqual(this.state, message.payload)) {
             this.state = message.payload;
             this.emitChanged();
         }
