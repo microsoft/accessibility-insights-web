@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
-
+import { chain, each, size } from 'lodash';
 import { TabbedElementData } from '../../common/types/store-data/visualization-scan-result-data';
 import { WindowUtils } from '../../common/window-utils';
 import { ShadowUtils } from '../shadow-utils';
@@ -253,9 +252,9 @@ export class SVGDrawer extends BaseDrawer {
     }
 
     private getHighlightElements(): HTMLElement[] {
-        const totalElements = _.size(this.tabbedElements);
+        const totalElements = size(this.tabbedElements);
 
-        _.each(this.tabbedElements, (current: TabbedItem, index: number) => {
+        each(this.tabbedElements, (current: TabbedItem, index: number) => {
             const isLastItem = index === totalElements - 1;
             if (current.shouldRedraw) {
                 this.removeFocusIndicator(current.focusIndicator);
@@ -263,10 +262,10 @@ export class SVGDrawer extends BaseDrawer {
             }
         });
 
-        const result = _.chain(this.tabbedElements)
+        const result = chain(this.tabbedElements)
             .filter((element: TabbedItem) => element.shouldRedraw)
             .map(tabbed =>
-                _.chain(tabbed.focusIndicator)
+                chain(tabbed.focusIndicator)
                     .values()
                     .compact()
                     .value(),

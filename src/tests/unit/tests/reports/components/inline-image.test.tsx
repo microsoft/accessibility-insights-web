@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
-
+import { startsWith } from 'lodash';
 import { InlineImage, InlineImageProps, InlineImageType } from 'reports/components/inline-image';
 
 describe('InlineImageTest', () => {
@@ -33,7 +32,7 @@ describe('InlineImageTest', () => {
         const element = testObject.render();
 
         expect(element.type).toEqual('img');
-        expect(_.startsWith(element.props.src, 'data:image/png;base64,iVBO')).toBeTruthy();
+        expect(startsWith(element.props.src, 'data:image/png;base64,iVBO')).toBeTruthy();
         expect(element.props.alt).toEqual(alt);
     }
 });
