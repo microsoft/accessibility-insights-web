@@ -3,17 +3,19 @@
 import { EnvironmentInfo } from 'common/environment-info-provider';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { ReportFooter, ReportFooterProps } from 'reports/components/report-sections/report-footer';
+import { FooterTextForService } from 'reports/package/footer-text-for-service';
 
-describe('ReportFooter', () => {
+describe('FooterTextForService', () => {
     it('renders', () => {
         const environmentInfo: EnvironmentInfo = {
             extensionVersion: '1.2.3',
             browserSpec: 'dummy browser version 1.0.1',
             axeCoreVersion: '4.5.6',
         };
-        const wrapper = shallow(<ReportFooter {...{ environmentInfo }}>Footer Text</ReportFooter>);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        const FooterText = FooterTextForService('ClientService');
+
+        const footerWrapper = shallow(<FooterText {...{ environmentInfo }} />);
+        expect(footerWrapper.getElement()).toMatchSnapshot('footer');
     });
 });

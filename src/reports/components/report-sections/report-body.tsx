@@ -23,6 +23,7 @@ export const ReportBody = NamedFC<ReportBodyProps>('ReportBody', props => {
         PassedChecksSection,
         NotApplicableChecksSection,
         FooterSection,
+        FooterText,
     } = sectionFactory;
 
     return (
@@ -38,7 +39,9 @@ export const ReportBody = NamedFC<ReportBodyProps>('ReportBody', props => {
                     <NotApplicableChecksSection {...sectionProps} />
                 </ResultsContainer>
             </ContentContainer>
-            <FooterSection {...sectionProps} />
+            <FooterSection {...sectionProps}>
+                <FooterText {...sectionProps} />
+            </FooterSection>
         </BodySection>
     );
 });

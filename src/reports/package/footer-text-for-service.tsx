@@ -2,13 +2,12 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { ReactFCWithDisplayName } from 'common/react/named-fc';
-import { ReportFooterProps } from 'reports/components/report-sections/report-footer';
+import { FooterText } from 'reports/components/report-sections/footer-text';
 import { ToolLink } from 'reports/components/report-sections/tool-link';
 
-export const PackageReportFooter = (serviceName: string, reportFooter: React.FC<ReportFooterProps>) => {
+export const FooterTextForService = (serviceName: string) => {
 
-    const footerText = ({ axeCoreVersion, browserSpec }) =>
+    const footerText = ({ environmentInfo: { axeCoreVersion, browserSpec } }) =>
         <>
             This automated checks result was generated using the {serviceName}{' '}
             that helps find some of the most common accessibility issues. The scan was
@@ -16,5 +15,5 @@ export const PackageReportFooter = (serviceName: string, reportFooter: React.FC<
             WCAG 2.1 compliance assessment please visit{' '}<ToolLink />.
         </>;
 
-    return ((props: ReportFooterProps) => reportFooter({ ...props, footerText })) as ReactFCWithDisplayName<ReportFooterProps>;
+    return footerText as typeof FooterText;
 };
