@@ -12,6 +12,7 @@ import { CardSelectionStore } from 'background/stores/card-selection-store';
 import { UnifiedScanResultStore } from 'background/stores/unified-scan-result-store';
 import { onlyHighlightingSupported } from 'common/components/cards/card-interaction-support';
 import { CardsCollapsibleControl } from 'common/components/cards/collapsible-component-cards';
+import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { getPropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { DateProvider } from 'common/date-provider';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
@@ -40,7 +41,6 @@ import { RootContainerProps, RootContainerState } from 'electron/views/root-cont
 import { PlatformInfo } from 'electron/window-management/platform-info';
 import { WindowFrameListener } from 'electron/window-management/window-frame-listener';
 import { WindowFrameUpdater } from 'electron/window-management/window-frame-updater';
-import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as ReactDOM from 'react-dom';
 
 import { CardsVisualizationModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';

@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { FailedInstancesSectionDeps } from 'common/components/cards/failed-instances-section';
+import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { NamedFC } from 'common/react/named-fc';
 import { shallow } from 'enzyme';
-import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
 import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
 import { ReportSectionFactory, SectionProps } from 'reports/components/report-sections/report-section-factory';

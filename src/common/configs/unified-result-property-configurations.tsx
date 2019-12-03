@@ -4,11 +4,11 @@ import { ClassNameCardRow } from 'common/components/cards/class-name-card-row';
 import { ContentDescriptionCardRow } from 'common/components/cards/content-description-card-row';
 
 import { TextCardRow } from 'common/components/cards/text-card-row';
-import { FixInstructionProcessor } from '../../injected/fix-instruction-processor';
 import { HowToFixAndroidCardRow } from '../components/cards/how-to-fix-android-card-row';
 import { HowToFixWebCardRow } from '../components/cards/how-to-fix-card-row';
 import { PathCardRow } from '../components/cards/path-card-row';
 import { SnippetCardRow } from '../components/cards/snippet-card-row';
+import { FixInstructionProcessor } from '../components/fix-instruction-processor';
 import { ReactFCWithDisplayName } from '../react/named-fc';
 
 export type PropertyType = 'css-selector' | 'how-to-fix-web' | 'snippet' | 'className' | 'contentDescription' | 'text' | 'howToFixFormat';

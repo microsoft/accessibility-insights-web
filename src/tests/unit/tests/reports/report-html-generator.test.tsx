@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
+import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { NullComponent } from 'common/components/null-component';
 import { DateProvider } from 'common/date-provider';
 import { EnvironmentInfo } from 'common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
-import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
 import { ReportHead } from 'reports/components/report-head';
 import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { CheckType } from 'injected/components/details-dialog';
-import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
 import * as styles from './fix-instruction-panel.scss';
 

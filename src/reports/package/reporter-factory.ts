@@ -16,12 +16,12 @@ import { DocumentUtils } from 'scanner/document-utils';
 import { HelpUrlGetter } from 'scanner/help-url-getter';
 import { MessageDecorator } from 'scanner/message-decorator';
 import { ResultDecorator } from 'scanner/result-decorator';
+import { FixInstructionProcessor } from '../../common/components/fix-instruction-processor';
 import { getPropertyConfiguration } from '../../common/configs/unified-result-property-configurations';
 import { DateProvider } from '../../common/date-provider';
 import { EnvironmentInfoProvider } from '../../common/environment-info-provider';
 import { initializeFabricIcons } from '../../common/fabric-icons';
 import { GetGuidanceTagsFromGuidanceLinks } from '../../common/get-guidance-tags-from-guidance-links';
-import { FixInstructionProcessor } from '../../injected/fix-instruction-processor';
 import { AxeReportParameters, ReporterFactory } from './accessibilityInsightsReport';
 import { Reporter } from './reporter';
 

@@ -5,7 +5,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
 
-import { FixInstructionProcessor } from '../../../../../../injected/fix-instruction-processor';
+import { FixInstructionProcessor } from '../../../../../../common/components/fix-instruction-processor';
 
 describe('HowToFixWebCardRow', () => {
     it('renders', () => {
