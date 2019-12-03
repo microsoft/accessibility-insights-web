@@ -3,7 +3,7 @@
 import { EnvironmentInfo } from 'common/environment-info-provider';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { ReportFooter, ReportFooterProps } from 'reports/components/report-sections/report-footer';
+import { ReportFooter } from 'reports/components/report-sections/report-footer';
 
 describe('ReportFooter', () => {
     it('renders', () => {
