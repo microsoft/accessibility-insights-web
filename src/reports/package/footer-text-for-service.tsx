@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { FooterText } from 'reports/components/report-sections/footer-text';
+import { ReportSectionFactory } from 'reports/components/report-sections/report-section-factory';
 import { ToolLink } from 'reports/components/report-sections/tool-link';
 
 export const FooterTextForService = (serviceName: string) => {
@@ -15,5 +15,5 @@ export const FooterTextForService = (serviceName: string) => {
             WCAG 2.1 compliance assessment please visit{' '}<ToolLink />.
         </>;
 
-    return footerText as typeof FooterText;
+    return footerText as ReportSectionFactory['FooterText'];
 };
