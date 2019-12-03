@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
 import { OutcomeChip } from '../../../reports/components/outcome-chip';
-import { outcomeChipContainer, resultSectionTitle, title } from './result-section-title.scss';
+import * as styles from './result-section-title.scss';
 
 export type ResultSectionTitleProps = {
     title: string;
@@ -23,14 +23,14 @@ export const ResultSectionTitle = NamedFC<ResultSectionTitleProps>('ResultSectio
     );
 
     return (
-        <span className={resultSectionTitle}>
+        <span className={styles.resultSectionTitle}>
             <span className="screen-reader-only">
                 {props.title} {props.shouldAlertFailuresCount ? alertingFailuresCount : props.badgeCount}
             </span>
-            <span className={title} aria-hidden="true">
+            <span className={styles.title} aria-hidden="true">
                 {props.title}
             </span>
-            <span className={outcomeChipContainer} aria-hidden="true">
+            <span className={styles.outcomeChipContainer} aria-hidden="true">
                 <OutcomeChip outcomeType={props.outcomeType} count={props.badgeCount} />
             </span>
         </span>

@@ -10,7 +10,7 @@ import { WindowStateStoreData } from 'electron/flux/types/window-state-store-dat
 import { WindowTitle, WindowTitleDeps } from 'electron/views/device-connect-view/components/window-title';
 import { BrandWhite } from 'icons/brand/white/brand-white';
 import { MaximizeRestoreButton } from './maximize-restore-button';
-import { titleBar } from './title-bar.scss';
+import * as styles from './title-bar.scss';
 
 export type TitleBarDeps = {
     windowFrameActionCreator: WindowFrameActionCreator;
@@ -64,7 +64,7 @@ export const TitleBar = NamedFC<TitleBarProps>('TitleBar', (props: TitleBarProps
             actionableIcons={icons}
             windowStateStoreData={props.windowStateStoreData}
             deps={props.deps}
-            className={titleBar}
+            className={styles.titleBar}
         >
             <BrandWhite />
         </WindowTitle>

@@ -8,7 +8,7 @@ import * as React from 'react';
 
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { VisualizationType } from '../../common/types/visualization-type';
-import { radioButtonGroup, radioLabel, undoButton, undoButtonIcon } from './test-status-choice-group.scss';
+import * as styles from './test-status-choice-group.scss';
 
 export interface TestStatusChoiceGroupProps {
     test: VisualizationType;
@@ -42,7 +42,7 @@ export class TestStatusChoiceGroup extends React.Component<TestStatusChoiceGroup
     public render(): JSX.Element {
         return (
             <div>
-                <div className={radioButtonGroup}>
+                <div className={styles.radioButtonGroup}>
                     <ChoiceGroup
                         className={ManualTestStatus[this.props.status]}
                         onChange={this.onChange}
@@ -62,7 +62,7 @@ export class TestStatusChoiceGroup extends React.Component<TestStatusChoiceGroup
 
     private onRenderLabel = (option: IChoiceGroupOption): JSX.Element => {
         return (
-            <span id={option.labelId} className={radioLabel} aria-label={option.text}>
+            <span id={option.labelId} className={styles.radioLabel} aria-label={option.text}>
                 {this.props.isLabelVisible ? option.text : ''}
             </span>
         );
@@ -74,8 +74,8 @@ export class TestStatusChoiceGroup extends React.Component<TestStatusChoiceGroup
         }
 
         return (
-            <Link className={undoButton} onClick={this.onUndoClicked}>
-                <Icon className={undoButtonIcon} iconName="undo" ariaLabel={'undo'} />
+            <Link className={styles.undoButton} onClick={this.onUndoClicked}>
+                <Icon className={styles.undoButtonIcon} iconName="undo" ariaLabel={'undo'} />
             </Link>
         );
     }

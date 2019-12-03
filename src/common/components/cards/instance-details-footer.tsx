@@ -12,7 +12,7 @@ import * as React from 'react';
 
 import { CardInteractionSupport } from './card-interaction-support';
 import { CardKebabMenuButton, CardKebabMenuButtonDeps } from './card-kebab-menu-button';
-import { foot, highlightStatus } from './instance-details-footer.scss';
+import * as styles from './instance-details-footer.scss';
 
 export type HighlightState = 'visible' | 'hidden' | 'unavailable';
 
@@ -77,7 +77,7 @@ export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>('Instan
         }[highlightState];
 
         return (
-            <div className={highlightStatus}>
+            <div className={styles.highlightStatus}>
                 {icon}
                 <Label>{label}</Label>
             </div>
@@ -85,7 +85,7 @@ export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>('Instan
     };
 
     return (
-        <div className={foot}>
+        <div className={styles.foot}>
             {renderHighlightStatus()}
             {renderKebabMenu()}
         </div>

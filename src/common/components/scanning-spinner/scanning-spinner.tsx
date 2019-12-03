@@ -3,7 +3,7 @@
 import { NamedFC } from 'common/react/named-fc';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { scanningSpinner } from './scanning-spinner.scss';
+import * as styles from './scanning-spinner.scss';
 
 export type ScanningSpinnerProps = {
     isSpinning: boolean;
@@ -16,5 +16,13 @@ export const ScanningSpinner = NamedFC<ScanningSpinnerProps>('ScanningSpinner', 
         return null;
     }
 
-    return <Spinner className={scanningSpinner} size={SpinnerSize.large} label={props.label} role="alert" aria-live={props['aria-live']} />;
+    return (
+        <Spinner
+            className={styles.scanningSpinner}
+            size={SpinnerSize.large}
+            label={props.label}
+            role="alert"
+            aria-live={props['aria-live']}
+        />
+    );
 });

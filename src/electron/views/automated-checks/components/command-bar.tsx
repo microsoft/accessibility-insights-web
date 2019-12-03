@@ -8,7 +8,7 @@ import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { CommandBar as UICommandBar, ICommandBarItemProps } from 'office-ui-fabric-react/lib/CommandBar';
 import * as React from 'react';
 
-import { buttonIcon, commandBar, menuItemButton } from './command-bar.scss';
+import * as styles from './command-bar.scss';
 
 export type CommandBarDeps = {
     scanActionCreator: ScanActionCreator;
@@ -28,10 +28,10 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', (props: Command
         key: 'rescan',
         name: 'Rescan',
         iconProps: {
-            className: buttonIcon,
+            className: styles.buttonIcon,
             iconName: 'Refresh',
         },
-        className: menuItemButton,
+        className: styles.menuItemButton,
         onClick: onRescanClick,
         disabled: props.scanStoreData.status === ScanStatus.Scanning,
     };
@@ -40,5 +40,5 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', (props: Command
     const items: ICommandBarItemProps[] = [rescanCommandBarItem];
     const farItems: ICommandBarItemProps[] = [];
 
-    return <UICommandBar items={items} farItems={farItems} className={commandBar} />;
+    return <UICommandBar items={items} farItems={farItems} className={styles.commandBar} />;
 });
