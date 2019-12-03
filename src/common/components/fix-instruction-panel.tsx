@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CheckType } from 'injected/components/details-dialog';
+import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
 
-import { NamedFC } from '../../common/react/named-fc';
-import { FixInstructionProcessor } from '../fix-instruction-processor';
-import { CheckType } from './details-dialog';
+import { NamedFC } from '../react/named-fc';
 
 export interface FixInstructionPanelDeps {
     fixInstructionProcessor: FixInstructionProcessor;

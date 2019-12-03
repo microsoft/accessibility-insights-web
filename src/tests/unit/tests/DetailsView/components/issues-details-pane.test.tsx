@@ -3,6 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import { FixInstructionPanel } from 'common/components/fix-instruction-panel';
 import { HyperlinkDefinition } from 'views/content/content-page';
 import { IssueFilingButton } from '../../../../../common/components/issue-filing-button';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
@@ -13,7 +14,6 @@ import {
     IssuesDetailsPaneDeps,
     IssuesDetailsPaneProps,
 } from '../../../../../DetailsView/components/Issues-details-pane';
-import { FixInstructionPanel } from '../../../../../injected/components/fix-instruction-panel';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { AxeResultToIssueFilingDataConverter } from '../../../../../issue-filing/rule-result-to-issue-filing-data';
 import { DictionaryStringTo } from '../../../../../types/common-types';

@@ -1,11 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FixInstructionPanel, FixInstructionPanelDeps } from 'common/components/fix-instruction-panel';
 import { isEmpty, size } from 'lodash';
 import { css } from 'office-ui-fabric-react';
 import { Dialog, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
-
 import { HyperlinkDefinition } from 'views/content/content-page';
+
 import { BaseStore } from '../../common/base-store';
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { GuidanceLinks } from '../../common/components/guidance-links';
@@ -20,7 +21,6 @@ import { DetailsDialogHandler } from '../details-dialog-handler';
 import { DecoratedAxeNodeResult } from '../scanner-utils';
 import { TargetPageActionMessageCreator } from '../target-page-action-message-creator';
 import { CommandBar, CommandBarDeps, CommandBarProps } from './command-bar';
-import { FixInstructionPanel, FixInstructionPanelDeps } from './fix-instruction-panel';
 import { IssueDetailsNavigationControls, IssueDetailsNavigationControlsProps } from './issue-details-navigation-controls';
 
 export enum CheckType {
