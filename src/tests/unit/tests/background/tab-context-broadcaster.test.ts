@@ -11,7 +11,7 @@ describe('TabContextBroadcaster', () => {
     describe('getBroadcastMessageDelegate', () => {
         it('produces the expected BrowserAdapter calls when invoked', async () => {
             const testTabId = 1;
-            const testMessage = { someData: 1 } as any;
+            const testMessage = { someData: 'test data' } as any;
             const expectedMessage = { tabId: testTabId, ...testMessage } as StoreUpdateMessage<any>;
 
             const browserAdapterMock = Mock.ofType<BrowserAdapter>(null, MockBehavior.Strict);
@@ -32,7 +32,7 @@ describe('TabContextBroadcaster', () => {
         });
 
         it('propagates errors from sendMessageToFrames to its logger', async () => {
-            const testMessage = { someData: 1 } as any;
+            const testMessage = { someData: 'test data' } as any;
             const expectedError = 'error from sendMessageToFrames';
 
             const browserAdapterMock = Mock.ofType<BrowserAdapter>(null, MockBehavior.Strict);
@@ -49,7 +49,7 @@ describe('TabContextBroadcaster', () => {
         });
 
         it('propagates errors from sendMessageToTab to its logger', async () => {
-            const testMessage = { someData: 1 } as any;
+            const testMessage = { someData: 'test data' } as any;
             const expectedError = 'error from sendMessageToTab';
 
             const browserAdapterMock = Mock.ofType<BrowserAdapter>(null, MockBehavior.Strict);

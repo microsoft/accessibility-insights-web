@@ -24,11 +24,11 @@ describe('StateDispatcherTest', () => {
         const storeMock: IMock<BaseStore<StoreStubData>> = Mock.ofType<BaseStore<StoreStubData>>();
         const storeHubStrictMock = Mock.ofType<StoreHubStub>(null, MockBehavior.Strict);
         storeHubStrictMock
-            .setup(x => x.getAllStores())
+            .setup(hub => hub.getAllStores())
             .returns(() => [storeMock.object])
             .verifiable(Times.once());
         storeHubStrictMock
-            .setup(x => x.getStoreType())
+            .setup(hub => hub.getStoreType())
             .returns(() => StoreType.TabContextStore)
             .verifiable(Times.once());
 
@@ -68,8 +68,8 @@ describe('StateDispatcherTest', () => {
         const storeMock: IMock<BaseStore<StoreStubData>> = Mock.ofType<BaseStore<StoreStubData>>();
         const storeHubMock = Mock.ofType<StoreHubStub>(null, MockBehavior.Strict);
 
-        storeHubMock.setup(x => x.getAllStores()).returns(() => [storeMock.object]);
-        storeHubMock.setup(x => x.getStoreType()).returns(() => StoreType.TabContextStore);
+        storeHubMock.setup(hub => hub.getAllStores()).returns(() => [storeMock.object]);
+        storeHubMock.setup(hub => hub.getStoreType()).returns(() => StoreType.TabContextStore);
         storeMock.setup(sm => sm.getId()).returns(() => expectedMessage.storeId);
         storeMock.setup(sm => sm.getState()).returns(() => newstoreData);
         storeMock
@@ -115,8 +115,8 @@ describe('StateDispatcherTest', () => {
         const storeMock: IMock<BaseStore<StoreStubData>> = Mock.ofType<BaseStore<StoreStubData>>();
         const storeHubMock = Mock.ofType<StoreHubStub>(null, MockBehavior.Strict);
 
-        storeHubMock.setup(x => x.getAllStores()).returns(() => [storeMock.object]);
-        storeHubMock.setup(x => x.getStoreType()).returns(() => StoreType.TabContextStore);
+        storeHubMock.setup(hub => hub.getAllStores()).returns(() => [storeMock.object]);
+        storeHubMock.setup(hub => hub.getStoreType()).returns(() => StoreType.TabContextStore);
         storeMock.setup(sm => sm.getId()).returns(() => expectedMessage.storeId);
         storeMock.setup(sm => sm.getState()).returns(() => newstoreData);
         storeMock
