@@ -6,13 +6,14 @@ import * as Puppeteer from 'puppeteer';
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { CommonSelectors } from '../element-identifiers/common-selectors';
 import { forceTestFailure } from '../force-test-failure';
-import { takeScreenshot } from '../generate-screenshot';
+import { screenshotOnError } from '../screenshot-on-error';
 import {
     DEFAULT_CLICK_HOVER_DELAY_MS,
     DEFAULT_CLICK_MOUSEUP_DELAY_MS,
     DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS,
     DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
 } from '../timeouts';
+import { withTracing } from '../with-tracing';
 
 const promiseFactory = createDefaultPromiseFactory();
 
@@ -278,26 +279,17 @@ export class Page {
         }
     }
 
-    private async screenshotOnError<T>(fn: () => Promise<T>): Promise<T> {
-        try {
-            return await fn();
-        } catch (originalError) {
-            try {
-                await takeScreenshot(this.underlyingPage);
-            } catch (secondaryTakeScreenshotError) {
-                console.error(
-                    `screenshotOnError: Detected an error, and then *additionally* hit a second error while trying to take a screenshot of the page state after the first error.\n` +
-                        `screenshotOnError: The secondary error from taking the screenshot is: ${secondaryTakeScreenshotError.stack}\n` +
-                        `screenshotOnError: rethrowing the original error...`,
-                );
-            }
-            throw originalError;
-        }
-    }
-
     public async injectScriptFile(filePath: string): Promise<void> {
         await this.screenshotOnError(async () => {
             await this.underlyingPage.addScriptTag({ path: filePath });
         });
+    }
+
+    public async withTracing<T>(wrappedFunction: () => Promise<T>): Promise<T> {
+        return await withTracing(this.underlyingPage.tracing, wrappedFunction);
+    }
+
+    private async screenshotOnError<T>(wrappedFunction: () => Promise<T>): Promise<T> {
+        return await screenshotOnError(this.underlyingPage, wrappedFunction);
     }
 }
