@@ -6,9 +6,7 @@ import { Assessment } from 'assessments/types/iassessment';
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import { AssessmentData, AssessmentStoreData, TestStepInstance } from 'common/types/store-data/assessment-result-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
-import { keys } from 'lodash';
-import { find } from 'office-ui-fabric-react';
-
+import { find, keys } from 'lodash';
 import { assessmentReportExtensionPoint } from '../DetailsView/extensions/assessment-report-extension-point';
 import {
     AssessmentDetailsReportModel,
