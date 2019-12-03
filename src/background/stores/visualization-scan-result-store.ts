@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { forOwn } from 'lodash';
-import * as _ from 'lodash';
+import { forOwn, map } from 'lodash';
+
 import { StoreNames } from '../../common/stores/store-names';
 import { VisualizationScanResultData } from '../../common/types/store-data/visualization-scan-result-data';
 import { ScanCompletedPayload } from '../../injected/analyzers/analyzer';
@@ -72,7 +72,7 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
             this.state.tabStops.tabbedElements = [];
         }
 
-        let tabbedElementsWithoutTabOrder: TabStopEvent[] = _.map(
+        let tabbedElementsWithoutTabOrder: TabStopEvent[] = map(
             this.state.tabStops.tabbedElements,
             element => {
                 return {
@@ -88,7 +88,7 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         );
         tabbedElementsWithoutTabOrder.sort((left, right) => left.timestamp - right.timestamp);
 
-        this.state.tabStops.tabbedElements = _.map(
+        this.state.tabStops.tabbedElements = map(
             tabbedElementsWithoutTabOrder,
             (element, index) => {
                 return {

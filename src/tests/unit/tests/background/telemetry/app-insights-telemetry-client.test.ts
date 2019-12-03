@@ -1,11 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { AppInsightsTelemetryClient, ExtendedEnvelop } from 'background/telemetry/app-insights-telemetry-client';
 import { ApplicationTelemetryDataFactory } from 'background/telemetry/application-telemetry-data-factory';
 import { TelemetryLogger } from 'background/telemetry/telemetry-logger';
+import { cloneDeep } from 'lodash';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { configMutator } from '../../../../../common/configuration';
 
 describe('AppInsights telemetry client tests', () => {
@@ -40,7 +39,7 @@ describe('AppInsights telemetry client tests', () => {
         appInsightsStrictMock = Mock.ofType<Microsoft.ApplicationInsights.IAppInsights>(null, MockBehavior.Strict);
         coreTelemetryDataFactoryMock = Mock.ofType<ApplicationTelemetryDataFactory>();
 
-        coreTelemetryDataFactoryMock.setup(c => c.getData()).returns(() => _.cloneDeep(coreTelemetryData as any));
+        coreTelemetryDataFactoryMock.setup(c => c.getData()).returns(() => cloneDeep(coreTelemetryData as any));
 
         testSubject = new AppInsightsTelemetryClient(appInsightsStrictMock.object, coreTelemetryDataFactoryMock.object, loggerMock.object);
     });

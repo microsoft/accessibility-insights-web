@@ -7,7 +7,7 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { TargetPageStoreData } from 'injected/client-store-listener';
 import { GetElementBasedViewModelCallback } from 'injected/element-based-view-model-creator';
-import * as _ from 'lodash';
+import { includes } from 'lodash';
 
 import { ManualTestStatus } from '../common/types/manual-test-status';
 import { GeneratedAssessmentInstance } from '../common/types/store-data/assessment-result-data';
@@ -61,7 +61,7 @@ export class SelectorMapHelper {
     }
 
     private isAdHocVisualization(visualizationType: VisualizationType): boolean {
-        return _.includes(
+        return includes(
             [
                 VisualizationType.Issues,
                 VisualizationType.Headings,

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { VisualHelperToggleConfig } from 'assessments/types/requirement';
-import * as _ from 'lodash';
+import { filter, includes, keys } from 'lodash';
 import * as React from 'react';
 import { VisualizationToggle } from '../../common/components/visualization-toggle';
 import { GeneratedAssessmentInstance } from '../../common/types/store-data/assessment-result-data';
@@ -42,13 +42,13 @@ export abstract class BaseVisualHelperToggle extends React.Component<VisualHelpe
     ): GeneratedAssessmentInstance<{}, {}>[] {
         const selectedTestStep = assessmentNavState.selectedTestStep;
 
-        return _.filter(instancesMap, instance => {
+        return filter(instancesMap, instance => {
             if (instance == null) {
                 return false;
             }
 
-            const testStepKeys = _.keys(instance.testStepResults);
-            return _.includes(testStepKeys, selectedTestStep) && instance.testStepResults[selectedTestStep] != null;
+            const testStepKeys = keys(instance.testStepResults);
+            return includes(testStepKeys, selectedTestStep) && instance.testStepResults[selectedTestStep] != null;
         });
     }
 

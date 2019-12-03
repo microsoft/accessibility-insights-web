@@ -12,6 +12,7 @@
         "yarn": "^1.17.3"
     },
     "scripts": {
+        "replace:electron-mirror": "node ./pipeline/scripts/replace-electron-mirror.js",
         "assessment": "npm-run-all --serial scss:clean fastpass build:all test test:e2e test:electron",
         "build": "grunt",
         "build:all": "grunt build-all",
@@ -62,7 +63,7 @@
         "@types/moment": "^2.13.0",
         "@types/puppeteer": "^2.0.0",
         "@types/q": "^1.5.2",
-        "@types/react": "^16.9.13",
+        "@types/react": "^16.9.14",
         "@types/react-copy-to-clipboard": "^4.3.0",
         "@types/react-dom": "^16.9.4",
         "@types/react-helmet": "^5.0.14",
@@ -71,9 +72,9 @@
         "@types/ua-parser-js": "^0.7.33",
         "@types/uuid": "^3.4.6",
         "case-sensitive-paths-webpack-plugin": "^2.2.0",
-        "core-js-bundle": "^3.4.5",
+        "core-js-bundle": "^3.4.7",
         "cross-env": "^6.0.3",
-        "css-loader": "^3.2.0",
+        "css-loader": "^3.2.1",
         "electron": "7.0.1",
         "electron-builder": "^22.2.0",
         "enzyme": "^3.10.0",
@@ -127,6 +128,7 @@
         "axe-core": "3.3.2",
         "axios": "^0.19.0",
         "classnames": "^2.2.6",
+        "electron-download": "^4.1.1",
         "electron-updater": "^4.2.0",
         "idb-keyval": "^3.2.0",
         "lodash": "^4.17.15",
@@ -139,6 +141,7 @@
         "react-helmet": "^5.2.0",
         "react-router-dom": "^5.1.2",
         "ua-parser-js": "^0.7.20",
+        "unzipper": "^0.10.5",
         "uuid": "^3.3.3",
         "webextension-polyfill-ts": "^0.11.0"
     }
