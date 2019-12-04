@@ -4,21 +4,27 @@ import { BaseActionPayload } from 'background/actions/action-payloads';
 import { ContentActionCreator } from 'background/actions/content-action-creator';
 import { ContentActions, ContentPayload } from 'background/actions/content-actions';
 import { DetailsViewController } from 'background/details-view-controller';
+import { Interpreter } from 'background/interpreter';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { CONTENT_PANEL_CLOSED, CONTENT_PANEL_OPENED, TelemetryEventSource } from 'common/extension-telemetry-events';
+import { Action } from 'common/flux/action';
+import { Logger } from 'common/logging/logger';
 import { Messages } from 'common/messages';
+import { tick } from 'tests/unit/common/tick';
 import { IMock, Mock, Times } from 'typemoq';
-
 import { createActionMock, createInterpreterMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('ContentActionMessageCreator', () => {
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
+    let actionsMock: IMock<ContentActions>;
+    let interpreterMock: IMock<Interpreter>;
+    let testSubject: ContentActionCreator;
 
     beforeEach(() => {
         telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();
     });
 
-    it('handles OpenPanel message', () => {
+    describe('handles OpenPanel message', () => {
         const payload: ContentPayload = {
             contentPath: 'the path',
             telemetry: {
@@ -29,24 +35,56 @@ describe('ContentActionMessageCreator', () => {
 
         const tabId = -2;
 
-        const openContentPanelMock = createActionMock(payload);
-        const actionsMock = createActionsMock('openContentPanel', openContentPanelMock.object);
-        const interpreterMock = createInterpreterMock(Messages.ContentPanel.OpenPanel, payload, tabId);
+        let openContentPanelMock: IMock<Action<ContentPayload>>;
+        let detailsViewControllerMock: IMock<DetailsViewController>;
+        let loggerMock: IMock<Logger>;
 
-        const detailsViewControllerMock = Mock.ofType<DetailsViewController>();
+        beforeEach(() => {
+            openContentPanelMock = createActionMock(payload);
+            actionsMock = createActionsMock('openContentPanel', openContentPanelMock.object);
+            interpreterMock = createInterpreterMock(Messages.ContentPanel.OpenPanel, payload, tabId);
+            detailsViewControllerMock = Mock.ofType<DetailsViewController>();
+            loggerMock = Mock.ofType<Logger>();
+            testSubject = new ContentActionCreator(
+                interpreterMock.object,
+                actionsMock.object,
+                telemetryEventHandlerMock.object,
+                detailsViewControllerMock.object,
+                loggerMock.object,
+            );
+        });
 
-        const testSubject = new ContentActionCreator(
-            interpreterMock.object,
-            actionsMock.object,
-            telemetryEventHandlerMock.object,
-            detailsViewControllerMock.object,
-        );
+        it('when showing the details view throws an error, the error should be logged', async () => {
+            const errorMessage = 'error on showDetailsViewP';
+            detailsViewControllerMock
+                .setup(controller => controller.showDetailsViewP(tabId))
+                .returns(() => Promise.reject(errorMessage))
+                .verifiable(Times.once());
 
-        testSubject.registerCallbacks();
+            testSubject.registerCallbacks();
 
-        openContentPanelMock.verifyAll();
-        telemetryEventHandlerMock.verify(handler => handler.publishTelemetry(CONTENT_PANEL_OPENED, payload), Times.once());
-        detailsViewControllerMock.verify(controller => controller.showDetailsView(tabId), Times.once());
+            await tick();
+
+            openContentPanelMock.verifyAll();
+            detailsViewControllerMock.verifyAll();
+            telemetryEventHandlerMock.verify(handler => handler.publishTelemetry(CONTENT_PANEL_OPENED, payload), Times.once());
+            loggerMock.verify(logger => logger.error(errorMessage), Times.once());
+        });
+
+        it('when there is no error from showing the details view', async () => {
+            detailsViewControllerMock
+                .setup(controller => controller.showDetailsViewP(tabId))
+                .returns(() => Promise.resolve())
+                .verifiable(Times.once());
+
+            testSubject.registerCallbacks();
+
+            await tick();
+
+            openContentPanelMock.verifyAll();
+            detailsViewControllerMock.verifyAll();
+            telemetryEventHandlerMock.verify(handler => handler.publishTelemetry(CONTENT_PANEL_OPENED, payload), Times.once());
+        });
     });
 
     it('handles ClosePanel message', () => {
@@ -58,10 +96,10 @@ describe('ContentActionMessageCreator', () => {
         };
 
         const closeContentPanelMock = createActionMock<void>(null);
-        const actionsMock = createActionsMock('closeContentPanel', closeContentPanelMock.object);
-        const interpreterMock = createInterpreterMock(Messages.ContentPanel.ClosePanel, payload);
+        actionsMock = createActionsMock('closeContentPanel', closeContentPanelMock.object);
+        interpreterMock = createInterpreterMock(Messages.ContentPanel.ClosePanel, payload);
 
-        const testSubject = new ContentActionCreator(interpreterMock.object, actionsMock.object, telemetryEventHandlerMock.object, null);
+        testSubject = new ContentActionCreator(interpreterMock.object, actionsMock.object, telemetryEventHandlerMock.object, null);
 
         testSubject.registerCallbacks();
 
@@ -73,8 +111,8 @@ describe('ContentActionMessageCreator', () => {
         actionName: ActionName,
         action: ContentActions[ActionName],
     ): IMock<ContentActions> {
-        const actionsMock = Mock.ofType<ContentActions>();
-        actionsMock.setup(actions => actions[actionName]).returns(() => action);
-        return actionsMock;
+        const resultActionsMock = Mock.ofType<ContentActions>();
+        resultActionsMock.setup(actions => actions[actionName]).returns(() => action);
+        return resultActionsMock;
     }
 });

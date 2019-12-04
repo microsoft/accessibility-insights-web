@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CONTENT_PANEL_CLOSED, CONTENT_PANEL_OPENED } from 'common/extension-telemetry-events';
+import { createDefaultLogger } from 'common/logging/default-logger';
+import { Logger } from 'common/logging/logger';
 import { Messages } from 'common/messages';
-
 import { DetailsViewController } from '../details-view-controller';
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
@@ -15,6 +16,7 @@ export class ContentActionCreator {
         private readonly contentActions: ContentActions,
         private readonly telemetryEventHandler: TelemetryEventHandler,
         private readonly detailsViewController: DetailsViewController,
+        private readonly logger: Logger = createDefaultLogger(),
     ) {}
 
     public registerCallbacks(): void {
@@ -28,9 +30,9 @@ export class ContentActionCreator {
         );
     }
 
-    private onOpenContentPanel = (payload: ContentPayload, tabId: number): void => {
+    private onOpenContentPanel = async (payload: ContentPayload, tabId: number): Promise<void> => {
         this.contentActions.openContentPanel.invoke(payload);
-        this.showDetailsView(tabId);
+        await this.detailsViewController.showDetailsViewP(tabId).catch(this.logger.error);
         this.telemetryEventHandler.publishTelemetry(CONTENT_PANEL_OPENED, payload);
     };
 
@@ -38,8 +40,4 @@ export class ContentActionCreator {
         this.contentActions.closeContentPanel.invoke(null);
         this.telemetryEventHandler.publishTelemetry(CONTENT_PANEL_CLOSED, payload);
     };
-
-    private showDetailsView(tabId: number): void {
-        this.detailsViewController.showDetailsView(tabId);
-    }
 }
