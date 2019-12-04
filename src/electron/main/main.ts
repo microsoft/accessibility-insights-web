@@ -41,6 +41,11 @@ const createWindow = () => {
         enableDevMode(mainWindow);
     });
 
+    mainWindow.on('closed', () => {
+        // Dereference the window object, to force garbage collection
+        mainWindow = null;
+    });
+
     electronAutoUpdateCheck
         .check()
         .then(() => {
@@ -68,4 +73,5 @@ app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
     clearInterval(recurringUpdateCheck);
+    app.quit();
 });
