@@ -8,7 +8,7 @@ exports[`DetailsViewCommandBar renders with export button, with start over 1`] =
       command-bar-test-tab-title
     </StyledLinkBase>
   </div>
-  <div className=\\"details-view-command-buttons\\">
+  <div className=\\"detailsViewCommandButtons\\">
     <CustomizedActionButton>
       Report Export Component
     </CustomizedActionButton>
@@ -27,7 +27,7 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
       command-bar-test-tab-title
     </StyledLinkBase>
   </div>
-  <div className=\\"details-view-command-buttons\\">
+  <div className=\\"detailsViewCommandButtons\\">
     <CustomizedActionButton>
       Report Export Component
     </CustomizedActionButton>
@@ -43,7 +43,7 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
       command-bar-test-tab-title
     </StyledLinkBase>
   </div>
-  <div className=\\"details-view-command-buttons\\">
+  <div className=\\"detailsViewCommandButtons\\">
     <CustomizedActionButton>
       Start Over Component
     </CustomizedActionButton>
