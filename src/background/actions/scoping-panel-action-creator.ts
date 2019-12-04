@@ -28,16 +28,12 @@ export class ScopingPanelActionCreator {
 
     private onOpenScopingPanel(payload: BaseActionPayload, tabId: number): void {
         this.scopingActions.openScopingPanel.invoke(null);
-        this.showDetailsView(tabId);
+        this.detailsViewController.showDetailsView(tabId);
         this.telemetryEventHandler.publishTelemetry(SCOPING_OPEN, payload);
     }
 
     private onCloseScopingPanel(payload: BaseActionPayload): void {
         this.scopingActions.closeScopingPanel.invoke(null);
         this.telemetryEventHandler.publishTelemetry(SCOPING_CLOSE, payload);
-    }
-
-    private showDetailsView(tabId: number): void {
-        this.detailsViewController.showDetailsView(tabId);
     }
 }

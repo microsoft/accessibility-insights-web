@@ -4,23 +4,27 @@ import { BaseActionPayload } from 'background/actions/action-payloads';
 import { ScopingActions } from 'background/actions/scoping-actions';
 import { ScopingPanelActionCreator } from 'background/actions/scoping-panel-action-creator';
 import { DetailsViewController } from 'background/details-view-controller';
+import { Interpreter } from 'background/interpreter';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { SCOPING_CLOSE, SCOPING_OPEN } from 'common/extension-telemetry-events';
 import { Messages } from 'common/messages';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
-
 import { createActionMock, createInterpreterMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('ScopingPanelActionCreatorTest', () => {
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
     let detailsViewControllerStrictMock: IMock<DetailsViewController>;
+    let actionsMocks: IMock<ScopingActions>;
+    let interpreterMock: IMock<Interpreter>;
+
+    let testObject: ScopingPanelActionCreator;
 
     beforeEach(() => {
         telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler, MockBehavior.Strict);
-        detailsViewControllerStrictMock = Mock.ofType<DetailsViewController>(null, MockBehavior.Strict);
+        detailsViewControllerStrictMock = Mock.ofType<DetailsViewController>(undefined, MockBehavior.Strict);
     });
 
-    it('should handle OpenPanel message', () => {
+    it('handles OpenPanel message', () => {
         const tabId = -1;
         const payload: BaseActionPayload = {};
 
@@ -29,40 +33,40 @@ describe('ScopingPanelActionCreatorTest', () => {
         detailsViewControllerStrictMock.setup(dc => dc.showDetailsView(tabId)).verifiable(Times.once());
 
         const openScopingPanelMock = createActionMock(null);
-        const actionsMocks = createActionsMock('openScopingPanel', openScopingPanelMock.object);
-        const interpreterMock = createInterpreterMock(Messages.Scoping.OpenPanel, payload, tabId);
+        actionsMocks = createActionsMock('openScopingPanel', openScopingPanelMock.object);
+        interpreterMock = createInterpreterMock(Messages.Scoping.OpenPanel, payload, tabId);
 
-        const newTestObject = new ScopingPanelActionCreator(
+        testObject = new ScopingPanelActionCreator(
             interpreterMock.object,
             actionsMocks.object,
             telemetryEventHandlerMock.object,
             detailsViewControllerStrictMock.object,
         );
 
-        newTestObject.registerCallbacks();
+        testObject.registerCallbacks();
 
         openScopingPanelMock.verifyAll();
         telemetryEventHandlerMock.verifyAll();
         detailsViewControllerStrictMock.verifyAll();
     });
 
-    test('should handle ClosePanel message', () => {
+    test('handles ClosePanel message', () => {
         const payload: BaseActionPayload = {};
 
         telemetryEventHandlerMock.setup(tp => tp.publishTelemetry(SCOPING_CLOSE, payload)).verifiable(Times.once());
 
         const closeScopingPanelActionMock = createActionMock(null);
-        const actionsMocks = createActionsMock('closeScopingPanel', closeScopingPanelActionMock.object);
-        const interpreterMock = createInterpreterMock(Messages.Scoping.ClosePanel, payload);
+        actionsMocks = createActionsMock('closeScopingPanel', closeScopingPanelActionMock.object);
+        interpreterMock = createInterpreterMock(Messages.Scoping.ClosePanel, payload);
 
-        const newTestObject = new ScopingPanelActionCreator(
+        testObject = new ScopingPanelActionCreator(
             interpreterMock.object,
             actionsMocks.object,
             telemetryEventHandlerMock.object,
             detailsViewControllerStrictMock.object,
         );
 
-        newTestObject.registerCallbacks();
+        testObject.registerCallbacks();
 
         closeScopingPanelActionMock.verifyAll();
         telemetryEventHandlerMock.verifyAll();
