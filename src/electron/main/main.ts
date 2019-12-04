@@ -9,11 +9,10 @@ import * as path from 'path';
 let mainWindow: BrowserWindow;
 const platformInfo = new PlatformInfo(process);
 
-const electronAutoUpdateCheck = new AutoUpdaterClient(autoUpdater);
 let recurringUpdateCheck;
+const electronAutoUpdateCheck = new AutoUpdaterClient(autoUpdater);
 
 const createWindow = () => {
-    recurringUpdateCheck = setupRecurringUpdateCheck();
     const os = platformInfo.getOs();
     mainWindow = new BrowserWindow({
         show: false,
@@ -41,6 +40,14 @@ const createWindow = () => {
         mainWindow.show();
         enableDevMode(mainWindow);
     });
+
+    electronAutoUpdateCheck
+        .check()
+        .then(() => {
+            console.log('checked for updates');
+            setupRecurringUpdateCheck();
+        })
+        .catch(console.log);
 };
 
 const enableDevMode = (window: BrowserWindow) => {
@@ -52,7 +59,7 @@ const enableDevMode = (window: BrowserWindow) => {
 };
 
 const setupRecurringUpdateCheck = () => {
-    return setInterval(async () => {
+    recurringUpdateCheck = setInterval(async () => {
         await electronAutoUpdateCheck.check();
     }, 60 * 60 * 1000);
 };
