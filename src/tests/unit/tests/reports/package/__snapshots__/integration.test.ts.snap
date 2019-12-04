@@ -3977,7 +3977,7 @@ exports[`report package integration with issues 1`] = `
               id="content-container-passed-checks-section"
             >
               <div
-                class="rule-details-group"
+                class="ruleDetailsGroup"
               >
                 <div
                   class="rule-detail"
@@ -4634,7 +4634,7 @@ exports[`report package integration with issues 1`] = `
               id="content-container-not-applicable-checks-section"
             >
               <div
-                class="rule-details-group"
+                class="ruleDetailsGroup"
               >
                 <div
                   class="rule-detail"
@@ -6694,7 +6694,7 @@ exports[`report package integration with no issues 1`] = `
               id="content-container-passed-checks-section"
             >
               <div
-                class="rule-details-group"
+                class="ruleDetailsGroup"
               >
                 <div
                   class="rule-detail"
@@ -8051,7 +8051,7 @@ exports[`report package integration with no issues 1`] = `
               id="content-container-not-applicable-checks-section"
             >
               <div
-                class="rule-details-group"
+                class="ruleDetailsGroup"
               >
                 <div
                   class="rule-detail"
