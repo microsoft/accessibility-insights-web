@@ -43,5 +43,5 @@ export type ReportSectionFactory = {
     PassedChecksSection: ReactFCWithDisplayName<SectionProps>;
     NotApplicableChecksSection: ReactFCWithDisplayName<SectionProps>;
     FooterSection: ReactFCWithDisplayName;
-    FooterText: ReactFCWithDisplayName<SectionProps>;
+    FooterText: ReactFCWithDisplayName<Pick<SectionProps, 'environmentInfo'>>;
 };
