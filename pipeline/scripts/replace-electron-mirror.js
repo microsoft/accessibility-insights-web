@@ -6,7 +6,7 @@ const fs = require('fs');
 
 download(
     {
-        version: '7.1.1',
+        version: '7.0.1',
         cache: 'zips',
     },
     function(err, zipPath) {
