@@ -12,17 +12,20 @@ import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { LandmarkTestStep } from './test-steps';
 
-const description: JSX.Element = <span>The main landmark must not contain any blocks of content that repeat across pages.</span>;
+const description: JSX.Element = (
+    <span>The main landmark must not contain any blocks of content that repeat across pages.</span>
+);
 
 const howToTest: JSX.Element = (
     <div>
         <p>
-            The visual helper for this requirement highlights the page's <Markup.CodeTerm>main</Markup.CodeTerm> landmark.
+            The visual helper for this requirement highlights the page's{' '}
+            <Markup.CodeTerm>main</Markup.CodeTerm> landmark.
         </p>
         <ol>
             <li>
-                In the target page, examine the main landmark to verify that it does not contain any blocks of content that repeat across
-                pages (e.g., site-wide navigation links).
+                In the target page, examine the main landmark to verify that it does not contain any
+                blocks of content that repeat across pages (e.g., site-wide navigation links).
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>

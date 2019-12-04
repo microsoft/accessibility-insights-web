@@ -46,7 +46,7 @@ describe('TabContextFactoryTest', () => {
     it('createInterpreter', () => {
         const tabId = -1;
         const windowUtilsStub = Mock.ofType(WindowUtils);
-        const broadcastMock = Mock.ofInstance(message => {}, MockBehavior.Strict);
+        const broadcastMock = Mock.ofType<(message: Object) => Promise<void>>(null, MockBehavior.Strict);
         const telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler);
         const targetTabControllerMock = Mock.ofType(TargetTabController);
         const assessmentStore = Mock.ofType(AssessmentStore);
@@ -67,6 +67,7 @@ describe('TabContextFactoryTest', () => {
         storeNames.forEach(storeName => {
             broadcastMock
                 .setup(bm => bm(It.isObjectWith({ storeId: StoreNames[storeName] } as StoreUpdateMessage<any>)))
+                .returns(() => Promise.resolve())
                 .verifiable(Times.once());
         });
 
@@ -99,6 +100,7 @@ describe('TabContextFactoryTest', () => {
 
         broadcastMock
             .setup(bm => bm(It.isObjectWith({ storeId: StoreNames[StoreNames.VisualizationScanResultStore] } as StoreUpdateMessage<any>)))
+            .returns(() => Promise.resolve())
             .verifiable(Times.once());
 
         tabContext.interpreter.interpret({

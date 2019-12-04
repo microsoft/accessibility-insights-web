@@ -14,25 +14,34 @@ import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { visibleFfocusOrderTestStep } from './test-steps';
 
-const description: JSX.Element = <span>Components must provide a visible indication when they have the input focus.</span>;
+const description: JSX.Element = (
+    <span>Components must provide a visible indication when they have the input focus.</span>
+);
 
 const howToTest: JSX.Element = (
     <div>
-        <p>The visual helper for this requirement records elements in the target page that receive the input focus.</p>
+        <p>
+            The visual helper for this requirement records elements in the target page that receive
+            the input focus.
+        </p>
         <ol>
             <li>
-                Use the keyboard to navigate through all the interactive interface components in the target page.
+                Use the keyboard to navigate through all the interactive interface components in the
+                target page.
                 <ol>
                     <li>
-                        Use <Markup.Term>Tab</Markup.Term> and <Markup.Term>Shift+Tab</Markup.Term> to navigate between widgets both
-                        forwards and backwards.
+                        Use <Markup.Term>Tab</Markup.Term> and <Markup.Term>Shift+Tab</Markup.Term>{' '}
+                        to navigate between widgets both forwards and backwards.
                     </li>
-                    <li>Use the arrow keys to navigate between the focusable elements within a composite widget.</li>
+                    <li>
+                        Use the arrow keys to navigate between the focusable elements within a
+                        composite widget.
+                    </li>
                 </ol>
             </li>
             <li>
-                As you move focus to each component, verify that it provides a visible indication that it has received the focus. (In
-                addition to the circle drawn by {title}.)
+                As you move focus to each component, verify that it provides a visible indication
+                that it has received the focus. (In addition to the circle drawn by {title}.)
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>

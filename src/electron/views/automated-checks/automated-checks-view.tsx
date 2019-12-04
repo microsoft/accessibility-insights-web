@@ -21,7 +21,7 @@ import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
 import { ScreenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
 import * as React from 'react';
 
-import { automatedChecksPanelLayout, automatedChecksView } from './automated-checks-view.scss';
+import * as styles from './automated-checks-view.scss';
 import { CommandBar, CommandBarDeps } from './components/command-bar';
 import { HeaderSection } from './components/header-section';
 
@@ -72,9 +72,9 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
 
     private renderLayout(primaryContent: JSX.Element, optionalSidePanel?: JSX.Element): JSX.Element {
         return (
-            <div className={automatedChecksView}>
+            <div className={styles.automatedChecksView}>
                 <TitleBar deps={this.props.deps} windowStateStoreData={this.props.windowStateStoreData}></TitleBar>
-                <div className={automatedChecksPanelLayout}>
+                <div className={styles.automatedChecksPanelLayout}>
                     <div className={mainContentWrapper}>
                         <CommandBar
                             deps={this.props.deps}

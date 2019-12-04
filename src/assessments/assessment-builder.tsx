@@ -1,19 +1,21 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
-import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
-import * as React from 'react';
-
 import { AssessmentToggleActionPayload } from 'background/actions/action-payloads';
 import { createInitialAssessmentTestData } from 'background/create-initial-assessment-test-data';
-import { InstanceIdentifierGenerator, UniquelyIdentifiableInstances } from 'background/instance-identifier-generator';
+import {
+    InstanceIdentifierGenerator,
+    UniquelyIdentifiableInstances,
+} from 'background/instance-identifier-generator';
 import { RequirementComparer } from 'common/assessment/requirement-comparer';
 import { AssesssmentVisualizationConfiguration } from 'common/configs/assesssment-visualization-configuration';
 import { Messages } from 'common/messages';
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { AssessmentScanData, ScanData } from 'common/types/store-data/visualization-store-data';
-import { AssessmentInstanceRowData, AssessmentInstanceTable } from 'DetailsView/components/assessment-instance-table';
+import {
+    AssessmentInstanceRowData,
+    AssessmentInstanceTable,
+} from 'DetailsView/components/assessment-instance-table';
 import { AssessmentTestView } from 'DetailsView/components/assessment-test-view';
 import { RequirementLink } from 'DetailsView/components/requirement-link';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
@@ -24,7 +26,11 @@ import {
     VisualizationInstanceProcessorCallback,
 } from 'injected/visualization-instance-processor';
 import { DrawerProvider } from 'injected/visualization/drawer-provider';
+import { cloneDeep } from 'lodash';
+import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
+import * as React from 'react';
 import { DictionaryStringTo } from 'types/common-types';
+
 import { Assessment, AssistedAssessment, ManualAssessment } from './types/iassessment';
 import { ReportInstanceField } from './types/report-instance-field';
 import { Requirement } from './types/requirement';
@@ -33,7 +39,9 @@ export class AssessmentBuilder {
     private static applyDefaultReportFieldMap(requirement: Requirement): void {
         const { comment, snippet, path, manualSnippet, manualPath } = ReportInstanceField.common;
 
-        const defaults = requirement.isManual ? [comment, manualPath, manualSnippet] : [path, snippet];
+        const defaults = requirement.isManual
+            ? [comment, manualPath, manualSnippet]
+            : [path, snippet];
         const specified = requirement.reportInstanceFields || [];
 
         requirement.reportInstanceFields = [...defaults, ...specified];
@@ -53,11 +61,13 @@ export class AssessmentBuilder {
         }
 
         if (!requirement.renderRequirementDescription) {
-            requirement.renderRequirementDescription = AssessmentBuilder.renderRequirementDescription;
+            requirement.renderRequirementDescription =
+                AssessmentBuilder.renderRequirementDescription;
         }
 
         if (!requirement.getDefaultMessage) {
-            requirement.getDefaultMessage = defaultMessageGenerator => defaultMessageGenerator.getNoMatchingInstanceMessage;
+            requirement.getDefaultMessage = defaultMessageGenerator =>
+                defaultMessageGenerator.getNoMatchingInstanceMessage;
         }
     }
 
@@ -79,7 +89,10 @@ export class AssessmentBuilder {
         ];
     }
 
-    private static renderInstanceTableHeader(table: AssessmentInstanceTable, items: AssessmentInstanceRowData[]): JSX.Element {
+    private static renderInstanceTableHeader(
+        table: AssessmentInstanceTable,
+        items: AssessmentInstanceRowData[],
+    ): JSX.Element {
         return table.renderDefaultInstanceTableHeader(items);
     }
 
@@ -96,26 +109,36 @@ export class AssessmentBuilder {
     private static disableTest(scanData: ScanData, requirement: string): void {
         const scanAssessmentData = scanData as AssessmentScanData;
         scanAssessmentData.stepStatus[requirement] = false;
-        scanAssessmentData.enabled = Object.keys(scanAssessmentData.stepStatus).some(key => scanAssessmentData.stepStatus[key] === true);
+        scanAssessmentData.enabled = Object.keys(scanAssessmentData.stepStatus).some(
+            key => scanAssessmentData.stepStatus[key] === true,
+        );
     }
 
     private static getTestStatus(scanData: ScanData, requirement: string): boolean {
         const scanAssessmentData = scanData as AssessmentScanData;
-        return requirement in scanAssessmentData.stepStatus && scanAssessmentData.stepStatus[requirement];
+        return (
+            requirement in scanAssessmentData.stepStatus &&
+            scanAssessmentData.stepStatus[requirement]
+        );
     }
 
     public static Manual(assessment: ManualAssessment): Assessment {
         const { key, requirements } = assessment;
 
         assessment.requirementOrder = assessment.requirementOrder || RequirementComparer.byOrdinal;
-        assessment.executeAssessmentScanPolicy = assessment.executeAssessmentScanPolicy || AssessmentBuilder.nullScanPolicy;
-        assessment.initialDataCreator = assessment.initialDataCreator || createInitialAssessmentTestData;
+        assessment.executeAssessmentScanPolicy =
+            assessment.executeAssessmentScanPolicy || AssessmentBuilder.nullScanPolicy;
+        assessment.initialDataCreator =
+            assessment.initialDataCreator || createInitialAssessmentTestData;
 
         requirements.forEach(AssessmentBuilder.applyDefaultReportFieldMap);
         requirements.forEach(AssessmentBuilder.applyDefaultFunctions);
 
         const getAnalyzer = (provider: AnalyzerProvider, requirement: string) => {
-            const requirementConfig = AssessmentBuilder.getRequirementConfig(requirements, requirement);
+            const requirementConfig = AssessmentBuilder.getRequirementConfig(
+                requirements,
+                requirement,
+            );
             return provider.createBaseAnalyzer({
                 key: requirementConfig.key,
                 testType: assessment.visualizationType,
@@ -124,12 +147,21 @@ export class AssessmentBuilder {
         };
 
         const getIdentifier = (requirement: string) => {
-            const requirementConfig = AssessmentBuilder.getRequirementConfig(requirements, requirement);
+            const requirementConfig = AssessmentBuilder.getRequirementConfig(
+                requirements,
+                requirement,
+            );
             return requirementConfig.key;
         };
 
-        const getNotificationMessage = (selectorMap: DictionaryStringTo<any>, requirement?: string) => {
-            const requirementConfig = AssessmentBuilder.getRequirementConfig(requirements, requirement);
+        const getNotificationMessage = (
+            selectorMap: DictionaryStringTo<any>,
+            requirement?: string,
+        ) => {
+            const requirementConfig = AssessmentBuilder.getRequirementConfig(
+                requirements,
+                requirement,
+            );
             if (requirementConfig.getNotificationMessage == null) {
                 return null;
             }
@@ -166,13 +198,17 @@ export class AssessmentBuilder {
         const { key, requirements } = assessment;
 
         assessment.requirementOrder = assessment.requirementOrder || RequirementComparer.byOrdinal;
-        assessment.initialDataCreator = assessment.initialDataCreator || createInitialAssessmentTestData;
+        assessment.initialDataCreator =
+            assessment.initialDataCreator || createInitialAssessmentTestData;
 
         requirements.forEach(AssessmentBuilder.applyDefaultReportFieldMap);
         requirements.forEach(AssessmentBuilder.applyDefaultFunctions);
 
         const getAnalyzer = (provider: AnalyzerProvider, requirement: string) => {
-            const requirementConfig = AssessmentBuilder.getRequirementConfig(requirements, requirement);
+            const requirementConfig = AssessmentBuilder.getRequirementConfig(
+                requirements,
+                requirement,
+            );
             if (requirementConfig.getAnalyzer == null) {
                 return provider.createBaseAnalyzer({
                     key: requirementConfig.key,
@@ -184,27 +220,44 @@ export class AssessmentBuilder {
         };
 
         const getIdentifier = (requirement: string) => {
-            const requirementConfig = AssessmentBuilder.getRequirementConfig(requirements, requirement);
+            const requirementConfig = AssessmentBuilder.getRequirementConfig(
+                requirements,
+                requirement,
+            );
             return requirementConfig.key;
         };
 
-        const getDrawer = (provider: DrawerProvider, requirement: string, featureFlagStoreData?: FeatureFlagStoreData) => {
-            const requirementConfig = AssessmentBuilder.getRequirementConfig(requirements, requirement);
+        const getDrawer = (
+            provider: DrawerProvider,
+            requirement: string,
+            featureFlagStoreData?: FeatureFlagStoreData,
+        ) => {
+            const requirementConfig = AssessmentBuilder.getRequirementConfig(
+                requirements,
+                requirement,
+            );
             if (requirementConfig.getDrawer == null) {
                 return provider.createNullDrawer();
             }
             return requirementConfig.getDrawer(provider, featureFlagStoreData);
         };
 
-        const getNotificationMessage = (selectorMap: DictionaryStringTo<any>, requirement?: string) => {
-            const requirementConfig = AssessmentBuilder.getRequirementConfig(requirements, requirement);
+        const getNotificationMessage = (
+            selectorMap: DictionaryStringTo<any>,
+            requirement?: string,
+        ) => {
+            const requirementConfig = AssessmentBuilder.getRequirementConfig(
+                requirements,
+                requirement,
+            );
             if (requirementConfig.getNotificationMessage == null) {
                 return null;
             }
             return requirementConfig.getNotificationMessage(selectorMap);
         };
 
-        assessment.executeAssessmentScanPolicy = assessment.executeAssessmentScanPolicy || AssessmentBuilder.nullScanPolicy;
+        assessment.executeAssessmentScanPolicy =
+            assessment.executeAssessmentScanPolicy || AssessmentBuilder.nullScanPolicy;
 
         const visualizationConfiguration: AssesssmentVisualizationConfiguration = {
             getTestView: props => <AssessmentTestView {...props} />,
@@ -224,7 +277,9 @@ export class AssessmentBuilder {
             key: assessment.storeDataKey,
             getAnalyzer: getAnalyzer,
             getIdentifier: getIdentifier,
-            visualizationInstanceProcessor: AssessmentBuilder.getVisualizationInstanceProcessor(requirements),
+            visualizationInstanceProcessor: AssessmentBuilder.getVisualizationInstanceProcessor(
+                requirements,
+            ),
             getDrawer: getDrawer,
             getNotificationMessage: getNotificationMessage,
             getSwitchToTargetTabOnScan: AssessmentBuilder.getSwitchToTargetTabOnScan(requirements),
@@ -239,25 +294,41 @@ export class AssessmentBuilder {
         } as Assessment;
     }
 
-    private static getRequirementConfig(requirements: Requirement[], requirementKey: string): Requirement {
+    private static getRequirementConfig(
+        requirements: Requirement[],
+        requirementKey: string,
+    ): Requirement {
         return requirements.find(req => req.key === requirementKey);
     }
 
     private static getVisualizationInstanceProcessor(
         requirements: Requirement[],
     ): (requirement: string) => VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags> {
-        return (requirementKey: string): VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags> => {
-            const requirementConfig = AssessmentBuilder.getRequirementConfig(requirements, requirementKey);
-            if (requirementConfig == null || requirementConfig.visualizationInstanceProcessor == null) {
+        return (
+            requirementKey: string,
+        ): VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags> => {
+            const requirementConfig = AssessmentBuilder.getRequirementConfig(
+                requirements,
+                requirementKey,
+            );
+            if (
+                requirementConfig == null ||
+                requirementConfig.visualizationInstanceProcessor == null
+            ) {
                 return VisualizationInstanceProcessor.nullProcessor;
             }
             return requirementConfig.visualizationInstanceProcessor;
         };
     }
 
-    private static getSwitchToTargetTabOnScan(requirements: Requirement[]): (requirementKey: string) => boolean {
+    private static getSwitchToTargetTabOnScan(
+        requirements: Requirement[],
+    ): (requirementKey: string) => boolean {
         return (requirement: string): boolean => {
-            const requirementConfig = AssessmentBuilder.getRequirementConfig(requirements, requirement);
+            const requirementConfig = AssessmentBuilder.getRequirementConfig(
+                requirements,
+                requirement,
+            );
             if (requirementConfig == null || requirementConfig.switchToTargetTabOnScan == null) {
                 return false;
             }
@@ -269,7 +340,10 @@ export class AssessmentBuilder {
         requirements: Requirement[],
     ): (requirement: string) => (instance: UniquelyIdentifiableInstances) => string {
         return (requirementKey: string) => {
-            const requirementConfig = AssessmentBuilder.getRequirementConfig(requirements, requirementKey);
+            const requirementConfig = AssessmentBuilder.getRequirementConfig(
+                requirements,
+                requirementKey,
+            );
             if (requirementConfig == null || requirementConfig.generateInstanceIdentifier == null) {
                 return InstanceIdentifierGenerator.defaultHtmlSelectorIdentifier;
             }
@@ -280,8 +354,10 @@ export class AssessmentBuilder {
     private static buildRequirementReportDescription(requirements: Requirement[]): void {
         requirements.forEach(requirement => {
             requirement.renderReportDescription = () => {
-                const descriptionCopy = _.cloneDeep(requirement.description);
-                const children = AssessmentBuilder.removeLastDotFromDescription(descriptionCopy.props.children);
+                const descriptionCopy = cloneDeep(requirement.description);
+                const children = AssessmentBuilder.removeLastDotFromDescription(
+                    descriptionCopy.props.children,
+                );
                 descriptionCopy.props.children = children;
 
                 return descriptionCopy;
@@ -291,9 +367,13 @@ export class AssessmentBuilder {
 
     private static removeLastDotFromDescription(children: any): any {
         if (Array.isArray(children)) {
-            children[children.length - 1] = AssessmentBuilder.removeLastDotFromDescription(children[children.length - 1]);
+            children[children.length - 1] = AssessmentBuilder.removeLastDotFromDescription(
+                children[children.length - 1],
+            );
         } else if (children instanceof Object) {
-            children.props.children = AssessmentBuilder.removeLastDotFromDescription(children.props.children);
+            children.props.children = AssessmentBuilder.removeLastDotFromDescription(
+                children.props.children,
+            );
         } else if (children[children.length - 1] === '.') {
             children = children.slice(0, -1);
         }

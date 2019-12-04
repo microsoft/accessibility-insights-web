@@ -56,6 +56,8 @@ export class TabStore extends BaseStoreImpl<TabStoreData> {
         this.state.id = payload.id;
         this.state.title = payload.title;
         this.state.url = payload.url;
+        this.state.isClosed = false;
+        this.state.isChanged = false;
         this.emitChanged();
     };
 
@@ -65,6 +67,9 @@ export class TabStore extends BaseStoreImpl<TabStoreData> {
     };
 
     private onExistingTabUpdated = (payload: Tab): void => {
+        if (!this.originsMatch(payload.url, this.state.url)) {
+            this.state.isClosed = true;
+        }
         this.state.title = payload.title;
         this.state.url = payload.url;
         this.state.isChanged = true;
@@ -76,5 +81,15 @@ export class TabStore extends BaseStoreImpl<TabStoreData> {
             this.state.isChanged = false;
             this.emitChanged();
         }
+    };
+
+    private originsMatch = (url1: string, url2: string): boolean => {
+        if (url1 == null && url2 == null) {
+            return true;
+        }
+        if (url1 != null && url2 != null) {
+            return new URL(url1).origin === new URL(url2).origin;
+        }
+        return false;
     };
 }

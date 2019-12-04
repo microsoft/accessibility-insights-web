@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FixInstructionPanel, FixInstructionPanelProps } from 'common/components/fix-instruction-panel';
+import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { shallow } from 'enzyme';
+import { CheckType } from 'injected/components/details-dialog';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
-import { CheckType } from '../../../../../injected/components/details-dialog';
-import { FixInstructionPanel, FixInstructionPanelProps } from '../../../../../injected/components/fix-instruction-panel';
-import { FixInstructionProcessor } from '../../../../../injected/fix-instruction-processor';
 
 describe('FixInstructionPanelTests', () => {
     let fixInstructionProcessorMock: IMock<FixInstructionProcessor>;
@@ -16,7 +16,7 @@ describe('FixInstructionPanelTests', () => {
     });
 
     test('render all checks', () => {
-        const allchecks: FormattedCheckResult[] = [
+        const allChecks: FormattedCheckResult[] = [
             {
                 message: 'message',
                 id: 'id1',
@@ -31,7 +31,7 @@ describe('FixInstructionPanelTests', () => {
 
         const props: FixInstructionPanelProps = {
             checkType: CheckType.All,
-            checks: allchecks,
+            checks: allChecks,
             renderTitleElement: renderTitleAsDiv,
             deps: {
                 fixInstructionProcessor: fixInstructionProcessorMock.object,
@@ -44,7 +44,7 @@ describe('FixInstructionPanelTests', () => {
     });
 
     test('render instruction only one check', () => {
-        const allchecks: FormattedCheckResult[] = [
+        const allChecks: FormattedCheckResult[] = [
             {
                 message: 'message',
                 id: 'id1',
@@ -54,7 +54,7 @@ describe('FixInstructionPanelTests', () => {
 
         const props: FixInstructionPanelProps = {
             checkType: CheckType.All,
-            checks: allchecks,
+            checks: allChecks,
             renderTitleElement: renderTitleAsDiv,
             deps: {
                 fixInstructionProcessor: fixInstructionProcessorMock.object,
@@ -111,7 +111,7 @@ describe('FixInstructionPanelTests', () => {
         expect(wrapped.getElement()).toMatchSnapshot();
     });
 
-    function renderTitleAsDiv(titleText: string, className: string): JSX.Element {
-        return <div className={className}>{titleText}</div>;
+    function renderTitleAsDiv(titleText: string): JSX.Element {
+        return <div>{titleText}</div>;
     }
 });

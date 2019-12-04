@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
-
 import { HeadingsTestStep } from 'assessments/headings/test-steps/test-steps';
 import { LandmarkTestStep } from 'assessments/landmarks/test-steps/test-steps';
 import {
@@ -14,6 +12,7 @@ import { InjectionActions } from 'background/actions/injection-actions';
 import { TabActions } from 'background/actions/tab-actions';
 import { VisualizationActions } from 'background/actions/visualization-actions';
 import { VisualizationStore } from 'background/stores/visualization-store';
+import { cloneDeep } from 'lodash';
 import { AdHocTestkeys } from '../../../../../common/configs/adhoc-test-keys';
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { StoreNames } from '../../../../../common/stores/store-names';
@@ -179,7 +178,7 @@ describe('VisualizationStoreTest ', () => {
     test('onUpdateSelectedDetailsView when view is null', () => {
         const actionName = 'updateSelectedPivotChild';
         const initialState = new VisualizationStoreDataBuilder().with('selectedAdhocDetailsView', VisualizationType.Issues).build();
-        const expectedState = _.cloneDeep(initialState);
+        const expectedState = cloneDeep(initialState);
 
         const payload: UpdateSelectedDetailsViewPayload = {
             detailsViewType: null,

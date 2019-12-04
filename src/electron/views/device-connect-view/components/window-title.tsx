@@ -7,7 +7,7 @@ import { PlatformInfo } from 'electron/window-management/platform-info';
 import { isEmpty } from 'lodash';
 import * as React from 'react';
 
-import { actionableIconsContainer, headerText, macWindowTitle, titleContainer, windowTitle } from './window-title.scss';
+import * as styles from './window-title.scss';
 
 export interface WindowTitleDeps {
     platformInfo: PlatformInfo;
@@ -26,16 +26,16 @@ export const WindowTitle = NamedFC<WindowTitleProps>('WindowTitle', (props: Wind
         return null;
     }
 
-    const windowTitleClassNames = [windowTitle, props.className];
+    const windowTitleClassNames = [styles.windowTitle, props.className];
 
     if (props.deps.platformInfo.isMac()) {
-        windowTitleClassNames.push(macWindowTitle);
+        windowTitleClassNames.push(styles.macWindowTitle);
     }
     return (
         <header className={css(...windowTitleClassNames)}>
-            <div className={titleContainer}>
+            <div className={styles.titleContainer}>
                 {props.children}
-                <h1 className={headerText}>{props.title}</h1>
+                <h1 className={styles.headerText}>{props.title}</h1>
             </div>
             {getIconsContainer(props)}
         </header>
@@ -44,7 +44,7 @@ export const WindowTitle = NamedFC<WindowTitleProps>('WindowTitle', (props: Wind
 
 function getIconsContainer(props: WindowTitleProps): JSX.Element {
     if (!props.deps.platformInfo.isMac() && !isEmpty(props.actionableIcons)) {
-        return <div className={actionableIconsContainer}>{props.actionableIcons}</div>;
+        return <div className={styles.actionableIconsContainer}>{props.actionableIcons}</div>;
     }
 
     return null;

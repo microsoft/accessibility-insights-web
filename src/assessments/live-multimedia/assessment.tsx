@@ -15,9 +15,11 @@ const { guidance } = content.liveMultimedia;
 const gettingStartedText: JSX.Element = (
     <React.Fragment>
         <p>
-            Captions help people who are deaf or have a hearing loss watch live (real-time) presentations by providing an equivalent
-            alternative for the <Markup.Emphasis>audio</Markup.Emphasis> in multimedia content. Captions should convey the dialogue,
-            identify who is speaking, and provide other information conveyed through audio, such as music and meaningful sound effects.
+            Captions help people who are deaf or have a hearing loss watch live (real-time)
+            presentations by providing an equivalent alternative for the{' '}
+            <Markup.Emphasis>audio</Markup.Emphasis> in multimedia content. Captions should convey
+            the dialogue, identify who is speaking, and provide other information conveyed through
+            audio, such as music and meaningful sound effects.
         </p>
     </React.Fragment>
 );

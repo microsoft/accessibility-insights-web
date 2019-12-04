@@ -3,7 +3,7 @@
 import { BaseActionPayload } from 'background/actions/action-payloads';
 import { TelemetryClient } from 'background/telemetry/telemetry-client';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
-import * as _ from 'lodash';
+import { each } from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { TelemetryEventSource, TriggeredBy } from '../../../../../common/extension-telemetry-events';
 import { DictionaryStringTo } from '../../../../../types/common-types';
@@ -109,7 +109,7 @@ describe('TelemetryEventHandlerTest', () => {
         };
 
         if (customFields) {
-            _.each(customFields, (value, key) => {
+            each(customFields, (value, key) => {
                 telemetry[key] = JSON.stringify(value);
             });
         }

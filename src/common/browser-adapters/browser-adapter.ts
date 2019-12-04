@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ExtensionTypes, Permissions, Tabs } from 'webextension-polyfill-ts';
+import { ExtensionTypes, Notifications, Tabs } from 'webextension-polyfill-ts';
 
 export interface BrowserAdapter {
     getAllWindows(getInfo: chrome.windows.GetInfo, callback: (chromeWindows: chrome.windows.Window[]) => void): void;
@@ -16,14 +16,13 @@ export interface BrowserAdapter {
     closeTab(tabId: number): void;
     switchToTab(tabId: number): void;
     getTab(tabId: number, onResolve: (tab: chrome.tabs.Tab) => void, onReject?: () => void): void;
-    sendMessageToTab(tabId: number, message: any): void;
-    sendMessageToFrames(message: any): void;
-    sendMessageToAllFramesAndTabs(message: any): void;
-    requestPermissions(permissions: Permissions.Permissions): Promise<boolean>;
+    sendMessageToTab(tabId: number, message: any): Promise<void>;
+    sendMessageToFrames(message: any): Promise<void>;
+    sendMessageToAllFramesAndTabs(message: any): Promise<void>;
     executeScriptInTab(tabId: number, details: ExtensionTypes.InjectDetails): Promise<any[]>;
     insertCSSInTab(tabId: number, details: ExtensionTypes.InjectDetails): Promise<void>;
     getRunTimeId(): string;
-    createNotification(options: chrome.notifications.NotificationOptions): void;
+    createNotification(options: Notifications.CreateNotificationOptions): Promise<string>;
     getRuntimeLastError(): chrome.runtime.LastError;
     isAllowedFileSchemeAccess(callback: Function): void;
     addListenerToLocalStorage(callback: (changes: object) => void): void;

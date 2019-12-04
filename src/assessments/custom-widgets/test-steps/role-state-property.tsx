@@ -22,7 +22,10 @@ import { CustomWidgetsColumnRendererFactory } from '../custom-widgets-column-ren
 import { CustomWidgetsTestStep } from './test-steps';
 
 const roleStatePropertyDescription: JSX.Element = (
-    <span>A custom widget must support the ARIA roles, states, and properties specified by its design pattern.</span>
+    <span>
+        A custom widget must support the ARIA roles, states, and properties specified by its design
+        pattern.
+    </span>
 );
 
 const roleStatePropertyHowToTest: JSX.Element = (
@@ -31,25 +34,31 @@ const roleStatePropertyHowToTest: JSX.Element = (
         <TestAutomaticallyPassedNotice />
         <ol>
             <li>
-                In the <Markup.Term>Instances</Markup.Term> list below, use the link for the design pattern that best describes the widget's
-                function.
+                In the <Markup.Term>Instances</Markup.Term> list below, use the link for the design
+                pattern that best describes the widget's function.
             </li>
-            <li>Familiarize yourself with the "WAI-ARIA Roles, States, and Properties" section of the design pattern spec.</li>
+            <li>
+                Familiarize yourself with the "WAI-ARIA Roles, States, and Properties" section of
+                the design pattern spec.
+            </li>
             <li>
                 Inspect the widget's HTML using the{' '}
                 <NewTabLink href="https://developers.google.com/web/updates/2018/01/devtools">
                     Accessibility pane in the browser Developer Tools
                 </NewTabLink>{' '}
-                to verify that it supports all of the roles, states, and properties specified by its design pattern:
+                to verify that it supports all of the roles, states, and properties specified by its
+                design pattern:
                 <ul>
                     <li>
-                        For a composite widget, use the Accessibility Tree to verify the role hierarchy. (For example, verify that
-                        a menuitem exists for each option in a menubar.)
+                        For a composite widget, use the Accessibility Tree to verify the role
+                        hierarchy. (For example, verify that a menuitem exists for each option in
+                        a menubar.)
                     </li>
                     <li>
-                        View the widget's ARIA Attributes while you interact with it to verify that required properties update according to
-                        spec. (For example, when a tree node in a tree view is expanded, aria-expanded is "true" and when it isn't expanded,
-                        it is "false".)
+                        View the widget's ARIA Attributes while you interact with it to verify that
+                        required properties update according to spec. (For example, when a tree node
+                        in a tree view is expanded, aria-expanded is "true" and when it isn't
+                        expanded, it is "false".)
                     </li>
                 </ul>
             </li>
@@ -85,10 +94,15 @@ export const RoleStateProperty: Requirement = {
         },
     ],
     reportInstanceFields: [
-        ReportInstanceField.fromPropertyBagFunction<CustomWidgetPropertyBag>('Design pattern', 'designPattern', pb =>
-            getFlatDesignPatternStringFromRole(pb.role),
+        ReportInstanceField.fromPropertyBagFunction<CustomWidgetPropertyBag>(
+            'Design pattern',
+            'designPattern',
+            pb => getFlatDesignPatternStringFromRole(pb.role),
         ),
-        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>('Accessible name', 'text'),
+        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>(
+            'Accessible name',
+            'text',
+        ),
     ],
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(

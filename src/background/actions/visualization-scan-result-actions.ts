@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Action } from '../../common/flux/action';
+import { Action } from 'common/flux/action';
 import { ScanCompletedPayload } from '../../injected/analyzers/analyzer';
 import { AddTabbedElementPayload } from './action-payloads';
 

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Logger } from 'common/logging/logger';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { BaseTelemetryData, TelemetryEventSource } from '../../../../../common/extension-telemetry-events';
 import { Message } from '../../../../../common/message';
@@ -7,10 +8,11 @@ import { RemoteActionMessageDispatcher } from '../../../../../common/message-cre
 import { Messages } from '../../../../../common/messages';
 
 describe('RemoteActionMessageDispatcher', () => {
-    let postMessageMock: IMock<(message: Message) => void>;
+    let postMessageMock: IMock<(message: Message) => Promise<void>>;
 
     beforeEach(() => {
-        postMessageMock = Mock.ofInstance((message: Message) => {});
+        postMessageMock = Mock.ofType<(message: Message) => Promise<void>>();
+        postMessageMock.setup(m => m(It.isAny())).returns(() => Promise.resolve());
     });
 
     describe('dispatchMessage', () => {
@@ -32,6 +34,18 @@ describe('RemoteActionMessageDispatcher', () => {
             testObject.dispatchMessage(message);
 
             postMessageMock.verify(post => post(It.isValue(message)), Times.once());
+        });
+
+        it('propagates errors from postMessage to logger.error', () => {
+            const loggerMock = Mock.ofType<Logger>();
+            const expectedError = 'expected error';
+            postMessageMock.reset();
+            postMessageMock.setup(m => m(It.isAny())).returns(() => Promise.reject(expectedError));
+            const testObject = new RemoteActionMessageDispatcher(postMessageMock.object, null, loggerMock.object);
+
+            testObject.dispatchMessage(message);
+
+            loggerMock.verify(m => m.error(expectedError), Times.once());
         });
     });
 

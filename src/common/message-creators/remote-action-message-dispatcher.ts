@@ -1,18 +1,24 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { PayloadWithEventName } from 'background/actions/action-payloads';
+import { createDefaultLogger } from 'common/logging/default-logger';
+import { Logger } from 'common/logging/logger';
 import { TelemetryData } from '../extension-telemetry-events';
 import { InterpreterMessage, Message } from '../message';
 import { Messages } from '../messages';
 import { ActionMessageDispatcher } from './types/dispatcher';
 
 export class RemoteActionMessageDispatcher implements ActionMessageDispatcher {
-    constructor(private postMessageDelegate: (message: InterpreterMessage) => void, private tabId: number) {}
+    constructor(
+        private readonly postMessageDelegate: (message: InterpreterMessage) => Promise<void>,
+        private readonly tabId: number,
+        private readonly logger: Logger = createDefaultLogger(),
+    ) {}
 
     public dispatchMessage(message: Message): void {
         const interpreterMessage = this.decorateWithTabId(message);
 
-        this.postMessageDelegate(interpreterMessage);
+        this.postMessageDelegate(interpreterMessage).catch(this.logger.error);
     }
 
     public dispatchType(messageType: string): void {
