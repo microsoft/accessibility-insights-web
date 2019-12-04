@@ -34,7 +34,7 @@ describe('TabInfo', () => {
                     title: 'test title',
                     url: 'test url',
                     isTargetPageHidden: false,
-                    selectedPivot: DetailsViewPivotType.allTest,
+                    selectedPivot: DetailsViewPivotType.fastPass,
                     dropdownClickHandler: dropdownClickHandlerMock.object,
                 } as TabInfoProps;
             });

@@ -780,7 +780,7 @@ describe('VisualizationStoreTest ', () => {
     test('onExistingTabUpdated', () => {
         const actionName = 'existingTabUpdated';
         const visualizationType = VisualizationType.Headings;
-        const pivot = DetailsViewPivotType.allTest;
+        const pivot = DetailsViewPivotType.fastPass;
         const expectedState = new VisualizationStoreDataBuilder()
             .with('selectedAdhocDetailsView', visualizationType)
             .with('selectedDetailsViewPivot', pivot)
