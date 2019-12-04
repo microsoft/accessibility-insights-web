@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+const pkg = require('../../package.json');
 const download = require('electron-download');
 const unzipper = require('unzipper');
 const fs = require('fs');
 
 download(
     {
-        version: '7.0.1',
+        version: pkg.devDependencies.electron,
         cache: 'zips',
     },
     function(err, zipPath) {
