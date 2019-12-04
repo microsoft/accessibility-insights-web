@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { SETTINGS_PANEL_CLOSE, SETTINGS_PANEL_OPEN } from 'common/extension-telemetry-events';
+import { createDefaultLogger } from 'common/logging/default-logger';
+import { Logger } from 'common/logging/logger';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
 import { DetailsViewRightContentPanelType } from 'DetailsView/components/left-nav/details-view-right-content-panel-type';
-
 import { DetailsViewController } from '../details-view-controller';
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
@@ -17,6 +18,7 @@ export class DetailsViewActionCreator {
         private readonly detailsViewActions: DetailsViewActions,
         private readonly detailsViewController: DetailsViewController,
         private readonly telemetryEventHandler: TelemetryEventHandler,
+        private readonly logger: Logger = createDefaultLogger(),
     ) {}
 
     public registerCallback(): void {
@@ -38,9 +40,12 @@ export class DetailsViewActionCreator {
         );
     }
 
-    private onOpenSettingsPanel = (payload: BaseActionPayload, tabId: number): void => {
+    private onOpenSettingsPanel = async (
+        payload: BaseActionPayload,
+        tabId: number,
+    ): Promise<void> => {
         this.detailsViewActions.openSettingsPanel.invoke(null);
-        this.detailsViewController.showDetailsView(tabId);
+        await this.detailsViewController.showDetailsViewP(tabId).catch(this.logger.error);
         this.telemetryEventHandler.publishTelemetry(SETTINGS_PANEL_OPEN, payload);
     };
 

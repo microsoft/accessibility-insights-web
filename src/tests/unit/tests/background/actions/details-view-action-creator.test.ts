@@ -12,6 +12,10 @@ import { DetailsViewRightContentPanelType } from 'DetailsView/components/left-na
 import { IMock, Mock, Times } from 'typemoq';
 
 import { createActionMock, createInterpreterMock } from '../global-action-creators/action-creator-test-helpers';
+import { tick } from 'tests/unit/common/tick';
+import { Action } from 'common/flux/action';
+import { Interpreter } from 'background/interpreter';
+import { Logger } from 'common/logging/logger';
 
 describe('DetailsViewActionCreatorTest', () => {
     let detailsViewControllerMock: IMock<DetailsViewController>;
@@ -29,27 +33,69 @@ describe('DetailsViewActionCreatorTest', () => {
         telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();
     });
 
-    it('handles SettingsPanel.OpenPanel message', () => {
+    describe('handles SettingsPanel.OpenPanel message', () => {
         const tabId = -1;
 
-        const openSettingsPanelMock = createActionMock<void>(null);
-        const actionsMock = createActionsMock('openSettingsPanel', openSettingsPanelMock.object);
-        const interpreterMock = createInterpreterMock(Messages.SettingsPanel.OpenPanel, defaultBasePayload, tabId);
+        let openSettingsPanelMock: IMock<Action<void>>;
+        let actionsMock: IMock<DetailsViewActions>;
+        let interpreterMock: IMock<Interpreter>;
 
-        const testObject = new DetailsViewActionCreator(
-            interpreterMock.object,
-            actionsMock.object,
-            detailsViewControllerMock.object,
-            telemetryEventHandlerMock.object,
-        );
+        beforeEach(() => {
+            openSettingsPanelMock = createActionMock<void>(null);
+            actionsMock = createActionsMock('openSettingsPanel', openSettingsPanelMock.object);
+            interpreterMock = createInterpreterMock(Messages.SettingsPanel.OpenPanel, defaultBasePayload, tabId);
+        });
 
-        testObject.registerCallback();
+        it('when showDetailsView fails', async () => {
+            const errorMessage = 'error on showDetailsView';
 
-        openSettingsPanelMock.verifyAll();
-        detailsViewControllerMock.verify(controller => controller.showDetailsView(tabId), Times.once());
-        telemetryEventHandlerMock.verify(handler => handler.publishTelemetry(SETTINGS_PANEL_OPEN, defaultBasePayload), Times.once());
+            detailsViewControllerMock
+                .setup(controller => controller.showDetailsViewP(tabId))
+                .returns(() => Promise.reject(errorMessage))
+                .verifiable(Times.once());
+
+            const loggerMock = Mock.ofType<Logger>();
+
+            const testObject = new DetailsViewActionCreator(
+                interpreterMock.object,
+                actionsMock.object,
+                detailsViewControllerMock.object,
+                telemetryEventHandlerMock.object,
+                loggerMock.object,
+            );
+
+            testObject.registerCallback();
+
+            await tick();
+
+            openSettingsPanelMock.verifyAll();
+            detailsViewControllerMock.verifyAll();
+            telemetryEventHandlerMock.verify(handler => handler.publishTelemetry(SETTINGS_PANEL_OPEN, defaultBasePayload), Times.once());
+            loggerMock.verify(logger => logger.error(errorMessage), Times.once());
+        });
+
+        it('when showDetailsView succeed', async () => {
+            detailsViewControllerMock
+                .setup(controller => controller.showDetailsViewP(tabId))
+                .returns(() => Promise.resolve())
+                .verifiable(Times.once());
+
+            const testObject = new DetailsViewActionCreator(
+                interpreterMock.object,
+                actionsMock.object,
+                detailsViewControllerMock.object,
+                telemetryEventHandlerMock.object,
+            );
+
+            testObject.registerCallback();
+
+            await tick();
+
+            openSettingsPanelMock.verifyAll();
+            detailsViewControllerMock.verifyAll();
+            telemetryEventHandlerMock.verify(handler => handler.publishTelemetry(SETTINGS_PANEL_OPEN, defaultBasePayload), Times.once());
+        });
     });
-
     it('handles SettingsPanel.ClosePanel message', () => {
         const closeSettingsPanelMock = createActionMock<void>(null);
         const actionsMock = createActionsMock('closeSettingsPanel', closeSettingsPanelMock.object);
