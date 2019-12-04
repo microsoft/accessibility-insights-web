@@ -76,6 +76,7 @@ describe('ReportBody', () => {
         const PassedChecks = createBasicComponent('passed-checks-section');
         const NotApplicableChecks = createBasicComponent('not-applicable-checks-section');
         const Footer = createBasicComponent('footer-section');
+        const FooterText = createBasicComponent('footer-text');
 
         const sectionFactoryStub: ReportSectionFactory = {
             BodySection: BodySection,
@@ -89,6 +90,7 @@ describe('ReportBody', () => {
             PassedChecksSection: PassedChecks,
             NotApplicableChecksSection: NotApplicableChecks,
             FooterSection: Footer,
+            FooterText,
         };
 
         return sectionFactoryStub;

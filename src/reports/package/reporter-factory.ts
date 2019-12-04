@@ -7,7 +7,7 @@ import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results
 import { AutomatedChecksReportSectionFactory } from 'reports/components/report-sections/automated-checks-report-section-factory';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
 import { AxeResultsReport, AxeResultsReportDeps } from 'reports/package/axe-results-report';
-import { PackageReportFooter } from 'reports/package/package-report-footer-text';
+import { FooterTextForService } from 'reports/package/footer-text-for-service';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { CheckMessageTransformer } from 'scanner/check-message-transformer';
@@ -42,11 +42,11 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
     const reactStaticRenderer = new ReactStaticRenderer();
     const fixInstructionProcessor = new FixInstructionProcessor();
 
-    const FooterSection = PackageReportFooter(serviceName, AutomatedChecksReportSectionFactory.FooterSection);
+    const FooterText = FooterTextForService(serviceName);
 
     const sectionFactory = {
-         ...AutomatedChecksReportSectionFactory,
-          FooterSection,
+        ...AutomatedChecksReportSectionFactory,
+        FooterText,
     };
 
     const reportHtmlGenerator = new ReportHtmlGenerator(
