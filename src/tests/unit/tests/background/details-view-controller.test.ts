@@ -3,6 +3,7 @@
 import { DetailsViewController } from 'background/details-view-controller';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { IMock, It, Mock, Times } from 'typemoq';
+import { Tabs } from 'webextension-polyfill-ts';
 
 describe('DetailsViewControllerTest', () => {
     let mockBrowserAdapter: IMock<BrowserAdapter>;
@@ -30,6 +31,53 @@ describe('DetailsViewControllerTest', () => {
         testSubject = new DetailsViewController(mockBrowserAdapter.object);
     });
 
+    describe('showDetailsViewP', () => {
+        it('creates a details view the first time', async () => {
+            const targetTabId = 12;
+            const detailsViewTabId = 10;
+
+            setupCreateDetailsViewP(targetTabId, detailsViewTabId).verifiable(Times.once());
+
+            await testSubject.showDetailsViewP(targetTabId);
+
+            mockBrowserAdapter.verifyAll();
+        });
+
+        it('switch to existing tab the second time', async () => {
+            const targetTabId = 5;
+            const detailsViewTabId = 10;
+
+            setupCreateDetailsViewP(targetTabId, detailsViewTabId).verifiable(Times.once());
+
+            await testSubject.showDetailsViewP(targetTabId);
+
+            mockBrowserAdapter.reset();
+
+            setupCreateDetailsViewPForAnyUrl(Times.never());
+
+            mockBrowserAdapter.setup(adapter => adapter.switchToTab(detailsViewTabId)).verifiable(Times.once());
+
+            // call show details second time
+            await testSubject.showDetailsViewP(targetTabId);
+
+            mockBrowserAdapter.verifyAll();
+        });
+
+        it('propagates error from failing browser adapter call', async () => {
+            const targetTabId = 5;
+            const errorMessage = 'error creating new window (from browser adapter)';
+
+            mockBrowserAdapter
+                .setup(adapter => adapter.createTabInNewWindowP('DetailsView/detailsView.html?tabId=' + targetTabId))
+                .returns(() => Promise.reject(errorMessage))
+                .verifiable(Times.once());
+
+            await expect(testSubject.showDetailsViewP(targetTabId)).rejects.toEqual(errorMessage);
+
+            mockBrowserAdapter.verifyAll();
+        });
+    });
+
     test('showDetailsView first time', () => {
         const targetTabId = 12;
         const detailsViewTabId = 10;
@@ -50,18 +98,15 @@ describe('DetailsViewControllerTest', () => {
     test('showDetailsView second time', () => {
         const targetTabId = 5;
         const detailsViewTabId = 10;
-        let createTabCallback: (tab: chrome.tabs.Tab) => void;
 
         setupCreateDetailsView(targetTabId).callback((url, func) => {
-            createTabCallback = func;
+            func({
+                id: detailsViewTabId,
+            } as chrome.tabs.Tab);
         });
 
         // call show details once
         testSubject.showDetailsView(targetTabId);
-
-        createTabCallback({
-            id: detailsViewTabId,
-        } as chrome.tabs.Tab);
 
         mockBrowserAdapter.reset();
 
@@ -419,10 +464,23 @@ describe('DetailsViewControllerTest', () => {
         mockBrowserAdapter.verifyAll();
     });
 
+    const setupCreateDetailsViewP = (targetTabId: number, resultingDetailsViewTabId: number) => {
+        return mockBrowserAdapter
+            .setup(adapter => adapter.createTabInNewWindowP('DetailsView/detailsView.html?tabId=' + targetTabId))
+            .returns(() => Promise.resolve({ id: resultingDetailsViewTabId } as Tabs.Tab));
+    };
+
     const setupCreateDetailsView = (targetTabId: number) => {
         return mockBrowserAdapter.setup(adapter =>
             adapter.createTabInNewWindow('DetailsView/detailsView.html?tabId=' + targetTabId, It.isAny()),
         );
+    };
+
+    const setupCreateDetailsViewPForAnyUrl = (times: Times) => {
+        mockBrowserAdapter
+            .setup(adapter => adapter.createTabInNewWindowP(It.isAny()))
+            .returns(() => Promise.resolve({ id: -1 } as Tabs.Tab))
+            .verifiable(times);
     };
 
     const setupCreateDetailsViewForAnyUrl = (times: Times) => {

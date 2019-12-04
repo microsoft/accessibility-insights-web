@@ -34,6 +34,21 @@ export class DetailsViewController {
         );
     }
 
+    public showDetailsViewP(targetTabId: number): Promise<void> {
+        const detailsViewTabId = this.tabIdToDetailsViewMap[targetTabId];
+
+        if (detailsViewTabId != null) {
+            this.browserAdapter.switchToTab(detailsViewTabId);
+            return;
+        }
+
+        return this.browserAdapter
+            .createTabInNewWindowP(this.getDetailsUrl(targetTabId))
+            .then(tab => {
+                this.tabIdToDetailsViewMap[targetTabId] = tab.id;
+            });
+    }
+
     private onUpdateTab = (
         tabId: number,
         changeInfo: chrome.tabs.TabChangeInfo,
