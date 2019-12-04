@@ -9,8 +9,8 @@ import * as path from 'path';
 let mainWindow: BrowserWindow;
 const platformInfo = new PlatformInfo(process);
 
-const electronAutoUpdateCheck = new AutoUpdaterClient(autoUpdater);
 let recurringUpdateCheck;
+const electronAutoUpdateCheck = new AutoUpdaterClient(autoUpdater);
 
 const createWindow = () => {
     const os = platformInfo.getOs();
@@ -41,8 +41,12 @@ const createWindow = () => {
         enableDevMode(mainWindow);
     });
 
-    checkForUpdates()
-        .then(() => console.log('checked for updates'))
+    electronAutoUpdateCheck
+        .check()
+        .then(() => {
+            console.log('checked for updates');
+            setupRecurringUpdateCheck();
+        })
         .catch(console.log);
 };
 
@@ -54,15 +58,10 @@ const enableDevMode = (window: BrowserWindow) => {
     }
 };
 
-const setupRecurringUpdateCheck = async () => {
+const setupRecurringUpdateCheck = () => {
     recurringUpdateCheck = setInterval(async () => {
-        await checkForUpdates();
+        await electronAutoUpdateCheck.check();
     }, 60 * 60 * 1000);
-};
-
-const checkForUpdates: () => Promise<void> = async () => {
-    await electronAutoUpdateCheck.check();
-    await setupRecurringUpdateCheck();
 };
 
 app.on('ready', createWindow);
