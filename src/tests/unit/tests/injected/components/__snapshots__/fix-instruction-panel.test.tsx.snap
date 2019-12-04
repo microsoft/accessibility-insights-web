@@ -2,9 +2,7 @@
 
 exports[`FixInstructionPanelTests render all checks 1`] = `
 <div>
-  <div
-    className={null}
-  >
+  <div>
     Fix ALL of the following:
   </div>
   <ul
@@ -26,9 +24,7 @@ exports[`FixInstructionPanelTests render all checks 1`] = `
 
 exports[`FixInstructionPanelTests render instruction only one check 1`] = `
 <div>
-  <div
-    className={null}
-  >
+  <div>
     Fix the following:
   </div>
   <ul
@@ -45,9 +41,7 @@ exports[`FixInstructionPanelTests render instruction only one check 1`] = `
 
 exports[`FixInstructionPanelTests render none checks 1`] = `
 <div>
-  <div
-    className={null}
-  >
+  <div>
     Fix ALL of the following:
   </div>
   <ul

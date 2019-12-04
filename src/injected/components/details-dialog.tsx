@@ -165,8 +165,8 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         return <IssueDetailsNavigationControls {...navigationControlsProps} />;
     }
 
-    private renderSectionTitle(sectionTitle: string, className?: string): JSX.Element {
-        return <h3 className={css('insights-dialog-section-title', className)}>{sectionTitle}</h3>;
+    private renderSectionTitle(sectionTitle: string): JSX.Element {
+        return <h3 className={css('insights-dialog-section-title')}>{sectionTitle}</h3>;
     }
 
     private renderRuleName(rule: DecoratedAxeNodeResult): JSX.Element {

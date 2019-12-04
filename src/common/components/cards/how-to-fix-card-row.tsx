@@ -46,8 +46,8 @@ export const HowToFixWebCardRow = NamedFC<HowToFixWebCardRowProps>('HowToFixWebC
         return { message: s };
     };
 
-    const renderFixInstructionsTitleElement = (titleText: string, className: string) => {
-        return <div className={className}>{titleText}</div>;
+    const renderFixInstructionsTitleElement = (titleText: string) => {
+        return <div>{titleText}</div>;
     };
 
     return <SimpleCardRow label="How to fix" content={renderFixInstructionsContent()} rowKey={`how-to-fix-row-${props.index}`} />;

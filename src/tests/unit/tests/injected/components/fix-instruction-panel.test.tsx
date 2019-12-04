@@ -111,7 +111,7 @@ describe('FixInstructionPanelTests', () => {
         expect(wrapped.getElement()).toMatchSnapshot();
     });
 
-    function renderTitleAsDiv(titleText: string, className: string): JSX.Element {
-        return <div className={className}>{titleText}</div>;
+    function renderTitleAsDiv(titleText: string): JSX.Element {
+        return <div>{titleText}</div>;
     }
 });

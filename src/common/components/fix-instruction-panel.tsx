@@ -15,7 +15,7 @@ export interface FixInstructionPanelProps {
     deps: FixInstructionPanelDeps;
     checkType: CheckType;
     checks: { message: string }[];
-    renderTitleElement: (titleText: string, className: string) => JSX.Element;
+    renderTitleElement: (titleText: string) => JSX.Element;
 }
 
 export const FixInstructionPanel = NamedFC<FixInstructionPanelProps>('FixInstructionPanel', props => {
@@ -48,7 +48,7 @@ export const FixInstructionPanel = NamedFC<FixInstructionPanelProps>('FixInstruc
 
     return (
         <div>
-            {props.renderTitleElement(title, null)}
+            {props.renderTitleElement(title)}
             <ul className={styles.insightsFixInstructionList}>{renderInstructions(props.checkType)}</ul>
         </div>
     );

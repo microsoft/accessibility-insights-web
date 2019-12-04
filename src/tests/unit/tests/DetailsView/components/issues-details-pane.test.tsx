@@ -51,7 +51,7 @@ describe('IssuesDetailsPaneTest', () => {
             .first()
             .prop('renderTitleElement');
 
-        const titleElement = renderTitleElement('test title', 'test-class-name');
+        const titleElement = renderTitleElement('test title');
         expect(titleElement).toMatchSnapshot();
     });
 

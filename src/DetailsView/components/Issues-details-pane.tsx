@@ -84,8 +84,8 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
         );
     }
 
-    private renderFixInstructionsTitleElement(titleText: string, className: string): JSX.Element {
-        return <div className={className}>{titleText}</div>;
+    private renderFixInstructionsTitleElement(titleText: string): JSX.Element {
+        return <div>{titleText}</div>;
     }
 
     private renderSingleIssue(result: DecoratedAxeNodeResult): JSX.Element {

@@ -79,9 +79,7 @@ exports[`IssuesDetailsPaneTest render with single selection, test copy to clipbo
 `;
 
 exports[`IssuesDetailsPaneTest renderTitleElement passed to embedded FixInstructionPanels should match snapshot 1`] = `
-<div
-  className="test-class-name"
->
+<div>
   test title
 </div>
 `;
