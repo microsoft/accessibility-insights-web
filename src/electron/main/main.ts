@@ -13,7 +13,6 @@ const electronAutoUpdateCheck = new AutoUpdaterClient(autoUpdater);
 let recurringUpdateCheck;
 
 const createWindow = () => {
-    recurringUpdateCheck = setupRecurringUpdateCheck();
     const os = platformInfo.getOs();
     mainWindow = new BrowserWindow({
         show: false,
@@ -41,6 +40,10 @@ const createWindow = () => {
         mainWindow.show();
         enableDevMode(mainWindow);
     });
+
+    checkForUpdates()
+        .then(() => console.log('checked for updates'))
+        .catch(console.log);
 };
 
 const enableDevMode = (window: BrowserWindow) => {
@@ -51,10 +54,15 @@ const enableDevMode = (window: BrowserWindow) => {
     }
 };
 
-const setupRecurringUpdateCheck = () => {
-    return setInterval(async () => {
-        await electronAutoUpdateCheck.check();
+const setupRecurringUpdateCheck = async () => {
+    recurringUpdateCheck = setInterval(async () => {
+        await checkForUpdates();
     }, 60 * 60 * 1000);
+};
+
+const checkForUpdates: () => Promise<void> = async () => {
+    await electronAutoUpdateCheck.check();
+    await setupRecurringUpdateCheck();
 };
 
 app.on('ready', createWindow);
