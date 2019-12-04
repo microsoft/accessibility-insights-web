@@ -729,13 +729,11 @@ exports[`report package integration with issues 1`] = `
                                   class="howToFixContent"
                                 >
                                   <div>
-                                    <div
-                                      class="insights-fix-instruction-title"
-                                    >
+                                    <div>
                                       Fix ONE of the following:
                                     </div>
                                     <ul
-                                      class="insights-fix-instruction-list"
+                                      class="insightsFixInstructionList"
                                     >
                                       <li>
                                         No valid skip link found
@@ -931,13 +929,11 @@ exports[`report package integration with issues 1`] = `
                                   class="howToFixContent"
                                 >
                                   <div>
-                                    <div
-                                      class="insights-fix-instruction-title"
-                                    >
+                                    <div>
                                       Fix the following:
                                     </div>
                                     <ul
-                                      class="insights-fix-instruction-list"
+                                      class="insightsFixInstructionList"
                                     >
                                       <li>
                                         <span
@@ -947,14 +943,14 @@ exports[`report package integration with issues 1`] = `
                                             Element has insufficient color contrast of 2.52 (foreground color: 
                                           </span>
                                           <span
-                                            class="fix-instruction-color-box"
+                                            class="fixInstructionColorBox"
                                             style="background-color:#8a94a8"
                                           />
                                           <span>
                                             #8a94a8, background color: 
                                           </span>
                                           <span
-                                            class="fix-instruction-color-box"
+                                            class="fixInstructionColorBox"
                                             style="background-color:#e7ecd8"
                                           />
                                           <span>
@@ -962,7 +958,7 @@ exports[`report package integration with issues 1`] = `
                                           </span>
                                         </span>
                                         <span
-                                          class="screen-reader-only"
+                                          class="screenReaderOnly"
                                         >
                                           Element has insufficient color contrast of 2.52 (foreground color: #8a94a8, background color: #e7ecd8, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1
                                         </span>
@@ -1036,13 +1032,11 @@ exports[`report package integration with issues 1`] = `
                                   class="howToFixContent"
                                 >
                                   <div>
-                                    <div
-                                      class="insights-fix-instruction-title"
-                                    >
+                                    <div>
                                       Fix the following:
                                     </div>
                                     <ul
-                                      class="insights-fix-instruction-list"
+                                      class="insightsFixInstructionList"
                                     >
                                       <li>
                                         <span
@@ -1052,14 +1046,14 @@ exports[`report package integration with issues 1`] = `
                                             Element has insufficient color contrast of 2.52 (foreground color: 
                                           </span>
                                           <span
-                                            class="fix-instruction-color-box"
+                                            class="fixInstructionColorBox"
                                             style="background-color:#8a94a8"
                                           />
                                           <span>
                                             #8a94a8, background color: 
                                           </span>
                                           <span
-                                            class="fix-instruction-color-box"
+                                            class="fixInstructionColorBox"
                                             style="background-color:#e7ecd8"
                                           />
                                           <span>
@@ -1067,7 +1061,7 @@ exports[`report package integration with issues 1`] = `
                                           </span>
                                         </span>
                                         <span
-                                          class="screen-reader-only"
+                                          class="screenReaderOnly"
                                         >
                                           Element has insufficient color contrast of 2.52 (foreground color: #8a94a8, background color: #e7ecd8, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1
                                         </span>
@@ -1141,13 +1135,11 @@ exports[`report package integration with issues 1`] = `
                                   class="howToFixContent"
                                 >
                                   <div>
-                                    <div
-                                      class="insights-fix-instruction-title"
-                                    >
+                                    <div>
                                       Fix the following:
                                     </div>
                                     <ul
-                                      class="insights-fix-instruction-list"
+                                      class="insightsFixInstructionList"
                                     >
                                       <li>
                                         <span
@@ -1157,14 +1149,14 @@ exports[`report package integration with issues 1`] = `
                                             Element has insufficient color contrast of 2.52 (foreground color: 
                                           </span>
                                           <span
-                                            class="fix-instruction-color-box"
+                                            class="fixInstructionColorBox"
                                             style="background-color:#8a94a8"
                                           />
                                           <span>
                                             #8a94a8, background color: 
                                           </span>
                                           <span
-                                            class="fix-instruction-color-box"
+                                            class="fixInstructionColorBox"
                                             style="background-color:#e7ecd8"
                                           />
                                           <span>
@@ -1172,7 +1164,7 @@ exports[`report package integration with issues 1`] = `
                                           </span>
                                         </span>
                                         <span
-                                          class="screen-reader-only"
+                                          class="screenReaderOnly"
                                         >
                                           Element has insufficient color contrast of 2.52 (foreground color: #8a94a8, background color: #e7ecd8, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1
                                         </span>
@@ -1246,13 +1238,11 @@ exports[`report package integration with issues 1`] = `
                                   class="howToFixContent"
                                 >
                                   <div>
-                                    <div
-                                      class="insights-fix-instruction-title"
-                                    >
+                                    <div>
                                       Fix the following:
                                     </div>
                                     <ul
-                                      class="insights-fix-instruction-list"
+                                      class="insightsFixInstructionList"
                                     >
                                       <li>
                                         <span
@@ -1262,14 +1252,14 @@ exports[`report package integration with issues 1`] = `
                                             Element has insufficient color contrast of 2.52 (foreground color: 
                                           </span>
                                           <span
-                                            class="fix-instruction-color-box"
+                                            class="fixInstructionColorBox"
                                             style="background-color:#8a94a8"
                                           />
                                           <span>
                                             #8a94a8, background color: 
                                           </span>
                                           <span
-                                            class="fix-instruction-color-box"
+                                            class="fixInstructionColorBox"
                                             style="background-color:#e7ecd8"
                                           />
                                           <span>
@@ -1277,7 +1267,7 @@ exports[`report package integration with issues 1`] = `
                                           </span>
                                         </span>
                                         <span
-                                          class="screen-reader-only"
+                                          class="screenReaderOnly"
                                         >
                                           Element has insufficient color contrast of 2.52 (foreground color: #8a94a8, background color: #e7ecd8, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1
                                         </span>
@@ -1467,13 +1457,11 @@ exports[`report package integration with issues 1`] = `
                                   class="howToFixContent"
                                 >
                                   <div>
-                                    <div
-                                      class="insights-fix-instruction-title"
-                                    >
+                                    <div>
                                       Fix the following:
                                     </div>
                                     <ul
-                                      class="insights-fix-instruction-list"
+                                      class="insightsFixInstructionList"
                                     >
                                       <li>
                                         The &lt;html&gt; element does not have a lang attribute
@@ -1663,13 +1651,11 @@ exports[`report package integration with issues 1`] = `
                                   class="howToFixContent"
                                 >
                                   <div>
-                                    <div
-                                      class="insights-fix-instruction-title"
-                                    >
+                                    <div>
                                       Fix ONE of the following:
                                     </div>
                                     <ul
-                                      class="insights-fix-instruction-list"
+                                      class="insightsFixInstructionList"
                                     >
                                       <li>
                                         Element does not have an alt attribute
@@ -1758,13 +1744,11 @@ exports[`report package integration with issues 1`] = `
                                   class="howToFixContent"
                                 >
                                   <div>
-                                    <div
-                                      class="insights-fix-instruction-title"
-                                    >
+                                    <div>
                                       Fix ONE of the following:
                                     </div>
                                     <ul
-                                      class="insights-fix-instruction-list"
+                                      class="insightsFixInstructionList"
                                     >
                                       <li>
                                         Element does not have an alt attribute
@@ -1853,13 +1837,11 @@ exports[`report package integration with issues 1`] = `
                                   class="howToFixContent"
                                 >
                                   <div>
-                                    <div
-                                      class="insights-fix-instruction-title"
-                                    >
+                                    <div>
                                       Fix ONE of the following:
                                     </div>
                                     <ul
-                                      class="insights-fix-instruction-list"
+                                      class="insightsFixInstructionList"
                                     >
                                       <li>
                                         Element does not have an alt attribute
@@ -1948,13 +1930,11 @@ exports[`report package integration with issues 1`] = `
                                   class="howToFixContent"
                                 >
                                   <div>
-                                    <div
-                                      class="insights-fix-instruction-title"
-                                    >
+                                    <div>
                                       Fix ONE of the following:
                                     </div>
                                     <ul
-                                      class="insights-fix-instruction-list"
+                                      class="insightsFixInstructionList"
                                     >
                                       <li>
                                         Element does not have an alt attribute
@@ -2159,13 +2139,11 @@ exports[`report package integration with issues 1`] = `
                                   class="howToFixContent"
                                 >
                                   <div>
-                                    <div
-                                      class="insights-fix-instruction-title"
-                                    >
+                                    <div>
                                       Fix ONE of the following:
                                     </div>
                                     <ul
-                                      class="insights-fix-instruction-list"
+                                      class="insightsFixInstructionList"
                                     >
                                       <li>
                                         aria-label attribute does not exist or is empty
@@ -2251,13 +2229,11 @@ exports[`report package integration with issues 1`] = `
                                   class="howToFixContent"
                                 >
                                   <div>
-                                    <div
-                                      class="insights-fix-instruction-title"
-                                    >
+                                    <div>
                                       Fix ONE of the following:
                                     </div>
                                     <ul
-                                      class="insights-fix-instruction-list"
+                                      class="insightsFixInstructionList"
                                     >
                                       <li>
                                         aria-label attribute does not exist or is empty
@@ -2343,13 +2319,11 @@ exports[`report package integration with issues 1`] = `
                                   class="howToFixContent"
                                 >
                                   <div>
-                                    <div
-                                      class="insights-fix-instruction-title"
-                                    >
+                                    <div>
                                       Fix ONE of the following:
                                     </div>
                                     <ul
-                                      class="insights-fix-instruction-list"
+                                      class="insightsFixInstructionList"
                                     >
                                       <li>
                                         aria-label attribute does not exist or is empty
@@ -2435,13 +2409,11 @@ exports[`report package integration with issues 1`] = `
                                   class="howToFixContent"
                                 >
                                   <div>
-                                    <div
-                                      class="insights-fix-instruction-title"
-                                    >
+                                    <div>
                                       Fix ONE of the following:
                                     </div>
                                     <ul
-                                      class="insights-fix-instruction-list"
+                                      class="insightsFixInstructionList"
                                     >
                                       <li>
                                         aria-label attribute does not exist or is empty
@@ -2527,13 +2499,11 @@ exports[`report package integration with issues 1`] = `
                                   class="howToFixContent"
                                 >
                                   <div>
-                                    <div
-                                      class="insights-fix-instruction-title"
-                                    >
+                                    <div>
                                       Fix ONE of the following:
                                     </div>
                                     <ul
-                                      class="insights-fix-instruction-list"
+                                      class="insightsFixInstructionList"
                                     >
                                       <li>
                                         aria-label attribute does not exist or is empty
@@ -2619,13 +2589,11 @@ exports[`report package integration with issues 1`] = `
                                   class="howToFixContent"
                                 >
                                   <div>
-                                    <div
-                                      class="insights-fix-instruction-title"
-                                    >
+                                    <div>
                                       Fix ONE of the following:
                                     </div>
                                     <ul
-                                      class="insights-fix-instruction-list"
+                                      class="insightsFixInstructionList"
                                     >
                                       <li>
                                         aria-label attribute does not exist or is empty
@@ -2711,13 +2679,11 @@ exports[`report package integration with issues 1`] = `
                                   class="howToFixContent"
                                 >
                                   <div>
-                                    <div
-                                      class="insights-fix-instruction-title"
-                                    >
+                                    <div>
                                       Fix ONE of the following:
                                     </div>
                                     <ul
-                                      class="insights-fix-instruction-list"
+                                      class="insightsFixInstructionList"
                                     >
                                       <li>
                                         aria-label attribute does not exist or is empty
@@ -2803,13 +2769,11 @@ exports[`report package integration with issues 1`] = `
                                   class="howToFixContent"
                                 >
                                   <div>
-                                    <div
-                                      class="insights-fix-instruction-title"
-                                    >
+                                    <div>
                                       Fix ONE of the following:
                                     </div>
                                     <ul
-                                      class="insights-fix-instruction-list"
+                                      class="insightsFixInstructionList"
                                     >
                                       <li>
                                         aria-label attribute does not exist or is empty
@@ -2895,13 +2859,11 @@ exports[`report package integration with issues 1`] = `
                                   class="howToFixContent"
                                 >
                                   <div>
-                                    <div
-                                      class="insights-fix-instruction-title"
-                                    >
+                                    <div>
                                       Fix ONE of the following:
                                     </div>
                                     <ul
-                                      class="insights-fix-instruction-list"
+                                      class="insightsFixInstructionList"
                                     >
                                       <li>
                                         aria-label attribute does not exist or is empty
@@ -2987,13 +2949,11 @@ exports[`report package integration with issues 1`] = `
                                   class="howToFixContent"
                                 >
                                   <div>
-                                    <div
-                                      class="insights-fix-instruction-title"
-                                    >
+                                    <div>
                                       Fix ONE of the following:
                                     </div>
                                     <ul
-                                      class="insights-fix-instruction-list"
+                                      class="insightsFixInstructionList"
                                     >
                                       <li>
                                         aria-label attribute does not exist or is empty
@@ -3079,13 +3039,11 @@ exports[`report package integration with issues 1`] = `
                                   class="howToFixContent"
                                 >
                                   <div>
-                                    <div
-                                      class="insights-fix-instruction-title"
-                                    >
+                                    <div>
                                       Fix ONE of the following:
                                     </div>
                                     <ul
-                                      class="insights-fix-instruction-list"
+                                      class="insightsFixInstructionList"
                                     >
                                       <li>
                                         aria-label attribute does not exist or is empty
@@ -3171,13 +3129,11 @@ exports[`report package integration with issues 1`] = `
                                   class="howToFixContent"
                                 >
                                   <div>
-                                    <div
-                                      class="insights-fix-instruction-title"
-                                    >
+                                    <div>
                                       Fix ONE of the following:
                                     </div>
                                     <ul
-                                      class="insights-fix-instruction-list"
+                                      class="insightsFixInstructionList"
                                     >
                                       <li>
                                         aria-label attribute does not exist or is empty
@@ -3263,13 +3219,11 @@ exports[`report package integration with issues 1`] = `
                                   class="howToFixContent"
                                 >
                                   <div>
-                                    <div
-                                      class="insights-fix-instruction-title"
-                                    >
+                                    <div>
                                       Fix ONE of the following:
                                     </div>
                                     <ul
-                                      class="insights-fix-instruction-list"
+                                      class="insightsFixInstructionList"
                                     >
                                       <li>
                                         aria-label attribute does not exist or is empty
@@ -3471,13 +3425,11 @@ exports[`report package integration with issues 1`] = `
                                   class="howToFixContent"
                                 >
                                   <div>
-                                    <div
-                                      class="insights-fix-instruction-title"
-                                    >
+                                    <div>
                                       Fix the following:
                                     </div>
                                     <ul
-                                      class="insights-fix-instruction-list"
+                                      class="insightsFixInstructionList"
                                     >
                                       <li>
                                         Document does not have a main landmark
@@ -3667,13 +3619,11 @@ exports[`report package integration with issues 1`] = `
                                   class="howToFixContent"
                                 >
                                   <div>
-                                    <div
-                                      class="insights-fix-instruction-title"
-                                    >
+                                    <div>
                                       Fix the following:
                                     </div>
                                     <ul
-                                      class="insights-fix-instruction-list"
+                                      class="insightsFixInstructionList"
                                     >
                                       <li>
                                         Page must have a level-one heading
@@ -3863,13 +3813,11 @@ exports[`report package integration with issues 1`] = `
                                   class="howToFixContent"
                                 >
                                   <div>
-                                    <div
-                                      class="insights-fix-instruction-title"
-                                    >
+                                    <div>
                                       Fix the following:
                                     </div>
                                     <ul
-                                      class="insights-fix-instruction-list"
+                                      class="insightsFixInstructionList"
                                     >
                                       <li>
                                         Some page content is not contained by landmarks

@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { CollapsibleComponentCardsProps } from 'common/components/cards/collapsible-component-cards';
 import { RulesWithInstances, RulesWithInstancesDeps } from 'common/components/cards/rules-with-instances';
+import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { shallow } from 'enzyme';
-import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
 

@@ -1210,28 +1210,6 @@ div.insights-file-issue-details-dialog-container {
                             margin: 0px;
                             -webkit-padding-start: 20px;
                         }
-                        .fix-content {
-                            .insights-fix-instruction-list {
-                                li {
-                                    span.fix-instruction-color-box {
-                                        width: 14px;
-                                        height: 14px;
-                                        display: inline-block;
-                                        vertical-align: -15%;
-                                        margin: 0px 2px;
-                                        border: 1px solid $always-black;
-                                    }
-                                }
-                                .screen-reader-only {
-                                    position: absolute;
-                                    left: -10000px;
-                                    top: auto;
-                                    width: 1px;
-                                    height: 1px;
-                                    overflow: hidden;
-                                }
-                            }
-                        }
                     }
                     .issue-detail-select-message {
                         padding-top: 10px;

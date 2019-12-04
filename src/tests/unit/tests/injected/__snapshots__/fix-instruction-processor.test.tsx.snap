@@ -9,7 +9,7 @@ exports[`FixInstructionProcessor background and foreground on the message (mind 
       Element has insufficient color contrast of 2.52 (background color: 
     </span>
     <span
-      className="fix-instruction-color-box"
+      className="fixInstructionColorBox"
       style={
         Object {
           "backgroundColor": "#8a94a8",
@@ -20,7 +20,7 @@ exports[`FixInstructionProcessor background and foreground on the message (mind 
       #8a94a8, foreground color: 
     </span>
     <span
-      className="fix-instruction-color-box"
+      className="fixInstructionColorBox"
       style={
         Object {
           "backgroundColor": "#e7ecd8",
@@ -32,7 +32,7 @@ exports[`FixInstructionProcessor background and foreground on the message (mind 
     </span>
   </span>
   <span
-    className="screen-reader-only"
+    className="screenReaderOnly"
   >
     Element has insufficient color contrast of 2.52 (background color: #8a94a8, foreground color: #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
   </span>
@@ -48,7 +48,7 @@ exports[`FixInstructionProcessor background color on the message 1`] = `
       color contrast of 2.52 (background color: 
     </span>
     <span
-      className="fix-instruction-color-box"
+      className="fixInstructionColorBox"
       style={
         Object {
           "backgroundColor": "#8a94a8",
@@ -60,7 +60,7 @@ exports[`FixInstructionProcessor background color on the message 1`] = `
     </span>
   </span>
   <span
-    className="screen-reader-only"
+    className="screenReaderOnly"
   >
     color contrast of 2.52 (background color: #8a94a8; nothing else to match here)
   </span>
@@ -76,7 +76,7 @@ exports[`FixInstructionProcessor foreground and background color on the message 
       Element has insufficient color contrast of 2.52 (foreground color: 
     </span>
     <span
-      className="fix-instruction-color-box"
+      className="fixInstructionColorBox"
       style={
         Object {
           "backgroundColor": "#8a94a8",
@@ -87,7 +87,7 @@ exports[`FixInstructionProcessor foreground and background color on the message 
       #8a94a8, background color: 
     </span>
     <span
-      className="fix-instruction-color-box"
+      className="fixInstructionColorBox"
       style={
         Object {
           "backgroundColor": "#e7ecd8",
@@ -99,7 +99,7 @@ exports[`FixInstructionProcessor foreground and background color on the message 
     </span>
   </span>
   <span
-    className="screen-reader-only"
+    className="screenReaderOnly"
   >
     Element has insufficient color contrast of 2.52 (foreground color: #8a94a8, background color: #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
   </span>
@@ -115,7 +115,7 @@ exports[`FixInstructionProcessor foreground color on the message 1`] = `
       color contrast of 2.52 (foreground color: 
     </span>
     <span
-      className="fix-instruction-color-box"
+      className="fixInstructionColorBox"
       style={
         Object {
           "backgroundColor": "#8a94a8",
@@ -127,7 +127,7 @@ exports[`FixInstructionProcessor foreground color on the message 1`] = `
     </span>
   </span>
   <span
-    className="screen-reader-only"
+    className="screenReaderOnly"
   >
     color contrast of 2.52 (foreground color: #8a94a8; nothing else to match here)
   </span>
@@ -149,7 +149,7 @@ exports[`FixInstructionProcessor we assume only one instance of fore/background 
       first foreground color: 
     </span>
     <span
-      className="fix-instruction-color-box"
+      className="fixInstructionColorBox"
       style={
         Object {
           "backgroundColor": "#ffffff",
@@ -160,7 +160,7 @@ exports[`FixInstructionProcessor we assume only one instance of fore/background 
       #ffffff, second foreground: #000000, first background color: 
     </span>
     <span
-      className="fix-instruction-color-box"
+      className="fixInstructionColorBox"
       style={
         Object {
           "backgroundColor": "#AAAAAA",
@@ -172,7 +172,7 @@ exports[`FixInstructionProcessor we assume only one instance of fore/background 
     </span>
   </span>
   <span
-    className="screen-reader-only"
+    className="screenReaderOnly"
   >
     first foreground color: #ffffff, second foreground: #000000, first background color: #AAAAAA, second background color: #bbBBbb
   </span>

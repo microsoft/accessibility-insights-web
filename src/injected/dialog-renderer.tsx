@@ -6,6 +6,7 @@ import { NavigatorUtils } from 'common/navigator-utils';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
+import { FixInstructionProcessor } from '../common/components/fix-instruction-processor';
 import { NewTabLink } from '../common/components/new-tab-link';
 import { FeatureFlags } from '../common/feature-flags';
 import { HTMLElementUtils } from '../common/html-element-utils';
@@ -19,7 +20,6 @@ import { AxeResultToIssueFilingDataConverter } from '../issue-filing/rule-result
 import { DictionaryStringTo } from '../types/common-types';
 import { rootContainerId } from './constants';
 import { DetailsDialogHandler } from './details-dialog-handler';
-import { FixInstructionProcessor } from './fix-instruction-processor';
 import { ErrorMessageContent } from './frameCommunicators/error-message-content';
 import { FrameCommunicator, MessageRequest } from './frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from './frameCommunicators/window-message-handler';

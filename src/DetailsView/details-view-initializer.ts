@@ -34,6 +34,7 @@ import { provideBlob } from '../common/blob-provider';
 import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
 import { allCardInteractionsSupported } from '../common/components/cards/card-interaction-support';
 import { CardsCollapsibleControl } from '../common/components/cards/collapsible-component-cards';
+import { FixInstructionProcessor } from '../common/components/fix-instruction-processor';
 import { NewTabLink } from '../common/components/new-tab-link';
 import { getPropertyConfiguration } from '../common/configs/unified-result-property-configurations';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -78,7 +79,6 @@ import { VisualizationStoreData } from '../common/types/store-data/visualization
 import { UrlParser } from '../common/url-parser';
 import { WindowUtils } from '../common/window-utils';
 import { contentPages } from '../content';
-import { FixInstructionProcessor } from '../injected/fix-instruction-processor';
 import { ScannerUtils } from '../injected/scanner-utils';
 import { createIssueDetailsBuilder } from '../issue-filing/common/create-issue-details-builder';
 import { IssueFilingUrlStringUtils } from '../issue-filing/common/issue-filing-url-string-utils';

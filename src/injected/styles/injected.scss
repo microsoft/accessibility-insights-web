@@ -325,27 +325,6 @@
                 margin: 8px 8px 0px 8px !important;
                 padding-left: 8px !important;
             }
-
-            .insights-fix-instruction-list {
-                li {
-                    span.fix-instruction-color-box {
-                        width: 14px;
-                        height: 14px;
-                        display: inline-block;
-                        vertical-align: -5%;
-                        margin: 0px 2px;
-                        border: 1px solid $always-black;
-                    }
-                }
-                .screen-reader-only {
-                    position: absolute;
-                    left: -10000px;
-                    top: auto;
-                    width: 1px;
-                    height: 1px;
-                    overflow: hidden;
-                }
-            }
         }
 
         .insights-dialog-target-button-container {
