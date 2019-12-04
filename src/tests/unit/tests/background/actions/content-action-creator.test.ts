@@ -11,7 +11,7 @@ import { IMock, Mock, Times } from 'typemoq';
 
 import { createActionMock, createInterpreterMock } from '../global-action-creators/action-creator-test-helpers';
 
-describe('ContentPanelActionMessageCreator', () => {
+describe('ContentActionMessageCreator', () => {
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
 
     beforeEach(() => {
