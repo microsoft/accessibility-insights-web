@@ -8,7 +8,7 @@ const fs = require('fs');
 download(
     {
         version: pkg.devDependencies.electron,
-        cache: 'zips',
+        cache: 'drop/zips',
     },
     function(err, zipPath) {
         // zipPath will be the path of the zip that it downloaded.
@@ -20,7 +20,7 @@ download(
             console.log('Failed to download: ', err);
         } else {
             console.log('zipPath= ', zipPath);
-            fs.createReadStream(zipPath).pipe(unzipper.Extract({ path: 'node_modules/electron/dist' }));
+            fs.createReadStream(zipPath).pipe(unzipper.Extract({ path: 'drop/electron-local' }));
         }
     },
 );
