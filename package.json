@@ -117,7 +117,7 @@
         "tslint-microsoft-contrib": "6.2.0",
         "typed-scss-modules": "^0.0.12",
         "typemoq": "^2.1.0",
-        "typescript": "^3.7.2",
+        "typescript": "^3.7.3",
         "webdriverio": "^4.13.0",
         "webpack": "^4.41.2",
         "webpack-cli": "^3.3.10",
