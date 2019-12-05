@@ -87,9 +87,10 @@ export class PopupInitializer {
 
     private initializePopup = (): void => {
         const telemetryFactory = new TelemetryDataFactory();
+        const tab = this.targetTabInfo.tab;
         const actionMessageDispatcher = new RemoteActionMessageDispatcher(
             this.browserAdapter.sendMessageToFrames,
-            this.targetTabInfo.tab.id,
+            tab.id,
         );
         const visualizationActionCreator = new VisualizationActionMessageCreator(
             actionMessageDispatcher,
@@ -124,22 +125,27 @@ export class PopupInitializer {
         const visualizationStore = new StoreProxy<VisualizationStoreData>(
             visualizationStoreName,
             this.browserAdapter,
+            tab.id,
         );
         const launchPanelStateStore = new StoreProxy<LaunchPanelStoreData>(
             launchPanelStateStoreName,
             this.browserAdapter,
+            tab.id,
         );
         const commandStore = new StoreProxy<CommandStoreData>(
             commandStoreName,
             this.browserAdapter,
+            tab.id,
         );
         const featureFlagStore = new StoreProxy<FeatureFlagStoreData>(
             featureFlagStoreName,
             this.browserAdapter,
+            tab.id,
         );
         const userConfigurationStore = new StoreProxy<UserConfigurationStoreData>(
             userConfigurationStoreName,
             this.browserAdapter,
+            tab.id,
         );
 
         const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
@@ -153,12 +159,6 @@ export class PopupInitializer {
             featureFlagStore,
             userConfigurationStore,
         ]);
-
-        visualizationStore.setTabId(this.targetTabInfo.tab.id);
-        commandStore.setTabId(this.targetTabInfo.tab.id);
-        featureFlagStore.setTabId(this.targetTabInfo.tab.id);
-        launchPanelStateStore.setTabId(this.targetTabInfo.tab.id);
-        userConfigurationStore.setTabId(this.targetTabInfo.tab.id);
 
         const visualizationConfigurationFactory = new VisualizationConfigurationFactory();
         const launchPadRowConfigurationFactory = new LaunchPadRowConfigurationFactory();
@@ -235,14 +235,14 @@ export class PopupInitializer {
             ReactDOM.render,
             document,
             window,
-            this.targetTabInfo.tab.url,
+            tab.url,
             this.targetTabInfo.hasAccess,
             launchPadRowConfigurationFactory,
             diagnosticViewToggleFactory,
             dropdownClickHandler,
         );
         renderer.render();
-        popupActionMessageCreator.popupInitialized(this.targetTabInfo.tab);
+        popupActionMessageCreator.popupInitialized(tab);
 
         const a11ySelfValidator = new A11YSelfValidator(
             new ScannerUtils(scan),
