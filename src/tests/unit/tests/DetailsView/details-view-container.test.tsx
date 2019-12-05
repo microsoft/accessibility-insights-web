@@ -35,7 +35,7 @@ import {
     GetDetailsSwitcherNavConfiguration,
     GetDetailsSwitcherNavConfigurationProps,
 } from '../../../../DetailsView/components/details-view-switcher-nav';
-import { Header } from '../../../../DetailsView/components/header';
+import { InteractiveHeader } from '../../../../DetailsView/components/interactive-header';
 import { DetailsViewRightContentPanelType } from '../../../../DetailsView/components/left-nav/details-view-right-content-panel-type';
 import { GetSelectedDetailsViewProps } from '../../../../DetailsView/components/left-nav/get-selected-details-view';
 import { DetailsViewBody } from '../../../../DetailsView/details-view-body';
@@ -479,7 +479,7 @@ describe('DetailsViewContainer', () => {
 
         const expected: JSX.Element = (
             <>
-                <Header
+                <InteractiveHeader
                     deps={props.deps}
                     selectedPivot={DetailsViewPivotType.fastPass}
                     featureFlagStoreData={storeMocks.featureFlagStoreData}

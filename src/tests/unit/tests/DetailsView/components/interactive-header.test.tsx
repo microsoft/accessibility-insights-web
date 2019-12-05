@@ -6,12 +6,12 @@ import { Mock } from 'typemoq';
 
 import { DropdownClickHandler } from '../../../../../common/dropdown-click-handler';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
-import { Header, HeaderProps } from '../../../../../DetailsView/components/header';
+import { InteractiveHeader, InteractiveHeaderProps } from '../../../../../DetailsView/components/interactive-header';
 
-describe('HeaderTest', () => {
+describe('InteractiveHeader', () => {
     test('render: tabClosed is false', () => {
         const dropdownClickHandlerMock = Mock.ofType(DropdownClickHandler);
-        const props: HeaderProps = {
+        const props: InteractiveHeaderProps = {
             dropdownClickHandler: dropdownClickHandlerMock.object,
             featureFlagStoreData: {
                 'test-flag': true,
@@ -22,12 +22,12 @@ describe('HeaderTest', () => {
             selectedPivot: DetailsViewPivotType.assessment,
         };
 
-        const rendered = shallow(<Header {...props} />);
+        const rendered = shallow(<InteractiveHeader {...props} />);
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
     test('render: tabClosed is true', () => {
-        const props: HeaderProps = {
+        const props: InteractiveHeaderProps = {
             dropdownClickHandler: null,
             featureFlagStoreData: {
                 'test-flag': true,
@@ -39,12 +39,12 @@ describe('HeaderTest', () => {
             selectedPivot: DetailsViewPivotType.assessment,
         };
 
-        const rendered = shallow(<Header {...props} />);
+        const rendered = shallow(<InteractiveHeader {...props} />);
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
     test('render: no feature flag store data', () => {
-        const props: HeaderProps = {
+        const props: InteractiveHeaderProps = {
             dropdownClickHandler: null,
             featureFlagStoreData: null,
             connected: null,
@@ -54,7 +54,7 @@ describe('HeaderTest', () => {
             selectedPivot: DetailsViewPivotType.assessment,
         };
 
-        const rendered = shallow(<Header {...props} />);
+        const rendered = shallow(<InteractiveHeader {...props} />);
         expect(rendered.debug()).toMatchSnapshot();
     });
 });

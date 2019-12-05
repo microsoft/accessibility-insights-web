@@ -2,34 +2,30 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { title } from 'content/strings/application';
+import { Header, HeaderDeps } from 'common/components/header';
 import { GearOptionsButtonComponent } from '../../common/components/gear-options-button-component';
-import { HeaderIcon, HeaderIconDeps } from '../../common/components/header-icon';
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
-import { Switcher, SwitcherDeps } from '../components/switcher';
-import * as styles from './header.scss';
+import { Switcher, SwitcherDeps } from './switcher';
 
-export type HeaderDeps = SwitcherDeps & HeaderIconDeps;
+export type InteractiveHeaderDeps = SwitcherDeps & HeaderDeps;
 
-export interface HeaderProps {
-    deps: HeaderDeps;
+export interface InteractiveHeaderProps {
+    deps: InteractiveHeaderDeps;
     dropdownClickHandler: DropdownClickHandler;
     featureFlagStoreData: FeatureFlagStoreData;
     tabClosed: boolean;
     selectedPivot: DetailsViewPivotType;
 }
 
-export class Header extends React.Component<HeaderProps> {
+export class InteractiveHeader extends React.Component<InteractiveHeaderProps> {
     public render(): JSX.Element {
         return (
-            <header className={styles.headerBar}>
-                <HeaderIcon deps={this.props.deps} />
-                <span className={styles.headerText}>{title}</span>
+            <Header deps={this.props.deps}>
                 {this.renderSwitcher()}
                 {this.renderButton()}
-            </header>
+            </Header>
         );
     }
 
