@@ -104,22 +104,3 @@ $detailsViewTotalHeaderHeight: (#{$detailsViewCommandBarBorderHeight} + #{$detai
 $fastPassRightPanelMarginRight: 24px !default;
 $fastPassRightPanelMarginLeft: 24px !default;
 $fastPassRightPanelMarginTop: 24px !default;
-
-.header-bar,
-.report-header-bar {
-    background-color: $ada-brand-color;
-    height: $detailsViewHeaderBarHeight;
-    width: 100%;
-
-    .header-text {
-        padding-top: 8px;
-        color: $header-bar-title-color;
-        font-size: 18px;
-        display: inline-block;
-    }
-    .header-icon {
-        float: left;
-        padding: 8px 8px;
-        height: 22px;
-    }
-}

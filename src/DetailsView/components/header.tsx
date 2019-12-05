@@ -9,6 +9,7 @@ import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { Switcher, SwitcherDeps } from '../components/switcher';
+import * as styles from './header.scss';
 
 export type HeaderDeps = SwitcherDeps & HeaderIconDeps;
 
@@ -23,9 +24,9 @@ export interface HeaderProps {
 export class Header extends React.Component<HeaderProps> {
     public render(): JSX.Element {
         return (
-            <header className="header-bar">
+            <header className={styles.headerBar}>
                 <HeaderIcon deps={this.props.deps} />
-                <div className="ms-font-m header-text">{title}</div>
+                <span className={styles.headerText}>{title}</span>
                 {this.renderSwitcher()}
                 {this.renderButton()}
             </header>
