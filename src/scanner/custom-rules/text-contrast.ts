@@ -31,8 +31,8 @@ function evaluateTextContrast(
     virtualNode: any,
     context: any,
 ): boolean {
-    // tslint:disable-next-line:no-invalid-this
     const checkResult = AxeUtils.getEvaluateFromCheck('color-contrast').call(
+        // tslint:disable-next-line:no-invalid-this
         this,
         node,
         options,
