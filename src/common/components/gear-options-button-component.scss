@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 @import '../styles/colors.scss';
 
-.gear-options-button-component {
+:global(#details-container) .gear-options-button-component {
     margin-left: auto; // this acts to float the button to the right
     padding-left: 16px;
     padding-right: 16px;
@@ -18,5 +18,14 @@
         &:hover:active {
             color: $neutral-0;
         }
+    }
+}
+
+:global(#popup-container) .gear-options-button-component {
+    display: inline-block;
+
+    button.gear-button {
+        margin-right: 5px;
+        margin-top: 10px;
     }
 }
