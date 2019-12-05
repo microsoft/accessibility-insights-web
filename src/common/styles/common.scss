@@ -104,3 +104,9 @@ $detailsViewTotalHeaderHeight: (#{$detailsViewCommandBarBorderHeight} + #{$detai
 $fastPassRightPanelMarginRight: 24px !default;
 $fastPassRightPanelMarginLeft: 24px !default;
 $fastPassRightPanelMarginTop: 24px !default;
+
+@mixin ellipsedText {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

@@ -4,12 +4,6 @@
 @import '../../common/styles/common.scss';
 @import '../../common/styles/fonts.scss';
 
-@mixin ellipsedText {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
 .header-bar {
     display: flex;
     justify-content: flex-start;
