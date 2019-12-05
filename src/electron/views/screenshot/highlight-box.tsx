@@ -23,7 +23,12 @@ export const HighlightBox = NamedFC<HighlightBoxProps>('HighlightBox', props => 
     };
 
     return (
-        <div className={highlightBox} style={boxStyles} aria-hidden="true" data-automation-id={highlightBoxAutomationId}>
+        <div
+            className={highlightBox}
+            style={boxStyles}
+            aria-hidden="true"
+            data-automation-id={highlightBoxAutomationId}
+        >
             <div className={highlightBoxLabel}>!</div>
         </div>
     );

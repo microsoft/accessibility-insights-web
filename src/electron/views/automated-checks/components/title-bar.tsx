@@ -7,7 +7,10 @@ import { NamedFC } from 'common/react/named-fc';
 import { brand } from 'content/strings/application';
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
-import { WindowTitle, WindowTitleDeps } from 'electron/views/device-connect-view/components/window-title';
+import {
+    WindowTitle,
+    WindowTitleDeps,
+} from 'electron/views/device-connect-view/components/window-title';
 import { BrandWhite } from 'icons/brand/white/brand-white';
 import { MaximizeRestoreButton } from './maximize-restore-button';
 import * as styles from './title-bar.scss';
@@ -72,5 +75,8 @@ export const TitleBar = NamedFC<TitleBarProps>('TitleBar', (props: TitleBarProps
 });
 
 function isWindowMaximized(windowStateStoreData: WindowStateStoreData): boolean {
-    return windowStateStoreData.currentWindowState === 'maximized' || windowStateStoreData.currentWindowState === 'fullScreen';
+    return (
+        windowStateStoreData.currentWindowState === 'maximized' ||
+        windowStateStoreData.currentWindowState === 'fullScreen'
+    );
 }

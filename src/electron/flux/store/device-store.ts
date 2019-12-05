@@ -39,7 +39,10 @@ export class DeviceStore extends BaseStoreImpl<DeviceStoreData> {
     };
 
     private onConnecting = (payload: PortPayload) => {
-        if (this.state.deviceConnectState === DeviceConnectState.Connecting && this.state.port === payload.port) {
+        if (
+            this.state.deviceConnectState === DeviceConnectState.Connecting &&
+            this.state.port === payload.port
+        ) {
             return;
         }
 
