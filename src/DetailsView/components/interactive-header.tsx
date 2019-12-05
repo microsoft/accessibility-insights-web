@@ -3,6 +3,7 @@
 import * as React from 'react';
 
 import { Header, HeaderDeps } from 'common/components/header';
+import { NamedFC } from 'common/react/named-fc';
 import { GearOptionsButtonComponent } from '../../common/components/gear-options-button-component';
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
@@ -19,34 +20,15 @@ export interface InteractiveHeaderProps {
     selectedPivot: DetailsViewPivotType;
 }
 
-export class InteractiveHeader extends React.Component<InteractiveHeaderProps> {
-    public render(): JSX.Element {
-        return (
-            <Header deps={this.props.deps}>
-                {this.renderSwitcher()}
-                {this.renderButton()}
-            </Header>
-        );
+export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHeader', props => {
+    if (props.tabClosed) {
+        return <Header deps={props.deps} />;
     }
 
-    private renderSwitcher(): JSX.Element {
-        if (this.props.tabClosed === true) {
-            return null;
-        }
-
-        return <Switcher deps={this.props.deps} pivotKey={this.props.selectedPivot} />;
-    }
-
-    private renderButton(): JSX.Element {
-        if (this.props.tabClosed) {
-            return null;
-        }
-
-        return (
-            <GearOptionsButtonComponent
-                dropdownClickHandler={this.props.dropdownClickHandler}
-                featureFlags={this.props.featureFlagStoreData}
-            />
-        );
-    }
-}
+    return (
+        <Header deps={props.deps}>
+            <Switcher deps={props.deps} pivotKey={props.selectedPivot} />
+            <GearOptionsButtonComponent dropdownClickHandler={props.dropdownClickHandler} featureFlags={props.featureFlagStoreData} />
+        </Header>
+    );
+});
