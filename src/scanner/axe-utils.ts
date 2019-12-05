@@ -10,7 +10,9 @@ export function getMatchesFromRule(ruleId: string): (node: any, virtualNode: any
     return axe._audit.defaultConfig.rules.filter(rule => rule.id === ruleId)[0].matches;
 }
 
-export function getEvaluateFromCheck(checkId: string): (node: any, options: any, virtualNode: any, context: any) => boolean {
+export function getEvaluateFromCheck(
+    checkId: string,
+): (node: any, options: any, virtualNode: any, context: any) => boolean {
     return axe._audit.defaultConfig.checks.filter(check => check.id === checkId)[0].evaluate;
 }
 
@@ -26,7 +28,10 @@ export function getAccessibleDescription(node: HTMLElement): string {
         .join(' ');
 }
 
-export function getPropertyValuesMatching(node: HTMLElement, regex: RegExp): DictionaryStringTo<string> {
+export function getPropertyValuesMatching(
+    node: HTMLElement,
+    regex: RegExp,
+): DictionaryStringTo<string> {
     const dictionary: DictionaryStringTo<string> = {};
     if (node.hasAttributes()) {
         const attrs = node.attributes;
@@ -79,7 +84,9 @@ export function isWhiteSpace(text: string): boolean {
 }
 
 export function hasBackgoundImage(node: HTMLElement): boolean {
-    const computedBackgroundImage: string = window.getComputedStyle(node).getPropertyValue('background-image');
+    const computedBackgroundImage: string = window
+        .getComputedStyle(node)
+        .getPropertyValue('background-image');
     return computedBackgroundImage !== 'none';
 }
 

@@ -50,7 +50,9 @@ export type GetDetailsSwitcherNavConfigurationProps = {
     selectedDetailsViewPivot: DetailsViewPivotType;
 };
 
-const detailsViewSwitcherNavs: { [key in DetailsViewPivotType]: InternalDetailsViewSwitcherNavConfiguration } = {
+const detailsViewSwitcherNavs: {
+    [key in DetailsViewPivotType]: InternalDetailsViewSwitcherNavConfiguration;
+} = {
     [DetailsViewPivotType.assessment]: {
         CommandBar: AssessmentCommandBar,
         ReportExportComponentFactory: getReportExportComponentForAssessment,

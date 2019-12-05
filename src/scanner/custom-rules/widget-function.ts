@@ -2,7 +2,10 @@
 // Licensed under the MIT License.
 import * as AxeUtils from '../axe-utils';
 import { RuleConfiguration } from '../iruleresults';
-import { createNativeWidgetConfiguration, getNativeWidgetElementType } from './native-widgets-default';
+import {
+    createNativeWidgetConfiguration,
+    getNativeWidgetElementType,
+} from './native-widgets-default';
 
 export const widgetFunctionConfiguration: RuleConfiguration = createNativeWidgetConfiguration(
     'widget-function',

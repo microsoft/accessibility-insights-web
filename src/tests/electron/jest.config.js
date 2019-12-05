@@ -13,7 +13,16 @@ module.exports = {
     moduleFileExtensions: ['ts', 'tsx', 'js'],
     rootDir: rootDir,
     roots: [currentDir],
-    reporters: ['default', ['jest-junit', { outputDirectory: '.', outputName: '<rootDir>/test-results/electron/junit-electron.xml' }]],
+    reporters: [
+        'default',
+        [
+            'jest-junit',
+            {
+                outputDirectory: '.',
+                outputName: '<rootDir>/test-results/electron/junit-electron.xml',
+            },
+        ],
+    ],
     setupFilesAfterEnv: [`${currentDir}/setup/test-setup.ts`],
     globals: {
         rootDir: path.resolve(__dirname, rootDir),

@@ -25,9 +25,20 @@ export const textContrastConfiguration: RuleConfiguration = {
     },
 };
 
-function evaluateTextContrast(node: HTMLElement, options: any, virtualNode: any, context: any): boolean {
+function evaluateTextContrast(
+    node: HTMLElement,
+    options: any,
+    virtualNode: any,
+    context: any,
+): boolean {
     // tslint:disable-next-line:no-invalid-this
-    const checkResult = AxeUtils.getEvaluateFromCheck('color-contrast').call(this, node, options, virtualNode, context);
+    const checkResult = AxeUtils.getEvaluateFromCheck('color-contrast').call(
+        this,
+        node,
+        options,
+        virtualNode,
+        context,
+    );
     const nodeStyle = window.getComputedStyle(node);
     const fontSize = parseFloat(nodeStyle.getPropertyValue('font-size'));
     const fontWeight = nodeStyle.getPropertyValue('font-weight');

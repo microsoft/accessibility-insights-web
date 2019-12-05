@@ -24,7 +24,10 @@ export const cssPositioningConfiguration: RuleConfiguration = {
 
 function matches(node: HTMLElement): boolean {
     const nodeStyle = window.getComputedStyle(node);
-    return axe.commons.dom.isVisible(node) && (isAbsolutePosition(nodeStyle) || isRightFloat(nodeStyle));
+    return (
+        axe.commons.dom.isVisible(node) &&
+        (isAbsolutePosition(nodeStyle) || isRightFloat(nodeStyle))
+    );
 }
 
 function isAbsolutePosition(nodeStyle: CSSStyleDeclaration): boolean {

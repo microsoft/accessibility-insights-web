@@ -14,12 +14,17 @@ export namespace Processor {
     export function suppressChecksByMessages(rule: AxeRule, removeEmptyRules = true): AxeRule {
         rule.nodes = rule.nodes.filter((nodeResult: AxeNodeResult) => {
             nodeResult.any = nodeResult.any.filter((check: any) => {
-                const checkShown = check.message != null ? suppressedMessages.indexOf(normalizeText(check.message)) < 0 : true;
+                const checkShown =
+                    check.message != null
+                        ? suppressedMessages.indexOf(normalizeText(check.message)) < 0
+                        : true;
 
                 return checkShown;
             });
 
-            return nodeResult.any.length > 0 || nodeResult.none.length > 0 || nodeResult.all.length > 0;
+            return (
+                nodeResult.any.length > 0 || nodeResult.none.length > 0 || nodeResult.all.length > 0
+            );
         });
 
         if (removeEmptyRules && rule.nodes.length === 0) {
