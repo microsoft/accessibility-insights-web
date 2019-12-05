@@ -21,7 +21,7 @@ describe('GearOptionsButtonComponent', () => {
 
         const testSubject = shallow(<GearOptionsButtonComponent {...props} />);
         expect(testSubject.debug()).toMatchInlineSnapshot(`
-            "<div className=\\"gear-options-button-component\\">
+            "<div className=\\"gearOptionsButtonComponent\\">
               <DetailsViewDropDown menuItems={{...}} />
             </div>"
         `);

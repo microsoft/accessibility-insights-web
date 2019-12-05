@@ -1,0 +1,31 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../styles/colors.scss';
+
+:global(#details-container) .gear-options-button-component {
+    margin-left: auto; // this acts to float the button to the right
+    padding-left: 16px;
+    padding-right: 16px;
+
+    font-size: 20px;
+
+    button {
+        // Explicitly enumerating the states is required to beat the specificity of office fabric
+        &,
+        &:focus,
+        &:hover,
+        &:active,
+        &:hover:active {
+            color: $neutral-0;
+        }
+    }
+}
+
+:global(#popup-container) .gear-options-button-component {
+    display: inline-block;
+
+    button.gear-button {
+        margin-right: 5px;
+        margin-top: 10px;
+    }
+}

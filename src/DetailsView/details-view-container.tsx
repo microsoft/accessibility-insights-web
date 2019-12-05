@@ -29,7 +29,7 @@ import { DetailsViewCommandBarDeps } from './components/details-view-command-bar
 import { DetailsViewOverlay, DetailsViewOverlayDeps } from './components/details-view-overlay';
 import { DetailsRightPanelConfiguration, GetDetailsRightPanelConfiguration } from './components/details-view-right-panel';
 import { GetDetailsSwitcherNavConfiguration } from './components/details-view-switcher-nav';
-import { Header, HeaderDeps } from './components/header';
+import { InteractiveHeader, InteractiveHeaderDeps } from './components/interactive-header';
 import { IssuesTableHandler } from './components/issues-table-handler';
 import { NoContentAvailable } from './components/no-content-available';
 import { TargetChangeDialogDeps } from './components/target-change-dialog';
@@ -46,7 +46,7 @@ export type DetailsViewContainerDeps = {
 } & DetailsViewBodyDeps &
     DetailsViewOverlayDeps &
     DetailsViewCommandBarDeps &
-    HeaderDeps &
+    InteractiveHeaderDeps &
     WithStoreSubscriptionDeps<DetailsViewContainerState> &
     ThemeDeps &
     TargetChangeDialogDeps;
@@ -132,7 +132,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
         const storeState = this.props.storeState;
         const visualizationStoreData = storeState ? storeState.visualizationStoreData : null;
         return (
-            <Header
+            <InteractiveHeader
                 deps={this.props.deps}
                 selectedPivot={visualizationStoreData ? visualizationStoreData.selectedDetailsViewPivot : null}
                 featureFlagStoreData={this.hasStores() ? storeState.featureFlagStoreData : null}
