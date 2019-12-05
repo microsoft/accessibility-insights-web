@@ -36,8 +36,14 @@ export const DeviceConnectConnectedDevice = NamedFC<DeviceConnectConnectedDevice
             if (props.deviceConnectState === DeviceConnectState.Error) {
                 return (
                     <>
-                        <Icon iconName="statusErrorFull" className={connectionErrorIcon} ariaLabel="Connection failed"></Icon>
-                        <span className={scannedText}>No active applications were found at the provided local host.</span>
+                        <Icon
+                            iconName="statusErrorFull"
+                            className={connectionErrorIcon}
+                            ariaLabel="Connection failed"
+                        ></Icon>
+                        <span className={scannedText}>
+                            No active applications were found at the provided local host.
+                        </span>
                     </>
                 );
             }

@@ -19,20 +19,27 @@ export interface DeviceConnectFooterProps {
     deps: DeviceConnectFooterDeps;
 }
 
-export const DeviceConnectFooter = NamedFC<DeviceConnectFooterProps>('DeviceConnectFooter', (props: DeviceConnectFooterProps) => {
-    const onCancelClick = () => props.cancelClick();
-    return (
-        <footer className={styles.deviceConnectFooter}>
-            <DefaultButton className={styles.footerButtonCancel} onClick={onCancelClick} text="Cancel"></DefaultButton>
-            <PrimaryButton
-                className={styles.footerButtonStart}
-                onClick={() => {
-                    props.deps.windowStateActionCreator.setRoute({ routeId: 'resultsView' });
-                    props.deps.windowFrameActionCreator.maximize();
-                }}
-                disabled={!props.canStartTesting}
-                text="Start testing"
-            ></PrimaryButton>
-        </footer>
-    );
-});
+export const DeviceConnectFooter = NamedFC<DeviceConnectFooterProps>(
+    'DeviceConnectFooter',
+    (props: DeviceConnectFooterProps) => {
+        const onCancelClick = () => props.cancelClick();
+        return (
+            <footer className={styles.deviceConnectFooter}>
+                <DefaultButton
+                    className={styles.footerButtonCancel}
+                    onClick={onCancelClick}
+                    text="Cancel"
+                ></DefaultButton>
+                <PrimaryButton
+                    className={styles.footerButtonStart}
+                    onClick={() => {
+                        props.deps.windowStateActionCreator.setRoute({ routeId: 'resultsView' });
+                        props.deps.windowFrameActionCreator.maximize();
+                    }}
+                    disabled={!props.canStartTesting}
+                    text="Start testing"
+                ></PrimaryButton>
+            </footer>
+        );
+    },
+);

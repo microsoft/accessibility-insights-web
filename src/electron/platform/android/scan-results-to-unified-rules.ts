@@ -40,7 +40,10 @@ export function convertScanResultsToUnifiedRules(
     return unifiedRules;
 }
 
-function createUnifiedRuleFromRuleResult(ruleInformation: RuleInformation, uuidGenerator: UUIDGenerator): UnifiedRule {
+function createUnifiedRuleFromRuleResult(
+    ruleInformation: RuleInformation,
+    uuidGenerator: UUIDGenerator,
+): UnifiedRule {
     return {
         uid: uuidGenerator(),
         id: ruleInformation.ruleId,

@@ -11,7 +11,10 @@ export interface ElectronExternalLinkProps {
     children: React.ReactNode;
 }
 
-export const ElectronExternalLink = NamedFC<ElectronExternalLinkProps>('ElectronExternalLink', (props: ElectronExternalLinkProps) => {
-    const onClick = () => props.shell.openExternal(props.href);
-    return <Link onClick={onClick}>{props.children}</Link>;
-});
+export const ElectronExternalLink = NamedFC<ElectronExternalLinkProps>(
+    'ElectronExternalLink',
+    (props: ElectronExternalLinkProps) => {
+        const onClick = () => props.shell.openExternal(props.href);
+        return <Link onClick={onClick}>{props.children}</Link>;
+    },
+);

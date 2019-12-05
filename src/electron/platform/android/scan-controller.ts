@@ -4,7 +4,11 @@ import { UnifiedScanResultActions } from 'background/actions/unified-scan-result
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { InstanceCount, TelemetryEventSource } from 'common/extension-telemetry-events';
 import { createDefaultLogger } from 'common/logging/default-logger';
-import { SCAN_COMPLETED, SCAN_FAILED, SCAN_STARTED } from 'electron/common/electron-telemetry-events';
+import {
+    SCAN_COMPLETED,
+    SCAN_FAILED,
+    SCAN_STARTED,
+} from 'electron/common/electron-telemetry-events';
 import { PortPayload } from 'electron/flux/action/device-action-payloads';
 import { ScanActions } from 'electron/flux/action/scan-actions';
 import { ScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';

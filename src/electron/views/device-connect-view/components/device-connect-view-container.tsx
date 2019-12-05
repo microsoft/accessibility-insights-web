@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { TelemetryPermissionDialog, TelemetryPermissionDialogDeps } from 'common/components/telemetry-permission-dialog';
+import {
+    TelemetryPermissionDialog,
+    TelemetryPermissionDialogDeps,
+} from 'common/components/telemetry-permission-dialog';
 import { NamedFC } from 'common/react/named-fc';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { brand } from 'content/strings/application';
@@ -13,7 +16,9 @@ import { deviceConnectView, mainContentWrapper } from '../device-connect-view.sc
 import { DeviceConnectBody, DeviceConnectBodyDeps } from './device-connect-body';
 import { WindowTitle, WindowTitleDeps } from './window-title';
 
-export type DeviceConnectViewContainerDeps = TelemetryPermissionDialogDeps & DeviceConnectBodyDeps & WindowTitleDeps;
+export type DeviceConnectViewContainerDeps = TelemetryPermissionDialogDeps &
+    DeviceConnectBodyDeps &
+    WindowTitleDeps;
 
 export type DeviceConnectViewContainerProps = {
     deps: DeviceConnectViewContainerDeps;
@@ -22,22 +27,32 @@ export type DeviceConnectViewContainerProps = {
     windowStateStoreData: WindowStateStoreData;
 };
 
-export const DeviceConnectViewContainer = NamedFC<DeviceConnectViewContainerProps>('DeviceConnectViewContainer', props => {
-    return (
-        <div className={deviceConnectView}>
-            <WindowTitle title={brand} deps={props.deps} windowStateStoreData={props.windowStateStoreData}>
-                <BrandBlue />
-            </WindowTitle>
-            <div className={mainContentWrapper}>
-                <DeviceConnectBody
+export const DeviceConnectViewContainer = NamedFC<DeviceConnectViewContainerProps>(
+    'DeviceConnectViewContainer',
+    props => {
+        return (
+            <div className={deviceConnectView}>
+                <WindowTitle
+                    title={brand}
                     deps={props.deps}
-                    viewState={{
-                        deviceConnectState: props.deviceStoreData.deviceConnectState,
-                        connectedDevice: props.deviceStoreData.connectedDevice,
-                    }}
-                />
-                <TelemetryPermissionDialog deps={props.deps} isFirstTime={props.userConfigurationStoreData.isFirstTime} />
+                    windowStateStoreData={props.windowStateStoreData}
+                >
+                    <BrandBlue />
+                </WindowTitle>
+                <div className={mainContentWrapper}>
+                    <DeviceConnectBody
+                        deps={props.deps}
+                        viewState={{
+                            deviceConnectState: props.deviceStoreData.deviceConnectState,
+                            connectedDevice: props.deviceStoreData.connectedDevice,
+                        }}
+                    />
+                    <TelemetryPermissionDialog
+                        deps={props.deps}
+                        isFirstTime={props.userConfigurationStoreData.isFirstTime}
+                    />
+                </div>
             </div>
-        </div>
-    );
-});
+        );
+    },
+);

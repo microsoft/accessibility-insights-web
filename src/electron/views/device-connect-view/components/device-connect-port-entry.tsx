@@ -26,7 +26,10 @@ export interface DeviceConnectPortEntryState {
     port: string;
 }
 
-export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEntryProps, DeviceConnectPortEntryState> {
+export class DeviceConnectPortEntry extends React.Component<
+    DeviceConnectPortEntryProps,
+    DeviceConnectPortEntryState
+> {
     constructor(props: DeviceConnectPortEntryProps) {
         super(props);
         this.state = { port: '' };
@@ -65,10 +68,17 @@ export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEnt
     }
 
     private isValidateButtonDisabled(): boolean {
-        return !this.state.port || this.state.port === '' || this.props.viewState.deviceConnectState === DeviceConnectState.Connecting;
+        return (
+            !this.state.port ||
+            this.state.port === '' ||
+            this.props.viewState.deviceConnectState === DeviceConnectState.Connecting
+        );
     }
 
-    private onPortTextChanged = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
+    private onPortTextChanged = (
+        event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>,
+        newValue?: string,
+    ) => {
         this.props.deps.deviceConnectActionCreator.resetConnection();
         this.setState({ port: newValue });
     };

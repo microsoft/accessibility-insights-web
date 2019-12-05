@@ -64,16 +64,25 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                 cardSelectionViewData.highlightedResultUids,
             );
 
-            return this.renderLayout(this.renderResults(cardsViewData), <ScreenshotView viewModel={screenshotViewModel} />);
+            return this.renderLayout(
+                this.renderResults(cardsViewData),
+                <ScreenshotView viewModel={screenshotViewModel} />,
+            );
         } else {
             return this.renderLayout(this.renderScanningSpinner());
         }
     }
 
-    private renderLayout(primaryContent: JSX.Element, optionalSidePanel?: JSX.Element): JSX.Element {
+    private renderLayout(
+        primaryContent: JSX.Element,
+        optionalSidePanel?: JSX.Element,
+    ): JSX.Element {
         return (
             <div className={styles.automatedChecksView}>
-                <TitleBar deps={this.props.deps} windowStateStoreData={this.props.windowStateStoreData}></TitleBar>
+                <TitleBar
+                    deps={this.props.deps}
+                    windowStateStoreData={this.props.windowStateStoreData}
+                ></TitleBar>
                 <div className={styles.automatedChecksPanelLayout}>
                     <div className={mainContentWrapper}>
                         <CommandBar
@@ -96,8 +105,14 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
         return (
             <DeviceDisconnectedPopup
                 deviceName={this.props.deviceStoreData.connectedDevice}
-                onConnectNewDevice={() => this.props.deps.windowStateActionCreator.setRoute({ routeId: 'deviceConnectView' })}
-                onRescanDevice={() => this.props.deps.scanActionCreator.scan(this.props.deviceStoreData.port)}
+                onConnectNewDevice={() =>
+                    this.props.deps.windowStateActionCreator.setRoute({
+                        routeId: 'deviceConnectView',
+                    })
+                }
+                onRescanDevice={() =>
+                    this.props.deps.scanActionCreator.scan(this.props.deviceStoreData.port)
+                }
             />
         );
     }
