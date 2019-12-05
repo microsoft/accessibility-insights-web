@@ -94,7 +94,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             selectedTest: VisualizationType[view],
             source: testSource,
         };
-        const pivot = DetailsViewPivotType.allTest;
+        const pivot = DetailsViewPivotType.assessment;
 
         const expectedMessage = {
             messageType: Messages.Visualizations.DetailsView.Select,
@@ -167,7 +167,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
     });
 
     test('sendPivotItemClicked', () => {
-        const pivot = DetailsViewPivotType.allTest;
+        const pivot = DetailsViewPivotType.assessment;
         const telemetryData: DetailsViewPivotSelectedTelemetryData = {
             triggeredBy: 'keypress',
             pivotKey: DetailsViewPivotType[pivot],

@@ -65,13 +65,6 @@ const detailsViewSwitcherNavs: { [key in DetailsViewPivotType]: InternalDetailsV
         LeftNav: FastPassLeftNav,
         getSelectedDetailsView: getFastPassSelectedDetailsView,
     },
-    [DetailsViewPivotType.allTest]: {
-        CommandBar: null,
-        ReportExportComponentFactory: null,
-        StartOverComponentFactory: null,
-        LeftNav: null,
-        getSelectedDetailsView: null,
-    },
 };
 
 export type GetDetailsSwitcherNavConfiguration = (props: GetDetailsSwitcherNavConfigurationProps) => DetailsViewSwitcherNavConfiguration;
