@@ -1,26 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`HeaderTest render: no feature flag store data 1`] = `
-"<header className=\\"header-bar\\">
+"<header className=\\"headerBar\\">
   <Component deps={{...}} />
-  <div className=\\"ms-font-m header-text\\">
+  <span className=\\"headerText\\">
     Accessibility Insights for Web
-  </div>
+  </span>
 </header>"
 `;
 
 exports[`HeaderTest render: tabClosed is false 1`] = `
 <header
-  className="header-bar"
+  className="headerBar"
 >
   <Component
     deps={null}
   />
-  <div
-    className="ms-font-m header-text"
+  <span
+    className="headerText"
   >
     Accessibility Insights for Web
-  </div>
+  </span>
   <Switcher
     deps={null}
     pivotKey={2}
@@ -47,15 +47,15 @@ exports[`HeaderTest render: tabClosed is false 1`] = `
 
 exports[`HeaderTest render: tabClosed is true 1`] = `
 <header
-  className="header-bar"
+  className="headerBar"
 >
   <Component
     deps={null}
   />
-  <div
-    className="ms-font-m header-text"
+  <span
+    className="headerText"
   >
     Accessibility Insights for Web
-  </div>
+  </span>
 </header>
 `;
