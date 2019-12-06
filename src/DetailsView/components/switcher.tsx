@@ -36,10 +36,10 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
 
     private onRenderOption = (option: IDropdownOption): JSX.Element => {
         return (
-            <div className={styles.switcherDropdownOption} aria-hidden="true">
+            <span className={styles.switcherDropdownOption} aria-hidden="true">
                 {option.data && option.data.icon && <Icon iconName={option.data.icon} />}
                 <span>{option.text}</span>
-            </div>
+            </span>
         );
     };
 
