@@ -14,6 +14,7 @@ export async function formatChildElementForSnapshot(rootElement: ElementHandle<E
 }
 
 export function formatHtmlForSnapshot(htmlString: string): Node {
+    htmlString = normalizeCssModuleClassNames(htmlString);
     htmlString = normalizeOfficeFabricGeneratedClassNames(htmlString);
     htmlString = normalizeExtensionUrls(htmlString);
     htmlString = htmlString.trim();
@@ -32,6 +33,14 @@ function normalizeOfficeFabricGeneratedClassNames(htmlString: string): string {
     return htmlString.replace(/(class|id)="([\w\s-]+[\d]+|Panel\d+-\w+)"/g, (subString, args) => {
         return subString.replace(/[\d]+/g, '000');
     });
+}
+
+// Our webpack config adds generated suffixes of form "--abc12" to the end of class names defined in
+// CSS. This normalizes them to avoid ex
+// modules. office fabric generates a random class & id name which changes every time.
+// We remove the random number before snapshot comparison to avoid flakiness
+function normalizeCssModuleClassNames(htmlString: string): string {
+    return htmlString.replace(/(class="[^"]+--)[A-Za-z0-9+\/=]{5}(")/g, '$1{{CSS_MODULE_HASH}}$2');
 }
 
 // in some cases (eg, stylesheet links), HTML can contain absolute chrome-extension://{generated-id} paths
