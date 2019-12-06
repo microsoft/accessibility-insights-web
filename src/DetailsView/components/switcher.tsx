@@ -46,12 +46,7 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
     private onRenderTitle = (options: IDropdownOption[]): JSX.Element => {
         const option = options[0];
 
-        return (
-            <div className={styles.switcherDropdownOption} aria-hidden="true">
-                {option.data && option.data.icon && <Icon iconName={option.data.icon} />}
-                <span>{option.text}</span>
-            </div>
-        );
+        return this.onRenderOption(option);
     };
 
     private onOptionChange = (event, option?: IDropdownOption): void => {
