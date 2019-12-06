@@ -1,13 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Switcher render 1`] = `
+exports[`Switcher props dropdown has correct options 1`] = `
+Array [
+  Object {
+    "data": Object {
+      "icon": "Rocket",
+    },
+    "key": 0,
+    "text": "FastPass",
+  },
+  Object {
+    "data": Object {
+      "icon": "testBeaker",
+    },
+    "key": 2,
+    "text": "Assessment",
+  },
+]
+`;
+
+exports[`Switcher renders Switcher itself matches snapshot 1`] = `
 "<div className=\\"headerSwitcher\\">
   <StyledWithResponsiveMode className=\\"headerSwitcherDropdown\\" ariaLabel=\\"select activity\\" responsiveMode={2} selectedKey={0} onRenderOption={[Function]} onRenderTitle={[Function]} onChange={[Function]} options={{...}} />
 </div>"
 `;
 
-exports[`Switcher render options 1`] = `
-"<div className=\\"headerSwitcher\\">
-  <StyledWithResponsiveMode className=\\"headerSwitcherDropdown\\" ariaLabel=\\"select activity\\" responsiveMode={2} selectedKey={0} onRenderOption={[Function]} onRenderTitle={[Function]} onChange={[Function]} options={{...}} />
-</div>"
+exports[`Switcher renders option renderer override matches snapshot  1`] = `
+<span
+  aria-hidden="true"
+  className="switcherDropdownOption"
+>
+  <StyledIconBase
+    iconName="Rocket"
+  />
+  <span>
+    FastPass
+  </span>
+</span>
 `;
