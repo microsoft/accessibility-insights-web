@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { css } from '@uifabric/utilities';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
