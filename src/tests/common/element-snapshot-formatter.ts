@@ -36,9 +36,7 @@ function normalizeOfficeFabricGeneratedClassNames(htmlString: string): string {
 }
 
 // Our webpack config adds generated suffixes of form "--abc12" to the end of class names defined in
-// CSS. This normalizes them to avoid ex
-// modules. office fabric generates a random class & id name which changes every time.
-// We remove the random number before snapshot comparison to avoid flakiness
+// CSS. This normalizes them to avoid causing E2Es to fail for unrelated style changes.
 function normalizeCssModuleClassNames(htmlString: string): string {
     return htmlString.replace(/(class="[^"]+--)[A-Za-z0-9+\/=]{5}(")/g, '$1{{CSS_MODULE_HASH}}$2');
 }
