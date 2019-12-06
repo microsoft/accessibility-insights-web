@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { MessageBar, MessageBarType } from 'office-ui-fabric-react/lib/MessageBar';
+import { shallow } from 'enzyme';
 import * as React from 'react';
-import * as TestUtils from 'react-dom/test-utils';
 import { IMock, Mock } from 'typemoq';
 import { DropdownClickHandler } from '../../../../../common/dropdown-click-handler';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
@@ -39,47 +38,18 @@ describe('TabInfo', () => {
                 } as TabInfoProps;
             });
 
-            function getExpectedWarningMessageBar(): JSX.Element {
-                const text = (
-                    <div>
-                        The Target page is in a hidden state. For better performance, use the Target page link above to make the page
-                        visible.
-                    </div>
-                );
-                return getMessageBar(text, MessageBarType.warning, 'waring-message-bar');
-            }
-
-            function getMessageBar(messageContent: JSX.Element, messageBarType: MessageBarType, className: string): JSX.Element {
-                return (
-                    <MessageBar messageBarType={messageBarType} className={className}>
-                        {messageContent}
-                    </MessageBar>
-                );
-            }
-
-            function getExpectedComponentRendered(warningMessageBar: JSX.Element): JSX.Element {
-                return <div>{warningMessageBar}</div>;
-            }
-
             test('render with warning messagebar', () => {
                 testProps.isTargetPageHidden = true;
+                const testSubject = shallow(<TabInfo {...testProps} />);
 
-                const component = React.createElement(TabInfo, testProps);
-                const testObject = TestUtils.renderIntoDocument(component);
-
-                const warningMessageBar = getExpectedWarningMessageBar();
-                const expectedComponent = getExpectedComponentRendered(warningMessageBar);
-
-                expect(testObject.render()).toEqual(expectedComponent);
+                expect(testSubject.debug()).toMatchSnapshot();
             });
 
             test('render without warning messagebar', () => {
                 testProps.isTargetPageHidden = false;
+                const testSubject = shallow(<TabInfo {...testProps} />);
 
-                const component = React.createElement(TabInfo, testProps);
-                const testObject = TestUtils.renderIntoDocument(component);
-
-                expect(testObject.render()).toEqual(null);
+                expect(testSubject.getElement()).toBeNull();
             });
         });
     });

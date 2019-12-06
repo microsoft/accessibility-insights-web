@@ -26,9 +26,7 @@ export class TabInfo extends React.Component<TabInfoProps> {
         }
 
         const messageContent = (
-            <div>
-                The Target page is in a hidden state. For better performance, use the Target page link above to make the page visible.
-            </div>
+            <>The Target page is in a hidden state. For better performance, use the Target page link above to make the page visible.</>
         );
 
         return <div>{this.renderMessageBar(messageContent, MessageBarType.warning, 'waring-message-bar')}</div>;
