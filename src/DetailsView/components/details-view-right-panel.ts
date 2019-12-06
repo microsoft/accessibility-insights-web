@@ -29,7 +29,9 @@ export type GetDetailsRightPanelConfigurationProps = {
     detailsViewRightContentPanel: DetailsViewRightContentPanelType;
 };
 
-const detailsViewTypeContentMap: { [key in DetailsViewRightContentPanelType]: DetailsRightPanelConfiguration } = {
+const detailsViewTypeContentMap: {
+    [key in DetailsViewRightContentPanelType]: DetailsRightPanelConfiguration;
+} = {
     Overview: {
         RightPanel: OverviewContainer,
         GetTitle: getOverviewTitle,

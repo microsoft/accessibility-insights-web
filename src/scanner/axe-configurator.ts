@@ -2,7 +2,12 @@
 // Licensed under the MIT License.
 import * as Axe from 'axe-core';
 
-import { IAxeConfiguration, ICheckConfiguration, IRuleConfiguration, RuleConfiguration } from './iruleresults';
+import {
+    IAxeConfiguration,
+    ICheckConfiguration,
+    IRuleConfiguration,
+    RuleConfiguration,
+} from './iruleresults';
 import { localeConfiguration } from './locale-configuration';
 
 export class AxeConfigurator {
@@ -12,7 +17,9 @@ export class AxeConfigurator {
         axe.configure({ locale: localeConfiguration });
     }
 
-    private createAxeConfigurationFromCustomRules(ruleConfigs: RuleConfiguration[]): IAxeConfiguration {
+    private createAxeConfigurationFromCustomRules(
+        ruleConfigs: RuleConfiguration[],
+    ): IAxeConfiguration {
         let checks: ICheckConfiguration[] = [];
         const rules: IRuleConfiguration[] = [];
         ruleConfigs.forEach((ruleConfig: RuleConfiguration) => {

@@ -19,7 +19,9 @@ export class MasterCheckBoxConfigProvider {
         const iconName = allEnabled
             ? MasterCheckBoxConfigProvider.MASTER_CHECKBOX_ICON_NAME_ENABLED
             : MasterCheckBoxConfigProvider.MASTER_CHECKBOX_ICON_NAME_DISABLED;
-        const iconClassName = classNames({ 'master-visualization-column-header-selected': iconName === 'view' });
+        const iconClassName = classNames({
+            'master-visualization-column-header-selected': iconName === 'view',
+        });
         const name = 'Visualization toggle';
         const label = `${allEnabled ? 'Hide' : 'Show'} all visualizations`;
         const onColumnClick = this.getMasterCheckBoxClickHandler(assessmentNavState, allEnabled);

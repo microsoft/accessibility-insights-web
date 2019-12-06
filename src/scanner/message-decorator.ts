@@ -12,7 +12,9 @@ export class MessageDecorator {
     }
 
     public decorateResultWithMessages(results: AxeRule): void {
-        const ruleConfiguration = this.configuration.filter(config => config.rule.id === results.id).pop();
+        const ruleConfiguration = this.configuration
+            .filter(config => config.rule.id === results.id)
+            .pop();
 
         if (ruleConfiguration == null) {
             return;

@@ -4,7 +4,8 @@ import * as AxeUtils from '../axe-utils';
 import { RuleConfiguration } from '../iruleresults';
 import { RoleUtils } from '../role-utils';
 
-export const nativeWidgetSelector = 'button, input[list], input[type]:not([type="hidden"]), select, textarea';
+export const nativeWidgetSelector =
+    'button, input[list], input[type]:not([type="hidden"]), select, textarea';
 
 export const nativeWidgetsDefaultConfiguration = createNativeWidgetConfiguration(
     'native-widgets-default',

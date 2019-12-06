@@ -49,8 +49,16 @@ export class TestStatusChoiceGroup extends React.Component<TestStatusChoiceGroup
                         componentRef={this.compomentRef}
                         selectedKey={this.state.selectedKey}
                         options={[
-                            { key: ManualTestStatus[ManualTestStatus.PASS], text: 'Pass', onRenderLabel: this.onRenderLabel },
-                            { key: ManualTestStatus[ManualTestStatus.FAIL], text: 'Fail', onRenderLabel: this.onRenderLabel },
+                            {
+                                key: ManualTestStatus[ManualTestStatus.PASS],
+                                text: 'Pass',
+                                onRenderLabel: this.onRenderLabel,
+                            },
+                            {
+                                key: ManualTestStatus[ManualTestStatus.FAIL],
+                                text: 'Fail',
+                                onRenderLabel: this.onRenderLabel,
+                            },
                         ]}
                     />
                 </div>

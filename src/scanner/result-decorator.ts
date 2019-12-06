@@ -37,7 +37,10 @@ export class ResultDecorator {
         return scanResults;
     }
 
-    private decorateAxeRuleResults(ruleResults: AxeRule[], isInapplicable: boolean = false): RuleResult[] {
+    private decorateAxeRuleResults(
+        ruleResults: AxeRule[],
+        isInapplicable: boolean = false,
+    ): RuleResult[] {
         return ruleResults.reduce((filteredArray: RuleResult[], result: AxeRule) => {
             this.messageDecorator.decorateResultWithMessages(result);
             const processedResult = Processor.suppressChecksByMessages(result, !isInapplicable);
@@ -62,7 +65,9 @@ export class ResultDecorator {
         return this.ruleToLinkConfiguration[ruleId];
     }
 
-    public setRuleToLinksConfiguration(configuration: DictionaryStringTo<HyperlinkDefinition[]>): void {
+    public setRuleToLinksConfiguration(
+        configuration: DictionaryStringTo<HyperlinkDefinition[]>,
+    ): void {
         this.ruleToLinkConfiguration = configuration;
     }
 }

@@ -39,7 +39,12 @@ function matches(node: HTMLElement, virtualNode: HTMLElement): boolean {
     return !href || href === '#' || AxeUtils.hasCustomWidgetMarkup(node);
 }
 
-function evaluateLinkFunction(node: HTMLElement, options: any, virtualNode: any, context: any): boolean {
+function evaluateLinkFunction(
+    node: HTMLElement,
+    options: any,
+    virtualNode: any,
+    context: any,
+): boolean {
     const accessibleName = AxeUtils.getAccessibleText(node, false);
     const ariaValues = AxeUtils.getPropertyValuesMatching(node, /^aria-/);
     const role = node.getAttribute('role');
