@@ -14,11 +14,13 @@ export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<VisualHelpe
     constructor() {
         super();
         this.data = {
+            deps: {
+                detailsViewActionMessageCreator: null,
+            },
             assessmentNavState: {
                 selectedTestStep: this.stepKey,
                 selectedTestType: -1 as VisualizationType,
             },
-            actionMessageCreator: null,
             instancesMap: {
                 'assessment-1-step-1': {
                     html: 'html',
@@ -30,8 +32,8 @@ export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<VisualHelpe
             isStepScanned: false,
         };
     }
-    public withActionMessageCreator(actionMessageCreator: DetailsViewActionMessageCreator): VisualHelperToggleConfigBuilder {
-        this.data.actionMessageCreator = actionMessageCreator;
+    public withActionMessageCreator(detailsViewActionMessageCreator: DetailsViewActionMessageCreator): VisualHelperToggleConfigBuilder {
+        this.data.deps.detailsViewActionMessageCreator = detailsViewActionMessageCreator;
         return this;
     }
     public withToggleStepEnabled(stepEnabled: boolean): VisualHelperToggleConfigBuilder {

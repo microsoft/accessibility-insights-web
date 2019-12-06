@@ -12,16 +12,33 @@ export interface MaximizeRestoreButtonProps {
     onClick: () => void;
 }
 
-export const MaximizeRestoreButton = NamedFC<MaximizeRestoreButtonProps>('TitleBar', (props: MaximizeRestoreButtonProps) => {
-    const renderRestore = () => <RestoreIcon />;
-    const iconProps = { iconName: 'stop' };
-    const onClick = () => props.onClick();
+export const MaximizeRestoreButton = NamedFC<MaximizeRestoreButtonProps>(
+    'TitleBar',
+    (props: MaximizeRestoreButtonProps) => {
+        const renderRestore = () => <RestoreIcon />;
+        const iconProps = { iconName: 'stop' };
+        const onClick = () => props.onClick();
 
-    const button = props.isMaximized ? (
-        <ActionButton onRenderIcon={renderRestore} ariaHidden={true} id="maximize-button" tabIndex={-1} key="maximize" onClick={onClick} />
-    ) : (
-        <ActionButton ariaHidden={true} iconProps={iconProps} id="maximize-button" tabIndex={-1} key="maximize" onClick={onClick} />
-    );
+        const button = props.isMaximized ? (
+            <ActionButton
+                onRenderIcon={renderRestore}
+                ariaHidden={true}
+                id="maximize-button"
+                tabIndex={-1}
+                key="maximize"
+                onClick={onClick}
+            />
+        ) : (
+            <ActionButton
+                ariaHidden={true}
+                iconProps={iconProps}
+                id="maximize-button"
+                tabIndex={-1}
+                key="maximize"
+                onClick={onClick}
+            />
+        );
 
-    return button;
-});
+        return button;
+    },
+);

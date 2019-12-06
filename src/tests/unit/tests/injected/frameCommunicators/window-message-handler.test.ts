@@ -19,7 +19,14 @@ describe('WindowMessageHandlerTests', () => {
         mockMessageMarshaller = Mock.ofType<WindowMessageMarshaller>(null, MockBehavior.Strict);
 
         mockWindowUtils
-            .setup(x => x.addEventListener(window, 'message', It.is((cb: (e: MessageEvent) => void) => cb != null), false))
+            .setup(x =>
+                x.addEventListener(
+                    window,
+                    'message',
+                    It.is((cb: (e: MessageEvent) => void) => cb != null),
+                    false,
+                ),
+            )
             .callback((window, command, callback) => {
                 messageCallback = callback;
             })

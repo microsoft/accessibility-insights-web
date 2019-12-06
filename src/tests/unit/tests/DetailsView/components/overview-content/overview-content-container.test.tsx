@@ -37,7 +37,7 @@ describe('OverviewContainer', () => {
     } as any;
 
     const filteredProvider = {} as AssessmentsProvider;
-    const detailsViewActionMessageCreatorStub = {} as DetailsViewActionMessageCreator;
+    const detailsViewActionMessageCreator = {} as DetailsViewActionMessageCreator;
     const assessmentsProviderWithFeaturesEnabledMock = Mock.ofInstance((provider, featureFlagData) => null, MockBehavior.Strict);
     const getAssessmentSummaryModelFromProviderAndStoreData = jest.fn();
 
@@ -45,7 +45,7 @@ describe('OverviewContainer', () => {
         assessmentsProvider: assessmentsProvider,
         actionInitiators: overviewHelpSectionDeps.actionInitiators,
         getAssessmentSummaryModelFromProviderAndStoreData: getAssessmentSummaryModelFromProviderAndStoreData,
-        detailsViewActionMessageCreator: detailsViewActionMessageCreatorStub,
+        detailsViewActionMessageCreator,
         urlParser: urlParserMock,
         assessmentsProviderWithFeaturesEnabled: assessmentsProviderWithFeaturesEnabledMock.object,
     };

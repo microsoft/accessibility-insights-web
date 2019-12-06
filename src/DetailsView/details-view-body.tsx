@@ -1,11 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
+import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
+import { DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
@@ -48,8 +49,8 @@ export interface DetailsViewBodyProps {
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
     userConfigurationStoreData: UserConfigurationStoreData;
-    ruleResultsByStatus: CardRuleResultsByStatus;
     targetAppInfo: TargetAppData;
+    cardsViewData: CardsViewModel;
 }
 
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
@@ -71,8 +72,13 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
     }
 
     private renderCommandBar(): JSX.Element {
-        const { deps, switcherNavConfiguration } = this.props;
-        return <switcherNavConfiguration.CommandBar actionMessageCreator={deps.detailsViewActionMessageCreator} {...this.props} />;
+        const { switcherNavConfiguration } = this.props;
+
+        const detailsViewCommandBarProps: DetailsViewCommandBarProps = {
+            ...this.props,
+        };
+
+        return <switcherNavConfiguration.CommandBar {...detailsViewCommandBarProps} />;
     }
 
     private renderNavBar(): JSX.Element {
@@ -92,10 +98,10 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
 
         return (
             <TabInfo
+                deps={this.props.deps}
                 isTargetPageHidden={this.props.tabStoreData.isPageHidden}
                 url={this.props.tabStoreData.url}
                 title={this.props.tabStoreData.title}
-                actionCreator={this.props.deps.detailsViewActionMessageCreator}
                 selectedPivot={this.props.visualizationStoreData.selectedDetailsViewPivot}
                 dropdownClickHandler={this.props.dropdownClickHandler}
             />

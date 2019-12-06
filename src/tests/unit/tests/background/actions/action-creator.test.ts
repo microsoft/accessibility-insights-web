@@ -8,6 +8,7 @@ import {
     ChangeInstanceStatusPayload,
     OnDetailsViewOpenPayload,
     OnDetailsViewPivotSelected,
+    RescanVisualizationPayload,
     ToggleActionPayload,
     VisualizationTogglePayload,
 } from 'background/actions/action-payloads';
@@ -183,7 +184,7 @@ describe('ActionCreatorTest', () => {
     test('registerCallbacks for openDetailsView == null', () => {
         const tabId = 1;
         const viewType = null;
-        const pivotType = DetailsViewPivotType.allTest;
+        const pivotType = DetailsViewPivotType.fastPass;
         const telemetry: DetailsViewOpenTelemetryData = {
             selectedTest: VisualizationType[viewType],
             triggeredBy: 'keypress',
@@ -211,10 +212,10 @@ describe('ActionCreatorTest', () => {
         validator.verifyAll();
     });
 
-    test('registerCallbacks for openDetailsView == Headings', () => {
+    test('registerCallbacks for openDetailsView == TabStops', () => {
         const tabId = 1;
-        const viewType = VisualizationType.Headings;
-        const pivotType = DetailsViewPivotType.allTest;
+        const viewType = VisualizationType.TabStops;
+        const pivotType = DetailsViewPivotType.fastPass;
         const telemetry: DetailsViewOpenTelemetryData = {
             selectedTest: VisualizationType[viewType],
             triggeredBy: 'keypress',
@@ -228,21 +229,12 @@ describe('ActionCreatorTest', () => {
         };
 
         const updateViewActionName = 'updateSelectedPivotChild';
-        const enableVisualizationActionName = 'enableVisualization';
-        const enableVisualizationTelemetryPayload: VisualizationTogglePayload = {
-            enabled: true,
-            test: viewType,
-            telemetry: null,
-        };
 
         const validator = new ActionCreatorValidator()
             .setupRegistrationCallback(VisualizationMessage.DetailsView.Open, [actionCreatorPayload, tabId])
-            .setupActionOnVisualizationActions(enableVisualizationActionName)
-            .setupVisualizationActionWithInvokeParameter(enableVisualizationActionName, enableVisualizationTelemetryPayload)
             .setupActionOnVisualizationActions(updateViewActionName)
             .setupVisualizationActionWithInvokeParameter(updateViewActionName, actionCreatorPayload)
             .setupTelemetrySend(TelemetryEvents.PIVOT_CHILD_SELECTED, actionCreatorPayload, tabId)
-            .setupTelemetrySend(TelemetryEvents.HEADINGS_TOGGLE, enableVisualizationTelemetryPayload, tabId)
             .setupShowDetailsView(tabId);
 
         const actionCreator = validator.buildActionCreator();
@@ -284,90 +276,6 @@ describe('ActionCreatorTest', () => {
             .setupVisualizationActionWithInvokeParameter(enablingIssuesActionName, enableVisualizationTelemetryPayload)
             .setupTelemetrySend(TelemetryEvents.PIVOT_CHILD_SELECTED, actionCreatorPayload, tabId)
             .setupTelemetrySend(TelemetryEvents.AUTOMATED_CHECKS_TOGGLE, enableVisualizationTelemetryPayload, tabId)
-            .setupShowDetailsView(tabId);
-
-        const actionCreator = validator.buildActionCreator();
-
-        actionCreator.registerCallbacks();
-
-        validator.verifyAll();
-    });
-
-    test('registerCallbacks for openDetailsView == Color', () => {
-        const tabId = 1;
-        const viewType = VisualizationType.Color;
-        const pivotType = DetailsViewPivotType.allTest;
-        const telemetry: DetailsViewOpenTelemetryData = {
-            selectedTest: VisualizationType[viewType],
-            triggeredBy: 'keypress',
-            source: testSource,
-        };
-
-        const actionCreatorPayload: OnDetailsViewOpenPayload = {
-            detailsViewType: viewType,
-            pivotType,
-            telemetry,
-        };
-
-        const updateViewActionName = 'updateSelectedPivotChild';
-        const enablingColorActionName = 'enableVisualization';
-
-        const enableVisualizationTelemetryPayload: VisualizationTogglePayload = {
-            enabled: true,
-            test: viewType,
-            telemetry: null,
-        };
-
-        const validator = new ActionCreatorValidator()
-            .setupRegistrationCallback(VisualizationMessage.DetailsView.Open, [actionCreatorPayload, tabId])
-            .setupActionOnVisualizationActions(updateViewActionName)
-            .setupVisualizationActionWithInvokeParameter(updateViewActionName, actionCreatorPayload)
-            .setupActionOnVisualizationActions(enablingColorActionName)
-            .setupVisualizationActionWithInvokeParameter(enablingColorActionName, enableVisualizationTelemetryPayload)
-            .setupTelemetrySend(TelemetryEvents.PIVOT_CHILD_SELECTED, actionCreatorPayload, tabId)
-            .setupTelemetrySend(TelemetryEvents.COLOR_TOGGLE, enableVisualizationTelemetryPayload, tabId)
-            .setupShowDetailsView(tabId);
-
-        const actionCreator = validator.buildActionCreator();
-
-        actionCreator.registerCallbacks();
-
-        validator.verifyAll();
-    });
-
-    test('registerCallbacks for openDetailsView == Landmarks', () => {
-        const tabId = 1;
-        const viewType = VisualizationType.Landmarks;
-        const pivotType = DetailsViewPivotType.allTest;
-        const telemetry: DetailsViewOpenTelemetryData = {
-            selectedTest: VisualizationType[viewType],
-            triggeredBy: 'keypress',
-            source: testSource,
-        };
-
-        const actionCreatorPayload: OnDetailsViewOpenPayload = {
-            detailsViewType: viewType,
-            pivotType: pivotType,
-            telemetry: telemetry,
-        };
-
-        const updateViewActionName = 'updateSelectedPivotChild';
-        const enablingIssuesActionName = 'enableVisualization';
-
-        const enableVisualizationTelemetryPayload: VisualizationTogglePayload = {
-            enabled: true,
-            test: viewType,
-            telemetry: null,
-        };
-
-        const validator = new ActionCreatorValidator()
-            .setupRegistrationCallback(VisualizationMessage.DetailsView.Open, [actionCreatorPayload, tabId])
-            .setupActionOnVisualizationActions(updateViewActionName)
-            .setupVisualizationActionWithInvokeParameter(updateViewActionName, actionCreatorPayload)
-            .setupActionOnVisualizationActions(enablingIssuesActionName)
-            .setupVisualizationActionWithInvokeParameter(enablingIssuesActionName, enableVisualizationTelemetryPayload)
-            .setupTelemetrySend(TelemetryEvents.PIVOT_CHILD_SELECTED, actionCreatorPayload, tabId)
-            .setupTelemetrySend(TelemetryEvents.LANDMARKS_TOGGLE, enableVisualizationTelemetryPayload, tabId)
             .setupShowDetailsView(tabId);
 
         const actionCreator = validator.buildActionCreator();
@@ -494,34 +402,6 @@ describe('ActionCreatorTest', () => {
         testScanCompleteWithExpectedParams(key, message, actionName, telemetryEventName);
     });
 
-    test('registerCallback for injectionCompleted', () => {
-        const actionName = 'injectionCompleted';
-        const builder = new ActionCreatorValidator()
-            .setupRegistrationCallback(VisualizationMessage.State.InjectionCompleted)
-            .setupActionOnVisualizationActions(actionName)
-            .setupVisualizationActionWithInvokeParameter(actionName, null);
-
-        const actionCreator = builder.buildActionCreator();
-
-        actionCreator.registerCallbacks();
-
-        builder.verifyAll();
-    });
-
-    test('registerCallback for injectionStarted', () => {
-        const actionName = 'injectionStarted';
-        const builder = new ActionCreatorValidator()
-            .setupRegistrationCallback(VisualizationMessage.State.InjectionStarted)
-            .setupActionOnVisualizationActions(actionName)
-            .setupVisualizationActionWithInvokeParameter(actionName, null);
-
-        const actionCreator = builder.buildActionCreator();
-
-        actionCreator.registerCallbacks();
-
-        builder.verifyAll();
-    });
-
     test('registerCallback for tabbed element added', () => {
         const tabbedElement: AddTabbedElementPayload = {
             tabbedElements: [
@@ -578,7 +458,7 @@ describe('ActionCreatorTest', () => {
 
     test('registerCallback for onDetailsViewSelected', () => {
         const viewType = VisualizationType.Issues;
-        const pivotType = DetailsViewPivotType.allTest;
+        const pivotType = DetailsViewPivotType.fastPass;
         const updateViewActionName = 'updateSelectedPivotChild';
         const closePreviewFeaturesActionName = 'closePreviewFeatures';
         const tabId = 1;
@@ -759,6 +639,28 @@ describe('ActionCreatorTest', () => {
             .setupRegistrationCallback(Messages.Assessment.CancelStartOverAllAssessments, [payload, tabId])
             .setupTelemetrySend(TelemetryEvents.CANCEL_START_OVER_ASSESSMENT, payload, tabId);
 
+        const actionCreator = validator.buildActionCreator();
+
+        actionCreator.registerCallbacks();
+
+        validator.verifyAll();
+    });
+
+    test('registerCallback for onRescanVisualization', () => {
+        const tabId = 1;
+        const payload: RescanVisualizationPayload = {
+            test: VisualizationType.HeadingsAssessment,
+        };
+        const disableActionName = 'disableVisualization';
+        const enableActionName = 'enableVisualization';
+
+        const validator = new ActionCreatorValidator()
+            .setupRegistrationCallback(Messages.Visualizations.Common.RescanVisualization, [payload, tabId])
+            .setupActionOnVisualizationActions(disableActionName)
+            .setupActionOnVisualizationActions(enableActionName)
+            .setupVisualizationActionWithInvokeParameter(disableActionName, payload.test)
+            .setupVisualizationActionWithInvokeParameter(enableActionName, payload)
+            .setupTelemetrySend(TelemetryEvents.RESCAN_VISUALIZATION, payload, tabId);
         const actionCreator = validator.buildActionCreator();
 
         actionCreator.registerCallbacks();
@@ -973,6 +875,7 @@ class ActionCreatorValidator {
         pathSnippetActions: null,
         scanResultActions: null,
         cardSelectionActions: null,
+        injectionActions: null,
     };
 
     private telemetryEventHandlerStrictMock = Mock.ofType<TelemetryEventHandler>(null, MockBehavior.Strict);

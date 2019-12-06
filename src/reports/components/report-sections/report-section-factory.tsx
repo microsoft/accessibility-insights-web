@@ -1,13 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { FailedInstancesSectionDeps } from 'common/components/cards/failed-instances-section';
+import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { EnvironmentInfo } from 'common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { ReactFCWithDisplayName } from 'common/react/named-fc';
-import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
-import { ScanResults } from 'scanner/iruleresults';
 
-import { CardRuleResultsByStatus } from '../../../common/types/store-data/card-view-model';
+import { CardsViewModel } from '../../../common/types/store-data/card-view-model';
 import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import { NotApplicableChecksSectionDeps } from './not-applicable-checks-section';
@@ -23,11 +22,10 @@ export type SectionProps = {
     description: string;
     scanDate: Date;
     environmentInfo: EnvironmentInfo;
-    scanResult: ScanResults;
     toUtcString: (date: Date) => string;
     getCollapsibleScript: () => string;
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;
-    ruleResultsByStatus: CardRuleResultsByStatus;
+    cardsViewData: CardsViewModel;
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
     shouldAlertFailuresCount?: boolean;
@@ -44,5 +42,6 @@ export type ReportSectionFactory = {
     FailedInstancesSection: ReactFCWithDisplayName<SectionProps>;
     PassedChecksSection: ReactFCWithDisplayName<SectionProps>;
     NotApplicableChecksSection: ReactFCWithDisplayName<SectionProps>;
-    FooterSection: ReactFCWithDisplayName<SectionProps>;
+    FooterSection: ReactFCWithDisplayName;
+    FooterText: ReactFCWithDisplayName<Pick<SectionProps, 'environmentInfo'>>;
 };

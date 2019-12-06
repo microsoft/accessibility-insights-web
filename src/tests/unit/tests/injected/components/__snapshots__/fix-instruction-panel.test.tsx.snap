@@ -2,13 +2,11 @@
 
 exports[`FixInstructionPanelTests render all checks 1`] = `
 <div>
-  <div
-    className="insights-fix-instruction-title"
-  >
+  <div>
     Fix ALL of the following:
   </div>
   <ul
-    className="insights-fix-instruction-list"
+    className="insightsFixInstructionList"
   >
     <li>
       <React.Fragment>
@@ -26,13 +24,11 @@ exports[`FixInstructionPanelTests render all checks 1`] = `
 
 exports[`FixInstructionPanelTests render instruction only one check 1`] = `
 <div>
-  <div
-    className="insights-fix-instruction-title"
-  >
+  <div>
     Fix the following:
   </div>
   <ul
-    className="insights-fix-instruction-list"
+    className="insightsFixInstructionList"
   >
     <li>
       <React.Fragment>
@@ -45,13 +41,11 @@ exports[`FixInstructionPanelTests render instruction only one check 1`] = `
 
 exports[`FixInstructionPanelTests render none checks 1`] = `
 <div>
-  <div
-    className="insights-fix-instruction-title"
-  >
+  <div>
     Fix ALL of the following:
   </div>
   <ul
-    className="insights-fix-instruction-list"
+    className="insightsFixInstructionList"
   >
     <li>
       <React.Fragment>

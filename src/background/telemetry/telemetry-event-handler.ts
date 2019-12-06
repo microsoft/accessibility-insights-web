@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
+import { mapValues } from 'lodash';
+
 import { TelemetryEventSource } from '../../common/extension-telemetry-events';
 import { DictionaryStringTo } from '../../types/common-types';
 import { BaseActionPayload } from '../actions/action-payloads';
@@ -25,7 +26,9 @@ export class TelemetryEventHandler {
         const telemetryInfo: any = payload.telemetry;
         this.addBasicDataToTelemetry(telemetryInfo);
 
-        const flattenTelemetryInfo: DictionaryStringTo<string> = this.flattenTelemetryInfo(telemetryInfo);
+        const flattenTelemetryInfo: DictionaryStringTo<string> = this.flattenTelemetryInfo(
+            telemetryInfo,
+        );
         this.telemetryClient.trackEvent(eventName, flattenTelemetryInfo);
     }
 
@@ -34,12 +37,15 @@ export class TelemetryEventHandler {
     }
 
     private flattenTelemetryInfo(telemetryInfo: any): DictionaryStringTo<string> {
-        const flattenTelemetryInfo: DictionaryStringTo<string> = _.mapValues(telemetryInfo, (value, key) => {
-            if (typeof value !== 'string') {
-                return JSON.stringify(value);
-            }
-            return value;
-        });
+        const flattenTelemetryInfo: DictionaryStringTo<string> = mapValues(
+            telemetryInfo,
+            (value, key) => {
+                if (typeof value !== 'string') {
+                    return JSON.stringify(value);
+                }
+                return value;
+            },
+        );
 
         return flattenTelemetryInfo;
     }

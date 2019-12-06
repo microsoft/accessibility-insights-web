@@ -38,7 +38,8 @@ export const HeadingsAdHocVisualization: VisualizationConfiguration = {
         provider.createRuleAnalyzer({
             rules: ['heading-order'],
             resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
-            telemetryProcessor: (telemetryFactory: TelemetryDataFactory) => telemetryFactory.forTestScan,
+            telemetryProcessor: (telemetryFactory: TelemetryDataFactory) =>
+                telemetryFactory.forTestScan,
             key: AdHocTestkeys.Headings,
             testType: VisualizationType.Headings,
             analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
@@ -49,6 +50,5 @@ export const HeadingsAdHocVisualization: VisualizationConfiguration = {
     getDrawer: provider => provider.createHeadingsDrawer(),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,
-    getUpdateVisibility: () => false,
     guidance,
 };

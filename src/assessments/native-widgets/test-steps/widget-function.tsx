@@ -12,7 +12,10 @@ import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/ass
 import { ScannerUtils } from 'injected/scanner-utils';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
-import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
+import {
+    NoValue,
+    PropertyBagColumnRendererConfig,
+} from '../../common/property-bag-column-renderer';
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
@@ -21,21 +24,25 @@ import { NativeWidgetsTestStep } from './test-steps';
 
 const description: JSX.Element = (
     <span>
-        If a native widget <Markup.Emphasis>functions</Markup.Emphasis> as a custom widget, it must have the appropriate ARIA widget role.
+        If a native widget <Markup.Emphasis>functions</Markup.Emphasis> as a custom widget, it must
+        have the appropriate ARIA widget role.
     </span>
 );
 
 const howToTest: JSX.Element = (
     <div>
         <p>
-            For this requirement, {productName} highlights native widgets that are possible custom widgets. These elements don't have an
-            ARIA widget role, but they do have some custom widget markup, such as
-            <Markup.CodeTerm> tabindex="-1"</Markup.CodeTerm>, an ARIA attribute, or a non-widget role.
+            For this requirement, {productName} highlights native widgets that are possible custom
+            widgets. These elements don't have an ARIA widget role, but they do have some custom
+            widget markup, such as
+            <Markup.CodeTerm> tabindex="-1"</Markup.CodeTerm>, an ARIA attribute, or a non-widget
+            role.
         </p>
         <TestAutomaticallyPassedNotice />
         <ol>
             <li>
-                In the target page, examine each highlighted widget to verify that it <Markup.Emphasis>functions </Markup.Emphasis>
+                In the target page, examine each highlighted widget to verify that it{' '}
+                <Markup.Emphasis>functions </Markup.Emphasis>
                 as a simple native widget.
             </li>
             <AssistedTestRecordYourResults />
@@ -84,7 +91,9 @@ export const WidgetFunction: Requirement = {
         {
             key: 'widget-function-info',
             name: 'Widget function',
-            onRender: PropertyBagColumnRendererFactory.getRenderer<WidgetFunctionPropertyBag>(propertyBagConfig),
+            onRender: PropertyBagColumnRendererFactory.getRenderer<WidgetFunctionPropertyBag>(
+                propertyBagConfig,
+            ),
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),
@@ -98,6 +107,5 @@ export const WidgetFunction: Requirement = {
             }),
         ),
     getDrawer: provider => provider.createHighlightBoxDrawer(),
-    updateVisibility: false,
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
 };

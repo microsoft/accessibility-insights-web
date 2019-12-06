@@ -20,8 +20,14 @@ export class DetailsViewActionCreator {
     ) {}
 
     public registerCallback(): void {
-        this.interpreter.registerTypeToPayloadCallback(Messages.SettingsPanel.OpenPanel, this.onOpenSettingsPanel);
-        this.interpreter.registerTypeToPayloadCallback(Messages.SettingsPanel.ClosePanel, this.onCloseSettingsPanel);
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.SettingsPanel.OpenPanel,
+            this.onOpenSettingsPanel,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.SettingsPanel.ClosePanel,
+            this.onCloseSettingsPanel,
+        );
         this.interpreter.registerTypeToPayloadCallback(
             getStoreStateMessage(StoreNames.DetailsViewStore),
             this.onGetDetailsViewCurrentState,
@@ -43,7 +49,9 @@ export class DetailsViewActionCreator {
         this.telemetryEventHandler.publishTelemetry(SETTINGS_PANEL_CLOSE, payload);
     };
 
-    private onSetDetailsViewRightContentPanel = (payload: DetailsViewRightContentPanelType): void => {
+    private onSetDetailsViewRightContentPanel = (
+        payload: DetailsViewRightContentPanelType,
+    ): void => {
         this.detailsViewActions.setSelectedDetailsViewRightContentPanel.invoke(payload);
     };
 

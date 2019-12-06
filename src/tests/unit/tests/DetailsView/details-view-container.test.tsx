@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CardSelectionViewData, GetCardSelectionViewData } from 'common/get-card-selection-view-data';
+import { GetCardViewData } from 'common/rule-based-view-model-provider';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { shallow } from 'enzyme';
 import { ISelection, Selection } from 'office-ui-fabric-react/lib/DetailsList';
@@ -10,10 +11,9 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
 import { StoreActionMessageCreator } from '../../../../common/message-creators/store-action-message-creator';
 import { StoreActionMessageCreatorImpl } from '../../../../common/message-creators/store-action-message-creator-impl';
-import { GetUnifiedRuleResultsDelegate } from '../../../../common/rule-based-view-model-provider';
 import { BaseClientStoresHub } from '../../../../common/stores/base-client-stores-hub';
 import { DetailsViewPivotType } from '../../../../common/types/details-view-pivot-type';
-import { CardRuleResultsByStatus } from '../../../../common/types/store-data/card-view-model';
+import { CardsViewModel } from '../../../../common/types/store-data/card-view-model';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import {
     TargetAppData,
@@ -35,7 +35,7 @@ import {
     GetDetailsSwitcherNavConfiguration,
     GetDetailsSwitcherNavConfigurationProps,
 } from '../../../../DetailsView/components/details-view-switcher-nav';
-import { Header } from '../../../../DetailsView/components/header';
+import { InteractiveHeader } from '../../../../DetailsView/components/interactive-header';
 import { DetailsViewRightContentPanelType } from '../../../../DetailsView/components/left-nav/details-view-right-content-panel-type';
 import { GetSelectedDetailsViewProps } from '../../../../DetailsView/components/left-nav/get-selected-details-view';
 import { DetailsViewBody } from '../../../../DetailsView/details-view-body';
@@ -59,7 +59,7 @@ describe('DetailsViewContainer', () => {
     let deps: DetailsViewContainerDeps;
     let getDetailsRightPanelConfiguration: IMock<GetDetailsRightPanelConfiguration>;
     let getDetailsSwitcherNavConfiguration: IMock<GetDetailsSwitcherNavConfiguration>;
-    let getUnifiedRuleResultsMock: IMock<GetUnifiedRuleResultsDelegate>;
+    let getCardViewDataMock: IMock<GetCardViewData>;
     let getCardSelectionViewDataMock: IMock<GetCardSelectionViewData>;
     let targetAppInfo: TargetAppData;
 
@@ -67,7 +67,7 @@ describe('DetailsViewContainer', () => {
         detailsViewActionMessageCreator = Mock.ofType<DetailsViewActionMessageCreator>();
         getDetailsRightPanelConfiguration = Mock.ofInstance((props: GetDetailsRightPanelConfigurationProps) => null, MockBehavior.Strict);
         getDetailsSwitcherNavConfiguration = Mock.ofInstance((props: GetDetailsSwitcherNavConfigurationProps) => null, MockBehavior.Strict);
-        getUnifiedRuleResultsMock = Mock.ofInstance(
+        getCardViewDataMock = Mock.ofInstance(
             (rules: UnifiedRule[], results: UnifiedResult[], cardSelectionViewData: CardSelectionViewData) => null,
             MockBehavior.Strict,
         );
@@ -77,7 +77,7 @@ describe('DetailsViewContainer', () => {
             detailsViewActionMessageCreator: detailsViewActionMessageCreator.object,
             getDetailsRightPanelConfiguration: getDetailsRightPanelConfiguration.object,
             getDetailsSwitcherNavConfiguration: getDetailsSwitcherNavConfiguration.object,
-            getUnifiedRuleResults: getUnifiedRuleResultsMock.object,
+            getCardViewData: getCardViewDataMock.object,
             getCardSelectionViewData: getCardSelectionViewDataMock.object,
         } as DetailsViewContainerDeps;
     });
@@ -203,12 +203,16 @@ describe('DetailsViewContainer', () => {
                 )
                 .returns(() => viewType);
 
-            const ruleResults: CardRuleResultsByStatus = {} as any;
+            const cardViewData: CardsViewModel = {
+                cards: {},
+                visualHelperEnabled: true,
+                allCardsCollapsed: true,
+            } as CardsViewModel;
             const cardSelectionViewData: CardSelectionViewData = {} as CardSelectionViewData;
             getCardSelectionViewDataMock.setup(g => g(state.cardSelectionStoreData)).returns(() => cardSelectionViewData);
-            getUnifiedRuleResultsMock
+            getCardViewDataMock
                 .setup(m => m(state.unifiedScanResultStoreData.rules, state.unifiedScanResultStoreData.results, cardSelectionViewData))
-                .returns(() => ruleResults);
+                .returns(() => cardViewData);
 
             testObject.render();
 
@@ -284,7 +288,7 @@ describe('DetailsViewContainer', () => {
         selectedDetailsView: VisualizationType,
         rightPanelConfiguration: DetailsRightPanelConfiguration,
         switcherNavConfiguration: DetailsViewSwitcherNavConfiguration,
-        ruleResults: CardRuleResultsByStatus,
+        cardsViewData: CardsViewModel,
         targetApp: TargetAppData,
     ): JSX.Element {
         return (
@@ -308,7 +312,7 @@ describe('DetailsViewContainer', () => {
                 rightPanelConfiguration={rightPanelConfiguration}
                 switcherNavConfiguration={switcherNavConfiguration}
                 userConfigurationStoreData={storeMocks.userConfigurationStoreData}
-                ruleResultsByStatus={ruleResults}
+                cardsViewData={cardsViewData}
                 targetAppInfo={targetApp}
                 cardSelectionStoreData={storeMocks.cardSelectionStoreData}
             />
@@ -341,7 +345,6 @@ describe('DetailsViewContainer', () => {
         return (
             <DetailsViewOverlay
                 deps={props.deps}
-                actionMessageCreator={props.deps.detailsViewActionMessageCreator}
                 previewFeatureFlagsHandler={props.previewFeatureFlagsHandler}
                 scopingActionMessageCreator={props.scopingActionMessageCreator}
                 inspectActionMessageCreator={props.inspectActionMessageCreator}
@@ -469,21 +472,29 @@ describe('DetailsViewContainer', () => {
             .returns(() => cardSelectionViewData)
             .verifiable(Times.once());
 
-        const ruleResults: CardRuleResultsByStatus = {} as any;
-        getUnifiedRuleResultsMock
+        const cardsViewData: CardsViewModel = {} as any;
+        getCardViewDataMock
             .setup(m => m(state.unifiedScanResultStoreData.rules, state.unifiedScanResultStoreData.results, cardSelectionViewData))
-            .returns(() => ruleResults);
+            .returns(() => cardsViewData);
 
         const expected: JSX.Element = (
             <>
-                <Header
+                <InteractiveHeader
                     deps={props.deps}
                     selectedPivot={DetailsViewPivotType.fastPass}
                     featureFlagStoreData={storeMocks.featureFlagStoreData}
                     dropdownClickHandler={dropdownClickHandler.object}
                     tabClosed={storeMocks.tabStoreData.isClosed}
                 />
-                {buildDetailsViewBody(storeMocks, props, viewType, rightContentPanelConfig, switcherNavConfig, ruleResults, targetAppInfo)}
+                {buildDetailsViewBody(
+                    storeMocks,
+                    props,
+                    viewType,
+                    rightContentPanelConfig,
+                    switcherNavConfig,
+                    cardsViewData,
+                    targetAppInfo,
+                )}
                 {buildOverlay(storeMocks, props)}
             </>
         );

@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReportExportComponentPropsFactory getReportExportComponentForAssessment expected properties are set 1`] = `
+"<Fragment>
+  <CustomizedActionButton iconProps={{...}} onClick={[Function]}>
+    Export result
+  </CustomizedActionButton>
+  <ExportDialog deps={{...}} isOpen={false} fileName=\\"\\" description=\\"\\" html=\\"\\" onClose={[Function]} onDescriptionChange={[Function]} exportResultsType=\\"Assessment\\" onExportClick={[Function]} />
+</Fragment>"
+`;
+
+exports[`ReportExportComponentPropsFactory getReportExportComponentForFastPass, CardsUI is true, scanResults is not null, test is Issues, properties are set 1`] = `
+"<Fragment>
+  <CustomizedActionButton iconProps={{...}} onClick={[Function]}>
+    Export result
+  </CustomizedActionButton>
+  <ExportDialog deps={{...}} isOpen={false} fileName=\\"\\" description=\\"\\" html=\\"\\" onClose={[Function]} onDescriptionChange={[Function]} exportResultsType=\\"AutomatedChecks\\" onExportClick={[Function]} />
+</Fragment>"
+`;

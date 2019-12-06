@@ -8,17 +8,16 @@ import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-ge
 import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ReportNameGenerator } from 'reports/report-name-generator';
-import { ScanResults } from 'scanner/iruleresults';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { exampleUnifiedStatusResults } from '../common/components/cards/sample-view-model-data';
 
 describe('ReportGenerator', () => {
-    const scanResult: ScanResults = {} as any;
     const date = new Date(2018, 2, 12, 15, 46);
     const title = 'title';
     const url = 'http://url/';
     const description = 'description';
-    const ruleResultsByStatusStub = exampleUnifiedStatusResults;
+    const cardsViewDataStub = { cards: exampleUnifiedStatusResults, visualHelperEnabled: true, allCardsCollapsed: true };
 
     let dataBuilderMock: IMock<ReportHtmlGenerator>;
     let nameBuilderMock: IMock<ReportNameGenerator>;
@@ -34,18 +33,17 @@ describe('ReportGenerator', () => {
         dataBuilderMock
             .setup(builder =>
                 builder.generateHtml(
-                    It.isObjectWith(scanResult),
                     It.isValue(date),
                     It.isValue(title),
                     It.isValue(url),
                     It.isValue(description),
-                    It.isValue(ruleResultsByStatusStub),
+                    It.isValue(cardsViewDataStub),
                 ),
             )
             .returns(() => 'returned-data');
 
         const testObject = new ReportGenerator(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
-        const actual = testObject.generateFastPassAutomateChecksReport(scanResult, date, title, url, ruleResultsByStatusStub, description);
+        const actual = testObject.generateFastPassAutomatedChecksReport(date, title, url, cardsViewDataStub, description);
 
         expect(actual).toMatchSnapshot();
     });

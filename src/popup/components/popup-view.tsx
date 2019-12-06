@@ -4,8 +4,14 @@ import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { NewTabLink } from '../../common/components/new-tab-link';
-import { TelemetryPermissionDialog, TelemetryPermissionDialogDeps } from '../../common/components/telemetry-permission-dialog';
-import { withStoreSubscription, WithStoreSubscriptionDeps } from '../../common/components/with-store-subscription';
+import {
+    TelemetryPermissionDialog,
+    TelemetryPermissionDialogDeps,
+} from '../../common/components/telemetry-permission-dialog';
+import {
+    withStoreSubscription,
+    WithStoreSubscriptionDeps,
+} from '../../common/components/with-store-subscription';
 import { DisplayableStrings } from '../../common/constants/displayable-strings';
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
@@ -103,7 +109,9 @@ export class PopupView extends React.Component<PopupViewProps> {
 
         if (this.isInitialRender) {
             this.isInitialRender = false;
-            popupActionMessageCreator.openLaunchPad(this.props.storeState.launchPanelStateStoreData.launchPanelType);
+            popupActionMessageCreator.openLaunchPad(
+                this.props.storeState.launchPanelStateStoreData.launchPanelType,
+            );
         }
         switch (this.props.storeState.launchPanelStateStoreData.launchPanelType) {
             case LaunchPanelType.LaunchPad:
@@ -167,7 +175,12 @@ export class PopupView extends React.Component<PopupViewProps> {
                     openAdhocToolsPanel={this.openAdhocToolsPanel}
                     featureFlags={this.props.storeState.featureFlagStoreData}
                 />
-                <LaunchPad deps={this.props.deps} productName={this.props.title} rowConfigs={rowConfigs} version={this.versionNumber} />
+                <LaunchPad
+                    deps={this.props.deps}
+                    productName={this.props.title}
+                    rowConfigs={rowConfigs}
+                    version={this.versionNumber}
+                />
             </div>
         );
     }
@@ -183,7 +196,9 @@ export class PopupView extends React.Component<PopupViewProps> {
                 <div className="ms-Grid main-section">
                     <div
                         className="launch-panel-general-container"
-                        dangerouslySetInnerHTML={{ __html: DisplayableStrings.urlNotScannable.join('</br>') }}
+                        dangerouslySetInnerHTML={{
+                            __html: DisplayableStrings.urlNotScannable.join('</br>'),
+                        }}
                     />
                 </div>
             </div>
@@ -210,4 +225,7 @@ export class PopupView extends React.Component<PopupViewProps> {
     };
 }
 
-export const PopupViewWithStoreSubscription = withStoreSubscription<PopupViewProps, PopupViewControllerState>(PopupView);
+export const PopupViewWithStoreSubscription = withStoreSubscription<
+    PopupViewProps,
+    PopupViewControllerState
+>(PopupView);

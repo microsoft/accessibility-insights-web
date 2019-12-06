@@ -8,65 +8,87 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
     deps={
       Object {
         "getCardSelectionViewData": [Function],
-        "getUnifiedRuleResultsDelegate": [Function],
+        "getCardsViewData": [Function],
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "scanActions": undefined,
         },
+        "screenshotViewModelProvider": [Function],
       }
     }
   />
   <div
-    className="mainContentWrapper"
+    className="automatedChecksPanelLayout"
   >
-    <CommandBar
-      deps={
-        Object {
-          "getCardSelectionViewData": [Function],
-          "getUnifiedRuleResultsDelegate": [Function],
-          "scanActionCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "scanActions": undefined,
-          },
-        }
-      }
-      deviceStoreData={Object {}}
-      scanStoreData={
-        Object {
-          "status": 2,
-        }
-      }
-    />
-    <main>
-      <HeaderSection />
-      <ScanningSpinner
-        aria-live="assertive"
-        isSpinning={false}
-        label="Scanning..."
-      />
-      <CardsView
+    <div
+      className="mainContentWrapper"
+    >
+      <CommandBar
         deps={
           Object {
             "getCardSelectionViewData": [Function],
-            "getUnifiedRuleResultsDelegate": [Function],
+            "getCardsViewData": [Function],
             "scanActionCreator": proxy {
               "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
               "scanActions": undefined,
             },
+            "screenshotViewModelProvider": [Function],
           }
         }
-        targetAppInfo={
+        deviceStoreData={Object {}}
+        scanStoreData={
           Object {
-            "name": "test-target-app-name",
-          }
-        }
-        userConfigurationStoreData={
-          Object {
-            "isFirstTime": false,
+            "status": 2,
           }
         }
       />
-    </main>
+      <main>
+        <HeaderSection />
+        <CardsView
+          cardsViewData={
+            Object {
+              "cards": Object {
+                "fail": Array [
+                  Object {
+                    "id": "test-fail-id",
+                  },
+                ],
+              },
+            }
+          }
+          deps={
+            Object {
+              "getCardSelectionViewData": [Function],
+              "getCardsViewData": [Function],
+              "scanActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "scanActions": undefined,
+              },
+              "screenshotViewModelProvider": [Function],
+            }
+          }
+          targetAppInfo={
+            Object {
+              "name": "test-target-app-name",
+            }
+          }
+          userConfigurationStoreData={
+            Object {
+              "isFirstTime": false,
+            }
+          }
+        />
+      </main>
+    </div>
+    <ScreenshotView
+      viewModel={
+        Object {
+          "screenshotData": Object {
+            "base64PngData": "this should appear in snapshotted ScreenshotView props",
+          },
+        }
+      }
+    />
   </div>
 </div>
 `;
@@ -92,46 +114,45 @@ exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
     windowStateStoreData="window state store data"
   />
   <div
-    className="mainContentWrapper"
+    className="automatedChecksPanelLayout"
   >
-    <CommandBar
-      deps={
-        Object {
-          "scanActionCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "scanActions": undefined,
-          },
-          "windowStateActionCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "windowFrameActionCreator": undefined,
-            "windowStateActions": undefined,
-          },
+    <div
+      className="mainContentWrapper"
+    >
+      <CommandBar
+        deps={
+          Object {
+            "scanActionCreator": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "scanActions": undefined,
+            },
+            "windowStateActionCreator": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "windowFrameActionCreator": undefined,
+              "windowStateActions": undefined,
+            },
+          }
         }
-      }
-      deviceStoreData={
-        Object {
-          "connectedDevice": "TEST DEVICE",
+        deviceStoreData={
+          Object {
+            "connectedDevice": "TEST DEVICE",
+          }
         }
-      }
-      scanStoreData={
-        Object {
-          "status": 3,
+        scanStoreData={
+          Object {
+            "status": 3,
+          }
         }
-      }
-    />
-    <main>
-      <HeaderSection />
-      <ScanningSpinner
-        aria-live="assertive"
-        isSpinning={false}
-        label="Scanning..."
       />
-      <DeviceDisconnectedPopup
-        deviceName="TEST DEVICE"
-        onConnectNewDevice={[Function]}
-        onRescanDevice={[Function]}
-      />
-    </main>
+      <main>
+        <HeaderSection />
+        <DeviceDisconnectedPopup
+          deviceName="TEST DEVICE"
+          onConnectNewDevice={[Function]}
+          onRescanDevice={[Function]}
+        />
+      </main>
+    </div>
   </div>
 </div>
 `;
@@ -157,41 +178,45 @@ exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
     windowStateStoreData="window state store data"
   />
   <div
-    className="mainContentWrapper"
+    className="automatedChecksPanelLayout"
   >
-    <CommandBar
-      deps={
-        Object {
-          "scanActionCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "scanActions": undefined,
-          },
-          "windowStateActionCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "windowFrameActionCreator": undefined,
-            "windowStateActions": undefined,
-          },
+    <div
+      className="mainContentWrapper"
+    >
+      <CommandBar
+        deps={
+          Object {
+            "scanActionCreator": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "scanActions": undefined,
+            },
+            "windowStateActionCreator": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "windowFrameActionCreator": undefined,
+              "windowStateActions": undefined,
+            },
+          }
         }
-      }
-      deviceStoreData={
-        Object {
-          "connectedDevice": "TEST DEVICE",
+        deviceStoreData={
+          Object {
+            "connectedDevice": "TEST DEVICE",
+          }
         }
-      }
-      scanStoreData={
-        Object {
-          "status": 1,
+        scanStoreData={
+          Object {
+            "status": 1,
+          }
         }
-      }
-    />
-    <main>
-      <HeaderSection />
-      <ScanningSpinner
-        aria-live="assertive"
-        isSpinning={true}
-        label="Scanning..."
       />
-    </main>
+      <main>
+        <HeaderSection />
+        <ScanningSpinner
+          aria-live="assertive"
+          isSpinning={true}
+          label="Scanning..."
+        />
+      </main>
+    </div>
   </div>
 </div>
 `;
@@ -217,41 +242,45 @@ exports[`AutomatedChecksView renders when status scan <undefined> 1`] = `
     windowStateStoreData="window state store data"
   />
   <div
-    className="mainContentWrapper"
+    className="automatedChecksPanelLayout"
   >
-    <CommandBar
-      deps={
-        Object {
-          "scanActionCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "scanActions": undefined,
-          },
-          "windowStateActionCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "windowFrameActionCreator": undefined,
-            "windowStateActions": undefined,
-          },
+    <div
+      className="mainContentWrapper"
+    >
+      <CommandBar
+        deps={
+          Object {
+            "scanActionCreator": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "scanActions": undefined,
+            },
+            "windowStateActionCreator": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "windowFrameActionCreator": undefined,
+              "windowStateActions": undefined,
+            },
+          }
         }
-      }
-      deviceStoreData={
-        Object {
-          "connectedDevice": "TEST DEVICE",
+        deviceStoreData={
+          Object {
+            "connectedDevice": "TEST DEVICE",
+          }
         }
-      }
-      scanStoreData={
-        Object {
-          "status": undefined,
+        scanStoreData={
+          Object {
+            "status": undefined,
+          }
         }
-      }
-    />
-    <main>
-      <HeaderSection />
-      <ScanningSpinner
-        aria-live="assertive"
-        isSpinning={false}
-        label="Scanning..."
       />
-    </main>
+      <main>
+        <HeaderSection />
+        <ScanningSpinner
+          aria-live="assertive"
+          isSpinning={false}
+          label="Scanning..."
+        />
+      </main>
+    </div>
   </div>
 </div>
 `;

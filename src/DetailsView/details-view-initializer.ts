@@ -4,6 +4,7 @@ import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-defaul
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
+import { CardsVisualizationModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
@@ -33,6 +34,7 @@ import { provideBlob } from '../common/blob-provider';
 import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
 import { allCardInteractionsSupported } from '../common/components/cards/card-interaction-support';
 import { CardsCollapsibleControl } from '../common/components/cards/collapsible-component-cards';
+import { FixInstructionProcessor } from '../common/components/fix-instruction-processor';
 import { NewTabLink } from '../common/components/new-tab-link';
 import { getPropertyConfiguration } from '../common/configs/unified-result-property-configurations';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -58,7 +60,7 @@ import { StoreActionMessageCreatorFactory } from '../common/message-creators/sto
 import { UserConfigMessageCreator } from '../common/message-creators/user-config-message-creator';
 import { VisualizationActionMessageCreator } from '../common/message-creators/visualization-action-message-creator';
 import { NavigatorUtils } from '../common/navigator-utils';
-import { getUnifiedRuleResults } from '../common/rule-based-view-model-provider';
+import { getCardViewData } from '../common/rule-based-view-model-provider';
 import { AutoChecker } from '../common/self-validator';
 import { StoreProxy } from '../common/store-proxy';
 import { BaseClientStoresHub } from '../common/stores/base-client-stores-hub';
@@ -66,7 +68,6 @@ import { StoreNames } from '../common/stores/store-names';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
 import { DetailsViewData } from '../common/types/store-data/details-view-data';
-import { InspectStoreData } from '../common/types/store-data/inspect-store-data';
 import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
@@ -77,7 +78,6 @@ import { VisualizationStoreData } from '../common/types/store-data/visualization
 import { UrlParser } from '../common/url-parser';
 import { WindowUtils } from '../common/window-utils';
 import { contentPages } from '../content';
-import { FixInstructionProcessor } from '../injected/fix-instruction-processor';
 import { ScannerUtils } from '../injected/scanner-utils';
 import { createIssueDetailsBuilder } from '../issue-filing/common/create-issue-details-builder';
 import { IssueFilingUrlStringUtils } from '../issue-filing/common/issue-filing-url-string-utils';
@@ -121,27 +121,41 @@ if (isNaN(tabId) === false) {
         (tab: Tab): void => {
             const telemetryFactory = new TelemetryDataFactory();
 
-            const visualizationStore = new StoreProxy<VisualizationStoreData>(StoreNames[StoreNames.VisualizationStore], browserAdapter);
-            const tabStore = new StoreProxy<TabStoreData>(StoreNames[StoreNames.TabStore], browserAdapter);
+            const visualizationStore = new StoreProxy<VisualizationStoreData>(
+                StoreNames[StoreNames.VisualizationStore],
+                browserAdapter,
+                tab.id,
+            );
+            const tabStore = new StoreProxy<TabStoreData>(StoreNames[StoreNames.TabStore], browserAdapter, tab.id);
             const visualizationScanResultStore = new StoreProxy<VisualizationScanResultData>(
                 StoreNames[StoreNames.VisualizationScanResultStore],
                 browserAdapter,
+                tab.id,
             );
             const unifiedScanResultStore = new StoreProxy<UnifiedScanResultStoreData>(
                 StoreNames[StoreNames.UnifiedScanResultStore],
                 browserAdapter,
+                tab.id,
             );
-            const pathSnippetStore = new StoreProxy<PathSnippetStoreData>(StoreNames[StoreNames.PathSnippetStore], browserAdapter);
-            const detailsViewStore = new StoreProxy<DetailsViewData>(StoreNames[StoreNames.DetailsViewStore], browserAdapter);
-            const assessmentStore = new StoreProxy<AssessmentStoreData>(StoreNames[StoreNames.AssessmentStore], browserAdapter);
-            const featureFlagStore = new StoreProxy<DictionaryStringTo<boolean>>(StoreNames[StoreNames.FeatureFlagStore], browserAdapter);
-            const scopingStore = new StoreProxy<ScopingStoreData>(StoreNames[StoreNames.ScopingPanelStateStore], browserAdapter);
-            const inspectStore = new StoreProxy<InspectStoreData>(StoreNames[StoreNames.InspectStore], browserAdapter);
+            const pathSnippetStore = new StoreProxy<PathSnippetStoreData>(StoreNames[StoreNames.PathSnippetStore], browserAdapter, tab.id);
+            const detailsViewStore = new StoreProxy<DetailsViewData>(StoreNames[StoreNames.DetailsViewStore], browserAdapter, tab.id);
+            const assessmentStore = new StoreProxy<AssessmentStoreData>(StoreNames[StoreNames.AssessmentStore], browserAdapter, tab.id);
+            const featureFlagStore = new StoreProxy<DictionaryStringTo<boolean>>(
+                StoreNames[StoreNames.FeatureFlagStore],
+                browserAdapter,
+                tab.id,
+            );
+            const scopingStore = new StoreProxy<ScopingStoreData>(StoreNames[StoreNames.ScopingPanelStateStore], browserAdapter, tab.id);
             const userConfigStore = new StoreProxy<UserConfigurationStoreData>(
                 StoreNames[StoreNames.UserConfigurationStore],
                 browserAdapter,
+                tab.id,
             );
-            const cardSelectionStore = new StoreProxy<CardSelectionStoreData>(StoreNames[StoreNames.CardSelectionStore], browserAdapter);
+            const cardSelectionStore = new StoreProxy<CardSelectionStoreData>(
+                StoreNames[StoreNames.CardSelectionStore],
+                browserAdapter,
+                tab.id,
+            );
 
             const storesHub = new BaseClientStoresHub<DetailsViewContainerState>([
                 detailsViewStore,
@@ -159,7 +173,7 @@ if (isNaN(tabId) === false) {
 
             const actionMessageDispatcher = new RemoteActionMessageDispatcher(browserAdapter.sendMessageToFrames, tab.id);
 
-            const actionMessageCreator = new DetailsViewActionMessageCreator(telemetryFactory, actionMessageDispatcher);
+            const detailsViewActionMessageCreator = new DetailsViewActionMessageCreator(telemetryFactory, actionMessageDispatcher);
             const scopingActionMessageCreator = new ScopingActionMessageCreator(
                 telemetryFactory,
                 TelemetryEventSource.DetailsView,
@@ -191,13 +205,13 @@ if (isNaN(tabId) === false) {
 
             const visualizationActionCreator = new VisualizationActionMessageCreator(actionMessageDispatcher);
 
-            const issuesSelection = new IssuesSelectionFactory().createSelection(actionMessageCreator);
+            const issuesSelection = new IssuesSelectionFactory().createSelection(detailsViewActionMessageCreator);
             const clickHandlerFactory = new DetailsViewToggleClickHandlerFactory(visualizationActionCreator, telemetryFactory);
             const visualizationConfigurationFactory = new VisualizationConfigurationFactory();
             const assessmentDefaultMessageGenerator = new AssessmentDefaultMessageGenerator();
             const assessmentInstanceTableHandler = new AssessmentInstanceTableHandler(
-                actionMessageCreator,
-                new AssessmentTableColumnConfigHandler(new MasterCheckBoxConfigProvider(actionMessageCreator), Assessments),
+                detailsViewActionMessageCreator,
+                new AssessmentTableColumnConfigHandler(new MasterCheckBoxConfigProvider(detailsViewActionMessageCreator), Assessments),
                 Assessments,
             );
             const issuesTableHandler = new IssuesTableHandler();
@@ -243,15 +257,6 @@ if (isNaN(tabId) === false) {
                 assessmentDefaultMessageGenerator,
             );
 
-            visualizationStore.setTabId(tab.id);
-            tabStore.setTabId(tab.id);
-            visualizationScanResultStore.setTabId(tab.id);
-            detailsViewStore.setTabId(tab.id);
-            assessmentStore.setTabId(tab.id);
-            scopingStore.setTabId(tab.id);
-            inspectStore.setTabId(tab.id);
-            unifiedScanResultStore.setTabId(tab.id);
-
             const actionInitiators = {
                 ...contentActionMessageCreator.initiators,
             };
@@ -274,7 +279,11 @@ if (isNaN(tabId) === false) {
                 createIssueDetailsBuilder(PlainTextFormatter),
             );
 
-            const cardSelectionMessageCreator = new CardSelectionMessageCreator(actionMessageDispatcher);
+            const cardSelectionMessageCreator = new CardSelectionMessageCreator(
+                actionMessageDispatcher,
+                telemetryFactory,
+                TelemetryEventSource.DetailsView,
+            );
             const windowUtils = new WindowUtils();
 
             const fileURLProvider = new FileURLProvider(windowUtils, provideBlob);
@@ -295,7 +304,7 @@ if (isNaN(tabId) === false) {
                 issueFilingActionMessageCreator,
                 contentProvider: contentPages,
                 contentActionMessageCreator,
-                detailsViewActionMessageCreator: actionMessageCreator,
+                detailsViewActionMessageCreator,
                 assessmentsProvider: Assessments,
                 actionInitiators,
                 assessmentDefaultMessageGenerator: assessmentDefaultMessageGenerator,
@@ -306,7 +315,7 @@ if (isNaN(tabId) === false) {
                 getAssessmentSummaryModelFromProviderAndStatusData: getAssessmentSummaryModelFromProviderAndStatusData,
                 visualizationConfigurationFactory,
                 getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration,
-                navLinkHandler: new NavLinkHandler(actionMessageCreator),
+                navLinkHandler: new NavLinkHandler(detailsViewActionMessageCreator),
                 getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration,
                 userConfigMessageCreator,
                 leftNavLinkBuilder: new LeftNavLinkBuilder(),
@@ -328,13 +337,14 @@ if (isNaN(tabId) === false) {
                 issueFilingServiceProvider: IssueFilingServiceProviderImpl,
                 getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
                 reportGenerator,
-                getUnifiedRuleResults,
+                getCardViewData: getCardViewData,
                 getPropertyConfigById: getPropertyConfiguration,
                 collapsibleControl: CardsCollapsibleControl,
                 cardInteractionSupport: allCardInteractionsSupported,
                 navigatorUtils: navigatorUtils,
                 cardSelectionMessageCreator,
                 getCardSelectionViewData: getCardSelectionViewData,
+                cardsVisualizationModifierButtons: CardsVisualizationModifierButtons,
             };
 
             const renderer = new DetailsViewRenderer(

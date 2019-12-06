@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
 import { UnifiedResolution } from 'common/types/store-data/unified-data-interface';
 import { RuleInformation } from 'electron/platform/android/rule-information';
-import { RuleResultsData, ScanResults, ViewElementData } from 'electron/platform/android/scan-results';
+import { DeviceInfo, RuleResultsData, ScanResults, ViewElementData } from 'electron/platform/android/scan-results';
 
 export function buildScanResultsObject(
     deviceName: string = null,
@@ -11,15 +10,21 @@ export function buildScanResultsObject(
     resultsArray: RuleResultsData[] = null,
     axeView: ViewElementData = null,
     axeVersion: string = null,
+    screenshotData: string = null,
+    deviceInfo: DeviceInfo = null,
 ): ScanResults {
     const scanResults = {};
     const axeContext = {};
     let addContext = false;
 
+    if (deviceInfo) {
+        axeContext['axeDevice'] = deviceInfo;
+        addContext = true;
+    }
+
     if (deviceName) {
-        const axeDevice = {};
-        axeDevice['name'] = deviceName;
-        axeContext['axeDevice'] = axeDevice;
+        deviceInfo = { ...deviceInfo, name: deviceName };
+        axeContext['axeDevice'] = deviceInfo;
         addContext = true;
     }
 
@@ -41,6 +46,11 @@ export function buildScanResultsObject(
         }
 
         axeContext['axeMetaData']['axeVersion'] = axeVersion;
+        addContext = true;
+    }
+
+    if (screenshotData) {
+        axeContext['screenshot'] = screenshotData;
         addContext = true;
     }
 

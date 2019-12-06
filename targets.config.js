@@ -18,7 +18,7 @@ const icons = {
 };
 
 const commonOptions = {
-    extensionFullName: 'Accessibility Insights for Web',
+    fullName: 'Accessibility Insights for Web',
     extensionDescription: 'Accessibility Insights for Web helps developers quickly find and fix accessibility issues.',
     ...icons.production,
     bundled: true,
@@ -40,8 +40,9 @@ module.exports = {
             options: {
                 ...internalOptions,
                 ...icons.dev,
-                extensionFullName: 'Accessibility Insights for Web - Dev',
+                fullName: 'Accessibility Insights for Web - Dev',
                 telemetryBuildName: 'Dev',
+                productCategory: 'extension',
             },
         },
         bundleFolder: 'devBundle',
@@ -53,8 +54,9 @@ module.exports = {
             options: {
                 ...publicOptions,
                 ...icons.playground,
-                extensionFullName: 'Accessibility Insights for Web - Playground',
+                fullName: 'Accessibility Insights for Web - Playground',
                 telemetryBuildName: 'Playground',
+                productCategory: 'extension',
             },
         },
         bundleFolder: 'devBundle',
@@ -66,8 +68,9 @@ module.exports = {
             options: {
                 ...internalOptions,
                 ...icons.canary,
-                extensionFullName: 'Accessibility Insights for Web - Canary',
+                fullName: 'Accessibility Insights for Web - Canary',
                 telemetryBuildName: 'Canary',
+                productCategory: 'extension',
             },
         },
         bundleFolder: 'devBundle',
@@ -79,8 +82,9 @@ module.exports = {
             options: {
                 ...internalOptions,
                 ...icons.insider,
-                extensionFullName: 'Accessibility Insights for Web - Insider',
+                fullName: 'Accessibility Insights for Web - Insider',
                 telemetryBuildName: 'Insider',
+                productCategory: 'extension',
             },
         },
         bundleFolder: 'prodBundle',
@@ -93,19 +97,7 @@ module.exports = {
                 ...internalOptions,
                 ...icons.production,
                 telemetryBuildName: 'Production',
-            },
-        },
-        bundleFolder: 'prodBundle',
-        mustExistFile: 'background.bundle.js',
-    },
-    preview: {
-        release: true,
-        config: {
-            options: {
-                ...publicOptions,
-                ...icons.production,
-                extensionFullName: 'Accessibility Insights for Web - Preview',
-                telemetryBuildName: 'Preview',
+                productCategory: 'extension',
             },
         },
         bundleFolder: 'prodBundle',
@@ -116,8 +108,9 @@ module.exports = {
             options: {
                 ...internalOptions,
                 ...icons.dev,
-                extensionFullName: 'Accessibility Insights for Web - Dev',
-                telemetryBuildName: 'Electron',
+                fullName: 'Accessibility Insights for Android - Dev',
+                telemetryBuildName: 'AI Android - Dev',
+                productCategory: 'electron',
             },
         },
         bundleFolder: 'electronBundle',

@@ -7,13 +7,13 @@ import { PopupPage } from '../../common/page-controllers/popup-page';
 import { TargetPage } from '../../common/page-controllers/target-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
-describe('Ad hoc tools', () => {
+describe('Popup -> Ad-hoc tools', () => {
     let browser: Browser;
     let targetPage: TargetPage;
     let popupPage: PopupPage;
 
     beforeEach(async () => {
-        browser = await launchBrowser({ suppressFirstTimeDialog: true });
+        browser = await launchBrowser({ suppressFirstTimeDialog: true, addLocalhostToPermissions: true });
         targetPage = await browser.newTargetPage();
         popupPage = await browser.newPopupPage(targetPage);
         await popupPage.bringToFront();
@@ -47,18 +47,10 @@ describe('Ad hoc tools', () => {
         await popupPage.verifyLaunchPadLoaded();
     });
 
-    it('should pass accessibility validation', async () => {
-        await popupPage.gotoAdhocPanel();
+    it.each([true, false])('should pass accessibility validation with highContrastMode=%s', async highContrastMode => {
+        await browser.setHighContrastMode(highContrastMode);
+        await popupPage.waitForHighContrastMode(highContrastMode);
 
-        const results = await scanForAccessibilityIssues(popupPage, '*');
-        expect(results).toHaveLength(0);
-    });
-
-    it('should pass accessibility validation in high contrast', async () => {
-        const detailsViewPage = await browser.newDetailsViewPage(targetPage);
-        await detailsViewPage.enableHighContrast();
-
-        await popupPage.bringToFront();
         await popupPage.gotoAdhocPanel();
 
         const results = await scanForAccessibilityIssues(popupPage, '*');
@@ -69,10 +61,10 @@ describe('Ad hoc tools', () => {
         'should display the pinned target page visualizations when enabling the "%s" toggle',
         async (toggleAriaLabel: string) => {
             await popupPage.gotoAdhocPanel();
-
             await popupPage.enableToggleByAriaLabel(toggleAriaLabel);
 
-            expect(await targetPage.getShadowRootHtmlSnapshot()).toMatchSnapshot();
+            await targetPage.bringToFront();
+            expect(await targetPage.waitForShadowRootHtmlSnapshot()).toMatchSnapshot();
         },
     );
 });

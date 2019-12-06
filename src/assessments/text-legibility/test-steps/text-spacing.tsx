@@ -16,28 +16,37 @@ const textSpacingDescription: JSX.Element = (
 
 const textSpacingHowToTest: JSX.Element = (
     <div>
-        This test uses the <NewTabLink href="https://www.html5accessibility.com/tests/tsbookmarklet.html">Text spacing</NewTabLink>{' '}
+        This test uses the{' '}
+        <NewTabLink href="https://www.html5accessibility.com/tests/tsbookmarklet.html">
+            Text spacing
+        </NewTabLink>{' '}
         bookmarklet to adjust text spacing in the target page.
         <ol>
             <li>
-                Open <NewTabLink href="https://www.html5accessibility.com/tests/tsbookmarklet.html">Text spacing</NewTabLink> in a new
-                browser window.
+                Open{' '}
+                <NewTabLink href="https://www.html5accessibility.com/tests/tsbookmarklet.html">
+                    Text spacing
+                </NewTabLink>{' '}
+                in a new browser window.
             </li>
             <li>
-                Add the "Bookmarklet: Text Spacing" link from that page to your browser's bookmarks. (Mouse users can simply drag the link
-                into the bookmarks bar.)
+                Add the "Bookmarklet: Text Spacing" link from that page to your browser's bookmarks.
+                (Mouse users can simply drag the link into the bookmarks bar.)
             </li>
             <li>
-                Run the bookmarklet in the browser tab containing your target page. Text styling will automatically be adjusted as follows:
+                Run the bookmarklet in the browser tab containing your target page. Text styling
+                will automatically be adjusted as follows:
                 <ol>
                     <li>
-                        <Markup.Term>Letter spacing</Markup.Term> (tracking) at 0.12 times the font size{' '}
+                        <Markup.Term>Letter spacing</Markup.Term> (tracking) at 0.12 times the font
+                        size{' '}
                     </li>
                     <li>
                         <Markup.Term>Word spacing</Markup.Term> at 0.16 times the font size{' '}
                     </li>
                     <li>
-                        <Markup.Term>Line height</Markup.Term> (line spacing) at 1.5 times the font size{' '}
+                        <Markup.Term>Line height</Markup.Term> (line spacing) at 1.5 times the font
+                        size{' '}
                     </li>
                     <li>
                         <Markup.Term>Spacing after paragraphs</Markup.Term> at 2 times the font size{' '}

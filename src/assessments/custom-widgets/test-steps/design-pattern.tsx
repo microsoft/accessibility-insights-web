@@ -27,17 +27,26 @@ const designPatternDescription: JSX.Element = (
 
 const designPatternHowToTest: JSX.Element = (
     <div>
-        <p>For this requirement, {productName} highlights custom widgets. (A custom widget is an element with a valid ARIA widget role.)</p>
+        <p>
+            For this requirement, {productName} highlights custom widgets. (A custom widget is an
+            element with a valid ARIA widget role.)
+        </p>
         <TestAutomaticallyPassedNotice />
         <ol>
             <li>
                 Familiarize yourself with the{' '}
-                <NewTabLink href="https://www.w3.org/TR/wai-aria-practices-1.1/">ARIA design patterns</NewTabLink> for custom widgets.
+                <NewTabLink href="https://www.w3.org/TR/wai-aria-practices-1.1/">
+                    ARIA design patterns
+                </NewTabLink>{' '}
+                for custom widgets.
             </li>
-            <li>In the target page, examine each custom widget to determine which design pattern best describes its function.</li>
             <li>
-                In the <Markup.Term>Instances</Markup.Term> list below, verify that the custom widget has the right role for its design
-                pattern.
+                In the target page, examine each custom widget to determine which design pattern
+                best describes its function.
+            </li>
+            <li>
+                In the <Markup.Term>Instances</Markup.Term> list below, verify that the custom
+                widget has the right role for its design pattern.
             </li>
             <AssistedTestRecordYourResults />
         </ol>
@@ -76,10 +85,15 @@ export const DesignPattern: Requirement = {
     ],
     reportInstanceFields: [
         ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>('Widget role', 'role'),
-        ReportInstanceField.fromPropertyBagFunction<CustomWidgetPropertyBag>('Design pattern', 'designPattern', pb =>
-            getFlatDesignPatternStringFromRole(pb.role),
+        ReportInstanceField.fromPropertyBagFunction<CustomWidgetPropertyBag>(
+            'Design pattern',
+            'designPattern',
+            pb => getFlatDesignPatternStringFromRole(pb.role),
         ),
-        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>('Accessible name', 'text'),
+        ReportInstanceField.fromColumnValueBagField<CustomWidgetPropertyBag>(
+            'Accessible name',
+            'text',
+        ),
     ],
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(
@@ -91,6 +105,5 @@ export const DesignPattern: Requirement = {
             }),
         ),
     getDrawer: provider => provider.createCustomWidgetsDrawer(),
-    updateVisibility: false,
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
 };

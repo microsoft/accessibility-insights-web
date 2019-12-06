@@ -11,7 +11,10 @@ import * as React from 'react';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
 import { InstructionsAndLabelsNotes } from '../../common/instructions-and-labels-note';
-import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
+import {
+    NoValue,
+    PropertyBagColumnRendererConfig,
+} from '../../common/property-bag-column-renderer';
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
@@ -19,7 +22,10 @@ import { Requirement } from '../../types/requirement';
 import { NativeWidgetsTestStep } from './test-steps';
 
 const description: JSX.Element = (
-    <span>If a native widget has a visible label or instructions, they must be programmatically related to it.</span>
+    <span>
+        If a native widget has a visible label or instructions, they must be programmatically
+        related to it.
+    </span>
 );
 
 const howToTest: JSX.Element = (
@@ -37,12 +43,17 @@ const howToTest: JSX.Element = (
         </p>
         <InstructionsAndLabelsNotes />
         <ol>
-            <li>In the target page, examine each highlighted element to determine whether it has a visible label or instructions.</li>
+            <li>
+                In the target page, examine each highlighted element to determine whether it has a
+                visible label or instructions.
+            </li>
             <li>
                 Verify that all visible labels and instructions are displayed in the Instances list:
                 <ol>
                     <li>Any label should appear in the accessible name.</li>
-                    <li>Any additional instructions should appear in the accessible description.</li>
+                    <li>
+                        Any additional instructions should appear in the accessible description.
+                    </li>
                 </ol>
             </li>
             <AssistedTestRecordYourResults />
@@ -80,7 +91,9 @@ export const Instructions: Requirement = {
         {
             key: 'instructions-info',
             name: 'Instructions',
-            onRender: PropertyBagColumnRendererFactory.getRenderer<DefaultWidgetPropertyBag>(propertyBagConfig),
+            onRender: PropertyBagColumnRendererFactory.getRenderer<DefaultWidgetPropertyBag>(
+                propertyBagConfig,
+            ),
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),
@@ -94,6 +107,5 @@ export const Instructions: Requirement = {
             }),
         ),
     getDrawer: provider => provider.createHighlightBoxDrawer(),
-    updateVisibility: false,
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
 };

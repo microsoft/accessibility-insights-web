@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { RootContainer, RootContainerProps } from 'electron/views/root-container/components/root-container';
+import {
+    RootContainer,
+    RootContainerProps,
+} from 'electron/views/root-container/components/root-container';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 

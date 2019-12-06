@@ -7,13 +7,12 @@ import { CardResult } from 'common/types/store-data/card-view-model';
 import { TargetAppData, UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { UnifiedResultToIssueFilingDataConverter } from 'issue-filing/unified-result-to-issue-filing-data';
-import { some, values } from 'lodash';
 import { Label } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { CardInteractionSupport } from './card-interaction-support';
 import { CardKebabMenuButton, CardKebabMenuButtonDeps } from './card-kebab-menu-button';
-import { foot, highlightStatus } from './instance-details-footer.scss';
+import * as styles from './instance-details-footer.scss';
 
 export type HighlightState = 'visible' | 'hidden' | 'unavailable';
 
@@ -34,16 +33,24 @@ export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>('Instan
     const { deps, userConfigurationStoreData, result, rule, targetAppInfo } = props;
     const { cardInteractionSupport } = deps;
 
-    const anyInteractionSupport = some(values(cardInteractionSupport));
-    const highlightState = result.highlightStatus;
+    const supportsAnyActions = cardInteractionSupport.supportsIssueFiling || cardInteractionSupport.supportsCopyFailureDetails;
+    const { supportsHighlighting } = cardInteractionSupport;
 
-    if (!anyInteractionSupport) {
+    if (!supportsHighlighting && !supportsAnyActions) {
         return null;
     }
 
-    const issueDetailsData: CreateIssueDetailsTextData = deps.unifiedResultToIssueFilingDataConverter.convert(result, rule, targetAppInfo);
-
     const renderKebabMenu = () => {
+        if (!supportsAnyActions) {
+            return null;
+        }
+
+        const issueDetailsData: CreateIssueDetailsTextData = deps.unifiedResultToIssueFilingDataConverter.convert(
+            result,
+            rule,
+            targetAppInfo,
+        );
+
         const kebabMenuAriaLabel: string = `More Actions for card ${result.identifiers.identifier} in rule ${rule.id}`;
         return (
             <CardKebabMenuButton
@@ -56,6 +63,12 @@ export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>('Instan
     };
 
     const renderHighlightStatus = () => {
+        if (!supportsHighlighting) {
+            return null;
+        }
+
+        const highlightState = result.highlightStatus;
+
         const label = 'Highlight ' + highlightState;
         const icon = {
             unavailable: <HighlightUnavailableIcon />,
@@ -64,7 +77,7 @@ export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>('Instan
         }[highlightState];
 
         return (
-            <div className={highlightStatus}>
+            <div className={styles.highlightStatus}>
                 {icon}
                 <Label>{label}</Label>
             </div>
@@ -72,7 +85,7 @@ export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>('Instan
     };
 
     return (
-        <div className={foot}>
+        <div className={styles.foot}>
             {renderHighlightStatus()}
             {renderKebabMenu()}
         </div>

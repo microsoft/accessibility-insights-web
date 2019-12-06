@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { SetLaunchPanelState } from 'background/actions/action-payloads';
 import { AssessmentActions } from 'background/actions/assessment-actions';
 import { CommandActions } from 'background/actions/command-actions';
@@ -12,8 +10,10 @@ import { UserConfigurationActions } from 'background/actions/user-configuration-
 import { GlobalActionCreator } from 'background/global-action-creators/global-action-creator';
 import { Interpreter } from 'background/interpreter';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import { Action } from 'common/flux/action';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { CommandsAdapter } from '../../../../../common/browser-adapters/commands-adapter';
-import { Action } from '../../../../../common/flux/action';
 import { getStoreStateMessage, Messages } from '../../../../../common/messages';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { LaunchPanelType } from '../../../../../popup/components/popup-view';

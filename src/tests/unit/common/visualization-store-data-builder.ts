@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
-
 import { VisualizationStore } from 'background/stores/visualization-store';
+import { cloneDeep, forOwn } from 'lodash';
 import { VisualizationConfigurationFactory } from '../../../common/configs/visualization-configuration-factory';
 import { DetailsViewPivotType } from '../../../common/types/details-view-pivot-type';
 import { AssessmentScanData, VisualizationStoreData } from '../../../common/types/store-data/visualization-store-data';
@@ -12,7 +11,7 @@ import { BaseDataBuilder } from './base-data-builder';
 export class VisualizationStoreDataBuilder extends BaseDataBuilder<VisualizationStoreData> {
     constructor() {
         super();
-        this.data = new VisualizationStore(null, null, new VisualizationConfigurationFactory()).getDefaultState();
+        this.data = new VisualizationStore(null, null, null, new VisualizationConfigurationFactory()).getDefaultState();
     }
 
     public withFocusedTarget(target: string[]): VisualizationStoreDataBuilder {
@@ -54,7 +53,7 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<Visualization
     }
 
     public withAllAdhocTestsTo(enabled: boolean): VisualizationStoreDataBuilder {
-        _.forOwn(this.data.tests.adhoc, testData => {
+        forOwn(this.data.tests.adhoc, testData => {
             testData.enabled = enabled;
         });
         return this;
@@ -126,6 +125,6 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<Visualization
     }
 
     public build(): VisualizationStoreData {
-        return _.cloneDeep(this.data);
+        return cloneDeep(this.data);
     }
 }

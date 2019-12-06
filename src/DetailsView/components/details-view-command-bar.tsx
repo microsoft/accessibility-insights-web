@@ -2,31 +2,48 @@
 // Licensed under the MIT License.
 import { css } from '@uifabric/utilities';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { CardsViewModel } from 'common/types/store-data/card-view-model';
+import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
+import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { detailsViewCommandButtons } from 'DetailsView/components/details-view-command-bar.scss';
+import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
+import { StartOverDeps } from 'DetailsView/components/start-over-dropdown';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
+
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
-import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
-import { ReportExportComponent, ReportExportComponentDeps } from './report-export-component';
-import { StartOverDropdown } from './start-over-dropdown';
+import { ReportExportComponentDeps } from './report-export-component';
 
-export type DetailsViewCommandBarDeps = ReportExportComponentDeps & {
+export type DetailsViewCommandBarDeps = {
     getCurrentDate: () => Date;
     reportGenerator: ReportGenerator;
-};
+    getDateFromTimestamp: (timestamp: string) => Date;
+    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+} & ReportExportComponentDeps &
+    StartOverDeps;
+
+export type CommandBarProps = DetailsViewCommandBarProps;
+
+export type ReportExportComponentFactory = (props: CommandBarProps) => JSX.Element;
+
+export type StartOverComponentFactory = (props: CommandBarProps) => JSX.Element;
 
 export interface DetailsViewCommandBarProps {
     deps: DetailsViewCommandBarDeps;
     featureFlagStoreData: FeatureFlagStoreData;
     tabStoreData: TabStoreData;
-    actionMessageCreator: DetailsViewActionMessageCreator;
     assessmentStoreData: AssessmentStoreData;
     assessmentsProvider: AssessmentsProvider;
-    renderExportAndStartOver: boolean;
     rightPanelConfiguration: DetailsRightPanelConfiguration;
+    visualizationStoreData: VisualizationStoreData;
+    visualizationScanResultData: VisualizationScanResultData;
+    cardsViewData: CardsViewModel;
+    switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
 }
 
 export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBarProps> {
@@ -52,7 +69,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
                     role="link"
                     title="Switch to target page"
                     className={css('insights-link', 'target-page-link')}
-                    onClick={this.props.actionMessageCreator.switchToTargetTab}
+                    onClick={this.props.deps.detailsViewActionMessageCreator.switchToTargetTab}
                 >
                     {targetPageTitle}
                 </Link>
@@ -60,50 +77,27 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
         );
     }
 
-    private updatePersistedDescription = (value: string) => {
-        this.props.actionMessageCreator.addResultDescription(value);
-    };
-
-    private getExportDescription = () => {
-        return this.props.assessmentStoreData.resultDescription;
-    };
-
     private renderCommandButtons(): JSX.Element {
-        if (!this.props.renderExportAndStartOver) {
-            return null;
-        }
-        const { deps, assessmentStoreData, assessmentsProvider, featureFlagStoreData, tabStoreData } = this.props;
-        const reportGenerator = deps.reportGenerator;
-        const selectedTest = this.props.assessmentStoreData.assessmentNavState.selectedTestType;
-        const test = this.props.assessmentsProvider.forType(selectedTest);
-        const htmlGenerator = reportGenerator.generateAssessmentReport.bind(
-            reportGenerator,
-            assessmentStoreData,
-            assessmentsProvider,
-            featureFlagStoreData,
-            tabStoreData,
-        );
+        const reportExportElement: JSX.Element = this.renderExportComponent();
+        const startOverElement: JSX.Element = this.renderStartOverComponent();
 
-        return (
-            <div className="details-view-command-buttons">
-                <ReportExportComponent
-                    deps={deps}
-                    reportGenerator={reportGenerator}
-                    pageTitle={tabStoreData.title}
-                    exportResultsType={'Assessment'}
-                    scanDate={deps.getCurrentDate()}
-                    htmlGenerator={htmlGenerator}
-                    updatePersistedDescription={this.updatePersistedDescription}
-                    getExportDescription={this.getExportDescription}
-                />
-                <StartOverDropdown
-                    testName={test.title}
-                    test={selectedTest}
-                    requirementKey={this.props.assessmentStoreData.assessmentNavState.selectedTestStep}
-                    actionMessageCreator={this.props.actionMessageCreator}
-                    rightPanelConfiguration={this.props.rightPanelConfiguration}
-                />
-            </div>
-        );
+        if (reportExportElement || startOverElement) {
+            return (
+                <div className={detailsViewCommandButtons}>
+                    {reportExportElement}
+                    {startOverElement}
+                </div>
+            );
+        }
+
+        return null;
+    }
+
+    private renderExportComponent(): JSX.Element {
+        return this.props.switcherNavConfiguration.ReportExportComponentFactory(this.props);
+    }
+
+    private renderStartOverComponent(): JSX.Element {
+        return this.props.switcherNavConfiguration.StartOverComponentFactory(this.props);
     }
 }

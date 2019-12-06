@@ -75,15 +75,15 @@ export const BrandBlue = NamedFC('BrandBlue', () => (
                 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
             </filter>
             <linearGradient id="paint0_linear" x1="14.3166" y1="16.8744" x2="5.92409" y2="8.23504" gradientUnits="userSpaceOnUse">
-                <stop stopColor="#073A5F" stopOpacity="0.3" />
+                <stop offset="0" stopColor="#073A5F" stopOpacity="0.3" />
                 <stop offset="1" stopColor="#CFEBFF" stopOpacity="0" />
             </linearGradient>
             <linearGradient id="paint1_linear" x1="14.3166" y1="16.8744" x2="4.4082" y2="6.85716" gradientUnits="userSpaceOnUse">
-                <stop stopColor="#00070C" stopOpacity="0.29" />
+                <stop offset="0" stopColor="#00070C" stopOpacity="0.29" />
                 <stop offset="1" stopColor="#004880" stopOpacity="0" />
             </linearGradient>
             <linearGradient id="paint2_linear" x1="11.3179" y1="20.1024" x2="11.2867" y2="7.1103" gradientUnits="userSpaceOnUse">
-                <stop stopColor="#00070C" stopOpacity="0.29" />
+                <stop offset="0" stopColor="#00070C" stopOpacity="0.29" />
                 <stop offset="1" stopColor="#003064" stopOpacity="0" />
             </linearGradient>
         </defs>

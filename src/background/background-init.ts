@@ -9,7 +9,7 @@ import { VisualizationConfigurationFactory } from '../common/configs/visualizati
 import { EnvironmentInfoProvider } from '../common/environment-info-provider';
 import { getIndexedDBStore } from '../common/indexedDB/get-indexeddb-store';
 import { IndexedDBAPI, IndexedDBUtil } from '../common/indexedDB/indexedDB';
-import { InsightsFeatureFlags } from '../common/insights-feature-flags';
+import { InsightsWindowExtensions } from '../common/insights-window-extensions';
 import { createDefaultLogger } from '../common/logging/default-logger';
 import { NavigatorUtils } from '../common/navigator-utils';
 import { NotificationCreator } from '../common/notification-creator';
@@ -30,7 +30,7 @@ import { MessageDistributor } from './message-distributor';
 import { TabToContextMap } from './tab-context';
 import { TabContextBroadcaster } from './tab-context-broadcaster';
 import { TabContextFactory } from './tab-context-factory';
-import { TabController } from './tab-controller';
+import { TargetPageController } from './target-page-controller';
 import { TargetTabController } from './target-tab-controller';
 import { getTelemetryClient } from './telemetry/telemetry-client-provider';
 import { TelemetryEventHandler } from './telemetry/telemetry-event-handler';
@@ -38,102 +38,142 @@ import { TelemetryLogger } from './telemetry/telemetry-logger';
 import { TelemetryStateListener } from './telemetry/telemetry-state-listener';
 import { cleanKeysFromStorage } from './user-stored-data-cleaner';
 
-declare var window: Window & InsightsFeatureFlags;
+declare var window: Window & InsightsWindowExtensions;
 
-const browserAdapter = new ChromeAdapter();
-const urlValidator = new UrlValidator(browserAdapter);
-const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil(getIndexedDBStore());
-const indexedDBDataKeysToFetch = [IndexedDBDataKeys.assessmentStore, IndexedDBDataKeys.userConfiguration];
+async function initialize(): Promise<void> {
+    const browserAdapter = new ChromeAdapter();
 
-cleanKeysFromStorage(browserAdapter, deprecatedStorageDataKeys).catch(reason => console.error('error while cleaning user data: ', reason));
+    // This only removes keys that are unused by current versions of the extension, so it's okay for it to race with everything else
+    const cleanKeysFromStoragePromise = cleanKeysFromStorage(
+        browserAdapter,
+        deprecatedStorageDataKeys,
+    );
 
-const persistedDataPromise = getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch);
-const userDataPromise = browserAdapter.getUserData(storageDataKeys);
+    const urlValidator = new UrlValidator(browserAdapter);
+    const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil(getIndexedDBStore());
+    const indexedDBDataKeysToFetch = [
+        IndexedDBDataKeys.assessmentStore,
+        IndexedDBDataKeys.userConfiguration,
+    ];
 
-Promise.all([persistedDataPromise, userDataPromise])
-    .then(([persistedData, userData]) => {
-        const assessmentsProvider = Assessments;
-        const windowUtils = new WindowUtils();
-        const telemetryDataFactory = new TelemetryDataFactory();
-        const telemetryLogger = new TelemetryLogger();
+    // These can run concurrently, both because they are read-only and because they use different types of underlying storage
+    const persistedDataPromise = getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch);
+    const userDataPromise = browserAdapter.getUserData(storageDataKeys);
+    const persistedData = await persistedDataPromise;
+    const userData = await userDataPromise;
 
-        const { installationData } = userData;
-        const telemetryClient = getTelemetryClient(title, installationData, browserAdapter, telemetryLogger, AppInsights, browserAdapter);
+    const assessmentsProvider = Assessments;
+    const windowUtils = new WindowUtils();
+    const telemetryDataFactory = new TelemetryDataFactory();
+    const telemetryLogger = new TelemetryLogger();
 
-        const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
+    const { installationData } = userData;
+    const telemetryClient = getTelemetryClient(
+        title,
+        installationData,
+        browserAdapter,
+        telemetryLogger,
+        AppInsights,
+        browserAdapter,
+    );
 
-        const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
-        const environmentInfoProvider = new EnvironmentInfoProvider(browserAdapter.getVersion(), browserSpec, AxeInfo.Default.version);
+    const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
 
-        const globalContext = GlobalContextFactory.createContext(
-            browserAdapter,
-            telemetryEventHandler,
-            userData,
-            assessmentsProvider,
-            telemetryDataFactory,
-            indexedDBInstance,
-            persistedData,
-            IssueFilingServiceProviderImpl,
-            environmentInfoProvider.getEnvironmentInfo(),
-            browserAdapter,
-            browserAdapter,
-        );
-        telemetryLogger.initialize(globalContext.featureFlagsController);
+    const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
+    const environmentInfoProvider = new EnvironmentInfoProvider(
+        browserAdapter.getVersion(),
+        browserSpec,
+        AxeInfo.Default.version,
+    );
 
-        const telemetryStateListener = new TelemetryStateListener(globalContext.stores.userConfigurationStore, telemetryEventHandler);
-        telemetryStateListener.initialize();
+    const globalContext = GlobalContextFactory.createContext(
+        browserAdapter,
+        telemetryEventHandler,
+        userData,
+        assessmentsProvider,
+        telemetryDataFactory,
+        indexedDBInstance,
+        persistedData,
+        IssueFilingServiceProviderImpl,
+        environmentInfoProvider.getEnvironmentInfo(),
+        browserAdapter,
+        browserAdapter,
+    );
+    telemetryLogger.initialize(globalContext.featureFlagsController);
 
-        const broadcaster = new TabContextBroadcaster(browserAdapter);
-        const detailsViewController = new DetailsViewController(browserAdapter);
+    const telemetryStateListener = new TelemetryStateListener(
+        globalContext.stores.userConfigurationStore,
+        telemetryEventHandler,
+    );
+    telemetryStateListener.initialize();
 
-        const tabToContextMap: TabToContextMap = {};
+    const broadcaster = new TabContextBroadcaster(browserAdapter);
+    const detailsViewController = new DetailsViewController(browserAdapter);
 
-        const visualizationConfigurationFactory = new VisualizationConfigurationFactory();
-        const notificationCreator = new NotificationCreator(browserAdapter, visualizationConfigurationFactory);
+    const tabToContextMap: TabToContextMap = {};
 
-        const chromeCommandHandler = new ChromeCommandHandler(
-            tabToContextMap,
-            browserAdapter,
-            urlValidator,
-            notificationCreator,
-            visualizationConfigurationFactory,
-            telemetryDataFactory,
-            globalContext.stores.userConfigurationStore,
-            browserAdapter,
-        );
-        chromeCommandHandler.initialize();
+    const visualizationConfigurationFactory = new VisualizationConfigurationFactory();
+    const notificationCreator = new NotificationCreator(
+        browserAdapter,
+        visualizationConfigurationFactory,
+    );
 
-        const messageDistributor = new MessageDistributor(globalContext, tabToContextMap, browserAdapter);
-        messageDistributor.initialize();
+    const chromeCommandHandler = new ChromeCommandHandler(
+        tabToContextMap,
+        browserAdapter,
+        urlValidator,
+        notificationCreator,
+        visualizationConfigurationFactory,
+        telemetryDataFactory,
+        globalContext.stores.userConfigurationStore,
+        browserAdapter,
+    );
+    chromeCommandHandler.initialize();
 
-        const targetTabController = new TargetTabController(browserAdapter, visualizationConfigurationFactory);
+    const messageDistributor = new MessageDistributor(
+        globalContext,
+        tabToContextMap,
+        browserAdapter,
+    );
+    messageDistributor.initialize();
 
-        const promiseFactory = createDefaultPromiseFactory();
+    const targetTabController = new TargetTabController(
+        browserAdapter,
+        visualizationConfigurationFactory,
+    );
 
-        const tabContextFactory = new TabContextFactory(
-            visualizationConfigurationFactory,
-            telemetryEventHandler,
-            windowUtils,
-            targetTabController,
-            globalContext.stores.assessmentStore,
-            assessmentsProvider,
-            promiseFactory,
-        );
+    const promiseFactory = createDefaultPromiseFactory();
 
-        const clientHandler = new TabController(
-            tabToContextMap,
-            broadcaster,
-            browserAdapter,
-            detailsViewController,
-            tabContextFactory,
-            createDefaultLogger(),
-        );
+    const tabContextFactory = new TabContextFactory(
+        visualizationConfigurationFactory,
+        telemetryEventHandler,
+        windowUtils,
+        targetTabController,
+        globalContext.stores.assessmentStore,
+        assessmentsProvider,
+        promiseFactory,
+    );
 
-        clientHandler.initialize();
+    const clientHandler = new TargetPageController(
+        tabToContextMap,
+        broadcaster,
+        browserAdapter,
+        detailsViewController,
+        tabContextFactory,
+        createDefaultLogger(),
+    );
 
-        const devToolsBackgroundListener = new DevToolsListener(tabToContextMap, browserAdapter);
-        devToolsBackgroundListener.initialize();
+    clientHandler.initialize();
 
-        window.insightsFeatureFlags = globalContext.featureFlagsController;
-    })
-    .catch(console.error);
+    const devToolsBackgroundListener = new DevToolsListener(tabToContextMap, browserAdapter);
+    devToolsBackgroundListener.initialize();
+
+    window.insightsFeatureFlags = globalContext.featureFlagsController;
+    window.insightsUserConfiguration = globalContext.userConfigurationController;
+
+    await cleanKeysFromStoragePromise;
+}
+
+initialize()
+    .then(() => console.log('Background initialization completed succesfully'))
+    .catch((e: Error) => console.error('Background initialization failed: ', e));

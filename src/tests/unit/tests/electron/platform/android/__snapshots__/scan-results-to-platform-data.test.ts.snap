@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`convertScanResultsToPlatformData produces the pinned output for the pinned example input 1`] = `
+Object {
+  "deviceName": "Test Android Device",
+  "osInfo": Object {
+    "name": "Android",
+    "version": "Android Android 10 API Level 29",
+  },
+  "viewPortInfo": Object {
+    "dpi": 2.625,
+    "height": 1920,
+    "width": 1080,
+  },
+}
+`;

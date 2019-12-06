@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Preview Features Panel Normal mode should match content in snapshot 1`] = `
+exports[`Details View -> Preview Features Panel should match content in snapshot 1`] = `
 <DocumentFragment>
   <div
     aria-hidden="false"

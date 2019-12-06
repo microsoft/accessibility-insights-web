@@ -1,9 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { InstancePropertyBag, InstanceResultStatus, UnifiedResult } from 'common/types/store-data/unified-data-interface';
-import { UUIDGeneratorType } from 'common/uid-generator';
-import { DictionaryStringTo } from 'types/common-types';
 
+import {
+    InstanceResultStatus,
+    UnifiedDescriptors,
+    UnifiedResult,
+} from 'common/types/store-data/unified-data-interface';
+import { UUIDGenerator } from 'common/uid-generator';
+import { DictionaryStringTo } from 'types/common-types';
 import { RuleInformation } from './rule-information';
 import { RuleInformationProviderType } from './rule-information-provider-type';
 import { RuleResultsData, ScanResults, ViewElementData } from './scan-results';
@@ -11,13 +15,13 @@ import { RuleResultsData, ScanResults, ViewElementData } from './scan-results';
 export type ConvertScanResultsToUnifiedResultsDelegate = (
     scanResults: ScanResults,
     ruleInformationProvider: RuleInformationProviderType,
-    uuidGenerator: UUIDGeneratorType,
+    uuidGenerator: UUIDGenerator,
 ) => UnifiedResult[];
 
 export function convertScanResultsToUnifiedResults(
     scanResults: ScanResults,
     ruleInformationProvider: RuleInformationProviderType,
-    uuidGenerator: UUIDGeneratorType,
+    uuidGenerator: UUIDGenerator,
 ): UnifiedResult[] {
     if (!scanResults || !scanResults.ruleResults) {
         return [];
@@ -29,16 +33,22 @@ export function convertScanResultsToUnifiedResults(
 function createUnifiedResultsFromScanResults(
     scanResults: ScanResults,
     ruleInformationProvider: RuleInformationProviderType,
-    uuidGenerator: UUIDGeneratorType,
+    uuidGenerator: UUIDGenerator,
 ): UnifiedResult[] {
-    const viewElementLookup: DictionaryStringTo<ViewElementData> = createViewElementLookup(scanResults);
+    const viewElementLookup: DictionaryStringTo<ViewElementData> = createViewElementLookup(
+        scanResults,
+    );
     const unifiedResults: UnifiedResult[] = [];
 
     for (const ruleResult of scanResults.ruleResults) {
-        const ruleInformation: RuleInformation = ruleInformationProvider.getRuleInformation(ruleResult.ruleId);
+        const ruleInformation: RuleInformation = ruleInformationProvider.getRuleInformation(
+            ruleResult.ruleId,
+        );
 
         if (ruleInformation && ruleInformation.includeThisResult(ruleResult)) {
-            unifiedResults.push(createUnifiedResult(ruleInformation, ruleResult, viewElementLookup, uuidGenerator));
+            unifiedResults.push(
+                createUnifiedResult(ruleInformation, ruleResult, viewElementLookup, uuidGenerator),
+            );
         }
     }
 
@@ -53,7 +63,10 @@ function createViewElementLookup(scanResults: ScanResults): DictionaryStringTo<V
     return viewElementLookup;
 }
 
-function addViewElementAndChildren(viewElementLookup: DictionaryStringTo<ViewElementData>, element: ViewElementData): void {
+function addViewElementAndChildren(
+    viewElementLookup: DictionaryStringTo<ViewElementData>,
+    element: ViewElementData,
+): void {
     if (element) {
         viewElementLookup[element.axeViewId] = element;
         if (element.children) {
@@ -68,7 +81,7 @@ function createUnifiedResult(
     ruleInformation: RuleInformation,
     ruleResult: RuleResultsData,
     viewElementLookup: DictionaryStringTo<ViewElementData>,
-    uuidGenerator: UUIDGeneratorType,
+    uuidGenerator: UUIDGenerator,
 ): UnifiedResult {
     return {
         uid: uuidGenerator(),
@@ -80,7 +93,7 @@ function createUnifiedResult(
     };
 }
 
-function getDescriptors(viewElement: ViewElementData): InstancePropertyBag {
+function getDescriptors(viewElement: ViewElementData): UnifiedDescriptors {
     if (viewElement) {
         return {
             className: viewElement.className,

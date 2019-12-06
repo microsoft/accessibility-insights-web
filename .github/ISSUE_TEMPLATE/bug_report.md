@@ -36,12 +36,12 @@ Please provide a reproduction of the bug in a codepen, if possible. Here’s how
 
 <!-- If applicable, add screenshots to help explain your problem. -->
 
-## Extension (please complete the following information)
+## Context (please complete the following information)
 
-- OS: [e.g. Windows/Mac]
-- Version [e.g. 1.140.1]
-- Browser Version [e.g Chrome 71.0]
-- Target Page [e.g www.bing.com]
+- OS Name & Version: <!--e.g. Windows 10.0.18363 Build 18363 / macOS Catalina 10.15(19A583)-->
+- AI-Web Version & Environment: <!--e.g. 1.140.1 Insider-->
+- Browser Version: <!--e.g. Google Chrome 78.0.3904.108 (Official Build) (64-bit)-->
+- Target Page: <!--e.g. https://www.bing.com-->
 
 ## Are you willing to submit a PR?
 

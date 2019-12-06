@@ -14,11 +14,19 @@ export class Browser {
     private memoizedBackgroundPage: BackgroundPage;
     private pages: Array<Page> = [];
 
-    constructor(private readonly browserInstanceId: string, private readonly underlyingBrowser: Puppeteer.Browser) {
+    constructor(
+        private readonly browserInstanceId: string,
+        private readonly underlyingBrowser: Puppeteer.Browser,
+        private readonly onClose?: () => Promise<void>,
+    ) {
         underlyingBrowser.on('disconnected', onBrowserDisconnected);
     }
 
     public async close(): Promise<void> {
+        if (this.onClose) {
+            await this.onClose();
+        }
+
         this.underlyingBrowser.removeListener('disconnected', onBrowserDisconnected);
         await this.underlyingBrowser.close();
     }
@@ -89,10 +97,20 @@ export class Browser {
         return page;
     }
 
+    public async gotoContentPage(existingPage: ContentPage, newContentPath: string): Promise<void> {
+        const url = await this.getExtensionUrl(contentPageRelativeUrl(newContentPath));
+        await existingPage.goto(url);
+    }
+
     public async closeAllPages(): Promise<void> {
         for (let pos = 0; pos < this.pages.length; pos++) {
             await this.pages[pos].close(true);
         }
+    }
+
+    public async setHighContrastMode(highContrastMode: boolean): Promise<void> {
+        const backgroundPage = await this.backgroundPage();
+        await backgroundPage.setHighContrastMode(highContrastMode);
     }
 
     private async getActivePageTabId(): Promise<number> {

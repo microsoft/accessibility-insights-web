@@ -10,7 +10,7 @@ module.exports = {
     displayName: 'electron tests',
     globalSetup: `${currentDir}/setup/global-setup.ts`,
     globalTeardown: `${currentDir}/setup/global-teardown.ts`,
-    moduleFileExtensions: ['ts', 'js'],
+    moduleFileExtensions: ['ts', 'tsx', 'js'],
     rootDir: rootDir,
     roots: [currentDir],
     reporters: ['default', ['jest-junit', { outputDirectory: '.', outputName: '<rootDir>/test-results/electron/junit-electron.xml' }]],

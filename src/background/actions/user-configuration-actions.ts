@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Action } from '../../common/flux/action';
+import { Action } from 'common/flux/action';
 import {
     SaveIssueFilingSettingsPayload,
     SetHighContrastModePayload,
@@ -13,6 +13,8 @@ export class UserConfigurationActions {
     public readonly getCurrentState = new Action<void>();
     public readonly setHighContrastMode = new Action<SetHighContrastModePayload>();
     public readonly setIssueFilingService = new Action<SetIssueFilingServicePayload>();
-    public readonly setIssueFilingServiceProperty = new Action<SetIssueFilingServicePropertyPayload>();
+    public readonly setIssueFilingServiceProperty = new Action<
+        SetIssueFilingServicePropertyPayload
+    >();
     public readonly saveIssueFilingSettings = new Action<SaveIssueFilingSettingsPayload>();
 }

@@ -50,51 +50,6 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
     }
 }
 
-.rule-details-group {
-    .rule-detail {
-        box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
-        font-size: 14px;
-
-        padding: 16px 8px;
-
-        display: flex;
-        align-items: center;
-
-        .outcome-chip {
-            vertical-align: middle;
-            margin-bottom: 2px;
-        }
-
-        .rule-details-id {
-            font-family: $semiBoldFontFamily;
-            color: $primary-text;
-
-            a {
-                font-family: $semiBoldFontFamily;
-                color: $primary-text !important;
-            }
-        }
-
-        .rule-detail-description {
-            color: $secondary-text !important;
-        }
-
-        .guidance-links {
-            a {
-                color: $secondary-text !important;
-            }
-        }
-    }
-}
-
-.collapsible-rule-details-group {
-    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
-
-    .rule-detail {
-        box-shadow: unset;
-    }
-}
-
 .collapsible-container {
     @mixin transform($property) {
         -webkit-transform: $property;

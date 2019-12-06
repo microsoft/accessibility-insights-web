@@ -4,6 +4,7 @@ import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
+import { DetailsViewCommandBarDeps } from 'DetailsView/components/details-view-command-bar';
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { NamedFC, ReactFCWithDisplayName } from '../../../../common/react/named-fc';
@@ -51,6 +52,8 @@ describe('DetailsViewBody', () => {
             } as DetailsRightPanelConfiguration;
             switcherNavConfig = {
                 CommandBar: CommandBarStub,
+                ReportExportComponentFactory: p => null,
+                StartOverComponentFactory: p => null,
                 LeftNav: LeftNavStub,
             } as DetailsViewSwitcherNavConfiguration;
             configFactoryMock = Mock.ofType(VisualizationConfigurationFactory, MockBehavior.Strict);
@@ -92,7 +95,7 @@ describe('DetailsViewBody', () => {
             props = {
                 deps: {
                     detailsViewActionMessageCreator: Mock.ofType(DetailsViewActionMessageCreator).object,
-                },
+                } as DetailsViewCommandBarDeps,
                 tabStoreData: new TabStoreDataBuilder().build(),
                 visualizationStoreData: new VisualizationStoreDataBuilder().build(),
                 visualizationScanResultData: new VisualizationScanResultStoreDataBuilder().build(),
@@ -106,7 +109,7 @@ describe('DetailsViewBody', () => {
                 },
                 rightPanelConfiguration: rightPanelConfig,
                 switcherNavConfiguration: switcherNavConfig,
-                ruleResultsByStatus: exampleUnifiedStatusResults,
+                cardsViewData: { cards: exampleUnifiedStatusResults, visualHelperEnabled: true, allCardsCollapsed: true },
             } as DetailsViewBodyProps;
         });
 
@@ -130,7 +133,8 @@ describe('DetailsViewBody', () => {
             );
 
             const testSubject = new DetailsViewBody(props);
-            expect(testSubject.render()).toEqual(expected);
+            const actual = testSubject.render();
+            expect(actual).toEqual(expected);
         });
     });
 
@@ -161,10 +165,10 @@ describe('DetailsViewBody', () => {
     function buildTabInfo(givenProps: DetailsViewBodyProps): JSX.Element {
         return (
             <TabInfo
+                deps={givenProps.deps}
                 isTargetPageHidden={givenProps.tabStoreData.isPageHidden}
                 url={givenProps.tabStoreData.url}
                 title={givenProps.tabStoreData.title}
-                actionCreator={givenProps.deps.detailsViewActionMessageCreator}
                 selectedPivot={givenProps.visualizationStoreData.selectedDetailsViewPivot}
                 dropdownClickHandler={givenProps.dropdownClickHandler}
             />
@@ -172,6 +176,6 @@ describe('DetailsViewBody', () => {
     }
 
     function buildCommandBar(givenProps: DetailsViewBodyProps): JSX.Element {
-        return <switcherNavConfig.CommandBar actionMessageCreator={props.deps.detailsViewActionMessageCreator} {...props} />;
+        return <switcherNavConfig.CommandBar {...props} />;
     }
 });

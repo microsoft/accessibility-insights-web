@@ -1,16 +1,28 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as TelemetryEvents from '../../common/extension-telemetry-events';
-import { BaseTelemetryData, TelemetryData, ToggleTelemetryData } from '../../common/extension-telemetry-events';
-import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
-import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
-import { ManualTestStatus } from '../../common/types/manual-test-status';
-import { TargetAppData, ToolData, UnifiedResult, UnifiedRule } from '../../common/types/store-data/unified-data-interface';
-import { IssueFilingServiceProperties } from '../../common/types/store-data/user-configuration-store';
-import { VisualizationType } from '../../common/types/visualization-type';
-import { FailureInstanceData } from '../../DetailsView/components/failure-instance-panel-control';
-import { TabStopEvent } from '../../injected/tab-stops-listener';
-import { LaunchPanelType } from '../../popup/components/popup-view';
+import * as TelemetryEvents from 'common/extension-telemetry-events';
+import {
+    BaseTelemetryData,
+    TelemetryData,
+    ToggleTelemetryData,
+} from 'common/extension-telemetry-events';
+import { Tab } from 'common/itab';
+import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
+import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { ManualTestStatus } from 'common/types/manual-test-status';
+import {
+    PlatformData,
+    ScreenshotData,
+    TargetAppData,
+    ToolData,
+    UnifiedResult,
+    UnifiedRule,
+} from 'common/types/store-data/unified-data-interface';
+import { IssueFilingServiceProperties } from 'common/types/store-data/user-configuration-store';
+import { VisualizationType } from 'common/types/visualization-type';
+import { FailureInstanceData } from 'DetailsView/components/failure-instance-panel-control';
+import { TabStopEvent } from 'injected/tab-stops-listener';
+import { LaunchPanelType } from 'popup/components/popup-view';
 
 export interface BaseActionPayload {
     telemetry?: TelemetryData;
@@ -19,15 +31,6 @@ export interface BaseActionPayload {
 export interface SelectRequirementPayload extends BaseActionPayload {
     selectedRequirement: string;
     selectedTest: VisualizationType;
-}
-
-export interface UpdateInstanceVisibilityPayload extends ToggleActionPayload {
-    selector: string;
-    isVisible: boolean;
-}
-
-export interface UpdateVisibilityPayload {
-    payloadBatch: UpdateInstanceVisibilityPayload[];
 }
 
 export interface AssessmentToggleActionPayload extends ToggleActionPayload {
@@ -90,6 +93,8 @@ export interface OnDetailsViewPivotSelected extends BaseActionPayload {
 export interface ToggleActionPayload extends BaseActionPayload {
     test: VisualizationType;
 }
+
+export type RescanVisualizationPayload = ToggleActionPayload;
 
 export interface VisualizationTogglePayload extends ToggleActionPayload {
     enabled: boolean;
@@ -156,6 +161,8 @@ export interface UnifiedScanCompletedPayload extends BaseActionPayload {
     rules: UnifiedRule[];
     toolInfo: ToolData;
     targetAppInfo: TargetAppData;
+    screenshotData?: ScreenshotData;
+    platformInfo?: PlatformData;
 }
 
 export interface RuleExpandCollapsePayload extends BaseActionPayload {
@@ -166,3 +173,9 @@ export interface CardSelectionPayload extends BaseActionPayload {
     ruleId: string;
     resultInstanceUid: string;
 }
+
+export interface PopupInitializedPayload extends BaseActionPayload {
+    tab: Tab;
+}
+
+export type ExistingTabUpdatedPayload = BaseActionPayload & Tab;

@@ -8,7 +8,9 @@ import { ManualTestRecordYourResults } from '../../common/manual-test-record-you
 import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { SemanticsTestStep } from './test-steps';
-const dataTablesDescription: JSX.Element = <span>Semantic elements in a data table must not be coded as decorative.</span>;
+const dataTablesDescription: JSX.Element = (
+    <span>Semantic elements in a data table must not be coded as decorative.</span>
+);
 
 const dataTablesHowToTest: JSX.Element = (
     <div>
@@ -21,23 +23,27 @@ const dataTablesHowToTest: JSX.Element = (
         </p>
         <ol>
             <li>
-                Use the Web Developer browser extension (<Markup.Term>Outline > Outline tables</Markup.Term>) to highlight tables on the
+                Use the Web Developer browser extension (
+                <Markup.Term>Outline > Outline tables</Markup.Term>) to highlight tables on the
                 page.
             </li>
             <li>
-                Examine the target page to identify any <Markup.Emphasis>data</Markup.Emphasis> tables:
+                Examine the target page to identify any <Markup.Emphasis>data</Markup.Emphasis>{' '}
+                tables:
                 <ol>
                     <li>
-                        A <Markup.Emphasis>data</Markup.Emphasis> table organizes content into rows and columns to show relationships.
+                        A <Markup.Emphasis>data</Markup.Emphasis> table organizes content into rows
+                        and columns to show relationships.
                     </li>
                     <li>
-                        A <Markup.Emphasis>layout</Markup.Emphasis> table is used to visually position content without implying any
-                        relationships.
+                        A <Markup.Emphasis>layout</Markup.Emphasis> table is used to visually
+                        position content without implying any relationships.
                     </li>
                 </ol>
             </li>
             <li>
-                Use the Web Developer browser extension (<Markup.Term>Information > Display ARIA Roles</Markup.Term>) to verify that none of
+                Use the Web Developer browser extension (
+                <Markup.Term>Information > Display ARIA Roles</Markup.Term>) to verify that none of
                 its elements is coded with <Markup.Term>role="presentation"</Markup.Term>.
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
@@ -53,5 +59,4 @@ export const DataTables: Requirement = {
     isManual: true,
     ...content,
     guidanceLinks: [link.WCAG_1_3_1],
-    updateVisibility: false,
 };

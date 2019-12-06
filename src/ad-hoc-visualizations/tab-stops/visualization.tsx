@@ -15,7 +15,9 @@ import * as React from 'react';
 const { guidance, extraGuidance } = content.tabstops;
 
 export const TabStopsAdHocVisualization: VisualizationConfiguration = {
-    getTestView: props => <AdhocStaticTestView content={createHowToTest(2)} guidance={extraGuidance} {...props} />,
+    getTestView: props => (
+        <AdhocStaticTestView content={createHowToTest(2)} guidance={extraGuidance} {...props} />
+    ),
     key: AdHocTestkeys.TabStops,
     testMode: TestMode.Adhoc,
     getStoreData: data => data.adhoc.tabStops,
@@ -47,6 +49,5 @@ export const TabStopsAdHocVisualization: VisualizationConfiguration = {
     getNotificationMessage: selectorMap => 'Start pressing Tab to start visualizing tab stops.',
     getSwitchToTargetTabOnScan: () => true,
     getInstanceIdentiferGenerator: () => generateUID,
-    getUpdateVisibility: () => false,
     guidance,
 };

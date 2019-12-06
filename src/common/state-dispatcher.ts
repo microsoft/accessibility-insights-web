@@ -1,15 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { StoreHub } from 'background/stores/store-hub';
+import { createDefaultLogger } from 'common/logging/default-logger';
+import { Logger } from 'common/logging/logger';
 import { BaseStore } from './base-store';
 import { GenericStoreMessageTypes } from './constants/generic-store-messages-types';
 import { StoreUpdateMessage } from './types/store-update-message';
 
 export class StateDispatcher {
-    private broadcastMessage: (message: StoreUpdateMessage<any>) => void;
-    private stores: StoreHub;
-
-    constructor(broadcastMessage: (message: Object) => void, stores: StoreHub) {
+    constructor(
+        private readonly broadcastMessage: (message: StoreUpdateMessage<any>) => Promise<void>,
+        private readonly stores: StoreHub,
+        private readonly logger: Logger = createDefaultLogger(),
+    ) {
         this.broadcastMessage = broadcastMessage;
         this.stores = stores;
     }
@@ -32,7 +35,7 @@ export class StateDispatcher {
                 type: GenericStoreMessageTypes.storeStateChanged,
                 storeType: this.stores.getStoreType(),
                 payload: store.getState(),
-            });
+            }).catch(this.logger.error);
         };
     };
 }

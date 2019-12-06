@@ -4,13 +4,7 @@ import { UnifiedScanCompletedPayload } from '../../../../../background/actions/a
 import { UnifiedScanResultActions } from '../../../../../background/actions/unified-scan-result-actions';
 import { UnifiedScanResultStore } from '../../../../../background/stores/unified-scan-result-store';
 import { StoreNames } from '../../../../../common/stores/store-names';
-import {
-    ScanEngineProperties,
-    ToolData,
-    UnifiedResult,
-    UnifiedRule,
-    UnifiedScanResultStoreData,
-} from '../../../../../common/types/store-data/unified-data-interface';
+import { UnifiedScanResultStoreData } from '../../../../../common/types/store-data/unified-data-interface';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
 import { TargetAppData } from './../../../../../common/types/store-data/unified-data-interface';
 
@@ -29,9 +23,11 @@ describe('UnifiedScanResultStore Test', () => {
     test('check defaultState is empty', () => {
         const defaultState = getDefaultState();
 
-        expect(defaultState.results).toEqual(null);
-        expect(defaultState.rules).toEqual(null);
-        expect(defaultState.toolInfo).toEqual(null);
+        expect(defaultState.results).toBeNull();
+        expect(defaultState.rules).toBeNull();
+        expect(defaultState.toolInfo).toBeNull();
+        expect(defaultState.screenshotData).toBeNull();
+        expect(defaultState.platformInfo).toBeNull();
     });
 
     test('onGetCurrentState', () => {
@@ -48,26 +44,34 @@ describe('UnifiedScanResultStore Test', () => {
             scanResult: [
                 {
                     uid: 'test-uid',
-                } as UnifiedResult,
+                },
             ],
             rules: [
                 {
                     id: 'test-rule-id',
-                } as UnifiedRule,
+                },
             ],
             toolInfo: {
                 scanEngineProperties: {
                     name: 'test-scan-engine-name',
-                } as ScanEngineProperties,
-            } as ToolData,
+                },
+            },
+            screenshotData: {
+                base64PngData: 'testScreenshotText',
+            },
             targetAppInfo,
-        };
+            platformInfo: {
+                deviceName: 'test-device-name',
+            },
+        } as UnifiedScanCompletedPayload;
 
         const expectedState: UnifiedScanResultStoreData = {
             rules: payload.rules,
             results: payload.scanResult,
             toolInfo: payload.toolInfo,
             targetAppInfo,
+            screenshotData: payload.screenshotData,
+            platformInfo: payload.platformInfo,
         };
 
         createStoreForUnifiedScanResultActions('scanCompleted')

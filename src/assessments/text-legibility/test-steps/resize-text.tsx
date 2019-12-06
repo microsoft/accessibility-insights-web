@@ -10,18 +10,27 @@ import * as Markup from '../../markup';
 import { Emphasis } from '../../markup';
 
 const resizeTextDescription: JSX.Element = (
-    <span>Users must be able to resize text, without using assistive technology, up to 200% with no loss of content or functionality.</span>
+    <span>
+        Users must be able to resize text, without using assistive technology, up to 200% with no
+        loss of content or functionality.
+    </span>
 );
 
 const resizeTextHowToTest: JSX.Element = (
     <div>
-        <Emphasis>Note: An automated check will fail if text scaling and zooming is disabled because the</Emphasis>&nbsp;
-        <Markup.CodeTerm>user-scalable=no</Markup.CodeTerm> <Emphasis>parameter is used in a</Emphasis>&nbsp;
-        <Markup.CodeTerm>{`<meta name="viewport">`}</Markup.CodeTerm> <Emphasis> element.</Emphasis>&nbsp;
+        <Emphasis>
+            Note: An automated check will fail if text scaling and zooming is disabled because the
+        </Emphasis>
+        &nbsp;
+        <Markup.CodeTerm>user-scalable=no</Markup.CodeTerm>{' '}
+        <Emphasis>parameter is used in a</Emphasis>&nbsp;
+        <Markup.CodeTerm>{`<meta name="viewport">`}</Markup.CodeTerm> <Emphasis> element.</Emphasis>
+        &nbsp;
         <ol>
             <li>
-                Use <Markup.Term>Windows Settings</Markup.Term> > <Markup.Term>System</Markup.Term> > <Markup.Term>Display</Markup.Term> >{' '}
-                <Markup.Term>Scale and layout</Markup.Term> to
+                Use <Markup.Term>Windows Settings</Markup.Term> > <Markup.Term>System</Markup.Term>{' '}
+                > <Markup.Term>Display</Markup.Term> > <Markup.Term>Scale and layout</Markup.Term>{' '}
+                to
                 <ol>
                     <li>Set the resolution to 1920x1080, and</li>
                     <li>Set scaling to 100%.</li>

@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { MacContrastCheckerAppLink, WindowsContrastCheckerAppLink } from 'common/components/contrast-checker-app-links';
+import {
+    MacContrastCheckerAppLink,
+    WindowsContrastCheckerAppLink,
+} from 'common/components/contrast-checker-app-links';
 import { link } from 'content/link';
 import * as content from 'content/test/contrast/ui-components';
 import * as React from 'react';
@@ -11,27 +14,37 @@ import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/compo
 import { ScannerUtils } from '../../../injected/scanner-utils';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
-import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
+import {
+    NoValue,
+    PropertyBagColumnRendererConfig,
+} from '../../common/property-bag-column-renderer';
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { Requirement } from '../../types/requirement';
 import { ContrastTestStep } from './test-steps';
 
 const description: JSX.Element = (
-    <span>Visual information used to indicate states and boundaries of active interface components must have sufficient contrast.</span>
+    <span>
+        Visual information used to indicate states and boundaries of active interface components
+        must have sufficient contrast.
+    </span>
 );
 
 const howToTest: JSX.Element = (
     <div>
-        <p>The visual helper for this requirement highlights links, native widgets, and custom widgets in the target page.</p>
+        <p>
+            The visual helper for this requirement highlights links, native widgets, and custom
+            widgets in the target page.
+        </p>
         <ol>
             <li>
-                In the target page, examine each highlighted element in its normal state (not disabled or selected, no mouseover or input
-                focus).
+                In the target page, examine each highlighted element in its normal state (not
+                disabled or selected, no mouseover or input focus).
             </li>
             <li>
-                Use <WindowsContrastCheckerAppLink /> (or if you are testing on a Mac, the <MacContrastCheckerAppLink />) to verify that the
-                following visual presentations (if implemented) have a contrast ratio of at least 3:1 against the adjacent background:
+                Use <WindowsContrastCheckerAppLink /> (or if you are testing on a Mac, the{' '}
+                <MacContrastCheckerAppLink />) to verify that the following visual presentations (if
+                implemented) have a contrast ratio of at least 3:1 against the adjacent background:
                 <ol>
                     <li>Any visual boundary that indicates the component's clickable area</li>
                     <li>Any visual effect that indicates the component is in its normal state</li>
@@ -89,6 +102,5 @@ export const UIComponents: Requirement = {
             }),
         ),
     getDrawer: provider => provider.createNonTextComponentDrawer(),
-    updateVisibility: false,
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
 };

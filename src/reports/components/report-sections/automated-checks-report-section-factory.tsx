@@ -5,6 +5,7 @@ import { FailedInstancesSection } from 'common/components/cards/failed-instances
 import { BodySection } from './body-section';
 import { ContentContainer } from './content-container';
 import { DetailsSection } from './details-section';
+import { FooterText } from './footer-text';
 import { HeaderSection } from './header-section';
 import { NotApplicableChecksSection } from './not-applicable-checks-section';
 import { PassedChecksSection } from './passed-checks-section';
@@ -26,4 +27,5 @@ export const AutomatedChecksReportSectionFactory: ReportSectionFactory = {
     PassedChecksSection,
     NotApplicableChecksSection,
     FooterSection: ReportFooter,
+    FooterText,
 };

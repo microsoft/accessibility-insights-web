@@ -61,6 +61,7 @@ describe('CardSelectionStore Test', () => {
                     },
                 },
             },
+            visualHelperEnabled: true,
         };
 
         createStoreForUnifiedScanResultActions('scanCompleted')
@@ -103,6 +104,7 @@ describe('CardSelectionStore Test', () => {
                     },
                 },
             },
+            visualHelperEnabled: false,
         };
 
         initialState = cloneDeep(defaultState);
@@ -167,6 +169,7 @@ describe('CardSelectionStore Test', () => {
         };
 
         expectedState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+        expectedState.visualHelperEnabled = true;
 
         createStoreForCardSelectionActions('toggleCardSelection')
             .withActionParam(payload)
@@ -227,6 +230,37 @@ describe('CardSelectionStore Test', () => {
         expandRuleSelectCards(initialState.rules['sampleRuleId2']);
 
         createStoreForCardSelectionActions('collapseAllRules').testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
+    test('expandAllRules', () => {
+        initialState.rules['sampleRuleId1'].isExpanded = true;
+        initialState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+
+        expectedState.rules['sampleRuleId1'].isExpanded = true;
+        expectedState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+        expectedState.rules['sampleRuleId2'].isExpanded = true;
+
+        createStoreForCardSelectionActions('expandAllRules').testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
+    test('toggleVisualHelper on - no card selection or rule expansion changes', () => {
+        initialState.rules['sampleRuleId1'].isExpanded = true;
+        initialState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+
+        expectedState = cloneDeep(initialState);
+        expectedState.visualHelperEnabled = true;
+
+        createStoreForCardSelectionActions('toggleVisualHelper').testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
+    test('toggleVisualHelper off - cards deselected, no rule expansion changes', () => {
+        initialState.rules['sampleRuleId1'].isExpanded = true;
+        initialState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+        initialState.visualHelperEnabled = true;
+
+        expectedState.rules['sampleRuleId1'].isExpanded = true;
+
+        createStoreForCardSelectionActions('toggleVisualHelper').testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     function expandRuleSelectCards(rule: RuleExpandCollapseData): void {

@@ -37,6 +37,7 @@
     --neutral-2: #f8f8f8;
     --neutral-4: #f4f4f4;
     --neutral-6: #f2f2f2;
+    --neutral-6-5: #f1f1f1;
     --neutral-8: #ebebeb;
     --neutral-10: #dedede;
     --neutral-20: #c8c8c8;
@@ -90,6 +91,9 @@
     --spinner-text: var(--communication-primary);
     --menu-background: --acrylic-light;
     --menu-border: --menu-background;
+    --screenshot-image-outline: #8b8b8b;
+    --card-border: transparent;
+    --card-footer-border: var(--neutral-10);
 
     // Landmark colors
     --landmark-contentinfo: #00a88c;
@@ -110,6 +114,7 @@
         --neutral-2: var(--light-black);
         --neutral-4: var(--light-black);
         --neutral-6: var(--light-black);
+        --neutral-6-5: var(--light-black);
         --neutral-10: var(--light-black);
         --neutral-55: var(--white);
         --neutral-60: var(--white);
@@ -156,6 +161,9 @@
         --menu-item-background-active: var(--communication-tint-40);
         --menu-background: var(--light-black);
         --menu-border: var(--grey);
+        --screenshot-image-outline: var(--white);
+        --card-border: var(--white);
+        --card-footer-border: var(--white);
     }
 }
 
@@ -185,6 +193,7 @@ $neutral-100: var(--neutral-100);
 $neutral-2: var(--neutral-2);
 $neutral-4: var(--neutral-4);
 $neutral-6: var(--neutral-6);
+$neutral-6-5: var(--neutral-6-5);
 $neutral-8: var(--neutral-8);
 $neutral-10: var(--neutral-10);
 $neutral-20: var(--neutral-20);
@@ -250,6 +259,9 @@ $menu-item-background-hover: var(--menu-item-background-hover);
 $menu-item-background-active: var(--menu-item-background-active);
 $menu-border: var(--menu-border);
 $menu-background: var(--menu-background);
+$screenshot-image-outline: var(--screenshot-image-outline);
+$card-border: var(--card-border);
+$card-footer-border: var(--card-footer-border);
 
 // consistent colors
 $always-white: #ffffff;

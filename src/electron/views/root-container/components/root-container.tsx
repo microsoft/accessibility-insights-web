@@ -7,7 +7,10 @@ import { UserConfigurationStoreData } from 'common/types/store-data/user-configu
 import { DeviceStoreData } from 'electron/flux/types/device-store-data';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
-import { AutomatedChecksView, AutomatedChecksViewDeps } from 'electron/views/automated-checks/automated-checks-view';
+import {
+    AutomatedChecksView,
+    AutomatedChecksViewDeps,
+} from 'electron/views/automated-checks/automated-checks-view';
 import {
     DeviceConnectViewContainer,
     DeviceConnectViewContainerDeps,

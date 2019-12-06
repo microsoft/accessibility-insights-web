@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
-
 import { ColorAdHocVisualization } from 'ad-hoc-visualizations/color/visualization';
 import { HeadingsAdHocVisualization } from 'ad-hoc-visualizations/headings/visualization';
 import { IssuesAdHocVisualization } from 'ad-hoc-visualizations/issues/visualization';
 import { LandmarksAdHocVisualization } from 'ad-hoc-visualizations/landmarks/visualization';
 import { TabStopsAdHocVisualization } from 'ad-hoc-visualizations/tab-stops/visualization';
 import { Assessments } from 'assessments/assessments';
+import { each, find, values } from 'lodash';
+
 import { DictionaryNumberTo, DictionaryStringTo } from '../../types/common-types';
 import { EnumHelper } from '../enum-helper';
 import { VisualizationType } from '../types/visualization-type';
@@ -36,7 +36,7 @@ export class VisualizationConfigurationFactory {
     }
 
     public getConfigurationByKey(key: string): VisualizationConfiguration {
-        return _.find(_.values(this.configurationByType), config => config.key === key);
+        return find(values(this.configurationByType), config => config.key === key);
     }
 
     public getConfiguration(visualizationType: VisualizationType): VisualizationConfiguration {
@@ -73,7 +73,7 @@ export class VisualizationConfigurationFactory {
 
         const types = EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
 
-        _.each(types, visualizationType => {
+        each(types, visualizationType => {
             const configuration = this.configurationByType[visualizationType];
 
             if (configuration && configuration.chromeCommand != null) {

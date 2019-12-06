@@ -1,16 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { NewTabLink } from 'common/components/new-tab-link';
 import { shallow } from 'enzyme';
-import * as React from 'react';
-import { Mock, MockBehavior, Times } from 'typemoq';
-
-import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
-import { NewTabLink } from '../../../../../common/components/new-tab-link';
 import {
     FileUrlUnsupportedMessagePanel,
     FileUrlUnsupportedMessagePanelDeps,
     FileUrlUnsupportedMessagePanelProps,
-} from '../../../../../popup/components/file-url-unsupported-message-panel';
+} from 'popup/components/file-url-unsupported-message-panel';
+import * as React from 'react';
+import { tick } from 'tests/unit/common/tick';
+import { Mock, MockBehavior } from 'typemoq';
+import { Tabs } from 'webextension-polyfill-ts';
 
 describe('FileUrlUnsupportedMessagePanel', () => {
     it('renders', () => {
@@ -28,11 +29,11 @@ describe('FileUrlUnsupportedMessagePanel', () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    it('has a NewTabLink that uses createTab to open the manage extension page', () => {
+    it('has a NewTabLink that uses createActiveTab to open the manage extension page', async () => {
         const stubExtensionPageUrl = 'protocol://extension-page';
         const browserAdapterMock = Mock.ofType<BrowserAdapter>(null, MockBehavior.Strict);
         browserAdapterMock.setup(adapter => adapter.getManageExtensionUrl()).returns(() => stubExtensionPageUrl);
-        browserAdapterMock.setup(adapter => adapter.createTab(stubExtensionPageUrl)).verifiable(Times.once());
+        browserAdapterMock.setup(adapter => adapter.createActiveTab(stubExtensionPageUrl)).returns(() => Promise.resolve({} as Tabs.Tab));
 
         const props: FileUrlUnsupportedMessagePanelProps = {
             deps: {
@@ -46,6 +47,7 @@ describe('FileUrlUnsupportedMessagePanel', () => {
 
         wrapper.find(NewTabLink).simulate('click');
 
+        await tick();
         browserAdapterMock.verifyAll();
     });
 });

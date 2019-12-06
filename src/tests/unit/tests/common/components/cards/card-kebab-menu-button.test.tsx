@@ -1,36 +1,32 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import {
     allCardInteractionsSupported,
     noCardInteractionsSupported,
     onlyUserConfigAgnosticCardInteractionsSupported,
 } from 'common/components/cards/card-interaction-support';
+import { CardKebabMenuButton, CardKebabMenuButtonDeps, CardKebabMenuButtonProps } from 'common/components/cards/card-kebab-menu-button';
 import { Toast } from 'common/components/toast';
 import { IssueFilingActionMessageCreator } from 'common/message-creators/issue-filing-action-message-creator';
+import { NavigatorUtils } from 'common/navigator-utils';
 import { NamedFC } from 'common/react/named-fc';
+import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { WindowUtils } from 'common/window-utils';
 import { guidanceTags } from 'content/guidance-tags';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { mount, ReactWrapper, shallow, ShallowWrapper } from 'enzyme';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
 import { ActionButton, IContextualMenuItem } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
-import { IssueDetailsTextGenerator } from '../../../../../../background/issue-details-text-generator';
-import {
-    CardKebabMenuButton,
-    CardKebabMenuButtonDeps,
-    CardKebabMenuButtonProps,
-} from '../../../../../../common/components/cards/card-kebab-menu-button';
-import { NavigatorUtils } from '../../../../../../common/navigator-utils';
-import { CreateIssueDetailsTextData } from '../../../../../../common/types/create-issue-details-text-data';
-import { DetailsViewActionMessageCreator } from '../../../../../../DetailsView/actions/details-view-action-message-creator';
 
 describe('CardKebabMenuButtonTest', () => {
     let defaultProps: CardKebabMenuButtonProps;
     let defaultDeps: CardKebabMenuButtonDeps;
-    let actionCreatorMock: IMock<DetailsViewActionMessageCreator>;
+    let detailsViewActionCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let navigatorUtilsMock: IMock<NavigatorUtils>;
     let windowUtilsMock: IMock<WindowUtils>;
     let userConfigurationStoreData: UserConfigurationStoreData;
@@ -57,7 +53,7 @@ describe('CardKebabMenuButtonTest', () => {
                 return { testField };
             },
             getSettingsFromStoreData: data => data[testKey],
-            fileIssue: () => {},
+            fileIssue: () => Promise.resolve(),
         };
         issueDetailsData = {
             rule: {
@@ -84,7 +80,7 @@ describe('CardKebabMenuButtonTest', () => {
             snippet: 'snippet',
         };
         textGeneratorMock = Mock.ofType<IssueDetailsTextGenerator>();
-        actionCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
+        detailsViewActionCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
         navigatorUtilsMock = Mock.ofType<NavigatorUtils>();
         windowUtilsMock = Mock.ofType<WindowUtils>();
         issueFilingServiceProviderMock = Mock.ofType(IssueFilingServiceProvider);
@@ -111,7 +107,7 @@ describe('CardKebabMenuButtonTest', () => {
             .verifiable();
 
         defaultDeps = {
-            detailsViewActionMessageCreator: actionCreatorMock.object,
+            detailsViewActionMessageCreator: detailsViewActionCreatorMock.object,
             navigatorUtils: navigatorUtilsMock.object,
             windowUtils: windowUtilsMock.object,
             issueFilingServiceProvider: issueFilingServiceProviderMock.object,
@@ -173,7 +169,7 @@ describe('CardKebabMenuButtonTest', () => {
     });
 
     it('copies failure details and show the toast', async () => {
-        actionCreatorMock.setup(creator => creator.copyIssueDetailsClicked(event)).verifiable(Times.once());
+        detailsViewActionCreatorMock.setup(creator => creator.copyIssueDetailsClicked(event)).verifiable(Times.once());
 
         navigatorUtilsMock
             .setup(navigatorUtils => navigatorUtils.copyToClipboard(issueDetailsText))
@@ -196,11 +192,11 @@ describe('CardKebabMenuButtonTest', () => {
         expect(toast.state().toastVisible).toBe(true);
         expect(toast.state().content).toBe('Failure details copied.');
 
-        verifyMocks([actionCreatorMock, navigatorUtilsMock, textGeneratorMock, windowUtilsMock]);
+        verifyMocks([detailsViewActionCreatorMock, navigatorUtilsMock, textGeneratorMock, windowUtilsMock]);
     });
 
     it('shows failure message if copy failed', async () => {
-        actionCreatorMock.setup(creator => creator.copyIssueDetailsClicked(event)).verifiable(Times.once());
+        detailsViewActionCreatorMock.setup(creator => creator.copyIssueDetailsClicked(event)).verifiable(Times.once());
 
         navigatorUtilsMock
             .setup(navigatorUtils => navigatorUtils.copyToClipboard(issueDetailsText))
@@ -222,7 +218,7 @@ describe('CardKebabMenuButtonTest', () => {
         expect(toast.state().toastVisible).toBe(true);
         expect(toast.state().content).toBe('Failed to copy failure details. Please try again.');
 
-        verifyMocks([actionCreatorMock, navigatorUtilsMock, textGeneratorMock, windowUtilsMock]);
+        verifyMocks([detailsViewActionCreatorMock, navigatorUtilsMock, textGeneratorMock, windowUtilsMock]);
     });
 
     it('should file issue, valid settings', async () => {

@@ -23,25 +23,6 @@ exports[`SummarySection failure only 1`] = `
         "pass": 0,
       }
     }
-    scanResult={
-      Object {
-        "inapplicable": Array [],
-        "passes": Array [],
-        "violations": Array [
-          Object {
-            "nodes": Array [
-              Object {},
-            ],
-          },
-          Object {
-            "nodes": Array [
-              Object {},
-              Object {},
-            ],
-          },
-        ],
-      }
-    }
   />
 </div>
 `;
@@ -67,32 +48,6 @@ exports[`SummarySection failures + not applicable + passes 1`] = `
         "fail": 3,
         "inapplicable": 3,
         "pass": 2,
-      }
-    }
-    scanResult={
-      Object {
-        "inapplicable": Array [
-          Object {},
-          Object {},
-          Object {},
-        ],
-        "passes": Array [
-          Object {},
-          Object {},
-        ],
-        "violations": Array [
-          Object {
-            "nodes": Array [
-              Object {},
-            ],
-          },
-          Object {
-            "nodes": Array [
-              Object {},
-              Object {},
-            ],
-          },
-        ],
       }
     }
   />
@@ -122,29 +77,6 @@ exports[`SummarySection failures + not applicable only 1`] = `
         "pass": 0,
       }
     }
-    scanResult={
-      Object {
-        "inapplicable": Array [
-          Object {},
-          Object {},
-          Object {},
-        ],
-        "passes": Array [],
-        "violations": Array [
-          Object {
-            "nodes": Array [
-              Object {},
-            ],
-          },
-          Object {
-            "nodes": Array [
-              Object {},
-              Object {},
-            ],
-          },
-        ],
-      }
-    }
   />
 </div>
 `;
@@ -170,28 +102,6 @@ exports[`SummarySection failures + passes only 1`] = `
         "fail": 3,
         "inapplicable": 0,
         "pass": 2,
-      }
-    }
-    scanResult={
-      Object {
-        "inapplicable": Array [],
-        "passes": Array [
-          Object {},
-          Object {},
-        ],
-        "violations": Array [
-          Object {
-            "nodes": Array [
-              Object {},
-            ],
-          },
-          Object {
-            "nodes": Array [
-              Object {},
-              Object {},
-            ],
-          },
-        ],
       }
     }
   />
@@ -221,20 +131,6 @@ exports[`SummarySection not applicable + passes only 1`] = `
         "pass": 2,
       }
     }
-    scanResult={
-      Object {
-        "inapplicable": Array [
-          Object {},
-          Object {},
-          Object {},
-        ],
-        "passes": Array [
-          Object {},
-          Object {},
-        ],
-        "violations": Array [],
-      }
-    }
   />
 </div>
 `;
@@ -262,16 +158,6 @@ exports[`SummarySection not applicable only 1`] = `
         "pass": 2,
       }
     }
-    scanResult={
-      Object {
-        "inapplicable": Array [],
-        "passes": Array [
-          Object {},
-          Object {},
-        ],
-        "violations": Array [],
-      }
-    }
   />
 </div>
 `;
@@ -297,16 +183,6 @@ exports[`SummarySection passes only 1`] = `
         "fail": 0,
         "inapplicable": 0,
         "pass": 2,
-      }
-    }
-    scanResult={
-      Object {
-        "inapplicable": Array [],
-        "passes": Array [
-          Object {},
-          Object {},
-        ],
-        "violations": Array [],
       }
     }
   />

@@ -1,21 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Mock, Times } from 'typemoq';
-
-import { BaseStore } from '../../../../../common/base-store';
-import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
-import { EnvironmentInfo } from '../../../../../common/environment-info-provider';
-import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
-import {
-    IssueFilingServicePropertiesMap,
-    UserConfigurationStoreData,
-} from '../../../../../common/types/store-data/user-configuration-store';
-import { IssueFilingControllerImpl } from '../../../../../issue-filing/common/issue-filing-controller-impl';
-import { IssueFilingServiceProvider } from '../../../../../issue-filing/issue-filing-service-provider';
-import { IssueFilingService } from '../../../../../issue-filing/types/issue-filing-service';
+import { BaseStore } from 'common/base-store';
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { EnvironmentInfo } from 'common/environment-info-provider';
+import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
+import { IssueFilingServicePropertiesMap, UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { IssueFilingControllerImpl } from 'issue-filing/common/issue-filing-controller-impl';
+import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
+import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
+import { Mock } from 'typemoq';
 
 describe('IssueFilingControllerImpl', () => {
-    it('fileUssue', () => {
+    it('fileIssue', async () => {
         const serviceKey = 'test-service';
         const issueData = {
             targetApp: {},
@@ -37,7 +33,7 @@ describe('IssueFilingControllerImpl', () => {
         const issueFilingServiceMock = Mock.ofType<IssueFilingService>();
         issueFilingServiceMock
             .setup(service => service.fileIssue(browserAdapterMock.object, map, issueData, environmentInfoStub))
-            .verifiable(Times.once());
+            .returns(() => Promise.resolve());
 
         const providerMock = Mock.ofType<IssueFilingServiceProvider>();
         providerMock.setup(provider => provider.forKey(serviceKey)).returns(() => issueFilingServiceMock.object);
@@ -52,7 +48,7 @@ describe('IssueFilingControllerImpl', () => {
             storeMock.object,
         );
 
-        testSubject.fileIssue(serviceKey, issueData);
+        await expect(testSubject.fileIssue(serviceKey, issueData)).resolves.toBe(undefined);
 
         browserAdapterMock.verifyAll();
     });

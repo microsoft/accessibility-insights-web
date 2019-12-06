@@ -15,8 +15,9 @@ import { SemanticsTestStep } from './test-steps';
 const cssContentHowToTest: JSX.Element = (
     <div>
         <p>
-            The visual helper for this requirement highlights content inserted in the page using CSS <Markup.Term>:before</Markup.Term> or{' '}
-            <Markup.Term>:after</Markup.Term>. This procedure uses the{' '}
+            The visual helper for this requirement highlights content inserted in the page using CSS{' '}
+            <Markup.Term>:before</Markup.Term> or <Markup.Term>:after</Markup.Term>. This procedure
+            uses the{' '}
             <NewTabLink href="https://chrome.google.com/webstore/detail/web-developer/bfbameneiokkgbdmiekhjnmfkcnldhhm">
                 Web Developer
             </NewTabLink>{' '}
@@ -24,15 +25,17 @@ const cssContentHowToTest: JSX.Element = (
         </p>
         <ol>
             <li>
-                In the target page, examine each highlighted item to determine whether it is meaningful or decorative.
+                In the target page, examine each highlighted item to determine whether it is
+                meaningful or decorative.
                 <ul>
                     <li>
-                        An element is <Markup.Emphasis>meaningful</Markup.Emphasis> if it conveys information that isn't available through
-                        other page content.
+                        An element is <Markup.Emphasis>meaningful</Markup.Emphasis> if it conveys
+                        information that isn't available through other page content.
                     </li>
                     <li>
-                        An element is <Markup.Emphasis>decorative</Markup.Emphasis> if it could be removed from the page with{' '}
-                        <Markup.Emphasis>no</Markup.Emphasis> impact on meaning or function.
+                        An element is <Markup.Emphasis>decorative</Markup.Emphasis> if it could be
+                        removed from the page with <Markup.Emphasis>no</Markup.Emphasis> impact on
+                        meaning or function.
                     </li>
                 </ul>
             </li>
@@ -40,7 +43,8 @@ const cssContentHowToTest: JSX.Element = (
                 If inserted content is meaningful:
                 <ul>
                     <li>
-                        Determine whether the information in inserted content is available to assistive technologies:
+                        Determine whether the information in inserted content is available to
+                        assistive technologies:
                         <ul>
                             <li>
                                 Open the{' '}
@@ -49,19 +53,30 @@ const cssContentHowToTest: JSX.Element = (
                                 </NewTabLink>{' '}
                                 in the browser Developer Tools.
                             </li>
-                            <li>In the accessibility tree, examine the element with inserted content and its ancestors.</li>
-                            <li>Verify that any information conveyed by the inserted content is shown in the accessibility tree.</li>
+                            <li>
+                                In the accessibility tree, examine the element with inserted content
+                                and its ancestors.
+                            </li>
+                            <li>
+                                Verify that any information conveyed by the inserted content is
+                                shown in the accessibility tree.
+                            </li>
                         </ul>
                     </li>
 
                     <li>
-                        Determine whether the information in inserted content is visible when CSS is turned off:
+                        Determine whether the information in inserted content is visible when CSS is
+                        turned off:
                         <ul>
                             <li>
-                                Use the Web Developer browser extension <Markup.Term>(CSS > Disable All Styles)</Markup.Term> to turn off
+                                Use the Web Developer browser extension{' '}
+                                <Markup.Term>(CSS > Disable All Styles)</Markup.Term> to turn off
                                 CSS.
                             </li>
-                            <li>Verify that any information conveyed by the inserted content is visible in the target page.</li>
+                            <li>
+                                Verify that any information conveyed by the inserted content is
+                                visible in the target page.
+                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -73,7 +88,8 @@ const cssContentHowToTest: JSX.Element = (
 
 const cssContentDescription: JSX.Element = (
     <span>
-        Meaningful content must not be implemented using only CSS <Markup.Term>:before</Markup.Term> or <Markup.Term>:after</Markup.Term>.
+        Meaningful content must not be implemented using only CSS <Markup.Term>:before</Markup.Term>{' '}
+        or <Markup.Term>:after</Markup.Term>.
     </span>
 );
 
@@ -87,7 +103,6 @@ export const CssContent: Requirement = {
     isManual: true,
     guidanceLinks: [link.WCAG_1_3_1],
     ...content,
-    updateVisibility: false,
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
@@ -96,6 +111,7 @@ export const CssContent: Requirement = {
                 testType: VisualizationType.SemanticsAssessment,
             }),
         ),
-    getDrawer: provider => provider.createSingleTargetDrawer('insights-pseudo-selector-style-container'),
+    getDrawer: provider =>
+        provider.createSingleTargetDrawer('insights-pseudo-selector-style-container'),
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
 };

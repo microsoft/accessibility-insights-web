@@ -36,7 +36,10 @@ export interface DiagnosticViewToggleState {
     isFocused: boolean;
 }
 
-export class DiagnosticViewToggle extends React.Component<DiagnosticViewToggleProps, DiagnosticViewToggleState> {
+export class DiagnosticViewToggle extends React.Component<
+    DiagnosticViewToggleProps,
+    DiagnosticViewToggleState
+> {
     private configuration: VisualizationConfiguration;
     private toggle: React.RefObject<IToggle> = React.createRef<IToggle>();
     private dom: Document;
@@ -48,7 +51,9 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
 
     constructor(props: DiagnosticViewToggleProps) {
         super(props);
-        this.configuration = this.props.visualizationConfigurationFactory.getConfiguration(this.props.visualizationType);
+        this.configuration = this.props.visualizationConfigurationFactory.getConfiguration(
+            this.props.visualizationType,
+        );
         this.dom = this.props.dom;
         this._isMounted = false;
         this.userEventListenerAdded = false;
@@ -64,14 +69,18 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
             <div>
                 <div className="ms-Grid-row view-toggle-row">
                     <div className="ms-Grid-col ms-sm7">
-                        <div className="ms-fontColor-neutralPrimary ms-fontWeight-semibold ms-fontSize-mPlus">{displayableData.title}</div>
+                        <div className="ms-fontColor-neutralPrimary ms-fontWeight-semibold ms-fontSize-mPlus">
+                            {displayableData.title}
+                        </div>
                     </div>
                     <div className="ms-Grid-col ms-sm5 view-toggle-col" style={{ float: 'right' }}>
                         {this.renderToggleOrSpinner()}
                     </div>
                 </div>
                 <div className="ms-Grid-row">
-                    <div className="ms-Grid-col ms-sm8">{this.renderLink(displayableData.linkToDetailsViewText)}</div>
+                    <div className="ms-Grid-col ms-sm8">
+                        {this.renderLink(displayableData.linkToDetailsViewText)}
+                    </div>
                     <div className="ms-Grid-col ms-sm4 shortcut-label" style={{ float: 'right' }}>
                         <div className="ms-font-xs">{shortcut}</div>
                     </div>
@@ -94,7 +103,11 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
                     checked={scanData.enabled}
                     disabled={disabled}
                     onClick={ev =>
-                        this.props.clickHandler.toggleVisualization(this.props.visualizationStoreData, this.props.visualizationType, ev)
+                        this.props.clickHandler.toggleVisualization(
+                            this.props.visualizationStoreData,
+                            this.props.visualizationType,
+                            ev,
+                        )
                     }
                     visualizationName={this.configuration.displayableData.title}
                     componentRef={this.toggle}
@@ -157,7 +170,13 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
 
     private renderLink(linkText: string): JSX.Element {
         if (this.configuration.guidance) {
-            return <ContentLink deps={this.props.deps} reference={this.configuration.guidance} linkText={linkText} />;
+            return (
+                <ContentLink
+                    deps={this.props.deps}
+                    reference={this.configuration.guidance}
+                    linkText={linkText}
+                />
+            );
         }
 
         return (

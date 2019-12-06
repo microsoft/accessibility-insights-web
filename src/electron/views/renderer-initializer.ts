@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { AppInsights } from 'applicationinsights-js';
 import axios from 'axios';
+import { CardSelectionActionCreator } from 'background/actions/card-selection-action-creator';
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { registerUserConfigurationMessageCallback } from 'background/global-action-creators/registrar/register-user-configuration-message-callbacks';
@@ -9,13 +10,18 @@ import { UserConfigurationActionCreator } from 'background/global-action-creator
 import { Interpreter } from 'background/interpreter';
 import { CardSelectionStore } from 'background/stores/card-selection-store';
 import { UnifiedScanResultStore } from 'background/stores/unified-scan-result-store';
-import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
+import { onlyHighlightingSupported } from 'common/components/cards/card-interaction-support';
+import { CardsCollapsibleControl } from 'common/components/cards/collapsible-component-cards';
+import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { getPropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { DateProvider } from 'common/date-provider';
+import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
+import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
-import { getUnifiedRuleResults } from 'common/rule-based-view-model-provider';
+import { getCardViewData } from 'common/rule-based-view-model-provider';
+import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { CardsViewDeps } from 'DetailsView/components/cards-view';
 import { remote } from 'electron';
 import { DirectActionMessageDispatcher } from 'electron/adapters/direct-action-message-dispatcher';
@@ -28,17 +34,19 @@ import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
 import { WindowStateActions } from 'electron/flux/action/window-state-actions';
 import { ScanStore } from 'electron/flux/store/scan-store';
 import { WindowStateStore } from 'electron/flux/store/window-state-store';
-import { createFetchScanResults } from 'electron/platform/android/fetch-scan-results';
+import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { ScanController } from 'electron/platform/android/scan-controller';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
-import { CollapsibleComponentCard } from 'electron/views/automated-checks/components/collapsible-component-cards';
-import { RootContainerProps, RootContainerState } from 'electron/views/root-container/components/root-container';
+import {
+    RootContainerProps,
+    RootContainerState,
+} from 'electron/views/root-container/components/root-container';
 import { PlatformInfo } from 'electron/window-management/platform-info';
 import { WindowFrameListener } from 'electron/window-management/window-frame-listener';
 import { WindowFrameUpdater } from 'electron/window-management/window-frame-updater';
-import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as ReactDOM from 'react-dom';
 
+import { CardsVisualizationModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
 import { IndexedDBDataKeys } from '../../background/IndexedDBDataKeys';
@@ -62,6 +70,7 @@ import { DeviceStore } from '../flux/store/device-store';
 import { ElectronLink } from './device-connect-view/components/electron-link';
 import { sendAppInitializedTelemetryEvent } from './device-connect-view/send-app-initialized-telemetry';
 import { RootContainerRenderer } from './root-container/root-container-renderer';
+import { screenshotViewModelProvider } from './screenshot/screenshot-view-model-provider';
 
 initializeFabricIcons();
 
@@ -78,136 +87,179 @@ const cardSelectionActions = new CardSelectionActions();
 const storageAdapter = new ElectronStorageAdapter(indexedDBInstance);
 const appDataAdapter = new ElectronAppDataAdapter();
 
-const indexedDBDataKeysToFetch = [IndexedDBDataKeys.userConfiguration, IndexedDBDataKeys.installation];
+const indexedDBDataKeysToFetch = [
+    IndexedDBDataKeys.userConfiguration,
+    IndexedDBDataKeys.installation,
+];
 
 // tslint:disable-next-line:no-floating-promises - top-level entry points are intentionally floating promises
-getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedData: Partial<PersistedData>) => {
-    const installationData: InstallationData = persistedData.installationData;
+getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
+    (persistedData: Partial<PersistedData>) => {
+        const installationData: InstallationData = persistedData.installationData;
 
-    const telemetryLogger = new TelemetryLogger();
-    telemetryLogger.initialize(new RiggedFeatureFlagChecker());
+        const telemetryDataFactory = new TelemetryDataFactory();
+        const telemetryLogger = new TelemetryLogger();
+        telemetryLogger.initialize(new RiggedFeatureFlagChecker());
 
-    const telemetryClient = getTelemetryClient(
-        androidAppTitle,
-        installationData,
-        appDataAdapter,
-        telemetryLogger,
-        AppInsights,
-        storageAdapter,
-    );
-    const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
+        const telemetryClient = getTelemetryClient(
+            androidAppTitle,
+            installationData,
+            appDataAdapter,
+            telemetryLogger,
+            AppInsights,
+            storageAdapter,
+        );
+        const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
 
-    const userConfigurationStore = new UserConfigurationStore(persistedData.userConfigurationData, userConfigActions, indexedDBInstance);
-    userConfigurationStore.initialize();
+        const userConfigurationStore = new UserConfigurationStore(
+            persistedData.userConfigurationData,
+            userConfigActions,
+            indexedDBInstance,
+        );
+        userConfigurationStore.initialize();
 
-    const deviceStore = new DeviceStore(deviceActions);
-    deviceStore.initialize();
+        const deviceStore = new DeviceStore(deviceActions);
+        deviceStore.initialize();
 
-    const windowStateStore = new WindowStateStore(windowStateActions);
-    windowStateStore.initialize();
+        const windowStateStore = new WindowStateStore(windowStateActions);
+        windowStateStore.initialize();
 
-    const unifiedScanResultStore = new UnifiedScanResultStore(unifiedScanResultActions);
-    unifiedScanResultStore.initialize();
+        const unifiedScanResultStore = new UnifiedScanResultStore(unifiedScanResultActions);
+        unifiedScanResultStore.initialize();
 
-    const scanStore = new ScanStore(scanActions);
-    scanStore.initialize();
+        const scanStore = new ScanStore(scanActions);
+        scanStore.initialize();
 
-    const cardSelectionStore = new CardSelectionStore(cardSelectionActions, unifiedScanResultActions);
-    cardSelectionStore.initialize();
+        const cardSelectionStore = new CardSelectionStore(
+            cardSelectionActions,
+            unifiedScanResultActions,
+        );
+        cardSelectionStore.initialize();
 
-    const currentWindow = remote.getCurrentWindow();
-    const windowFrameUpdater = new WindowFrameUpdater(windowFrameActions, currentWindow);
-    windowFrameUpdater.initialize();
+        const currentWindow = remote.getCurrentWindow();
+        const windowFrameUpdater = new WindowFrameUpdater(windowFrameActions, currentWindow);
+        windowFrameUpdater.initialize();
 
-    const storeHub = new BaseClientStoresHub<RootContainerState>([
-        userConfigurationStore,
-        deviceStore,
-        windowStateStore,
-        scanStore,
-        unifiedScanResultStore,
-        cardSelectionStore,
-    ]);
-
-    const telemetryStateListener = new TelemetryStateListener(userConfigurationStore, telemetryEventHandler);
-    telemetryStateListener.initialize();
-
-    const fetchScanResults = createFetchScanResults(axios.get);
-
-    const interpreter = new Interpreter();
-    const dispatcher = new DirectActionMessageDispatcher(interpreter);
-    const userConfigMessageCreator = new UserConfigMessageCreator(dispatcher);
-    const userConfigurationActionCreator = new UserConfigurationActionCreator(userConfigActions);
-
-    registerUserConfigurationMessageCallback(interpreter, userConfigurationActionCreator);
-
-    const deviceConnectActionCreator = new DeviceConnectActionCreator(deviceActions, fetchScanResults, telemetryEventHandler);
-    const windowFrameActionCreator = new WindowFrameActionCreator(windowFrameActions);
-    const windowStateActionCreator = new WindowStateActionCreator(windowStateActions, windowFrameActionCreator);
-    const scanActionCreator = new ScanActionCreator(scanActions);
-
-    const windowFrameListener = new WindowFrameListener(windowStateActionCreator, currentWindow);
-    windowFrameListener.initialize();
-
-    const getToolData = createGetToolDataDelegate(appDataAdapter);
-    const unifiedResultsBuilder = createDefaultBuilder(getToolData);
-    const scanController = new ScanController(
-        scanActions,
-        unifiedScanResultActions,
-        fetchScanResults,
-        unifiedResultsBuilder,
-        telemetryEventHandler,
-        DateProvider.getCurrentDate,
-    );
-
-    scanController.initialize();
-
-    const fixInstructionProcessor = new FixInstructionProcessor();
-
-    const cardsViewDeps: CardsViewDeps = {
-        LinkComponent: ElectronLink,
-
-        cardInteractionSupport: noCardInteractionsSupported, // we are supposed to have 'copy issue details' support
-        collapsibleControl: CollapsibleComponentCard,
-        fixInstructionProcessor,
-        getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks, // I don't think we have guidance links for axe-android
-
-        userConfigMessageCreator: userConfigMessageCreator,
-        cardSelectionMessageCreator: null,
-        detailsViewActionMessageCreator: null,
-        issueFilingActionMessageCreator: null, // we don't support issue filing right now
-
-        environmentInfoProvider: null,
-        getPropertyConfigById: getPropertyConfiguration, // this seems to be axe-core specific
-
-        issueDetailsTextGenerator: null,
-        issueFilingServiceProvider: null, // we don't support issue filing right now
-        navigatorUtils: null,
-        unifiedResultToIssueFilingDataConverter: null, // we don't support issue filing right now
-        windowUtils: null,
-    };
-
-    const props: RootContainerProps = {
-        deps: {
-            currentWindow,
+        const storeHub = new BaseClientStoresHub<RootContainerState>([
             userConfigurationStore,
             deviceStore,
-            userConfigMessageCreator,
-            windowStateActionCreator,
-            LinkComponent: ElectronLink,
+            windowStateStore,
+            scanStore,
+            unifiedScanResultStore,
+            cardSelectionStore,
+        ]);
+
+        const telemetryStateListener = new TelemetryStateListener(
+            userConfigurationStore,
+            telemetryEventHandler,
+        );
+        telemetryStateListener.initialize();
+
+        const fetchScanResults = createScanResultsFetcher(axios.get);
+
+        const interpreter = new Interpreter();
+        const dispatcher = new DirectActionMessageDispatcher(interpreter);
+        const userConfigMessageCreator = new UserConfigMessageCreator(dispatcher);
+        const userConfigurationActionCreator = new UserConfigurationActionCreator(
+            userConfigActions,
+        );
+
+        registerUserConfigurationMessageCallback(interpreter, userConfigurationActionCreator);
+
+        const deviceConnectActionCreator = new DeviceConnectActionCreator(
+            deviceActions,
             fetchScanResults,
-            deviceConnectActionCreator,
-            storeHub,
-            scanActionCreator,
+            telemetryEventHandler,
+        );
+        const windowFrameActionCreator = new WindowFrameActionCreator(windowFrameActions);
+        const windowStateActionCreator = new WindowStateActionCreator(
+            windowStateActions,
             windowFrameActionCreator,
-            platformInfo: new PlatformInfo(process),
-            getUnifiedRuleResultsDelegate: getUnifiedRuleResults,
+        );
+        const scanActionCreator = new ScanActionCreator(scanActions);
+
+        const cardSelectionActionCreator = new CardSelectionActionCreator(
+            interpreter,
+            cardSelectionActions,
+            telemetryEventHandler,
+        );
+        cardSelectionActionCreator.registerCallbacks();
+        const cardSelectionMessageCreator = new CardSelectionMessageCreator(
+            dispatcher,
+            telemetryDataFactory,
+            TelemetryEventSource.ElectronAutomatedChecksView,
+        );
+
+        const windowFrameListener = new WindowFrameListener(
+            windowStateActionCreator,
+            currentWindow,
+        );
+        windowFrameListener.initialize();
+
+        const getToolData = createGetToolDataDelegate(appDataAdapter);
+        const unifiedResultsBuilder = createDefaultBuilder(getToolData);
+        const scanController = new ScanController(
+            scanActions,
+            unifiedScanResultActions,
+            fetchScanResults,
+            unifiedResultsBuilder,
+            telemetryEventHandler,
+            DateProvider.getCurrentDate,
+        );
+
+        scanController.initialize();
+
+        const fixInstructionProcessor = new FixInstructionProcessor();
+
+        const cardsViewDeps: CardsViewDeps = {
+            LinkComponent: ElectronLink,
+
+            cardInteractionSupport: onlyHighlightingSupported, // once we have a working settings experience, switch to allCardInteractionsSupported
             getCardSelectionViewData: getCardSelectionViewData,
-            ...cardsViewDeps,
-        },
-    };
+            collapsibleControl: CardsCollapsibleControl,
+            cardsVisualizationModifierButtons: CardsVisualizationModifierButtons,
+            fixInstructionProcessor,
+            getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks, // I don't think we have guidance links for axe-android
 
-    const renderer = new RootContainerRenderer(ReactDOM.render, document, props);
-    renderer.render();
+            userConfigMessageCreator: userConfigMessageCreator,
+            cardSelectionMessageCreator,
+            detailsViewActionMessageCreator: null,
+            issueFilingActionMessageCreator: null, // we don't support issue filing right now
 
-    sendAppInitializedTelemetryEvent(telemetryEventHandler);
-});
+            environmentInfoProvider: null,
+            getPropertyConfigById: getPropertyConfiguration, // this seems to be axe-core specific
+
+            issueDetailsTextGenerator: null,
+            issueFilingServiceProvider: null, // we don't support issue filing right now
+            navigatorUtils: null,
+            unifiedResultToIssueFilingDataConverter: null, // we don't support issue filing right now
+            windowUtils: null,
+        };
+
+        const props: RootContainerProps = {
+            deps: {
+                currentWindow,
+                userConfigurationStore,
+                deviceStore,
+                userConfigMessageCreator,
+                windowStateActionCreator,
+                LinkComponent: ElectronLink,
+                fetchScanResults,
+                deviceConnectActionCreator,
+                storeHub,
+                scanActionCreator,
+                windowFrameActionCreator,
+                platformInfo: new PlatformInfo(process),
+                getCardsViewData: getCardViewData,
+                getCardSelectionViewData: getCardSelectionViewData,
+                screenshotViewModelProvider,
+                ...cardsViewDeps,
+            },
+        };
+
+        const renderer = new RootContainerRenderer(ReactDOM.render, document, props);
+        renderer.render();
+
+        sendAppInitializedTelemetryEvent(telemetryEventHandler);
+    },
+);

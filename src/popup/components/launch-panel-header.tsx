@@ -32,7 +32,10 @@ export type LaunchPanelHeaderState = {
     isContextMenuVisible: boolean;
 } & Pick<IContextualMenuItem, 'target'>;
 
-export class LaunchPanelHeader extends React.Component<LaunchPanelHeaderProps, LaunchPanelHeaderState> {
+export class LaunchPanelHeader extends React.Component<
+    LaunchPanelHeaderProps,
+    LaunchPanelHeaderState
+> {
     constructor(props: LaunchPanelHeaderProps) {
         super(props);
 
@@ -43,7 +46,11 @@ export class LaunchPanelHeader extends React.Component<LaunchPanelHeaderProps, L
 
     public render(): JSX.Element {
         return (
-            <Header title={this.props.title} subtitle={this.props.subtitle} rowExtraClassName="header-title">
+            <Header
+                title={this.props.title}
+                subtitle={this.props.subtitle}
+                rowExtraClassName="header-title"
+            >
                 {this.renderGearOptionsButton()}
             </Header>
         );
@@ -54,11 +61,16 @@ export class LaunchPanelHeader extends React.Component<LaunchPanelHeaderProps, L
 
         return (
             <div className="ms-Grid-col ms-u-sm2 feedback-collapseMenuButton-col">
-                <GearOptionsButtonComponent dropdownClickHandler={dropdownClickHandler} featureFlags={this.props.featureFlags} />
+                <GearOptionsButtonComponent
+                    dropdownClickHandler={dropdownClickHandler}
+                    featureFlags={this.props.featureFlags}
+                />
                 <IconButton
                     iconProps={{ iconName: 'GlobalNavButton' }}
                     id="feedback-collapse-menu-button"
-                    onClick={event => launchPanelHeaderClickHandler.onOpenContextualMenu(this, event)}
+                    onClick={event =>
+                        launchPanelHeaderClickHandler.onOpenContextualMenu(this, event)
+                    }
                     ariaLabel="Help and Feedback menu"
                 />
                 {this.renderContextualMenu(this.state.isContextMenuVisible)}

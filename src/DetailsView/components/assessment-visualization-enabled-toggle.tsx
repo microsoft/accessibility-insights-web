@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
-import { GeneratedAssessmentInstance } from '../../common/types/store-data/assessment-result-data';
+import { GeneratedAssessmentInstance } from 'common/types/store-data/assessment-result-data';
+import { isEmpty } from 'lodash';
+
 import { BaseVisualHelperToggle } from './base-visual-helper-toggle';
 
 export class AssessmentVisualizationEnabledToggle extends BaseVisualHelperToggle {
     protected isDisabled(filteredInstances: GeneratedAssessmentInstance<{}, {}>[]): boolean {
-        return _.isEmpty(filteredInstances);
+        return isEmpty(filteredInstances);
     }
 
     protected isChecked(instances: GeneratedAssessmentInstance<{}, {}>[]): boolean {
@@ -14,7 +15,7 @@ export class AssessmentVisualizationEnabledToggle extends BaseVisualHelperToggle
     }
 
     protected onClick = (event): void => {
-        this.props.actionMessageCreator.changeAssessmentVisualizationStateForAll(
+        this.props.deps.detailsViewActionMessageCreator.changeAssessmentVisualizationStateForAll(
             !this.isAnyInstanceVisible(this.filterInstancesByTestStep(this.props.assessmentNavState, this.props.instancesMap)),
             this.props.assessmentNavState.selectedTestType,
             this.props.assessmentNavState.selectedTestStep,

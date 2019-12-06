@@ -47,6 +47,7 @@ $fontSize: 12px !default;
 $fontSizeM: 14px !default;
 $fontSizeML: 16px !default;
 $fontSizeL: 18px !default;
+$fontSizeLML: 21px !default;
 $fontSizeLL: 24px !default;
 $fontSizeXL: 36px !default;
 $fontSizeXXL: 40px !default;
@@ -54,3 +55,10 @@ $fontSizeXXXL: 56px !default;
 $fontSizeXXXXL: 72px !default;
 $codeFontFamily: Menlo, Consolas, Courier New, monospace !default;
 $semiBoldFontFamily: make-font-family($semiBoldFonts) !default;
+
+@mixin text-style-title-s {
+    font-family: $semiBoldFontFamily;
+    font-weight: $fontWeightSemiBold;
+    font-size: 17px;
+    line-height: 24px;
+}

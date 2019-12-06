@@ -7,7 +7,7 @@ import * as React from 'react';
 import { NamedFC } from '../../../common/react/named-fc';
 import { createFileIssueHandler } from '../../common/create-file-issue-handler';
 import { createSettingsGetter } from '../../common/create-settings-getter';
-import { IssueFilingService } from '../../types/issue-filing-service';
+import { IssueFilingServiceWithSettings } from '../../types/issue-filing-service';
 import { SettingsFormProps } from '../../types/settings-form-props';
 import { gitHubIssueFilingUrlProvider } from './create-github-issue-filing-url';
 import { GitHubIssueFilingSettings } from './github-issue-filing-settings';
@@ -48,7 +48,7 @@ const settingsForm = NamedFC<SettingsFormProps<GitHubIssueFilingSettings>>('Issu
 
 const settingsGetter = createSettingsGetter<GitHubIssueFilingSettings>(GitHubIssueFilingServiceKey);
 
-export const GitHubIssueFilingService: IssueFilingService<GitHubIssueFilingSettings> = {
+export const GitHubIssueFilingService: IssueFilingServiceWithSettings<GitHubIssueFilingSettings> = {
     key: GitHubIssueFilingServiceKey,
     displayName: 'GitHub',
     settingsForm,

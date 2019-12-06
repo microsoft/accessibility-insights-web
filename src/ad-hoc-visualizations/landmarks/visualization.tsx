@@ -38,7 +38,8 @@ export const LandmarksAdHocVisualization: VisualizationConfiguration = {
         provider.createRuleAnalyzer({
             rules: ['unique-landmark'],
             resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
-            telemetryProcessor: (telemetryFactory: TelemetryDataFactory) => telemetryFactory.forTestScan,
+            telemetryProcessor: (telemetryFactory: TelemetryDataFactory) =>
+                telemetryFactory.forTestScan,
             key: AdHocTestkeys.Landmarks,
             testType: VisualizationType.Landmarks,
             analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
@@ -49,6 +50,5 @@ export const LandmarksAdHocVisualization: VisualizationConfiguration = {
     getDrawer: provider => provider.createLandmarksDrawer(),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,
-    getUpdateVisibility: () => false,
     guidance,
 };

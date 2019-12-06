@@ -15,7 +15,7 @@ import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag
 import { VisualizationType } from '../../common/types/visualization-type';
 import { ActionAndCancelButtonsComponent } from './action-and-cancel-buttons-component';
 import { FailureInstancePanelDetails } from './failure-instance-panel-details';
-import { editButton, failureInstancePanel, observedFailureTextfield } from './failure-instance-panel.scss';
+import * as styles from './failure-instance-panel.scss';
 import { GenericPanel, GenericPanelProps } from './generic-panel';
 
 export interface FailureInstancePanelControlProps {
@@ -104,7 +104,7 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
             );
         } else {
             return (
-                <Link className={editButton} onClick={this.openFailureInstancePanel}>
+                <Link className={styles.editButton} onClick={this.openFailureInstancePanel}>
                     <Icon iconName="edit" ariaLabel={'edit instance'} />
                 </Link>
             );
@@ -116,7 +116,7 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
 
         const panelProps: GenericPanelProps = {
             isOpen: this.state.isPanelOpen,
-            className: failureInstancePanel,
+            className: styles.failureInstancePanel,
             onDismiss: this.closeFailureInstancePanel,
             title:
                 this.props.actionType === CapturedInstanceActionType.CREATE
@@ -135,7 +135,7 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
                     featureFlagStoreData={this.props.featureFlagStoreData}
                 />
                 <TextField
-                    className={observedFailureTextfield}
+                    className={styles.observedFailureTextfield}
                     label="Comment"
                     styles={getStyles}
                     multiline={true}

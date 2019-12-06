@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 const path = require('path');
+const YAML = require('js-yaml');
 
 module.exports = function(grunt) {
     const webStoreAccount = {
@@ -12,6 +13,7 @@ module.exports = function(grunt) {
 
     const options = {
         appInsightsInstrumentationKey: grunt.option('app-insights-instrumentation-key'),
+        electronUpdateURL: grunt.option('electron-update-url'),
         extensionVersion: grunt.option('extension-version'),
         webstoreAppId: grunt.option('webstore-app-id'),
     };
@@ -26,10 +28,12 @@ module.exports = function(grunt) {
     grunt.initConfig({
         compress: {
             extension: {
-                cwd: 'extension',
+                cwd: 'product',
                 src: '**/*',
                 expand: true,
-                options: { archive: 'extension.zip' },
+                options: {
+                    archive: 'extension.zip',
+                },
             },
         },
         webstore_upload: {
@@ -37,7 +41,10 @@ module.exports = function(grunt) {
                 default: webStoreAccount,
             },
             extensions: {
-                open: { appID: options.webstoreAppId, zip: 'extension.zip' },
+                open: {
+                    appID: options.webstoreAppId,
+                    zip: 'extension.zip',
+                },
             },
         },
     });
@@ -45,18 +52,23 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-compress');
     grunt.loadNpmTasks('grunt-webstore-upload');
 
-    const versionFromDate = () => {
+    const versionFromDate = () => makeVersionFromDateString('.');
+
+    const versionFromDateElectron = () => makeVersionFromDateString('');
+
+    const makeVersionFromDateString = lastSeperator => {
         const now = new Date();
-        return `${now.getUTCFullYear()}.${now.getUTCMonth() + 1}.${now.getUTCDate()}.${now.getUTCHours() * 100 + now.getUTCMinutes()}`;
+        return `${now.getUTCFullYear()}.${now.getUTCMonth() + 1}.${now.getUTCDate()}${lastSeperator}${now.getUTCHours() * 100 +
+            now.getUTCMinutes()}`;
     };
 
     grunt.registerTask('update-config', function() {
-        const configJSONPath = 'extension/insights.config.json';
+        const configJSONPath = 'product/insights.config.json';
         const config = grunt.file.readJSON(configJSONPath);
 
         config.options.appInsightsInstrumentationKey = options.appInsightsInstrumentationKey;
 
-        const configJSPath = 'extension/insights.config.js';
+        const configJSPath = 'product/insights.config.js';
         const configJSON = JSON.stringify(config, undefined, 4);
         grunt.file.write(configJSONPath, configJSON);
 
@@ -65,8 +77,24 @@ module.exports = function(grunt) {
         grunt.file.write(configJSPath, configJS);
     });
 
+    grunt.registerTask('update-electron-config', function() {
+        const electronBuilderYAMLPath = '../../../electron-builder.yml';
+        const config = grunt.file.readYAML(electronBuilderYAMLPath);
+        let version = options.extensionVersion;
+
+        if (version == 'auto') {
+            version = versionFromDateElectron();
+        }
+
+        config.extraMetadata.version = version;
+        config.publish.url = options.electronUpdateURL;
+
+        const configYAML = YAML.safeDump(config);
+        grunt.file.write(electronBuilderYAMLPath, configYAML);
+    });
+
     grunt.registerTask('update-manifest', function() {
-        const manifestPath = 'extension/manifest.json';
+        const manifestPath = 'product/manifest.json';
         const manifest = grunt.file.readJSON(manifestPath);
         let version = options.extensionVersion;
         if (version == 'auto') {

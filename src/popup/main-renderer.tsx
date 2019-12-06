@@ -12,7 +12,9 @@ import { PopupViewControllerDeps, PopupViewWithStoreSubscription } from './compo
 import { IPopupHandlers } from './handlers/ipopup-handlers';
 import { LaunchPadRowConfigurationFactory } from './launch-pad-row-configuration-factory';
 
-export type MainRendererDeps = PopupViewControllerDeps & WithStoreSubscriptionDeps<ThemeInnerState> & ThemeDeps;
+export type MainRendererDeps = PopupViewControllerDeps &
+    WithStoreSubscriptionDeps<ThemeInnerState> &
+    ThemeDeps;
 
 export class MainRenderer {
     constructor(

@@ -1,0 +1,18 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+
+parameters:
+    platforms: '' # electron-builder platforms, e.g. -wl for win/linux, -m for mac, etc
+
+steps:
+    - script: yarn pack:electron ${{ parameters.platforms }}
+      displayName: pack electron distributables
+      env:
+          ELECTRON_MIRROR: $(ELECTRON_MIRROR)
+          ELECTRON_CUSTOM_DIR: $(ELECTRON_CUSTOM_DIR)
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+          pathtoPublish: '$(System.DefaultWorkingDirectory)/dist'
+          artifactName: $(Agent.JobName)
+      displayName: publish dist

@@ -5,6 +5,9 @@ import { CardRuleResult } from 'common/types/store-data/card-view-model';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import { CardsVisualizationModifierButtonsProps } from 'common/components/cards/cards-visualization-modifier-buttons';
+import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
+import { DetailsViewBodyProps } from 'DetailsView/details-view-body';
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
 describe('ResultSectionContent', () => {
@@ -13,8 +16,14 @@ describe('ResultSectionContent', () => {
     const depsStub = {} as ResultSectionContentDeps;
 
     it('renders, with some rules', () => {
+        const cardsVisaulizerModifierButtonsStub: Readonly<ReactFCWithDisplayName<CardsVisualizationModifierButtonsProps>> = NamedFC<
+            DetailsViewBodyProps
+        >('test', _ => null);
+
         const props = {
-            deps: depsStub,
+            deps: {
+                cardsVisualizationModifierButtons: cardsVisaulizerModifierButtonsStub,
+            },
             results: someRules,
             outcomeType: 'pass',
         } as ResultSectionContentProps;
@@ -32,6 +41,8 @@ describe('ResultSectionContent', () => {
             showCongratsIfNotInstances: true,
             userConfigurationStoreData: null,
             targetAppInfo: { name: 'app' },
+            visualHelperEnabled: true,
+            allCardsCollapsed: true,
         };
 
         const wrapper = shallow(<ResultSectionContent {...props} />);

@@ -1,42 +1,45 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CardSelectionViewData } from 'common/get-card-selection-view-data';
-import { getUnifiedRuleResults } from 'common/rule-based-view-model-provider';
-import { CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
+import { getCardViewData } from 'common/rule-based-view-model-provider';
+import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { InstanceResultStatus, UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
+
+type TestScenario = {
+    isExpanded: boolean;
+    isSelected: boolean;
+    isHighlighted: boolean;
+    visualHelperEnabled: boolean;
+};
 
 describe('RuleBasedViewModelProvider', () => {
     const emptyCardSelectionViewData = {} as CardSelectionViewData;
 
     test('getUnifiedRuleResults with null rules and results', () => {
-        const actualResults: CardRuleResultsByStatus = getUnifiedRuleResults(null, null, null);
+        const actualResults: CardsViewModel = getCardViewData(null, null, null);
 
         expect(actualResults).toEqual(null);
     });
 
     test('getUnifiedRuleResults with null rules', () => {
-        const actualResults: CardRuleResultsByStatus = getUnifiedRuleResults(null, [], emptyCardSelectionViewData);
+        const actualResults: CardsViewModel = getCardViewData(null, [], emptyCardSelectionViewData);
 
         expect(actualResults).toEqual(null);
     });
 
     test('getUnifiedRuleResults with null results', () => {
-        const actualResults: CardRuleResultsByStatus = getUnifiedRuleResults([], null, emptyCardSelectionViewData);
+        const actualResults: CardsViewModel = getCardViewData([], null, emptyCardSelectionViewData);
 
         expect(actualResults).toEqual(null);
     });
 
     test('getUnifiedRuleResults with null card selection view data', () => {
-        const actualResults: CardRuleResultsByStatus = getUnifiedRuleResults([], [], null);
+        const actualResults: CardsViewModel = getCardViewData([], [], null);
 
         expect(actualResults).toEqual(null);
     });
 
-    const testScenarios = [
-        { isExpanded: true, isSelected: true, isHighlighted: true },
-        { isExpanded: false, isSelected: false, isHighlighted: true },
-        { isExpanded: true, isSelected: false, isHighlighted: false },
-    ];
+    const testScenarios = createTestScenarios();
 
     it.each(testScenarios)('getUnifiedRuleResults for combination %p', testScenario => {
         const rules = getSampleRules();
@@ -51,10 +54,11 @@ describe('RuleBasedViewModelProvider', () => {
         const cardSelectionViewData: CardSelectionViewData = {
             expandedRuleIds: testScenario.isExpanded ? ['rule1'] : [],
             highlightedResultUids: testScenario.isHighlighted ? ['stub_uid'] : [],
-            selectedResultUids: testScenario.isExpanded && testScenario.isSelected ? ['stub_uid'] : [],
+            selectedResultUids: testScenario.isSelected ? ['stub_uid'] : [],
+            visualHelperEnabled: testScenario.visualHelperEnabled,
         };
 
-        const actualResults: CardRuleResultsByStatus = getUnifiedRuleResults(rules, results, cardSelectionViewData);
+        const actualResults: CardsViewModel = getCardViewData(rules, results, cardSelectionViewData);
 
         expect(actualResults).toMatchSnapshot();
     });
@@ -92,5 +96,25 @@ describe('RuleBasedViewModelProvider', () => {
             descriptors: null,
             resolution: null,
         };
+    }
+
+    function createTestScenarios(): TestScenario[] {
+        const scenarios: TestScenario[] = [];
+
+        // tslint:disable-next-line: no-bitwise
+        const matchesBit = (i: number, bit: number) => (i & Math.pow(2, bit)) !== 0;
+
+        for (let i = 0; i < 16; ++i) {
+            const scenario: TestScenario = {
+                isExpanded: matchesBit(i, 0),
+                isHighlighted: matchesBit(i, 1),
+                isSelected: matchesBit(i, 2),
+                visualHelperEnabled: matchesBit(i, 3),
+            };
+
+            scenarios.push(scenario);
+        }
+
+        return scenarios;
     }
 });

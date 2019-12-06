@@ -16,7 +16,8 @@ const sensoryCharacteristicsHowToTest: JSX.Element = (
     <div>
         <ol>
             <li>
-                Examine the target page to identify any instances where instructions refer to an element's sensory characteristics, such as:
+                Examine the target page to identify any instances where instructions refer to an
+                element's sensory characteristics, such as:
                 <ol>
                     <li>Color</li>
                     <li>Shape</li>
@@ -27,8 +28,9 @@ const sensoryCharacteristicsHowToTest: JSX.Element = (
                 </ol>
             </li>
             <li>
-                For each instance, verify that the instructions also include additional information sufficient to locate and identify the
-                element without knowing its sensory characteristics. (For example, "Press the green button").
+                For each instance, verify that the instructions also include additional information
+                sufficient to locate and identify the element without knowing its sensory
+                characteristics. (For example, "Press the green button").
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
@@ -43,5 +45,4 @@ export const SensoryCharacteristics: Requirement = {
     isManual: true,
     ...content,
     guidanceLinks: [link.WCAG_1_3_3],
-    updateVisibility: false,
 };

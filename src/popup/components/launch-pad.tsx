@@ -35,19 +35,21 @@ export class LaunchPad extends React.Component<LaunchPadProps, undefined> {
     }
 
     private renderLaunchPadItemRows(rowConfigs: LaunchPadRowConfiguration[]): JSX.Element[] {
-        const launchPadItemRows: JSX.Element[] = rowConfigs.map((config: LaunchPadRowConfiguration, index: number) => {
-            return (
-                <div key={`row-item-${index + 1}`}>
-                    <LaunchPadItemRow
-                        iconName={config.iconName}
-                        description={config.description}
-                        title={config.title}
-                        onClickTitle={config.onClickTitle}
-                    />
-                    <hr className="ms-fontColor-neutralTertiaryAlt launch-pad-hr" />
-                </div>
-            );
-        });
+        const launchPadItemRows: JSX.Element[] = rowConfigs.map(
+            (config: LaunchPadRowConfiguration, index: number) => {
+                return (
+                    <div key={`row-item-${index + 1}`}>
+                        <LaunchPadItemRow
+                            iconName={config.iconName}
+                            description={config.description}
+                            title={config.title}
+                            onClickTitle={config.onClickTitle}
+                        />
+                        <hr className="ms-fontColor-neutralTertiaryAlt launch-pad-hr" />
+                    </div>
+                );
+            },
+        );
 
         return launchPadItemRows;
     }
@@ -57,11 +59,17 @@ export class LaunchPad extends React.Component<LaunchPadProps, undefined> {
         return (
             <div className="ms-Grid main-section">
                 <main>
-                    <div role="heading" aria-level={2} className="launch-pad-title ms-fontWeight-semibold">
+                    <div
+                        role="heading"
+                        aria-level={2}
+                        className="launch-pad-title ms-fontWeight-semibold"
+                    >
                         Launch pad
                     </div>
                     <hr className="ms-fontColor-neutralTertiaryAlt launch-pad-hr" />
-                    <div className="launch-pad-main-section">{this.renderLaunchPadItemRows(this.props.rowConfigs)}</div>
+                    <div className="launch-pad-main-section">
+                        {this.renderLaunchPadItemRows(this.props.rowConfigs)}
+                    </div>
                 </main>
                 <div role="complementary" className="launch-pad-footer">
                     <div>

@@ -13,7 +13,7 @@ import { VisualizationConfigurationFactory } from '../common/configs/visualizati
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
-import { GetUnifiedRuleResultsDelegate } from '../common/rule-based-view-model-provider';
+import { GetCardViewData } from '../common/rule-based-view-model-provider';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
 import { DetailsViewData } from '../common/types/store-data/details-view-data';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
@@ -29,10 +29,10 @@ import { DetailsViewCommandBarDeps } from './components/details-view-command-bar
 import { DetailsViewOverlay, DetailsViewOverlayDeps } from './components/details-view-overlay';
 import { DetailsRightPanelConfiguration, GetDetailsRightPanelConfiguration } from './components/details-view-right-panel';
 import { GetDetailsSwitcherNavConfiguration } from './components/details-view-switcher-nav';
-import { Header, HeaderDeps } from './components/header';
+import { InteractiveHeader, InteractiveHeaderDeps } from './components/interactive-header';
 import { IssuesTableHandler } from './components/issues-table-handler';
+import { NoContentAvailable } from './components/no-content-available';
 import { TargetChangeDialogDeps } from './components/target-change-dialog';
-import { TargetPageClosedView } from './components/target-page-closed-view';
 import { DetailsViewBody, DetailsViewBodyDeps } from './details-view-body';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
@@ -41,12 +41,12 @@ import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-han
 export type DetailsViewContainerDeps = {
     getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration;
     getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration;
-    getUnifiedRuleResults: GetUnifiedRuleResultsDelegate;
+    getCardViewData: GetCardViewData;
     getCardSelectionViewData: GetCardSelectionViewData;
 } & DetailsViewBodyDeps &
     DetailsViewOverlayDeps &
     DetailsViewCommandBarDeps &
-    HeaderDeps &
+    InteractiveHeaderDeps &
     WithStoreSubscriptionDeps<DetailsViewContainerState> &
     ThemeDeps &
     TargetChangeDialogDeps;
@@ -91,7 +91,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
             return (
                 <>
                     {this.renderHeader()}
-                    <TargetPageClosedView />
+                    <NoContentAvailable />
                 </>
             );
         }
@@ -132,7 +132,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
         const storeState = this.props.storeState;
         const visualizationStoreData = storeState ? storeState.visualizationStoreData : null;
         return (
-            <Header
+            <InteractiveHeader
                 deps={this.props.deps}
                 selectedPivot={visualizationStoreData ? visualizationStoreData.selectedDetailsViewPivot : null}
                 featureFlagStoreData={this.hasStores() ? storeState.featureFlagStoreData : null}
@@ -147,7 +147,6 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
         return (
             <DetailsViewOverlay
                 deps={deps}
-                actionMessageCreator={this.props.deps.detailsViewActionMessageCreator}
                 previewFeatureFlagsHandler={this.props.previewFeatureFlagsHandler}
                 scopingActionMessageCreator={this.props.scopingActionMessageCreator}
                 inspectActionMessageCreator={this.props.inspectActionMessageCreator}
@@ -170,7 +169,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
         });
         const selectedTest = selectedDetailsViewSwitcherNavConfiguration.getSelectedDetailsView(storeState);
 
-        const ruleResults = this.props.deps.getUnifiedRuleResults(
+        const cardsViewData = this.props.deps.getCardViewData(
             this.props.storeState.unifiedScanResultStoreData.rules,
             this.props.storeState.unifiedScanResultStoreData.results,
             this.props.deps.getCardSelectionViewData(this.props.storeState.cardSelectionStoreData),
@@ -197,7 +196,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
                 rightPanelConfiguration={selectedDetailsRightPanelConfiguration}
                 switcherNavConfiguration={selectedDetailsViewSwitcherNavConfiguration}
                 userConfigurationStoreData={storeState.userConfigurationStoreData}
-                ruleResultsByStatus={ruleResults}
+                cardsViewData={cardsViewData}
                 targetAppInfo={storeState.unifiedScanResultStoreData.targetAppInfo}
                 cardSelectionStoreData={storeState.cardSelectionStoreData}
             />

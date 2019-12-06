@@ -5,10 +5,13 @@ import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-crea
 import { DeviceStoreData } from 'electron/flux/types/device-store-data';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
-import { CommandBar as UICommandBar, ICommandBarItemProps } from 'office-ui-fabric-react/lib/CommandBar';
+import {
+    CommandBar as UICommandBar,
+    ICommandBarItemProps,
+} from 'office-ui-fabric-react/lib/CommandBar';
 import * as React from 'react';
 
-import { buttonIcon, commandBar, menuItemButton } from './command-bar.scss';
+import * as styles from './command-bar.scss';
 
 export type CommandBarDeps = {
     scanActionCreator: ScanActionCreator;
@@ -24,21 +27,21 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', (props: Command
     const { deps, deviceStoreData } = props;
 
     const onRescanClick = () => deps.scanActionCreator.scan(deviceStoreData.port);
-
-    const farItems: ICommandBarItemProps[] = [
-        {
-            key: 'rescan',
-            name: 'Rescan',
-            iconProps: {
-                className: buttonIcon,
-                iconName: 'Refresh',
-            },
-            className: menuItemButton,
-            onClick: onRescanClick,
-            disabled: props.scanStoreData.status === ScanStatus.Scanning,
+    const rescanCommandBarItem: ICommandBarItemProps = {
+        key: 'rescan',
+        name: 'Rescan',
+        iconProps: {
+            className: styles.buttonIcon,
+            iconName: 'Refresh',
         },
-    ];
+        className: styles.menuItemButton,
+        onClick: onRescanClick,
+        disabled: props.scanStoreData.status === ScanStatus.Scanning,
+    };
 
-    const items: ICommandBarItemProps[] = []; // UICommandBar expects items to not be null (it does not check)
-    return <UICommandBar items={items} farItems={farItems} className={commandBar} />;
+    // UICommandBar doesn't do null checks for these. Use empty lists for "no items", not null/undefined.
+    const items: ICommandBarItemProps[] = [rescanCommandBarItem];
+    const farItems: ICommandBarItemProps[] = [];
+
+    return <UICommandBar items={items} farItems={farItems} className={styles.commandBar} />;
 });

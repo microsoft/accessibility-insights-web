@@ -4,13 +4,13 @@ import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-hand
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { VALIDATE_PORT } from 'electron/common/electron-telemetry-events';
 
-import { FetchScanResultsType } from '../../platform/android/fetch-scan-results';
+import { ScanResultsFetcher } from '../../platform/android/fetch-scan-results';
 import { DeviceActions } from '../action/device-actions';
 
 export class DeviceConnectActionCreator {
     constructor(
         private readonly deviceActions: DeviceActions,
-        private readonly fetchScanResults: FetchScanResultsType,
+        private readonly fetchScanResults: ScanResultsFetcher,
         private readonly telemetryEventHandler: TelemetryEventHandler,
     ) {}
 
@@ -22,7 +22,11 @@ export class DeviceConnectActionCreator {
         this.deviceActions.connecting.invoke({ port });
 
         this.fetchScanResults(port)
-            .then(data => this.deviceActions.connectionSucceeded.invoke({ connectedDevice: `${data.deviceName} - ${data.appIdentifier}` }))
+            .then(data =>
+                this.deviceActions.connectionSucceeded.invoke({
+                    connectedDevice: `${data.deviceName} - ${data.appIdentifier}`,
+                }),
+            )
             .catch(() => this.deviceActions.connectionFailed.invoke());
     }
 

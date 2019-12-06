@@ -13,7 +13,7 @@ import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-f
 import { TabStoreData } from '../../../common/types/store-data/tab-store-data';
 import { DetailsViewActionMessageCreator } from '../../actions/details-view-action-message-creator';
 import { TargetChangeDialog, TargetChangeDialogDeps } from '../target-change-dialog';
-import { overviewHelpSection } from './overview-content-container.scss';
+import * as styles from './overview-content-container.scss';
 import { OverviewHeading } from './overview-heading';
 import { OverviewHelpSection, OverviewHelpSectionDeps } from './overview-help-section';
 
@@ -69,17 +69,12 @@ export const OverviewContainer = NamedFC<OverviewContainerProps>('OverviewContai
 
     return (
         <div className="overview">
-            <TargetChangeDialog
-                deps={deps}
-                prevTab={prevTarget}
-                newTab={currentTarget}
-                actionMessageCreator={props.deps.detailsViewActionMessageCreator}
-            />
+            <TargetChangeDialog deps={deps} prevTab={prevTarget} newTab={currentTarget} />
             <section className="overview-text-summary-section">
                 <OverviewHeading />
                 <AssessmentReportSummary summary={summaryData} />
             </section>
-            <section className={overviewHelpSection}>
+            <section className={styles.overviewHelpSection}>
                 <OverviewHelpSection linkDataSource={linkDataSource} deps={deps} />
             </section>
         </div>

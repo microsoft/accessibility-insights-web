@@ -23,15 +23,19 @@ import { CreateTestAssessmentProvider } from '../../../common/test-assessment-pr
 
 describe('AssessmentInstanceTableHandlerTest', () => {
     let testSubject: AssessmentInstanceTableHandler;
-    let actionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
+    let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let configFactoryMock: IMock<AssessmentTableColumnConfigHandler>;
     const assessmentsProvider = CreateTestAssessmentProvider();
     const featureFlagStoreData = {} as FeatureFlagStoreData;
 
     beforeEach(() => {
-        actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+        detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
         configFactoryMock = Mock.ofType(AssessmentTableColumnConfigHandler);
-        testSubject = new AssessmentInstanceTableHandler(actionMessageCreatorMock.object, configFactoryMock.object, assessmentsProvider);
+        testSubject = new AssessmentInstanceTableHandler(
+            detailsViewActionMessageCreatorMock.object,
+            configFactoryMock.object,
+            assessmentsProvider,
+        );
     });
 
     test('createAssessmentInstanceTableItems', () => {
@@ -73,8 +77,8 @@ describe('AssessmentInstanceTableHandlerTest', () => {
                 selector={'selector1'}
                 status={ManualTestStatus.FAIL}
                 originalStatus={2}
-                onGroupChoiceChange={actionMessageCreatorMock.object.changeManualTestStatus}
-                onUndoClicked={actionMessageCreatorMock.object.undoManualTestStatusChange}
+                onGroupChoiceChange={detailsViewActionMessageCreatorMock.object.changeManualTestStatus}
+                onUndoClicked={detailsViewActionMessageCreatorMock.object.undoManualTestStatusChange}
             />
         );
         const selectedButton: JSX.Element = (
@@ -84,7 +88,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
                 selector={'selector1'}
                 isVisualizationEnabled={false}
                 isVisible={false}
-                onSelected={actionMessageCreatorMock.object.changeAssessmentVisualizationState}
+                onSelected={detailsViewActionMessageCreatorMock.object.changeAssessmentVisualizationState}
             />
         );
 
@@ -146,10 +150,10 @@ describe('AssessmentInstanceTableHandlerTest', () => {
                 step={assessmentNavState.selectedTestStep}
                 id={instance.id}
                 currentInstance={currentInstance}
-                onRemove={actionMessageCreatorMock.object.removeFailureInstance}
-                onEdit={actionMessageCreatorMock.object.editFailureInstance}
-                onAddPath={actionMessageCreatorMock.object.addPathForValidation}
-                onClearPathSnippetData={actionMessageCreatorMock.object.clearPathSnippetData}
+                onRemove={detailsViewActionMessageCreatorMock.object.removeFailureInstance}
+                onEdit={detailsViewActionMessageCreatorMock.object.editFailureInstance}
+                onAddPath={detailsViewActionMessageCreatorMock.object.addPathForValidation}
+                onClearPathSnippetData={detailsViewActionMessageCreatorMock.object.clearPathSnippetData}
                 assessmentsProvider={assessmentsProvider}
                 featureFlagStoreData={featureFlagStoreData}
             />
@@ -200,10 +204,10 @@ describe('AssessmentInstanceTableHandlerTest', () => {
                 step={assessmentNavState.selectedTestStep}
                 id={instance.id}
                 currentInstance={currentInstance}
-                onRemove={actionMessageCreatorMock.object.removeFailureInstance}
-                onEdit={actionMessageCreatorMock.object.editFailureInstance}
-                onAddPath={actionMessageCreatorMock.object.addPathForValidation}
-                onClearPathSnippetData={actionMessageCreatorMock.object.clearPathSnippetData}
+                onRemove={detailsViewActionMessageCreatorMock.object.removeFailureInstance}
+                onEdit={detailsViewActionMessageCreatorMock.object.editFailureInstance}
+                onAddPath={detailsViewActionMessageCreatorMock.object.addPathForValidation}
+                onClearPathSnippetData={detailsViewActionMessageCreatorMock.object.clearPathSnippetData}
                 assessmentsProvider={assessmentsProvider}
                 featureFlagStoreData={featureFlagStoreData}
             />
@@ -278,17 +282,17 @@ describe('AssessmentInstanceTableHandlerTest', () => {
 
     test('addPathForValidation', () => {
         const path = 'test path';
-        actionMessageCreatorMock.setup(a => a.addPathForValidation(path)).verifiable(Times.once());
+        detailsViewActionMessageCreatorMock.setup(a => a.addPathForValidation(path)).verifiable(Times.once());
         testSubject.addPathForValidation(path);
 
-        actionMessageCreatorMock.verifyAll();
+        detailsViewActionMessageCreatorMock.verifyAll();
     });
 
     test('clearPathSnippetData', () => {
-        actionMessageCreatorMock.setup(a => a.clearPathSnippetData()).verifiable(Times.once());
+        detailsViewActionMessageCreatorMock.setup(a => a.clearPathSnippetData()).verifiable(Times.once());
         testSubject.clearPathSnippetData();
 
-        actionMessageCreatorMock.verifyAll();
+        detailsViewActionMessageCreatorMock.verifyAll();
     });
 
     test('addFailureInstance', () => {
@@ -300,29 +304,29 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             snippet: 'snippet',
         };
 
-        actionMessageCreatorMock.setup(a => a.addFailureInstance(instanceData, test, requirement)).verifiable(Times.once());
+        detailsViewActionMessageCreatorMock.setup(a => a.addFailureInstance(instanceData, test, requirement)).verifiable(Times.once());
 
         testSubject.addFailureInstance(instanceData, test, requirement);
 
-        actionMessageCreatorMock.verifyAll();
+        detailsViewActionMessageCreatorMock.verifyAll();
     });
 
     test('passUnmarkedInstances', () => {
         const test = VisualizationType.HeadingsAssessment;
         const requirement = 'missingHeadings';
-        actionMessageCreatorMock.setup(a => a.passUnmarkedInstances(test, requirement)).verifiable(Times.once());
+        detailsViewActionMessageCreatorMock.setup(a => a.passUnmarkedInstances(test, requirement)).verifiable(Times.once());
 
         testSubject.passUnmarkedInstances(test, requirement);
 
-        actionMessageCreatorMock.verifyAll();
+        detailsViewActionMessageCreatorMock.verifyAll();
     });
 
     test('updateFocusedInstance', () => {
         const targetStub = ['target'];
-        actionMessageCreatorMock.setup(a => a.updateFocusedInstanceTarget(targetStub)).verifiable(Times.once());
+        detailsViewActionMessageCreatorMock.setup(a => a.updateFocusedInstanceTarget(targetStub)).verifiable(Times.once());
         testSubject.updateFocusedTarget(targetStub);
 
-        actionMessageCreatorMock.verifyAll();
+        detailsViewActionMessageCreatorMock.verifyAll();
     });
 
     test('renderSelectedButton should trigger addOneInstance', () => {

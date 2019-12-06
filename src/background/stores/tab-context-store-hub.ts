@@ -27,10 +27,14 @@ export class TabContextStoreHub implements StoreHub {
     public unifiedScanResultStore: UnifiedScanResultStore;
     public cardSelectionStore: CardSelectionStore;
 
-    constructor(actionHub: ActionHub, visualizationConfigurationFactory: VisualizationConfigurationFactory) {
+    constructor(
+        actionHub: ActionHub,
+        visualizationConfigurationFactory: VisualizationConfigurationFactory,
+    ) {
         this.visualizationStore = new VisualizationStore(
             actionHub.visualizationActions,
             actionHub.tabActions,
+            actionHub.injectionActions,
             visualizationConfigurationFactory,
         );
         this.visualizationStore.initialize();
@@ -64,7 +68,10 @@ export class TabContextStoreHub implements StoreHub {
         this.unifiedScanResultStore = new UnifiedScanResultStore(actionHub.scanResultActions);
         this.unifiedScanResultStore.initialize();
 
-        this.cardSelectionStore = new CardSelectionStore(actionHub.cardSelectionActions, actionHub.scanResultActions);
+        this.cardSelectionStore = new CardSelectionStore(
+            actionHub.cardSelectionActions,
+            actionHub.scanResultActions,
+        );
         this.cardSelectionStore.initialize();
     }
 

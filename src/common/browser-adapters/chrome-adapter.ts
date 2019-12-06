@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { browser } from 'webextension-polyfill-ts';
+import { browser, ExtensionTypes, Notifications, Tabs } from 'webextension-polyfill-ts';
 import { BrowserAdapter } from './browser-adapter';
 import { CommandsAdapter } from './commands-adapter';
 import { StorageAdapter } from './storage-adapter';
@@ -53,23 +53,16 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         });
     }
 
-    public executeScriptInTab(tabId: number, details: chrome.tabs.InjectDetails, callback?: (result: any[]) => void): void {
-        chrome.tabs.executeScript(tabId, details, callback);
+    public executeScriptInTab(tabId: number, details: ExtensionTypes.InjectDetails): Promise<any[]> {
+        return browser.tabs.executeScript(tabId, details);
     }
 
-    public insertCSSInTab(tabId: number, details: chrome.tabs.InjectDetails, callback?: Function): void {
-        chrome.tabs.insertCSS(tabId, details, callback);
+    public insertCSSInTab(tabId: number, details: ExtensionTypes.InjectDetails): Promise<void> {
+        return browser.tabs.insertCSS(tabId, details);
     }
 
-    public createTab(url: string, callback?: (tab: chrome.tabs.Tab) => void): void {
-        chrome.tabs.create(
-            {
-                url: url,
-                active: true,
-                pinned: false,
-            },
-            callback,
-        );
+    public createActiveTab(url: string): Promise<Tabs.Tab> {
+        return browser.tabs.create({ url, active: true, pinned: false });
     }
 
     public createTabInNewWindow(url: string, callback?: (tab: chrome.tabs.Tab) => void): void {
@@ -109,22 +102,17 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         });
     }
 
-    public sendMessageToTab(tabId: number, message: any): void {
-        chrome.tabs.sendMessage(tabId, message);
+    public sendMessageToTab(tabId: number, message: any): Promise<void> {
+        return browser.tabs.sendMessage(tabId, message);
     }
 
-    public sendMessageToAllFramesAndTabs(message: any): void {
-        chrome.runtime.sendMessage(message);
-
-        chrome.tabs.query({}, tabs => {
-            for (let i = 0; i < tabs.length; ++i) {
-                chrome.tabs.sendMessage(tabs[i].id, message);
-            }
-        });
+    public async sendMessageToAllFramesAndTabs(message: any): Promise<void> {
+        const allTabs = await browser.tabs.query({});
+        await Promise.all([browser.runtime.sendMessage(message), ...allTabs.map(tab => browser.tabs.sendMessage(tab.id, message))]);
     }
 
-    public sendMessageToFrames(message: any): void {
-        chrome.runtime.sendMessage(message);
+    public sendMessageToFrames(message: any): Promise<void> {
+        return browser.runtime.sendMessage(message);
     }
 
     public setUserData(items: Object): Promise<void> {
@@ -143,8 +131,8 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         return chrome.runtime.lastError;
     }
 
-    public createNotification(options: chrome.notifications.NotificationOptions): void {
-        chrome.notifications.create(options);
+    public createNotification(options: Notifications.CreateNotificationOptions): Promise<string> {
+        return browser.notifications.create(options);
     }
 
     public isAllowedFileSchemeAccess(callback: (isAllowed: boolean) => void): void {

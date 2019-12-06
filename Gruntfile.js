@@ -8,6 +8,10 @@ const merge = require('lodash/merge');
 module.exports = function(grunt) {
     const extensionPath = 'extension';
 
+    const packageReportPath = path.join('package', 'report');
+    const packageReportBundlePath = path.join(packageReportPath, 'bundle');
+    const packageReportDropPath = path.join(packageReportPath, 'drop');
+
     function mustExist(file, reason) {
         const normalizedFile = path.normalize(file);
         if (!grunt.file.exists(normalizedFile)) {
@@ -104,11 +108,32 @@ module.exports = function(grunt) {
                     },
                 ],
             },
+            'package-report': {
+                files: [
+                    {
+                        cwd: '.',
+                        src: path.join(packageReportBundlePath, 'report.bundle.js'),
+                        dest: path.join(packageReportDropPath, 'index.js'),
+                    },
+                    {
+                        cwd: '.',
+                        src: './src/reports/package/accessibilityInsightsReport.d.ts',
+                        dest: path.join(packageReportDropPath, 'index.d.ts'),
+                    },
+                    {
+                        cwd: './src/reports/package/root',
+                        src: '*',
+                        dest: packageReportDropPath,
+                        expand: true,
+                    },
+                ],
+            },
         },
         exec: {
             'webpack-dev': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name dev`,
             'webpack-prod': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name prod`,
             'webpack-electron': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name electron`,
+            'webpack-package-report': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name package-report`,
             'generate-scss-typings': `"${path.resolve('./node_modules/.bin/tsm')}" src`,
         },
         sass: {
@@ -125,6 +150,15 @@ module.exports = function(grunt) {
                         ext: '.css',
                     },
                 ],
+            },
+        },
+        'embed-styles': {
+            'package-report': {
+                cwd: packageReportBundlePath,
+                src: '**/*bundle.js',
+                dest: packageReportBundlePath,
+                expand: true,
+                cssPath: path.resolve('extension', 'prodBundle'),
             },
         },
         watch: {
@@ -155,10 +189,12 @@ module.exports = function(grunt) {
     const targetNames = Object.keys(targets);
     const releaseTargets = Object.keys(targets).filter(t => targets[t].release);
     targetNames.forEach(targetName => {
-        const dropPath = path.join('drop', targetName);
-        const dropExtensionPath = path.join(dropPath, 'extension');
-
         const { config, bundleFolder } = targets[targetName];
+
+        const { productCategory } = config.options;
+
+        const dropPath = path.join(`drop/${productCategory}`, targetName);
+        const dropExtensionPath = path.join(dropPath, 'product');
 
         grunt.config.merge({
             drop: {
@@ -182,6 +218,7 @@ module.exports = function(grunt) {
             },
             clean: {
                 [targetName]: dropPath,
+                'package-report': packageReportDropPath,
                 scss: path.join('src', '**/*.scss.d.ts'),
             },
             'embed-styles': {
@@ -189,6 +226,7 @@ module.exports = function(grunt) {
                     cwd: path.resolve(extensionPath, bundleFolder),
                     src: '**/*bundle.js',
                     dest: path.resolve(extensionPath, bundleFolder),
+                    cssPath: path.resolve(extensionPath, bundleFolder),
                     expand: true,
                 },
             },
@@ -234,8 +272,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-sass');
 
     grunt.registerMultiTask('embed-styles', function() {
-        const targetName = this.target;
-        const { bundleFolder } = targets[targetName];
+        const { cssPath } = this.data;
         this.files.forEach(file => {
             const {
                 src: [src],
@@ -246,8 +283,7 @@ module.exports = function(grunt) {
             const input = grunt.file.read(src, fileOptions);
             const rex = /\<\<CSS:([a-zA-Z\-\.\/]+)\>\>/g;
             const output = input.replace(rex, (_, cssName) => {
-                const bundledFolderPath = path.resolve(extensionPath, bundleFolder);
-                const cssFile = path.resolve(bundledFolderPath, cssName);
+                const cssFile = path.resolve(cssPath, cssName);
                 grunt.log.writeln(`    embedding from ${cssFile}`);
                 const styles = grunt.file.read(cssFile, fileOptions);
                 return styles.replace(/\n/g, '\\\n');
@@ -270,7 +306,7 @@ module.exports = function(grunt) {
         const { config, manifestSrc, manifestDest } = this.data;
         const manifestJSON = grunt.file.readJSON(manifestSrc);
         merge(manifestJSON, {
-            name: config.options.extensionFullName,
+            name: config.options.fullName,
             description: config.options.extensionDescription,
             icons: {
                 '16': config.options.icon16,
@@ -289,7 +325,12 @@ module.exports = function(grunt) {
 
     grunt.registerMultiTask('drop', function() {
         const targetName = this.target;
-        const { bundleFolder, mustExistFile } = targets[targetName];
+        const { bundleFolder, mustExistFile, config } = targets[targetName];
+
+        const { productCategory } = config.options;
+
+        const dropPath = path.join(`drop/${productCategory}`, targetName);
+        const dropExtensionPath = path.join(dropPath, 'product');
 
         const mustExistPath = path.join(extensionPath, bundleFolder, mustExistFile);
 
@@ -300,7 +341,18 @@ module.exports = function(grunt) {
         grunt.task.run('copy:' + targetName);
         grunt.task.run('configure:' + targetName);
         grunt.task.run('manifest:' + targetName);
-        console.log(`${targetName} extension is in ${path.join('drop', targetName, 'extension')}`);
+        console.log(`${targetName} extension is in ${dropExtensionPath}`);
+    });
+
+    grunt.registerTask('package-report', function() {
+        const mustExistPath = path.join(packageReportBundlePath, 'report.bundle.js');
+
+        mustExist(mustExistPath, 'Have you run webpack?');
+
+        grunt.task.run('embed-styles:package-report');
+        grunt.task.run('clean:package-report');
+        grunt.task.run('copy:package-report');
+        console.log(`package is in ${packageReportDropPath}`);
     });
 
     grunt.registerTask('release-drops', function() {
@@ -326,6 +378,14 @@ module.exports = function(grunt) {
         'exec:webpack-electron',
         'build-assets',
         'drop:electron',
+    ]);
+    grunt.registerTask('build-package-report', [
+        'clean:intermediates',
+        'exec:generate-scss-typings',
+        'exec:webpack-prod', // required to get the css assets
+        'exec:webpack-package-report',
+        'build-assets',
+        'package-report',
     ]);
     grunt.registerTask('build-all', [
         'clean:intermediates',

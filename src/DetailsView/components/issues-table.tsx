@@ -7,7 +7,7 @@ import { VisualizationToggle } from 'common/components/visualization-toggle';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { FeatureFlags } from 'common/feature-flags';
-import { CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
+import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
@@ -50,8 +50,8 @@ export interface IssuesTableProps {
     featureFlags: FeatureFlagStoreData;
     scanResult: ScanResults;
     userConfigurationStoreData: UserConfigurationStoreData;
-    ruleResultsByStatus: CardRuleResultsByStatus;
     targetAppInfo: TargetAppData;
+    cardsViewData: CardsViewModel;
 }
 
 export class IssuesTable extends React.Component<IssuesTableProps> {
@@ -86,12 +86,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
             return this.renderSpinner('Loading...');
         }
 
-        return (
-            <div className="issues-table-content">
-                {this.renderCommandBar()}
-                {this.renderComponent()}
-            </div>
-        );
+        return <div className="issues-table-content">{this.renderComponent()}</div>;
     }
 
     private renderCommandBar(): JSX.Element {
@@ -121,13 +116,12 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
                     reportGenerator={reportGenerator}
                     pageTitle={pageTitle}
                     exportResultsType={'AutomatedChecks'}
-                    htmlGenerator={reportGenerator.generateFastPassAutomateChecksReport.bind(
+                    htmlGenerator={reportGenerator.generateFastPassAutomatedChecksReport.bind(
                         reportGenerator,
-                        scanResult,
                         scanDate,
                         pageTitle,
                         pageUrl,
-                        this.props.ruleResultsByStatus,
+                        this.props.cardsViewData,
                     )}
                     updatePersistedDescription={this.nullUpdatePersistedDescription}
                     getExportDescription={this.getEmptyExportDescription}
@@ -157,7 +151,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
                 enableJSXElement={
                     <CardsView
                         deps={this.props.deps}
-                        ruleResultsByStatus={this.props.ruleResultsByStatus}
+                        cardsViewData={this.props.cardsViewData}
                         userConfigurationStoreData={this.props.userConfigurationStoreData}
                         targetAppInfo={this.props.targetAppInfo}
                     />
@@ -186,23 +180,42 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
     }
 
     private renderDisabledMessage(): JSX.Element {
-        return (
-            <div className="details-disabled-message" role="alert">
+        const isCardsUIEnabled = this.props.featureFlags[FeatureFlags.universalCardsUI];
+        const commandBar = !isCardsUIEnabled ? this.renderCommandBar() : null;
+
+        const disabledMessage = isCardsUIEnabled ? (
+            <span>
+                Use the <Markup.Term>Start over</Markup.Term> button to scan the target page.
+            </span>
+        ) : (
+            <span>
                 Turn on <Markup.Term>{this.configuration.displayableData.title}</Markup.Term> to see a list of failures.
-            </div>
+            </span>
+        );
+
+        return (
+            <>
+                {commandBar}
+                <div className="details-disabled-message" role="alert">
+                    {disabledMessage}
+                </div>
+            </>
         );
     }
 
     private renderDetails(): JSX.Element {
         return (
-            <div className="issues-table-details">
-                <IssuesDetailsList
-                    violations={this.props.violations}
-                    issuesTableHandler={this.props.issuesTableHandler}
-                    issuesSelection={this.props.issuesSelection}
-                />
-                <div className="issue-detail-outer-container ms-Fabric">{this.getIssueDetailPane()}</div>
-            </div>
+            <>
+                {this.renderCommandBar()}
+                <div className="issues-table-details">
+                    <IssuesDetailsList
+                        violations={this.props.violations}
+                        issuesTableHandler={this.props.issuesTableHandler}
+                        issuesSelection={this.props.issuesSelection}
+                    />
+                    <div className="issue-detail-outer-container ms-Fabric">{this.getIssueDetailPane()}</div>
+                </div>
+            </>
         );
     }
 

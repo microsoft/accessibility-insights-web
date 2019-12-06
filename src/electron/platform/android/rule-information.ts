@@ -4,7 +4,9 @@
 import { UnifiedFormattableResolution } from 'common/types/store-data/unified-data-interface';
 import { RuleResultsData } from './scan-results';
 
-export type GetUnifiedFormattableResolutionDelegate = (ruleResultsData: RuleResultsData) => UnifiedFormattableResolution;
+export type GetUnifiedFormattableResolutionDelegate = (
+    ruleResultsData: RuleResultsData,
+) => UnifiedFormattableResolution;
 
 export type IncludeThisResultDelegate = (ruleResultsData: RuleResultsData) => boolean;
 
@@ -16,7 +18,9 @@ export class RuleInformation {
         readonly includeThisResultDelegate: IncludeThisResultDelegate,
     ) {}
 
-    public getUnifiedFormattableResolution(ruleResultsData: RuleResultsData): UnifiedFormattableResolution {
+    public getUnifiedFormattableResolution(
+        ruleResultsData: RuleResultsData,
+    ): UnifiedFormattableResolution {
         return this.getUnifiedFormattableResolutionDelegate(ruleResultsData);
     }
 

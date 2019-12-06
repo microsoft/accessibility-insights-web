@@ -105,18 +105,22 @@ export class DiagnosticViewToggleFactory {
     private getEnabledTypes(): VisualizationType[] {
         const featureFlags = this.featureFlagsStore.getState();
 
-        const enabledTypes: VisualizationType[] = this.visualizationTypes.filter(visualizationType => {
-            const config = this.visualizationConfigurationFactory.getConfiguration(visualizationType);
-            if (config.testMode !== TestMode.Adhoc) {
-                return false;
-            }
+        const enabledTypes: VisualizationType[] = this.visualizationTypes.filter(
+            visualizationType => {
+                const config = this.visualizationConfigurationFactory.getConfiguration(
+                    visualizationType,
+                );
+                if (config.testMode !== TestMode.Adhoc) {
+                    return false;
+                }
 
-            if (config.featureFlagToEnable == null) {
-                return true;
-            }
+                if (config.featureFlagToEnable == null) {
+                    return true;
+                }
 
-            return featureFlags[config.featureFlagToEnable];
-        });
+                return featureFlags[config.featureFlagToEnable];
+            },
+        );
 
         return enabledTypes;
     }

@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 const path = require('path');
 const webpack = require('webpack');
+const nodeExternals = require('webpack-node-externals');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
@@ -57,7 +58,6 @@ const commonEntryFiles = {
 const electronEntryFiles = {
     renderer: [path.resolve(__dirname, 'src/electron/views/renderer-initializer.ts')],
     main: [path.resolve(__dirname, 'src/electron/main/main.ts')],
-    injected: [path.resolve(__dirname, 'src/injected/stylesheet-init.ts'), path.resolve(__dirname, 'src/injected/client-init.ts')],
 };
 
 const commonConfig = {
@@ -169,5 +169,28 @@ const prodConfig = {
     },
 };
 
+const packageReportConfig = {
+    entry: {
+        report: [path.resolve(__dirname, 'src/reports/package/reporter-factory.ts')],
+    },
+    module: {
+        rules: [...commonConfig.module.rules, getCSSModulesLoadersConfig(false)],
+    },
+    externals: [nodeExternals()],
+    plugins: commonPlugins,
+    resolve: commonConfig.resolve,
+    name: 'package-report',
+    mode: 'development',
+    devtool: false,
+    output: {
+        path: path.join(__dirname, 'package/report/bundle'),
+        filename: '[name].bundle.js',
+        pathinfo: false,
+        library: '[name]',
+        libraryTarget: 'umd',
+    },
+    target: 'node',
+};
+
 // Use "webpack --config-name dev", "webpack --config-name prod" or "webpack --config-name electron" to use just one or the other
-module.exports = [devConfig, prodConfig, electronConfig];
+module.exports = [devConfig, prodConfig, electronConfig, packageReportConfig];

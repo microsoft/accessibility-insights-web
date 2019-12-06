@@ -5,7 +5,10 @@ import { OutcomeMath } from 'reports/components/outcome-math';
 describe('OutcomeMath', () => {
     const { sum, weightedPercentage, percentageComplete } = OutcomeMath;
 
-    const statArray = [{ pass: 1, fail: 2, incomplete: 1 }, { pass: 0, fail: 1, incomplete: 1 }];
+    const statArray = [
+        { pass: 1, fail: 2, incomplete: 1 },
+        { pass: 0, fail: 1, incomplete: 1 },
+    ];
 
     it('computes the sum', () => {
         expect(sum(statArray)).toEqual({ pass: 1, fail: 3, incomplete: 2 });

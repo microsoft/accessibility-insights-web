@@ -14,11 +14,11 @@ describe('MasterCheckBoxConfigProviderTest', () => {
             selectedTestType: VisualizationType.HeadingsAssessment,
             selectedTestStep: '',
         };
-        const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
-        actionMessageCreatorMock
+        const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+        detailsViewActionMessageCreatorMock
             .setup(acm => acm.changeAssessmentVisualizationStateForAll(false, navState.selectedTestType, navState.selectedTestStep))
             .verifiable(Times.once());
-        const provider = new MasterCheckBoxConfigProvider(actionMessageCreatorMock.object);
+        const provider = new MasterCheckBoxConfigProvider(detailsViewActionMessageCreatorMock.object);
 
         const config = provider.getMasterCheckBoxProperty(navState, allEnabled);
         config.onColumnClick(null, null);
@@ -28,7 +28,7 @@ describe('MasterCheckBoxConfigProviderTest', () => {
         expect(config.name).toBe('Visualization toggle');
         expect(config.ariaLabel).toBe('Hide all visualizations');
 
-        actionMessageCreatorMock.verifyAll();
+        detailsViewActionMessageCreatorMock.verifyAll();
     });
 
     test('getMasterCheckBoxProperty: allEnabled = false', () => {

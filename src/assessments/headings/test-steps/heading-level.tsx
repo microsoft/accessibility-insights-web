@@ -19,8 +19,8 @@ import { HeadingsTestStep } from './test-steps';
 
 const headingLevelDescription: JSX.Element = (
     <span>
-        A heading's <Markup.Emphasis>programmatic</Markup.Emphasis> level must match the level that's presented{' '}
-        <Markup.Emphasis>visually</Markup.Emphasis>.
+        A heading's <Markup.Emphasis>programmatic</Markup.Emphasis> level must match the level
+        that's presented <Markup.Emphasis>visually</Markup.Emphasis>.
     </span>
 );
 
@@ -30,12 +30,13 @@ const headingLevelHowToTest: JSX.Element = (
         <TestAutomaticallyPassedNotice />
         <ol>
             <li>
-                In the target page, examine each heading to verify that its <Markup.Emphasis>programmatic</Markup.Emphasis>
-                level matches the level that's presented <Markup.Emphasis>visually</Markup.Emphasis> (through font style).
+                In the target page, examine each heading to verify that its{' '}
+                <Markup.Emphasis>programmatic</Markup.Emphasis> level matches the level that's
+                presented <Markup.Emphasis>visually</Markup.Emphasis> (through font style).
                 <ol>
                     <li>
-                        Lower-level headings should be more prominent than higher-level headings. (Level 1 should be the most prominent,
-                        level 6 the least.)
+                        Lower-level headings should be more prominent than higher-level headings.
+                        (Level 1 should be the most prominent, level 6 the least.)
                     </li>
                     <li>Headings of the same level should have the same font style.</li>
                 </ol>
@@ -60,7 +61,12 @@ export const HeadingLevel: Requirement = {
             onRender: headingsAssessmentInstanceDetailsColumnRenderer,
         },
     ],
-    reportInstanceFields: [ReportInstanceField.fromPropertyBagField<HeadingsAssessmentProperties>('Heading text', 'headingText')],
+    reportInstanceFields: [
+        ReportInstanceField.fromPropertyBagField<HeadingsAssessmentProperties>(
+            'Heading text',
+            'headingText',
+        ),
+    ],
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({

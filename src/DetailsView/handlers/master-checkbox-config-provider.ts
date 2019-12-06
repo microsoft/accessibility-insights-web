@@ -9,10 +9,10 @@ import { DetailsViewActionMessageCreator } from '../actions/details-view-action-
 export class MasterCheckBoxConfigProvider {
     private static MASTER_CHECKBOX_ICON_NAME_ENABLED: string = 'view';
     private static MASTER_CHECKBOX_ICON_NAME_DISABLED: string = 'checkbox';
-    private actionMessageCreator: DetailsViewActionMessageCreator;
+    private detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
 
-    constructor(actionMessageCreator: DetailsViewActionMessageCreator) {
-        this.actionMessageCreator = actionMessageCreator;
+    constructor(detailsViewActionMessageCreator: DetailsViewActionMessageCreator) {
+        this.detailsViewActionMessageCreator = detailsViewActionMessageCreator;
     }
 
     public getMasterCheckBoxProperty(assessmentNavState: AssessmentNavState, allEnabled: boolean): Partial<IColumn> {
@@ -38,7 +38,7 @@ export class MasterCheckBoxConfigProvider {
         allEnabled: boolean,
     ): ((ev: React.MouseEvent<HTMLElement>, column: IColumn) => void) => {
         return (ev: React.MouseEvent<HTMLElement>, column: IColumn) => {
-            this.actionMessageCreator.changeAssessmentVisualizationStateForAll(
+            this.detailsViewActionMessageCreator.changeAssessmentVisualizationStateForAll(
                 !allEnabled,
                 assessmentNavState.selectedTestType,
                 assessmentNavState.selectedTestStep,

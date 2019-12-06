@@ -3,6 +3,57 @@
 exports[`ReportBody renders 1`] = `
 <body-section>
   <header-section
+    cardsViewData={
+      Object {
+        "allCardsCollapsed": true,
+        "cards": Object {
+          "fail": Array [
+            Object {
+              "description": "sample-description",
+              "guidance": Array [
+                Object {
+                  "href": "sample-guidance-href",
+                  "text": "sample-guidance-text",
+                },
+              ],
+              "id": "some-rule",
+              "nodes": Array [
+                Object {
+                  "descriptors": Object {
+                    "snippet": "this is a sample snippet",
+                  },
+                  "identifiers": Object {
+                    "conciseName": "body img",
+                    "css-selector": "body img",
+                    "identifier": "body img",
+                  },
+                  "resolution": Object {
+                    "how-to-fix-web": Object {
+                      "all": Array [],
+                      "any": Array [
+                        "Element does not have an alt attribute",
+                        "aria-label attribute does not exist or is empty",
+                        "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                      ],
+                      "none": Array [],
+                    },
+                    "howToFixSummary": "sample how to fix summary",
+                  },
+                  "ruleId": "image-alt",
+                  "status": "fail",
+                  "uid": "some-guid-here",
+                },
+              ],
+              "url": "sample-url",
+            },
+          ],
+          "inapplicable": Array [],
+          "pass": Array [],
+          "unknown": Array [],
+        },
+        "visualHelperEnabled": true,
+      }
+    }
     deps={Object {}}
     description="test description"
     environmentInfo={
@@ -27,53 +78,6 @@ exports[`ReportBody renders 1`] = `
     getGuidanceTagsFromGuidanceLinks={[Function]}
     pageTitle="page-title"
     pageUrl="url:target-page"
-    ruleResultsByStatus={
-      Object {
-        "fail": Array [
-          Object {
-            "description": "sample-description",
-            "guidance": Array [
-              Object {
-                "href": "sample-guidance-href",
-                "text": "sample-guidance-text",
-              },
-            ],
-            "id": "some-rule",
-            "nodes": Array [
-              Object {
-                "descriptors": Object {
-                  "snippet": "this is a sample snippet",
-                },
-                "identifiers": Object {
-                  "conciseName": "body img",
-                  "css-selector": "body img",
-                  "identifier": "body img",
-                },
-                "resolution": Object {
-                  "how-to-fix-web": Object {
-                    "all": Array [],
-                    "any": Array [
-                      "Element does not have an alt attribute",
-                      "aria-label attribute does not exist or is empty",
-                      "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                    ],
-                    "none": Array [],
-                  },
-                  "howToFixSummary": "sample how to fix summary",
-                },
-                "ruleId": "image-alt",
-                "status": "fail",
-                "uid": "some-guid-here",
-              },
-            ],
-            "url": "sample-url",
-          },
-        ],
-        "inapplicable": Array [],
-        "pass": Array [],
-        "unknown": Array [],
-      }
-    }
     scanDate={2019-05-29T19:12:16.804Z}
     scanResult={
       Object {
@@ -98,6 +102,57 @@ exports[`ReportBody renders 1`] = `
   <content-container>
     <title-section />
     <summary-section
+      cardsViewData={
+        Object {
+          "allCardsCollapsed": true,
+          "cards": Object {
+            "fail": Array [
+              Object {
+                "description": "sample-description",
+                "guidance": Array [
+                  Object {
+                    "href": "sample-guidance-href",
+                    "text": "sample-guidance-text",
+                  },
+                ],
+                "id": "some-rule",
+                "nodes": Array [
+                  Object {
+                    "descriptors": Object {
+                      "snippet": "this is a sample snippet",
+                    },
+                    "identifiers": Object {
+                      "conciseName": "body img",
+                      "css-selector": "body img",
+                      "identifier": "body img",
+                    },
+                    "resolution": Object {
+                      "how-to-fix-web": Object {
+                        "all": Array [],
+                        "any": Array [
+                          "Element does not have an alt attribute",
+                          "aria-label attribute does not exist or is empty",
+                          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                        ],
+                        "none": Array [],
+                      },
+                      "howToFixSummary": "sample how to fix summary",
+                    },
+                    "ruleId": "image-alt",
+                    "status": "fail",
+                    "uid": "some-guid-here",
+                  },
+                ],
+                "url": "sample-url",
+              },
+            ],
+            "inapplicable": Array [],
+            "pass": Array [],
+            "unknown": Array [],
+          },
+          "visualHelperEnabled": true,
+        }
+      }
       deps={Object {}}
       description="test description"
       environmentInfo={
@@ -122,53 +177,6 @@ exports[`ReportBody renders 1`] = `
       getGuidanceTagsFromGuidanceLinks={[Function]}
       pageTitle="page-title"
       pageUrl="url:target-page"
-      ruleResultsByStatus={
-        Object {
-          "fail": Array [
-            Object {
-              "description": "sample-description",
-              "guidance": Array [
-                Object {
-                  "href": "sample-guidance-href",
-                  "text": "sample-guidance-text",
-                },
-              ],
-              "id": "some-rule",
-              "nodes": Array [
-                Object {
-                  "descriptors": Object {
-                    "snippet": "this is a sample snippet",
-                  },
-                  "identifiers": Object {
-                    "conciseName": "body img",
-                    "css-selector": "body img",
-                    "identifier": "body img",
-                  },
-                  "resolution": Object {
-                    "how-to-fix-web": Object {
-                      "all": Array [],
-                      "any": Array [
-                        "Element does not have an alt attribute",
-                        "aria-label attribute does not exist or is empty",
-                        "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                      ],
-                      "none": Array [],
-                    },
-                    "howToFixSummary": "sample how to fix summary",
-                  },
-                  "ruleId": "image-alt",
-                  "status": "fail",
-                  "uid": "some-guid-here",
-                },
-              ],
-              "url": "sample-url",
-            },
-          ],
-          "inapplicable": Array [],
-          "pass": Array [],
-          "unknown": Array [],
-        }
-      }
       scanDate={2019-05-29T19:12:16.804Z}
       scanResult={
         Object {
@@ -191,6 +199,57 @@ exports[`ReportBody renders 1`] = `
       userConfigurationStoreData={null}
     />
     <details-section
+      cardsViewData={
+        Object {
+          "allCardsCollapsed": true,
+          "cards": Object {
+            "fail": Array [
+              Object {
+                "description": "sample-description",
+                "guidance": Array [
+                  Object {
+                    "href": "sample-guidance-href",
+                    "text": "sample-guidance-text",
+                  },
+                ],
+                "id": "some-rule",
+                "nodes": Array [
+                  Object {
+                    "descriptors": Object {
+                      "snippet": "this is a sample snippet",
+                    },
+                    "identifiers": Object {
+                      "conciseName": "body img",
+                      "css-selector": "body img",
+                      "identifier": "body img",
+                    },
+                    "resolution": Object {
+                      "how-to-fix-web": Object {
+                        "all": Array [],
+                        "any": Array [
+                          "Element does not have an alt attribute",
+                          "aria-label attribute does not exist or is empty",
+                          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                        ],
+                        "none": Array [],
+                      },
+                      "howToFixSummary": "sample how to fix summary",
+                    },
+                    "ruleId": "image-alt",
+                    "status": "fail",
+                    "uid": "some-guid-here",
+                  },
+                ],
+                "url": "sample-url",
+              },
+            ],
+            "inapplicable": Array [],
+            "pass": Array [],
+            "unknown": Array [],
+          },
+          "visualHelperEnabled": true,
+        }
+      }
       deps={Object {}}
       description="test description"
       environmentInfo={
@@ -215,53 +274,6 @@ exports[`ReportBody renders 1`] = `
       getGuidanceTagsFromGuidanceLinks={[Function]}
       pageTitle="page-title"
       pageUrl="url:target-page"
-      ruleResultsByStatus={
-        Object {
-          "fail": Array [
-            Object {
-              "description": "sample-description",
-              "guidance": Array [
-                Object {
-                  "href": "sample-guidance-href",
-                  "text": "sample-guidance-text",
-                },
-              ],
-              "id": "some-rule",
-              "nodes": Array [
-                Object {
-                  "descriptors": Object {
-                    "snippet": "this is a sample snippet",
-                  },
-                  "identifiers": Object {
-                    "conciseName": "body img",
-                    "css-selector": "body img",
-                    "identifier": "body img",
-                  },
-                  "resolution": Object {
-                    "how-to-fix-web": Object {
-                      "all": Array [],
-                      "any": Array [
-                        "Element does not have an alt attribute",
-                        "aria-label attribute does not exist or is empty",
-                        "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                      ],
-                      "none": Array [],
-                    },
-                    "howToFixSummary": "sample how to fix summary",
-                  },
-                  "ruleId": "image-alt",
-                  "status": "fail",
-                  "uid": "some-guid-here",
-                },
-              ],
-              "url": "sample-url",
-            },
-          ],
-          "inapplicable": Array [],
-          "pass": Array [],
-          "unknown": Array [],
-        }
-      }
       scanDate={2019-05-29T19:12:16.804Z}
       scanResult={
         Object {
@@ -284,6 +296,57 @@ exports[`ReportBody renders 1`] = `
       userConfigurationStoreData={null}
     />
     <result-section
+      cardsViewData={
+        Object {
+          "allCardsCollapsed": true,
+          "cards": Object {
+            "fail": Array [
+              Object {
+                "description": "sample-description",
+                "guidance": Array [
+                  Object {
+                    "href": "sample-guidance-href",
+                    "text": "sample-guidance-text",
+                  },
+                ],
+                "id": "some-rule",
+                "nodes": Array [
+                  Object {
+                    "descriptors": Object {
+                      "snippet": "this is a sample snippet",
+                    },
+                    "identifiers": Object {
+                      "conciseName": "body img",
+                      "css-selector": "body img",
+                      "identifier": "body img",
+                    },
+                    "resolution": Object {
+                      "how-to-fix-web": Object {
+                        "all": Array [],
+                        "any": Array [
+                          "Element does not have an alt attribute",
+                          "aria-label attribute does not exist or is empty",
+                          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                        ],
+                        "none": Array [],
+                      },
+                      "howToFixSummary": "sample how to fix summary",
+                    },
+                    "ruleId": "image-alt",
+                    "status": "fail",
+                    "uid": "some-guid-here",
+                  },
+                ],
+                "url": "sample-url",
+              },
+            ],
+            "inapplicable": Array [],
+            "pass": Array [],
+            "unknown": Array [],
+          },
+          "visualHelperEnabled": true,
+        }
+      }
       deps={Object {}}
       description="test description"
       environmentInfo={
@@ -308,53 +371,6 @@ exports[`ReportBody renders 1`] = `
       getGuidanceTagsFromGuidanceLinks={[Function]}
       pageTitle="page-title"
       pageUrl="url:target-page"
-      ruleResultsByStatus={
-        Object {
-          "fail": Array [
-            Object {
-              "description": "sample-description",
-              "guidance": Array [
-                Object {
-                  "href": "sample-guidance-href",
-                  "text": "sample-guidance-text",
-                },
-              ],
-              "id": "some-rule",
-              "nodes": Array [
-                Object {
-                  "descriptors": Object {
-                    "snippet": "this is a sample snippet",
-                  },
-                  "identifiers": Object {
-                    "conciseName": "body img",
-                    "css-selector": "body img",
-                    "identifier": "body img",
-                  },
-                  "resolution": Object {
-                    "how-to-fix-web": Object {
-                      "all": Array [],
-                      "any": Array [
-                        "Element does not have an alt attribute",
-                        "aria-label attribute does not exist or is empty",
-                        "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                      ],
-                      "none": Array [],
-                    },
-                    "howToFixSummary": "sample how to fix summary",
-                  },
-                  "ruleId": "image-alt",
-                  "status": "fail",
-                  "uid": "some-guid-here",
-                },
-              ],
-              "url": "sample-url",
-            },
-          ],
-          "inapplicable": Array [],
-          "pass": Array [],
-          "unknown": Array [],
-        }
-      }
       scanDate={2019-05-29T19:12:16.804Z}
       scanResult={
         Object {
@@ -377,6 +393,57 @@ exports[`ReportBody renders 1`] = `
       userConfigurationStoreData={null}
     >
       <failed-instances-section
+        cardsViewData={
+          Object {
+            "allCardsCollapsed": true,
+            "cards": Object {
+              "fail": Array [
+                Object {
+                  "description": "sample-description",
+                  "guidance": Array [
+                    Object {
+                      "href": "sample-guidance-href",
+                      "text": "sample-guidance-text",
+                    },
+                  ],
+                  "id": "some-rule",
+                  "nodes": Array [
+                    Object {
+                      "descriptors": Object {
+                        "snippet": "this is a sample snippet",
+                      },
+                      "identifiers": Object {
+                        "conciseName": "body img",
+                        "css-selector": "body img",
+                        "identifier": "body img",
+                      },
+                      "resolution": Object {
+                        "how-to-fix-web": Object {
+                          "all": Array [],
+                          "any": Array [
+                            "Element does not have an alt attribute",
+                            "aria-label attribute does not exist or is empty",
+                            "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                          ],
+                          "none": Array [],
+                        },
+                        "howToFixSummary": "sample how to fix summary",
+                      },
+                      "ruleId": "image-alt",
+                      "status": "fail",
+                      "uid": "some-guid-here",
+                    },
+                  ],
+                  "url": "sample-url",
+                },
+              ],
+              "inapplicable": Array [],
+              "pass": Array [],
+              "unknown": Array [],
+            },
+            "visualHelperEnabled": true,
+          }
+        }
         deps={Object {}}
         description="test description"
         environmentInfo={
@@ -401,53 +468,6 @@ exports[`ReportBody renders 1`] = `
         getGuidanceTagsFromGuidanceLinks={[Function]}
         pageTitle="page-title"
         pageUrl="url:target-page"
-        ruleResultsByStatus={
-          Object {
-            "fail": Array [
-              Object {
-                "description": "sample-description",
-                "guidance": Array [
-                  Object {
-                    "href": "sample-guidance-href",
-                    "text": "sample-guidance-text",
-                  },
-                ],
-                "id": "some-rule",
-                "nodes": Array [
-                  Object {
-                    "descriptors": Object {
-                      "snippet": "this is a sample snippet",
-                    },
-                    "identifiers": Object {
-                      "conciseName": "body img",
-                      "css-selector": "body img",
-                      "identifier": "body img",
-                    },
-                    "resolution": Object {
-                      "how-to-fix-web": Object {
-                        "all": Array [],
-                        "any": Array [
-                          "Element does not have an alt attribute",
-                          "aria-label attribute does not exist or is empty",
-                          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                        ],
-                        "none": Array [],
-                      },
-                      "howToFixSummary": "sample how to fix summary",
-                    },
-                    "ruleId": "image-alt",
-                    "status": "fail",
-                    "uid": "some-guid-here",
-                  },
-                ],
-                "url": "sample-url",
-              },
-            ],
-            "inapplicable": Array [],
-            "pass": Array [],
-            "unknown": Array [],
-          }
-        }
         scanDate={2019-05-29T19:12:16.804Z}
         scanResult={
           Object {
@@ -470,6 +490,57 @@ exports[`ReportBody renders 1`] = `
         userConfigurationStoreData={null}
       />
       <passed-checks-section
+        cardsViewData={
+          Object {
+            "allCardsCollapsed": true,
+            "cards": Object {
+              "fail": Array [
+                Object {
+                  "description": "sample-description",
+                  "guidance": Array [
+                    Object {
+                      "href": "sample-guidance-href",
+                      "text": "sample-guidance-text",
+                    },
+                  ],
+                  "id": "some-rule",
+                  "nodes": Array [
+                    Object {
+                      "descriptors": Object {
+                        "snippet": "this is a sample snippet",
+                      },
+                      "identifiers": Object {
+                        "conciseName": "body img",
+                        "css-selector": "body img",
+                        "identifier": "body img",
+                      },
+                      "resolution": Object {
+                        "how-to-fix-web": Object {
+                          "all": Array [],
+                          "any": Array [
+                            "Element does not have an alt attribute",
+                            "aria-label attribute does not exist or is empty",
+                            "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                          ],
+                          "none": Array [],
+                        },
+                        "howToFixSummary": "sample how to fix summary",
+                      },
+                      "ruleId": "image-alt",
+                      "status": "fail",
+                      "uid": "some-guid-here",
+                    },
+                  ],
+                  "url": "sample-url",
+                },
+              ],
+              "inapplicable": Array [],
+              "pass": Array [],
+              "unknown": Array [],
+            },
+            "visualHelperEnabled": true,
+          }
+        }
         deps={Object {}}
         description="test description"
         environmentInfo={
@@ -494,53 +565,6 @@ exports[`ReportBody renders 1`] = `
         getGuidanceTagsFromGuidanceLinks={[Function]}
         pageTitle="page-title"
         pageUrl="url:target-page"
-        ruleResultsByStatus={
-          Object {
-            "fail": Array [
-              Object {
-                "description": "sample-description",
-                "guidance": Array [
-                  Object {
-                    "href": "sample-guidance-href",
-                    "text": "sample-guidance-text",
-                  },
-                ],
-                "id": "some-rule",
-                "nodes": Array [
-                  Object {
-                    "descriptors": Object {
-                      "snippet": "this is a sample snippet",
-                    },
-                    "identifiers": Object {
-                      "conciseName": "body img",
-                      "css-selector": "body img",
-                      "identifier": "body img",
-                    },
-                    "resolution": Object {
-                      "how-to-fix-web": Object {
-                        "all": Array [],
-                        "any": Array [
-                          "Element does not have an alt attribute",
-                          "aria-label attribute does not exist or is empty",
-                          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                        ],
-                        "none": Array [],
-                      },
-                      "howToFixSummary": "sample how to fix summary",
-                    },
-                    "ruleId": "image-alt",
-                    "status": "fail",
-                    "uid": "some-guid-here",
-                  },
-                ],
-                "url": "sample-url",
-              },
-            ],
-            "inapplicable": Array [],
-            "pass": Array [],
-            "unknown": Array [],
-          }
-        }
         scanDate={2019-05-29T19:12:16.804Z}
         scanResult={
           Object {
@@ -563,6 +587,57 @@ exports[`ReportBody renders 1`] = `
         userConfigurationStoreData={null}
       />
       <not-applicable-checks-section
+        cardsViewData={
+          Object {
+            "allCardsCollapsed": true,
+            "cards": Object {
+              "fail": Array [
+                Object {
+                  "description": "sample-description",
+                  "guidance": Array [
+                    Object {
+                      "href": "sample-guidance-href",
+                      "text": "sample-guidance-text",
+                    },
+                  ],
+                  "id": "some-rule",
+                  "nodes": Array [
+                    Object {
+                      "descriptors": Object {
+                        "snippet": "this is a sample snippet",
+                      },
+                      "identifiers": Object {
+                        "conciseName": "body img",
+                        "css-selector": "body img",
+                        "identifier": "body img",
+                      },
+                      "resolution": Object {
+                        "how-to-fix-web": Object {
+                          "all": Array [],
+                          "any": Array [
+                            "Element does not have an alt attribute",
+                            "aria-label attribute does not exist or is empty",
+                            "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                          ],
+                          "none": Array [],
+                        },
+                        "howToFixSummary": "sample how to fix summary",
+                      },
+                      "ruleId": "image-alt",
+                      "status": "fail",
+                      "uid": "some-guid-here",
+                    },
+                  ],
+                  "url": "sample-url",
+                },
+              ],
+              "inapplicable": Array [],
+              "pass": Array [],
+              "unknown": Array [],
+            },
+            "visualHelperEnabled": true,
+          }
+        }
         deps={Object {}}
         description="test description"
         environmentInfo={
@@ -587,53 +662,6 @@ exports[`ReportBody renders 1`] = `
         getGuidanceTagsFromGuidanceLinks={[Function]}
         pageTitle="page-title"
         pageUrl="url:target-page"
-        ruleResultsByStatus={
-          Object {
-            "fail": Array [
-              Object {
-                "description": "sample-description",
-                "guidance": Array [
-                  Object {
-                    "href": "sample-guidance-href",
-                    "text": "sample-guidance-text",
-                  },
-                ],
-                "id": "some-rule",
-                "nodes": Array [
-                  Object {
-                    "descriptors": Object {
-                      "snippet": "this is a sample snippet",
-                    },
-                    "identifiers": Object {
-                      "conciseName": "body img",
-                      "css-selector": "body img",
-                      "identifier": "body img",
-                    },
-                    "resolution": Object {
-                      "how-to-fix-web": Object {
-                        "all": Array [],
-                        "any": Array [
-                          "Element does not have an alt attribute",
-                          "aria-label attribute does not exist or is empty",
-                          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                        ],
-                        "none": Array [],
-                      },
-                      "howToFixSummary": "sample how to fix summary",
-                    },
-                    "ruleId": "image-alt",
-                    "status": "fail",
-                    "uid": "some-guid-here",
-                  },
-                ],
-                "url": "sample-url",
-              },
-            ],
-            "inapplicable": Array [],
-            "pass": Array [],
-            "unknown": Array [],
-          }
-        }
         scanDate={2019-05-29T19:12:16.804Z}
         scanResult={
           Object {
@@ -657,98 +685,104 @@ exports[`ReportBody renders 1`] = `
       />
     </result-section>
   </content-container>
-  <footer-section
-    deps={Object {}}
-    description="test description"
-    environmentInfo={
-      Object {
-        "axeCoreVersion": "axe-core-version",
-        "browserSpec": "browser-spec",
-        "extensionVersion": "extension-version",
-      }
-    }
-    fixInstructionProcessor={
-      proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "backgroundColorText": "background color: ",
-        "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
-        "colorGroupName": "color",
-        "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
-        "foregroundColorText": "foreground color: ",
-        "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
-      }
-    }
-    getCollapsibleScript={[Function]}
-    getGuidanceTagsFromGuidanceLinks={[Function]}
-    pageTitle="page-title"
-    pageUrl="url:target-page"
-    ruleResultsByStatus={
-      Object {
-        "fail": Array [
-          Object {
-            "description": "sample-description",
-            "guidance": Array [
+  <footer-section>
+    <footer-text
+      cardsViewData={
+        Object {
+          "allCardsCollapsed": true,
+          "cards": Object {
+            "fail": Array [
               Object {
-                "href": "sample-guidance-href",
-                "text": "sample-guidance-text",
-              },
-            ],
-            "id": "some-rule",
-            "nodes": Array [
-              Object {
-                "descriptors": Object {
-                  "snippet": "this is a sample snippet",
-                },
-                "identifiers": Object {
-                  "conciseName": "body img",
-                  "css-selector": "body img",
-                  "identifier": "body img",
-                },
-                "resolution": Object {
-                  "how-to-fix-web": Object {
-                    "all": Array [],
-                    "any": Array [
-                      "Element does not have an alt attribute",
-                      "aria-label attribute does not exist or is empty",
-                      "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                    ],
-                    "none": Array [],
+                "description": "sample-description",
+                "guidance": Array [
+                  Object {
+                    "href": "sample-guidance-href",
+                    "text": "sample-guidance-text",
                   },
-                  "howToFixSummary": "sample how to fix summary",
-                },
-                "ruleId": "image-alt",
-                "status": "fail",
-                "uid": "some-guid-here",
+                ],
+                "id": "some-rule",
+                "nodes": Array [
+                  Object {
+                    "descriptors": Object {
+                      "snippet": "this is a sample snippet",
+                    },
+                    "identifiers": Object {
+                      "conciseName": "body img",
+                      "css-selector": "body img",
+                      "identifier": "body img",
+                    },
+                    "resolution": Object {
+                      "how-to-fix-web": Object {
+                        "all": Array [],
+                        "any": Array [
+                          "Element does not have an alt attribute",
+                          "aria-label attribute does not exist or is empty",
+                          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                        ],
+                        "none": Array [],
+                      },
+                      "howToFixSummary": "sample how to fix summary",
+                    },
+                    "ruleId": "image-alt",
+                    "status": "fail",
+                    "uid": "some-guid-here",
+                  },
+                ],
+                "url": "sample-url",
               },
             ],
-            "url": "sample-url",
+            "inapplicable": Array [],
+            "pass": Array [],
+            "unknown": Array [],
           },
-        ],
-        "inapplicable": Array [],
-        "pass": Array [],
-        "unknown": Array [],
+          "visualHelperEnabled": true,
+        }
       }
-    }
-    scanDate={2019-05-29T19:12:16.804Z}
-    scanResult={
-      Object {
-        "inapplicable": Array [],
-        "incomplete": Array [],
-        "passes": Array [],
-        "targetPageTitle": "page-title",
-        "targetPageUrl": "url:target-page",
-        "timestamp": "today",
-        "violations": Array [],
+      deps={Object {}}
+      description="test description"
+      environmentInfo={
+        Object {
+          "axeCoreVersion": "axe-core-version",
+          "browserSpec": "browser-spec",
+          "extensionVersion": "extension-version",
+        }
       }
-    }
-    shouldAlertFailuresCount={false}
-    targetAppInfo={
-      Object {
-        "name": "app",
+      fixInstructionProcessor={
+        proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "backgroundColorText": "background color: ",
+          "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+          "colorGroupName": "color",
+          "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
+          "foregroundColorText": "foreground color: ",
+          "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+        }
       }
-    }
-    toUtcString={[Function]}
-    userConfigurationStoreData={null}
-  />
+      getCollapsibleScript={[Function]}
+      getGuidanceTagsFromGuidanceLinks={[Function]}
+      pageTitle="page-title"
+      pageUrl="url:target-page"
+      scanDate={2019-05-29T19:12:16.804Z}
+      scanResult={
+        Object {
+          "inapplicable": Array [],
+          "incomplete": Array [],
+          "passes": Array [],
+          "targetPageTitle": "page-title",
+          "targetPageUrl": "url:target-page",
+          "timestamp": "today",
+          "violations": Array [],
+        }
+      }
+      shouldAlertFailuresCount={false}
+      targetAppInfo={
+        Object {
+          "name": "app",
+        }
+      }
+      toUtcString={[Function]}
+      userConfigurationStoreData={null}
+    />
+  </footer-section>
 </body-section>
 `;

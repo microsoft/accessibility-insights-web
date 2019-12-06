@@ -9,7 +9,7 @@ import { Logger } from 'common/logging/logger';
 import { SCAN_COMPLETED, SCAN_FAILED, SCAN_STARTED } from 'electron/common/electron-telemetry-events';
 import { PortPayload } from 'electron/flux/action/device-action-payloads';
 import { ScanActions } from 'electron/flux/action/scan-actions';
-import { FetchScanResultsType } from 'electron/platform/android/fetch-scan-results';
+import { ScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { ScanController } from 'electron/platform/android/scan-controller';
 import { ScanResults } from 'electron/platform/android/scan-results';
 import { UnifiedScanCompletedPayloadBuilder } from 'electron/platform/android/unified-result-builder';
@@ -33,7 +33,7 @@ describe('ScanController', () => {
     };
 
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
-    let fetchScanResultsMock: IMock<FetchScanResultsType>;
+    let fetchScanResultsMock: IMock<ScanResultsFetcher>;
     let getCurrentDateMock: IMock<() => Date>;
     let loggerMock: IMock<Logger>;
 
@@ -49,7 +49,7 @@ describe('ScanController', () => {
 
     beforeEach(() => {
         telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();
-        fetchScanResultsMock = Mock.ofType<FetchScanResultsType>();
+        fetchScanResultsMock = Mock.ofType<ScanResultsFetcher>();
         scanActionsMock = Mock.ofType<ScanActions>();
 
         scanStartedMock = Mock.ofType<Action<PortPayload>>();

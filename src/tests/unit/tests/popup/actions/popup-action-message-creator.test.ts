@@ -8,19 +8,19 @@ import {
     BaseTelemetryData,
     DetailsViewOpenTelemetryData,
     LAUNCH_PANEL_OPEN,
-    POPUP_INITIALIZED,
     TelemetryData,
     TelemetryEventSource,
     TUTORIAL_OPEN,
-} from '../../../../../common/extension-telemetry-events';
-import { Messages } from '../../../../../common/messages';
-import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
-import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
-import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { WindowUtils } from '../../../../../common/window-utils';
-import { PopupActionMessageCreator } from '../../../../../popup/actions/popup-action-message-creator';
-import { LaunchPanelType } from '../../../../../popup/components/popup-view';
-import { EventStubFactory } from '../../../common/event-stub-factory';
+} from 'common/extension-telemetry-events';
+import { Tab } from 'common/itab';
+import { Messages } from 'common/messages';
+import { TelemetryDataFactory } from 'common/telemetry-data-factory';
+import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { VisualizationType } from 'common/types/visualization-type';
+import { WindowUtils } from 'common/window-utils';
+import { PopupActionMessageCreator } from 'popup/actions/popup-action-message-creator';
+import { LaunchPanelType } from 'popup/components/popup-view';
+import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 
 describe('PopupActionMessageCreatorTest', () => {
     const eventStubFactory = new EventStubFactory();
@@ -47,14 +47,23 @@ describe('PopupActionMessageCreatorTest', () => {
     });
 
     it('dispatches for popupInitialized', () => {
+        const stubTab: Tab = { url: 'stub-url' };
         const telemetry: BaseTelemetryData = {
             source: TelemetryEventSource.LaunchPad,
             triggeredBy: 'N/A',
         };
 
-        testSubject.popupInitialized();
+        const expectedMessage = {
+            messageType: Messages.Popup.Initialized,
+            payload: {
+                telemetry,
+                tab: stubTab,
+            },
+        };
 
-        actionMessageDispatcherMock.verify(dispatcher => dispatcher.sendTelemetry(POPUP_INITIALIZED, It.isValue(telemetry)), Times.once());
+        testSubject.popupInitialized(stubTab);
+
+        actionMessageDispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
     });
 
     it('dispatches for openLaunchPad', () => {

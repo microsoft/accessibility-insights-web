@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
+import { forOwn, isEmpty } from 'lodash';
 
 import { ManualTestStatus } from '../common/types/manual-test-status';
 import {
@@ -36,11 +36,14 @@ export class AssessmentDataConverter {
             instancesMap = previouslyGeneratedInstances;
         }
 
-        _.forOwn(selectorMap, elementAxeResult => {
+        forOwn(selectorMap, elementAxeResult => {
             const rule = Object.keys(elementAxeResult.ruleResults).pop();
             if (rule) {
                 const ruleResult = elementAxeResult.ruleResults[rule];
-                const identifier = generateInstanceIdentifier({ target: elementAxeResult.target, html: ruleResult.html });
+                const identifier = generateInstanceIdentifier({
+                    target: elementAxeResult.target,
+                    html: ruleResult.html,
+                });
                 const matchingInstance = instancesMap[identifier];
                 instancesMap[identifier] = this.getInitialAssessmentInstance(
                     matchingInstance,
@@ -70,7 +73,12 @@ export class AssessmentDataConverter {
         events.forEach(event => {
             const identifier = generateInstanceIdentifier(event);
             const matchingInstance = instancesMap[identifier];
-            instancesMap[identifier] = this.getInitialAssessmentFromEvent(matchingInstance, event, stepName, event.target.join(';'));
+            instancesMap[identifier] = this.getInitialAssessmentFromEvent(
+                matchingInstance,
+                event,
+                stepName,
+                event.target.join(';'),
+            );
         });
 
         return instancesMap;
@@ -102,13 +110,17 @@ export class AssessmentDataConverter {
             propertyBag = currentInstance.propertyBag;
         }
 
-        testStepResults[testStep] = this.getTestStepResults(ruleResult, elementAxeResult, getInstanceStatus);
+        testStepResults[testStep] = this.getTestStepResults(
+            ruleResult,
+            elementAxeResult,
+            getInstanceStatus,
+        );
 
         let actualPropertyBag = {
             ...this.getPropertyBagFromAnyChecks(ruleResult),
             ...propertyBag,
         };
-        actualPropertyBag = _.isEmpty(actualPropertyBag) ? null : actualPropertyBag;
+        actualPropertyBag = isEmpty(actualPropertyBag) ? null : actualPropertyBag;
 
         return {
             target: target,
@@ -176,14 +188,22 @@ export class AssessmentDataConverter {
     }
 
     private getPropertyBagFrom(ruleResult: DecoratedAxeNodeResult, checkName: ChecksType): any {
-        if (ruleResult[checkName] && !_.isEmpty(ruleResult[checkName]) && ruleResult[checkName][0].data) {
+        if (
+            ruleResult[checkName] &&
+            !isEmpty(ruleResult[checkName]) &&
+            ruleResult[checkName][0].data
+        ) {
             return ruleResult[checkName][0].data;
         }
 
         return null;
     }
 
-    public generateFailureInstance(description: string, path: string, snippet: string): UserCapturedInstance {
+    public generateFailureInstance(
+        description: string,
+        path: string,
+        snippet: string,
+    ): UserCapturedInstance {
         const instance: UserCapturedInstance = {
             id: this.generateUID(),
             description,

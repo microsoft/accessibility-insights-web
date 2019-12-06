@@ -13,7 +13,7 @@ describe('Target Page visualization boxes', () => {
     let popupPage: PopupPage;
 
     beforeEach(async () => {
-        browser = await launchBrowser({ suppressFirstTimeDialog: true });
+        browser = await launchBrowser({ suppressFirstTimeDialog: true, addLocalhostToPermissions: true });
         targetPage = await browser.newTargetPage();
         popupPage = await browser.newPopupPage(targetPage);
         await popupPage.gotoAdhocPanel();
@@ -31,10 +31,7 @@ describe('Target Page visualization boxes', () => {
     it.each(adhocTools)('for adhoc tool "%s" should pass accessibility validation', async adhocTool => {
         await popupPage.enableToggleByAriaLabel(adhocTool);
 
-        const shadowRoot = await targetPage.getShadowRoot();
-        await targetPage.waitForDescendentSelector(shadowRoot, TargetPageInjectedComponentSelectors.insightsVisualizationBox, {
-            visible: true,
-        });
+        await targetPage.waitForSelectorInShadowRoot(TargetPageInjectedComponentSelectors.insightsVisualizationBox, { visible: true });
 
         const results = await scanForAccessibilityIssues(targetPage, TargetPageInjectedComponentSelectors.insightsRootContainer);
         expect(results).toHaveLength(0);

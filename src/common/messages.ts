@@ -30,6 +30,7 @@ export interface VisualizationCommonMessages {
     Toggle: string;
     ScanCompleted: string;
     ScrollRequested: string;
+    RescanVisualization: string;
 }
 
 export interface DevToolsMessages {
@@ -57,6 +58,7 @@ export class Messages {
             Toggle: `${messagePrefix}/visualization/toggle`,
             ScanCompleted: `${messagePrefix}/visualization/scanCompleted`,
             ScrollRequested: `${messagePrefix}/visualization/scrollRequested`,
+            RescanVisualization: `${messagePrefix}/visualization/rescanVisualization`,
         },
         TabStops: {
             TabbedElementAdded: `${messagePrefix}/visualization/tab-stops/element-added`,
@@ -98,12 +100,16 @@ export class Messages {
         SaveIssueFilingSettings: `${messagePrefix}/userConfig/saveIssueFilingSettings`,
     };
 
+    public static readonly Popup = {
+        Initialized: `${messagePrefix}/popup/initialized`,
+    };
+
     public static readonly Tab = {
-        Update: `${messagePrefix}/tab/update`,
+        NewTabCreated: `${messagePrefix}/tab/newTabCreated`,
         Remove: `${messagePrefix}/tab/remove`,
-        Change: `${messagePrefix}/targetTab/changed`,
-        Switch: `${messagePrefix}/targetTab/switch`,
-        VisibilityChange: `${messagePrefix}/targetTab/visibilitychange`,
+        ExistingTabUpdated: `${messagePrefix}/tab/existingTabUpdated`,
+        Switch: `${messagePrefix}/tab/switch`,
+        VisibilityChange: `${messagePrefix}/tab/visibilitychange`,
     };
 
     public static readonly Assessment = {
@@ -130,7 +136,6 @@ export class Messages {
         EditFailureInstance: `${messagePrefix}/assessment/editFailureInstance`,
         PassUnmarkedInstances: `${messagePrefix}/assessment/passUnmarkedInstances`,
         ChangeVisualizationStateForAll: `${messagePrefix}/assessment/changeVisualizationStateForAll`,
-        UpdateInstanceVisibility: `${messagePrefix}/assessment/updateInstanceVisibility`,
         ScanUpdate: `${messagePrefix}/assessment/scanUpdate`,
         ContinuePreviousAssessment: `${messagePrefix}/assessment/continuePreviousAssessment`,
     };
@@ -192,5 +197,8 @@ export class Messages {
     public static readonly CardSelection = {
         CardSelectionToggled: `${messagePrefix}/cardSelection/cardSelectionToggled`,
         RuleExpansionToggled: `${messagePrefix}/cardSelection/ruleExpansionToggled`,
+        CollapseAllRules: `${messagePrefix}/cardSelection/collapseAllRules`,
+        ExpandAllRules: `${messagePrefix}/cardSelection/expandAllRules`,
+        ToggleVisualHelper: `${messagePrefix}/cardSelection/toggleVisualHelper`,
     };
 }
