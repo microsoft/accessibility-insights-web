@@ -18,6 +18,7 @@ export class AutomatedChecksViewController extends ViewController {
     }
 
     public async toggleRuleGroupAtPosition(position: number): Promise<void> {
+        await this.waitForSelectorVisible(AutomatedChecksViewSelectors.nthRuleGroupCollapseExpandButton(position));
         await this.client.click(AutomatedChecksViewSelectors.nthRuleGroupCollapseExpandButton(position));
     }
 
