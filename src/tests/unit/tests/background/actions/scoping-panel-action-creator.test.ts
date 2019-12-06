@@ -7,12 +7,12 @@ import { DetailsViewController } from 'background/details-view-controller';
 import { Interpreter } from 'background/interpreter';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { SCOPING_CLOSE, SCOPING_OPEN } from 'common/extension-telemetry-events';
-import { Messages } from 'common/messages';
-import { IMock, Mock, MockBehavior, Times } from 'typemoq';
-import { createActionMock, createInterpreterMock } from '../global-action-creators/action-creator-test-helpers';
 import { Action } from 'common/flux/action';
 import { Logger } from 'common/logging/logger';
+import { Messages } from 'common/messages';
 import { tick } from 'tests/unit/common/tick';
+import { IMock, Mock, MockBehavior, Times } from 'typemoq';
+import { createActionMock, createInterpreterMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('ScopingPanelActionCreatorTest', () => {
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
