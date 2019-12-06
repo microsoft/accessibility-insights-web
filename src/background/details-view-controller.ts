@@ -18,22 +18,6 @@ export class DetailsViewController {
         this.detailsViewRemovedHandler = handler;
     }
 
-    public showDetailsView(targetTabId: number): void {
-        const detailsViewTabId = this.tabIdToDetailsViewMap[targetTabId];
-
-        if (detailsViewTabId != null) {
-            this.browserAdapter.switchToTab(detailsViewTabId);
-            return;
-        }
-
-        this.browserAdapter.createTabInNewWindow(
-            this.getDetailsUrl(targetTabId),
-            (tab: chrome.tabs.Tab) => {
-                this.tabIdToDetailsViewMap[targetTabId] = tab.id;
-            },
-        );
-    }
-
     public showDetailsViewP(targetTabId: number): Promise<void> {
         const detailsViewTabId = this.tabIdToDetailsViewMap[targetTabId];
 
