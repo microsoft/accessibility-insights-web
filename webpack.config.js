@@ -8,25 +8,6 @@ const TerserWebpackPlugin = require('terser-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const getCSSModulesLoadersConfig = () => {
-    return {
-        test: /\.scss$/,
-        use: [
-            MiniCssExtractPlugin.loader,
-            {
-                loader: 'css-loader',
-                options: {
-                    modules: {
-                        localIdentName: '[local][hash:base64:5]',
-                    },
-                    localsConvention: 'camelCaseOnly',
-                },
-            },
-            'sass-loader',
-        ],
-    };
-};
-
 const commonPlugins = [
     new webpack.optimize.LimitChunkCountPlugin({
         maxChunks: 1, // Must be greater than or equal to one
@@ -77,6 +58,22 @@ const commonConfig = {
                 ],
                 exclude: ['/node_modules/'],
             },
+            {
+                test: /\.scss$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: {
+                                localIdentName: '[local]--[hash:base64:5]',
+                            },
+                            localsConvention: 'camelCaseOnly',
+                        },
+                    },
+                    'sass-loader',
+                ],
+            },
         ],
     },
     resolve: {
@@ -94,17 +91,8 @@ const commonConfig = {
     },
 };
 
-const devModules = {
-    rules: [...commonConfig.module.rules, getCSSModulesLoadersConfig()],
-};
-
-const prodModules = {
-    rules: [...commonConfig.module.rules, getCSSModulesLoadersConfig()],
-};
-
 const electronConfig = {
     ...commonConfig,
-    module: devModules,
     entry: electronEntryFiles,
     name: 'electron',
     mode: 'development',
@@ -126,7 +114,6 @@ const electronConfig = {
 
 const devConfig = {
     ...commonConfig,
-    module: devModules,
     name: 'dev',
     mode: 'development',
     devtool: 'eval-source-map',
@@ -141,7 +128,6 @@ const devConfig = {
 
 const prodConfig = {
     ...commonConfig,
-    module: prodModules,
     name: 'prod',
     mode: 'production',
     devtool: false,
@@ -173,9 +159,7 @@ const packageReportConfig = {
     entry: {
         report: [path.resolve(__dirname, 'src/reports/package/reporter-factory.ts')],
     },
-    module: {
-        rules: [...commonConfig.module.rules, getCSSModulesLoadersConfig(false)],
-    },
+    module: commonConfig.module,
     externals: [nodeExternals()],
     plugins: commonPlugins,
     resolve: commonConfig.resolve,
@@ -192,5 +176,5 @@ const packageReportConfig = {
     target: 'node',
 };
 
-// Use "webpack --config-name dev", "webpack --config-name prod" or "webpack --config-name electron" to use just one or the other
+// For just one config, use "webpack --config-name dev", "webpack --config-name prod", etc
 module.exports = [devConfig, prodConfig, electronConfig, packageReportConfig];
