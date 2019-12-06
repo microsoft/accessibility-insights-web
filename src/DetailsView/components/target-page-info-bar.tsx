@@ -8,7 +8,7 @@ export type TargetPageInfoBarProps = {
     isTargetPageHidden: boolean;
 };
 
-export const TargetPageInfoBar = NamedFC<TargetPageInfoBarProps>('TabInfo', props => {
+export const TargetPageInfoBar = NamedFC<TargetPageInfoBarProps>('TargetPageInfoBar', props => {
     if (!props.isTargetPageHidden) {
         return null;
     }
