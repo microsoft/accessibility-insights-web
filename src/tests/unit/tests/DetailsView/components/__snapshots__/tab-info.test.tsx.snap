@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`TabInfo internal edition render with warning messagebar 1`] = `
-"<div>
-  <StyledMessageBarBase messageBarType={5} className=\\"waring-message-bar\\">
-    The Target page is in a hidden state. For better performance, use the Target page link above to make the page visible.
-  </StyledMessageBarBase>
-</div>"
-`;

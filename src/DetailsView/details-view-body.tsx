@@ -23,7 +23,7 @@ import { DetailsRightPanelConfiguration, DetailsViewContentDeps } from './compon
 import { DetailsViewSwitcherNavConfiguration } from './components/details-view-switcher-nav';
 import { IssuesTableHandler } from './components/issues-table-handler';
 import { DetailsViewLeftNav, DetailsViewLeftNavDeps } from './components/left-nav/details-view-left-nav';
-import { TabInfo } from './components/tab-info';
+import { TargetPageInfoBar } from './components/target-page-info-bar';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 
@@ -61,7 +61,7 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
                 <div className="details-view-body-nav-content-layout">
                     {this.renderNavBar()}
                     <div className="details-view-body-content-pane">
-                        {this.getTabInfo(this.props.tabStoreData.isClosed)}
+                        {this.getTargetPageInfoBar()}
                         <div className="view" role="main">
                             <this.props.rightPanelConfiguration.RightPanel {...this.props} />
                         </div>
@@ -91,20 +91,13 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
         return <DetailsViewLeftNav {...this.props} />;
     }
 
-    private getTabInfo(tabClosed: boolean): JSX.Element {
-        if (tabClosed) {
+    private getTargetPageInfoBar(): JSX.Element {
+        const { tabStoreData } = this.props;
+
+        if (tabStoreData.isClosed) {
             return null;
         }
 
-        return (
-            <TabInfo
-                deps={this.props.deps}
-                isTargetPageHidden={this.props.tabStoreData.isPageHidden}
-                url={this.props.tabStoreData.url}
-                title={this.props.tabStoreData.title}
-                selectedPivot={this.props.visualizationStoreData.selectedDetailsViewPivot}
-                dropdownClickHandler={this.props.dropdownClickHandler}
-            />
-        );
+        return <TargetPageInfoBar isTargetPageHidden={tabStoreData.isPageHidden} />;
     }
 }
