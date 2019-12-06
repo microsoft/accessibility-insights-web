@@ -4,11 +4,11 @@ import { NamedFC } from 'common/react/named-fc';
 import { MessageBar, MessageBarType } from 'office-ui-fabric-react/lib/MessageBar';
 import * as React from 'react';
 
-export type TargetPageInfoBarProps = {
+export type TargetPageHiddenBarProps = {
     isTargetPageHidden: boolean;
 };
 
-export const TargetPageInfoBar = NamedFC<TargetPageInfoBarProps>('TargetPageInfoBar', props => {
+export const TargetPageHiddenBar = NamedFC<TargetPageHiddenBarProps>('TargetPageHiddenBar', props => {
     if (!props.isTargetPageHidden) {
         return null;
     }

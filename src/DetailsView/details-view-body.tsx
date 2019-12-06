@@ -23,7 +23,7 @@ import { DetailsRightPanelConfiguration, DetailsViewContentDeps } from './compon
 import { DetailsViewSwitcherNavConfiguration } from './components/details-view-switcher-nav';
 import { IssuesTableHandler } from './components/issues-table-handler';
 import { DetailsViewLeftNav, DetailsViewLeftNavDeps } from './components/left-nav/details-view-left-nav';
-import { TargetPageInfoBar } from './components/target-page-info-bar';
+import { TargetPageHiddenBar } from './components/target-page-hidden-bar';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 
@@ -61,7 +61,7 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
                 <div className="details-view-body-nav-content-layout">
                     {this.renderNavBar()}
                     <div className="details-view-body-content-pane">
-                        {this.getTargetPageInfoBar()}
+                        {this.getTargetPageHiddenBar()}
                         <div className="view" role="main">
                             <this.props.rightPanelConfiguration.RightPanel {...this.props} />
                         </div>
@@ -91,13 +91,13 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
         return <DetailsViewLeftNav {...this.props} />;
     }
 
-    private getTargetPageInfoBar(): JSX.Element {
+    private getTargetPageHiddenBar(): JSX.Element {
         const { tabStoreData } = this.props;
 
         if (tabStoreData.isClosed) {
             return null;
         }
 
-        return <TargetPageInfoBar isTargetPageHidden={tabStoreData.isPageHidden} />;
+        return <TargetPageHiddenBar isTargetPageHidden={tabStoreData.isPageHidden} />;
     }
 }

@@ -3,17 +3,17 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { TargetPageInfoBar } from 'DetailsView/components/target-page-info-bar';
+import { TargetPageHiddenBar } from 'DetailsView/components/target-page-hidden-bar';
 
-describe('TargetPageInfoBar', () => {
+describe('TargetPageHiddenBar', () => {
     it('renders per snapshot to indicate that the target page is hidden', () => {
-        const testSubject = shallow(<TargetPageInfoBar isTargetPageHidden={true} />);
+        const testSubject = shallow(<TargetPageHiddenBar isTargetPageHidden={true} />);
 
         expect(testSubject.debug()).toMatchSnapshot();
     });
 
     it('renders as null when the target page is not hidden', () => {
-        const testSubject = shallow(<TargetPageInfoBar isTargetPageHidden={false} />);
+        const testSubject = shallow(<TargetPageHiddenBar isTargetPageHidden={false} />);
 
         expect(testSubject.getElement()).toBeNull();
     });

@@ -21,7 +21,7 @@ import { DetailsViewActionMessageCreator } from '../../../../DetailsView/actions
 import { DetailsRightPanelConfiguration } from '../../../../DetailsView/components/details-view-right-panel';
 import { DetailsViewSwitcherNavConfiguration } from '../../../../DetailsView/components/details-view-switcher-nav';
 import { DetailsViewLeftNav } from '../../../../DetailsView/components/left-nav/details-view-left-nav';
-import { TargetPageInfoBar } from '../../../../DetailsView/components/target-page-info-bar';
+import { TargetPageHiddenBar } from '../../../../DetailsView/components/target-page-hidden-bar';
 import { DetailsViewBody, DetailsViewBodyProps } from '../../../../DetailsView/details-view-body';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
@@ -163,7 +163,7 @@ describe('DetailsViewBody', () => {
     }
 
     function buildTargetPageInfoBar(givenProps: DetailsViewBodyProps): JSX.Element {
-        return <TargetPageInfoBar isTargetPageHidden={givenProps.tabStoreData.isPageHidden} />;
+        return <TargetPageHiddenBar isTargetPageHidden={givenProps.tabStoreData.isPageHidden} />;
     }
 
     function buildCommandBar(givenProps: DetailsViewBodyProps): JSX.Element {
