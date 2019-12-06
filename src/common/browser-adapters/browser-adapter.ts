@@ -11,7 +11,7 @@ export interface BrowserAdapter {
     addListenerOnWindowsFocusChanged(callback: (windowId: number) => void): void;
     tabsQuery(query: chrome.tabs.QueryInfo, callback: (result: chrome.tabs.Tab[]) => void): void;
     createActiveTab(url: string): Promise<Tabs.Tab>;
-    createTabInNewWindowP(url: string): Promise<Tabs.Tab>;
+    createTabInNewWindow(url: string): Promise<Tabs.Tab>;
     createInactiveTab(url: string, callback: (tab: chrome.tabs.Tab) => void): void;
     closeTab(tabId: number): void;
     switchToTab(tabId: number): void;

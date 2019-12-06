@@ -27,7 +27,7 @@ export class DetailsViewController {
         }
 
         return this.browserAdapter
-            .createTabInNewWindowP(this.getDetailsUrl(targetTabId))
+            .createTabInNewWindow(this.getDetailsUrl(targetTabId))
             .then(tab => {
                 this.tabIdToDetailsViewMap[targetTabId] = tab.id;
             });

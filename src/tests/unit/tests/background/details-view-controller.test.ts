@@ -68,7 +68,7 @@ describe('DetailsViewControllerTest', () => {
             const errorMessage = 'error creating new window (from browser adapter)';
 
             mockBrowserAdapter
-                .setup(adapter => adapter.createTabInNewWindowP('DetailsView/detailsView.html?tabId=' + targetTabId))
+                .setup(adapter => adapter.createTabInNewWindow('DetailsView/detailsView.html?tabId=' + targetTabId))
                 .returns(() => Promise.reject(errorMessage))
                 .verifiable(Times.once());
 
@@ -341,13 +341,13 @@ describe('DetailsViewControllerTest', () => {
 
     const setupCreateDetailsViewP = (targetTabId: number, resultingDetailsViewTabId: number) => {
         return mockBrowserAdapter
-            .setup(adapter => adapter.createTabInNewWindowP('DetailsView/detailsView.html?tabId=' + targetTabId))
+            .setup(adapter => adapter.createTabInNewWindow('DetailsView/detailsView.html?tabId=' + targetTabId))
             .returns(() => Promise.resolve({ id: resultingDetailsViewTabId } as Tabs.Tab));
     };
 
     const setupCreateDetailsViewPForAnyUrl = (times: Times) => {
         mockBrowserAdapter
-            .setup(adapter => adapter.createTabInNewWindowP(It.isAny()))
+            .setup(adapter => adapter.createTabInNewWindow(It.isAny()))
             .returns(() => Promise.resolve({ id: -1 } as Tabs.Tab))
             .verifiable(times);
     };
