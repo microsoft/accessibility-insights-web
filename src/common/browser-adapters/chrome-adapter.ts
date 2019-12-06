@@ -65,18 +65,6 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         return browser.tabs.create({ url, active: true, pinned: false });
     }
 
-    public createTabInNewWindow(url: string, callback?: (tab: chrome.tabs.Tab) => void): void {
-        chrome.windows.create(
-            {
-                url: url,
-                focused: true,
-            },
-            window => {
-                callback(window.tabs[0]);
-            },
-        );
-    }
-
     public createTabInNewWindowP(url: string): Promise<Tabs.Tab> {
         return browser.windows.create({ url, focused: true }).then(window => window.tabs[0]);
     }
