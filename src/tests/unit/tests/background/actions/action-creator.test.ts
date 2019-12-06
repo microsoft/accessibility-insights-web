@@ -43,11 +43,14 @@ import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { VisualizationType } from 'common/types/visualization-type';
 import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
 import { forOwn } from 'lodash';
+import { tick } from 'tests/unit/common/tick';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
 
 const VisualizationMessage = Messages.Visualizations;
 const PreviewFeaturesMessage = Messages.PreviewFeatures;
+
+//
 
 describe('ActionCreatorTest', () => {
     const testSource: TelemetryEventSource = -1 as TelemetryEventSource;
@@ -181,7 +184,7 @@ describe('ActionCreatorTest', () => {
         validator.verifyAll();
     });
 
-    test('registerCallbacks for openDetailsView == null', () => {
+    test('registerCallbacks for openDetailsView == null', async () => {
         const tabId = 1;
         const viewType = null;
         const pivotType = DetailsViewPivotType.fastPass;
@@ -204,15 +207,18 @@ describe('ActionCreatorTest', () => {
             .setupActionOnVisualizationActions(updateViewActionName)
             .setupVisualizationActionWithInvokeParameter(updateViewActionName, actionCreatorPayload)
             .setupTelemetrySend(TelemetryEvents.PIVOT_CHILD_SELECTED, actionCreatorPayload, tabId)
-            .setupShowDetailsView(tabId);
+            .setupShowDetailsViewP(tabId, Promise.resolve());
 
         const actionCreator = validator.buildActionCreator();
 
         actionCreator.registerCallbacks();
+
+        await tick();
+
         validator.verifyAll();
     });
 
-    test('registerCallbacks for openDetailsView == TabStops', () => {
+    test('registerCallbacks for openDetailsView == TabStops', async () => {
         const tabId = 1;
         const viewType = VisualizationType.TabStops;
         const pivotType = DetailsViewPivotType.fastPass;
@@ -235,16 +241,18 @@ describe('ActionCreatorTest', () => {
             .setupActionOnVisualizationActions(updateViewActionName)
             .setupVisualizationActionWithInvokeParameter(updateViewActionName, actionCreatorPayload)
             .setupTelemetrySend(TelemetryEvents.PIVOT_CHILD_SELECTED, actionCreatorPayload, tabId)
-            .setupShowDetailsView(tabId);
+            .setupShowDetailsViewP(tabId, Promise.resolve());
 
         const actionCreator = validator.buildActionCreator();
 
         actionCreator.registerCallbacks();
 
+        await tick();
+
         validator.verifyAll();
     });
 
-    test('registerCallbacks for openDetailsView == Issues', () => {
+    test('registerCallbacks for openDetailsView == Issues', async () => {
         const tabId = 1;
         const viewType = VisualizationType.Issues;
         const pivotType = DetailsViewPivotType.fastPass;
@@ -276,16 +284,18 @@ describe('ActionCreatorTest', () => {
             .setupVisualizationActionWithInvokeParameter(enablingIssuesActionName, enableVisualizationTelemetryPayload)
             .setupTelemetrySend(TelemetryEvents.PIVOT_CHILD_SELECTED, actionCreatorPayload, tabId)
             .setupTelemetrySend(TelemetryEvents.AUTOMATED_CHECKS_TOGGLE, enableVisualizationTelemetryPayload, tabId)
-            .setupShowDetailsView(tabId);
+            .setupShowDetailsViewP(tabId, Promise.resolve());
 
         const actionCreator = validator.buildActionCreator();
 
         actionCreator.registerCallbacks();
 
+        await tick();
+
         validator.verifyAll();
     });
 
-    test('registerCallbacks for openDetailsView == HeadingsAssessment', () => {
+    test('registerCallbacks for openDetailsView == HeadingsAssessment', async () => {
         const tabId = 1;
         const viewType = VisualizationType.HeadingsAssessment;
         const pivotType = DetailsViewPivotType.assessment;
@@ -307,11 +317,13 @@ describe('ActionCreatorTest', () => {
             .setupActionOnVisualizationActions(updateViewActionName)
             .setupVisualizationActionWithInvokeParameter(updateViewActionName, actionCreatorPayload)
             .setupTelemetrySend(TelemetryEvents.PIVOT_CHILD_SELECTED, actionCreatorPayload, tabId)
-            .setupShowDetailsView(tabId);
+            .setupShowDetailsViewP(tabId, Promise.resolve());
 
         const actionCreator = validator.buildActionCreator();
 
         actionCreator.registerCallbacks();
+
+        await tick();
 
         validator.verifyAll();
     });
@@ -456,7 +468,7 @@ describe('ActionCreatorTest', () => {
         builder.verifyAll();
     });
 
-    test('registerCallback for onDetailsViewSelected', () => {
+    test('registerCallback for onDetailsViewSelected', async () => {
         const viewType = VisualizationType.Issues;
         const pivotType = DetailsViewPivotType.fastPass;
         const updateViewActionName = 'updateSelectedPivotChild';
@@ -479,11 +491,13 @@ describe('ActionCreatorTest', () => {
             .setupActionOnPreviewFeaturesActions(closePreviewFeaturesActionName)
             .setupPreviewFeaturesActionWithInvokeParameter(closePreviewFeaturesActionName, null)
             .setupTelemetrySend(TelemetryEvents.PIVOT_CHILD_SELECTED, actionCreatorPayload, 1)
-            .setupShowDetailsView(tabId);
+            .setupShowDetailsViewP(tabId, Promise.resolve());
 
         const actionCreator = builder.buildActionCreator();
 
         actionCreator.registerCallbacks();
+
+        await tick();
 
         builder.verifyAll();
     });
@@ -742,7 +756,7 @@ describe('ActionCreatorTest', () => {
         validator.verifyAll();
     });
 
-    test('registerCallback for onOpenPreviewFeaturesPanel', () => {
+    test('registerCallback for onOpenPreviewFeaturesPanel', async () => {
         const tabId = 1;
         const actionName = 'openPreviewFeatures';
         const telemetryData: BaseTelemetryData = {
@@ -758,12 +772,14 @@ describe('ActionCreatorTest', () => {
             .setupRegistrationCallback(PreviewFeaturesMessage.OpenPanel, [telemetryInfo, tabId])
             .setupActionOnPreviewFeaturesActions(actionName)
             .setupTelemetrySend(TelemetryEvents.PREVIEW_FEATURES_OPEN, telemetryInfo, tabId)
-            .setupShowDetailsView(tabId)
+            .setupShowDetailsViewP(tabId, Promise.resolve())
             .setupPreviewFeaturesActionWithInvokeParameter(actionName, null);
 
         const actionCreator = validator.buildActionCreator();
 
         actionCreator.registerCallbacks();
+
+        await tick();
 
         validator.verifyAll();
     });
@@ -1019,8 +1035,11 @@ class ActionCreatorValidator {
         return this;
     }
 
-    public setupShowDetailsView(tabId: number): ActionCreatorValidator {
-        this.detailsViewControllerStrictMock.setup(ct => ct.showDetailsView(It.isValue(tabId))).verifiable();
+    public setupShowDetailsViewP(tabId: number, result: Promise<void>): ActionCreatorValidator {
+        this.detailsViewControllerStrictMock
+            .setup(controller => controller.showDetailsViewP(tabId))
+            .returns(() => result)
+            .verifiable(Times.once());
 
         return this;
     }
