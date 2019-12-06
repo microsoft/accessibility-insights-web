@@ -627,6 +627,7 @@ exports[`report package integration with issues 1`] = `
                     <span>
                       <span
                         class="rule-details-id"
+                        data-automation-id="cards-rule-id"
                       >
                         bypass
                       </span>
@@ -669,10 +670,12 @@ exports[`report package integration with issues 1`] = `
                 <ul
                   aria-label="failed instances with path, snippet and how to fix information"
                   class="instanceDetailsList"
+                  data-automation-id="cards-rule-content"
                 >
                   <li>
                     <div
                       class="instanceDetailsCardContainer"
+                      data-automation-id="instance-card"
                       role="table"
                     >
                       <div
@@ -827,6 +830,7 @@ exports[`report package integration with issues 1`] = `
                     <span>
                       <span
                         class="rule-details-id"
+                        data-automation-id="cards-rule-id"
                       >
                         color-contrast
                       </span>
@@ -869,10 +873,12 @@ exports[`report package integration with issues 1`] = `
                 <ul
                   aria-label="failed instances with path, snippet and how to fix information"
                   class="instanceDetailsList"
+                  data-automation-id="cards-rule-content"
                 >
                   <li>
                     <div
                       class="instanceDetailsCardContainer"
+                      data-automation-id="instance-card"
                       role="table"
                     >
                       <div
@@ -976,6 +982,7 @@ exports[`report package integration with issues 1`] = `
                   <li>
                     <div
                       class="instanceDetailsCardContainer"
+                      data-automation-id="instance-card"
                       role="table"
                     >
                       <div
@@ -1079,6 +1086,7 @@ exports[`report package integration with issues 1`] = `
                   <li>
                     <div
                       class="instanceDetailsCardContainer"
+                      data-automation-id="instance-card"
                       role="table"
                     >
                       <div
@@ -1182,6 +1190,7 @@ exports[`report package integration with issues 1`] = `
                   <li>
                     <div
                       class="instanceDetailsCardContainer"
+                      data-automation-id="instance-card"
                       role="table"
                     >
                       <div
@@ -1355,6 +1364,7 @@ exports[`report package integration with issues 1`] = `
                     <span>
                       <span
                         class="rule-details-id"
+                        data-automation-id="cards-rule-id"
                       >
                         html-has-lang
                       </span>
@@ -1397,10 +1407,12 @@ exports[`report package integration with issues 1`] = `
                 <ul
                   aria-label="failed instances with path, snippet and how to fix information"
                   class="instanceDetailsList"
+                  data-automation-id="cards-rule-content"
                 >
                   <li>
                     <div
                       class="instanceDetailsCardContainer"
+                      data-automation-id="instance-card"
                       role="table"
                     >
                       <div
@@ -1549,6 +1561,7 @@ exports[`report package integration with issues 1`] = `
                     <span>
                       <span
                         class="rule-details-id"
+                        data-automation-id="cards-rule-id"
                       >
                         image-alt
                       </span>
@@ -1591,10 +1604,12 @@ exports[`report package integration with issues 1`] = `
                 <ul
                   aria-label="failed instances with path, snippet and how to fix information"
                   class="instanceDetailsList"
+                  data-automation-id="cards-rule-content"
                 >
                   <li>
                     <div
                       class="instanceDetailsCardContainer"
+                      data-automation-id="instance-card"
                       role="table"
                     >
                       <div
@@ -1688,6 +1703,7 @@ exports[`report package integration with issues 1`] = `
                   <li>
                     <div
                       class="instanceDetailsCardContainer"
+                      data-automation-id="instance-card"
                       role="table"
                     >
                       <div
@@ -1781,6 +1797,7 @@ exports[`report package integration with issues 1`] = `
                   <li>
                     <div
                       class="instanceDetailsCardContainer"
+                      data-automation-id="instance-card"
                       role="table"
                     >
                       <div
@@ -1874,6 +1891,7 @@ exports[`report package integration with issues 1`] = `
                   <li>
                     <div
                       class="instanceDetailsCardContainer"
+                      data-automation-id="instance-card"
                       role="table"
                     >
                       <div
@@ -2037,6 +2055,7 @@ exports[`report package integration with issues 1`] = `
                     <span>
                       <span
                         class="rule-details-id"
+                        data-automation-id="cards-rule-id"
                       >
                         label
                       </span>
@@ -2079,10 +2098,12 @@ exports[`report package integration with issues 1`] = `
                 <ul
                   aria-label="failed instances with path, snippet and how to fix information"
                   class="instanceDetailsList"
+                  data-automation-id="cards-rule-content"
                 >
                   <li>
                     <div
                       class="instanceDetailsCardContainer"
+                      data-automation-id="instance-card"
                       role="table"
                     >
                       <div
@@ -2173,6 +2194,7 @@ exports[`report package integration with issues 1`] = `
                   <li>
                     <div
                       class="instanceDetailsCardContainer"
+                      data-automation-id="instance-card"
                       role="table"
                     >
                       <div
@@ -2263,6 +2285,7 @@ exports[`report package integration with issues 1`] = `
                   <li>
                     <div
                       class="instanceDetailsCardContainer"
+                      data-automation-id="instance-card"
                       role="table"
                     >
                       <div
@@ -2353,6 +2376,7 @@ exports[`report package integration with issues 1`] = `
                   <li>
                     <div
                       class="instanceDetailsCardContainer"
+                      data-automation-id="instance-card"
                       role="table"
                     >
                       <div
@@ -2443,6 +2467,7 @@ exports[`report package integration with issues 1`] = `
                   <li>
                     <div
                       class="instanceDetailsCardContainer"
+                      data-automation-id="instance-card"
                       role="table"
                     >
                       <div
@@ -2533,6 +2558,7 @@ exports[`report package integration with issues 1`] = `
                   <li>
                     <div
                       class="instanceDetailsCardContainer"
+                      data-automation-id="instance-card"
                       role="table"
                     >
                       <div
@@ -2623,6 +2649,7 @@ exports[`report package integration with issues 1`] = `
                   <li>
                     <div
                       class="instanceDetailsCardContainer"
+                      data-automation-id="instance-card"
                       role="table"
                     >
                       <div
@@ -2713,6 +2740,7 @@ exports[`report package integration with issues 1`] = `
                   <li>
                     <div
                       class="instanceDetailsCardContainer"
+                      data-automation-id="instance-card"
                       role="table"
                     >
                       <div
@@ -2803,6 +2831,7 @@ exports[`report package integration with issues 1`] = `
                   <li>
                     <div
                       class="instanceDetailsCardContainer"
+                      data-automation-id="instance-card"
                       role="table"
                     >
                       <div
@@ -2893,6 +2922,7 @@ exports[`report package integration with issues 1`] = `
                   <li>
                     <div
                       class="instanceDetailsCardContainer"
+                      data-automation-id="instance-card"
                       role="table"
                     >
                       <div
@@ -2983,6 +3013,7 @@ exports[`report package integration with issues 1`] = `
                   <li>
                     <div
                       class="instanceDetailsCardContainer"
+                      data-automation-id="instance-card"
                       role="table"
                     >
                       <div
@@ -3073,6 +3104,7 @@ exports[`report package integration with issues 1`] = `
                   <li>
                     <div
                       class="instanceDetailsCardContainer"
+                      data-automation-id="instance-card"
                       role="table"
                     >
                       <div
@@ -3163,6 +3195,7 @@ exports[`report package integration with issues 1`] = `
                   <li>
                     <div
                       class="instanceDetailsCardContainer"
+                      data-automation-id="instance-card"
                       role="table"
                     >
                       <div
@@ -3323,6 +3356,7 @@ exports[`report package integration with issues 1`] = `
                     <span>
                       <span
                         class="rule-details-id"
+                        data-automation-id="cards-rule-id"
                       >
                         landmark-one-main
                       </span>
@@ -3365,10 +3399,12 @@ exports[`report package integration with issues 1`] = `
                 <ul
                   aria-label="failed instances with path, snippet and how to fix information"
                   class="instanceDetailsList"
+                  data-automation-id="cards-rule-content"
                 >
                   <li>
                     <div
                       class="instanceDetailsCardContainer"
+                      data-automation-id="instance-card"
                       role="table"
                     >
                       <div
@@ -3517,6 +3553,7 @@ exports[`report package integration with issues 1`] = `
                     <span>
                       <span
                         class="rule-details-id"
+                        data-automation-id="cards-rule-id"
                       >
                         page-has-heading-one
                       </span>
@@ -3559,10 +3596,12 @@ exports[`report package integration with issues 1`] = `
                 <ul
                   aria-label="failed instances with path, snippet and how to fix information"
                   class="instanceDetailsList"
+                  data-automation-id="cards-rule-content"
                 >
                   <li>
                     <div
                       class="instanceDetailsCardContainer"
+                      data-automation-id="instance-card"
                       role="table"
                     >
                       <div
@@ -3711,6 +3750,7 @@ exports[`report package integration with issues 1`] = `
                     <span>
                       <span
                         class="rule-details-id"
+                        data-automation-id="cards-rule-id"
                       >
                         region
                       </span>
@@ -3753,10 +3793,12 @@ exports[`report package integration with issues 1`] = `
                 <ul
                   aria-label="failed instances with path, snippet and how to fix information"
                   class="instanceDetailsList"
+                  data-automation-id="cards-rule-content"
                 >
                   <li>
                     <div
                       class="instanceDetailsCardContainer"
+                      data-automation-id="instance-card"
                       role="table"
                     >
                       <div
