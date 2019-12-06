@@ -11,6 +11,8 @@ import { UserConfigurationStoreData } from '../../types/store-data/user-configur
 import { InstanceDetails, InstanceDetailsDeps } from './instance-details';
 import * as styles from './instance-details-group.scss';
 
+export const ruleContentAutomationId = 'cards-rule-content';
+
 export type InstanceDetailsGroupDeps = {
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;
 } & InstanceDetailsDeps;
@@ -33,7 +35,11 @@ export const InstanceDetailsGroup = NamedFC<InstanceDetailsGroupProps>('Instance
     };
 
     return (
-        <ul className={styles.instanceDetailsList} aria-label="failed instances with path, snippet and how to fix information">
+        <ul
+            data-automation-id={ruleContentAutomationId}
+            className={styles.instanceDetailsList}
+            aria-label="failed instances with path, snippet and how to fix information"
+        >
             {nodes.map((node, index) => (
                 <li key={`instance-details-${index}`}>
                     <InstanceDetails

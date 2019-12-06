@@ -25,6 +25,8 @@ import * as styles from './automated-checks-view.scss';
 import { CommandBar, CommandBarDeps } from './components/command-bar';
 import { HeaderSection } from './components/header-section';
 
+export const automatedChecksViewAutomationId = 'automated-checks-view';
+
 export type AutomatedChecksViewDeps = CommandBarDeps &
     TitleBarDeps &
     CardsViewDeps & {
@@ -78,7 +80,10 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
         optionalSidePanel?: JSX.Element,
     ): JSX.Element {
         return (
-            <div className={styles.automatedChecksView}>
+            <div
+                className={styles.automatedChecksView}
+                data-automation-id={automatedChecksViewAutomationId}
+            >
                 <TitleBar
                     deps={this.props.deps}
                     windowStateStoreData={this.props.windowStateStoreData}

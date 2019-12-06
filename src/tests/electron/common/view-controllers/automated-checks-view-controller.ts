@@ -10,15 +10,15 @@ export class AutomatedChecksViewController extends ViewController {
     }
 
     public async queryRuleGroups(): Promise<any[]> {
-        return this.client.$$(AutomatedChecksViewSelectors.collapsibleRuleDetailsGroup);
+        return this.client.$$(AutomatedChecksViewSelectors.ruleGroup);
     }
 
     public async queryRuleGroupContents(): Promise<any[]> {
-        return this.client.$$(AutomatedChecksViewSelectors.collapsibleContainerContent);
+        return this.client.$$(AutomatedChecksViewSelectors.ruleContent);
     }
 
     public async toggleRuleGroupAtPosition(position: number): Promise<void> {
-        await this.client.click(AutomatedChecksViewSelectors.getCollapseExpandButtonByGroupPosition(position));
+        await this.client.click(AutomatedChecksViewSelectors.nthRuleGroupCollapseExpandButton(position));
     }
 
     public async waitForVisible(): Promise<void> {

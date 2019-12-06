@@ -70,10 +70,10 @@ describe('AutomatedChecksView', () => {
     });
 
     async function assertExpandedRuleGroup(position: number, expectedTitle: string, expectedFailures: number): Promise<void> {
-        const title = await automatedChecksView.client.$(AutomatedChecksViewSelectors.getRuleDetailsIdSelector(position)).getText();
+        const title = await automatedChecksView.client.$(AutomatedChecksViewSelectors.nthRuleGroupTitle(position)).getText();
         expect(title).toEqual(expectedTitle);
 
-        const failures = await automatedChecksView.client.$$(AutomatedChecksViewSelectors.getLiFailuresSelector(position));
+        const failures = await automatedChecksView.client.$$(AutomatedChecksViewSelectors.nthRuleGroupInstances(position));
         expect(failures).toHaveLength(expectedFailures);
     }
 

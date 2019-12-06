@@ -15,6 +15,8 @@ import { CollapsibleComponentCardsProps } from './collapsible-component-cards';
 import { RuleContent, RuleContentDeps } from './rule-content';
 import * as styles from './rules-with-instances.scss';
 
+export const ruleGroupAutomationId = 'cards-rule-group';
+
 export type RulesWithInstancesDeps = RuleContentDeps & {
     collapsibleControl: (props: CollapsibleComponentCardsProps) => JSX.Element;
 };
@@ -46,7 +48,8 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                         targetAppInfo={targetAppInfo}
                     />
                 ),
-                containerClassName: css(styles.collapsibleRuleDetailsGroup),
+                containerAutomationId: ruleGroupAutomationId,
+                containerClassName: styles.collapsibleRuleDetailsGroup,
                 buttonAriaLabel: buttonAriaLabel,
                 headingLevel: 3,
                 deps: deps,
