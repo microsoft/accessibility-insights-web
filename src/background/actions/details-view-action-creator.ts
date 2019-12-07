@@ -45,7 +45,7 @@ export class DetailsViewActionCreator {
         tabId: number,
     ): Promise<void> => {
         this.detailsViewActions.openSettingsPanel.invoke(null);
-        await this.detailsViewController.showDetailsViewP(tabId).catch(this.logger.error);
+        await this.detailsViewController.showDetailsView(tabId).catch(this.logger.error);
         this.telemetryEventHandler.publishTelemetry(SETTINGS_PANEL_OPEN, payload);
     };
 

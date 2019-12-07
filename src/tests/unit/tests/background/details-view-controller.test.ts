@@ -31,14 +31,14 @@ describe('DetailsViewControllerTest', () => {
         testSubject = new DetailsViewController(mockBrowserAdapter.object);
     });
 
-    describe('showDetailsViewP', () => {
+    describe('showDetailsView', () => {
         it('creates a details view the first time', async () => {
             const targetTabId = 12;
             const detailsViewTabId = 10;
 
             setupCreateDetailsViewP(targetTabId, detailsViewTabId).verifiable(Times.once());
 
-            await testSubject.showDetailsViewP(targetTabId);
+            await testSubject.showDetailsView(targetTabId);
 
             mockBrowserAdapter.verifyAll();
         });
@@ -49,7 +49,7 @@ describe('DetailsViewControllerTest', () => {
 
             setupCreateDetailsViewP(targetTabId, detailsViewTabId).verifiable(Times.once());
 
-            await testSubject.showDetailsViewP(targetTabId);
+            await testSubject.showDetailsView(targetTabId);
 
             mockBrowserAdapter.reset();
 
@@ -58,7 +58,7 @@ describe('DetailsViewControllerTest', () => {
             mockBrowserAdapter.setup(adapter => adapter.switchToTab(detailsViewTabId)).verifiable(Times.once());
 
             // call show details second time
-            await testSubject.showDetailsViewP(targetTabId);
+            await testSubject.showDetailsView(targetTabId);
 
             mockBrowserAdapter.verifyAll();
         });
@@ -72,7 +72,7 @@ describe('DetailsViewControllerTest', () => {
                 .returns(() => Promise.reject(errorMessage))
                 .verifiable(Times.once());
 
-            await expect(testSubject.showDetailsViewP(targetTabId)).rejects.toEqual(errorMessage);
+            await expect(testSubject.showDetailsView(targetTabId)).rejects.toEqual(errorMessage);
 
             mockBrowserAdapter.verifyAll();
         });
@@ -85,7 +85,7 @@ describe('DetailsViewControllerTest', () => {
         setupCreateDetailsViewP(targetTabId, detailsViewTabId);
 
         // call show details once
-        await testSubject.showDetailsViewP(targetTabId);
+        await testSubject.showDetailsView(targetTabId);
 
         mockBrowserAdapter.reset();
 
@@ -97,7 +97,7 @@ describe('DetailsViewControllerTest', () => {
         mockBrowserAdapter.setup(adapter => adapter.switchToTab(detailsViewTabId)).verifiable(Times.once());
 
         // call show details second time
-        await testSubject.showDetailsViewP(targetTabId);
+        await testSubject.showDetailsView(targetTabId);
 
         mockBrowserAdapter.verifyAll();
     });
@@ -114,7 +114,7 @@ describe('DetailsViewControllerTest', () => {
         setupCreateDetailsViewP(targetTabId, detailsViewTabId);
 
         // call show details once
-        await testSubject.showDetailsViewP(targetTabId);
+        await testSubject.showDetailsView(targetTabId);
 
         mockBrowserAdapter.reset();
 
@@ -128,7 +128,7 @@ describe('DetailsViewControllerTest', () => {
         mockBrowserAdapter.setup(adapter => adapter.switchToTab(detailsViewTabId)).verifiable(Times.never());
 
         // call show details second time
-        await testSubject.showDetailsViewP(targetTabId);
+        await testSubject.showDetailsView(targetTabId);
 
         mockBrowserAdapter.verifyAll();
         detailsViewRemovedHandlerMock.verifyAll();
@@ -141,7 +141,7 @@ describe('DetailsViewControllerTest', () => {
         setupCreateDetailsViewP(targetTabId, detailsViewTabId);
 
         // call show details once
-        await testSubject.showDetailsViewP(targetTabId);
+        await testSubject.showDetailsView(targetTabId);
 
         mockBrowserAdapter.reset();
 
@@ -155,7 +155,7 @@ describe('DetailsViewControllerTest', () => {
         mockBrowserAdapter.setup(adapter => adapter.switchToTab(detailsViewTabId)).verifiable(Times.never());
 
         // call show details second time
-        await testSubject.showDetailsViewP(targetTabId);
+        await testSubject.showDetailsView(targetTabId);
 
         mockBrowserAdapter.verifyAll();
     });
@@ -167,7 +167,7 @@ describe('DetailsViewControllerTest', () => {
         setupCreateDetailsViewP(targetTabId, detailsViewTabId);
 
         // call show details once
-        await testSubject.showDetailsViewP(targetTabId);
+        await testSubject.showDetailsView(targetTabId);
 
         mockBrowserAdapter.reset();
 
@@ -181,7 +181,7 @@ describe('DetailsViewControllerTest', () => {
         mockBrowserAdapter.setup(adapter => adapter.switchToTab(detailsViewTabId)).verifiable(Times.once());
 
         // call show details second time
-        await testSubject.showDetailsViewP(targetTabId);
+        await testSubject.showDetailsView(targetTabId);
 
         mockBrowserAdapter.verifyAll();
     });
@@ -193,7 +193,7 @@ describe('DetailsViewControllerTest', () => {
         setupCreateDetailsViewP(targetTabId, detailsViewTabId);
 
         // call show details once
-        await testSubject.showDetailsViewP(targetTabId);
+        await testSubject.showDetailsView(targetTabId);
 
         mockBrowserAdapter.reset();
 
@@ -207,7 +207,7 @@ describe('DetailsViewControllerTest', () => {
         mockBrowserAdapter.setup(adapter => adapter.switchToTab(detailsViewTabId)).verifiable(Times.once());
 
         // call show details second time
-        await testSubject.showDetailsViewP(targetTabId);
+        await testSubject.showDetailsView(targetTabId);
 
         mockBrowserAdapter.verifyAll();
     });
@@ -219,7 +219,7 @@ describe('DetailsViewControllerTest', () => {
         setupCreateDetailsViewP(targetTabId, detailsViewTabId);
 
         // call show details once
-        await testSubject.showDetailsViewP(targetTabId);
+        await testSubject.showDetailsView(targetTabId);
 
         mockBrowserAdapter.reset();
 
@@ -233,7 +233,7 @@ describe('DetailsViewControllerTest', () => {
         mockBrowserAdapter.setup(adapter => adapter.switchToTab(detailsViewTabId)).verifiable(Times.once());
 
         // call show details second time
-        await testSubject.showDetailsViewP(targetTabId);
+        await testSubject.showDetailsView(targetTabId);
 
         mockBrowserAdapter.verifyAll();
     });
@@ -245,7 +245,7 @@ describe('DetailsViewControllerTest', () => {
         setupCreateDetailsViewP(targetTabId, detailsViewTabId);
 
         // call show details once
-        await testSubject.showDetailsViewP(targetTabId);
+        await testSubject.showDetailsView(targetTabId);
 
         mockBrowserAdapter.reset();
 
@@ -257,7 +257,7 @@ describe('DetailsViewControllerTest', () => {
         mockBrowserAdapter.setup(adapter => adapter.switchToTab(detailsViewTabId)).verifiable(Times.never());
 
         // call show details second time
-        await testSubject.showDetailsViewP(targetTabId);
+        await testSubject.showDetailsView(targetTabId);
 
         mockBrowserAdapter.verifyAll();
     });
@@ -273,7 +273,7 @@ describe('DetailsViewControllerTest', () => {
         testSubject.setupDetailsViewTabRemovedHandler(detailsViewRemovedHandlerMock.object);
 
         // call show details once
-        await testSubject.showDetailsViewP(targetTabId);
+        await testSubject.showDetailsView(targetTabId);
 
         mockBrowserAdapter.reset();
 
@@ -285,7 +285,7 @@ describe('DetailsViewControllerTest', () => {
         mockBrowserAdapter.setup(adapter => adapter.switchToTab(detailsViewTabId)).verifiable(Times.never());
 
         // call show details second time
-        await testSubject.showDetailsViewP(targetTabId);
+        await testSubject.showDetailsView(targetTabId);
 
         mockBrowserAdapter.verifyAll();
         detailsViewRemovedHandlerMock.verifyAll();
@@ -298,7 +298,7 @@ describe('DetailsViewControllerTest', () => {
         setupCreateDetailsViewP(targetTabId, detailsViewTabId);
 
         // call show details once
-        await testSubject.showDetailsViewP(targetTabId);
+        await testSubject.showDetailsView(targetTabId);
 
         mockBrowserAdapter.reset();
 
@@ -310,7 +310,7 @@ describe('DetailsViewControllerTest', () => {
         mockBrowserAdapter.setup(adapter => adapter.switchToTab(detailsViewTabId)).verifiable(Times.never());
 
         // call show details second time
-        await testSubject.showDetailsViewP(targetTabId);
+        await testSubject.showDetailsView(targetTabId);
 
         mockBrowserAdapter.verifyAll();
     });
@@ -322,7 +322,7 @@ describe('DetailsViewControllerTest', () => {
         setupCreateDetailsViewP(targetTabId, detailsViewTabId);
 
         // call show details once
-        await testSubject.showDetailsViewP(targetTabId);
+        await testSubject.showDetailsView(targetTabId);
 
         mockBrowserAdapter.reset();
 
@@ -334,7 +334,7 @@ describe('DetailsViewControllerTest', () => {
         mockBrowserAdapter.setup(adapter => adapter.switchToTab(detailsViewTabId)).verifiable(Times.once());
 
         // call show details second time
-        await testSubject.showDetailsViewP(targetTabId);
+        await testSubject.showDetailsView(targetTabId);
 
         mockBrowserAdapter.verifyAll();
     });

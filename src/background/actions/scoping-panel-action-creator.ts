@@ -31,7 +31,7 @@ export class ScopingPanelActionCreator {
 
     private async onOpenScopingPanel(payload: BaseActionPayload, tabId: number): Promise<void> {
         this.scopingActions.openScopingPanel.invoke(null);
-        await this.detailsViewController.showDetailsViewP(tabId).catch(this.logger.error);
+        await this.detailsViewController.showDetailsView(tabId).catch(this.logger.error);
         this.telemetryEventHandler.publishTelemetry(SCOPING_OPEN, payload);
     }
 

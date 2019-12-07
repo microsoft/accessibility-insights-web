@@ -207,7 +207,7 @@ describe('ActionCreatorTest', () => {
             .setupActionOnVisualizationActions(updateViewActionName)
             .setupVisualizationActionWithInvokeParameter(updateViewActionName, actionCreatorPayload)
             .setupTelemetrySend(TelemetryEvents.PIVOT_CHILD_SELECTED, actionCreatorPayload, tabId)
-            .setupShowDetailsViewP(tabId, Promise.resolve());
+            .setupShowDetailsView(tabId, Promise.resolve());
 
         const actionCreator = validator.buildActionCreator();
 
@@ -241,7 +241,7 @@ describe('ActionCreatorTest', () => {
             .setupActionOnVisualizationActions(updateViewActionName)
             .setupVisualizationActionWithInvokeParameter(updateViewActionName, actionCreatorPayload)
             .setupTelemetrySend(TelemetryEvents.PIVOT_CHILD_SELECTED, actionCreatorPayload, tabId)
-            .setupShowDetailsViewP(tabId, Promise.resolve());
+            .setupShowDetailsView(tabId, Promise.resolve());
 
         const actionCreator = validator.buildActionCreator();
 
@@ -284,7 +284,7 @@ describe('ActionCreatorTest', () => {
             .setupVisualizationActionWithInvokeParameter(enablingIssuesActionName, enableVisualizationTelemetryPayload)
             .setupTelemetrySend(TelemetryEvents.PIVOT_CHILD_SELECTED, actionCreatorPayload, tabId)
             .setupTelemetrySend(TelemetryEvents.AUTOMATED_CHECKS_TOGGLE, enableVisualizationTelemetryPayload, tabId)
-            .setupShowDetailsViewP(tabId, Promise.resolve());
+            .setupShowDetailsView(tabId, Promise.resolve());
 
         const actionCreator = validator.buildActionCreator();
 
@@ -317,7 +317,7 @@ describe('ActionCreatorTest', () => {
             .setupActionOnVisualizationActions(updateViewActionName)
             .setupVisualizationActionWithInvokeParameter(updateViewActionName, actionCreatorPayload)
             .setupTelemetrySend(TelemetryEvents.PIVOT_CHILD_SELECTED, actionCreatorPayload, tabId)
-            .setupShowDetailsViewP(tabId, Promise.resolve());
+            .setupShowDetailsView(tabId, Promise.resolve());
 
         const actionCreator = validator.buildActionCreator();
 
@@ -491,7 +491,7 @@ describe('ActionCreatorTest', () => {
             .setupActionOnPreviewFeaturesActions(closePreviewFeaturesActionName)
             .setupPreviewFeaturesActionWithInvokeParameter(closePreviewFeaturesActionName, null)
             .setupTelemetrySend(TelemetryEvents.PIVOT_CHILD_SELECTED, actionCreatorPayload, 1)
-            .setupShowDetailsViewP(tabId, Promise.resolve());
+            .setupShowDetailsView(tabId, Promise.resolve());
 
         const actionCreator = builder.buildActionCreator();
 
@@ -772,7 +772,7 @@ describe('ActionCreatorTest', () => {
             .setupRegistrationCallback(PreviewFeaturesMessage.OpenPanel, [telemetryInfo, tabId])
             .setupActionOnPreviewFeaturesActions(actionName)
             .setupTelemetrySend(TelemetryEvents.PREVIEW_FEATURES_OPEN, telemetryInfo, tabId)
-            .setupShowDetailsViewP(tabId, Promise.resolve())
+            .setupShowDetailsView(tabId, Promise.resolve())
             .setupPreviewFeaturesActionWithInvokeParameter(actionName, null);
 
         const actionCreator = validator.buildActionCreator();
@@ -1035,9 +1035,9 @@ class ActionCreatorValidator {
         return this;
     }
 
-    public setupShowDetailsViewP(tabId: number, result: Promise<void>): ActionCreatorValidator {
+    public setupShowDetailsView(tabId: number, result: Promise<void>): ActionCreatorValidator {
         this.detailsViewControllerStrictMock
-            .setup(controller => controller.showDetailsViewP(tabId))
+            .setup(controller => controller.showDetailsView(tabId))
             .returns(() => result)
             .verifiable(Times.once());
 

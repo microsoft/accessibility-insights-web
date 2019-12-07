@@ -49,7 +49,7 @@ describe('DetailsViewActionCreatorTest', () => {
             const errorMessage = 'error on showDetailsView';
 
             detailsViewControllerMock
-                .setup(controller => controller.showDetailsViewP(tabId))
+                .setup(controller => controller.showDetailsView(tabId))
                 .returns(() => Promise.reject(errorMessage))
                 .verifiable(Times.once());
 
@@ -75,7 +75,7 @@ describe('DetailsViewActionCreatorTest', () => {
 
         it('when showDetailsView succeed', async () => {
             detailsViewControllerMock
-                .setup(controller => controller.showDetailsViewP(tabId))
+                .setup(controller => controller.showDetailsView(tabId))
                 .returns(() => Promise.resolve())
                 .verifiable(Times.once());
 

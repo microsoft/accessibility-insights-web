@@ -52,7 +52,7 @@ describe('ScopingPanelActionCreatorTest', () => {
 
         it('when showDetailsView succeed', async () => {
             detailsViewControllerStrictMock
-                .setup(controller => controller.showDetailsViewP(tabId))
+                .setup(controller => controller.showDetailsView(tabId))
                 .returns(() => Promise.resolve())
                 .verifiable(Times.once());
 
@@ -69,7 +69,7 @@ describe('ScopingPanelActionCreatorTest', () => {
             const errorMessage = 'error on showDetailsView';
 
             detailsViewControllerStrictMock
-                .setup(controller => controller.showDetailsViewP(tabId))
+                .setup(controller => controller.showDetailsView(tabId))
                 .returns(() => Promise.reject(errorMessage))
                 .verifiable(Times.once());
 

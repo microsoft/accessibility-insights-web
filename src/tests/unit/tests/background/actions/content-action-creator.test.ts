@@ -55,9 +55,9 @@ describe('ContentActionMessageCreator', () => {
         });
 
         it('when showing the details view throws an error, the error should be logged', async () => {
-            const errorMessage = 'error on showDetailsViewP';
+            const errorMessage = 'error on showDetailsView';
             detailsViewControllerMock
-                .setup(controller => controller.showDetailsViewP(tabId))
+                .setup(controller => controller.showDetailsView(tabId))
                 .returns(() => Promise.reject(errorMessage))
                 .verifiable(Times.once());
 
@@ -73,7 +73,7 @@ describe('ContentActionMessageCreator', () => {
 
         it('when there is no error from showing the details view', async () => {
             detailsViewControllerMock
-                .setup(controller => controller.showDetailsViewP(tabId))
+                .setup(controller => controller.showDetailsView(tabId))
                 .returns(() => Promise.resolve())
                 .verifiable(Times.once());
 

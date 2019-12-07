@@ -241,7 +241,7 @@ export class ActionCreator {
         tabId: number,
     ): Promise<void> => {
         this.previewFeaturesActions.openPreviewFeatures.invoke(null);
-        await this.detailsViewController.showDetailsViewP(tabId);
+        await this.detailsViewController.showDetailsView(tabId);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.PREVIEW_FEATURES_OPEN, payload);
     };
 
@@ -336,7 +336,7 @@ export class ActionCreator {
     ): Promise<void> => {
         this.previewFeaturesActions.closePreviewFeatures.invoke(null);
         this.visualizationActions.updateSelectedPivotChild.invoke(payload);
-        await this.detailsViewController.showDetailsViewP(tabId);
+        await this.detailsViewController.showDetailsView(tabId);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.PIVOT_CHILD_SELECTED, payload);
     };
 

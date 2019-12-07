@@ -32,7 +32,7 @@ export class ContentActionCreator {
 
     private onOpenContentPanel = async (payload: ContentPayload, tabId: number): Promise<void> => {
         this.contentActions.openContentPanel.invoke(payload);
-        await this.detailsViewController.showDetailsViewP(tabId).catch(this.logger.error);
+        await this.detailsViewController.showDetailsView(tabId).catch(this.logger.error);
         this.telemetryEventHandler.publishTelemetry(CONTENT_PANEL_OPENED, payload);
     };
 

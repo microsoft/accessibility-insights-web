@@ -18,7 +18,7 @@ export class DetailsViewController {
         this.detailsViewRemovedHandler = handler;
     }
 
-    public showDetailsViewP(targetTabId: number): Promise<void> {
+    public showDetailsView(targetTabId: number): Promise<void> {
         const detailsViewTabId = this.tabIdToDetailsViewMap[targetTabId];
 
         if (detailsViewTabId != null) {
