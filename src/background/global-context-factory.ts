@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { createDefaultLogger } from 'common/logging/default-logger';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { CommandsAdapter } from '../common/browser-adapters/commands-adapter';
 import { StorageAdapter } from '../common/browser-adapters/storage-adapter';
@@ -108,7 +109,10 @@ export class GlobalContextFactory {
         scopingActionCreator.registerCallback();
         featureFlagsActionCreator.registerCallbacks();
 
-        const messageBroadcasterFactory = new BrowserMessageBroadcasterFactory(browserAdapter);
+        const messageBroadcasterFactory = new BrowserMessageBroadcasterFactory(
+            browserAdapter,
+            createDefaultLogger(),
+        );
         const dispatcher = new StateDispatcher(
             messageBroadcasterFactory.allTabsBroadcaster,
             globalStoreHub,

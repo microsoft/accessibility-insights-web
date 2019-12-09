@@ -1,17 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { createDefaultLogger } from 'common/logging/default-logger';
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { Logger } from 'common/logging/logger';
 import { inspect } from 'util';
-import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 
 export type MessageBroadcaster = (message: any) => Promise<void>;
 
 export class BrowserMessageBroadcasterFactory {
-    constructor(
-        private readonly browserAdapter: BrowserAdapter,
-        private readonly logger: Logger = createDefaultLogger(),
-    ) {}
+    constructor(private readonly browserAdapter: BrowserAdapter, private readonly logger: Logger) {}
 
     public allTabsBroadcaster: MessageBroadcaster = async (message: any) => {
         // Ordering sendMessageToFrames before tabsQuery is necessary to prevent the race
