@@ -30,7 +30,7 @@ export class AppController {
         await dismissTelemetryOptInDialog(this.app);
 
         const deviceConnectionDialog = new DeviceConnectionDialogController(this.client);
-        await deviceConnectionDialog.waitForVisible();
+        await deviceConnectionDialog.waitForDialogVisible();
 
         return deviceConnectionDialog;
     }
@@ -40,7 +40,7 @@ export class AppController {
         await deviceConnectionDialog.connectToPort(testResourceServerConfig.port);
 
         const automatedChecksView = new AutomatedChecksViewController(this.client);
-        await automatedChecksView.waitForVisible();
+        await automatedChecksView.waitForViewVisible();
 
         return automatedChecksView;
     }
