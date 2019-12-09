@@ -36,6 +36,7 @@ import {
     TriggeredBy,
 } from 'common/extension-telemetry-events';
 import { Action } from 'common/flux/action';
+import { Logger } from 'common/logging/logger';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { NotificationCreator } from 'common/notification-creator';
 import { StoreNames } from 'common/stores/store-names';
@@ -46,7 +47,6 @@ import { forOwn } from 'lodash';
 import { tick } from 'tests/unit/common/tick';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
-import { Logger } from 'common/logging/logger';
 
 const VisualizationMessage = Messages.Visualizations;
 const PreviewFeaturesMessage = Messages.PreviewFeatures;
