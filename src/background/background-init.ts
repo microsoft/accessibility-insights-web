@@ -19,6 +19,7 @@ import { UrlValidator } from '../common/url-validator';
 import { WindowUtils } from '../common/window-utils';
 import { title } from '../content/strings/application';
 import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-service-provider-impl';
+import { BrowserMessageBroadcasterFactory } from './browser-message-broadcaster-factory';
 import { ChromeCommandHandler } from './chrome-command-handler';
 import { DetailsViewController } from './details-view-controller';
 import { DevToolsListener } from './dev-tools-listener';
@@ -28,7 +29,6 @@ import { IndexedDBDataKeys } from './IndexedDBDataKeys';
 import { deprecatedStorageDataKeys, storageDataKeys } from './local-storage-data-keys';
 import { MessageDistributor } from './message-distributor';
 import { TabToContextMap } from './tab-context';
-import { TabContextBroadcaster } from './tab-context-broadcaster';
 import { TabContextFactory } from './tab-context-factory';
 import { TargetPageController } from './target-page-controller';
 import { TargetTabController } from './target-tab-controller';
@@ -107,7 +107,7 @@ async function initialize(): Promise<void> {
     );
     telemetryStateListener.initialize();
 
-    const broadcaster = new TabContextBroadcaster(browserAdapter);
+    const messageBroadcasterFactory = new BrowserMessageBroadcasterFactory(browserAdapter);
     const detailsViewController = new DetailsViewController(browserAdapter);
 
     const tabToContextMap: TabToContextMap = {};
@@ -156,7 +156,7 @@ async function initialize(): Promise<void> {
 
     const clientHandler = new TargetPageController(
         tabToContextMap,
-        broadcaster,
+        messageBroadcasterFactory,
         browserAdapter,
         detailsViewController,
         tabContextFactory,

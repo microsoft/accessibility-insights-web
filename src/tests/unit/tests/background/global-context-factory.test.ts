@@ -36,7 +36,8 @@ describe('GlobalContextFactoryTest', () => {
         storageAdapterMock = Mock.ofType<StorageAdapter>();
         browserAdapterMock = Mock.ofType<BrowserAdapter>();
         commandsAdapterMock = Mock.ofType<CommandsAdapter>();
-        browserAdapterMock.setup(adapter => adapter.sendMessageToAllFramesAndTabs(It.isAny())).returns(() => Promise.resolve());
+        browserAdapterMock.setup(adapter => adapter.sendMessageToFrames(It.isAny())).returns(() => Promise.resolve());
+        browserAdapterMock.setup(adapter => adapter.sendMessageToTab(It.isAny(), It.isAny())).returns(() => Promise.resolve());
         telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler);
         telemetryDataFactoryMock = Mock.ofType(TelemetryDataFactory);
         issueFilingServiceProviderMock = Mock.ofType(IssueFilingServiceProvider);

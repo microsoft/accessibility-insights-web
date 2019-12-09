@@ -6,15 +6,15 @@ import { Logger } from 'common/logging/logger';
 import { Message } from 'common/message';
 import { Messages } from 'common/messages';
 import { PageVisibilityChangeTabPayload } from './actions/action-payloads';
+import { BrowserMessageBroadcasterFactory } from './browser-message-broadcaster-factory';
 import { DetailsViewController } from './details-view-controller';
 import { TabToContextMap } from './tab-context';
-import { TabContextBroadcaster } from './tab-context-broadcaster';
 import { TabContextFactory } from './tab-context-factory';
 
 export class TargetPageController {
     constructor(
         private readonly targetPageTabIdToContextMap: TabToContextMap,
-        private readonly broadcaster: TabContextBroadcaster,
+        private readonly broadcasterFactory: BrowserMessageBroadcasterFactory,
         private readonly browserAdapter: BrowserAdapter,
         private readonly detailsViewController: DetailsViewController,
         private readonly tabContextFactory: TabContextFactory,
@@ -116,7 +116,7 @@ export class TargetPageController {
 
     private addTabContext(tabId: number): void {
         this.targetPageTabIdToContextMap[tabId] = this.tabContextFactory.createTabContext(
-            this.broadcaster.getBroadcastMessageDelegate(tabId),
+            this.broadcasterFactory.createTabSpecificBroadcaster(tabId),
             this.browserAdapter,
             this.detailsViewController,
             tabId,

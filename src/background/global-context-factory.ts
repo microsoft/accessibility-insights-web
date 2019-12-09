@@ -12,6 +12,7 @@ import { IssueFilingServiceProvider } from '../issue-filing/issue-filing-service
 import { AssessmentsProvider } from './../assessments/types/assessments-provider';
 import { AssessmentActionCreator } from './actions/assessment-action-creator';
 import { GlobalActionHub } from './actions/global-action-hub';
+import { BrowserMessageBroadcasterFactory } from './browser-message-broadcaster-factory';
 import { CompletedTestStepTelemetryCreator } from './completed-test-step-telemetry-creator';
 import { FeatureFlagsController } from './feature-flags-controller';
 import { PersistedData } from './get-persisted-data';
@@ -107,8 +108,9 @@ export class GlobalContextFactory {
         scopingActionCreator.registerCallback();
         featureFlagsActionCreator.registerCallbacks();
 
+        const messageBroadcasterFactory = new BrowserMessageBroadcasterFactory(browserAdapter);
         const dispatcher = new StateDispatcher(
-            browserAdapter.sendMessageToAllFramesAndTabs,
+            messageBroadcasterFactory.allTabsBroadcaster,
             globalStoreHub,
         );
         dispatcher.initialize();
