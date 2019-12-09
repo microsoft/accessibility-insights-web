@@ -46,6 +46,7 @@ import { forOwn } from 'lodash';
 import { tick } from 'tests/unit/common/tick';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
+import { Logger } from 'common/logging/logger';
 
 const VisualizationMessage = Messages.Visualizations;
 const PreviewFeaturesMessage = Messages.PreviewFeatures;
@@ -468,7 +469,7 @@ describe('ActionCreatorTest', () => {
         builder.verifyAll();
     });
 
-    test('registerCallback for onDetailsViewSelected', async () => {
+    describe.only('registerCallback for onDetailsViewSelected', () => {
         const viewType = VisualizationType.Issues;
         const pivotType = DetailsViewPivotType.fastPass;
         const updateViewActionName = 'updateSelectedPivotChild';
@@ -484,22 +485,46 @@ describe('ActionCreatorTest', () => {
             },
         };
 
-        const builder = new ActionCreatorValidator()
-            .setupRegistrationCallback(VisualizationMessage.DetailsView.Select, [actionCreatorPayload, tabId])
-            .setupActionOnVisualizationActions(updateViewActionName)
-            .setupVisualizationActionWithInvokeParameter(updateViewActionName, actionCreatorPayload)
-            .setupActionOnPreviewFeaturesActions(closePreviewFeaturesActionName)
-            .setupPreviewFeaturesActionWithInvokeParameter(closePreviewFeaturesActionName, null)
-            .setupTelemetrySend(TelemetryEvents.PIVOT_CHILD_SELECTED, actionCreatorPayload, 1)
-            .setupShowDetailsView(tabId, Promise.resolve());
+        it('updates details view state and sends telemetry', async () => {
+            const builder = new ActionCreatorValidator()
+                .setupRegistrationCallback(VisualizationMessage.DetailsView.Select, [actionCreatorPayload, tabId])
+                .setupActionOnVisualizationActions(updateViewActionName)
+                .setupVisualizationActionWithInvokeParameter(updateViewActionName, actionCreatorPayload)
+                .setupActionOnPreviewFeaturesActions(closePreviewFeaturesActionName)
+                .setupPreviewFeaturesActionWithInvokeParameter(closePreviewFeaturesActionName, null)
+                .setupTelemetrySend(TelemetryEvents.PIVOT_CHILD_SELECTED, actionCreatorPayload, 1)
+                .setupShowDetailsView(tabId, Promise.resolve());
 
-        const actionCreator = builder.buildActionCreator();
+            const actionCreator = builder.buildActionCreator();
 
-        actionCreator.registerCallbacks();
+            actionCreator.registerCallbacks();
 
-        await tick();
+            await tick();
 
-        builder.verifyAll();
+            builder.verifyAll();
+        });
+
+        it('propagates show details view error to the logger', async () => {
+            const showDetailsViewErrorMessage = 'error on showDetailsView';
+
+            const builder = new ActionCreatorValidator()
+                .setupRegistrationCallback(VisualizationMessage.DetailsView.Select, [actionCreatorPayload, tabId])
+                .setupActionOnVisualizationActions(updateViewActionName)
+                .setupVisualizationActionWithInvokeParameter(updateViewActionName, actionCreatorPayload)
+                .setupActionOnPreviewFeaturesActions(closePreviewFeaturesActionName)
+                .setupPreviewFeaturesActionWithInvokeParameter(closePreviewFeaturesActionName, null)
+                .setupTelemetrySend(TelemetryEvents.PIVOT_CHILD_SELECTED, actionCreatorPayload, 1)
+                .setupShowDetailsView(tabId, Promise.reject({ message: showDetailsViewErrorMessage }))
+                .setupLogError(showDetailsViewErrorMessage);
+
+            const actionCreator = builder.buildActionCreator();
+
+            actionCreator.registerCallbacks();
+
+            await tick();
+
+            builder.verifyAll();
+        });
     });
 
     test('registerCallback for onRecordingCompleted', () => {
@@ -756,7 +781,7 @@ describe('ActionCreatorTest', () => {
         validator.verifyAll();
     });
 
-    test('registerCallback for onOpenPreviewFeaturesPanel', async () => {
+    describe('registerCallback for onOpenPreviewFeaturesPanel', () => {
         const tabId = 1;
         const actionName = 'openPreviewFeatures';
         const telemetryData: BaseTelemetryData = {
@@ -768,20 +793,42 @@ describe('ActionCreatorTest', () => {
             telemetryData,
         };
 
-        const validator = new ActionCreatorValidator()
-            .setupRegistrationCallback(PreviewFeaturesMessage.OpenPanel, [telemetryInfo, tabId])
-            .setupActionOnPreviewFeaturesActions(actionName)
-            .setupTelemetrySend(TelemetryEvents.PREVIEW_FEATURES_OPEN, telemetryInfo, tabId)
-            .setupShowDetailsView(tabId, Promise.resolve())
-            .setupPreviewFeaturesActionWithInvokeParameter(actionName, null);
+        it('open preview features panel, shows the details view and send telemetry', async () => {
+            const validator = new ActionCreatorValidator()
+                .setupRegistrationCallback(PreviewFeaturesMessage.OpenPanel, [telemetryInfo, tabId])
+                .setupActionOnPreviewFeaturesActions(actionName)
+                .setupTelemetrySend(TelemetryEvents.PREVIEW_FEATURES_OPEN, telemetryInfo, tabId)
+                .setupShowDetailsView(tabId, Promise.resolve())
+                .setupPreviewFeaturesActionWithInvokeParameter(actionName, null);
 
-        const actionCreator = validator.buildActionCreator();
+            const actionCreator = validator.buildActionCreator();
 
-        actionCreator.registerCallbacks();
+            actionCreator.registerCallbacks();
 
-        await tick();
+            await tick();
 
-        validator.verifyAll();
+            validator.verifyAll();
+        });
+
+        it('propagate errors showing the details view to the logger', async () => {
+            const showDetailsViewErrorMessage = 'error on showDetailsView ';
+
+            const validator = new ActionCreatorValidator()
+                .setupRegistrationCallback(PreviewFeaturesMessage.OpenPanel, [telemetryInfo, tabId])
+                .setupActionOnPreviewFeaturesActions(actionName)
+                .setupTelemetrySend(TelemetryEvents.PREVIEW_FEATURES_OPEN, telemetryInfo, tabId)
+                .setupShowDetailsView(tabId, Promise.reject({ message: showDetailsViewErrorMessage }))
+                .setupLogError(showDetailsViewErrorMessage)
+                .setupPreviewFeaturesActionWithInvokeParameter(actionName, null);
+
+            const actionCreator = validator.buildActionCreator();
+
+            actionCreator.registerCallbacks();
+
+            await tick();
+
+            validator.verifyAll();
+        });
     });
 
     test('registerCallback for switch focus back to target', () => {
@@ -899,6 +946,8 @@ class ActionCreatorValidator {
     private targetTabControllerStrictMock = Mock.ofType<TargetTabController>(null, MockBehavior.Strict);
     private detailsViewControllerStrictMock: IMock<DetailsViewController> = Mock.ofType<DetailsViewController>(null, MockBehavior.Strict);
 
+    private loggerMock = Mock.ofType<Logger>();
+
     public setupSwitchToTab(tabId: number): ActionCreatorValidator {
         this.switchToTabMock.setup(stt => stt(tabId)).verifiable(Times.once());
 
@@ -927,6 +976,12 @@ class ActionCreatorValidator {
         expectedInvokeParam: any,
     ): ActionCreatorValidator {
         this.setupActionWithInvokeParameter(actionName, expectedInvokeParam, this.visualizationActionMocks);
+        return this;
+    }
+
+    public setupLogError(message: string): ActionCreatorValidator {
+        this.loggerMock.setup(logger => logger.error(message)).verifiable(Times.once());
+
         return this;
     }
 
@@ -1053,6 +1108,7 @@ class ActionCreatorValidator {
             this.notificationCreatorStrictMock.object,
             new VisualizationConfigurationFactory(),
             this.targetTabControllerStrictMock.object,
+            this.loggerMock.object,
         );
     }
 
@@ -1068,6 +1124,7 @@ class ActionCreatorValidator {
         this.detailsViewControllerStrictMock.verifyAll();
         this.contentScriptInjectorStrictMock.verifyAll();
         this.targetTabControllerStrictMock.verifyAll();
+        this.loggerMock.verifyAll();
     }
 
     private verifyAllActionMocks(): void {
