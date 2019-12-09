@@ -64,7 +64,9 @@ async function initialize(): Promise<void> {
     const assessmentsProvider = Assessments;
     const windowUtils = new WindowUtils();
     const telemetryDataFactory = new TelemetryDataFactory();
-    const telemetryLogger = new TelemetryLogger();
+
+    const logger = createDefaultLogger();
+    const telemetryLogger = new TelemetryLogger(logger);
 
     const { installationData } = userData;
     const telemetryClient = getTelemetryClient(
@@ -84,8 +86,6 @@ async function initialize(): Promise<void> {
         browserSpec,
         AxeInfo.Default.version,
     );
-
-    const logger = createDefaultLogger();
 
     const globalContext = GlobalContextFactory.createContext(
         browserAdapter,
