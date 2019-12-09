@@ -51,8 +51,6 @@ import { Logger } from 'common/logging/logger';
 const VisualizationMessage = Messages.Visualizations;
 const PreviewFeaturesMessage = Messages.PreviewFeatures;
 
-//
-
 describe('ActionCreatorTest', () => {
     const testSource: TelemetryEventSource = -1 as TelemetryEventSource;
 
