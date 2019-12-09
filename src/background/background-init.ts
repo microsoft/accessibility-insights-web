@@ -137,6 +137,7 @@ async function initialize(): Promise<void> {
         globalContext,
         tabToContextMap,
         browserAdapter,
+        logger,
     );
     messageDistributor.initialize();
 
