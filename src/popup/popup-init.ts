@@ -13,12 +13,7 @@ import { TargetTabFinder } from './target-tab-finder';
 initializeFabricIcons();
 const browserAdapter = new ChromeAdapter();
 const urlValidator = new UrlValidator(browserAdapter);
-const targetTabFinder = new TargetTabFinder(
-    window,
-    browserAdapter,
-    urlValidator,
-    new UrlParser(),
-);
+const targetTabFinder = new TargetTabFinder(window, browserAdapter, urlValidator, new UrlParser());
 const userAgentParser = new UAParser(window.navigator.userAgent);
 const isSupportedBrowser = createSupportedBrowserChecker(userAgentParser);
 const popupInitializer: PopupInitializer = new PopupInitializer(

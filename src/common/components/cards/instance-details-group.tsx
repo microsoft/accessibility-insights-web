@@ -9,7 +9,7 @@ import { TargetAppData, UnifiedRule } from '../../../common/types/store-data/uni
 import { CardRuleResult } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { InstanceDetails, InstanceDetailsDeps } from './instance-details';
-import { instanceDetailsList } from './instance-details-group.scss';
+import * as styles from './instance-details-group.scss';
 
 export type InstanceDetailsGroupDeps = {
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;
@@ -33,7 +33,7 @@ export const InstanceDetailsGroup = NamedFC<InstanceDetailsGroupProps>('Instance
     };
 
     return (
-        <ul className={instanceDetailsList} aria-label="failed instances with path, snippet and how to fix information">
+        <ul className={styles.instanceDetailsList} aria-label="failed instances with path, snippet and how to fix information">
             {nodes.map((node, index) => (
                 <li key={`instance-details-${index}`}>
                     <InstanceDetails

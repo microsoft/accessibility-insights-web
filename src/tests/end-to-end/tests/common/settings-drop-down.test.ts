@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { formatPageElementForSnapshot } from 'tests/common/element-snapshot-formatter';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { CommonSelectors } from '../../common/element-identifiers/common-selectors';
-import { formatPageElementForSnapshot } from '../../common/element-snapshot-formatter';
 import { Page } from '../../common/page-controllers/page';
 import { TargetPage } from '../../common/page-controllers/target-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
@@ -57,6 +57,8 @@ describe('Settings Dropdown', () => {
 
     it.each([true, false])('should pass accessibility validation in details view with highContrastMode=%s', async highContrastMode => {
         await browser.setHighContrastMode(highContrastMode);
+        await browser.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
+
         const detailsViewPage = await browser.newDetailsViewPage(targetPage);
         await detailsViewPage.waitForHighContrastMode(highContrastMode);
 

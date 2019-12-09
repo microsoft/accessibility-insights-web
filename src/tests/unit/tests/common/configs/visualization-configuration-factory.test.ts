@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
-
+import { each } from 'lodash';
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../../../../../common/enum-helper';
 import { AssessmentData, AssessmentStoreData, PersistedTabInfo } from '../../../../../common/types/store-data/assessment-result-data';
@@ -116,7 +115,7 @@ describe('VisualizationConfigurationFactoryTest', () => {
 
         const types = EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
 
-        _.each(types, visualizationType => {
+        each(types, visualizationType => {
             const configuration = testObject.getConfiguration(visualizationType);
 
             if (configuration.chromeCommand != null) {

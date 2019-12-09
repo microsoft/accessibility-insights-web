@@ -2,18 +2,9 @@
 
 exports[`page view renders 1`] = `
 <React.Fragment>
-  <header
-    className="header-bar"
-  >
-    <Component
-      deps={Object {}}
-    />
-    <div
-      className="ms-font-m header-text"
-    >
-      Accessibility Insights for Web
-    </div>
-  </header>
+  <Header
+    deps={Object {}}
+  />
   <main>
     INSIDE
   </main>

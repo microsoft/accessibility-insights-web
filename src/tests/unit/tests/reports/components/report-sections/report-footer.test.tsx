@@ -4,7 +4,6 @@ import { EnvironmentInfo } from 'common/environment-info-provider';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { ReportFooter } from 'reports/components/report-sections/report-footer';
-import { SectionProps } from 'reports/components/report-sections/report-section-factory';
 
 describe('ReportFooter', () => {
     it('renders', () => {
@@ -13,10 +12,7 @@ describe('ReportFooter', () => {
             browserSpec: 'dummy browser version 1.0.1',
             axeCoreVersion: '4.5.6',
         };
-        const props: SectionProps = {
-            environmentInfo,
-        } as SectionProps;
-        const wrapper = shallow(<ReportFooter {...props} />);
+        const wrapper = shallow(<ReportFooter {...{ environmentInfo }}>Footer Text</ReportFooter>);
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });

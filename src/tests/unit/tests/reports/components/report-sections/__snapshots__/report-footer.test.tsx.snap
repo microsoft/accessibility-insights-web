@@ -8,20 +8,7 @@ exports[`ReportFooter renders 1`] = `
     className="report-footer"
     role="contentinfo"
   >
-    This automated checks result was generated using 
-    Accessibility Insights for Web 1.2.3 (Axe 4.5.6)
-    , a tool that helps debug and find accessibility issues earlier on 
-    dummy browser version 1.0.1
-    . Get more information & download this tool at
-     
-    <NewTabLink
-      className="tool-name-link"
-      href="http://aka.ms/AccessibilityInsights"
-      title="Get more information and download Accessibility Insights for Web"
-    >
-      http://aka.ms/AccessibilityInsights
-    </NewTabLink>
-    .
+    Footer Text
   </div>
 </div>
 `;

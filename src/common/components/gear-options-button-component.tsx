@@ -7,6 +7,7 @@ import { DetailsViewDropDown } from '../../DetailsView/components/details-view-d
 import { DropdownClickHandler } from '../dropdown-click-handler';
 import { FeatureFlags } from '../feature-flags';
 import { FeatureFlagStoreData } from '../types/store-data/feature-flag-store-data';
+import * as styles from './gear-options-button-component.scss';
 
 export interface GearOptionsButtonComponentProps {
     dropdownClickHandler: DropdownClickHandler;
@@ -15,7 +16,7 @@ export interface GearOptionsButtonComponentProps {
 
 export class GearOptionsButtonComponent extends React.Component<GearOptionsButtonComponentProps> {
     public render(): JSX.Element {
-        return <div className="gear-options-button-component">{this.renderButton()}</div>;
+        return <div className={styles.gearOptionsButtonComponent}>{this.renderButton()}</div>;
     }
 
     private renderButton(): JSX.Element {

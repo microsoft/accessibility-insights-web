@@ -16,16 +16,18 @@ const { guidance } = content.audioVideoOnly;
 const gettingStarted: JSX.Element = (
     <React.Fragment>
         <p>
-            When pre-recorded audio-only or video-only content is provided, an equivalent alternative also must be provided for users who
-            either can't see or can't hear the content. These alternatives must convey all the information that the primary content conveys.
+            When pre-recorded audio-only or video-only content is provided, an equivalent
+            alternative also must be provided for users who either can't see or can't hear the
+            content. These alternatives must convey all the information that the primary content
+            conveys.
         </p>
         <p>
-            A <Markup.Term>transcript</Markup.Term> can be used to provide a <Markup.Emphasis>text</Markup.Emphasis> equivalent for
-            audio-only or video-only content.
+            A <Markup.Term>transcript</Markup.Term> can be used to provide a{' '}
+            <Markup.Emphasis>text</Markup.Emphasis> equivalent for audio-only or video-only content.
         </p>
         <p>
-            An <Markup.Term>audio track</Markup.Term> can be used to provide an <Markup.Emphasis>audio</Markup.Emphasis> equivalent for
-            video-only content.
+            An <Markup.Term>audio track</Markup.Term> can be used to provide an{' '}
+            <Markup.Emphasis>audio</Markup.Emphasis> equivalent for video-only content.
         </p>
     </React.Fragment>
 );

@@ -6,11 +6,13 @@ import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { detailsViewCommandButtons } from 'DetailsView/components/details-view-command-bar.scss';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { StartOverDeps } from 'DetailsView/components/start-over-dropdown';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
+
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
@@ -81,7 +83,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
 
         if (reportExportElement || startOverElement) {
             return (
-                <div className="details-view-command-buttons">
+                <div className={detailsViewCommandButtons}>
                     {reportExportElement}
                     {startOverElement}
                 </div>

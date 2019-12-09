@@ -9,7 +9,8 @@ import { TimedEventsTestStep } from './test-steps';
 
 const description: JSX.Element = (
     <span>
-        If content moves, blinks, or scrolls automatically for more than five seconds, users must be able to pause, stop, or hide it.
+        If content moves, blinks, or scrolls automatically for more than five seconds, users must be
+        able to pause, stop, or hide it.
     </span>
 );
 

@@ -2,758 +2,360 @@
 // Licensed under the MIT License.
 import { DetailsViewController } from 'background/details-view-controller';
 import { Interpreter } from 'background/interpreter';
-import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
-import { TabToContextMap } from 'background/tab-context';
+import { TabContext } from 'background/tab-context';
 import { TabContextBroadcaster } from 'background/tab-context-broadcaster';
 import { TabContextFactory } from 'background/tab-context-factory';
 import { TargetPageController } from 'background/target-page-controller';
-import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
-import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { TriggeredByNotApplicable } from 'common/extension-telemetry-events';
 import { Logger } from 'common/logging/logger';
-import { Message } from 'common/message';
 import { Messages } from 'common/messages';
+import { isFunction, values } from 'lodash';
+import { createSimulatedBrowserAdapter, SimulatedBrowserAdapter } from 'tests/unit/common/simulated-browser-adapter';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { DictionaryStringTo } from 'types/common-types';
+import { DictionaryNumberTo } from 'types/common-types';
 
-describe('TargetPageControllerTest', () => {
+describe('TargetPageController', () => {
     let testSubject: TargetPageController;
+
+    let mockLogger: IMock<Logger>;
+    const stubBroadcastDelegate = (message: any) => Promise.resolve();
     let mockBroadcasterStrictMock: IMock<TabContextBroadcaster>;
-    let mockChromeAdapter: IMock<BrowserAdapter>;
-    let mockDetailsViewController: IMock<DetailsViewController>;
-    let tabInterpreterMap: TabToContextMap;
-    let featureFlagStoreMock: IMock<FeatureFlagStore>;
-    let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
-    let tabContextFactoryMock: IMock<TabContextFactory>;
-    let onDetailsViewTabRemoved: (tabId: number) => void;
-    let loggerMock: IMock<Logger>;
+    let mockTabContextFactory: IMock<TabContextFactory>;
+    let mockBrowserAdapter: SimulatedBrowserAdapter;
+    let mockDetailsViewController: SimulatedDetailsViewController;
+    let tabToContextMap: DictionaryNumberTo<TabContext>;
+    let mockTabInterpreters: DictionaryNumberTo<IMock<Interpreter>>;
 
-    function setupCreateTabContextMock(broadCastDelegate: () => void, tabContext, tabId: number): void {
-        tabContextFactoryMock
-            .setup(factory =>
-                factory.createTabContext(broadCastDelegate, mockChromeAdapter.object, mockDetailsViewController.object, tabId),
-            )
-            .returns(() => tabContext)
-            .verifiable(Times.once());
-    }
+    const EXISTING_WINDOW_ID = 101;
+    const EXISTING_WINDOW = { id: EXISTING_WINDOW_ID } as chrome.windows.Window;
 
-    function createTabControllerWithoutFeatureFlag(tabContextMap: TabToContextMap): TargetPageController {
-        return new TargetPageController(
-            tabContextMap,
-            mockBroadcasterStrictMock.object,
-            mockChromeAdapter.object,
-            mockDetailsViewController.object,
-            tabContextFactoryMock.object,
-            loggerMock.object,
-        );
-    }
+    const EXISTING_ACTIVE_TAB_ID = 1;
+    const EXISTING_ACTIVE_TAB = { id: EXISTING_ACTIVE_TAB_ID, windowId: EXISTING_WINDOW_ID, active: true } as chrome.tabs.Tab;
+
+    const EXISTING_INACTIVE_TAB_ID = 2;
+    const EXISTING_INACTIVE_TAB = { id: EXISTING_INACTIVE_TAB_ID, windowId: EXISTING_WINDOW_ID, active: false } as chrome.tabs.Tab;
+
+    const NEW_TAB_ID = 3;
+    const NEW_TAB = { id: NEW_TAB_ID, windowId: EXISTING_WINDOW_ID, active: true } as chrome.tabs.Tab;
 
     beforeEach(() => {
-        loggerMock = Mock.ofType<Logger>();
+        mockLogger = Mock.ofType<Logger>();
         mockBroadcasterStrictMock = Mock.ofType<TabContextBroadcaster>(undefined, MockBehavior.Strict);
-        mockChromeAdapter = Mock.ofType<BrowserAdapter>();
-        mockDetailsViewController = Mock.ofType<DetailsViewController>();
-        featureFlagStoreMock = Mock.ofType(FeatureFlagStore);
-        telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler);
-
-        tabInterpreterMap = {};
-        tabContextFactoryMock = Mock.ofType(TabContextFactory);
-        mockDetailsViewController
-            .setup(dvc => dvc.setupDetailsViewTabRemovedHandler(It.isAny()))
-            .callback(cb => {
-                onDetailsViewTabRemoved = cb;
-            })
-            .verifiable(Times.once());
+        mockBroadcasterStrictMock.setup(m => m.getBroadcastMessageDelegate(It.isAny())).returns(_ => stubBroadcastDelegate);
+        mockBrowserAdapter = createSimulatedBrowserAdapter([EXISTING_ACTIVE_TAB, EXISTING_INACTIVE_TAB], [EXISTING_WINDOW]);
+        mockDetailsViewController = setupMockDetailsViewController();
+        tabToContextMap = {};
+        mockTabInterpreters = {};
+        mockTabInterpreters[EXISTING_ACTIVE_TAB_ID] = Mock.ofType<Interpreter>();
+        mockTabInterpreters[EXISTING_INACTIVE_TAB_ID] = Mock.ofType<Interpreter>();
+        mockTabInterpreters[NEW_TAB_ID] = Mock.ofType<Interpreter>();
+        mockTabContextFactory = setupMockTabContextFactory(mockTabInterpreters);
 
         testSubject = new TargetPageController(
-            tabInterpreterMap,
+            tabToContextMap,
             mockBroadcasterStrictMock.object,
-            mockChromeAdapter.object,
+            mockBrowserAdapter.object,
             mockDetailsViewController.object,
-            tabContextFactoryMock.object,
-            loggerMock.object,
+            mockTabContextFactory.object,
+            mockLogger.object,
         );
-
-        mockChromeAdapter.reset();
     });
 
-    afterEach(() => {
-        mockDetailsViewController.verifyAll();
-        mockChromeAdapter.reset();
-        mockDetailsViewController.reset();
-        featureFlagStoreMock.reset();
-        telemetryEventHandlerMock.reset();
+    describe('initialize', () => {
+        it('should register the expected listeners', () => {
+            testSubject.initialize();
+
+            mockBrowserAdapter.verify(m => m.addListenerOnConnect(It.isAny()), Times.once());
+            mockBrowserAdapter.verify(m => m.addListenerOnWindowsFocusChanged(It.isAny()), Times.once());
+            mockBrowserAdapter.verify(m => m.addListenerToTabsOnActivated(It.isAny()), Times.once());
+            mockBrowserAdapter.verify(m => m.addListenerToTabsOnRemoved(It.isAny()), Times.once());
+            mockBrowserAdapter.verify(m => m.addListenerToTabsOnUpdated(It.isAny()), Times.once());
+            mockBrowserAdapter.verify(m => m.addListenerToWebNavigationUpdated(It.isAny()), Times.once());
+
+            mockDetailsViewController.verify(m => m.setupDetailsViewTabRemovedHandler(It.isAny()), Times.once());
+        });
+
+        it('should create a tab context for each pre-existing tab', () => {
+            testSubject.initialize();
+
+            mockTabContextFactory.verify(f => f.createTabContext(It.isAny(), It.isAny(), It.isAny(), EXISTING_ACTIVE_TAB_ID), Times.once());
+            expect(tabToContextMap[EXISTING_ACTIVE_TAB_ID]).toHaveProperty(
+                'interpreter',
+                mockTabInterpreters[EXISTING_ACTIVE_TAB_ID].object,
+            );
+
+            mockTabContextFactory.verify(
+                f => f.createTabContext(It.isAny(), It.isAny(), It.isAny(), EXISTING_INACTIVE_TAB_ID),
+                Times.once(),
+            );
+            expect(tabToContextMap[EXISTING_INACTIVE_TAB_ID]).toHaveProperty(
+                'interpreter',
+                mockTabInterpreters[EXISTING_INACTIVE_TAB_ID].object,
+            );
+
+            mockTabContextFactory.verify(f => f.createTabContext(It.isAny(), It.isAny(), It.isAny(), NEW_TAB_ID), Times.never());
+            expect(tabToContextMap[NEW_TAB_ID]).toBeUndefined();
+        });
     });
 
-    test('initialize', () => {
-        mockChromeAdapter.setup(mca => mca.tabsQuery(It.isValue({}), It.isAny())).verifiable(Times.once());
-        mockChromeAdapter.setup(mca => mca.addListenerOnConnect(It.isAny())).verifiable(Times.once());
-        mockChromeAdapter.setup(mca => mca.addListenerToWebNavigationUpdated(It.isAny())).verifiable(Times.once());
-        mockChromeAdapter.setup(mca => mca.addListenerToTabsOnRemoved(It.isAny())).verifiable(Times.once());
-        mockChromeAdapter.setup(mca => mca.addListenerToTabsOnUpdated(It.isAny())).verifiable(Times.once());
+    describe('in initialized state', () => {
+        beforeEach(() => {
+            testSubject.initialize();
+            resetInterpreterMocks(mockTabInterpreters);
+        });
 
-        testSubject.initialize();
+        describe('onConnect', () => {
+            it('should not have any observable effect', () => {
+                mockBrowserAdapter.notifyOnConnect({ name: 'irrelevant port' } as chrome.runtime.Port);
+                verifyNoInterpreterMessages(mockTabInterpreters);
+            });
+        });
 
-        mockChromeAdapter.verifyAll();
-    });
+        describe('onWebNavigationUpdated', () => {
+            const rootFrameId = 0;
+            const nonRootFrameId = 1;
 
-    test('register onConnect listener', () => {
-        mockChromeAdapter
-            .setup(mca => mca.addListenerOnConnect(It.isAny()))
-            .callback(cb => {})
-            .verifiable(Times.once());
+            it('should ignore updates for non-root frames', () => {
+                mockBrowserAdapter.notifyWebNavigationUpdated({
+                    frameId: nonRootFrameId,
+                    tabId: EXISTING_ACTIVE_TAB_ID,
+                } as chrome.webNavigation.WebNavigationFramedCallbackDetails);
 
-        testSubject.initialize();
-        mockChromeAdapter.verifyAll();
-    });
-
-    test('onTabLoad: for main frame', () => {
-        let getTabCallback: (tab: chrome.tabs.Tab) => void;
-        let rejectCallback: () => void;
-        const tabId = 1;
-        const getTabCallbackInput = {
-            data: 'abc',
-            telemetry: undefined,
-        };
-        const interpretInput: Message = {
-            messageType: Messages.Tab.NewTabCreated,
-            payload: getTabCallbackInput,
-            tabId: tabId,
-        };
-
-        const broadcastDelegate = () => {};
-        const interpreterMock = Mock.ofType(Interpreter);
-        interpreterMock.setup(im => im.interpret(It.isValue(interpretInput))).verifiable(Times.once());
-
-        const tabContextMock = {
-            interpreter: interpreterMock.object,
-        };
-
-        mockBroadcasterStrictMock
-            .setup(md => md.getBroadcastMessageDelegate(tabId))
-            .returns(() => broadcastDelegate)
-            .verifiable(Times.once());
-
-        let tabUpdatedCallback: (details: chrome.webNavigation.WebNavigationFramedCallbackDetails) => void = null;
-
-        mockChromeAdapter
-            .setup(ca => ca.addListenerToWebNavigationUpdated(It.isAny()))
-            .callback(cb => {
-                tabUpdatedCallback = cb;
-            })
-            .verifiable(Times.once());
-
-        mockChromeAdapter
-            .setup(mca => mca.getTab(It.isValue(tabId), It.isAny(), It.isAny()))
-            .returns((id, resolve, reject) => {
-                getTabCallback = resolve;
-                rejectCallback = reject;
-            })
-            .verifiable(Times.once());
-        loggerMock.setup(logger => logger.log(It.is(s => s.endsWith(`tab with Id ${tabId} not found`)))).verifiable(Times.once());
-
-        setupCreateTabContextMock(broadcastDelegate, tabContextMock, tabId);
-
-        testSubject.initialize();
-
-        tabUpdatedCallback({ tabId: tabId, frameId: 0 } as chrome.webNavigation.WebNavigationFramedCallbackDetails);
-
-        getTabCallback(getTabCallbackInput as any);
-        rejectCallback();
-
-        interpreterMock.verifyAll();
-        mockBroadcasterStrictMock.verifyAll();
-        mockChromeAdapter.verifyAll();
-        tabContextFactoryMock.verifyAll();
-        loggerMock.verifyAll();
-        expect(tabInterpreterMap[tabId]).toBe(tabContextMock);
-    });
-
-    test('onTabLoad: for child frame', () => {
-        let tabUpdatedCallback: (details: chrome.webNavigation.WebNavigationFramedCallbackDetails) => void = null;
-
-        mockBroadcasterStrictMock.setup(mca => mca.getBroadcastMessageDelegate(It.isAny())).verifiable(Times.never());
-
-        mockChromeAdapter
-            .setup(mca => mca.addListenerOnWindowsFocusChanged(It.isAny()))
-            .callback(cb => {
-                tabUpdatedCallback = cb;
+                verifyNoInterpreterMessages(mockTabInterpreters);
             });
 
-        tabContextFactoryMock
-            .setup(factory => factory.createTabContext(It.isAny(), It.isAny(), It.isAny(), It.isAny()))
-            .verifiable(Times.never());
+            it('should initialize a new tab context for root frames in new tabs', () => {
+                mockBrowserAdapter.notifyWebNavigationUpdated({
+                    frameId: rootFrameId,
+                    tabId: NEW_TAB_ID,
+                } as chrome.webNavigation.WebNavigationFramedCallbackDetails);
 
-        testSubject.initialize();
-
-        tabUpdatedCallback({ tabId: 1, frameId: 2 } as chrome.webNavigation.WebNavigationFramedCallbackDetails);
-
-        mockBroadcasterStrictMock.verifyAll();
-        mockChromeAdapter.verifyAll();
-    });
-
-    test('onTabRemoved', () => {
-        const tabId = 1;
-        let tabUpdatedCallback: (details: chrome.webNavigation.WebNavigationFramedCallbackDetails) => void = null;
-        let tabRemovedCallback: Function = null;
-        const interpretInput: Message = {
-            messageType: Messages.Tab.Remove,
-            payload: null,
-            tabId: tabId,
-        };
-        const broadcastMessageDelegateMock = Mock.ofInstance(() => {});
-
-        mockBroadcasterStrictMock
-            .setup(mca => mca.getBroadcastMessageDelegate(tabId))
-            .returns(() => broadcastMessageDelegateMock.object)
-            .verifiable(Times.once());
-
-        const interpreterMock = Mock.ofType(Interpreter);
-        interpreterMock.setup(im => im.interpret(It.isValue(interpretInput))).verifiable(Times.once());
-
-        const tabContextMock = {
-            interpreter: interpreterMock.object,
-        };
-
-        mockChromeAdapter
-            .setup(ca => ca.addListenerToWebNavigationUpdated(It.isAny()))
-            .callback(cb => {
-                tabUpdatedCallback = cb;
-            })
-            .verifiable(Times.once());
-        mockChromeAdapter
-            .setup(ca => ca.addListenerToTabsOnRemoved(It.isAny()))
-            .callback(cb => {
-                tabRemovedCallback = cb;
+                mockTabContextFactory.verify(f => f.createTabContext(It.isAny(), It.isAny(), It.isAny(), NEW_TAB_ID), Times.once());
+                expect(tabToContextMap[NEW_TAB_ID]).toHaveProperty('interpreter', mockTabInterpreters[NEW_TAB_ID].object);
             });
 
-        setupCreateTabContextMock(broadcastMessageDelegateMock.object, tabContextMock, tabId);
-        testSubject.initialize();
+            it('should send an Tab.ExistingTabUpdated message for root frames in existing tabs', () => {
+                mockBrowserAdapter.notifyWebNavigationUpdated({
+                    frameId: rootFrameId,
+                    tabId: EXISTING_ACTIVE_TAB_ID,
+                } as chrome.webNavigation.WebNavigationFramedCallbackDetails);
 
-        tabUpdatedCallback({ tabId: tabId, frameId: 0 } as chrome.webNavigation.WebNavigationFramedCallbackDetails);
-        tabRemovedCallback(tabId);
+                const expectedMessage = {
+                    messageType: Messages.Tab.ExistingTabUpdated,
+                    payload: { ...EXISTING_ACTIVE_TAB, telemetry: undefined },
+                    tabId: EXISTING_ACTIVE_TAB_ID,
+                };
+                mockTabInterpreters[EXISTING_ACTIVE_TAB_ID].verify(i => i.interpret(expectedMessage), Times.once());
+            });
+        });
 
-        interpreterMock.verifyAll();
-        mockBroadcasterStrictMock.verifyAll();
-        mockChromeAdapter.verifyAll();
-        expect(tabInterpreterMap[tabId]).toBeUndefined();
-    });
+        describe('onTabRemoved', () => {
+            it('should ignore removals of non-tracked tabs', () => {
+                mockBrowserAdapter.notifyTabsOnRemoved(NEW_TAB_ID, null);
+                verifyNoInterpreterMessages(mockTabInterpreters);
+            });
 
-    test('onDetailsViewTabRemoved', () => {
-        let tabUpdatedCallback: (details: chrome.webNavigation.WebNavigationFramedCallbackDetails) => void = null;
-        const tabId = 2;
-        const interpretInput: Message = {
-            messageType: Messages.Visualizations.DetailsView.Close,
-            payload: null,
-            tabId: tabId,
-        };
-        const broadcastMessageDelegateMock = Mock.ofInstance(() => {});
-        mockBroadcasterStrictMock
-            .setup(mb => mb.getBroadcastMessageDelegate(tabId))
-            .returns(() => broadcastMessageDelegateMock.object)
-            .verifiable(Times.once());
+            it('should send a Tab.Remove message for tracked tabs', () => {
+                const expectedMessage = {
+                    messageType: Messages.Tab.Remove,
+                    payload: null,
+                    tabId: EXISTING_ACTIVE_TAB_ID,
+                };
+                mockBrowserAdapter.notifyTabsOnRemoved(EXISTING_ACTIVE_TAB_ID, null);
+                mockTabInterpreters[EXISTING_ACTIVE_TAB_ID].verify(i => i.interpret(expectedMessage), Times.once());
+            });
 
-        const interpreterMock = Mock.ofType(Interpreter);
-        interpreterMock.setup(im => im.interpret(It.isValue(interpretInput))).verifiable(Times.once());
+            it('should remove tabToContextMap entries for tabs that are removed', () => {
+                mockBrowserAdapter.notifyTabsOnRemoved(EXISTING_ACTIVE_TAB_ID, null);
 
-        const tabContextMock = {
-            interpreter: interpreterMock.object,
-        };
+                expect(tabToContextMap[EXISTING_ACTIVE_TAB_ID]).toBeUndefined();
+            });
 
-        mockChromeAdapter
-            .setup(ca => ca.addListenerToWebNavigationUpdated(It.isAny()))
-            .callback(cb => {
-                tabUpdatedCallback = cb;
-            })
-            .verifiable(Times.once());
+            it('should stop sending future messages after tabs are removed', () => {
+                mockBrowserAdapter.notifyTabsOnRemoved(EXISTING_ACTIVE_TAB_ID, null);
+                resetInterpreterMocks(mockTabInterpreters);
+                mockBrowserAdapter.notifyTabsOnRemoved(EXISTING_ACTIVE_TAB_ID, null);
 
-        setupCreateTabContextMock(broadcastMessageDelegateMock.object, tabContextMock, tabId);
-        testSubject.initialize();
+                verifyNoInterpreterMessages(mockTabInterpreters);
+            });
+        });
 
-        tabUpdatedCallback({ tabId: tabId, frameId: 0 } as chrome.webNavigation.WebNavigationFramedCallbackDetails);
-        onDetailsViewTabRemoved(tabId);
+        describe('onDetailsViewTabRemoved', () => {
+            it('should ignore removals of non-tracked tabs', () => {
+                mockDetailsViewController.notifyDetailsViewTabRemoved(NEW_TAB_ID);
+                verifyNoInterpreterMessages(mockTabInterpreters);
+            });
 
-        interpreterMock.verifyAll();
-        mockBroadcasterStrictMock.verifyAll();
-        expect(tabInterpreterMap[tabId]).toBeDefined();
-    });
+            it('should send a Messages.Visualizations.DetailsView.Close message for tracked tabs', () => {
+                mockDetailsViewController.notifyDetailsViewTabRemoved(EXISTING_ACTIVE_TAB_ID);
 
-    test('createTabContextAndTriggerTabUpdateForExistingTabs', () => {
-        const openTabIds = [1, 5];
-        const tabIdToTabContextStub = {};
-        const interpreterMocks = [];
-        const getTabCallbackMap: DictionaryStringTo<(tab: chrome.tabs.Tab) => void> = {};
+                const expectedMessage = {
+                    messageType: Messages.Visualizations.DetailsView.Close,
+                    payload: null,
+                    tabId: EXISTING_ACTIVE_TAB_ID,
+                };
+                mockTabInterpreters[EXISTING_ACTIVE_TAB_ID].verify(i => i.interpret(expectedMessage), Times.once());
+            });
+        });
 
-        let tabsQueryCallback: (tabs: chrome.tabs.Tab[]) => void = null;
-        const tabs: DictionaryStringTo<chrome.tabs.Tab> = {
-            1: { id: openTabIds[0] } as chrome.tabs.Tab,
-            5: { id: openTabIds[1] } as chrome.tabs.Tab,
-        };
+        describe('onWindowsFocusChanged', () => {
+            const irrelevantWindowId = -1;
+            it.each`
+                windowState       | expectedHiddenValue
+                ${'minimized'}    | ${true}
+                ${'maximized'}    | ${false}
+                ${'normal'}       | ${false}
+                ${'unrecognized'} | ${false}
+            `(
+                'should send a Tab.VisibilityChange message with hidden=$expectedHiddenValue for active tabs in windows with state $windowState',
+                ({ windowState, expectedHiddenValue }) => {
+                    mockBrowserAdapter.windows.forEach(w => {
+                        w.state = windowState;
+                    });
+                    mockBrowserAdapter.notifyWindowsFocusChanged(irrelevantWindowId);
 
-        openTabIds.forEach((tabId, index) => {
-            const interpretInput: Message = {
-                messageType: Messages.Tab.NewTabCreated,
-                payload: {
-                    ...tabs[tabId],
-                    telemetry: undefined,
+                    const expectedMessage = {
+                        messageType: Messages.Tab.VisibilityChange,
+                        payload: { hidden: expectedHiddenValue },
+                        tabId: EXISTING_ACTIVE_TAB_ID,
+                    };
+                    mockTabInterpreters[EXISTING_ACTIVE_TAB_ID].verify(i => i.interpret(expectedMessage), Times.once());
                 },
-                tabId: tabId,
-            };
+            );
 
-            const interpreterMock = Mock.ofType(Interpreter);
-            interpreterMock.setup(im => im.interpret(It.isValue(interpretInput))).verifiable(Times.once());
-
-            const broadCastDelegate = () => {};
-            mockBroadcasterStrictMock
-                .setup(mb => mb.getBroadcastMessageDelegate(tabId))
-                .returns(() => broadCastDelegate)
-                .verifiable(Times.once());
-
-            tabIdToTabContextStub[tabId] = {
-                interpreter: interpreterMock.object,
-            };
-
-            setupCreateTabContextMock(broadCastDelegate, tabIdToTabContextStub[tabId], tabId);
-
-            interpreterMocks.push(interpreterMock);
-            mockChromeAdapter
-                .setup(mca => mca.getTab(It.isValue(tabId), It.isAny(), It.isAny()))
-                .returns((id, cb) => {
-                    getTabCallbackMap[tabId] = cb;
-                })
-                .verifiable(Times.once());
-        });
-
-        mockChromeAdapter
-            .setup(mca => mca.tabsQuery(It.isValue({}), It.isAny()))
-            .callback((query, callback) => {
-                tabsQueryCallback = callback;
+            it('should ignore untracked tabs', () => {
+                mockBrowserAdapter.notifyWindowsFocusChanged(irrelevantWindowId);
+                mockTabInterpreters[NEW_TAB_ID].verify(i => i.interpret(It.isAny()), Times.never());
             });
 
-        testSubject.initialize();
+            it('should ignore inactive tabs', () => {
+                mockBrowserAdapter.notifyWindowsFocusChanged(irrelevantWindowId);
+                mockTabInterpreters[EXISTING_INACTIVE_TAB_ID].verify(i => i.interpret(It.isAny()), Times.never());
+            });
 
-        tabsQueryCallback(Object.keys(tabs).map(id => tabs[id]));
+            it('should ignore tabs for windows which result in a runtime error when queried', () => {
+                mockBrowserAdapter.object.getRuntimeLastError(); // clear out the first method setup from setupMockBrowserAdapter()
+                mockBrowserAdapter.setup(m => m.getRuntimeLastError()).returns(() => ({ message: 'test error' }));
 
-        openTabIds.forEach(tabId => {
-            getTabCallbackMap[tabId](tabs[tabId]);
+                mockBrowserAdapter.notifyWindowsFocusChanged(irrelevantWindowId);
+                verifyNoInterpreterMessages(mockTabInterpreters);
+            });
         });
-        mockBroadcasterStrictMock.verifyAll();
-        mockChromeAdapter.verifyAll();
-        expect(Object.keys(tabInterpreterMap).length).toBe(openTabIds.length);
-        openTabIds.forEach(tabId => {
-            expect(tabInterpreterMap[tabId]).toEqual(tabIdToTabContextStub[tabId]);
+
+        describe('onTabActivated', () => {
+            it('should send a Tab.VisibilityChange message with isHidden=false for activation of known tabs', () => {
+                mockBrowserAdapter.activateTab(EXISTING_INACTIVE_TAB);
+
+                const expectedMessage = {
+                    messageType: Messages.Tab.VisibilityChange,
+                    payload: { hidden: false },
+                    tabId: EXISTING_INACTIVE_TAB_ID,
+                };
+                mockTabInterpreters[EXISTING_INACTIVE_TAB_ID].verify(i => i.interpret(expectedMessage), Times.once());
+            });
+
+            it('should send a Tab.VisibilityChange message with isHidden=true for other known tabs in the same window when a known tab is activated', () => {
+                mockBrowserAdapter.activateTab(EXISTING_INACTIVE_TAB);
+
+                const expectedMessage = {
+                    messageType: Messages.Tab.VisibilityChange,
+                    payload: { hidden: true },
+                    tabId: EXISTING_ACTIVE_TAB_ID,
+                };
+                mockTabInterpreters[EXISTING_ACTIVE_TAB_ID].verify(i => i.interpret(expectedMessage), Times.once());
+            });
+
+            it('should send a Tab.VisibilityChange message with isHidden=true for other known tabs in the same window when an untracked tab is activated', () => {
+                mockBrowserAdapter.activateTab(NEW_TAB);
+
+                const expectedMessage = {
+                    messageType: Messages.Tab.VisibilityChange,
+                    payload: { hidden: true },
+                    tabId: EXISTING_ACTIVE_TAB_ID,
+                };
+                mockTabInterpreters[EXISTING_ACTIVE_TAB_ID].verify(i => i.interpret(expectedMessage), Times.once());
+            });
+
+            it('should not send activation messages for untracked tabs', () => {
+                mockBrowserAdapter.tabs.push(NEW_TAB);
+                mockBrowserAdapter.activateTab(NEW_TAB);
+                mockTabInterpreters[NEW_TAB_ID].verify(i => i.interpret(It.isAny()), Times.never());
+            });
+
+            it('should not send deactivation messages for untracked tabs', () => {
+                mockBrowserAdapter.tabs.push(NEW_TAB);
+                mockBrowserAdapter.activateTab(EXISTING_INACTIVE_TAB);
+                mockTabInterpreters[NEW_TAB_ID].verify(i => i.interpret(It.isAny()), Times.never());
+            });
         });
-        interpreterMocks.forEach(interpreterMock => {
-            interpreterMock.verifyAll();
+
+        describe('onTabUpdated', () => {
+            const changeInfoWithoutUrl: chrome.tabs.TabChangeInfo = {};
+            const changeInfoWithUrl: chrome.tabs.TabChangeInfo = { url: 'https://new-host/new-page' };
+
+            it("should ignore updates that don't change the url", () => {
+                mockBrowserAdapter.updateTab(EXISTING_ACTIVE_TAB_ID, changeInfoWithoutUrl);
+                verifyNoInterpreterMessages(mockTabInterpreters);
+            });
+
+            it('should initialize a new tab context for url changes in untracked tabs', () => {
+                mockBrowserAdapter.tabs.push(NEW_TAB);
+                mockBrowserAdapter.updateTab(NEW_TAB_ID, changeInfoWithUrl);
+
+                mockTabContextFactory.verify(f => f.createTabContext(It.isAny(), It.isAny(), It.isAny(), NEW_TAB_ID), Times.once());
+                expect(tabToContextMap[NEW_TAB_ID]).toHaveProperty('interpreter', mockTabInterpreters[NEW_TAB_ID].object);
+            });
+
+            it('should send a Tab.ExistingTabUpdated message for url changes in tracked tabs', () => {
+                const expectedMessage = {
+                    messageType: Messages.Tab.ExistingTabUpdated,
+                    payload: {
+                        ...EXISTING_ACTIVE_TAB,
+                        url: changeInfoWithUrl.url,
+                        telemetry: {
+                            source: null,
+                            triggeredBy: TriggeredByNotApplicable,
+                        },
+                    },
+                    tabId: EXISTING_ACTIVE_TAB_ID,
+                };
+                mockBrowserAdapter.updateTab(EXISTING_ACTIVE_TAB_ID, changeInfoWithUrl);
+
+                mockTabInterpreters[EXISTING_ACTIVE_TAB_ID].verify(i => i.interpret(expectedMessage), Times.once());
+            });
         });
     });
 
-    test('web navigation updated test', () => {
-        let tabUpdatedCallback: (details: chrome.webNavigation.WebNavigationFramedCallbackDetails) => void = null;
-        let getTabCallback: (tab: chrome.tabs.Tab) => void;
-        let onReject;
-        const tabId = 1;
-        const getTabCallbackInput = {
-            title: 'new title',
-            url: 'new url',
-            id: tabId,
-            telemetry: undefined,
-        };
+    function resetInterpreterMocks(interpreters: DictionaryNumberTo<IMock<Interpreter>>): void {
+        for (const interpreter of values(interpreters)) {
+            interpreter.reset();
+        }
+    }
 
-        const interpretInput: Message = {
-            messageType: Messages.Tab.ExistingTabUpdated,
-            payload: getTabCallbackInput,
-            tabId: tabId,
-        };
-        const interpreterMock = Mock.ofType(Interpreter);
-        interpreterMock.setup(im => im.interpret(It.isValue(interpretInput))).verifiable(Times.once());
-        tabInterpreterMap = {
-            1: {
-                interpreter: interpreterMock.object,
-                stores: null,
-            },
-        };
+    function verifyNoInterpreterMessages(interpreters: DictionaryNumberTo<IMock<Interpreter>>): void {
+        for (const interpreter of values(interpreters)) {
+            interpreter.verify(i => i.interpret(It.isAny()), Times.never());
+        }
+    }
 
-        mockChromeAdapter
-            .setup(ca => ca.addListenerToWebNavigationUpdated(It.isAny()))
-            .callback(cb => {
-                tabUpdatedCallback = cb;
-            })
-            .verifiable(Times.once());
+    type SimulatedDetailsViewController = IMock<DetailsViewController> & {
+        notifyDetailsViewTabRemoved?: (tabId: number) => void;
+    };
 
-        mockChromeAdapter
-            .setup(mca => mca.getTab(It.isValue(tabId), It.isAny(), It.isAny()))
-            .returns((id, cb, reject) => {
-                getTabCallback = cb;
-                onReject = reject;
-            })
-            .verifiable(Times.once());
-        loggerMock.setup(logger => logger.log(It.is(s => s.endsWith(`tab with Id ${tabId} not found`)))).verifiable(Times.once());
+    function setupMockDetailsViewController(): SimulatedDetailsViewController {
+        const mock: SimulatedDetailsViewController = Mock.ofType<DetailsViewController>();
+        mock.setup(m => m.setupDetailsViewTabRemovedHandler(It.is(isFunction))).callback(c => (mock.notifyDetailsViewTabRemoved = c));
+        return mock;
+    }
 
-        testSubject = createTabControllerWithoutFeatureFlag(tabInterpreterMap);
-        testSubject.initialize();
-        tabUpdatedCallback({ frameId: 0, tabId: tabId } as chrome.webNavigation.WebNavigationFramedCallbackDetails);
-        getTabCallback(getTabCallbackInput as any);
-        onReject();
-
-        loggerMock.verifyAll();
-        interpreterMock.verifyAll();
-        mockChromeAdapter.verifyAll();
-    });
-
-    test('Windows Focus Change test', () => {
-        const tabStub1 = {
-            id: 1,
-        };
-        const tabStub2 = {
-            id: 2,
-        };
-        const windowStub1 = {
-            id: 1,
-            state: 'normal',
-        };
-        const windowStub2 = {
-            id: 2,
-            state: 'minimized',
-        };
-        const windowsStub = [windowStub1, windowStub2];
-        const getInfo: chrome.windows.GetInfo = {
-            populate: false,
-            windowTypes: ['normal', 'popup'],
-        };
-        const interpretInput1: Message = {
-            messageType: Messages.Tab.VisibilityChange,
-            payload: {
-                hidden: false,
-            },
-            tabId: 1,
-        };
-        const interpretInput2: Message = {
-            messageType: Messages.Tab.VisibilityChange,
-            payload: {
-                hidden: true,
-            },
-            tabId: 2,
-        };
-
-        mockChromeAdapter
-            .setup(ca => ca.addListenerOnWindowsFocusChanged(It.isAny()))
-            .callback(windowFocusChangedCallback => {
-                windowFocusChangedCallback(-1);
-            })
-            .verifiable(Times.once());
-
-        mockChromeAdapter
-            .setup(ca => ca.getAllWindows(It.isValue(getInfo), It.isAny()))
-            .callback((id, getAllWindowsCallback) => {
-                getAllWindowsCallback(windowsStub as chrome.windows.Window[]);
-            })
-            .verifiable(Times.once());
-
-        mockChromeAdapter
-            .setup(ca => ca.tabsQuery({ windowId: windowStub1.id, active: true }, It.isAny()))
-            .callback((id, getSelectedTabInWindowCallback) => {
-                getSelectedTabInWindowCallback([tabStub1 as chrome.tabs.Tab]);
-            })
-            .verifiable(Times.once());
-
-        mockChromeAdapter
-            .setup(ca => ca.tabsQuery({ windowId: windowStub2.id, active: true }, It.isAny()))
-            .callback((id, getSelectedTabInWindowCallback) => {
-                getSelectedTabInWindowCallback([tabStub2 as chrome.tabs.Tab]);
-            })
-            .verifiable(Times.once());
-
-        mockChromeAdapter
-            .setup(ca => ca.getRuntimeLastError())
-            .returns(() => null)
-            .verifiable(Times.exactly(2));
-
-        const interpreterMock = Mock.ofType(Interpreter);
-        interpreterMock.setup(im => im.interpret(It.isValue(interpretInput1))).verifiable(Times.once());
-
-        interpreterMock.setup(im => im.interpret(It.isValue(interpretInput2))).verifiable(Times.once());
-
-        tabInterpreterMap = {
-            1: {
-                interpreter: interpreterMock.object,
-                stores: null,
-            },
-            2: {
-                interpreter: interpreterMock.object,
-                stores: null,
-            },
-        };
-
-        testSubject = createTabControllerWithoutFeatureFlag(tabInterpreterMap);
-        testSubject.initialize();
-
-        interpreterMock.verifyAll();
-        mockChromeAdapter.verifyAll();
-    });
-
-    test('Windows Focus Change - do nothing for window closed', () => {
-        const tabStub1 = {
-            id: 1,
-        };
-        const tabStub2 = {
-            id: 2,
-        };
-        const windowStub1 = {
-            id: 1,
-            state: 'normal',
-        };
-        const windowStub2 = {
-            id: 2,
-            state: 'minimized',
-        };
-        const windowsStub = [windowStub1, windowStub2];
-        const getInfo: chrome.windows.GetInfo = {
-            populate: false,
-            windowTypes: ['normal', 'popup'],
-        };
-        const interpretInput1: Message = {
-            messageType: Messages.Tab.VisibilityChange,
-            payload: {
-                hidden: false,
-            },
-            tabId: 1,
-        };
-        const interpretInput2: Message = {
-            messageType: Messages.Tab.VisibilityChange,
-            payload: {
-                hidden: true,
-            },
-            tabId: 2,
-        };
-
-        mockChromeAdapter
-            .setup(ca => ca.addListenerOnWindowsFocusChanged(It.isAny()))
-            .callback(windowFocusChangedCallback => {
-                windowFocusChangedCallback(-1);
-            })
-            .verifiable(Times.once());
-
-        mockChromeAdapter
-            .setup(ca => ca.getAllWindows(It.isValue(getInfo), It.isAny()))
-            .callback((id, getAllWindowsCallback) => {
-                getAllWindowsCallback(windowsStub as chrome.windows.Window[]);
-            })
-            .verifiable(Times.once());
-
-        mockChromeAdapter
-            .setup(ca => ca.tabsQuery({ windowId: windowStub1.id, active: true }, It.isAny()))
-            .callback((id, getSelectedTabInWindowCallback) => {
-                getSelectedTabInWindowCallback([tabStub1 as chrome.tabs.Tab]);
-            })
-            .verifiable(Times.once());
-
-        mockChromeAdapter
-            .setup(ca => ca.tabsQuery({ windowId: windowStub2.id, active: true }, It.isAny()))
-            .callback((id, getSelectedTabInWindowCallback) => {
-                getSelectedTabInWindowCallback([tabStub2 as chrome.tabs.Tab]);
-            })
-            .verifiable(Times.once());
-
-        mockChromeAdapter.setup(ca => ca.getRuntimeLastError()).returns(() => new Error('window closed'));
-
-        mockChromeAdapter.setup(ca => ca.getRuntimeLastError()).returns(() => null);
-
-        const interpreterMock = Mock.ofType(Interpreter);
-
-        // do nothing for closed window
-        interpreterMock.setup(im => im.interpret(It.isValue(interpretInput1))).verifiable(Times.never());
-
-        interpreterMock.setup(im => im.interpret(It.isValue(interpretInput2))).verifiable(Times.once());
-
-        tabInterpreterMap = {
-            1: {
-                interpreter: interpreterMock.object,
-                stores: null,
-            },
-            2: {
-                interpreter: interpreterMock.object,
-                stores: null,
-            },
-        };
-
-        testSubject = createTabControllerWithoutFeatureFlag(tabInterpreterMap);
-        testSubject.initialize();
-
-        interpreterMock.verifyAll();
-        mockChromeAdapter.verifyAll();
-    });
-
-    test('Tab Focus Change test', () => {
-        const activeInfo = {
-            tabId: 1,
-            windowId: 1,
-        };
-        const query = {
-            windowId: activeInfo.windowId,
-        };
-        const tabStub1 = {
-            id: 1,
-            active: true,
-        };
-        const tabStub2 = {
-            id: 2,
-            active: false,
-        };
-        const tabs = [tabStub1, tabStub2];
-        const interpretInput1: Message = {
-            messageType: Messages.Tab.VisibilityChange,
-            payload: {
-                hidden: false,
-            },
-            tabId: 1,
-        };
-        const interpretInput2: Message = {
-            messageType: Messages.Tab.VisibilityChange,
-            payload: {
-                hidden: true,
-            },
-            tabId: 2,
-        };
-
-        mockChromeAdapter
-            .setup(ca => ca.addListenerToTabsOnActivated(It.isAny()))
-            .callback(onTabActivatedCallback => {
-                onTabActivatedCallback(activeInfo);
-            })
-            .verifiable(Times.once());
-
-        mockChromeAdapter
-            .setup(ca => ca.tabsQuery(It.isValue(query), It.isAny()))
-            .callback((id, getAllTabsCallback) => {
-                getAllTabsCallback(tabs as chrome.tabs.Tab[]);
-            })
-            .verifiable(Times.once());
-
-        const interpreterMock = Mock.ofType(Interpreter);
-        interpreterMock.setup(im => im.interpret(It.isValue(interpretInput1))).verifiable(Times.once());
-
-        interpreterMock.setup(im => im.interpret(It.isValue(interpretInput2))).verifiable(Times.once());
-
-        tabInterpreterMap = {
-            1: {
-                interpreter: interpreterMock.object,
-                stores: null,
-            },
-            2: {
-                interpreter: interpreterMock.object,
-                stores: null,
-            },
-        };
-
-        testSubject = createTabControllerWithoutFeatureFlag(tabInterpreterMap);
-        testSubject.initialize();
-
-        interpreterMock.verifyAll();
-        mockChromeAdapter.verifyAll();
-    });
-
-    test('tab change test: url was changed', () => {
-        let tabUpdatedCallback: (tabId: number, changeInfo: chrome.tabs.TabChangeInfo) => void = null;
-        let getTabCallback: (tab: chrome.tabs.Tab) => void;
-        const tabId = 1;
-        const getTabCallbackInput = {
-            title: 'new title',
-            url: 'new url',
-            id: tabId,
-            telemetry: {
-                source: null,
-                triggeredBy: TriggeredByNotApplicable,
-            },
-        };
-
-        const interpretInput: Message = {
-            messageType: Messages.Tab.ExistingTabUpdated,
-            payload: getTabCallbackInput,
-            tabId: tabId,
-        };
-        const interpreterMock = Mock.ofType(Interpreter);
-        interpreterMock.setup(im => im.interpret(It.isValue(interpretInput))).verifiable(Times.once());
-        tabInterpreterMap = {
-            1: {
-                interpreter: interpreterMock.object,
-                stores: null,
-            },
-        };
-
-        mockChromeAdapter
-            .setup(ca => ca.addListenerToTabsOnUpdated(It.isAny()))
-            .callback(cb => {
-                tabUpdatedCallback = cb;
-            })
-            .verifiable(Times.once());
-
-        mockChromeAdapter
-            .setup(mca => mca.getTab(It.isValue(tabId), It.isAny(), It.isAny()))
-            .returns((id, cb) => {
-                getTabCallback = cb;
-            })
-            .verifiable(Times.once());
-
-        testSubject = createTabControllerWithoutFeatureFlag(tabInterpreterMap);
-        testSubject.initialize();
-        tabUpdatedCallback(tabId, { url: 'some url' });
-        getTabCallback(getTabCallbackInput as any);
-
-        interpreterMock.verifyAll();
-        mockChromeAdapter.verifyAll();
-    });
-
-    test('tab change test: url was changed but tab was not found', () => {
-        let tabUpdatedCallback: (tabId: number, changeInfo: chrome.tabs.TabChangeInfo) => void = null;
-        let onReject;
-        const tabId = 1;
-
-        mockChromeAdapter
-            .setup(ca => ca.addListenerToTabsOnUpdated(It.isAny()))
-            .callback(cb => {
-                tabUpdatedCallback = cb;
-            })
-            .verifiable(Times.once());
-
-        mockChromeAdapter
-            .setup(mca => mca.getTab(It.isValue(tabId), It.isAny(), It.isAny()))
-            .returns((id, cb, reject) => {
-                onReject = reject;
-            })
-            .verifiable(Times.once());
-        loggerMock.setup(logger => logger.log(It.is(s => s.endsWith(`tab with Id ${tabId} not found`)))).verifiable(Times.once());
-
-        testSubject = createTabControllerWithoutFeatureFlag({ [tabId]: null });
-        testSubject.initialize();
-        tabUpdatedCallback(tabId, { url: 'some url' });
-        onReject();
-
-        loggerMock.verifyAll();
-        mockChromeAdapter.verifyAll();
-    });
-
-    test('tab change test: url was not changed', () => {
-        let tabUpdatedCallback: (tabId: number, changeInfo: chrome.tabs.TabChangeInfo) => void = null;
-        const tabId = 1;
-        const interpreterMock = Mock.ofType(Interpreter);
-
-        interpreterMock.setup(im => im.interpret(It.isAny())).verifiable(Times.never());
-
-        mockChromeAdapter
-            .setup(ca => ca.addListenerToTabsOnUpdated(It.isAny()))
-            .callback(cb => {
-                tabUpdatedCallback = cb;
-            })
-            .verifiable(Times.once());
-
-        mockChromeAdapter.setup(mca => mca.getTab(It.isAny(), It.isAny(), It.isAny())).verifiable(Times.never());
-
-        testSubject = createTabControllerWithoutFeatureFlag(tabInterpreterMap);
-        testSubject.initialize();
-        tabUpdatedCallback(tabId, {});
-
-        interpreterMock.verifyAll();
-        mockChromeAdapter.verifyAll();
-    });
+    function setupMockTabContextFactory(interpreters: DictionaryNumberTo<IMock<Interpreter>>): IMock<TabContextFactory> {
+        const mock = Mock.ofType(TabContextFactory);
+        mock.setup(m =>
+            m.createTabContext(stubBroadcastDelegate, mockBrowserAdapter.object, mockDetailsViewController.object, It.isAnyNumber()),
+        ).returns((_1, _2, _3, tabId) => ({
+            stores: null,
+            interpreter: interpreters[tabId].object,
+        }));
+        return mock;
+    }
 });

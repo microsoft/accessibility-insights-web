@@ -174,4 +174,8 @@ export interface CardSelectionPayload extends BaseActionPayload {
     resultInstanceUid: string;
 }
 
+export interface PopupInitializedPayload extends BaseActionPayload {
+    tab: Tab;
+}
+
 export type ExistingTabUpdatedPayload = BaseActionPayload & Tab;

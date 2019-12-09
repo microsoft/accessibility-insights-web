@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { CheckType } from 'injected/components/details-dialog';
 import * as React from 'react';
+import * as styles from './fix-instruction-panel.scss';
 
-import { NamedFC } from '../../common/react/named-fc';
-import { FixInstructionProcessor } from '../fix-instruction-processor';
-import { CheckType } from './details-dialog';
+import { NamedFC } from '../react/named-fc';
 
 export interface FixInstructionPanelDeps {
     fixInstructionProcessor: FixInstructionProcessor;
@@ -14,7 +15,7 @@ export interface FixInstructionPanelProps {
     deps: FixInstructionPanelDeps;
     checkType: CheckType;
     checks: { message: string }[];
-    renderTitleElement: (titleText: string, className: string) => JSX.Element;
+    renderTitleElement: (titleText: string) => JSX.Element;
 }
 
 export const FixInstructionPanel = NamedFC<FixInstructionPanelProps>('FixInstructionPanel', props => {
@@ -47,8 +48,8 @@ export const FixInstructionPanel = NamedFC<FixInstructionPanelProps>('FixInstruc
 
     return (
         <div>
-            {props.renderTitleElement(title, 'insights-fix-instruction-title')}
-            <ul className="insights-fix-instruction-list">{renderInstructions(props.checkType)}</ul>
+            {props.renderTitleElement(title)}
+            <ul className={styles.insightsFixInstructionList}>{renderInstructions(props.checkType)}</ul>
         </div>
     );
 });

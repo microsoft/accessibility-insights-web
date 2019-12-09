@@ -4,7 +4,11 @@ import * as React from 'react';
 
 export function Tag(props: { tagName: string; isBold?: boolean }): JSX.Element {
     const isBold = props.hasOwnProperty('isBold') ? props.isBold : true;
-    return isBold ? <CodeTerm>&lt;{props.tagName}&gt;</CodeTerm> : <Code>&lt;{props.tagName}&gt;</Code>;
+    return isBold ? (
+        <CodeTerm>&lt;{props.tagName}&gt;</CodeTerm>
+    ) : (
+        <Code>&lt;{props.tagName}&gt;</Code>
+    );
 }
 
 export function Emphasis(props: { children: React.ReactNode }): JSX.Element {

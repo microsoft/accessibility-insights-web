@@ -28,14 +28,6 @@ body {
     }
 }
 
-.switcher-dropdown-option {
-    display: flex;
-    flex-direction: row;
-    i {
-        margin-right: 8px;
-    }
-}
-
 .hidden {
     display: none !important;
 }
@@ -235,9 +227,6 @@ div.insights-file-issue-details-dialog-container {
     display: flex;
     flex-direction: column;
 
-    .details-view-body {
-        margin-top: $detailsViewHeaderBarHeight;
-    }
     .ms-Nav-compositeLink a {
         border-left: $pivotItemLeftBorderWidth $pivotItemBorderStyle $neutral-0;
         border-top: 0px;
@@ -300,69 +289,6 @@ div.insights-file-issue-details-dialog-container {
             .ms-Link {
                 color: $communication-primary;
             }
-        }
-        .details-view-command-buttons {
-            display: flex;
-            margin-right: 16px;
-        }
-    }
-    .header-bar {
-        padding-left: 12px;
-        position: fixed;
-        z-index: 1000;
-        .gear-options-button-component {
-            float: right;
-            margin-right: 16px;
-            .sign-in-link {
-                color: $neutral-0;
-                margin-top: 11px;
-                margin-right: 8px;
-            }
-        }
-        .details-view-dropdown {
-            height: 100%;
-            width: 100%;
-        }
-        .ms-Dropdown-container {
-            display: inline-flex;
-            margin-left: 24px;
-            .ms-Dropdown {
-                &:focus {
-                    .ms-Dropdown-title {
-                        border: 2px $switcher-focus-border solid;
-                        border-style: dotted;
-                    }
-                }
-            }
-            .ms-Dropdown-title {
-                background-color: $ada-brand-variant;
-                height: 32px;
-                border: 2px $switcher-border solid;
-                box-sizing: border-box;
-                border-radius: 2px;
-                width: 165px;
-                color: $neutral-0;
-                i {
-                    margin-right: 8px;
-                }
-            }
-            .ms-Dropdown-caretDownWrapper {
-                top: 4px;
-            }
-            .ms-Dropdown-caretDown {
-                color: $neutral-0;
-            }
-        }
-        .gear-button {
-            color: $neutral-0;
-            float: right;
-            margin-right: 20px;
-            height: fit-content;
-            width: fit-content;
-            margin-top: 10px;
-        }
-        .gear-options-icon {
-            font-size: 18px;
         }
     }
     .details-view-body-nav-content-layout {
@@ -1209,28 +1135,6 @@ div.insights-file-issue-details-dialog-container {
                         .fix-content ul {
                             margin: 0px;
                             -webkit-padding-start: 20px;
-                        }
-                        .fix-content {
-                            .insights-fix-instruction-list {
-                                li {
-                                    span.fix-instruction-color-box {
-                                        width: 14px;
-                                        height: 14px;
-                                        display: inline-block;
-                                        vertical-align: -15%;
-                                        margin: 0px 2px;
-                                        border: 1px solid $always-black;
-                                    }
-                                }
-                                .screen-reader-only {
-                                    position: absolute;
-                                    left: -10000px;
-                                    top: auto;
-                                    width: 1px;
-                                    height: 1px;
-                                    overflow: hidden;
-                                }
-                            }
                         }
                     }
                     .issue-detail-select-message {

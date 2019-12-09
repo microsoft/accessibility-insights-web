@@ -73,10 +73,7 @@ export class DiagnosticViewToggle extends React.Component<
                             {displayableData.title}
                         </div>
                     </div>
-                    <div
-                        className="ms-Grid-col ms-sm5 view-toggle-col"
-                        style={{ float: 'right' }}
-                    >
+                    <div className="ms-Grid-col ms-sm5 view-toggle-col" style={{ float: 'right' }}>
                         {this.renderToggleOrSpinner()}
                     </div>
                 </div>
@@ -84,10 +81,7 @@ export class DiagnosticViewToggle extends React.Component<
                     <div className="ms-Grid-col ms-sm8">
                         {this.renderLink(displayableData.linkToDetailsViewText)}
                     </div>
-                    <div
-                        className="ms-Grid-col ms-sm4 shortcut-label"
-                        style={{ float: 'right' }}
-                    >
+                    <div className="ms-Grid-col ms-sm4 shortcut-label" style={{ float: 'right' }}>
                         <div className="ms-font-xs">{shortcut}</div>
                     </div>
                 </div>
@@ -98,17 +92,10 @@ export class DiagnosticViewToggle extends React.Component<
     private renderToggleOrSpinner(): JSX.Element {
         const scanning = this.props.visualizationStoreData.scanning;
         const id = this.configuration.getIdentifier();
-        const scanData = this.configuration.getStoreData(
-            this.props.visualizationStoreData.tests,
-        );
+        const scanData = this.configuration.getStoreData(this.props.visualizationStoreData.tests);
 
         if (scanning === id) {
-            return (
-                <Spinner
-                    size={SpinnerSize.small}
-                    componentRef={this.addUserEventListener}
-                />
-            );
+            return <Spinner size={SpinnerSize.small} componentRef={this.addUserEventListener} />;
         } else {
             const disabled = scanning != null;
             return (
@@ -170,9 +157,7 @@ export class DiagnosticViewToggle extends React.Component<
                 }
             });
 
-            const hamburgerButton = this.dom.querySelector(
-                '.feedback-collapse-menu-button',
-            );
+            const hamburgerButton = this.dom.querySelector('.feedback-collapse-menu-button');
             if (hamburgerButton != null) {
                 hamburgerButton.addEventListener('click', event => {
                     this.onBlurHandler();

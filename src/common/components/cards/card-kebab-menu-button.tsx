@@ -16,7 +16,7 @@ import { IssueFilingServiceProperties, UserConfigurationStoreData } from '../../
 import { IssueFilingButtonDeps } from '../issue-filing-button';
 import { Toast, ToastDeps } from '../toast';
 import { CardInteractionSupport } from './card-interaction-support';
-import { kebabMenu, kebabMenuButton, kebabMenuCallout } from './card-kebab-menu-button.scss';
+import * as styles from './card-kebab-menu-button.scss';
 
 export type CardKebabMenuButtonDeps = {
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
@@ -63,16 +63,16 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
             // calculation in this component's parent.
             <div onKeyDown={handleKeyDown}>
                 <ActionButton
-                    className={kebabMenuButton}
+                    className={styles.kebabMenuButton}
                     ariaLabel={this.props.kebabMenuAriaLabel || 'More actions'}
                     onRenderMenuIcon={MoreActionsMenuIcon}
                     menuProps={{
-                        className: kebabMenu,
+                        className: styles.kebabMenu,
                         directionalHint: DirectionalHint.bottomRightEdge,
                         shouldFocusOnMount: true,
                         items: this.getMenuItems(),
                         calloutProps: {
-                            className: kebabMenuCallout,
+                            className: styles.kebabMenuCallout,
                         },
                     }}
                 />

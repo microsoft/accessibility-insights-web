@@ -14,8 +14,9 @@ describe('Details View -> Assessment -> Headings', () => {
     let headingsPage: DetailsViewPage;
 
     beforeAll(async () => {
-        browser = await launchBrowser({ suppressFirstTimeDialog: true });
+        browser = await launchBrowser({ suppressFirstTimeDialog: true, addLocalhostToPermissions: true });
         targetPage = await browser.newTargetPage();
+        await browser.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
         headingsPage = await openHeadingsPage(browser, targetPage);
     });
 

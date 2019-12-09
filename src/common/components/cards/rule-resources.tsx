@@ -8,7 +8,7 @@ import { UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { isEmpty } from 'lodash';
 import * as React from 'react';
 
-import { moreResourcesTitle, ruleDetailsId, ruleMoreResources } from './rule-resources.scss';
+import * as styles from './rule-resources.scss';
 
 export type RuleResourcesDeps = GuidanceTagsDeps;
 
@@ -22,7 +22,7 @@ export const RuleResources = NamedFC<RuleResourcesProps>('RuleResources', ({ dep
         return null;
     }
 
-    const renderTitle = () => <div className={moreResourcesTitle}>Resources for this rule</div>;
+    const renderTitle = () => <div className={styles.moreResourcesTitle}>Resources for this rule</div>;
 
     const renderRuleLink = () => {
         if (rule.url == null) {
@@ -32,7 +32,7 @@ export const RuleResources = NamedFC<RuleResourcesProps>('RuleResources', ({ dep
         const ruleId = rule.id;
         const ruleUrl = rule.url;
         return (
-            <span className={ruleDetailsId}>
+            <span className={styles.ruleDetailsId}>
                 <NewTabLink href={ruleUrl}>More information about {ruleId}</NewTabLink>
             </span>
         );
@@ -42,7 +42,7 @@ export const RuleResources = NamedFC<RuleResourcesProps>('RuleResources', ({ dep
     const renderGuidanceTags = () => <GuidanceTags deps={deps} links={rule.guidance} />;
 
     return (
-        <div className={ruleMoreResources}>
+        <div className={styles.ruleMoreResources}>
             {renderTitle()}
             {renderRuleLink()}
             <span>

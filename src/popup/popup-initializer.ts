@@ -87,9 +87,10 @@ export class PopupInitializer {
 
     private initializePopup = (): void => {
         const telemetryFactory = new TelemetryDataFactory();
+        const tab = this.targetTabInfo.tab;
         const actionMessageDispatcher = new RemoteActionMessageDispatcher(
             this.browserAdapter.sendMessageToFrames,
-            this.targetTabInfo.tab.id,
+            tab.id,
         );
         const visualizationActionCreator = new VisualizationActionMessageCreator(
             actionMessageDispatcher,
@@ -102,9 +103,7 @@ export class PopupInitializer {
             windowUtils,
         );
 
-        const userConfigMessageCreator = new UserConfigMessageCreator(
-            actionMessageDispatcher,
-        );
+        const userConfigMessageCreator = new UserConfigMessageCreator(actionMessageDispatcher);
 
         const contentActionMessageCreator = new ContentActionMessageCreator(
             telemetryFactory,
@@ -117,54 +116,49 @@ export class PopupInitializer {
             actionMessageDispatcher,
         );
 
-        const visualizationStoreName =
-            StoreNames[StoreNames.VisualizationStore];
+        const visualizationStoreName = StoreNames[StoreNames.VisualizationStore];
         const commandStoreName = StoreNames[StoreNames.CommandStore];
         const featureFlagStoreName = StoreNames[StoreNames.FeatureFlagStore];
-        const launchPanelStateStoreName =
-            StoreNames[StoreNames.LaunchPanelStateStore];
-        const userConfigurationStoreName =
-            StoreNames[StoreNames.UserConfigurationStore];
+        const launchPanelStateStoreName = StoreNames[StoreNames.LaunchPanelStateStore];
+        const userConfigurationStoreName = StoreNames[StoreNames.UserConfigurationStore];
 
         const visualizationStore = new StoreProxy<VisualizationStoreData>(
             visualizationStoreName,
             this.browserAdapter,
+            tab.id,
         );
         const launchPanelStateStore = new StoreProxy<LaunchPanelStoreData>(
             launchPanelStateStoreName,
             this.browserAdapter,
+            tab.id,
         );
         const commandStore = new StoreProxy<CommandStoreData>(
             commandStoreName,
             this.browserAdapter,
+            tab.id,
         );
         const featureFlagStore = new StoreProxy<FeatureFlagStoreData>(
             featureFlagStoreName,
             this.browserAdapter,
+            tab.id,
         );
-        const userConfigurationStore = new StoreProxy<
-            UserConfigurationStoreData
-        >(userConfigurationStoreName, this.browserAdapter);
+        const userConfigurationStore = new StoreProxy<UserConfigurationStoreData>(
+            userConfigurationStoreName,
+            this.browserAdapter,
+            tab.id,
+        );
 
         const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
             actionMessageDispatcher,
         );
 
-        const storeActionMessageCreator = storeActionMessageCreatorFactory.fromStores(
-            [
-                visualizationStore,
-                launchPanelStateStore,
-                commandStore,
-                featureFlagStore,
-                userConfigurationStore,
-            ],
-        );
-
-        visualizationStore.setTabId(this.targetTabInfo.tab.id);
-        commandStore.setTabId(this.targetTabInfo.tab.id);
-        featureFlagStore.setTabId(this.targetTabInfo.tab.id);
-        launchPanelStateStore.setTabId(this.targetTabInfo.tab.id);
-        userConfigurationStore.setTabId(this.targetTabInfo.tab.id);
+        const storeActionMessageCreator = storeActionMessageCreatorFactory.fromStores([
+            visualizationStore,
+            launchPanelStateStore,
+            commandStore,
+            featureFlagStore,
+            userConfigurationStore,
+        ]);
 
         const visualizationConfigurationFactory = new VisualizationConfigurationFactory();
         const launchPadRowConfigurationFactory = new LaunchPadRowConfigurationFactory();
@@ -181,10 +175,7 @@ export class PopupInitializer {
             TelemetryEventSource.LaunchPad,
         );
         const launchPanelHeaderClickHandler = new LaunchPanelHeaderClickHandler();
-        const supportLinkHandler = new SupportLinkHandler(
-            this.browserAdapter,
-            windowUtils,
-        );
+        const supportLinkHandler = new SupportLinkHandler(this.browserAdapter, windowUtils);
 
         const popupHandlers: IPopupHandlers = {
             diagnosticViewClickHandler,
@@ -197,9 +188,9 @@ export class PopupInitializer {
             ...contentActionMessageCreator.initiators,
         };
 
-        const visualizationTypes = EnumHelper.getNumericValues<
-            VisualizationType
-        >(VisualizationType);
+        const visualizationTypes = EnumHelper.getNumericValues<VisualizationType>(
+            VisualizationType,
+        );
         const storesHub = new BaseClientStoresHub<PopupViewControllerState>([
             visualizationStore,
             launchPanelStateStore,
@@ -244,14 +235,14 @@ export class PopupInitializer {
             ReactDOM.render,
             document,
             window,
-            this.targetTabInfo.tab.url,
+            tab.url,
             this.targetTabInfo.hasAccess,
             launchPadRowConfigurationFactory,
             diagnosticViewToggleFactory,
             dropdownClickHandler,
         );
         renderer.render();
-        popupActionMessageCreator.popupInitialized();
+        popupActionMessageCreator.popupInitialized(tab);
 
         const a11ySelfValidator = new A11YSelfValidator(
             new ScannerUtils(scan),

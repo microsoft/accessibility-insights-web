@@ -18,8 +18,8 @@ import { buildTestStepsFromRules } from './build-test-steps-from-rules';
 const { guidance } = content.automatedChecks;
 const gettingStarted: JSX.Element = (
     <p>
-        {title} automated accessibility checks can detect some of the most common accessibility issues, depending on the complexity of the
-        site or the app​​​lication.
+        {title} automated accessibility checks can detect some of the most common accessibility
+        issues, depending on the complexity of the site or the app​​​lication.
     </p>
 );
 
@@ -33,7 +33,11 @@ const config: AssistedAssessment = {
     guidance,
     requirements: buildTestStepsFromRules(getDefaultRules()),
     requirementOrder: RequirementComparer.byOutcomeAndName,
-    extensions: [waitForAllRequirementsToComplete, selectFirstRequirementAfterAutomatedChecks, excludePassingInstancesFromAssessmentReport],
+    extensions: [
+        waitForAllRequirementsToComplete,
+        selectFirstRequirementAfterAutomatedChecks,
+        excludePassingInstancesFromAssessmentReport,
+    ],
 };
 
 export const AutomatedChecks = AssessmentBuilder.Assisted(config);

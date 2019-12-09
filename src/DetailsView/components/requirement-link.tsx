@@ -5,7 +5,7 @@ import { INavLink } from 'office-ui-fabric-react/lib/Nav';
 import * as React from 'react';
 
 import { ManualTestStatus } from '../../common/types/manual-test-status';
-import { reqDescription, reqIndex, reqName } from './requirement-link.scss';
+import * as styles from './requirement-link.scss';
 import { StatusIcon } from './status-icon';
 
 export interface RequirementLinkProps {
@@ -26,9 +26,9 @@ export class RequirementLink extends React.Component<RequirementLinkProps> {
 
     public renderRequirementDescriptionWithIndex(): JSX.Element {
         return (
-            <div className={css('ms-Button-label', reqDescription)}>
-                <span className={reqIndex}>{this.props.link.index}</span>
-                <span className={reqName}>{this.props.link.name}.</span>
+            <div className={css('ms-Button-label', styles.reqDescription)}>
+                <span className={styles.reqIndex}>{this.props.link.index}</span>
+                <span className={styles.reqName}>{this.props.link.name}.</span>
                 {this.props.link.description}
             </div>
         );
@@ -36,8 +36,8 @@ export class RequirementLink extends React.Component<RequirementLinkProps> {
 
     public renderRequirementDescriptionWithoutIndex(): JSX.Element {
         return (
-            <div className={css('ms-Button-label', reqDescription)}>
-                <span className={reqName}>{this.props.link.name}.</span>
+            <div className={css('ms-Button-label', styles.reqDescription)}>
+                <span className={styles.reqName}>{this.props.link.name}.</span>
                 {this.props.link.description}
             </div>
         );

@@ -25,3 +25,7 @@ export const DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS = 5000;
 // How long of a wait to artificially inject between element hover/mousedown/mouseup during clicks
 export const DEFAULT_CLICK_HOVER_DELAY_MS = 100;
 export const DEFAULT_CLICK_MOUSEUP_DELAY_MS = 50;
+
+// How long to allow screenshotOnError to take (we don't want to allow arbitrarily long because the
+// error stacks are better if an individual test operation fails than if the whole test times out)
+export const DEFAULT_SCREENSHOT_TIMEOUT_MS = 5000;

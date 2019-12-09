@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
+import { every, lowerFirst } from 'lodash';
 
 import { BaseStore } from '../base-store';
 import { ClientStoresHub } from './client-stores-hub';
@@ -37,7 +37,7 @@ export class BaseClientStoresHub<T> implements ClientStoresHub<T> {
             return false;
         }
 
-        return _.every(this.stores, store => store != null);
+        return every(this.stores, store => store != null);
     }
 
     public hasStoreData(): boolean {
@@ -52,7 +52,7 @@ export class BaseClientStoresHub<T> implements ClientStoresHub<T> {
         }
 
         const state: Partial<T> = this.stores.reduce((builtState: Partial<T>, store) => {
-            const key = `${_.lowerFirst(store.getId())}Data`;
+            const key = `${lowerFirst(store.getId())}Data`;
             builtState[key as keyof T] = store.getState();
             return builtState;
         }, {} as Partial<T>);

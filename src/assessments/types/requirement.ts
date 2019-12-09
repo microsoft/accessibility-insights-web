@@ -2,15 +2,24 @@
 // Licensed under the MIT License.
 import { UniquelyIdentifiableInstances } from 'background/instance-identifier-generator';
 import { ManualTestStatus } from 'common/types/manual-test-status';
-import { AssessmentNavState, GeneratedAssessmentInstance } from 'common/types/store-data/assessment-result-data';
+import {
+    AssessmentNavState,
+    GeneratedAssessmentInstance,
+} from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
-import { AssessmentInstanceRowData, AssessmentInstanceTable } from 'DetailsView/components/assessment-instance-table';
+import {
+    AssessmentInstanceRowData,
+    AssessmentInstanceTable,
+} from 'DetailsView/components/assessment-instance-table';
 import { RequirementLink } from 'DetailsView/components/requirement-link';
 import { Analyzer } from 'injected/analyzers/analyzer';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
-import { PropertyBags, VisualizationInstanceProcessorCallback } from 'injected/visualization-instance-processor';
+import {
+    PropertyBags,
+    VisualizationInstanceProcessorCallback,
+} from 'injected/visualization-instance-processor';
 import { Drawer } from 'injected/visualization/drawer';
 import { DrawerProvider } from 'injected/visualization/drawer-provider';
 import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
@@ -34,7 +43,10 @@ export interface Requirement {
     columnsConfig?: InstanceTableColumn[];
     getAnalyzer?: (provider: AnalyzerProvider) => Analyzer;
     getVisualHelperToggle?: (props: VisualHelperToggleConfig) => JSX.Element;
-    visualizationInstanceProcessor?: VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags>;
+    visualizationInstanceProcessor?: VisualizationInstanceProcessorCallback<
+        PropertyBags,
+        PropertyBags
+    >;
     getDrawer?: (provider: DrawerProvider, featureFlagStoreData?: FeatureFlagStoreData) => Drawer;
     getNotificationMessage?: (selectorMap: DictionaryStringTo<any>) => string;
     doNotScanByDefault?: boolean;
@@ -45,7 +57,10 @@ export interface Requirement {
     getInstanceStatus?: (result: DecoratedAxeNodeResult) => ManualTestStatus;
     getInstanceStatusColumns?: () => Readonly<IColumn>[];
     getDefaultMessage?: IGetMessageGenerator;
-    renderInstanceTableHeader?: (table: AssessmentInstanceTable, items: AssessmentInstanceRowData[]) => JSX.Element;
+    renderInstanceTableHeader?: (
+        table: AssessmentInstanceTable,
+        items: AssessmentInstanceRowData[],
+    ) => JSX.Element;
     renderRequirementDescription?: (requirementLink: RequirementLink) => JSX.Element;
 }
 

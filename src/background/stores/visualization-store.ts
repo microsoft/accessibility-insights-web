@@ -258,18 +258,13 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
     };
 
     private updateSelectedPivotChildUnderPivot(payload: UpdateSelectedDetailsViewPayload): boolean {
-        let updated = false;
         if (payload.detailsViewType == null) {
-            return updated;
+            return false;
         }
 
+        let updated = false;
+
         if (
-            this.state.selectedAdhocDetailsView !== payload.detailsViewType &&
-            payload.pivotType === DetailsViewPivotType.allTest
-        ) {
-            this.state.selectedAdhocDetailsView = payload.detailsViewType;
-            updated = true;
-        } else if (
             this.state.selectedFastPassDetailsView !== payload.detailsViewType &&
             payload.pivotType === DetailsViewPivotType.fastPass
         ) {

@@ -6,7 +6,7 @@ import * as React from 'react';
 
 import { HowToFixAndroidCardRow, HowToFixAndroidCardRowProps } from 'common/components/cards/how-to-fix-android-card-row';
 import { IMock, It, Mock } from 'typemoq';
-import { FixInstructionProcessor } from '../../../../../../injected/fix-instruction-processor';
+import { FixInstructionProcessor } from '../../../../../../common/components/fix-instruction-processor';
 
 describe(HowToFixAndroidCardRow, () => {
     let fixInstructionProcessorMock: IMock<FixInstructionProcessor>;

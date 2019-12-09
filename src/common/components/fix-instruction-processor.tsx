@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
+import * as styles from './cards/fix-instruction-color-box.scss';
 
 type ColorMatch = {
     splitIndex: number;
@@ -70,14 +71,18 @@ export class FixInstructionProcessor {
         return (
             <>
                 <span aria-hidden="true">{result}</span>
-                <span className="screen-reader-only">{fixInstruction}</span>
+                <span className={styles.screenReaderOnly}>{fixInstruction}</span>
             </>
         );
     }
 
     private createColorBox(colorHexValue: string, keyIndex: number): JSX.Element {
         return (
-            <span key={`instruction-split-${keyIndex}`} className="fix-instruction-color-box" style={{ backgroundColor: colorHexValue }} />
+            <span
+                key={`instruction-split-${keyIndex}`}
+                className={styles.fixInstructionColorBox}
+                style={{ backgroundColor: colorHexValue }}
+            />
         );
     }
 }

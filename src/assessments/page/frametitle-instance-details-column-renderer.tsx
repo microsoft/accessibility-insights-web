@@ -6,7 +6,9 @@ import { AssessmentInstanceRowData } from 'DetailsView/components/assessment-ins
 import { FrameFormatter } from 'injected/visualization/frame-formatter';
 import * as React from 'react';
 
-export function frameTitleInstanceDetailsColumnRenderer(item: AssessmentInstanceRowData<FrameAssessmentProperties>): JSX.Element {
+export function frameTitleInstanceDetailsColumnRenderer(
+    item: AssessmentInstanceRowData<FrameAssessmentProperties>,
+): JSX.Element {
     const propertyBag = item.instance.propertyBag;
     const frameTitle = propertyBag ? propertyBag.frameTitle : null;
     const frameType = propertyBag ? propertyBag.frameType : 'default';

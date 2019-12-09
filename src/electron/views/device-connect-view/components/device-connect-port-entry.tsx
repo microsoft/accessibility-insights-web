@@ -7,7 +7,7 @@ import * as React from 'react';
 
 import { DeviceConnectActionCreator } from '../../../flux/action-creator/device-connect-action-creator';
 import { DeviceConnectState } from '../../../flux/types/device-connect-state';
-import { deviceConnectPortEntry, portNumberField } from './device-connect-port-entry.scss';
+import * as styles from './device-connect-port-entry.scss';
 
 export type DeviceConnectPortEntryViewState = {
     deviceConnectState: DeviceConnectState;
@@ -26,7 +26,10 @@ export interface DeviceConnectPortEntryState {
     port: string;
 }
 
-export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEntryProps, DeviceConnectPortEntryState> {
+export class DeviceConnectPortEntry extends React.Component<
+    DeviceConnectPortEntryProps,
+    DeviceConnectPortEntryState
+> {
     constructor(props: DeviceConnectPortEntryProps) {
         super(props);
         this.state = { port: '' };
@@ -34,13 +37,13 @@ export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEnt
 
     public render(): JSX.Element {
         return (
-            <div className={deviceConnectPortEntry}>
+            <div className={styles.deviceConnectPortEntry}>
                 <h3>Android device port number</h3>
                 <MaskedTextField
                     ariaLabel="Port number"
                     onChange={this.onPortTextChanged}
                     placeholder="12345"
-                    className={portNumberField}
+                    className={styles.portNumberField}
                     maskChar=""
                     mask="99999"
                     onKeyDown={this.onEnterKey}
@@ -65,10 +68,17 @@ export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEnt
     }
 
     private isValidateButtonDisabled(): boolean {
-        return !this.state.port || this.state.port === '' || this.props.viewState.deviceConnectState === DeviceConnectState.Connecting;
+        return (
+            !this.state.port ||
+            this.state.port === '' ||
+            this.props.viewState.deviceConnectState === DeviceConnectState.Connecting
+        );
     }
 
-    private onPortTextChanged = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
+    private onPortTextChanged = (
+        event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>,
+        newValue?: string,
+    ) => {
         this.props.deps.deviceConnectActionCreator.resetConnection();
         this.setState({ port: newValue });
     };

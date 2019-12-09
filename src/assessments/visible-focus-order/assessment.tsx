@@ -19,12 +19,14 @@ const { guidance } = content.focus;
 const keyboardInteractionGettingStarted: JSX.Element = (
     <React.Fragment>
         <p>
-            When interacting with a website or web app using a keyboard, users need to know which component currently has the input focus.
-            By default, web browsers indicate focus visually, but custom programming, styles, style sheets, and scripting can disrupt it.
+            When interacting with a website or web app using a keyboard, users need to know which
+            component currently has the input focus. By default, web browsers indicate focus
+            visually, but custom programming, styles, style sheets, and scripting can disrupt it.
         </p>
         <p>
-            When navigating sequentially through a user interface, keyboard users need to encounter information in an order that preserves
-            its meaning and allows them to perform all supported functions.
+            When navigating sequentially through a user interface, keyboard users need to encounter
+            information in an order that preserves its meaning and allows them to perform all
+            supported functions.
         </p>
     </React.Fragment>
 );

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
+import { padStart } from 'lodash';
 import * as React from 'react';
 
 export interface FormattedDateProps {
@@ -54,6 +54,6 @@ export class FormattedDate extends React.Component<FormattedDateProps> {
     }
 
     private padStartWithZero(num: number, digits: number): string {
-        return _.padStart(num.toString(), digits, '0');
+        return padStart(num.toString(), digits, '0');
     }
 }

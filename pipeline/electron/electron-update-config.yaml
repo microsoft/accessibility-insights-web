@@ -12,3 +12,11 @@ steps:
           enableCodeCoverage: false # Optional
           #workingDirectory: # Optional
           #testFiles: 'test/*.js' # Required when enableCodeCoverage == True
+
+    - task: Grunt@0
+      displayName: grunt update-electron-config
+      inputs:
+          gruntFile: $(System.DefaultWorkingDirectory)/drop/electron/electron/Gruntfile.js
+          targets: update-electron-config
+          arguments: --extension-version=$(extension-version) --app-insights-instrumentation-key=$(app-insights-instrumentation-key) --electron-update-url=$(electron-update-url)
+          gruntCli: node_modules/grunt-cli/bin/grunt

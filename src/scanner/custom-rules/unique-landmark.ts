@@ -5,7 +5,8 @@ import * as axe from 'axe-core';
 import { RuleConfiguration } from '../iruleresults';
 
 const id: string = 'unique-landmark';
-const passMessage: string = 'Landmarks must have a unique role or role/label combination (aria-label OR aria-labelledby)';
+const passMessage: string =
+    'Landmarks must have a unique role or role/label combination (aria-label OR aria-labelledby)';
 const failMessage: string =
     'The landmarks do not have a unique role or role/label combination (use aria-label OR aria-labelledby to make landmarks distinguishable)';
 const descriptionHelp = {
@@ -99,13 +100,19 @@ function evaluate(node: any, options: any): boolean {
     // tslint:disable-next-line:no-invalid-this
     this.data({ role: role, label: label });
     for (let selectorPos = 0; selectorPos < selectorsLength; selectorPos++) {
-        candidates = candidates.concat(axe.utils.toArray(document.querySelectorAll(selectors[selectorPos])));
+        candidates = candidates.concat(
+            axe.utils.toArray(document.querySelectorAll(selectors[selectorPos])),
+        );
     }
     const candidatesLength = candidates.length;
     if (candidatesLength > 1) {
         for (let candidatePos = 0; candidatePos < candidatesLength; candidatePos++) {
             const candidate = candidates[candidatePos];
-            if (candidate !== node && isLandmark(candidate) && axe.commons.dom.isVisible(candidate, true)) {
+            if (
+                candidate !== node &&
+                isLandmark(candidate) &&
+                axe.commons.dom.isVisible(candidate, true)
+            ) {
                 let candidateLabel = axe.commons.aria.label(candidate);
                 candidateLabel = candidateLabel ? candidateLabel.toLowerCase() : null;
                 if (label === candidateLabel) {

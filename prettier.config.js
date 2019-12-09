@@ -8,13 +8,15 @@ module.exports = {
     trailingComma: 'all',
     overrides: [
         {
-            files: 'src/popup/**/*',
-            options: {
-                printWidth: 80,
-            },
-        },
-        {
-            files: 'src/background/**/*',
+            files: [
+                'src/popup/**/*',
+                'src/background/**/*',
+                'src/ad-hoc-visualizations/**/*',
+                'src/assessments/**/*',
+                'src/electron/**/*',
+                'src/types/**/*',
+                'src/scanner/**/*',
+            ],
             options: {
                 printWidth: 100,
             },

@@ -9,15 +9,17 @@ import { Requirement } from '../../types/requirement';
 import { RepetitiveContentTestStep } from './test-steps';
 
 const consistentIdentificationDescription: JSX.Element = (
-    <span>Functional components that appear on multiple pages must be identified consistently.</span>
+    <span>
+        Functional components that appear on multiple pages must be identified consistently.
+    </span>
 );
 
 const consistentIdentificationHowToTest: JSX.Element = (
     <div>
         <ol>
             <li>
-                Examine the target page to identify any functional components (such as links, widgets, icons, images, headings, etc.) that
-                appear on multiple pages.
+                Examine the target page to identify any functional components (such as links,
+                widgets, icons, images, headings, etc.) that appear on multiple pages.
             </li>
             <li>
                 Use the{' '}
