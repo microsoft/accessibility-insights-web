@@ -85,6 +85,8 @@ async function initialize(): Promise<void> {
         AxeInfo.Default.version,
     );
 
+    const logger = createDefaultLogger();
+
     const globalContext = GlobalContextFactory.createContext(
         browserAdapter,
         telemetryEventHandler,
@@ -97,6 +99,7 @@ async function initialize(): Promise<void> {
         environmentInfoProvider.getEnvironmentInfo(),
         browserAdapter,
         browserAdapter,
+        logger,
     );
     telemetryLogger.initialize(globalContext.featureFlagsController);
 
@@ -106,7 +109,6 @@ async function initialize(): Promise<void> {
     );
     telemetryStateListener.initialize();
 
-    const logger = createDefaultLogger();
     const messageBroadcasterFactory = new BrowserMessageBroadcasterFactory(browserAdapter, logger);
     const detailsViewController = new DetailsViewController(browserAdapter);
 
