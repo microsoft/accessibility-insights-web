@@ -127,6 +127,7 @@ async function initialize(): Promise<void> {
         telemetryDataFactory,
         globalContext.stores.userConfigurationStore,
         browserAdapter,
+        logger,
     );
     chromeCommandHandler.initialize();
 
