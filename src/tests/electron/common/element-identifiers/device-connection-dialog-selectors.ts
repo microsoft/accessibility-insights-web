@@ -10,8 +10,8 @@ import {
 } from 'electron/views/device-connect-view/components/device-connect-port-entry';
 
 export const DeviceConnectionDialogSelectors = {
-    portNumber: `[data-automation-id=${deviceConnectPortNumberFieldAutomationId}]`,
-    validateButton: `[data-automation-id=${deviceConnectValidatePortButtonAutomationId}]`,
-    cancelButton: `[data-automation-id=${deviceConnectCancelAutomationId}]`,
-    startButton: `[data-automation-id=${deviceConnectStartAutomationId}]`,
+    portNumber: `[data-automation-id="${deviceConnectPortNumberFieldAutomationId}"]`,
+    validateButton: `[data-automation-id="${deviceConnectValidatePortButtonAutomationId}"]`,
+    cancelButton: `[data-automation-id="${deviceConnectCancelAutomationId}"]`,
+    startButton: `[data-automation-id="${deviceConnectStartAutomationId}"]`,
 };

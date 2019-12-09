@@ -16,7 +16,7 @@ export const detailsViewSelectors = {
 
 export const overviewSelectors = {
     overview: '.overview',
-    overviewHeading: `[data-automation-id=${overviewHeadingAutomationId}]`,
+    overviewHeading: `[data-automation-id="${overviewHeadingAutomationId}"]`,
 };
 
 export const settingsPanelSelectors = {

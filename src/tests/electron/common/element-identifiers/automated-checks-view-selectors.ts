@@ -13,19 +13,19 @@ import { ruleIdAutomationId } from 'reports/components/report-sections/minimal-r
 const nthRuleGroup = (n: number) => `${AutomatedChecksViewSelectors.ruleGroup}:nth-of-type(${n})`;
 
 export const AutomatedChecksViewSelectors = {
-    mainContainer: `[data-automation-id=${automatedChecksViewAutomationId}]`,
-    ruleGroup: `[data-automation-id=${ruleGroupAutomationId}]`,
-    ruleContent: `[data-automation-id=${ruleContentAutomationId}]`,
+    mainContainer: `[data-automation-id="${automatedChecksViewAutomationId}"]`,
+    ruleGroup: `[data-automation-id="${ruleGroupAutomationId}"]`,
+    ruleContent: `[data-automation-id="${ruleContentAutomationId}"]`,
 
     nthRuleGroupCollapseExpandButton: (position: number) =>
-        `${nthRuleGroup(position)} [data-automation-id=${collapsibleButtonAutomationId}]`,
-    nthRuleGroupTitle: (position: number) => `${nthRuleGroup(position)} [data-automation-id=${ruleIdAutomationId}]`,
-    nthRuleGroupInstances: (position: number) => `${nthRuleGroup(position)} [data-automation-id=${instanceCardAutomationId}]`,
+        `${nthRuleGroup(position)} [data-automation-id="${collapsibleButtonAutomationId}"]`,
+    nthRuleGroupTitle: (position: number) => `${nthRuleGroup(position)} [data-automation-id="${ruleIdAutomationId}"]`,
+    nthRuleGroupInstances: (position: number) => `${nthRuleGroup(position)} [data-automation-id="${instanceCardAutomationId}"]`,
 };
 
 export const ScreenshotViewSelectors = {
-    screenshotView: `[data-automation-id=${screenshotViewAutomationId}]`,
-    screenshotImage: `[data-automation-id=${screenshotImageAutomationId}]`,
-    highlightBox: `[data-automation-id=${highlightBoxAutomationId}]`,
+    screenshotView: `[data-automation-id="${screenshotViewAutomationId}"]`,
+    screenshotImage: `[data-automation-id="${screenshotImageAutomationId}"]`,
+    highlightBox: `[data-automation-id="${highlightBoxAutomationId}"]`,
     getHighlightBoxByIndex: (index: number) => `${ScreenshotViewSelectors.highlightBox}:nth-of-type(${index})`,
 };
