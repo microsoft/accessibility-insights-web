@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { DetailsViewController } from 'background/details-view-controller';
 import { Interpreter } from 'background/interpreter';
@@ -17,6 +15,8 @@ import { TabContext } from 'background/tab-context';
 import { TabContextFactory } from 'background/tab-context-factory';
 import { TargetTabController } from 'background/target-tab-controller';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import { Logger } from 'common/logging/logger';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { UnifiedScanResultStore } from '../../../../background/stores/unified-scan-result-store';
 import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
@@ -35,12 +35,12 @@ function getConfigs(visualizationType: VisualizationType): VisualizationConfigur
 describe('TabContextFactoryTest', () => {
     let mockDetailsViewController: IMock<DetailsViewController>;
     let mockBrowserAdapter: IMock<BrowserAdapter>;
+    let mockLogger: IMock<Logger>;
 
-    beforeAll(() => {
+    beforeEach(() => {
         mockBrowserAdapter = Mock.ofType<BrowserAdapter>();
-
+        mockLogger = Mock.ofType<Logger>();
         mockDetailsViewController = Mock.ofType<DetailsViewController>();
-        mockBrowserAdapter.reset();
     });
 
     it('createInterpreter', () => {
@@ -86,6 +86,7 @@ describe('TabContextFactoryTest', () => {
             assessmentStore.object,
             assessmentProvider.object,
             promiseFactoryMock.object,
+            mockLogger.object,
         );
 
         const tabContext = testObject.createTabContext(

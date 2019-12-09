@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { AppInsights } from 'applicationinsights-js';
 import { Assessments } from 'assessments/assessments';
-
 import { AxeInfo } from '../common/axe-info';
 import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -143,6 +142,7 @@ async function initialize(): Promise<void> {
     );
 
     const promiseFactory = createDefaultPromiseFactory();
+    const logger = createDefaultLogger();
 
     const tabContextFactory = new TabContextFactory(
         visualizationConfigurationFactory,
@@ -152,6 +152,7 @@ async function initialize(): Promise<void> {
         globalContext.stores.assessmentStore,
         assessmentsProvider,
         promiseFactory,
+        logger,
     );
 
     const clientHandler = new TargetPageController(
@@ -160,7 +161,7 @@ async function initialize(): Promise<void> {
         browserAdapter,
         detailsViewController,
         tabContextFactory,
-        createDefaultLogger(),
+        logger,
     );
 
     clientHandler.initialize();

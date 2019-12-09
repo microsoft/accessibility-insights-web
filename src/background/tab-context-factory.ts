@@ -3,11 +3,12 @@
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { createDefaultLogger } from 'common/logging/default-logger';
+import { Logger } from 'common/logging/logger';
 import { NotificationCreator } from 'common/notification-creator';
 import { PromiseFactory } from 'common/promises/promise-factory';
 import { StateDispatcher } from 'common/state-dispatcher';
 import { WindowUtils } from 'common/window-utils';
-
 import { ActionCreator } from './actions/action-creator';
 import { ActionHub } from './actions/action-hub';
 import { CardSelectionActionCreator } from './actions/card-selection-action-creator';
@@ -45,6 +46,7 @@ export class TabContextFactory {
         private assessmentStore: AssessmentStore,
         private assessmentsProvider: AssessmentsProvider,
         private readonly promiseFactory: PromiseFactory,
+        private readonly logger: Logger,
     ) {}
 
     public createTabContext(
@@ -66,6 +68,7 @@ export class TabContextFactory {
             interpreter,
             shortcutsPageController,
             this.telemetryEventHandler,
+            this.logger,
         );
 
         const actionCreator = new ActionCreator(
