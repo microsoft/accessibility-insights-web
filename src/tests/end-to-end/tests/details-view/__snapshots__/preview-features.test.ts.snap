@@ -71,7 +71,7 @@ exports[`Details View -> Preview Features Panel should match content in snapshot
             class="ms-Panel-content content-000"
           >
             <div
-              class="no-preview-feature-message"
+              class="no-preview-feature-message--{{CSS_MODULE_HASH}}"
               id="no-displayable-feature-flag-message"
             >
               No preview features are currently available to manage. Follow this page for future cool features.

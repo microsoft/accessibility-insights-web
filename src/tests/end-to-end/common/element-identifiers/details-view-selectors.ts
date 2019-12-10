@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { overviewHeadingAutomationId } from 'DetailsView/components/overview-content/overview-heading';
+
 export const detailsViewSelectors = {
     previewFeaturesPanel: '.preview-features-panel',
-    previewFeaturesPanelToggleList: '.preview-feature-toggle-list',
 
-    testNavArea: 'nav',
     testNavLink: (testName: string): string => `nav [name=${testName}] a`,
 
     mainContent: '[role=main]',
@@ -16,7 +16,7 @@ export const detailsViewSelectors = {
 
 export const overviewSelectors = {
     overview: '.overview',
-    overviewHeading: '.overview-heading',
+    overviewHeading: `[data-automation-id="${overviewHeadingAutomationId}"]`,
 };
 
 export const settingsPanelSelectors = {

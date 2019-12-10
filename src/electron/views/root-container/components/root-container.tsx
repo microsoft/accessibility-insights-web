@@ -17,6 +17,8 @@ import {
 } from 'electron/views/device-connect-view/components/device-connect-view-container';
 import * as React from 'react';
 
+import './root-container.scss'; // Used for common <body>/etc styles
+
 export type RootContainerDeps = DeviceConnectViewContainerDeps &
     AutomatedChecksViewDeps & {
         storeHub: ClientStoresHub<RootContainerState>;
