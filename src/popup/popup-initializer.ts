@@ -12,7 +12,6 @@ import { EnumHelper } from '../common/enum-helper';
 import { TelemetryEventSource } from '../common/extension-telemetry-events';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { IsSupportedBrowser } from '../common/is-supported-browser';
-import { createDefaultLogger } from '../common/logging/default-logger';
 import { Logger } from '../common/logging/logger';
 import { ContentActionMessageCreator } from '../common/message-creators/content-action-message-creator';
 import { DropdownActionMessageCreator } from '../common/message-creators/dropdown-action-message-creator';
@@ -58,7 +57,7 @@ export class PopupInitializer {
         private readonly browserAdapter: BrowserAdapter,
         private readonly targetTabFinder: TargetTabFinder,
         private readonly isSupportedBrowser: IsSupportedBrowser,
-        private logger: Logger = createDefaultLogger(),
+        private logger: Logger,
     ) {}
 
     public initialize(): Promise<void> {
