@@ -1,6 +1,6 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-appId: com.aimobile.app
+appId: com.microsoft.accessibilityinsights
 directories:
     app: drop/electron/electron
     buildResources: src/electron/resources
@@ -22,3 +22,5 @@ win:
 
 nsis:
     oneClick: false
+publish:
+    provider: generic

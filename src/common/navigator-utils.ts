@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { createDefaultLogger } from 'common/logging/default-logger';
 import { Logger } from 'common/logging/logger';
 
 export class NavigatorUtils {
-    constructor(private navigatorInfo: Navigator, private logger: Logger = createDefaultLogger()) {}
+    constructor(private navigatorInfo: Navigator, private logger: Logger) {}
 
     public getBrowserSpec(): string {
         const userAgent = this.navigatorInfo.userAgent;

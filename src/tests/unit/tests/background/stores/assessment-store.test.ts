@@ -1384,7 +1384,7 @@ describe('AssessmentStoreTest', () => {
     test('on updateSelectedPivotChild: when selected pivot is not assessment', () => {
         const payload: UpdateSelectedDetailsViewPayload = {
             detailsViewType: assessmentType,
-            pivotType: DetailsViewPivotType.allTest,
+            pivotType: DetailsViewPivotType.fastPass,
         };
 
         assessmentsProviderMock.setup(apm => apm.forType(assessmentType)).verifiable(Times.never());

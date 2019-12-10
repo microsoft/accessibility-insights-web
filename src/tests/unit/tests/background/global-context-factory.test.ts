@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock } from 'typemoq';
-
 import { PersistedData } from 'background/get-persisted-data';
 import { GlobalContext } from 'background/global-context';
 import { GlobalContextFactory } from 'background/global-context-factory';
@@ -11,6 +9,8 @@ import { CommandStore } from 'background/stores/global/command-store';
 import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { LaunchPanelStore } from 'background/stores/global/launch-panel-store';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import { Logger } from 'common/logging/logger';
+import { IMock, It, Mock } from 'typemoq';
 import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { CommandsAdapter } from '../../../../common/browser-adapters/commands-adapter';
 import { StorageAdapter } from '../../../../common/browser-adapters/storage-adapter';
@@ -27,6 +27,8 @@ describe('GlobalContextFactoryTest', () => {
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
     let telemetryDataFactoryMock: IMock<TelemetryDataFactory>;
     let issueFilingServiceProviderMock: IMock<IssueFilingServiceProvider>;
+    let loggerMock: IMock<Logger>;
+
     let environmentInfoStub: EnvironmentInfo;
     let userDataStub: LocalStorageData;
     let idbInstance: IndexedDBAPI;
@@ -36,7 +38,9 @@ describe('GlobalContextFactoryTest', () => {
         storageAdapterMock = Mock.ofType<StorageAdapter>();
         browserAdapterMock = Mock.ofType<BrowserAdapter>();
         commandsAdapterMock = Mock.ofType<CommandsAdapter>();
-        browserAdapterMock.setup(adapter => adapter.sendMessageToAllFramesAndTabs(It.isAny())).returns(() => Promise.resolve());
+        loggerMock = Mock.ofType<Logger>();
+        browserAdapterMock.setup(adapter => adapter.sendMessageToFrames(It.isAny())).returns(() => Promise.resolve());
+        browserAdapterMock.setup(adapter => adapter.sendMessageToTab(It.isAny(), It.isAny())).returns(() => Promise.resolve());
         telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler);
         telemetryDataFactoryMock = Mock.ofType(TelemetryDataFactory);
         issueFilingServiceProviderMock = Mock.ofType(IssueFilingServiceProvider);
@@ -60,6 +64,7 @@ describe('GlobalContextFactoryTest', () => {
             environmentInfoStub,
             storageAdapterMock.object,
             commandsAdapterMock.object,
+            loggerMock.object,
         );
 
         expect(globalContext).toBeInstanceOf(GlobalContext);

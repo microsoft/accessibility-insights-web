@@ -9,7 +9,11 @@ import * as styles from './device-connect-body.scss';
 import { DeviceConnectConnectedDevice } from './device-connect-connected-device';
 import { DeviceConnectFooter, DeviceConnectFooterDeps } from './device-connect-footer';
 import { DeviceConnectHeader } from './device-connect-header';
-import { DeviceConnectPortEntry, DeviceConnectPortEntryDeps, DeviceConnectPortEntryViewState } from './device-connect-port-entry';
+import {
+    DeviceConnectPortEntry,
+    DeviceConnectPortEntryDeps,
+    DeviceConnectPortEntryViewState,
+} from './device-connect-port-entry';
 
 export type UpdateStateCallback = (newState: DeviceConnectState, deviceName?: string) => void;
 
@@ -33,7 +37,10 @@ export const DeviceConnectBody = NamedFC<DeviceConnectBodyProps>('DeviceConnectB
     return (
         <div className={styles.deviceConnectBody}>
             <DeviceConnectHeader />
-            <DeviceConnectPortEntry deps={props.deps} viewState={{ deviceConnectState: props.viewState.deviceConnectState }} />
+            <DeviceConnectPortEntry
+                deps={props.deps}
+                viewState={{ deviceConnectState: props.viewState.deviceConnectState }}
+            />
             <DeviceConnectConnectedDevice
                 connectedDevice={props.viewState.connectedDevice}
                 deviceConnectState={props.viewState.deviceConnectState}

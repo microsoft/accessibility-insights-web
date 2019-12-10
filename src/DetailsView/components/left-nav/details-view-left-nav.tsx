@@ -30,7 +30,9 @@ export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewL
 
     const { assessmentsProvider, assessmentsProviderWithFeaturesEnabled } = deps;
 
-    const selectedKey: string = rightPanelConfiguration.GetLeftNavSelectedKey({ visualizationType: selectedTest });
+    const selectedKey: string = rightPanelConfiguration.GetLeftNavSelectedKey({
+        visualizationType: selectedTest,
+    });
     const filteredProvider = assessmentsProviderWithFeaturesEnabled(assessmentsProvider, featureFlagStoreData);
 
     const leftNav: JSX.Element = (

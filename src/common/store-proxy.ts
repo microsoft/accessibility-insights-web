@@ -15,10 +15,11 @@ export class StoreProxy<TState> extends Store implements BaseStore<TState> {
     private tabId: number;
     private browserAdapter: BrowserAdapter;
 
-    constructor(storeId: string, browserAdapter: BrowserAdapter) {
+    constructor(storeId: string, browserAdapter: BrowserAdapter, tabId: number = null) {
         super();
         this.storeId = storeId;
         this.browserAdapter = browserAdapter;
+        this.tabId = tabId;
         this.browserAdapter.addListenerOnMessage(this.onChange);
     }
 
@@ -57,10 +58,6 @@ export class StoreProxy<TState> extends Store implements BaseStore<TState> {
 
     public getId(): string {
         return this.storeId;
-    }
-
-    public setTabId(tabId: number): void {
-        this.tabId = tabId;
     }
 
     public dispose(): void {

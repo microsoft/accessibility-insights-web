@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { ScopingInputTypes } from 'background/scoping-input-types';
 import { ScopingStore } from 'background/stores/global/scoping-store';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { Logger } from '../../../../common/logging/logger';
 import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults, ScannerUtils } from '../../../../injected/scanner-utils';
@@ -26,7 +25,7 @@ describe('ScannerUtilsTest', () => {
             .returns(() => scopingState)
             .verifiable();
         const loggerMock = Mock.ofType<Logger>();
-        testSubject = new ScannerUtils(scannerMock.object, null, loggerMock.object);
+        testSubject = new ScannerUtils(scannerMock.object, loggerMock.object, null);
         scopingState = {
             selectors: {
                 [ScopingInputTypes.include]: [],
@@ -210,7 +209,8 @@ describe('ScannerUtilsTest', () => {
         const generateUIDMock = Mock.ofInstance(() => {
             return null;
         });
-        testSubject = new ScannerUtils(scannerMock.object, generateUIDMock.object);
+        const loggerMock = Mock.ofType<Logger>();
+        testSubject = new ScannerUtils(scannerMock.object, loggerMock.object, generateUIDMock.object);
 
         generateUIDMock
             .setup(generate => generate())

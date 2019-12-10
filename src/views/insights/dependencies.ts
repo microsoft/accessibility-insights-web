@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Logger } from 'common/logging/logger';
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
-
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { TelemetryEventSource } from '../../common/extension-telemetry-events';
 import { initializeFabricIcons } from '../../common/fabric-icons';
@@ -17,10 +17,10 @@ import { UserConfigurationStoreData } from '../../common/types/store-data/user-c
 import { contentPages } from '../../content';
 import { RendererDeps } from './renderer';
 
-export const rendererDependencies: (browserAdapter: BrowserAdapter) => RendererDeps = browserAdapter => {
+export const rendererDependencies: (browserAdapter: BrowserAdapter, logger: Logger) => RendererDeps = (browserAdapter, logger) => {
     const url = new URL(window.location.href);
     const tabId = parseInt(url.searchParams.get('tabId'), 10);
-    const actionMessageDispatcher = new RemoteActionMessageDispatcher(browserAdapter.sendMessageToFrames, tabId);
+    const actionMessageDispatcher = new RemoteActionMessageDispatcher(browserAdapter.sendMessageToFrames, tabId, logger);
 
     const telemetryFactory = new TelemetryDataFactory();
 

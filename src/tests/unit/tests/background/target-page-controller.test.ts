@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BrowserMessageBroadcasterFactory } from 'background/browser-message-broadcaster-factory';
 import { DetailsViewController } from 'background/details-view-controller';
 import { Interpreter } from 'background/interpreter';
 import { TabContext } from 'background/tab-context';
-import { TabContextBroadcaster } from 'background/tab-context-broadcaster';
 import { TabContextFactory } from 'background/tab-context-factory';
 import { TargetPageController } from 'background/target-page-controller';
 import { TriggeredByNotApplicable } from 'common/extension-telemetry-events';
@@ -19,7 +19,7 @@ describe('TargetPageController', () => {
 
     let mockLogger: IMock<Logger>;
     const stubBroadcastDelegate = (message: any) => Promise.resolve();
-    let mockBroadcasterStrictMock: IMock<TabContextBroadcaster>;
+    let mockBroadcasterFactoryStrictMock: IMock<BrowserMessageBroadcasterFactory>;
     let mockTabContextFactory: IMock<TabContextFactory>;
     let mockBrowserAdapter: SimulatedBrowserAdapter;
     let mockDetailsViewController: SimulatedDetailsViewController;
@@ -40,8 +40,8 @@ describe('TargetPageController', () => {
 
     beforeEach(() => {
         mockLogger = Mock.ofType<Logger>();
-        mockBroadcasterStrictMock = Mock.ofType<TabContextBroadcaster>(undefined, MockBehavior.Strict);
-        mockBroadcasterStrictMock.setup(m => m.getBroadcastMessageDelegate(It.isAny())).returns(_ => stubBroadcastDelegate);
+        mockBroadcasterFactoryStrictMock = Mock.ofType<BrowserMessageBroadcasterFactory>(undefined, MockBehavior.Strict);
+        mockBroadcasterFactoryStrictMock.setup(m => m.createTabSpecificBroadcaster(It.isAny())).returns(_ => stubBroadcastDelegate);
         mockBrowserAdapter = createSimulatedBrowserAdapter([EXISTING_ACTIVE_TAB, EXISTING_INACTIVE_TAB], [EXISTING_WINDOW]);
         mockDetailsViewController = setupMockDetailsViewController();
         tabToContextMap = {};
@@ -53,7 +53,7 @@ describe('TargetPageController', () => {
 
         testSubject = new TargetPageController(
             tabToContextMap,
-            mockBroadcasterStrictMock.object,
+            mockBroadcasterFactoryStrictMock.object,
             mockBrowserAdapter.object,
             mockDetailsViewController.object,
             mockTabContextFactory.object,

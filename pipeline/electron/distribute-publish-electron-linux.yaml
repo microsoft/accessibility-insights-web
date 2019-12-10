@@ -11,8 +11,4 @@ steps:
           ELECTRON_MIRROR: $(ELECTRON_MIRROR)
           ELECTRON_CUSTOM_DIR: $(ELECTRON_CUSTOM_DIR)
 
-    - task: PublishBuildArtifacts@1
-      inputs:
-          pathtoPublish: '$(System.DefaultWorkingDirectory)/dist'
-          artifactName: $(Agent.JobName)
-      displayName: publish dist
+    - template: prepare-publish-artifact.yaml

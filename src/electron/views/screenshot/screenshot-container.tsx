@@ -14,19 +14,24 @@ export interface ScreenshotContainerProps {
     highlightBoxViewModels: HighlightBoxViewModel[];
 }
 
-export const ScreenshotContainer = NamedFC<ScreenshotContainerProps>('ScreenshotContainer', props => {
-    return (
-        <div className={screenshotContainer}>
-            <Screenshot encodedImage={props.screenshotData.base64PngData} />
-            {renderHighlightBoxes(props.highlightBoxViewModels)}
-        </div>
-    );
-});
+export const ScreenshotContainer = NamedFC<ScreenshotContainerProps>(
+    'ScreenshotContainer',
+    props => {
+        return (
+            <div className={screenshotContainer}>
+                <Screenshot encodedImage={props.screenshotData.base64PngData} />
+                {renderHighlightBoxes(props.highlightBoxViewModels)}
+            </div>
+        );
+    },
+);
 
 function renderHighlightBoxes(highlightBoxViewModels: HighlightBoxViewModel[]): JSX.Element[] {
     if (isEmpty(highlightBoxViewModels)) {
         return;
     }
 
-    return highlightBoxViewModels.map(viewModel => <HighlightBox key={viewModel.resultUid} viewModel={viewModel} />);
+    return highlightBoxViewModels.map(viewModel => (
+        <HighlightBox key={viewModel.resultUid} viewModel={viewModel} />
+    ));
 }

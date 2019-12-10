@@ -21,7 +21,7 @@ import { DetailsViewActionMessageCreator } from '../../../../DetailsView/actions
 import { DetailsRightPanelConfiguration } from '../../../../DetailsView/components/details-view-right-panel';
 import { DetailsViewSwitcherNavConfiguration } from '../../../../DetailsView/components/details-view-switcher-nav';
 import { DetailsViewLeftNav } from '../../../../DetailsView/components/left-nav/details-view-left-nav';
-import { TabInfo } from '../../../../DetailsView/components/tab-info';
+import { TargetPageHiddenBar } from '../../../../DetailsView/components/target-page-hidden-bar';
 import { DetailsViewBody, DetailsViewBodyProps } from '../../../../DetailsView/details-view-body';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
@@ -123,7 +123,7 @@ describe('DetailsViewBody', () => {
                     <div className="details-view-body-nav-content-layout">
                         {buildLeftNav(props)}
                         <div className="details-view-body-content-pane">
-                            {buildTabInfo(props)}
+                            {buildTargetPageInfoBar(props)}
                             <div className="view" role="main">
                                 <rightPanelConfig.RightPanel {...props} />
                             </div>
@@ -162,17 +162,8 @@ describe('DetailsViewBody', () => {
         return <DetailsViewLeftNav {...givenProps} />;
     }
 
-    function buildTabInfo(givenProps: DetailsViewBodyProps): JSX.Element {
-        return (
-            <TabInfo
-                deps={givenProps.deps}
-                isTargetPageHidden={givenProps.tabStoreData.isPageHidden}
-                url={givenProps.tabStoreData.url}
-                title={givenProps.tabStoreData.title}
-                selectedPivot={givenProps.visualizationStoreData.selectedDetailsViewPivot}
-                dropdownClickHandler={givenProps.dropdownClickHandler}
-            />
-        );
+    function buildTargetPageInfoBar(givenProps: DetailsViewBodyProps): JSX.Element {
+        return <TargetPageHiddenBar isTargetPageHidden={givenProps.tabStoreData.isPageHidden} />;
     }
 
     function buildCommandBar(givenProps: DetailsViewBodyProps): JSX.Element {
