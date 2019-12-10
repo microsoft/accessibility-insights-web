@@ -15,7 +15,7 @@ describe('MessageDistributorTest', () => {
     let tabToInterpreterMap: TabToContextMap;
     let globalContextMock: IMock<GlobalContext>;
     let globalInterpreter: Interpreter;
-    let consoleLoggerMock: IMock<Logger>;
+    let loggerMock: IMock<Logger>;
 
     let distributeMessageCallback: (message: any, sender?: Sender) => void;
 
@@ -26,13 +26,8 @@ describe('MessageDistributorTest', () => {
         globalContextMock = Mock.ofType(GlobalContext);
         globalContextMock.setup(x => x.interpreter).returns(() => globalInterpreter);
 
-        consoleLoggerMock = Mock.ofType<Logger>();
-        testSubject = new MessageDistributor(
-            globalContextMock.object,
-            tabToInterpreterMap,
-            mockBrowserAdapter.object,
-            consoleLoggerMock.object,
-        );
+        loggerMock = Mock.ofType<Logger>();
+        testSubject = new MessageDistributor(globalContextMock.object, tabToInterpreterMap, mockBrowserAdapter.object, loggerMock.object);
 
         mockBrowserAdapter
             .setup(adapter => adapter.addListenerOnMessage(It.isAny()))

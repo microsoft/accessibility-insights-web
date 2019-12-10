@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { SHORTCUT_CONFIGURE_OPEN } from 'common/extension-telemetry-events';
-import { createDefaultLogger } from 'common/logging/default-logger';
+import { Logger } from 'common/logging/logger';
 import { Messages } from 'common/messages';
 
 import { Interpreter } from '../interpreter';
@@ -14,7 +14,7 @@ export class ShortcutsPageActionCreator {
         private readonly interpreter: Interpreter,
         private readonly shortcutsPageController: ShortcutsPageController,
         private readonly telemetryEventHandler: TelemetryEventHandler,
-        private readonly logger = createDefaultLogger(),
+        private readonly logger: Logger,
     ) {}
 
     public registerCallbacks(): void {

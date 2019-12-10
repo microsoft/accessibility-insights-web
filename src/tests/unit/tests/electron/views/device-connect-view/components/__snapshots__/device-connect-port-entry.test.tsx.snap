@@ -10,6 +10,7 @@ exports[`DeviceConnectPortEntryTest renders with "Connected" 1`] = `
   <MaskedTextField
     ariaLabel="Port number"
     className="portNumberField"
+    data-automation-id="device-connect-port-number-field"
     mask="99999"
     maskChar=""
     maskFormat={
@@ -24,7 +25,7 @@ exports[`DeviceConnectPortEntryTest renders with "Connected" 1`] = `
     placeholder="12345"
   />
   <CustomizedDefaultButton
-    className="button-validate-port"
+    data-automation-id="device-connect-validate-port-button"
     disabled={true}
     onClick={[Function]}
   >
@@ -43,6 +44,7 @@ exports[`DeviceConnectPortEntryTest renders with "Connected" and some text in th
   <MaskedTextField
     ariaLabel="Port number"
     className="portNumberField"
+    data-automation-id="device-connect-port-number-field"
     mask="99999"
     maskChar=""
     maskFormat={
@@ -57,7 +59,7 @@ exports[`DeviceConnectPortEntryTest renders with "Connected" and some text in th
     placeholder="12345"
   />
   <CustomizedDefaultButton
-    className="button-validate-port"
+    data-automation-id="device-connect-validate-port-button"
     disabled={false}
     onClick={[Function]}
   >
@@ -76,6 +78,7 @@ exports[`DeviceConnectPortEntryTest renders with "Connecting" 1`] = `
   <MaskedTextField
     ariaLabel="Port number"
     className="portNumberField"
+    data-automation-id="device-connect-port-number-field"
     mask="99999"
     maskChar=""
     maskFormat={
@@ -90,7 +93,7 @@ exports[`DeviceConnectPortEntryTest renders with "Connecting" 1`] = `
     placeholder="12345"
   />
   <CustomizedPrimaryButton
-    className="button-validate-port"
+    data-automation-id="device-connect-validate-port-button"
     disabled={true}
     onClick={[Function]}
   >
@@ -109,6 +112,7 @@ exports[`DeviceConnectPortEntryTest renders with "Connecting" and some text in t
   <MaskedTextField
     ariaLabel="Port number"
     className="portNumberField"
+    data-automation-id="device-connect-port-number-field"
     mask="99999"
     maskChar=""
     maskFormat={
@@ -123,7 +127,7 @@ exports[`DeviceConnectPortEntryTest renders with "Connecting" and some text in t
     placeholder="12345"
   />
   <CustomizedPrimaryButton
-    className="button-validate-port"
+    data-automation-id="device-connect-validate-port-button"
     disabled={true}
     onClick={[Function]}
   >
@@ -142,6 +146,7 @@ exports[`DeviceConnectPortEntryTest renders with "Default" 1`] = `
   <MaskedTextField
     ariaLabel="Port number"
     className="portNumberField"
+    data-automation-id="device-connect-port-number-field"
     mask="99999"
     maskChar=""
     maskFormat={
@@ -156,7 +161,7 @@ exports[`DeviceConnectPortEntryTest renders with "Default" 1`] = `
     placeholder="12345"
   />
   <CustomizedPrimaryButton
-    className="button-validate-port"
+    data-automation-id="device-connect-validate-port-button"
     disabled={true}
     onClick={[Function]}
   >
@@ -175,6 +180,7 @@ exports[`DeviceConnectPortEntryTest renders with "Default" and some text in the 
   <MaskedTextField
     ariaLabel="Port number"
     className="portNumberField"
+    data-automation-id="device-connect-port-number-field"
     mask="99999"
     maskChar=""
     maskFormat={
@@ -189,7 +195,7 @@ exports[`DeviceConnectPortEntryTest renders with "Default" and some text in the 
     placeholder="12345"
   />
   <CustomizedPrimaryButton
-    className="button-validate-port"
+    data-automation-id="device-connect-validate-port-button"
     disabled={false}
     onClick={[Function]}
   >
@@ -208,6 +214,7 @@ exports[`DeviceConnectPortEntryTest renders with "Error" 1`] = `
   <MaskedTextField
     ariaLabel="Port number"
     className="portNumberField"
+    data-automation-id="device-connect-port-number-field"
     mask="99999"
     maskChar=""
     maskFormat={
@@ -222,7 +229,7 @@ exports[`DeviceConnectPortEntryTest renders with "Error" 1`] = `
     placeholder="12345"
   />
   <CustomizedPrimaryButton
-    className="button-validate-port"
+    data-automation-id="device-connect-validate-port-button"
     disabled={true}
     onClick={[Function]}
   >
@@ -241,6 +248,7 @@ exports[`DeviceConnectPortEntryTest renders with "Error" and some text in the po
   <MaskedTextField
     ariaLabel="Port number"
     className="portNumberField"
+    data-automation-id="device-connect-port-number-field"
     mask="99999"
     maskChar=""
     maskFormat={
@@ -255,7 +263,7 @@ exports[`DeviceConnectPortEntryTest renders with "Error" and some text in the po
     placeholder="12345"
   />
   <CustomizedPrimaryButton
-    className="button-validate-port"
+    data-automation-id="device-connect-validate-port-button"
     disabled={false}
     onClick={[Function]}
   >

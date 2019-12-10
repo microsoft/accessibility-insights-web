@@ -10,8 +10,8 @@ export class DeviceConnectionDialogController extends ViewController {
         super(client);
     }
 
-    public async waitForVisible(): Promise<void> {
-        await this.waitForSelectorVisible(CommonSelectors.rootContainer);
+    public async waitForDialogVisible(): Promise<void> {
+        await this.waitForSelector(CommonSelectors.rootContainer);
     }
 
     // inputs the port, validates, and starts scanning

@@ -4,6 +4,7 @@ exports[`OverviewHeading match snapshot 1`] = `
 <React.Fragment>
   <div
     className="overviewHeading"
+    data-automation-id="overview-heading"
   >
     <h1>
       Overview

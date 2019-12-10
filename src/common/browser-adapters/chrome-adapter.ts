@@ -65,16 +65,8 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         return browser.tabs.create({ url, active: true, pinned: false });
     }
 
-    public createTabInNewWindow(url: string, callback?: (tab: chrome.tabs.Tab) => void): void {
-        chrome.windows.create(
-            {
-                url: url,
-                focused: true,
-            },
-            window => {
-                callback(window.tabs[0]);
-            },
-        );
+    public createTabInNewWindow(url: string): Promise<Tabs.Tab> {
+        return browser.windows.create({ url, focused: true }).then(window => window.tabs[0]);
     }
 
     public createInactiveTab(url: string, callback: (tab: chrome.tabs.Tab) => void): void {
@@ -104,11 +96,6 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
 
     public sendMessageToTab(tabId: number, message: any): Promise<void> {
         return browser.tabs.sendMessage(tabId, message);
-    }
-
-    public async sendMessageToAllFramesAndTabs(message: any): Promise<void> {
-        const allTabs = await browser.tabs.query({});
-        await Promise.all([browser.runtime.sendMessage(message), ...allTabs.map(tab => browser.tabs.sendMessage(tab.id, message))]);
     }
 
     public sendMessageToFrames(message: any): Promise<void> {

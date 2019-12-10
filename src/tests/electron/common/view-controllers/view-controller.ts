@@ -11,11 +11,12 @@ export interface ElementController {
 export abstract class ViewController {
     constructor(public client: WebDriverIO.Client<void>) {}
 
-    public async waitForSelectorVisible(
-        selector: string,
-        timeout: number = DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS,
-    ): Promise<void> {
-        await this.client.waitForVisible(selector, timeout);
+    public async waitForSelector(selector: string, timeout: number = DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS): Promise<void> {
+        // Note: we're intentionally not using waitForVisible here because it has different
+        // semantics than Puppeteer; in particular, it requires the element be in the viewport
+        // but doesn't scroll the page to the element, so it's easy for it to fail in ways that
+        // are dependent on the test environment.
+        await this.client.waitForExist(selector, timeout);
     }
 
     public async click(selector: string): Promise<void> {

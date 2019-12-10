@@ -3,6 +3,8 @@
 import { TestMode } from 'common/configs/test-mode';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import * as TelemetryEvents from 'common/extension-telemetry-events';
+import { createDefaultLogger } from 'common/logging/default-logger';
+import { Logger } from 'common/logging/logger';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { NotificationCreator } from 'common/notification-creator';
 import { StoreNames } from 'common/stores/store-names';
@@ -52,6 +54,7 @@ export class ActionCreator {
         private readonly notificationCreator: NotificationCreator,
         private readonly visualizationConfigurationFactory: VisualizationConfigurationFactory,
         private readonly targetTabController: TargetTabController,
+        private readonly logger: Logger = createDefaultLogger(),
     ) {
         this.visualizationActions = actionHub.visualizationActions;
         this.previewFeaturesActions = actionHub.previewFeaturesActions;
@@ -236,9 +239,14 @@ export class ActionCreator {
         this.targetTabController.showTargetTab(tabId, payload.testType, payload.key);
     };
 
-    private onOpenPreviewFeaturesPanel = (payload: BaseActionPayload, tabId: number): void => {
+    private onOpenPreviewFeaturesPanel = async (
+        payload: BaseActionPayload,
+        tabId: number,
+    ): Promise<void> => {
         this.previewFeaturesActions.openPreviewFeatures.invoke(null);
-        this.showDetailsView(tabId);
+        await this.detailsViewController
+            .showDetailsView(tabId)
+            .catch(e => this.logger.error(e.message));
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.PREVIEW_FEATURES_OPEN, payload);
     };
 
@@ -290,12 +298,15 @@ export class ActionCreator {
         this.visualizationActions.scrollRequested.invoke(null);
     };
 
-    private onDetailsViewOpen = (payload: OnDetailsViewOpenPayload, tabId: number): void => {
+    private onDetailsViewOpen = async (
+        payload: OnDetailsViewOpenPayload,
+        tabId: number,
+    ): Promise<void> => {
         if (this.shouldEnableToggleOnDetailsViewOpen(payload.detailsViewType)) {
             this.enableToggleOnDetailsViewOpen(payload.detailsViewType, tabId);
         }
 
-        this.onPivotChildSelected(payload, tabId);
+        await this.onPivotChildSelected(payload, tabId);
     };
 
     private shouldEnableToggleOnDetailsViewOpen(visualizationType: VisualizationType): boolean {
@@ -324,10 +335,15 @@ export class ActionCreator {
         };
     }
 
-    private onPivotChildSelected = (payload: OnDetailsViewOpenPayload, tabId: number): void => {
+    private onPivotChildSelected = async (
+        payload: OnDetailsViewOpenPayload,
+        tabId: number,
+    ): Promise<void> => {
         this.previewFeaturesActions.closePreviewFeatures.invoke(null);
         this.visualizationActions.updateSelectedPivotChild.invoke(payload);
-        this.showDetailsView(tabId);
+        await this.detailsViewController
+            .showDetailsView(tabId)
+            .catch(e => this.logger.error(e.message));
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.PIVOT_CHILD_SELECTED, payload);
     };
 
@@ -337,10 +353,6 @@ export class ActionCreator {
             TelemetryEvents.DETAILS_VIEW_PIVOT_ACTIVATED,
             payload,
         );
-    };
-
-    private showDetailsView = (tabId: number): void => {
-        this.detailsViewController.showDetailsView(tabId);
     };
 
     private onVisualizationToggle = (payload: VisualizationTogglePayload): void => {

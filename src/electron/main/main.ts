@@ -5,6 +5,7 @@ import { autoUpdater } from 'electron-updater';
 import { AutoUpdaterClient } from 'electron/auto-update/auto-updater-client';
 import { OSType, PlatformInfo } from 'electron/window-management/platform-info';
 import * as path from 'path';
+import { mainWindowConfig } from './main-window-config';
 
 let mainWindow: BrowserWindow;
 const platformInfo = new PlatformInfo(process);
@@ -18,11 +19,11 @@ const createWindow = () => {
         show: false,
         webPreferences: { nodeIntegration: true },
         titleBarStyle: 'hidden',
-        width: 600,
-        height: 391,
+        width: mainWindowConfig.defaultWidth,
+        height: mainWindowConfig.defaultHeight,
         frame: os === OSType.Mac,
-        minHeight: 300,
-        minWidth: 400,
+        minHeight: mainWindowConfig.minHeight,
+        minWidth: mainWindowConfig.minWidth,
         icon: path.resolve(__dirname, '../icons/brand/blue/brand-blue-512px.png'),
     });
     if (platformInfo.isMac()) {
