@@ -2,9 +2,11 @@
 
 exports[`DetailsViewCommandBar renders with export button, with start over 1`] = `
 "<div className=\\"details-view-command-bar\\">
-  <div className=\\"details-view-target-page\\">
-    Target page: 
-    <StyledLinkBase role=\\"link\\" title=\\"Switch to target page\\" className=\\"insights-link target-page-link\\" onClick={[Function: proxy]}>
+  <div className=\\"details-view-target-page\\" aria-labelledby=\\"switch-to-target\\">
+    <span id=\\"switch-to-target\\">
+      Target page: 
+    </span>
+    <StyledLinkBase role=\\"link\\" className=\\"insights-link target-page-link\\" onClick={[Function: proxy]}>
       command-bar-test-tab-title
     </StyledLinkBase>
   </div>
@@ -21,9 +23,11 @@ exports[`DetailsViewCommandBar renders with export button, with start over 1`] =
 
 exports[`DetailsViewCommandBar renders with export button, without start over 1`] = `
 "<div className=\\"details-view-command-bar\\">
-  <div className=\\"details-view-target-page\\">
-    Target page: 
-    <StyledLinkBase role=\\"link\\" title=\\"Switch to target page\\" className=\\"insights-link target-page-link\\" onClick={[Function: proxy]}>
+  <div className=\\"details-view-target-page\\" aria-labelledby=\\"switch-to-target\\">
+    <span id=\\"switch-to-target\\">
+      Target page: 
+    </span>
+    <StyledLinkBase role=\\"link\\" className=\\"insights-link target-page-link\\" onClick={[Function: proxy]}>
       command-bar-test-tab-title
     </StyledLinkBase>
   </div>
@@ -37,9 +41,11 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
 
 exports[`DetailsViewCommandBar renders without export button, with start over 1`] = `
 "<div className=\\"details-view-command-bar\\">
-  <div className=\\"details-view-target-page\\">
-    Target page: 
-    <StyledLinkBase role=\\"link\\" title=\\"Switch to target page\\" className=\\"insights-link target-page-link\\" onClick={[Function: proxy]}>
+  <div className=\\"details-view-target-page\\" aria-labelledby=\\"switch-to-target\\">
+    <span id=\\"switch-to-target\\">
+      Target page: 
+    </span>
+    <StyledLinkBase role=\\"link\\" className=\\"insights-link target-page-link\\" onClick={[Function: proxy]}>
       command-bar-test-tab-title
     </StyledLinkBase>
   </div>
@@ -53,9 +59,11 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
 
 exports[`DetailsViewCommandBar renders without export button, without start over 1`] = `
 "<div className=\\"details-view-command-bar\\">
-  <div className=\\"details-view-target-page\\">
-    Target page: 
-    <StyledLinkBase role=\\"link\\" title=\\"Switch to target page\\" className=\\"insights-link target-page-link\\" onClick={[Function: proxy]}>
+  <div className=\\"details-view-target-page\\" aria-labelledby=\\"switch-to-target\\">
+    <span id=\\"switch-to-target\\">
+      Target page: 
+    </span>
+    <StyledLinkBase role=\\"link\\" className=\\"insights-link target-page-link\\" onClick={[Function: proxy]}>
       command-bar-test-tab-title
     </StyledLinkBase>
   </div>
