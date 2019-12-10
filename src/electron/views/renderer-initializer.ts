@@ -206,6 +206,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             unifiedResultsBuilder,
             telemetryEventHandler,
             DateProvider.getCurrentDate,
+            logger,
         );
 
         scanController.initialize();
