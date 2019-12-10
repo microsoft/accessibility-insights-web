@@ -220,7 +220,7 @@ if (isNaN(tabId) === false) {
             const scopingFlagsHandler = new PreviewFeatureFlagsHandler(getAllFeatureFlagDetails());
             const dropdownClickHandler = new DropdownClickHandler(dropdownActionMessageCreator, TelemetryEventSource.DetailsView);
 
-            const navigatorUtils = new NavigatorUtils(window.navigator);
+            const navigatorUtils = new NavigatorUtils(window.navigator, logger);
             const extensionVersion = browserAdapter.getManifest().version;
             const axeVersion = getVersion();
             const browserSpec = navigatorUtils.getBrowserSpec();

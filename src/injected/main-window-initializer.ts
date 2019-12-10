@@ -2,20 +2,20 @@
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
 import { EnumHelper } from 'common/enum-helper';
+import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
+import { createDefaultLogger } from 'common/logging/default-logger';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
+import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
+import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { VisualizationType } from 'common/types/visualization-type';
 import { ClientStoreListener, TargetPageStoreData } from 'injected/client-store-listener';
+import { ElementBasedViewModelCreator } from 'injected/element-based-view-model-creator';
 import { FocusChangeHandler } from 'injected/focus-change-handler';
+import { getDecoratedAxeNode } from 'injected/get-decorated-axe-node';
 import { isVisualizationEnabled } from 'injected/is-visualization-enabled';
 import { TargetPageVisualizationUpdater } from 'injected/target-page-visualization-updater';
 import { visualizationNeedsUpdate } from 'injected/visualization-needs-update';
 import { VisualizationStateChangeHandler } from 'injected/visualization-state-change-handler';
-
-import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
-import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
-import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
-import { ElementBasedViewModelCreator } from 'injected/element-based-view-model-creator';
-import { getDecoratedAxeNode } from 'injected/get-decorated-axe-node';
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
@@ -67,7 +67,6 @@ import { SelectorMapHelper } from './selector-map-helper';
 import { ShadowUtils } from './shadow-utils';
 import { TargetPageActionMessageCreator } from './target-page-action-message-creator';
 import { WindowInitializer } from './window-initializer';
-import { createDefaultLogger } from 'common/logging/default-logger';
 
 export class MainWindowInitializer extends WindowInitializer {
     protected frameCommunicator: FrameCommunicator;
@@ -120,11 +119,9 @@ export class MainWindowInitializer extends WindowInitializer {
             this.browserAdapter,
         );
 
-        const actionMessageDispatcher = new RemoteActionMessageDispatcher(
-            this.browserAdapter.sendMessageToFrames,
-            null,
-            createDefaultLogger(),
-        );
+        const logger = createDefaultLogger();
+
+        const actionMessageDispatcher = new RemoteActionMessageDispatcher(this.browserAdapter.sendMessageToFrames, null, logger);
 
         const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(actionMessageDispatcher);
 
@@ -156,7 +153,7 @@ export class MainWindowInitializer extends WindowInitializer {
 
         const userConfigMessageCreator = new UserConfigMessageCreator(actionMessageDispatcher);
 
-        const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
+        const browserSpec = new NavigatorUtils(window.navigator, logger).getBrowserSpec();
 
         const environmentInfoProvider = new EnvironmentInfoProvider(this.appDataAdapter.getVersion(), browserSpec, AxeInfo.Default.version);
 

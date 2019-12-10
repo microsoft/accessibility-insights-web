@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { getRTL } from '@uifabric/utilities';
-import * as Q from 'q';
-
+import { createDefaultLogger } from 'common/logging/default-logger';
 import { NavigatorUtils } from 'common/navigator-utils';
+import * as Q from 'q';
 import { AppDataAdapter } from '../common/browser-adapters/app-data-adapter';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
@@ -79,7 +79,7 @@ export class WindowInitializer {
         const drawerProvider = new DrawerProvider(
             htmlElementUtils,
             this.windowUtils,
-            new NavigatorUtils(window.navigator),
+            new NavigatorUtils(window.navigator, createDefaultLogger()),
             new ShadowUtils(new HTMLElementUtils()),
             new DrawerUtils(document),
             this.clientUtils,

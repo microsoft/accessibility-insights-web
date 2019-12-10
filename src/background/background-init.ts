@@ -80,7 +80,7 @@ async function initialize(): Promise<void> {
 
     const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
 
-    const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
+    const browserSpec = new NavigatorUtils(window.navigator, logger).getBrowserSpec();
     const environmentInfoProvider = new EnvironmentInfoProvider(
         browserAdapter.getVersion(),
         browserSpec,
