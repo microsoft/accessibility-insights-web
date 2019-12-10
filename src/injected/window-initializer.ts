@@ -66,7 +66,7 @@ export class WindowInitializer {
 
         new RootContainerCreator(htmlElementUtils).create(rootContainerId);
 
-        this.shadowInitializer = new ShadowInitializer(this.browserAdapter, htmlElementUtils);
+        this.shadowInitializer = new ShadowInitializer(this.browserAdapter, htmlElementUtils, logger);
         asyncInitializationSteps.push(this.shadowInitializer.initialize());
 
         this.visualizationConfigurationFactory = new VisualizationConfigurationFactory();
