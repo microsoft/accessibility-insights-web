@@ -184,11 +184,13 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
     }
 
     public addListenerOnPermissionsAdded(callback: (permissions: Permissions.Permissions) => void): void {
-        chrome.permissions.onAdded.addListener(callback);
+        // casting browser as any due to typings for permissions onAdded not currently supported.
+        (browser as any).permissions.onAdded.addListener(callback);
     }
 
     public addListenerOnPermissionsRemoved(callback: (permissions: Permissions.Permissions) => void): void {
-        chrome.permissions.onRemoved.addListener(callback);
+        // casting browser as any due to typings for permissions onRemoved not currently supported.
+        (browser as any).permissions.onRemoved.addListener(callback);
     }
 
     public containsPermissions(permissions: Permissions.Permissions): Promise<boolean> {
