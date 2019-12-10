@@ -111,6 +111,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             storageAdapter,
         );
         const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
+        const platformInfo = new PlatformInfo(process);
 
         const userConfigurationStore = new UserConfigurationStore(
             persistedData.userConfigurationData,
@@ -262,6 +263,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const renderer = new RootContainerRenderer(ReactDOM.render, document, props);
         renderer.render();
 
-        sendAppInitializedTelemetryEvent(telemetryEventHandler);
+        sendAppInitializedTelemetryEvent(telemetryEventHandler, platformInfo);
     },
 );
