@@ -1,20 +1,30 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { isFunction } from 'lodash';
-import { It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { BrowserMessageBroadcasterFactory } from 'background/browser-message-broadcaster-factory';
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { Logger } from 'common/logging/logger';
-import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
+import { isFunction } from 'lodash';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('BrowserMessageBroadcasterFactory', () => {
+    let loggerMock: IMock<Logger>;
+    let browserAdapterMock: IMock<BrowserAdapter>;
+
+    let testSubject: BrowserMessageBroadcasterFactory;
+
+    beforeEach(() => {
+        loggerMock = Mock.ofType<Logger>();
+        browserAdapterMock = Mock.ofType<BrowserAdapter>(null, MockBehavior.Strict);
+
+        testSubject = new BrowserMessageBroadcasterFactory(browserAdapterMock.object, loggerMock.object);
+    });
+
     describe('allTabsBroadcaster', () => {
         it('produces the expected BrowserAdapter calls when invoked', async () => {
             const testTabId = 1;
             const testMessage = { someData: 'test data' } as any;
             const expectedMessage = testMessage;
 
-            const browserAdapterMock = Mock.ofType<BrowserAdapter>(null, MockBehavior.Strict);
             browserAdapterMock
                 .setup(ba => ba.tabsQuery({}, It.is(isFunction)))
                 .callback((_, cb) => cb([{ id: testTabId }]))
@@ -28,8 +38,6 @@ describe('BrowserMessageBroadcasterFactory', () => {
                 .returns(() => Promise.resolve())
                 .verifiable(Times.once());
 
-            const testSubject = new BrowserMessageBroadcasterFactory(browserAdapterMock.object);
-
             await testSubject.allTabsBroadcaster(testMessage);
 
             browserAdapterMock.verifyAll();
@@ -41,14 +49,11 @@ describe('BrowserMessageBroadcasterFactory', () => {
             const expectedMessage =
                 "sendMessageToFrames failed for message { someData: 'test data' } with browser error message: test error";
 
-            const browserAdapterMock = Mock.ofType<BrowserAdapter>(null, MockBehavior.Strict);
             browserAdapterMock.setup(ba => ba.tabsQuery({}, It.is(isFunction))).callback((_, cb) => cb([{ id: 1 }]));
             browserAdapterMock.setup(ba => ba.sendMessageToFrames(It.isAny())).returns(() => Promise.reject(testError));
             browserAdapterMock.setup(ba => ba.sendMessageToTab(It.isAny(), It.isAny())).returns(() => Promise.resolve());
 
-            const loggerMock = Mock.ofType<Logger>();
             loggerMock.setup(m => m.error(expectedMessage)).verifiable(Times.once());
-            const testSubject = new BrowserMessageBroadcasterFactory(browserAdapterMock.object, loggerMock.object);
 
             await testSubject.allTabsBroadcaster(testMessage);
 
@@ -61,14 +66,11 @@ describe('BrowserMessageBroadcasterFactory', () => {
             const expectedMessage =
                 "sendMessageToTab(1) failed for message { someData: 'test data' } with browser error message: test error";
 
-            const browserAdapterMock = Mock.ofType<BrowserAdapter>(null, MockBehavior.Strict);
             browserAdapterMock.setup(ba => ba.tabsQuery({}, It.is(isFunction))).callback((_, cb) => cb([{ id: 1 }]));
             browserAdapterMock.setup(ba => ba.sendMessageToFrames(It.isAny())).returns(() => Promise.resolve());
             browserAdapterMock.setup(ba => ba.sendMessageToTab(It.isAny(), It.isAny())).returns(() => Promise.reject(testError));
 
-            const loggerMock = Mock.ofType<Logger>();
             loggerMock.setup(m => m.error(expectedMessage)).verifiable(Times.once());
-            const testSubject = new BrowserMessageBroadcasterFactory(browserAdapterMock.object, loggerMock.object);
 
             await testSubject.allTabsBroadcaster(testMessage);
 
@@ -82,7 +84,6 @@ describe('BrowserMessageBroadcasterFactory', () => {
             const testMessage = { someData: 'test data' } as any;
             const expectedMessage = { tabId: testTabId, ...testMessage };
 
-            const browserAdapterMock = Mock.ofType<BrowserAdapter>(null, MockBehavior.Strict);
             browserAdapterMock
                 .setup(ba => ba.sendMessageToFrames(expectedMessage))
                 .returns(() => Promise.resolve())
@@ -91,8 +92,6 @@ describe('BrowserMessageBroadcasterFactory', () => {
                 .setup(ba => ba.sendMessageToTab(testTabId, expectedMessage))
                 .returns(() => Promise.resolve())
                 .verifiable(Times.once());
-
-            const testSubject = new BrowserMessageBroadcasterFactory(browserAdapterMock.object);
 
             await testSubject.createTabSpecificBroadcaster(1)(testMessage);
 
@@ -105,13 +104,10 @@ describe('BrowserMessageBroadcasterFactory', () => {
             const expectedMessage =
                 "sendMessageToFrames failed for message { someData: 'test data', tabId: 1 } with browser error message: test error";
 
-            const browserAdapterMock = Mock.ofType<BrowserAdapter>(null, MockBehavior.Strict);
             browserAdapterMock.setup(ba => ba.sendMessageToFrames(It.isAny())).returns(() => Promise.reject(testError));
             browserAdapterMock.setup(ba => ba.sendMessageToTab(It.isAny(), It.isAny())).returns(() => Promise.resolve());
 
-            const loggerMock = Mock.ofType<Logger>();
             loggerMock.setup(m => m.error(expectedMessage)).verifiable(Times.once());
-            const testSubject = new BrowserMessageBroadcasterFactory(browserAdapterMock.object, loggerMock.object);
 
             await testSubject.createTabSpecificBroadcaster(1)(testMessage);
 
@@ -124,13 +120,10 @@ describe('BrowserMessageBroadcasterFactory', () => {
             const expectedMessage =
                 "sendMessageToTab(1) failed for message { someData: 'test data', tabId: 1 } with browser error message: test error";
 
-            const browserAdapterMock = Mock.ofType<BrowserAdapter>(null, MockBehavior.Strict);
             browserAdapterMock.setup(ba => ba.sendMessageToFrames(It.isAny())).returns(() => Promise.resolve());
             browserAdapterMock.setup(ba => ba.sendMessageToTab(It.isAny(), It.isAny())).returns(() => Promise.reject(testError));
 
-            const loggerMock = Mock.ofType<Logger>();
             loggerMock.setup(m => m.error(expectedMessage)).verifiable(Times.once());
-            const testSubject = new BrowserMessageBroadcasterFactory(browserAdapterMock.object, loggerMock.object);
 
             await testSubject.createTabSpecificBroadcaster(1)(testMessage);
 

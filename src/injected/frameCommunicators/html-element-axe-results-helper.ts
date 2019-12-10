@@ -1,9 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { forOwn } from 'lodash';
-
 import { HTMLElementUtils } from '../../common/html-element-utils';
-import { createDefaultLogger } from '../../common/logging/default-logger';
 import { Logger } from '../../common/logging/logger';
 import { DictionaryStringTo } from '../../types/common-types';
 import { HtmlElementAxeResults } from '../scanner-utils';
@@ -24,7 +22,7 @@ export interface AssessmentVisualizationInstance extends AxeResultsWithFrameLeve
 }
 
 export class HtmlElementAxeResultsHelper {
-    constructor(private htmlElementUtils: HTMLElementUtils, private logger: Logger = createDefaultLogger()) {}
+    constructor(private htmlElementUtils: HTMLElementUtils, private logger: Logger) {}
 
     public splitResultsByFrame(elementResults: AxeResultsWithFrameLevel[]): HTMLIFrameResult[] {
         const frameSelectorToResultsMap = this.getFrameSelectorToResultMap(elementResults);

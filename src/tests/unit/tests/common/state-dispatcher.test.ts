@@ -47,7 +47,8 @@ describe('StateDispatcherTest', () => {
             .returns(() => Promise.resolve())
             .verifiable();
 
-        const stateDispatcher = new StateDispatcher(broadcastMock.object, storeHubStrictMock.object);
+        const loggerMock = Mock.ofType<Logger>();
+        const stateDispatcher = new StateDispatcher(broadcastMock.object, storeHubStrictMock.object, loggerMock.object);
         stateDispatcher.initialize();
 
         storeMock.verifyAll();
@@ -87,7 +88,8 @@ describe('StateDispatcherTest', () => {
         const broadcastMock = Mock.ofType<(message: Object) => Promise<void>>();
         broadcastMock.setup(m => m(It.isAny())).returns(() => Promise.resolve());
 
-        const stateDispatcher = new StateDispatcher(broadcastMock.object, storeHubMock.object);
+        const loggerMock = Mock.ofType<Logger>();
+        const stateDispatcher = new StateDispatcher(broadcastMock.object, storeHubMock.object, loggerMock.object);
         stateDispatcher.initialize();
 
         broadcastMock.reset();

@@ -1,13 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { ChromeCommandHandler } from 'background/chrome-command-handler';
 import { Interpreter } from 'background/interpreter';
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
 import { TabContextStoreHub } from 'background/stores/tab-context-store-hub';
 import { VisualizationStore } from 'background/stores/visualization-store';
 import { TabContext, TabToContextMap } from 'background/tab-context';
+import { Logger } from 'common/logging/logger';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { BaseStore } from '../../../../common/base-store';
 import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { CommandsAdapter } from '../../../../common/browser-adapters/commands-adapter';
@@ -23,27 +24,30 @@ import { VisualizationType } from '../../../../common/types/visualization-type';
 import { UrlValidator } from '../../../../common/url-validator';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 
-let testSubject: ChromeCommandHandler;
-let browserAdapterMock: IMock<BrowserAdapter>;
-let commandsAdapterMock: IMock<CommandsAdapter>;
-let urlValidatorMock: IMock<UrlValidator>;
-let tabToContextMap: TabToContextMap;
-let visualizationStoreMock: IMock<BaseStore<VisualizationStoreData>>;
-let interpreterMock: IMock<Interpreter>;
-let commandCallback: (commandId: string) => Promise<void>;
-let existingTabId: number;
-let notificationCreatorMock: IMock<NotificationCreator>;
-let storeState: VisualizationStoreData;
-let simulatedIsFirstTimeUserConfiguration: boolean;
-let simulatedIsSupportedUrlResponse: boolean;
-let simulatedActiveTabId: Number;
-let simulatedActiveTabUrl: string;
-
-const visualizationConfigurationFactory = new VisualizationConfigurationFactory();
-const testSource: TelemetryEventSource = TelemetryEventSource.ShortcutCommand;
-
 describe('ChromeCommandHandlerTest', () => {
+    let testSubject: ChromeCommandHandler;
+    let browserAdapterMock: IMock<BrowserAdapter>;
+    let commandsAdapterMock: IMock<CommandsAdapter>;
+    let urlValidatorMock: IMock<UrlValidator>;
+    let tabToContextMap: TabToContextMap;
+    let visualizationStoreMock: IMock<BaseStore<VisualizationStoreData>>;
+    let interpreterMock: IMock<Interpreter>;
+    let loggerMock: IMock<Logger>;
+
+    let commandCallback: (commandId: string) => Promise<void>;
+    let existingTabId: number;
+    let notificationCreatorMock: IMock<NotificationCreator>;
+    let storeState: VisualizationStoreData;
+    let simulatedIsFirstTimeUserConfiguration: boolean;
+    let simulatedIsSupportedUrlResponse: boolean;
+    let simulatedActiveTabId: Number;
+    let simulatedActiveTabUrl: string;
+    let visualizationConfigurationFactory: VisualizationConfigurationFactory;
+
+    const testSource: TelemetryEventSource = TelemetryEventSource.ShortcutCommand;
+
     beforeEach(() => {
+        visualizationConfigurationFactory = new VisualizationConfigurationFactory();
         interpreterMock = Mock.ofType(Interpreter);
 
         visualizationStoreMock = Mock.ofType(VisualizationStore, MockBehavior.Strict);
@@ -93,6 +97,8 @@ describe('ChromeCommandHandlerTest', () => {
                 };
             });
 
+        loggerMock = Mock.ofType<Logger>();
+
         testSubject = new ChromeCommandHandler(
             tabToContextMap,
             browserAdapterMock.object,
@@ -102,6 +108,7 @@ describe('ChromeCommandHandlerTest', () => {
             new TelemetryDataFactory(),
             userConfigurationStoreMock.object,
             commandsAdapterMock.object,
+            loggerMock.object,
         );
 
         testSubject.initialize();
@@ -296,9 +303,9 @@ describe('ChromeCommandHandlerTest', () => {
             notificationCreatorMock.verifyAll();
         },
     );
-});
 
-function getArbitraryValidChromeCommand(): string {
-    const configuration = visualizationConfigurationFactory.getConfiguration(VisualizationType.Issues);
-    return configuration.chromeCommand;
-}
+    function getArbitraryValidChromeCommand(): string {
+        const configuration = visualizationConfigurationFactory.getConfiguration(VisualizationType.Issues);
+        return configuration.chromeCommand;
+    }
+});

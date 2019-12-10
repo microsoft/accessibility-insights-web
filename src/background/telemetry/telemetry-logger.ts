@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { FeatureFlags } from '../../common/feature-flags';
-import { createDefaultLogger } from '../../common/logging/default-logger';
 import { Logger } from '../../common/logging/logger';
 import { FeatureFlagChecker } from '../feature-flag-checker';
 import { TelemetryBaseData } from './telemetry-base-data';
@@ -9,7 +8,7 @@ import { TelemetryBaseData } from './telemetry-base-data';
 export class TelemetryLogger {
     private featureFlagChecker: FeatureFlagChecker;
 
-    constructor(private logger: Logger = createDefaultLogger()) {}
+    constructor(private logger: Logger) {}
 
     public initialize(featureFlagChecker: FeatureFlagChecker): void {
         this.featureFlagChecker = featureFlagChecker;
