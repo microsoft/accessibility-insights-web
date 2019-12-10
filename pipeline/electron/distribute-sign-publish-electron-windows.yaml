@@ -53,8 +53,4 @@ steps:
     - script: yarn update:electron-checksum
       displayName: update electron checksum after signing
 
-    - task: PublishBuildArtifacts@1
-      inputs:
-          pathtoPublish: '$(System.DefaultWorkingDirectory)/dist'
-          artifactName: $(Agent.JobName)
-      displayName: publish dist
+    - template: prepare-publish-artifact.yaml
