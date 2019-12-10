@@ -693,7 +693,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Path
                               </th>
@@ -707,7 +707,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Snippet
                               </th>
@@ -721,7 +721,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 How to fix
                               </th>
@@ -896,7 +896,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Path
                               </th>
@@ -910,7 +910,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Snippet
                               </th>
@@ -924,7 +924,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 How to fix
                               </th>
@@ -1000,7 +1000,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Path
                               </th>
@@ -1014,7 +1014,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Snippet
                               </th>
@@ -1028,7 +1028,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 How to fix
                               </th>
@@ -1104,7 +1104,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Path
                               </th>
@@ -1118,7 +1118,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Snippet
                               </th>
@@ -1132,7 +1132,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 How to fix
                               </th>
@@ -1208,7 +1208,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Path
                               </th>
@@ -1222,7 +1222,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Snippet
                               </th>
@@ -1236,7 +1236,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 How to fix
                               </th>
@@ -1430,7 +1430,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Path
                               </th>
@@ -1444,7 +1444,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Snippet
                               </th>
@@ -1458,7 +1458,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 How to fix
                               </th>
@@ -1627,7 +1627,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Path
                               </th>
@@ -1641,7 +1641,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Snippet
                               </th>
@@ -1655,7 +1655,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 How to fix
                               </th>
@@ -1721,7 +1721,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Path
                               </th>
@@ -1735,7 +1735,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Snippet
                               </th>
@@ -1749,7 +1749,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 How to fix
                               </th>
@@ -1815,7 +1815,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Path
                               </th>
@@ -1829,7 +1829,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Snippet
                               </th>
@@ -1843,7 +1843,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 How to fix
                               </th>
@@ -1909,7 +1909,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Path
                               </th>
@@ -1923,7 +1923,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Snippet
                               </th>
@@ -1937,7 +1937,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 How to fix
                               </th>
@@ -2121,7 +2121,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Path
                               </th>
@@ -2135,7 +2135,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Snippet
                               </th>
@@ -2149,7 +2149,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 How to fix
                               </th>
@@ -2212,7 +2212,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Path
                               </th>
@@ -2226,7 +2226,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Snippet
                               </th>
@@ -2240,7 +2240,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 How to fix
                               </th>
@@ -2303,7 +2303,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Path
                               </th>
@@ -2317,7 +2317,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Snippet
                               </th>
@@ -2331,7 +2331,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 How to fix
                               </th>
@@ -2394,7 +2394,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Path
                               </th>
@@ -2408,7 +2408,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Snippet
                               </th>
@@ -2422,7 +2422,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 How to fix
                               </th>
@@ -2485,7 +2485,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Path
                               </th>
@@ -2499,7 +2499,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Snippet
                               </th>
@@ -2513,7 +2513,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 How to fix
                               </th>
@@ -2576,7 +2576,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Path
                               </th>
@@ -2590,7 +2590,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Snippet
                               </th>
@@ -2604,7 +2604,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 How to fix
                               </th>
@@ -2667,7 +2667,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Path
                               </th>
@@ -2681,7 +2681,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Snippet
                               </th>
@@ -2695,7 +2695,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 How to fix
                               </th>
@@ -2758,7 +2758,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Path
                               </th>
@@ -2772,7 +2772,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Snippet
                               </th>
@@ -2786,7 +2786,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 How to fix
                               </th>
@@ -2849,7 +2849,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Path
                               </th>
@@ -2863,7 +2863,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Snippet
                               </th>
@@ -2877,7 +2877,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 How to fix
                               </th>
@@ -2940,7 +2940,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Path
                               </th>
@@ -2954,7 +2954,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Snippet
                               </th>
@@ -2968,7 +2968,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 How to fix
                               </th>
@@ -3031,7 +3031,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Path
                               </th>
@@ -3045,7 +3045,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Snippet
                               </th>
@@ -3059,7 +3059,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 How to fix
                               </th>
@@ -3122,7 +3122,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Path
                               </th>
@@ -3136,7 +3136,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Snippet
                               </th>
@@ -3150,7 +3150,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 How to fix
                               </th>
@@ -3213,7 +3213,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Path
                               </th>
@@ -3227,7 +3227,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Snippet
                               </th>
@@ -3241,7 +3241,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 How to fix
                               </th>
@@ -3422,7 +3422,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Path
                               </th>
@@ -3436,7 +3436,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Snippet
                               </th>
@@ -3450,7 +3450,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 How to fix
                               </th>
@@ -3619,7 +3619,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Path
                               </th>
@@ -3633,7 +3633,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Snippet
                               </th>
@@ -3647,7 +3647,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 How to fix
                               </th>
@@ -3816,7 +3816,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Path
                               </th>
@@ -3830,7 +3830,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 Snippet
                               </th>
@@ -3844,7 +3844,7 @@ exports[`report package integration with issues 1`] = `
                               class="row"
                             >
                               <th
-                                class="label"
+                                class="label report-instance-table-label-overrides"
                               >
                                 How to fix
                               </th>
