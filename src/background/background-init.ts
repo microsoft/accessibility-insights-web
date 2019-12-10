@@ -118,6 +118,7 @@ async function initialize(): Promise<void> {
     const notificationCreator = new NotificationCreator(
         browserAdapter,
         visualizationConfigurationFactory,
+        logger,
     );
 
     const chromeCommandHandler = new ChromeCommandHandler(

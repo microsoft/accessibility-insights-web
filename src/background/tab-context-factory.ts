@@ -60,6 +60,7 @@ export class TabContextFactory {
         const notificationCreator = new NotificationCreator(
             browserAdapter,
             this.visualizationConfigurationFactory,
+            this.logger,
         );
         const shortcutsPageController = new ShortcutsPageController(browserAdapter);
 
