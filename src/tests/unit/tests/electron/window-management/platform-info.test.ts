@@ -41,7 +41,7 @@ describe(PlatformInfo, () => {
             { platformName: 'linux', osType: OSType.Linux },
             { platformName: 'darwin', osType: OSType.Mac },
             { platformName: 'win32', osType: OSType.Windows },
-        ] as GetOsTestCase[])('validate getOs %o', (testCase: GetOsTestCase) => {
+        ] as GetOsTestCase[])('validate getOsName %o', (testCase: GetOsTestCase) => {
             processMock.setup(p => p.platform).returns(() => testCase.platformName);
 
             expect(testSubject.getOsName()).toBe(testCase.platformName);
