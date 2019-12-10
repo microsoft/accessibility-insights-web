@@ -3,7 +3,7 @@
 
 steps:
     - task: CopyFiles@2
-      displayName: 'Copy package files to upload'
+      displayName: 'copy package files to upload'
       inputs:
           SourceFolder: '$(System.DefaultWorkingDirectory)/dist'
           Contents: |
