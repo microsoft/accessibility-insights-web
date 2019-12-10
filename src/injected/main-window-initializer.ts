@@ -67,6 +67,7 @@ import { SelectorMapHelper } from './selector-map-helper';
 import { ShadowUtils } from './shadow-utils';
 import { TargetPageActionMessageCreator } from './target-page-action-message-creator';
 import { WindowInitializer } from './window-initializer';
+import { createDefaultLogger } from 'common/logging/default-logger';
 
 export class MainWindowInitializer extends WindowInitializer {
     protected frameCommunicator: FrameCommunicator;
@@ -119,7 +120,11 @@ export class MainWindowInitializer extends WindowInitializer {
             this.browserAdapter,
         );
 
-        const actionMessageDispatcher = new RemoteActionMessageDispatcher(this.browserAdapter.sendMessageToFrames, null);
+        const actionMessageDispatcher = new RemoteActionMessageDispatcher(
+            this.browserAdapter.sendMessageToFrames,
+            null,
+            createDefaultLogger(),
+        );
 
         const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(actionMessageDispatcher);
 

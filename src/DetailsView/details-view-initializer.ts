@@ -6,6 +6,7 @@ import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { CardsVisualizationModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
+import { createDefaultLogger } from 'common/logging/default-logger';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { loadTheme } from 'office-ui-fabric-react';
@@ -27,7 +28,6 @@ import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ReportNameGenerator } from 'reports/report-name-generator';
-
 import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AxeInfo } from '../common/axe-info';
 import { provideBlob } from '../common/blob-provider';
@@ -104,7 +104,6 @@ import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-t
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { MasterCheckBoxConfigProvider } from './handlers/master-checkbox-config-provider';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
-import { createDefaultLogger } from 'common/logging/default-logger';
 
 declare const window: AutoChecker & Window;
 
@@ -172,7 +171,8 @@ if (isNaN(tabId) === false) {
                 cardSelectionStore,
             ]);
 
-            const actionMessageDispatcher = new RemoteActionMessageDispatcher(browserAdapter.sendMessageToFrames, tab.id);
+            const logger = createDefaultLogger();
+            const actionMessageDispatcher = new RemoteActionMessageDispatcher(browserAdapter.sendMessageToFrames, tab.id, logger);
 
             const detailsViewActionMessageCreator = new DetailsViewActionMessageCreator(telemetryFactory, actionMessageDispatcher);
             const scopingActionMessageCreator = new ScopingActionMessageCreator(
@@ -367,7 +367,6 @@ if (isNaN(tabId) === false) {
             );
             renderer.render();
 
-            const logger = createDefaultLogger();
             const a11ySelfValidator = new A11YSelfValidator(new ScannerUtils(scan), new HTMLElementUtils(), logger);
             window.A11YSelfValidator = a11ySelfValidator;
         },

@@ -91,6 +91,7 @@ export class PopupInitializer {
         const actionMessageDispatcher = new RemoteActionMessageDispatcher(
             this.browserAdapter.sendMessageToFrames,
             tab.id,
+            this.logger,
         );
         const visualizationActionCreator = new VisualizationActionMessageCreator(
             actionMessageDispatcher,
