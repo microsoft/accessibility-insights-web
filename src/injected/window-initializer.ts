@@ -74,12 +74,13 @@ export class WindowInitializer {
             this.windowUtils,
             new WindowMessageMarshaller(this.browserAdapter, generateUID),
         );
-        this.frameCommunicator = new FrameCommunicator(windowMessageHandler, htmlElementUtils, Q);
+        const logger = createDefaultLogger();
+        this.frameCommunicator = new FrameCommunicator(windowMessageHandler, htmlElementUtils, Q, logger);
         this.tabStopsListener = new TabStopsListener(this.frameCommunicator, this.windowUtils, htmlElementUtils, this.scannerUtils);
         const drawerProvider = new DrawerProvider(
             htmlElementUtils,
             this.windowUtils,
-            new NavigatorUtils(window.navigator, createDefaultLogger()),
+            new NavigatorUtils(window.navigator, logger),
             new ShadowUtils(new HTMLElementUtils()),
             new DrawerUtils(document),
             this.clientUtils,

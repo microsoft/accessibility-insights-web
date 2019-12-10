@@ -1,9 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Q from 'q';
-
 import { HTMLElementUtils } from '../../common/html-element-utils';
-import { createDefaultLogger } from '../../common/logging/default-logger';
 import { Logger } from '../../common/logging/logger';
 import { ErrorMessageContent } from './error-message-content';
 import { FrameMessageResponseCallback, WindowMessageHandler } from './window-message-handler';
@@ -29,7 +27,7 @@ export class FrameCommunicator {
         protected windowMessageHandler: WindowMessageHandler,
         protected htmlElementUtils: HTMLElementUtils,
         private q: typeof Q,
-        private logger: Logger = createDefaultLogger(),
+        private logger: Logger,
     ) {
         this.window = window;
         this.document = document;
