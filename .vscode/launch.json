@@ -45,7 +45,7 @@
             }
         },
         {
-            "name": "Debug electron app",
+            "name": "Debug electron main process with --remote-debugging-port=9222",
             "type": "node",
             "request": "launch",
             "cwd": "${workspaceRoot}",
@@ -54,7 +54,18 @@
                 "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
             },
             "args": ["drop/electron/electron/product/bundle/main.bundle.js"],
+            "runtimeArgs": ["--remote-debugging-port=9222"],
             "outputCapture": "std"
+        },
+        {
+            "name": "Attach debugger to electron renderer process (must first launch main process with --remote-debugging-port=9222)",
+            "type": "chrome",
+            "request": "attach",
+            "port": 9222,
+            "webRoot": "${workspaceFolder}/drop/electron/electron/product",
+            "sourceMapPathOverrides": {
+                "webpack:///./*": "${workspaceFolder}/*"
+            }
         }
     ],
     "inputs": [
