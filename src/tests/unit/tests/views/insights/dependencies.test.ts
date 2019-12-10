@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { initializeFabricIcons } from 'common/fabric-icons';
+import { Logger } from 'common/logging/logger';
 import { ContentActionMessageCreator } from 'common/message-creators/content-action-message-creator';
 import * as ReactDOM from 'react-dom';
 import { Mock } from 'typemoq';
@@ -11,7 +12,7 @@ import { RendererDeps } from 'views/insights/renderer';
 describe('rendererDependencies', () => {
     let subject: RendererDeps;
     beforeAll(() => {
-        subject = rendererDependencies(Mock.ofType<BrowserAdapter>().object);
+        subject = rendererDependencies(Mock.ofType<BrowserAdapter>().object, Mock.ofType<Logger>().object);
     });
 
     it('includes dom', () => {

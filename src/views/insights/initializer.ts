@@ -10,8 +10,8 @@ import { rendererDependencies } from './dependencies';
 import { renderer } from './renderer';
 
 const browserAdapter = new ChromeAdapter();
-renderer(rendererDependencies(browserAdapter));
-
 const logger = createDefaultLogger();
+renderer(rendererDependencies(browserAdapter, logger));
+
 const a11ySelfValidator = new A11YSelfValidator(new ScannerUtils(scan, logger), new HTMLElementUtils(), logger);
 (window as any).A11YSelfValidator = a11ySelfValidator;
