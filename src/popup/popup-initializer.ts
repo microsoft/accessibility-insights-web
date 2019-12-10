@@ -246,7 +246,7 @@ export class PopupInitializer {
         popupActionMessageCreator.popupInitialized(tab);
 
         const a11ySelfValidator = new A11YSelfValidator(
-            new ScannerUtils(scan),
+            new ScannerUtils(scan, this.logger),
             new HTMLElementUtils(),
             this.logger,
         );

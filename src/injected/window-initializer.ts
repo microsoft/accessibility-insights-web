@@ -61,7 +61,8 @@ export class WindowInitializer {
         this.windowUtils = new WindowUtils();
         const htmlElementUtils = new HTMLElementUtils();
         this.clientUtils = new ClientUtils(window);
-        this.scannerUtils = new ScannerUtils(scan);
+        const logger = createDefaultLogger();
+        this.scannerUtils = new ScannerUtils(scan, logger);
 
         new RootContainerCreator(htmlElementUtils).create(rootContainerId);
 
@@ -74,7 +75,6 @@ export class WindowInitializer {
             this.windowUtils,
             new WindowMessageMarshaller(this.browserAdapter, generateUID),
         );
-        const logger = createDefaultLogger();
         this.frameCommunicator = new FrameCommunicator(windowMessageHandler, htmlElementUtils, Q, logger);
         this.tabStopsListener = new TabStopsListener(this.frameCommunicator, this.windowUtils, htmlElementUtils, this.scannerUtils);
         const drawerProvider = new DrawerProvider(

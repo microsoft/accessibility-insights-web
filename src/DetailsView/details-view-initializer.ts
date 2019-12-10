@@ -367,7 +367,7 @@ if (isNaN(tabId) === false) {
             );
             renderer.render();
 
-            const a11ySelfValidator = new A11YSelfValidator(new ScannerUtils(scan), new HTMLElementUtils(), logger);
+            const a11ySelfValidator = new A11YSelfValidator(new ScannerUtils(scan, logger), new HTMLElementUtils(), logger);
             window.A11YSelfValidator = a11ySelfValidator;
         },
         () => {

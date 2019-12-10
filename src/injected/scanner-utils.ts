@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CheckData } from 'injected/element-based-view-model-creator';
-
-import { createDefaultLogger } from '../common/logging/default-logger';
 import { Logger } from '../common/logging/logger';
 import { scan as scanRunner } from '../scanner/exposed-apis';
 import { RuleResult, ScanResults } from '../scanner/iruleresults';
@@ -31,11 +29,7 @@ export interface HtmlElementAxeResults {
 }
 
 export class ScannerUtils {
-    public constructor(
-        private scanner: typeof scanRunner,
-        private generateUID?: () => string,
-        private logger: Logger = createDefaultLogger(),
-    ) {}
+    public constructor(private scanner: typeof scanRunner, private logger: Logger, private generateUID?: () => string) {}
 
     public scan(options: ScanOptions, callback: (results: ScanResults) => void): void {
         this.scanner(

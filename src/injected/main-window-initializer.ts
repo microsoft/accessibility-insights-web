@@ -224,7 +224,7 @@ export class MainWindowInitializer extends WindowInitializer {
             this.tabStopsListener,
             this.scopingStoreProxy,
             this.browserAdapter.sendMessageToFrames,
-            new ScannerUtils(scan, generateUID),
+            new ScannerUtils(scan, logger, generateUID),
             telemetryDataFactory,
             DateProvider.getCurrentDate,
             this.visualizationConfigurationFactory,
