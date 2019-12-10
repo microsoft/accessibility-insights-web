@@ -117,6 +117,7 @@ export class GlobalContextFactory {
         const dispatcher = new StateDispatcher(
             messageBroadcasterFactory.allTabsBroadcaster,
             globalStoreHub,
+            logger,
         );
         dispatcher.initialize();
 

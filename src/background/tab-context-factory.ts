@@ -174,7 +174,7 @@ export class TabContextFactory {
         injectionActionCreator.registerCallbacks();
 
         injectorController.initialize();
-        const dispatcher = new StateDispatcher(broadcastMessage, storeHub);
+        const dispatcher = new StateDispatcher(broadcastMessage, storeHub, this.logger);
         dispatcher.initialize();
 
         return new TabContext(interpreter, storeHub);
