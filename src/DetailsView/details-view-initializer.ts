@@ -104,6 +104,7 @@ import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-t
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { MasterCheckBoxConfigProvider } from './handlers/master-checkbox-config-provider';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
+import { createDefaultLogger } from 'common/logging/default-logger';
 
 declare const window: AutoChecker & Window;
 
@@ -366,7 +367,8 @@ if (isNaN(tabId) === false) {
             );
             renderer.render();
 
-            const a11ySelfValidator = new A11YSelfValidator(new ScannerUtils(scan), new HTMLElementUtils());
+            const logger = createDefaultLogger();
+            const a11ySelfValidator = new A11YSelfValidator(new ScannerUtils(scan), new HTMLElementUtils(), logger);
             window.A11YSelfValidator = a11ySelfValidator;
         },
         () => {

@@ -247,6 +247,7 @@ export class PopupInitializer {
         const a11ySelfValidator = new A11YSelfValidator(
             new ScannerUtils(scan),
             new HTMLElementUtils(),
+            this.logger,
         );
         window.A11YSelfValidator = a11ySelfValidator;
     };
