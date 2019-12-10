@@ -92,7 +92,7 @@ export class WindowInitializer {
         );
         this.drawingController = new DrawingController(
             this.frameCommunicator,
-            new HtmlElementAxeResultsHelper(htmlElementUtils),
+            new HtmlElementAxeResultsHelper(htmlElementUtils, logger),
             htmlElementUtils,
         );
         this.scrollingController = new ScrollingController(this.frameCommunicator, htmlElementUtils);
