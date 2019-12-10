@@ -18,7 +18,7 @@ export class DetailsViewController {
         this.detailsViewRemovedHandler = handler;
     }
 
-    public showDetailsView(targetTabId: number): Promise<void> {
+    public async showDetailsView(targetTabId: number): Promise<void> {
         const detailsViewTabId = this.tabIdToDetailsViewMap[targetTabId];
 
         if (detailsViewTabId != null) {
@@ -26,11 +26,9 @@ export class DetailsViewController {
             return;
         }
 
-        return this.browserAdapter
-            .createTabInNewWindow(this.getDetailsUrl(targetTabId))
-            .then(tab => {
-                this.tabIdToDetailsViewMap[targetTabId] = tab.id;
-            });
+        const tab = await this.browserAdapter.createTabInNewWindow(this.getDetailsUrl(targetTabId));
+
+        this.tabIdToDetailsViewMap[targetTabId] = tab.id;
     }
 
     private onUpdateTab = (
