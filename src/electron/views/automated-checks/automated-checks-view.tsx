@@ -15,7 +15,6 @@ import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { TitleBar, TitleBarDeps } from 'electron/views/automated-checks/components/title-bar';
-import { mainContentWrapper } from 'electron/views/device-connect-view/device-connect-view.scss';
 import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
 import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
 import { ScreenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
@@ -89,7 +88,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                     windowStateStoreData={this.props.windowStateStoreData}
                 ></TitleBar>
                 <div className={styles.automatedChecksPanelLayout}>
-                    <div className={mainContentWrapper}>
+                    <div className={styles.mainContentWrapper}>
                         <CommandBar
                             deps={this.props.deps}
                             deviceStoreData={this.props.deviceStoreData}
