@@ -74,7 +74,7 @@
         "case-sensitive-paths-webpack-plugin": "^2.2.0",
         "core-js-bundle": "^3.4.8",
         "cross-env": "^6.0.3",
-        "css-loader": "^3.2.1",
+        "css-loader": "^3.3.0",
         "electron": "7.0.1",
         "electron-builder": "^22.2.0",
         "enzyme": "^3.10.0",
