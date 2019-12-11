@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { browser, ExtensionTypes, Notifications, Permissions, Tabs } from 'webextension-polyfill-ts';
+import { browser, ExtensionTypes, Notifications, Permissions, Tabs, Windows } from 'webextension-polyfill-ts';
 
 import { BrowserAdapter } from './browser-adapter';
 import { CommandsAdapter } from './commands-adapter';
@@ -13,6 +13,10 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
 
     public getAllWindows(getInfo: chrome.windows.GetInfo, callback: (chromeWindows: chrome.windows.Window[]) => void): void {
         chrome.windows.getAll(getInfo, callback);
+    }
+
+    public getAllWindowsP(getInfo: Windows.GetAllGetInfoType): Promise<Windows.Window[]> {
+        return browser.windows.getAll(getInfo);
     }
 
     public addListenerToTabsOnActivated(callback: (activeInfo: chrome.tabs.TabActiveInfo) => void): void {
