@@ -67,6 +67,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
                 <span id="switch-to-target">Target page:&nbsp;</span>
                 <Link
                     role="link"
+                    title="Switch to target page"
                     className={css('insights-link', 'target-page-link')}
                     onClick={this.props.deps.detailsViewActionMessageCreator.switchToTargetTab}
                 >
