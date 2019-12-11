@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`cross-origin iframe and permissions does not scan inside cross-origin iframes when we don not have permissions 1`] = `
+exports[`cross-origin iframe and permissions does not scan inside cross-origin iframes when extension does not have permissions 1`] = `
 <DocumentFragment>
   <div
     class="rule-details-group--{{CSS_MODULE_HASH}}"
