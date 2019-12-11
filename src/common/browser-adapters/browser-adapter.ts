@@ -3,7 +3,7 @@
 import { ExtensionTypes, Notifications, Permissions, Tabs, Windows } from 'webextension-polyfill-ts';
 
 export interface BrowserAdapter {
-    getAllWindowsP(getInfo: Windows.GetAllGetInfoType): Promise<Windows.Window[]>;
+    getAllWindows(getInfo: Windows.GetAllGetInfoType): Promise<Windows.Window[]>;
     addListenerToTabsOnActivated(callback: (activeInfo: chrome.tabs.TabActiveInfo) => void): void;
     addListenerToTabsOnUpdated(callback: (tabId: number, changeInfo: chrome.tabs.TabChangeInfo, tab: chrome.tabs.Tab) => void): void;
     addListenerToTabsOnRemoved(callback: (tabId: number, removeInfo: chrome.tabs.TabRemoveInfo) => void): void;

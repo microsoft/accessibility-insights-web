@@ -11,7 +11,7 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         return `chrome://extensions/?id=${chrome.runtime.id}`;
     }
 
-    public getAllWindowsP(getInfo: Windows.GetAllGetInfoType): Promise<Windows.Window[]> {
+    public getAllWindows(getInfo: Windows.GetAllGetInfoType): Promise<Windows.Window[]> {
         return browser.windows.getAll(getInfo);
     }
 

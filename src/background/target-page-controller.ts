@@ -77,7 +77,7 @@ export class TargetPageController {
     };
 
     private onWindowFocusChanged = async (windowId: number): Promise<void> => {
-        const chromeWindows = await this.browserAdapter.getAllWindowsP({
+        const chromeWindows = await this.browserAdapter.getAllWindows({
             populate: false,
             windowTypes: ['normal', 'popup'],
         });
