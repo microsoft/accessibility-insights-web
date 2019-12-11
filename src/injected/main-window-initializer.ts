@@ -67,6 +67,7 @@ import { SelectorMapHelper } from './selector-map-helper';
 import { ShadowUtils } from './shadow-utils';
 import { TargetPageActionMessageCreator } from './target-page-action-message-creator';
 import { WindowInitializer } from './window-initializer';
+import { IframeDetector } from 'injected/iframe-detector';
 
 export class MainWindowInitializer extends WindowInitializer {
     protected frameCommunicator: FrameCommunicator;
@@ -230,6 +231,7 @@ export class MainWindowInitializer extends WindowInitializer {
             this.visualizationConfigurationFactory,
             filterResultsByRules,
             unifiedResultSender.sendResults,
+            new IframeDetector(document),
         );
 
         const analyzerStateUpdateHandler = new AnalyzerStateUpdateHandler(this.visualizationConfigurationFactory);

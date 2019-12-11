@@ -5,6 +5,7 @@ import { WindowUtils } from '../../common/window-utils';
 import { TabStopEvent, TabStopsListener } from '../tab-stops-listener';
 import { AxeAnalyzerResult, FocusAnalyzerConfiguration, ScanBasePayload, ScanUpdatePayload } from './analyzer';
 import { BaseAnalyzer } from './base-analyzer';
+import { IframeDetector } from 'injected/iframe-detector';
 
 export interface ProgressResult<T> {
     result: T;
@@ -24,8 +25,9 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         tabStopsListener: TabStopsListener,
         windowUtils: WindowUtils,
         sendMessageDelegate: (message) => void,
+        iframeDetector: IframeDetector,
     ) {
-        super(config, sendMessageDelegate);
+        super(config, sendMessageDelegate, iframeDetector);
         this.tabStopsListener = tabStopsListener;
         this.windowUtils = windowUtils;
     }

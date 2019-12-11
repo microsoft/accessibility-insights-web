@@ -453,6 +453,7 @@ describe('AssessmentStoreTest', () => {
             scanResult: {} as ScanResults,
             testType: assessmentType,
             key: requirementKey,
+            pageHasIframes: true,
         };
 
         const expectedInstanceMap = {};
