@@ -5,6 +5,8 @@ import { ruleDetailsGroupAutomationId } from 'common/components/cards/rules-with
 import { overviewHeadingAutomationId } from 'DetailsView/components/overview-content/overview-heading';
 import { startOverAutomationId } from 'DetailsView/components/start-over-component-factory';
 
+const getAutomationIdSelector = (id: string) => `[data-automation-id="${id}"]`;
+
 export const detailsViewSelectors = {
     previewFeaturesPanel: '.preview-features-panel',
 
@@ -16,17 +18,17 @@ export const detailsViewSelectors = {
     gearButton: '.gear-options-icon',
     settingsButton: 'button[name="Settings"]',
 
-    automatedChecksResultSection: `[data-automation-id=${resultSectionAutomationId}]`,
+    automatedChecksResultSection: getAutomationIdSelector(resultSectionAutomationId),
 };
 
 export const fastPassAutomatedChecksSelectors = {
-    startOverButton: `[data-automation-id=${startOverAutomationId}]`,
-    ruleDetailsGroups: `[data-automation-id=${ruleDetailsGroupAutomationId}]`,
+    startOverButton: getAutomationIdSelector(startOverAutomationId),
+    ruleDetailsGroups: getAutomationIdSelector(ruleDetailsGroupAutomationId),
 };
 
 export const overviewSelectors = {
     overview: '.overview',
-    overviewHeading: `[data-automation-id="${overviewHeadingAutomationId}"]`,
+    overviewHeading: getAutomationIdSelector(overviewHeadingAutomationId),
 };
 
 export const settingsPanelSelectors = {
