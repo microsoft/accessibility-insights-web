@@ -12,10 +12,12 @@ import { ClientStoreListener, TargetPageStoreData } from 'injected/client-store-
 import { ElementBasedViewModelCreator } from 'injected/element-based-view-model-creator';
 import { FocusChangeHandler } from 'injected/focus-change-handler';
 import { getDecoratedAxeNode } from 'injected/get-decorated-axe-node';
+import { IframeDetector } from 'injected/iframe-detector';
 import { isVisualizationEnabled } from 'injected/is-visualization-enabled';
 import { TargetPageVisualizationUpdater } from 'injected/target-page-visualization-updater';
 import { visualizationNeedsUpdate } from 'injected/visualization-needs-update';
 import { VisualizationStateChangeHandler } from 'injected/visualization-state-change-handler';
+
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
@@ -67,7 +69,6 @@ import { SelectorMapHelper } from './selector-map-helper';
 import { ShadowUtils } from './shadow-utils';
 import { TargetPageActionMessageCreator } from './target-page-action-message-creator';
 import { WindowInitializer } from './window-initializer';
-import { IframeDetector } from 'injected/iframe-detector';
 
 export class MainWindowInitializer extends WindowInitializer {
     protected frameCommunicator: FrameCommunicator;

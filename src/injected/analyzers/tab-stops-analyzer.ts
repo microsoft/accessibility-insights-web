@@ -1,11 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IframeDetector } from 'injected/iframe-detector';
 import * as Q from 'q';
+
 import { WindowUtils } from '../../common/window-utils';
 import { TabStopEvent, TabStopsListener } from '../tab-stops-listener';
 import { AxeAnalyzerResult, FocusAnalyzerConfiguration, ScanBasePayload, ScanUpdatePayload } from './analyzer';
 import { BaseAnalyzer } from './base-analyzer';
-import { IframeDetector } from 'injected/iframe-detector';
 
 export interface ProgressResult<T> {
     result: T;
