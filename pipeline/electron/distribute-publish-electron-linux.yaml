@@ -11,4 +11,25 @@ steps:
           ELECTRON_MIRROR: $(ELECTRON_MIRROR)
           ELECTRON_CUSTOM_DIR: $(ELECTRON_CUSTOM_DIR)
 
+    - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
+      displayName: 'sign dist'
+      inputs:
+          ConnectedServiceName: 'ESRP Code Signing'
+          FolderPath: '$(System.DefaultWorkingDirectory)/dist'
+          Pattern: '*.AppImage'
+          signConfigType: inlineSignParams
+          inlineOperation: |
+              [
+                  {
+                      "keyCode": "CP-450778-Pgp",
+                      "operationSetCode": "LinuxSign",
+                      "parameters": [],
+                      "toolName": "sign",
+                      "toolVersion": "1.0"
+                  }
+              ]
+
+    - script: yarn update:electron-checksum
+      displayName: update electron checksum after signing
+
     - template: prepare-publish-artifact.yaml
