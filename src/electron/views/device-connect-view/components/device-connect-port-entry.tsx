@@ -9,6 +9,9 @@ import { DeviceConnectActionCreator } from '../../../flux/action-creator/device-
 import { DeviceConnectState } from '../../../flux/types/device-connect-state';
 import * as styles from './device-connect-port-entry.scss';
 
+export const deviceConnectPortNumberFieldAutomationId = 'device-connect-port-number-field';
+export const deviceConnectValidatePortButtonAutomationId = 'device-connect-validate-port-button';
+
 export type DeviceConnectPortEntryViewState = {
     deviceConnectState: DeviceConnectState;
 };
@@ -40,6 +43,7 @@ export class DeviceConnectPortEntry extends React.Component<
             <div className={styles.deviceConnectPortEntry}>
                 <h3>Android device port number</h3>
                 <MaskedTextField
+                    data-automation-id={deviceConnectPortNumberFieldAutomationId}
                     ariaLabel="Port number"
                     onChange={this.onPortTextChanged}
                     placeholder="12345"
@@ -55,8 +59,8 @@ export class DeviceConnectPortEntry extends React.Component<
 
     private renderValidationPortButton(): JSX.Element {
         const props = {
+            'data-automation-id': deviceConnectValidatePortButtonAutomationId,
             disabled: this.isValidateButtonDisabled(),
-            className: 'button-validate-port',
             onClick: this.onValidateClick,
         };
 

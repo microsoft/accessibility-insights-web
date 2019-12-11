@@ -7,6 +7,7 @@ import { DeviceConnectState } from 'electron/flux/types/device-connect-state';
 import {
     DeviceConnectPortEntry,
     DeviceConnectPortEntryProps,
+    deviceConnectValidatePortButtonAutomationId,
 } from 'electron/views/device-connect-view/components/device-connect-port-entry';
 import { portNumberField } from 'electron/views/device-connect-view/components/device-connect-port-entry.scss';
 import { shallow } from 'enzyme';
@@ -97,7 +98,7 @@ describe('DeviceConnectPortEntryTest', () => {
             } as DeviceConnectPortEntryProps;
             const rendered = shallow(<DeviceConnectPortEntry {...props} />);
             rendered.setState({ port: testPortNumber });
-            const button = rendered.find('.button-validate-port');
+            const button = rendered.find(`[data-automation-id="${deviceConnectValidatePortButtonAutomationId}"]`);
 
             button.simulate('click', eventStub);
 

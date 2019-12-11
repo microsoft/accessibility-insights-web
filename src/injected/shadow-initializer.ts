@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
-import { createDefaultLogger } from '../common/logging/default-logger';
 import { Logger } from '../common/logging/logger';
 import { HTMLElementUtils } from './../common/html-element-utils';
 import { rootContainerId } from './constants';
@@ -10,11 +9,7 @@ export class ShadowInitializer {
     public static readonly injectedCssPath: string = 'injected/styles/default/injected.css';
     public static readonly generatedBundleInjectedCssPath: string = 'bundle/injected.css';
 
-    constructor(
-        private browserAdapter: BrowserAdapter,
-        private htmlElementUtils: HTMLElementUtils,
-        private logger: Logger = createDefaultLogger(),
-    ) {}
+    constructor(private browserAdapter: BrowserAdapter, private htmlElementUtils: HTMLElementUtils, private logger: Logger) {}
 
     public async initialize(): Promise<void> {
         try {

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Logger } from 'common/logging/logger';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { CommandsAdapter } from '../common/browser-adapters/commands-adapter';
 import { StorageAdapter } from '../common/browser-adapters/storage-adapter';
@@ -42,6 +43,7 @@ export class GlobalContextFactory {
         environmentInfo: EnvironmentInfo,
         storageAdapter: StorageAdapter,
         commandsAdapter: CommandsAdapter,
+        logger: Logger,
     ): GlobalContext {
         const interpreter = new Interpreter();
 
@@ -108,10 +110,14 @@ export class GlobalContextFactory {
         scopingActionCreator.registerCallback();
         featureFlagsActionCreator.registerCallbacks();
 
-        const messageBroadcasterFactory = new BrowserMessageBroadcasterFactory(browserAdapter);
+        const messageBroadcasterFactory = new BrowserMessageBroadcasterFactory(
+            browserAdapter,
+            logger,
+        );
         const dispatcher = new StateDispatcher(
             messageBroadcasterFactory.allTabsBroadcaster,
             globalStoreHub,
+            logger,
         );
         dispatcher.initialize();
 

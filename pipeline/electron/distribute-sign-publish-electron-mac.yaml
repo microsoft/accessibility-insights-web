@@ -29,8 +29,7 @@ steps:
                   }
               ]
 
-    - task: PublishBuildArtifacts@1
-      inputs:
-          pathtoPublish: '$(System.DefaultWorkingDirectory)/dist'
-          artifactName: $(Agent.JobName)
-      displayName: publish dist
+    - script: yarn update:electron-checksum
+      displayName: update electron checksum after signing
+
+    - template: prepare-publish-artifact.yaml

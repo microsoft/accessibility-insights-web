@@ -23,7 +23,7 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
           class="ms-Grid-col ms-u-sm2 feedback-collapseMenuButton-col"
         >
           <div
-            class="gear-options-button-component"
+            class="gear-options-button-component--{{CSS_MODULE_HASH}}"
           >
             <div
               class="details-view-dropdown"

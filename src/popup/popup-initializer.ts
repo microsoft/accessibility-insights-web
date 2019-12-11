@@ -12,7 +12,6 @@ import { EnumHelper } from '../common/enum-helper';
 import { TelemetryEventSource } from '../common/extension-telemetry-events';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { IsSupportedBrowser } from '../common/is-supported-browser';
-import { createDefaultLogger } from '../common/logging/default-logger';
 import { Logger } from '../common/logging/logger';
 import { ContentActionMessageCreator } from '../common/message-creators/content-action-message-creator';
 import { DropdownActionMessageCreator } from '../common/message-creators/dropdown-action-message-creator';
@@ -58,7 +57,7 @@ export class PopupInitializer {
         private readonly browserAdapter: BrowserAdapter,
         private readonly targetTabFinder: TargetTabFinder,
         private readonly isSupportedBrowser: IsSupportedBrowser,
-        private logger: Logger = createDefaultLogger(),
+        private logger: Logger,
     ) {}
 
     public initialize(): Promise<void> {
@@ -91,6 +90,7 @@ export class PopupInitializer {
         const actionMessageDispatcher = new RemoteActionMessageDispatcher(
             this.browserAdapter.sendMessageToFrames,
             tab.id,
+            this.logger,
         );
         const visualizationActionCreator = new VisualizationActionMessageCreator(
             actionMessageDispatcher,
@@ -245,8 +245,9 @@ export class PopupInitializer {
         popupActionMessageCreator.popupInitialized(tab);
 
         const a11ySelfValidator = new A11YSelfValidator(
-            new ScannerUtils(scan),
+            new ScannerUtils(scan, this.logger),
             new HTMLElementUtils(),
+            this.logger,
         );
         window.A11YSelfValidator = a11ySelfValidator;
     };

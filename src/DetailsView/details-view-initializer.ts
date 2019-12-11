@@ -6,6 +6,7 @@ import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { CardsVisualizationModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
+import { createDefaultLogger } from 'common/logging/default-logger';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { loadTheme } from 'office-ui-fabric-react';
@@ -27,7 +28,6 @@ import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ReportNameGenerator } from 'reports/report-name-generator';
-
 import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AxeInfo } from '../common/axe-info';
 import { provideBlob } from '../common/blob-provider';
@@ -171,7 +171,8 @@ if (isNaN(tabId) === false) {
                 cardSelectionStore,
             ]);
 
-            const actionMessageDispatcher = new RemoteActionMessageDispatcher(browserAdapter.sendMessageToFrames, tab.id);
+            const logger = createDefaultLogger();
+            const actionMessageDispatcher = new RemoteActionMessageDispatcher(browserAdapter.sendMessageToFrames, tab.id, logger);
 
             const detailsViewActionMessageCreator = new DetailsViewActionMessageCreator(telemetryFactory, actionMessageDispatcher);
             const scopingActionMessageCreator = new ScopingActionMessageCreator(
@@ -219,7 +220,7 @@ if (isNaN(tabId) === false) {
             const scopingFlagsHandler = new PreviewFeatureFlagsHandler(getAllFeatureFlagDetails());
             const dropdownClickHandler = new DropdownClickHandler(dropdownActionMessageCreator, TelemetryEventSource.DetailsView);
 
-            const navigatorUtils = new NavigatorUtils(window.navigator);
+            const navigatorUtils = new NavigatorUtils(window.navigator, logger);
             const extensionVersion = browserAdapter.getManifest().version;
             const axeVersion = getVersion();
             const browserSpec = navigatorUtils.getBrowserSpec();
@@ -366,7 +367,7 @@ if (isNaN(tabId) === false) {
             );
             renderer.render();
 
-            const a11ySelfValidator = new A11YSelfValidator(new ScannerUtils(scan), new HTMLElementUtils());
+            const a11ySelfValidator = new A11YSelfValidator(new ScannerUtils(scan, logger), new HTMLElementUtils(), logger);
             window.A11YSelfValidator = a11ySelfValidator;
         },
         () => {

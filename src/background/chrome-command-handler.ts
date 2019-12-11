@@ -5,7 +5,6 @@ import { CommandsAdapter } from '../common/browser-adapters/commands-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DisplayableStrings } from '../common/constants/displayable-strings';
 import { ToggleTelemetryData } from '../common/extension-telemetry-events';
-import { createDefaultLogger } from '../common/logging/default-logger';
 import { Logger } from '../common/logging/logger';
 import { Messages } from '../common/messages';
 import { NotificationCreator } from '../common/notification-creator';
@@ -36,7 +35,7 @@ export class ChromeCommandHandler {
         private telemetryDataFactory: TelemetryDataFactory,
         private userConfigurationStore: UserConfigurationStore,
         private commandsAdapter: CommandsAdapter,
-        private logger: Logger = createDefaultLogger(),
+        private logger: Logger,
     ) {}
 
     public initialize(): void {

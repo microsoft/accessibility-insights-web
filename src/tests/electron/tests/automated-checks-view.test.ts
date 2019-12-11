@@ -47,17 +47,22 @@ describe('AutomatedChecksView', () => {
         expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(0);
 
         await automatedChecksView.toggleRuleGroupAtPosition(1);
+        await assertExpandedRuleGroup(1, 'ImageViewName', 1);
+
         await automatedChecksView.toggleRuleGroupAtPosition(2);
+        await assertExpandedRuleGroup(2, 'ActiveViewName', 2);
+
         await automatedChecksView.toggleRuleGroupAtPosition(3);
+        await assertExpandedRuleGroup(3, 'TouchSizeWcag', 1);
 
         expect(await countHighlightBoxes()).toBe(4);
         expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(3);
-        await assertExpandedRuleGroup(1, 'ImageViewName', 1);
-        await assertExpandedRuleGroup(2, 'ActiveViewName', 2);
-        await assertExpandedRuleGroup(3, 'TouchSizeWcag', 1);
 
         await automatedChecksView.toggleRuleGroupAtPosition(1);
+        await assertCollapsedRuleGroup(1, 'ImageViewName');
+
         await automatedChecksView.toggleRuleGroupAtPosition(2);
+        await assertCollapsedRuleGroup(2, 'ActiveViewName');
 
         expect(await countHighlightBoxes()).toBe(1);
         expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(1);
@@ -70,11 +75,19 @@ describe('AutomatedChecksView', () => {
     });
 
     async function assertExpandedRuleGroup(position: number, expectedTitle: string, expectedFailures: number): Promise<void> {
-        const title = await automatedChecksView.client.$(AutomatedChecksViewSelectors.getRuleDetailsIdSelector(position)).getText();
+        const title = await automatedChecksView.client.$(AutomatedChecksViewSelectors.nthRuleGroupTitle(position)).getText();
         expect(title).toEqual(expectedTitle);
 
-        const failures = await automatedChecksView.client.$$(AutomatedChecksViewSelectors.getLiFailuresSelector(position));
+        const failures = await automatedChecksView.client.$$(AutomatedChecksViewSelectors.nthRuleGroupInstances(position));
         expect(failures).toHaveLength(expectedFailures);
+    }
+
+    async function assertCollapsedRuleGroup(position: number, expectedTitle: string): Promise<void> {
+        const title = await automatedChecksView.client.$(AutomatedChecksViewSelectors.nthRuleGroupTitle(position)).getText();
+        expect(title).toEqual(expectedTitle);
+
+        const failures = await automatedChecksView.client.$$(AutomatedChecksViewSelectors.nthRuleGroupInstances(position));
+        expect(failures).toHaveLength(0);
     }
 
     it('ScreenshotView renders screenshot image from specified source', async () => {

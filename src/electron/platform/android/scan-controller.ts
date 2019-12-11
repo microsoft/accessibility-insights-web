@@ -3,7 +3,7 @@
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { InstanceCount, TelemetryEventSource } from 'common/extension-telemetry-events';
-import { createDefaultLogger } from 'common/logging/default-logger';
+import { Logger } from 'common/logging/logger';
 import {
     SCAN_COMPLETED,
     SCAN_FAILED,
@@ -23,7 +23,7 @@ export class ScanController {
         private readonly unifiedResultsBuilder: UnifiedScanCompletedPayloadBuilder,
         private readonly telemetryEventHandler: TelemetryEventHandler,
         private readonly getCurrentDate: () => Date,
-        private readonly logger = createDefaultLogger(),
+        private readonly logger: Logger,
     ) {}
 
     public initialize(): void {

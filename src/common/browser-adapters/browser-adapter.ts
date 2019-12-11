@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ExtensionTypes, Notifications, Tabs } from 'webextension-polyfill-ts';
+import { ExtensionTypes, Notifications, Permissions, Tabs } from 'webextension-polyfill-ts';
 
 export interface BrowserAdapter {
     getAllWindows(getInfo: chrome.windows.GetInfo, callback: (chromeWindows: chrome.windows.Window[]) => void): void;
@@ -11,7 +11,7 @@ export interface BrowserAdapter {
     addListenerOnWindowsFocusChanged(callback: (windowId: number) => void): void;
     tabsQuery(query: chrome.tabs.QueryInfo, callback: (result: chrome.tabs.Tab[]) => void): void;
     createActiveTab(url: string): Promise<Tabs.Tab>;
-    createTabInNewWindow(url: string, callback?: (tab: chrome.tabs.Tab) => void): void;
+    createTabInNewWindow(url: string): Promise<Tabs.Tab>;
     createInactiveTab(url: string, callback: (tab: chrome.tabs.Tab) => void): void;
     closeTab(tabId: number): void;
     switchToTab(tabId: number): void;
@@ -38,4 +38,8 @@ export interface BrowserAdapter {
     getManifest(): chrome.runtime.Manifest;
 
     getUrl(urlPart: string): string;
+    requestPermissions(permissions: Permissions.Permissions): Promise<boolean>;
+    addListenerOnPermissionsAdded(callback: (permissions: Permissions.Permissions) => void): void;
+    addListenerOnPermissionsRemoved(callback: (permissions: Permissions.Permissions) => void): void;
+    containsPermissions(permissions: Permissions.Permissions): Promise<boolean>;
 }

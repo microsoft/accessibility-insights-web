@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { createDefaultLogger } from 'common/logging/default-logger';
 import { UAParser } from 'ua-parser-js';
-
 import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
 import { initializeFabricIcons } from '../common/fabric-icons';
 import { createSupportedBrowserChecker } from '../common/is-supported-browser';
@@ -20,6 +20,7 @@ const popupInitializer: PopupInitializer = new PopupInitializer(
     browserAdapter,
     targetTabFinder,
     isSupportedBrowser,
+    createDefaultLogger(),
 );
 
 // tslint:disable-next-line:no-floating-promises - top-level entry points are intentionally floating promises
