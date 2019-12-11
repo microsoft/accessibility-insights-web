@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { css } from '@uifabric/utilities';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
@@ -14,6 +13,8 @@ import { UserConfigurationStoreData } from '../../types/store-data/user-configur
 import { CollapsibleComponentCardsProps } from './collapsible-component-cards';
 import { RuleContent, RuleContentDeps } from './rule-content';
 import * as styles from './rules-with-instances.scss';
+
+export const ruleGroupAutomationId = 'cards-rule-group';
 
 export type RulesWithInstancesDeps = RuleContentDeps & {
     collapsibleControl: (props: CollapsibleComponentCardsProps) => JSX.Element;
@@ -46,7 +47,8 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                         targetAppInfo={targetAppInfo}
                     />
                 ),
-                containerClassName: css(styles.collapsibleRuleDetailsGroup),
+                containerAutomationId: ruleGroupAutomationId,
+                containerClassName: styles.collapsibleRuleDetailsGroup,
                 buttonAriaLabel: buttonAriaLabel,
                 headingLevel: 3,
                 deps: deps,

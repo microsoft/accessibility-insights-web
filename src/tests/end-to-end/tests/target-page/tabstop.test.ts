@@ -38,19 +38,19 @@ describe('Tab stops visualization', () => {
         // Should highlight second element with a transparent circle and change first element's
         // highlight to an opaque circle with a "1" in it, connected by a line
         await targetPage.keyPress('Tab');
-        await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.svg);
-        await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.transparentEllipse);
-        await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.opaqueEllipse);
-        await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.lines);
-        await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.text);
+        await waitForTabStopSelectors();
 
         // Only 2 focusable elements on this test page, so should move focus to the browser chrome
         // without changing the visualizations
         await targetPage.keyPress('Tab');
+        await waitForTabStopSelectors();
+    });
+
+    async function waitForTabStopSelectors(): Promise<void> {
         await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.svg);
         await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.transparentEllipse);
         await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.opaqueEllipse);
         await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.lines);
         await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.text);
-    });
+    }
 });

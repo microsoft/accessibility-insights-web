@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { browser, ExtensionTypes, Notifications, Tabs } from 'webextension-polyfill-ts';
+import { browser, ExtensionTypes, Notifications, Permissions, Tabs } from 'webextension-polyfill-ts';
+
 import { BrowserAdapter } from './browser-adapter';
 import { CommandsAdapter } from './commands-adapter';
 import { StorageAdapter } from './storage-adapter';
@@ -65,16 +66,8 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         return browser.tabs.create({ url, active: true, pinned: false });
     }
 
-    public createTabInNewWindow(url: string, callback?: (tab: chrome.tabs.Tab) => void): void {
-        chrome.windows.create(
-            {
-                url: url,
-                focused: true,
-            },
-            window => {
-                callback(window.tabs[0]);
-            },
-        );
+    public createTabInNewWindow(url: string): Promise<Tabs.Tab> {
+        return browser.windows.create({ url, focused: true }).then(window => window.tabs[0]);
     }
 
     public createInactiveTab(url: string, callback: (tab: chrome.tabs.Tab) => void): void {
@@ -176,5 +169,23 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
 
     public getUrl(urlPart: string): string {
         return chrome.extension.getURL(urlPart);
+    }
+
+    public requestPermissions(permissions: Permissions.Permissions): Promise<boolean> {
+        return browser.permissions.request(permissions);
+    }
+
+    public addListenerOnPermissionsAdded(callback: (permissions: Permissions.Permissions) => void): void {
+        // casting browser as any due to typings for permissions onAdded not currently supported.
+        (browser as any).permissions.onAdded.addListener(callback);
+    }
+
+    public addListenerOnPermissionsRemoved(callback: (permissions: Permissions.Permissions) => void): void {
+        // casting browser as any due to typings for permissions onRemoved not currently supported.
+        (browser as any).permissions.onRemoved.addListener(callback);
+    }
+
+    public containsPermissions(permissions: Permissions.Permissions): Promise<boolean> {
+        return browser.permissions.contains(permissions);
     }
 }

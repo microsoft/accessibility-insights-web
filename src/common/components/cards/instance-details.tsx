@@ -14,6 +14,8 @@ import { StoredInstancePropertyBag, TargetAppData, UnifiedRule } from '../../../
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { InstanceDetailsFooter, InstanceDetailsFooterDeps } from './instance-details-footer';
 
+export const instanceCardAutomationId = 'instance-card';
+
 export type InstanceDetailsDeps = {
     getPropertyConfigById: (id: string) => PropertyConfiguration;
     cardSelectionMessageCreator: CardSelectionMessageCreator;
@@ -74,7 +76,7 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
     const cardAriaLabel = `${result.identifiers && result.identifiers.identifier ? result.identifiers.identifier : ''} card`;
 
     return (
-        <div className={instanceDetailsCardContainerStyling} role="table">
+        <div data-automation-id={instanceCardAutomationId} className={instanceDetailsCardContainerStyling} role="table">
             <div
                 className={instanceDetailsCardStyling}
                 tabIndex={0}
