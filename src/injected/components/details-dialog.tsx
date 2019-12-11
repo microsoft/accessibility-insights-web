@@ -165,8 +165,12 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         return <IssueDetailsNavigationControls {...navigationControlsProps} />;
     }
 
-    private renderSectionTitle(sectionTitle: string): JSX.Element {
-        return <h3 className={css('insights-dialog-section-title')}>{sectionTitle}</h3>;
+    private renderSectionTitle(sectionTitle: string, ariaLabel?: string): JSX.Element {
+        return (
+            <h3 className={css('insights-dialog-section-title')} id={ariaLabel}>
+                {sectionTitle}
+            </h3>
+        );
     }
 
     private renderRuleName(rule: DecoratedAxeNodeResult): JSX.Element {
@@ -179,9 +183,11 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
             }
         };
 
+        const ruleNameID = 'rule-name';
+
         return (
-            <div className="insights-dialog-rule-name">
-                {this.renderSectionTitle('Rule name')}
+            <div className="insights-dialog-rule-name" aria-labelledby={ruleNameID}>
+                {this.renderSectionTitle('Rule name', ruleNameID)}
                 <NewTabLink href={fixUrl(rule.helpUrl)}>{rule.ruleId}</NewTabLink>
             </div>
         );
@@ -192,10 +198,11 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
             return null;
         }
         const sectionTitle: string = ruleGuidanceLinks.length === 1 ? 'Success criterion' : 'Success criteria';
+        const successTitleId = 'success-criteria';
 
         return (
-            <div className="insights-dialog-success-criteria">
-                {this.renderSectionTitle(sectionTitle)}
+            <div className="insights-dialog-success-criteria" aria-labelledby={successTitleId}>
+                {this.renderSectionTitle(sectionTitle, successTitleId)}
                 <GuidanceLinks links={ruleGuidanceLinks} />
             </div>
         );
