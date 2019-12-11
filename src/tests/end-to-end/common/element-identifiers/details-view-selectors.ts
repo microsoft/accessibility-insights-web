@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { resultSectionAutomationId } from 'common/components/cards/result-section';
+import { ruleDetailsGroupAutomationId } from 'common/components/cards/rules-with-instances';
 import { overviewHeadingAutomationId } from 'DetailsView/components/overview-content/overview-heading';
 import { startOverAutomationId } from 'DetailsView/components/start-over-component-factory';
 
@@ -14,8 +16,12 @@ export const detailsViewSelectors = {
     gearButton: '.gear-options-icon',
     settingsButton: 'button[name="Settings"]',
 
-    automatedChecksResultSection: '.result-section', // should change this for data-automation-id
+    automatedChecksResultSection: `[data-automation-id=${resultSectionAutomationId}]`,
+};
+
+export const fastPassAutomatedChecksSelectors = {
     startOverButton: `[data-automation-id=${startOverAutomationId}]`,
+    ruleDetailsGroups: `[data-automation-id=${ruleDetailsGroupAutomationId}]`,
 };
 
 export const overviewSelectors = {
