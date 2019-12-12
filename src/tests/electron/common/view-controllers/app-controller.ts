@@ -28,7 +28,7 @@ export class AppController {
     }
 
     public async openDeviceConnectionDialog(): Promise<DeviceConnectionDialogController> {
-        this.setToMinimumSupportedWindowSize();
+        await this.setToMinimumSupportedWindowSize();
 
         await dismissTelemetryOptInDialog(this.app);
 
@@ -45,13 +45,14 @@ export class AppController {
         const automatedChecksView = new AutomatedChecksViewController(this.client);
         await automatedChecksView.waitForViewVisible();
 
-        this.setToMinimumSupportedWindowSize();
+        await this.setToMinimumSupportedWindowSize();
 
         return automatedChecksView;
     }
 
-    private setToMinimumSupportedWindowSize(): void {
+    private async setToMinimumSupportedWindowSize(): Promise<void> {
         this.app.browserWindow.setBounds({ width: mainWindowConfig.minWidth, height: mainWindowConfig.minHeight });
         this.app.browserWindow.unmaximize();
+        await this.app.client.waitUntilWindowLoaded();
     }
 }
