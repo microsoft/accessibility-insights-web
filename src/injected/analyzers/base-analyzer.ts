@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import * as Q from 'q';
 
-import { Message } from 'common/message';
-import { VisualizationType } from 'common/types/visualization-type';
-import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
+import { Message } from '../../common/message';
+import { VisualizationType } from '../../common/types/visualization-type';
 import { Analyzer, AnalyzerConfiguration, AxeAnalyzerResult, ScanCompletedPayload } from './analyzer';
 
 export class BaseAnalyzer implements Analyzer {
