@@ -14,6 +14,7 @@ import { FocusChangeHandler } from 'injected/focus-change-handler';
 import { getDecoratedAxeNode } from 'injected/get-decorated-axe-node';
 import { IframeDetector } from 'injected/iframe-detector';
 import { isVisualizationEnabled } from 'injected/is-visualization-enabled';
+import { CrossOriginPermissionDetector, ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { TargetPageVisualizationUpdater } from 'injected/target-page-visualization-updater';
 import { visualizationNeedsUpdate } from 'injected/visualization-needs-update';
 import { VisualizationStateChangeHandler } from 'injected/visualization-state-change-handler';
@@ -69,7 +70,6 @@ import { SelectorMapHelper } from './selector-map-helper';
 import { ShadowUtils } from './shadow-utils';
 import { TargetPageActionMessageCreator } from './target-page-action-message-creator';
 import { WindowInitializer } from './window-initializer';
-import { ScanIncompleteWarningDetector, CrossOriginPermissionDetector } from 'injected/scan-incomplete-warning-detector';
 
 export class MainWindowInitializer extends WindowInitializer {
     protected frameCommunicator: FrameCommunicator;

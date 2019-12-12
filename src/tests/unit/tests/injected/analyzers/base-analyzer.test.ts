@@ -3,11 +3,11 @@
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { Message } from 'common/message';
+import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { VisualizationType } from 'common/types/visualization-type';
 import { AnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { BaseAnalyzer } from 'injected/analyzers/base-analyzer';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
-import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 
 describe('BaseAnalyzerTest', () => {
     let testSubject: BaseAnalyzer;
