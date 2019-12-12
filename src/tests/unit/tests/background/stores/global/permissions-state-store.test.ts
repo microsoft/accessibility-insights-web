@@ -4,37 +4,26 @@ import { PermissionsStateActions } from 'background/actions/permissions-state-ac
 import { PermissionsStateStore } from 'background/stores/global/permissions-state-store';
 import { StoreNames } from 'common/stores/store-names';
 import { PermissionsStateStoreData } from 'common/types/store-data/permissions-state-store-data';
-import { StoreTester } from 'tests/unit/common/store-tester';
+import { createStoreWithNullParams, StoreTester } from 'tests/unit/common/store-tester';
 
 describe('PermissionsStateStoreTest', () => {
-    const expectedDefaultStoreData: PermissionsStateStoreData = {
-        hasAllPermissions: false,
-    };
-
-    test('constructor', () => {
-        const testSubject = new PermissionsStateStore(new PermissionsStateActions());
+    test('constructor, no side effects', () => {
+        const testSubject = createStoreWithNullParams(PermissionsStateStore);
 
         expect(testSubject).toBeDefined();
     });
 
     test('getId', () => {
-        const testSubject = new PermissionsStateStore(new PermissionsStateActions());
+        const testSubject = createStoreWithNullParams(PermissionsStateStore);
 
         expect(testSubject.getId()).toEqual(StoreNames[StoreNames.PermissionsStateStore]);
-    });
-
-    test('initialize sets store state to default state', () => {
-        const testSubject = new PermissionsStateStore(new PermissionsStateActions());
-        testSubject.initialize();
-
-        expect(testSubject.getState()).toEqual(expectedDefaultStoreData);
     });
 
     test('getDefaultState returns expected default store state', () => {
         const testSubject = new PermissionsStateStore(new PermissionsStateActions());
         testSubject.initialize();
 
-        expect(testSubject.getDefaultState()).toEqual(expectedDefaultStoreData);
+        expect(testSubject.getDefaultState()).toMatchSnapshot();
     });
 
     test('on getCurrentState', () => {
@@ -44,22 +33,26 @@ describe('PermissionsStateStoreTest', () => {
         createStoreTesterForPermissionsStateActions('getCurrentState').testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on setPermissionsState updates state when it has changed', () => {
-        const initialState = expectedDefaultStoreData;
-        const finalState = { hasAllPermissions: true };
+    describe('on setPermissionsState', () => {
+        test('updates state when it has changed', () => {
+            const initialPermissionsValue = false;
+            const finalPermissionsValue = true;
+            const initialState = { hasAllUrlAndFilePermissions: initialPermissionsValue };
+            const finalState = { hasAllUrlAndFilePermissions: finalPermissionsValue };
 
-        createStoreTesterForPermissionsStateActions('setPermissionsState')
-            .withActionParam(true)
-            .testListenerToBeCalledOnce(initialState, finalState);
-    });
+            createStoreTesterForPermissionsStateActions('setPermissionsState')
+                .withActionParam(finalPermissionsValue)
+                .testListenerToBeCalledOnce(initialState, finalState);
+        });
 
-    test('on setPermissionsState does not update state when there is no change', () => {
-        const initialState = { hasAllPermissions: true };
-        const finalState = { hasAllPermissions: true };
+        test.each([true, false])('does not update state when there is no change', hasPermissionsValue => {
+            const initialState = { hasAllUrlAndFilePermissions: hasPermissionsValue };
+            const finalState = { hasAllUrlAndFilePermissions: hasPermissionsValue };
 
-        createStoreTesterForPermissionsStateActions('setPermissionsState')
-            .withActionParam(true)
-            .testListenerToNeverBeCalled(initialState, finalState);
+            createStoreTesterForPermissionsStateActions('setPermissionsState')
+                .withActionParam(hasPermissionsValue)
+                .testListenerToNeverBeCalled(initialState, finalState);
+        });
     });
 
     function createStoreTesterForPermissionsStateActions(

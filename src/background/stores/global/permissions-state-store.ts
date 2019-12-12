@@ -12,7 +12,7 @@ export class PermissionsStateStore extends BaseStoreImpl<PermissionsStateStoreDa
 
     public getDefaultState(): PermissionsStateStoreData {
         const defaultState = {
-            hasAllPermissions: false,
+            hasAllUrlAndFilePermissions: false,
         };
 
         return defaultState;
@@ -23,9 +23,9 @@ export class PermissionsStateStore extends BaseStoreImpl<PermissionsStateStoreDa
         this.permissionsStateActions.setPermissionsState.addListener(this.onSetPermissionsState);
     }
 
-    private onSetPermissionsState = (hasAllPermissions: boolean): void => {
-        if (hasAllPermissions !== this.state.hasAllPermissions) {
-            this.state.hasAllPermissions = hasAllPermissions;
+    private onSetPermissionsState = (hasAllUrlAndFilePermissions: boolean): void => {
+        if (hasAllUrlAndFilePermissions !== this.state.hasAllUrlAndFilePermissions) {
+            this.state.hasAllUrlAndFilePermissions = hasAllUrlAndFilePermissions;
             this.emitChanged();
         }
     };
