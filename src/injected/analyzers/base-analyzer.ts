@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IframeDetector } from 'injected/iframe-detector';
 import * as Q from 'q';
 
-import { Message } from '../../common/message';
-import { VisualizationType } from '../../common/types/visualization-type';
+import { Message } from 'common/message';
+import { VisualizationType } from 'common/types/visualization-type';
+import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { Analyzer, AnalyzerConfiguration, AxeAnalyzerResult, ScanCompletedPayload } from './analyzer';
 
 export class BaseAnalyzer implements Analyzer {
@@ -14,7 +14,11 @@ export class BaseAnalyzer implements Analyzer {
         originalResult: null,
     };
 
-    constructor(protected config: AnalyzerConfiguration, protected sendMessage: (message) => void, private iframeDetector: IframeDetector) {
+    constructor(
+        protected config: AnalyzerConfiguration,
+        protected sendMessage: (message) => void,
+        private scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
+    ) {
         this.visualizationType = config.testType;
     }
 
@@ -46,7 +50,7 @@ export class BaseAnalyzer implements Analyzer {
             selectorMap: analyzerResult.results,
             scanResult: originalAxeResult,
             testType: config.testType,
-            pageHasIframes: this.iframeDetector.hasIframes(),
+            scanIncompleteWarnings: this.scanIncompleteWarningDetector.detectScanIncompleteWarnings(),
         };
 
         return {

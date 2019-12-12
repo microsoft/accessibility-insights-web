@@ -69,6 +69,7 @@ import { SelectorMapHelper } from './selector-map-helper';
 import { ShadowUtils } from './shadow-utils';
 import { TargetPageActionMessageCreator } from './target-page-action-message-creator';
 import { WindowInitializer } from './window-initializer';
+import { ScanIncompleteWarningDetector, CrossOriginPermissionDetector } from 'injected/scan-incomplete-warning-detector';
 
 export class MainWindowInitializer extends WindowInitializer {
     protected frameCommunicator: FrameCommunicator;
@@ -222,6 +223,14 @@ export class MainWindowInitializer extends WindowInitializer {
             generateUID,
         );
 
+        // TODO: use something based on the permissions store instead once that's piped in
+        const crossOriginPermissionDetector: CrossOriginPermissionDetector = {
+            hasCrossOriginPermissions: () => true,
+        };
+
+        const iframeDetector = new IframeDetector(document);
+        const scanIncompleteWarningDetector = new ScanIncompleteWarningDetector(iframeDetector, crossOriginPermissionDetector);
+
         const analyzerProvider = new AnalyzerProvider(
             this.tabStopsListener,
             this.scopingStoreProxy,
@@ -232,7 +241,7 @@ export class MainWindowInitializer extends WindowInitializer {
             this.visualizationConfigurationFactory,
             filterResultsByRules,
             unifiedResultSender.sendResults,
-            new IframeDetector(document),
+            scanIncompleteWarningDetector,
         );
 
         const analyzerStateUpdateHandler = new AnalyzerStateUpdateHandler(this.visualizationConfigurationFactory);
