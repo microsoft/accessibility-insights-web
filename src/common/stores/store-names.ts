@@ -19,4 +19,5 @@ export enum StoreNames {
     DeviceStore,
     WindowStateStore,
     ScanStore,
+    PermissionsStateStore,
 }
