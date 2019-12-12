@@ -4,5 +4,5 @@ import * as testResourceServer from '../../miscellaneous/test-resource-server/re
 
 // tslint:disable-next-line:no-default-export
 export default function(): void {
-    testResourceServer.stopServer();
+    testResourceServer.stopAllServers();
 }

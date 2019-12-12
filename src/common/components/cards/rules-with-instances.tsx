@@ -29,6 +29,8 @@ export type RulesWithInstancesProps = {
     targetAppInfo: TargetAppData;
 };
 
+export const ruleDetailsGroupAutomationId = 'rule-details-group';
+
 export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
     'RulesWithInstances',
     ({ rules, outcomeType, fixInstructionProcessor, deps, userConfigurationStoreData, targetAppInfo }) => {
@@ -57,7 +59,7 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
         };
 
         return (
-            <div className={styles.ruleDetailsGroup}>
+            <div className={styles.ruleDetailsGroup} data-automation-id={ruleDetailsGroupAutomationId}>
                 {rules.map((rule, idx) => {
                     const { pastTense } = outcomeTypeSemantics[outcomeType];
                     const buttonAriaLabel = `${rule.id} ${rule.nodes.length} ${pastTense} ${rule.description}`;
