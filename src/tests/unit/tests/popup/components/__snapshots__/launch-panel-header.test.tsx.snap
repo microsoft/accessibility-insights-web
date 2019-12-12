@@ -85,7 +85,6 @@ exports[`LaunchPanelHeaderTest render contextual menu renders with new assessmen
             "openGettingStartedDialog": Object {},
             "popupWindow": Object {},
             "subtitle": "test subtitle",
-            "supportLinkHandler": Object {},
             "title": "test title",
           },
           "refs": Object {},
@@ -134,7 +133,6 @@ exports[`LaunchPanelHeaderTest render contextual menu renders with new assessmen
                 openGettingStartedDialog={Object {}}
                 popupWindow={Object {}}
                 subtitle="test subtitle"
-                supportLinkHandler={Object {}}
                 title="test title"
               />,
               "_firstWorkInProgressHook": null,
@@ -251,7 +249,6 @@ exports[`LaunchPanelHeaderTest render contextual menu renders without new assess
             "openGettingStartedDialog": Object {},
             "popupWindow": Object {},
             "subtitle": "test subtitle",
-            "supportLinkHandler": Object {},
             "title": "test title",
           },
           "refs": Object {},
@@ -296,7 +293,6 @@ exports[`LaunchPanelHeaderTest render contextual menu renders without new assess
                 openGettingStartedDialog={Object {}}
                 popupWindow={Object {}}
                 subtitle="test subtitle"
-                supportLinkHandler={Object {}}
                 title="test title"
               />,
               "_firstWorkInProgressHook": null,
