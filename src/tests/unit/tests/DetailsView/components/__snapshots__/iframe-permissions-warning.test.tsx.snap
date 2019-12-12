@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IframePermissionsWarning notRendered: where pageHasIframes is false & allUrlPermissionsGiven is false 1`] = `null`;
+
+exports[`IframePermissionsWarning notRendered: where pageHasIframes is false & allUrlPermissionsGiven is true 1`] = `null`;
+
+exports[`IframePermissionsWarning notRendered: where pageHasIframes is true & allUrlPermissionsGiven is true 1`] = `null`;
+
+exports[`IframePermissionsWarning rendered: where pageHasIframes is true & allUrlPermissionsGiven is false 1`] = `
+<StyledMessageBarBase
+  messageBarType={5}
+>
+  Placeholder text
+</StyledMessageBarBase>
+`;

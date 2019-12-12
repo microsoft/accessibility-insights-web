@@ -15,6 +15,7 @@ import {
     EXPORT_RESULTS,
     ExportResultsTelemetryData,
     FeatureFlagToggleTelemetryData,
+    IFRAME_PERMISSION_WARNING_SHOWN,
     RequirementActionTelemetryData,
     RequirementSelectTelemetryData,
     TelemetryEventSource,
@@ -266,6 +267,19 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         testSubject.detailsViewOpened(1);
 
         dispatcherMock.verify(dispatcher => dispatcher.sendTelemetry(DETAILS_VIEW_OPEN, telemetry), Times.once());
+    });
+
+    test('onIframePermissionWarningShown', () => {
+        const telemetry = {
+            triggeredBy: TriggeredByNotApplicable,
+            source: TelemetryEventSource.DetailsView,
+        };
+
+        telemetryFactoryMock.setup(tfm => tfm.fromDetailsViewNoTriggeredBy()).returns(() => telemetry);
+
+        testSubject.onIframePermissionWarningShown();
+
+        dispatcherMock.verify(dispatcher => dispatcher.sendTelemetry(IFRAME_PERMISSION_WARNING_SHOWN, telemetry), Times.once());
     });
 
     test('startOverAssessment', () => {
