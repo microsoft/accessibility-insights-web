@@ -24,6 +24,9 @@ export class PermissionsStateStore extends BaseStoreImpl<PermissionsStateStoreDa
     }
 
     private onSetPermissionsState = (hasAllPermissions: boolean): void => {
-        this.state.hasAllPermissions = hasAllPermissions;
+        if (hasAllPermissions !== this.state.hasAllPermissions) {
+            this.state.hasAllPermissions = hasAllPermissions;
+            this.emitChanged();
+        }
     };
 }

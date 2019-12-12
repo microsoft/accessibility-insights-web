@@ -38,11 +38,28 @@ describe('PermissionsStateStoreTest', () => {
     });
 
     test('on getCurrentState', () => {
-        const initialState = expectedDefaultStoreData;
-        const finalState = expectedDefaultStoreData;
-        const storeTester = createStoreTesterForPermissionsStateActions('getCurrentState');
+        const initialState = createPermissionsState();
+        const finalState = createPermissionsState();
 
-        storeTester.testListenerToBeCalledOnce(initialState, finalState);
+        createStoreTesterForPermissionsStateActions('getCurrentState').testListenerToBeCalledOnce(initialState, finalState);
+    });
+
+    test('on setPermissionsState updates state when it has changed', () => {
+        const initialState = expectedDefaultStoreData;
+        const finalState = { hasAllPermissions: true };
+
+        createStoreTesterForPermissionsStateActions('setPermissionsState')
+            .withActionParam(true)
+            .testListenerToBeCalledOnce(initialState, finalState);
+    });
+
+    test('on setPermissionsState does not update state when there is no change', () => {
+        const initialState = { hasAllPermissions: true };
+        const finalState = { hasAllPermissions: true };
+
+        createStoreTesterForPermissionsStateActions('setPermissionsState')
+            .withActionParam(true)
+            .testListenerToNeverBeCalled(initialState, finalState);
     });
 
     function createStoreTesterForPermissionsStateActions(
@@ -51,5 +68,9 @@ describe('PermissionsStateStoreTest', () => {
         const factory = (actions: PermissionsStateActions) => new PermissionsStateStore(actions);
 
         return new StoreTester(PermissionsStateActions, actionName, factory);
+    }
+
+    function createPermissionsState(): PermissionsStateStoreData {
+        return new PermissionsStateStore(null).getDefaultState();
     }
 });
