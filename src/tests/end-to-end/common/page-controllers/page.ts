@@ -206,11 +206,6 @@ export class Page {
         });
     }
 
-    public async clickSelectorXPath(xpath: string): Promise<void> {
-        const element = await this.waitForSelectorXPath(xpath);
-        await this.clickElementHandle(element);
-    }
-
     public async clickDescendentSelector(
         parentElement: Puppeteer.ElementHandle<Element>,
         descendentSelector: string,
