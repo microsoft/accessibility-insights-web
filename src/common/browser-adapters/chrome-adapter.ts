@@ -70,17 +70,6 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         return browser.windows.create({ url, focused: true }).then(window => window.tabs[0]);
     }
 
-    public createInactiveTab(url: string, callback: (tab: chrome.tabs.Tab) => void): void {
-        chrome.tabs.create(
-            {
-                url: url,
-                active: false,
-                pinned: false,
-            },
-            callback,
-        );
-    }
-
     public closeTab(tabId: number): void {
         chrome.tabs.remove(tabId);
     }

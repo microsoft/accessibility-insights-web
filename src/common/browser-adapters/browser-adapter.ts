@@ -12,7 +12,6 @@ export interface BrowserAdapter {
     tabsQuery(query: chrome.tabs.QueryInfo, callback: (result: chrome.tabs.Tab[]) => void): void;
     createActiveTab(url: string): Promise<Tabs.Tab>;
     createTabInNewWindow(url: string): Promise<Tabs.Tab>;
-    createInactiveTab(url: string, callback: (tab: chrome.tabs.Tab) => void): void;
     closeTab(tabId: number): void;
     switchToTab(tabId: number): void;
     getTab(tabId: number, onResolve: (tab: chrome.tabs.Tab) => void, onReject?: () => void): void;
