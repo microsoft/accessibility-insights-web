@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IframeDetector } from 'injected/iframe-detector';
+
 import { BaseStore } from '../../common/base-store';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
@@ -31,6 +33,7 @@ export class AnalyzerProvider {
         private readonly visualizationConfigFactory: VisualizationConfigurationFactory,
         private filterResultsByRules: IResultRuleFilter,
         private sendConvertedResults: PostResolveCallback,
+        private iframeDetector: IframeDetector,
     ) {
         this.tabStopsListener = tabStopsListener;
         this.scopingStore = scopingStore;
@@ -50,6 +53,7 @@ export class AnalyzerProvider {
             this.telemetryDataFactory,
             this.visualizationConfigFactory,
             null,
+            this.iframeDetector,
         );
     }
 
@@ -65,6 +69,7 @@ export class AnalyzerProvider {
             this.telemetryDataFactory,
             this.visualizationConfigFactory,
             this.sendConvertedResults,
+            this.iframeDetector,
         );
     }
 
@@ -78,14 +83,15 @@ export class AnalyzerProvider {
             this.telemetryDataFactory,
             this.visualizationConfigFactory,
             this.filterResultsByRules,
+            this.iframeDetector,
         );
     }
 
     public createFocusTrackingAnalyzer(config: FocusAnalyzerConfiguration): Analyzer {
-        return new TabStopsAnalyzer(config, this.tabStopsListener, new WindowUtils(), this.sendMessageDelegate);
+        return new TabStopsAnalyzer(config, this.tabStopsListener, new WindowUtils(), this.sendMessageDelegate, this.iframeDetector);
     }
 
     public createBaseAnalyzer(config: AnalyzerConfiguration): Analyzer {
-        return new BaseAnalyzer(config, this.sendMessageDelegate);
+        return new BaseAnalyzer(config, this.sendMessageDelegate, this.iframeDetector);
     }
 }

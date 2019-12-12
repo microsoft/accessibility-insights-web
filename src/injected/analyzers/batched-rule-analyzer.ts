@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IframeDetector } from 'injected/iframe-detector';
+
 import { BaseStore } from '../../common/base-store';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
@@ -23,8 +25,19 @@ export class BatchedRuleAnalyzer extends RuleAnalyzer {
         protected telemetryFactory: TelemetryDataFactory,
         protected readonly visualizationConfigFactory: VisualizationConfigurationFactory,
         private postScanFilter: IResultRuleFilter,
+        iframeDetector: IframeDetector,
     ) {
-        super(config, scanner, scopingStore, sendMessageDelegate, dateGetter, telemetryFactory, visualizationConfigFactory, null);
+        super(
+            config,
+            scanner,
+            scopingStore,
+            sendMessageDelegate,
+            dateGetter,
+            telemetryFactory,
+            visualizationConfigFactory,
+            null,
+            iframeDetector,
+        );
         BatchedRuleAnalyzer.batchConfigs.push(config);
     }
 
