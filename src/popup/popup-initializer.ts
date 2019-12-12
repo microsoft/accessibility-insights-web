@@ -45,7 +45,6 @@ import { PopupViewControllerHandler } from './handlers/popup-view-controller-han
 import { IncompatibleBrowserRenderer } from './incompatible-browser-renderer';
 import { LaunchPadRowConfigurationFactory } from './launch-pad-row-configuration-factory';
 import { MainRenderer, MainRendererDeps } from './main-renderer';
-import { SupportLinkHandler } from './support-link-handler';
 import { TargetTabFinder, TargetTabInfo } from './target-tab-finder';
 
 declare var window: AutoChecker & Window;
@@ -175,13 +174,11 @@ export class PopupInitializer {
             TelemetryEventSource.LaunchPad,
         );
         const launchPanelHeaderClickHandler = new LaunchPanelHeaderClickHandler();
-        const supportLinkHandler = new SupportLinkHandler(this.browserAdapter, windowUtils);
 
         const popupHandlers: IPopupHandlers = {
             diagnosticViewClickHandler,
             popupViewControllerHandler,
             launchPanelHeaderClickHandler,
-            supportLinkHandler,
         };
 
         const actionInitiators = {

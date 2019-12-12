@@ -16,11 +16,13 @@ export type ResultSectionProps = ResultSectionContentProps &
         deps: ResultSectionDeps;
     };
 
+export const resultSectionAutomationId = 'result-section';
+
 export const ResultSection = NamedFC<ResultSectionProps>('ResultSection', props => {
     const { containerClassName } = props;
 
     return (
-        <div className={css(containerClassName, styles.resultSection)}>
+        <div className={css(containerClassName, styles.resultSection)} data-automation-id={resultSectionAutomationId}>
             <h2>
                 <ResultSectionTitle {...props} />
             </h2>

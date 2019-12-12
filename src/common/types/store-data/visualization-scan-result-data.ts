@@ -6,15 +6,12 @@ import { TabStopEvent } from '../../../injected/tab-stops-listener';
 import { ScanResults } from '../../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../../types/common-types';
 
-interface ScanResultData<TSelector> {
-    fullAxeResultsMap: DictionaryStringTo<TSelector>;
+interface IssuesScanResultData {
     scanResult?: ScanResults;
-}
-
-interface IssuesScanResultData extends ScanResultData<HtmlElementAxeResults> {
+    fullAxeResultsMap: DictionaryStringTo<HtmlElementAxeResults>;
+    fullIdToRuleResultMap: DictionaryStringTo<DecoratedAxeNodeResult>;
     selectedAxeResultsMap: DictionaryStringTo<HtmlElementAxeResults>;
     selectedIdToRuleResultMap: DictionaryStringTo<DecoratedAxeNodeResult>;
-    fullIdToRuleResultMap: DictionaryStringTo<DecoratedAxeNodeResult>;
 }
 
 export interface TabbedElementData extends TabStopEvent {

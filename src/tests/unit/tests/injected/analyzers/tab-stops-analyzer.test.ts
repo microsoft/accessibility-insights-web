@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IframeDetector } from 'injected/iframe-detector';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { Message } from '../../../../../common/message';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { WindowUtils } from '../../../../../common/window-utils';
@@ -18,9 +20,11 @@ describe('TabStopsAnalyzerTests', () => {
     let tabStopsListenerMock: IMock<TabStopsListener>;
     let tabEventHandler: (tabEvent: TabStopEvent) => void;
     let setTimeOutCallBack: () => void;
+    let iframeDetectorMock: IMock<IframeDetector>;
 
     beforeEach(() => {
         windowUtilsMock = Mock.ofType(WindowUtils);
+        iframeDetectorMock = Mock.ofType<IframeDetector>();
         sendMessageMock = Mock.ofInstance(message => {}, MockBehavior.Strict);
         configStub = {
             analyzerProgressMessageType: 'sample progress message type',
@@ -32,7 +36,16 @@ describe('TabStopsAnalyzerTests', () => {
         tabEventHandler = null;
         setTimeOutCallBack = null;
         tabStopsListenerMock = Mock.ofType(TabStopsListener);
-        testSubject = new TabStopsAnalyzer(configStub, tabStopsListenerMock.object, windowUtilsMock.object, sendMessageMock.object);
+
+        iframeDetectorMock.setup(idm => idm.hasIframes()).returns(() => true);
+
+        testSubject = new TabStopsAnalyzer(
+            configStub,
+            tabStopsListenerMock.object,
+            windowUtilsMock.object,
+            sendMessageMock.object,
+            iframeDetectorMock.object,
+        );
         typeStub = -1 as VisualizationType;
     });
 
@@ -50,6 +63,7 @@ describe('TabStopsAnalyzerTests', () => {
                 selectorMap: resultsStub,
                 scanResult: null,
                 testType: typeStub,
+                pageHasIframes: true,
             },
         };
         const expectedOnProgressMessage: Message = {
@@ -97,6 +111,7 @@ describe('TabStopsAnalyzerTests', () => {
                 selectorMap: resultsStub,
                 scanResult: null,
                 testType: typeStub,
+                pageHasIframes: true,
             },
         };
         const expectedOnProgressMessage: Message = {

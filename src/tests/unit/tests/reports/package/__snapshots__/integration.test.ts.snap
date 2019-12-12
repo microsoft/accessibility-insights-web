@@ -489,6 +489,7 @@ exports[`report package integration with issues 1`] = `
       >
         <div
           class="resultSection"
+          data-automation-id="result-section"
         >
           <h2>
             <span
@@ -556,6 +557,7 @@ exports[`report package integration with issues 1`] = `
           </h2>
           <div
             class="ruleDetailsGroup"
+            data-automation-id="rule-details-group"
           >
             <div
               class="collapsible-container collapsibleRuleDetailsGroup collapsed"
@@ -6516,6 +6518,7 @@ exports[`report package integration with no issues 1`] = `
       >
         <div
           class="resultSection"
+          data-automation-id="result-section"
         >
           <h2>
             <span

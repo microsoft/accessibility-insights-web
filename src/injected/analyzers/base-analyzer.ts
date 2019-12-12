@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IframeDetector } from 'injected/iframe-detector';
 import * as Q from 'q';
 
 import { Message } from '../../common/message';
@@ -7,17 +8,13 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { Analyzer, AnalyzerConfiguration, AxeAnalyzerResult, ScanCompletedPayload } from './analyzer';
 
 export class BaseAnalyzer implements Analyzer {
-    protected sendMessage: (message: Message) => void;
     protected visualizationType: VisualizationType;
-    protected config: AnalyzerConfiguration;
     protected emptyResults: AxeAnalyzerResult = {
         results: {},
         originalResult: null,
     };
 
-    constructor(config: AnalyzerConfiguration, sendMessageDelegate: (message) => void) {
-        this.config = config;
-        this.sendMessage = sendMessageDelegate;
+    constructor(protected config: AnalyzerConfiguration, protected sendMessage: (message) => void, private iframeDetector: IframeDetector) {
         this.visualizationType = config.testType;
     }
 
@@ -49,6 +46,7 @@ export class BaseAnalyzer implements Analyzer {
             selectorMap: analyzerResult.results,
             scanResult: originalAxeResult,
             testType: config.testType,
+            pageHasIframes: this.iframeDetector.hasIframes(),
         };
 
         return {

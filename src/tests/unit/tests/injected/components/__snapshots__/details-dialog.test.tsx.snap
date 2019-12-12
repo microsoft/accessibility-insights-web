@@ -36,10 +36,12 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
     className="insights-dialog-content"
   >
     <div
+      aria-labelledby="rule-name"
       className="insights-dialog-rule-name"
     >
       <h3
         className="insights-dialog-section-title"
+        id="rule-name"
       >
         Rule name
       </h3>
@@ -50,10 +52,12 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
       </NewTabLink>
     </div>
     <div
+      aria-labelledby="success-criteria"
       className="insights-dialog-success-criteria"
     >
       <h3
         className="insights-dialog-section-title"
+        id="success-criteria"
       >
         Success criterion
       </h3>
@@ -365,10 +369,12 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
                   className="insights-dialog-content"
                 >
                   <div
+                    aria-labelledby="rule-name"
                     className="insights-dialog-rule-name"
                   >
                     <h3
                       className="insights-dialog-section-title"
+                      id="rule-name"
                     >
                       Rule name
                     </h3>
@@ -379,10 +385,12 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
                     </NewTabLink>
                   </div>
                   <div
+                    aria-labelledby="success-criteria"
                     className="insights-dialog-success-criteria"
                   >
                     <h3
                       className="insights-dialog-section-title"
+                      id="success-criteria"
                     >
                       Success criterion
                     </h3>
@@ -589,10 +597,12 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": f
     className="insights-dialog-content"
   >
     <div
+      aria-labelledby="rule-name"
       className="insights-dialog-rule-name"
     >
       <h3
         className="insights-dialog-section-title"
+        id="rule-name"
       >
         Rule name
       </h3>
@@ -603,10 +613,12 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": f
       </NewTabLink>
     </div>
     <div
+      aria-labelledby="success-criteria"
       className="insights-dialog-success-criteria"
     >
       <h3
         className="insights-dialog-section-title"
+        id="success-criteria"
       >
         Success criterion
       </h3>
@@ -918,10 +930,12 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": f
                   className="insights-dialog-content"
                 >
                   <div
+                    aria-labelledby="rule-name"
                     className="insights-dialog-rule-name"
                   >
                     <h3
                       className="insights-dialog-section-title"
+                      id="rule-name"
                     >
                       Rule name
                     </h3>
@@ -932,10 +946,12 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": f
                     </NewTabLink>
                   </div>
                   <div
+                    aria-labelledby="success-criteria"
                     className="insights-dialog-success-criteria"
                   >
                     <h3
                       className="insights-dialog-section-title"
+                      id="success-criteria"
                     >
                       Success criterion
                     </h3>
@@ -1147,10 +1163,12 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": t
       className="insights-dialog-content"
     >
       <div
+        aria-labelledby="rule-name"
         className="insights-dialog-rule-name"
       >
         <h3
           className="insights-dialog-section-title"
+          id="rule-name"
         >
           Rule name
         </h3>
@@ -1161,10 +1179,12 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": t
         </NewTabLink>
       </div>
       <div
+        aria-labelledby="success-criteria"
         className="insights-dialog-success-criteria"
       >
         <h3
           className="insights-dialog-section-title"
+          id="success-criteria"
         >
           Success criterion
         </h3>
@@ -1481,10 +1501,12 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": t
                       className="insights-dialog-content"
                     >
                       <div
+                        aria-labelledby="rule-name"
                         className="insights-dialog-rule-name"
                       >
                         <h3
                           className="insights-dialog-section-title"
+                          id="rule-name"
                         >
                           Rule name
                         </h3>
@@ -1495,10 +1517,12 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": t
                         </NewTabLink>
                       </div>
                       <div
+                        aria-labelledby="success-criteria"
                         className="insights-dialog-success-criteria"
                       >
                         <h3
                           className="insights-dialog-section-title"
+                          id="success-criteria"
                         >
                           Success criterion
                         </h3>
@@ -1705,10 +1729,12 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": fa
     className="insights-dialog-content"
   >
     <div
+      aria-labelledby="rule-name"
       className="insights-dialog-rule-name"
     >
       <h3
         className="insights-dialog-section-title"
+        id="rule-name"
       >
         Rule name
       </h3>
@@ -1719,10 +1745,12 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": fa
       </NewTabLink>
     </div>
     <div
+      aria-labelledby="success-criteria"
       className="insights-dialog-success-criteria"
     >
       <h3
         className="insights-dialog-section-title"
+        id="success-criteria"
       >
         Success criterion
       </h3>
@@ -2034,10 +2062,12 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": fa
                   className="insights-dialog-content"
                 >
                   <div
+                    aria-labelledby="rule-name"
                     className="insights-dialog-rule-name"
                   >
                     <h3
                       className="insights-dialog-section-title"
+                      id="rule-name"
                     >
                       Rule name
                     </h3>
@@ -2048,10 +2078,12 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": fa
                     </NewTabLink>
                   </div>
                   <div
+                    aria-labelledby="success-criteria"
                     className="insights-dialog-success-criteria"
                   >
                     <h3
                       className="insights-dialog-section-title"
+                      id="success-criteria"
                     >
                       Success criterion
                     </h3>
@@ -2263,10 +2295,12 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": tr
       className="insights-dialog-content"
     >
       <div
+        aria-labelledby="rule-name"
         className="insights-dialog-rule-name"
       >
         <h3
           className="insights-dialog-section-title"
+          id="rule-name"
         >
           Rule name
         </h3>
@@ -2277,10 +2311,12 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": tr
         </NewTabLink>
       </div>
       <div
+        aria-labelledby="success-criteria"
         className="insights-dialog-success-criteria"
       >
         <h3
           className="insights-dialog-section-title"
+          id="success-criteria"
         >
           Success criterion
         </h3>
@@ -2597,10 +2633,12 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": tr
                       className="insights-dialog-content"
                     >
                       <div
+                        aria-labelledby="rule-name"
                         className="insights-dialog-rule-name"
                       >
                         <h3
                           className="insights-dialog-section-title"
+                          id="rule-name"
                         >
                           Rule name
                         </h3>
@@ -2611,10 +2649,12 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": tr
                         </NewTabLink>
                       </div>
                       <div
+                        aria-labelledby="success-criteria"
                         className="insights-dialog-success-criteria"
                       >
                         <h3
                           className="insights-dialog-section-title"
+                          id="success-criteria"
                         >
                           Success criterion
                         </h3>

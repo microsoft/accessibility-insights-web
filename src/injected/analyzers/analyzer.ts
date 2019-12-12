@@ -26,6 +26,7 @@ export interface Analyzer {
 export interface ScanCompletedPayload<TSelectorValue> extends ScanBasePayload {
     selectorMap: DictionaryStringTo<TSelectorValue>;
     scanResult: ScanResults;
+    pageHasIframes: boolean;
 }
 
 export interface ScanUpdatePayload extends ScanBasePayload {
