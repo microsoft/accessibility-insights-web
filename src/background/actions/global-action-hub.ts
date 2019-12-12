@@ -6,6 +6,7 @@ import { AssessmentActions } from './assessment-actions';
 import { CommandActions } from './command-actions';
 import { ScopingActions } from './scoping-actions';
 import { UserConfigurationActions } from './user-configuration-actions';
+import { PermissionsStateActions } from 'background/actions/permissions-state-actions';
 
 export class GlobalActionHub {
     public commandActions: CommandActions;
@@ -14,6 +15,7 @@ export class GlobalActionHub {
     public scopingActions: ScopingActions;
     public assessmentActions: AssessmentActions;
     public userConfigurationActions: UserConfigurationActions;
+    public permissionsStateActions: PermissionsStateActions;
 
     constructor() {
         this.commandActions = new CommandActions();
@@ -22,5 +24,6 @@ export class GlobalActionHub {
         this.scopingActions = new ScopingActions();
         this.assessmentActions = new AssessmentActions();
         this.userConfigurationActions = new UserConfigurationActions();
+        this.permissionsStateActions = new PermissionsStateActions();
     }
 }
