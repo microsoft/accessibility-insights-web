@@ -9,15 +9,19 @@ extraMetadata:
     name: Accessibility Insights for Android
 
 linux:
+    artifactName: ${productName}.${ext}
     target: AppImage
 
 mac:
+    artifactName: ${productName}.${ext}
     icon: extension/icons/brand/blue/brand-blue-512px.png
     target: dmg # can be changed to a zip, app or something else. ref: https://www.electron.build/configuration/mac
     identity: null
 
 win:
+    artifactName: ${productName}.${ext}
     icon: extension/icons/brand/blue/brand-blue-512px.png
+    publisherName: 'Microsoft Corporation'
     target: nsis
 
 nsis:
