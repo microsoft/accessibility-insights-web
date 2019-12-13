@@ -28,16 +28,18 @@ describe('cross-origin iframe and permissions', () => {
 
     afterAll(async () => {
         testResourceServer.stopServer(testResourceServerConfig);
-
-        if (browser) {
-            await browser.close();
-            browser = undefined;
-        }
     });
 
     describe('localhost permissions only', () => {
         beforeEach(async () => {
             await launchFastPassWithExtraPermissions('localhost');
+        });
+
+        afterEach(async () => {
+            if (browser) {
+                await browser.close();
+                browser = undefined;
+            }
         });
 
         it('does not scan inside cross-origin iframes when extension does not have permissions', async () => {
