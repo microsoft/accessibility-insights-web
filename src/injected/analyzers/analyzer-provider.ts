@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IframeDetector } from 'injected/iframe-detector';
+import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 
 import { BaseStore } from '../../common/base-store';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
@@ -33,7 +33,7 @@ export class AnalyzerProvider {
         private readonly visualizationConfigFactory: VisualizationConfigurationFactory,
         private filterResultsByRules: IResultRuleFilter,
         private sendConvertedResults: PostResolveCallback,
-        private iframeDetector: IframeDetector,
+        private scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
     ) {
         this.tabStopsListener = tabStopsListener;
         this.scopingStore = scopingStore;
@@ -53,7 +53,7 @@ export class AnalyzerProvider {
             this.telemetryDataFactory,
             this.visualizationConfigFactory,
             null,
-            this.iframeDetector,
+            this.scanIncompleteWarningDetector,
         );
     }
 
@@ -69,7 +69,7 @@ export class AnalyzerProvider {
             this.telemetryDataFactory,
             this.visualizationConfigFactory,
             this.sendConvertedResults,
-            this.iframeDetector,
+            this.scanIncompleteWarningDetector,
         );
     }
 
@@ -83,15 +83,21 @@ export class AnalyzerProvider {
             this.telemetryDataFactory,
             this.visualizationConfigFactory,
             this.filterResultsByRules,
-            this.iframeDetector,
+            this.scanIncompleteWarningDetector,
         );
     }
 
     public createFocusTrackingAnalyzer(config: FocusAnalyzerConfiguration): Analyzer {
-        return new TabStopsAnalyzer(config, this.tabStopsListener, new WindowUtils(), this.sendMessageDelegate, this.iframeDetector);
+        return new TabStopsAnalyzer(
+            config,
+            this.tabStopsListener,
+            new WindowUtils(),
+            this.sendMessageDelegate,
+            this.scanIncompleteWarningDetector,
+        );
     }
 
     public createBaseAnalyzer(config: AnalyzerConfiguration): Analyzer {
-        return new BaseAnalyzer(config, this.sendMessageDelegate, this.iframeDetector);
+        return new BaseAnalyzer(config, this.sendMessageDelegate, this.scanIncompleteWarningDetector);
     }
 }

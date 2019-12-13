@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { ScopingInputTypes } from 'background/scoping-input-types';
 import { ScopingStore } from 'background/stores/global/scoping-store';
-import { IframeDetector } from 'injected/iframe-detector';
+import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { clone, isFunction } from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
@@ -36,7 +36,7 @@ describe('BatchedRuleAnalyzer', () => {
     const title = 'test-name';
     const scanCallbacks: ((results: ScanResults) => void)[] = [];
     let resultConfigFilterMock: IMock<IResultRuleFilter>;
-    let iframeDetectorMock: IMock<IframeDetector>;
+    let scanIncompleteWarningDetectorMock: IMock<ScanIncompleteWarningDetector>;
 
     beforeEach(() => {
         typeStub = -1 as VisualizationType;
@@ -51,7 +51,7 @@ describe('BatchedRuleAnalyzer', () => {
                 return null;
             },
         };
-        iframeDetectorMock = Mock.ofType<IframeDetector>();
+        scanIncompleteWarningDetectorMock = Mock.ofType<ScanIncompleteWarningDetector>();
         dateMock = Mock.ofInstance(dateStub as Date);
         dateGetterMock = Mock.ofInstance(() => null);
         dateGetterMock.setup(dgm => dgm()).returns(() => dateMock.object);
@@ -73,7 +73,7 @@ describe('BatchedRuleAnalyzer', () => {
                 } as VisualizationConfiguration;
             })
             .verifiable();
-        iframeDetectorMock.setup(idm => idm.hasIframes()).returns(() => true);
+        scanIncompleteWarningDetectorMock.setup(idm => idm.detectScanIncompleteWarnings()).returns(() => []);
     });
 
     test('analyze', async done => {
@@ -219,7 +219,7 @@ describe('BatchedRuleAnalyzer', () => {
                 scanResult: results,
                 testType: config.testType,
                 telemetry: expectedTelemetryStub,
-                pageHasIframes: true,
+                scanIncompleteWarnings: [],
             },
         };
     }
@@ -246,7 +246,7 @@ describe('BatchedRuleAnalyzer', () => {
             telemetryDataFactoryMock.object,
             visualizationConfigurationFactoryMock.object,
             resultConfigFilterMock.object,
-            iframeDetectorMock.object,
+            scanIncompleteWarningDetectorMock.object,
         );
     }
 });

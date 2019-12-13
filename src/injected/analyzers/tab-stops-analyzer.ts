@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IframeDetector } from 'injected/iframe-detector';
+import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import * as Q from 'q';
 
 import { WindowUtils } from '../../common/window-utils';
@@ -26,9 +26,9 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         tabStopsListener: TabStopsListener,
         windowUtils: WindowUtils,
         sendMessageDelegate: (message) => void,
-        iframeDetector: IframeDetector,
+        scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
     ) {
-        super(config, sendMessageDelegate, iframeDetector);
+        super(config, sendMessageDelegate, scanIncompleteWarningDetector);
         this.tabStopsListener = tabStopsListener;
         this.windowUtils = windowUtils;
     }

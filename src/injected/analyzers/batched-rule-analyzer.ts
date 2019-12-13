@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IframeDetector } from 'injected/iframe-detector';
+import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 
 import { BaseStore } from '../../common/base-store';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
@@ -25,7 +25,7 @@ export class BatchedRuleAnalyzer extends RuleAnalyzer {
         protected telemetryFactory: TelemetryDataFactory,
         protected readonly visualizationConfigFactory: VisualizationConfigurationFactory,
         private postScanFilter: IResultRuleFilter,
-        iframeDetector: IframeDetector,
+        scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
     ) {
         super(
             config,
@@ -36,7 +36,7 @@ export class BatchedRuleAnalyzer extends RuleAnalyzer {
             telemetryFactory,
             visualizationConfigFactory,
             null,
-            iframeDetector,
+            scanIncompleteWarningDetector,
         );
         BatchedRuleAnalyzer.batchConfigs.push(config);
     }
