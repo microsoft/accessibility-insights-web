@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IframePermissionsWarning, IframePermissionsWarningProps } from 'DetailsView/components/iframe-permissions-warning';
+import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
+import { ScanIncompleteWarning, ScanIncompleteWarningProps } from 'DetailsView/components/iframe-permissions-warning';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
@@ -11,54 +12,44 @@ describe('IframePermissionsWarning', () => {
     beforeEach(() => {
         onRenderMock = Mock.ofInstance(() => {});
     });
+    test(`notRendered: where no warnings were provided`, () => {
+        const componentProps: ScanIncompleteWarningProps = {
+            warnings: [],
+            onRender: onRenderMock.object,
+        };
 
-    [
-        {
-            pageHasIframes: true,
-            allUrlPermissionsGiven: true,
-        },
-        {
-            pageHasIframes: false,
-            allUrlPermissionsGiven: false,
-        },
-        {
-            pageHasIframes: false,
-            allUrlPermissionsGiven: true,
-        },
-    ].forEach(params => {
-        test(`notRendered: where pageHasIframes is ${params.pageHasIframes} & allUrlPermissionsGiven is ${params.allUrlPermissionsGiven}`, () => {
-            const componentProps: IframePermissionsWarningProps = {
-                ...params,
-                onRender: onRenderMock.object,
-            };
+        onRenderMock.setup(orm => orm()).verifiable(Times.never());
 
-            onRenderMock.setup(orm => orm()).verifiable(Times.never());
+        const testSubject = shallow(<ScanIncompleteWarning {...componentProps} />);
 
-            const testSubject = shallow(<IframePermissionsWarning {...componentProps} />);
-
-            expect(testSubject.getElement()).toMatchSnapshot();
-            onRenderMock.verifyAll();
-        });
+        expect(testSubject.getElement()).toMatchSnapshot();
+        onRenderMock.verifyAll();
     });
 
-    [
-        {
-            pageHasIframes: true,
-            allUrlPermissionsGiven: false,
-        },
-    ].forEach(params => {
-        test(`rendered: where pageHasIframes is ${params.pageHasIframes} & allUrlPermissionsGiven is ${params.allUrlPermissionsGiven}`, () => {
-            const componentProps: IframePermissionsWarningProps = {
-                ...params,
-                onRender: onRenderMock.object,
-            };
+    test(`rendered: where warnings were provided`, () => {
+        const componentProps: ScanIncompleteWarningProps = {
+            warnings: ['missing-required-cross-origin-permissions', 'missing-required-cross-origin-permissions'],
+            onRender: onRenderMock.object,
+        };
 
-            onRenderMock.setup(orm => orm()).verifiable(Times.once());
+        onRenderMock.setup(orm => orm()).verifiable(Times.once());
 
-            const testSubject = shallow(<IframePermissionsWarning {...componentProps} />);
+        const testSubject = shallow(<ScanIncompleteWarning {...componentProps} />);
+        expect(testSubject.getElement()).toMatchSnapshot();
+        onRenderMock.verifyAll();
+    });
 
-            expect(testSubject.getElement()).toMatchSnapshot();
-            onRenderMock.verifyAll();
-        });
+    test(`rendered: where warnings were provided, with one warning not supported`, () => {
+        const componentProps: ScanIncompleteWarningProps = {
+            warnings: ['missing-required-cross-origin-permissions', 'not a real warning' as ScanIncompleteWarningId],
+            onRender: onRenderMock.object,
+        };
+
+        onRenderMock.setup(orm => orm()).verifiable(Times.once());
+
+        const testSubject = shallow(<ScanIncompleteWarning {...componentProps} />);
+
+        expect(testSubject.getElement()).toMatchSnapshot();
+        onRenderMock.verifyAll();
     });
 });

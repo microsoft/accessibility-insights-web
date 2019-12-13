@@ -1,15 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`IframePermissionsWarning notRendered: where pageHasIframes is false & allUrlPermissionsGiven is false 1`] = `null`;
+exports[`IframePermissionsWarning notRendered: where no warnings were provided 1`] = `null`;
 
-exports[`IframePermissionsWarning notRendered: where pageHasIframes is false & allUrlPermissionsGiven is true 1`] = `null`;
+exports[`IframePermissionsWarning rendered: where warnings were provided 1`] = `
+<React.Fragment>
+  <StyledMessageBarBase
+    messageBarType={5}
+  >
+    <React.Fragment>
+      We have detected iframes in the target page. To have complete results, please give us permissions. Learn more here.
+    </React.Fragment>
+  </StyledMessageBarBase>
+</React.Fragment>
+`;
 
-exports[`IframePermissionsWarning notRendered: where pageHasIframes is true & allUrlPermissionsGiven is true 1`] = `null`;
-
-exports[`IframePermissionsWarning rendered: where pageHasIframes is true & allUrlPermissionsGiven is false 1`] = `
-<StyledMessageBarBase
-  messageBarType={5}
->
-  Placeholder text
-</StyledMessageBarBase>
+exports[`IframePermissionsWarning rendered: where warnings were provided, with one warning not supported 1`] = `
+<React.Fragment>
+  <StyledMessageBarBase
+    messageBarType={5}
+  >
+    <React.Fragment>
+      We have detected iframes in the target page. To have complete results, please give us permissions. Learn more here.
+    </React.Fragment>
+  </StyledMessageBarBase>
+</React.Fragment>
 `;

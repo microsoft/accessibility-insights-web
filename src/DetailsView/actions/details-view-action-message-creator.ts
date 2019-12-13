@@ -384,10 +384,10 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         this.dispatcher.sendTelemetry(TelemetryEvents.DETAILS_VIEW_OPEN, telemetryData);
     }
 
-    public onIframePermissionWarningShown(): void {
+    public onIframePermissionWarningShown = () => {
         const telemetryData = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         this.dispatcher.sendTelemetry(TelemetryEvents.IFRAME_PERMISSION_WARNING_SHOWN, telemetryData);
-    }
+    };
 
     public editFailureInstance = (instanceData: FailureInstanceData, test: VisualizationType, requirement: string, id: string): void => {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
