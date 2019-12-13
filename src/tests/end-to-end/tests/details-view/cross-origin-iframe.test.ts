@@ -21,15 +21,9 @@ describe('cross-origin iframe and permissions', () => {
     let targetPage: TargetPage;
     let fastPassAutomatedChecks: DetailsViewPage;
 
-    beforeAll(async () => {
+    beforeAll(() => {
         // we need a second test resource server to get cross-origin content load on the page
         testResourceServer.startServer(testResourceServerConfig);
-
-        browser = await launchBrowser({ suppressFirstTimeDialog: true, addExtraPermissionsToManifest: 'localhost' });
-        targetPage = await browser.newTargetPage({ testResourcePath: 'all-cross-origin-iframe.html' });
-        await browser.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
-
-        fastPassAutomatedChecks = await openAutomatedChecks();
     });
 
     afterAll(async () => {
@@ -41,15 +35,24 @@ describe('cross-origin iframe and permissions', () => {
         }
     });
 
-    it('does not scan inside cross-origin iframes when extension does not have permissions', async () => {
-        await fastPassAutomatedChecks.bringToFront();
+    describe('localhost permissions only', () => {
+        beforeEach(async () => {
+            browser = await launchBrowser({ suppressFirstTimeDialog: true, addExtraPermissionsToManifest: 'localhost' });
+            targetPage = await browser.newTargetPage({ testResourcePath: 'all-cross-origin-iframe.html' });
+            await browser.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
 
-        const automatedChecks = await formatPageElementForSnapshot(
-            fastPassAutomatedChecks,
-            fastPassAutomatedChecksSelectors.ruleDetailsGroups,
-        );
+            fastPassAutomatedChecks = await openAutomatedChecks();
+            await fastPassAutomatedChecks.bringToFront();
+        });
 
-        expect(automatedChecks).toMatchSnapshot();
+        it('does not scan inside cross-origin iframes when extension does not have permissions', async () => {
+            const automatedChecks = await formatPageElementForSnapshot(
+                fastPassAutomatedChecks,
+                fastPassAutomatedChecksSelectors.ruleDetailsGroups,
+            );
+
+            expect(automatedChecks).toMatchSnapshot();
+        });
     });
 
     async function openAutomatedChecks(): Promise<DetailsViewPage> {
