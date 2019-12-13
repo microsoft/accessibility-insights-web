@@ -22,7 +22,7 @@ describe('device connection dialog', () => {
         }
     });
 
-    it('should use the expected window title', async () => {
+    it.only('should use the expected window title', async () => {
         expect(await app.getTitle()).toBe('Accessibility Insights for Android');
     });
 

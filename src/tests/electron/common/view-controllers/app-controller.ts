@@ -22,13 +22,13 @@ export class AppController {
     }
 
     public async getTitle(): Promise<string> {
-        // getTitle() is normally synchronous in Electron, but Spectron overrides this and makes it async, confusing Typescript
+        // Typings are inaccurate; see https://github.com/electron-userland/spectron/issues/343
         // tslint:disable-next-line: await-promise
         return await this.app.webContents.getTitle();
     }
 
     public async openDeviceConnectionDialog(): Promise<DeviceConnectionDialogController> {
-        this.resizeWindow();
+        await this.setToMinimumSupportedWindowSize();
 
         await dismissTelemetryOptInDialog(this.app);
 
@@ -45,21 +45,25 @@ export class AppController {
         const automatedChecksView = new AutomatedChecksViewController(this.client);
         await automatedChecksView.waitForViewVisible();
 
-        this.resizeWindow();
+        await this.setToMinimumSupportedWindowSize();
 
         return automatedChecksView;
     }
 
-    private resizeWindow(): void {
-        let resizeId;
-        this.app.browserWindow.addListener('resize', () => {
-            clearTimeout(resizeId);
-            resizeId = setTimeout(this.setToMinimumSupportedWindowSize, 500);
-        });
+    private async setToMinimumSupportedWindowSize(): Promise<void> {
+        await this.unmaximize();
+
+        const minimumSupportedBounds = { width: mainWindowConfig.minWidth, height: mainWindowConfig.minHeight };
+        await this.setBounds(minimumSupportedBounds);
     }
 
-    private setToMinimumSupportedWindowSize(): void {
-        this.app.browserWindow.setBounds({ width: mainWindowConfig.minWidth, height: mainWindowConfig.minHeight });
-        this.app.browserWindow.unmaximize();
+    private setBounds(bounds: { width: number; height: number }): Promise<void> {
+        // Typings are inaccurate; see https://github.com/electron-userland/spectron/issues/343
+        return this.app.browserWindow.setBounds(bounds) as any;
+    }
+
+    private unmaximize(): Promise<void> {
+        // Typings are inaccurate; see https://github.com/electron-userland/spectron/issues/343
+        return this.app.browserWindow.unmaximize() as any;
     }
 }
