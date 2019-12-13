@@ -26,7 +26,7 @@ describe('PermissionsStateStoreTest', () => {
         expect(testSubject.getDefaultState()).toMatchSnapshot();
     });
 
-    test('on getCurrentState', () => {
+    test('on getCurrentState ', () => {
         const initialState = createPermissionsState();
         const finalState = createPermissionsState();
 
