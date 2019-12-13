@@ -13,7 +13,7 @@ describe('Popup -> Ad-hoc tools', () => {
     let popupPage: PopupPage;
 
     beforeEach(async () => {
-        browser = await launchBrowser({ suppressFirstTimeDialog: true, addExtraPermissionsToManifest: 'localhost' });
+        browser = await launchBrowser({ suppressFirstTimeDialog: true, addExtraPermissionsToManifest: 'fake-activeTab' });
         targetPage = await browser.newTargetPage();
         popupPage = await browser.newPopupPage(targetPage);
         await popupPage.bringToFront();

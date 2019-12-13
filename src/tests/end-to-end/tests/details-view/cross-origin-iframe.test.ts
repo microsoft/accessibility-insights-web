@@ -32,7 +32,7 @@ describe('scanning', () => {
 
     describe('with localhost permissions only', () => {
         beforeEach(async () => {
-            await launchFastPassWithExtraPermissions('localhost');
+            await launchFastPassWithExtraPermissions('fake-activeTab');
         });
 
         afterEach(async () => {

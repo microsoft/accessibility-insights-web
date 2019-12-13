@@ -17,7 +17,7 @@ const fileExists = util.promisify(fs.exists);
 const writeFile = util.promisify(fs.writeFile);
 const readFile = util.promisify(fs.readFile);
 
-export type ExtraPermissions = 'localhost' | 'all-origins';
+export type ExtraPermissions = 'all-origins' | 'fake-activeTab';
 
 export interface ExtensionOptions {
     suppressFirstTimeDialog: boolean;
@@ -68,7 +68,11 @@ const alterManifestWithPermissions = async (extensionOptions: ExtensionOptions, 
     let extraPermission: string;
 
     switch (addExtraPermissionsToManifest) {
-        case 'localhost':
+        // we need to add localhost origin permission in order to fake activeTab
+        // the main reason is puppeteer lacks an API to activate the extension
+        // via clicking the extenion icon (on the toolbar) or sending the extension shortcut
+        // see https://github.com/puppeteer/puppeteer/issues/2486 for more details
+        case 'fake-activeTab':
             extraPermission = `http://localhost:${testResourceServerConfig.port}/*`;
             break;
         case 'all-origins':
