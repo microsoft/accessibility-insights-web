@@ -2,8 +2,10 @@
 // Licensed under the MIT License.
 import { ScopingInputTypes } from 'background/scoping-input-types';
 import { ScopingStore } from 'background/stores/global/scoping-store';
+import { IframeDetector } from 'injected/iframe-detector';
 import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
+
 import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { RuleAnalyzerScanTelemetryData } from '../../../../../common/extension-telemetry-events';
@@ -36,6 +38,7 @@ describe('RuleAnalyzer', () => {
     let configStub: RuleAnalyzerConfiguration;
     let scanCallback: (results: ScanResults) => void;
     let postResolveCallbackMock: IMock<PostResolveCallback>;
+    let iframeDetectorMock: IMock<IframeDetector>;
 
     beforeEach(() => {
         typeStub = -1 as VisualizationType;
@@ -54,6 +57,7 @@ describe('RuleAnalyzer', () => {
         };
         dateMock = Mock.ofInstance(dateStub as Date);
         dateGetterMock = Mock.ofInstance(() => null);
+        iframeDetectorMock = Mock.ofType<IframeDetector>();
         dateGetterMock.setup(dgm => dgm()).returns(() => dateMock.object);
         scopingState = {
             selectors: {
@@ -73,6 +77,7 @@ describe('RuleAnalyzer', () => {
                 } as VisualizationConfiguration;
             })
             .verifiable();
+        iframeDetectorMock.setup(idm => idm.hasIframes()).returns(() => true);
     });
 
     test('analyze', async done => {
@@ -119,6 +124,7 @@ describe('RuleAnalyzer', () => {
             telemetryDataFactoryMock.object,
             visualizationConfigurationFactoryMock.object,
             postResolveCallbackMock.object,
+            iframeDetectorMock.object,
         );
 
         const scanResults = createTestResults();

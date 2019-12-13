@@ -8,6 +8,7 @@ import { BaseStoreImpl } from 'background/stores/base-store-impl';
 import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { GlobalStoreHub } from 'background/stores/global/global-store-hub';
 import { LaunchPanelStore } from 'background/stores/global/launch-panel-store';
+import { PermissionsStateStore } from 'background/stores/global/permissions-state-store';
 import { ScopingStore } from 'background/stores/global/scoping-store';
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
 import { cloneDeep } from 'lodash';
@@ -62,7 +63,7 @@ describe('GlobalStoreHubTest', () => {
         );
         const allStores = testSubject.getAllStores();
 
-        expect(allStores.length).toBe(6);
+        expect(allStores.length).toBe(7);
         expect(testSubject.getStoreType()).toEqual(StoreType.GlobalStore);
 
         verifyStoreExists(allStores, FeatureFlagStore);
@@ -70,6 +71,7 @@ describe('GlobalStoreHubTest', () => {
         verifyStoreExists(allStores, ScopingStore);
         verifyStoreExists(allStores, AssessmentStore);
         verifyStoreExists(allStores, UserConfigurationStore);
+        verifyStoreExists(allStores, PermissionsStateStore);
     });
 
     it('test initialize', () => {

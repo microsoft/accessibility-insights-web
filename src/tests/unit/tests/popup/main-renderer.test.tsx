@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { title } from 'content/strings/application';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { IMock, It, Mock } from 'typemoq';
-
-import { title } from 'content/strings/application';
 import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { Theme } from '../../../../common/components/theme';
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
@@ -15,7 +14,6 @@ import { LaunchPanelHeaderClickHandler } from '../../../../popup/handlers/launch
 import { PopupViewControllerHandler } from '../../../../popup/handlers/popup-view-controller-handler';
 import { LaunchPadRowConfigurationFactory } from '../../../../popup/launch-pad-row-configuration-factory';
 import { MainRenderer, MainRendererDeps } from '../../../../popup/main-renderer';
-import { SupportLinkHandler } from '../../../../popup/support-link-handler';
 import { TestDocumentCreator } from '../../common/test-document-creator';
 
 describe('MainRenderer', () => {
@@ -27,7 +25,6 @@ describe('MainRenderer', () => {
         const diagnosticViewClickHandlerMock = Mock.ofType(DiagnosticViewClickHandler);
         const gettingStartedDialogHandlerMock = Mock.ofType(PopupViewControllerHandler);
         const feedbackMenuClickhandlerMock = Mock.ofType(LaunchPanelHeaderClickHandler);
-        const supportLinkHandlerMock = Mock.ofType(SupportLinkHandler);
         const launchPadRowConfigurationFactoryMock = Mock.ofType(LaunchPadRowConfigurationFactory);
         const diagnosticViewToggleFactoryMock = Mock.ofType(DiagnosticViewToggleFactory);
         const dropdownClickHandlerMock = Mock.ofType(DropdownClickHandler);
@@ -54,7 +51,6 @@ describe('MainRenderer', () => {
                                     diagnosticViewClickHandler: diagnosticViewClickHandlerMock.object,
                                     popupViewControllerHandler: gettingStartedDialogHandlerMock.object,
                                     launchPanelHeaderClickHandler: feedbackMenuClickhandlerMock.object,
-                                    supportLinkHandler: supportLinkHandlerMock.object,
                                     browserAdapter: browserAdapterMock.object,
                                 }}
                                 popupWindow={popupWindowMock.object}
@@ -77,7 +73,6 @@ describe('MainRenderer', () => {
                 diagnosticViewClickHandler: diagnosticViewClickHandlerMock.object,
                 popupViewControllerHandler: gettingStartedDialogHandlerMock.object,
                 launchPanelHeaderClickHandler: feedbackMenuClickhandlerMock.object,
-                supportLinkHandler: supportLinkHandlerMock.object,
                 browserAdapter: browserAdapterMock.object,
             },
             renderMock.object,

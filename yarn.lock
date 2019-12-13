@@ -2338,10 +2338,10 @@ copy-to-clipboard@^3:
   dependencies:
     toggle-selection "^1.0.6"
 
-core-js-bundle@^3.4.8:
-  version "3.4.8"
-  resolved "https://registry.yarnpkg.com/core-js-bundle/-/core-js-bundle-3.4.8.tgz#b979f84aaa542c915c6d3108e75e4472793ac319"
-  integrity sha512-RdlO0wFMKRYQ8Mn3MMGYjDm+x2/o1fj83EvFihwM9l1LIoFdLhiD+8mZf2JukENMLtyot+kD6mAL1tGA+K/d9A==
+core-js-bundle@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/core-js-bundle/-/core-js-bundle-3.5.0.tgz#d0a8eae6af727c63ecf305da5d0fc7b5a7c049eb"
+  integrity sha512-MjbauyZ1ApLHpYy2wFrC7Y05XNGQs65quu9Hqr1J+nygy61uTcjTnYtvWps9Yz6G5ghKK8LDD7WAfOWa8hT89g==
 
 core-js@^2.4.0, core-js@^2.5.3:
   version "2.6.10"
@@ -6725,10 +6725,10 @@ object.values@^1.0.4, object.values@^1.1.0:
     function-bind "^1.1.1"
     has "^1.0.3"
 
-office-ui-fabric-react@6.210.5:
-  version "6.210.5"
-  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-6.210.5.tgz#e7ed3fe9908d2f82778b3dfbbeeac9c868ad9352"
-  integrity sha512-kq2nLG20qwxez5N8QdrEs5eFJwpKa/V1qemob9cqAUrioxR29GAlqAHRFSjg+U6UYEm6ypUBS0cF1235jwspWw==
+office-ui-fabric-react@6.210.6:
+  version "6.210.6"
+  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-6.210.6.tgz#8b19c75ce790a0709cd20ddcd9dcb2785a1a4f78"
+  integrity sha512-rb4fx7huPiRNjmM7Fxfp6FK4W6M2gzE2oeTTWehGQp/sZgNLFMh18XZoOODi7NlMhtoBIncnc5AYNoTqYcfYTQ==
   dependencies:
     "@microsoft/load-themed-styles" "^1.7.13"
     "@uifabric/foundation" "^0.8.3"
@@ -9015,10 +9015,10 @@ terser-webpack-plugin@^1.4.1:
     webpack-sources "^1.4.0"
     worker-farm "^1.7.0"
 
-terser-webpack-plugin@^2.2.3:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/terser-webpack-plugin/-/terser-webpack-plugin-2.2.3.tgz#7b070b40e39ef177ca062a4b6d70c3acdd85defc"
-  integrity sha512-R8cqQDld4BjVKaIR0D9Q0O/QzfgXzME3wXfSxxW23ZGv5xpMDUt1NEnCuG94y1+bKASLvc5TjIHLlNo0eK8GLA==
+terser-webpack-plugin@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/terser-webpack-plugin/-/terser-webpack-plugin-2.3.0.tgz#00fd8f792a330dc572e2e2b468fd7cb5ffd7ea51"
+  integrity sha512-yez0HdpDf/iQVYGf+e/o8ZYWLb1g9d1nRRi5FIOZ4KfXbfSPT259UoqxPiSLhCnr0mlDoh+bucpYQSFbU0cEsQ==
   dependencies:
     cacache "^13.0.1"
     find-cache-dir "^3.1.0"

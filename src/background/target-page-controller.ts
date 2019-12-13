@@ -76,30 +76,30 @@ export class TargetPageController {
         });
     };
 
-    private onWindowFocusChanged = (windowId: number): void => {
-        this.browserAdapter.getAllWindows(
-            { populate: false, windowTypes: ['normal', 'popup'] },
-            (chromeWindows: chrome.windows.Window[]) => {
-                chromeWindows.forEach((chromeWindow: chrome.windows.Window) => {
-                    this.browserAdapter.tabsQuery(
-                        {
-                            active: true,
-                            windowId: chromeWindow.id,
-                        },
-                        (activeTabs: chrome.tabs.Tab[]) => {
-                            if (!this.browserAdapter.getRuntimeLastError()) {
-                                for (const activeTab of activeTabs) {
-                                    this.sendTabVisibilityChangeAction(
-                                        activeTab.id,
-                                        chromeWindow.state === 'minimized',
-                                    );
-                                }
-                            }
-                        },
-                    );
-                });
-            },
-        );
+    private onWindowFocusChanged = async (windowId: number): Promise<void> => {
+        const chromeWindows = await this.browserAdapter.getAllWindows({
+            populate: false,
+            windowTypes: ['normal', 'popup'],
+        });
+
+        chromeWindows.forEach(chromeWindow => {
+            this.browserAdapter.tabsQuery(
+                {
+                    active: true,
+                    windowId: chromeWindow.id,
+                },
+                (activeTabs: chrome.tabs.Tab[]) => {
+                    if (!this.browserAdapter.getRuntimeLastError()) {
+                        for (const activeTab of activeTabs) {
+                            this.sendTabVisibilityChangeAction(
+                                activeTab.id,
+                                chromeWindow.state === 'minimized',
+                            );
+                        }
+                    }
+                },
+            );
+        });
     };
 
     private handleTabUrlUpdate = (tabId: number, telemetry?: BaseTelemetryData): void => {

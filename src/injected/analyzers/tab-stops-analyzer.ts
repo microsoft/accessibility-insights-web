@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IframeDetector } from 'injected/iframe-detector';
 import * as Q from 'q';
+
 import { WindowUtils } from '../../common/window-utils';
 import { TabStopEvent, TabStopsListener } from '../tab-stops-listener';
 import { AxeAnalyzerResult, FocusAnalyzerConfiguration, ScanBasePayload, ScanUpdatePayload } from './analyzer';
@@ -24,8 +26,9 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         tabStopsListener: TabStopsListener,
         windowUtils: WindowUtils,
         sendMessageDelegate: (message) => void,
+        iframeDetector: IframeDetector,
     ) {
-        super(config, sendMessageDelegate);
+        super(config, sendMessageDelegate, iframeDetector);
         this.tabStopsListener = tabStopsListener;
         this.windowUtils = windowUtils;
     }
