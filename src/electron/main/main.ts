@@ -11,9 +11,11 @@ import { mainWindowConfig } from './main-window-config';
 let mainWindow: BrowserWindow;
 const platformInfo = new PlatformInfo(process);
 
-let recurringUpdateCheck;
 log.transports.file.level = 'info';
-const electronAutoUpdateCheck = new AutoUpdaterClient(autoUpdater, log);
+autoUpdater.logger = log;
+
+let recurringUpdateCheck;
+const electronAutoUpdateCheck = new AutoUpdaterClient(autoUpdater);
 
 const createWindow = () => {
     const os = platformInfo.getOs();

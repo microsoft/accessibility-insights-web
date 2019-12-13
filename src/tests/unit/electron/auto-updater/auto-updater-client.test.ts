@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AppUpdater, Logger, UpdateCheckResult } from 'electron-updater';
+import { AppUpdater, UpdateCheckResult } from 'electron-updater';
 import { AutoUpdaterClient } from 'electron/auto-update/auto-updater-client';
 import { IMock, Mock, Times } from 'typemoq';
 
@@ -17,16 +17,9 @@ describe('AutoUpdaterClient', () => {
     });
 
     it('auto-updater client checkForUpdatesAndNotify is called when we call check', async () => {
-        const autoUpdaterClient = new AutoUpdaterClient(autoUpdaterMock.object, null);
+        const autoUpdaterClient = new AutoUpdaterClient(autoUpdaterMock.object);
         await autoUpdaterClient.check();
 
         autoUpdaterMock.verifyAll();
-    });
-
-    it('sets up logger in constructor', async () => {
-        const logger = Mock.ofType<Logger>();
-        // tslint:disable-next-line:no-unused-expression
-        new AutoUpdaterClient(autoUpdaterMock.object, logger.object);
-        autoUpdaterMock.verify(m => (m.logger = logger.object), Times.once());
     });
 });
