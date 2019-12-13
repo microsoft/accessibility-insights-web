@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
-import { ScanIncompleteWarning, ScanIncompleteWarningProps } from 'DetailsView/components/iframe-permissions-warning';
+import { ScanIncompleteWarning, ScanIncompleteWarningProps } from 'DetailsView/components/scan-incomplete-warning';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
-describe('IframePermissionsWarning', () => {
+describe('ScanIncompleteWarning', () => {
     let onRenderMock: IMock<() => void>;
 
     beforeEach(() => {
