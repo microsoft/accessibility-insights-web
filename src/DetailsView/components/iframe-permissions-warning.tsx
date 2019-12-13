@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
-import { isEmpty, forOwn } from 'lodash';
+import { forOwn, isEmpty } from 'lodash';
 import { MessageBar, MessageBarType } from 'office-ui-fabric-react';
 import * as React from 'react';
 
