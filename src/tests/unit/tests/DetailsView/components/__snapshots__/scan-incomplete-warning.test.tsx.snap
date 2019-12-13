@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`IframePermissionsWarning notRendered: where no warnings were provided 1`] = `null`;
+exports[`ScanIncompleteWarning notRendered: where no warnings were provided 1`] = `null`;
 
-exports[`IframePermissionsWarning rendered: where warnings were provided 1`] = `
+exports[`ScanIncompleteWarning rendered: where warnings were provided 1`] = `
 <React.Fragment>
   <StyledMessageBarBase
     messageBarType={5}
@@ -14,7 +14,7 @@ exports[`IframePermissionsWarning rendered: where warnings were provided 1`] = `
 </React.Fragment>
 `;
 
-exports[`IframePermissionsWarning rendered: where warnings were provided, with one warning not supported 1`] = `
+exports[`ScanIncompleteWarning rendered: where warnings were provided, with one warning not supported 1`] = `
 <React.Fragment>
   <StyledMessageBarBase
     messageBarType={5}
