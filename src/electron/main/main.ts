@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { app, BrowserWindow } from 'electron';
+import log from 'electron-log';
 import { autoUpdater } from 'electron-updater';
 import { AutoUpdaterClient } from 'electron/auto-update/auto-updater-client';
 import { OSType, PlatformInfo } from 'electron/window-management/platform-info';
@@ -11,7 +12,8 @@ let mainWindow: BrowserWindow;
 const platformInfo = new PlatformInfo(process);
 
 let recurringUpdateCheck;
-const electronAutoUpdateCheck = new AutoUpdaterClient(autoUpdater);
+log.transports.file.level = 'info';
+const electronAutoUpdateCheck = new AutoUpdaterClient(autoUpdater, log);
 
 const createWindow = () => {
     const os = platformInfo.getOs();

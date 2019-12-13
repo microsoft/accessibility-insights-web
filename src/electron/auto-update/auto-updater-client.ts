@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import log from 'electron-log';
+import { AppUpdater, Logger } from 'electron-updater';
 
 export class AutoUpdaterClient {
-    constructor(private readonly autoUpdater) {
-        log.transports.file.level = 'info';
+    constructor(private readonly autoUpdater: AppUpdater, log: Logger) {
         autoUpdater.logger = log;
     }
 
