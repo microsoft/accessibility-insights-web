@@ -25,7 +25,7 @@ describe('cross-origin iframe and permissions', () => {
         // we need a second test resource server to get cross-origin content load on the page
         testResourceServer.startServer(testResourceServerConfig);
 
-        browser = await launchBrowser({ suppressFirstTimeDialog: true, addLocalhostToPermissions: true });
+        browser = await launchBrowser({ suppressFirstTimeDialog: true, addExtraPermissionsToManifest: 'localhost' });
         targetPage = await browser.newTargetPage({ testResourcePath: 'all-cross-origin-iframe.html' });
         await browser.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
 

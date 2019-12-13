@@ -17,9 +17,11 @@ const fileExists = util.promisify(fs.exists);
 const writeFile = util.promisify(fs.writeFile);
 const readFile = util.promisify(fs.readFile);
 
+export type ExtraPermissions = 'localhost';
+
 export interface ExtensionOptions {
     suppressFirstTimeDialog: boolean;
-    addLocalhostToPermissions?: boolean;
+    addExtraPermissionsToManifest?: ExtraPermissions;
 }
 
 export async function launchBrowser(extensionOptions: ExtensionOptions): Promise<Browser> {
@@ -61,16 +63,25 @@ async function verifyExtensionIsBuilt(extensionPath: string): Promise<void> {
 const alterManifestWithPermissions = async (extensionOptions: ExtensionOptions, manifestPath: string) => {
     let restore: () => Promise<void>;
 
-    if (extensionOptions.addLocalhostToPermissions) {
-        const originalManifest = await readFile(manifestPath);
+    const { addExtraPermissionsToManifest } = extensionOptions;
 
-        const localhostPermission = `http://localhost:${testResourceServerConfig.port}/*`;
-        const permissiveManifest = addPermissionToManifest(originalManifest.toString(), localhostPermission);
+    let extraPermission: string;
 
-        await writeFile(manifestPath, permissiveManifest);
-
-        restore = async () => await writeFile(manifestPath, originalManifest.toString());
+    switch (addExtraPermissionsToManifest) {
+        case 'localhost':
+            extraPermission = `http://localhost:${testResourceServerConfig.port}/*`;
+            break;
+        default:
+            return restore;
     }
+
+    const originalManifest = await readFile(manifestPath);
+
+    const permissiveManifest = addPermissionToManifest(originalManifest.toString(), extraPermission);
+
+    await writeFile(manifestPath, permissiveManifest);
+
+    restore = async () => await writeFile(manifestPath, originalManifest.toString());
 
     return restore;
 };
