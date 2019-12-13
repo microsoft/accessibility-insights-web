@@ -5,7 +5,7 @@ import { formatPageElementForSnapshot } from 'tests/common/element-snapshot-form
 import * as testResourceServer from '../../../miscellaneous/test-resource-server/resource-server';
 import { ResourceServerConfig } from '../../../miscellaneous/test-resource-server/resource-server-config';
 import { Browser } from '../../common/browser';
-import { launchBrowser } from '../../common/browser-factory';
+import { ExtraPermissions, launchBrowser } from '../../common/browser-factory';
 import { detailsViewSelectors, fastPassAutomatedChecksSelectors } from '../../common/element-identifiers/details-view-selectors';
 import { DetailsViewPage } from '../../common/page-controllers/details-view-page';
 import { TargetPage } from '../../common/page-controllers/target-page';
@@ -37,12 +37,7 @@ describe('cross-origin iframe and permissions', () => {
 
     describe('localhost permissions only', () => {
         beforeEach(async () => {
-            browser = await launchBrowser({ suppressFirstTimeDialog: true, addExtraPermissionsToManifest: 'localhost' });
-            targetPage = await browser.newTargetPage({ testResourcePath: 'all-cross-origin-iframe.html' });
-            await browser.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
-
-            fastPassAutomatedChecks = await openAutomatedChecks();
-            await fastPassAutomatedChecks.bringToFront();
+            await launchFastPassWithExtraPermissions('localhost');
         });
 
         it('does not scan inside cross-origin iframes when extension does not have permissions', async () => {
@@ -54,6 +49,15 @@ describe('cross-origin iframe and permissions', () => {
             expect(automatedChecks).toMatchSnapshot();
         });
     });
+
+    async function launchFastPassWithExtraPermissions(extraPermissions: ExtraPermissions): Promise<void> {
+        browser = await launchBrowser({ suppressFirstTimeDialog: true, addExtraPermissionsToManifest: extraPermissions });
+        targetPage = await browser.newTargetPage({ testResourcePath: 'all-cross-origin-iframe.html' });
+        await browser.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
+
+        fastPassAutomatedChecks = await openAutomatedChecks();
+        await fastPassAutomatedChecks.bringToFront();
+    }
 
     async function openAutomatedChecks(): Promise<DetailsViewPage> {
         const detailsViewPage = await browser.newDetailsViewPage(targetPage);
