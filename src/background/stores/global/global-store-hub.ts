@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { PermissionsStateStore } from 'background/stores/global/permissions-state-store';
 import { BaseStore } from '../../../common/base-store';
 import { BrowserAdapter } from '../../../common/browser-adapters/browser-adapter';
 import { StorageAdapter } from '../../../common/browser-adapters/storage-adapter';
@@ -29,6 +30,7 @@ export class GlobalStoreHub implements StoreHub {
     public scopingStore: ScopingStore;
     public assessmentStore: AssessmentStore;
     public userConfigurationStore: UserConfigurationStore;
+    public permissionsStateStore: PermissionsStateStore;
 
     constructor(
         globalActionHub: GlobalActionHub,
@@ -67,6 +69,9 @@ export class GlobalStoreHub implements StoreHub {
             globalActionHub.userConfigurationActions,
             indexedDbInstance,
         );
+        this.permissionsStateStore = new PermissionsStateStore(
+            globalActionHub.permissionsStateActions,
+        );
     }
 
     public initialize(): void {
@@ -76,6 +81,7 @@ export class GlobalStoreHub implements StoreHub {
         this.scopingStore.initialize();
         this.assessmentStore.initialize();
         this.userConfigurationStore.initialize();
+        this.permissionsStateStore.initialize();
     }
 
     public getAllStores(): BaseStore<any>[] {
@@ -86,6 +92,7 @@ export class GlobalStoreHub implements StoreHub {
             this.scopingStore,
             this.assessmentStore,
             this.userConfigurationStore,
+            this.permissionsStateStore,
         ];
     }
 
