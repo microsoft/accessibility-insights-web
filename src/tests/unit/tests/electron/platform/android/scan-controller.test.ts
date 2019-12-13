@@ -6,6 +6,7 @@ import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-hand
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { Action } from 'common/flux/action';
 import { Logger } from 'common/logging/logger';
+import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { SCAN_COMPLETED, SCAN_FAILED, SCAN_STARTED } from 'electron/common/electron-telemetry-events';
 import { PortPayload } from 'electron/flux/action/device-action-payloads';
 import { ScanActions } from 'electron/flux/action/scan-actions';
@@ -17,7 +18,6 @@ import { isFunction } from 'lodash';
 import { tick } from 'tests/unit/common/tick';
 import { axeRuleResultExample } from 'tests/unit/tests/electron/flux/action-creator/scan-result-example';
 import { ExpectedCallType, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 
 describe('ScanController', () => {
     const port = 1111;
