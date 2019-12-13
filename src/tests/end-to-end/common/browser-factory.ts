@@ -4,6 +4,7 @@ import { generateUID } from 'common/uid-generator';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as Puppeteer from 'puppeteer';
+import { ManifestOveride } from 'tests/end-to-end/common/manifest-overide';
 import * as util from 'util';
 import { testResourceServerConfig } from '../setup/test-resource-server-config';
 import { Browser } from './browser';
@@ -14,8 +15,6 @@ export const chromeLogsPath = path.join(__dirname, '../../../../test-results/e2e
 export const browserLogPath = (browserInstanceId: string): string => path.join(chromeLogsPath, browserInstanceId);
 
 const fileExists = util.promisify(fs.exists);
-const writeFile = util.promisify(fs.writeFile);
-const readFile = util.promisify(fs.readFile);
 
 export type ExtraPermissions = 'all-origins' | 'fake-activeTab';
 
@@ -31,11 +30,13 @@ export async function launchBrowser(extensionOptions: ExtensionOptions): Promise
     const devExtensionPath = `${(global as any).rootDir}/drop/extension/dev/product`;
     const manifestPath = getManifestPath(devExtensionPath);
 
-    const onClose = await alterManifestWithPermissions(extensionOptions, manifestPath);
+    const manifestOveride = await ManifestOveride.fromManifestPath(manifestPath);
+    addPermissions(extensionOptions, manifestOveride);
+    await manifestOveride.write();
 
     const puppeteerBrowser = await launchNewBrowser(browserInstanceId, devExtensionPath);
 
-    const browser = new Browser(browserInstanceId, puppeteerBrowser, onClose);
+    const browser = new Browser(browserInstanceId, puppeteerBrowser, manifestOveride.restoreOriginalManifest);
 
     const backgroundPage = await browser.backgroundPage();
     if (extensionOptions.suppressFirstTimeDialog) {
@@ -60,46 +61,25 @@ async function verifyExtensionIsBuilt(extensionPath: string): Promise<void> {
     }
 }
 
-const alterManifestWithPermissions = async (extensionOptions: ExtensionOptions, manifestPath: string) => {
-    let restore: () => Promise<void>;
-
+const addPermissions = (extensionOptions: ExtensionOptions, manifestOveride: ManifestOveride): void => {
     const { addExtraPermissionsToManifest } = extensionOptions;
 
-    let extraPermission: string;
-
     switch (addExtraPermissionsToManifest) {
-        // we need to add localhost origin permission in order to fake activeTab
-        // the main reason is puppeteer lacks an API to activate the extension
-        // via clicking the extenion icon (on the toolbar) or sending the extension shortcut
-        // see https://github.com/puppeteer/puppeteer/issues/2486 for more details
         case 'fake-activeTab':
-            extraPermission = `http://localhost:${testResourceServerConfig.port}/*`;
+            // we need to add localhost origin permission in order to fake activeTab
+            // the main reason is puppeteer lacks an API to activate the extension
+            // via clicking the extenion icon (on the toolbar) or sending the extension shortcut
+            // see https://github.com/puppeteer/puppeteer/issues/2486 for more details
+            manifestOveride.addTemporaryPermission(`http://localhost:${testResourceServerConfig.port}/*`);
             break;
+
         case 'all-origins':
-            extraPermission = '*://*/*';
+            manifestOveride.addTemporaryPermission('*://*/*');
             break;
         default:
-            return restore;
+        // no-op
     }
-
-    const originalManifest = await readFile(manifestPath);
-
-    const permissiveManifest = addPermissionToManifest(originalManifest.toString(), extraPermission);
-
-    await writeFile(manifestPath, permissiveManifest);
-
-    restore = async () => await writeFile(manifestPath, originalManifest.toString());
-
-    return restore;
 };
-
-function addPermissionToManifest(originalManifest: string, permissionToAdd: string): string {
-    const manifest = JSON.parse(originalManifest);
-
-    manifest['permissions'].push(permissionToAdd);
-
-    return JSON.stringify(manifest, null, 2);
-}
 
 async function launchNewBrowser(browserInstanceId: string, extensionPath: string): Promise<Puppeteer.Browser> {
     // It's important that we verify this before calling Puppeteer.launch because its behavior if the
