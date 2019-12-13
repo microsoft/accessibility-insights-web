@@ -594,7 +594,7 @@ describe('ActionCreatorTest', () => {
             scanResult: null,
             testType: VisualizationType.HeadingsAssessment,
             key: 'key',
-            pageHasIframes: true,
+            scanIncompleteWarnings: [],
         };
 
         const validator = new ActionCreatorValidator()

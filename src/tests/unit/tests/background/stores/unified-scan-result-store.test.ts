@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { UnifiedScanCompletedPayload } from '../../../../../background/actions/action-payloads';
 import { UnifiedScanResultActions } from '../../../../../background/actions/unified-scan-result-actions';
 import { UnifiedScanResultStore } from '../../../../../background/stores/unified-scan-result-store';
@@ -26,6 +27,7 @@ describe('UnifiedScanResultStore Test', () => {
         expect(defaultState.results).toBeNull();
         expect(defaultState.rules).toBeNull();
         expect(defaultState.toolInfo).toBeNull();
+        expect(defaultState.scanIncompleteWarnings).toBeNull();
         expect(defaultState.screenshotData).toBeNull();
         expect(defaultState.platformInfo).toBeNull();
     });
@@ -56,6 +58,7 @@ describe('UnifiedScanResultStore Test', () => {
                     name: 'test-scan-engine-name',
                 },
             },
+            scanIncompleteWarnings: ['some-incomplete-warning-id' as ScanIncompleteWarningId],
             screenshotData: {
                 base64PngData: 'testScreenshotText',
             },
@@ -70,6 +73,7 @@ describe('UnifiedScanResultStore Test', () => {
             results: payload.scanResult,
             toolInfo: payload.toolInfo,
             targetAppInfo,
+            scanIncompleteWarnings: payload.scanIncompleteWarnings,
             screenshotData: payload.screenshotData,
             platformInfo: payload.platformInfo,
         };

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IframeDetector } from 'injected/iframe-detector';
+import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { Message } from '../../../../../common/message';
@@ -20,11 +20,11 @@ describe('TabStopsAnalyzerTests', () => {
     let tabStopsListenerMock: IMock<TabStopsListener>;
     let tabEventHandler: (tabEvent: TabStopEvent) => void;
     let setTimeOutCallBack: () => void;
-    let iframeDetectorMock: IMock<IframeDetector>;
+    let scanIncompleteWarningDetectorMock: IMock<ScanIncompleteWarningDetector>;
 
     beforeEach(() => {
         windowUtilsMock = Mock.ofType(WindowUtils);
-        iframeDetectorMock = Mock.ofType<IframeDetector>();
+        scanIncompleteWarningDetectorMock = Mock.ofType<ScanIncompleteWarningDetector>();
         sendMessageMock = Mock.ofInstance(message => {}, MockBehavior.Strict);
         configStub = {
             analyzerProgressMessageType: 'sample progress message type',
@@ -37,14 +37,14 @@ describe('TabStopsAnalyzerTests', () => {
         setTimeOutCallBack = null;
         tabStopsListenerMock = Mock.ofType(TabStopsListener);
 
-        iframeDetectorMock.setup(idm => idm.hasIframes()).returns(() => true);
+        scanIncompleteWarningDetectorMock.setup(idm => idm.detectScanIncompleteWarnings()).returns(() => []);
 
         testSubject = new TabStopsAnalyzer(
             configStub,
             tabStopsListenerMock.object,
             windowUtilsMock.object,
             sendMessageMock.object,
-            iframeDetectorMock.object,
+            scanIncompleteWarningDetectorMock.object,
         );
         typeStub = -1 as VisualizationType;
     });
@@ -63,7 +63,7 @@ describe('TabStopsAnalyzerTests', () => {
                 selectorMap: resultsStub,
                 scanResult: null,
                 testType: typeStub,
-                pageHasIframes: true,
+                scanIncompleteWarnings: [],
             },
         };
         const expectedOnProgressMessage: Message = {
@@ -111,7 +111,7 @@ describe('TabStopsAnalyzerTests', () => {
                 selectorMap: resultsStub,
                 scanResult: null,
                 testType: typeStub,
-                pageHasIframes: true,
+                scanIncompleteWarnings: [],
             },
         };
         const expectedOnProgressMessage: Message = {

@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { BoundingRectangle } from 'electron/platform/android/scan-results';
 import { GuidanceLink } from '../../../scanner/rule-to-links-mappings';
+import { ScanIncompleteWarningId } from '../scan-incomplete-warnings';
 
 // this is similar to `TestEngine` interface from axe-core
 export interface ScanEngineProperties {
@@ -55,6 +56,7 @@ export interface UnifiedScanResultStoreData {
     platformInfo?: PlatformData;
     toolInfo?: ToolData;
     targetAppInfo?: TargetAppData;
+    scanIncompleteWarnings?: ScanIncompleteWarningId[];
     screenshotData?: ScreenshotData;
 }
 
