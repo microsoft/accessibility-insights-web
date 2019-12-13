@@ -29,17 +29,7 @@ export async function launchBrowser(extensionOptions: ExtensionOptions): Promise
     const devExtensionPath = `${(global as any).rootDir}/drop/extension/dev/product`;
     const manifestPath = getManifestPath(devExtensionPath);
 
-    let onClose: () => Promise<void>;
-
-    if (extensionOptions.addLocalhostToPermissions) {
-        const originalManifest = await readFile(manifestPath);
-
-        const permissiveManifest = addLocalhostPermissionsToManifest(originalManifest.toString());
-
-        await writeFile(manifestPath, permissiveManifest);
-
-        onClose = async () => await writeFile(manifestPath, originalManifest.toString());
-    }
+    const onClose = await alterManifestWithPermissions(extensionOptions, manifestPath);
 
     const puppeteerBrowser = await launchNewBrowser(browserInstanceId, devExtensionPath);
 
@@ -68,10 +58,27 @@ async function verifyExtensionIsBuilt(extensionPath: string): Promise<void> {
     }
 }
 
-function addLocalhostPermissionsToManifest(originalManifest: string): string {
+const alterManifestWithPermissions = async (extensionOptions: ExtensionOptions, manifestPath: string) => {
+    let restore: () => Promise<void>;
+
+    if (extensionOptions.addLocalhostToPermissions) {
+        const originalManifest = await readFile(manifestPath);
+
+        const localhostPermission = `http://localhost:${testResourceServerConfig.port}/*`;
+        const permissiveManifest = addPermissionToManifest(originalManifest.toString(), localhostPermission);
+
+        await writeFile(manifestPath, permissiveManifest);
+
+        restore = async () => await writeFile(manifestPath, originalManifest.toString());
+    }
+
+    return restore;
+};
+
+function addPermissionToManifest(originalManifest: string, permissionToAdd: string): string {
     const manifest = JSON.parse(originalManifest);
 
-    manifest['permissions'].push(`http://localhost:${testResourceServerConfig.port}/*`);
+    manifest['permissions'].push(permissionToAdd);
 
     return JSON.stringify(manifest, null, 2);
 }
