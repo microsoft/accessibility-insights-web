@@ -4,7 +4,6 @@ import { Interpreter } from 'background/interpreter';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { Message } from 'common/message';
 import { Messages } from 'common/messages';
-import { Permissions } from 'webextension-polyfill-ts';
 
 export class PermissionsStateTracker {
     constructor(private browserAdapter: BrowserAdapter, private interpreter: Interpreter) {}
@@ -16,9 +15,11 @@ export class PermissionsStateTracker {
     }
 
     public notifyChange(): void {
-        const allUrlAndFilePermissions: Permissions.Permissions = { origins: ['*://*/*'] };
+        const allUrlAndFilePermissions: string = '*://*/*';
 
-        const permissionsState = this.browserAdapter.containsPermissions(allUrlAndFilePermissions);
+        const permissionsState = this.browserAdapter.containsPermissions({
+            origins: [allUrlAndFilePermissions],
+        });
 
         const message: Message = {
             messageType: Messages.PermissionsState.PermissionsStateChanged,
