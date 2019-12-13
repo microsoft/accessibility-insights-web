@@ -16,7 +16,7 @@ const testResourceServerConfig: ResourceServerConfig = {
     absolutePath: path.join(__dirname, '../../test-resources/'),
 };
 
-describe('cross-origin iframe and permissions', () => {
+describe('scanning', () => {
     let browser: Browser;
     let targetPage: TargetPage;
     let fastPassAutomatedChecks: DetailsViewPage;
@@ -30,7 +30,7 @@ describe('cross-origin iframe and permissions', () => {
         testResourceServer.stopServer(testResourceServerConfig);
     });
 
-    describe('localhost permissions only', () => {
+    describe('with localhost permissions only', () => {
         beforeEach(async () => {
             await launchFastPassWithExtraPermissions('localhost');
         });
@@ -42,7 +42,29 @@ describe('cross-origin iframe and permissions', () => {
             }
         });
 
-        it('does not scan inside cross-origin iframes when extension does not have permissions', async () => {
+        it('does not get results from inside cross-origin iframes', async () => {
+            const automatedChecks = await formatPageElementForSnapshot(
+                fastPassAutomatedChecks,
+                fastPassAutomatedChecksSelectors.ruleDetailsGroups,
+            );
+
+            expect(automatedChecks).toMatchSnapshot();
+        });
+    });
+
+    describe('with all-origins permissions', () => {
+        beforeEach(async () => {
+            await launchFastPassWithExtraPermissions('all-origins');
+        });
+
+        afterEach(async () => {
+            if (browser) {
+                await browser.close();
+                browser = undefined;
+            }
+        });
+
+        it('does find results from inside cross-origin iframes', async () => {
             const automatedChecks = await formatPageElementForSnapshot(
                 fastPassAutomatedChecks,
                 fastPassAutomatedChecksSelectors.ruleDetailsGroups,
