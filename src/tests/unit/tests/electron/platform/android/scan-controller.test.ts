@@ -17,6 +17,7 @@ import { isFunction } from 'lodash';
 import { tick } from 'tests/unit/common/tick';
 import { axeRuleResultExample } from 'tests/unit/tests/electron/flux/action-creator/scan-result-example';
 import { ExpectedCallType, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 
 describe('ScanController', () => {
     const port = 1111;
@@ -128,6 +129,7 @@ describe('ScanController', () => {
                     version: 'test-scan-engine-version',
                 },
             },
+            scanIncompleteWarnings: ['test-scan-incomplete-warning' as ScanIncompleteWarningId],
         };
 
         unifiedResultsBuilderMock.setup(builder => builder(scanResults)).returns(() => unifiedPayload);
