@@ -17,7 +17,7 @@ const fileExists = util.promisify(fs.exists);
 const writeFile = util.promisify(fs.writeFile);
 const readFile = util.promisify(fs.readFile);
 
-export type ExtraPermissions = 'localhost';
+export type ExtraPermissions = 'localhost' | 'all-origins';
 
 export interface ExtensionOptions {
     suppressFirstTimeDialog: boolean;
@@ -70,6 +70,9 @@ const alterManifestWithPermissions = async (extensionOptions: ExtensionOptions, 
     switch (addExtraPermissionsToManifest) {
         case 'localhost':
             extraPermission = `http://localhost:${testResourceServerConfig.port}/*`;
+            break;
+        case 'all-origins':
+            extraPermission = '*://*/*';
             break;
         default:
             return restore;
