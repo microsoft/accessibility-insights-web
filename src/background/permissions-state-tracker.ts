@@ -17,16 +17,19 @@ export class PermissionsStateTracker {
     public notifyChange(): void {
         const allUrlAndFilePermissions: string = '*://*/*';
 
-        const permissionsState = this.browserAdapter.containsPermissions({
-            origins: [allUrlAndFilePermissions],
-        });
+        // tslint:disable-next-line: no-floating-promises
+        this.browserAdapter
+            .containsPermissions({
+                origins: [allUrlAndFilePermissions],
+            })
+            .then(result => {
+                const message: Message = {
+                    messageType: Messages.PermissionsState.PermissionsStateChanged,
+                    payload: result,
+                    tabId: null,
+                };
 
-        const message: Message = {
-            messageType: Messages.PermissionsState.PermissionsStateChanged,
-            payload: permissionsState,
-            tabId: null,
-        };
-
-        this.interpreter.interpret(message);
+                this.interpreter.interpret(message);
+            });
     }
 }
