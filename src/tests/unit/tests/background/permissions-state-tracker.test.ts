@@ -5,8 +5,8 @@ import { PermissionsStateTracker } from 'background/permissions-state-tracker';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { Message } from 'common/message';
 import { Messages } from 'common/messages';
-import { IMock, It, Mock, Times } from 'typemoq';
 import { tick } from 'tests/unit/common/tick';
+import { IMock, It, Mock, Times } from 'typemoq';
 
 describe('PermissionsStateTracker', () => {
     let testSubject: PermissionsStateTracker;
