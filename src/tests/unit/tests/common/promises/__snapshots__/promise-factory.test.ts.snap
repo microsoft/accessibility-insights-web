@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PromiseFactory poll times out if the predicate does not become true 1`] = `[Error: Timed out after polling for 10 ms]`;
+
+exports[`PromiseFactory timeout times out 1`] = `[Error: Timed out after 1 ms]`;
