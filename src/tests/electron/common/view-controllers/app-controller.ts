@@ -10,6 +10,8 @@ import * as WebDriverIO from 'webdriverio';
 import { dismissTelemetryOptInDialog } from '../dismiss-telemetry-opt-in-dialog';
 import { AutomatedChecksViewController } from './automated-checks-view-controller';
 
+const promiseFactory = createDefaultPromiseFactory();
+
 // These are workarounds for https://github.com/electron-userland/spectron/issues/343
 //
 // Note that this is *not an exhaustive list* of the actually-promise APIs from spectron; this is
@@ -34,7 +36,6 @@ declare module 'spectron' {
 
 export class AppController {
     public client: WebDriverIO.Client<void>;
-    private promiseFactory = createDefaultPromiseFactory();
 
     constructor(public app: Application) {
         this.client = app.client;
@@ -85,13 +86,19 @@ export class AppController {
 
         const boundsAreSetTo = candidateBounds => bounds.width === candidateBounds.width && bounds.height === candidateBounds.height;
         const boundsAreSet = async () => boundsAreSetTo(await this.app.browserWindow.getBounds());
-        await this.promiseFactory.poll(boundsAreSet, { timeoutInMilliseconds: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS });
+        await promiseFactory.poll(boundsAreSet, { timeoutInMilliseconds: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS });
+
+        // The browser takes a little time to settle and re-render the DOM
+        await promiseFactory.waitForDuration(200);
     }
 
     private async unmaximize(): Promise<void> {
         await this.app.browserWindow.unmaximize();
 
         const isUnmaximized = async () => !(await this.app.browserWindow.isMaximized());
-        await this.promiseFactory.poll(isUnmaximized, { timeoutInMilliseconds: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS });
+        await promiseFactory.poll(isUnmaximized, { timeoutInMilliseconds: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS });
+
+        // The browser takes a little time to settle and re-render the DOM
+        await promiseFactory.waitForDuration(200);
     }
 }

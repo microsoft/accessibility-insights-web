@@ -7,10 +7,12 @@ type PollOptions = {
     timeoutInMilliseconds?: number;
 };
 type PollPromise = (predicate: () => Promise<boolean>, options?: PollOptions) => Promise<void>;
+type WaitForDurationPromise = (durationInMilliseconds: number) => Promise<void>;
 
 export type PromiseFactory = {
     timeout: TimeoutPromise;
     poll: PollPromise;
+    waitForDuration: WaitForDurationPromise;
 };
 
 const createTimeout: TimeoutPromise = <T>(promise: Promise<T>, delayInMilliseconds: number) => {
@@ -43,16 +45,21 @@ const createPollPromise: PollPromise = async (predicate: () => Promise<boolean>,
             break;
         }
 
-        // false positive
-        // tslint:disable-next-line: no-string-based-set-timeout
-        await new Promise(resolve => setTimeout(resolve, options.pollIntervalInMilliseconds));
+        await createWaitForDurationPromise(options.pollIntervalInMilliseconds);
     } while (!timedOut);
     throw new Error(`Timed out after polling for ${options.timeoutInMilliseconds} ms`);
+};
+
+const createWaitForDurationPromise: WaitForDurationPromise = async (durationInMilliseconds: number) => {
+    // false positive
+    // tslint:disable-next-line: no-string-based-set-timeout
+    await new Promise(resolve => setTimeout(resolve, durationInMilliseconds));
 };
 
 export const createDefaultPromiseFactory = (): PromiseFactory => {
     return {
         timeout: createTimeout,
         poll: createPollPromise,
+        waitForDuration: createWaitForDurationPromise,
     };
 };
