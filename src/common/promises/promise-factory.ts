@@ -15,15 +15,16 @@ export type PromiseFactory = {
     waitForDuration: WaitForDurationPromise;
 };
 
-const createTimeout: TimeoutPromise = <T>(promise: Promise<T>, delayInMilliseconds: number) => {
-    const timeout = new Promise<T>((resolve, reject) => {
-        const timeoutId = setTimeout(() => {
-            clearTimeout(timeoutId);
-            reject(new Error(`Timed out after ${delayInMilliseconds} ms`));
-        }, delayInMilliseconds);
-    });
+const createTimeout: TimeoutPromise = async <T>(originalPromise: Promise<T>, delayInMilliseconds: number) => {
+    const timeoutSentinelValue = {};
+    const timeoutPromise = createWaitForDurationPromise(delayInMilliseconds).then(() => timeoutSentinelValue);
 
-    return Promise.race([promise, timeout]);
+    const sentinelOrReturnValue = await Promise.race([originalPromise, timeoutPromise]);
+    if (sentinelOrReturnValue === timeoutSentinelValue) {
+        throw new Error(`Timed out after ${delayInMilliseconds} ms`);
+    } else {
+        return sentinelOrReturnValue as T;
+    }
 };
 
 const createPollPromise: PollPromise = async (predicate: () => Promise<boolean>, options?: PollOptions) => {
