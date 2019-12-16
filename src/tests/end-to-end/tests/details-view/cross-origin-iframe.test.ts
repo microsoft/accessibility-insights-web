@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import * as path from 'path';
 import { ElementHandle } from 'puppeteer';
-import { formatPageElementForSnapshot } from 'tests/common/element-snapshot-formatter';
 import * as testResourceServer from '../../../miscellaneous/test-resource-server/resource-server';
 import { ResourceServerConfig } from '../../../miscellaneous/test-resource-server/resource-server-config';
 import { Browser } from '../../common/browser';
@@ -119,7 +118,7 @@ describe('scanning', () => {
 
             expect(expectedCount).not.toBeNull();
 
-            const countElement = await ruleDetail.$('.count'); // change this to use automation-id
+            const countElement = await ruleDetail.$(fastPassAutomatedChecksSelectors.failureCount);
             const count = await fastPassAutomatedChecks.evaluate(element => parseInt(element.innerHTML, 10), countElement);
 
             expect(count).toBe(expectedCount);

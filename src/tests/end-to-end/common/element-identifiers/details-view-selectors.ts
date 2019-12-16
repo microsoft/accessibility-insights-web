@@ -4,6 +4,7 @@ import { resultSectionAutomationId } from 'common/components/cards/result-sectio
 import { ruleDetailsGroupAutomationId } from 'common/components/cards/rules-with-instances';
 import { overviewHeadingAutomationId } from 'DetailsView/components/overview-content/overview-heading';
 import { startOverAutomationId } from 'DetailsView/components/start-over-component-factory';
+import { failureCountAutomationId } from 'reports/components/outcome-chip';
 import { cardsRuleIdAutomationId, ruleDetailAutomationId } from 'reports/components/report-sections/minimal-rule-header';
 
 const getAutomationIdSelector = (id: string) => `[data-automation-id="${id}"]`;
@@ -27,6 +28,7 @@ export const fastPassAutomatedChecksSelectors = {
     ruleDetailsGroups: getAutomationIdSelector(ruleDetailsGroupAutomationId),
     ruleDetail: getAutomationIdSelector(ruleDetailAutomationId),
     cardsRuleId: getAutomationIdSelector(cardsRuleIdAutomationId),
+    failureCount: getAutomationIdSelector(failureCountAutomationId),
 };
 
 export const overviewSelectors = {
