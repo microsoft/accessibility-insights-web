@@ -18,7 +18,9 @@ export abstract class ViewController {
         // semantics than Puppeteer; in particular, it requires the element be in the viewport
         // but doesn't scroll the page to the element, so it's easy for it to fail in ways that
         // are dependent on the test environment.
-        await this.screenshotOnError(async () => this.client.waitForExist(selector, timeout));
+        await this.screenshotOnError(async () => {
+            throw new Error();
+        });
     }
 
     public async click(selector: string): Promise<void> {
