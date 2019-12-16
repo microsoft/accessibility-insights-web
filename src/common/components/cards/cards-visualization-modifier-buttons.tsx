@@ -28,13 +28,11 @@ export const CardsVisualizationModifierButtons = NamedFC<CardsVisualizationModif
         let expandCollapseAllButtonHandler = deps.cardSelectionMessageCreator.collapseAllRules;
         let buttonText = 'Collapse all';
         let iconName = 'ChevronDown';
-        let ariaExpanded = true;
 
         if (allCardsCollapsed) {
             expandCollapseAllButtonHandler = deps.cardSelectionMessageCreator.expandAllRules;
             buttonText = 'Expand all';
             iconName = 'ChevronRight';
-            ariaExpanded = false;
         }
 
         return (
@@ -42,7 +40,7 @@ export const CardsVisualizationModifierButtons = NamedFC<CardsVisualizationModif
                 <ActionButton
                     iconProps={{ iconName }}
                     onClick={expandCollapseAllButtonHandler}
-                    aria-Expanded={ariaExpanded}
+                    aria-expanded={allCardsCollapsed}
                     className={expandCollapseAllButton}
                 >
                     {buttonText}
