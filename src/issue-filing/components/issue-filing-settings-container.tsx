@@ -31,13 +31,13 @@ export const IssueFilingSettingsContainer = NamedFC<IssueFilingSettingsContainer
     const issueFilingServices = deps.issueFilingServiceProvider.allVisible();
 
     return (
-        <>
+        <div aria-labelledby="issue-filing">
             <IssueFilingChoiceGroup
                 onSelectedServiceChange={props.onSelectedServiceChange}
                 selectedIssueFilingService={selectedIssueFilingService}
                 issueFilingServices={issueFilingServices}
             />
             <SettingsForm deps={deps} settings={selectedIssueFilingServiceData} onPropertyUpdateCallback={props.onPropertyUpdateCallback} />
-        </>
+        </div>
     );
 });
