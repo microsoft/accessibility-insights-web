@@ -44,7 +44,7 @@ describe('scanning', () => {
         });
 
         it('does not get results from inside cross-origin iframes', async () => {
-            const ruleDetails = await fastPassAutomatedChecks.getSelectorElements('.rule-detail'); // change this to use automation-id
+            const ruleDetails = await fastPassAutomatedChecks.getSelectorElements(fastPassAutomatedChecksSelectors.ruleDetail);
 
             expect(ruleDetails).toHaveLength(2);
 
@@ -70,7 +70,7 @@ describe('scanning', () => {
         });
 
         it('does find results from inside cross-origin iframes', async () => {
-            const ruleDetails = await fastPassAutomatedChecks.getSelectorElements('.rule-detail'); // change this to use automation-id
+            const ruleDetails = await fastPassAutomatedChecks.getSelectorElements(fastPassAutomatedChecksSelectors.ruleDetail);
 
             expect(ruleDetails).toHaveLength(5);
 
