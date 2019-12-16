@@ -215,14 +215,6 @@ export class MainWindowInitializer extends WindowInitializer {
 
         this.frameUrlSearchInitiator.listenToStore();
 
-        const unifiedResultSender = new UnifiedResultSender(
-            this.browserAdapter.sendMessageToFrames,
-            convertScanResultsToUnifiedResults,
-            convertScanResultsToUnifiedRules,
-            environmentInfoProvider,
-            generateUID,
-        );
-
         // TODO: use something based on the permissions store instead once that's piped in
         const crossOriginPermissionDetector: CrossOriginPermissionDetector = {
             hasCrossOriginPermissions: () => true,
@@ -230,6 +222,15 @@ export class MainWindowInitializer extends WindowInitializer {
 
         const iframeDetector = new IframeDetector(document);
         const scanIncompleteWarningDetector = new ScanIncompleteWarningDetector(iframeDetector, crossOriginPermissionDetector);
+
+        const unifiedResultSender = new UnifiedResultSender(
+            this.browserAdapter.sendMessageToFrames,
+            convertScanResultsToUnifiedResults,
+            convertScanResultsToUnifiedRules,
+            environmentInfoProvider,
+            generateUID,
+            scanIncompleteWarningDetector,
+        );
 
         const analyzerProvider = new AnalyzerProvider(
             this.tabStopsListener,

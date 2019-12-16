@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
+import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { IMock, Mock, Times } from 'typemoq';
 import { UnifiedScanCompletedPayload } from '../../../../../background/actions/action-payloads';
 import { EnvironmentInfoProvider } from '../../../../../common/environment-info-provider';
@@ -37,12 +39,17 @@ describe('sendConvertedResults', () => {
         convertToUnifiedRulesMock.setup(m => m(axeInputResults)).returns(val => unifiedRules);
         environmentInfoProviderMock.setup(provider => provider.getToolData()).returns(() => toolInfo);
 
+        const stubScanIncompleteWarnings = ['test-scan-incomplete-warning' as ScanIncompleteWarningId];
+        const scanIncompleteWarningDetectorMock = Mock.ofType<ScanIncompleteWarningDetector>();
+        scanIncompleteWarningDetectorMock.setup(m => m.detectScanIncompleteWarnings()).returns(() => stubScanIncompleteWarnings);
+
         const testSubject = new UnifiedResultSender(
             sendDelegate.object,
             convertToUnifiedMock.object,
             convertToUnifiedRulesMock.object,
             environmentInfoProviderMock.object,
             uuidGeneratorStub,
+            scanIncompleteWarningDetectorMock.object,
         );
 
         testSubject.sendResults({
@@ -62,6 +69,7 @@ describe('sendConvertedResults', () => {
                 name: 'title',
                 url: 'url',
             },
+            scanIncompleteWarnings: stubScanIncompleteWarnings,
         };
         const expectedMessage: Message = {
             messageType: Messages.UnifiedScan.ScanCompleted,
