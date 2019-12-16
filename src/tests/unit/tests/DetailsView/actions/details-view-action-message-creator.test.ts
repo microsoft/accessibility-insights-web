@@ -269,19 +269,6 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         dispatcherMock.verify(dispatcher => dispatcher.sendTelemetry(DETAILS_VIEW_OPEN, telemetry), Times.once());
     });
 
-    test('onIframePermissionWarningShown', () => {
-        const telemetry = {
-            triggeredBy: TriggeredByNotApplicable,
-            source: TelemetryEventSource.DetailsView,
-        };
-
-        telemetryFactoryMock.setup(tfm => tfm.fromDetailsViewNoTriggeredBy()).returns(() => telemetry);
-
-        testSubject.onIframePermissionWarningShown();
-
-        dispatcherMock.verify(dispatcher => dispatcher.sendTelemetry(IFRAME_PERMISSION_WARNING_SHOWN, telemetry), Times.once());
-    });
-
     test('startOverAssessment', () => {
         const requirementStub = 'fake-requirement';
         const event = eventStubFactory.createMouseClickEvent() as any;

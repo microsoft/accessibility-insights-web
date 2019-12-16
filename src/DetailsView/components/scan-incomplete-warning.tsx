@@ -7,7 +7,6 @@ import * as React from 'react';
 
 export type ScanIncompleteWarningProps = {
     warnings: ScanIncompleteWarningId[];
-    onRender: () => void;
 };
 
 const warningToMessage: { [key in ScanIncompleteWarningId]: (props: ScanIncompleteWarningProps) => JSX.Element } = {
@@ -22,7 +21,6 @@ export class ScanIncompleteWarning extends React.PureComponent<ScanIncompleteWar
             return null;
         }
 
-        this.props.onRender();
         const messages = [];
         forOwn(warningToMessage, (render, warningId: ScanIncompleteWarningId) => {
             if (!this.props.warnings.includes(warningId)) {
