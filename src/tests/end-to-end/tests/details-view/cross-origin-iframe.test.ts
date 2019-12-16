@@ -112,7 +112,7 @@ describe('scanning', () => {
         expectedCounts: { [ruleName: string]: number },
     ): Promise<void> {
         for (const ruleDetail of actualRuleDetails) {
-            const ruleNameElement = await ruleDetail.$('[data-automation-id="cards-rule-id"]'); // update this
+            const ruleNameElement = await ruleDetail.$(fastPassAutomatedChecksSelectors.cardsRuleId);
             const ruleName = await fastPassAutomatedChecks.evaluate(element => element.innerHTML, ruleNameElement);
 
             const expectedCount = expectedCounts[ruleName];
