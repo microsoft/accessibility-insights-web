@@ -56,7 +56,7 @@ describe('scanning', () => {
         });
     });
 
-    describe.only('with all-origins permissions', () => {
+    describe('with all-origins permissions', () => {
         beforeEach(async () => {
             await launchFastPassWithExtraPermissions('all-origins');
         });
