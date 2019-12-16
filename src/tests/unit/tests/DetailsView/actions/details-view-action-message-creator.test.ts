@@ -15,7 +15,6 @@ import {
     EXPORT_RESULTS,
     ExportResultsTelemetryData,
     FeatureFlagToggleTelemetryData,
-    IFRAME_PERMISSION_WARNING_SHOWN,
     RequirementActionTelemetryData,
     RequirementSelectTelemetryData,
     TelemetryEventSource,
