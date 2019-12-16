@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as path from 'path';
+import { ElementHandle } from 'puppeteer';
 import { formatPageElementForSnapshot } from 'tests/common/element-snapshot-formatter';
 import * as testResourceServer from '../../../miscellaneous/test-resource-server/resource-server';
 import { ResourceServerConfig } from '../../../miscellaneous/test-resource-server/resource-server-config';
@@ -43,16 +44,20 @@ describe('scanning', () => {
         });
 
         it('does not get results from inside cross-origin iframes', async () => {
-            const automatedChecks = await formatPageElementForSnapshot(
-                fastPassAutomatedChecks,
-                fastPassAutomatedChecksSelectors.ruleDetailsGroups,
-            );
+            const ruleDetails = await fastPassAutomatedChecks.getSelectorElements('.rule-detail'); // change this to use automation-id
 
-            expect(automatedChecks).toMatchSnapshot();
+            expect(ruleDetails).toHaveLength(2);
+
+            const expectedCounts = {
+                'frame-title': 2,
+                'html-has-lang': 1,
+            };
+
+            await assertFailureCounts(ruleDetails, expectedCounts);
         });
     });
 
-    describe('with all-origins permissions', () => {
+    describe.only('with all-origins permissions', () => {
         beforeEach(async () => {
             await launchFastPassWithExtraPermissions('all-origins');
         });
@@ -65,12 +70,19 @@ describe('scanning', () => {
         });
 
         it('does find results from inside cross-origin iframes', async () => {
-            const automatedChecks = await formatPageElementForSnapshot(
-                fastPassAutomatedChecks,
-                fastPassAutomatedChecksSelectors.ruleDetailsGroups,
-            );
+            const ruleDetails = await fastPassAutomatedChecks.getSelectorElements('.rule-detail'); // change this to use automation-id
 
-            expect(automatedChecks).toMatchSnapshot();
+            expect(ruleDetails).toHaveLength(5);
+
+            const expectedCounts = {
+                'duplicate-id': 1,
+                'frame-title': 2,
+                'html-has-lang': 1,
+                'image-alt': 9,
+                label: 3,
+            };
+
+            await assertFailureCounts(ruleDetails, expectedCounts);
         });
     });
 
@@ -93,5 +105,24 @@ describe('scanning', () => {
         });
 
         return detailsViewPage;
+    }
+
+    async function assertFailureCounts(
+        actualRuleDetails: ElementHandle<Element>[],
+        expectedCounts: { [ruleName: string]: number },
+    ): Promise<void> {
+        for (const ruleDetail of actualRuleDetails) {
+            const ruleNameElement = await ruleDetail.$('[data-automation-id="cards-rule-id"]'); // update this
+            const ruleName = await fastPassAutomatedChecks.evaluate(element => element.innerHTML, ruleNameElement);
+
+            const expectedCount = expectedCounts[ruleName];
+
+            expect(expectedCount).not.toBeNull();
+
+            const countElement = await ruleDetail.$('.count'); // change this to use automation-id
+            const count = await fastPassAutomatedChecks.evaluate(element => parseInt(element.innerHTML, 10), countElement);
+
+            expect(count).toBe(expectedCount);
+        }
     }
 });
