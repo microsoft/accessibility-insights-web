@@ -19,7 +19,7 @@ mac:
     identity: null
 
 win:
-    artifactName: ${productName}.${ext}
+    artifactName: ${productName} setup.${ext}
     icon: extension/icons/brand/blue/brand-blue-512px.png
     publisherName: 'Microsoft Corporation'
     target: nsis
