@@ -277,7 +277,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.StartOver,
+            messageType: Messages.Assessment.StartOverTest,
             payload: {
                 test: VisualizationType.HeadingsAssessment,
                 telemetry,

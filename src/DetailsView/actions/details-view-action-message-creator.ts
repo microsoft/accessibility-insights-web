@@ -198,7 +198,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.StartOver,
+            messageType: Messages.Assessment.StartOverTest,
             payload,
         });
     }
