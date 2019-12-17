@@ -30,7 +30,8 @@ describe('scanning', () => {
         testResourceServer.stopServer(testResourceServerConfig);
     });
 
-    describe('with localhost permissions only', () => {
+    // skipping the test as we re-introduce all-origin permissions back into the extension.
+    describe.skip('with localhost permissions only', () => {
         beforeEach(async () => {
             await launchFastPassWithExtraPermissions('fake-activeTab');
         });
