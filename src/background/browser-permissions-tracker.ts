@@ -16,7 +16,7 @@ export class BrowserPermissionsTracker {
         await this.notifyChange();
     }
 
-    public async notifyChange(): Promise<void> {
+    private async notifyChange(): Promise<void> {
         let payload: boolean;
 
         try {
