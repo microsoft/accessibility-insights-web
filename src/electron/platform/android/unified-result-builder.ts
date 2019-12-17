@@ -39,6 +39,7 @@ export const createBuilder = (
         targetAppInfo: {
             name: scanResults.appIdentifier,
         },
+        scanIncompleteWarnings: [],
         screenshotData: scanResults.screenshot,
     };
     return payload;

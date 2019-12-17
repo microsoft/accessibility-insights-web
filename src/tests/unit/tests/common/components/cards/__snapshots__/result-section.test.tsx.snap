@@ -3,6 +3,7 @@
 exports[`ResultSection renders with shouldAlertFailureCount = <false> 1`] = `
 <div
   className="result-section-class-name resultSection"
+  data-automation-id="result-section"
 >
   <h2>
     <ResultSectionTitle
@@ -22,6 +23,7 @@ exports[`ResultSection renders with shouldAlertFailureCount = <false> 1`] = `
 exports[`ResultSection renders with shouldAlertFailureCount = <true> 1`] = `
 <div
   className="result-section-class-name resultSection"
+  data-automation-id="result-section"
 >
   <h2>
     <ResultSectionTitle
@@ -41,6 +43,7 @@ exports[`ResultSection renders with shouldAlertFailureCount = <true> 1`] = `
 exports[`ResultSection renders with shouldAlertFailureCount = <undefined> 1`] = `
 <div
   className="result-section-class-name resultSection"
+  data-automation-id="result-section"
 >
   <h2>
     <ResultSectionTitle

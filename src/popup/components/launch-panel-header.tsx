@@ -8,7 +8,6 @@ import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
 import { LaunchPanelHeaderClickHandler } from '../handlers/launch-panel-header-click-handler';
-import { SupportLinkHandler } from '../support-link-handler';
 import { Header } from './header';
 import { HeaderContextualMenu, HeaderContextualMenuDeps } from './header-contextual-menu';
 
@@ -23,7 +22,6 @@ export interface LaunchPanelHeaderProps {
     title: string;
     subtitle?: React.ReactChild;
     openAdhocToolsPanel: () => void;
-    supportLinkHandler: SupportLinkHandler;
     popupWindow: Window;
     featureFlags: FeatureFlagStoreData;
 }

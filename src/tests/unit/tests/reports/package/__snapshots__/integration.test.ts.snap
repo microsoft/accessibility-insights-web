@@ -489,6 +489,7 @@ exports[`report package integration with issues 1`] = `
       >
         <div
           class="resultSection"
+          data-automation-id="result-section"
         >
           <h2>
             <span
@@ -542,6 +543,7 @@ exports[`report package integration with issues 1`] = `
                   <span
                     aria-hidden="true"
                     class="count"
+                    data-automation-id="count"
                   >
                      26
                   </span>
@@ -556,6 +558,7 @@ exports[`report package integration with issues 1`] = `
           </h2>
           <div
             class="ruleDetailsGroup"
+            data-automation-id="rule-details-group"
           >
             <div
               class="collapsible-container collapsibleRuleDetailsGroup collapsed"
@@ -573,6 +576,7 @@ exports[`report package integration with issues 1`] = `
                 >
                   <span
                     class="rule-detail"
+                    data-automation-id="rule-detail"
                   >
                     <span
                       class="outcomeChipContainer"
@@ -613,6 +617,7 @@ exports[`report package integration with issues 1`] = `
                           <span
                             aria-hidden="true"
                             class="count"
+                            data-automation-id="count"
                           >
                              1
                           </span>
@@ -776,6 +781,7 @@ exports[`report package integration with issues 1`] = `
                 >
                   <span
                     class="rule-detail"
+                    data-automation-id="rule-detail"
                   >
                     <span
                       class="outcomeChipContainer"
@@ -816,6 +822,7 @@ exports[`report package integration with issues 1`] = `
                           <span
                             aria-hidden="true"
                             class="count"
+                            data-automation-id="count"
                           >
                              4
                           </span>
@@ -1310,6 +1317,7 @@ exports[`report package integration with issues 1`] = `
                 >
                   <span
                     class="rule-detail"
+                    data-automation-id="rule-detail"
                   >
                     <span
                       class="outcomeChipContainer"
@@ -1350,6 +1358,7 @@ exports[`report package integration with issues 1`] = `
                           <span
                             aria-hidden="true"
                             class="count"
+                            data-automation-id="count"
                           >
                              1
                           </span>
@@ -1507,6 +1516,7 @@ exports[`report package integration with issues 1`] = `
                 >
                   <span
                     class="rule-detail"
+                    data-automation-id="rule-detail"
                   >
                     <span
                       class="outcomeChipContainer"
@@ -1547,6 +1557,7 @@ exports[`report package integration with issues 1`] = `
                           <span
                             aria-hidden="true"
                             class="count"
+                            data-automation-id="count"
                           >
                              4
                           </span>
@@ -2001,6 +2012,7 @@ exports[`report package integration with issues 1`] = `
                 >
                   <span
                     class="rule-detail"
+                    data-automation-id="rule-detail"
                   >
                     <span
                       class="outcomeChipContainer"
@@ -2041,6 +2053,7 @@ exports[`report package integration with issues 1`] = `
                           <span
                             aria-hidden="true"
                             class="count"
+                            data-automation-id="count"
                           >
                              13
                           </span>
@@ -3302,6 +3315,7 @@ exports[`report package integration with issues 1`] = `
                 >
                   <span
                     class="rule-detail"
+                    data-automation-id="rule-detail"
                   >
                     <span
                       class="outcomeChipContainer"
@@ -3342,6 +3356,7 @@ exports[`report package integration with issues 1`] = `
                           <span
                             aria-hidden="true"
                             class="count"
+                            data-automation-id="count"
                           >
                              1
                           </span>
@@ -3499,6 +3514,7 @@ exports[`report package integration with issues 1`] = `
                 >
                   <span
                     class="rule-detail"
+                    data-automation-id="rule-detail"
                   >
                     <span
                       class="outcomeChipContainer"
@@ -3539,6 +3555,7 @@ exports[`report package integration with issues 1`] = `
                           <span
                             aria-hidden="true"
                             class="count"
+                            data-automation-id="count"
                           >
                              1
                           </span>
@@ -3696,6 +3713,7 @@ exports[`report package integration with issues 1`] = `
                 >
                   <span
                     class="rule-detail"
+                    data-automation-id="rule-detail"
                   >
                     <span
                       class="outcomeChipContainer"
@@ -3736,6 +3754,7 @@ exports[`report package integration with issues 1`] = `
                           <span
                             aria-hidden="true"
                             class="count"
+                            data-automation-id="count"
                           >
                              1
                           </span>
@@ -3948,6 +3967,7 @@ exports[`report package integration with issues 1`] = `
                       <span
                         aria-hidden="true"
                         class="count"
+                        data-automation-id="count"
                       >
                          20
                       </span>
@@ -4605,6 +4625,7 @@ exports[`report package integration with issues 1`] = `
                       <span
                         aria-hidden="true"
                         class="count"
+                        data-automation-id="count"
                       >
                          49
                       </span>
@@ -6516,6 +6537,7 @@ exports[`report package integration with no issues 1`] = `
       >
         <div
           class="resultSection"
+          data-automation-id="result-section"
         >
           <h2>
             <span
@@ -6569,6 +6591,7 @@ exports[`report package integration with no issues 1`] = `
                   <span
                     aria-hidden="true"
                     class="count"
+                    data-automation-id="count"
                   >
                      0
                   </span>
@@ -6665,6 +6688,7 @@ exports[`report package integration with no issues 1`] = `
                       <span
                         aria-hidden="true"
                         class="count"
+                        data-automation-id="count"
                       >
                          45
                       </span>
@@ -8022,6 +8046,7 @@ exports[`report package integration with no issues 1`] = `
                       <span
                         aria-hidden="true"
                         class="count"
+                        data-automation-id="count"
                       >
                          30
                       </span>
