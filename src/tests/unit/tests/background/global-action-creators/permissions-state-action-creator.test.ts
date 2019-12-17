@@ -2,10 +2,9 @@
 // Licensed under the MIT License.
 import { PermissionsStateActions } from 'background/actions/permissions-state-actions';
 import { PermissionsStateActionCreator } from 'background/global-action-creators/permissions-state-action-creator';
-import { Interpreter } from 'background/interpreter';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
-import { IMock, It, Mock } from 'typemoq';
+import { IMock, Mock } from 'typemoq';
 
 import { createActionMock, createInterpreterMock } from './action-creator-test-helpers';
 
