@@ -5,29 +5,23 @@ import { PermissionsStateActionCreator } from 'background/global-action-creators
 import { Interpreter } from 'background/interpreter';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
-import { isFunction } from 'lodash';
 import { IMock, It, Mock } from 'typemoq';
 
-import { createActionMock } from './action-creator-test-helpers';
+import { createActionMock, createInterpreterMock } from './action-creator-test-helpers';
 
 describe('PermissionsStateActionCreator', () => {
-    let interpreterMock: IMock<Interpreter>;
     let permissionsStateActionsMock: IMock<PermissionsStateActions>;
 
-    let testSubject: PermissionsStateActionCreator;
-
     beforeEach(() => {
-        interpreterMock = Mock.ofType<Interpreter>();
         permissionsStateActionsMock = Mock.ofType<PermissionsStateActions>();
-
-        testSubject = new PermissionsStateActionCreator(interpreterMock.object, permissionsStateActionsMock.object);
     });
 
     it('handles getStoreState message', () => {
         const expectedMessage = getStoreStateMessage(StoreNames.PermissionsStateStore);
-        setupInterpreterMock(expectedMessage);
+        const interpreterMock = createInterpreterMock(expectedMessage, null);
         const getCurrentStateMock = createActionMock(null);
         setupActionsMock('getCurrentState', getCurrentStateMock.object);
+        const testSubject = new PermissionsStateActionCreator(interpreterMock.object, permissionsStateActionsMock.object);
 
         testSubject.registerCallbacks();
 
@@ -36,20 +30,15 @@ describe('PermissionsStateActionCreator', () => {
 
     it.each([true, false])('handles SetPermissionsState message for payload %p', (payload: boolean) => {
         const expectedMessage = Messages.PermissionsState.SetPermissionsState;
-        setupInterpreterMock(expectedMessage, payload);
+        const interpreterMock = createInterpreterMock(expectedMessage, payload);
         const setPermissionsStateMock = createActionMock(payload);
         setupActionsMock('setPermissionsState', setPermissionsStateMock.object);
+        const testSubject = new PermissionsStateActionCreator(interpreterMock.object, permissionsStateActionsMock.object);
 
         testSubject.registerCallbacks();
 
         setPermissionsStateMock.verifyAll();
     });
-
-    const setupInterpreterMock = <Payload>(expectedMessage: string, payload?: Payload): void => {
-        interpreterMock
-            .setup(interpreter => interpreter.registerTypeToPayloadCallback(expectedMessage, It.is(isFunction)))
-            .callback((message, handler) => handler(payload));
-    };
 
     const setupActionsMock = <ActionName extends keyof PermissionsStateActions>(
         actionName: ActionName,
