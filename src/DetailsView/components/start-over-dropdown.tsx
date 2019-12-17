@@ -143,9 +143,9 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
 
     private onStartTestOver = (event: React.MouseEvent<any>): void => {
         const detailsViewActionMessageCreator = this.props.deps.detailsViewActionMessageCreator;
-        const { requirementKey, test } = this.props;
+        const { test } = this.props;
 
-        detailsViewActionMessageCreator.startOverAssessment(event, test, requirementKey);
+        detailsViewActionMessageCreator.startOverTest(event, test);
 
         this.setState({ dialogState: 'none' });
     };
