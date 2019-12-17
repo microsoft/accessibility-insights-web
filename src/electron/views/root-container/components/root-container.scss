@@ -9,3 +9,11 @@ body {
     overflow: hidden;
     background-color: $neutral-0;
 }
+
+button {
+    -webkit-app-region: no-drag;
+}
+
+input {
+    -webkit-app-region: no-drag;
+}
