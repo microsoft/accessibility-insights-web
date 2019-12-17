@@ -12,7 +12,6 @@ export interface BrowserAdapter {
     tabsQuery(query: chrome.tabs.QueryInfo, callback: (result: chrome.tabs.Tab[]) => void): void;
     createActiveTab(url: string): Promise<Tabs.Tab>;
     createTabInNewWindow(url: string): Promise<Tabs.Tab>;
-    closeTab(tabId: number): void;
     switchToTab(tabId: number): void;
     getTab(tabId: number, onResolve: (tab: chrome.tabs.Tab) => void, onReject?: () => void): void;
     sendMessageToTab(tabId: number, message: any): Promise<void>;
@@ -23,7 +22,6 @@ export interface BrowserAdapter {
     createNotification(options: Notifications.CreateNotificationOptions): Promise<string>;
     getRuntimeLastError(): chrome.runtime.LastError;
     isAllowedFileSchemeAccess(callback: Function): void;
-    addListenerToLocalStorage(callback: (changes: object) => void): void;
     getManageExtensionUrl(): string;
     addListenerOnConnect(callback: (port: chrome.runtime.Port) => void): void;
     addListenerOnMessage(

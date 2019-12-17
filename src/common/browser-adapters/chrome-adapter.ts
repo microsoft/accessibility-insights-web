@@ -70,10 +70,6 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         return browser.windows.create({ url, focused: true }).then(window => window.tabs[0]);
     }
 
-    public closeTab(tabId: number): void {
-        chrome.tabs.remove(tabId);
-    }
-
     public switchToTab(tabId: number): void {
         const props = {
             active: true,
@@ -114,10 +110,6 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
 
     public isAllowedFileSchemeAccess(callback: (isAllowed: boolean) => void): void {
         chrome.extension.isAllowedFileSchemeAccess(callback);
-    }
-
-    public addListenerToLocalStorage(callback: (changes: object) => void): void {
-        chrome.storage.onChanged.addListener(callback);
     }
 
     public addCommandListener(callback: (command: string) => void): void {
