@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { PermissionsStateActions } from 'background/actions/permissions-state-actions';
-import { getStoreStateMessage, Messages } from '../../common/messages';
-import { StoreNames } from '../../common/stores/store-names';
-import { Interpreter } from '../interpreter';
+import { Interpreter } from 'background/interpreter';
+import { getStoreStateMessage, Messages } from 'common/messages';
+import { StoreNames } from 'common/stores/store-names';
 
 export class PermissionsStateActionCreator {
     constructor(
