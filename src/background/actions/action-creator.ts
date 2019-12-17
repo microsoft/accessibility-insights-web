@@ -142,7 +142,7 @@ export class ActionCreator {
             this.onAssessmentScanCompleted,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            Messages.Assessment.StartOver,
+            Messages.Assessment.StartOverTest,
             this.onStartOver,
         );
         this.interpreter.registerTypeToPayloadCallback(

@@ -190,16 +190,15 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     };
 
-    public startOverAssessment(event: React.MouseEvent<any>, test: VisualizationType, requirement: string): void {
+    public startOverTest(event: React.MouseEvent<any>, test: VisualizationType): void {
         const telemetry = this.telemetryFactory.forAssessmentActionFromDetailsView(test, event);
         const payload: ToggleActionPayload = {
             test,
-            requirement,
             telemetry,
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.StartOver,
+            messageType: Messages.Assessment.StartOverTest,
             payload,
         });
     }
