@@ -22,6 +22,7 @@ export interface BrowserAdapter {
     getRunTimeId(): string;
     createNotification(options: Notifications.CreateNotificationOptions): Promise<string>;
     getRuntimeLastError(): chrome.runtime.LastError;
+    isAllowedFileSchemeAccessP(): Promise<boolean>;
     isAllowedFileSchemeAccess(callback: Function): void;
     addListenerToLocalStorage(callback: (changes: object) => void): void;
     getManageExtensionUrl(): string;
