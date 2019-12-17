@@ -9,7 +9,6 @@ export type InsightsConfigurationOptions = {
     icon48?: string;
     icon128?: string;
     appInsightsInstrumentationKey?: string;
-    emailHelpAlias?: string;
     bundled?: string;
     telemetryBuildName?: string;
 };

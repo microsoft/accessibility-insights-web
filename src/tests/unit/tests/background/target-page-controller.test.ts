@@ -11,6 +11,7 @@ import { Logger } from 'common/logging/logger';
 import { Messages } from 'common/messages';
 import { isFunction, values } from 'lodash';
 import { createSimulatedBrowserAdapter, SimulatedBrowserAdapter } from 'tests/unit/common/simulated-browser-adapter';
+import { tick } from 'tests/unit/common/tick';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DictionaryNumberTo } from 'types/common-types';
 
@@ -208,11 +209,13 @@ describe('TargetPageController', () => {
                 ${'unrecognized'} | ${false}
             `(
                 'should send a Tab.VisibilityChange message with hidden=$expectedHiddenValue for active tabs in windows with state $windowState',
-                ({ windowState, expectedHiddenValue }) => {
+                async ({ windowState, expectedHiddenValue }) => {
                     mockBrowserAdapter.windows.forEach(w => {
                         w.state = windowState;
                     });
                     mockBrowserAdapter.notifyWindowsFocusChanged(irrelevantWindowId);
+
+                    await tick();
 
                     const expectedMessage = {
                         messageType: Messages.Tab.VisibilityChange,

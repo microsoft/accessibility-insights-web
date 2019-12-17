@@ -9,7 +9,6 @@ import { FeatureFlagStoreData } from '../../../../../common/types/store-data/fea
 import { PopupActionMessageCreator } from '../../../../../popup/actions/popup-action-message-creator';
 import { LaunchPanelHeader, LaunchPanelHeaderDeps, LaunchPanelHeaderProps } from '../../../../../popup/components/launch-panel-header';
 import { LaunchPanelHeaderClickHandler } from '../../../../../popup/handlers/launch-panel-header-click-handler';
-import { SupportLinkHandler } from '../../../../../popup/support-link-handler';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('LaunchPanelHeaderTest', () => {
@@ -27,7 +26,6 @@ describe('LaunchPanelHeaderTest', () => {
             subtitle: 'test subtitle',
             openGettingStartedDialog: {} as any,
             openFeedbackDialog: {} as any,
-            supportLinkHandler: {} as SupportLinkHandler,
             popupWindow: {} as Window,
             featureFlags: {} as FeatureFlagStoreData,
             openAdhocToolsPanel: () => {},

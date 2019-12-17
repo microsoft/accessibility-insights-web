@@ -22,6 +22,7 @@ Object {
       "url": "test-url",
     },
   ],
+  "scanIncompleteWarnings": Array [],
   "scanResult": Array [
     Object {
       "descriptors": null,

@@ -21,6 +21,8 @@ export function getStartOverComponentForAssessment(props: CommandBarProps): JSX.
     return <StartOverDropdown {...startOverProps} />;
 }
 
+export const startOverAutomationId = 'start-over';
+
 export function getStartOverComponentForFastPass(props: CommandBarProps): JSX.Element {
     if (!props.featureFlagStoreData[FeatureFlags.universalCardsUI]) {
         return null;
@@ -34,6 +36,7 @@ export function getStartOverComponentForFastPass(props: CommandBarProps): JSX.El
             iconProps={{ iconName: 'Refresh' }}
             onClick={event => detailsViewActionMessageCreator.rescanVisualization(selectedTest, event)}
             disabled={props.visualizationStoreData.scanning !== null}
+            data-automation-id={startOverAutomationId}
         >
             Start over
         </ActionButton>
