@@ -26,8 +26,6 @@ export class UrlValidator {
     }
 
     private checkAccessToFileUrl(): Promise<boolean> {
-        return new Promise<boolean>(resolve => {
-            this.browserAdapter.isAllowedFileSchemeAccess(resolve);
-        });
+        return this.browserAdapter.isAllowedFileSchemeAccessP();
     }
 }

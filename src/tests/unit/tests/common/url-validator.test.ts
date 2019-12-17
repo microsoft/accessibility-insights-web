@@ -38,10 +38,8 @@ describe('UrlValidatorTest', () => {
     test('isSupportedUrl: file', async () => {
         const url: string = 'file://test';
         browserAdapterMock
-            .setup(b => b.isAllowedFileSchemeAccess(It.is(isFunction)))
-            .callback(callback => {
-                callback(true);
-            })
+            .setup(b => b.isAllowedFileSchemeAccessP())
+            .returns(() => Promise.resolve(true))
             .verifiable();
 
         const isSupported = await testSubject.isSupportedUrl(url);
@@ -53,10 +51,8 @@ describe('UrlValidatorTest', () => {
     test('isFileUrl, but have no access, so isNotSupportedUrl', async () => {
         const url: string = 'file://yes/I/am!';
         browserAdapterMock
-            .setup(b => b.isAllowedFileSchemeAccess(It.is(isFunction)))
-            .callback(callback => {
-                callback(false);
-            })
+            .setup(b => b.isAllowedFileSchemeAccessP())
+            .returns(() => Promise.resolve(false))
             .verifiable();
 
         const isSupported = await testSubject.isSupportedUrl(url);
