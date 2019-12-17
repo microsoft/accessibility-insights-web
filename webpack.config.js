@@ -96,7 +96,7 @@ const electronConfig = {
     entry: electronEntryFiles,
     name: 'electron',
     mode: 'development',
-    devtool: 'eval-source-map',
+    devtool: 'source-map',
     output: {
         path: path.join(__dirname, 'extension/electronBundle'),
         filename: '[name].bundle.js',
