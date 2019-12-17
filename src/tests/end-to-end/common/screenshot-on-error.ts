@@ -22,7 +22,7 @@ export async function screenshotOnError<T>(saveScreenshot: (path) => Promise<Buf
             await takeScreenshot(saveScreenshot);
         } catch (secondaryTakeScreenshotError) {
             console.error(
-                `screenshotOnError: Detected an error, and then *additionally* hit a second error while trying to take a screenshot of the page state after the first error.\n` +
+                `ascreenshotOnError: Detected an error, and then *additionally* hit a second error while trying to take a screenshot of the page state after the first error.\n` +
                     `screenshotOnError: The secondary error from taking the screenshot is: ${secondaryTakeScreenshotError.stack}\n` +
                     `screenshotOnError: rethrowing the original error...`,
             );
