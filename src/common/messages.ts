@@ -201,4 +201,8 @@ export class Messages {
         ExpandAllRules: `${messagePrefix}/cardSelection/expandAllRules`,
         ToggleVisualHelper: `${messagePrefix}/cardSelection/toggleVisualHelper`,
     };
+
+    public static readonly PermissionsState = {
+        SetPermissionsState: `${messagePrefix}/permissionsState/setPermissionsState`,
+    };
 }
