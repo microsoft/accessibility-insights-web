@@ -6,6 +6,7 @@ import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
+import { PermissionsStateStoreData } from 'common/types/store-data/permissions-state-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { VisualizationType } from 'common/types/visualization-type';
 import { ClientStoreListener, TargetPageStoreData } from 'injected/client-store-listener';
@@ -14,7 +15,7 @@ import { FocusChangeHandler } from 'injected/focus-change-handler';
 import { getDecoratedAxeNode } from 'injected/get-decorated-axe-node';
 import { IframeDetector } from 'injected/iframe-detector';
 import { isVisualizationEnabled } from 'injected/is-visualization-enabled';
-import { CrossOriginPermissionDetector, ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
+import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { TargetPageVisualizationUpdater } from 'injected/target-page-visualization-updater';
 import { visualizationNeedsUpdate } from 'injected/visualization-needs-update';
 import { VisualizationStateChangeHandler } from 'injected/visualization-state-change-handler';
@@ -89,6 +90,7 @@ export class MainWindowInitializer extends WindowInitializer {
     private pathSnippetStoreProxy: StoreProxy<PathSnippetStoreData>;
     private unifiedScanResultStoreProxy: StoreProxy<UnifiedScanResultStoreData>;
     private cardSelectionStoreProxy: StoreProxy<CardSelectionStoreData>;
+    private permissionsStateStoreProxy: StoreProxy<PermissionsStateStoreData>;
 
     public async initialize(): Promise<void> {
         const asyncInitializationSteps: Promise<void>[] = [];
@@ -121,6 +123,10 @@ export class MainWindowInitializer extends WindowInitializer {
             StoreNames[StoreNames.CardSelectionStore],
             this.browserAdapter,
         );
+        this.permissionsStateStoreProxy = new StoreProxy<PermissionsStateStoreData>(
+            StoreNames[StoreNames.PermissionsStateStore],
+            this.browserAdapter,
+        );
 
         const logger = createDefaultLogger();
 
@@ -141,6 +147,7 @@ export class MainWindowInitializer extends WindowInitializer {
             this.pathSnippetStoreProxy,
             this.unifiedScanResultStoreProxy,
             this.cardSelectionStoreProxy,
+            this.permissionsStateStoreProxy,
         ]);
         storeActionMessageCreator.getAllStates();
 
@@ -186,6 +193,7 @@ export class MainWindowInitializer extends WindowInitializer {
             this.userConfigStoreProxy,
             this.unifiedScanResultStoreProxy,
             this.cardSelectionStoreProxy,
+            this.permissionsStateStoreProxy,
         ]);
 
         const clientStoreListener = new ClientStoreListener(storeHub);
@@ -215,13 +223,8 @@ export class MainWindowInitializer extends WindowInitializer {
 
         this.frameUrlSearchInitiator.listenToStore();
 
-        // TODO: use something based on the permissions store instead once that's piped in
-        const crossOriginPermissionDetector: CrossOriginPermissionDetector = {
-            hasCrossOriginPermissions: () => true,
-        };
-
         const iframeDetector = new IframeDetector(document);
-        const scanIncompleteWarningDetector = new ScanIncompleteWarningDetector(iframeDetector, crossOriginPermissionDetector);
+        const scanIncompleteWarningDetector = new ScanIncompleteWarningDetector(iframeDetector, this.permissionsStateStoreProxy);
 
         const unifiedResultSender = new UnifiedResultSender(
             this.browserAdapter.sendMessageToFrames,
