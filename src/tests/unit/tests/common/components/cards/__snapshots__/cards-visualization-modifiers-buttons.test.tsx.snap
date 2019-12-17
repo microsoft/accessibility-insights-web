@@ -5,7 +5,7 @@ exports[`CardsVisualizationModifierButtons with all cards collapsed 1`] = `
   className="cardsVisualizationModifiersContainer"
 >
   <CustomizedActionButton
-    aria-expanded={true}
+    aria-expanded={false}
     className="expandCollapseAllButton"
     iconProps={
       Object {
@@ -30,7 +30,7 @@ exports[`CardsVisualizationModifierButtons with all cards not collapsed 1`] = `
   className="cardsVisualizationModifiersContainer"
 >
   <CustomizedActionButton
-    aria-expanded={false}
+    aria-expanded={true}
     className="expandCollapseAllButton"
     iconProps={
       Object {

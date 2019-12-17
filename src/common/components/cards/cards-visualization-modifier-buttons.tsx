@@ -40,7 +40,7 @@ export const CardsVisualizationModifierButtons = NamedFC<CardsVisualizationModif
                 <ActionButton
                     iconProps={{ iconName }}
                     onClick={expandCollapseAllButtonHandler}
-                    aria-expanded={allCardsCollapsed}
+                    aria-expanded={!allCardsCollapsed}
                     className={expandCollapseAllButton}
                 >
                     {buttonText}
