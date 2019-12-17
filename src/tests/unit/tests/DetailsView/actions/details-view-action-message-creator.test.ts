@@ -269,7 +269,6 @@ describe('DetailsViewActionMessageCreatorTest', () => {
     });
 
     test('startOverTest', () => {
-        const requirementStub = 'fake-requirement';
         const event = eventStubFactory.createMouseClickEvent() as any;
         const telemetry: AssessmentTelemetryData = {
             triggeredBy: 'mouseclick',
