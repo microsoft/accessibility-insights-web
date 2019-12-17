@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { mainWindowConfig } from 'electron/main/main-window-config';
 import { Application } from 'spectron';
 import { DeviceConnectionDialogController } from 'tests/electron/common/view-controllers/device-connection-dialog-controller';
 import { testResourceServerConfig } from 'tests/electron/setup/test-resource-server-config';
@@ -28,8 +27,6 @@ export class AppController {
     }
 
     public async openDeviceConnectionDialog(): Promise<DeviceConnectionDialogController> {
-        this.setToMinimumSupportedWindowSize();
-
         await dismissTelemetryOptInDialog(this.app);
 
         const deviceConnectionDialog = new DeviceConnectionDialogController(this.client);
@@ -45,13 +42,6 @@ export class AppController {
         const automatedChecksView = new AutomatedChecksViewController(this.client);
         await automatedChecksView.waitForViewVisible();
 
-        this.setToMinimumSupportedWindowSize();
-
         return automatedChecksView;
-    }
-
-    private setToMinimumSupportedWindowSize(): void {
-        this.app.browserWindow.setBounds({ width: mainWindowConfig.minWidth, height: mainWindowConfig.minHeight });
-        this.app.browserWindow.unmaximize();
     }
 }
