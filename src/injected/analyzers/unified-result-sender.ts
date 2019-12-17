@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { UnifiedScanCompletedPayload } from '../../background/actions/action-payloads';
 import { EnvironmentInfoProvider } from '../../common/environment-info-provider';
 import { Messages } from '../../common/messages';
@@ -16,6 +17,7 @@ export class UnifiedResultSender {
         private readonly convertScanResultsToUnifiedRules: ConvertScanResultsToUnifiedRulesDelegate,
         private readonly environmentInfoProvider: EnvironmentInfoProvider,
         private readonly generateUID: UUIDGenerator,
+        private readonly scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
     ) {}
 
     public sendResults: PostResolveCallback = (axeResults: AxeAnalyzerResult) => {
@@ -27,6 +29,7 @@ export class UnifiedResultSender {
                 name: axeResults.originalResult.targetPageTitle,
                 url: axeResults.originalResult.targetPageUrl,
             },
+            scanIncompleteWarnings: this.scanIncompleteWarningDetector.detectScanIncompleteWarnings(),
         };
 
         this.sendMessage({

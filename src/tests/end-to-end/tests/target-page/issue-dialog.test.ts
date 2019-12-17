@@ -13,7 +13,7 @@ describe('Target Page issue dialog', () => {
     let popupPage: PopupPage;
 
     beforeAll(async () => {
-        browser = await launchBrowser({ suppressFirstTimeDialog: true, addLocalhostToPermissions: true });
+        browser = await launchBrowser({ suppressFirstTimeDialog: true, addExtraPermissionsToManifest: 'fake-activeTab' });
         targetPage = await browser.newTargetPage();
         popupPage = await browser.newPopupPage(targetPage);
     });
