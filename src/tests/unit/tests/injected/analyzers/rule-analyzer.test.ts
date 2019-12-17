@@ -2,8 +2,10 @@
 // Licensed under the MIT License.
 import { ScopingInputTypes } from 'background/scoping-input-types';
 import { ScopingStore } from 'background/stores/global/scoping-store';
+import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
+
 import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { RuleAnalyzerScanTelemetryData } from '../../../../../common/extension-telemetry-events';
@@ -36,6 +38,7 @@ describe('RuleAnalyzer', () => {
     let configStub: RuleAnalyzerConfiguration;
     let scanCallback: (results: ScanResults) => void;
     let postResolveCallbackMock: IMock<PostResolveCallback>;
+    let scanIncompleteWarningDetectorMock: IMock<ScanIncompleteWarningDetector>;
 
     beforeEach(() => {
         typeStub = -1 as VisualizationType;
@@ -54,6 +57,7 @@ describe('RuleAnalyzer', () => {
         };
         dateMock = Mock.ofInstance(dateStub as Date);
         dateGetterMock = Mock.ofInstance(() => null);
+        scanIncompleteWarningDetectorMock = Mock.ofType<ScanIncompleteWarningDetector>();
         dateGetterMock.setup(dgm => dgm()).returns(() => dateMock.object);
         scopingState = {
             selectors: {
@@ -73,6 +77,7 @@ describe('RuleAnalyzer', () => {
                 } as VisualizationConfiguration;
             })
             .verifiable();
+        scanIncompleteWarningDetectorMock.setup(idm => idm.detectScanIncompleteWarnings()).returns(() => []);
     });
 
     test('analyze', async done => {
@@ -119,6 +124,7 @@ describe('RuleAnalyzer', () => {
             telemetryDataFactoryMock.object,
             visualizationConfigurationFactoryMock.object,
             postResolveCallbackMock.object,
+            scanIncompleteWarningDetectorMock.object,
         );
 
         const scanResults = createTestResults();
@@ -131,6 +137,7 @@ describe('RuleAnalyzer', () => {
                 scanResult: scanResults,
                 testType: typeStub,
                 telemetry: expectedTelemetryStub,
+                scanIncompleteWarnings: [],
             },
         };
 

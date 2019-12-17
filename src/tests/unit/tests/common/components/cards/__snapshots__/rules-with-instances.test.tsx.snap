@@ -3,6 +3,7 @@
 exports[`RulesWithInstances renders 1`] = `
 <div
   className="ruleDetailsGroup"
+  data-automation-id="rule-details-group"
 >
   <CollapsibleControlStub
     buttonAriaLabel="some-rule 1 Passed sample-description"

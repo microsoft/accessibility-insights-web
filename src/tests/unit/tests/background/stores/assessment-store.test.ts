@@ -453,6 +453,7 @@ describe('AssessmentStoreTest', () => {
             scanResult: {} as ScanResults,
             testType: assessmentType,
             key: requirementKey,
+            scanIncompleteWarnings: [],
         };
 
         const expectedInstanceMap = {};
@@ -466,6 +467,7 @@ describe('AssessmentStoreTest', () => {
                 ['assessment-1-step-2']: getDefaultTestStepData(),
                 ['assessment-1-step-3']: getDefaultTestStepData(),
             })
+            .with('scanIncompleteWarnings', [])
             .build();
 
         const finalState = getStateWithAssessment(assessmentData);

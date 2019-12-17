@@ -2,8 +2,10 @@
 // Licensed under the MIT License.
 import { ScopingInputTypes } from 'background/scoping-input-types';
 import { ScopingStore } from 'background/stores/global/scoping-store';
+import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { clone, isFunction } from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { RuleAnalyzerScanTelemetryData } from '../../../../../common/extension-telemetry-events';
@@ -34,6 +36,7 @@ describe('BatchedRuleAnalyzer', () => {
     const title = 'test-name';
     const scanCallbacks: ((results: ScanResults) => void)[] = [];
     let resultConfigFilterMock: IMock<IResultRuleFilter>;
+    let scanIncompleteWarningDetectorMock: IMock<ScanIncompleteWarningDetector>;
 
     beforeEach(() => {
         typeStub = -1 as VisualizationType;
@@ -48,6 +51,7 @@ describe('BatchedRuleAnalyzer', () => {
                 return null;
             },
         };
+        scanIncompleteWarningDetectorMock = Mock.ofType<ScanIncompleteWarningDetector>();
         dateMock = Mock.ofInstance(dateStub as Date);
         dateGetterMock = Mock.ofInstance(() => null);
         dateGetterMock.setup(dgm => dgm()).returns(() => dateMock.object);
@@ -69,6 +73,7 @@ describe('BatchedRuleAnalyzer', () => {
                 } as VisualizationConfiguration;
             })
             .verifiable();
+        scanIncompleteWarningDetectorMock.setup(idm => idm.detectScanIncompleteWarnings()).returns(() => []);
     });
 
     test('analyze', async done => {
@@ -214,6 +219,7 @@ describe('BatchedRuleAnalyzer', () => {
                 scanResult: results,
                 testType: config.testType,
                 telemetry: expectedTelemetryStub,
+                scanIncompleteWarnings: [],
             },
         };
     }
@@ -240,6 +246,7 @@ describe('BatchedRuleAnalyzer', () => {
             telemetryDataFactoryMock.object,
             visualizationConfigurationFactoryMock.object,
             resultConfigFilterMock.object,
+            scanIncompleteWarningDetectorMock.object,
         );
     }
 });

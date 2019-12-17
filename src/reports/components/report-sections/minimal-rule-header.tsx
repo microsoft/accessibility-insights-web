@@ -7,7 +7,8 @@ import { outcomeChipContainer } from 'reports/components/report-sections/minimal
 import { InstanceOutcomeType } from '../instance-outcome-type';
 import { OutcomeChip } from '../outcome-chip';
 
-export const ruleIdAutomationId = 'cards-rule-id';
+export const cardsRuleIdAutomationId = 'cards-rule-id';
+export const ruleDetailAutomationId = 'rule-detail';
 
 export type MinimalRuleHeaderProps = {
     rule: {
@@ -34,7 +35,7 @@ export const MinimalRuleHeader = NamedFC<MinimalRuleHeaderProps>('MinimalRuleHea
     };
 
     const renderRuleName = () => (
-        <span data-automation-id={ruleIdAutomationId} className="rule-details-id">
+        <span data-automation-id={cardsRuleIdAutomationId} className="rule-details-id">
             {rule.id}
         </span>
     );
@@ -42,7 +43,7 @@ export const MinimalRuleHeader = NamedFC<MinimalRuleHeaderProps>('MinimalRuleHea
     const renderDescription = () => <span className="rule-details-description">{rule.description}</span>;
 
     return (
-        <span className="rule-detail">
+        <span data-automation-id={ruleDetailAutomationId} className="rule-detail">
             <span className={outcomeChipContainer}>{renderCountBadge()}</span>
             <span>
                 {renderRuleName()}: {renderDescription()}

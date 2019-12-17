@@ -3,7 +3,6 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
 import { DropdownClickHandler } from '../../../../../common/dropdown-click-handler';
@@ -23,7 +22,6 @@ import {
 import { DiagnosticViewClickHandler } from '../../../../../popup/handlers/diagnostic-view-toggle-click-handler';
 import { PopupViewControllerHandler } from '../../../../../popup/handlers/popup-view-controller-handler';
 import { LaunchPadRowConfigurationFactory } from '../../../../../popup/launch-pad-row-configuration-factory';
-import { SupportLinkHandler } from '../../../../../popup/support-link-handler';
 import { BaseDataBuilder } from '../../../common/base-data-builder';
 import { IsSameObject } from '../../../common/typemoq-helper';
 
@@ -117,7 +115,6 @@ describe('PopupView', () => {
                     diagnosticViewClickHandler: clickHandlerMock.object,
                     popupViewControllerHandler: handlerMock.object,
                     launchPanelHeaderClickHandler: null,
-                    supportLinkHandler: new SupportLinkHandler(null, null),
                     shortcutModifyHandler: shortcutModifyHandlerStub as any,
                 })
                 .with('hasAccess', true)
@@ -157,7 +154,6 @@ describe('PopupView', () => {
                     diagnosticViewClickHandler: clickHandlerMock.object,
                     popupViewControllerHandler: handlerMock.object,
                     launchPanelHeaderClickHandler: null,
-                    supportLinkHandler: new SupportLinkHandler(null, null),
                     shortcutModifyHandler: shortcutModifyHandlerStub as any,
                 })
                 .with('hasAccess', true)
@@ -190,7 +186,6 @@ describe('PopupView', () => {
                     diagnosticViewClickHandler: null,
                     popupViewControllerHandler: handlerMock.object,
                     launchPanelHeaderClickHandler: null,
-                    supportLinkHandler: new SupportLinkHandler(null, null),
                     shortcutModifyHandler: null,
                 })
                 .with('hasAccess', true)

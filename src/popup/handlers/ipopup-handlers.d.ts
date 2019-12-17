@@ -8,5 +8,4 @@ export interface IPopupHandlers {
     diagnosticViewClickHandler: DiagnosticViewClickHandler;
     popupViewControllerHandler: PopupViewControllerHandler;
     launchPanelHeaderClickHandler: LaunchPanelHeaderClickHandler;
-    supportLinkHandler: SupportLinkHandler;
 }
