@@ -268,7 +268,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         dispatcherMock.verify(dispatcher => dispatcher.sendTelemetry(DETAILS_VIEW_OPEN, telemetry), Times.once());
     });
 
-    test('startOverAssessment', () => {
+    test('startOverTest', () => {
         const requirementStub = 'fake-requirement';
         const event = eventStubFactory.createMouseClickEvent() as any;
         const telemetry: AssessmentTelemetryData = {
@@ -281,7 +281,6 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             messageType: Messages.Assessment.StartOver,
             payload: {
                 test: VisualizationType.HeadingsAssessment,
-                requirement: requirementStub,
                 telemetry,
             },
         };
@@ -290,7 +289,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             .setup(tf => tf.forAssessmentActionFromDetailsView(VisualizationType.HeadingsAssessment, event))
             .returns(() => telemetry);
 
-        testSubject.startOverAssessment(event, VisualizationType.HeadingsAssessment, requirementStub);
+        testSubject.startOverTest(event, VisualizationType.HeadingsAssessment);
 
         dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
     });
