@@ -11,11 +11,17 @@ steps:
           ELECTRON_MIRROR: $(ELECTRON_MIRROR)
           ELECTRON_CUSTOM_DIR: $(ELECTRON_CUSTOM_DIR)
 
+    - task: CopyFiles@2
+      displayName: 'Copy Files to: targetfolder'
+      inputs:
+          SourceFolder: '$(System.DefaultWorkingDirectory)/dist'
+          TargetFolder: '$(System.DefaultWorkingDirectory)/dist/detachedSignature'
+
     - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
       displayName: 'sign dist'
       inputs:
           ConnectedServiceName: 'ESRP Code Signing'
-          FolderPath: '$(System.DefaultWorkingDirectory)/dist'
+          FolderPath: '$(System.DefaultWorkingDirectory)/dist/detachedSignature'
           Pattern: '*.AppImage'
           signConfigType: inlineSignParams
           inlineOperation: |
