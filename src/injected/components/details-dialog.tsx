@@ -186,9 +186,11 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         const ruleNameID = 'rule-name';
 
         return (
-            <div className="insights-dialog-rule-name" aria-labelledby={ruleNameID}>
-                {this.renderSectionTitle('Rule name', ruleNameID)}
-                <NewTabLink href={fixUrl(rule.helpUrl)}>{rule.ruleId}</NewTabLink>
+            <div className="insights-dialog-rule-name">
+                <section aria-labelledby={ruleNameID}>
+                    {this.renderSectionTitle('Rule name', ruleNameID)}
+                    <NewTabLink href={fixUrl(rule.helpUrl)}>{rule.ruleId}</NewTabLink>
+                </section>
             </div>
         );
     }
@@ -201,9 +203,13 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         const successTitleId = 'success-criteria';
 
         return (
-            <div className="insights-dialog-success-criteria" aria-labelledby={successTitleId}>
-                {this.renderSectionTitle(sectionTitle, successTitleId)}
-                <GuidanceLinks links={ruleGuidanceLinks} />
+            <div className="insights-dialog-success-criteria">
+                <section aria-labelledby={successTitleId}>
+                    {this.renderSectionTitle(sectionTitle, successTitleId)}
+                    <div>
+                        <GuidanceLinks links={ruleGuidanceLinks} />
+                    </div>
+                </section>
             </div>
         );
     }
