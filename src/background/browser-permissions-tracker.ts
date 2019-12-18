@@ -16,7 +16,7 @@ export class BrowserPermissionsTracker {
         await this.notifyChange();
     }
 
-    private async notifyChange(): Promise<void> {
+    private notifyChange = async (): Promise<void> => {
         let payload: boolean;
 
         try {
@@ -25,7 +25,9 @@ export class BrowserPermissionsTracker {
             });
         } catch (error) {
             payload = false;
-            console.error(error);
+            console.error(
+                `Error occurred while checking browser permissions for ${allUrlAndFilePermissions}: ${error}`,
+            );
         } finally {
             const message: Message = {
                 messageType: Messages.PermissionsState.PermissionsStateChanged,
@@ -35,5 +37,5 @@ export class BrowserPermissionsTracker {
 
             this.interpreter.interpret(message);
         }
-    }
+    };
 }

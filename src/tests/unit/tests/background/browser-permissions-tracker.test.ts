@@ -10,7 +10,7 @@ import { IMock, It, Mock, Times } from 'typemoq';
 
 describe('BrowserPermissionsTracker', () => {
     let testSubject: BrowserPermissionsTracker;
-    let browserAdapterMock: IMock<BrowserAdapter>;
+    let browserAdapterMock: SimulatedBrowserAdapter;
     let interpreterMock: IMock<Interpreter>;
 
     beforeEach(() => {
@@ -21,7 +21,7 @@ describe('BrowserPermissionsTracker', () => {
     });
 
     describe('initialize', () => {
-        it('should register the expected listeners', async () => {
+        it('registers the expected listeners', async () => {
             await testSubject.initialize();
 
             browserAdapterMock.verify(m => m.addListenerOnPermissionsAdded(It.is(isFunction)), Times.once());
@@ -29,35 +29,115 @@ describe('BrowserPermissionsTracker', () => {
         });
     });
 
-    it.skip.each([true, false])(
-        'notifyChange sends the expected interpreter message when browser indicates permissions are %p',
-        async browserPermissions => {
+    describe('onPermissionsAdded', () => {
+        it.each([true, false])(
+            'sends the expected interpreter message when browser indicates permissions are "%p"',
+            async browserPermissions => {
+                await testSubject.initialize();
+
+                browserAdapterMock
+                    .setup(adapter => adapter.containsPermissions({ origins: [allUrlAndFilePermissions] }))
+                    .returns(() => Promise.resolve(browserPermissions))
+                    .verifiable(Times.once());
+
+                await browserAdapterMock.addPermissions();
+
+                const expectedMessage: Message = {
+                    messageType: Messages.PermissionsState.PermissionsStateChanged,
+                    payload: browserPermissions,
+                    tabId: null,
+                };
+
+                interpreterMock.verify(i => i.interpret(expectedMessage), Times.once());
+            },
+        );
+
+        it('sends the message with permissions as "false" when an exception occurs', async () => {
+            const hasAllUrlAndFilePermissions = false;
+            await testSubject.initialize();
+
             browserAdapterMock
                 .setup(adapter => adapter.containsPermissions({ origins: [allUrlAndFilePermissions] }))
-                .returns(() => Promise.resolve(browserPermissions))
+                .returns(() => Promise.reject())
                 .verifiable(Times.once());
+
+            await browserAdapterMock.addPermissions();
 
             const expectedMessage: Message = {
                 messageType: Messages.PermissionsState.PermissionsStateChanged,
-                payload: browserPermissions,
+                payload: hasAllUrlAndFilePermissions,
                 tabId: null,
             };
 
-            // await testSubject.notifyChange();
-
-            browserAdapterMock.verifyAll();
             interpreterMock.verify(i => i.interpret(expectedMessage), Times.once());
-        },
-    );
+        });
+    });
+
+    describe('onPermissionsRemoved', () => {
+        it.each([true, false])(
+            'sends the expected interpreter message when browser indicates permissions are %p',
+            async browserPermissions => {
+                await testSubject.initialize();
+
+                browserAdapterMock
+                    .setup(adapter => adapter.containsPermissions({ origins: [allUrlAndFilePermissions] }))
+                    .returns(() => Promise.resolve(browserPermissions))
+                    .verifiable(Times.once());
+
+                await browserAdapterMock.removePermissions();
+
+                const expectedMessage: Message = {
+                    messageType: Messages.PermissionsState.PermissionsStateChanged,
+                    payload: browserPermissions,
+                    tabId: null,
+                };
+
+                interpreterMock.verify(i => i.interpret(expectedMessage), Times.once());
+            },
+        );
+
+        it('sends the message with permissions as "false" when an exception occurs', async () => {
+            const hasAllUrlAndFilePermissions = false;
+            await testSubject.initialize();
+
+            browserAdapterMock
+                .setup(adapter => adapter.containsPermissions({ origins: [allUrlAndFilePermissions] }))
+                .returns(() => Promise.reject())
+                .verifiable(Times.once());
+
+            await browserAdapterMock.removePermissions();
+
+            const expectedMessage: Message = {
+                messageType: Messages.PermissionsState.PermissionsStateChanged,
+                payload: hasAllUrlAndFilePermissions,
+                tabId: null,
+            };
+
+            interpreterMock.verify(i => i.interpret(expectedMessage), Times.once());
+        });
+    });
 
     type SimulatedBrowserAdapter = IMock<BrowserAdapter> & {
-        notifyChange: () => Promise<void>;
+        notifyOnPermissionsAdded?: () => Promise<void>;
+        notifyOnPermissionsRemoved?: () => Promise<void>;
+
+        addPermissions: () => Promise<void>;
+        removePermissions: () => Promise<void>;
     };
 
     function createBrowserAdapterMock(): SimulatedBrowserAdapter {
         const mock: Partial<SimulatedBrowserAdapter> = Mock.ofType<BrowserAdapter>();
-        mock.setup(m => m.addListenerOnPermissionsAdded(It.is(isFunction))).callback(c => (mock.notifyChange = c));
-        mock.setup(m => m.addListenerOnPermissionsRemoved(It.is(isFunction))).callback(c => (mock.notifyChange = c));
+        mock.setup(m => m.addListenerOnPermissionsAdded(It.is(isFunction))).callback(c => {
+            mock.notifyOnPermissionsAdded = c;
+        });
+        mock.setup(m => m.addListenerOnPermissionsRemoved(It.is(isFunction))).callback(c => (mock.notifyOnPermissionsRemoved = c));
+
+        mock.addPermissions = async () => {
+            await mock.notifyOnPermissionsAdded();
+        };
+        mock.removePermissions = async () => {
+            await mock.notifyOnPermissionsRemoved();
+        };
 
         return mock as SimulatedBrowserAdapter;
     }
