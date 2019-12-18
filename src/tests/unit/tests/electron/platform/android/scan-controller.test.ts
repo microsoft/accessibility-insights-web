@@ -6,6 +6,7 @@ import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-hand
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { Action } from 'common/flux/action';
 import { Logger } from 'common/logging/logger';
+import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { SCAN_COMPLETED, SCAN_FAILED, SCAN_STARTED } from 'electron/common/electron-telemetry-events';
 import { PortPayload } from 'electron/flux/action/device-action-payloads';
 import { ScanActions } from 'electron/flux/action/scan-actions';
@@ -128,6 +129,7 @@ describe('ScanController', () => {
                     version: 'test-scan-engine-version',
                 },
             },
+            scanIncompleteWarnings: ['test-scan-incomplete-warning' as ScanIncompleteWarningId],
         };
 
         unifiedResultsBuilderMock.setup(builder => builder(scanResults)).returns(() => unifiedPayload);

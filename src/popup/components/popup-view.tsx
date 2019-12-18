@@ -129,7 +129,6 @@ export class PopupView extends React.Component<PopupViewProps> {
                 <LaunchPanelHeader
                     deps={this.props.deps}
                     title={this.props.title}
-                    supportLinkHandler={this.props.popupHandlers.supportLinkHandler}
                     popupWindow={this.props.popupWindow}
                     openAdhocToolsPanel={this.openAdhocToolsPanel}
                     featureFlags={this.props.storeState.featureFlagStoreData}
@@ -170,7 +169,6 @@ export class PopupView extends React.Component<PopupViewProps> {
                             </NewTabLink>{' '}
                         </>
                     }
-                    supportLinkHandler={this.props.popupHandlers.supportLinkHandler}
                     popupWindow={this.props.popupWindow}
                     openAdhocToolsPanel={this.openAdhocToolsPanel}
                     featureFlags={this.props.storeState.featureFlagStoreData}

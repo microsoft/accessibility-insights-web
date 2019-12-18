@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { PermissionsStateActions } from 'background/actions/permissions-state-actions';
 import { FeatureFlagActions } from '../actions/feature-flag-actions';
 import { LaunchPanelStateActions } from '../actions/launch-panel-state-action';
 import { AssessmentActions } from './assessment-actions';
@@ -14,6 +15,7 @@ export class GlobalActionHub {
     public scopingActions: ScopingActions;
     public assessmentActions: AssessmentActions;
     public userConfigurationActions: UserConfigurationActions;
+    public permissionsStateActions: PermissionsStateActions;
 
     constructor() {
         this.commandActions = new CommandActions();
@@ -22,5 +24,6 @@ export class GlobalActionHub {
         this.scopingActions = new ScopingActions();
         this.assessmentActions = new AssessmentActions();
         this.userConfigurationActions = new UserConfigurationActions();
+        this.permissionsStateActions = new PermissionsStateActions();
     }
 }

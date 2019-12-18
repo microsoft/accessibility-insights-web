@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ScopingStore } from 'background/stores/global/scoping-store';
-import { IframeDetector } from 'injected/iframe-detector';
+import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { IMock, Mock } from 'typemoq';
 
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
@@ -30,7 +30,7 @@ describe('AnalyzerProviderTests', () => {
     let analyzerMessageTypeStub: string;
     let filterResultsByRulesMock: IMock<IResultRuleFilter>;
     let sendConvertedResultsMock: IMock<PostResolveCallback>;
-    let iframeDetectorMock: IMock<IframeDetector>;
+    let scanIncompleteWarningDetectorMock: IMock<ScanIncompleteWarningDetector>;
 
     beforeEach(() => {
         typeStub = -1;
@@ -46,7 +46,7 @@ describe('AnalyzerProviderTests', () => {
         visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
         filterResultsByRulesMock = Mock.ofInstance(() => null);
         sendConvertedResultsMock = Mock.ofInstance(() => null);
-        iframeDetectorMock = Mock.ofType<IframeDetector>();
+        scanIncompleteWarningDetectorMock = Mock.ofType<ScanIncompleteWarningDetector>();
 
         testObject = new AnalyzerProvider(
             tabStopsListener.object,
@@ -58,7 +58,7 @@ describe('AnalyzerProviderTests', () => {
             visualizationConfigurationFactoryMock.object,
             filterResultsByRulesMock.object,
             sendConvertedResultsMock.object,
-            iframeDetectorMock.object,
+            scanIncompleteWarningDetectorMock.object,
         );
     });
 

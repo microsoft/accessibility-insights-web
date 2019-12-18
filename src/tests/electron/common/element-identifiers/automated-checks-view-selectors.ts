@@ -8,7 +8,7 @@ import { automatedChecksViewAutomationId } from 'electron/views/automated-checks
 import { highlightBoxAutomationId } from 'electron/views/screenshot/highlight-box';
 import { screenshotImageAutomationId } from 'electron/views/screenshot/screenshot';
 import { screenshotViewAutomationId } from 'electron/views/screenshot/screenshot-view';
-import { ruleIdAutomationId } from 'reports/components/report-sections/minimal-rule-header';
+import { cardsRuleIdAutomationId } from 'reports/components/report-sections/minimal-rule-header';
 
 const nthRuleGroup = (n: number) => `${AutomatedChecksViewSelectors.ruleGroup}:nth-of-type(${n})`;
 
@@ -19,7 +19,7 @@ export const AutomatedChecksViewSelectors = {
 
     nthRuleGroupCollapseExpandButton: (position: number) =>
         `${nthRuleGroup(position)} [data-automation-id="${collapsibleButtonAutomationId}"]`,
-    nthRuleGroupTitle: (position: number) => `${nthRuleGroup(position)} [data-automation-id="${ruleIdAutomationId}"]`,
+    nthRuleGroupTitle: (position: number) => `${nthRuleGroup(position)} [data-automation-id="${cardsRuleIdAutomationId}"]`,
     nthRuleGroupInstances: (position: number) => `${nthRuleGroup(position)} [data-automation-id="${instanceCardAutomationId}"]`,
 };
 
