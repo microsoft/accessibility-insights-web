@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { allUrlAndFilePermissions, BrowserPermissionsTracker } from 'background/browser-permissions-tracker';
+import { allUrlAndFilePermissions, BrowserPermissionsTracker, permissionsCheckErrorMessage } from 'background/browser-permissions-tracker';
 import { Interpreter } from 'background/interpreter';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { Logger } from 'common/logging/logger';
@@ -38,20 +38,16 @@ describe('BrowserPermissionsTracker', () => {
             async browserPermissions => {
                 await testSubject.initialize();
 
-                browserAdapterMock
-                    .setup(adapter => adapter.containsPermissions(allUrlAndFilePermissions))
-                    .returns(() => Promise.resolve(browserPermissions))
-                    .verifiable(Times.once());
+                setupBrowserAdapterMock(Promise.resolve(browserPermissions));
 
                 await browserAdapterMock.addPermissions();
 
                 const expectedMessage: Message = {
                     messageType: Messages.PermissionsState.SetPermissionsState,
                     payload: browserPermissions,
-                    tabId: null,
                 };
 
-                interpreterMock.verify(i => i.interpret(expectedMessage), Times.once());
+                verifyInterpreterMessage(expectedMessage);
                 loggerMock.verify(logger => logger.log(It.isAny()), Times.never());
             },
         );
@@ -60,21 +56,17 @@ describe('BrowserPermissionsTracker', () => {
             const hasAllUrlAndFilePermissions = false;
             await testSubject.initialize();
 
-            browserAdapterMock
-                .setup(adapter => adapter.containsPermissions(allUrlAndFilePermissions))
-                .returns(() => Promise.reject())
-                .verifiable(Times.once());
+            setupBrowserAdapterMock(Promise.reject());
 
             await browserAdapterMock.addPermissions();
 
             const expectedMessage: Message = {
                 messageType: Messages.PermissionsState.SetPermissionsState,
                 payload: hasAllUrlAndFilePermissions,
-                tabId: null,
             };
 
-            interpreterMock.verify(i => i.interpret(expectedMessage), Times.once());
-            loggerMock.verify(logger => logger.log('Error occurred while checking browser permissions'), Times.once());
+            verifyInterpreterMessage(expectedMessage);
+            loggerMock.verify(logger => logger.log(permissionsCheckErrorMessage), Times.once());
         });
     });
 
@@ -84,20 +76,16 @@ describe('BrowserPermissionsTracker', () => {
             async browserPermissions => {
                 await testSubject.initialize();
 
-                browserAdapterMock
-                    .setup(adapter => adapter.containsPermissions(allUrlAndFilePermissions))
-                    .returns(() => Promise.resolve(browserPermissions))
-                    .verifiable(Times.once());
+                setupBrowserAdapterMock(Promise.resolve(browserPermissions));
 
                 await browserAdapterMock.removePermissions();
 
                 const expectedMessage: Message = {
                     messageType: Messages.PermissionsState.SetPermissionsState,
                     payload: browserPermissions,
-                    tabId: null,
                 };
 
-                interpreterMock.verify(i => i.interpret(expectedMessage), Times.once());
+                verifyInterpreterMessage(expectedMessage);
                 loggerMock.verify(logger => logger.log(It.isAny()), Times.never());
             },
         );
@@ -106,21 +94,17 @@ describe('BrowserPermissionsTracker', () => {
             const hasAllUrlAndFilePermissions = false;
             await testSubject.initialize();
 
-            browserAdapterMock
-                .setup(adapter => adapter.containsPermissions(allUrlAndFilePermissions))
-                .returns(() => Promise.reject())
-                .verifiable(Times.once());
+            setupBrowserAdapterMock(Promise.reject());
 
             await browserAdapterMock.removePermissions();
 
             const expectedMessage: Message = {
                 messageType: Messages.PermissionsState.SetPermissionsState,
                 payload: hasAllUrlAndFilePermissions,
-                tabId: null,
             };
 
-            interpreterMock.verify(i => i.interpret(expectedMessage), Times.once());
-            loggerMock.verify(logger => logger.log('Error occurred while checking browser permissions'), Times.once());
+            verifyInterpreterMessage(expectedMessage);
+            loggerMock.verify(logger => logger.log(permissionsCheckErrorMessage), Times.once());
         });
     });
 
@@ -147,5 +131,16 @@ describe('BrowserPermissionsTracker', () => {
         };
 
         return mock as SimulatedBrowserAdapter;
+    }
+
+    function setupBrowserAdapterMock(result: Promise<boolean>): void {
+        browserAdapterMock
+            .setup(adapter => adapter.containsPermissions(allUrlAndFilePermissions))
+            .returns(() => result)
+            .verifiable(Times.once());
+    }
+
+    function verifyInterpreterMessage(expectedMessage: Message): void {
+        interpreterMock.verify(i => i.interpret(expectedMessage), Times.once());
     }
 });

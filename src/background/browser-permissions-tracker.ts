@@ -8,6 +8,8 @@ import { Messages } from 'common/messages';
 import { Permissions } from 'webextension-polyfill-ts';
 
 export const allUrlAndFilePermissions: Permissions.Permissions = { origins: ['*://*/*'] };
+export const permissionsCheckErrorMessage: string =
+    'Error occurred while checking browser permissions';
 
 export class BrowserPermissionsTracker {
     constructor(
@@ -17,24 +19,23 @@ export class BrowserPermissionsTracker {
     ) {}
 
     public async initialize(): Promise<void> {
-        this.browserAdapter.addListenerOnPermissionsAdded(this.notifyChange);
-        this.browserAdapter.addListenerOnPermissionsRemoved(this.notifyChange);
-        await this.notifyChange();
+        this.browserAdapter.addListenerOnPermissionsAdded(this.updatePermissionState);
+        this.browserAdapter.addListenerOnPermissionsRemoved(this.updatePermissionState);
+        await this.updatePermissionState();
     }
 
-    private notifyChange = async (): Promise<void> => {
+    private updatePermissionState = async (): Promise<void> => {
         let payload: boolean;
 
         try {
             payload = await this.browserAdapter.containsPermissions(allUrlAndFilePermissions);
         } catch (error) {
             payload = false;
-            this.logger.log('Error occurred while checking browser permissions');
+            this.logger.log(permissionsCheckErrorMessage);
         } finally {
             const message: Message = {
                 messageType: Messages.PermissionsState.SetPermissionsState,
                 payload: payload,
-                tabId: null,
             };
 
             this.interpreter.interpret(message);
