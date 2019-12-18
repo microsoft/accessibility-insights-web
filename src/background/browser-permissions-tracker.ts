@@ -25,12 +25,10 @@ export class BrowserPermissionsTracker {
             });
         } catch (error) {
             payload = false;
-            console.error(
-                `Error occurred while checking browser permissions for ${allUrlAndFilePermissions}: ${error}`,
-            );
+            console.error(`Error occurred while checking browser permissions: ${error}`);
         } finally {
             const message: Message = {
-                messageType: Messages.PermissionsState.PermissionsStateChanged,
+                messageType: Messages.PermissionsState.SetPermissionsState,
                 payload: payload,
                 tabId: null,
             };

@@ -43,7 +43,7 @@ describe('BrowserPermissionsTracker', () => {
                 await browserAdapterMock.addPermissions();
 
                 const expectedMessage: Message = {
-                    messageType: Messages.PermissionsState.PermissionsStateChanged,
+                    messageType: Messages.PermissionsState.SetPermissionsState,
                     payload: browserPermissions,
                     tabId: null,
                 };
@@ -64,7 +64,7 @@ describe('BrowserPermissionsTracker', () => {
             await browserAdapterMock.addPermissions();
 
             const expectedMessage: Message = {
-                messageType: Messages.PermissionsState.PermissionsStateChanged,
+                messageType: Messages.PermissionsState.SetPermissionsState,
                 payload: hasAllUrlAndFilePermissions,
                 tabId: null,
             };
@@ -87,7 +87,7 @@ describe('BrowserPermissionsTracker', () => {
                 await browserAdapterMock.removePermissions();
 
                 const expectedMessage: Message = {
-                    messageType: Messages.PermissionsState.PermissionsStateChanged,
+                    messageType: Messages.PermissionsState.SetPermissionsState,
                     payload: browserPermissions,
                     tabId: null,
                 };
@@ -108,7 +108,7 @@ describe('BrowserPermissionsTracker', () => {
             await browserAdapterMock.removePermissions();
 
             const expectedMessage: Message = {
-                messageType: Messages.PermissionsState.PermissionsStateChanged,
+                messageType: Messages.PermissionsState.SetPermissionsState,
                 payload: hasAllUrlAndFilePermissions,
                 tabId: null,
             };
