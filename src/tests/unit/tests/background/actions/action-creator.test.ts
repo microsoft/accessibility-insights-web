@@ -594,7 +594,7 @@ describe('ActionCreatorTest', () => {
             scanResult: null,
             testType: VisualizationType.HeadingsAssessment,
             key: 'key',
-            pageHasIframes: true,
+            scanIncompleteWarnings: [],
         };
 
         const validator = new ActionCreatorValidator()
@@ -621,7 +621,7 @@ describe('ActionCreatorTest', () => {
         const disableActionName = 'disableVisualization';
 
         const validator = new ActionCreatorValidator()
-            .setupRegistrationCallback(Messages.Assessment.StartOver, [payload, tabId])
+            .setupRegistrationCallback(Messages.Assessment.StartOverTest, [payload, tabId])
             .setupActionOnVisualizationActions(disableActionName)
             .setupVisualizationActionWithInvokeParameter(disableActionName, payload.test)
             .setupTelemetrySend(TelemetryEvents.START_OVER_TEST, payload, 1);

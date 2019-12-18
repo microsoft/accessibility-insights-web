@@ -10,6 +10,7 @@ import { detailsViewCommandButtons } from 'DetailsView/components/details-view-c
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { StartOverDeps } from 'DetailsView/components/start-over-dropdown';
 import { Link } from 'office-ui-fabric-react/lib/Link';
+import { ITooltipHostStyles, TooltipHost } from 'office-ui-fabric-react/lib/Tooltip';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 
@@ -62,17 +63,20 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
 
     private renderTargetPageInfo(): JSX.Element {
         const targetPageTitle: string = this.props.tabStoreData.title;
+        const hostStyles: Partial<ITooltipHostStyles> = { root: { display: 'inline-block' } };
         return (
             <div className="details-view-target-page" aria-labelledby="switch-to-target">
                 <span id="switch-to-target">Target page:&nbsp;</span>
-                <Link
-                    role="link"
-                    title="Switch to target page"
-                    className={css('insights-link', 'target-page-link')}
-                    onClick={this.props.deps.detailsViewActionMessageCreator.switchToTargetTab}
-                >
-                    {targetPageTitle}
-                </Link>
+                <TooltipHost content={`Switch to target page: ${targetPageTitle}`} styles={hostStyles} id="tooltip-id">
+                    <Link
+                        role="link"
+                        className={css('insights-link', 'target-page-link')}
+                        onClick={this.props.deps.detailsViewActionMessageCreator.switchToTargetTab}
+                        aria-labelledby="tooltip-id"
+                    >
+                        {targetPageTitle}
+                    </Link>
+                </TooltipHost>
             </div>
         );
     }

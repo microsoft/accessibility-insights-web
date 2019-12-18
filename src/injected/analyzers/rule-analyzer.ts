@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ScopingInputTypes } from 'background/scoping-input-types';
-import { IframeDetector } from 'injected/iframe-detector';
+import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import * as Q from 'q';
 
 import { BaseStore } from '../../common/base-store';
@@ -31,9 +31,9 @@ export class RuleAnalyzer extends BaseAnalyzer {
         protected telemetryFactory: TelemetryDataFactory,
         protected readonly visualizationConfigFactory: VisualizationConfigurationFactory,
         private postOnResolve: PostResolveCallback,
-        iframeDetector: IframeDetector,
+        scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
     ) {
-        super(config, sendMessageDelegate, iframeDetector);
+        super(config, sendMessageDelegate, scanIncompleteWarningDetector);
     }
 
     protected getResults = (): Q.Promise<AxeAnalyzerResult> => {

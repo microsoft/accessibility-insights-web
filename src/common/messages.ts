@@ -119,7 +119,7 @@ export class Messages {
         TrackingCompleted: `${messagePrefix}/assessment/tab-stops/recording-completed`,
         CancelStartOver: `${messagePrefix}/assessment/cancel-start-over`,
         CancelStartOverAllAssessments: `${messagePrefix}/assessment/cancel-start-over-all-assessments`,
-        StartOver: `${messagePrefix}/assessment/startOver`,
+        StartOverTest: `${messagePrefix}/assessment/startOverTest`,
         StartOverAllAssessments: `${messagePrefix}/assessment/startOverAllAssessments`,
         EnableVisualHelper: `${messagePrefix}/assessment/enableVisualHelper`,
         EnableVisualHelperWithoutScan: `${messagePrefix}/assessment/enableVisualHelperWithoutScan`,
@@ -203,6 +203,6 @@ export class Messages {
     };
 
     public static readonly PermissionsState = {
-        PermissionsStateChanged: `${messagePrefix}/permissionsState/permissionsStateChanged`,
+        SetPermissionsState: `${messagePrefix}/permissionsState/setPermissionsState`,
     };
 }

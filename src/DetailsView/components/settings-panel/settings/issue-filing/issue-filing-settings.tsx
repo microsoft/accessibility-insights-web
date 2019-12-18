@@ -16,7 +16,7 @@ export const IssueFilingSettings = NamedFC<SettingsProps>('IssueFilingSettings',
 
     return (
         <>
-            <h3>Issue filing</h3>
+            <h3 id="issue-filing">Issue filing</h3>
             <IssueFilingSettingsContainer
                 deps={deps}
                 selectedIssueFilingService={selectedIssueFilingService}

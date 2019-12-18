@@ -385,6 +385,7 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         );
         assessmentData.generatedAssessmentInstancesMap = generatedAssessmentInstancesMap;
         assessmentData.testStepStatus[step].isStepScanned = true;
+        assessmentData.scanIncompleteWarnings = payload.scanIncompleteWarnings;
         this.updateTestStepStatusOnScanUpdate(assessmentData, step, test);
         this.emitChanged();
     };

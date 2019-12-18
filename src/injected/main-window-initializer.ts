@@ -14,6 +14,7 @@ import { FocusChangeHandler } from 'injected/focus-change-handler';
 import { getDecoratedAxeNode } from 'injected/get-decorated-axe-node';
 import { IframeDetector } from 'injected/iframe-detector';
 import { isVisualizationEnabled } from 'injected/is-visualization-enabled';
+import { CrossOriginPermissionDetector, ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { TargetPageVisualizationUpdater } from 'injected/target-page-visualization-updater';
 import { visualizationNeedsUpdate } from 'injected/visualization-needs-update';
 import { VisualizationStateChangeHandler } from 'injected/visualization-state-change-handler';
@@ -214,12 +215,21 @@ export class MainWindowInitializer extends WindowInitializer {
 
         this.frameUrlSearchInitiator.listenToStore();
 
+        // TODO: use something based on the permissions store instead once that's piped in
+        const crossOriginPermissionDetector: CrossOriginPermissionDetector = {
+            hasCrossOriginPermissions: () => true,
+        };
+
+        const iframeDetector = new IframeDetector(document);
+        const scanIncompleteWarningDetector = new ScanIncompleteWarningDetector(iframeDetector, crossOriginPermissionDetector);
+
         const unifiedResultSender = new UnifiedResultSender(
             this.browserAdapter.sendMessageToFrames,
             convertScanResultsToUnifiedResults,
             convertScanResultsToUnifiedRules,
             environmentInfoProvider,
             generateUID,
+            scanIncompleteWarningDetector,
         );
 
         const analyzerProvider = new AnalyzerProvider(
@@ -232,7 +242,7 @@ export class MainWindowInitializer extends WindowInitializer {
             this.visualizationConfigurationFactory,
             filterResultsByRules,
             unifiedResultSender.sendResults,
-            new IframeDetector(document),
+            scanIncompleteWarningDetector,
         );
 
         const analyzerStateUpdateHandler = new AnalyzerStateUpdateHandler(this.visualizationConfigurationFactory);
