@@ -3,6 +3,7 @@
 import { allUrlAndFilePermissions, BrowserPermissionsTracker } from 'background/browser-permissions-tracker';
 import { Interpreter } from 'background/interpreter';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { Logger } from 'common/logging/logger';
 import { Message } from 'common/message';
 import { Messages } from 'common/messages';
 import { isFunction } from 'lodash';
@@ -12,12 +13,14 @@ describe('BrowserPermissionsTracker', () => {
     let testSubject: BrowserPermissionsTracker;
     let browserAdapterMock: SimulatedBrowserAdapter;
     let interpreterMock: IMock<Interpreter>;
+    let loggerMock: IMock<Logger>;
 
     beforeEach(() => {
         interpreterMock = Mock.ofType<Interpreter>();
+        loggerMock = Mock.ofType<Logger>();
         browserAdapterMock = createBrowserAdapterMock();
 
-        testSubject = new BrowserPermissionsTracker(browserAdapterMock.object, interpreterMock.object);
+        testSubject = new BrowserPermissionsTracker(browserAdapterMock.object, interpreterMock.object, loggerMock.object);
     });
 
     describe('initialize', () => {
@@ -49,6 +52,7 @@ describe('BrowserPermissionsTracker', () => {
                 };
 
                 interpreterMock.verify(i => i.interpret(expectedMessage), Times.once());
+                loggerMock.verify(logger => logger.log(It.isAny()), Times.never());
             },
         );
 
@@ -70,6 +74,7 @@ describe('BrowserPermissionsTracker', () => {
             };
 
             interpreterMock.verify(i => i.interpret(expectedMessage), Times.once());
+            loggerMock.verify(logger => logger.log('Error occurred while checking browser permissions'), Times.once());
         });
     });
 
@@ -93,6 +98,7 @@ describe('BrowserPermissionsTracker', () => {
                 };
 
                 interpreterMock.verify(i => i.interpret(expectedMessage), Times.once());
+                loggerMock.verify(logger => logger.log(It.isAny()), Times.never());
             },
         );
 
@@ -114,6 +120,7 @@ describe('BrowserPermissionsTracker', () => {
             };
 
             interpreterMock.verify(i => i.interpret(expectedMessage), Times.once());
+            loggerMock.verify(logger => logger.log('Error occurred while checking browser permissions'), Times.once());
         });
     });
 

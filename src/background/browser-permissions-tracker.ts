@@ -2,13 +2,18 @@
 // Licensed under the MIT License.
 import { Interpreter } from 'background/interpreter';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { Logger } from 'common/logging/logger';
 import { Message } from 'common/message';
 import { Messages } from 'common/messages';
 
 export const allUrlAndFilePermissions: string = '*://*/*';
 
 export class BrowserPermissionsTracker {
-    constructor(private browserAdapter: BrowserAdapter, private interpreter: Interpreter) {}
+    constructor(
+        private browserAdapter: BrowserAdapter,
+        private interpreter: Interpreter,
+        private readonly logger: Logger,
+    ) {}
 
     public async initialize(): Promise<void> {
         this.browserAdapter.addListenerOnPermissionsAdded(this.notifyChange);
@@ -25,7 +30,7 @@ export class BrowserPermissionsTracker {
             });
         } catch (error) {
             payload = false;
-            console.error(`Error occurred while checking browser permissions: ${error}`);
+            this.logger.log('Error occurred while checking browser permissions');
         } finally {
             const message: Message = {
                 messageType: Messages.PermissionsState.SetPermissionsState,
