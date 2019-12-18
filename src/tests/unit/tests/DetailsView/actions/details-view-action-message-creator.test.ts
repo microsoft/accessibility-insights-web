@@ -869,6 +869,29 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
     });
 
+    test('setAllUrlsPermissionState', () => {
+        const eventStub = {} as SupportedMouseEvent;
+        const telemetryStub = {
+            source: TelemetryEventSource.DetailsView,
+        } as BaseTelemetryData;
+        const permissionsState = true;
+        const expectedMessage = {
+            messageType: Messages.PermissionsState.SetPermissionsState,
+            payload: {
+                telemetry: telemetryStub,
+                allUrlsPermissionState: permissionsState,
+            },
+        };
+
+        telemetryFactoryMock
+            .setup(tf => tf.withTriggeredByAndSource(eventStub, TelemetryEventSource.DetailsView))
+            .returns(() => telemetryStub);
+
+        testSubject.setAllUrlsPermissionState(eventStub, permissionsState);
+
+        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
+    });
+
     function setupTelemetryFactory(methodName: keyof TelemetryDataFactory, telemetry: any, event?: any): void {
         const setupFunc = event ? tfm => tfm[methodName](event) : tfm => tfm[methodName]();
         telemetryFactoryMock.setup(setupFunc).returns(() => telemetry);
