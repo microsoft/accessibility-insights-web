@@ -62,6 +62,7 @@ export const ALL_RULES_EXPANDED: string = 'allRulesExpanded';
 export const ALL_RULES_COLLAPSED: string = 'allRulesCollapsed';
 export const RESCAN_VISUALIZATION: string = 'rescanVisualization';
 export const EXISTING_TAB_URL_UPDATED: string = 'existingTabUrlUpdated';
+export const SCAN_INCOMPLETE_WARNINGS: string = 'scanIncompleteWarnings';
 
 export const TriggeredByNotApplicable: TriggeredBy = 'N/A';
 export type TriggeredBy = 'mouseclick' | 'keypress' | 'shortcut' | 'N/A';
