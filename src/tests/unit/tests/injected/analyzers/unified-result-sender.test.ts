@@ -1,18 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { UnifiedScanCompletedPayload } from 'background/actions/action-payloads';
+import { EnvironmentInfoProvider } from 'common/environment-info-provider';
+import { Message } from 'common/message';
+import { Messages } from 'common/messages';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
+import { ToolData, UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
+import { ConvertScanResultsToUnifiedResultsDelegate } from 'injected/adapters/scan-results-to-unified-results';
+import { ConvertScanResultsToUnifiedRulesDelegate } from 'injected/adapters/scan-results-to-unified-rules';
+import { MessageDelegate } from 'injected/analyzers/rule-analyzer';
+import { UnifiedResultSender } from 'injected/analyzers/unified-result-sender';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
+import { ScanResults } from 'scanner/iruleresults';
 import { IMock, Mock, Times } from 'typemoq';
-import { UnifiedScanCompletedPayload } from '../../../../../background/actions/action-payloads';
-import { EnvironmentInfoProvider } from '../../../../../common/environment-info-provider';
-import { Message } from '../../../../../common/message';
-import { Messages } from '../../../../../common/messages';
-import { ToolData, UnifiedResult, UnifiedRule } from '../../../../../common/types/store-data/unified-data-interface';
-import { ConvertScanResultsToUnifiedResultsDelegate } from '../../../../../injected/adapters/scan-results-to-unified-results';
-import { ConvertScanResultsToUnifiedRulesDelegate } from '../../../../../injected/adapters/scan-results-to-unified-rules';
-import { MessageDelegate } from '../../../../../injected/analyzers/rule-analyzer';
-import { UnifiedResultSender } from '../../../../../injected/analyzers/unified-result-sender';
-import { ScanResults } from '../../../../../scanner/iruleresults';
 
 describe('sendConvertedResults', () => {
     it('should send a message with expected results', () => {
@@ -70,6 +70,9 @@ describe('sendConvertedResults', () => {
                 url: 'url',
             },
             scanIncompleteWarnings: stubScanIncompleteWarnings,
+            telemetry: {
+                scanIncompleteWarnings: stubScanIncompleteWarnings,
+            },
         };
         const expectedMessage: Message = {
             messageType: Messages.UnifiedScan.ScanCompleted,
