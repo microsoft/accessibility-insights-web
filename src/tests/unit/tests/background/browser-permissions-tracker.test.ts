@@ -39,7 +39,7 @@ describe('BrowserPermissionsTracker', () => {
                 await testSubject.initialize();
 
                 browserAdapterMock
-                    .setup(adapter => adapter.containsPermissions({ origins: [allUrlAndFilePermissions] }))
+                    .setup(adapter => adapter.containsPermissions(allUrlAndFilePermissions))
                     .returns(() => Promise.resolve(browserPermissions))
                     .verifiable(Times.once());
 
@@ -61,7 +61,7 @@ describe('BrowserPermissionsTracker', () => {
             await testSubject.initialize();
 
             browserAdapterMock
-                .setup(adapter => adapter.containsPermissions({ origins: [allUrlAndFilePermissions] }))
+                .setup(adapter => adapter.containsPermissions(allUrlAndFilePermissions))
                 .returns(() => Promise.reject())
                 .verifiable(Times.once());
 
@@ -85,7 +85,7 @@ describe('BrowserPermissionsTracker', () => {
                 await testSubject.initialize();
 
                 browserAdapterMock
-                    .setup(adapter => adapter.containsPermissions({ origins: [allUrlAndFilePermissions] }))
+                    .setup(adapter => adapter.containsPermissions(allUrlAndFilePermissions))
                     .returns(() => Promise.resolve(browserPermissions))
                     .verifiable(Times.once());
 
@@ -107,7 +107,7 @@ describe('BrowserPermissionsTracker', () => {
             await testSubject.initialize();
 
             browserAdapterMock
-                .setup(adapter => adapter.containsPermissions({ origins: [allUrlAndFilePermissions] }))
+                .setup(adapter => adapter.containsPermissions(allUrlAndFilePermissions))
                 .returns(() => Promise.reject())
                 .verifiable(Times.once());
 

@@ -5,8 +5,9 @@ import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { Logger } from 'common/logging/logger';
 import { Message } from 'common/message';
 import { Messages } from 'common/messages';
+import { Permissions } from 'webextension-polyfill-ts';
 
-export const allUrlAndFilePermissions: string = '*://*/*';
+export const allUrlAndFilePermissions: Permissions.Permissions = { origins: ['*://*/*'] };
 
 export class BrowserPermissionsTracker {
     constructor(
@@ -25,9 +26,7 @@ export class BrowserPermissionsTracker {
         let payload: boolean;
 
         try {
-            payload = await this.browserAdapter.containsPermissions({
-                origins: [allUrlAndFilePermissions],
-            });
+            payload = await this.browserAdapter.containsPermissions(allUrlAndFilePermissions);
         } catch (error) {
             payload = false;
             this.logger.log('Error occurred while checking browser permissions');
