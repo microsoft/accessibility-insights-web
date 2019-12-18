@@ -8,7 +8,7 @@ import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import {
     CommandBar as UICommandBar,
     ICommandBarItemProps,
-} from 'office-ui-fabric-react/lib/CommandBar';
+} from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import * as styles from './command-bar.scss';

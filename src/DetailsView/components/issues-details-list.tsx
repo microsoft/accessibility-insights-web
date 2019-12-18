@@ -7,8 +7,8 @@ import {
     IColumn,
     ISelection,
     SelectionMode,
-} from 'office-ui-fabric-react/lib/DetailsList';
-import { Icon } from 'office-ui-fabric-react/lib/Icon';
+} from 'office-ui-fabric-react';
+import { Icon } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { RuleResult } from '../../scanner/iruleresults';

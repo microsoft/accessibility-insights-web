@@ -6,7 +6,7 @@ import {
     ContextualMenuItemType,
     DirectionalHint,
     IContextualMenuItem,
-} from 'office-ui-fabric-react/lib/ContextualMenu';
+} from 'office-ui-fabric-react';
 import * as React from 'react';
 import { TelemetryEventSource } from '../../common/extension-telemetry-events';
 import { NamedFC } from '../../common/react/named-fc';

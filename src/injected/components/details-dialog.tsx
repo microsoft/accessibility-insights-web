@@ -3,7 +3,7 @@
 import { FixInstructionPanel, FixInstructionPanelDeps } from 'common/components/fix-instruction-panel';
 import { isEmpty, size } from 'lodash';
 import { css } from 'office-ui-fabric-react';
-import { Dialog, DialogType } from 'office-ui-fabric-react/lib/Dialog';
+import { Dialog, DialogType } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { HyperlinkDefinition } from 'views/content/content-page';
 

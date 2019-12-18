@@ -22,7 +22,7 @@ import {
 } from 'injected/visualization-instance-processor';
 import { Drawer } from 'injected/visualization/drawer';
 import { DrawerProvider } from 'injected/visualization/drawer-provider';
-import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
+import { IColumn } from 'office-ui-fabric-react';
 import { DictionaryStringTo } from 'types/common-types';
 import { ContentPageComponent, HyperlinkDefinition } from 'views/content/content-page';
 import { IGetMessageGenerator } from '../assessment-default-message-generator';

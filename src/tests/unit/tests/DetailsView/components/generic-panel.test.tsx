@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Panel, PanelType } from 'office-ui-fabric-react/lib/Panel';
+import { Panel, PanelType } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { GenericPanel, GenericPanelProps } from '../../../../../DetailsView/components/generic-panel';

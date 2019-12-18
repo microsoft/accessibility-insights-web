@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { isEmpty } from 'lodash';
-import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
-import { DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
-import { Link } from 'office-ui-fabric-react/lib/Link';
-import { TooltipHost } from 'office-ui-fabric-react/lib/Tooltip';
+import { DefaultButton } from 'office-ui-fabric-react';
+import { DialogFooter, DialogType } from 'office-ui-fabric-react';
+import { Link } from 'office-ui-fabric-react';
+import { TooltipHost } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { css } from '@uifabric/utilities';
