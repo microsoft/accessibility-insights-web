@@ -20,6 +20,7 @@ import { PersistedData } from './get-persisted-data';
 import { FeatureFlagsActionCreator } from './global-action-creators/feature-flags-action-creator';
 import { GlobalActionCreator } from './global-action-creators/global-action-creator';
 import { IssueFilingActionCreator } from './global-action-creators/issue-filing-action-creator';
+import { PermissionsStateActionCreator } from './global-action-creators/permissions-state-action-creator';
 import { registerUserConfigurationMessageCallback } from './global-action-creators/registrar/register-user-configuration-message-callbacks';
 import { ScopingActionCreator } from './global-action-creators/scoping-action-creator';
 import { UserConfigurationActionCreator } from './global-action-creators/user-configuration-action-creator';
@@ -102,6 +103,10 @@ export class GlobalContextFactory {
             globalActionsHub.featureFlagActions,
             telemetryEventHandler,
         );
+        const permissionsStateActionCreator = new PermissionsStateActionCreator(
+            interpreter,
+            globalActionsHub.permissionsStateActions,
+        );
 
         issueFilingActionCreator.registerCallbacks();
         actionCreator.registerCallbacks();
@@ -109,6 +114,7 @@ export class GlobalContextFactory {
         registerUserConfigurationMessageCallback(interpreter, userConfigurationActionCreator);
         scopingActionCreator.registerCallback();
         featureFlagsActionCreator.registerCallbacks();
+        permissionsStateActionCreator.registerCallbacks();
 
         const messageBroadcasterFactory = new BrowserMessageBroadcasterFactory(
             browserAdapter,
