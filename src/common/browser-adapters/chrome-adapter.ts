@@ -108,8 +108,8 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         return browser.notifications.create(options);
     }
 
-    public isAllowedFileSchemeAccess(callback: (isAllowed: boolean) => void): void {
-        chrome.extension.isAllowedFileSchemeAccess(callback);
+    public isAllowedFileSchemeAccess(): Promise<boolean> {
+        return browser.extension.isAllowedFileSchemeAccess();
     }
 
     public addCommandListener(callback: (command: string) => void): void {
