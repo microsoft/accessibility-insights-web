@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { LinkBase } from 'office-ui-fabric-react/lib/components/Link/Link.base';
-import { Icon } from 'office-ui-fabric-react/lib/Icon';
-import { Link } from 'office-ui-fabric-react/lib/Link';
+import { LinkBase } from 'office-ui-fabric-react';
+import { Icon } from 'office-ui-fabric-react';
+import { Link } from 'office-ui-fabric-react';
 import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';

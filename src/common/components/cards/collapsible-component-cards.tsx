@@ -3,7 +3,7 @@
 import { css } from '@uifabric/utilities';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
-import { ActionButton } from 'office-ui-fabric-react/lib/Button';
+import { ActionButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import * as styles from './collapsible-component-cards.scss';

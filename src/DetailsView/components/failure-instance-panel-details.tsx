@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
-import { Icon } from 'office-ui-fabric-react/lib/Icon';
-import { ILabelStyles } from 'office-ui-fabric-react/lib/Label';
-import { ITextFieldStyles, TextField } from 'office-ui-fabric-react/lib/TextField';
+import { DefaultButton } from 'office-ui-fabric-react';
+import { Icon } from 'office-ui-fabric-react';
+import { ILabelStyles } from 'office-ui-fabric-react';
+import { ITextFieldStyles, TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { NamedFC } from '../../common/react/named-fc';

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Dialog, IDialogProps } from 'office-ui-fabric-react/lib/Dialog';
+import { Dialog, IDialogProps } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { NamedFC } from '../react/named-fc';

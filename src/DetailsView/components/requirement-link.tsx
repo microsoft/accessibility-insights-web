@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { css } from '@uifabric/utilities';
-import { INavLink } from 'office-ui-fabric-react/lib/Nav';
+import { INavLink } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { ManualTestStatus } from '../../common/types/manual-test-status';

@@ -4,7 +4,7 @@ import { CardSelectionViewData, GetCardSelectionViewData } from 'common/get-card
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { shallow } from 'enzyme';
-import { ISelection, Selection } from 'office-ui-fabric-react/lib/DetailsList';
+import { ISelection, Selection } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 

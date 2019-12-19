@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { configure } from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-16';
-import { setIconOptions } from 'office-ui-fabric-react/lib/Styling';
+import { setIconOptions } from 'office-ui-fabric-react';
 
 configure({ adapter: new Adapter() });
 setIconOptions({

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IconButton } from 'office-ui-fabric-react/lib/Button';
-import { IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
+import { IconButton } from 'office-ui-fabric-react';
+import { IContextualMenuItem } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { GearOptionsButtonComponent } from '../../common/components/gear-options-button-component';
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
