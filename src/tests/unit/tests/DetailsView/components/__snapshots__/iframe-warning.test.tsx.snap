@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AssessmentIframeWarning render 1`] = `
+<IframeWarning
+  onAllowPermissionsClick={[Function]}
+/>
+`;
+
+exports[`FastPassIframeWarning render 1`] = `
+<IframeWarning
+  onAllowPermissionsClick={[Function]}
+/>
+`;

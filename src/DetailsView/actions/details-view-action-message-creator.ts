@@ -191,7 +191,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     };
 
-    public startOverTest(event: React.MouseEvent<any>, test: VisualizationType): void {
+    public startOverTest(event: SupportedMouseEvent, test: VisualizationType): void {
         const telemetry = this.telemetryFactory.forAssessmentActionFromDetailsView(test, event);
         const payload: ToggleActionPayload = {
             test,
