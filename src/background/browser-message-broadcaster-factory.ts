@@ -14,9 +14,7 @@ export class BrowserMessageBroadcasterFactory {
         // condition described by #1816
         await this.sendMessageToFrames(message);
 
-        const allTabs: chrome.tabs.Tab[] = await new Promise(resolve => {
-            this.browserAdapter.tabsQuery({}, resolve);
-        });
+        const allTabs = await this.browserAdapter.tabsQueryP({});
 
         await Promise.all(allTabs.map(tab => this.sendMessageToTab(tab.id, message)));
     };
