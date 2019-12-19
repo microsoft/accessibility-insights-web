@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AssessmentIframeWarning render 1`] = `
+<IframeWarning
+  onAllowPermissionsClick={[Function]}
+/>
+`;
+
+exports[`FastPassIframeWarning render 1`] = `
+<IframeWarning
+  onAllowPermissionsClick={[Function]}
+/>
+`;
+
+exports[`IframeWarning render 1`] = `
+<React.Fragment>
+  There are iframes in the target page. To have complete results,
+   
+  <StyledLinkBase
+    onClick={[Function]}
+  >
+    give Accessibility Insights additional permissions
+  </StyledLinkBase>
+  ; this will trigger a re-scan
+   
+  of the test. 
+  <NewTabLink
+    href="https://accessibilityinsights.io/docs/en/faq"
+  >
+    Learn more here.
+  </NewTabLink>
+</React.Fragment>
+`;
