@@ -21,7 +21,7 @@ exports[`IframeWarning render 1`] = `
   >
     give Accessibility Insights additional permissions
   </StyledLinkBase>
-  ; this will trigger a re-scan
+  ; this will trigger a rescan
    
   of the test. 
   <NewTabLink

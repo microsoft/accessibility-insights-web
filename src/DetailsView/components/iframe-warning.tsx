@@ -16,7 +16,7 @@ export type IframeWarningProps = {
 export const IframeWarning = NamedFC<IframeWarningProps>('IframeWarning', props => (
     <>
         There are iframes in the target page. To have complete results,{' '}
-        <Link onClick={props.onAllowPermissionsClick}>give Accessibility Insights additional permissions</Link>; this will trigger a re-scan{' '}
+        <Link onClick={props.onAllowPermissionsClick}>give Accessibility Insights additional permissions</Link>; this will trigger a rescan{' '}
         of the test. <NewTabLink href={'https://accessibilityinsights.io/docs/en/faq'}>Learn more here.</NewTabLink>
     </>
 ));
