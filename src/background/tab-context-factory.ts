@@ -117,6 +117,7 @@ export class TabContextFactory {
         const scanResultActionCreator = new UnifiedScanResultActionCreator(
             interpreter,
             actionsHub.scanResultActions,
+            this.telemetryEventHandler,
         );
         const scopingPanelActionCreator = new ScopingPanelActionCreator(
             interpreter,
