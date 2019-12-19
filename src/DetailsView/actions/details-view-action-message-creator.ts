@@ -14,6 +14,7 @@ import {
     OnDetailsViewPivotSelected,
     RemoveFailureInstancePayload,
     SelectRequirementPayload,
+    SetAllUrlsPermissionStatePayload,
     SwitchToTargetTabPayload,
     ToggleActionPayload,
 } from 'background/actions/action-payloads';
@@ -493,6 +494,20 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
 
         const message: Message = {
             messageType: Messages.Visualizations.Common.RescanVisualization,
+            payload,
+        };
+
+        this.dispatcher.dispatchMessage(message);
+    };
+
+    public setAllUrlsPermissionState = (event: SupportedMouseEvent, allUrlsPermissionState: boolean) => {
+        const payload: SetAllUrlsPermissionStatePayload = {
+            allUrlsPermissionState,
+            telemetry: this.telemetryFactory.withTriggeredByAndSource(event, TelemetryEvents.TelemetryEventSource.DetailsView),
+        };
+
+        const message: Message = {
+            messageType: Messages.PermissionsState.SetPermissionsState,
             payload,
         };
 
