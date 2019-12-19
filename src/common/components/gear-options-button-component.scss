@@ -24,7 +24,7 @@
 :global(#popup-container) .gear-options-button-component {
     display: inline-block;
 
-    button.gear-button {
+    button:global(.gear-button) {
         margin-right: 5px;
         margin-top: 10px;
     }
