@@ -9,8 +9,7 @@ import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
-import { IMock, It, Mock, Times } from 'typemoq';
-
+import { IMock, Mock, Times } from 'typemoq';
 import { createActionMock, createInterpreterMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('UnifiedScanResultActionCreator', () => {
