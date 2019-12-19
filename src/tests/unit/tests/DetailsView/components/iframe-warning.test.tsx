@@ -27,6 +27,7 @@ describe('IframeWarning', () => {
         const onAllowPermissionsClick = wrapper.find(Link).prop('onClick');
 
         onAllowPermissionsClick(eventStub);
+
         onAllowPermissionsClickMock.verify(m => m(eventStub), Times.once());
         expect(wrapper.getElement()).toMatchSnapshot();
     });
