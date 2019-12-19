@@ -14,8 +14,24 @@ import {
 } from 'DetailsView/components/iframe-warning';
 import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
 import { shallow } from 'enzyme';
+import { Link } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
+
+describe('IframeWarning', () => {
+    test('render', () => {
+        const onAllowPermissionsClickMock = Mock.ofInstance((e: SupportedMouseEvent): Promise<void> => null);
+        const eventStub = {} as any;
+
+        const wrapper = shallow(<IframeWarning onAllowPermissionsClick={onAllowPermissionsClickMock.object} />);
+        const onAllowPermissionsClick = wrapper.find(Link).prop('onClick');
+
+        onAllowPermissionsClick(eventStub);
+
+        onAllowPermissionsClickMock.verify(m => m(eventStub), Times.once());
+        expect(wrapper.getElement()).toMatchSnapshot();
+    });
+});
 
 describe('AssessmentIframeWarning', () => {
     let allUrlsPermissionHandlerMock: IMock<AllUrlsPermissionHandler>;
