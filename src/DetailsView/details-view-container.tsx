@@ -197,8 +197,9 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
                 switcherNavConfiguration={selectedDetailsViewSwitcherNavConfiguration}
                 userConfigurationStoreData={storeState.userConfigurationStoreData}
                 cardsViewData={cardsViewData}
-                targetAppInfo={storeState.unifiedScanResultStoreData.targetAppInfo}
                 cardSelectionStoreData={storeState.cardSelectionStoreData}
+                targetAppInfo={storeState.unifiedScanResultStoreData.targetAppInfo}
+                scanIncompleteWarnings={storeState.unifiedScanResultStoreData.scanIncompleteWarnings}
             />
         );
     }

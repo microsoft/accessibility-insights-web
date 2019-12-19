@@ -32,7 +32,6 @@ describe('TestViewContainerTest', () => {
             configuration: configStub,
             ...props,
         };
-
         configFactoryMock.setup(cfm => cfm.getConfiguration(props.selectedTest)).returns(() => configStub);
 
         getTestViewMock.setup(gtvm => gtvm(It.isValue(expectedProps))).returns(() => expectedTestView);

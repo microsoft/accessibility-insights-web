@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
+import { WarningConfiguration } from 'DetailsView/components/warning-configuration';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
@@ -33,11 +35,12 @@ describe('AdhocIssuesTestView', () => {
     const clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory);
     const selectedTest: VisualizationType = -1;
 
-    const props = {
+    let props = {
         configuration: configuration,
         clickHandlerFactory: clickHandlerFactoryMock.object,
         visualizationStoreData: visualizationStoreDataStub,
         selectedTest: selectedTest,
+        scanIncompleteWarnings: [],
     } as AdhocIssuesTestViewProps;
 
     const scanDataStub: ScanData = {
@@ -46,7 +49,14 @@ describe('AdhocIssuesTestView', () => {
 
     const clickHandlerStub = () => {};
 
+    let switcherNavConfigurationStub: DetailsViewSwitcherNavConfiguration;
+    let warningConfigurationStub: WarningConfiguration;
+
     beforeEach(() => {
+        warningConfigurationStub = {} as WarningConfiguration;
+        switcherNavConfigurationStub = { warningConfiguration: warningConfigurationStub } as DetailsViewSwitcherNavConfiguration;
+
+        props = { ...props, switcherNavConfiguration: switcherNavConfigurationStub };
         getStoreDataMock.reset();
         clickHandlerFactoryMock.reset();
     });
