@@ -9,6 +9,7 @@ export interface BrowserAdapter {
     addListenerToTabsOnRemoved(callback: (tabId: number, removeInfo: chrome.tabs.TabRemoveInfo) => void): void;
     addListenerToWebNavigationUpdated(callback: (details: chrome.webNavigation.WebNavigationFramedCallbackDetails) => void): void;
     addListenerOnWindowsFocusChanged(callback: (windowId: number) => void): void;
+    tabsQueryP(query: Tabs.QueryQueryInfoType): Promise<Tabs.Tab[]>;
     tabsQuery(query: chrome.tabs.QueryInfo, callback: (result: chrome.tabs.Tab[]) => void): void;
     createActiveTab(url: string): Promise<Tabs.Tab>;
     createTabInNewWindow(url: string): Promise<Tabs.Tab>;
