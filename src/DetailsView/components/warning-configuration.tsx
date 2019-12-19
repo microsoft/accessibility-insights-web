@@ -10,7 +10,6 @@ import {
     FastPassIframeWarningDeps,
     FastPassIframeWarningProps,
 } from 'DetailsView/components/iframe-warning';
-import * as React from 'react';
 
 export type ScanIncompleteWarningMessageBarProps = FastPassIframeWarningProps | AssessmentIframeWarningProps;
 export type ScanIncompleteWarningMessageBarDeps = FastPassIframeWarningDeps | AssessmentIframeWarningDeps;
