@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { UnifiedScanCompletedPayload } from 'background/actions/action-payloads';
 import { SingleElementSelector } from './types/store-data/scoping-store-data';
 
 export const POPUP_INITIALIZED: string = 'PopupInitialized';
@@ -61,6 +62,7 @@ export const ALL_RULES_EXPANDED: string = 'allRulesExpanded';
 export const ALL_RULES_COLLAPSED: string = 'allRulesCollapsed';
 export const RESCAN_VISUALIZATION: string = 'rescanVisualization';
 export const EXISTING_TAB_URL_UPDATED: string = 'existingTabUrlUpdated';
+export const SCAN_INCOMPLETE_WARNINGS: string = 'scanIncompleteWarnings';
 
 export const TriggeredByNotApplicable: TriggeredBy = 'N/A';
 export type TriggeredBy = 'mouseclick' | 'keypress' | 'shortcut' | 'N/A';
@@ -200,6 +202,8 @@ export type AndroidScanFailedTelemetryData = {
     scanDuration: number;
 };
 
+export type ScanIncompleteWarningsTelemetryData = Pick<UnifiedScanCompletedPayload, 'scanIncompleteWarnings'>;
+
 export type TelemetryData =
     | BaseTelemetryData
     | ToggleTelemetryData
@@ -222,4 +226,5 @@ export type TelemetryData =
     | RequirementStatusTelemetryData
     | ValidatePortTelemetryData
     | AndroidScanCompletedTelemetryData
-    | AndroidScanFailedTelemetryData;
+    | AndroidScanFailedTelemetryData
+    | ScanIncompleteWarningsTelemetryData;

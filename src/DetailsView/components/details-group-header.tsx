@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GroupHeader } from 'office-ui-fabric-react/lib/components/GroupedList/GroupHeader';
-import { IGroupDividerProps } from 'office-ui-fabric-react/lib/DetailsList';
+import { GroupHeader } from 'office-ui-fabric-react';
+import { IGroupDividerProps } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { GuidanceLinks } from '../../common/components/guidance-links';

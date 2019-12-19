@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
-import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
-import Dialog from 'office-ui-fabric-react/lib/Dialog';
+import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react';
+import Dialog from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { GenericDialog, GenericDialogProps } from '../../../../../DetailsView/components/generic-dialog';

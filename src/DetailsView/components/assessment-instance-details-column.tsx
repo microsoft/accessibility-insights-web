@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { css } from '@uifabric/utilities';
-import { TooltipHost } from 'office-ui-fabric-react/lib/Tooltip';
+import { TooltipHost } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 export interface AssessmentInstanceDetailsColumnProps {

@@ -4,6 +4,7 @@ import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { PermissionsStateStoreData } from 'common/types/store-data/permissions-state-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
@@ -19,6 +20,7 @@ export interface TargetPageStoreData {
     assessmentStoreData: AssessmentStoreData;
     userConfigurationStoreData: UserConfigurationStoreData;
     cardSelectionStoreData: CardSelectionStoreData;
+    permissionsStateStoreData: PermissionsStateStoreData;
 }
 
 export class ClientStoreListener {

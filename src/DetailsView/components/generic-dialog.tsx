@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
-import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
+import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react';
+import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { NamedFC } from '../../common/react/named-fc';

@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
-import { ContextualMenu, IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
-import { Link } from 'office-ui-fabric-react/lib/Link';
+import { ContextualMenu, IContextualMenuItem } from 'office-ui-fabric-react';
+import { Link } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { DetailsViewDropDown, DetailsViewDropDownProps } from '../../../../../DetailsView/components/details-view-dropdown';

@@ -7,7 +7,7 @@ import { MaximizeRestoreButtonProps } from 'electron/views/automated-checks/comp
 import { TitleBar, TitleBarProps } from 'electron/views/automated-checks/components/title-bar';
 import { PlatformInfo } from 'electron/window-management/platform-info';
 import { shallow } from 'enzyme';
-import { Button } from 'office-ui-fabric-react/lib/Button';
+import { Button } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
