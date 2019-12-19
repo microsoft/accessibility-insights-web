@@ -24,20 +24,14 @@ export class TargetTabFinder {
     }
 
     private getTabInfo = (): Promise<Tab> => {
-        return new Promise((resolve, reject) => {
-            const tabIdInUrl = this.urlParser.getIntParam(this.win.location.href, 'tabId');
+        const tabIdInUrl = this.urlParser.getIntParam(this.win.location.href, 'tabId');
 
-            if (isNaN(tabIdInUrl)) {
-                this.browserAdapter.tabsQuery(
-                    {
-                        active: true,
-                        currentWindow: true,
-                    },
-                    (tabs: Tab[]): void => {
-                        resolve(tabs.pop());
-                    },
-                );
-            } else {
+        if (isNaN(tabIdInUrl)) {
+            return this.browserAdapter
+                .tabsQueryP({ active: true, currentWindow: true })
+                .then(tabs => tabs.pop());
+        } else {
+            return new Promise((resolve, reject) => {
                 this.browserAdapter.getTab(
                     tabIdInUrl,
                     (tab: Tab) => {
@@ -47,8 +41,8 @@ export class TargetTabFinder {
                         reject(`Tab with Id ${tabIdInUrl} not found`);
                     },
                 );
-            }
-        });
+            });
+        }
     };
 
     private createTargetTabInfo = async (tab: Tab): Promise<TargetTabInfo> => {
