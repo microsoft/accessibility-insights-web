@@ -14,7 +14,7 @@ steps:
     - task: CopyFiles@2
       displayName: 'Copy Files to: targetfolder'
       inputs:
-          SourceFolder: '$(System.DefaultWorkingDirectory)/dist'
+          SourceFolder: '$(System.DefaultWorkingDirectory)/dist/*.AppImage'
           TargetFolder: '$(System.DefaultWorkingDirectory)/dist/detachedSignature'
 
     - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
@@ -34,6 +34,12 @@ steps:
                       "toolVersion": "1.0"
                   }
               ]
+
+    - task: CopyFiles@2
+      displayName: 'Copy Files to: targetfolder'
+      inputs:
+          SourceFolder: '$(System.DefaultWorkingDirectory)/dist/detachedSignature'
+          TargetFolder: '$(System.DefaultWorkingDirectory)/dist/upload'
 
     - script: yarn update:electron-checksum
       displayName: update electron checksum after signing
