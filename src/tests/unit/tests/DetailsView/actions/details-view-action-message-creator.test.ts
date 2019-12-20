@@ -17,6 +17,7 @@ import {
     FeatureFlagToggleTelemetryData,
     RequirementActionTelemetryData,
     RequirementSelectTelemetryData,
+    SetAllUrlsPermissionTelemetryData,
     TelemetryEventSource,
     TriggeredByNotApplicable,
 } from '../../../../../common/extension-telemetry-events';
@@ -872,8 +873,8 @@ describe('DetailsViewActionMessageCreatorTest', () => {
     test('setAllUrlsPermissionState', () => {
         const eventStub = {} as SupportedMouseEvent;
         const telemetryStub = {
-            source: TelemetryEventSource.DetailsView,
-        } as BaseTelemetryData;
+            source: testSource,
+        } as SetAllUrlsPermissionTelemetryData;
         const permissionsState = true;
         const expectedMessage = {
             messageType: Messages.PermissionsState.SetPermissionsState,
@@ -884,7 +885,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         };
 
         telemetryFactoryMock
-            .setup(tf => tf.withTriggeredByAndSource(eventStub, TelemetryEventSource.DetailsView))
+            .setup(tf => tf.forSetAllUrlPermissionState(eventStub, TelemetryEventSource.DetailsView, permissionsState))
             .returns(() => telemetryStub);
 
         testSubject.setAllUrlsPermissionState(eventStub, permissionsState);

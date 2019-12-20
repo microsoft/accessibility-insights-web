@@ -5,6 +5,7 @@ import { PermissionsStateStore } from 'background/stores/global/permissions-stat
 import { StoreNames } from 'common/stores/store-names';
 import { PermissionsStateStoreData } from 'common/types/store-data/permissions-state-store-data';
 import { createStoreWithNullParams, StoreTester } from 'tests/unit/common/store-tester';
+import { SetAllUrlsPermissionStatePayload } from 'background/actions/action-payloads';
 
 describe('PermissionsStateStoreTest', () => {
     test('constructor, no side effects', () => {
@@ -39,18 +40,24 @@ describe('PermissionsStateStoreTest', () => {
             const finalPermissionsValue = true;
             const initialState = { hasAllUrlAndFilePermissions: initialPermissionsValue };
             const finalState = { hasAllUrlAndFilePermissions: finalPermissionsValue };
+            const payload: SetAllUrlsPermissionStatePayload = {
+                allUrlsPermissionState: finalPermissionsValue,
+            };
 
             createStoreTesterForPermissionsStateActions('setPermissionsState')
-                .withActionParam(finalPermissionsValue)
+                .withActionParam(payload)
                 .testListenerToBeCalledOnce(initialState, finalState);
         });
 
         test.each([true, false])('does not update state when there is no change', hasPermissionsValue => {
             const initialState = { hasAllUrlAndFilePermissions: hasPermissionsValue };
             const finalState = { hasAllUrlAndFilePermissions: hasPermissionsValue };
+            const payload: SetAllUrlsPermissionStatePayload = {
+                allUrlsPermissionState: hasPermissionsValue,
+            };
 
             createStoreTesterForPermissionsStateActions('setPermissionsState')
-                .withActionParam(hasPermissionsValue)
+                .withActionParam(payload)
                 .testListenerToNeverBeCalled(initialState, finalState);
         });
     });

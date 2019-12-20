@@ -21,6 +21,7 @@ import {
     RequirementStatusTelemetryData,
     RuleAnalyzerScanTelemetryData,
     ScopingTelemetryData,
+    SetAllUrlsPermissionTelemetryData,
     SettingsOpenSourceItem,
     SettingsOpenTelemetryData,
     TelemetryEventSource,
@@ -299,5 +300,16 @@ export class TelemetryDataFactory {
             }
         });
         return ruleResults;
+    }
+
+    public forSetAllUrlPermissionState(
+        event: SupportedMouseEvent,
+        source: TelemetryEventSource,
+        permissionState: boolean,
+    ): SetAllUrlsPermissionTelemetryData {
+        return {
+            ...this.withTriggeredByAndSource(event, source),
+            permissionState,
+        };
     }
 }

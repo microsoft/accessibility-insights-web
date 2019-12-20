@@ -503,7 +503,11 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
     public setAllUrlsPermissionState = (event: SupportedMouseEvent, allUrlsPermissionState: boolean) => {
         const payload: SetAllUrlsPermissionStatePayload = {
             allUrlsPermissionState,
-            telemetry: this.telemetryFactory.withTriggeredByAndSource(event, TelemetryEvents.TelemetryEventSource.DetailsView),
+            telemetry: this.telemetryFactory.forSetAllUrlPermissionState(
+                event,
+                TelemetryEvents.TelemetryEventSource.DetailsView,
+                allUrlsPermissionState,
+            ),
         };
 
         const message: Message = {

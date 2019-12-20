@@ -108,6 +108,7 @@ export class GlobalContextFactory {
         const permissionsStateActionCreator = new PermissionsStateActionCreator(
             interpreter,
             globalActionsHub.permissionsStateActions,
+            telemetryEventHandler,
         );
 
         issueFilingActionCreator.registerCallbacks();
