@@ -54,6 +54,10 @@ describe('scanning', () => {
 
             await assertFailureCounts(ruleDetails, expectedCounts);
         });
+
+        it('does show iframe detected warning', async () => {
+            //
+        });
     });
 
     describe('with all-origins permissions', () => {

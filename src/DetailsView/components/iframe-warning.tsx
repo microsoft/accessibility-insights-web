@@ -13,15 +13,17 @@ export type IframeWarningProps = {
     onAllowPermissionsClick: (e: SupportedMouseEvent) => Promise<void>;
 };
 
+export const IframeWarningContainerAutomationId = 'iframe-warning-container';
+
 export const IframeWarning = NamedFC<IframeWarningProps>('IframeWarning', props => (
-    <>
+    <div data-automation-id={IframeWarningContainerAutomationId}>
         There are iframes in the target page. To have complete results,{' '}
         <Link className="insights-link" onClick={props.onAllowPermissionsClick}>
             give Accessibility Insights additional permissions
         </Link>
         ; this will trigger a rescan of the test.
         <NewTabLink href={'https://accessibilityinsights.io/docs/en/faq'}>Learn more here.</NewTabLink>
-    </>
+    </div>
 ));
 
 export type AssessmentIframeWarningDeps = {
