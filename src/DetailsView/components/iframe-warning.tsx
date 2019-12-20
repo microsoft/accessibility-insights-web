@@ -19,7 +19,7 @@ export const IframeWarning = NamedFC<IframeWarningProps>('IframeWarning', props 
         <Link className="insights-link" onClick={props.onAllowPermissionsClick}>
             give Accessibility Insights additional permissions
         </Link>
-        ; this will trigger a rescan of the test.{' '}
+        ; this will trigger a rescan of the test.
         <NewTabLink href={'https://accessibilityinsights.io/docs/en/faq'}>Learn more here.</NewTabLink>
     </>
 ));
