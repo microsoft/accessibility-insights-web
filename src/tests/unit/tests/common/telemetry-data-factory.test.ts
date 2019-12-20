@@ -13,6 +13,7 @@ import {
     RequirementActionTelemetryData,
     RequirementSelectTelemetryData,
     RuleAnalyzerScanTelemetryData,
+    SetAllUrlsPermissionTelemetryData,
     SettingsOpenSourceItem,
     SettingsOpenTelemetryData,
     TelemetryEventSource,
@@ -528,6 +529,20 @@ describe('TelemetryDataFactoryTest', () => {
 
         const expected: FileIssueClickTelemetryData = {
             service,
+            source: testSource,
+            triggeredBy: 'mouseclick',
+        };
+
+        expect(result).toEqual(expected);
+    });
+
+    test('forSetAllUrlPermissionState', () => {
+        const permissionState = true;
+
+        const result = testObject.forSetAllUrlPermissionState(mouseClickEvent, testSource, permissionState);
+
+        const expected: SetAllUrlsPermissionTelemetryData = {
+            permissionState,
             source: testSource,
             triggeredBy: 'mouseclick',
         };
