@@ -14,7 +14,9 @@ steps:
     - task: CopyFiles@2
       displayName: 'Copy the AppImage file to detachedSignature'
       inputs:
-          contents: '$(System.DefaultWorkingDirectory)/dist/**/*.AppImage'
+          SourceFolder: $(System.DefaultWorkingDirectory)/dist
+          contents: |
+              Accessibility Insights for Android*.*
           TargetFolder: '$(System.DefaultWorkingDirectory)/dist/detachedSignature'
 
     - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
@@ -37,11 +39,5 @@ steps:
 
     - script: yarn update:electron-checksum
       displayName: update electron checksum after signing
-
-    - task: CopyFiles@2
-      displayName: 'Copy detachedSignature folder to the upload/detachedSignature folder'
-      inputs:
-          contents: '$(System.DefaultWorkingDirectory)/dist/detachedSignature/**/*.AppImage'
-          TargetFolder: '$(System.DefaultWorkingDirectory)/dist/upload/detachedSignature'
 
     - template: prepare-publish-artifact.yaml

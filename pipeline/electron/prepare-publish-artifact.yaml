@@ -9,6 +9,7 @@ steps:
           Contents: |
               latest*.yml
               Accessibility Insights for Android*.*
+              detachedSignature/Accessibility Insights for Android*.*
           TargetFolder: '$(System.DefaultWorkingDirectory)/dist/upload'
           CleanTargetFolder: true
 
