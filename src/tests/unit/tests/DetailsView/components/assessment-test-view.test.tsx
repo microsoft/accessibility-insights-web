@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
+import { WarningConfiguration } from 'DetailsView/components/warning-configuration';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
@@ -31,6 +33,9 @@ describe('AssessmentTestView', () => {
     let assessmentStoreDataStub: AssessmentStoreData;
     let assessmentDataStub: AssessmentData;
     let pathSnippetStoreDataStub: PathSnippetStoreData;
+    let switcherNavConfigurationStub: DetailsViewSwitcherNavConfiguration;
+    let warningConfigurationStub: WarningConfiguration;
+
     const selectedTestStep = 'step';
     const selectedTest = -1;
     const testStatusStub = false;
@@ -57,11 +62,14 @@ describe('AssessmentTestView', () => {
                 selectedTestStep: selectedTestStep,
             },
         } as AssessmentStoreData;
+
         featureFlagStoreDataStub = {} as FeatureFlagStoreData;
         detailsViewActionMessageCreator = {} as DetailsViewActionMessageCreator;
         assessmentInstanceHandlerStub = {} as AssessmentInstanceTableHandler;
         assessmentDataStub = {} as AssessmentData;
         pathSnippetStoreDataStub = {} as PathSnippetStoreData;
+        warningConfigurationStub = {} as WarningConfiguration;
+        switcherNavConfigurationStub = { warningConfiguration: warningConfigurationStub } as DetailsViewSwitcherNavConfiguration;
 
         props = {
             deps: {
@@ -78,6 +86,7 @@ describe('AssessmentTestView', () => {
             assessmentInstanceTableHandler: assessmentInstanceHandlerStub,
             featureFlagStoreData: featureFlagStoreDataStub,
             pathSnippetStoreData: pathSnippetStoreDataStub,
+            switcherNavConfiguration: switcherNavConfigurationStub,
         } as AssessmentTestViewProps;
 
         getStoreDataMock

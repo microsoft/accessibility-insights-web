@@ -24,6 +24,7 @@
     "devtools_page": "Devtools/devtools.html",
     "web_accessible_resources": ["insights.html", "assessments/*", "injected/*", "background/*", "common/*", "DetailsView/*", "bundle/*"],
     "permissions": ["storage", "webNavigation", "tabs", "notifications", "activeTab"],
+    "optional_permissions": ["*://*/*"],
     "commands": {
         "_execute_browser_action": {
             "suggested_key": {

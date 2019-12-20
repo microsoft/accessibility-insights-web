@@ -87,7 +87,7 @@ async function initialize(): Promise<void> {
         AxeInfo.Default.version,
     );
 
-    const globalContext = GlobalContextFactory.createContext(
+    const globalContext = await GlobalContextFactory.createContext(
         browserAdapter,
         telemetryEventHandler,
         userData,

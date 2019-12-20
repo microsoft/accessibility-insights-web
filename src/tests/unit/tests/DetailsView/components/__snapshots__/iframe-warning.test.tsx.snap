@@ -17,13 +17,13 @@ exports[`IframeWarning render 1`] = `
   There are iframes in the target page. To have complete results,
    
   <StyledLinkBase
+    className="insights-link"
     onClick={[Function]}
   >
     give Accessibility Insights additional permissions
   </StyledLinkBase>
-  ; this will trigger a re-scan
+  ; this will trigger a rescan of the test.
    
-  of the test. 
   <NewTabLink
     href="https://accessibilityinsights.io/docs/en/faq"
   >
