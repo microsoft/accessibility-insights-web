@@ -17,13 +17,13 @@ steps:
           SourceFolder: $(System.DefaultWorkingDirectory)/dist
           contents: |
               Accessibility Insights for Android*.*
-          TargetFolder: '$(System.DefaultWorkingDirectory)/dist/detachedSignature'
+          TargetFolder: '$(System.DefaultWorkingDirectory)/detachedSignature'
 
     - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
       displayName: 'sign dist/detachedSignature'
       inputs:
           ConnectedServiceName: 'ESRP Code Signing'
-          FolderPath: '$(System.DefaultWorkingDirectory)/dist/detachedSignature'
+          FolderPath: '$(System.DefaultWorkingDirectory)/detachedSignature'
           Pattern: '*.AppImage'
           signConfigType: inlineSignParams
           inlineOperation: |
@@ -37,13 +37,13 @@ steps:
                   }
               ]
 
-    - script: 'mv "$(System.DefaultWorkingDirectory)/dist/detachedSignature/Accessibility Insights for Android.AppImage" "$(System.DefaultWorkingDirectory)/dist/detachedSignature/Accessibility Insights for Android.sig"'
+    - script: 'mv "$(System.DefaultWorkingDirectory)/detachedSignature/Accessibility Insights for Android.AppImage" "$(System.DefaultWorkingDirectory)/detachedSignature/Accessibility Insights for Android.sig"'
       displayName: 'Change signature file extension to sig'
 
     - task: CopyFiles@2
       displayName: 'Copy the detachedSignature file to dist'
       inputs:
-          SourceFolder: $(System.DefaultWorkingDirectory)/dist/detachedSignature
+          SourceFolder: $(System.DefaultWorkingDirectory)/detachedSignature
           contents: |
               Accessibility Insights for Android*.*
           TargetFolder: '$(System.DefaultWorkingDirectory)/dist'
