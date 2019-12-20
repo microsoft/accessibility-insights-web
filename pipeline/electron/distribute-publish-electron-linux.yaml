@@ -14,7 +14,7 @@ steps:
     - task: CopyFiles@2
       displayName: 'Copy Files to: targetfolder'
       inputs:
-          SourceFolder: '$(System.DefaultWorkingDirectory)/dist/*.AppImage'
+          contents: '$(System.DefaultWorkingDirectory)/dist/**/*.AppImage'
           TargetFolder: '$(System.DefaultWorkingDirectory)/dist/detachedSignature'
 
     - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
