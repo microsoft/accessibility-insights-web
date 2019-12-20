@@ -27,7 +27,9 @@ import { SupportedMouseEvent, TelemetryDataFactory } from '../../../../../common
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import { DetailsViewRightContentPanelType } from '../../../../../DetailsView/components/left-nav/details-view-right-content-panel-type';
+import {
+    DetailsViewRightContentPanelType,
+} from '../../../../../DetailsView/components/left-nav/details-view-right-content-panel-type';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('DetailsViewActionMessageCreatorTest', () => {
