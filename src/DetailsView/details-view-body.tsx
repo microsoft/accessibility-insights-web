@@ -3,7 +3,7 @@
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { TargetAppData } from 'common/types/store-data/unified-data-interface';
-import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
+import { ISelection } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';

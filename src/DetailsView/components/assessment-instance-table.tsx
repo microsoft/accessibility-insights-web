@@ -2,16 +2,9 @@
 // Licensed under the MIT License.
 import { IRenderFunction } from '@uifabric/utilities';
 import { has } from 'lodash';
-import { ActionButton } from 'office-ui-fabric-react/lib/Button';
-import {
-    CheckboxVisibility,
-    ConstrainMode,
-    DetailsList,
-    IColumn,
-    IDetailsRowProps,
-    IObjectWithKey,
-} from 'office-ui-fabric-react/lib/DetailsList';
-import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
+import { ActionButton } from 'office-ui-fabric-react';
+import { CheckboxVisibility, ConstrainMode, DetailsList, IColumn, IDetailsRowProps, IObjectWithKey } from 'office-ui-fabric-react';
+import { Spinner, SpinnerSize } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';

@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { clone, isEqual } from 'lodash';
-import { ActionButton } from 'office-ui-fabric-react/lib/Button';
-import { Icon } from 'office-ui-fabric-react/lib/Icon';
-import { ILabelStyles } from 'office-ui-fabric-react/lib/Label';
-import { Link } from 'office-ui-fabric-react/lib/Link';
-import { ITextFieldStyles, TextField } from 'office-ui-fabric-react/lib/TextField';
+import { ActionButton } from 'office-ui-fabric-react';
+import { Icon } from 'office-ui-fabric-react';
+import { ILabelStyles } from 'office-ui-fabric-react';
+import { Link } from 'office-ui-fabric-react';
+import { ITextFieldStyles, TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { FlaggedComponent } from '../../common/components/flagged-component';

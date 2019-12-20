@@ -53,7 +53,6 @@ describe('PreviewFeaturesContainerTest', () => {
             previewFeatureFlagsHandlerMock
                 .setup(handler => handler.getDisplayableFeatureFlags(featureFlagStoreDataStub))
                 .returns(() => displayableFeatureFlagsStub);
-
             const testSubject = shallow(<PreviewFeaturesContainer {...props} />);
 
             expect(testSubject.getElement()).toMatchSnapshot();

@@ -3,7 +3,7 @@
 import { FeatureFlags } from 'common/feature-flags';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { StartOverDropdown, StartOverProps } from 'DetailsView/components/start-over-dropdown';
-import { ActionButton } from 'office-ui-fabric-react/lib/Button';
+import { ActionButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 export function getStartOverComponentForAssessment(props: CommandBarProps): JSX.Element {

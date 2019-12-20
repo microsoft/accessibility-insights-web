@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { escape } from 'lodash';
-import { ActionButton } from 'office-ui-fabric-react/lib/Button';
+import { ActionButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { ExportResultType } from '../../common/extension-telemetry-events';

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
+import { ISelection } from 'office-ui-fabric-react';
 import { BaseStore } from '../../../../common/base-store';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';

@@ -9,8 +9,8 @@ import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-vie
 import { detailsViewCommandButtons } from 'DetailsView/components/details-view-command-bar.scss';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { StartOverDeps } from 'DetailsView/components/start-over-dropdown';
-import { Link } from 'office-ui-fabric-react/lib/Link';
-import { ITooltipHostStyles, TooltipHost } from 'office-ui-fabric-react/lib/Tooltip';
+import { Link } from 'office-ui-fabric-react';
+import { ITooltipHostStyles, TooltipHost } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 

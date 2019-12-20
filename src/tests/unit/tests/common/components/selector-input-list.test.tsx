@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Enzyme from 'enzyme';
-import { DefaultButton, IconButton } from 'office-ui-fabric-react/lib/Button';
-import { List } from 'office-ui-fabric-react/lib/List';
-import { ITextField, TextField } from 'office-ui-fabric-react/lib/TextField';
+import { DefaultButton, IconButton } from 'office-ui-fabric-react';
+import { List } from 'office-ui-fabric-react';
+import { ITextField, TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IObjectWithKey, ISelectionOptions, Selection } from 'office-ui-fabric-react/lib/DetailsList';
+import { IObjectWithKey, ISelectionOptions, Selection } from 'office-ui-fabric-react';
 
 export class IssuesSelection extends Selection {
     constructor(options?: ISelectionOptions) {
