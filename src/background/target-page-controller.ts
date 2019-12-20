@@ -21,14 +21,13 @@ export class TargetPageController {
         private readonly logger: Logger,
     ) {}
 
-    public initialize(): void {
-        this.browserAdapter.tabsQuery({}, (tabs: chrome.tabs.Tab[]) => {
-            if (tabs) {
-                tabs.forEach(tab => {
-                    this.handleTabUrlUpdate(tab.id);
-                });
-            }
-        });
+    public async initialize(): Promise<void> {
+        const tabs = await this.browserAdapter.tabsQueryP({});
+        if (tabs) {
+            tabs.forEach(tab => {
+                this.handleTabUrlUpdate(tab.id);
+            });
+        }
 
         this.browserAdapter.addListenerOnConnect(port => {
             // do not remove this. We need this to detect if the extension is reloaded from the content scripts
@@ -61,18 +60,17 @@ export class TargetPageController {
         }
     };
 
-    private onTabActivated = (activeInfo: chrome.tabs.TabActiveInfo): void => {
+    private onTabActivated = async (activeInfo: chrome.tabs.TabActiveInfo): Promise<void> => {
         const activeTabId = activeInfo.tabId;
         const windowId = activeInfo.windowId;
 
         this.sendTabVisibilityChangeAction(activeTabId, false);
 
-        this.browserAdapter.tabsQuery({ windowId: windowId }, (tabs: chrome.tabs.Tab[]) => {
-            tabs.forEach((tab: chrome.tabs.Tab) => {
-                if (!tab.active) {
-                    this.sendTabVisibilityChangeAction(tab.id, true);
-                }
-            });
+        const tabs = await this.browserAdapter.tabsQueryP({ windowId });
+        tabs.forEach(tab => {
+            if (!tab.active) {
+                this.sendTabVisibilityChangeAction(tab.id, true);
+            }
         });
     };
 
@@ -82,23 +80,18 @@ export class TargetPageController {
             windowTypes: ['normal', 'popup'],
         });
 
-        chromeWindows.forEach(chromeWindow => {
-            this.browserAdapter.tabsQuery(
-                {
-                    active: true,
-                    windowId: chromeWindow.id,
-                },
-                (activeTabs: chrome.tabs.Tab[]) => {
-                    if (!this.browserAdapter.getRuntimeLastError()) {
-                        for (const activeTab of activeTabs) {
-                            this.sendTabVisibilityChangeAction(
-                                activeTab.id,
-                                chromeWindow.state === 'minimized',
-                            );
-                        }
-                    }
-                },
-            );
+        chromeWindows.forEach(async chromeWindow => {
+            const activeTabs = await this.browserAdapter.tabsQueryP({
+                active: true,
+                windowId: chromeWindow.id,
+            });
+
+            for (const activeTab of activeTabs) {
+                this.sendTabVisibilityChangeAction(
+                    activeTab.id,
+                    chromeWindow.state === 'minimized',
+                );
+            }
         });
     };
 

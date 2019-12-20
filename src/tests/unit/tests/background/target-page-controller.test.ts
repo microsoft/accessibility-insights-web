@@ -63,8 +63,8 @@ describe('TargetPageController', () => {
     });
 
     describe('initialize', () => {
-        it('should register the expected listeners', () => {
-            testSubject.initialize();
+        it('should register the expected listeners', async () => {
+            await testSubject.initialize();
 
             mockBrowserAdapter.verify(m => m.addListenerOnConnect(It.isAny()), Times.once());
             mockBrowserAdapter.verify(m => m.addListenerOnWindowsFocusChanged(It.isAny()), Times.once());
@@ -76,8 +76,8 @@ describe('TargetPageController', () => {
             mockDetailsViewController.verify(m => m.setupDetailsViewTabRemovedHandler(It.isAny()), Times.once());
         });
 
-        it('should create a tab context for each pre-existing tab', () => {
-            testSubject.initialize();
+        it('should create a tab context for each pre-existing tab', async () => {
+            await testSubject.initialize();
 
             mockTabContextFactory.verify(f => f.createTabContext(It.isAny(), It.isAny(), It.isAny(), EXISTING_ACTIVE_TAB_ID), Times.once());
             expect(tabToContextMap[EXISTING_ACTIVE_TAB_ID]).toHaveProperty(
@@ -100,8 +100,8 @@ describe('TargetPageController', () => {
     });
 
     describe('in initialized state', () => {
-        beforeEach(() => {
-            testSubject.initialize();
+        beforeEach(async () => {
+            await testSubject.initialize();
             resetInterpreterMocks(mockTabInterpreters);
         });
 
@@ -257,8 +257,9 @@ describe('TargetPageController', () => {
                 mockTabInterpreters[EXISTING_INACTIVE_TAB_ID].verify(i => i.interpret(expectedMessage), Times.once());
             });
 
-            it('should send a Tab.VisibilityChange message with isHidden=true for other known tabs in the same window when a known tab is activated', () => {
+            it('should send a Tab.VisibilityChange message with isHidden=true for other known tabs in the same window when a known tab is activated', async () => {
                 mockBrowserAdapter.activateTab(EXISTING_INACTIVE_TAB);
+                await tick();
 
                 const expectedMessage = {
                     messageType: Messages.Tab.VisibilityChange,
@@ -268,8 +269,9 @@ describe('TargetPageController', () => {
                 mockTabInterpreters[EXISTING_ACTIVE_TAB_ID].verify(i => i.interpret(expectedMessage), Times.once());
             });
 
-            it('should send a Tab.VisibilityChange message with isHidden=true for other known tabs in the same window when an untracked tab is activated', () => {
+            it('should send a Tab.VisibilityChange message with isHidden=true for other known tabs in the same window when an untracked tab is activated', async () => {
                 mockBrowserAdapter.activateTab(NEW_TAB);
+                await tick();
 
                 const expectedMessage = {
                     messageType: Messages.Tab.VisibilityChange,
