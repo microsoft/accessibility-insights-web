@@ -104,7 +104,7 @@ describe('TargetTabFinderTest', () => {
 
     function setupTabQueryCall(): void {
         browserAdapterMock
-            .setup(adapter => adapter.tabsQueryP({ active: true, currentWindow: true }))
+            .setup(adapter => adapter.tabsQuery({ active: true, currentWindow: true }))
             .returns(() => Promise.resolve([tabStub as Tabs.Tab]));
     }
 

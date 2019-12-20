@@ -53,7 +53,7 @@ export function createSimulatedBrowserAdapter(tabs: chrome.tabs.Tab[], windows: 
         }
     });
 
-    mock.setup(m => m.tabsQueryP(It.isAny())).returns(query => {
+    mock.setup(m => m.tabsQuery(It.isAny())).returns(query => {
         const result = mock.tabs.filter(
             candidateTab =>
                 (query.active == null || query.active === candidateTab.active) &&

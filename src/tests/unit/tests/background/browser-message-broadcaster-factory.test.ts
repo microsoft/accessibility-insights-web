@@ -26,7 +26,7 @@ describe('BrowserMessageBroadcasterFactory', () => {
             const expectedMessage = testMessage;
 
             browserAdapterMock
-                .setup(ba => ba.tabsQueryP({}))
+                .setup(ba => ba.tabsQuery({}))
                 .returns(() => Promise.resolve([{ id: testTabId } as Tabs.Tab]))
                 .verifiable(Times.once());
             browserAdapterMock
@@ -49,7 +49,7 @@ describe('BrowserMessageBroadcasterFactory', () => {
             const expectedMessage =
                 "sendMessageToFrames failed for message { someData: 'test data' } with browser error message: test error";
 
-            browserAdapterMock.setup(ba => ba.tabsQueryP({})).returns(() => Promise.resolve([{ id: 1 } as Tabs.Tab]));
+            browserAdapterMock.setup(ba => ba.tabsQuery({})).returns(() => Promise.resolve([{ id: 1 } as Tabs.Tab]));
             browserAdapterMock.setup(ba => ba.sendMessageToFrames(It.isAny())).returns(() => Promise.reject(testError));
             browserAdapterMock.setup(ba => ba.sendMessageToTab(It.isAny(), It.isAny())).returns(() => Promise.resolve());
 
@@ -66,7 +66,7 @@ describe('BrowserMessageBroadcasterFactory', () => {
             const expectedMessage =
                 "sendMessageToTab(1) failed for message { someData: 'test data' } with browser error message: test error";
 
-            browserAdapterMock.setup(ba => ba.tabsQueryP({})).returns(() => Promise.resolve([{ id: 1 } as Tabs.Tab]));
+            browserAdapterMock.setup(ba => ba.tabsQuery({})).returns(() => Promise.resolve([{ id: 1 } as Tabs.Tab]));
             browserAdapterMock.setup(ba => ba.sendMessageToFrames(It.isAny())).returns(() => Promise.resolve());
             browserAdapterMock.setup(ba => ba.sendMessageToTab(It.isAny(), It.isAny())).returns(() => Promise.reject(testError));
 

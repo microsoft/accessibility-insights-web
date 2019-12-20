@@ -22,7 +22,7 @@ export class TargetPageController {
     ) {}
 
     public async initialize(): Promise<void> {
-        const tabs = await this.browserAdapter.tabsQueryP({});
+        const tabs = await this.browserAdapter.tabsQuery({});
         if (tabs) {
             tabs.forEach(tab => {
                 this.handleTabUrlUpdate(tab.id);
@@ -66,7 +66,7 @@ export class TargetPageController {
 
         this.sendTabVisibilityChangeAction(activeTabId, false);
 
-        const tabs = await this.browserAdapter.tabsQueryP({ windowId });
+        const tabs = await this.browserAdapter.tabsQuery({ windowId });
         tabs.forEach(tab => {
             if (!tab.active) {
                 this.sendTabVisibilityChangeAction(tab.id, true);
@@ -81,7 +81,7 @@ export class TargetPageController {
         });
 
         chromeWindows.forEach(async chromeWindow => {
-            const activeTabs = await this.browserAdapter.tabsQueryP({
+            const activeTabs = await this.browserAdapter.tabsQuery({
                 active: true,
                 windowId: chromeWindow.id,
             });

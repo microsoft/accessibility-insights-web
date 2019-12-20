@@ -62,7 +62,7 @@ describe('ChromeCommandHandlerTest', () => {
 
         browserAdapterMock = Mock.ofType<BrowserAdapter>();
         browserAdapterMock
-            .setup(adapter => adapter.tabsQueryP(It.isValue({ active: true, currentWindow: true })))
+            .setup(adapter => adapter.tabsQuery(It.isValue({ active: true, currentWindow: true })))
             .returns(() => Promise.resolve([{ id: simulatedActiveTabId, url: simulatedActiveTabUrl } as Tabs.Tab]))
             .verifiable();
 

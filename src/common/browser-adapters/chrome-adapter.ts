@@ -41,7 +41,7 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         return chrome.runtime.id;
     }
 
-    public tabsQueryP(query: Tabs.QueryQueryInfoType): Promise<Tabs.Tab[]> {
+    public tabsQuery(query: Tabs.QueryQueryInfoType): Promise<Tabs.Tab[]> {
         return browser.tabs.query(query);
     }
 

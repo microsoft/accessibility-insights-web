@@ -104,7 +104,7 @@ export class ChromeCommandHandler {
 
     private async queryCurrentActiveTab(): Promise<Tabs.Tab> {
         const tabQueryParams: chrome.tabs.QueryInfo = { active: true, currentWindow: true };
-        const currentActiveTabs = await this.browserAdapter.tabsQueryP(tabQueryParams);
+        const currentActiveTabs = await this.browserAdapter.tabsQuery(tabQueryParams);
 
         if (currentActiveTabs && currentActiveTabs[0]) {
             return currentActiveTabs[0];

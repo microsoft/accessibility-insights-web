@@ -28,7 +28,7 @@ export class TargetTabFinder {
 
         if (isNaN(tabIdInUrl)) {
             return this.browserAdapter
-                .tabsQueryP({ active: true, currentWindow: true })
+                .tabsQuery({ active: true, currentWindow: true })
                 .then(tabs => tabs.pop());
         } else {
             return new Promise((resolve, reject) => {
