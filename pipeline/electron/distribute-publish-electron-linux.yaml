@@ -37,6 +37,17 @@ steps:
                   }
               ]
 
+    - script: 'mv "$(System.DefaultWorkingDirectory)/dist/detachedSignature/Accessibility Insights for Android.AppImage" "$(System.DefaultWorkingDirectory)/dist/detachedSignature/Accessibility Insights for Android.sig"'
+      displayName: 'Change signature file extension to sig'
+
+    - task: CopyFiles@2
+      displayName: 'Copy the detachedSignature file to dist'
+      inputs:
+          SourceFolder: $(System.DefaultWorkingDirectory)/dist/detachedSignature
+          contents: |
+              Accessibility Insights for Android*.*
+          TargetFolder: '$(System.DefaultWorkingDirectory)/dist'
+
     - script: yarn update:electron-checksum
       displayName: update electron checksum after signing
 
