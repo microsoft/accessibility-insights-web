@@ -12,13 +12,13 @@ steps:
           ELECTRON_CUSTOM_DIR: $(ELECTRON_CUSTOM_DIR)
 
     - task: CopyFiles@2
-      displayName: 'Copy Files to: targetfolder'
+      displayName: 'Copy the AppImage file to detachedSignature'
       inputs:
           contents: '$(System.DefaultWorkingDirectory)/dist/**/*.AppImage'
           TargetFolder: '$(System.DefaultWorkingDirectory)/dist/detachedSignature'
 
     - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
-      displayName: 'sign dist'
+      displayName: 'sign dist/detachedSignature'
       inputs:
           ConnectedServiceName: 'ESRP Code Signing'
           FolderPath: '$(System.DefaultWorkingDirectory)/dist/detachedSignature'
@@ -35,13 +35,13 @@ steps:
                   }
               ]
 
+    - script: yarn update:electron-checksum
+      displayName: update electron checksum after signing
+
     - task: CopyFiles@2
-      displayName: 'Copy Files to: targetfolder'
+      displayName: 'Copy detachedSignature folder to the upload/detachedSignature folder'
       inputs:
           contents: '$(System.DefaultWorkingDirectory)/dist/detachedSignature/**/*.AppImage'
           TargetFolder: '$(System.DefaultWorkingDirectory)/dist/upload/detachedSignature'
-
-    - script: yarn update:electron-checksum
-      displayName: update electron checksum after signing
 
     - template: prepare-publish-artifact.yaml
