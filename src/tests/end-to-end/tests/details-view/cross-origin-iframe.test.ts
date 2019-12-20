@@ -31,11 +31,11 @@ describe('scanning', () => {
     });
 
     describe('with localhost permissions only', () => {
-        beforeEach(async () => {
+        beforeAll(async () => {
             await launchFastPassWithExtraPermissions('fake-activeTab');
         });
 
-        afterEach(async () => {
+        afterAll(async () => {
             if (browser) {
                 await browser.close();
                 browser = undefined;
@@ -63,11 +63,11 @@ describe('scanning', () => {
     });
 
     describe('with all-origins permissions', () => {
-        beforeEach(async () => {
+        beforeAll(async () => {
             await launchFastPassWithExtraPermissions('all-origins');
         });
 
-        afterEach(async () => {
+        afterAll(async () => {
             if (browser) {
                 await browser.close();
                 browser = undefined;
