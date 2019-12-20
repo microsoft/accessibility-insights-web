@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { SetAllUrlsPermissionStatePayload } from 'background/actions/action-payloads';
 import { PermissionsStateActions } from 'background/actions/permissions-state-actions';
 import { PermissionsStateStore } from 'background/stores/global/permissions-state-store';
 import { StoreNames } from 'common/stores/store-names';
 import { PermissionsStateStoreData } from 'common/types/store-data/permissions-state-store-data';
 import { createStoreWithNullParams, StoreTester } from 'tests/unit/common/store-tester';
-import { SetAllUrlsPermissionStatePayload } from 'background/actions/action-payloads';
 
 describe('PermissionsStateStoreTest', () => {
     test('constructor, no side effects', () => {
