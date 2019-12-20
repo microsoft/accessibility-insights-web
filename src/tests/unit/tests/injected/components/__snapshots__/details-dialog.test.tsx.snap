@@ -35,52 +35,46 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
   <div
     className="insights-dialog-content"
   >
-    <div
+    <section
+      aria-labelledby="rule-name"
       className="insights-dialog-rule-name"
     >
-      <section
-        aria-labelledby="rule-name"
+      <h3
+        className="insights-dialog-section-title"
+        id="rule-name"
       >
-        <h3
-          className="insights-dialog-section-title"
-          id="rule-name"
-        >
-          Rule name
-        </h3>
-        <NewTabLink
-          href="http://extension/help-relative"
-        >
-          ruleId
-        </NewTabLink>
-      </section>
-    </div>
-    <div
+        Rule name
+      </h3>
+      <NewTabLink
+        href="http://extension/help-relative"
+      >
+        ruleId
+      </NewTabLink>
+    </section>
+    <section
+      aria-labelledby="success-criteria"
       className="insights-dialog-success-criteria"
     >
-      <section
-        aria-labelledby="success-criteria"
+      <h3
+        className="insights-dialog-section-title"
+        id="success-criteria"
       >
-        <h3
-          className="insights-dialog-section-title"
-          id="success-criteria"
-        >
-          Success criterion
-        </h3>
-        <div>
-          <GuidanceLinks
-            links={
-              Array [
-                Object {
-                  "href": "http://example.com",
-                  "text": "Guidance Link",
-                },
-              ]
-            }
-          />
-        </div>
-      </section>
-    </div>
-    <div
+        Success criterion
+      </h3>
+      <div>
+        <GuidanceLinks
+          links={
+            Array [
+              Object {
+                "href": "http://example.com",
+                "text": "Guidance Link",
+              },
+            ]
+          }
+        />
+      </div>
+    </section>
+    <section
       className="insights-dialog-path-selector-container"
     >
       <h3
@@ -89,7 +83,7 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
         Path
       </h3>
       ruleId
-    </div>
+    </section>
     <CommandBar
       currentRuleIndex={0}
       deps={
@@ -376,52 +370,46 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
                 <div
                   className="insights-dialog-content"
                 >
-                  <div
+                  <section
+                    aria-labelledby="rule-name"
                     className="insights-dialog-rule-name"
                   >
-                    <section
-                      aria-labelledby="rule-name"
+                    <h3
+                      className="insights-dialog-section-title"
+                      id="rule-name"
                     >
-                      <h3
-                        className="insights-dialog-section-title"
-                        id="rule-name"
-                      >
-                        Rule name
-                      </h3>
-                      <NewTabLink
-                        href="http://extension/help-relative"
-                      >
-                        ruleId
-                      </NewTabLink>
-                    </section>
-                  </div>
-                  <div
+                      Rule name
+                    </h3>
+                    <NewTabLink
+                      href="http://extension/help-relative"
+                    >
+                      ruleId
+                    </NewTabLink>
+                  </section>
+                  <section
+                    aria-labelledby="success-criteria"
                     className="insights-dialog-success-criteria"
                   >
-                    <section
-                      aria-labelledby="success-criteria"
+                    <h3
+                      className="insights-dialog-section-title"
+                      id="success-criteria"
                     >
-                      <h3
-                        className="insights-dialog-section-title"
-                        id="success-criteria"
-                      >
-                        Success criterion
-                      </h3>
-                      <div>
-                        <GuidanceLinks
-                          links={
-                            Array [
-                              Object {
-                                "href": "http://example.com",
-                                "text": "Guidance Link",
-                              },
-                            ]
-                          }
-                        />
-                      </div>
-                    </section>
-                  </div>
-                  <div
+                      Success criterion
+                    </h3>
+                    <div>
+                      <GuidanceLinks
+                        links={
+                          Array [
+                            Object {
+                              "href": "http://example.com",
+                              "text": "Guidance Link",
+                            },
+                          ]
+                        }
+                      />
+                    </div>
+                  </section>
+                  <section
                     className="insights-dialog-path-selector-container"
                   >
                     <h3
@@ -430,7 +418,7 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
                       Path
                     </h3>
                     ruleId
-                  </div>
+                  </section>
                   <CommandBar
                     currentRuleIndex={0}
                     deps={
@@ -612,52 +600,46 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": f
   <div
     className="insights-dialog-content"
   >
-    <div
+    <section
+      aria-labelledby="rule-name"
       className="insights-dialog-rule-name"
     >
-      <section
-        aria-labelledby="rule-name"
+      <h3
+        className="insights-dialog-section-title"
+        id="rule-name"
       >
-        <h3
-          className="insights-dialog-section-title"
-          id="rule-name"
-        >
-          Rule name
-        </h3>
-        <NewTabLink
-          href="http://extension/help1"
-        >
-          ruleId
-        </NewTabLink>
-      </section>
-    </div>
-    <div
+        Rule name
+      </h3>
+      <NewTabLink
+        href="http://extension/help1"
+      >
+        ruleId
+      </NewTabLink>
+    </section>
+    <section
+      aria-labelledby="success-criteria"
       className="insights-dialog-success-criteria"
     >
-      <section
-        aria-labelledby="success-criteria"
+      <h3
+        className="insights-dialog-section-title"
+        id="success-criteria"
       >
-        <h3
-          className="insights-dialog-section-title"
-          id="success-criteria"
-        >
-          Success criterion
-        </h3>
-        <div>
-          <GuidanceLinks
-            links={
-              Array [
-                Object {
-                  "href": "http://example.com",
-                  "text": "Guidance Link",
-                },
-              ]
-            }
-          />
-        </div>
-      </section>
-    </div>
-    <div
+        Success criterion
+      </h3>
+      <div>
+        <GuidanceLinks
+          links={
+            Array [
+              Object {
+                "href": "http://example.com",
+                "text": "Guidance Link",
+              },
+            ]
+          }
+        />
+      </div>
+    </section>
+    <section
       className="insights-dialog-path-selector-container"
     >
       <h3
@@ -666,7 +648,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": f
         Path
       </h3>
       ruleId
-    </div>
+    </section>
     <CommandBar
       currentRuleIndex={0}
       deps={
@@ -953,52 +935,46 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": f
                 <div
                   className="insights-dialog-content"
                 >
-                  <div
+                  <section
+                    aria-labelledby="rule-name"
                     className="insights-dialog-rule-name"
                   >
-                    <section
-                      aria-labelledby="rule-name"
+                    <h3
+                      className="insights-dialog-section-title"
+                      id="rule-name"
                     >
-                      <h3
-                        className="insights-dialog-section-title"
-                        id="rule-name"
-                      >
-                        Rule name
-                      </h3>
-                      <NewTabLink
-                        href="http://extension/help1"
-                      >
-                        ruleId
-                      </NewTabLink>
-                    </section>
-                  </div>
-                  <div
+                      Rule name
+                    </h3>
+                    <NewTabLink
+                      href="http://extension/help1"
+                    >
+                      ruleId
+                    </NewTabLink>
+                  </section>
+                  <section
+                    aria-labelledby="success-criteria"
                     className="insights-dialog-success-criteria"
                   >
-                    <section
-                      aria-labelledby="success-criteria"
+                    <h3
+                      className="insights-dialog-section-title"
+                      id="success-criteria"
                     >
-                      <h3
-                        className="insights-dialog-section-title"
-                        id="success-criteria"
-                      >
-                        Success criterion
-                      </h3>
-                      <div>
-                        <GuidanceLinks
-                          links={
-                            Array [
-                              Object {
-                                "href": "http://example.com",
-                                "text": "Guidance Link",
-                              },
-                            ]
-                          }
-                        />
-                      </div>
-                    </section>
-                  </div>
-                  <div
+                      Success criterion
+                    </h3>
+                    <div>
+                      <GuidanceLinks
+                        links={
+                          Array [
+                            Object {
+                              "href": "http://example.com",
+                              "text": "Guidance Link",
+                            },
+                          ]
+                        }
+                      />
+                    </div>
+                  </section>
+                  <section
                     className="insights-dialog-path-selector-container"
                   >
                     <h3
@@ -1007,7 +983,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": f
                       Path
                     </h3>
                     ruleId
-                  </div>
+                  </section>
                   <CommandBar
                     currentRuleIndex={0}
                     deps={
@@ -1194,52 +1170,46 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": t
     <div
       className="insights-dialog-content"
     >
-      <div
+      <section
+        aria-labelledby="rule-name"
         className="insights-dialog-rule-name"
       >
-        <section
-          aria-labelledby="rule-name"
+        <h3
+          className="insights-dialog-section-title"
+          id="rule-name"
         >
-          <h3
-            className="insights-dialog-section-title"
-            id="rule-name"
-          >
-            Rule name
-          </h3>
-          <NewTabLink
-            href="http://extension/help1"
-          >
-            ruleId
-          </NewTabLink>
-        </section>
-      </div>
-      <div
+          Rule name
+        </h3>
+        <NewTabLink
+          href="http://extension/help1"
+        >
+          ruleId
+        </NewTabLink>
+      </section>
+      <section
+        aria-labelledby="success-criteria"
         className="insights-dialog-success-criteria"
       >
-        <section
-          aria-labelledby="success-criteria"
+        <h3
+          className="insights-dialog-section-title"
+          id="success-criteria"
         >
-          <h3
-            className="insights-dialog-section-title"
-            id="success-criteria"
-          >
-            Success criterion
-          </h3>
-          <div>
-            <GuidanceLinks
-              links={
-                Array [
-                  Object {
-                    "href": "http://example.com",
-                    "text": "Guidance Link",
-                  },
-                ]
-              }
-            />
-          </div>
-        </section>
-      </div>
-      <div
+          Success criterion
+        </h3>
+        <div>
+          <GuidanceLinks
+            links={
+              Array [
+                Object {
+                  "href": "http://example.com",
+                  "text": "Guidance Link",
+                },
+              ]
+            }
+          />
+        </div>
+      </section>
+      <section
         className="insights-dialog-path-selector-container"
       >
         <h3
@@ -1248,7 +1218,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": t
           Path
         </h3>
         ruleId
-      </div>
+      </section>
       <CommandBar
         currentRuleIndex={0}
         deps={
@@ -1540,52 +1510,46 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": t
                     <div
                       className="insights-dialog-content"
                     >
-                      <div
+                      <section
+                        aria-labelledby="rule-name"
                         className="insights-dialog-rule-name"
                       >
-                        <section
-                          aria-labelledby="rule-name"
+                        <h3
+                          className="insights-dialog-section-title"
+                          id="rule-name"
                         >
-                          <h3
-                            className="insights-dialog-section-title"
-                            id="rule-name"
-                          >
-                            Rule name
-                          </h3>
-                          <NewTabLink
-                            href="http://extension/help1"
-                          >
-                            ruleId
-                          </NewTabLink>
-                        </section>
-                      </div>
-                      <div
+                          Rule name
+                        </h3>
+                        <NewTabLink
+                          href="http://extension/help1"
+                        >
+                          ruleId
+                        </NewTabLink>
+                      </section>
+                      <section
+                        aria-labelledby="success-criteria"
                         className="insights-dialog-success-criteria"
                       >
-                        <section
-                          aria-labelledby="success-criteria"
+                        <h3
+                          className="insights-dialog-section-title"
+                          id="success-criteria"
                         >
-                          <h3
-                            className="insights-dialog-section-title"
-                            id="success-criteria"
-                          >
-                            Success criterion
-                          </h3>
-                          <div>
-                            <GuidanceLinks
-                              links={
-                                Array [
-                                  Object {
-                                    "href": "http://example.com",
-                                    "text": "Guidance Link",
-                                  },
-                                ]
-                              }
-                            />
-                          </div>
-                        </section>
-                      </div>
-                      <div
+                          Success criterion
+                        </h3>
+                        <div>
+                          <GuidanceLinks
+                            links={
+                              Array [
+                                Object {
+                                  "href": "http://example.com",
+                                  "text": "Guidance Link",
+                                },
+                              ]
+                            }
+                          />
+                        </div>
+                      </section>
+                      <section
                         className="insights-dialog-path-selector-container"
                       >
                         <h3
@@ -1594,7 +1558,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": t
                           Path
                         </h3>
                         ruleId
-                      </div>
+                      </section>
                       <CommandBar
                         currentRuleIndex={0}
                         deps={
@@ -1776,52 +1740,46 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": fa
   <div
     className="insights-dialog-content"
   >
-    <div
+    <section
+      aria-labelledby="rule-name"
       className="insights-dialog-rule-name"
     >
-      <section
-        aria-labelledby="rule-name"
+      <h3
+        className="insights-dialog-section-title"
+        id="rule-name"
       >
-        <h3
-          className="insights-dialog-section-title"
-          id="rule-name"
-        >
-          Rule name
-        </h3>
-        <NewTabLink
-          href="http://extension/help1"
-        >
-          ruleId
-        </NewTabLink>
-      </section>
-    </div>
-    <div
+        Rule name
+      </h3>
+      <NewTabLink
+        href="http://extension/help1"
+      >
+        ruleId
+      </NewTabLink>
+    </section>
+    <section
+      aria-labelledby="success-criteria"
       className="insights-dialog-success-criteria"
     >
-      <section
-        aria-labelledby="success-criteria"
+      <h3
+        className="insights-dialog-section-title"
+        id="success-criteria"
       >
-        <h3
-          className="insights-dialog-section-title"
-          id="success-criteria"
-        >
-          Success criterion
-        </h3>
-        <div>
-          <GuidanceLinks
-            links={
-              Array [
-                Object {
-                  "href": "http://example.com",
-                  "text": "Guidance Link",
-                },
-              ]
-            }
-          />
-        </div>
-      </section>
-    </div>
-    <div
+        Success criterion
+      </h3>
+      <div>
+        <GuidanceLinks
+          links={
+            Array [
+              Object {
+                "href": "http://example.com",
+                "text": "Guidance Link",
+              },
+            ]
+          }
+        />
+      </div>
+    </section>
+    <section
       className="insights-dialog-path-selector-container"
     >
       <h3
@@ -1830,7 +1788,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": fa
         Path
       </h3>
       ruleId
-    </div>
+    </section>
     <CommandBar
       currentRuleIndex={0}
       deps={
@@ -2117,52 +2075,46 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": fa
                 <div
                   className="insights-dialog-content"
                 >
-                  <div
+                  <section
+                    aria-labelledby="rule-name"
                     className="insights-dialog-rule-name"
                   >
-                    <section
-                      aria-labelledby="rule-name"
+                    <h3
+                      className="insights-dialog-section-title"
+                      id="rule-name"
                     >
-                      <h3
-                        className="insights-dialog-section-title"
-                        id="rule-name"
-                      >
-                        Rule name
-                      </h3>
-                      <NewTabLink
-                        href="http://extension/help1"
-                      >
-                        ruleId
-                      </NewTabLink>
-                    </section>
-                  </div>
-                  <div
+                      Rule name
+                    </h3>
+                    <NewTabLink
+                      href="http://extension/help1"
+                    >
+                      ruleId
+                    </NewTabLink>
+                  </section>
+                  <section
+                    aria-labelledby="success-criteria"
                     className="insights-dialog-success-criteria"
                   >
-                    <section
-                      aria-labelledby="success-criteria"
+                    <h3
+                      className="insights-dialog-section-title"
+                      id="success-criteria"
                     >
-                      <h3
-                        className="insights-dialog-section-title"
-                        id="success-criteria"
-                      >
-                        Success criterion
-                      </h3>
-                      <div>
-                        <GuidanceLinks
-                          links={
-                            Array [
-                              Object {
-                                "href": "http://example.com",
-                                "text": "Guidance Link",
-                              },
-                            ]
-                          }
-                        />
-                      </div>
-                    </section>
-                  </div>
-                  <div
+                      Success criterion
+                    </h3>
+                    <div>
+                      <GuidanceLinks
+                        links={
+                          Array [
+                            Object {
+                              "href": "http://example.com",
+                              "text": "Guidance Link",
+                            },
+                          ]
+                        }
+                      />
+                    </div>
+                  </section>
+                  <section
                     className="insights-dialog-path-selector-container"
                   >
                     <h3
@@ -2171,7 +2123,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": fa
                       Path
                     </h3>
                     ruleId
-                  </div>
+                  </section>
                   <CommandBar
                     currentRuleIndex={0}
                     deps={
@@ -2358,52 +2310,46 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": tr
     <div
       className="insights-dialog-content"
     >
-      <div
+      <section
+        aria-labelledby="rule-name"
         className="insights-dialog-rule-name"
       >
-        <section
-          aria-labelledby="rule-name"
+        <h3
+          className="insights-dialog-section-title"
+          id="rule-name"
         >
-          <h3
-            className="insights-dialog-section-title"
-            id="rule-name"
-          >
-            Rule name
-          </h3>
-          <NewTabLink
-            href="http://extension/help1"
-          >
-            ruleId
-          </NewTabLink>
-        </section>
-      </div>
-      <div
+          Rule name
+        </h3>
+        <NewTabLink
+          href="http://extension/help1"
+        >
+          ruleId
+        </NewTabLink>
+      </section>
+      <section
+        aria-labelledby="success-criteria"
         className="insights-dialog-success-criteria"
       >
-        <section
-          aria-labelledby="success-criteria"
+        <h3
+          className="insights-dialog-section-title"
+          id="success-criteria"
         >
-          <h3
-            className="insights-dialog-section-title"
-            id="success-criteria"
-          >
-            Success criterion
-          </h3>
-          <div>
-            <GuidanceLinks
-              links={
-                Array [
-                  Object {
-                    "href": "http://example.com",
-                    "text": "Guidance Link",
-                  },
-                ]
-              }
-            />
-          </div>
-        </section>
-      </div>
-      <div
+          Success criterion
+        </h3>
+        <div>
+          <GuidanceLinks
+            links={
+              Array [
+                Object {
+                  "href": "http://example.com",
+                  "text": "Guidance Link",
+                },
+              ]
+            }
+          />
+        </div>
+      </section>
+      <section
         className="insights-dialog-path-selector-container"
       >
         <h3
@@ -2412,7 +2358,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": tr
           Path
         </h3>
         ruleId
-      </div>
+      </section>
       <CommandBar
         currentRuleIndex={0}
         deps={
@@ -2704,52 +2650,46 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": tr
                     <div
                       className="insights-dialog-content"
                     >
-                      <div
+                      <section
+                        aria-labelledby="rule-name"
                         className="insights-dialog-rule-name"
                       >
-                        <section
-                          aria-labelledby="rule-name"
+                        <h3
+                          className="insights-dialog-section-title"
+                          id="rule-name"
                         >
-                          <h3
-                            className="insights-dialog-section-title"
-                            id="rule-name"
-                          >
-                            Rule name
-                          </h3>
-                          <NewTabLink
-                            href="http://extension/help1"
-                          >
-                            ruleId
-                          </NewTabLink>
-                        </section>
-                      </div>
-                      <div
+                          Rule name
+                        </h3>
+                        <NewTabLink
+                          href="http://extension/help1"
+                        >
+                          ruleId
+                        </NewTabLink>
+                      </section>
+                      <section
+                        aria-labelledby="success-criteria"
                         className="insights-dialog-success-criteria"
                       >
-                        <section
-                          aria-labelledby="success-criteria"
+                        <h3
+                          className="insights-dialog-section-title"
+                          id="success-criteria"
                         >
-                          <h3
-                            className="insights-dialog-section-title"
-                            id="success-criteria"
-                          >
-                            Success criterion
-                          </h3>
-                          <div>
-                            <GuidanceLinks
-                              links={
-                                Array [
-                                  Object {
-                                    "href": "http://example.com",
-                                    "text": "Guidance Link",
-                                  },
-                                ]
-                              }
-                            />
-                          </div>
-                        </section>
-                      </div>
-                      <div
+                          Success criterion
+                        </h3>
+                        <div>
+                          <GuidanceLinks
+                            links={
+                              Array [
+                                Object {
+                                  "href": "http://example.com",
+                                  "text": "Guidance Link",
+                                },
+                              ]
+                            }
+                          />
+                        </div>
+                      </section>
+                      <section
                         className="insights-dialog-path-selector-container"
                       >
                         <h3
@@ -2758,7 +2698,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": tr
                           Path
                         </h3>
                         ruleId
-                      </div>
+                      </section>
                       <CommandBar
                         currentRuleIndex={0}
                         deps={
