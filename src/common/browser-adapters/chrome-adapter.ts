@@ -45,10 +45,6 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         return browser.tabs.query(query);
     }
 
-    public tabsQuery(query: chrome.tabs.QueryInfo, callback: (result: chrome.tabs.Tab[]) => void): void {
-        chrome.tabs.query(query, callback);
-    }
-
     public getTab(tabId: number, onResolve: (tab: chrome.tabs.Tab) => void, onReject?: () => void): void {
         chrome.tabs.get(tabId, tab => {
             if (tab) {
