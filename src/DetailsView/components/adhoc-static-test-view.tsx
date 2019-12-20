@@ -12,10 +12,8 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-toggle-click-handler-factory';
 import { StaticContentDetailsView, StaticContentDetailsViewDeps, StaticContentDetailsViewProps } from './static-content-details-view';
 import { TargetPageChangedView } from './target-page-changed-view';
-import { ScanIncompleteWarning, ScanIncompleteWarningDeps } from 'DetailsView/components/scan-incomplete-warning';
-import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 
-export type AdhocStaticTestViewDeps = StaticContentDetailsViewDeps & ScanIncompleteWarningDeps;
+export type AdhocStaticTestViewDeps = StaticContentDetailsViewDeps;
 
 export interface AdhocStaticTestViewProps {
     deps: AdhocStaticTestViewDeps;
@@ -27,7 +25,6 @@ export interface AdhocStaticTestViewProps {
     content?: ContentReference;
     guidance?: ContentReference;
     featureFlagStoreData: FeatureFlagStoreData;
-    switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
 }
 
 export const AdhocStaticTestView = NamedFC<AdhocStaticTestViewProps>('AdhocStaticTestView', ({ children, ...props }) => {
@@ -57,15 +54,5 @@ export const AdhocStaticTestView = NamedFC<AdhocStaticTestViewProps>('AdhocStati
         guidance: props.guidance,
     };
 
-    return (
-        <>
-            <ScanIncompleteWarning
-                deps={props.deps}
-                warnings={props.scanIncompleteWarnings}
-                warningConfiguration={props.switcherNavConfiguration.warningConfiguration}
-                test={props.selectedTest}
-            />
-            <StaticContentDetailsView {...givenProps} />
-        </>
-    );
+    return <StaticContentDetailsView {...givenProps} />;
 });
