@@ -35,7 +35,7 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
   <div
     className="insights-dialog-content"
   >
-    <div
+    <section
       aria-labelledby="rule-name"
       className="insights-dialog-rule-name"
     >
@@ -50,8 +50,8 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
       >
         ruleId
       </NewTabLink>
-    </div>
-    <div
+    </section>
+    <section
       aria-labelledby="success-criteria"
       className="insights-dialog-success-criteria"
     >
@@ -61,18 +61,20 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
       >
         Success criterion
       </h3>
-      <GuidanceLinks
-        links={
-          Array [
-            Object {
-              "href": "http://example.com",
-              "text": "Guidance Link",
-            },
-          ]
-        }
-      />
-    </div>
-    <div
+      <div>
+        <GuidanceLinks
+          links={
+            Array [
+              Object {
+                "href": "http://example.com",
+                "text": "Guidance Link",
+              },
+            ]
+          }
+        />
+      </div>
+    </section>
+    <section
       className="insights-dialog-path-selector-container"
     >
       <h3
@@ -81,7 +83,7 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
         Path
       </h3>
       ruleId
-    </div>
+    </section>
     <CommandBar
       currentRuleIndex={0}
       deps={
@@ -368,7 +370,7 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
                 <div
                   className="insights-dialog-content"
                 >
-                  <div
+                  <section
                     aria-labelledby="rule-name"
                     className="insights-dialog-rule-name"
                   >
@@ -383,8 +385,8 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
                     >
                       ruleId
                     </NewTabLink>
-                  </div>
-                  <div
+                  </section>
+                  <section
                     aria-labelledby="success-criteria"
                     className="insights-dialog-success-criteria"
                   >
@@ -394,18 +396,20 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
                     >
                       Success criterion
                     </h3>
-                    <GuidanceLinks
-                      links={
-                        Array [
-                          Object {
-                            "href": "http://example.com",
-                            "text": "Guidance Link",
-                          },
-                        ]
-                      }
-                    />
-                  </div>
-                  <div
+                    <div>
+                      <GuidanceLinks
+                        links={
+                          Array [
+                            Object {
+                              "href": "http://example.com",
+                              "text": "Guidance Link",
+                            },
+                          ]
+                        }
+                      />
+                    </div>
+                  </section>
+                  <section
                     className="insights-dialog-path-selector-container"
                   >
                     <h3
@@ -414,7 +418,7 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
                       Path
                     </h3>
                     ruleId
-                  </div>
+                  </section>
                   <CommandBar
                     currentRuleIndex={0}
                     deps={
@@ -596,7 +600,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": f
   <div
     className="insights-dialog-content"
   >
-    <div
+    <section
       aria-labelledby="rule-name"
       className="insights-dialog-rule-name"
     >
@@ -611,8 +615,8 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": f
       >
         ruleId
       </NewTabLink>
-    </div>
-    <div
+    </section>
+    <section
       aria-labelledby="success-criteria"
       className="insights-dialog-success-criteria"
     >
@@ -622,18 +626,20 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": f
       >
         Success criterion
       </h3>
-      <GuidanceLinks
-        links={
-          Array [
-            Object {
-              "href": "http://example.com",
-              "text": "Guidance Link",
-            },
-          ]
-        }
-      />
-    </div>
-    <div
+      <div>
+        <GuidanceLinks
+          links={
+            Array [
+              Object {
+                "href": "http://example.com",
+                "text": "Guidance Link",
+              },
+            ]
+          }
+        />
+      </div>
+    </section>
+    <section
       className="insights-dialog-path-selector-container"
     >
       <h3
@@ -642,7 +648,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": f
         Path
       </h3>
       ruleId
-    </div>
+    </section>
     <CommandBar
       currentRuleIndex={0}
       deps={
@@ -929,7 +935,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": f
                 <div
                   className="insights-dialog-content"
                 >
-                  <div
+                  <section
                     aria-labelledby="rule-name"
                     className="insights-dialog-rule-name"
                   >
@@ -944,8 +950,8 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": f
                     >
                       ruleId
                     </NewTabLink>
-                  </div>
-                  <div
+                  </section>
+                  <section
                     aria-labelledby="success-criteria"
                     className="insights-dialog-success-criteria"
                   >
@@ -955,18 +961,20 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": f
                     >
                       Success criterion
                     </h3>
-                    <GuidanceLinks
-                      links={
-                        Array [
-                          Object {
-                            "href": "http://example.com",
-                            "text": "Guidance Link",
-                          },
-                        ]
-                      }
-                    />
-                  </div>
-                  <div
+                    <div>
+                      <GuidanceLinks
+                        links={
+                          Array [
+                            Object {
+                              "href": "http://example.com",
+                              "text": "Guidance Link",
+                            },
+                          ]
+                        }
+                      />
+                    </div>
+                  </section>
+                  <section
                     className="insights-dialog-path-selector-container"
                   >
                     <h3
@@ -975,7 +983,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": f
                       Path
                     </h3>
                     ruleId
-                  </div>
+                  </section>
                   <CommandBar
                     currentRuleIndex={0}
                     deps={
@@ -1162,7 +1170,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": t
     <div
       className="insights-dialog-content"
     >
-      <div
+      <section
         aria-labelledby="rule-name"
         className="insights-dialog-rule-name"
       >
@@ -1177,8 +1185,8 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": t
         >
           ruleId
         </NewTabLink>
-      </div>
-      <div
+      </section>
+      <section
         aria-labelledby="success-criteria"
         className="insights-dialog-success-criteria"
       >
@@ -1188,18 +1196,20 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": t
         >
           Success criterion
         </h3>
-        <GuidanceLinks
-          links={
-            Array [
-              Object {
-                "href": "http://example.com",
-                "text": "Guidance Link",
-              },
-            ]
-          }
-        />
-      </div>
-      <div
+        <div>
+          <GuidanceLinks
+            links={
+              Array [
+                Object {
+                  "href": "http://example.com",
+                  "text": "Guidance Link",
+                },
+              ]
+            }
+          />
+        </div>
+      </section>
+      <section
         className="insights-dialog-path-selector-container"
       >
         <h3
@@ -1208,7 +1218,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": t
           Path
         </h3>
         ruleId
-      </div>
+      </section>
       <CommandBar
         currentRuleIndex={0}
         deps={
@@ -1500,7 +1510,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": t
                     <div
                       className="insights-dialog-content"
                     >
-                      <div
+                      <section
                         aria-labelledby="rule-name"
                         className="insights-dialog-rule-name"
                       >
@@ -1515,8 +1525,8 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": t
                         >
                           ruleId
                         </NewTabLink>
-                      </div>
-                      <div
+                      </section>
+                      <section
                         aria-labelledby="success-criteria"
                         className="insights-dialog-success-criteria"
                       >
@@ -1526,18 +1536,20 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": t
                         >
                           Success criterion
                         </h3>
-                        <GuidanceLinks
-                          links={
-                            Array [
-                              Object {
-                                "href": "http://example.com",
-                                "text": "Guidance Link",
-                              },
-                            ]
-                          }
-                        />
-                      </div>
-                      <div
+                        <div>
+                          <GuidanceLinks
+                            links={
+                              Array [
+                                Object {
+                                  "href": "http://example.com",
+                                  "text": "Guidance Link",
+                                },
+                              ]
+                            }
+                          />
+                        </div>
+                      </section>
+                      <section
                         className="insights-dialog-path-selector-container"
                       >
                         <h3
@@ -1546,7 +1558,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": t
                           Path
                         </h3>
                         ruleId
-                      </div>
+                      </section>
                       <CommandBar
                         currentRuleIndex={0}
                         deps={
@@ -1728,7 +1740,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": fa
   <div
     className="insights-dialog-content"
   >
-    <div
+    <section
       aria-labelledby="rule-name"
       className="insights-dialog-rule-name"
     >
@@ -1743,8 +1755,8 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": fa
       >
         ruleId
       </NewTabLink>
-    </div>
-    <div
+    </section>
+    <section
       aria-labelledby="success-criteria"
       className="insights-dialog-success-criteria"
     >
@@ -1754,18 +1766,20 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": fa
       >
         Success criterion
       </h3>
-      <GuidanceLinks
-        links={
-          Array [
-            Object {
-              "href": "http://example.com",
-              "text": "Guidance Link",
-            },
-          ]
-        }
-      />
-    </div>
-    <div
+      <div>
+        <GuidanceLinks
+          links={
+            Array [
+              Object {
+                "href": "http://example.com",
+                "text": "Guidance Link",
+              },
+            ]
+          }
+        />
+      </div>
+    </section>
+    <section
       className="insights-dialog-path-selector-container"
     >
       <h3
@@ -1774,7 +1788,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": fa
         Path
       </h3>
       ruleId
-    </div>
+    </section>
     <CommandBar
       currentRuleIndex={0}
       deps={
@@ -2061,7 +2075,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": fa
                 <div
                   className="insights-dialog-content"
                 >
-                  <div
+                  <section
                     aria-labelledby="rule-name"
                     className="insights-dialog-rule-name"
                   >
@@ -2076,8 +2090,8 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": fa
                     >
                       ruleId
                     </NewTabLink>
-                  </div>
-                  <div
+                  </section>
+                  <section
                     aria-labelledby="success-criteria"
                     className="insights-dialog-success-criteria"
                   >
@@ -2087,18 +2101,20 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": fa
                     >
                       Success criterion
                     </h3>
-                    <GuidanceLinks
-                      links={
-                        Array [
-                          Object {
-                            "href": "http://example.com",
-                            "text": "Guidance Link",
-                          },
-                        ]
-                      }
-                    />
-                  </div>
-                  <div
+                    <div>
+                      <GuidanceLinks
+                        links={
+                          Array [
+                            Object {
+                              "href": "http://example.com",
+                              "text": "Guidance Link",
+                            },
+                          ]
+                        }
+                      />
+                    </div>
+                  </section>
+                  <section
                     className="insights-dialog-path-selector-container"
                   >
                     <h3
@@ -2107,7 +2123,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": fa
                       Path
                     </h3>
                     ruleId
-                  </div>
+                  </section>
                   <CommandBar
                     currentRuleIndex={0}
                     deps={
@@ -2294,7 +2310,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": tr
     <div
       className="insights-dialog-content"
     >
-      <div
+      <section
         aria-labelledby="rule-name"
         className="insights-dialog-rule-name"
       >
@@ -2309,8 +2325,8 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": tr
         >
           ruleId
         </NewTabLink>
-      </div>
-      <div
+      </section>
+      <section
         aria-labelledby="success-criteria"
         className="insights-dialog-success-criteria"
       >
@@ -2320,18 +2336,20 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": tr
         >
           Success criterion
         </h3>
-        <GuidanceLinks
-          links={
-            Array [
-              Object {
-                "href": "http://example.com",
-                "text": "Guidance Link",
-              },
-            ]
-          }
-        />
-      </div>
-      <div
+        <div>
+          <GuidanceLinks
+            links={
+              Array [
+                Object {
+                  "href": "http://example.com",
+                  "text": "Guidance Link",
+                },
+              ]
+            }
+          />
+        </div>
+      </section>
+      <section
         className="insights-dialog-path-selector-container"
       >
         <h3
@@ -2340,7 +2358,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": tr
           Path
         </h3>
         ruleId
-      </div>
+      </section>
       <CommandBar
         currentRuleIndex={0}
         deps={
@@ -2632,7 +2650,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": tr
                     <div
                       className="insights-dialog-content"
                     >
-                      <div
+                      <section
                         aria-labelledby="rule-name"
                         className="insights-dialog-rule-name"
                       >
@@ -2647,8 +2665,8 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": tr
                         >
                           ruleId
                         </NewTabLink>
-                      </div>
-                      <div
+                      </section>
+                      <section
                         aria-labelledby="success-criteria"
                         className="insights-dialog-success-criteria"
                       >
@@ -2658,18 +2676,20 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": tr
                         >
                           Success criterion
                         </h3>
-                        <GuidanceLinks
-                          links={
-                            Array [
-                              Object {
-                                "href": "http://example.com",
-                                "text": "Guidance Link",
-                              },
-                            ]
-                          }
-                        />
-                      </div>
-                      <div
+                        <div>
+                          <GuidanceLinks
+                            links={
+                              Array [
+                                Object {
+                                  "href": "http://example.com",
+                                  "text": "Guidance Link",
+                                },
+                              ]
+                            }
+                          />
+                        </div>
+                      </section>
+                      <section
                         className="insights-dialog-path-selector-container"
                       >
                         <h3
@@ -2678,7 +2698,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": tr
                           Path
                         </h3>
                         ruleId
-                      </div>
+                      </section>
                       <CommandBar
                         currentRuleIndex={0}
                         deps={
