@@ -56,7 +56,9 @@ describe('scanning', () => {
         });
 
         it('does show iframe detected warning', async () => {
-            //
+            const iframeWarning = await fastPassAutomatedChecks.getSelectorElement(fastPassAutomatedChecksSelectors.iframeWarning);
+
+            expect(iframeWarning).not.toBeNull();
         });
     });
 
@@ -86,6 +88,12 @@ describe('scanning', () => {
             };
 
             await assertFailureCounts(ruleDetails, expectedCounts);
+        });
+
+        it('does not show iframe detected warning', async () => {
+            const iframeWarning = await fastPassAutomatedChecks.getSelectorElement(fastPassAutomatedChecksSelectors.iframeWarning);
+
+            expect(iframeWarning).toBeNull();
         });
     });
 
