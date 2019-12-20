@@ -38,8 +38,8 @@ steps:
     - task: CopyFiles@2
       displayName: 'Copy Files to: targetfolder'
       inputs:
-          SourceFolder: '$(System.DefaultWorkingDirectory)/dist/detachedSignature'
-          TargetFolder: '$(System.DefaultWorkingDirectory)/dist/upload'
+          contents: '$(System.DefaultWorkingDirectory)/dist/detachedSignature/**/*.AppImage'
+          TargetFolder: '$(System.DefaultWorkingDirectory)/dist/upload/detachedSignature'
 
     - script: yarn update:electron-checksum
       displayName: update electron checksum after signing
