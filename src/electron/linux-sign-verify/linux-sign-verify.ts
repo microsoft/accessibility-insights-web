@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import * as process from 'child_process';
-import { autoUpdater } from 'electron-updater';
+import { autoUpdater, UpdateInfo } from 'electron-updater';
 import { isNil } from 'lodash';
 import * as os from 'os';
 
@@ -25,11 +25,13 @@ const verifySignatureCommand = function(verifyCommand, callback): void {
     });
 };
 
-export function verifySignatureOnLinux(privateKeyFile: string, appFile: string): void {
+export function verifySignatureOnLinux(info: UpdateInfo): void {
     if (os.platform() !== 'linux') {
         return;
     }
 
+    const privateKeyFile: string = info.files[0].url;
+    const appFile: string = info.files[1].url;
     const verifyCommand = 'gpg --verify ' + privateKeyFile + ' ' + appFile;
 
     verifySignatureCommand(verifyCommand, function(result): void {
