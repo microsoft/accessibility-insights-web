@@ -63,16 +63,17 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
 
     private renderTargetPageInfo(): JSX.Element {
         const targetPageTitle: string = this.props.tabStoreData.title;
+        const tooltipContent = `Switch to target page: ${targetPageTitle}`;
         const hostStyles: Partial<ITooltipHostStyles> = { root: { display: 'inline-block' } };
         return (
             <div className="details-view-target-page" aria-labelledby="switch-to-target">
                 <span id="switch-to-target">Target page:&nbsp;</span>
-                <TooltipHost content={`Switch to target page: ${targetPageTitle}`} styles={hostStyles} id="tooltip-id">
+                <TooltipHost content={tooltipContent} styles={hostStyles}>
                     <Link
                         role="link"
                         className={css('insights-link', 'target-page-link')}
                         onClick={this.props.deps.detailsViewActionMessageCreator.switchToTargetTab}
-                        aria-labelledby="tooltip-id"
+                        aria-label={tooltipContent}
                     >
                         {targetPageTitle}
                     </Link>
