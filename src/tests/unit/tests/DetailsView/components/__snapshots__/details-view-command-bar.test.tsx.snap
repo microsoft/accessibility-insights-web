@@ -6,8 +6,8 @@ exports[`DetailsViewCommandBar renders with export button, with start over 1`] =
     <span id=\\"switch-to-target\\">
       Target page: 
     </span>
-    <StyledTooltipHostBase content=\\"Switch to target page: command-bar-test-tab-title\\" styles={{...}} id=\\"tooltip-id\\">
-      <StyledLinkBase role=\\"link\\" className=\\"insights-link target-page-link\\" onClick={[Function: proxy]} aria-labelledby=\\"tooltip-id\\">
+    <StyledTooltipHostBase content=\\"Switch to target page: command-bar-test-tab-title\\" styles={{...}}>
+      <StyledLinkBase role=\\"link\\" className=\\"insights-link target-page-link\\" onClick={[Function: proxy]} aria-label=\\"Switch to target page: command-bar-test-tab-title\\">
         command-bar-test-tab-title
       </StyledLinkBase>
     </StyledTooltipHostBase>
@@ -29,8 +29,8 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
     <span id=\\"switch-to-target\\">
       Target page: 
     </span>
-    <StyledTooltipHostBase content=\\"Switch to target page: command-bar-test-tab-title\\" styles={{...}} id=\\"tooltip-id\\">
-      <StyledLinkBase role=\\"link\\" className=\\"insights-link target-page-link\\" onClick={[Function: proxy]} aria-labelledby=\\"tooltip-id\\">
+    <StyledTooltipHostBase content=\\"Switch to target page: command-bar-test-tab-title\\" styles={{...}}>
+      <StyledLinkBase role=\\"link\\" className=\\"insights-link target-page-link\\" onClick={[Function: proxy]} aria-label=\\"Switch to target page: command-bar-test-tab-title\\">
         command-bar-test-tab-title
       </StyledLinkBase>
     </StyledTooltipHostBase>
@@ -49,8 +49,8 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
     <span id=\\"switch-to-target\\">
       Target page: 
     </span>
-    <StyledTooltipHostBase content=\\"Switch to target page: command-bar-test-tab-title\\" styles={{...}} id=\\"tooltip-id\\">
-      <StyledLinkBase role=\\"link\\" className=\\"insights-link target-page-link\\" onClick={[Function: proxy]} aria-labelledby=\\"tooltip-id\\">
+    <StyledTooltipHostBase content=\\"Switch to target page: command-bar-test-tab-title\\" styles={{...}}>
+      <StyledLinkBase role=\\"link\\" className=\\"insights-link target-page-link\\" onClick={[Function: proxy]} aria-label=\\"Switch to target page: command-bar-test-tab-title\\">
         command-bar-test-tab-title
       </StyledLinkBase>
     </StyledTooltipHostBase>
@@ -69,8 +69,8 @@ exports[`DetailsViewCommandBar renders without export button, without start over
     <span id=\\"switch-to-target\\">
       Target page: 
     </span>
-    <StyledTooltipHostBase content=\\"Switch to target page: command-bar-test-tab-title\\" styles={{...}} id=\\"tooltip-id\\">
-      <StyledLinkBase role=\\"link\\" className=\\"insights-link target-page-link\\" onClick={[Function: proxy]} aria-labelledby=\\"tooltip-id\\">
+    <StyledTooltipHostBase content=\\"Switch to target page: command-bar-test-tab-title\\" styles={{...}}>
+      <StyledLinkBase role=\\"link\\" className=\\"insights-link target-page-link\\" onClick={[Function: proxy]} aria-label=\\"Switch to target page: command-bar-test-tab-title\\">
         command-bar-test-tab-title
       </StyledLinkBase>
     </StyledTooltipHostBase>
