@@ -123,7 +123,9 @@ describe('BrowserPermissionsTracker', () => {
     function verifyInterpreterMessage(browserPermissions: boolean): void {
         const expectedMessage: Message = {
             messageType: Messages.PermissionsState.SetPermissionsState,
-            payload: browserPermissions,
+            payload: {
+                allUrlAndFilePermissions: browserPermissions,
+            },
         };
 
         interpreterMock.verify(i => i.interpret(expectedMessage), Times.once());

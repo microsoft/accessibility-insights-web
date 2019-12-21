@@ -8,6 +8,12 @@ import {
     getReportExportComponentForFastPass,
 } from 'DetailsView/components/report-export-component-factory';
 import { getStartOverComponentForAssessment, getStartOverComponentForFastPass } from 'DetailsView/components/start-over-component-factory';
+import {
+    assessmentWarningConfiguration,
+    fastpassWarningConfiguration,
+    WarningConfiguration,
+} from 'DetailsView/components/warning-configuration';
+
 import { ReactFCWithDisplayName } from '../../common/react/named-fc';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../common/types/visualization-type';
@@ -36,6 +42,7 @@ export type DetailsViewSwitcherNavConfiguration = Readonly<{
     StartOverComponentFactory: StartOverComponentFactory;
     LeftNav: ReactFCWithDisplayName<LeftNavProps>;
     getSelectedDetailsView: (props: GetSelectedDetailsViewProps) => VisualizationType;
+    warningConfiguration: WarningConfiguration;
 }>;
 
 type InternalDetailsViewSwitcherNavConfiguration = Readonly<{
@@ -44,6 +51,7 @@ type InternalDetailsViewSwitcherNavConfiguration = Readonly<{
     StartOverComponentFactory: StartOverComponentFactory;
     LeftNav: ReactFCWithDisplayName<InternalLeftNavProps>;
     getSelectedDetailsView: (props: GetSelectedDetailsViewProps) => VisualizationType;
+    warningConfiguration: WarningConfiguration;
 }>;
 
 export type GetDetailsSwitcherNavConfigurationProps = {
@@ -59,6 +67,7 @@ const detailsViewSwitcherNavs: {
         StartOverComponentFactory: getStartOverComponentForAssessment,
         LeftNav: AssessmentLeftNav,
         getSelectedDetailsView: getAssessmentSelectedDetailsView,
+        warningConfiguration: assessmentWarningConfiguration,
     },
     [DetailsViewPivotType.fastPass]: {
         CommandBar: AutomatedChecksCommandBar,
@@ -66,6 +75,7 @@ const detailsViewSwitcherNavs: {
         StartOverComponentFactory: getStartOverComponentForFastPass,
         LeftNav: FastPassLeftNav,
         getSelectedDetailsView: getFastPassSelectedDetailsView,
+        warningConfiguration: fastpassWarningConfiguration,
     },
 };
 

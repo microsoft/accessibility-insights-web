@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BrowserPermissionsTracker } from 'background/browser-permissions-tracker';
 import { Logger } from 'common/logging/logger';
+
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { CommandsAdapter } from '../common/browser-adapters/commands-adapter';
 import { StorageAdapter } from '../common/browser-adapters/storage-adapter';
@@ -32,7 +34,7 @@ import { TelemetryEventHandler } from './telemetry/telemetry-event-handler';
 import { UserConfigurationController } from './user-configuration-controller';
 
 export class GlobalContextFactory {
-    public static createContext(
+    public static async createContext(
         browserAdapter: BrowserAdapter,
         telemetryEventHandler: TelemetryEventHandler,
         userData: LocalStorageData,
@@ -45,7 +47,7 @@ export class GlobalContextFactory {
         storageAdapter: StorageAdapter,
         commandsAdapter: CommandsAdapter,
         logger: Logger,
-    ): GlobalContext {
+    ): Promise<GlobalContext> {
         const interpreter = new Interpreter();
 
         const globalActionsHub = new GlobalActionHub();
@@ -106,6 +108,7 @@ export class GlobalContextFactory {
         const permissionsStateActionCreator = new PermissionsStateActionCreator(
             interpreter,
             globalActionsHub.permissionsStateActions,
+            telemetryEventHandler,
         );
 
         issueFilingActionCreator.registerCallbacks();
@@ -134,6 +137,13 @@ export class GlobalContextFactory {
             interpreter,
         );
         assessmentChangeHandler.initialize();
+
+        const browserPermissionTracker = new BrowserPermissionsTracker(
+            browserAdapter,
+            interpreter,
+            logger,
+        );
+        await browserPermissionTracker.initialize();
 
         return new GlobalContext(
             interpreter,

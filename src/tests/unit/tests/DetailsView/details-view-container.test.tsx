@@ -315,6 +315,7 @@ describe('DetailsViewContainer', () => {
                 cardsViewData={cardsViewData}
                 targetAppInfo={targetApp}
                 cardSelectionStoreData={storeMocks.cardSelectionStoreData}
+                scanIncompleteWarnings={storeMocks.unifiedScanResultStoreData.scanIncompleteWarnings}
             />
         );
     }

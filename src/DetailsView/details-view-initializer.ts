@@ -9,6 +9,7 @@ import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
+import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
@@ -28,6 +29,7 @@ import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ReportNameGenerator } from 'reports/report-name-generator';
+
 import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AxeInfo } from '../common/axe-info';
 import { provideBlob } from '../common/blob-provider';
@@ -346,6 +348,7 @@ if (isNaN(tabId) === false) {
                 cardSelectionMessageCreator,
                 getCardSelectionViewData: getCardSelectionViewData,
                 cardsVisualizationModifierButtons: CardsVisualizationModifierButtons,
+                allUrlsPermissionHandler: new AllUrlsPermissionHandler(browserAdapter, detailsViewActionMessageCreator),
             };
 
             const renderer = new DetailsViewRenderer(

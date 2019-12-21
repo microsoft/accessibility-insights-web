@@ -1,35 +1,48 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AdhocIssuesTestView should return DetailsListIssuesView 1`] = `
-<DetailsListIssuesView
-  clickHandlerFactory={
-    proxy {
-      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-      "actionCreator": undefined,
-      "telemetryFactory": undefined,
+<React.Fragment>
+  <ScanIncompleteWarning
+    test={-1}
+    warningConfiguration={Object {}}
+    warnings={Array []}
+  />
+  <DetailsListIssuesView
+    clickHandlerFactory={
+      proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "actionCreator": undefined,
+        "telemetryFactory": undefined,
+      }
     }
-  }
-  configuration={
-    Object {
-      "displayableData": Object {
-        "title": "test title",
-      },
-      "getStoreData": [Function],
+    configuration={
+      Object {
+        "displayableData": Object {
+          "title": "test title",
+        },
+        "getStoreData": [Function],
+      }
     }
-  }
-  selectedTest={-1}
-  tabStoreData={
-    Object {
-      "isChanged": false,
+    scanIncompleteWarnings={Array []}
+    selectedTest={-1}
+    switcherNavConfiguration={
+      Object {
+        "warningConfiguration": Object {},
+      }
     }
-  }
-  visualizationStoreData={
-    Object {
-      "scanning": "test-scanning",
-      "tests": Object {},
+    tabStoreData={
+      Object {
+        "isChanged": false,
+      }
     }
-  }
-/>
+    visualizationStoreData={
+      Object {
+        "scanning": "test-scanning",
+        "tests": Object {},
+      }
+    }
+  />
+</React.Fragment>
 `;
 
 exports[`AdhocIssuesTestView should return target page changed view as tab is changed 1`] = `
