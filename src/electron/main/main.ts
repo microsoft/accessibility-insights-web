@@ -16,8 +16,7 @@ log.transports.file.level = 'info';
 autoUpdater.logger = log;
 
 autoUpdater.on('update-downloaded', (event, info: UpdateInfo) => {
-    info.files.forEach(file => {});
-    verifySignatureOnLinux('', '');
+    verifySignatureOnLinux(info);
 });
 
 let recurringUpdateCheck;
