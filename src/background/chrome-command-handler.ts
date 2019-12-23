@@ -22,7 +22,7 @@ import { TabToContextMap } from './tab-context';
 
 const VisualizationMessages = Messages.Visualizations;
 
-export class ChromeCommandHandler {
+export class KeyboardShortcutHandler {
     private targetTabUrl: string;
     private commandToVisualizationType: DictionaryStringTo<VisualizationType>;
 

@@ -19,7 +19,7 @@ import { WindowUtils } from '../common/window-utils';
 import { title } from '../content/strings/application';
 import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-service-provider-impl';
 import { BrowserMessageBroadcasterFactory } from './browser-message-broadcaster-factory';
-import { ChromeCommandHandler } from './chrome-command-handler';
+import { KeyboardShortcutHandler } from './chrome-command-handler';
 import { DetailsViewController } from './details-view-controller';
 import { DevToolsListener } from './dev-tools-listener';
 import { getPersistedData } from './get-persisted-data';
@@ -121,7 +121,7 @@ async function initialize(): Promise<void> {
         logger,
     );
 
-    const chromeCommandHandler = new ChromeCommandHandler(
+    const chromeCommandHandler = new KeyboardShortcutHandler(
         tabToContextMap,
         browserAdapter,
         urlValidator,
