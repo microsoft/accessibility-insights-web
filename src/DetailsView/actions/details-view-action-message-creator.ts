@@ -500,13 +500,13 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         this.dispatcher.dispatchMessage(message);
     };
 
-    public setAllUrlsPermissionState = (event: SupportedMouseEvent, allUrlsPermissionState: boolean) => {
+    public setAllUrlsPermissionState = (event: SupportedMouseEvent, hasAllUrlAndFilePermissions: boolean) => {
         const payload: SetAllUrlsPermissionStatePayload = {
-            allUrlsPermissionState,
+            hasAllUrlAndFilePermissions,
             telemetry: this.telemetryFactory.forSetAllUrlPermissionState(
                 event,
                 TelemetryEvents.TelemetryEventSource.DetailsView,
-                allUrlsPermissionState,
+                hasAllUrlAndFilePermissions,
             ),
         };
 

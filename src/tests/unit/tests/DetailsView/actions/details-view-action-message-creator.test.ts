@@ -1,19 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { HeadingsTestStep } from 'assessments/headings/test-steps/test-steps';
-import { OnDetailsViewPivotSelected } from 'background/actions/action-payloads';
+import { OnDetailsViewPivotSelected, SetAllUrlsPermissionStatePayload } from 'background/actions/action-payloads';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { IMock, It, Mock, Times } from 'typemoq';
-
 import {
     AssessmentTelemetryData,
     BaseTelemetryData,
     COPY_ISSUE_DETAILS,
-    DETAILS_VIEW_OPEN,
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
-    EXPORT_RESULTS,
+    DETAILS_VIEW_OPEN,
     ExportResultsTelemetryData,
+    EXPORT_RESULTS,
     FeatureFlagToggleTelemetryData,
     RequirementActionTelemetryData,
     RequirementSelectTelemetryData,
@@ -880,8 +879,8 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             messageType: Messages.PermissionsState.SetPermissionsState,
             payload: {
                 telemetry: telemetryStub,
-                allUrlsPermissionState: permissionsState,
-            },
+                hasAllUrlAndFilePermissions: permissionsState,
+            } as SetAllUrlsPermissionStatePayload,
         };
 
         telemetryFactoryMock
