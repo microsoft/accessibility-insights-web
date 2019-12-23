@@ -13,7 +13,9 @@ exports[`FastPassIframeWarning render 1`] = `
 `;
 
 exports[`IframeWarning render 1`] = `
-<React.Fragment>
+<div
+  data-automation-id="iframe-warning-container"
+>
   There are iframes in the target page. To have complete results,
    
   <StyledLinkBase
@@ -28,5 +30,5 @@ exports[`IframeWarning render 1`] = `
   >
     Learn more here.
   </NewTabLink>
-</React.Fragment>
+</div>
 `;

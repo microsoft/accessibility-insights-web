@@ -8,7 +8,8 @@ import { Message } from 'common/message';
 import { Messages } from 'common/messages';
 import { Permissions } from 'webextension-polyfill-ts';
 
-export const allUrlAndFilePermissions: Permissions.Permissions = { origins: ['*://*/*'] };
+export const allOriginsPattern = '*://*/*';
+export const allUrlAndFilePermissions: Permissions.Permissions = { origins: [allOriginsPattern] };
 export const permissionsCheckErrorMessage: string =
     'Error occurred while checking browser permissions';
 

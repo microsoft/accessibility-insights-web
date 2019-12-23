@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { allOriginsPattern } from 'background/browser-permissions-tracker';
 import { generateUID } from 'common/uid-generator';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -74,7 +75,7 @@ const addPermissions = (extensionOptions: ExtensionOptions, manifestOveride: Man
             break;
 
         case 'all-origins':
-            manifestOveride.addTemporaryPermission('*://*/*');
+            manifestOveride.addTemporaryPermission(allOriginsPattern);
             break;
         default:
         // no-op
