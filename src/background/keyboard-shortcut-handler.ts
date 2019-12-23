@@ -82,7 +82,7 @@ export class KeyboardShortcutHandler {
             const state = tabContext.stores.visualizationStore.getState();
 
             if (state.scanning != null) {
-                // do not change state if currently scanning, not even the toggle
+                // do not notify if we are already scanning
                 return;
             }
 
