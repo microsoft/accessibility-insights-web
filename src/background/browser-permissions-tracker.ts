@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { SetAllUrlsPermissionStatePayload } from 'background/actions/action-payloads';
 import { Interpreter } from 'background/interpreter';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { Logger } from 'common/logging/logger';
@@ -38,8 +39,8 @@ export class BrowserPermissionsTracker {
             const message: Message = {
                 messageType: Messages.PermissionsState.SetPermissionsState,
                 payload: {
-                    allUrlAndFilePermissions: permissionState,
-                },
+                    hasAllUrlAndFilePermissions: permissionState,
+                } as SetAllUrlsPermissionStatePayload,
             };
 
             this.interpreter.interpret(message);
