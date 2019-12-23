@@ -120,7 +120,7 @@
         "tslint-microsoft-contrib": "6.2.0",
         "typed-scss-modules": "^1.0.1",
         "typemoq": "^2.1.0",
-        "typescript": "^3.7.3",
+        "typescript": "^3.7.4",
         "webdriverio": "^4.13.0",
         "webpack": "^4.41.4",
         "webpack-cli": "^3.3.10",
