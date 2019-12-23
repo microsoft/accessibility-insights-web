@@ -1,14 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { KeyboardShortcutHandler } from 'background/chrome-command-handler';
 import { Interpreter } from 'background/interpreter';
+import { KeyboardShortcutHandler } from 'background/keyboard-shortcut-handler';
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
 import { TabContextStoreHub } from 'background/stores/tab-context-store-hub';
 import { VisualizationStore } from 'background/stores/visualization-store';
 import { TabContext, TabToContextMap } from 'background/tab-context';
 import { Logger } from 'common/logging/logger';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { BaseStore } from '../../../../common/base-store';
 import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { CommandsAdapter } from '../../../../common/browser-adapters/commands-adapter';
