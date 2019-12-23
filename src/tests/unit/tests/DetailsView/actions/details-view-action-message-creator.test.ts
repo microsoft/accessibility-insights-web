@@ -4,15 +4,16 @@ import { HeadingsTestStep } from 'assessments/headings/test-steps/test-steps';
 import { OnDetailsViewPivotSelected, SetAllUrlsPermissionStatePayload } from 'background/actions/action-payloads';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { IMock, It, Mock, Times } from 'typemoq';
+
 import {
     AssessmentTelemetryData,
     BaseTelemetryData,
     COPY_ISSUE_DETAILS,
+    DETAILS_VIEW_OPEN,
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
-    DETAILS_VIEW_OPEN,
-    ExportResultsTelemetryData,
     EXPORT_RESULTS,
+    ExportResultsTelemetryData,
     FeatureFlagToggleTelemetryData,
     RequirementActionTelemetryData,
     RequirementSelectTelemetryData,
