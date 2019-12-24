@@ -6,22 +6,22 @@ import { UserConfigurationStore } from 'background/stores/global/user-configurat
 import { TabContextStoreHub } from 'background/stores/tab-context-store-hub';
 import { VisualizationStore } from 'background/stores/visualization-store';
 import { TabContext, TabToContextMap } from 'background/tab-context';
+import { BaseStore } from 'common/base-store';
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { CommandsAdapter } from 'common/browser-adapters/commands-adapter';
+import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { DisplayableStrings } from 'common/constants/displayable-strings';
+import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { Logger } from 'common/logging/logger';
+import { Message } from 'common/message';
+import { Messages } from 'common/messages';
+import { NotificationCreator } from 'common/notification-creator';
+import { TelemetryDataFactory } from 'common/telemetry-data-factory';
+import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import { VisualizationType } from 'common/types/visualization-type';
+import { UrlValidator } from 'common/url-validator';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
-import { BaseStore } from '../../../../common/base-store';
-import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
-import { CommandsAdapter } from '../../../../common/browser-adapters/commands-adapter';
-import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
-import { DisplayableStrings } from '../../../../common/constants/displayable-strings';
-import { TelemetryEventSource } from '../../../../common/extension-telemetry-events';
-import { Message } from '../../../../common/message';
-import { Messages } from '../../../../common/messages';
-import { NotificationCreator } from '../../../../common/notification-creator';
-import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
-import { VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';
-import { VisualizationType } from '../../../../common/types/visualization-type';
-import { UrlValidator } from '../../../../common/url-validator';
+import { Tabs } from 'webextension-polyfill-ts';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 
 describe('ChromeCommandHandlerTest', () => {
@@ -62,10 +62,8 @@ describe('ChromeCommandHandlerTest', () => {
 
         browserAdapterMock = Mock.ofType<BrowserAdapter>();
         browserAdapterMock
-            .setup(ca => ca.tabsQuery(It.isValue({ active: true, currentWindow: true }), It.isAny()))
-            .returns((_, callback) => {
-                callback([{ id: simulatedActiveTabId, url: simulatedActiveTabUrl } as chrome.tabs.Tab]);
-            })
+            .setup(adapter => adapter.tabsQuery(It.isValue({ active: true, currentWindow: true })))
+            .returns(() => Promise.resolve([{ id: simulatedActiveTabId, url: simulatedActiveTabUrl } as Tabs.Tab]))
             .verifiable();
 
         commandsAdapterMock = Mock.ofType<CommandsAdapter>();
