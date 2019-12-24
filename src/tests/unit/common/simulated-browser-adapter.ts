@@ -3,7 +3,7 @@
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { isFunction } from 'lodash';
 import { IMock, It, Mock } from 'typemoq';
-import { Windows } from 'webextension-polyfill-ts';
+import { Tabs, Windows } from 'webextension-polyfill-ts';
 
 // This is a mock BrowserAdapter that maintains simulated state about which "windows" and "tabs"
 // exist and which listeners have been registered, and provides a few helper functions to simulate
@@ -52,15 +52,16 @@ export function createSimulatedBrowserAdapter(tabs: chrome.tabs.Tab[], windows: 
             reject();
         }
     });
-    mock.setup(m => m.tabsQuery(It.isAny(), It.isAny())).callback((query, c) =>
-        c(
-            mock.tabs.filter(
-                candidateTab =>
-                    (query.active == null || query.active === candidateTab.active) &&
-                    (query.windowId == null || query.windowId === candidateTab.windowId),
-            ),
-        ),
-    );
+
+    mock.setup(m => m.tabsQuery(It.isAny())).returns(query => {
+        const result = mock.tabs.filter(
+            candidateTab =>
+                (query.active == null || query.active === candidateTab.active) &&
+                (query.windowId == null || query.windowId === candidateTab.windowId),
+        );
+
+        return Promise.resolve(result as Tabs.Tab[]);
+    });
 
     mock.updateTab = (tabId, changeInfo) => {
         mock.tabs

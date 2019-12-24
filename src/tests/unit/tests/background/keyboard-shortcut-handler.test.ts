@@ -21,6 +21,8 @@ import { VisualizationStoreData } from 'common/types/store-data/visualization-st
 import { VisualizationType } from 'common/types/visualization-type';
 import { UrlValidator } from 'common/url-validator';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { Tabs } from 'webextension-polyfill-ts';
+
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 
 describe('KeyboardShortcutHandler', () => {
@@ -61,10 +63,8 @@ describe('KeyboardShortcutHandler', () => {
 
         browserAdapterMock = Mock.ofType<BrowserAdapter>();
         browserAdapterMock
-            .setup(ca => ca.tabsQuery(It.isValue({ active: true, currentWindow: true }), It.isAny()))
-            .returns((_, callback) => {
-                callback([{ id: simulatedActiveTabId, url: simulatedActiveTabUrl } as chrome.tabs.Tab]);
-            })
+            .setup(adapter => adapter.tabsQuery(It.isValue({ active: true, currentWindow: true })))
+            .returns(() => Promise.resolve([{ id: simulatedActiveTabId, url: simulatedActiveTabUrl } as Tabs.Tab]))
             .verifiable();
 
         commandsAdapterMock = Mock.ofType<CommandsAdapter>();

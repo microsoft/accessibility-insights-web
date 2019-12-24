@@ -160,7 +160,7 @@ async function initialize(): Promise<void> {
         logger,
     );
 
-    const clientHandler = new TargetPageController(
+    const targetPageController = new TargetPageController(
         tabToContextMap,
         messageBroadcasterFactory,
         browserAdapter,
@@ -169,7 +169,7 @@ async function initialize(): Promise<void> {
         logger,
     );
 
-    clientHandler.initialize();
+    await targetPageController.initialize();
 
     const devToolsBackgroundListener = new DevToolsListener(tabToContextMap, browserAdapter);
     devToolsBackgroundListener.initialize();
