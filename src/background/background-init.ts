@@ -121,7 +121,7 @@ async function initialize(): Promise<void> {
         logger,
     );
 
-    const chromeCommandHandler = new KeyboardShortcutHandler(
+    const keyboardShortcutHandler = new KeyboardShortcutHandler(
         tabToContextMap,
         browserAdapter,
         urlValidator,
@@ -132,7 +132,7 @@ async function initialize(): Promise<void> {
         browserAdapter,
         logger,
     );
-    chromeCommandHandler.initialize();
+    keyboardShortcutHandler.initialize();
 
     const messageDistributor = new MessageDistributor(
         globalContext,
