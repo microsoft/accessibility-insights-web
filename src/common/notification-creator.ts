@@ -37,9 +37,7 @@ export class NotificationCreator {
             const configuration = this.visualizationConfigurationFactory.getConfiguration(visualizationType);
             const notificationMessage = configuration.getNotificationMessage(selectorMap, key);
 
-            if (notificationMessage != null) {
-                this.createNotification(notificationMessage);
-            }
+            this.createNotification(notificationMessage);
         }
     }
 }
