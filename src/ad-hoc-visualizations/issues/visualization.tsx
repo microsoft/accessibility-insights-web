@@ -58,7 +58,7 @@ export const IssuesAdHocVisualization: VisualizationConfiguration = {
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
     getNotificationMessage: (selectorMap, key, warnings) => {
         const iframeCoda =
-            '\nThere are iframes in the target page. Use fastPass or assessment to provide additional permissions.';
+            '\nThere are iframes in the target page. Use FastPass or Assessment to provide additional permissions.';
 
         if (isEmpty(selectorMap)) {
             if (isEmpty(warnings)) {
