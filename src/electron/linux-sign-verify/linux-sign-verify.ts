@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import * as process from 'child_process';
-import { autoUpdater, UpdateInfo } from 'electron-updater';
+import { autoUpdater, UpdateDownloadedEvent } from 'electron-updater';
 import { isNil } from 'lodash';
 import * as os from 'os';
 
@@ -25,7 +25,7 @@ const verifySignatureCommand = function(verifyCommand, callback): void {
     });
 };
 
-export function verifySignatureOnLinux(info: UpdateInfo): void {
+export function verifySignatureOnLinux(info: UpdateDownloadedEvent): void {
     console.log('verifySignatureOnLinux');
     if (os.platform() !== 'linux') {
         return;
@@ -40,6 +40,12 @@ export function verifySignatureOnLinux(info: UpdateInfo): void {
                 console.log('file: ', file);
                 console.log('\n=================\n');
             });
+        }
+
+        if (!isNil(info.downloadedFile)) {
+            console.log('\n=================\n');
+            console.log('downloadedFile: ', info.downloadedFile);
+            console.log('\n=================\n');
         }
 
         if (!isNil(info.path)) {
