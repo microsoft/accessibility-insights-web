@@ -15,7 +15,8 @@ const platformInfo = new PlatformInfo(process);
 log.transports.file.level = 'info';
 autoUpdater.logger = log;
 
-autoUpdater.on('update-downloaded', (event, info: UpdateInfo) => {
+autoUpdater.on('update-downloaded', (info: UpdateInfo) => {
+    console.log(autoUpdater.logger.info);
     console.log('update-downloaded');
     verifySignatureOnLinux(info);
 });

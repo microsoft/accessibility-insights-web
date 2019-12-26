@@ -33,44 +33,60 @@ export function verifySignatureOnLinux(info: UpdateInfo): void {
 
     console.log('isLinux');
 
-    info.files.forEach(file => {
-        console.log('\n=================\n');
-        console.log('file: ', file);
-        console.log('\n=================\n');
-    });
-
-    console.log('\n=================\n');
-    console.log('path: ', info.path);
-    console.log('\n=================\n');
-
-    console.log('\n=================\n');
-    console.log('releaseDate: ', info.releaseDate);
-    console.log('\n=================\n');
-
-    console.log('\n=================\n');
-    console.log('releaseName: ', info.releaseName);
-    console.log('\n=================\n');
-
-    console.log('\n=================\n');
-    console.log('releaseNotes: ', info.releaseNotes);
-    console.log('\n=================\n');
-
-    console.log('\n=================\n');
-    console.log('version: ', info.version);
-    console.log('\n=================\n');
-
-    const privateKeyFile: string = info.files[0].url;
-    const appFile: string = info.files[1].url;
-    const verifyCommand = 'gpg --verify ' + privateKeyFile + ' ' + appFile;
-
-    verifySignatureCommand(verifyCommand, function(result): void {
-        autoUpdater.autoInstallOnAppQuit = false;
-        const resultLines = result.split('\n');
-
-        if (resultLines.length >= 3) {
-            if (resultLines[2].indexOf('Good signature from "Microsoft') < 0) {
-                autoUpdater.autoInstallOnAppQuit = true;
-            }
+    if (!isNil(info)) {
+        if (!isNil(info.files)) {
+            info.files.forEach(file => {
+                console.log('\n=================\n');
+                console.log('file: ', file);
+                console.log('\n=================\n');
+            });
         }
-    });
+
+        if (!isNil(info.path)) {
+            console.log('\n=================\n');
+            console.log('path: ', info.path);
+            console.log('\n=================\n');
+        }
+
+        if (!isNil(info.releaseDate)) {
+            console.log('\n=================\n');
+            console.log('releaseDate: ', info.releaseDate);
+            console.log('\n=================\n');
+        }
+
+        if (!isNil(info.releaseName)) {
+            console.log('\n=================\n');
+            console.log('releaseName: ', info.releaseName);
+            console.log('\n=================\n');
+        }
+
+        if (!isNil(info.releaseNotes)) {
+            console.log('\n=================\n');
+            console.log('releaseNotes: ', info.releaseNotes);
+            console.log('\n=================\n');
+        }
+
+        if (!isNil(info.version)) {
+            console.log('\n=================\n');
+            console.log('version: ', info.version);
+            console.log('\n=================\n');
+        }
+
+        if (!isNil(info.files)) {
+            const privateKeyFile: string = info.files[0].url;
+            const appFile: string = info.files[1].url;
+            const verifyCommand = 'gpg --verify ' + privateKeyFile + ' ' + appFile;
+
+            verifySignatureCommand(verifyCommand, function(result): void {
+                autoUpdater.autoInstallOnAppQuit = false;
+                const resultLines = result.split('\n');
+
+                if (resultLines.length >= 3) {
+                    if (resultLines[2].indexOf('Good signature from "Microsoft') < 0) {
+                        autoUpdater.autoInstallOnAppQuit = true;
+                    }
+                }
+            });
+        }
+    }
 }
