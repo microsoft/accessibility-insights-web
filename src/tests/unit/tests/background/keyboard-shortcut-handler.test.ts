@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ChromeCommandHandler } from 'background/chrome-command-handler';
 import { Interpreter } from 'background/interpreter';
+import { KeyboardShortcutHandler } from 'background/keyboard-shortcut-handler';
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
 import { TabContextStoreHub } from 'background/stores/tab-context-store-hub';
 import { VisualizationStore } from 'background/stores/visualization-store';
@@ -22,10 +22,11 @@ import { VisualizationType } from 'common/types/visualization-type';
 import { UrlValidator } from 'common/url-validator';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { Tabs } from 'webextension-polyfill-ts';
+
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 
-describe('ChromeCommandHandlerTest', () => {
-    let testSubject: ChromeCommandHandler;
+describe('KeyboardShortcutHandler', () => {
+    let testSubject: KeyboardShortcutHandler;
     let browserAdapterMock: IMock<BrowserAdapter>;
     let commandsAdapterMock: IMock<CommandsAdapter>;
     let urlValidatorMock: IMock<UrlValidator>;
@@ -97,7 +98,7 @@ describe('ChromeCommandHandlerTest', () => {
 
         loggerMock = Mock.ofType<Logger>();
 
-        testSubject = new ChromeCommandHandler(
+        testSubject = new KeyboardShortcutHandler(
             tabToContextMap,
             browserAdapterMock.object,
             urlValidatorMock.object,
