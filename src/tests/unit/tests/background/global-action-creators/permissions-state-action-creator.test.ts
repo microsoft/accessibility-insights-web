@@ -33,7 +33,7 @@ describe('PermissionsStateActionCreator', () => {
     it.each([true, false])('handles SetPermissionsState message for payload %p', (permissionState: boolean) => {
         const expectedMessage = Messages.PermissionsState.SetPermissionsState;
         const payload: SetAllUrlsPermissionStatePayload = {
-            allUrlsPermissionState: permissionState,
+            hasAllUrlAndFilePermissions: permissionState,
             telemetry: {} as TelemetryData,
         };
         const interpreterMock = createInterpreterMock(expectedMessage, payload);

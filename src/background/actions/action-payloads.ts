@@ -181,7 +181,7 @@ export interface PopupInitializedPayload extends BaseActionPayload {
 }
 
 export interface SetAllUrlsPermissionStatePayload extends BaseActionPayload {
-    allUrlsPermissionState: boolean;
+    hasAllUrlAndFilePermissions: boolean;
 }
 
 export type ExistingTabUpdatedPayload = BaseActionPayload & Tab;

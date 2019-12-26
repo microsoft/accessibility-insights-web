@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { SetAllUrlsPermissionStatePayload } from 'background/actions/action-payloads';
 import { allUrlAndFilePermissions, BrowserPermissionsTracker, permissionsCheckErrorMessage } from 'background/browser-permissions-tracker';
 import { Interpreter } from 'background/interpreter';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
@@ -27,8 +28,8 @@ describe('BrowserPermissionsTracker', () => {
         it('registers the expected listeners', async () => {
             await testSubject.initialize();
 
-            browserAdapterMock.verify(m => m.addListenerOnPermissionsAdded(It.is(isFunction)), Times.once());
-            browserAdapterMock.verify(m => m.addListenerOnPermissionsRemoved(It.is(isFunction)), Times.once());
+            browserAdapterMock.verify(adapter => adapter.addListenerOnPermissionsAdded(It.is(isFunction)), Times.once());
+            browserAdapterMock.verify(adapter => adapter.addListenerOnPermissionsRemoved(It.is(isFunction)), Times.once());
         });
     });
 
@@ -101,7 +102,9 @@ describe('BrowserPermissionsTracker', () => {
         mock.setup(m => m.addListenerOnPermissionsAdded(It.is(isFunction))).callback(c => {
             mock.notifyOnPermissionsAdded = c;
         });
-        mock.setup(m => m.addListenerOnPermissionsRemoved(It.is(isFunction))).callback(c => (mock.notifyOnPermissionsRemoved = c));
+        mock.setup(adapter => adapter.addListenerOnPermissionsRemoved(It.is(isFunction))).callback(
+            c => (mock.notifyOnPermissionsRemoved = c),
+        );
 
         mock.addPermissions = async () => {
             await mock.notifyOnPermissionsAdded();
@@ -124,10 +127,10 @@ describe('BrowserPermissionsTracker', () => {
         const expectedMessage: Message = {
             messageType: Messages.PermissionsState.SetPermissionsState,
             payload: {
-                allUrlAndFilePermissions: browserPermissions,
-            },
+                hasAllUrlAndFilePermissions: browserPermissions,
+            } as SetAllUrlsPermissionStatePayload,
         };
 
-        interpreterMock.verify(i => i.interpret(expectedMessage), Times.once());
+        interpreterMock.verify(interpreter => interpreter.interpret(expectedMessage), Times.once());
     }
 });

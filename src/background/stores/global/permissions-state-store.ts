@@ -25,8 +25,8 @@ export class PermissionsStateStore extends BaseStoreImpl<PermissionsStateStoreDa
     }
 
     private onSetPermissionsState = (payload: SetAllUrlsPermissionStatePayload): void => {
-        if (payload.allUrlsPermissionState !== this.state.hasAllUrlAndFilePermissions) {
-            this.state.hasAllUrlAndFilePermissions = payload.allUrlsPermissionState;
+        if (this.state.hasAllUrlAndFilePermissions !== payload.hasAllUrlAndFilePermissions) {
+            this.state.hasAllUrlAndFilePermissions = payload.hasAllUrlAndFilePermissions;
             this.emitChanged();
         }
     };

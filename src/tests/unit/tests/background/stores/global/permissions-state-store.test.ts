@@ -41,7 +41,7 @@ describe('PermissionsStateStoreTest', () => {
             const initialState = { hasAllUrlAndFilePermissions: initialPermissionsValue };
             const finalState = { hasAllUrlAndFilePermissions: finalPermissionsValue };
             const payload: SetAllUrlsPermissionStatePayload = {
-                allUrlsPermissionState: finalPermissionsValue,
+                hasAllUrlAndFilePermissions: finalPermissionsValue,
             };
 
             createStoreTesterForPermissionsStateActions('setPermissionsState')
@@ -53,7 +53,7 @@ describe('PermissionsStateStoreTest', () => {
             const initialState = { hasAllUrlAndFilePermissions: hasPermissionsValue };
             const finalState = { hasAllUrlAndFilePermissions: hasPermissionsValue };
             const payload: SetAllUrlsPermissionStatePayload = {
-                allUrlsPermissionState: hasPermissionsValue,
+                hasAllUrlAndFilePermissions: hasPermissionsValue,
             };
 
             createStoreTesterForPermissionsStateActions('setPermissionsState')
