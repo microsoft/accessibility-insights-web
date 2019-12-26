@@ -13,7 +13,9 @@ export interface BrowserAdapter {
     createActiveTab(url: string): Promise<Tabs.Tab>;
     createTabInNewWindow(url: string): Promise<Tabs.Tab>;
     switchToTab(tabId: number): void;
+    updateTab(tabId: number, updateProperties: Tabs.UpdateUpdatePropertiesType): Promise<Tabs.Tab>;
     getTab(tabId: number, onResolve: (tab: chrome.tabs.Tab) => void, onReject?: () => void): void;
+    updateWindow(windowId: number, updateProperties: Windows.UpdateUpdateInfoType): Promise<Windows.Window>;
     sendMessageToTab(tabId: number, message: any): Promise<void>;
     sendMessageToFrames(message: any): Promise<void>;
     executeScriptInTab(tabId: number, details: ExtensionTypes.InjectDetails): Promise<any[]>;

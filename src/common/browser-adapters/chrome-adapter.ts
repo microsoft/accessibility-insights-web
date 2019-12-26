@@ -71,6 +71,14 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         return browser.windows.create({ url, focused: true }).then(window => window.tabs[0]);
     }
 
+    public updateTab(tabId: number, updateProperties: Tabs.UpdateUpdatePropertiesType): Promise<Tabs.Tab> {
+        return browser.tabs.update(tabId, updateProperties);
+    }
+
+    public updateWindow(windowId: number, updateProperties: Windows.UpdateUpdateInfoType): Promise<Windows.Window> {
+        return browser.windows.update(windowId, updateProperties);
+    }
+
     public switchToTab(tabId: number): void {
         const props = {
             active: true,
