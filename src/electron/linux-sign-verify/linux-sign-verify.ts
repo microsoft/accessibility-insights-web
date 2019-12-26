@@ -31,8 +31,6 @@ const downloadFilesCommand = function(downloadCommand, callback): void {
     });
 };
 
-function downloadFiles(): void {}
-
 export function verifySignatureOnLinux(): void {
     if (os.platform() !== 'linux') {
         return;
@@ -57,5 +55,6 @@ export function verifySignatureOnLinux(): void {
                 }
             }
         });
+        process.exec('rm -rf "verifyDetachedSignatureForAIAndroid"');
     });
 }
