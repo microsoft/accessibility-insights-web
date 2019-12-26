@@ -109,6 +109,7 @@ export class TabContextFactory {
             actionsHub.inspectActions,
             this.telemetryEventHandler,
             browserAdapter,
+            this.logger,
         );
         const pathSnippetActionCreator = new PathSnippetActionCreator(
             interpreter,
