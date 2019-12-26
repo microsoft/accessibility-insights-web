@@ -15,7 +15,7 @@ export const IssueFilingSettings = NamedFC<SettingsProps>('IssueFilingSettings',
     );
 
     return (
-        <>
+        <div>
             <h3 id="issue-filing">Issue filing</h3>
             <IssueFilingSettingsContainer
                 deps={deps}
@@ -24,6 +24,6 @@ export const IssueFilingSettings = NamedFC<SettingsProps>('IssueFilingSettings',
                 onPropertyUpdateCallback={userConfigMessageCreator.setIssueFilingServiceProperty}
                 onSelectedServiceChange={userConfigMessageCreator.setIssueFilingService}
             />
-        </>
+        </div>
     );
 });
