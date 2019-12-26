@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import * as process from 'child_process';
-import { autoUpdater, UpdateInfo } from 'electron-updater';
+import { autoUpdater } from 'electron-updater';
 import { isNil } from 'lodash';
 import * as os from 'os';
 
@@ -25,23 +25,37 @@ const verifySignatureCommand = function(verifyCommand, callback): void {
     });
 };
 
-export function verifySignatureOnLinux(info: UpdateInfo): void {
+const downloadFilesCommand = function(downloadCommand, callback): void {
+    process.exec(downloadCommand, _ => {
+        callback();
+    });
+};
+
+function downloadFiles(): void {}
+
+export function verifySignatureOnLinux(): void {
     if (os.platform() !== 'linux') {
         return;
     }
 
-    const privateKeyFile: string = info.files[0].url;
-    const appFile: string = info.files[1].url;
-    const verifyCommand = 'gpg --verify ' + privateKeyFile + ' ' + appFile;
+    const downloadCommand =
+        'mkdir verifyDetachedSignatureForAIAndroid\n' +
+        'wget -O "verifyDetachedSignatureForAIAndroid/doc.AppImage" "https://a11yinsightsandroidblob.blob.core.windows.net/aimobile-canary/Accessibility Insights for Android.AppImage"\n' +
+        'wget -O "verifyDetachedSignatureForAIAndroid/doc.sig" "https://a11yinsightsandroidblob.blob.core.windows.net/aimobile-canary/Accessibility Insights for Android.sig"\n';
+    downloadFilesCommand(downloadCommand, function(): void {
+        const privateKeyFile: string = 'verifyDetachedSignatureForAIAndroid/doc.sig';
+        const appFile: string = 'verifyDetachedSignatureForAIAndroid/doc.AppImage';
+        const verifyCommand = 'gpg --verify ' + privateKeyFile + ' ' + appFile;
 
-    verifySignatureCommand(verifyCommand, function(result): void {
-        autoUpdater.autoInstallOnAppQuit = false;
-        const resultLines = result.split('\n');
+        verifySignatureCommand(verifyCommand, function(result): void {
+            autoUpdater.autoInstallOnAppQuit = false;
+            const resultLines = result.split('\n');
 
-        if (resultLines.length >= 3) {
-            if (resultLines[2].indexOf('Good signature from "Microsoft') < 0) {
-                autoUpdater.autoInstallOnAppQuit = true;
+            if (resultLines.length >= 3) {
+                if (resultLines[2].indexOf('Good signature from "Microsoft') < 0) {
+                    autoUpdater.autoInstallOnAppQuit = true;
+                }
             }
-        }
+        });
     });
 }
