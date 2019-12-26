@@ -33,7 +33,7 @@ export const IssueFilingChoiceGroup = NamedFC<IssueFilingChoiceGroupProps>('Issu
     return (
         <ChoiceGroup
             className={'issue-filing-choice-group'}
-            aria-labelledby="issue-filing"
+            ariaLabelledBy="issue-filing"
             onChange={onChange}
             options={getOptions()}
             selectedKey={props.selectedIssueFilingService.key}

@@ -2,6 +2,7 @@
 
 exports[`IssueFilingChoiceGroupTest render 1`] = `
 <StyledChoiceGroupBase
+  ariaLabelledBy="issue-filing"
   className="issue-filing-choice-group"
   onChange={[Function]}
   options={
