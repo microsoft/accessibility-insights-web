@@ -235,6 +235,7 @@ export class ActionCreator {
             payload.selectorMap,
             payload.key,
             payload.testType,
+            payload.scanIncompleteWarnings,
         );
         this.targetTabController.showTargetTab(tabId, payload.testType, payload.key);
     };
@@ -290,6 +291,7 @@ export class ActionCreator {
             payload.selectorMap,
             payload.key,
             payload.testType,
+            payload.scanIncompleteWarnings,
         );
         this.targetTabController.showTargetTab(tabId, payload.testType, payload.key);
     };

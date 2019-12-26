@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Logger } from 'common/logging/logger';
+import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { VisualizationType } from 'common/types/visualization-type';
 import { isEmpty } from 'lodash';
 import { DictionaryStringTo } from 'types/common-types';
@@ -32,10 +33,11 @@ export class NotificationCreator {
         selectorMap: DictionaryStringTo<any>,
         key: string,
         visualizationType: VisualizationType,
+        warnings: ScanIncompleteWarningId[],
     ): void {
         if (isEmpty(selectorMap)) {
             const configuration = this.visualizationConfigurationFactory.getConfiguration(visualizationType);
-            const notificationMessage = configuration.getNotificationMessage(selectorMap, key);
+            const notificationMessage = configuration.getNotificationMessage(selectorMap, key, warnings);
 
             this.createNotification(notificationMessage);
         }

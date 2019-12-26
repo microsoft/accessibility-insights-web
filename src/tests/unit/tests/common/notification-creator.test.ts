@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { AssesssmentVisualizationConfiguration } from 'common/configs/assesssment-visualization-configuration';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { Logger } from 'common/logging/logger';
@@ -9,10 +10,12 @@ import { VisualizationType } from 'common/types/visualization-type';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { Notifications } from 'webextension-polyfill-ts';
 
+type GetNotificationMessage = AssesssmentVisualizationConfiguration['getNotificationMessage'];
+
 describe('NotificationCreator', () => {
     let browserAdapterMock: IMock<BrowserAdapter>;
     let configFactoryMock: IMock<VisualizationConfigurationFactory>;
-    let getNotificationMessageMock: IMock<(selectorMap, key) => string>;
+    let getNotificationMessageMock: IMock<GetNotificationMessage>;
     let loggerMock: IMock<Logger>;
     let testObject: NotificationCreator;
 
@@ -31,7 +34,7 @@ describe('NotificationCreator', () => {
     beforeEach(() => {
         browserAdapterMock = Mock.ofType<BrowserAdapter>(undefined, MockBehavior.Strict);
         configFactoryMock = Mock.ofType<VisualizationConfigurationFactory>(undefined, MockBehavior.Strict);
-        getNotificationMessageMock = Mock.ofInstance(selector => null);
+        getNotificationMessageMock = Mock.ofType<GetNotificationMessage>();
         loggerMock = Mock.ofType<Logger>();
         testObject = new NotificationCreator(browserAdapterMock.object, configFactoryMock.object, loggerMock.object);
     });
@@ -96,7 +99,7 @@ describe('NotificationCreator', () => {
 
         const selectorStub = {};
         getNotificationMessageMock
-            .setup(mock => mock(It.isValue(selectorStub), key))
+            .setup(mock => mock(It.isValue(selectorStub), key, It.isValue([])))
             .returns(() => notificationMessage)
             .verifiable(Times.once());
 
@@ -108,7 +111,7 @@ describe('NotificationCreator', () => {
                 } as VisualizationConfiguration;
             });
 
-        testObject.createNotificationByVisualizationKey(selectorStub, key, visualizationType);
+        testObject.createNotificationByVisualizationKey(selectorStub, key, visualizationType, []);
 
         getNotificationMessageMock.verifyAll();
         verifyAll();
