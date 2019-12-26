@@ -3,8 +3,8 @@
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
-import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
-import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
+import { ISelection } from 'office-ui-fabric-react';
+import { Spinner, SpinnerSize } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { ThemeDeps } from '../common/components/theme';
@@ -197,8 +197,9 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
                 switcherNavConfiguration={selectedDetailsViewSwitcherNavConfiguration}
                 userConfigurationStoreData={storeState.userConfigurationStoreData}
                 cardsViewData={cardsViewData}
-                targetAppInfo={storeState.unifiedScanResultStoreData.targetAppInfo}
                 cardSelectionStoreData={storeState.cardSelectionStoreData}
+                targetAppInfo={storeState.unifiedScanResultStoreData.targetAppInfo}
+                scanIncompleteWarnings={storeState.unifiedScanResultStoreData.scanIncompleteWarnings}
             />
         );
     }

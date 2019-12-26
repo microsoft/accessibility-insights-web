@@ -14,6 +14,7 @@ import {
     OnDetailsViewPivotSelected,
     RemoveFailureInstancePayload,
     SelectRequirementPayload,
+    SetAllUrlsPermissionStatePayload,
     SwitchToTargetTabPayload,
     ToggleActionPayload,
 } from 'background/actions/action-payloads';
@@ -190,16 +191,15 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     };
 
-    public startOverAssessment(event: React.MouseEvent<any>, test: VisualizationType, requirement: string): void {
+    public startOverTest(event: SupportedMouseEvent, test: VisualizationType): void {
         const telemetry = this.telemetryFactory.forAssessmentActionFromDetailsView(test, event);
         const payload: ToggleActionPayload = {
             test,
-            requirement,
             telemetry,
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.StartOver,
+            messageType: Messages.Assessment.StartOverTest,
             payload,
         });
     }
@@ -494,6 +494,24 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
 
         const message: Message = {
             messageType: Messages.Visualizations.Common.RescanVisualization,
+            payload,
+        };
+
+        this.dispatcher.dispatchMessage(message);
+    };
+
+    public setAllUrlsPermissionState = (event: SupportedMouseEvent, hasAllUrlAndFilePermissions: boolean) => {
+        const payload: SetAllUrlsPermissionStatePayload = {
+            hasAllUrlAndFilePermissions,
+            telemetry: this.telemetryFactory.forSetAllUrlPermissionState(
+                event,
+                TelemetryEvents.TelemetryEventSource.DetailsView,
+                hasAllUrlAndFilePermissions,
+            ),
+        };
+
+        const message: Message = {
+            messageType: Messages.PermissionsState.SetPermissionsState,
             payload,
         };
 

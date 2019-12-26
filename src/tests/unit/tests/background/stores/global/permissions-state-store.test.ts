@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { SetAllUrlsPermissionStatePayload } from 'background/actions/action-payloads';
 import { PermissionsStateActions } from 'background/actions/permissions-state-actions';
 import { PermissionsStateStore } from 'background/stores/global/permissions-state-store';
 import { StoreNames } from 'common/stores/store-names';
@@ -39,18 +40,24 @@ describe('PermissionsStateStoreTest', () => {
             const finalPermissionsValue = true;
             const initialState = { hasAllUrlAndFilePermissions: initialPermissionsValue };
             const finalState = { hasAllUrlAndFilePermissions: finalPermissionsValue };
+            const payload: SetAllUrlsPermissionStatePayload = {
+                hasAllUrlAndFilePermissions: finalPermissionsValue,
+            };
 
             createStoreTesterForPermissionsStateActions('setPermissionsState')
-                .withActionParam(finalPermissionsValue)
+                .withActionParam(payload)
                 .testListenerToBeCalledOnce(initialState, finalState);
         });
 
         test.each([true, false])('does not update state when there is no change', hasPermissionsValue => {
             const initialState = { hasAllUrlAndFilePermissions: hasPermissionsValue };
             const finalState = { hasAllUrlAndFilePermissions: hasPermissionsValue };
+            const payload: SetAllUrlsPermissionStatePayload = {
+                hasAllUrlAndFilePermissions: hasPermissionsValue,
+            };
 
             createStoreTesterForPermissionsStateActions('setPermissionsState')
-                .withActionParam(hasPermissionsValue)
+                .withActionParam(payload)
                 .testListenerToNeverBeCalled(initialState, finalState);
         });
     });

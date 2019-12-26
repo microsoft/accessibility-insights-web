@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Enzyme from 'enzyme';
-import Dialog from 'office-ui-fabric-react/lib/Dialog';
-import { TooltipHost } from 'office-ui-fabric-react/lib/Tooltip';
+import Dialog from 'office-ui-fabric-react';
+import { TooltipHost } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { BlockingDialog } from '../../../../../common/components/blocking-dialog';

@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
-import { PrimaryButton } from 'office-ui-fabric-react/lib/Button';
-import { Dialog } from 'office-ui-fabric-react/lib/Dialog';
-import { TextField } from 'office-ui-fabric-react/lib/TextField';
+import { PrimaryButton } from 'office-ui-fabric-react';
+import { Dialog } from 'office-ui-fabric-react';
+import { TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 import { FileURLProvider } from '../../../../../common/file-url-provider';

@@ -3,7 +3,7 @@
 import { FixInstructionPanel, FixInstructionPanelDeps } from 'common/components/fix-instruction-panel';
 import { isEmpty, size } from 'lodash';
 import { css } from 'office-ui-fabric-react';
-import { Dialog, DialogType } from 'office-ui-fabric-react/lib/Dialog';
+import { Dialog, DialogType } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { HyperlinkDefinition } from 'views/content/content-page';
 
@@ -186,10 +186,10 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         const ruleNameID = 'rule-name';
 
         return (
-            <div className="insights-dialog-rule-name" aria-labelledby={ruleNameID}>
+            <section className="insights-dialog-rule-name" aria-labelledby={ruleNameID}>
                 {this.renderSectionTitle('Rule name', ruleNameID)}
                 <NewTabLink href={fixUrl(rule.helpUrl)}>{rule.ruleId}</NewTabLink>
-            </div>
+            </section>
         );
     }
 
@@ -201,19 +201,21 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         const successTitleId = 'success-criteria';
 
         return (
-            <div className="insights-dialog-success-criteria" aria-labelledby={successTitleId}>
+            <section className="insights-dialog-success-criteria" aria-labelledby={successTitleId}>
                 {this.renderSectionTitle(sectionTitle, successTitleId)}
-                <GuidanceLinks links={ruleGuidanceLinks} />
-            </div>
+                <div>
+                    <GuidanceLinks links={ruleGuidanceLinks} />
+                </div>
+            </section>
         );
     }
 
     private renderPathSelector(): JSX.Element {
         return (
-            <div className="insights-dialog-path-selector-container">
+            <section className="insights-dialog-path-selector-container">
                 {this.renderSectionTitle('Path')}
                 {this.props.elementSelector}
-            </div>
+            </section>
         );
     }
 

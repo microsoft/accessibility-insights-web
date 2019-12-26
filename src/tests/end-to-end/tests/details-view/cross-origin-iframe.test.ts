@@ -30,13 +30,12 @@ describe('scanning', () => {
         testResourceServer.stopServer(testResourceServerConfig);
     });
 
-    // skipping the test as we re-introduce all-origin permissions back into the extension.
-    describe.skip('with localhost permissions only', () => {
-        beforeEach(async () => {
+    describe('with localhost permissions only', () => {
+        beforeAll(async () => {
             await launchFastPassWithExtraPermissions('fake-activeTab');
         });
 
-        afterEach(async () => {
+        afterAll(async () => {
             if (browser) {
                 await browser.close();
                 browser = undefined;
@@ -55,14 +54,20 @@ describe('scanning', () => {
 
             await assertFailureCounts(ruleDetails, expectedCounts);
         });
+
+        it('does show iframe detected warning', async () => {
+            const iframeWarning = await fastPassAutomatedChecks.getSelectorElement(fastPassAutomatedChecksSelectors.iframeWarning);
+
+            expect(iframeWarning).not.toBeNull();
+        });
     });
 
     describe('with all-origins permissions', () => {
-        beforeEach(async () => {
+        beforeAll(async () => {
             await launchFastPassWithExtraPermissions('all-origins');
         });
 
-        afterEach(async () => {
+        afterAll(async () => {
             if (browser) {
                 await browser.close();
                 browser = undefined;
@@ -83,6 +88,12 @@ describe('scanning', () => {
             };
 
             await assertFailureCounts(ruleDetails, expectedCounts);
+        });
+
+        it('does not show iframe detected warning', async () => {
+            const iframeWarning = await fastPassAutomatedChecks.getSelectorElement(fastPassAutomatedChecksSelectors.iframeWarning);
+
+            expect(iframeWarning).toBeNull();
         });
     });
 

@@ -40,8 +40,9 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
     public getRunTimeId(): string {
         return chrome.runtime.id;
     }
-    public tabsQuery(query: chrome.tabs.QueryInfo, callback: (result: chrome.tabs.Tab[]) => void): void {
-        chrome.tabs.query(query, callback);
+
+    public tabsQuery(query: Tabs.QueryQueryInfoType): Promise<Tabs.Tab[]> {
+        return browser.tabs.query(query);
     }
 
     public getTab(tabId: number, onResolve: (tab: chrome.tabs.Tab) => void, onReject?: () => void): void {
@@ -68,10 +69,6 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
 
     public createTabInNewWindow(url: string): Promise<Tabs.Tab> {
         return browser.windows.create({ url, focused: true }).then(window => window.tabs[0]);
-    }
-
-    public closeTab(tabId: number): void {
-        chrome.tabs.remove(tabId);
     }
 
     public switchToTab(tabId: number): void {
@@ -112,12 +109,8 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         return browser.notifications.create(options);
     }
 
-    public isAllowedFileSchemeAccess(callback: (isAllowed: boolean) => void): void {
-        chrome.extension.isAllowedFileSchemeAccess(callback);
-    }
-
-    public addListenerToLocalStorage(callback: (changes: object) => void): void {
-        chrome.storage.onChanged.addListener(callback);
+    public isAllowedFileSchemeAccess(): Promise<boolean> {
+        return browser.extension.isAllowedFileSchemeAccess();
     }
 
     public addCommandListener(callback: (command: string) => void): void {

@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { resultSectionAutomationId } from 'common/components/cards/result-section';
 import { ruleDetailsGroupAutomationId } from 'common/components/cards/rules-with-instances';
+import { IframeWarningContainerAutomationId } from 'DetailsView/components/iframe-warning';
 import { overviewHeadingAutomationId } from 'DetailsView/components/overview-content/overview-heading';
 import { startOverAutomationId } from 'DetailsView/components/start-over-component-factory';
 import { failureCountAutomationId } from 'reports/components/outcome-chip';
@@ -29,6 +30,7 @@ export const fastPassAutomatedChecksSelectors = {
     ruleDetail: getAutomationIdSelector(ruleDetailAutomationId),
     cardsRuleId: getAutomationIdSelector(cardsRuleIdAutomationId),
     failureCount: getAutomationIdSelector(failureCountAutomationId),
+    iframeWarning: getAutomationIdSelector(IframeWarningContainerAutomationId),
 };
 
 export const overviewSelectors = {

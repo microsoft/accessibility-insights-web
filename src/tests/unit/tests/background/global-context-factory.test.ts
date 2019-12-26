@@ -51,8 +51,8 @@ describe('GlobalContextFactoryTest', () => {
         idbInstance = {} as IndexedDBAPI;
     });
 
-    it('createContext', () => {
-        const globalContext = GlobalContextFactory.createContext(
+    it('createContext', async () => {
+        const globalContext = await GlobalContextFactory.createContext(
             browserAdapterMock.object,
             telemetryEventHandlerMock.object,
             userDataStub,

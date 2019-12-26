@@ -3,8 +3,8 @@
 import { BrowserMessageBroadcasterFactory } from 'background/browser-message-broadcaster-factory';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { Logger } from 'common/logging/logger';
-import { isFunction } from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { Tabs } from 'webextension-polyfill-ts';
 
 describe('BrowserMessageBroadcasterFactory', () => {
     let loggerMock: IMock<Logger>;
@@ -26,8 +26,8 @@ describe('BrowserMessageBroadcasterFactory', () => {
             const expectedMessage = testMessage;
 
             browserAdapterMock
-                .setup(ba => ba.tabsQuery({}, It.is(isFunction)))
-                .callback((_, cb) => cb([{ id: testTabId }]))
+                .setup(ba => ba.tabsQuery({}))
+                .returns(() => Promise.resolve([{ id: testTabId } as Tabs.Tab]))
                 .verifiable(Times.once());
             browserAdapterMock
                 .setup(ba => ba.sendMessageToFrames(expectedMessage))
@@ -49,7 +49,7 @@ describe('BrowserMessageBroadcasterFactory', () => {
             const expectedMessage =
                 "sendMessageToFrames failed for message { someData: 'test data' } with browser error message: test error";
 
-            browserAdapterMock.setup(ba => ba.tabsQuery({}, It.is(isFunction))).callback((_, cb) => cb([{ id: 1 }]));
+            browserAdapterMock.setup(ba => ba.tabsQuery({})).returns(() => Promise.resolve([{ id: 1 } as Tabs.Tab]));
             browserAdapterMock.setup(ba => ba.sendMessageToFrames(It.isAny())).returns(() => Promise.reject(testError));
             browserAdapterMock.setup(ba => ba.sendMessageToTab(It.isAny(), It.isAny())).returns(() => Promise.resolve());
 
@@ -66,7 +66,7 @@ describe('BrowserMessageBroadcasterFactory', () => {
             const expectedMessage =
                 "sendMessageToTab(1) failed for message { someData: 'test data' } with browser error message: test error";
 
-            browserAdapterMock.setup(ba => ba.tabsQuery({}, It.is(isFunction))).callback((_, cb) => cb([{ id: 1 }]));
+            browserAdapterMock.setup(ba => ba.tabsQuery({})).returns(() => Promise.resolve([{ id: 1 } as Tabs.Tab]));
             browserAdapterMock.setup(ba => ba.sendMessageToFrames(It.isAny())).returns(() => Promise.resolve());
             browserAdapterMock.setup(ba => ba.sendMessageToTab(It.isAny(), It.isAny())).returns(() => Promise.reject(testError));
 

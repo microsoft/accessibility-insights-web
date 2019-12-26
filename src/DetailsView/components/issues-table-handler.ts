@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IObjectWithKey } from 'office-ui-fabric-react/lib/DetailsList';
-import { IGroup } from 'office-ui-fabric-react/lib/GroupedList';
+import { IObjectWithKey } from 'office-ui-fabric-react';
+import { IGroup } from 'office-ui-fabric-react';
 import { HyperlinkDefinition } from 'views/content/content-page';
 import { RuleResult } from '../../scanner/iruleresults';
 

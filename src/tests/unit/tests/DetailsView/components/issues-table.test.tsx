@@ -8,7 +8,7 @@ import { IssuesTable, IssuesTableDeps, IssuesTableProps } from 'DetailsView/comp
 import { DetailsRowData, IssuesTableHandler } from 'DetailsView/components/issues-table-handler';
 import { shallow } from 'enzyme';
 import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
-import { ISelection, Selection } from 'office-ui-fabric-react/lib/DetailsList';
+import { ISelection, Selection } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { RuleResult } from 'scanner/iruleresults';

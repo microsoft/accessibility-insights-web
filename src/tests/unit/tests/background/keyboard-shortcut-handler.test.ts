@@ -1,31 +1,32 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ChromeCommandHandler } from 'background/chrome-command-handler';
 import { Interpreter } from 'background/interpreter';
+import { KeyboardShortcutHandler } from 'background/keyboard-shortcut-handler';
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
 import { TabContextStoreHub } from 'background/stores/tab-context-store-hub';
 import { VisualizationStore } from 'background/stores/visualization-store';
 import { TabContext, TabToContextMap } from 'background/tab-context';
+import { BaseStore } from 'common/base-store';
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { CommandsAdapter } from 'common/browser-adapters/commands-adapter';
+import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { DisplayableStrings } from 'common/constants/displayable-strings';
+import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { Logger } from 'common/logging/logger';
+import { Message } from 'common/message';
+import { Messages } from 'common/messages';
+import { NotificationCreator } from 'common/notification-creator';
+import { TelemetryDataFactory } from 'common/telemetry-data-factory';
+import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import { VisualizationType } from 'common/types/visualization-type';
+import { UrlValidator } from 'common/url-validator';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { Tabs } from 'webextension-polyfill-ts';
 
-import { BaseStore } from '../../../../common/base-store';
-import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
-import { CommandsAdapter } from '../../../../common/browser-adapters/commands-adapter';
-import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
-import { DisplayableStrings } from '../../../../common/constants/displayable-strings';
-import { TelemetryEventSource } from '../../../../common/extension-telemetry-events';
-import { Message } from '../../../../common/message';
-import { Messages } from '../../../../common/messages';
-import { NotificationCreator } from '../../../../common/notification-creator';
-import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
-import { VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';
-import { VisualizationType } from '../../../../common/types/visualization-type';
-import { UrlValidator } from '../../../../common/url-validator';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 
-describe('ChromeCommandHandlerTest', () => {
-    let testSubject: ChromeCommandHandler;
+describe('KeyboardShortcutHandler', () => {
+    let testSubject: KeyboardShortcutHandler;
     let browserAdapterMock: IMock<BrowserAdapter>;
     let commandsAdapterMock: IMock<CommandsAdapter>;
     let urlValidatorMock: IMock<UrlValidator>;
@@ -62,10 +63,8 @@ describe('ChromeCommandHandlerTest', () => {
 
         browserAdapterMock = Mock.ofType<BrowserAdapter>();
         browserAdapterMock
-            .setup(ca => ca.tabsQuery(It.isValue({ active: true, currentWindow: true }), It.isAny()))
-            .returns((_, callback) => {
-                callback([{ id: simulatedActiveTabId, url: simulatedActiveTabUrl } as chrome.tabs.Tab]);
-            })
+            .setup(adapter => adapter.tabsQuery(It.isValue({ active: true, currentWindow: true })))
+            .returns(() => Promise.resolve([{ id: simulatedActiveTabId, url: simulatedActiveTabUrl } as Tabs.Tab]))
             .verifiable();
 
         commandsAdapterMock = Mock.ofType<CommandsAdapter>();
@@ -99,7 +98,7 @@ describe('ChromeCommandHandlerTest', () => {
 
         loggerMock = Mock.ofType<Logger>();
 
-        testSubject = new ChromeCommandHandler(
+        testSubject = new KeyboardShortcutHandler(
             tabToContextMap,
             browserAdapterMock.object,
             urlValidatorMock.object,

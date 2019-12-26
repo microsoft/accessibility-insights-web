@@ -13,7 +13,7 @@ import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { VisualizationType } from 'common/types/visualization-type';
 import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
-import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
+import { ISelection } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { RuleResult, ScanResults } from 'scanner/iruleresults';

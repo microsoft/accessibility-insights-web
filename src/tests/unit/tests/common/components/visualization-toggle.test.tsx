@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Enzyme from 'enzyme';
-import { IToggleProps, Toggle } from 'office-ui-fabric-react/lib/Toggle';
+import { IToggleProps, Toggle } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 import { VisualizationToggle, VisualizationToggleProps } from '../../../../../common/components/visualization-toggle';

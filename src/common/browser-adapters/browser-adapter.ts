@@ -9,10 +9,9 @@ export interface BrowserAdapter {
     addListenerToTabsOnRemoved(callback: (tabId: number, removeInfo: chrome.tabs.TabRemoveInfo) => void): void;
     addListenerToWebNavigationUpdated(callback: (details: chrome.webNavigation.WebNavigationFramedCallbackDetails) => void): void;
     addListenerOnWindowsFocusChanged(callback: (windowId: number) => void): void;
-    tabsQuery(query: chrome.tabs.QueryInfo, callback: (result: chrome.tabs.Tab[]) => void): void;
+    tabsQuery(query: Tabs.QueryQueryInfoType): Promise<Tabs.Tab[]>;
     createActiveTab(url: string): Promise<Tabs.Tab>;
     createTabInNewWindow(url: string): Promise<Tabs.Tab>;
-    closeTab(tabId: number): void;
     switchToTab(tabId: number): void;
     getTab(tabId: number, onResolve: (tab: chrome.tabs.Tab) => void, onReject?: () => void): void;
     sendMessageToTab(tabId: number, message: any): Promise<void>;
@@ -22,8 +21,7 @@ export interface BrowserAdapter {
     getRunTimeId(): string;
     createNotification(options: Notifications.CreateNotificationOptions): Promise<string>;
     getRuntimeLastError(): chrome.runtime.LastError;
-    isAllowedFileSchemeAccess(callback: Function): void;
-    addListenerToLocalStorage(callback: (changes: object) => void): void;
+    isAllowedFileSchemeAccess(): Promise<boolean>;
     getManageExtensionUrl(): string;
     addListenerOnConnect(callback: (port: chrome.runtime.Port) => void): void;
     addListenerOnMessage(

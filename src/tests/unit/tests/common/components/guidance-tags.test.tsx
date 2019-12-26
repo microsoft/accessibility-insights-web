@@ -15,7 +15,7 @@ describe('GuidanceTags', () => {
         getGuidanceTagsFromGuidanceLinksMock = Mock.ofType<GetGuidanceTagsFromGuidanceLinks>(null, MockBehavior.Strict);
     });
 
-    test.each([null, []])('tags is: %p', (tags: GuidanceLink[]) => {
+    test.each([null, []])('tags is: %p', (tags?: GuidanceLink[]) => {
         const props: GuidanceTagsProps = {
             deps: {
                 getGuidanceTagsFromGuidanceLinks: getGuidanceTagsFromGuidanceLinksMock.object,

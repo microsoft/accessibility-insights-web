@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
-import { Spinner } from 'office-ui-fabric-react/lib/Spinner';
+import { Spinner } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { WithAssessmentTestResult } from '../../../../../DetailsView/components/assessment-view';
