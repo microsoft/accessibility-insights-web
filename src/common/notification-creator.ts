@@ -3,7 +3,6 @@
 import { Logger } from 'common/logging/logger';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { VisualizationType } from 'common/types/visualization-type';
-import { isEmpty } from 'lodash';
 import { DictionaryStringTo } from 'types/common-types';
 import { BrowserAdapter } from './browser-adapters/browser-adapter';
 import { VisualizationConfigurationFactory } from './configs/visualization-configuration-factory';
@@ -35,11 +34,9 @@ export class NotificationCreator {
         visualizationType: VisualizationType,
         warnings: ScanIncompleteWarningId[],
     ): void {
-        if (isEmpty(selectorMap)) {
-            const configuration = this.visualizationConfigurationFactory.getConfiguration(visualizationType);
-            const notificationMessage = configuration.getNotificationMessage(selectorMap, key, warnings);
+        const configuration = this.visualizationConfigurationFactory.getConfiguration(visualizationType);
+        const notificationMessage = configuration.getNotificationMessage(selectorMap, key, warnings);
 
-            this.createNotification(notificationMessage);
-        }
+        this.createNotification(notificationMessage);
     }
 }
