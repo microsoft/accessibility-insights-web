@@ -56,10 +56,26 @@ export const IssuesAdHocVisualization: VisualizationConfiguration = {
         }),
     getIdentifier: () => AdHocTestkeys.Issues,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
-    getNotificationMessage: selectorMap =>
-        isEmpty(selectorMap)
-            ? 'Congratulations!\n\nAutomated checks found no issues on this page.'
-            : null,
+    getNotificationMessage: (selectorMap, key, warnings) => {
+        const iframeCoda =
+            '\nThere are iframes in the target page. Use fastPass or assessment to provide additional permissions.';
+
+        if (isEmpty(selectorMap)) {
+            if (isEmpty(warnings)) {
+                return 'Congratulations!\n\nAutomated checks found no issues on this page.';
+            }
+
+            return `No automated checks issues found.${iframeCoda}`;
+        }
+
+        const noIssuesFound = 'Automated checks found issues.';
+
+        if (isEmpty(warnings)) {
+            return noIssuesFound;
+        }
+
+        return `${noIssuesFound}${iframeCoda}`;
+    },
     getDrawer: provider => provider.createIssuesDrawer(),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,
