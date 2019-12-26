@@ -26,9 +26,38 @@ const verifySignatureCommand = function(verifyCommand, callback): void {
 };
 
 export function verifySignatureOnLinux(info: UpdateInfo): void {
+    console.log('verifySignatureOnLinux');
     if (os.platform() !== 'linux') {
         return;
     }
+
+    console.log('isLinux');
+
+    info.files.forEach(file => {
+        console.log('\n=================\n');
+        console.log('file: ', file);
+        console.log('\n=================\n');
+    });
+
+    console.log('\n=================\n');
+    console.log('path: ', info.path);
+    console.log('\n=================\n');
+
+    console.log('\n=================\n');
+    console.log('releaseDate: ', info.releaseDate);
+    console.log('\n=================\n');
+
+    console.log('\n=================\n');
+    console.log('releaseName: ', info.releaseName);
+    console.log('\n=================\n');
+
+    console.log('\n=================\n');
+    console.log('releaseNotes: ', info.releaseNotes);
+    console.log('\n=================\n');
+
+    console.log('\n=================\n');
+    console.log('version: ', info.version);
+    console.log('\n=================\n');
 
     const privateKeyFile: string = info.files[0].url;
     const appFile: string = info.files[1].url;

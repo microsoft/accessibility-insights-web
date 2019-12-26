@@ -16,6 +16,7 @@ log.transports.file.level = 'info';
 autoUpdater.logger = log;
 
 autoUpdater.on('update-downloaded', (event, info: UpdateInfo) => {
+    console.log('update-downloaded');
     verifySignatureOnLinux(info);
 });
 
