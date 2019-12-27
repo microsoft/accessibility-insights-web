@@ -22,7 +22,7 @@ import { AssessmentStore } from 'background/stores/assessment-store';
 import { cloneDeep } from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
-import { AssessmentVisualizationConfiguration } from '../../../../../common/configs/assesssment-visualization-configuration';
+import { AssessmentVisualizationConfiguration } from '../../../../../common/configs/assessment-visualization-configuration';
 import { IndexedDBAPI } from '../../../../../common/indexedDB/indexedDB';
 import { Tab } from '../../../../../common/itab';
 import { StoreNames } from '../../../../../common/stores/store-names';

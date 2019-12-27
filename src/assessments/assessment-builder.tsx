@@ -7,7 +7,7 @@ import {
     UniquelyIdentifiableInstances,
 } from 'background/instance-identifier-generator';
 import { RequirementComparer } from 'common/assessment/requirement-comparer';
-import { AssessmentVisualizationConfiguration } from 'common/configs/assesssment-visualization-configuration';
+import { AssessmentVisualizationConfiguration } from 'common/configs/assessment-visualization-configuration';
 import { Messages } from 'common/messages';
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
