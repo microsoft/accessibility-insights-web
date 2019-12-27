@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { EXISTING_TAB_URL_UPDATED, SWITCH_BACK_TO_TARGET } from 'common/extension-telemetry-events';
+import { Logger } from 'common/logging/logger';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
 import { Interpreter } from '../interpreter';
@@ -19,6 +20,7 @@ export class TabActionCreator {
         private readonly tabActions: TabActions,
         private readonly browserAdapter: BrowserAdapter,
         private readonly telemetryEventHandler: TelemetryEventHandler,
+        private readonly logger: Logger,
     ) {}
 
     public registerCallbacks(): void {
@@ -47,8 +49,13 @@ export class TabActionCreator {
         );
     }
 
-    private onSwitchToTargetTab = (payload: SwitchToTargetTabPayload, tabId: number): void => {
-        this.browserAdapter.switchToTab(tabId);
+    private onSwitchToTargetTab = async (
+        payload: SwitchToTargetTabPayload,
+        tabId: number,
+    ): Promise<void> => {
+        await this.browserAdapter
+            .switchToTabP(tabId)
+            .catch(error => this.logger.error(`switchToTab failed: ${error}`));
         this.telemetryEventHandler.publishTelemetry(SWITCH_BACK_TO_TARGET, payload);
     };
 

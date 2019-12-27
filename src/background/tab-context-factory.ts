@@ -93,6 +93,7 @@ export class TabContextFactory {
             actionsHub.tabActions,
             browserAdapter,
             this.telemetryEventHandler,
+            this.logger,
         );
         const popupActionCreator = new PopupActionCreator(
             interpreter,
