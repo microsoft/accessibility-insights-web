@@ -68,13 +68,13 @@ export const IssuesAdHocVisualization: VisualizationConfiguration = {
             return `No automated checks issues found.${iframeCoda}`;
         }
 
-        const noIssuesFound = 'Automated checks found issues.';
+        const issuesFound = 'Automated checks found issues.';
 
         if (isEmpty(warnings)) {
-            return noIssuesFound;
+            return issuesFound;
         }
 
-        return `${noIssuesFound}${iframeCoda}`;
+        return `${issuesFound}${iframeCoda}`;
     },
     getDrawer: provider => provider.createIssuesDrawer(),
     getSwitchToTargetTabOnScan: () => false,
