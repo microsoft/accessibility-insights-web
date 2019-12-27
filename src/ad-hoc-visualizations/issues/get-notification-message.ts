@@ -8,22 +8,25 @@ export const getNotificationMessage = (
     selectorMap: DictionaryStringTo<any>,
     warnings: ScanIncompleteWarningId[],
 ) => {
-    const iframeCoda =
-        '\nThere are iframes in the target page. Use FastPass or Assessment to provide additional permissions.';
-
-    if (isEmpty(selectorMap)) {
-        if (isEmpty(warnings)) {
-            return 'Congratulations!\n\nAutomated checks found no issues on this page.';
-        }
-
-        return `No automated checks issues found.${iframeCoda}`;
+    if (isEmpty(selectorMap) && isEmpty(warnings)) {
+        return 'Congratulations!\n\nAutomated checks found no issues on this page.';
     }
 
-    const issuesFound = 'Automated checks found issues.';
+    let baseMessage = 'No automated checks issues found.';
 
-    if (isEmpty(warnings)) {
-        return issuesFound;
+    if (!isEmpty(selectorMap)) {
+        baseMessage = 'Automated checks found issues.';
     }
 
-    return `${issuesFound}${iframeCoda}`;
+    const suffix = getMessageSuffix(warnings);
+
+    return `${baseMessage}${suffix}`;
+};
+
+const getMessageSuffix = (warninigs: ScanIncompleteWarningId[]): string => {
+    if (warninigs.indexOf('missing-required-cross-origin-permissions') >= 0) {
+        return '\nThere are iframes in the target page. Use FastPass or Assessment to provide additional permissions.';
+    }
+
+    return '';
 };

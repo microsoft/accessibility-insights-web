@@ -6,7 +6,7 @@ import { DictionaryStringTo } from 'types/common-types';
 
 describe('Issues -> getNotificationMessage', () => {
     const testSubject = getNotificationMessage;
-    const testScanIncompleteWarnings: ScanIncompleteWarningId[] = ['test-warning-id' as ScanIncompleteWarningId];
+    const testScanIncompleteWarnings: ScanIncompleteWarningId[] = ['missing-required-cross-origin-permissions'];
 
     type TestCase = {
         selectorMap: DictionaryStringTo<any>;
@@ -75,17 +75,27 @@ describe('Issues -> getNotificationMessage', () => {
     });
 
     describe('issues found; warnings found', () => {
-        const testCase: TestCase = {
-            selectorMap: { key: 'value' },
-            warnings: testScanIncompleteWarnings,
-        };
-
         it('returns congrats message with warnings found', () => {
+            const testCase: TestCase = {
+                selectorMap: { key: 'value' },
+                warnings: testScanIncompleteWarnings,
+            };
             const message = testSubject(testCase.selectorMap, testCase.warnings);
 
             expect(message).toBe(
                 'Automated checks found issues.\nThere are iframes in the target page. Use FastPass or Assessment to provide additional permissions.',
             );
+        });
+
+        it('no suffix added for unsupported warning id', () => {
+            const testCase: TestCase = {
+                selectorMap: { key: 'value' },
+                warnings: ['unsupported-warning-id' as ScanIncompleteWarningId],
+            };
+
+            const message = testSubject(testCase.selectorMap, testCase.warnings);
+
+            expect(message).toBe('Automated checks found issues.');
         });
     });
 });
