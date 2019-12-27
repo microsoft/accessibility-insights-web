@@ -5,7 +5,6 @@ exports[`Popup -> Hamburger menu should have content matching snapshot 1`] = `
   <div
     class="ms-FocusZone css-000 ms-ContextualMenu is-open popup-menu root-000"
     data-focuszone-id="FocusZone000"
-    role="presentation"
   >
     <ul
       class="ms-ContextualMenu-list is-open list-000"
@@ -31,7 +30,6 @@ exports[`Popup -> Hamburger menu should have content matching snapshot 1`] = `
               aria-hidden="true"
               class="ms-ContextualMenu-icon icon-000"
               data-icon-name="Rocket"
-              role="presentation"
             >
               
             </i>
@@ -63,7 +61,6 @@ exports[`Popup -> Hamburger menu should have content matching snapshot 1`] = `
               aria-hidden="true"
               class="ms-ContextualMenu-icon icon-000"
               data-icon-name="testBeakerSolid"
-              role="presentation"
             >
               
             </i>
@@ -95,7 +92,6 @@ exports[`Popup -> Hamburger menu should have content matching snapshot 1`] = `
               aria-hidden="true"
               class="ms-ContextualMenu-icon icon-000"
               data-icon-name="Medical"
-              role="presentation"
             >
               
             </i>
@@ -131,7 +127,6 @@ exports[`Popup -> Hamburger menu should have content matching snapshot 1`] = `
             <i
               aria-hidden="true"
               class="ms-ContextualMenu-icon icon-000"
-              role="presentation"
             />
             <span
               class="ms-ContextualMenu-itemText label-000"
@@ -161,7 +156,6 @@ exports[`Popup -> Hamburger menu should have content matching snapshot 1`] = `
               aria-hidden="true"
               class="ms-ContextualMenu-icon icon-000"
               data-icon-name="Unknown"
-              role="presentation"
             >
               
             </i>
