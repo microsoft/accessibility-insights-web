@@ -2992,10 +2992,10 @@ electron-download@^4.1.1:
     semver "^5.4.1"
     sumchecker "^2.0.2"
 
-electron-log@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/electron-log/-/electron-log-4.0.1.tgz#77a1404b5100ad71d268029cd61a38e6c85be7cb"
-  integrity sha512-76ONPbA58z2WBgKgKIxMMB7HeTWZDeLrKF1X2P5EouAM4nLq547fBamWDArLyLCB6tS29e6zlBg+Jyo4YXGdSg==
+electron-log@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/electron-log/-/electron-log-4.0.2.tgz#159431b60688297420ce233895ec7f72d72e84dc"
+  integrity sha512-pj5iTMvk2Wi0YtXFX1kM4QU9Dxpg9mTZnvIiFInsFBikxMl1HLs2S+ODQ1yIT4+tLLeBocu0BZdyyshm8/2png==
 
 electron-publish@21.2.0:
   version "21.2.0"
