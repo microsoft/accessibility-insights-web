@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`IssueFilingSettings renders 1`] = `
-<div>
+<React.Fragment>
   <h3
-    id="issue-filing"
+    id="issue-filing-heading"
   >
     Issue filing
   </h3>
@@ -37,5 +37,5 @@ exports[`IssueFilingSettings renders 1`] = `
       }
     }
   />
-</div>
+</React.Fragment>
 `;
