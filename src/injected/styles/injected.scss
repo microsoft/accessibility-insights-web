@@ -101,11 +101,6 @@
         padding: 0 19px 20px !important;
     }
 
-    .insights-dialog-main-override button {
-        // This is to prevent conflicts with target page CSS, see issue #578
-        border: 0 !important;
-    }
-
     .insights-dialog-main-override .insights-dialog-button-inspect svg path {
         fill: $primary-text !important;
     }
