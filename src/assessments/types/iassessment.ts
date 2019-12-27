@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { InitialDataCreator } from 'background/create-initial-assessment-test-data';
 import { RequirementOrdering } from 'common/assessment/requirement';
-import { AssesssmentVisualizationConfiguration } from 'common/configs/assesssment-visualization-configuration';
+import { AssessmentVisualizationConfiguration } from 'common/configs/assesssment-visualization-configuration';
 import { AnyExtension } from 'common/extensibility/extension-point';
 import { AssessmentData } from 'common/types/store-data/assessment-result-data';
 import { VisualizationType } from 'common/types/visualization-type';
@@ -30,10 +30,10 @@ export interface ManualAssessment extends BaseAssessment {}
 
 export interface AssistedAssessment extends BaseAssessment {
     storeDataKey: string;
-    visualizationConfiguration?: Partial<AssesssmentVisualizationConfiguration>;
+    visualizationConfiguration?: Partial<AssessmentVisualizationConfiguration>;
 }
 
 export interface Assessment extends BaseAssessment {
-    getVisualizationConfiguration: () => AssesssmentVisualizationConfiguration;
+    getVisualizationConfiguration: () => AssessmentVisualizationConfiguration;
     requirementOrder: RequirementOrdering;
 }
