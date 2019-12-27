@@ -5,11 +5,11 @@ import { TestViewProps } from '../../DetailsView/components/test-view';
 import { DictionaryStringTo } from '../../types/common-types';
 import { AssessmentData, AssessmentStoreData } from '../types/store-data/assessment-result-data';
 import { ScanData, TestsEnabledState } from '../types/store-data/visualization-store-data';
-import { AssesssmentVisualizationConfiguration } from './assesssment-visualization-configuration';
+import { AssessmentVisualizationConfiguration } from './assessment-visualization-configuration';
 import { TestMode } from './test-mode';
 import { DisplayableVisualizationTypeData } from './visualization-configuration-factory';
 
-export interface VisualizationConfiguration extends AssesssmentVisualizationConfiguration {
+export interface VisualizationConfiguration extends AssessmentVisualizationConfiguration {
     key: string;
     testMode: TestMode;
     featureFlagToEnable?: string;

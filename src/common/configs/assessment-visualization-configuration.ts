@@ -16,7 +16,7 @@ import { AssessmentData, AssessmentStoreData } from '../types/store-data/assessm
 import { ScanData, TestsEnabledState } from '../types/store-data/visualization-store-data';
 import { TelemetryProcessor } from '../types/telemetry-processor';
 
-export interface AssesssmentVisualizationConfiguration {
+export interface AssessmentVisualizationConfiguration {
     key: string;
     getTestView: (props: TestViewProps) => JSX.Element;
     getStoreData: (data: TestsEnabledState) => ScanData;
