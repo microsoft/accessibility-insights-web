@@ -13,16 +13,16 @@ export class TargetTabController {
         this.configurationFactory = configurationFactory;
     }
 
-    public showTargetTab(
+    public async showTargetTab(
         targetTabId: number,
         testType: VisualizationType,
         testStep: string = null,
-    ): void {
+    ): Promise<void> {
         const config = this.configurationFactory.getConfiguration(testType);
         const switchToTargetTab = config.getSwitchToTargetTabOnScan(testStep);
 
         if (switchToTargetTab) {
-            this.browserAdapter.switchToTab(targetTabId);
+            await this.browserAdapter.switchToTabP(targetTabId);
         }
     }
 }
