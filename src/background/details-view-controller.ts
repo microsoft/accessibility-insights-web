@@ -1,15 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Logger } from 'common/logging/logger';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { DictionaryStringTo } from '../types/common-types';
 
 export class DetailsViewController {
     private tabIdToDetailsViewMap: DictionaryStringTo<number> = {};
-    private browserAdapter: BrowserAdapter;
     private detailsViewRemovedHandler: (tabId: number) => void;
 
-    constructor(adapter: BrowserAdapter) {
-        this.browserAdapter = adapter;
+    constructor(private readonly browserAdapter: BrowserAdapter) {
         this.browserAdapter.addListenerToTabsOnRemoved(this.onRemoveTab);
         this.browserAdapter.addListenerToTabsOnUpdated(this.onUpdateTab);
     }
@@ -22,7 +21,7 @@ export class DetailsViewController {
         const detailsViewTabId = this.tabIdToDetailsViewMap[targetTabId];
 
         if (detailsViewTabId != null) {
-            this.browserAdapter.switchToTab(detailsViewTabId);
+            await this.browserAdapter.switchToTabP(detailsViewTabId);
             return;
         }
 
