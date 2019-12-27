@@ -69,7 +69,7 @@ export class ActionCreator {
         );
         this.interpreter.registerTypeToPayloadCallback(
             visualizationMessages.Common.ScanCompleted,
-            this.onScanCompleted,
+            this.onAdHocScanCompleted,
         );
         this.interpreter.registerTypeToPayloadCallback(
             visualizationMessages.Common.ScrollRequested,
@@ -281,7 +281,7 @@ export class ActionCreator {
         this.visualizationActions.updateFocusedInstance.invoke(payload);
     };
 
-    private onScanCompleted = async (
+    private onAdHocScanCompleted = async (
         payload: ScanCompletedPayload<any>,
         tabId: number,
     ): Promise<void> => {

@@ -48,8 +48,6 @@ import { tick } from 'tests/unit/common/tick';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
 
-//
-
 const VisualizationMessage = Messages.Visualizations;
 const PreviewFeaturesMessage = Messages.PreviewFeatures;
 
@@ -407,7 +405,7 @@ describe('ActionCreatorTest', () => {
         builder.verifyAll();
     });
 
-    test('registerCallback for onScanCompleted', () => {
+    test('registerCallback for onAdHocScanCompleted', () => {
         const key = 'Key should not matter';
         const actionName = 'scanCompleted';
         const message = VisualizationMessage.Common.ScanCompleted;
