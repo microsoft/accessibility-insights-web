@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Logger } from 'common/logging/logger';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { DictionaryStringTo } from '../types/common-types';
 
