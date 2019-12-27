@@ -12,7 +12,7 @@ export interface BrowserAdapter {
     tabsQuery(query: Tabs.QueryQueryInfoType): Promise<Tabs.Tab[]>;
     createActiveTab(url: string): Promise<Tabs.Tab>;
     createTabInNewWindow(url: string): Promise<Tabs.Tab>;
-    switchToTabP(tabId: number): Promise<void>;
+    switchToTab(tabId: number): Promise<void>;
     updateTab(tabId: number, updateProperties: Tabs.UpdateUpdatePropertiesType): Promise<Tabs.Tab>;
     getTab(tabId: number, onResolve: (tab: chrome.tabs.Tab) => void, onReject?: () => void): void;
     updateWindow(windowId: number, updateProperties: Windows.UpdateUpdateInfoType): Promise<Windows.Window>;

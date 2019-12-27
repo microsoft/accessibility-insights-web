@@ -79,7 +79,7 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         return browser.windows.update(windowId, updateProperties);
     }
 
-    public async switchToTabP(tabId: number): Promise<void> {
+    public async switchToTab(tabId: number): Promise<void> {
         const tab = await this.updateTab(tabId, { active: true });
         await this.updateWindow(tab.windowId, { focused: true });
     }

@@ -21,7 +21,7 @@ export class DetailsViewController {
         const detailsViewTabId = this.tabIdToDetailsViewMap[targetTabId];
 
         if (detailsViewTabId != null) {
-            await this.browserAdapter.switchToTabP(detailsViewTabId);
+            await this.browserAdapter.switchToTab(detailsViewTabId);
             return;
         }
 

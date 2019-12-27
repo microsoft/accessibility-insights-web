@@ -136,7 +136,7 @@ describe('TestActionCreatorTest', () => {
         });
 
         it('switch to tab succeed', async () => {
-            browserAdapterMock.setup(adapter => adapter.switchToTabP(tabId)).returns(() => Promise.resolve());
+            browserAdapterMock.setup(adapter => adapter.switchToTab(tabId)).returns(() => Promise.resolve());
 
             testSubject.registerCallbacks();
 
@@ -147,7 +147,7 @@ describe('TestActionCreatorTest', () => {
 
         it('logs error when switch to tab fails', async () => {
             const dummyError = 'switch to tab dummy error';
-            browserAdapterMock.setup(adapter => adapter.switchToTabP(tabId)).returns(() => Promise.reject(dummyError));
+            browserAdapterMock.setup(adapter => adapter.switchToTab(tabId)).returns(() => Promise.reject(dummyError));
 
             testSubject.registerCallbacks();
 

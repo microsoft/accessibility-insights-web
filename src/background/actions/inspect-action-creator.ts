@@ -32,7 +32,7 @@ export class InspectActionCreator {
     private onChangeInspectMode = async (payload: InspectPayload, tabId: number): Promise<void> => {
         this.telemetryEventHandler.publishTelemetry(CHANGE_INSPECT_MODE, payload);
         await this.browserAdapter
-            .switchToTabP(tabId)
+            .switchToTab(tabId)
             .catch(error => this.logger.error(`switchToTab failed: ${error}`));
         this.inspectActions.changeInspectMode.invoke(payload);
     };

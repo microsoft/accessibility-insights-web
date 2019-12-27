@@ -54,7 +54,7 @@ export class TabActionCreator {
         tabId: number,
     ): Promise<void> => {
         await this.browserAdapter
-            .switchToTabP(tabId)
+            .switchToTab(tabId)
             .catch(error => this.logger.error(`switchToTab failed: ${error}`));
         this.telemetryEventHandler.publishTelemetry(SWITCH_BACK_TO_TARGET, payload);
     };

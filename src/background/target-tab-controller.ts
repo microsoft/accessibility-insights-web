@@ -22,7 +22,7 @@ export class TargetTabController {
         const switchToTargetTab = config.getSwitchToTargetTabOnScan(testStep);
 
         if (switchToTargetTab) {
-            await this.browserAdapter.switchToTabP(targetTabId);
+            await this.browserAdapter.switchToTab(targetTabId);
         }
     }
 }

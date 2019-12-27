@@ -64,13 +64,13 @@ describe('TargetTabControllerTest', () => {
                 .verifiable(Times.once());
 
             const errorMessage = 'switchToTab failed error message';
-            browserAdapterMock.setup(adapter => adapter.switchToTabP(tabId)).returns(() => Promise.reject(errorMessage));
+            browserAdapterMock.setup(adapter => adapter.switchToTab(tabId)).returns(() => Promise.reject(errorMessage));
 
             await expect(testSubject.showTargetTab(tabId, test, step)).rejects.toEqual(errorMessage);
         });
     });
 
     function setupSwitchToTabBrowserCall(times: Times): void {
-        browserAdapterMock.setup(adapter => adapter.switchToTabP(tabId)).verifiable(times);
+        browserAdapterMock.setup(adapter => adapter.switchToTab(tabId)).verifiable(times);
     }
 });
