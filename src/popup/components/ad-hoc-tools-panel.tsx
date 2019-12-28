@@ -15,7 +15,7 @@ export class AdHocToolsPanel extends React.Component<AdHocToolsPanelProps, {}> {
     private sliceSize: number = 3;
 
     public render(): JSX.Element {
-        const toggles = this.props.diagnosticViewToggleFactory.createTogglesForAdhocToolsPanel();
+        const toggles = this.props.diagnosticViewToggleFactory.createTogglesForAdHocToolsPanel();
         const groups = this.getToggleGroups(toggles);
 
         return (

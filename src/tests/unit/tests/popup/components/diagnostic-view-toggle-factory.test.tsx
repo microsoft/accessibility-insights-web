@@ -1,21 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
-import { Mock, MockBehavior } from 'typemoq';
-
 import { CommandStore } from 'background/stores/global/command-store';
 import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { VisualizationStore } from 'background/stores/visualization-store';
+import { TestMode } from 'common/configs/test-mode';
+import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { TelemetryEventSource } from 'common/extension-telemetry-events';
+import { VisualizationType } from 'common/types/visualization-type';
+import { PopupActionMessageCreator } from 'popup/actions/popup-action-message-creator';
+import { DiagnosticViewToggle } from 'popup/components/diagnostic-view-toggle';
+import { DiagnosticViewToggleFactory } from 'popup/components/diagnostic-view-toggle-factory';
+import { DiagnosticViewClickHandler } from 'popup/handlers/diagnostic-view-toggle-click-handler';
+import * as React from 'react';
+import { Mock, MockBehavior } from 'typemoq';
 import { ContentLinkDeps } from 'views/content/content-link';
-import { TestMode } from '../../../../../common/configs/test-mode';
-import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
-import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
-import { TelemetryEventSource } from '../../../../../common/extension-telemetry-events';
-import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { PopupActionMessageCreator } from '../../../../../popup/actions/popup-action-message-creator';
-import { DiagnosticViewToggle } from '../../../../../popup/components/diagnostic-view-toggle';
-import { DiagnosticViewToggleFactory } from '../../../../../popup/components/diagnostic-view-toggle-factory';
-import { DiagnosticViewClickHandler } from '../../../../../popup/handlers/diagnostic-view-toggle-click-handler';
 import { ShortcutCommandsTestData } from '../../../common/sample-test-data';
 import { VisualizationStoreDataBuilder } from '../../../common/visualization-store-data-builder';
 
@@ -114,7 +113,7 @@ describe('DiagnosticViewToggleFactoryTest', () => {
 
         const source = TelemetryEventSource.AdHocTools;
 
-        const result = testObject.createTogglesForAdhocToolsPanel();
+        const result = testObject.createTogglesForAdHocToolsPanel();
 
         const expected: JSX.Element[] = [
             <DiagnosticViewToggle
@@ -136,55 +135,6 @@ describe('DiagnosticViewToggleFactoryTest', () => {
                 dom={domMock}
                 visualizationType={secondVisualizationTypeStub}
                 key="diagnostic_view_toggle_-2"
-                shortcutCommands={ShortcutCommandsTestData}
-                visualizationConfigurationFactory={visualizationConfigurationFactoryMock.object}
-                actionMessageCreator={actionMessageCreator.object}
-                clickHandler={clickHandler.object}
-                visualizationStoreData={visualizationStoreData}
-                telemetrySource={source}
-            />,
-        ];
-
-        expect(result).toEqual(expected);
-    });
-
-    test('create toggles for launch panel', () => {
-        const testObject = new DiagnosticViewToggleFactory(
-            deps,
-            domMock,
-            testVisualizationTypes,
-            visualizationConfigurationFactoryMock.object,
-            visualizationStoreMock.object,
-            featureFlagStoreMock.object,
-            commandStoreMock.object,
-            actionMessageCreator.object,
-            clickHandler.object,
-        );
-
-        const source = TelemetryEventSource.OldLaunchPanel;
-
-        const result = testObject.createTogglesForLaunchPanel();
-
-        const expected: JSX.Element[] = [
-            <DiagnosticViewToggle
-                deps={deps}
-                featureFlags={featureFlags}
-                dom={domMock}
-                visualizationType={secondVisualizationTypeStub}
-                key="diagnostic_view_toggle_-2"
-                shortcutCommands={ShortcutCommandsTestData}
-                visualizationConfigurationFactory={visualizationConfigurationFactoryMock.object}
-                actionMessageCreator={actionMessageCreator.object}
-                clickHandler={clickHandler.object}
-                visualizationStoreData={visualizationStoreData}
-                telemetrySource={source}
-            />,
-            <DiagnosticViewToggle
-                deps={deps}
-                featureFlags={featureFlags}
-                dom={domMock}
-                visualizationType={firstVisualizationTypeStub}
-                key="diagnostic_view_toggle_-1"
                 shortcutCommands={ShortcutCommandsTestData}
                 visualizationConfigurationFactory={visualizationConfigurationFactoryMock.object}
                 actionMessageCreator={actionMessageCreator.object}

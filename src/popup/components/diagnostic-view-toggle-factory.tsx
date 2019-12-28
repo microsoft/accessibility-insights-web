@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BaseStore } from 'common/base-store';
+import { TestMode } from 'common/configs/test-mode';
+import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { TelemetryEventSource } from 'common/extension-telemetry-events';
+import { CommandStoreData } from 'common/types/store-data/command-store-data';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import { VisualizationType } from 'common/types/visualization-type';
 import { map } from 'lodash';
 import * as React from 'react';
-import { BaseStore } from '../../common/base-store';
-import { TestMode } from '../../common/configs/test-mode';
-import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
-import { TelemetryEventSource } from '../../common/extension-telemetry-events';
-import { CommandStoreData } from '../../common/types/store-data/command-store-data';
-import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
-import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
-import { VisualizationType } from '../../common/types/visualization-type';
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
 import { DiagnosticViewClickHandler } from '../handlers/diagnostic-view-toggle-click-handler';
 import { DiagnosticViewToggle, DiagnosticViewToggleDeps } from './diagnostic-view-toggle';
@@ -45,21 +45,8 @@ export class DiagnosticViewToggleFactory {
         this.clickHandler = clickHandler;
     }
 
-    public createTogglesForLaunchPanel(): JSX.Element[] {
-        const sorting = (typeA, typeB) => {
-            const configA = this.visualizationConfigurationFactory.getConfiguration(typeA);
-            const configB = this.visualizationConfigurationFactory.getConfiguration(typeB);
-
-            return configA.launchPanelDisplayOrder - configB.launchPanelDisplayOrder;
-        };
-
-        const source = TelemetryEventSource.OldLaunchPanel;
-
-        return this.createToggles(sorting, source);
-    }
-
-    public createTogglesForAdhocToolsPanel(): JSX.Element[] {
-        const sorting = (typeA, typeB) => {
+    public createTogglesForAdHocToolsPanel(): JSX.Element[] {
+        const sorting = (typeA: VisualizationType, typeB: VisualizationType) => {
             const configA = this.visualizationConfigurationFactory.getConfiguration(typeA);
             const configB = this.visualizationConfigurationFactory.getConfiguration(typeB);
 

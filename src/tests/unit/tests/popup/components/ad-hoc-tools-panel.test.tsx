@@ -1,21 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Enzyme from 'enzyme';
-import { Icon } from 'office-ui-fabric-react';
-import { Link } from 'office-ui-fabric-react';
+import { Icon, Link } from 'office-ui-fabric-react';
+import { AdHocToolsPanel, AdHocToolsPanelProps } from 'popup/components/ad-hoc-tools-panel';
+import { DiagnosticViewToggleFactory } from 'popup/components/diagnostic-view-toggle-factory';
 import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';
-
-import { AdHocToolsPanel, AdHocToolsPanelProps } from '../../../../../popup/components/ad-hoc-tools-panel';
-import { DiagnosticViewToggleFactory } from '../../../../../popup/components/diagnostic-view-toggle-factory';
 
 describe('AdHocToolsPanelTest', () => {
     const diagnosticViewToggleFactoryMock = Mock.ofType(DiagnosticViewToggleFactory);
 
     beforeEach(() => {
         diagnosticViewToggleFactoryMock
-            .setup(factory => factory.createTogglesForAdhocToolsPanel())
+            .setup(factory => factory.createTogglesForAdHocToolsPanel())
             .returns(() => [
                 <div key="first">first</div>,
                 <div key="second">second</div>,
@@ -77,7 +75,7 @@ describe('AdHocToolsPanelTest', () => {
     });
 
     test('back link clicked', () => {
-        diagnosticViewToggleFactoryMock.setup(factory => factory.createTogglesForAdhocToolsPanel()).returns(() => []);
+        diagnosticViewToggleFactoryMock.setup(factory => factory.createTogglesForAdHocToolsPanel()).returns(() => []);
 
         const backLinkHandlerMock = Mock.ofInstance(() => {});
         backLinkHandlerMock.setup(b => b()).verifiable(Times.once());
