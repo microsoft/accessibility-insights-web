@@ -57,7 +57,7 @@ describe('TargetTabControllerTest', () => {
             browserAdapterMock.verifyAll();
         });
 
-        it('propagates error from swith to tab', async () => {
+        it('propagates error from switch to tab', async () => {
             getSwitchToTargetTabCallbackMock
                 .setup(cm => cm(step))
                 .returns(() => true)
