@@ -36,9 +36,7 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', (props: Command
         disabled: props.scanStoreData.status === ScanStatus.Scanning,
     };
 
-    // UICommandBar doesn't do null checks for these. Use empty lists for "no items", not null/undefined.
     const items: ICommandBarItemProps[] = [rescanCommandBarItem];
-    const farItems: ICommandBarItemProps[] = [];
 
-    return <UICommandBar items={items} farItems={farItems} className={styles.commandBar} />;
+    return <UICommandBar items={items} className={styles.commandBar} />;
 });
