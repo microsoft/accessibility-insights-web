@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NamedFC } from 'common/react/named-fc';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import * as React from 'react';
-import { NamedFC } from '../../../common/react/named-fc';
-import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
-import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import { DetailsViewActionMessageCreator } from '../../actions/details-view-action-message-creator';
 import { GenericPanel } from '../generic-panel';
 import { SettingsDeps } from './settings/settings-props';
