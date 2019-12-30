@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { ToggleActionPayload } from 'background/actions/action-payloads';
 import { UniquelyIdentifiableInstances } from 'background/instance-identifier-generator';
+import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { TestViewProps } from '../../DetailsView/components/test-view';
 import { Analyzer } from '../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../injected/analyzers/analyzer-provider';
@@ -31,7 +32,7 @@ export interface AssessmentVisualizationConfiguration {
     getAnalyzer: (analyzerProvider: AnalyzerProvider, testStep?: string) => Analyzer;
     getIdentifier: (testStep?: string) => string;
     visualizationInstanceProcessor: (testStep?: string) => VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags>;
-    getNotificationMessage: (selectorMap: DictionaryStringTo<any>, testStep?: string) => string;
+    getNotificationMessage: (selectorMap: DictionaryStringTo<any>, testStep?: string, warnings?: ScanIncompleteWarningId[]) => string;
     getDrawer: (provider: DrawerProvider, testStep?: string) => Drawer;
     getSwitchToTargetTabOnScan: (testStep?: string) => boolean;
     getInstanceIdentiferGenerator: (testStep?: string) => (instance: UniquelyIdentifiableInstances) => string;

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { getNotificationMessage } from 'ad-hoc-visualizations/issues/get-notification-message';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { AdHocTestkeys } from 'common/configs/adhoc-test-keys';
 import { TestMode } from 'common/configs/test-mode';
@@ -11,7 +12,6 @@ import { generateUID } from 'common/uid-generator';
 import { AdhocIssuesTestView } from 'DetailsView/components/adhoc-issues-test-view';
 import { ScannerUtils } from 'injected/scanner-utils';
 import { VisualizationInstanceProcessor } from 'injected/visualization-instance-processor';
-import { isEmpty } from 'lodash';
 import * as React from 'react';
 
 export const IssuesAdHocVisualization: VisualizationConfiguration = {
@@ -56,10 +56,8 @@ export const IssuesAdHocVisualization: VisualizationConfiguration = {
         }),
     getIdentifier: () => AdHocTestkeys.Issues,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
-    getNotificationMessage: selectorMap =>
-        isEmpty(selectorMap)
-            ? 'Congratulations!\n\nAutomated checks found no issues on this page.'
-            : null,
+    getNotificationMessage: (selectorMap, key, warnings) =>
+        getNotificationMessage(selectorMap, warnings),
     getDrawer: provider => provider.createIssuesDrawer(),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,

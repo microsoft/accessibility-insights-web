@@ -41,6 +41,7 @@ import { getStoreStateMessage, Messages } from 'common/messages';
 import { NotificationCreator } from 'common/notification-creator';
 import { StoreNames } from 'common/stores/store-names';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { VisualizationType } from 'common/types/visualization-type';
 import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
 import { forOwn } from 'lodash';
@@ -600,7 +601,7 @@ describe('ActionCreatorTest', () => {
         const validator = new ActionCreatorValidator()
             .setupRegistrationCallback(Messages.Assessment.AssessmentScanCompleted, [payload, tabId])
             .setupTelemetrySend(TelemetryEvents.ASSESSMENT_SCAN_COMPLETED, payload, tabId)
-            .setupCreateNotificationByVisualizationKey(payload.selectorMap, payload.key, payload.testType)
+            .setupCreateNotificationByVisualizationKey(payload.selectorMap, payload.key, payload.testType, payload.scanIncompleteWarnings)
             .setupShowTargetTab(tabId, payload.testType, payload.key);
 
         const actionCreator = validator.buildActionCreator();
@@ -872,6 +873,7 @@ describe('ActionCreatorTest', () => {
                 key: 'value',
             },
             testType: -1,
+            scanIncompleteWarnings: [],
         };
         const args = [payload, tabId];
         const actionName = 'scanCompleted';
@@ -883,7 +885,7 @@ describe('ActionCreatorTest', () => {
             .setupVisualizationScanResultActionWithInvokeParameter(scanResultActionName, payload)
             .setupManifest({ name: 'testname', icons: { 128: 'iconUrl' } })
             .setupTelemetrySend(telemetryName, payload, tabId)
-            .setupCreateNotificationByVisualizationKey(payload.selectorMap, key, payload.testType)
+            .setupCreateNotificationByVisualizationKey(payload.selectorMap, key, payload.testType, payload.scanIncompleteWarnings)
             .setupShowTargetTab(tabId, payload.testType, key);
 
         const actionCreator = validator.buildActionCreator();
@@ -1009,9 +1011,10 @@ class ActionCreatorValidator {
         selectorMap: DictionaryStringTo<any>,
         key: string,
         visualizationType: VisualizationType,
+        warnings: ScanIncompleteWarningId[],
     ): ActionCreatorValidator {
         this.notificationCreatorStrictMock
-            .setup(x => x.createNotificationByVisualizationKey(selectorMap, key, visualizationType))
+            .setup(x => x.createNotificationByVisualizationKey(selectorMap, key, visualizationType, warnings))
             .verifiable(Times.once());
 
         return this;
