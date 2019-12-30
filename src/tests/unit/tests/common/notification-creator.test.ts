@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
-import { AssesssmentVisualizationConfiguration } from 'common/configs/assesssment-visualization-configuration';
+import { AssessmentVisualizationConfiguration } from 'common/configs/assessment-visualization-configuration';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { Logger } from 'common/logging/logger';
@@ -10,7 +10,7 @@ import { VisualizationType } from 'common/types/visualization-type';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { Notifications } from 'webextension-polyfill-ts';
 
-type GetNotificationMessage = AssesssmentVisualizationConfiguration['getNotificationMessage'];
+type GetNotificationMessage = AssessmentVisualizationConfiguration['getNotificationMessage'];
 
 describe('NotificationCreator', () => {
     let browserAdapterMock: IMock<BrowserAdapter>;
