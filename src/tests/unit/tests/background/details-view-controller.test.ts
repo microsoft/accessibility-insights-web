@@ -2,33 +2,33 @@
 // Licensed under the MIT License.
 import { DetailsViewController } from 'background/details-view-controller';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
-import { IMock, It, Mock, Times } from 'typemoq';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { Tabs } from 'webextension-polyfill-ts';
 
 describe('DetailsViewControllerTest', () => {
-    let mockBrowserAdapter: IMock<BrowserAdapter>;
+    let browserAdapterMock: IMock<BrowserAdapter>;
     let testSubject: DetailsViewController;
     let onTabRemoveCallback: (tabId: number, removeInfo: chrome.tabs.TabRemoveInfo) => void;
     let onUpdateTabCallback: (tabId: number, changeInfo: chrome.tabs.TabChangeInfo, tab: chrome.tabs.Tab) => void;
 
     beforeEach(() => {
-        mockBrowserAdapter = Mock.ofType<BrowserAdapter>();
+        browserAdapterMock = Mock.ofType<BrowserAdapter>(undefined, MockBehavior.Strict);
 
-        mockBrowserAdapter
+        browserAdapterMock
             .setup(adapter => adapter.addListenerToTabsOnRemoved(It.isAny()))
             .callback(callback => {
                 onTabRemoveCallback = callback;
             })
             .verifiable();
 
-        mockBrowserAdapter
+        browserAdapterMock
             .setup(adapter => adapter.addListenerToTabsOnUpdated(It.isAny()))
             .callback(callback => {
                 onUpdateTabCallback = callback;
             })
             .verifiable();
 
-        testSubject = new DetailsViewController(mockBrowserAdapter.object);
+        testSubject = new DetailsViewController(browserAdapterMock.object);
     });
 
     describe('showDetailsView', () => {
@@ -36,45 +36,62 @@ describe('DetailsViewControllerTest', () => {
             const targetTabId = 12;
             const detailsViewTabId = 10;
 
-            setupCreateDetailsViewP(targetTabId, detailsViewTabId).verifiable(Times.once());
+            setupCreateDetailsView(targetTabId, detailsViewTabId).verifiable(Times.once());
 
             await testSubject.showDetailsView(targetTabId);
 
-            mockBrowserAdapter.verifyAll();
+            browserAdapterMock.verifyAll();
         });
 
         it('switch to existing tab the second time', async () => {
             const targetTabId = 5;
             const detailsViewTabId = 10;
 
-            setupCreateDetailsViewP(targetTabId, detailsViewTabId).verifiable(Times.once());
+            setupCreateDetailsView(targetTabId, detailsViewTabId).verifiable(Times.once());
 
             await testSubject.showDetailsView(targetTabId);
 
-            mockBrowserAdapter.reset();
+            browserAdapterMock.reset();
 
-            setupCreateDetailsViewPForAnyUrl(Times.never());
-
-            mockBrowserAdapter.setup(adapter => adapter.switchToTab(detailsViewTabId)).verifiable(Times.once());
+            setupCreateDetailsViewForAnyUrl(Times.never());
+            setupSwitchToTab(detailsViewTabId);
 
             // call show details second time
             await testSubject.showDetailsView(targetTabId);
 
-            mockBrowserAdapter.verifyAll();
+            browserAdapterMock.verifyAll();
         });
 
-        it('propagates error from failing browser adapter call', async () => {
+        it('propagates error from failing browser adapter call to switch to tab', async () => {
+            const targetTabId = 5;
+            const detailsViewTabId = 10;
+
+            setupCreateDetailsView(targetTabId, detailsViewTabId).verifiable(Times.once());
+
+            await testSubject.showDetailsView(targetTabId);
+
+            browserAdapterMock.reset();
+
+            const errorMessage = 'switchToTab failed with dummy error';
+            browserAdapterMock.setup(adapter => adapter.switchToTab(detailsViewTabId)).returns(() => Promise.reject(errorMessage));
+
+            await expect(testSubject.showDetailsView(targetTabId)).rejects.toEqual(errorMessage);
+
+            browserAdapterMock.verifyAll();
+        });
+
+        it('propagates error from failing browser adapter call to create tab', async () => {
             const targetTabId = 5;
             const errorMessage = 'error creating new window (from browser adapter)';
 
-            mockBrowserAdapter
+            browserAdapterMock
                 .setup(adapter => adapter.createTabInNewWindow('DetailsView/detailsView.html?tabId=' + targetTabId))
                 .returns(() => Promise.reject(errorMessage))
                 .verifiable(Times.once());
 
             await expect(testSubject.showDetailsView(targetTabId)).rejects.toEqual(errorMessage);
 
-            mockBrowserAdapter.verifyAll();
+            browserAdapterMock.verifyAll();
         });
     });
 
@@ -82,24 +99,23 @@ describe('DetailsViewControllerTest', () => {
         const targetTabId = 5;
         const detailsViewTabId = 10;
 
-        setupCreateDetailsViewP(targetTabId, detailsViewTabId);
+        setupCreateDetailsView(targetTabId, detailsViewTabId);
 
         // call show details once
         await testSubject.showDetailsView(targetTabId);
 
-        mockBrowserAdapter.reset();
+        browserAdapterMock.reset();
 
         // update target tab
         onUpdateTabCallback(targetTabId, null, null);
 
-        setupCreateDetailsViewPForAnyUrl(Times.never());
-
-        mockBrowserAdapter.setup(adapter => adapter.switchToTab(detailsViewTabId)).verifiable(Times.once());
+        setupCreateDetailsViewForAnyUrl(Times.never());
+        setupSwitchToTab(detailsViewTabId);
 
         // call show details second time
         await testSubject.showDetailsView(targetTabId);
 
-        mockBrowserAdapter.verifyAll();
+        browserAdapterMock.verifyAll();
     });
 
     test('showDetailsView after details tab navigated to another page', async () => {
@@ -111,26 +127,24 @@ describe('DetailsViewControllerTest', () => {
 
         testSubject.setupDetailsViewTabRemovedHandler(detailsViewRemovedHandlerMock.object);
 
-        setupCreateDetailsViewP(targetTabId, detailsViewTabId);
+        setupCreateDetailsView(targetTabId, detailsViewTabId);
 
         // call show details once
         await testSubject.showDetailsView(targetTabId);
 
-        mockBrowserAdapter.reset();
+        browserAdapterMock.reset();
 
         // update details tab
-        mockBrowserAdapter.setup(adapter => adapter.getRunTimeId()).returns(() => 'ext_id');
+        browserAdapterMock.setup(adapter => adapter.getRunTimeId()).returns(() => 'ext_id');
 
         onUpdateTabCallback(detailsViewTabId, { url: 'www.bing.com/DetailsView/detailsView.html?tabId=' + targetTabId }, null);
 
-        setupCreateDetailsViewPForAnyUrl(Times.once());
-
-        mockBrowserAdapter.setup(adapter => adapter.switchToTab(detailsViewTabId)).verifiable(Times.never());
+        setupCreateDetailsViewForAnyUrl(Times.once());
 
         // call show details second time
         await testSubject.showDetailsView(targetTabId);
 
-        mockBrowserAdapter.verifyAll();
+        browserAdapterMock.verifyAll();
         detailsViewRemovedHandlerMock.verifyAll();
     });
 
@@ -138,135 +152,124 @@ describe('DetailsViewControllerTest', () => {
         const targetTabId = 5;
         const detailsViewTabId = 10;
 
-        setupCreateDetailsViewP(targetTabId, detailsViewTabId);
+        setupCreateDetailsView(targetTabId, detailsViewTabId);
 
         // call show details once
         await testSubject.showDetailsView(targetTabId);
 
-        mockBrowserAdapter.reset();
+        browserAdapterMock.reset();
 
         // update details tab
         const extensionId = 'ext_id';
-        mockBrowserAdapter.setup(adapter => adapter.getRunTimeId()).returns(() => extensionId);
+        browserAdapterMock.setup(adapter => adapter.getRunTimeId()).returns(() => extensionId);
         onUpdateTabCallback(detailsViewTabId, { url: 'chromeExt://ext_id/DetailsView/detailsView.html?tabId=90' }, null);
 
-        setupCreateDetailsViewPForAnyUrl(Times.once());
-
-        mockBrowserAdapter.setup(adapter => adapter.switchToTab(detailsViewTabId)).verifiable(Times.never());
+        setupCreateDetailsViewForAnyUrl(Times.once());
 
         // call show details second time
         await testSubject.showDetailsView(targetTabId);
 
-        mockBrowserAdapter.verifyAll();
+        browserAdapterMock.verifyAll();
     });
 
     test('showDetailsView after details tab refresh', async () => {
         const targetTabId = 5;
         const detailsViewTabId = 10;
 
-        setupCreateDetailsViewP(targetTabId, detailsViewTabId);
+        setupCreateDetailsView(targetTabId, detailsViewTabId);
 
         // call show details once
         await testSubject.showDetailsView(targetTabId);
 
-        mockBrowserAdapter.reset();
+        browserAdapterMock.reset();
 
         // update details tab
         const extensionId = 'ext_id';
-        mockBrowserAdapter.setup(adapter => adapter.getRunTimeId()).returns(() => extensionId);
+        browserAdapterMock.setup(adapter => adapter.getRunTimeId()).returns(() => extensionId);
         onUpdateTabCallback(detailsViewTabId, { url: 'chromeExt://ext_Id/detailsView/detailsView.html?tabId=' + targetTabId }, null);
 
-        setupCreateDetailsViewPForAnyUrl(Times.never());
-
-        mockBrowserAdapter.setup(adapter => adapter.switchToTab(detailsViewTabId)).verifiable(Times.once());
+        setupCreateDetailsViewForAnyUrl(Times.never());
+        setupSwitchToTab(detailsViewTabId);
 
         // call show details second time
         await testSubject.showDetailsView(targetTabId);
 
-        mockBrowserAdapter.verifyAll();
+        browserAdapterMock.verifyAll();
     });
 
     test('showDetailsView after details tab title update', async () => {
         const targetTabId = 5;
         const detailsViewTabId = 10;
 
-        setupCreateDetailsViewP(targetTabId, detailsViewTabId);
+        setupCreateDetailsView(targetTabId, detailsViewTabId);
 
         // call show details once
         await testSubject.showDetailsView(targetTabId);
 
-        mockBrowserAdapter.reset();
+        browserAdapterMock.reset();
 
         // update details tab
-        const extensionId = 'ext_id';
-        mockBrowserAdapter.setup(adapter => adapter.getRunTimeId()).returns(() => extensionId);
         onUpdateTabCallback(detailsViewTabId, { title: 'issues' }, null);
 
-        setupCreateDetailsViewPForAnyUrl(Times.never());
-
-        mockBrowserAdapter.setup(adapter => adapter.switchToTab(detailsViewTabId)).verifiable(Times.once());
+        setupCreateDetailsViewForAnyUrl(Times.never());
+        setupSwitchToTab(detailsViewTabId);
 
         // call show details second time
         await testSubject.showDetailsView(targetTabId);
 
-        mockBrowserAdapter.verifyAll();
+        browserAdapterMock.verifyAll();
     });
 
     test('showDetailsView after random tab updated', async () => {
         const targetTabId = 5;
         const detailsViewTabId = 10;
 
-        setupCreateDetailsViewP(targetTabId, detailsViewTabId);
+        setupCreateDetailsView(targetTabId, detailsViewTabId);
 
         // call show details once
         await testSubject.showDetailsView(targetTabId);
 
-        mockBrowserAdapter.reset();
+        browserAdapterMock.reset();
 
         // remove details tab
-        const extensionId = 'ext_id';
-        mockBrowserAdapter.setup(adapter => adapter.getRunTimeId()).returns(() => extensionId);
         onUpdateTabCallback(123, { title: 'issues' }, null);
 
-        setupCreateDetailsViewPForAnyUrl(Times.never());
-
-        mockBrowserAdapter.setup(adapter => adapter.switchToTab(detailsViewTabId)).verifiable(Times.once());
+        setupCreateDetailsViewForAnyUrl(Times.never());
+        setupSwitchToTab(detailsViewTabId);
 
         // call show details second time
         await testSubject.showDetailsView(targetTabId);
 
-        mockBrowserAdapter.verifyAll();
+        browserAdapterMock.verifyAll();
     });
 
     test('showDetailsView after target tab removed', async () => {
         const targetTabId = 5;
         const detailsViewTabId = 10;
 
-        setupCreateDetailsViewP(targetTabId, detailsViewTabId);
+        setupCreateDetailsView(targetTabId, detailsViewTabId);
 
         // call show details once
         await testSubject.showDetailsView(targetTabId);
 
-        mockBrowserAdapter.reset();
+        browserAdapterMock.reset();
 
         // remove target tab
         onTabRemoveCallback(targetTabId, null);
 
-        setupCreateDetailsViewPForAnyUrl(Times.once());
-
-        mockBrowserAdapter.setup(adapter => adapter.switchToTab(detailsViewTabId)).verifiable(Times.never());
+        setupCreateDetailsViewForAnyUrl(Times.once());
 
         // call show details second time
         await testSubject.showDetailsView(targetTabId);
 
-        mockBrowserAdapter.verifyAll();
+        browserAdapterMock.verifyAll();
     });
 
     test('showDetailsView after details tab removed', async () => {
         const targetTabId = 5;
         const detailsViewTabId = 10;
 
-        setupCreateDetailsViewP(targetTabId, detailsViewTabId);
+        setupCreateDetailsView(targetTabId, detailsViewTabId);
 
         const detailsViewRemovedHandlerMock = Mock.ofInstance((tabId: number) => {});
         detailsViewRemovedHandlerMock.setup(handler => handler(targetTabId)).verifiable(Times.once());
@@ -275,19 +278,17 @@ describe('DetailsViewControllerTest', () => {
         // call show details once
         await testSubject.showDetailsView(targetTabId);
 
-        mockBrowserAdapter.reset();
+        browserAdapterMock.reset();
 
         // remove details tab
         onTabRemoveCallback(detailsViewTabId, null);
 
-        setupCreateDetailsViewPForAnyUrl(Times.once());
-
-        mockBrowserAdapter.setup(adapter => adapter.switchToTab(detailsViewTabId)).verifiable(Times.never());
+        setupCreateDetailsViewForAnyUrl(Times.once());
 
         // call show details second time
         await testSubject.showDetailsView(targetTabId);
 
-        mockBrowserAdapter.verifyAll();
+        browserAdapterMock.verifyAll();
         detailsViewRemovedHandlerMock.verifyAll();
     });
 
@@ -295,58 +296,59 @@ describe('DetailsViewControllerTest', () => {
         const targetTabId = 5;
         const detailsViewTabId = 10;
 
-        setupCreateDetailsViewP(targetTabId, detailsViewTabId);
+        setupCreateDetailsView(targetTabId, detailsViewTabId);
 
         // call show details once
         await testSubject.showDetailsView(targetTabId);
 
-        mockBrowserAdapter.reset();
+        browserAdapterMock.reset();
 
         // remove details tab
         onTabRemoveCallback(detailsViewTabId, null);
 
-        setupCreateDetailsViewPForAnyUrl(Times.once());
-
-        mockBrowserAdapter.setup(adapter => adapter.switchToTab(detailsViewTabId)).verifiable(Times.never());
+        setupCreateDetailsViewForAnyUrl(Times.once());
 
         // call show details second time
         await testSubject.showDetailsView(targetTabId);
 
-        mockBrowserAdapter.verifyAll();
+        browserAdapterMock.verifyAll();
     });
 
     test('showDetailsView after random tab removed', async () => {
         const targetTabId = 5;
         const detailsViewTabId = 10;
 
-        setupCreateDetailsViewP(targetTabId, detailsViewTabId);
+        setupCreateDetailsView(targetTabId, detailsViewTabId);
 
         // call show details once
         await testSubject.showDetailsView(targetTabId);
 
-        mockBrowserAdapter.reset();
+        browserAdapterMock.reset();
 
         // remove details tab
         onTabRemoveCallback(100, null);
 
-        setupCreateDetailsViewPForAnyUrl(Times.never());
-
-        mockBrowserAdapter.setup(adapter => adapter.switchToTab(detailsViewTabId)).verifiable(Times.once());
+        setupCreateDetailsViewForAnyUrl(Times.never());
+        setupSwitchToTab(detailsViewTabId);
 
         // call show details second time
         await testSubject.showDetailsView(targetTabId);
 
-        mockBrowserAdapter.verifyAll();
+        browserAdapterMock.verifyAll();
     });
 
-    const setupCreateDetailsViewP = (targetTabId: number, resultingDetailsViewTabId: number) => {
-        return mockBrowserAdapter
+    const setupSwitchToTab = (tabId: number) => {
+        return browserAdapterMock.setup(adapter => adapter.switchToTab(tabId)).returns(() => Promise.resolve());
+    };
+
+    const setupCreateDetailsView = (targetTabId: number, resultingDetailsViewTabId: number) => {
+        return browserAdapterMock
             .setup(adapter => adapter.createTabInNewWindow('DetailsView/detailsView.html?tabId=' + targetTabId))
             .returns(() => Promise.resolve({ id: resultingDetailsViewTabId } as Tabs.Tab));
     };
 
-    const setupCreateDetailsViewPForAnyUrl = (times: Times) => {
-        mockBrowserAdapter
+    const setupCreateDetailsViewForAnyUrl = (times: Times) => {
+        browserAdapterMock
             .setup(adapter => adapter.createTabInNewWindow(It.isAny()))
             .returns(() => Promise.resolve({ id: -1 } as Tabs.Tab))
             .verifiable(times);
