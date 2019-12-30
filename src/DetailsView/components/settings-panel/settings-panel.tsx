@@ -22,6 +22,8 @@ export interface SettingsPanelProps {
     featureFlagData: FeatureFlagStoreData;
 }
 
+export const settingsPanelAutomationId = 'settings-panel';
+
 export const SettingsPanel = NamedFC<SettingsPanelProps>('SettingsPanel', props => {
     const { deps, userConfigStoreState, featureFlagData, isOpen } = props;
     const { detailsViewActionMessageCreator, settingsProvider } = deps;
@@ -30,6 +32,7 @@ export const SettingsPanel = NamedFC<SettingsPanelProps>('SettingsPanel', props 
         <GenericPanel
             isOpen={isOpen}
             className={styles.settingsPanel}
+            innerPanelAutomationId={settingsPanelAutomationId}
             onDismiss={detailsViewActionMessageCreator.closeSettingsPanel}
             closeButtonAriaLabel="Close settings panel"
             hasCloseButton={true}

@@ -4,6 +4,7 @@ import { resultSectionAutomationId } from 'common/components/cards/result-sectio
 import { ruleDetailsGroupAutomationId } from 'common/components/cards/rules-with-instances';
 import { IframeWarningContainerAutomationId } from 'DetailsView/components/iframe-warning';
 import { overviewHeadingAutomationId } from 'DetailsView/components/overview-content/overview-heading';
+import { settingsPanelAutomationId } from 'DetailsView/components/settings-panel/settings-panel';
 import { startOverAutomationId } from 'DetailsView/components/start-over-component-factory';
 import { failureCountAutomationId } from 'reports/components/outcome-chip';
 import { cardsRuleIdAutomationId, ruleDetailAutomationId } from 'reports/components/report-sections/minimal-rule-header';
@@ -39,7 +40,7 @@ export const overviewSelectors = {
 };
 
 export const settingsPanelSelectors = {
-    settingsPanel: '.settings-panel',
+    settingsPanel: getAutomationIdSelector(settingsPanelAutomationId),
     closeButton: 'button[title="Close settings panel"]',
     highContrastModeToggle: 'button#enable-high-contrast-mode',
     telemetryStateToggle: 'button#enable-telemetry',
