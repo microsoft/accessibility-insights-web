@@ -69,7 +69,7 @@ export class LaunchPanelHeader extends React.Component<
                     onClick={event =>
                         launchPanelHeaderClickHandler.onOpenContextualMenu(this, event)
                     }
-                    ariaLabel="Help and Feedback menu"
+                    ariaLabel="help menu"
                 />
                 {this.renderContextualMenu(this.state.isContextMenuVisible)}
             </div>

@@ -14,7 +14,7 @@ exports[`LaunchPanelHeaderTest render 1`] = `
       featureFlags={Object {}}
     />
     <CustomizedIconButton
-      ariaLabel="Help and Feedback menu"
+      ariaLabel="help menu"
       iconProps={
         Object {
           "iconName": "GlobalNavButton",
@@ -45,7 +45,7 @@ exports[`LaunchPanelHeaderTest render contextual menu renders with new assessmen
       }
     />
     <CustomizedIconButton
-      ariaLabel="Help and Feedback menu"
+      ariaLabel="help menu"
       iconProps={
         Object {
           "iconName": "GlobalNavButton",
@@ -159,7 +159,7 @@ exports[`LaunchPanelHeaderTest render contextual menu renders with new assessmen
                     }
                   />
                   <CustomizedIconButton
-                    ariaLabel="Help and Feedback menu"
+                    ariaLabel="help menu"
                     iconProps={
                       Object {
                         "iconName": "GlobalNavButton",
@@ -215,7 +215,7 @@ exports[`LaunchPanelHeaderTest render contextual menu renders without new assess
       featureFlags={Object {}}
     />
     <CustomizedIconButton
-      ariaLabel="Help and Feedback menu"
+      ariaLabel="help menu"
       iconProps={
         Object {
           "iconName": "GlobalNavButton",
@@ -315,7 +315,7 @@ exports[`LaunchPanelHeaderTest render contextual menu renders without new assess
                     featureFlags={Object {}}
                   />
                   <CustomizedIconButton
-                    ariaLabel="Help and Feedback menu"
+                    ariaLabel="help menu"
                     iconProps={
                       Object {
                         "iconName": "GlobalNavButton",
