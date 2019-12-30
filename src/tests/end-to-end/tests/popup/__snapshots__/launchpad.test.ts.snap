@@ -43,7 +43,7 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
             </div>
           </div>
           <button
-            aria-label="Help and Feedback menu"
+            aria-label="help menu"
             class="ms-Button ms-Button--icon root-000"
             data-is-focusable="true"
             id="feedback-collapse-menu-button"
