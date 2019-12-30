@@ -23,8 +23,8 @@ export const getNotificationMessage = (
     return `${baseMessage}${suffix}`;
 };
 
-const getMessageSuffix = (warninigs: ScanIncompleteWarningId[]): string => {
-    if (warninigs.indexOf('missing-required-cross-origin-permissions') >= 0) {
+const getMessageSuffix = (warnings: ScanIncompleteWarningId[]): string => {
+    if (warnings.indexOf('missing-required-cross-origin-permissions') >= 0) {
         return '\nThere are iframes in the target page. Use FastPass or Assessment to provide additional permissions.';
     }
 
