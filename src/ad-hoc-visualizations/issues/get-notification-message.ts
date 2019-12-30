@@ -18,14 +18,14 @@ export const getNotificationMessage = (
         baseMessage = 'Automated checks found issues.';
     }
 
-    const suffix = getMessageSuffix(warnings);
+    const prefix = getMessagePrefix(warnings);
 
-    return `${baseMessage}${suffix}`;
+    return `${prefix}${baseMessage}`;
 };
 
-const getMessageSuffix = (warnings: ScanIncompleteWarningId[]): string => {
+const getMessagePrefix = (warnings: ScanIncompleteWarningId[]): string => {
     if (warnings.indexOf('missing-required-cross-origin-permissions') >= 0) {
-        return '\nThere are iframes in the target page. Use FastPass or Assessment to provide additional permissions.';
+        return 'There are iframes in the target page. Use FastPass or Assessment to provide additional permissions.\n';
     }
 
     return '';

@@ -56,7 +56,7 @@ describe('Issues -> getNotificationMessage', () => {
             const message = testSubject(selectorMap, warnings);
 
             expect(message).toBe(
-                'No automated checks issues found.\nThere are iframes in the target page. Use FastPass or Assessment to provide additional permissions.',
+                'There are iframes in the target page. Use FastPass or Assessment to provide additional permissions.\nNo automated checks issues found.',
             );
         });
     });
@@ -83,7 +83,7 @@ describe('Issues -> getNotificationMessage', () => {
             const message = testSubject(testCase.selectorMap, testCase.warnings);
 
             expect(message).toBe(
-                'Automated checks found issues.\nThere are iframes in the target page. Use FastPass or Assessment to provide additional permissions.',
+                'There are iframes in the target page. Use FastPass or Assessment to provide additional permissions.\nAutomated checks found issues.',
             );
         });
 
