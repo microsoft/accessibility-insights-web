@@ -405,7 +405,7 @@ describe('ActionCreatorTest', () => {
         builder.verifyAll();
     });
 
-    test('registerCallback for onScanCompleted', () => {
+    test('registerCallback for onAdHocScanCompleted', () => {
         const key = 'Key should not matter';
         const actionName = 'scanCompleted';
         const message = VisualizationMessage.Common.ScanCompleted;
