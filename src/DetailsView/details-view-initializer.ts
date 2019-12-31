@@ -29,8 +29,8 @@ import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ReportNameGenerator } from 'reports/report-name-generator';
-
 import { A11YSelfValidator } from '../common/a11y-self-validator';
+import { AutoChecker } from '../common/auto-checker';
 import { AxeInfo } from '../common/axe-info';
 import { provideBlob } from '../common/blob-provider';
 import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
@@ -63,7 +63,6 @@ import { UserConfigMessageCreator } from '../common/message-creators/user-config
 import { VisualizationActionMessageCreator } from '../common/message-creators/visualization-action-message-creator';
 import { NavigatorUtils } from '../common/navigator-utils';
 import { getCardViewData } from '../common/rule-based-view-model-provider';
-import { AutoChecker } from '../common/self-validator';
 import { StoreProxy } from '../common/store-proxy';
 import { BaseClientStoresHub } from '../common/stores/base-client-stores-hub';
 import { StoreNames } from '../common/stores/store-names';
