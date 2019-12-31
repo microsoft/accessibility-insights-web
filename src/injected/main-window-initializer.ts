@@ -19,7 +19,6 @@ import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-
 import { TargetPageVisualizationUpdater } from 'injected/target-page-visualization-updater';
 import { visualizationNeedsUpdate } from 'injected/visualization-needs-update';
 import { VisualizationStateChangeHandler } from 'injected/visualization-state-change-handler';
-
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
@@ -38,8 +37,8 @@ import { StoreProxy } from '../common/store-proxy';
 import { StoreNames } from '../common/stores/store-names';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
-import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { DevToolStoreData } from '../common/types/store-data/dev-tool-store-data';
+import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { InspectStoreData } from '../common/types/store-data/inspect-store-data';
 import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
