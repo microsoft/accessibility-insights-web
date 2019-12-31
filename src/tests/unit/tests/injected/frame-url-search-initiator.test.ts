@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { DevToolStoreData } from '../../../../common/types/store-data/idev-tool-state';
+import { DevToolStoreData } from '../../../../common/types/store-data/dev-tool-store-data';
 import { FrameUrlFinder, TargetMessage } from '../../../../injected/frame-url-finder';
 import { FrameUrlSearchInitiator } from '../../../../injected/frame-url-search-initiator';
 import { StoreMock } from '../../mock-helpers/store-mock';

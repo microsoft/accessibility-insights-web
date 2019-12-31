@@ -3,7 +3,7 @@
 import { BaseStore } from '../common/base-store';
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
 import { IssueFilingActionMessageCreator } from '../common/message-creators/issue-filing-action-message-creator';
-import { DevToolStoreData } from '../common/types/store-data/idev-tool-state';
+import { DevToolStoreData } from '../common/types/store-data/dev-tool-store-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 import { EnvironmentInfoProvider } from './../common/environment-info-provider';
 import { UserConfigMessageCreator } from './../common/message-creators/user-config-message-creator';

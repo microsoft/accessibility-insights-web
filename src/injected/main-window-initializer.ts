@@ -39,7 +39,7 @@ import { StoreNames } from '../common/stores/store-names';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
-import { DevToolStoreData } from '../common/types/store-data/idev-tool-state';
+import { DevToolStoreData } from '../common/types/store-data/dev-tool-store-data';
 import { InspectStoreData } from '../common/types/store-data/inspect-store-data';
 import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';

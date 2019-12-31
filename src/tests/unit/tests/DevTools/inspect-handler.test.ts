@@ -3,7 +3,7 @@
 import { IMock, It, Mock } from 'typemoq';
 
 import { ConnectionNames } from '../../../../common/constants/connection-names';
-import { DevToolStoreData } from '../../../../common/types/store-data/idev-tool-state';
+import { DevToolStoreData } from '../../../../common/types/store-data/dev-tool-store-data';
 import { InspectHandler } from '../../../../Devtools/inspect-handler';
 import { DevToolsChromeAdapterMock } from '../../mock-helpers/dev-tools-chrome-adapter-mock';
 import { StoreMock } from '../../mock-helpers/store-mock';

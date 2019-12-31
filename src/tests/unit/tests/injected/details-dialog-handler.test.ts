@@ -5,7 +5,7 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { BaseStore } from '../../../../common/base-store';
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
 import { DevToolActionMessageCreator } from '../../../../common/message-creators/dev-tool-action-message-creator';
-import { DevToolStoreData } from '../../../../common/types/store-data/idev-tool-state';
+import { DevToolStoreData } from '../../../../common/types/store-data/dev-tool-store-data';
 import { DetailsDialog, DetailsDialogState } from '../../../../injected/components/details-dialog';
 import { DetailsDialogHandler } from '../../../../injected/details-dialog-handler';
 import { DictionaryStringTo } from '../../../../types/common-types';

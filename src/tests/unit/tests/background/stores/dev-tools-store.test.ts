@@ -3,7 +3,7 @@
 import { DevToolActions } from 'background/actions/dev-tools-actions';
 import { DevToolStore } from 'background/stores/dev-tools-store';
 import { StoreNames } from '../../../../../common/stores/store-names';
-import { DevToolStoreData } from '../../../../../common/types/store-data/idev-tool-state';
+import { DevToolStoreData } from '../../../../../common/types/store-data/dev-tool-store-data';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
 
 describe('DevToolsStoreTest', () => {
