@@ -215,16 +215,17 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         const config = this.assessmentsProvider
             .forType(payload.test)
             .getVisualizationConfiguration();
+
         const assessmentData = config.getAssessmentData(this.state);
-        const instances = assessmentData.manualTestStepResultMap[payload.requirement].instances;
-        for (let instanceIndex = 0; instanceIndex < instances.length; instanceIndex++) {
-            const instance = instances[instanceIndex];
-            if (instance.id === payload.id) {
-                instance.description = payload.instanceData.failureDescription;
-                instance.html = payload.instanceData.snippet;
-                instance.selector = payload.instanceData.path;
-                break;
-            }
+        const requirementInstances =
+            assessmentData.manualTestStepResultMap[payload.requirement].instances;
+
+        const instanceToEdit = requirementInstances.find(instance => instance.id === payload.id);
+
+        if (instanceToEdit) {
+            instanceToEdit.description = payload.instanceData.failureDescription;
+            instanceToEdit.html = payload.instanceData.snippet;
+            instanceToEdit.selector = payload.instanceData.path;
         }
 
         this.emitChanged();
