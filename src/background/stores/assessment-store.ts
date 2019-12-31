@@ -235,13 +235,13 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
             .forType(payload.test)
             .getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
-        assessmentData.manualTestStepResultMap[
-            payload.requirement
-        ].instances = assessmentData.manualTestStepResultMap[payload.requirement].instances.filter(
-            instance => {
-                return instance.id !== payload.id;
-            },
+
+        const requirement = assessmentData.manualTestStepResultMap[payload.requirement];
+
+        requirement.instances = requirement.instances.filter(
+            instance => instance.id !== payload.id,
         );
+
         this.updateManualTestStepStatus(assessmentData, payload.requirement, payload.test);
 
         this.emitChanged();

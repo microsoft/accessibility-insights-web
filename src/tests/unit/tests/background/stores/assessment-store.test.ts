@@ -523,19 +523,21 @@ describe('AssessmentStoreTest', () => {
 
         const finalState = getStateWithAssessment(assessmentData);
 
-        assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
-
-        assessmentsProviderMock.setup(apm => apm.getStepMap(assessmentType)).returns(() => assessmentsProvider.getStepMap(assessmentType));
+        assessmentsProviderMock.setup(provider => provider.all()).returns(() => assessmentsProvider.all());
 
         assessmentsProviderMock
-            .setup(apm => apm.getStep(assessmentType, requirementKey))
+            .setup(provider => provider.getStepMap(assessmentType))
+            .returns(() => assessmentsProvider.getStepMap(assessmentType));
+
+        assessmentsProviderMock
+            .setup(provider => provider.getStep(assessmentType, requirementKey))
             .returns(() => assessmentsProvider.getStep(assessmentType, requirementKey));
 
-        assessmentsProviderMock.setup(apm => apm.forType(payload.testType)).returns(() => assessmentMock.object);
+        assessmentsProviderMock.setup(provider => provider.forType(payload.testType)).returns(() => assessmentMock.object);
 
         assessmentMock.setup(am => am.getVisualizationConfiguration()).returns(() => configStub);
 
-        getInstanceIdentiferGeneratorMock.setup(giim => giim(requirementKey)).returns(() => instanceIdentifierGeneratorStub);
+        getInstanceIdentiferGeneratorMock.setup(getter => getter(requirementKey)).returns(() => instanceIdentifierGeneratorStub);
 
         assessmentDataConverterMock
             .setup(a =>
