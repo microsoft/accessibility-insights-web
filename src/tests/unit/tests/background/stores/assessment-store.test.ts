@@ -36,7 +36,7 @@ import {
 import { VisualizationType } from 'common/types/visualization-type';
 import { ScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from 'injected/analyzers/analyzer';
 import { TabStopEvent } from 'injected/tab-stops-listener';
-import { cloneDeep } from 'lodash';
+import { cloneDeep, isFunction } from 'lodash';
 import { ScanResults } from 'scanner/iruleresults';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
@@ -86,7 +86,7 @@ describe('AssessmentStoreTest', () => {
             .returns(step => getDefaultManualTestStepResult(step));
 
         indexDBInstanceMock = Mock.ofType<IndexedDBAPI>(undefined, MockBehavior.Strict);
-        initialAssessmentStoreDataGeneratorMock = Mock.ofType(InitialAssessmentStoreDataGenerator);
+        initialAssessmentStoreDataGeneratorMock = Mock.ofType<InitialAssessmentStoreDataGenerator>();
     });
 
     afterEach(() => {
@@ -408,27 +408,20 @@ describe('AssessmentStoreTest', () => {
             url,
             title,
         };
-        let onReject;
-        browserMock
-            .setup(b => b.getTab(tabId, It.isAny(), It.isAny()))
-            .returns((id, cb, reject) => {
-                onReject = reject;
-                cb(tab);
-            })
-            .verifiable();
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
+        browserMock.setup(adapter => adapter.getTab(tabId, It.is(isFunction), It.is(isFunction))).callback((id, resolve) => resolve(tab));
+
         const initialState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object)
             .withTargetTab(oldTabId, null, null, true)
             .build();
+
         const finalState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object)
             .withTargetTab(tabId, url, title, false)
             .build();
-        setupDataGeneratorMock(null, getDefaultState());
 
-        createStoreTesterForAssessmentActions('resetAllAssessmentsData')
+        createStoreTesterForAssessmentActions('continuePreviousAssessment')
             .withActionParam(tabId)
             .testListenerToBeCalledOnce(initialState, finalState);
-        expect(() => onReject()).toThrowErrorMatchingSnapshot();
     });
 
     test('onScanCompleted', () => {
