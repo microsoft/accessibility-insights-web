@@ -39,7 +39,7 @@ import { DiagnosticViewToggleDeps } from './components/diagnostic-view-toggle';
 import { DiagnosticViewToggleFactory } from './components/diagnostic-view-toggle-factory';
 import { PopupViewControllerState } from './components/popup-view';
 import { DiagnosticViewClickHandler } from './handlers/diagnostic-view-toggle-click-handler';
-import { IPopupHandlers } from './handlers/ipopup-handlers';
+import { PopupHandlers } from './handlers/ipopup-handlers';
 import { LaunchPanelHeaderClickHandler } from './handlers/launch-panel-header-click-handler';
 import { PopupViewControllerHandler } from './handlers/popup-view-controller-handler';
 import { IncompatibleBrowserRenderer } from './incompatible-browser-renderer';
@@ -175,7 +175,7 @@ export class PopupInitializer {
         );
         const launchPanelHeaderClickHandler = new LaunchPanelHeaderClickHandler();
 
-        const popupHandlers: IPopupHandlers = {
+        const popupHandlers: PopupHandlers = {
             diagnosticViewClickHandler,
             popupViewControllerHandler,
             launchPanelHeaderClickHandler,

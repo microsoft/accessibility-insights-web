@@ -4,7 +4,7 @@ import { DiagnosticViewClickHandler } from './diagnostic-view-toggle-click-handl
 import { LaunchPanelHeaderClickHandler } from './feedback-menu-click-handler';
 import { PopupViewControllerHandler } from './popup-view-controller-handler';
 
-export interface IPopupHandlers {
+export interface PopupHandlers {
     diagnosticViewClickHandler: DiagnosticViewClickHandler;
     popupViewControllerHandler: PopupViewControllerHandler;
     launchPanelHeaderClickHandler: LaunchPanelHeaderClickHandler;

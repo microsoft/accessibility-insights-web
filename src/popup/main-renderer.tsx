@@ -9,7 +9,7 @@ import { WithStoreSubscriptionDeps } from '../common/components/with-store-subsc
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { DiagnosticViewToggleFactory } from './components/diagnostic-view-toggle-factory';
 import { PopupViewControllerDeps, PopupViewWithStoreSubscription } from './components/popup-view';
-import { IPopupHandlers } from './handlers/ipopup-handlers';
+import { PopupHandlers } from './handlers/ipopup-handlers';
 import { LaunchPadRowConfigurationFactory } from './launch-pad-row-configuration-factory';
 
 export type MainRendererDeps = PopupViewControllerDeps &
@@ -19,7 +19,7 @@ export type MainRendererDeps = PopupViewControllerDeps &
 export class MainRenderer {
     constructor(
         private readonly deps: MainRendererDeps,
-        private readonly popupHandlers: IPopupHandlers,
+        private readonly popupHandlers: PopupHandlers,
         private readonly renderer: typeof ReactDOM.render,
         private readonly dom: Document,
         private readonly popupWindow: Window,
