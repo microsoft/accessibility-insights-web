@@ -2,30 +2,29 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
-import { forEach, isEmpty } from 'lodash';
-
-import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
-import { IndexedDBAPI } from '../../common/indexedDB/indexedDB';
-import { StoreNames } from '../../common/stores/store-names';
-import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
-import { ManualTestStatus } from '../../common/types/manual-test-status';
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
+import { StoreNames } from 'common/stores/store-names';
+import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { ManualTestStatus } from 'common/types/manual-test-status';
 import {
     AssessmentData,
     AssessmentStoreData,
     GeneratedAssessmentInstance,
     TestStepResult,
     UserCapturedInstance,
-} from '../../common/types/store-data/assessment-result-data';
+} from 'common/types/store-data/assessment-result-data';
+import { VisualizationType } from 'common/types/visualization-type';
 import {
     ScanBasePayload,
     ScanCompletedPayload,
     ScanUpdatePayload,
-} from '../../injected/analyzers/analyzer';
-import { DictionaryStringTo } from '../../types/common-types';
+} from 'injected/analyzers/analyzer';
+import { forEach, isEmpty } from 'lodash';
+import { DictionaryStringTo } from 'types/common-types';
 import { AddResultDescriptionPayload, SelectRequirementPayload } from '../actions/action-payloads';
 import { AssessmentDataConverter } from '../assessment-data-converter';
 import { InitialAssessmentStoreDataGenerator } from '../initial-assessment-store-data-generator';
-import { VisualizationType } from './../../common/types/visualization-type';
 import {
     AddFailureInstancePayload,
     AssessmentActionInstancePayload,

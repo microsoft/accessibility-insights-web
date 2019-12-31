@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import {
@@ -19,15 +18,13 @@ import { AssessmentDataConverter } from 'background/assessment-data-converter';
 import { AssessmentDataRemover } from 'background/assessment-data-remover';
 import { InitialAssessmentStoreDataGenerator } from 'background/initial-assessment-store-data-generator';
 import { AssessmentStore } from 'background/stores/assessment-store';
-import { cloneDeep } from 'lodash';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
-import { AssessmentVisualizationConfiguration } from '../../../../../common/configs/assessment-visualization-configuration';
-import { IndexedDBAPI } from '../../../../../common/indexedDB/indexedDB';
-import { Tab } from '../../../../../common/itab';
-import { StoreNames } from '../../../../../common/stores/store-names';
-import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
-import { ManualTestStatus, ManualTestStatusData, TestStepData } from '../../../../../common/types/manual-test-status';
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { AssessmentVisualizationConfiguration } from 'common/configs/assessment-visualization-configuration';
+import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
+import { Tab } from 'common/itab';
+import { StoreNames } from 'common/stores/store-names';
+import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { ManualTestStatus, ManualTestStatusData, TestStepData } from 'common/types/manual-test-status';
 import {
     AssessmentData,
     AssessmentStoreData,
@@ -35,12 +32,14 @@ import {
     ManualTestStepResult,
     PersistedTabInfo,
     TestStepResult,
-} from '../../../../../common/types/store-data/assessment-result-data';
-import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { ScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from '../../../../../injected/analyzers/analyzer';
-import { TabStopEvent } from '../../../../../injected/tab-stops-listener';
-import { ScanResults } from '../../../../../scanner/iruleresults';
-import { DictionaryStringTo } from '../../../../../types/common-types';
+} from 'common/types/store-data/assessment-result-data';
+import { VisualizationType } from 'common/types/visualization-type';
+import { ScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from 'injected/analyzers/analyzer';
+import { TabStopEvent } from 'injected/tab-stops-listener';
+import { cloneDeep } from 'lodash';
+import { ScanResults } from 'scanner/iruleresults';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { DictionaryStringTo } from 'types/common-types';
 import { AssessmentDataBuilder } from '../../../common/assessment-data-builder';
 import { AssessmentsStoreDataBuilder } from '../../../common/assessment-store-data-builder';
 import { AssessmentStoreTester } from '../../../common/assessment-store-tester';
@@ -76,23 +75,17 @@ describe('AssessmentStoreTest', () => {
         } as AssessmentVisualizationConfiguration;
 
         assessmentsProvider = CreateTestAssessmentProvider();
-        assessmentsProviderMock = Mock.ofType(AssessmentsProviderImpl, MockBehavior.Strict);
+        assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(undefined, MockBehavior.Strict);
         assessmentMock = Mock.ofInstance({
             getVisualizationConfiguration: () => {
                 return null;
             },
         } as Assessment);
         assessmentDataConverterMock
-            .setup(adcm => adcm.getNewManualTestStepResult(It.isAny()))
+            .setup(dataConverter => dataConverter.getNewManualTestStepResult(It.isAny()))
             .returns(step => getDefaultManualTestStepResult(step));
 
-        indexDBInstanceMock = Mock.ofInstance(
-            {
-                setItem: (key, value) => null,
-                getItem: key => null,
-            } as IndexedDBAPI,
-            MockBehavior.Strict,
-        );
+        indexDBInstanceMock = Mock.ofType<IndexedDBAPI>(undefined, MockBehavior.Strict);
         initialAssessmentStoreDataGeneratorMock = Mock.ofType(InitialAssessmentStoreDataGenerator);
     });
 
@@ -472,13 +465,13 @@ describe('AssessmentStoreTest', () => {
 
         const finalState = getStateWithAssessment(assessmentData);
 
-        assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
+        assessmentsProviderMock.setup(provider => provider.all()).returns(() => assessmentsProvider.all());
 
-        assessmentsProviderMock.setup(apm => apm.getStepMap(assessmentType)).returns(() => stepMapStub);
+        assessmentsProviderMock.setup(provider => provider.getStepMap(assessmentType)).returns(() => stepMapStub);
 
-        assessmentsProviderMock.setup(apm => apm.getStep(assessmentType, 'assessment-1-step-1')).returns(() => stepConfig);
+        assessmentsProviderMock.setup(provider => provider.getStep(assessmentType, 'assessment-1-step-1')).returns(() => stepConfig);
 
-        assessmentsProviderMock.setup(apm => apm.forType(payload.testType)).returns(() => assessmentMock.object);
+        assessmentsProviderMock.setup(provider => provider.forType(payload.testType)).returns(() => assessmentMock.object);
 
         assessmentMock.setup(am => am.getVisualizationConfiguration()).returns(() => configStub);
 
