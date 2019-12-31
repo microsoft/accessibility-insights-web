@@ -3,7 +3,7 @@
 import { BaseStore } from '../common/base-store';
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
 import { IssueFilingActionMessageCreator } from '../common/message-creators/issue-filing-action-message-creator';
-import { DevToolState } from '../common/types/store-data/idev-tool-state';
+import { DevToolStoreData } from '../common/types/store-data/idev-tool-state';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 import { EnvironmentInfoProvider } from './../common/environment-info-provider';
 import { UserConfigMessageCreator } from './../common/message-creators/user-config-message-creator';
@@ -12,7 +12,7 @@ import { TargetPageActionMessageCreator } from './target-page-action-message-cre
 
 export class MainWindowContext {
     public constructor(
-        private devToolStore: BaseStore<DevToolState>,
+        private devToolStore: BaseStore<DevToolStoreData>,
         private userConfigStore: BaseStore<UserConfigurationStoreData>,
         private devToolActionMessageCreator: DevToolActionMessageCreator,
         private targetPageActionMessageCreator: TargetPageActionMessageCreator,
@@ -22,7 +22,7 @@ export class MainWindowContext {
         private issueFilingServiceProvider: IssueFilingServiceProvider,
     ) {}
 
-    public getDevToolStore(): BaseStore<DevToolState> {
+    public getDevToolStore(): BaseStore<DevToolStoreData> {
         return this.devToolStore;
     }
 
@@ -55,7 +55,7 @@ export class MainWindowContext {
     }
 
     public static initialize(
-        devToolStore: BaseStore<DevToolState>,
+        devToolStore: BaseStore<DevToolStoreData>,
         userConfigStore: BaseStore<UserConfigurationStoreData>,
         devToolActionMessageCreator: DevToolActionMessageCreator,
         targetPageActionMessageCreator: TargetPageActionMessageCreator,

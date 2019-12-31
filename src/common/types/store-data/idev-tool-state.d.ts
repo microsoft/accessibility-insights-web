@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-export interface DevToolState {
+export interface DevToolStoreData {
     isOpen: boolean;
     inspectElement?: string[];
     frameUrl?: string;

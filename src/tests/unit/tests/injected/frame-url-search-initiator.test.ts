@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { DevToolState } from '../../../../common/types/store-data/idev-tool-state';
+import { DevToolStoreData } from '../../../../common/types/store-data/idev-tool-state';
 import { FrameUrlFinder, TargetMessage } from '../../../../injected/frame-url-finder';
 import { FrameUrlSearchInitiator } from '../../../../injected/frame-url-search-initiator';
 import { StoreMock } from '../../mock-helpers/store-mock';
@@ -13,10 +13,10 @@ describe('FrameUrlSearchInitiatorTest', () => {
     });
 
     test('listenToStore: state implies to initiate the search for frame url', () => {
-        const devToolStoreMock = new StoreMock<DevToolState>();
+        const devToolStoreMock = new StoreMock<DevToolStoreData>();
         const frameUrlFinderMock = Mock.ofInstance({ processRequest: (message: TargetMessage) => {} }, MockBehavior.Strict);
         const testSubject = new FrameUrlSearchInitiator(devToolStoreMock.getObject(), frameUrlFinderMock.object as FrameUrlFinder);
-        const stateStub: DevToolState = {
+        const stateStub: DevToolStoreData = {
             isOpen: null,
             inspectElement: ['abc', 'def'],
             inspectElementRequestId: 0,
@@ -35,10 +35,10 @@ describe('FrameUrlSearchInitiatorTest', () => {
     });
 
     test('listenToStore: frame url is already set; no need to find frame url', () => {
-        const devToolStoreMock = new StoreMock<DevToolState>();
+        const devToolStoreMock = new StoreMock<DevToolStoreData>();
         const frameUrlFinderMock = Mock.ofInstance({ processRequest: (message: TargetMessage) => {} }, MockBehavior.Strict);
         const testSubject = new FrameUrlSearchInitiator(devToolStoreMock.getObject(), frameUrlFinderMock.object as FrameUrlFinder);
-        const stateStub: DevToolState = {
+        const stateStub: DevToolStoreData = {
             isOpen: null,
             inspectElement: ['abc', 'def'],
             frameUrl: 'test',
@@ -58,10 +58,10 @@ describe('FrameUrlSearchInitiatorTest', () => {
     });
 
     test('listenToStore: element is at root; no need for finding frame url', () => {
-        const devToolStoreMock = new StoreMock<DevToolState>();
+        const devToolStoreMock = new StoreMock<DevToolStoreData>();
         const frameUrlFinderMock = Mock.ofInstance({ processRequest: (message: TargetMessage) => {} }, MockBehavior.Strict);
         const testSubject = new FrameUrlSearchInitiator(devToolStoreMock.getObject(), frameUrlFinderMock.object as FrameUrlFinder);
-        const stateStub: DevToolState = {
+        const stateStub: DevToolStoreData = {
             isOpen: null,
             inspectElement: ['abc'],
             inspectElementRequestId: 0,

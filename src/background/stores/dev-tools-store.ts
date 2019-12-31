@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { StoreNames } from '../../common/stores/store-names';
-import { DevToolState } from '../../common/types/store-data/idev-tool-state';
+import { DevToolStoreData } from '../../common/types/store-data/idev-tool-state';
 import { DevToolActions } from '../actions/dev-tools-actions';
 import { BaseStoreImpl } from './base-store-impl';
 
-export class DevToolStore extends BaseStoreImpl<DevToolState> {
+export class DevToolStore extends BaseStoreImpl<DevToolStoreData> {
     private devToolActions: DevToolActions;
 
     constructor(devToolActions: DevToolActions) {
@@ -14,8 +14,8 @@ export class DevToolStore extends BaseStoreImpl<DevToolState> {
         this.devToolActions = devToolActions;
     }
 
-    public getDefaultState(): DevToolState {
-        const defaultValues: DevToolState = {
+    public getDefaultState(): DevToolStoreData {
+        const defaultValues: DevToolStoreData = {
             isOpen: false,
             inspectElementRequestId: 0,
         };

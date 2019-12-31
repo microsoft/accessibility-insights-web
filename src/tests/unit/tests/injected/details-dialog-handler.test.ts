@@ -5,7 +5,7 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { BaseStore } from '../../../../common/base-store';
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
 import { DevToolActionMessageCreator } from '../../../../common/message-creators/dev-tool-action-message-creator';
-import { DevToolState } from '../../../../common/types/store-data/idev-tool-state';
+import { DevToolStoreData } from '../../../../common/types/store-data/idev-tool-state';
 import { DetailsDialog, DetailsDialogState } from '../../../../injected/components/details-dialog';
 import { DetailsDialogHandler } from '../../../../injected/details-dialog-handler';
 import { DictionaryStringTo } from '../../../../types/common-types';
@@ -90,7 +90,7 @@ describe('DetailsDialogHandlerTest', () => {
     });
 
     test('inspectButtonClickHandler when the devtools are opened', () => {
-        const devToolStoreMock = Mock.ofType<BaseStore<DevToolState>>(undefined, MockBehavior.Strict);
+        const devToolStoreMock = Mock.ofType<BaseStore<DevToolStoreData>>(undefined, MockBehavior.Strict);
         const devToolActionMessageCreatorMock = Mock.ofType<DevToolActionMessageCreator>(undefined, MockBehavior.Strict);
         const eventFactory = new EventStubFactory();
         const event = eventFactory.createMouseClickEvent();
@@ -132,7 +132,7 @@ describe('DetailsDialogHandlerTest', () => {
     });
 
     test('inspectButtonClickHandler when the devtools are not opened', () => {
-        const devToolStoreMock = Mock.ofType<BaseStore<DevToolState>>(undefined, MockBehavior.Strict);
+        const devToolStoreMock = Mock.ofType<BaseStore<DevToolStoreData>>(undefined, MockBehavior.Strict);
         const devToolActionMessageCreatorMock = Mock.ofType<DevToolActionMessageCreator>(undefined, MockBehavior.Strict);
         const eventFactory = new EventStubFactory();
         const event = eventFactory.createMouseClickEvent();
@@ -142,7 +142,7 @@ describe('DetailsDialogHandlerTest', () => {
             .returns(() => {
                 return {
                     isOpen: false,
-                } as DevToolState;
+                } as DevToolStoreData;
             })
             .verifiable(Times.once());
 
@@ -405,7 +405,7 @@ describe('DetailsDialogHandlerTest', () => {
     });
 
     test('componentDidMount adds listener if clickable objects are available', () => {
-        const devToolStoreMock = Mock.ofType<BaseStore<DevToolState>>(undefined, MockBehavior.Strict);
+        const devToolStoreMock = Mock.ofType<BaseStore<DevToolStoreData>>(undefined, MockBehavior.Strict);
         const userConfigStoreMock = Mock.ofType<BaseStore<UserConfigurationStoreData>>(undefined, MockBehavior.Strict);
         const userConfigStoreData: UserConfigurationStoreData = {
             bugServicePropertiesMap: {
@@ -528,7 +528,7 @@ describe('DetailsDialogHandlerTest', () => {
     });
 
     test('componentWillUnmount removes listener', () => {
-        const devToolStoreMock = Mock.ofType<BaseStore<DevToolState>>(undefined, MockBehavior.Strict);
+        const devToolStoreMock = Mock.ofType<BaseStore<DevToolStoreData>>(undefined, MockBehavior.Strict);
         const userConfigStoreMock = Mock.ofType<BaseStore<UserConfigurationStoreData>>(undefined, MockBehavior.Strict);
 
         devToolStoreMock.setup(store => store.removeChangedListener(It.isAny())).verifiable(Times.once());
@@ -648,7 +648,7 @@ describe('DetailsDialogHandlerTest', () => {
     }
 
     function testOnDevToolChangeSetsCanInspectToIsOpen(isOpen: boolean): void {
-        const devToolStoreMock = Mock.ofType<BaseStore<DevToolState>>(undefined, MockBehavior.Strict);
+        const devToolStoreMock = Mock.ofType<BaseStore<DevToolStoreData>>(undefined, MockBehavior.Strict);
 
         devToolStoreMock
             .setup(store => store.getState())
@@ -708,7 +708,7 @@ describe('DetailsDialogHandlerTest', () => {
     }
 
     function testCanInspectEqualsIsOpen(isOpen: boolean): void {
-        const devToolStoreMock = Mock.ofType<BaseStore<DevToolState>>(undefined, MockBehavior.Strict);
+        const devToolStoreMock = Mock.ofType<BaseStore<DevToolStoreData>>(undefined, MockBehavior.Strict);
 
         devToolStoreMock
             .setup(store => store.getState())

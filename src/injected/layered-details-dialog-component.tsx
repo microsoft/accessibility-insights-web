@@ -8,7 +8,7 @@ import { BaseStore } from '../common/base-store';
 import { FeatureFlags } from '../common/feature-flags';
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
 import { NamedFC } from '../common/react/named-fc';
-import { DevToolState } from '../common/types/store-data/idev-tool-state';
+import { DevToolStoreData } from '../common/types/store-data/idev-tool-state';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 import { DictionaryStringTo } from '../types/common-types';
 import { DetailsDialog, DetailsDialogDeps } from './components/details-dialog';
@@ -26,7 +26,7 @@ export interface LayeredDetailsDialogProps {
     failedRules: DictionaryStringTo<DecoratedAxeNodeResult>;
     target: string[];
     dialogHandler: DetailsDialogHandler;
-    devToolStore: BaseStore<DevToolState>;
+    devToolStore: BaseStore<DevToolStoreData>;
     devToolActionMessageCreator: DevToolActionMessageCreator;
     featureFlagStoreData: DictionaryStringTo<boolean>;
     devToolsShortcut: string;

@@ -14,7 +14,7 @@ import { NewTabLink } from '../../common/components/new-tab-link';
 import { FeatureFlags } from '../../common/feature-flags';
 import { CancelIcon } from '../../common/icons/cancel-icon';
 import { DevToolActionMessageCreator } from '../../common/message-creators/dev-tool-action-message-creator';
-import { DevToolState } from '../../common/types/store-data/idev-tool-state';
+import { DevToolStoreData } from '../../common/types/store-data/idev-tool-state';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { DictionaryStringTo } from '../../types/common-types';
 import { DetailsDialogHandler } from '../details-dialog-handler';
@@ -42,7 +42,7 @@ export interface DetailsDialogProps {
     failedRules: DictionaryStringTo<DecoratedAxeNodeResult>;
     target: string[];
     dialogHandler: DetailsDialogHandler;
-    devToolStore: BaseStore<DevToolState>;
+    devToolStore: BaseStore<DevToolStoreData>;
     devToolActionMessageCreator: DevToolActionMessageCreator;
     featureFlagStoreData: DictionaryStringTo<boolean>;
     devToolsShortcut: string;

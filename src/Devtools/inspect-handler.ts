@@ -4,13 +4,13 @@ import { DevToolsChromeAdapter } from 'background/dev-tools-chrome-adapter';
 import { BaseStore } from '../common/base-store';
 import { ConnectionNames } from '../common/constants/connection-names';
 import { DevToolsOpenMessage } from '../common/types/dev-tools-open-message';
-import { DevToolState } from '../common/types/store-data/idev-tool-state';
+import { DevToolStoreData } from '../common/types/store-data/idev-tool-state';
 
 export class InspectHandler {
-    private devToolsStore: BaseStore<DevToolState>;
+    private devToolsStore: BaseStore<DevToolStoreData>;
     private devToolsChromeAdapter: DevToolsChromeAdapter;
 
-    constructor(devToolsStore: BaseStore<DevToolState>, devToolsChromeAdapter: DevToolsChromeAdapter) {
+    constructor(devToolsStore: BaseStore<DevToolStoreData>, devToolsChromeAdapter: DevToolsChromeAdapter) {
         this.devToolsStore = devToolsStore;
         this.devToolsChromeAdapter = devToolsChromeAdapter;
     }
