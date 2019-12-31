@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NewTabLink } from 'common/components/new-tab-link';
-import { CustomWidgetPropertyBag } from 'common/types/property-bag/icustom-widgets';
+import { CustomWidgetPropertyBag } from 'common/types/property-bag/custom-widgets-property-bag';
 import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import * as content from 'content/test/custom-widgets/instructions';
