@@ -4,6 +4,7 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import {
     AddFailureInstancePayload,
+    AddResultDescriptionPayload,
     ChangeInstanceSelectionPayload,
     ChangeInstanceStatusPayload,
     ChangeRequirementStatusPayload,
@@ -12,7 +13,6 @@ import {
     SelectRequirementPayload,
     ToggleActionPayload,
     UpdateSelectedDetailsViewPayload,
-    AddResultDescriptionPayload,
 } from 'background/actions/action-payloads';
 import { AssessmentActions } from 'background/actions/assessment-actions';
 import { AssessmentDataConverter } from 'background/assessment-data-converter';
@@ -236,7 +236,7 @@ describe('AssessmentStoreTest', () => {
         } as AssessmentVisualizationConfiguration;
 
         getVisualizationConfigurationMock
-            .setup(gvcm => gvcm())
+            .setup(configGetter => configGetter())
             .returns(() => {
                 return visualizationConfigStub;
             });
@@ -283,7 +283,7 @@ describe('AssessmentStoreTest', () => {
         } as AssessmentVisualizationConfiguration;
 
         getVisualizationConfigurationMock
-            .setup(gvcm => gvcm())
+            .setup(configGetter => configGetter())
             .returns(() => {
                 return visualizationConfigStub;
             });
@@ -333,7 +333,7 @@ describe('AssessmentStoreTest', () => {
         } as AssessmentVisualizationConfiguration;
 
         getVisualizationConfigurationMock
-            .setup(gvcm => gvcm())
+            .setup(configGetter => configGetter())
             .returns(() => {
                 return visualizationConfigStub;
             });
@@ -469,7 +469,7 @@ describe('AssessmentStoreTest', () => {
 
         assessmentMock.setup(am => am.getVisualizationConfiguration()).returns(() => configStub);
 
-        getInstanceIdentiferGeneratorMock.setup(giim => giim(requirementKey)).returns(() => instanceIdentifierGeneratorStub);
+        getInstanceIdentiferGeneratorMock.setup(idGetter => idGetter(requirementKey)).returns(() => instanceIdentifierGeneratorStub);
 
         assessmentDataConverterMock
             .setup(a =>
@@ -1396,7 +1396,7 @@ describe('AssessmentStoreTest', () => {
         assessmentsProviderMock.verifyAll();
     });
 
-    test('verify the MaunalTestStatus Priorities', () => {
+    test('verify the ManualTestStatus Priorities', () => {
         expect(ManualTestStatus.PASS < ManualTestStatus.UNKNOWN).toBeTruthy();
         expect(ManualTestStatus.UNKNOWN < ManualTestStatus.FAIL).toBeTruthy();
     });
