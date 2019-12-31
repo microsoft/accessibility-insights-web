@@ -1,11 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NamedFC } from 'common/react/named-fc';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import * as React from 'react';
-import { NamedFC } from '../../../common/react/named-fc';
-import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
-import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import { DetailsViewActionMessageCreator } from '../../actions/details-view-action-message-creator';
 import { GenericPanel } from '../generic-panel';
+import * as styles from './settings-panel.scss';
 import { SettingsDeps } from './settings/settings-props';
 import { SettingsComponent, SettingsProvider } from './settings/settings-provider';
 
@@ -21,6 +22,8 @@ export interface SettingsPanelProps {
     featureFlagData: FeatureFlagStoreData;
 }
 
+export const settingsPanelAutomationId = 'settings-panel';
+
 export const SettingsPanel = NamedFC<SettingsPanelProps>('SettingsPanel', props => {
     const { deps, userConfigStoreState, featureFlagData, isOpen } = props;
     const { detailsViewActionMessageCreator, settingsProvider } = deps;
@@ -28,7 +31,8 @@ export const SettingsPanel = NamedFC<SettingsPanelProps>('SettingsPanel', props 
     return (
         <GenericPanel
             isOpen={isOpen}
-            className="settings-panel"
+            className={styles.settingsPanel}
+            innerPanelAutomationId={settingsPanelAutomationId}
             onDismiss={detailsViewActionMessageCreator.closeSettingsPanel}
             closeButtonAriaLabel="Close settings panel"
             hasCloseButton={true}

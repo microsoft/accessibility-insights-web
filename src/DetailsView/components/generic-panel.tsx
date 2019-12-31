@@ -12,12 +12,14 @@ export interface GenericPanelProps {
     closeButtonAriaLabel: string;
     hasCloseButton: boolean;
     onRenderFooterContent?: IRenderFunction<IPanelProps>;
+    innerPanelAutomationId?: string;
 }
 
 export class GenericPanel extends React.Component<GenericPanelProps> {
     public render(): JSX.Element {
         return (
             <Panel
+                data-automation-id={this.props.innerPanelAutomationId}
                 isOpen={this.props.isOpen}
                 type={PanelType.custom}
                 customWidth="550px"
