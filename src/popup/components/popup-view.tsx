@@ -18,7 +18,7 @@ import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag
 import { LaunchPanelStoreData } from '../../common/types/store-data/launch-panel-store-data';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { UrlValidator } from '../../common/url-validator';
-import { PopupHandlers } from '../handlers/ipopup-handlers';
+import { PopupHandlers } from '../handlers/popup-handlers';
 import { PopupViewControllerHandler } from '../handlers/popup-view-controller-handler';
 import { LaunchPadRowConfigurationFactory } from '../launch-pad-row-configuration-factory';
 import { AdHocToolsPanel } from './ad-hoc-tools-panel';
