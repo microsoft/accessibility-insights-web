@@ -12,6 +12,7 @@ import {
     SelectRequirementPayload,
     ToggleActionPayload,
     UpdateSelectedDetailsViewPayload,
+    AddResultDescriptionPayload,
 } from 'background/actions/action-payloads';
 import { AssessmentActions } from 'background/actions/assessment-actions';
 import { AssessmentDataConverter } from 'background/assessment-data-converter';
@@ -1398,6 +1399,22 @@ describe('AssessmentStoreTest', () => {
     test('verify the MaunalTestStatus Priorities', () => {
         expect(ManualTestStatus.PASS < ManualTestStatus.UNKNOWN).toBeTruthy();
         expect(ManualTestStatus.UNKNOWN < ManualTestStatus.FAIL).toBeTruthy();
+    });
+
+    test('onAddResultDescription', () => {
+        const payload: AddResultDescriptionPayload = {
+            description: 'new-test-description',
+        };
+
+        const initialState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object).build();
+
+        const finalState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object)
+            .with('resultDescription', payload.description)
+            .build();
+
+        createStoreTesterForAssessmentActions('addResultDescription')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, finalState);
     });
 
     function setupDataGeneratorMock(persistedData: AssessmentStoreData, initialData: AssessmentStoreData): void {
