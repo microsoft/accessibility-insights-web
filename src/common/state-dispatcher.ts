@@ -31,7 +31,7 @@ export class StateDispatcher {
             this.broadcastMessage({
                 isStoreUpdateMessage: true,
                 storeId: store.getId(),
-                type: GenericStoreMessageTypes.storeStateChanged,
+                messageType: GenericStoreMessageTypes.storeStateChanged,
                 storeType: this.stores.getStoreType(),
                 payload: store.getState(),
             }).catch(this.logger.error);

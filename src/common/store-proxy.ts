@@ -28,7 +28,7 @@ export class StoreProxy<TState> extends Store implements BaseStore<TState> {
             return;
         }
 
-        if (message.type === GenericStoreMessageTypes.storeStateChanged && !isEqual(this.state, message.payload)) {
+        if (message.messageType === GenericStoreMessageTypes.storeStateChanged && !isEqual(this.state, message.payload)) {
             this.state = message.payload;
             this.emitChanged();
         }
