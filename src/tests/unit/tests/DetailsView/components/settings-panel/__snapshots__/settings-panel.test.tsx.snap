@@ -5,6 +5,7 @@ exports[`SettingsPanelTest render - isPanelOpen = false 1`] = `
   className="settingsPanel"
   closeButtonAriaLabel="Close settings panel"
   hasCloseButton={true}
+  innerPanelAutomationId="settings-panel"
   isOpen={false}
   onDismiss={[Function]}
   title="Settings"
@@ -74,6 +75,7 @@ exports[`SettingsPanelTest render - isPanelOpen = true 1`] = `
   className="settingsPanel"
   closeButtonAriaLabel="Close settings panel"
   hasCloseButton={true}
+  innerPanelAutomationId="settings-panel"
   isOpen={true}
   onDismiss={[Function]}
   title="Settings"
