@@ -3,6 +3,7 @@
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 import { A11YSelfValidator } from '../common/a11y-self-validator';
+import { AutoChecker } from '../common/auto-checker';
 import { AxeInfo } from '../common/axe-info';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { NewTabLink } from '../common/components/new-tab-link';
@@ -19,7 +20,6 @@ import { RemoteActionMessageDispatcher } from '../common/message-creators/remote
 import { StoreActionMessageCreatorFactory } from '../common/message-creators/store-action-message-creator-factory';
 import { UserConfigMessageCreator } from '../common/message-creators/user-config-message-creator';
 import { VisualizationActionMessageCreator } from '../common/message-creators/visualization-action-message-creator';
-import { AutoChecker } from '../common/self-validator';
 import { StoreProxy } from '../common/store-proxy';
 import { BaseClientStoresHub } from '../common/stores/base-client-stores-hub';
 import { StoreNames } from '../common/stores/store-names';
@@ -39,8 +39,8 @@ import { DiagnosticViewToggleDeps } from './components/diagnostic-view-toggle';
 import { DiagnosticViewToggleFactory } from './components/diagnostic-view-toggle-factory';
 import { PopupViewControllerState } from './components/popup-view';
 import { DiagnosticViewClickHandler } from './handlers/diagnostic-view-toggle-click-handler';
-import { IPopupHandlers } from './handlers/ipopup-handlers';
 import { LaunchPanelHeaderClickHandler } from './handlers/launch-panel-header-click-handler';
+import { PopupHandlers } from './handlers/popup-handlers';
 import { PopupViewControllerHandler } from './handlers/popup-view-controller-handler';
 import { IncompatibleBrowserRenderer } from './incompatible-browser-renderer';
 import { LaunchPadRowConfigurationFactory } from './launch-pad-row-configuration-factory';
@@ -175,7 +175,7 @@ export class PopupInitializer {
         );
         const launchPanelHeaderClickHandler = new LaunchPanelHeaderClickHandler();
 
-        const popupHandlers: IPopupHandlers = {
+        const popupHandlers: PopupHandlers = {
             diagnosticViewClickHandler,
             popupViewControllerHandler,
             launchPanelHeaderClickHandler,

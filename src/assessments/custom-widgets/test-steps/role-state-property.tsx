@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { NewTabLink } from 'common/components/new-tab-link';
-import { CustomWidgetPropertyBag } from 'common/types/property-bag/icustom-widgets';
+import { CustomWidgetPropertyBag } from 'common/types/property-bag/custom-widgets-property-bag';
 import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import { productName } from 'content/strings/application';

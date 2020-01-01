@@ -31,7 +31,7 @@ describe('StoreProxyTest', () => {
         const storeProxy = new TestableStoreProxy('TestStore', browserAdapterMock.object, 1);
 
         onChange.call(storeProxy, {
-            type: GenericStoreMessageTypes.storeStateChanged,
+            messageType: GenericStoreMessageTypes.storeStateChanged,
             tabId: 1,
             storeId: 'TestStore',
             storeType: StoreType.TabContextStore,
@@ -59,7 +59,7 @@ describe('StoreProxyTest', () => {
         const storeProxy = new TestableStoreProxy('TestStore', browserAdapterMock.object, 1);
 
         const stateUpdateMessage: StoreUpdateMessage<string> = {
-            type: GenericStoreMessageTypes.storeStateChanged,
+            messageType: GenericStoreMessageTypes.storeStateChanged,
             tabId: 1,
             storeId: 'TestStore',
             isStoreUpdateMessage: true,
@@ -92,7 +92,7 @@ describe('StoreProxyTest', () => {
         const storeProxy = new TestableStoreProxy('TestStore', browserAdapterMock.object);
 
         onChange.call(storeProxy, {
-            type: GenericStoreMessageTypes.storeStateChanged,
+            messageType: GenericStoreMessageTypes.storeStateChanged,
             tabId: 1,
             storeId: 'TestStore',
             storeType: StoreType.TabContextStore,
@@ -118,7 +118,7 @@ describe('StoreProxyTest', () => {
         const storeProxy = new TestableStoreProxy('TestStore', browserAdapterMock.object, 1);
 
         onChange.call(storeProxy, {
-            type: GenericStoreMessageTypes.storeStateChanged,
+            messageType: GenericStoreMessageTypes.storeStateChanged,
             tabId: 1,
             storeId: 'AnotherProxy',
             storeType: StoreType.TabContextStore,
@@ -145,7 +145,7 @@ describe('StoreProxyTest', () => {
         const storeProxy = new TestableStoreProxy('GlobalStoreProxy', browserAdapterMock.object, 1);
 
         onChange.call(storeProxy, {
-            type: GenericStoreMessageTypes.storeStateChanged,
+            messageType: GenericStoreMessageTypes.storeStateChanged,
             storeType: StoreType.GlobalStore,
             storeId: 'GlobalStoreProxy',
             isStoreUpdateMessage: true,
@@ -170,7 +170,7 @@ describe('StoreProxyTest', () => {
         const storeProxy = new TestableStoreProxy('TestStore', browserAdapterMock.object, 1);
 
         onChange.call(storeProxy, {
-            type: GenericStoreMessageTypes.storeStateChanged,
+            messageType: GenericStoreMessageTypes.storeStateChanged,
             tabId: 2,
             storeType: StoreType.TabContextStore,
             storeId: 'TestStore',
@@ -196,7 +196,7 @@ describe('StoreProxyTest', () => {
         const storeProxy = new TestableStoreProxy('TestStore', browserAdapterMock.object, 1);
 
         onChange.call(storeProxy, {
-            type: 'ANOTHER_KIND_OF_MESSAGE',
+            messageType: 'ANOTHER_KIND_OF_MESSAGE',
             tabId: 1,
             storeType: StoreType.TabContextStore,
             storeId: 'TestStore',
@@ -222,7 +222,7 @@ describe('StoreProxyTest', () => {
         const storeProxy = new TestableStoreProxy('TestStore', browserAdapterMock.object, 1);
 
         onChange.call(storeProxy, {
-            type: 'STORE_UPDATED',
+            messageType: 'STORE_UPDATED',
             tabId: 1,
             storeType: StoreType.TabContextStore,
             storeId: 'TestStore',

@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BaseStore } from '../common/base-store';
-import { DevToolState } from '../common/types/store-data/idev-tool-state';
+import { DevToolStoreData } from '../common/types/store-data/dev-tool-store-data';
 import { FrameUrlFinder } from './frame-url-finder';
 
 export class FrameUrlSearchInitiator {
-    private devToolStore: BaseStore<DevToolState>;
+    private devToolStore: BaseStore<DevToolStoreData>;
     private frameUrlFinder: FrameUrlFinder;
 
-    constructor(devToolStore: BaseStore<DevToolState>, frameUrlFinder: FrameUrlFinder) {
+    constructor(devToolStore: BaseStore<DevToolStoreData>, frameUrlFinder: FrameUrlFinder) {
         this.devToolStore = devToolStore;
         this.frameUrlFinder = frameUrlFinder;
     }

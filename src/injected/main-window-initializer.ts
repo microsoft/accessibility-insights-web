@@ -19,7 +19,6 @@ import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-
 import { TargetPageVisualizationUpdater } from 'injected/target-page-visualization-updater';
 import { visualizationNeedsUpdate } from 'injected/visualization-needs-update';
 import { VisualizationStateChangeHandler } from 'injected/visualization-state-change-handler';
-
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
@@ -38,8 +37,8 @@ import { StoreProxy } from '../common/store-proxy';
 import { StoreNames } from '../common/stores/store-names';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
+import { DevToolStoreData } from '../common/types/store-data/dev-tool-store-data';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
-import { DevToolState } from '../common/types/store-data/idev-tool-state';
 import { InspectStoreData } from '../common/types/store-data/inspect-store-data';
 import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
@@ -86,7 +85,7 @@ export class MainWindowInitializer extends WindowInitializer {
     private visualizationScanResultStoreProxy: StoreProxy<VisualizationScanResultData>;
     private scopingStoreProxy: StoreProxy<ScopingStoreData>;
     private tabStoreProxy: StoreProxy<TabStoreData>;
-    private devToolStoreProxy: StoreProxy<DevToolState>;
+    private devToolStoreProxy: StoreProxy<DevToolStoreData>;
     private pathSnippetStoreProxy: StoreProxy<PathSnippetStoreData>;
     private unifiedScanResultStoreProxy: StoreProxy<UnifiedScanResultStoreData>;
     private cardSelectionStoreProxy: StoreProxy<CardSelectionStoreData>;
@@ -112,7 +111,7 @@ export class MainWindowInitializer extends WindowInitializer {
         );
         this.assessmentStoreProxy = new StoreProxy<AssessmentStoreData>(StoreNames[StoreNames.AssessmentStore], this.browserAdapter);
         this.tabStoreProxy = new StoreProxy<TabStoreData>(StoreNames[StoreNames.TabStore], this.browserAdapter);
-        this.devToolStoreProxy = new StoreProxy<DevToolState>(StoreNames[StoreNames.DevToolsStore], this.browserAdapter);
+        this.devToolStoreProxy = new StoreProxy<DevToolStoreData>(StoreNames[StoreNames.DevToolsStore], this.browserAdapter);
         this.inspectStoreProxy = new StoreProxy<InspectStoreData>(StoreNames[StoreNames.InspectStore], this.browserAdapter);
         this.pathSnippetStoreProxy = new StoreProxy<PathSnippetStoreData>(StoreNames[StoreNames.PathSnippetStore], this.browserAdapter);
         this.unifiedScanResultStoreProxy = new StoreProxy<UnifiedScanResultStoreData>(
