@@ -1,7 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AssessmentStoreTest onContinuePreviousAssessment 1`] = `"tab with Id 1000 not found"`;
-
 exports[`AssessmentStoreTest onResetAllAssessmentsData 1`] = `"tab with Id 1000 not found"`;
 
 exports[`AssessmentStoreTest onUpdateTargetTabId 1`] = `"tab with Id 1000 not found"`;
