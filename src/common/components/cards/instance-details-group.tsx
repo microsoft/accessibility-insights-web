@@ -35,13 +35,14 @@ export const InstanceDetailsGroup = NamedFC<InstanceDetailsGroupProps>('Instance
     };
 
     return (
-        <ul
+        <div
             data-automation-id={ruleContentAutomationId}
             className={styles.instanceDetailsList}
             aria-label="failed instances with path, snippet and how to fix information"
+            role="group"
         >
             {nodes.map((node, index) => (
-                <li key={`instance-details-${index}`}>
+                <div key={`instance-details-${index}`}>
                     <InstanceDetails
                         {...{ index }}
                         deps={deps}
@@ -51,8 +52,8 @@ export const InstanceDetailsGroup = NamedFC<InstanceDetailsGroupProps>('Instance
                         rule={unifiedRule}
                         targetAppInfo={targetAppInfo}
                     />
-                </li>
+                </div>
             ))}
-        </ul>
+        </div>
     );
 });

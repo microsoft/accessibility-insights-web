@@ -63,28 +63,30 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         }
     };
 
+    const showAsSelected = isHighlightSupported ? result.isSelected : false;
+
     const instanceDetailsCardStyling = classNames({
         [instanceDetailsCard]: true,
-        [selected]: isHighlightSupported ? result.isSelected : false,
+        [selected]: showAsSelected,
     });
 
     const instanceDetailsCardContainerStyling = classNames({
         [instanceDetailsCardContainer]: true,
-        [selected]: isHighlightSupported ? result.isSelected : false,
+        [selected]: showAsSelected,
     });
 
     const cardAriaLabel = `${result.identifiers && result.identifiers.identifier ? result.identifiers.identifier : ''} card`;
 
     return (
-        <div data-automation-id={instanceCardAutomationId} className={instanceDetailsCardContainerStyling} role="table">
+        <div data-automation-id={instanceCardAutomationId} className={instanceDetailsCardContainerStyling}>
             <div
                 className={instanceDetailsCardStyling}
                 tabIndex={0}
                 onClick={cardClickHandler}
                 onKeyDown={cardKeyPressHandler}
-                aria-selected={result.isSelected}
                 aria-label={cardAriaLabel}
-                role="row"
+                aria-selected={result.isSelected}
+                role="treeitem"
             >
                 <table className={reportInstanceTable}>
                     <tbody>
