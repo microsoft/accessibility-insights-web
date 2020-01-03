@@ -672,22 +672,22 @@ exports[`report package integration with issues 1`] = `
                   </span>
                   <span />
                 </div>
-                <ul
+                <div
                   aria-label="failed instances with path, snippet and how to fix information"
                   class="instanceDetailsList"
                   data-automation-id="cards-rule-content"
+                  role="group"
                 >
-                  <li>
+                  <div>
                     <div
                       class="instanceDetailsCardContainer"
                       data-automation-id="instance-card"
-                      role="table"
                     >
                       <div
                         aria-label="html card"
                         aria-selected="false"
                         class="instanceDetailsCard"
-                        role="row"
+                        role="treeitem"
                         tabindex="0"
                       >
                         <table
@@ -761,8 +761,8 @@ exports[`report package integration with issues 1`] = `
                         </table>
                       </div>
                     </div>
-                  </li>
-                </ul>
+                  </div>
+                </div>
               </div>
             </div>
             <div
@@ -877,22 +877,22 @@ exports[`report package integration with issues 1`] = `
                   </span>
                   <span />
                 </div>
-                <ul
+                <div
                   aria-label="failed instances with path, snippet and how to fix information"
                   class="instanceDetailsList"
                   data-automation-id="cards-rule-content"
+                  role="group"
                 >
-                  <li>
+                  <div>
                     <div
                       class="instanceDetailsCardContainer"
                       data-automation-id="instance-card"
-                      role="table"
                     >
                       <div
                         aria-label="li:nth-child(1) > a[href=\\"\\\\#\\"] card"
                         aria-selected="false"
                         class="instanceDetailsCard"
-                        role="row"
+                        role="treeitem"
                         tabindex="0"
                       >
                         <table
@@ -985,18 +985,17 @@ exports[`report package integration with issues 1`] = `
                         </table>
                       </div>
                     </div>
-                  </li>
-                  <li>
+                  </div>
+                  <div>
                     <div
                       class="instanceDetailsCardContainer"
                       data-automation-id="instance-card"
-                      role="table"
                     >
                       <div
                         aria-label="li:nth-child(2) > a[href=\\"\\\\#\\"] card"
                         aria-selected="false"
                         class="instanceDetailsCard"
-                        role="row"
+                        role="treeitem"
                         tabindex="0"
                       >
                         <table
@@ -1089,18 +1088,17 @@ exports[`report package integration with issues 1`] = `
                         </table>
                       </div>
                     </div>
-                  </li>
-                  <li>
+                  </div>
+                  <div>
                     <div
                       class="instanceDetailsCardContainer"
                       data-automation-id="instance-card"
-                      role="table"
                     >
                       <div
                         aria-label="li:nth-child(3) > a[href=\\"\\\\#\\"] card"
                         aria-selected="false"
                         class="instanceDetailsCard"
-                        role="row"
+                        role="treeitem"
                         tabindex="0"
                       >
                         <table
@@ -1193,18 +1191,17 @@ exports[`report package integration with issues 1`] = `
                         </table>
                       </div>
                     </div>
-                  </li>
-                  <li>
+                  </div>
+                  <div>
                     <div
                       class="instanceDetailsCardContainer"
                       data-automation-id="instance-card"
-                      role="table"
                     >
                       <div
                         aria-label="li:nth-child(4) > a[href=\\"\\\\#\\"] card"
                         aria-selected="false"
                         class="instanceDetailsCard"
-                        role="row"
+                        role="treeitem"
                         tabindex="0"
                       >
                         <table
@@ -1297,8 +1294,8 @@ exports[`report package integration with issues 1`] = `
                         </table>
                       </div>
                     </div>
-                  </li>
-                </ul>
+                  </div>
+                </div>
               </div>
             </div>
             <div
@@ -1413,22 +1410,22 @@ exports[`report package integration with issues 1`] = `
                   </span>
                   <span />
                 </div>
-                <ul
+                <div
                   aria-label="failed instances with path, snippet and how to fix information"
                   class="instanceDetailsList"
                   data-automation-id="cards-rule-content"
+                  role="group"
                 >
-                  <li>
+                  <div>
                     <div
                       class="instanceDetailsCardContainer"
                       data-automation-id="instance-card"
-                      role="table"
                     >
                       <div
                         aria-label="html card"
                         aria-selected="false"
                         class="instanceDetailsCard"
-                        role="row"
+                        role="treeitem"
                         tabindex="0"
                       >
                         <table
@@ -1496,8 +1493,8 @@ exports[`report package integration with issues 1`] = `
                         </table>
                       </div>
                     </div>
-                  </li>
-                </ul>
+                  </div>
+                </div>
               </div>
             </div>
             <div
@@ -1612,22 +1609,22 @@ exports[`report package integration with issues 1`] = `
                   </span>
                   <span />
                 </div>
-                <ul
+                <div
                   aria-label="failed instances with path, snippet and how to fix information"
                   class="instanceDetailsList"
                   data-automation-id="cards-rule-content"
+                  role="group"
                 >
-                  <li>
+                  <div>
                     <div
                       class="instanceDetailsCardContainer"
                       data-automation-id="instance-card"
-                      role="table"
                     >
                       <div
                         aria-label="img[src$=\\"slide2\\\\.jpg\\"] card"
                         aria-selected="false"
                         class="instanceDetailsCard"
-                        role="row"
+                        role="treeitem"
                         tabindex="0"
                       >
                         <table
@@ -1710,18 +1707,17 @@ exports[`report package integration with issues 1`] = `
                         </table>
                       </div>
                     </div>
-                  </li>
-                  <li>
+                  </div>
+                  <div>
                     <div
                       class="instanceDetailsCardContainer"
                       data-automation-id="instance-card"
-                      role="table"
                     >
                       <div
                         aria-label="img[src$=\\"arrow-left\\\\.png\\"] card"
                         aria-selected="false"
                         class="instanceDetailsCard"
-                        role="row"
+                        role="treeitem"
                         tabindex="0"
                       >
                         <table
@@ -1804,18 +1800,17 @@ exports[`report package integration with issues 1`] = `
                         </table>
                       </div>
                     </div>
-                  </li>
-                  <li>
+                  </div>
+                  <div>
                     <div
                       class="instanceDetailsCardContainer"
                       data-automation-id="instance-card"
-                      role="table"
                     >
                       <div
                         aria-label="img[src$=\\"arrow-right\\\\.png\\"] card"
                         aria-selected="false"
                         class="instanceDetailsCard"
-                        role="row"
+                        role="treeitem"
                         tabindex="0"
                       >
                         <table
@@ -1898,18 +1893,17 @@ exports[`report package integration with issues 1`] = `
                         </table>
                       </div>
                     </div>
-                  </li>
-                  <li>
+                  </div>
+                  <div>
                     <div
                       class="instanceDetailsCardContainer"
                       data-automation-id="instance-card"
-                      role="table"
                     >
                       <div
                         aria-label="img[src$=\\"captcha\\\\.png\\"] card"
                         aria-selected="false"
                         class="instanceDetailsCard"
-                        role="row"
+                        role="treeitem"
                         tabindex="0"
                       >
                         <table
@@ -1992,8 +1986,8 @@ exports[`report package integration with issues 1`] = `
                         </table>
                       </div>
                     </div>
-                  </li>
-                </ul>
+                  </div>
+                </div>
               </div>
             </div>
             <div
@@ -2108,22 +2102,22 @@ exports[`report package integration with issues 1`] = `
                   </span>
                   <span />
                 </div>
-                <ul
+                <div
                   aria-label="failed instances with path, snippet and how to fix information"
                   class="instanceDetailsList"
                   data-automation-id="cards-rule-content"
+                  role="group"
                 >
-                  <li>
+                  <div>
                     <div
                       class="instanceDetailsCardContainer"
                       data-automation-id="instance-card"
-                      role="table"
                     >
                       <div
                         aria-label="input[name=\\"name\\"] card"
                         aria-selected="false"
                         class="instanceDetailsCard"
-                        role="row"
+                        role="treeitem"
                         tabindex="0"
                       >
                         <table
@@ -2203,18 +2197,17 @@ exports[`report package integration with issues 1`] = `
                         </table>
                       </div>
                     </div>
-                  </li>
-                  <li>
+                  </div>
+                  <div>
                     <div
                       class="instanceDetailsCardContainer"
                       data-automation-id="instance-card"
-                      role="table"
                     >
                       <div
                         aria-label="input[name=\\"email\\"] card"
                         aria-selected="false"
                         class="instanceDetailsCard"
-                        role="row"
+                        role="treeitem"
                         tabindex="0"
                       >
                         <table
@@ -2294,18 +2287,17 @@ exports[`report package integration with issues 1`] = `
                         </table>
                       </div>
                     </div>
-                  </li>
-                  <li>
+                  </div>
+                  <div>
                     <div
                       class="instanceDetailsCardContainer"
                       data-automation-id="instance-card"
-                      role="table"
                     >
                       <div
                         aria-label="input[name=\\"city\\"] card"
                         aria-selected="false"
                         class="instanceDetailsCard"
-                        role="row"
+                        role="treeitem"
                         tabindex="0"
                       >
                         <table
@@ -2385,18 +2377,17 @@ exports[`report package integration with issues 1`] = `
                         </table>
                       </div>
                     </div>
-                  </li>
-                  <li>
+                  </div>
+                  <div>
                     <div
                       class="instanceDetailsCardContainer"
                       data-automation-id="instance-card"
-                      role="table"
                     >
                       <div
                         aria-label="input[name=\\"state\\"] card"
                         aria-selected="false"
                         class="instanceDetailsCard"
-                        role="row"
+                        role="treeitem"
                         tabindex="0"
                       >
                         <table
@@ -2476,18 +2467,17 @@ exports[`report package integration with issues 1`] = `
                         </table>
                       </div>
                     </div>
-                  </li>
-                  <li>
+                  </div>
+                  <div>
                     <div
                       class="instanceDetailsCardContainer"
                       data-automation-id="instance-card"
-                      role="table"
                     >
                       <div
                         aria-label="input[name=\\"zip\\"] card"
                         aria-selected="false"
                         class="instanceDetailsCard"
-                        role="row"
+                        role="treeitem"
                         tabindex="0"
                       >
                         <table
@@ -2567,18 +2557,17 @@ exports[`report package integration with issues 1`] = `
                         </table>
                       </div>
                     </div>
-                  </li>
-                  <li>
+                  </div>
+                  <div>
                     <div
                       class="instanceDetailsCardContainer"
                       data-automation-id="instance-card"
-                      role="table"
                     >
                       <div
                         aria-label="input[name=\\"country\\"] card"
                         aria-selected="false"
                         class="instanceDetailsCard"
-                        role="row"
+                        role="treeitem"
                         tabindex="0"
                       >
                         <table
@@ -2658,18 +2647,17 @@ exports[`report package integration with issues 1`] = `
                         </table>
                       </div>
                     </div>
-                  </li>
-                  <li>
+                  </div>
+                  <div>
                     <div
                       class="instanceDetailsCardContainer"
                       data-automation-id="instance-card"
-                      role="table"
                     >
                       <div
                         aria-label="input[name=\\"major_cs\\"] card"
                         aria-selected="false"
                         class="instanceDetailsCard"
-                        role="row"
+                        role="treeitem"
                         tabindex="0"
                       >
                         <table
@@ -2749,18 +2737,17 @@ exports[`report package integration with issues 1`] = `
                         </table>
                       </div>
                     </div>
-                  </li>
-                  <li>
+                  </div>
+                  <div>
                     <div
                       class="instanceDetailsCardContainer"
                       data-automation-id="instance-card"
-                      role="table"
                     >
                       <div
                         aria-label="input[name=\\"major_eng\\"] card"
                         aria-selected="false"
                         class="instanceDetailsCard"
-                        role="row"
+                        role="treeitem"
                         tabindex="0"
                       >
                         <table
@@ -2840,18 +2827,17 @@ exports[`report package integration with issues 1`] = `
                         </table>
                       </div>
                     </div>
-                  </li>
-                  <li>
+                  </div>
+                  <div>
                     <div
                       class="instanceDetailsCardContainer"
                       data-automation-id="instance-card"
-                      role="table"
                     >
                       <div
                         aria-label="input[name=\\"major_econ\\"] card"
                         aria-selected="false"
                         class="instanceDetailsCard"
-                        role="row"
+                        role="treeitem"
                         tabindex="0"
                       >
                         <table
@@ -2931,18 +2917,17 @@ exports[`report package integration with issues 1`] = `
                         </table>
                       </div>
                     </div>
-                  </li>
-                  <li>
+                  </div>
+                  <div>
                     <div
                       class="instanceDetailsCardContainer"
                       data-automation-id="instance-card"
-                      role="table"
                     >
                       <div
                         aria-label="input[name=\\"major_phy\\"] card"
                         aria-selected="false"
                         class="instanceDetailsCard"
-                        role="row"
+                        role="treeitem"
                         tabindex="0"
                       >
                         <table
@@ -3022,18 +3007,17 @@ exports[`report package integration with issues 1`] = `
                         </table>
                       </div>
                     </div>
-                  </li>
-                  <li>
+                  </div>
+                  <div>
                     <div
                       class="instanceDetailsCardContainer"
                       data-automation-id="instance-card"
-                      role="table"
                     >
                       <div
                         aria-label="input[name=\\"major_psy\\"] card"
                         aria-selected="false"
                         class="instanceDetailsCard"
-                        role="row"
+                        role="treeitem"
                         tabindex="0"
                       >
                         <table
@@ -3113,18 +3097,17 @@ exports[`report package integration with issues 1`] = `
                         </table>
                       </div>
                     </div>
-                  </li>
-                  <li>
+                  </div>
+                  <div>
                     <div
                       class="instanceDetailsCardContainer"
                       data-automation-id="instance-card"
-                      role="table"
                     >
                       <div
                         aria-label="input[name=\\"major_sp\\"] card"
                         aria-selected="false"
                         class="instanceDetailsCard"
-                        role="row"
+                        role="treeitem"
                         tabindex="0"
                       >
                         <table
@@ -3204,18 +3187,17 @@ exports[`report package integration with issues 1`] = `
                         </table>
                       </div>
                     </div>
-                  </li>
-                  <li>
+                  </div>
+                  <div>
                     <div
                       class="instanceDetailsCardContainer"
                       data-automation-id="instance-card"
-                      role="table"
                     >
                       <div
                         aria-label="input[name=\\"captcha\\"] card"
                         aria-selected="false"
                         class="instanceDetailsCard"
-                        role="row"
+                        role="treeitem"
                         tabindex="0"
                       >
                         <table
@@ -3295,8 +3277,8 @@ exports[`report package integration with issues 1`] = `
                         </table>
                       </div>
                     </div>
-                  </li>
-                </ul>
+                  </div>
+                </div>
               </div>
             </div>
             <div
@@ -3411,22 +3393,22 @@ exports[`report package integration with issues 1`] = `
                   </span>
                   <span />
                 </div>
-                <ul
+                <div
                   aria-label="failed instances with path, snippet and how to fix information"
                   class="instanceDetailsList"
                   data-automation-id="cards-rule-content"
+                  role="group"
                 >
-                  <li>
+                  <div>
                     <div
                       class="instanceDetailsCardContainer"
                       data-automation-id="instance-card"
-                      role="table"
                     >
                       <div
                         aria-label="html card"
                         aria-selected="false"
                         class="instanceDetailsCard"
-                        role="row"
+                        role="treeitem"
                         tabindex="0"
                       >
                         <table
@@ -3494,8 +3476,8 @@ exports[`report package integration with issues 1`] = `
                         </table>
                       </div>
                     </div>
-                  </li>
-                </ul>
+                  </div>
+                </div>
               </div>
             </div>
             <div
@@ -3610,22 +3592,22 @@ exports[`report package integration with issues 1`] = `
                   </span>
                   <span />
                 </div>
-                <ul
+                <div
                   aria-label="failed instances with path, snippet and how to fix information"
                   class="instanceDetailsList"
                   data-automation-id="cards-rule-content"
+                  role="group"
                 >
-                  <li>
+                  <div>
                     <div
                       class="instanceDetailsCardContainer"
                       data-automation-id="instance-card"
-                      role="table"
                     >
                       <div
                         aria-label="html card"
                         aria-selected="false"
                         class="instanceDetailsCard"
-                        role="row"
+                        role="treeitem"
                         tabindex="0"
                       >
                         <table
@@ -3693,8 +3675,8 @@ exports[`report package integration with issues 1`] = `
                         </table>
                       </div>
                     </div>
-                  </li>
-                </ul>
+                  </div>
+                </div>
               </div>
             </div>
             <div
@@ -3809,22 +3791,22 @@ exports[`report package integration with issues 1`] = `
                   </span>
                   <span />
                 </div>
-                <ul
+                <div
                   aria-label="failed instances with path, snippet and how to fix information"
                   class="instanceDetailsList"
                   data-automation-id="cards-rule-content"
+                  role="group"
                 >
-                  <li>
+                  <div>
                     <div
                       class="instanceDetailsCardContainer"
                       data-automation-id="instance-card"
-                      role="table"
                     >
                       <div
                         aria-label="html card"
                         aria-selected="false"
                         class="instanceDetailsCard"
-                        role="row"
+                        role="treeitem"
                         tabindex="0"
                       >
                         <table
@@ -3892,8 +3874,8 @@ exports[`report package integration with issues 1`] = `
                         </table>
                       </div>
                     </div>
-                  </li>
-                </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

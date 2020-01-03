@@ -17,7 +17,6 @@ describe('report package integration', () => {
     // Removing script block to address issues with istanbul code coverage
     // constructs interfering with snapshot determinism.
     const rexScriptBlock = /\<script\>.*\<\/script\>/ms;
-
     const scans = [
         { scan: scanIssues, name: 'with issues' },
         { scan: scanNoIssues, name: 'with no issues' },
