@@ -9,13 +9,13 @@ module.exports = {
     overrides: [
         {
             files: [
-                'src/popup/**/*',
-                'src/background/**/*',
                 'src/ad-hoc-visualizations/**/*',
                 'src/assessments/**/*',
+                'src/background/**/*',
                 'src/electron/**/*',
-                'src/types/**/*',
+                'src/popup/**/*',
                 'src/scanner/**/*',
+                'src/types/**/*',
             ],
             options: {
                 printWidth: 100,
