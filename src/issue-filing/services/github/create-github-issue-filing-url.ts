@@ -5,7 +5,10 @@ import { CreateIssueDetailsTextData } from '../../../common/types/create-issue-d
 import { createIssueDetailsBuilder } from '../../common/create-issue-details-builder';
 import { HTTPQueryBuilder } from '../../common/http-query-builder';
 import { IssueDetailsBuilder } from '../../common/issue-details-builder';
-import { IssueFilingUrlStringUtils, IssueUrlCreationUtils } from '../../common/issue-filing-url-string-utils';
+import {
+    IssueFilingUrlStringUtils,
+    IssueUrlCreationUtils,
+} from '../../common/issue-filing-url-string-utils';
 import { MarkdownFormatter } from '../../common/markup/markdown-formatter';
 import { GitHubIssueFilingSettings } from './github-issue-filing-settings';
 import { rectify, UrlRectifier } from './github-url-rectifier';
@@ -16,7 +19,11 @@ export const createGitHubIssueFilingUrlProvider = (
     queryBuilderProvider: () => HTTPQueryBuilder,
     rectifier: UrlRectifier,
 ) => {
-    return (settingsData: GitHubIssueFilingSettings, issueData: CreateIssueDetailsTextData, environmentInfo: EnvironmentInfo): string => {
+    return (
+        settingsData: GitHubIssueFilingSettings,
+        issueData: CreateIssueDetailsTextData,
+        environmentInfo: EnvironmentInfo,
+    ): string => {
         const title = stringUtils.getTitle(issueData);
         const body = issueDetailsBuilder(environmentInfo, issueData);
 

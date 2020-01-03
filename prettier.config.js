@@ -14,6 +14,7 @@ module.exports = {
                 'src/background/**/*',
                 'src/Devtools/**/*',
                 'src/electron/**/*',
+                'src/issue-filing/**/*',
                 'src/popup/**/*',
                 'src/scanner/**/*',
                 'src/types/**/*',
