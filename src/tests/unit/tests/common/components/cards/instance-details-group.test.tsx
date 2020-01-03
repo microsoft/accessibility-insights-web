@@ -22,7 +22,6 @@ describe('InstanceDetailsGroup', () => {
             userConfigurationStoreData: null,
             targetAppInfo: { name: 'app' },
         };
-
         const wrapper = shallow(<InstanceDetailsGroup {...props} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();

@@ -1,12 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`InstanceDetailsGroup renders 1`] = `
-<ul
+<div
   aria-label="failed instances with path, snippet and how to fix information"
   className="instanceDetailsList"
   data-automation-id="cards-rule-content"
+  role="group"
 >
-  <li>
+  <div>
     <InstanceDetails
       deps={Object {}}
       getPropertyConfigById={[Function]}
@@ -58,6 +59,6 @@ exports[`InstanceDetailsGroup renders 1`] = `
       }
       userConfigurationStoreData={null}
     />
-  </li>
-</ul>
+  </div>
+</div>
 `;

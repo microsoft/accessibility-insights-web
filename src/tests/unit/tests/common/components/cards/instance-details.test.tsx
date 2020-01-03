@@ -47,7 +47,6 @@ describe('InstanceDetails', () => {
             .verifiable(Times.never());
 
         const testSubject = shallow(<InstanceDetails {...props} />);
-
         expect(testSubject.getElement()).toMatchSnapshot();
         cardSelectionMessageCreatorMock.verifyAll();
     });
