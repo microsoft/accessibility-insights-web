@@ -9,12 +9,27 @@ import { MarkupFormatter } from './markup/markup-formatter';
 
 export const createIssueDetailsBuilder = (markup: MarkupFormatter): IssueDetailsBuilder => {
     const getter = (environmentInfo: EnvironmentInfo, data: CreateIssueDetailsTextData): string => {
-        const { howToFixSection, link, sectionHeader, snippet, sectionHeaderSeparator, footerSeparator, sectionSeparator } = markup;
+        const {
+            howToFixSection,
+            link,
+            sectionHeader,
+            snippet,
+            sectionHeaderSeparator,
+            footerSeparator,
+            sectionSeparator,
+        } = markup;
 
-        const targetAppText = data.targetApp.url ? link(data.targetApp.url, data.targetApp.name) : data.targetApp.name;
+        const targetAppText = data.targetApp.url
+            ? link(data.targetApp.url, data.targetApp.name)
+            : data.targetApp.name;
 
         const snippetSection = data.snippet
-            ? [sectionHeader('Snippet'), sectionHeaderSeparator(), snippet(data.snippet), sectionSeparator()]
+            ? [
+                  sectionHeader('Snippet'),
+                  sectionHeaderSeparator(),
+                  snippet(data.snippet),
+                  sectionSeparator(),
+              ]
             : null;
 
         const lines = [
