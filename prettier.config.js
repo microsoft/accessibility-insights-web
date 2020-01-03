@@ -12,6 +12,7 @@ module.exports = {
                 'src/ad-hoc-visualizations/**/*',
                 'src/assessments/**/*',
                 'src/background/**/*',
+                'src/Devtools/**/*',
                 'src/electron/**/*',
                 'src/popup/**/*',
                 'src/scanner/**/*',

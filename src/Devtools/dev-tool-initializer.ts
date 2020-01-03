@@ -14,7 +14,10 @@ export class DevToolInitializer {
     }
 
     public initialize(): void {
-        const devtoolsStore = new StoreProxy<DevToolStoreData>(StoreNames[StoreNames.DevToolsStore], this.devToolsChromeAdapter);
+        const devtoolsStore = new StoreProxy<DevToolStoreData>(
+            StoreNames[StoreNames.DevToolsStore],
+            this.devToolsChromeAdapter,
+        );
         const inspectHandler = new InspectHandler(devtoolsStore, this.devToolsChromeAdapter);
 
         inspectHandler.initialize();

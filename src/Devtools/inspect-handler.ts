@@ -10,7 +10,10 @@ export class InspectHandler {
     private devToolsStore: BaseStore<DevToolStoreData>;
     private devToolsChromeAdapter: DevToolsChromeAdapter;
 
-    constructor(devToolsStore: BaseStore<DevToolStoreData>, devToolsChromeAdapter: DevToolsChromeAdapter) {
+    constructor(
+        devToolsStore: BaseStore<DevToolStoreData>,
+        devToolsChromeAdapter: DevToolsChromeAdapter,
+    ) {
         this.devToolsStore = devToolsStore;
         this.devToolsChromeAdapter = devToolsChromeAdapter;
     }
@@ -19,9 +22,15 @@ export class InspectHandler {
         this.devToolsStore.addChangedListener(() => {
             const state = this.devToolsStore.getState();
 
-            if (state && state.inspectElement && (state.inspectElement.length === 1 || state.frameUrl)) {
+            if (
+                state &&
+                state.inspectElement &&
+                (state.inspectElement.length === 1 || state.frameUrl)
+            ) {
                 this.devToolsChromeAdapter.executeScriptInInspectedWindow(
-                    "inspect(document.querySelector('" + state.inspectElement[state.inspectElement.length - 1] + "'))",
+                    "inspect(document.querySelector('" +
+                        state.inspectElement[state.inspectElement.length - 1] +
+                        "'))",
                     state.frameUrl,
                 );
             }
@@ -31,6 +40,8 @@ export class InspectHandler {
             name: ConnectionNames.devTools,
         });
 
-        backgroundPageConnection.postMessage({ tabId: this.devToolsChromeAdapter.getInspectedWindowTabId() } as DevToolsOpenMessage);
+        backgroundPageConnection.postMessage({
+            tabId: this.devToolsChromeAdapter.getInspectedWindowTabId(),
+        } as DevToolsOpenMessage);
     }
 }
