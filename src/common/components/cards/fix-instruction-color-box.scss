@@ -2,22 +2,20 @@
 // Licensed under the MIT License.
 @import '../../../common/styles/colors.scss';
 
-.how-to-fix-card-row {
-    span.fix-instruction-color-box {
-        width: 14px;
-        height: 14px;
-        display: inline-block;
-        vertical-align: -5%;
-        margin: 0px 2px;
-        border: 1px solid $always-black;
-    }
+span.fix-instruction-color-box {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    vertical-align: -5%;
+    margin: 0px 2px;
+    border: 1px solid $always-black;
+}
 
-    .screen-reader-only {
-        position: absolute;
-        left: -10000px;
-        top: auto;
-        width: 1px;
-        height: 1px;
-        overflow: hidden;
-    }
+.screen-reader-only {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
 }
