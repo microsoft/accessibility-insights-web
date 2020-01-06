@@ -27,7 +27,13 @@ export class ReportGenerator {
         cardsViewData: CardsViewModel,
         description: string,
     ): string {
-        return this.reportHtmlGenerator.generateHtml(scanDate, pageTitle, pageUrl, description, cardsViewData);
+        return this.reportHtmlGenerator.generateHtml(
+            scanDate,
+            pageTitle,
+            pageUrl,
+            description,
+            cardsViewData,
+        );
     }
 
     public generateAssessmentReport(

@@ -9,7 +9,13 @@ import { allRequirementOutcomeTypes, RequirementOutcomeStats } from './requireme
 export const OutcomeChipSet = NamedFC<RequirementOutcomeStats>('OutcomeChipSet', props => (
     <div className="outcome-chip-set">
         {allRequirementOutcomeTypes.map(outcomeType =>
-            props[outcomeType] ? <OutcomeChip key={outcomeType} outcomeType={outcomeType} count={props[outcomeType]} /> : null,
+            props[outcomeType] ? (
+                <OutcomeChip
+                    key={outcomeType}
+                    outcomeType={outcomeType}
+                    count={props[outcomeType]}
+                />
+            ) : null,
         )}
     </div>
 ));

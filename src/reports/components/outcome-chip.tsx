@@ -24,7 +24,11 @@ export const OutcomeChip = NamedFC<OutcomeChipProps>('OutcomeChip', props => {
             <span className="icon">
                 <OutcomeIcon outcomeType={outcomeType} />
             </span>
-            <span data-automation-id={failureCountAutomationId} className="count" aria-hidden="true">
+            <span
+                data-automation-id={failureCountAutomationId}
+                className="count"
+                aria-hidden="true"
+            >
                 {' '}
                 {count}
             </span>

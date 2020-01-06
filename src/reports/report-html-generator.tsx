@@ -11,7 +11,11 @@ import * as React from 'react';
 import { ReportHead } from './components/report-head';
 import { ReportBody, ReportBodyProps } from './components/report-sections/report-body';
 import { ReportCollapsibleContainerControl } from './components/report-sections/report-collapsible-container';
-import { ReportSectionFactory, SectionDeps, SectionProps } from './components/report-sections/report-section-factory';
+import {
+    ReportSectionFactory,
+    SectionDeps,
+    SectionProps,
+} from './components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from './react-static-renderer';
 
 export class ReportHtmlGenerator {
@@ -26,7 +30,13 @@ export class ReportHtmlGenerator {
         private readonly getPropertyConfiguration: (id: string) => Readonly<PropertyConfiguration>,
     ) {}
 
-    public generateHtml(scanDate: Date, pageTitle: string, pageUrl: string, description: string, cardsViewData: CardsViewModel): string {
+    public generateHtml(
+        scanDate: Date,
+        pageTitle: string,
+        pageUrl: string,
+        description: string,
+        cardsViewData: CardsViewModel,
+    ): string {
         const headElement: JSX.Element = <ReportHead />;
         const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(headElement);
 

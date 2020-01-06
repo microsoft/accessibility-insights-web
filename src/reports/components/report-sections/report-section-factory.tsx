@@ -12,7 +12,9 @@ import { UserConfigurationStoreData } from '../../../common/types/store-data/use
 import { NotApplicableChecksSectionDeps } from './not-applicable-checks-section';
 import { PassedChecksSectionDeps } from './passed-checks-section';
 
-export type SectionDeps = NotApplicableChecksSectionDeps & FailedInstancesSectionDeps & PassedChecksSectionDeps;
+export type SectionDeps = NotApplicableChecksSectionDeps &
+    FailedInstancesSectionDeps &
+    PassedChecksSectionDeps;
 
 export type SectionProps = {
     deps: SectionDeps;
