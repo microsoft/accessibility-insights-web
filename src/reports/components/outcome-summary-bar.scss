@@ -66,7 +66,11 @@ $outcome-not-applicable-color: $neutral-outcome;
     }
     .inapplicable {
         @extend .block;
-        @include inapplicable-icon-styles($outcome-summary-icon-size, 0px, $outcome-not-applicable-color);
+        @include inapplicable-icon-styles(
+            $outcome-summary-icon-size,
+            0px,
+            $outcome-not-applicable-color
+        );
         border-radius: 0 2px 2px 0;
         .check-container {
             bottom: -1px;

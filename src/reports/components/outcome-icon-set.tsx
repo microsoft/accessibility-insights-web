@@ -24,7 +24,10 @@ export const OutcomeIconSet = NamedFC<RequirementOutcomeStats>('OutcomeIconSet',
         <div className="outcome-icon-set" title={text}>
             {allRequirementOutcomeTypes.map(outcomeType =>
                 times(props[outcomeType], index => (
-                    <span className={'outcome-icon outcome-icon-' + outcomeType} key={`outcome-icon-index-${index}`}>
+                    <span
+                        className={'outcome-icon outcome-icon-' + outcomeType}
+                        key={`outcome-icon-index-${index}`}
+                    >
                         <OutcomeIcon outcomeType={outcomeType} />
                     </span>
                 )),

@@ -4,7 +4,10 @@ import * as React from 'react';
 
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import { AssessmentDetailsReportModel, ReportModel } from '../assessment-report-model';
-import { AssessmentReportAssessmentList, AssessmentReportAssessmentListDeps } from './assessment-report-assessment-list';
+import {
+    AssessmentReportAssessmentList,
+    AssessmentReportAssessmentListDeps,
+} from './assessment-report-assessment-list';
 import { AssessmentReportBodyHeader } from './assessment-report-body-header';
 import { AssessmentReportSummary } from './assessment-report-summary';
 import { AssessmentScanDetails } from './assessment-scan-details';
@@ -25,7 +28,10 @@ export class AssessmentReportBody extends React.Component<AssessmentReportBodyPr
             <div className="assessment-report-body" role="main">
                 <AssessmentReportBodyHeader />
                 <AssessmentReportSummary summary={this.props.data.summary} />
-                <AssessmentScanDetails details={this.props.data.scanDetails} description={this.props.description} />
+                <AssessmentScanDetails
+                    details={this.props.data.scanDetails}
+                    description={this.props.description}
+                />
 
                 {this.renderDetailsSection(
                     this.props.data.failedDetailsData,
@@ -60,11 +66,19 @@ export class AssessmentReportBody extends React.Component<AssessmentReportBodyPr
         return (
             <div className="details-section">
                 {this.renderDetailsSectionHeader(title, count, status)}
-                <AssessmentReportAssessmentList deps={this.props.deps} status={status} assessments={detailsData} />
+                <AssessmentReportAssessmentList
+                    deps={this.props.deps}
+                    status={status}
+                    assessments={detailsData}
+                />
             </div>
         );
     }
-    private renderDetailsSectionHeader(title: string, count: number, status: ManualTestStatus): JSX.Element {
+    private renderDetailsSectionHeader(
+        title: string,
+        count: number,
+        status: ManualTestStatus,
+    ): JSX.Element {
         return (
             <h2 className="details-section-header">
                 {title}

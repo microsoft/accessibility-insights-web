@@ -6,11 +6,14 @@ import { SectionProps } from './report-section-factory';
 
 export type ResultsContainerProps = Pick<SectionProps, 'getCollapsibleScript'>;
 
-export const ResultsContainer = NamedFC<ResultsContainerProps>('ResultsContainer', ({ children, getCollapsibleScript }) => {
-    return (
-        <>
-            <div className="results-container">{children}</div>
-            <script dangerouslySetInnerHTML={{ __html: getCollapsibleScript() }} />
-        </>
-    );
-});
+export const ResultsContainer = NamedFC<ResultsContainerProps>(
+    'ResultsContainer',
+    ({ children, getCollapsibleScript }) => {
+        return (
+            <>
+                <div className="results-container">{children}</div>
+                <script dangerouslySetInnerHTML={{ __html: getCollapsibleScript() }} />
+            </>
+        );
+    },
+);

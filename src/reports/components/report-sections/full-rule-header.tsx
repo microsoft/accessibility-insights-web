@@ -46,7 +46,11 @@ export const FullRuleHeader = NamedFC<FullRuleHeaderProps>('FullRuleHeader', pro
         const ruleUrl = cardResult.url;
         return (
             <span className="rule-details-id">
-                <NewTabLink href={ruleUrl} aria-label={`rule ${ruleId}`} aria-describedby={ariaDescribedBy}>
+                <NewTabLink
+                    href={ruleUrl}
+                    aria-label={`rule ${ruleId}`}
+                    aria-describedby={ariaDescribedBy}
+                >
                     {ruleId}
                 </NewTabLink>
             </span>
@@ -73,7 +77,8 @@ export const FullRuleHeader = NamedFC<FullRuleHeaderProps>('FullRuleHeader', pro
         <>
             <div className="rule-detail">
                 <div>
-                    {renderCountBadge()} {renderRuleLink()}: {renderDescription()} ({renderGuidanceLinks()}){renderGuidanceTags()}
+                    {renderCountBadge()} {renderRuleLink()}: {renderDescription()} (
+                    {renderGuidanceLinks()}){renderGuidanceTags()}
                 </div>
             </div>
         </>

@@ -4,11 +4,22 @@ import { padStart } from 'lodash';
 
 export class ReportNameGenerator {
     public generateName(baseName: string, scanDate: Date, pageTitle: string): string {
-        return baseName + '_' + this.getDateSegment(scanDate) + '_' + this.getTitleSegment(pageTitle) + '.html';
+        return (
+            baseName +
+            '_' +
+            this.getDateSegment(scanDate) +
+            '_' +
+            this.getTitleSegment(pageTitle) +
+            '.html'
+        );
     }
 
     private getDateSegment(scanDate: Date): string {
-        return scanDate.getFullYear() + this.padStartWithZero(scanDate.getMonth() + 1, 2) + this.padStartWithZero(scanDate.getDate(), 2);
+        return (
+            scanDate.getFullYear() +
+            this.padStartWithZero(scanDate.getMonth() + 1, 2) +
+            this.padStartWithZero(scanDate.getDate(), 2)
+        );
     }
 
     private padStartWithZero(num: number, digits: number): string {

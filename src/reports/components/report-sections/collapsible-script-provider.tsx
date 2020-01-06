@@ -8,7 +8,8 @@ export const addEventListenerForCollapsibleSection = (doc: Document) => {
         const button = container.querySelector('.collapsible-control');
         button.addEventListener('click', () => {
             const content = button.parentElement.nextElementSibling as HTMLElement;
-            const wasExpandedBefore = button.getAttribute('aria-expanded') === 'false' ? false : true;
+            const wasExpandedBefore =
+                button.getAttribute('aria-expanded') === 'false' ? false : true;
             const isExpandedAfter = !wasExpandedBefore;
 
             button.setAttribute('aria-expanded', isExpandedAfter + '');
@@ -23,7 +24,8 @@ export const addEventListenerForCollapsibleSection = (doc: Document) => {
     }
 };
 
-export const getAddListenerForCollapsibleSection = (code: string | Function): string => `(${String(code)})(document)`;
+export const getAddListenerForCollapsibleSection = (code: string | Function): string =>
+    `(${String(code)})(document)`;
 
 // untested line, having issues with snapshot testing and text representation.
 export const getDefaultAddListenerForCollapsibleSection = (): string =>

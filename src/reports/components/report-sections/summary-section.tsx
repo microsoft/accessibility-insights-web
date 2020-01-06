@@ -23,7 +23,11 @@ export const SummarySection = NamedFC<SummarySectionProps>('SummarySection', pro
     return (
         <div className="summary-section">
             <h2>Summary</h2>
-            <OutcomeSummaryBar outcomeStats={countSummary} iconStyleInverted={true} allOutcomeTypes={allInstanceOutcomeTypes} />
+            <OutcomeSummaryBar
+                outcomeStats={countSummary}
+                iconStyleInverted={true}
+                allOutcomeTypes={allInstanceOutcomeTypes}
+            />
         </div>
     );
 });
