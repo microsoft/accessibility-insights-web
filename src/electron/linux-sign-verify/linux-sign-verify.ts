@@ -35,6 +35,11 @@ export function verifySignatureOnLinux(info: UpdateDownloadedEvent): void {
     if (os.platform() !== 'linux') {
         return;
     }
+    if (!isNil(autoUpdater.getFeedURL())) {
+        console.log('\n=================\n');
+        console.log('getFeedURL: ', autoUpdater.getFeedURL());
+        console.log('\n=================\n');
+    }
 
     if (!isNil(info.files)) {
         info.files.forEach(file => {
