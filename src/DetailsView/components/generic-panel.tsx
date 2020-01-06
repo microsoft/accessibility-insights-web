@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { css, IRenderFunction } from '@uifabric/utilities';
-import { IPanelProps, Panel, PanelType } from 'office-ui-fabric-react/lib/Panel';
+import { IPanelProps, Panel, PanelType } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 export interface GenericPanelProps {
@@ -12,12 +12,14 @@ export interface GenericPanelProps {
     closeButtonAriaLabel: string;
     hasCloseButton: boolean;
     onRenderFooterContent?: IRenderFunction<IPanelProps>;
+    innerPanelAutomationId?: string;
 }
 
 export class GenericPanel extends React.Component<GenericPanelProps> {
     public render(): JSX.Element {
         return (
             <Panel
+                data-automation-id={this.props.innerPanelAutomationId}
                 isOpen={this.props.isOpen}
                 type={PanelType.custom}
                 customWidth="550px"

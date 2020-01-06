@@ -25,7 +25,9 @@ const getSelectorLastPart = (selector: string): string => {
     const childCombinator = ' > ';
 
     if (selectorLastPart.lastIndexOf(childCombinator) > 0) {
-        return selectorLastPart.substr(selectorLastPart.lastIndexOf(childCombinator) + childCombinator.length);
+        return selectorLastPart.substr(
+            selectorLastPart.lastIndexOf(childCombinator) + childCombinator.length,
+        );
     }
 
     return selectorLastPart;
@@ -34,7 +36,9 @@ const getSelectorLastPart = (selector: string): string => {
 const standardizeTags = (data: CreateIssueDetailsTextData): string[] => {
     const guidanceLinkTextTags = data.rule.guidance.map(link => link.text.toUpperCase());
     const tagsFromGuidanceLinkTags = [];
-    data.rule.guidance.map(link => (link.tags ? link.tags.map(tag => tagsFromGuidanceLinkTags.push(tag.displayText)) : []));
+    data.rule.guidance.map(link =>
+        link.tags ? link.tags.map(tag => tagsFromGuidanceLinkTags.push(tag.displayText)) : [],
+    );
     return guidanceLinkTextTags.concat(tagsFromGuidanceLinkTags);
 };
 

@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
-import { Icon } from 'office-ui-fabric-react/lib/Icon';
-import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
+import { Icon } from 'office-ui-fabric-react';
+import { Spinner, SpinnerSize } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { DeviceConnectState } from '../../../flux/types/device-connect-state';

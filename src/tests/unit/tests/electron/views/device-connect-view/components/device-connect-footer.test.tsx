@@ -10,7 +10,7 @@ import {
 } from 'electron/views/device-connect-view/components/device-connect-footer';
 import { footerButtonCancel, footerButtonStart } from 'electron/views/device-connect-view/components/device-connect-footer.scss';
 import { shallow } from 'enzyme';
-import { Button } from 'office-ui-fabric-react/lib/Button';
+import { Button } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, Mock, Times } from 'typemoq';

@@ -7,7 +7,7 @@ import {
     UniquelyIdentifiableInstances,
 } from 'background/instance-identifier-generator';
 import { RequirementComparer } from 'common/assessment/requirement-comparer';
-import { AssesssmentVisualizationConfiguration } from 'common/configs/assesssment-visualization-configuration';
+import { AssessmentVisualizationConfiguration } from 'common/configs/assessment-visualization-configuration';
 import { Messages } from 'common/messages';
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
@@ -27,7 +27,7 @@ import {
 } from 'injected/visualization-instance-processor';
 import { DrawerProvider } from 'injected/visualization/drawer-provider';
 import { cloneDeep } from 'lodash';
-import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
+import { IColumn } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { DictionaryStringTo } from 'types/common-types';
 
@@ -168,7 +168,7 @@ export class AssessmentBuilder {
             return requirementConfig.getNotificationMessage(selectorMap);
         };
 
-        const visualizationConfiguration: AssesssmentVisualizationConfiguration = {
+        const visualizationConfiguration: AssessmentVisualizationConfiguration = {
             getTestView: props => <AssessmentTestView {...props} />,
             getStoreData: data => data.assessments[`${key}Assessment`],
             enableTest: AssessmentBuilder.enableTest,
@@ -259,7 +259,7 @@ export class AssessmentBuilder {
         assessment.executeAssessmentScanPolicy =
             assessment.executeAssessmentScanPolicy || AssessmentBuilder.nullScanPolicy;
 
-        const visualizationConfiguration: AssesssmentVisualizationConfiguration = {
+        const visualizationConfiguration: AssessmentVisualizationConfiguration = {
             getTestView: props => <AssessmentTestView {...props} />,
             getAssessmentData: data => data.assessments[key],
             setAssessmentData: (data, selectorMap, instanceMap) => {
@@ -284,7 +284,7 @@ export class AssessmentBuilder {
             getNotificationMessage: getNotificationMessage,
             getSwitchToTargetTabOnScan: AssessmentBuilder.getSwitchToTargetTabOnScan(requirements),
             getInstanceIdentiferGenerator: AssessmentBuilder.getInstanceIdentifier(requirements),
-        } as AssesssmentVisualizationConfiguration;
+        } as AssessmentVisualizationConfiguration;
 
         AssessmentBuilder.buildRequirementReportDescription(requirements);
 

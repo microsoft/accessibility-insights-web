@@ -69,7 +69,7 @@ export class ActionCreator {
         );
         this.interpreter.registerTypeToPayloadCallback(
             visualizationMessages.Common.ScanCompleted,
-            this.onScanCompleted,
+            this.onAdHocScanCompleted,
         );
         this.interpreter.registerTypeToPayloadCallback(
             visualizationMessages.Common.ScrollRequested,
@@ -142,7 +142,7 @@ export class ActionCreator {
             this.onAssessmentScanCompleted,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            Messages.Assessment.StartOver,
+            Messages.Assessment.StartOverTest,
             this.onStartOver,
         );
         this.interpreter.registerTypeToPayloadCallback(
@@ -224,10 +224,10 @@ export class ActionCreator {
         this.visualizationActions.disableAssessmentVisualizations.invoke(null);
     };
 
-    private onAssessmentScanCompleted = (
+    private onAssessmentScanCompleted = async (
         payload: ScanCompletedPayload<any>,
         tabId: number,
-    ): void => {
+    ): Promise<void> => {
         const eventName = TelemetryEvents.ASSESSMENT_SCAN_COMPLETED;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.visualizationActions.scanCompleted.invoke(null);
@@ -235,8 +235,9 @@ export class ActionCreator {
             payload.selectorMap,
             payload.key,
             payload.testType,
+            payload.scanIncompleteWarnings,
         );
-        this.targetTabController.showTargetTab(tabId, payload.testType, payload.key);
+        await this.targetTabController.showTargetTab(tabId, payload.testType, payload.key);
     };
 
     private onOpenPreviewFeaturesPanel = async (
@@ -281,7 +282,10 @@ export class ActionCreator {
         this.visualizationActions.updateFocusedInstance.invoke(payload);
     };
 
-    private onScanCompleted = (payload: ScanCompletedPayload<any>, tabId: number): void => {
+    private onAdHocScanCompleted = async (
+        payload: ScanCompletedPayload<any>,
+        tabId: number,
+    ): Promise<void> => {
         const telemetryEventName = TelemetryEvents.ADHOC_SCAN_COMPLETED;
         this.telemetryEventHandler.publishTelemetry(telemetryEventName, payload);
         this.visualizationScanResultActions.scanCompleted.invoke(payload);
@@ -290,8 +294,9 @@ export class ActionCreator {
             payload.selectorMap,
             payload.key,
             payload.testType,
+            payload.scanIncompleteWarnings,
         );
-        this.targetTabController.showTargetTab(tabId, payload.testType, payload.key);
+        await this.targetTabController.showTargetTab(tabId, payload.testType, payload.key);
     };
 
     private onScrollRequested = (payload: BaseActionPayload): void => {

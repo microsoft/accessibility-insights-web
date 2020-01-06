@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
+import { Spinner, SpinnerSize } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { NewTabLink } from '../../common/components/new-tab-link';
@@ -18,7 +18,7 @@ import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag
 import { LaunchPanelStoreData } from '../../common/types/store-data/launch-panel-store-data';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { UrlValidator } from '../../common/url-validator';
-import { IPopupHandlers } from '../handlers/ipopup-handlers';
+import { PopupHandlers } from '../handlers/popup-handlers';
 import { PopupViewControllerHandler } from '../handlers/popup-view-controller-handler';
 import { LaunchPadRowConfigurationFactory } from '../launch-pad-row-configuration-factory';
 import { AdHocToolsPanel } from './ad-hoc-tools-panel';
@@ -35,7 +35,7 @@ import { LaunchPanelHeader, LaunchPanelHeaderDeps } from './launch-panel-header'
 export interface PopupViewProps {
     deps: PopupViewControllerDeps;
     title: string;
-    popupHandlers: IPopupHandlers;
+    popupHandlers: PopupHandlers;
     popupWindow: Window;
     targetTabUrl: string;
     hasAccess: boolean;

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { HeadingsTestStep } from 'assessments/headings/test-steps/test-steps';
-import { OnDetailsViewPivotSelected } from 'background/actions/action-payloads';
+import { OnDetailsViewPivotSelected, SetAllUrlsPermissionStatePayload } from 'background/actions/action-payloads';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { IMock, It, Mock, Times } from 'typemoq';
 
@@ -17,6 +17,7 @@ import {
     FeatureFlagToggleTelemetryData,
     RequirementActionTelemetryData,
     RequirementSelectTelemetryData,
+    SetAllUrlsPermissionTelemetryData,
     TelemetryEventSource,
     TriggeredByNotApplicable,
 } from '../../../../../common/extension-telemetry-events';
@@ -268,8 +269,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         dispatcherMock.verify(dispatcher => dispatcher.sendTelemetry(DETAILS_VIEW_OPEN, telemetry), Times.once());
     });
 
-    test('startOverAssessment', () => {
-        const requirementStub = 'fake-requirement';
+    test('startOverTest', () => {
         const event = eventStubFactory.createMouseClickEvent() as any;
         const telemetry: AssessmentTelemetryData = {
             triggeredBy: 'mouseclick',
@@ -278,10 +278,9 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.StartOver,
+            messageType: Messages.Assessment.StartOverTest,
             payload: {
                 test: VisualizationType.HeadingsAssessment,
-                requirement: requirementStub,
                 telemetry,
             },
         };
@@ -290,7 +289,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             .setup(tf => tf.forAssessmentActionFromDetailsView(VisualizationType.HeadingsAssessment, event))
             .returns(() => telemetry);
 
-        testSubject.startOverAssessment(event, VisualizationType.HeadingsAssessment, requirementStub);
+        testSubject.startOverTest(event, VisualizationType.HeadingsAssessment);
 
         dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
     });
@@ -867,6 +866,29 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             .returns(() => telemetryStub);
 
         testSubject.rescanVisualization(testStub, eventStub);
+
+        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
+    });
+
+    test('setAllUrlsPermissionState', () => {
+        const eventStub = {} as SupportedMouseEvent;
+        const telemetryStub = {
+            source: testSource,
+        } as SetAllUrlsPermissionTelemetryData;
+        const permissionsState = true;
+        const expectedMessage = {
+            messageType: Messages.PermissionsState.SetPermissionsState,
+            payload: {
+                telemetry: telemetryStub,
+                hasAllUrlAndFilePermissions: permissionsState,
+            } as SetAllUrlsPermissionStatePayload,
+        };
+
+        telemetryFactoryMock
+            .setup(tf => tf.forSetAllUrlPermissionState(eventStub, TelemetryEventSource.DetailsView, permissionsState))
+            .returns(() => telemetryStub);
+
+        testSubject.setAllUrlsPermissionState(eventStub, permissionsState);
 
         dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
     });

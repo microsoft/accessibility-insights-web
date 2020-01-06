@@ -2,30 +2,29 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
-import { forEach, isEmpty } from 'lodash';
-
-import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
-import { IndexedDBAPI } from '../../common/indexedDB/indexedDB';
-import { StoreNames } from '../../common/stores/store-names';
-import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
-import { ManualTestStatus } from '../../common/types/manual-test-status';
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
+import { StoreNames } from 'common/stores/store-names';
+import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { ManualTestStatus } from 'common/types/manual-test-status';
 import {
     AssessmentData,
     AssessmentStoreData,
     GeneratedAssessmentInstance,
     TestStepResult,
     UserCapturedInstance,
-} from '../../common/types/store-data/assessment-result-data';
+} from 'common/types/store-data/assessment-result-data';
+import { VisualizationType } from 'common/types/visualization-type';
 import {
     ScanBasePayload,
     ScanCompletedPayload,
     ScanUpdatePayload,
-} from '../../injected/analyzers/analyzer';
-import { DictionaryStringTo } from '../../types/common-types';
+} from 'injected/analyzers/analyzer';
+import { forEach, isEmpty } from 'lodash';
+import { DictionaryStringTo } from 'types/common-types';
 import { AddResultDescriptionPayload, SelectRequirementPayload } from '../actions/action-payloads';
 import { AssessmentDataConverter } from '../assessment-data-converter';
 import { InitialAssessmentStoreDataGenerator } from '../initial-assessment-store-data-generator';
-import { VisualizationType } from './../../common/types/visualization-type';
 import {
     AddFailureInstancePayload,
     AssessmentActionInstancePayload,
@@ -216,16 +215,17 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         const config = this.assessmentsProvider
             .forType(payload.test)
             .getVisualizationConfiguration();
+
         const assessmentData = config.getAssessmentData(this.state);
-        const instances = assessmentData.manualTestStepResultMap[payload.requirement].instances;
-        for (let instanceIndex = 0; instanceIndex < instances.length; instanceIndex++) {
-            const instance = instances[instanceIndex];
-            if (instance.id === payload.id) {
-                instance.description = payload.instanceData.failureDescription;
-                instance.html = payload.instanceData.snippet;
-                instance.selector = payload.instanceData.path;
-                break;
-            }
+        const requirementInstances =
+            assessmentData.manualTestStepResultMap[payload.requirement].instances;
+
+        const instanceToEdit = requirementInstances.find(instance => instance.id === payload.id);
+
+        if (instanceToEdit) {
+            instanceToEdit.description = payload.instanceData.failureDescription;
+            instanceToEdit.html = payload.instanceData.snippet;
+            instanceToEdit.selector = payload.instanceData.path;
         }
 
         this.emitChanged();
@@ -236,13 +236,13 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
             .forType(payload.test)
             .getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
-        assessmentData.manualTestStepResultMap[
-            payload.requirement
-        ].instances = assessmentData.manualTestStepResultMap[payload.requirement].instances.filter(
-            instance => {
-                return instance.id !== payload.id;
-            },
+
+        const requirement = assessmentData.manualTestStepResultMap[payload.requirement];
+
+        requirement.instances = requirement.instances.filter(
+            instance => instance.id !== payload.id,
         );
+
         this.updateManualTestStepStatus(assessmentData, payload.requirement, payload.test);
 
         this.emitChanged();

@@ -40,10 +40,13 @@ div.insights-dialog-main-override.insights-file-issue-details-dialog-container {
         font-weight: $fontWeightSemiBold;
     }
     .target-change-dialog-button-container {
+        display: flex;
+        height: 40px;
+        justify-content: flex-end;
+
         .action-cancel-button-col {
             text-align: right;
             padding-left: 0px;
-            float: right;
             margin-top: 4px;
             margin-bottom: 24px;
         }
@@ -121,29 +124,6 @@ div.insights-file-issue-details-dialog-container {
     .header-text {
         color: $neutral-100;
         font-size: 2em;
-    }
-}
-
-.settings-panel {
-    .generic-toggle-component .toggle-description {
-        color: $secondary-text;
-    }
-
-    h3 {
-        font-size: 17px;
-        margin-block-end: 8px;
-    }
-
-    .issue-setting {
-        .ms-Label {
-            color: $neutral-100;
-            padding-top: 8px;
-            padding-bottom: 8px;
-        }
-
-        .ms-TextField-field {
-            color: $neutral-100;
-        }
     }
 }
 

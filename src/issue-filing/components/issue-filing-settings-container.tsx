@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { SetIssueFilingServicePayload, SetIssueFilingServicePropertyPayload } from 'background/actions/action-payloads';
+import {
+    SetIssueFilingServicePayload,
+    SetIssueFilingServicePropertyPayload,
+} from 'background/actions/action-payloads';
 import * as React from 'react';
 
 import { NamedFC } from '../../common/react/named-fc';
@@ -25,19 +28,26 @@ export type IssueFilingSettingsContainerDeps = {
     issueFilingServiceProvider: IssueFilingServiceProvider;
 } & SettingsDeps;
 
-export const IssueFilingSettingsContainer = NamedFC<IssueFilingSettingsContainerProps>('IssueFilingSettingsContainer', props => {
-    const { deps, selectedIssueFilingService, selectedIssueFilingServiceData } = props;
-    const SettingsForm = selectedIssueFilingService.settingsForm;
-    const issueFilingServices = deps.issueFilingServiceProvider.allVisible();
+export const IssueFilingSettingsContainer = NamedFC<IssueFilingSettingsContainerProps>(
+    'IssueFilingSettingsContainer',
+    props => {
+        const { deps, selectedIssueFilingService, selectedIssueFilingServiceData } = props;
+        const SettingsForm = selectedIssueFilingService.settingsForm;
+        const issueFilingServices = deps.issueFilingServiceProvider.allVisible();
 
-    return (
-        <div aria-labelledby="issue-filing">
-            <IssueFilingChoiceGroup
-                onSelectedServiceChange={props.onSelectedServiceChange}
-                selectedIssueFilingService={selectedIssueFilingService}
-                issueFilingServices={issueFilingServices}
-            />
-            <SettingsForm deps={deps} settings={selectedIssueFilingServiceData} onPropertyUpdateCallback={props.onPropertyUpdateCallback} />
-        </div>
-    );
-});
+        return (
+            <>
+                <IssueFilingChoiceGroup
+                    onSelectedServiceChange={props.onSelectedServiceChange}
+                    selectedIssueFilingService={selectedIssueFilingService}
+                    issueFilingServices={issueFilingServices}
+                />
+                <SettingsForm
+                    deps={deps}
+                    settings={selectedIssueFilingServiceData}
+                    onPropertyUpdateCallback={props.onPropertyUpdateCallback}
+                />
+            </>
+        );
+    },
+);

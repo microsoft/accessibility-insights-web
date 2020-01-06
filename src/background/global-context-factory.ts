@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BrowserPermissionsTracker } from 'background/browser-permissions-tracker';
 import { Logger } from 'common/logging/logger';
+
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { CommandsAdapter } from '../common/browser-adapters/commands-adapter';
 import { StorageAdapter } from '../common/browser-adapters/storage-adapter';
@@ -20,6 +22,7 @@ import { PersistedData } from './get-persisted-data';
 import { FeatureFlagsActionCreator } from './global-action-creators/feature-flags-action-creator';
 import { GlobalActionCreator } from './global-action-creators/global-action-creator';
 import { IssueFilingActionCreator } from './global-action-creators/issue-filing-action-creator';
+import { PermissionsStateActionCreator } from './global-action-creators/permissions-state-action-creator';
 import { registerUserConfigurationMessageCallback } from './global-action-creators/registrar/register-user-configuration-message-callbacks';
 import { ScopingActionCreator } from './global-action-creators/scoping-action-creator';
 import { UserConfigurationActionCreator } from './global-action-creators/user-configuration-action-creator';
@@ -31,7 +34,7 @@ import { TelemetryEventHandler } from './telemetry/telemetry-event-handler';
 import { UserConfigurationController } from './user-configuration-controller';
 
 export class GlobalContextFactory {
-    public static createContext(
+    public static async createContext(
         browserAdapter: BrowserAdapter,
         telemetryEventHandler: TelemetryEventHandler,
         userData: LocalStorageData,
@@ -44,7 +47,7 @@ export class GlobalContextFactory {
         storageAdapter: StorageAdapter,
         commandsAdapter: CommandsAdapter,
         logger: Logger,
-    ): GlobalContext {
+    ): Promise<GlobalContext> {
         const interpreter = new Interpreter();
 
         const globalActionsHub = new GlobalActionHub();
@@ -102,6 +105,11 @@ export class GlobalContextFactory {
             globalActionsHub.featureFlagActions,
             telemetryEventHandler,
         );
+        const permissionsStateActionCreator = new PermissionsStateActionCreator(
+            interpreter,
+            globalActionsHub.permissionsStateActions,
+            telemetryEventHandler,
+        );
 
         issueFilingActionCreator.registerCallbacks();
         actionCreator.registerCallbacks();
@@ -109,6 +117,7 @@ export class GlobalContextFactory {
         registerUserConfigurationMessageCallback(interpreter, userConfigurationActionCreator);
         scopingActionCreator.registerCallback();
         featureFlagsActionCreator.registerCallbacks();
+        permissionsStateActionCreator.registerCallbacks();
 
         const messageBroadcasterFactory = new BrowserMessageBroadcasterFactory(
             browserAdapter,
@@ -128,6 +137,13 @@ export class GlobalContextFactory {
             interpreter,
         );
         assessmentChangeHandler.initialize();
+
+        const browserPermissionTracker = new BrowserPermissionsTracker(
+            browserAdapter,
+            interpreter,
+            logger,
+        );
+        await browserPermissionTracker.initialize();
 
         return new GlobalContext(
             interpreter,

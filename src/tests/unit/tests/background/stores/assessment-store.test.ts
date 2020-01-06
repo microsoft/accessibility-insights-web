@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import {
     AddFailureInstancePayload,
+    AddResultDescriptionPayload,
     ChangeInstanceSelectionPayload,
     ChangeInstanceStatusPayload,
     ChangeRequirementStatusPayload,
@@ -19,15 +19,13 @@ import { AssessmentDataConverter } from 'background/assessment-data-converter';
 import { AssessmentDataRemover } from 'background/assessment-data-remover';
 import { InitialAssessmentStoreDataGenerator } from 'background/initial-assessment-store-data-generator';
 import { AssessmentStore } from 'background/stores/assessment-store';
-import { cloneDeep } from 'lodash';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
-import { AssesssmentVisualizationConfiguration } from '../../../../../common/configs/assesssment-visualization-configuration';
-import { IndexedDBAPI } from '../../../../../common/indexedDB/indexedDB';
-import { Tab } from '../../../../../common/itab';
-import { StoreNames } from '../../../../../common/stores/store-names';
-import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
-import { ManualTestStatus, ManualTestStatusData, TestStepData } from '../../../../../common/types/manual-test-status';
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { AssessmentVisualizationConfiguration } from 'common/configs/assessment-visualization-configuration';
+import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
+import { Tab } from 'common/itab';
+import { StoreNames } from 'common/stores/store-names';
+import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { ManualTestStatus, ManualTestStatusData, TestStepData } from 'common/types/manual-test-status';
 import {
     AssessmentData,
     AssessmentStoreData,
@@ -35,12 +33,14 @@ import {
     ManualTestStepResult,
     PersistedTabInfo,
     TestStepResult,
-} from '../../../../../common/types/store-data/assessment-result-data';
-import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { ScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from '../../../../../injected/analyzers/analyzer';
-import { TabStopEvent } from '../../../../../injected/tab-stops-listener';
-import { ScanResults } from '../../../../../scanner/iruleresults';
-import { DictionaryStringTo } from '../../../../../types/common-types';
+} from 'common/types/store-data/assessment-result-data';
+import { VisualizationType } from 'common/types/visualization-type';
+import { ScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from 'injected/analyzers/analyzer';
+import { TabStopEvent } from 'injected/tab-stops-listener';
+import { cloneDeep, isFunction } from 'lodash';
+import { ScanResults } from 'scanner/iruleresults';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { DictionaryStringTo } from 'types/common-types';
 import { AssessmentDataBuilder } from '../../../common/assessment-data-builder';
 import { AssessmentsStoreDataBuilder } from '../../../common/assessment-store-data-builder';
 import { AssessmentStoreTester } from '../../../common/assessment-store-tester';
@@ -60,7 +60,7 @@ describe('AssessmentStoreTest', () => {
     let indexDBInstanceMock: IMock<IndexedDBAPI>;
     let assessmentMock: IMock<Assessment>;
     let getInstanceIdentiferGeneratorMock: IMock<(step: string) => Function>;
-    let configStub: AssesssmentVisualizationConfiguration;
+    let configStub: AssessmentVisualizationConfiguration;
     let instanceIdentifierGeneratorStub: (instances) => string;
     let initialAssessmentStoreDataGeneratorMock: IMock<InitialAssessmentStoreDataGenerator>;
 
@@ -73,27 +73,21 @@ describe('AssessmentStoreTest', () => {
         configStub = {
             getAssessmentData: data => data.assessments[assessmentKey],
             getInstanceIdentiferGenerator: getInstanceIdentiferGeneratorMock.object,
-        } as AssesssmentVisualizationConfiguration;
+        } as AssessmentVisualizationConfiguration;
 
         assessmentsProvider = CreateTestAssessmentProvider();
-        assessmentsProviderMock = Mock.ofType(AssessmentsProviderImpl, MockBehavior.Strict);
+        assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(undefined, MockBehavior.Strict);
         assessmentMock = Mock.ofInstance({
             getVisualizationConfiguration: () => {
                 return null;
             },
         } as Assessment);
         assessmentDataConverterMock
-            .setup(adcm => adcm.getNewManualTestStepResult(It.isAny()))
+            .setup(dataConverter => dataConverter.getNewManualTestStepResult(It.isAny()))
             .returns(step => getDefaultManualTestStepResult(step));
 
-        indexDBInstanceMock = Mock.ofInstance(
-            {
-                setItem: (key, value) => null,
-                getItem: key => null,
-            } as IndexedDBAPI,
-            MockBehavior.Strict,
-        );
-        initialAssessmentStoreDataGeneratorMock = Mock.ofType(InitialAssessmentStoreDataGenerator);
+        indexDBInstanceMock = Mock.ofType<IndexedDBAPI>(undefined, MockBehavior.Strict);
+        initialAssessmentStoreDataGeneratorMock = Mock.ofType<InitialAssessmentStoreDataGenerator>();
     });
 
     afterEach(() => {
@@ -239,10 +233,10 @@ describe('AssessmentStoreTest', () => {
             getAssessmentData: state => {
                 return state.assessments[assessmentKey];
             },
-        } as AssesssmentVisualizationConfiguration;
+        } as AssessmentVisualizationConfiguration;
 
         getVisualizationConfigurationMock
-            .setup(gvcm => gvcm())
+            .setup(configGetter => configGetter())
             .returns(() => {
                 return visualizationConfigStub;
             });
@@ -286,10 +280,10 @@ describe('AssessmentStoreTest', () => {
             getAssessmentData: state => {
                 return state.assessments[assessmentKey];
             },
-        } as AssesssmentVisualizationConfiguration;
+        } as AssessmentVisualizationConfiguration;
 
         getVisualizationConfigurationMock
-            .setup(gvcm => gvcm())
+            .setup(configGetter => configGetter())
             .returns(() => {
                 return visualizationConfigStub;
             });
@@ -336,10 +330,10 @@ describe('AssessmentStoreTest', () => {
             getAssessmentData: state => {
                 return state.assessments[assessmentKey];
             },
-        } as AssesssmentVisualizationConfiguration;
+        } as AssessmentVisualizationConfiguration;
 
         getVisualizationConfigurationMock
-            .setup(gvcm => gvcm())
+            .setup(configGetter => configGetter())
             .returns(() => {
                 return visualizationConfigStub;
             });
@@ -415,27 +409,20 @@ describe('AssessmentStoreTest', () => {
             url,
             title,
         };
-        let onReject;
-        browserMock
-            .setup(b => b.getTab(tabId, It.isAny(), It.isAny()))
-            .returns((id, cb, reject) => {
-                onReject = reject;
-                cb(tab);
-            })
-            .verifiable();
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
+        browserMock.setup(adapter => adapter.getTab(tabId, It.is(isFunction), It.is(isFunction))).callback((id, resolve) => resolve(tab));
+
         const initialState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object)
             .withTargetTab(oldTabId, null, null, true)
             .build();
+
         const finalState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object)
             .withTargetTab(tabId, url, title, false)
             .build();
-        setupDataGeneratorMock(null, getDefaultState());
 
-        createStoreTesterForAssessmentActions('resetAllAssessmentsData')
+        createStoreTesterForAssessmentActions('continuePreviousAssessment')
             .withActionParam(tabId)
             .testListenerToBeCalledOnce(initialState, finalState);
-        expect(() => onReject()).toThrowErrorMatchingSnapshot();
     });
 
     test('onScanCompleted', () => {
@@ -472,17 +459,17 @@ describe('AssessmentStoreTest', () => {
 
         const finalState = getStateWithAssessment(assessmentData);
 
-        assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
+        assessmentsProviderMock.setup(provider => provider.all()).returns(() => assessmentsProvider.all());
 
-        assessmentsProviderMock.setup(apm => apm.getStepMap(assessmentType)).returns(() => stepMapStub);
+        assessmentsProviderMock.setup(provider => provider.getStepMap(assessmentType)).returns(() => stepMapStub);
 
-        assessmentsProviderMock.setup(apm => apm.getStep(assessmentType, 'assessment-1-step-1')).returns(() => stepConfig);
+        assessmentsProviderMock.setup(provider => provider.getStep(assessmentType, 'assessment-1-step-1')).returns(() => stepConfig);
 
-        assessmentsProviderMock.setup(apm => apm.forType(payload.testType)).returns(() => assessmentMock.object);
+        assessmentsProviderMock.setup(provider => provider.forType(payload.testType)).returns(() => assessmentMock.object);
 
         assessmentMock.setup(am => am.getVisualizationConfiguration()).returns(() => configStub);
 
-        getInstanceIdentiferGeneratorMock.setup(giim => giim(requirementKey)).returns(() => instanceIdentifierGeneratorStub);
+        getInstanceIdentiferGeneratorMock.setup(idGetter => idGetter(requirementKey)).returns(() => instanceIdentifierGeneratorStub);
 
         assessmentDataConverterMock
             .setup(a =>
@@ -530,19 +517,21 @@ describe('AssessmentStoreTest', () => {
 
         const finalState = getStateWithAssessment(assessmentData);
 
-        assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
-
-        assessmentsProviderMock.setup(apm => apm.getStepMap(assessmentType)).returns(() => assessmentsProvider.getStepMap(assessmentType));
+        assessmentsProviderMock.setup(provider => provider.all()).returns(() => assessmentsProvider.all());
 
         assessmentsProviderMock
-            .setup(apm => apm.getStep(assessmentType, requirementKey))
+            .setup(provider => provider.getStepMap(assessmentType))
+            .returns(() => assessmentsProvider.getStepMap(assessmentType));
+
+        assessmentsProviderMock
+            .setup(provider => provider.getStep(assessmentType, requirementKey))
             .returns(() => assessmentsProvider.getStep(assessmentType, requirementKey));
 
-        assessmentsProviderMock.setup(apm => apm.forType(payload.testType)).returns(() => assessmentMock.object);
+        assessmentsProviderMock.setup(provider => provider.forType(payload.testType)).returns(() => assessmentMock.object);
 
         assessmentMock.setup(am => am.getVisualizationConfiguration()).returns(() => configStub);
 
-        getInstanceIdentiferGeneratorMock.setup(giim => giim(requirementKey)).returns(() => instanceIdentifierGeneratorStub);
+        getInstanceIdentiferGeneratorMock.setup(getter => getter(requirementKey)).returns(() => instanceIdentifierGeneratorStub);
 
         assessmentDataConverterMock
             .setup(a =>
@@ -1407,9 +1396,25 @@ describe('AssessmentStoreTest', () => {
         assessmentsProviderMock.verifyAll();
     });
 
-    test('verify the MaunalTestStatus Priorities', () => {
+    test('verify the ManualTestStatus Priorities', () => {
         expect(ManualTestStatus.PASS < ManualTestStatus.UNKNOWN).toBeTruthy();
         expect(ManualTestStatus.UNKNOWN < ManualTestStatus.FAIL).toBeTruthy();
+    });
+
+    test('onAddResultDescription', () => {
+        const payload: AddResultDescriptionPayload = {
+            description: 'new-test-description',
+        };
+
+        const initialState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object).build();
+
+        const finalState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object)
+            .with('resultDescription', payload.description)
+            .build();
+
+        createStoreTesterForAssessmentActions('addResultDescription')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, finalState);
     });
 
     function setupDataGeneratorMock(persistedData: AssessmentStoreData, initialData: AssessmentStoreData): void {

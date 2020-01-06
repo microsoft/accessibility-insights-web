@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { SetAllUrlsPermissionStatePayload } from 'background/actions/action-payloads';
 import { PermissionsStateActions } from 'background/actions/permissions-state-actions';
 import { BaseStoreImpl } from 'background/stores/base-store-impl';
 import { StoreNames } from 'common/stores/store-names';
@@ -23,9 +24,9 @@ export class PermissionsStateStore extends BaseStoreImpl<PermissionsStateStoreDa
         this.permissionsStateActions.setPermissionsState.addListener(this.onSetPermissionsState);
     }
 
-    private onSetPermissionsState = (hasAllUrlAndFilePermissions: boolean): void => {
-        if (hasAllUrlAndFilePermissions !== this.state.hasAllUrlAndFilePermissions) {
-            this.state.hasAllUrlAndFilePermissions = hasAllUrlAndFilePermissions;
+    private onSetPermissionsState = (payload: SetAllUrlsPermissionStatePayload): void => {
+        if (this.state.hasAllUrlAndFilePermissions !== payload.hasAllUrlAndFilePermissions) {
+            this.state.hasAllUrlAndFilePermissions = payload.hasAllUrlAndFilePermissions;
             this.emitChanged();
         }
     };

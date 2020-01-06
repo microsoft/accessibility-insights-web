@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { KeyCodeConstants } from 'common/constants/keycode-constants';
-import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
-import { MaskedTextField } from 'office-ui-fabric-react/lib/TextField';
+import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react';
+import { MaskedTextField } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { DeviceConnectActionCreator } from '../../../flux/action-creator/device-connect-action-creator';

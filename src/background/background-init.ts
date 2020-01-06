@@ -19,12 +19,12 @@ import { WindowUtils } from '../common/window-utils';
 import { title } from '../content/strings/application';
 import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-service-provider-impl';
 import { BrowserMessageBroadcasterFactory } from './browser-message-broadcaster-factory';
-import { ChromeCommandHandler } from './chrome-command-handler';
 import { DetailsViewController } from './details-view-controller';
 import { DevToolsListener } from './dev-tools-listener';
 import { getPersistedData } from './get-persisted-data';
 import { GlobalContextFactory } from './global-context-factory';
 import { IndexedDBDataKeys } from './IndexedDBDataKeys';
+import { KeyboardShortcutHandler } from './keyboard-shortcut-handler';
 import { deprecatedStorageDataKeys, storageDataKeys } from './local-storage-data-keys';
 import { MessageDistributor } from './message-distributor';
 import { TabToContextMap } from './tab-context';
@@ -87,7 +87,7 @@ async function initialize(): Promise<void> {
         AxeInfo.Default.version,
     );
 
-    const globalContext = GlobalContextFactory.createContext(
+    const globalContext = await GlobalContextFactory.createContext(
         browserAdapter,
         telemetryEventHandler,
         userData,
@@ -121,7 +121,7 @@ async function initialize(): Promise<void> {
         logger,
     );
 
-    const chromeCommandHandler = new ChromeCommandHandler(
+    const keyboardShortcutHandler = new KeyboardShortcutHandler(
         tabToContextMap,
         browserAdapter,
         urlValidator,
@@ -132,7 +132,7 @@ async function initialize(): Promise<void> {
         browserAdapter,
         logger,
     );
-    chromeCommandHandler.initialize();
+    keyboardShortcutHandler.initialize();
 
     const messageDistributor = new MessageDistributor(
         globalContext,
@@ -160,7 +160,7 @@ async function initialize(): Promise<void> {
         logger,
     );
 
-    const clientHandler = new TargetPageController(
+    const targetPageController = new TargetPageController(
         tabToContextMap,
         messageBroadcasterFactory,
         browserAdapter,
@@ -169,7 +169,7 @@ async function initialize(): Promise<void> {
         logger,
     );
 
-    clientHandler.initialize();
+    await targetPageController.initialize();
 
     const devToolsBackgroundListener = new DevToolsListener(tabToContextMap, browserAdapter);
     devToolsBackgroundListener.initialize();

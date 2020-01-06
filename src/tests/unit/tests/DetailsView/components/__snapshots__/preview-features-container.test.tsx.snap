@@ -28,6 +28,7 @@ exports[`PreviewFeaturesContainerTest renders all available preview features 1`]
           "editFailureInstance": [Function],
           "removeFailureInstance": [Function],
           "rescanVisualization": [Function],
+          "setAllUrlsPermissionState": [Function],
           "setFeatureFlag": [Function],
           "startOverAllAssessments": [Function],
           "switchToTargetTab": [Function],

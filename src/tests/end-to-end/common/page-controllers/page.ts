@@ -285,6 +285,6 @@ export class Page {
     }
 
     private async screenshotOnError<T>(wrappedFunction: () => Promise<T>): Promise<T> {
-        return await screenshotOnError(this.underlyingPage, wrappedFunction);
+        return await screenshotOnError(path => this.underlyingPage.screenshot({ path, fullPage: true }), wrappedFunction);
     }
 }

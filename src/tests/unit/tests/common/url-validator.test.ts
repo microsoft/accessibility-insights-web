@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { isFunction } from 'lodash';
-import { IMock, It, Mock } from 'typemoq';
-
+import { IMock, Mock } from 'typemoq';
 import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { UrlValidator } from '../../../../common/url-validator';
 
@@ -38,10 +36,8 @@ describe('UrlValidatorTest', () => {
     test('isSupportedUrl: file', async () => {
         const url: string = 'file://test';
         browserAdapterMock
-            .setup(b => b.isAllowedFileSchemeAccess(It.is(isFunction)))
-            .callback(callback => {
-                callback(true);
-            })
+            .setup(b => b.isAllowedFileSchemeAccess())
+            .returns(() => Promise.resolve(true))
             .verifiable();
 
         const isSupported = await testSubject.isSupportedUrl(url);
@@ -53,10 +49,8 @@ describe('UrlValidatorTest', () => {
     test('isFileUrl, but have no access, so isNotSupportedUrl', async () => {
         const url: string = 'file://yes/I/am!';
         browserAdapterMock
-            .setup(b => b.isAllowedFileSchemeAccess(It.is(isFunction)))
-            .callback(callback => {
-                callback(false);
-            })
+            .setup(b => b.isAllowedFileSchemeAccess())
+            .returns(() => Promise.resolve(false))
             .verifiable();
 
         const isSupported = await testSubject.isSupportedUrl(url);

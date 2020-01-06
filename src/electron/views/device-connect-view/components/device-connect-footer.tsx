@@ -3,7 +3,7 @@
 import { NamedFC } from 'common/react/named-fc';
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
-import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
+import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import * as styles from './device-connect-footer.scss';

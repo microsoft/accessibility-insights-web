@@ -3,7 +3,7 @@
 import { Shell } from 'electron';
 import { ElectronExternalLink, ElectronExternalLinkProps } from 'electron/views/device-connect-view/components/electron-external-link';
 import { shallow } from 'enzyme';
-import { Button } from 'office-ui-fabric-react/lib/Button';
+import { Button } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { Mock, Times } from 'typemoq';

@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Tab } from '../../common/itab.d';
-import { StoreNames } from '../../common/stores/store-names';
-import { TabStoreData } from '../../common/types/store-data/tab-store-data';
+import { Tab } from 'common/itab';
+import { StoreNames } from 'common/stores/store-names';
+import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationActions } from '../actions/visualization-actions';
 import { BaseStoreImpl } from './base-store-impl';

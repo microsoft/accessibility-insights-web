@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { telemetryPopupCheckboxTitle, telemetryPopupTitle } from 'content/settings/improve-accessibility-insights';
-import { PrimaryButton } from 'office-ui-fabric-react/lib/Button';
-import { Checkbox } from 'office-ui-fabric-react/lib/Checkbox';
-import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
+import { PrimaryButton } from 'office-ui-fabric-react';
+import { Checkbox } from 'office-ui-fabric-react';
+import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { PrivacyStatementPopupText, PrivacyStatementTextDeps } from './privacy-statement-text';
 import { TelemetryNotice, TelemetryNoticeDeps } from './telemetry-notice';

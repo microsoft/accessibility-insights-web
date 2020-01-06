@@ -3,7 +3,7 @@
 import { IMock, It, Mock } from 'typemoq';
 
 import { ConnectionNames } from '../../../../common/constants/connection-names';
-import { DevToolState } from '../../../../common/types/store-data/idev-tool-state';
+import { DevToolStoreData } from '../../../../common/types/store-data/dev-tool-store-data';
 import { InspectHandler } from '../../../../Devtools/inspect-handler';
 import { DevToolsChromeAdapterMock } from '../../mock-helpers/dev-tools-chrome-adapter-mock';
 import { StoreMock } from '../../mock-helpers/store-mock';
@@ -12,13 +12,13 @@ import { PortStub } from '../../stubs/port-stub';
 describe('InspectHandlerTests', () => {
     let testObjec: InspectHandler;
     let devToolsChromeAdapterMock: DevToolsChromeAdapterMock;
-    let devtoolsStoreProxyMock: StoreMock<DevToolState>;
+    let devtoolsStoreProxyMock: StoreMock<DevToolStoreData>;
     let backgrountConnectionMock: IMock<chrome.runtime.Port>;
     const inspectedWindowId = 12;
 
     beforeEach(() => {
         devToolsChromeAdapterMock = new DevToolsChromeAdapterMock();
-        devtoolsStoreProxyMock = new StoreMock<DevToolState>();
+        devtoolsStoreProxyMock = new StoreMock<DevToolStoreData>();
         backgrountConnectionMock = Mock.ofType(PortStub);
         testObjec = new InspectHandler(devtoolsStoreProxyMock.getObject(), devToolsChromeAdapterMock.getObject());
 
@@ -52,7 +52,7 @@ describe('InspectHandlerTests', () => {
     test('initialize - do not throw when inspectElement is not set', () => {
         const state = {
             inspectElement: null,
-        } as DevToolState;
+        } as DevToolStoreData;
 
         devtoolsStoreProxyMock.setupAddChangedListener();
         devtoolsStoreProxyMock.setupGetState(state);
@@ -69,7 +69,7 @@ describe('InspectHandlerTests', () => {
         const state = {
             inspectElement: ['#testElement'],
             frameUrl: null,
-        } as DevToolState;
+        } as DevToolStoreData;
         devtoolsStoreProxyMock.setupAddChangedListener();
         devtoolsStoreProxyMock.setupGetState(state);
         devToolsChromeAdapterMock.setupGetInspectedWindowTabId(inspectedWindowId);
@@ -87,7 +87,7 @@ describe('InspectHandlerTests', () => {
         const state = {
             inspectElement: ['#testElement', 'test'],
             frameUrl: 'testUrl',
-        } as DevToolState;
+        } as DevToolStoreData;
         devtoolsStoreProxyMock.setupAddChangedListener();
         devtoolsStoreProxyMock.setupGetState(state);
         devToolsChromeAdapterMock.setupGetInspectedWindowTabId(inspectedWindowId);
@@ -105,7 +105,7 @@ describe('InspectHandlerTests', () => {
         const state = {
             inspectElement: ['#testElement', 'test'],
             frameUrl: null,
-        } as DevToolState;
+        } as DevToolStoreData;
         devtoolsStoreProxyMock.setupAddChangedListener();
         devtoolsStoreProxyMock.setupGetState(state);
         devToolsChromeAdapterMock.setupGetInspectedWindowTabId(inspectedWindowId);

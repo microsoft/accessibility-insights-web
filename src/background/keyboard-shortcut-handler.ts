@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Tabs } from 'webextension-polyfill-ts';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { CommandsAdapter } from '../common/browser-adapters/commands-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -22,7 +23,7 @@ import { TabToContextMap } from './tab-context';
 
 const VisualizationMessages = Messages.Visualizations;
 
-export class ChromeCommandHandler {
+export class KeyboardShortcutHandler {
     private targetTabUrl: string;
     private commandToVisualizationType: DictionaryStringTo<VisualizationType>;
 
@@ -82,7 +83,7 @@ export class ChromeCommandHandler {
             const state = tabContext.stores.visualizationStore.getState();
 
             if (state.scanning != null) {
-                // do not change state if currently scanning, not even the toggle
+                // do not notify if we are already scanning
                 return;
             }
 
@@ -101,13 +102,9 @@ export class ChromeCommandHandler {
         return await this.urlValidator.isSupportedUrl(this.targetTabUrl);
     }
 
-    private queryTabs(tabQueryParams: chrome.tabs.QueryInfo): Promise<chrome.tabs.Tab[]> {
-        return new Promise(resolve => this.browserAdapter.tabsQuery(tabQueryParams, resolve));
-    }
-
-    private async queryCurrentActiveTab(): Promise<chrome.tabs.Tab> {
+    private async queryCurrentActiveTab(): Promise<Tabs.Tab> {
         const tabQueryParams: chrome.tabs.QueryInfo = { active: true, currentWindow: true };
-        const currentActiveTabs = await this.queryTabs(tabQueryParams);
+        const currentActiveTabs = await this.browserAdapter.tabsQuery(tabQueryParams);
 
         if (currentActiveTabs && currentActiveTabs[0]) {
             return currentActiveTabs[0];

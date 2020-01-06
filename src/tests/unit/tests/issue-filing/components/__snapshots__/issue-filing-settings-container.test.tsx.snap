@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`IssueFilingSettingsContainerTest render 1`] = `
-<div
-  aria-labelledby="issue-filing"
->
+<React.Fragment>
   <IssueFilingChoiceGroup
     issueFilingServices={
       Array [
@@ -40,5 +38,5 @@ exports[`IssueFilingSettingsContainerTest render 1`] = `
       }
     }
   />
-</div>
+</React.Fragment>
 `;

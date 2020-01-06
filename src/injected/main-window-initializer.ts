@@ -6,6 +6,7 @@ import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
+import { PermissionsStateStoreData } from 'common/types/store-data/permissions-state-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { VisualizationType } from 'common/types/visualization-type';
 import { ClientStoreListener, TargetPageStoreData } from 'injected/client-store-listener';
@@ -14,11 +15,10 @@ import { FocusChangeHandler } from 'injected/focus-change-handler';
 import { getDecoratedAxeNode } from 'injected/get-decorated-axe-node';
 import { IframeDetector } from 'injected/iframe-detector';
 import { isVisualizationEnabled } from 'injected/is-visualization-enabled';
-import { CrossOriginPermissionDetector, ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
+import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { TargetPageVisualizationUpdater } from 'injected/target-page-visualization-updater';
 import { visualizationNeedsUpdate } from 'injected/visualization-needs-update';
 import { VisualizationStateChangeHandler } from 'injected/visualization-state-change-handler';
-
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
@@ -37,8 +37,8 @@ import { StoreProxy } from '../common/store-proxy';
 import { StoreNames } from '../common/stores/store-names';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
+import { DevToolStoreData } from '../common/types/store-data/dev-tool-store-data';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
-import { DevToolState } from '../common/types/store-data/idev-tool-state';
 import { InspectStoreData } from '../common/types/store-data/inspect-store-data';
 import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
@@ -85,10 +85,11 @@ export class MainWindowInitializer extends WindowInitializer {
     private visualizationScanResultStoreProxy: StoreProxy<VisualizationScanResultData>;
     private scopingStoreProxy: StoreProxy<ScopingStoreData>;
     private tabStoreProxy: StoreProxy<TabStoreData>;
-    private devToolStoreProxy: StoreProxy<DevToolState>;
+    private devToolStoreProxy: StoreProxy<DevToolStoreData>;
     private pathSnippetStoreProxy: StoreProxy<PathSnippetStoreData>;
     private unifiedScanResultStoreProxy: StoreProxy<UnifiedScanResultStoreData>;
     private cardSelectionStoreProxy: StoreProxy<CardSelectionStoreData>;
+    private permissionsStateStoreProxy: StoreProxy<PermissionsStateStoreData>;
 
     public async initialize(): Promise<void> {
         const asyncInitializationSteps: Promise<void>[] = [];
@@ -110,7 +111,7 @@ export class MainWindowInitializer extends WindowInitializer {
         );
         this.assessmentStoreProxy = new StoreProxy<AssessmentStoreData>(StoreNames[StoreNames.AssessmentStore], this.browserAdapter);
         this.tabStoreProxy = new StoreProxy<TabStoreData>(StoreNames[StoreNames.TabStore], this.browserAdapter);
-        this.devToolStoreProxy = new StoreProxy<DevToolState>(StoreNames[StoreNames.DevToolsStore], this.browserAdapter);
+        this.devToolStoreProxy = new StoreProxy<DevToolStoreData>(StoreNames[StoreNames.DevToolsStore], this.browserAdapter);
         this.inspectStoreProxy = new StoreProxy<InspectStoreData>(StoreNames[StoreNames.InspectStore], this.browserAdapter);
         this.pathSnippetStoreProxy = new StoreProxy<PathSnippetStoreData>(StoreNames[StoreNames.PathSnippetStore], this.browserAdapter);
         this.unifiedScanResultStoreProxy = new StoreProxy<UnifiedScanResultStoreData>(
@@ -119,6 +120,10 @@ export class MainWindowInitializer extends WindowInitializer {
         );
         this.cardSelectionStoreProxy = new StoreProxy<CardSelectionStoreData>(
             StoreNames[StoreNames.CardSelectionStore],
+            this.browserAdapter,
+        );
+        this.permissionsStateStoreProxy = new StoreProxy<PermissionsStateStoreData>(
+            StoreNames[StoreNames.PermissionsStateStore],
             this.browserAdapter,
         );
 
@@ -141,6 +146,7 @@ export class MainWindowInitializer extends WindowInitializer {
             this.pathSnippetStoreProxy,
             this.unifiedScanResultStoreProxy,
             this.cardSelectionStoreProxy,
+            this.permissionsStateStoreProxy,
         ]);
         storeActionMessageCreator.getAllStates();
 
@@ -186,6 +192,7 @@ export class MainWindowInitializer extends WindowInitializer {
             this.userConfigStoreProxy,
             this.unifiedScanResultStoreProxy,
             this.cardSelectionStoreProxy,
+            this.permissionsStateStoreProxy,
         ]);
 
         const clientStoreListener = new ClientStoreListener(storeHub);
@@ -215,13 +222,8 @@ export class MainWindowInitializer extends WindowInitializer {
 
         this.frameUrlSearchInitiator.listenToStore();
 
-        // TODO: use something based on the permissions store instead once that's piped in
-        const crossOriginPermissionDetector: CrossOriginPermissionDetector = {
-            hasCrossOriginPermissions: () => true,
-        };
-
         const iframeDetector = new IframeDetector(document);
-        const scanIncompleteWarningDetector = new ScanIncompleteWarningDetector(iframeDetector, crossOriginPermissionDetector);
+        const scanIncompleteWarningDetector = new ScanIncompleteWarningDetector(iframeDetector, this.permissionsStateStoreProxy);
 
         const unifiedResultSender = new UnifiedResultSender(
             this.browserAdapter.sendMessageToFrames,

@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as _ from 'lodash/index';
-import { DefaultButton, IconButton } from 'office-ui-fabric-react/lib/Button';
-import { FocusZone, FocusZoneDirection } from 'office-ui-fabric-react/lib/FocusZone';
-import { List } from 'office-ui-fabric-react/lib/List';
-import { ITextField, TextField } from 'office-ui-fabric-react/lib/TextField';
+import { DefaultButton, IconButton } from 'office-ui-fabric-react';
+import { FocusZone, FocusZoneDirection } from 'office-ui-fabric-react';
+import { List } from 'office-ui-fabric-react';
+import { ITextField, TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { SingleElementSelector } from '../types/store-data/scoping-store-data';
 

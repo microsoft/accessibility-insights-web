@@ -93,6 +93,7 @@ export class TabContextFactory {
             actionsHub.tabActions,
             browserAdapter,
             this.telemetryEventHandler,
+            this.logger,
         );
         const popupActionCreator = new PopupActionCreator(
             interpreter,
@@ -109,6 +110,7 @@ export class TabContextFactory {
             actionsHub.inspectActions,
             this.telemetryEventHandler,
             browserAdapter,
+            this.logger,
         );
         const pathSnippetActionCreator = new PathSnippetActionCreator(
             interpreter,
@@ -117,6 +119,7 @@ export class TabContextFactory {
         const scanResultActionCreator = new UnifiedScanResultActionCreator(
             interpreter,
             actionsHub.scanResultActions,
+            this.telemetryEventHandler,
         );
         const scopingPanelActionCreator = new ScopingPanelActionCreator(
             interpreter,

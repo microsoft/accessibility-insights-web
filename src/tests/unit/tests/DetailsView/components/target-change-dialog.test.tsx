@@ -1,16 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BlockingDialog } from 'common/components/blocking-dialog';
+import { Tab } from 'common/itab';
+import { PersistedTabInfo } from 'common/types/store-data/assessment-result-data';
+import { UrlParser } from 'common/url-parser';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { TargetChangeDialog, TargetChangeDialogProps } from 'DetailsView/components/target-change-dialog';
 import * as Enzyme from 'enzyme';
-import Dialog from 'office-ui-fabric-react/lib/Dialog';
-import { TooltipHost } from 'office-ui-fabric-react/lib/Tooltip';
+import Dialog, { TooltipHost } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { BlockingDialog } from '../../../../../common/components/blocking-dialog';
-import { Tab } from '../../../../../common/itab';
-import { PersistedTabInfo } from '../../../../../common/types/store-data/assessment-result-data';
-import { UrlParser } from '../../../../../common/url-parser';
-import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import { TargetChangeDialog, TargetChangeDialogProps } from '../../../../../DetailsView/components/target-change-dialog';
 
 describe('TargetChangeDialog test set for prev tab null', () => {
     const urlParserMock = Mock.ofType(UrlParser, MockBehavior.Strict);

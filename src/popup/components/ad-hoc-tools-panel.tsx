@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Icon } from 'office-ui-fabric-react/lib/Icon';
-import { Link } from 'office-ui-fabric-react/lib/Link';
+import { Icon } from 'office-ui-fabric-react';
+import { Link } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { DiagnosticViewToggleFactory } from './diagnostic-view-toggle-factory';
@@ -15,7 +15,7 @@ export class AdHocToolsPanel extends React.Component<AdHocToolsPanelProps, {}> {
     private sliceSize: number = 3;
 
     public render(): JSX.Element {
-        const toggles = this.props.diagnosticViewToggleFactory.createTogglesForAdhocToolsPanel();
+        const toggles = this.props.diagnosticViewToggleFactory.createTogglesForAdHocToolsPanel();
         const groups = this.getToggleGroups(toggles);
 
         return (

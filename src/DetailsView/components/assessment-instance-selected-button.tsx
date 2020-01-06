@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as classNames from 'classnames';
-import { IconButton } from 'office-ui-fabric-react/lib/Button';
+import { IconButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { VisualizationType } from '../../common/types/visualization-type';
 

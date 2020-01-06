@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Link } from 'office-ui-fabric-react/lib/Link';
-import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
-import { IToggle } from 'office-ui-fabric-react/lib/Toggle';
+import { Link } from 'office-ui-fabric-react';
+import { Spinner, SpinnerSize } from 'office-ui-fabric-react';
+import { IToggle } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ContentLink, ContentLinkDeps } from 'views/content/content-link';
 import { VisualizationToggle } from '../../common/components/visualization-toggle';

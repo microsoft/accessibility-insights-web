@@ -15,7 +15,7 @@ describe('StateDispatcherTest', () => {
         const newstoreData: StoreStubData = { value: 'testValue' };
         const expectedMessage: StoreUpdateMessage<StoreStubData> = {
             isStoreUpdateMessage: true,
-            type: GenericStoreMessageTypes.storeStateChanged,
+            messageType: GenericStoreMessageTypes.storeStateChanged,
             storeId: 'testStoreId',
             storeType: StoreType.TabContextStore,
             payload: newstoreData,
@@ -59,7 +59,7 @@ describe('StateDispatcherTest', () => {
         const newstoreData: StoreStubData = { value: 'testValue' };
         const expectedMessage: StoreUpdateMessage<StoreStubData> = {
             isStoreUpdateMessage: true,
-            type: GenericStoreMessageTypes.storeStateChanged,
+            messageType: GenericStoreMessageTypes.storeStateChanged,
             storeId: 'testStoreId',
             storeType: StoreType.TabContextStore,
             payload: newstoreData,
@@ -107,7 +107,7 @@ describe('StateDispatcherTest', () => {
         const newstoreData: StoreStubData = { value: 'testValue' };
         const expectedMessage: StoreUpdateMessage<StoreStubData> = {
             isStoreUpdateMessage: true,
-            type: GenericStoreMessageTypes.storeStateChanged,
+            messageType: GenericStoreMessageTypes.storeStateChanged,
             storeId: 'testStoreId',
             storeType: StoreType.TabContextStore,
             payload: newstoreData,

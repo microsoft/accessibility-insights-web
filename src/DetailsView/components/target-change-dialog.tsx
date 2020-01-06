@@ -1,19 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { isEmpty } from 'lodash';
-import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
-import { DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
-import { Link } from 'office-ui-fabric-react/lib/Link';
-import { TooltipHost } from 'office-ui-fabric-react/lib/Tooltip';
-import * as React from 'react';
-
 import { css } from '@uifabric/utilities';
 import * as Markup from 'assessments/markup';
-import { BlockingDialog } from '../../common/components/blocking-dialog';
-import { NewTabLink } from '../../common/components/new-tab-link';
-import { Tab } from '../../common/itab';
-import { PersistedTabInfo } from '../../common/types/store-data/assessment-result-data';
-import { UrlParser } from '../../common/url-parser';
+import { BlockingDialog } from 'common/components/blocking-dialog';
+import { NewTabLink } from 'common/components/new-tab-link';
+import { Tab } from 'common/itab';
+import { PersistedTabInfo } from 'common/types/store-data/assessment-result-data';
+import { UrlParser } from 'common/url-parser';
+import { isEmpty } from 'lodash';
+import { DefaultButton, DialogFooter, DialogType, Link, TooltipHost } from 'office-ui-fabric-react';
+import * as React from 'react';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 
 export type TargetChangeDialogDeps = {
@@ -62,18 +58,17 @@ export class TargetChangeDialog extends React.Component<TargetChangeDialogProps>
 
                 <DialogFooter>
                     <div className="target-change-dialog-button-container">
-                        <div className="button ms-Grid-col  action-cancel-button-col restart-button">
-                            <DefaultButton
-                                text="Start new"
-                                onClick={this.props.deps.detailsViewActionMessageCreator.startOverAllAssessments}
-                            />
-                        </div>
-
                         <div className="button ms-Grid-col  action-cancel-button-col continue-button">
                             <DefaultButton
                                 autoFocus={true}
                                 text="Continue previous"
                                 onClick={this.props.deps.detailsViewActionMessageCreator.continuePreviousAssessment}
+                            />
+                        </div>
+                        <div className="button ms-Grid-col  action-cancel-button-col restart-button">
+                            <DefaultButton
+                                text="Start new"
+                                onClick={this.props.deps.detailsViewActionMessageCreator.startOverAllAssessments}
                             />
                         </div>
                     </div>
