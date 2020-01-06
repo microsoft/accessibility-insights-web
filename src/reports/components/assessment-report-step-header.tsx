@@ -24,34 +24,40 @@ export interface AssessmentReportStepHeaderProps {
     defaultMessageComponent: DefaultMessageInterface;
 }
 
-export const AssessmentReportStepHeader = NamedFC<AssessmentReportStepHeaderProps>('AssessmentReportStepHeader', props => {
-    const { deps, header, instanceCount, status, defaultMessageComponent } = props;
-    const { outcomeTypeSemanticsFromTestStatus } = deps;
+export const AssessmentReportStepHeader = NamedFC<AssessmentReportStepHeaderProps>(
+    'AssessmentReportStepHeader',
+    props => {
+        const { deps, header, instanceCount, status, defaultMessageComponent } = props;
+        const { outcomeTypeSemanticsFromTestStatus } = deps;
 
-    const outcomeType = allRequirementOutcomeTypes[status];
-    const minCount = header.requirementType === 'manual' && outcomeType === 'pass' ? 1 : 0;
-    let count = Math.max(minCount, instanceCount);
-    let message: JSX.Element = null;
+        const outcomeType = allRequirementOutcomeTypes[status];
+        const minCount = header.requirementType === 'manual' && outcomeType === 'pass' ? 1 : 0;
+        let count = Math.max(minCount, instanceCount);
+        let message: JSX.Element = null;
 
-    if (defaultMessageComponent && outcomeType === 'pass') {
-        count = defaultMessageComponent.instanceCount;
-        message = defaultMessageComponent.message;
-    }
+        if (defaultMessageComponent && outcomeType === 'pass') {
+            count = defaultMessageComponent.instanceCount;
+            message = defaultMessageComponent.message;
+        }
 
-    const outcomePastTense = outcomeTypeSemanticsFromTestStatus(status).pastTense;
-    const outcomeText = `${count} ${outcomePastTense}`;
+        const outcomePastTense = outcomeTypeSemanticsFromTestStatus(status).pastTense;
+        const outcomeText = `${count} ${outcomePastTense}`;
 
-    return (
-        <div className="step-header">
-            <h4 className="step-header-name">
-                {header.displayName}:<span className="screen-reader-only">{outcomeText}</span>
-            </h4>
-            <span className="step-header-description">{header.description}</span>
-            -
-            <GuidanceLinks classNameForDiv={`test-guidance-links-group`} links={header.guidanceLinks} />
-            <OutcomeChip count={count} outcomeType={outcomeType} />
-            <GuidanceTags deps={deps} links={header.guidanceLinks} />
-            {message && <span className="step-header-message">{message}</span>}
-        </div>
-    );
-});
+        return (
+            <div className="step-header">
+                <h4 className="step-header-name">
+                    {header.displayName}:<span className="screen-reader-only">{outcomeText}</span>
+                </h4>
+                <span className="step-header-description">{header.description}</span>
+                -
+                <GuidanceLinks
+                    classNameForDiv={`test-guidance-links-group`}
+                    links={header.guidanceLinks}
+                />
+                <OutcomeChip count={count} outcomeType={outcomeType} />
+                <GuidanceTags deps={deps} links={header.guidanceLinks} />
+                {message && <span className="step-header-message">{message}</span>}
+            </div>
+        );
+    },
+);

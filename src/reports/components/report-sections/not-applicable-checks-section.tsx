@@ -3,7 +3,10 @@
 import * as React from 'react';
 
 import { NamedFC } from 'common/react/named-fc';
-import { CollapsibleResultSection, CollapsibleResultSectionDeps } from './collapsible-result-section';
+import {
+    CollapsibleResultSection,
+    CollapsibleResultSectionDeps,
+} from './collapsible-result-section';
 import { SectionProps } from './report-section-factory';
 
 export type NotApplicableChecksSectionDeps = CollapsibleResultSectionDeps;

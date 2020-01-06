@@ -15,12 +15,20 @@ export type RulesOnlyProps = {
     outcomeType: InstanceOutcomeType;
 };
 
-export const RulesOnly = NamedFC<RulesOnlyProps>('RulesOnly', ({ outcomeType, deps, cardRuleResults: cardResults }) => {
-    return (
-        <div className={styles.ruleDetailsGroup}>
-            {cardResults.map(cardRuleResult => (
-                <FullRuleHeader deps={deps} key={cardRuleResult.id} cardRuleResult={cardRuleResult} outcomeType={outcomeType} />
-            ))}
-        </div>
-    );
-});
+export const RulesOnly = NamedFC<RulesOnlyProps>(
+    'RulesOnly',
+    ({ outcomeType, deps, cardRuleResults: cardResults }) => {
+        return (
+            <div className={styles.ruleDetailsGroup}>
+                {cardResults.map(cardRuleResult => (
+                    <FullRuleHeader
+                        deps={deps}
+                        key={cardRuleResult.id}
+                        cardRuleResult={cardRuleResult}
+                        outcomeType={outcomeType}
+                    />
+                ))}
+            </div>
+        );
+    },
+);

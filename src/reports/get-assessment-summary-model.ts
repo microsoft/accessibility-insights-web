@@ -3,7 +3,10 @@
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { ManualTestStatusData } from 'common/types/manual-test-status';
-import { AssessmentData, AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
+import {
+    AssessmentData,
+    AssessmentStoreData,
+} from 'common/types/store-data/assessment-result-data';
 import { chain, zipObject } from 'lodash';
 
 import * as Model from './assessment-report-model';
@@ -15,7 +18,9 @@ import {
     RequirementOutcomeType,
 } from './components/requirement-outcome-type';
 
-export type AssessmentSummaryResult = Pick<Assessment, 'title'> & { storeData: Pick<AssessmentData, 'testStepStatus'> };
+export type AssessmentSummaryResult = Pick<Assessment, 'title'> & {
+    storeData: Pick<AssessmentData, 'testStepStatus'>;
+};
 export type AssessmentStatusData = { [key: string]: ManualTestStatusData };
 
 export type GetAssessmentSummaryModelFromProviderAndStoreData = (
@@ -58,7 +63,9 @@ export function getAssessmentSummaryModelFromProviderAndStatusData(
     return getAssessmentSummaryModelFromResults(assessmentResults);
 }
 
-export function getAssessmentSummaryModelFromResults(assessmentResults: AssessmentSummaryResult[]): Model.OverviewSummaryReportModel {
+export function getAssessmentSummaryModelFromResults(
+    assessmentResults: AssessmentSummaryResult[],
+): Model.OverviewSummaryReportModel {
     const reportSummaryDetailsData = assessmentResults.map(assessmentResult => ({
         displayName: assessmentResult.title,
         ...getCounts(assessmentResult),

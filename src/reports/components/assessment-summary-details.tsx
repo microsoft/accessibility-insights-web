@@ -23,7 +23,11 @@ export class AssessmentSummaryDetails extends React.Component<AssessmentSummaryD
 
     private getTestDetailsList(summaries: AssessmentSummaryReportModel[]): JSX.Element[] {
         return summaries.map(testSummary => (
-            <div role="row" key={testSummary.displayName} className="assessment-summary-details-row">
+            <div
+                role="row"
+                key={testSummary.displayName}
+                className="assessment-summary-details-row"
+            >
                 <div className="test-summary">
                     <div role="cell" className="test-summary-display-name">
                         {testSummary.displayName}

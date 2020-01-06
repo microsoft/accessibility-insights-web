@@ -40,7 +40,9 @@ export const MinimalRuleHeader = NamedFC<MinimalRuleHeaderProps>('MinimalRuleHea
         </span>
     );
 
-    const renderDescription = () => <span className="rule-details-description">{rule.description}</span>;
+    const renderDescription = () => (
+        <span className="rule-details-description">{rule.description}</span>
+    );
 
     return (
         <span data-automation-id={ruleDetailAutomationId} className="rule-detail">

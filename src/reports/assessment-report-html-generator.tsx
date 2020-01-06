@@ -35,7 +35,10 @@ export class AssessmentReportHtmlGenerator {
         tabStoreData: TabStoreData,
         description: string,
     ): string {
-        const filteredProvider = assessmentsProviderWithFeaturesEnabled(assessmentsProvider, featureFlagStoreData);
+        const filteredProvider = assessmentsProviderWithFeaturesEnabled(
+            assessmentsProvider,
+            featureFlagStoreData,
+        );
 
         const modelBuilder = this.assessmentReportModelBuilderFactory.create(
             filteredProvider,

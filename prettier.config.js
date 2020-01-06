@@ -16,6 +16,7 @@ module.exports = {
                 'src/electron/**/*',
                 'src/issue-filing/**/*',
                 'src/popup/**/*',
+                'src/reports/**/*',
                 'src/scanner/**/*',
                 'src/types/**/*',
             ],

@@ -28,6 +28,8 @@ export class AssessmentReportSummary extends React.Component<AssessmentReportSum
     }
 
     private renderDetails(): JSX.Element {
-        return <AssessmentSummaryDetails testSummaries={this.props.summary.reportSummaryDetailsData} />;
+        return (
+            <AssessmentSummaryDetails testSummaries={this.props.summary.reportSummaryDetailsData} />
+        );
     }
 }

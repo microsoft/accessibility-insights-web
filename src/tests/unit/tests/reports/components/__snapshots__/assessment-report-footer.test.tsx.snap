@@ -8,12 +8,12 @@ exports[`AssessmentReportFooter renders 1`] = `
   Accessibility Insights for Web
    
   test-extension-version
-   (Axe 
+   
+  (Axe 
   axeVersion
   ), a tool that helps debug and find accessibility issues earlier on 
   chromeVersion
   . Get more information & download this tool at
-   
   <a
     className="link report-footer-link"
     href="http://aka.ms/AccessibilityInsights"
