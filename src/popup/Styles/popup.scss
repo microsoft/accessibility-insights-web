@@ -156,6 +156,14 @@ html {
     padding-right: 0;
     padding-left: 0;
     float: right;
+
+    #feedback-collapse-menu-button {
+        color: $neutral-alpha-90;
+    }
+
+    .gear-button {
+        color: $neutral-alpha-90;
+    }
 }
 
 #popup-container .main-section .shortcut-label {
