@@ -19,6 +19,7 @@ module.exports = {
                 'src/reports/**/*',
                 'src/scanner/**/*',
                 'src/types/**/*',
+                'src/views/**/*',
             ],
             options: {
                 printWidth: 100,

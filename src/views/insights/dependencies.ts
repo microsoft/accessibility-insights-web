@@ -17,10 +17,17 @@ import { UserConfigurationStoreData } from '../../common/types/store-data/user-c
 import { contentPages } from '../../content';
 import { RendererDeps } from './renderer';
 
-export const rendererDependencies: (browserAdapter: BrowserAdapter, logger: Logger) => RendererDeps = (browserAdapter, logger) => {
+export const rendererDependencies: (
+    browserAdapter: BrowserAdapter,
+    logger: Logger,
+) => RendererDeps = (browserAdapter, logger) => {
     const url = new URL(window.location.href);
     const tabId = parseInt(url.searchParams.get('tabId'), 10);
-    const actionMessageDispatcher = new RemoteActionMessageDispatcher(browserAdapter.sendMessageToFrames, tabId, logger);
+    const actionMessageDispatcher = new RemoteActionMessageDispatcher(
+        browserAdapter.sendMessageToFrames,
+        tabId,
+        logger,
+    );
 
     const telemetryFactory = new TelemetryDataFactory();
 
@@ -30,9 +37,14 @@ export const rendererDependencies: (browserAdapter: BrowserAdapter, logger: Logg
         actionMessageDispatcher,
     );
 
-    const store = new StoreProxy<UserConfigurationStoreData>(StoreNames[StoreNames.UserConfigurationStore], browserAdapter);
+    const store = new StoreProxy<UserConfigurationStoreData>(
+        StoreNames[StoreNames.UserConfigurationStore],
+        browserAdapter,
+    );
     const storesHub = new BaseClientStoresHub<any>([store]);
-    const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(actionMessageDispatcher);
+    const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
+        actionMessageDispatcher,
+    );
     const storeActionMessageCreator = storeActionMessageCreatorFactory.fromStores(storesHub.stores);
 
     return {

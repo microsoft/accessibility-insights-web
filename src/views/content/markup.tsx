@@ -83,7 +83,9 @@ export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
     function Links(props: { children: React.ReactNode }): JSX.Element {
         return (
             <>
-                <div className="content-hyperlinks">{React.Children.map(props.children, el => el)}</div>
+                <div className="content-hyperlinks">
+                    {React.Children.map(props.children, el => el)}
+                </div>
             </>
         );
     }
