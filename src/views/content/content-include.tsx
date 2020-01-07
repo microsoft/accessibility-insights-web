@@ -14,18 +14,21 @@ export type ContentIncludeProps = {
     content: ContentReference;
 };
 
-export const ContentInclude = NamedFC<ContentIncludeProps>('ContentInclude', ({ deps, content }) => {
-    const { contentProvider } = deps;
+export const ContentInclude = NamedFC<ContentIncludeProps>(
+    'ContentInclude',
+    ({ deps, content }) => {
+        const { contentProvider } = deps;
 
-    if (!content) {
-        return null;
-    }
+        if (!content) {
+            return null;
+        }
 
-    const Content = contentProvider.contentFromReference(content);
+        const Content = contentProvider.contentFromReference(content);
 
-    return (
-        <div className="content">
-            <Content deps={deps} />
-        </div>
-    );
-});
+        return (
+            <div className="content">
+                <Content deps={deps} />
+            </div>
+        );
+    },
+);

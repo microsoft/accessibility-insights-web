@@ -18,26 +18,29 @@ export type ContentPanelProps = {
     isOpen: boolean;
 };
 
-export const ContentPanel = NamedFC<ContentPanelProps>('ContentPanel', ({ deps, content, isOpen }) => {
-    const { contentProvider, contentActionMessageCreator } = deps;
+export const ContentPanel = NamedFC<ContentPanelProps>(
+    'ContentPanel',
+    ({ deps, content, isOpen }) => {
+        const { contentProvider, contentActionMessageCreator } = deps;
 
-    if (!content) {
-        return null;
-    }
+        if (!content) {
+            return null;
+        }
 
-    const ContentPage = contentProvider.contentFromReference(content);
+        const ContentPage = contentProvider.contentFromReference(content);
 
-    return (
-        <Panel
-            isOpen={isOpen}
-            onDismiss={contentActionMessageCreator.closeContentPanel}
-            type={PanelType.medium}
-            isLightDismiss={true}
-            closeButtonAriaLabel="Close panel"
-        >
-            <div className="content">
-                <ContentPage deps={deps} />
-            </div>
-        </Panel>
-    );
-});
+        return (
+            <Panel
+                isOpen={isOpen}
+                onDismiss={contentActionMessageCreator.closeContentPanel}
+                type={PanelType.medium}
+                isLightDismiss={true}
+                closeButtonAriaLabel="Close panel"
+            >
+                <div className="content">
+                    <ContentPage deps={deps} />
+                </div>
+            </Panel>
+        );
+    },
+);

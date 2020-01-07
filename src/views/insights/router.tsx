@@ -11,7 +11,10 @@ export type RouterProps = { deps: RouterDeps };
 
 export const RouterSwitch = NamedFC<RouterProps>('RouterSwitch', ({ deps }) => (
     <Switch>
-        <Route path="/content/*" render={p => <Content deps={deps} reference={p.match.params[0]} />} />
+        <Route
+            path="/content/*"
+            render={p => <Content deps={deps} reference={p.match.params[0]} />}
+        />
     </Switch>
 ));
 
