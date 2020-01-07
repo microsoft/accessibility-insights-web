@@ -75,13 +75,25 @@ export class RuleAnalyzer extends BaseAnalyzer {
         this.postOnResolve(analyzerResult);
     };
 
-    protected sendScanCompleteResolveMessage(analyzerResult: AxeAnalyzerResult, config: RuleAnalyzerConfiguration): void {
+    protected sendScanCompleteResolveMessage(
+        analyzerResult: AxeAnalyzerResult,
+        config: RuleAnalyzerConfiguration,
+    ): void {
         const endTime = this.dateGetter().getTime();
         const elapsedTime = endTime - this.startTime;
         const baseMessage = this.createBaseMessage(analyzerResult, config);
-        const telemetryGetter: ForRuleAnalyzerScanCallback = config.telemetryProcessor(this.telemetryFactory);
-        const testName = this.visualizationConfigFactory.getConfiguration(config.testType).displayableData.title;
-        const telemetry = telemetryGetter(analyzerResult, elapsedTime, this.elementsScanned, testName, config.key);
+        const telemetryGetter: ForRuleAnalyzerScanCallback = config.telemetryProcessor(
+            this.telemetryFactory,
+        );
+        const testName = this.visualizationConfigFactory.getConfiguration(config.testType)
+            .displayableData.title;
+        const telemetry = telemetryGetter(
+            analyzerResult,
+            elapsedTime,
+            this.elementsScanned,
+            testName,
+            config.key,
+        );
 
         const message = {
             ...baseMessage,

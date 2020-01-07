@@ -17,7 +17,9 @@ export class WindowMessageHandler {
     private windowUtils: WindowUtils;
     private initialized: boolean;
     private windowMessageParser: WindowMessageMarshaller;
-    private callbacksForMessagesSentFromCurrentFrame: { [messageId: string]: FrameMessageResponseCallback } = {};
+    private callbacksForMessagesSentFromCurrentFrame: {
+        [messageId: string]: FrameMessageResponseCallback;
+    } = {};
 
     private messageSubscribers: DictionaryStringTo<FrameMessageResponseCallback>;
 
@@ -48,7 +50,13 @@ export class WindowMessageHandler {
         this.windowUtils.removeEventListener(window, 'message', this.windowMessageHandler, false);
     }
 
-    public post(win: Window, command: string, message: any, callback?: FrameMessageResponseCallback, responseId?: string): void {
+    public post(
+        win: Window,
+        command: string,
+        message: any,
+        callback?: FrameMessageResponseCallback,
+        responseId?: string,
+    ): void {
         const data = this.windowMessageParser.createMessage(command, message, responseId);
 
         this.updateResponseCallbackMap(data.messageId, callback);
@@ -84,8 +92,16 @@ export class WindowMessageHandler {
         }
     }
 
-    private processResponseFromPreviousRequest(source: Window, data: WindowMessage, callback: FrameMessageResponseCallback): void {
-        const responderCallback = this.createFrameResponderCallback(source, data.command, data.messageId);
+    private processResponseFromPreviousRequest(
+        source: Window,
+        data: WindowMessage,
+        callback: FrameMessageResponseCallback,
+    ): void {
+        const responderCallback = this.createFrameResponderCallback(
+            source,
+            data.command,
+            data.messageId,
+        );
         callback(data.message, data.error, source, responderCallback);
         delete this.callbacksForMessagesSentFromCurrentFrame[data.messageId];
     }
@@ -94,8 +110,17 @@ export class WindowMessageHandler {
         this.notifySubscriber(source, data);
     }
 
-    public createFrameResponderCallback(windowSource: Window, command: string, messageId: string): FrameMessageResponseCallback {
-        return (result: any, error: ErrorMessageContent, messageSourceWin: Window, callback?: FrameMessageResponseCallback) => {
+    public createFrameResponderCallback(
+        windowSource: Window,
+        command: string,
+        messageId: string,
+    ): FrameMessageResponseCallback {
+        return (
+            result: any,
+            error: ErrorMessageContent,
+            messageSourceWin: Window,
+            callback?: FrameMessageResponseCallback,
+        ) => {
             this.post(windowSource, command, result, callback, messageId);
         };
     }
@@ -103,7 +128,12 @@ export class WindowMessageHandler {
     private notifySubscriber(target: Window, data: WindowMessage): void {
         const subscriber = this.messageSubscribers[data.command];
         if (subscriber) {
-            subscriber(data.message, data.error, target, this.createFrameResponderCallback(target, data.command, data.messageId));
+            subscriber(
+                data.message,
+                data.error,
+                target,
+                this.createFrameResponderCallback(target, data.command, data.messageId),
+            );
         }
     }
 }
