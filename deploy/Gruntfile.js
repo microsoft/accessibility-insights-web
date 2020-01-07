@@ -91,6 +91,7 @@ module.exports = function(grunt) {
 
         const configYAML = YAML.safeDump(config);
         grunt.file.write(electronBuilderYAMLPath, configYAML);
+        grunt.log.writeln(`embedding version ${version} in electron-builder.yml`);
     });
 
     grunt.registerTask('update-manifest', function() {
