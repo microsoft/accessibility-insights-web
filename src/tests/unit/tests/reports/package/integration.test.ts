@@ -8,7 +8,6 @@ import { scanNoIssues } from 'tests/unit/tests/reports/package/scans/scan-no-iss
 
 describe('report package integration', () => {
     const scanContext = {
-        browserSpec: 'BROWSER_SPEC',
         pageTitle: 'PAGE_TITLE',
     };
     const description = 'DESCRIPTION';

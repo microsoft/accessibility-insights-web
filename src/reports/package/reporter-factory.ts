@@ -31,14 +31,17 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
             testEngine: {
                 version: axeVersion,
             },
+            testEnvironment: {
+                userAgent,
+            },
         },
         scanContext: {
-            browserSpec, pageTitle: targetPageTitle,
+            pageTitle: targetPageTitle,
         },
         serviceName,
     } = parameters;
 
-    const environmentInfoProvider = new EnvironmentInfoProvider('', browserSpec, axeVersion);
+    const environmentInfoProvider = new EnvironmentInfoProvider('', userAgent, axeVersion);
     const reactStaticRenderer = new ReactStaticRenderer();
     const fixInstructionProcessor = new FixInstructionProcessor();
 
