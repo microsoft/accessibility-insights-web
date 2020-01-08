@@ -64,6 +64,8 @@ const createWindow = () => {
             setupRecurringUpdateCheck();
         })
         .catch(console.log);
+
+    console.log('Ready, feedUrl: ', autoUpdater.getFeedURL());
 };
 
 const enableDevMode = (window: BrowserWindow) => {
