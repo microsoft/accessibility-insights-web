@@ -1,13 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import * as process from 'child_process';
+import * as child_process from 'child_process';
 import { autoUpdater } from 'electron-updater';
 import { isNil } from 'lodash';
 import * as os from 'os';
+import * as process from 'process';
 
 const verifySignatureCommand = function(verifyCommand, callback): void {
-    process.exec(verifyCommand, (err, stderr, stdout) => {
+    child_process.exec(verifyCommand, (err, stderr, stdout) => {
         if (!isNil(err)) {
             console.log("There's an error:", err);
             return;
@@ -26,7 +27,7 @@ const verifySignatureCommand = function(verifyCommand, callback): void {
 };
 
 const downloadFilesCommand = function(downloadCommand, callback): void {
-    process.exec(downloadCommand, _ => {
+    child_process.exec(downloadCommand, _ => {
         callback();
     });
 };
@@ -35,6 +36,8 @@ export function verifySignatureOnLinux(): void {
     if (os.platform() !== 'linux') {
         return;
     }
+
+    console.log('electron-update-url= ', process.env['electron-update-url']);
 
     const downloadCommand =
         'mkdir verifyDetachedSignatureForAIAndroid\n' +
@@ -56,6 +59,6 @@ export function verifySignatureOnLinux(): void {
                 }
             }
         });
-        process.exec('rm -rf "verifyDetachedSignatureForAIAndroid"');
+        child_process.exec('rm -rf "verifyDetachedSignatureForAIAndroid"');
     });
 }
