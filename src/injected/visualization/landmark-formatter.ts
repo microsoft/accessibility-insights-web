@@ -61,7 +61,10 @@ export class LandmarkFormatter extends FailureInstanceFormatter {
         return null;
     }
 
-    public getDrawerConfiguration(element: Node, data: AssessmentVisualizationInstance): DrawerConfiguration {
+    public getDrawerConfiguration(
+        element: Node,
+        data: AssessmentVisualizationInstance,
+    ): DrawerConfiguration {
         // parse down the IHtmlElementAxeResult to see if it is contained in the map
         const elemData = this.decorateLabelText(data.propertyBag || this.getLandmarkInfo(data));
 

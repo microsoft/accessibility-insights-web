@@ -60,8 +60,13 @@ export class HeadingFormatter extends FailureInstanceFormatter {
         return null;
     }
 
-    public getDrawerConfiguration(element: HTMLElement, data: AssessmentVisualizationInstance): DrawerConfiguration {
-        const level = this.isHTag(element) ? this.getHTagLevel(element) : this.getAriaLevel(element);
+    public getDrawerConfiguration(
+        element: HTMLElement,
+        data: AssessmentVisualizationInstance,
+    ): DrawerConfiguration {
+        const level = this.isHTag(element)
+            ? this.getHTagLevel(element)
+            : this.getAriaLevel(element);
         const text = (this.isHTag(element) ? 'H' : 'h') + level;
         const style = HeadingFormatter.headingStyles[level] || HeadingFormatter.headingStyles.blank;
 

@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DialogRenderer } from '../dialog-renderer';
-import { AssessmentVisualizationInstance, AxeResultsWithFrameLevel } from '../frameCommunicators/html-element-axe-results-helper';
+import {
+    AssessmentVisualizationInstance,
+    AxeResultsWithFrameLevel,
+} from '../frameCommunicators/html-element-axe-results-helper';
 import { FailureBoxConfig, Formatter } from './formatter';
 
 export abstract class FailureInstanceFormatter implements Formatter {

@@ -15,7 +15,10 @@ export class TabStopsFormatter implements Formatter {
         this.givenConfiguration = givenConfiguration;
     }
 
-    public getDrawerConfiguration(element: HTMLElement, data: HtmlElementAxeResults): SVGDrawerConfiguration {
+    public getDrawerConfiguration(
+        element: HTMLElement,
+        data: HtmlElementAxeResults,
+    ): SVGDrawerConfiguration {
         let ellipseRx: number = 16;
         const tabindex = element.getAttribute('tabindex');
         if (tabindex && parseInt(tabindex, 10) > 0) {
@@ -61,16 +64,21 @@ export class TabStopsFormatter implements Formatter {
             return config;
         }
 
-        Object.keys(this.givenConfiguration).forEach((svgPartConfigKey: keyof SVGDrawerConfiguration) => {
-            const configAdditions = this.givenConfiguration[svgPartConfigKey];
-            assign(config[svgPartConfigKey], configAdditions);
-        });
+        Object.keys(this.givenConfiguration).forEach(
+            (svgPartConfigKey: keyof SVGDrawerConfiguration) => {
+                const configAdditions = this.givenConfiguration[svgPartConfigKey];
+                assign(config[svgPartConfigKey], configAdditions);
+            },
+        );
 
         return config;
     }
 
     private calculateEllipseRx(value: number): number {
-        return TabStopsFormatter.ELLIPSE_RX_CALCULATOR_OFFSET + TabStopsFormatter.ELLIPSE_RX_CALCULATOR_SLOPE * value;
+        return (
+            TabStopsFormatter.ELLIPSE_RX_CALCULATOR_OFFSET +
+            TabStopsFormatter.ELLIPSE_RX_CALCULATOR_SLOPE * value
+        );
     }
 
     public getDialogRenderer(): DialogRenderer {

@@ -25,43 +25,49 @@ export interface HighlightVisualizationProps {
     featureFlagStoreData: FeatureFlagStoreData;
 }
 
-export const HighlightVisualization = NamedFC<HighlightVisualizationProps>('HighlightVisualization', props => {
-    const { deps, elementResults, formatter, renderDialog, featureFlagStoreData } = props;
-    const { windowUtils, drawerUtils } = deps;
+export const HighlightVisualization = NamedFC<HighlightVisualizationProps>(
+    'HighlightVisualization',
+    props => {
+        const { deps, elementResults, formatter, renderDialog, featureFlagStoreData } = props;
+        const { windowUtils, drawerUtils } = deps;
 
-    const highlightElements: JSX.Element[] = [];
-    const currentDom = drawerUtils.getDocumentElement();
-    const body = currentDom.querySelector('body');
-    const bodyStyle = windowUtils.getComputedStyle(body);
-    const docStyle = windowUtils.getComputedStyle(currentDom.documentElement);
+        const highlightElements: JSX.Element[] = [];
+        const currentDom = drawerUtils.getDocumentElement();
+        const body = currentDom.querySelector('body');
+        const bodyStyle = windowUtils.getComputedStyle(body);
+        const docStyle = windowUtils.getComputedStyle(currentDom.documentElement);
 
-    elementResults.forEach((elementResult, index) => {
-        const elementsFound = currentDom.querySelectorAll(elementResult.target[elementResult.targetIndex]);
-
-        for (let elementPos = 0; elementPos < elementsFound.length; elementPos++) {
-            const currentFoundElement = elementsFound[elementPos];
-            const drawerConfig = (formatter
-                ? formatter.getDrawerConfiguration(currentFoundElement, elementResult)
-                : HighlightBoxDrawer.defaultConfiguration) as DrawerConfiguration;
-            const getBoundingRect = drawerConfig.getBoundingRect || currentFoundElement.getBoundingClientRect;
-
-            const elementHighlight = (
-                <ElementHighlight
-                    deps={deps}
-                    element={currentFoundElement}
-                    elementResult={elementResult}
-                    bodyStyle={bodyStyle}
-                    docStyle={docStyle}
-                    drawerConfig={drawerConfig}
-                    dialogRender={renderDialog}
-                    featureFlagStoreData={featureFlagStoreData}
-                    key={`highlight-${index}-element-${elementPos}`}
-                    getBoundingRect={getBoundingRect}
-                />
+        elementResults.forEach((elementResult, index) => {
+            const elementsFound = currentDom.querySelectorAll(
+                elementResult.target[elementResult.targetIndex],
             );
-            highlightElements.push(elementHighlight);
-        }
-    });
 
-    return <>{highlightElements}</>;
-});
+            for (let elementPos = 0; elementPos < elementsFound.length; elementPos++) {
+                const currentFoundElement = elementsFound[elementPos];
+                const drawerConfig = (formatter
+                    ? formatter.getDrawerConfiguration(currentFoundElement, elementResult)
+                    : HighlightBoxDrawer.defaultConfiguration) as DrawerConfiguration;
+                const getBoundingRect =
+                    drawerConfig.getBoundingRect || currentFoundElement.getBoundingClientRect;
+
+                const elementHighlight = (
+                    <ElementHighlight
+                        deps={deps}
+                        element={currentFoundElement}
+                        elementResult={elementResult}
+                        bodyStyle={bodyStyle}
+                        docStyle={docStyle}
+                        drawerConfig={drawerConfig}
+                        dialogRender={renderDialog}
+                        featureFlagStoreData={featureFlagStoreData}
+                        key={`highlight-${index}-element-${elementPos}`}
+                        getBoundingRect={getBoundingRect}
+                    />
+                );
+                highlightElements.push(elementHighlight);
+            }
+        });
+
+        return <>{highlightElements}</>;
+    },
+);
