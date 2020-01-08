@@ -15,15 +15,9 @@ const platformInfo = new PlatformInfo(process);
 log.transports.file.level = 'info';
 autoUpdater.logger = log;
 
-autoUpdater.on('update-downloaded', function(
-    event: any,
-    releaseNotes: any,
-    releaseName: any,
-    releaseDate: any,
-    updateUrl: any,
-): void {
+autoUpdater.signals.updateDownloaded(_ => {
     console.log('update-downloaded');
-    verifySignatureOnLinux(event, releaseNotes, releaseName, releaseDate, updateUrl);
+    verifySignatureOnLinux();
 });
 
 let recurringUpdateCheck;

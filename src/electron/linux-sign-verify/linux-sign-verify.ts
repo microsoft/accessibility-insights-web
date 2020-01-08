@@ -31,41 +31,16 @@ const downloadFilesCommand = function(downloadCommand, callback): void {
     });
 };
 
-export function verifySignatureOnLinux(
-    event: any,
-    releaseNotes: any,
-    releaseName: any,
-    releaseDate: any,
-    updateUrl: any,
-): void {
+export function verifySignatureOnLinux(): void {
     if (os.platform() !== 'linux') {
         return;
     }
-
-    console.log('\n=================\n');
-    console.log('event: ', event);
-    console.log('\n=================\n');
-
-    console.log('\n=================\n');
-    console.log('releaseNotes: ', releaseNotes);
-    console.log('\n=================\n');
-
-    console.log('\n=================\n');
-    console.log('releaseName: ', releaseName);
-    console.log('\n=================\n');
-
-    console.log('\n=================\n');
-    console.log('releaseDate: ', releaseDate);
-    console.log('\n=================\n');
-
-    console.log('\n=================\n');
-    console.log('updateUrl: ', updateUrl);
-    console.log('\n=================\n');
 
     const downloadCommand =
         'mkdir verifyDetachedSignatureForAIAndroid\n' +
         'wget -O "verifyDetachedSignatureForAIAndroid/doc.AppImage" "https://a11yinsightsandroidblob.blob.core.windows.net/aimobile-canary/Accessibility Insights for Android.AppImage"\n' +
         'wget -O "verifyDetachedSignatureForAIAndroid/doc.sig" "https://a11yinsightsandroidblob.blob.core.windows.net/aimobile-canary/Accessibility Insights for Android.sig"\n';
+
     downloadFilesCommand(downloadCommand, function(): void {
         const privateKeyFile: string = 'verifyDetachedSignatureForAIAndroid/doc.sig';
         const appFile: string = 'verifyDetachedSignatureForAIAndroid/doc.AppImage';
