@@ -57,7 +57,12 @@ export class SVGSolidShadowFilterFactory {
         return filter;
     }
 
-    private createCompositeElement(doc: Document, operator: string, result: string, in2: string): Element {
+    private createCompositeElement(
+        doc: Document,
+        operator: string,
+        result: string,
+        in2: string,
+    ): Element {
         return new FeElementBuilder<FeCompositeParams>(this.drawerUtils, 'feComposite')
             .setupParam('operator', operator)
             .setupParam('result', result)
@@ -66,12 +71,16 @@ export class SVGSolidShadowFilterFactory {
     }
 
     private createFloodElement(doc: Document, floodColor: string): Element {
-        return new FeElementBuilder<FeFloodParams>(this.drawerUtils, 'feFlood').setupParam('flood-color', floodColor).build();
+        return new FeElementBuilder<FeFloodParams>(this.drawerUtils, 'feFlood')
+            .setupParam('flood-color', floodColor)
+            .build();
     }
 
     private createMergeElement(doc: Document, mergeNodeIns: string[], result?: string): Element {
         const mergeNodes: Element[] = map(mergeNodeIns, inParam => {
-            return new FeElementBuilder<FeMergeNodeParams>(this.drawerUtils, 'feMergeNode').setupParam('in', inParam).build();
+            return new FeElementBuilder<FeMergeNodeParams>(this.drawerUtils, 'feMergeNode')
+                .setupParam('in', inParam)
+                .build();
         });
 
         return new FeElementBuilder<FeMergeParams>(this.drawerUtils, 'feMerge')

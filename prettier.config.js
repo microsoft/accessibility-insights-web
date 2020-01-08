@@ -18,6 +18,7 @@ module.exports = {
                 'src/injected/analyzers/**/*',
                 'src/injected/components/**/*',
                 'src/injected/frameCommunicators/**/*',
+                'src/injected/visualization/**/*',
                 'src/issue-filing/**/*',
                 'src/popup/**/*',
                 'src/reports/**/*',

@@ -62,26 +62,41 @@ export class SVGDrawer extends BaseDrawer {
 
             if (diffFound || this.shouldRedraw(oldStateElement, newStateElement, pos)) {
                 diffFound = true;
-                this.tabbedElements[pos] = this.getNewTabbedElement(oldStateElement, newStateElement, pos, dom);
+                this.tabbedElements[pos] = this.getNewTabbedElement(
+                    oldStateElement,
+                    newStateElement,
+                    pos,
+                    dom,
+                );
             } else {
                 this.tabbedElements[pos].shouldRedraw = false;
             }
         }
     }
 
-    private shouldRedraw(oldStateElement: TabbedItem, newStateElement: TabbedElementData, pos: number): boolean {
+    private shouldRedraw(
+        oldStateElement: TabbedItem,
+        newStateElement: TabbedElementData,
+        pos: number,
+    ): boolean {
         const elementsInSvgCount: number = this.tabbedElements.length;
         const isLastElementInSvg: boolean = pos === elementsInSvgCount - 1;
 
         return (
             oldStateElement == null ||
-            newStateElement.target[newStateElement.target.length - 1] !== oldStateElement.selector ||
+            newStateElement.target[newStateElement.target.length - 1] !==
+                oldStateElement.selector ||
             newStateElement.tabOrder !== oldStateElement.tabOrder ||
             isLastElementInSvg
         );
     }
 
-    private getNewTabbedElement(oldStateElement: TabbedItem, newStateElement: TabbedElementData, pos: number, dom: Document): TabbedItem {
+    private getNewTabbedElement(
+        oldStateElement: TabbedItem,
+        newStateElement: TabbedElementData,
+        pos: number,
+        dom: Document,
+    ): TabbedItem {
         const selector: string = newStateElement.target[newStateElement.target.length - 1];
 
         return {
@@ -155,14 +170,23 @@ export class SVGDrawer extends BaseDrawer {
         this.SVGContainer.setAttribute('width', `${width}px`);
     }
 
-    private createFocusIndicator(item: TabbedItem, curElementIndex: number, isLastItem: boolean): FocusIndicator {
-        const centerPosition: Point = this.centerPositionCalculator.getElementCenterPosition(item.element);
+    private createFocusIndicator(
+        item: TabbedItem,
+        curElementIndex: number,
+        isLastItem: boolean,
+    ): FocusIndicator {
+        const centerPosition: Point = this.centerPositionCalculator.getElementCenterPosition(
+            item.element,
+        );
 
         if (centerPosition == null) {
             return;
         }
 
-        const drawerConfig: SVGDrawerConfiguration = this.formatter.getDrawerConfiguration(item.element, null) as SVGDrawerConfiguration;
+        const drawerConfig: SVGDrawerConfiguration = this.formatter.getDrawerConfiguration(
+            item.element,
+            null,
+        ) as SVGDrawerConfiguration;
 
         const {
             tabIndexLabel: { showTabIndexedLabel },
@@ -175,7 +199,11 @@ export class SVGDrawer extends BaseDrawer {
         const newLabel =
             isLastItem || !showTabIndexedLabel
                 ? null
-                : this.svgShapeFactory.createTabIndexLabel(centerPosition, drawerConfig.tabIndexLabel, item.tabOrder);
+                : this.svgShapeFactory.createTabIndexLabel(
+                      centerPosition,
+                      drawerConfig.tabIndexLabel,
+                      item.tabOrder,
+                  );
 
         const newLine: Element = this.createLinesInTabOrderVisualization(
             curElementIndex,
@@ -210,7 +238,9 @@ export class SVGDrawer extends BaseDrawer {
             return null;
         }
 
-        const prevElementPos = this.centerPositionCalculator.getElementCenterPosition(this.tabbedElements[curElementIndex - 1].element);
+        const prevElementPos = this.centerPositionCalculator.getElementCenterPosition(
+            this.tabbedElements[curElementIndex - 1].element,
+        );
 
         if (prevElementPos == null) {
             return null;
@@ -232,7 +262,9 @@ export class SVGDrawer extends BaseDrawer {
 
     private shouldBreakGraph(curElementIndex: number): boolean {
         return (
-            curElementIndex === 0 || this.tabbedElements[curElementIndex - 1].tabOrder !== this.tabbedElements[curElementIndex].tabOrder - 1
+            curElementIndex === 0 ||
+            this.tabbedElements[curElementIndex - 1].tabOrder !==
+                this.tabbedElements[curElementIndex].tabOrder - 1
         );
     }
 
