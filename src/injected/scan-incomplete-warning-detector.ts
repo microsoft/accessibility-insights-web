@@ -6,11 +6,17 @@ import { PermissionsStateStoreData } from 'common/types/store-data/permissions-s
 import { IframeDetector } from './iframe-detector';
 
 export class ScanIncompleteWarningDetector {
-    constructor(private iframeDetector: IframeDetector, private permissionsStateStore: BaseStore<PermissionsStateStoreData>) {}
+    constructor(
+        private iframeDetector: IframeDetector,
+        private permissionsStateStore: BaseStore<PermissionsStateStoreData>,
+    ) {}
 
     public detectScanIncompleteWarnings = () => {
         const warnings: ScanIncompleteWarningId[] = [];
-        if (this.iframeDetector.hasIframes() && !this.permissionsStateStore.getState().hasAllUrlAndFilePermissions) {
+        if (
+            this.iframeDetector.hasIframes() &&
+            !this.permissionsStateStore.getState().hasAllUrlAndFilePermissions
+        ) {
             warnings.push('missing-required-cross-origin-permissions');
         }
         return warnings;

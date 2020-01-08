@@ -18,8 +18,14 @@ export class VisualizationInstanceProcessor {
         return instances;
     };
 
-    public static addOrder: VisualizationInstanceProcessorCallback<PartialTabOrderPropertyBag, TabOrderPropertyBag> = instances => {
-        instances.sort((instanceA, instanceB) => instanceA.propertyBag.timestamp - instanceB.propertyBag.timestamp);
+    public static addOrder: VisualizationInstanceProcessorCallback<
+        PartialTabOrderPropertyBag,
+        TabOrderPropertyBag
+    > = instances => {
+        instances.sort(
+            (instanceA, instanceB) =>
+                instanceA.propertyBag.timestamp - instanceB.propertyBag.timestamp,
+        );
         return instances.map((instance, index) => {
             return {
                 ...instance,

@@ -20,14 +20,22 @@ export class ScopingListener {
 
     public static readonly scopeLayoutContainerId = 'insights-inspect-selector-layout';
 
-    constructor(elementFinderByPosition: ElementFinderByPosition, windowUtils: WindowUtils, shadowUtils: ShadowUtils, dom: Document) {
+    constructor(
+        elementFinderByPosition: ElementFinderByPosition,
+        windowUtils: WindowUtils,
+        shadowUtils: ShadowUtils,
+        dom: Document,
+    ) {
         this.windowUtils = windowUtils;
         this.elementFinderByPosition = elementFinderByPosition;
         this.shadowUtils = shadowUtils;
         this.dom = dom || document;
     }
 
-    public start(onInspectClick: IInspectCallback, onInspectHover: (selector: string[]) => void): void {
+    public start(
+        onInspectClick: IInspectCallback,
+        onInspectHover: (selector: string[]) => void,
+    ): void {
         const shadowContainer = this.shadowUtils.getShadowContainer();
         this.addContainer(shadowContainer);
         this.onInspectClick = onInspectClick;
@@ -44,7 +52,9 @@ export class ScopingListener {
     }
 
     private removeContainer(shadowContainer: HTMLElement): void {
-        const container = shadowContainer.querySelector(`#${ScopingListener.scopeLayoutContainerId}`);
+        const container = shadowContainer.querySelector(
+            `#${ScopingListener.scopeLayoutContainerId}`,
+        );
         if (container) {
             shadowContainer.removeChild(container);
         }

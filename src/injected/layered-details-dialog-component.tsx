@@ -32,20 +32,23 @@ export interface LayeredDetailsDialogProps {
     devToolsShortcut: string;
 }
 
-export const LayeredDetailsDialogComponent = NamedFC<LayeredDetailsDialogProps>('LayeredDetailsDialogComponent', props => {
-    const isShadowDOMDialogEnabled = (): boolean => {
-        return props.featureFlagStoreData[FeatureFlags.shadowDialog];
-    };
+export const LayeredDetailsDialogComponent = NamedFC<LayeredDetailsDialogProps>(
+    'LayeredDetailsDialogComponent',
+    props => {
+        const isShadowDOMDialogEnabled = (): boolean => {
+            return props.featureFlagStoreData[FeatureFlags.shadowDialog];
+        };
 
-    const detailsDialog = <DetailsDialog {...props} />;
+        const detailsDialog = <DetailsDialog {...props} />;
 
-    if (isShadowDOMDialogEnabled()) {
-        return detailsDialog;
-    }
+        if (isShadowDOMDialogEnabled()) {
+            return detailsDialog;
+        }
 
-    return (
-        <LayerHost id="insights-dialog-layer-host" dir={props.deps.getRTL() ? 'rtl' : 'ltr'}>
-            {detailsDialog}
-        </LayerHost>
-    );
-});
+        return (
+            <LayerHost id="insights-dialog-layer-host" dir={props.deps.getRTL() ? 'rtl' : 'ltr'}>
+                {detailsDialog}
+            </LayerHost>
+        );
+    },
+);

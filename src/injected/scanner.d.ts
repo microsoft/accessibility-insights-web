@@ -36,4 +36,8 @@ declare interface LandmarkValue {
     fontColor: string;
 }
 
-declare function getAxeResults(rulesToTest: string[], successCallback: (axeResults: AxeResult) => void, errCallback: (err: any) => void);
+declare function getAxeResults(
+    rulesToTest: string[],
+    successCallback: (axeResults: AxeResult) => void,
+    errCallback: (err: any) => void,
+);

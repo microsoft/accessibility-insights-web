@@ -38,7 +38,10 @@ export class DrawingController {
     ) {}
 
     public initialize(): void {
-        this.frameCommunicator.subscribe(DrawingController.triggerVisualizationCommand, this.onTriggerVisualization);
+        this.frameCommunicator.subscribe(
+            DrawingController.triggerVisualizationCommand,
+            this.onTriggerVisualization,
+        );
     }
 
     public registerDrawer: RegisterDrawer = (id: string, drawer: Drawer) => {
@@ -70,14 +73,24 @@ export class DrawingController {
         this.invokeMethodIfExists(responder, null);
     };
 
-    private enableVisualization(elementResultsByFrames: HTMLIFrameResult[], configId: string): void {
+    private enableVisualization(
+        elementResultsByFrames: HTMLIFrameResult[],
+        configId: string,
+    ): void {
         if (elementResultsByFrames) {
             for (let pos = 0; pos < elementResultsByFrames.length; pos++) {
                 const resultsForFrame = elementResultsByFrames[pos];
                 if (resultsForFrame.frame == null) {
-                    this.enableVisualizationInCurrentFrame(resultsForFrame.elementResults, configId);
+                    this.enableVisualizationInCurrentFrame(
+                        resultsForFrame.elementResults,
+                        configId,
+                    );
                 } else {
-                    this.enableVisualizationInIFrames(resultsForFrame.frame, resultsForFrame.elementResults, configId);
+                    this.enableVisualizationInIFrames(
+                        resultsForFrame.frame,
+                        resultsForFrame.elementResults,
+                        configId,
+                    );
                 }
             }
         } else {
@@ -90,7 +103,10 @@ export class DrawingController {
         }
     }
 
-    private enableVisualizationInCurrentFrame(currentFrameResults: AssessmentVisualizationInstance[], configId: string): void {
+    private enableVisualizationInCurrentFrame(
+        currentFrameResults: AssessmentVisualizationInstance[],
+        configId: string,
+    ): void {
         const drawer = this.getDrawer(configId);
         drawer.initialize({
             data: this.getInitialElements(currentFrameResults),
@@ -152,7 +168,9 @@ export class DrawingController {
     }
 
     private getAllFrames(): HTMLCollectionOf<HTMLIFrameElement> {
-        return this.htmlElementUtils.getAllElementsByTagName('iframe') as HTMLCollectionOf<HTMLIFrameElement>;
+        return this.htmlElementUtils.getAllElementsByTagName('iframe') as HTMLCollectionOf<
+            HTMLIFrameElement
+        >;
     }
 
     private getDrawer(configId: string): Drawer {
@@ -165,7 +183,9 @@ export class DrawingController {
         }
     }
 
-    private getInitialElements(currentFrameResults: AssessmentVisualizationInstance[]): AssessmentVisualizationInstance[] {
+    private getInitialElements(
+        currentFrameResults: AssessmentVisualizationInstance[],
+    ): AssessmentVisualizationInstance[] {
         if (currentFrameResults == null) {
             return null;
         }

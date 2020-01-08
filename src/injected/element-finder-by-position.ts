@@ -21,7 +21,13 @@ export class ElementFinderByPosition {
     private q: typeof Q;
     private dom: Document;
 
-    constructor(frameCommunicator: FrameCommunicator, clientUtils: ClientUtils, scannerUtils: ScannerUtils, q: typeof Q, dom: Document) {
+    constructor(
+        frameCommunicator: FrameCommunicator,
+        clientUtils: ClientUtils,
+        scannerUtils: ScannerUtils,
+        q: typeof Q,
+        dom: Document,
+    ) {
         this.frameCommunicator = frameCommunicator;
         this.scannerUtils = scannerUtils;
         this.clientUtils = clientUtils;
@@ -30,7 +36,10 @@ export class ElementFinderByPosition {
     }
 
     public initialize(): void {
-        this.frameCommunicator.subscribe(ElementFinderByPosition.findElementByPositionCommand, this.onfindElementByPosition);
+        this.frameCommunicator.subscribe(
+            ElementFinderByPosition.findElementByPositionCommand,
+            this.onfindElementByPosition,
+        );
     }
 
     protected onfindElementByPosition = (
