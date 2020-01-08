@@ -3,8 +3,14 @@
 import { BaseButton, Button, DefaultButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 
-import { CopyIssueDetailsButton, CopyIssueDetailsButtonDeps } from '../../common/components/copy-issue-details-button';
-import { IssueFilingButton, IssueFilingButtonDeps } from '../../common/components/issue-filing-button';
+import {
+    CopyIssueDetailsButton,
+    CopyIssueDetailsButtonDeps,
+} from '../../common/components/copy-issue-details-button';
+import {
+    IssueFilingButton,
+    IssueFilingButtonDeps,
+} from '../../common/components/issue-filing-button';
 import { IssueFilingNeedsSettingsHelpText } from '../../common/components/issue-filing-needs-settings-help-text';
 import { FileHTMLIcon } from '../../common/icons/file-html-icon';
 import { NamedFC } from '../../common/react/named-fc';
@@ -22,7 +28,10 @@ export type CommandBarDeps = CopyIssueDetailsButtonDeps &
 export type CommandBarProps = {
     deps: CommandBarDeps;
     onClickInspectButton: (
-        event: React.MouseEvent<Button | BaseButton | HTMLDivElement | HTMLAnchorElement | HTMLButtonElement, MouseEvent>,
+        event: React.MouseEvent<
+            Button | BaseButton | HTMLDivElement | HTMLAnchorElement | HTMLButtonElement,
+            MouseEvent
+        >,
     ) => void;
     onClickCopyIssueDetailsButton: (event: React.MouseEvent<any, MouseEvent>) => void;
     failedRules: DictionaryStringTo<DecoratedAxeNodeResult>;
@@ -35,7 +44,10 @@ export type CommandBarProps = {
 export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
     const renderInspectButton = (): JSX.Element => {
         return (
-            <DefaultButton className="insights-dialog-button-inspect" onClick={props.onClickInspectButton}>
+            <DefaultButton
+                className="insights-dialog-button-inspect"
+                onClick={props.onClickInspectButton}
+            >
                 <FileHTMLIcon />
                 <div className="ms-Button-label">Inspect HTML</div>
             </DefaultButton>
@@ -47,11 +59,19 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
         const ruleName: string = failedRuleIds[props.currentRuleIndex];
         const ruleResult: DecoratedAxeNodeResult = props.failedRules[ruleName];
 
-        const issueData = props.deps.axeResultToIssueFilingDataConverter.convert(ruleResult, document.title, document.URL);
+        const issueData = props.deps.axeResultToIssueFilingDataConverter.convert(
+            ruleResult,
+            document.title,
+            document.URL,
+        );
 
         return (
             <>
-                <CopyIssueDetailsButton deps={props.deps} issueDetailsData={issueData} onClick={props.onClickCopyIssueDetailsButton} />
+                <CopyIssueDetailsButton
+                    deps={props.deps}
+                    issueDetailsData={issueData}
+                    onClick={props.onClickCopyIssueDetailsButton}
+                />
                 {renderFileIssueButton(issueData)}
             </>
         );

@@ -9,7 +9,12 @@ import { ScopingStoreData } from '../../common/types/store-data/scoping-store-da
 import { WindowUtils } from '../../common/window-utils';
 import { ScannerUtils } from '../scanner-utils';
 import { TabStopsListener } from '../tab-stops-listener';
-import { Analyzer, AnalyzerConfiguration, FocusAnalyzerConfiguration, RuleAnalyzerConfiguration } from './analyzer';
+import {
+    Analyzer,
+    AnalyzerConfiguration,
+    FocusAnalyzerConfiguration,
+    RuleAnalyzerConfiguration,
+} from './analyzer';
 import { BaseAnalyzer } from './base-analyzer';
 import { BatchedRuleAnalyzer, IResultRuleFilter } from './batched-rule-analyzer';
 import { PostResolveCallback, RuleAnalyzer } from './rule-analyzer';
@@ -98,6 +103,10 @@ export class AnalyzerProvider {
     }
 
     public createBaseAnalyzer(config: AnalyzerConfiguration): Analyzer {
-        return new BaseAnalyzer(config, this.sendMessageDelegate, this.scanIncompleteWarningDetector);
+        return new BaseAnalyzer(
+            config,
+            this.sendMessageDelegate,
+            this.scanIncompleteWarningDetector,
+        );
     }
 }
