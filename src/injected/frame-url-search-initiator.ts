@@ -20,7 +20,11 @@ export class FrameUrlSearchInitiator {
     private handleDevToolStateChange = (): void => {
         const storeState = this.devToolStore.getState();
 
-        if (storeState.inspectElement != null && storeState.inspectElement.length > 1 && storeState.frameUrl == null) {
+        if (
+            storeState.inspectElement != null &&
+            storeState.inspectElement.length > 1 &&
+            storeState.frameUrl == null
+        ) {
             this.frameUrlFinder.processRequest({ target: storeState.inspectElement });
         }
     };

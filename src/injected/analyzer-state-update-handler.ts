@@ -4,7 +4,10 @@ import { TestMode } from '../common/configs/test-mode';
 import { VisualizationConfiguration } from '../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../common/enum-helper';
-import { AssessmentScanData, VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
+import {
+    AssessmentScanData,
+    VisualizationStoreData,
+} from '../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 
 export class AnalyzerStateUpdateHandler {
@@ -17,7 +20,10 @@ export class AnalyzerStateUpdateHandler {
         this.visualizationConfigurationFactory = visualizationConfigurationFactory;
     }
 
-    public setupHandlers(startScanDelegate: (key: string) => void, teardownDelegate: (key: string) => void): void {
+    public setupHandlers(
+        startScanDelegate: (key: string) => void,
+        teardownDelegate: (key: string) => void,
+    ): void {
         this.startScan = startScanDelegate;
         this.teardown = teardownDelegate;
     }
@@ -31,11 +37,16 @@ export class AnalyzerStateUpdateHandler {
         this.prevState = currState;
     }
 
-    private terminateAnalyzers(prevState: VisualizationStoreData, currState: VisualizationStoreData): void {
+    private terminateAnalyzers(
+        prevState: VisualizationStoreData,
+        currState: VisualizationStoreData,
+    ): void {
         const types = EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
         types.forEach(visualizationType => {
             if (prevState != null) {
-                const configuration = this.visualizationConfigurationFactory.getConfiguration(visualizationType);
+                const configuration = this.visualizationConfigurationFactory.getConfiguration(
+                    visualizationType,
+                );
                 const keys = this.getTestKeysFromConfiguration(configuration, currState);
                 keys.forEach(testKey => {
                     if (this.isTestTerminated(configuration, prevState, currState, testKey)) {
@@ -46,7 +57,10 @@ export class AnalyzerStateUpdateHandler {
         });
     }
 
-    private startAnalyzers(prevState: VisualizationStoreData, currState: VisualizationStoreData): void {
+    private startAnalyzers(
+        prevState: VisualizationStoreData,
+        currState: VisualizationStoreData,
+    ): void {
         if (currState.scanning != null && currState.injectingInProgress !== true) {
             if (
                 prevState == null ||
@@ -71,7 +85,10 @@ export class AnalyzerStateUpdateHandler {
         return prevState != null && prevEnabled === true && currEnabled === false;
     }
 
-    private getTestKeysFromConfiguration(config: VisualizationConfiguration, currState: VisualizationStoreData): string[] {
+    private getTestKeysFromConfiguration(
+        config: VisualizationConfiguration,
+        currState: VisualizationStoreData,
+    ): string[] {
         const keys = [];
         if (this.isAssessment(config)) {
             const prevScanState = config.getStoreData(currState.tests) as AssessmentScanData;

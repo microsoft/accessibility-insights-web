@@ -20,14 +20,21 @@ export class FrameUrlFinder {
     private windowUtils: WindowUtils;
     private htmlElementUtils: HTMLElementUtils;
 
-    constructor(frameCommunicator: FrameCommunicator, windowUtils: WindowUtils, htmlElementUtils: HTMLElementUtils) {
+    constructor(
+        frameCommunicator: FrameCommunicator,
+        windowUtils: WindowUtils,
+        htmlElementUtils: HTMLElementUtils,
+    ) {
         this.frameCommunicator = frameCommunicator;
         this.windowUtils = windowUtils;
         this.htmlElementUtils = htmlElementUtils;
     }
 
     public initialize(): void {
-        this.frameCommunicator.subscribe(FrameUrlFinder.GetTargetFrameUrlCommand, this.processRequest);
+        this.frameCommunicator.subscribe(
+            FrameUrlFinder.GetTargetFrameUrlCommand,
+            this.processRequest,
+        );
     }
 
     public processRequest = (message: TargetMessage): void => {

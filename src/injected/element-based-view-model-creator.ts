@@ -41,10 +41,15 @@ export class ElementBasedViewModelCreator {
         }
 
         const resultDictionary: DictionaryStringTo<AssessmentVisualizationInstance> = {};
-        const highlightedResultInstanceUids = this.getHighlightedResultInstanceIds(cardSelectionData).highlightedResultUids;
+        const highlightedResultInstanceUids = this.getHighlightedResultInstanceIds(
+            cardSelectionData,
+        ).highlightedResultUids;
 
         results.forEach(unifiedResult => {
-            if (unifiedResult.status !== 'fail' || !includes(highlightedResultInstanceUids, unifiedResult.uid)) {
+            if (
+                unifiedResult.status !== 'fail' ||
+                !includes(highlightedResultInstanceUids, unifiedResult.uid)
+            ) {
                 return;
             }
 
@@ -52,7 +57,9 @@ export class ElementBasedViewModelCreator {
 
             const identifier = this.getIdentifier(unifiedResult);
             const decoratedResult = this.getDecoratedAxeNode(unifiedResult, rule, identifier);
-            const ruleResults = resultDictionary[identifier] ? resultDictionary[identifier].ruleResults : {};
+            const ruleResults = resultDictionary[identifier]
+                ? resultDictionary[identifier].ruleResults
+                : {};
 
             resultDictionary[identifier] = {
                 isFailure: true,

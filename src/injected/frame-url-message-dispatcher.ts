@@ -8,7 +8,10 @@ export class FrameUrlMessageDispatcher {
     private devToolActionMessageCreator: DevToolActionMessageCreator;
     private frameCommunicator: FrameCommunicator;
 
-    constructor(devToolActionMessageCreator: DevToolActionMessageCreator, frameCommunicator: FrameCommunicator) {
+    constructor(
+        devToolActionMessageCreator: DevToolActionMessageCreator,
+        frameCommunicator: FrameCommunicator,
+    ) {
         this.devToolActionMessageCreator = devToolActionMessageCreator;
         this.frameCommunicator = frameCommunicator;
     }
