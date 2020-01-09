@@ -12,7 +12,8 @@ exports[`NoContentAvailable renders stale view for default 1`] = `
       If the target page was closed, you can close this tab or reuse it for something else.
     </li>
     <li>
-      If the URL was changed on the target page, you can reactivate 
+      If the URL was changed on the target page, you can reactivate
+       
       <Term>
         Accessibility Insights for Web
       </Term>
