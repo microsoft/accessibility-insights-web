@@ -11,7 +11,14 @@ import { SnippetCardRow } from '../components/cards/snippet-card-row';
 import { FixInstructionProcessor } from '../components/fix-instruction-processor';
 import { ReactFCWithDisplayName } from '../react/named-fc';
 
-export type PropertyType = 'css-selector' | 'how-to-fix-web' | 'snippet' | 'className' | 'contentDescription' | 'text' | 'howToFixFormat';
+export type PropertyType =
+    | 'css-selector'
+    | 'how-to-fix-web'
+    | 'snippet'
+    | 'className'
+    | 'contentDescription'
+    | 'text'
+    | 'howToFixFormat';
 export const AllPropertyTypes: PropertyType[] = [
     'css-selector',
     'how-to-fix-web',

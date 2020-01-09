@@ -4,7 +4,10 @@ import { keys } from 'lodash';
 import { Extension as ReactExtension } from './react-extension-point';
 
 // tslint:disable-next-line: no-reserved-keywords
-export type AnyExtension = { type: 'Extension'; extensionType: string } & (Extension<string, string, any, any> | ReactExtension<any>);
+export type AnyExtension = { type: 'Extension'; extensionType: string } & (
+    | Extension<string, string, any, any>
+    | ReactExtension<any>
+);
 
 type Extension<TYPE extends string, KEY extends string, EXT extends {}, OUT extends {}> = {
     // tslint:disable-next-line: no-reserved-keywords
@@ -16,7 +19,12 @@ type Extension<TYPE extends string, KEY extends string, EXT extends {}, OUT exte
 
 type ApplyAllExtensions<EXT, OUT> = (list: Partial<EXT>[]) => OUT;
 
-export class ExtensionPoint<TYPE extends string, KEY extends string, EXT extends {}, OUT extends {}> {
+export class ExtensionPoint<
+    TYPE extends string,
+    KEY extends string,
+    EXT extends {},
+    OUT extends {}
+> {
     constructor(
         private readonly extensionType: TYPE,
         private readonly extensionPointKey: KEY,
@@ -46,7 +54,9 @@ export class ExtensionPoint<TYPE extends string, KEY extends string, EXT extends
     public apply(extensions: (AnyExtension | {})[]): OUT {
         const possibleExtensions = extensions || [];
 
-        const applicableExtensions = possibleExtensions.filter(ext => this.applicable(ext)) as Extension<TYPE, KEY, EXT, OUT>[];
+        const applicableExtensions = possibleExtensions.filter(ext =>
+            this.applicable(ext),
+        ) as Extension<TYPE, KEY, EXT, OUT>[];
 
         const components = applicableExtensions.map(e => e.component);
 

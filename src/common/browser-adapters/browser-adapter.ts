@@ -1,13 +1,29 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ExtensionTypes, Notifications, Permissions, Tabs, Windows } from 'webextension-polyfill-ts';
+import {
+    ExtensionTypes,
+    Notifications,
+    Permissions,
+    Tabs,
+    Windows,
+} from 'webextension-polyfill-ts';
 
 export interface BrowserAdapter {
     getAllWindows(getInfo: Windows.GetAllGetInfoType): Promise<Windows.Window[]>;
     addListenerToTabsOnActivated(callback: (activeInfo: chrome.tabs.TabActiveInfo) => void): void;
-    addListenerToTabsOnUpdated(callback: (tabId: number, changeInfo: chrome.tabs.TabChangeInfo, tab: chrome.tabs.Tab) => void): void;
-    addListenerToTabsOnRemoved(callback: (tabId: number, removeInfo: chrome.tabs.TabRemoveInfo) => void): void;
-    addListenerToWebNavigationUpdated(callback: (details: chrome.webNavigation.WebNavigationFramedCallbackDetails) => void): void;
+    addListenerToTabsOnUpdated(
+        callback: (
+            tabId: number,
+            changeInfo: chrome.tabs.TabChangeInfo,
+            tab: chrome.tabs.Tab,
+        ) => void,
+    ): void;
+    addListenerToTabsOnRemoved(
+        callback: (tabId: number, removeInfo: chrome.tabs.TabRemoveInfo) => void,
+    ): void;
+    addListenerToWebNavigationUpdated(
+        callback: (details: chrome.webNavigation.WebNavigationFramedCallbackDetails) => void,
+    ): void;
     addListenerOnWindowsFocusChanged(callback: (windowId: number) => void): void;
     tabsQuery(query: Tabs.QueryQueryInfoType): Promise<Tabs.Tab[]>;
     createActiveTab(url: string): Promise<Tabs.Tab>;
@@ -15,7 +31,10 @@ export interface BrowserAdapter {
     switchToTab(tabId: number): Promise<void>;
     updateTab(tabId: number, updateProperties: Tabs.UpdateUpdatePropertiesType): Promise<Tabs.Tab>;
     getTab(tabId: number, onResolve: (tab: chrome.tabs.Tab) => void, onReject?: () => void): void;
-    updateWindow(windowId: number, updateProperties: Windows.UpdateUpdateInfoType): Promise<Windows.Window>;
+    updateWindow(
+        windowId: number,
+        updateProperties: Windows.UpdateUpdateInfoType,
+    ): Promise<Windows.Window>;
     sendMessageToTab(tabId: number, message: any): Promise<void>;
     sendMessageToFrames(message: any): Promise<void>;
     executeScriptInTab(tabId: number, details: ExtensionTypes.InjectDetails): Promise<any[]>;
@@ -27,11 +46,19 @@ export interface BrowserAdapter {
     getManageExtensionUrl(): string;
     addListenerOnConnect(callback: (port: chrome.runtime.Port) => void): void;
     addListenerOnMessage(
-        callback: (message: any, sender: chrome.runtime.MessageSender, sendResponse: (response: any) => void) => void,
+        callback: (
+            message: any,
+            sender: chrome.runtime.MessageSender,
+            sendResponse: (response: any) => void,
+        ) => void,
     ): void;
 
     removeListenerOnMessage(
-        callback: (message: any, sender: chrome.runtime.MessageSender, sendResponse: (response: any) => void) => void,
+        callback: (
+            message: any,
+            sender: chrome.runtime.MessageSender,
+            sendResponse: (response: any) => void,
+        ) => void,
     ): void;
     connect(connectionInfo?: chrome.runtime.ConnectInfo): chrome.runtime.Port;
     getManifest(): chrome.runtime.Manifest;
