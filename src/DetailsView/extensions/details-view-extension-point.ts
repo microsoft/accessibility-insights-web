@@ -7,4 +7,7 @@ const defaultComponent = {
     onAssessmentViewUpdate: (prevProps: AssessmentViewProps, curProps: AssessmentViewProps) => {},
 };
 
-export const detailsViewExtensionPoint = createCallChainExtensionPoint('detailsViewExtensionPoint', defaultComponent);
+export const detailsViewExtensionPoint = createCallChainExtensionPoint(
+    'detailsViewExtensionPoint',
+    defaultComponent,
+);

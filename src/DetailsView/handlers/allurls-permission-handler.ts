@@ -8,11 +8,16 @@ import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-vie
 export class AllUrlsPermissionHandler {
     constructor(
         private readonly browserAdapter: BrowserAdapter,
-        private readonly actionMessageCreator: Pick<DetailsViewActionMessageCreator, 'setAllUrlsPermissionState'>,
+        private readonly actionMessageCreator: Pick<
+            DetailsViewActionMessageCreator,
+            'setAllUrlsPermissionState'
+        >,
     ) {}
 
     public requestAllUrlsPermission = async (e: SupportedMouseEvent, onSuccess: () => void) => {
-        const newAllUrlsPermissionState = await this.browserAdapter.requestPermissions(allUrlAndFilePermissions);
+        const newAllUrlsPermissionState = await this.browserAdapter.requestPermissions(
+            allUrlAndFilePermissions,
+        );
         this.actionMessageCreator.setAllUrlsPermissionState(e, newAllUrlsPermissionState);
 
         if (newAllUrlsPermissionState) {

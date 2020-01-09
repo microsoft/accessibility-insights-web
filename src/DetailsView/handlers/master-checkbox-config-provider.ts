@@ -15,7 +15,10 @@ export class MasterCheckBoxConfigProvider {
         this.detailsViewActionMessageCreator = detailsViewActionMessageCreator;
     }
 
-    public getMasterCheckBoxProperty(assessmentNavState: AssessmentNavState, allEnabled: boolean): Partial<IColumn> {
+    public getMasterCheckBoxProperty(
+        assessmentNavState: AssessmentNavState,
+        allEnabled: boolean,
+    ): Partial<IColumn> {
         const iconName = allEnabled
             ? MasterCheckBoxConfigProvider.MASTER_CHECKBOX_ICON_NAME_ENABLED
             : MasterCheckBoxConfigProvider.MASTER_CHECKBOX_ICON_NAME_DISABLED;
