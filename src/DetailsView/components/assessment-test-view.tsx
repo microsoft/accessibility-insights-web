@@ -3,7 +3,10 @@
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
-import { ScanIncompleteWarning, ScanIncompleteWarningDeps } from 'DetailsView/components/scan-incomplete-warning';
+import {
+    ScanIncompleteWarning,
+    ScanIncompleteWarningDeps,
+} from 'DetailsView/components/scan-incomplete-warning';
 import * as React from 'react';
 
 import { AssessmentTestResult } from '../../common/assessment/assessment-test-result';
@@ -35,42 +38,52 @@ export interface AssessmentTestViewProps {
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
 }
 
-export const AssessmentTestView = NamedFC<AssessmentTestViewProps>('AssessmentTestView', ({ deps, ...props }) => {
-    const isScanning: boolean = props.visualizationStoreData.scanning !== null;
-    const assessmentNavState = props.assessmentStoreData.assessmentNavState;
-    const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
-    const assessmentData = props.configuration.getAssessmentData(props.assessmentStoreData);
-    const prevTarget = props.assessmentStoreData.persistedTabInfo;
-    const isEnabled = props.configuration.getTestStatus(scanData, assessmentNavState.selectedTestStep);
-    const currentTarget = {
-        id: props.tabStoreData.id,
-        url: props.tabStoreData.url,
-        title: props.tabStoreData.title,
-    };
-    const assessmentTestResult = new AssessmentTestResult(deps.assessmentsProvider, assessmentNavState.selectedTestType, assessmentData);
-    return (
-        <>
-            <ScanIncompleteWarning
-                deps={deps}
-                warnings={assessmentData.scanIncompleteWarnings}
-                warningConfiguration={props.switcherNavConfiguration.warningConfiguration}
-                test={assessmentNavState.selectedTestType}
-            />
-            <AssessmentView
-                deps={deps}
-                isScanning={isScanning}
-                isEnabled={isEnabled}
-                assessmentNavState={assessmentNavState}
-                assessmentInstanceTableHandler={props.assessmentInstanceTableHandler}
-                assessmentData={assessmentData}
-                currentTarget={currentTarget}
-                prevTarget={prevTarget}
-                assessmentDefaultMessageGenerator={deps.assessmentDefaultMessageGenerator}
-                assessmentTestResult={assessmentTestResult}
-                featureFlagStoreData={props.featureFlagStoreData}
-                pathSnippetStoreData={props.pathSnippetStoreData}
-                switcherNavConfiguration={props.switcherNavConfiguration}
-            />
-        </>
-    );
-});
+export const AssessmentTestView = NamedFC<AssessmentTestViewProps>(
+    'AssessmentTestView',
+    ({ deps, ...props }) => {
+        const isScanning: boolean = props.visualizationStoreData.scanning !== null;
+        const assessmentNavState = props.assessmentStoreData.assessmentNavState;
+        const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
+        const assessmentData = props.configuration.getAssessmentData(props.assessmentStoreData);
+        const prevTarget = props.assessmentStoreData.persistedTabInfo;
+        const isEnabled = props.configuration.getTestStatus(
+            scanData,
+            assessmentNavState.selectedTestStep,
+        );
+        const currentTarget = {
+            id: props.tabStoreData.id,
+            url: props.tabStoreData.url,
+            title: props.tabStoreData.title,
+        };
+        const assessmentTestResult = new AssessmentTestResult(
+            deps.assessmentsProvider,
+            assessmentNavState.selectedTestType,
+            assessmentData,
+        );
+        return (
+            <>
+                <ScanIncompleteWarning
+                    deps={deps}
+                    warnings={assessmentData.scanIncompleteWarnings}
+                    warningConfiguration={props.switcherNavConfiguration.warningConfiguration}
+                    test={assessmentNavState.selectedTestType}
+                />
+                <AssessmentView
+                    deps={deps}
+                    isScanning={isScanning}
+                    isEnabled={isEnabled}
+                    assessmentNavState={assessmentNavState}
+                    assessmentInstanceTableHandler={props.assessmentInstanceTableHandler}
+                    assessmentData={assessmentData}
+                    currentTarget={currentTarget}
+                    prevTarget={prevTarget}
+                    assessmentDefaultMessageGenerator={deps.assessmentDefaultMessageGenerator}
+                    assessmentTestResult={assessmentTestResult}
+                    featureFlagStoreData={props.featureFlagStoreData}
+                    pathSnippetStoreData={props.pathSnippetStoreData}
+                    switcherNavConfiguration={props.switcherNavConfiguration}
+                />
+            </>
+        );
+    },
+);

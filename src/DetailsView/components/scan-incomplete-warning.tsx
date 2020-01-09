@@ -2,7 +2,10 @@
 // Licensed under the MIT License.
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { VisualizationType } from 'common/types/visualization-type';
-import { ScanIncompleteWarningMessageBarDeps, WarningConfiguration } from 'DetailsView/components/warning-configuration';
+import {
+    ScanIncompleteWarningMessageBarDeps,
+    WarningConfiguration,
+} from 'DetailsView/components/warning-configuration';
 import { forOwn, isEmpty } from 'lodash';
 import { MessageBar, MessageBarType } from 'office-ui-fabric-react';
 import * as React from 'react';

@@ -16,7 +16,10 @@ export interface DetailsViewDropDownState {
     target?: HTMLElement | string | MouseEvent | IPoint | null;
 }
 
-export class DetailsViewDropDown extends React.Component<DetailsViewDropDownProps, DetailsViewDropDownState> {
+export class DetailsViewDropDown extends React.Component<
+    DetailsViewDropDownProps,
+    DetailsViewDropDownState
+> {
     constructor(props) {
         super(props);
         this.state = {
@@ -29,7 +32,11 @@ export class DetailsViewDropDown extends React.Component<DetailsViewDropDownProp
         return (
             <div className="details-view-dropdown">
                 <Link className={'gear-button'} onClick={this.openDropdown}>
-                    <Icon className="gear-options-icon" iconName="Gear" ariaLabel={'Manage Settings'} />
+                    <Icon
+                        className="gear-options-icon"
+                        iconName="Gear"
+                        ariaLabel={'Manage Settings'}
+                    />
                 </Link>
                 {this.renderContextMenu()}
             </div>

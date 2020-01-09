@@ -57,11 +57,14 @@ export interface IssuesTableProps {
 export class IssuesTable extends React.Component<IssuesTableProps> {
     private configuration: VisualizationConfiguration;
     public static readonly exportTextareaLabel: string = 'Provide result description';
-    public static readonly exportInstructions: string = 'Optional: please describe the result (it will be saved in the report).';
+    public static readonly exportInstructions: string =
+        'Optional: please describe the result (it will be saved in the report).';
 
     constructor(props: IssuesTableProps) {
         super(props);
-        this.configuration = props.visualizationConfigurationFactory.getConfiguration(VisualizationType.Issues);
+        this.configuration = props.visualizationConfigurationFactory.getConfiguration(
+            VisualizationType.Issues,
+        );
     }
 
     public render(): JSX.Element {
@@ -189,7 +192,8 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
             </span>
         ) : (
             <span>
-                Turn on <Markup.Term>{this.configuration.displayableData.title}</Markup.Term> to see a list of failures.
+                Turn on <Markup.Term>{this.configuration.displayableData.title}</Markup.Term> to see
+                a list of failures.
             </span>
         );
 
@@ -213,7 +217,9 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
                         issuesTableHandler={this.props.issuesTableHandler}
                         issuesSelection={this.props.issuesSelection}
                     />
-                    <div className="issue-detail-outer-container ms-Fabric">{this.getIssueDetailPane()}</div>
+                    <div className="issue-detail-outer-container ms-Fabric">
+                        {this.getIssueDetailPane()}
+                    </div>
                 </div>
             </>
         );

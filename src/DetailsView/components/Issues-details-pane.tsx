@@ -3,11 +3,20 @@
 import * as React from 'react';
 
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
-import { FixInstructionPanel, FixInstructionPanelDeps } from 'common/components/fix-instruction-panel';
-import { CopyIssueDetailsButton, CopyIssueDetailsButtonDeps } from '../../common/components/copy-issue-details-button';
+import {
+    FixInstructionPanel,
+    FixInstructionPanelDeps,
+} from 'common/components/fix-instruction-panel';
+import {
+    CopyIssueDetailsButton,
+    CopyIssueDetailsButtonDeps,
+} from '../../common/components/copy-issue-details-button';
 import { GuidanceLinks } from '../../common/components/guidance-links';
 import { GuidanceTags, GuidanceTagsDeps } from '../../common/components/guidance-tags';
-import { IssueFilingButton, IssueFilingButtonDeps } from '../../common/components/issue-filing-button';
+import {
+    IssueFilingButton,
+    IssueFilingButtonDeps,
+} from '../../common/components/issue-filing-button';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { ToastDeps } from '../../common/components/toast';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
@@ -67,7 +76,8 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
             <div>
                 <h2>Failure details</h2>
                 <div className="issue-detail-select-message">
-                    Select a single failure instance from a group in the table above to see more details here.
+                    Select a single failure instance from a group in the table above to see more
+                    details here.
                 </div>
             </div>
         );
@@ -89,7 +99,11 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
     }
 
     private renderSingleIssue(result: DecoratedAxeNodeResult): JSX.Element {
-        const issueData = this.props.deps.axeResultToIssueFilingDataConverter.convert(result, this.props.pageTitle, this.props.pageUrl);
+        const issueData = this.props.deps.axeResultToIssueFilingDataConverter.convert(
+            result,
+            this.props.pageTitle,
+            this.props.pageUrl,
+        );
 
         return (
             <div>
@@ -97,7 +111,9 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
                 <CopyIssueDetailsButton
                     deps={this.props.deps}
                     issueDetailsData={issueData}
-                    onClick={this.props.deps.detailsViewActionMessageCreator.copyIssueDetailsClicked}
+                    onClick={
+                        this.props.deps.detailsViewActionMessageCreator.copyIssueDetailsClicked
+                    }
                 />
                 {this.getFileIssueDetailsButton(issueData)}
                 <table className="issue-detail-table">

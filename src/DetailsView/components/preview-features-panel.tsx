@@ -26,7 +26,9 @@ export class PreviewFeaturesPanel extends React.Component<PreviewFeaturesPanelPr
                 title="Preview features"
                 isOpen={this.props.isOpen}
                 className="preview-features-panel"
-                onDismiss={this.props.deps.detailsViewActionMessageCreator.closePreviewFeaturesPanel}
+                onDismiss={
+                    this.props.deps.detailsViewActionMessageCreator.closePreviewFeaturesPanel
+                }
                 closeButtonAriaLabel="Close preview features panel"
                 hasCloseButton={true}
             >

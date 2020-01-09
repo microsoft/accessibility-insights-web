@@ -37,36 +37,43 @@ export interface DetailsListIssuesViewProps {
     cardsViewData: CardsViewModel;
 }
 
-export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>('DetailsListIssuesView', ({ children, ...props }) => {
-    const selectedTest = props.selectedTest;
-    const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
-    const clickHandler = props.clickHandlerFactory.createClickHandler(selectedTest, !scanData.enabled);
-    const isScanning: boolean = props.visualizationStoreData.scanning !== null;
-    const scanResult = props.visualizationScanResultData.issues.scanResult;
-    const selectedIdToRuleResultMap = props.visualizationScanResultData.issues.selectedIdToRuleResultMap;
-    const title = props.configuration.displayableData.title;
-    const subtitle = props.configuration.displayableData.subtitle;
+export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>(
+    'DetailsListIssuesView',
+    ({ children, ...props }) => {
+        const selectedTest = props.selectedTest;
+        const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
+        const clickHandler = props.clickHandlerFactory.createClickHandler(
+            selectedTest,
+            !scanData.enabled,
+        );
+        const isScanning: boolean = props.visualizationStoreData.scanning !== null;
+        const scanResult = props.visualizationScanResultData.issues.scanResult;
+        const selectedIdToRuleResultMap =
+            props.visualizationScanResultData.issues.selectedIdToRuleResultMap;
+        const title = props.configuration.displayableData.title;
+        const subtitle = props.configuration.displayableData.subtitle;
 
-    return (
-        <IssuesTable
-            deps={props.deps}
-            title={title}
-            subtitle={subtitle}
-            issuesTableHandler={props.issuesTableHandler}
-            issuesEnabled={scanData.enabled}
-            violations={scanResult != null ? scanResult.violations : null}
-            issuesSelection={props.issuesSelection}
-            selectedIdToRuleResultMap={selectedIdToRuleResultMap}
-            pageTitle={props.tabStoreData.title}
-            pageUrl={props.tabStoreData.url}
-            scanning={isScanning}
-            toggleClickHandler={clickHandler}
-            visualizationConfigurationFactory={props.visualizationConfigurationFactory}
-            featureFlags={props.featureFlagStoreData}
-            scanResult={scanResult}
-            userConfigurationStoreData={props.userConfigurationStoreData}
-            targetAppInfo={props.targetAppInfo}
-            cardsViewData={props.cardsViewData}
-        />
-    );
-});
+        return (
+            <IssuesTable
+                deps={props.deps}
+                title={title}
+                subtitle={subtitle}
+                issuesTableHandler={props.issuesTableHandler}
+                issuesEnabled={scanData.enabled}
+                violations={scanResult != null ? scanResult.violations : null}
+                issuesSelection={props.issuesSelection}
+                selectedIdToRuleResultMap={selectedIdToRuleResultMap}
+                pageTitle={props.tabStoreData.title}
+                pageUrl={props.tabStoreData.url}
+                scanning={isScanning}
+                toggleClickHandler={clickHandler}
+                visualizationConfigurationFactory={props.visualizationConfigurationFactory}
+                featureFlags={props.featureFlagStoreData}
+                scanResult={scanResult}
+                userConfigurationStoreData={props.userConfigurationStoreData}
+                targetAppInfo={props.targetAppInfo}
+                cardsViewData={props.cardsViewData}
+            />
+        );
+    },
+);

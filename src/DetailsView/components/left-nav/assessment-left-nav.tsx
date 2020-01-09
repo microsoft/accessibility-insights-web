@@ -8,7 +8,11 @@ import { ManualTestStatus, ManualTestStatusData } from '../../../common/types/ma
 import { DictionaryStringTo } from '../../../types/common-types';
 import { BaseLeftNav, BaseLeftNavLink } from '../base-left-nav';
 import { LeftNavIndexIcon, LeftNavStatusIcon } from './left-nav-icon';
-import { AssessmentLinkBuilderDeps, LeftNavLinkBuilder, OverviewLinkBuilderDeps } from './left-nav-link-builder';
+import {
+    AssessmentLinkBuilderDeps,
+    LeftNavLinkBuilder,
+    OverviewLinkBuilderDeps,
+} from './left-nav-link-builder';
 import { NavLinkHandler } from './nav-link-handler';
 
 export type AssessmentLeftNavDeps = {
@@ -42,10 +46,26 @@ export const AssessmentLeftNav = NamedFC<AssessmentLeftNavProps>('AssessmentLeft
     };
 
     let links = [];
-    links.push(leftNavLinkBuilder.buildOverviewLink(deps, navLinkHandler.onOverviewClick, assessmentsProvider, assessmentsData, 0));
+    links.push(
+        leftNavLinkBuilder.buildOverviewLink(
+            deps,
+            navLinkHandler.onOverviewClick,
+            assessmentsProvider,
+            assessmentsData,
+            0,
+        ),
+    );
     links = links.concat(
-        leftNavLinkBuilder.buildAssessmentTestLinks(deps, navLinkHandler.onAssessmentTestClick, assessmentsProvider, assessmentsData, 1),
+        leftNavLinkBuilder.buildAssessmentTestLinks(
+            deps,
+            navLinkHandler.onAssessmentTestClick,
+            assessmentsProvider,
+            assessmentsData,
+            1,
+        ),
     );
 
-    return <BaseLeftNav renderIcon={renderAssessmentIcon} selectedKey={selectedKey} links={links} />;
+    return (
+        <BaseLeftNav renderIcon={renderAssessmentIcon} selectedKey={selectedKey} links={links} />
+    );
 });

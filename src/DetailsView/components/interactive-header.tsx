@@ -28,7 +28,10 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
     return (
         <Header deps={props.deps}>
             <Switcher deps={props.deps} pivotKey={props.selectedPivot} />
-            <GearOptionsButtonComponent dropdownClickHandler={props.dropdownClickHandler} featureFlags={props.featureFlagStoreData} />
+            <GearOptionsButtonComponent
+                dropdownClickHandler={props.dropdownClickHandler}
+                featureFlags={props.featureFlagStoreData}
+            />
         </Header>
     );
 });

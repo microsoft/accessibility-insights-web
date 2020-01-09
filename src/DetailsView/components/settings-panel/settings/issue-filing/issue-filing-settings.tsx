@@ -11,7 +11,9 @@ export const issueFilingTitleId = 'issue-filing-heading';
 export const IssueFilingSettings = NamedFC<SettingsProps>('IssueFilingSettings', props => {
     const { deps, userConfigurationStoreState } = props;
     const { issueFilingServiceProvider, userConfigMessageCreator } = deps;
-    const selectedIssueFilingService = issueFilingServiceProvider.forKey(userConfigurationStoreState.bugService);
+    const selectedIssueFilingService = issueFilingServiceProvider.forKey(
+        userConfigurationStoreState.bugService,
+    );
     const selectedIssueFilingServiceData = selectedIssueFilingService.getSettingsFromStoreData(
         userConfigurationStoreState.bugServicePropertiesMap,
     );

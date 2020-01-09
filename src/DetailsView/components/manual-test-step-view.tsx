@@ -11,7 +11,11 @@ import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../types/common-types';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
-import { CapturedInstanceActionType, FailureInstanceData, FailureInstancePanelControl } from './failure-instance-panel-control';
+import {
+    CapturedInstanceActionType,
+    FailureInstanceData,
+    FailureInstancePanelControl,
+} from './failure-instance-panel-control';
 import { TestStatusChoiceGroup } from './test-status-choice-group';
 
 export interface ManualTestStepViewProps {
@@ -35,8 +39,12 @@ export class ManualTestStepView extends React.Component<ManualTestStepViewProps>
                         step={this.props.step}
                         status={status}
                         originalStatus={ManualTestStatus.UNKNOWN}
-                        onGroupChoiceChange={this.props.assessmentInstanceTableHandler.changeRequirementStatus}
-                        onUndoClicked={this.props.assessmentInstanceTableHandler.undoRequirementStatusChange}
+                        onGroupChoiceChange={
+                            this.props.assessmentInstanceTableHandler.changeRequirementStatus
+                        }
+                        onUndoClicked={
+                            this.props.assessmentInstanceTableHandler.undoRequirementStatusChange
+                        }
                         isLabelVisible={true}
                     />
                 </div>
@@ -67,9 +75,15 @@ export class ManualTestStepView extends React.Component<ManualTestStepViewProps>
                 <FailureInstancePanelControl
                     step={this.props.step}
                     test={this.props.test}
-                    addFailureInstance={this.props.assessmentInstanceTableHandler.addFailureInstance}
-                    addPathForValidation={this.props.assessmentInstanceTableHandler.addPathForValidation}
-                    clearPathSnippetData={this.props.assessmentInstanceTableHandler.clearPathSnippetData}
+                    addFailureInstance={
+                        this.props.assessmentInstanceTableHandler.addFailureInstance
+                    }
+                    addPathForValidation={
+                        this.props.assessmentInstanceTableHandler.addPathForValidation
+                    }
+                    clearPathSnippetData={
+                        this.props.assessmentInstanceTableHandler.clearPathSnippetData
+                    }
                     actionType={CapturedInstanceActionType.CREATE}
                     assessmentsProvider={this.props.assessmentsProvider}
                     featureFlagStoreData={this.props.featureFlagStoreData}

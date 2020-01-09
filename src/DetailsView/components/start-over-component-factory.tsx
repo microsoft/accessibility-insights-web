@@ -34,7 +34,9 @@ export function getStartOverComponentForFastPass(props: CommandBarProps): JSX.El
     return (
         <ActionButton
             iconProps={{ iconName: 'Refresh' }}
-            onClick={event => detailsViewActionMessageCreator.rescanVisualization(selectedTest, event)}
+            onClick={event =>
+                detailsViewActionMessageCreator.rescanVisualization(selectedTest, event)
+            }
             disabled={props.visualizationStoreData.scanning !== null}
             data-automation-id={startOverAutomationId}
         >

@@ -13,7 +13,9 @@ export interface AssessmentInstanceDetailsColumnProps {
     customClassName?: string;
 }
 
-export class AssessmentInstanceDetailsColumn extends React.Component<AssessmentInstanceDetailsColumnProps> {
+export class AssessmentInstanceDetailsColumn extends React.Component<
+    AssessmentInstanceDetailsColumnProps
+> {
     public render(): JSX.Element {
         const showLabel = !!this.props.labelText;
         const showHeader = !!this.props.headerText;
@@ -31,7 +33,11 @@ export class AssessmentInstanceDetailsColumn extends React.Component<AssessmentI
                 <div>
                     <TooltipHost content={textContent} calloutProps={{ gapSpace: 0 }}>
                         <div className="all-content">
-                            {showHeader ? <strong className="instance-header">{this.props.headerText} </strong> : null}
+                            {showHeader ? (
+                                <strong className="instance-header">
+                                    {this.props.headerText}{' '}
+                                </strong>
+                            ) : null}
                             <div className="assessment-instance-textContent">{textContent}</div>
                         </div>
                     </TooltipHost>

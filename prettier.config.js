@@ -23,7 +23,6 @@ module.exports = {
                 'src/views/**/*',
                 'src/DetailsView/**/*',
             ],
-            excludeFiles: ['src/DetailsView/components/**/*'],
             options: {
                 printWidth: 100,
             },

@@ -3,7 +3,8 @@
 import { AssessmentStoreData } from '../../../common/types/store-data/assessment-result-data';
 import { VisualizationStoreData } from '../../../common/types/store-data/visualization-store-data';
 
-export type GetSelectedDetailsViewProps = GetFastPassSelectedDetailsViewProps & GetAssessmentSelectedDetailsViewProps;
+export type GetSelectedDetailsViewProps = GetFastPassSelectedDetailsViewProps &
+    GetAssessmentSelectedDetailsViewProps;
 
 export type GetAssessmentSelectedDetailsViewProps = {
     assessmentStoreData: AssessmentStoreData;

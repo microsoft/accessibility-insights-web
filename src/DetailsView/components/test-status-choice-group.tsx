@@ -25,7 +25,10 @@ interface ChoiceGroupState {
     selectedKey: string;
 }
 
-export class TestStatusChoiceGroup extends React.Component<TestStatusChoiceGroupProps, ChoiceGroupState> {
+export class TestStatusChoiceGroup extends React.Component<
+    TestStatusChoiceGroupProps,
+    ChoiceGroupState
+> {
     protected choiceGroup: IChoiceGroup;
 
     constructor(props) {
@@ -94,7 +97,12 @@ export class TestStatusChoiceGroup extends React.Component<TestStatusChoiceGroup
 
     protected onChange = (ev: React.FocusEvent<HTMLElement>, option: IChoiceGroupOption): void => {
         this.setState({ selectedKey: option.key });
-        this.props.onGroupChoiceChange(ManualTestStatus[option.key], this.props.test, this.props.step, this.props.selector);
+        this.props.onGroupChoiceChange(
+            ManualTestStatus[option.key],
+            this.props.test,
+            this.props.step,
+            this.props.selector,
+        );
     };
 
     protected onUndoClicked = (): void => {
