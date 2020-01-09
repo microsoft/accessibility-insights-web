@@ -45,10 +45,18 @@ export class CardSelectionActionCreator {
             Messages.CardSelection.CollapseAllRules,
             this.onCollapseAllRules,
         );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Visualizations.Common.ScrollRequested,
+            this.onScrollRequested,
+        );
     }
 
     private onGetCurrentState = (): void => {
         this.cardSelectionActions.getCurrentState.invoke(null);
+    };
+
+    private onScrollRequested = (payload: BaseActionPayload): void => {
+        this.cardSelectionActions.resetFocusedIdentifier.invoke(null);
     };
 
     private onCardSelectionToggle = (payload: CardSelectionPayload): void => {
