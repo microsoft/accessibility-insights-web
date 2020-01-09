@@ -11,10 +11,16 @@ import {
     FastPassIframeWarningProps,
 } from 'DetailsView/components/iframe-warning';
 
-export type ScanIncompleteWarningMessageBarProps = FastPassIframeWarningProps | AssessmentIframeWarningProps;
-export type ScanIncompleteWarningMessageBarDeps = FastPassIframeWarningDeps | AssessmentIframeWarningDeps;
+export type ScanIncompleteWarningMessageBarProps =
+    | FastPassIframeWarningProps
+    | AssessmentIframeWarningProps;
+export type ScanIncompleteWarningMessageBarDeps =
+    | FastPassIframeWarningDeps
+    | AssessmentIframeWarningDeps;
 
-export type WarningConfiguration = { [key in ScanIncompleteWarningId]: ReactFCWithDisplayName<ScanIncompleteWarningMessageBarProps> };
+export type WarningConfiguration = {
+    [key in ScanIncompleteWarningId]: ReactFCWithDisplayName<ScanIncompleteWarningMessageBarProps>;
+};
 
 export const assessmentWarningConfiguration: WarningConfiguration = {
     'missing-required-cross-origin-permissions': AssessmentIframeWarning,

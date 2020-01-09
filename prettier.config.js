@@ -12,6 +12,7 @@ module.exports = {
                 'src/ad-hoc-visualizations/**/*',
                 'src/assessments/**/*',
                 'src/background/**/*',
+                'src/DetailsView/**/*',
                 'src/Devtools/**/*',
                 'src/electron/**/*',
                 'src/injected/**/*',
@@ -21,9 +22,7 @@ module.exports = {
                 'src/scanner/**/*',
                 'src/types/**/*',
                 'src/views/**/*',
-                'src/DetailsView/**/*',
             ],
-            excludeFiles: ['src/DetailsView/components/**/*'],
             options: {
                 printWidth: 100,
             },

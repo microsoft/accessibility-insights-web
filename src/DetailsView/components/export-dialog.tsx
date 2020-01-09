@@ -34,7 +34,11 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
     const onExportLinkClick = (event: React.MouseEvent<HTMLDivElement>): void => {
         const { detailsViewActionMessageCreator } = props.deps;
         props.onDescriptionChange(props.description);
-        detailsViewActionMessageCreator.exportResultsClicked(props.exportResultsType, props.html, event);
+        detailsViewActionMessageCreator.exportResultsClicked(
+            props.exportResultsType,
+            props.html,
+            event,
+        );
         props.onExportClick();
         props.onClose();
     };

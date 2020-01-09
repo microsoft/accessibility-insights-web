@@ -22,7 +22,9 @@ export const IframeWarning = NamedFC<IframeWarningProps>('IframeWarning', props 
             give Accessibility Insights additional permissions
         </Link>
         ; this will trigger a rescan of the test.
-        <NewTabLink href={'https://accessibilityinsights.io/docs/en/faq'}>Learn more here.</NewTabLink>
+        <NewTabLink href={'https://accessibilityinsights.io/docs/en/faq'}>
+            Learn more here.
+        </NewTabLink>
     </div>
 ));
 
@@ -36,19 +38,22 @@ export type AssessmentIframeWarningProps = {
     test: VisualizationType;
 };
 
-export const AssessmentIframeWarning = NamedFC<AssessmentIframeWarningProps>('AssessmentIframeWarning', props => {
-    const { deps, test } = props;
+export const AssessmentIframeWarning = NamedFC<AssessmentIframeWarningProps>(
+    'AssessmentIframeWarning',
+    props => {
+        const { deps, test } = props;
 
-    const onAllowPermissionsClick = async (event: SupportedMouseEvent) => {
-        const rescanTest = () => {
-            deps.detailsViewActionMessageCreator.startOverTest(event, test);
+        const onAllowPermissionsClick = async (event: SupportedMouseEvent) => {
+            const rescanTest = () => {
+                deps.detailsViewActionMessageCreator.startOverTest(event, test);
+            };
+
+            await deps.allUrlsPermissionHandler.requestAllUrlsPermission(event, rescanTest);
         };
 
-        await deps.allUrlsPermissionHandler.requestAllUrlsPermission(event, rescanTest);
-    };
-
-    return <IframeWarning onAllowPermissionsClick={onAllowPermissionsClick} />;
-});
+        return <IframeWarning onAllowPermissionsClick={onAllowPermissionsClick} />;
+    },
+);
 
 export type FastPassIframeWarningDeps = {
     allUrlsPermissionHandler: AllUrlsPermissionHandler;
@@ -60,16 +65,19 @@ export type FastPassIframeWarningProps = {
     test: VisualizationType;
 };
 
-export const FastPassIframeWarning = NamedFC<FastPassIframeWarningProps>('FastPassIframeWarning', props => {
-    const { deps, test } = props;
+export const FastPassIframeWarning = NamedFC<FastPassIframeWarningProps>(
+    'FastPassIframeWarning',
+    props => {
+        const { deps, test } = props;
 
-    const onAllowPermissionsClick = async (event: SupportedMouseEvent) => {
-        const rescanTest = () => {
-            deps.detailsViewActionMessageCreator.rescanVisualization(test, event);
+        const onAllowPermissionsClick = async (event: SupportedMouseEvent) => {
+            const rescanTest = () => {
+                deps.detailsViewActionMessageCreator.rescanVisualization(test, event);
+            };
+
+            await deps.allUrlsPermissionHandler.requestAllUrlsPermission(event, rescanTest);
         };
 
-        await deps.allUrlsPermissionHandler.requestAllUrlsPermission(event, rescanTest);
-    };
-
-    return <IframeWarning onAllowPermissionsClick={onAllowPermissionsClick} />;
-});
+        return <IframeWarning onAllowPermissionsClick={onAllowPermissionsClick} />;
+    },
+);

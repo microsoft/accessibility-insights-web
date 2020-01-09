@@ -4,5 +4,9 @@ import { AdhocIssuesTestViewDeps, AdhocIssuesTestViewProps } from './adhoc-issue
 import { AdhocStaticTestViewDeps, AdhocStaticTestViewProps } from './adhoc-static-test-view';
 import { AssessmentTestViewDeps, AssessmentTestViewProps } from './assessment-test-view';
 
-export type TestViewDeps = AssessmentTestViewDeps & AdhocIssuesTestViewDeps & AdhocStaticTestViewDeps;
-export type TestViewProps = AssessmentTestViewProps & AdhocIssuesTestViewProps & AdhocStaticTestViewProps;
+export type TestViewDeps = AssessmentTestViewDeps &
+    AdhocIssuesTestViewDeps &
+    AdhocStaticTestViewDeps;
+export type TestViewProps = AssessmentTestViewProps &
+    AdhocIssuesTestViewProps &
+    AdhocStaticTestViewProps;

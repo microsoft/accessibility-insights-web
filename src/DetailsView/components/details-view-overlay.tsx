@@ -12,7 +12,11 @@ import { UserConfigurationStoreData } from '../../common/types/store-data/user-c
 import { PreviewFeatureFlagsHandler } from '../handlers/preview-feature-flags-handler';
 import { PreviewFeaturesPanel, PreviewFeaturesPanelProps } from './preview-features-panel';
 import { ScopingPanel, ScopingPanelProps } from './scoping-panel';
-import { SettingsPanel, SettingsPanelDeps, SettingsPanelProps } from './settings-panel/settings-panel';
+import {
+    SettingsPanel,
+    SettingsPanelDeps,
+    SettingsPanelProps,
+} from './settings-panel/settings-panel';
 
 export type DetailsViewOverlayDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;

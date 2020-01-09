@@ -40,7 +40,10 @@ export type OverviewContainerDeps = {
     assessmentsProvider: AssessmentsProvider;
     getAssessmentSummaryModelFromProviderAndStoreData: GetAssessmentSummaryModelFromProviderAndStoreData;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-    assessmentsProviderWithFeaturesEnabled: (assessmentProvider: AssessmentsProvider, flags: FeatureFlagStoreData) => AssessmentsProvider;
+    assessmentsProviderWithFeaturesEnabled: (
+        assessmentProvider: AssessmentsProvider,
+        flags: FeatureFlagStoreData,
+    ) => AssessmentsProvider;
 } & OverviewHelpSectionDeps &
     TargetChangeDialogDeps;
 
@@ -53,14 +56,21 @@ export interface OverviewContainerProps {
 
 export const OverviewContainer = NamedFC<OverviewContainerProps>('OverviewContainer', props => {
     const { deps, assessmentStoreData, tabStoreData, featureFlagStoreData } = props;
-    const { assessmentsProvider, getAssessmentSummaryModelFromProviderAndStoreData, assessmentsProviderWithFeaturesEnabled } = deps;
+    const {
+        assessmentsProvider,
+        getAssessmentSummaryModelFromProviderAndStoreData,
+        assessmentsProviderWithFeaturesEnabled,
+    } = deps;
     const prevTarget = assessmentStoreData.persistedTabInfo;
     const currentTarget = {
         id: tabStoreData.id,
         url: tabStoreData.url,
         title: tabStoreData.title,
     };
-    const filteredProvider = assessmentsProviderWithFeaturesEnabled(assessmentsProvider, featureFlagStoreData);
+    const filteredProvider = assessmentsProviderWithFeaturesEnabled(
+        assessmentsProvider,
+        featureFlagStoreData,
+    );
 
     const summaryData: OverviewSummaryReportModel = getAssessmentSummaryModelFromProviderAndStoreData(
         filteredProvider,

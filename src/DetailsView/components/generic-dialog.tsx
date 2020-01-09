@@ -15,7 +15,13 @@ export type GenericDialogProps = {
 };
 
 export const GenericDialog = NamedFC<GenericDialogProps>('GenericDialog', props => {
-    const { onCancelButtonClick, onPrimaryButtonClick, messageText, title, primaryButtonText } = props;
+    const {
+        onCancelButtonClick,
+        onPrimaryButtonClick,
+        messageText,
+        title,
+        primaryButtonText,
+    } = props;
 
     return (
         <Dialog

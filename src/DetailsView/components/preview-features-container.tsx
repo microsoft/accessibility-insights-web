@@ -21,19 +21,27 @@ export interface PreviewFeaturesContainerProps {
     previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
 }
 
-export const PreviewFeaturesContainer = NamedFC<PreviewFeaturesContainerProps>('PreviewFeaturesContainer', props => {
-    const displayableFeatureFlags: DisplayableFeatureFlag[] = props.previewFeatureFlagsHandler.getDisplayableFeatureFlags(
-        props.featureFlagData,
-    );
+export const PreviewFeaturesContainer = NamedFC<PreviewFeaturesContainerProps>(
+    'PreviewFeaturesContainer',
+    props => {
+        const displayableFeatureFlags: DisplayableFeatureFlag[] = props.previewFeatureFlagsHandler.getDisplayableFeatureFlags(
+            props.featureFlagData,
+        );
 
-    if (displayableFeatureFlags.length === 0) {
-        return <NoDisplayableFeatureFlagMessage />;
-    }
+        if (displayableFeatureFlags.length === 0) {
+            return <NoDisplayableFeatureFlagMessage />;
+        }
 
-    return (
-        <div>
-            <div className="preview-features-description">{DisplayableStrings.previewFeaturesDescription}</div>
-            <PreviewFeaturesToggleList deps={props.deps} displayedFeatureFlags={displayableFeatureFlags} />
-        </div>
-    );
-});
+        return (
+            <div>
+                <div className="preview-features-description">
+                    {DisplayableStrings.previewFeaturesDescription}
+                </div>
+                <PreviewFeaturesToggleList
+                    deps={props.deps}
+                    displayedFeatureFlags={displayableFeatureFlags}
+                />
+            </div>
+        );
+    },
+);

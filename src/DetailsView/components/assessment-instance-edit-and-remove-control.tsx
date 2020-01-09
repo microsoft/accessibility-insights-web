@@ -7,7 +7,11 @@ import * as React from 'react';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
-import { CapturedInstanceActionType, FailureInstanceData, FailureInstancePanelControl } from './failure-instance-panel-control';
+import {
+    CapturedInstanceActionType,
+    FailureInstanceData,
+    FailureInstancePanelControl,
+} from './failure-instance-panel-control';
 
 export interface AssessmentInstanceEditAndRemoveControlProps {
     test: VisualizationType;
@@ -22,7 +26,9 @@ export interface AssessmentInstanceEditAndRemoveControlProps {
     featureFlagStoreData: FeatureFlagStoreData;
 }
 
-export class AssessmentInstanceEditAndRemoveControl extends React.Component<AssessmentInstanceEditAndRemoveControlProps> {
+export class AssessmentInstanceEditAndRemoveControl extends React.Component<
+    AssessmentInstanceEditAndRemoveControlProps
+> {
     public render(): JSX.Element {
         return (
             <div>

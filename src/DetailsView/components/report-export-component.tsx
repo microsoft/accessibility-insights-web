@@ -30,7 +30,10 @@ export interface ReportExportComponentState {
     exportData: string;
 }
 
-export class ReportExportComponent extends React.Component<ReportExportComponentProps, ReportExportComponentState> {
+export class ReportExportComponent extends React.Component<
+    ReportExportComponentProps,
+    ReportExportComponentState
+> {
     constructor(props) {
         super(props);
         this.state = {

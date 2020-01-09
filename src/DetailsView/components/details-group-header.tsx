@@ -18,7 +18,13 @@ export class DetailsGroupHeader extends React.Component<DetailsGroupHeaderProps>
         const selectAllButtonProps = {
             'aria-label': `${this.props.group.key} rule`,
         };
-        return <GroupHeader onRenderTitle={this.onRenderTitle} selectAllButtonProps={selectAllButtonProps} {...this.props} />;
+        return (
+            <GroupHeader
+                onRenderTitle={this.onRenderTitle}
+                selectAllButtonProps={selectAllButtonProps}
+                {...this.props}
+            />
+        );
     }
 
     private onRenderTitle = (): JSX.Element => {
@@ -26,7 +32,8 @@ export class DetailsGroupHeader extends React.Component<DetailsGroupHeaderProps>
             <div className="details-group-header-title">
                 {this.renderRuleLink(this.props.group)}
                 {': '}
-                {this.renderRuleDescription(this.props.group)} {this.renderCount(this.props)} {this.renderGuidanceLinks(this.props.group)}
+                {this.renderRuleDescription(this.props.group)} {this.renderCount(this.props)}{' '}
+                {this.renderGuidanceLinks(this.props.group)}
             </div>
         );
     };

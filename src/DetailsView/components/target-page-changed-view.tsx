@@ -16,31 +16,36 @@ export interface TargetPageChangedViewProps {
     featureFlagStoreData: FeatureFlagStoreData;
 }
 
-export const TargetPageChangedView = NamedFC<TargetPageChangedViewProps>('TargetPageChangedView', props => {
-    const { title = '', toggleLabel = '', subtitle } = props.displayableData;
+export const TargetPageChangedView = NamedFC<TargetPageChangedViewProps>(
+    'TargetPageChangedView',
+    props => {
+        const { title = '', toggleLabel = '', subtitle } = props.displayableData;
 
-    const toggleText = 'The target page was changed. Use the toggle to enable the visualization in the current target page.';
-    const startOverText = 'The target page has changed. Use the start over button to scan the new target page.';
+        const toggleText =
+            'The target page was changed. Use the toggle to enable the visualization in the current target page.';
+        const startOverText =
+            'The target page has changed. Use the start over button to scan the new target page.';
 
-    const isCardsUIEnabled = props.featureFlagStoreData[FeatureFlags.universalCardsUI];
-    const displayedText = isCardsUIEnabled ? startOverText : toggleText;
-    const toggle = !isCardsUIEnabled ? (
-        <Toggle
-            onText="On"
-            offText="Off"
-            checked={false}
-            onClick={props.toggleClickHandler}
-            label={toggleLabel}
-            className="details-view-toggle"
-        />
-    ) : null;
+        const isCardsUIEnabled = props.featureFlagStoreData[FeatureFlags.universalCardsUI];
+        const displayedText = isCardsUIEnabled ? startOverText : toggleText;
+        const toggle = !isCardsUIEnabled ? (
+            <Toggle
+                onText="On"
+                offText="Off"
+                checked={false}
+                onClick={props.toggleClickHandler}
+                label={toggleLabel}
+                className="details-view-toggle"
+            />
+        ) : null;
 
-    return (
-        <div className="target-page-changed">
-            <h1>{title}</h1>
-            <div className="target-page-changed-subtitle">{subtitle}</div>
-            {toggle}
-            <p>{displayedText}</p>
-        </div>
-    );
-});
+        return (
+            <div className="target-page-changed">
+                <h1>{title}</h1>
+                <div className="target-page-changed-subtitle">{subtitle}</div>
+                {toggle}
+                <p>{displayedText}</p>
+            </div>
+        );
+    },
+);
