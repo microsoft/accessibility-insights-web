@@ -65,8 +65,11 @@ export class DocumentTitleUpdater {
     }
 
     private hasAllStoreData(): boolean {
-        return [this.tabStore, this.detailsViewStore, this.visualizationStore, this.assessmentStore].every(
-            store => store.getState() != null,
-        );
+        return [
+            this.tabStore,
+            this.detailsViewStore,
+            this.visualizationStore,
+            this.assessmentStore,
+        ].every(store => store.getState() != null);
     }
 }

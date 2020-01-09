@@ -14,7 +14,9 @@ export class IssuesSelectionFactory {
                 const targets = items.map(item => '' + item.key);
                 messageCreator.updateIssuesSelectedTargets(targets);
                 const firstSelectedInstance = items[0];
-                messageCreator.updateFocusedInstanceTarget(firstSelectedInstance ? firstSelectedInstance.target : null);
+                messageCreator.updateFocusedInstanceTarget(
+                    firstSelectedInstance ? firstSelectedInstance.target : null,
+                );
             },
         });
         return selection;

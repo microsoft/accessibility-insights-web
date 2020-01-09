@@ -282,7 +282,9 @@ div.insights-file-issue-details-dialog-container {
 
         .details-view-test-nav-area {
             box-sizing: border-box;
-            max-height: calc(100vh - #{detailsViewNavPivotsHeight} - #{$detailsViewHeaderBarHeight} - #{$detailsViewCommandBarHeight});
+            max-height: calc(
+                100vh - #{detailsViewNavPivotsHeight} - #{$detailsViewHeaderBarHeight} - #{$detailsViewCommandBarHeight}
+            );
             .ms-Nav-groupContent,
             .ms-Nav-navItems {
                 margin-bottom: 0px;
@@ -687,7 +689,9 @@ div.insights-file-issue-details-dialog-container {
                 }
                 .issues-table {
                     height: 100%;
-                    width: calc(100% - #{$fastPassRightPanelMarginRight} - #{$fastPassRightPanelMarginLeft});
+                    width: calc(
+                        100% - #{$fastPassRightPanelMarginRight} - #{$fastPassRightPanelMarginLeft}
+                    );
                     display: flex;
                     flex-direction: column;
                     margin-top: $fastPassRightPanelMarginTop;
