@@ -25,6 +25,8 @@ win:
     target: nsis
 
 nsis:
-    oneClick: false
+    oneClick: true
+    perMachine: false
+    deleteAppDataOnUninstall: true
 publish:
     provider: generic
