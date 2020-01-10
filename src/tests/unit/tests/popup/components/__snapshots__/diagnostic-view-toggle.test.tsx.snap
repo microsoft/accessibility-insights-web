@@ -1,262 +1,158 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DiagnosticViewToggleTest renders details view link when the test does not have a guidance 1`] = `
-<div>
+<div
+  className="diagnosticViewToggle"
+>
   <div
-    className="ms-Grid-row view-toggle-row"
+    className="title"
   >
-    <div
-      className="ms-Grid-col ms-sm7"
-    >
-      <div
-        className="ms-fontColor-neutralPrimary ms-fontWeight-semibold ms-fontSize-mPlus"
-      >
-        Automated checks
-      </div>
-    </div>
-    <div
-      className="ms-Grid-col ms-sm5 view-toggle-col"
-      style={
-        Object {
-          "float": "right",
-        }
-      }
-    >
-      <VisualizationToggle
-        checked={false}
-        componentRef={
-          Object {
-            "current": null,
-          }
-        }
-        disabled={false}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        visualizationName="Automated checks"
-      />
-    </div>
+    Automated checks
   </div>
   <div
-    className="ms-Grid-row"
+    className="toggle"
   >
-    <div
-      className="ms-Grid-col ms-sm8"
-    >
-      <StyledLinkBase
-        className="insights-link"
-        href="#"
-        onClick={[Function]}
-      >
-        List view and filtering
-      </StyledLinkBase>
-    </div>
-    <div
-      className="ms-Grid-col ms-sm4 shortcut-label"
-      style={
+    <VisualizationToggle
+      checked={false}
+      componentRef={
         Object {
-          "float": "right",
+          "current": null,
         }
       }
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      visualizationName="Automated checks"
+    />
+  </div>
+  <div>
+    <StyledLinkBase
+      className="insights-link"
+      href="#"
+      onClick={[Function]}
     >
-      <div
-        className="ms-font-xs"
-      >
-        Ctrl+Shift+1
-      </div>
-    </div>
+      List view and filtering
+    </StyledLinkBase>
+  </div>
+  <div
+    className="shortcut"
+  >
+    Ctrl+Shift+1
   </div>
 </div>
 `;
 
 exports[`DiagnosticViewToggleTest renders spinner while scanning 1`] = `
-<div>
+<div
+  className="diagnosticViewToggle"
+>
   <div
-    className="ms-Grid-row view-toggle-row"
+    className="title"
   >
-    <div
-      className="ms-Grid-col ms-sm7"
-    >
-      <div
-        className="ms-fontColor-neutralPrimary ms-fontWeight-semibold ms-fontSize-mPlus"
-      >
-        Headings
-      </div>
-    </div>
-    <div
-      className="ms-Grid-col ms-sm5 view-toggle-col"
-      style={
-        Object {
-          "float": "right",
-        }
-      }
-    >
-      <StyledSpinnerBase
-        componentRef={[Function]}
-        size={1}
-      />
-    </div>
+    Headings
   </div>
   <div
-    className="ms-Grid-row"
+    className="toggle"
   >
-    <div
-      className="ms-Grid-col ms-sm8"
-    >
-      <ContentLink
-        deps={Object {}}
-        linkText="How to test headings"
-        reference={[Function]}
-      />
-    </div>
-    <div
-      className="ms-Grid-col ms-sm4 shortcut-label"
-      style={
-        Object {
-          "float": "right",
-        }
-      }
-    >
-      <div
-        className="ms-font-xs"
-      >
-        Ctrl+Shift+3
-      </div>
-    </div>
+    <StyledSpinnerBase
+      componentRef={[Function]}
+      size={1}
+    />
+  </div>
+  <div>
+    <ContentLink
+      deps={Object {}}
+      linkText="How to test headings"
+      reference={[Function]}
+    />
+  </div>
+  <div
+    className="shortcut"
+  >
+    Ctrl+Shift+3
   </div>
 </div>
 `;
 
 exports[`DiagnosticViewToggleTest renders toggle when not scanning 1`] = `
-<div>
+<div
+  className="diagnosticViewToggle"
+>
   <div
-    className="ms-Grid-row view-toggle-row"
+    className="title"
   >
-    <div
-      className="ms-Grid-col ms-sm7"
-    >
-      <div
-        className="ms-fontColor-neutralPrimary ms-fontWeight-semibold ms-fontSize-mPlus"
-      >
-        Headings
-      </div>
-    </div>
-    <div
-      className="ms-Grid-col ms-sm5 view-toggle-col"
-      style={
-        Object {
-          "float": "right",
-        }
-      }
-    >
-      <VisualizationToggle
-        checked={false}
-        componentRef={
-          Object {
-            "current": null,
-          }
-        }
-        disabled={false}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        visualizationName="Headings"
-      />
-    </div>
+    Headings
   </div>
   <div
-    className="ms-Grid-row"
+    className="toggle"
   >
-    <div
-      className="ms-Grid-col ms-sm8"
-    >
-      <ContentLink
-        deps={Object {}}
-        linkText="How to test headings"
-        reference={[Function]}
-      />
-    </div>
-    <div
-      className="ms-Grid-col ms-sm4 shortcut-label"
-      style={
+    <VisualizationToggle
+      checked={false}
+      componentRef={
         Object {
-          "float": "right",
+          "current": null,
         }
       }
-    >
-      <div
-        className="ms-font-xs"
-      >
-        Ctrl+Shift+3
-      </div>
-    </div>
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      visualizationName="Headings"
+    />
+  </div>
+  <div>
+    <ContentLink
+      deps={Object {}}
+      linkText="How to test headings"
+      reference={[Function]}
+    />
+  </div>
+  <div
+    className="shortcut"
+  >
+    Ctrl+Shift+3
   </div>
 </div>
 `;
 
 exports[`DiagnosticViewToggleTest renders toggle when scanning for a different visualization 1`] = `
-<div>
+<div
+  className="diagnosticViewToggle"
+>
   <div
-    className="ms-Grid-row view-toggle-row"
+    className="title"
   >
-    <div
-      className="ms-Grid-col ms-sm7"
-    >
-      <div
-        className="ms-fontColor-neutralPrimary ms-fontWeight-semibold ms-fontSize-mPlus"
-      >
-        Headings
-      </div>
-    </div>
-    <div
-      className="ms-Grid-col ms-sm5 view-toggle-col"
-      style={
-        Object {
-          "float": "right",
-        }
-      }
-    >
-      <VisualizationToggle
-        checked={false}
-        componentRef={
-          Object {
-            "current": null,
-          }
-        }
-        disabled={true}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        visualizationName="Headings"
-      />
-    </div>
+    Headings
   </div>
   <div
-    className="ms-Grid-row"
+    className="toggle"
   >
-    <div
-      className="ms-Grid-col ms-sm8"
-    >
-      <ContentLink
-        deps={Object {}}
-        linkText="How to test headings"
-        reference={[Function]}
-      />
-    </div>
-    <div
-      className="ms-Grid-col ms-sm4 shortcut-label"
-      style={
+    <VisualizationToggle
+      checked={false}
+      componentRef={
         Object {
-          "float": "right",
+          "current": null,
         }
       }
-    >
-      <div
-        className="ms-font-xs"
-      >
-        Ctrl+Shift+3
-      </div>
-    </div>
+      disabled={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      visualizationName="Headings"
+    />
+  </div>
+  <div>
+    <ContentLink
+      deps={Object {}}
+      linkText="How to test headings"
+      reference={[Function]}
+    />
+  </div>
+  <div
+    className="shortcut"
+  >
+    Ctrl+Shift+3
   </div>
 </div>
 `;
