@@ -688,16 +688,17 @@ div.insights-file-issue-details-dialog-container {
                     }
                 }
                 .issues-table {
+                    background-color: $neutral-2;
                     height: 100%;
                     width: calc(
                         100% - #{$fastPassRightPanelMarginRight} - #{$fastPassRightPanelMarginLeft}
                     );
                     display: flex;
                     flex-direction: column;
-                    margin-top: $fastPassRightPanelMarginTop;
-                    margin-right: $fastPassRightPanelMarginRight;
-                    margin-left: $fastPassRightPanelMarginLeft;
-                    margin-bottom: auto;
+                    padding-top: $fastPassRightPanelMarginTop;
+                    padding-right: $fastPassRightPanelMarginRight;
+                    padding-left: $fastPassRightPanelMarginLeft;
+                    padding-bottom: auto;
 
                     .issues-table-subtitle {
                         color: $secondary-text;
