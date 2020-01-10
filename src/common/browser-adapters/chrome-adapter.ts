@@ -1,6 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { browser, ExtensionTypes, Notifications, Permissions, Tabs, Windows } from 'webextension-polyfill-ts';
+import {
+    browser,
+    ExtensionTypes,
+    Notifications,
+    Permissions,
+    Tabs,
+    Windows,
+} from 'webextension-polyfill-ts';
 
 import { BrowserAdapter } from './browser-adapter';
 import { CommandsAdapter } from './commands-adapter';
@@ -15,21 +22,31 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         return browser.windows.getAll(getInfo);
     }
 
-    public addListenerToTabsOnActivated(callback: (activeInfo: chrome.tabs.TabActiveInfo) => void): void {
+    public addListenerToTabsOnActivated(
+        callback: (activeInfo: chrome.tabs.TabActiveInfo) => void,
+    ): void {
         chrome.tabs.onActivated.addListener(callback);
     }
 
     public addListenerToTabsOnUpdated(
-        callback: (tabId: number, changeInfo: chrome.tabs.TabChangeInfo, tab: chrome.tabs.Tab) => void,
+        callback: (
+            tabId: number,
+            changeInfo: chrome.tabs.TabChangeInfo,
+            tab: chrome.tabs.Tab,
+        ) => void,
     ): void {
         chrome.tabs.onUpdated.addListener(callback);
     }
 
-    public addListenerToWebNavigationUpdated(callback: (details: chrome.webNavigation.WebNavigationFramedCallbackDetails) => void): void {
+    public addListenerToWebNavigationUpdated(
+        callback: (details: chrome.webNavigation.WebNavigationFramedCallbackDetails) => void,
+    ): void {
         chrome.webNavigation.onDOMContentLoaded.addListener(callback);
     }
 
-    public addListenerToTabsOnRemoved(callback: (tabId: number, removeInfo: chrome.tabs.TabRemoveInfo) => void): void {
+    public addListenerToTabsOnRemoved(
+        callback: (tabId: number, removeInfo: chrome.tabs.TabRemoveInfo) => void,
+    ): void {
         chrome.tabs.onRemoved.addListener(callback);
     }
 
@@ -45,7 +62,11 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         return browser.tabs.query(query);
     }
 
-    public getTab(tabId: number, onResolve: (tab: chrome.tabs.Tab) => void, onReject?: () => void): void {
+    public getTab(
+        tabId: number,
+        onResolve: (tab: chrome.tabs.Tab) => void,
+        onReject?: () => void,
+    ): void {
         chrome.tabs.get(tabId, tab => {
             if (tab) {
                 onResolve(tab);
@@ -55,7 +76,10 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         });
     }
 
-    public executeScriptInTab(tabId: number, details: ExtensionTypes.InjectDetails): Promise<any[]> {
+    public executeScriptInTab(
+        tabId: number,
+        details: ExtensionTypes.InjectDetails,
+    ): Promise<any[]> {
         return browser.tabs.executeScript(tabId, details);
     }
 
@@ -71,11 +95,17 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         return browser.windows.create({ url, focused: true }).then(window => window.tabs[0]);
     }
 
-    public updateTab(tabId: number, updateProperties: Tabs.UpdateUpdatePropertiesType): Promise<Tabs.Tab> {
+    public updateTab(
+        tabId: number,
+        updateProperties: Tabs.UpdateUpdatePropertiesType,
+    ): Promise<Tabs.Tab> {
         return browser.tabs.update(tabId, updateProperties);
     }
 
-    public updateWindow(windowId: number, updateProperties: Windows.UpdateUpdateInfoType): Promise<Windows.Window> {
+    public updateWindow(
+        windowId: number,
+        updateProperties: Windows.UpdateUpdateInfoType,
+    ): Promise<Windows.Window> {
         return browser.windows.update(windowId, updateProperties);
     }
 
@@ -129,13 +159,21 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
     }
 
     public addListenerOnMessage(
-        callback: (message: any, sender: chrome.runtime.MessageSender, sendResponse: (response: any) => void) => void,
+        callback: (
+            message: any,
+            sender: chrome.runtime.MessageSender,
+            sendResponse: (response: any) => void,
+        ) => void,
     ): void {
         chrome.runtime.onMessage.addListener(callback);
     }
 
     public removeListenerOnMessage(
-        callback: (message: any, sender: chrome.runtime.MessageSender, sendResponse: (response: any) => void) => void,
+        callback: (
+            message: any,
+            sender: chrome.runtime.MessageSender,
+            sendResponse: (response: any) => void,
+        ) => void,
     ): void {
         chrome.runtime.onMessage.removeListener(callback);
     }
@@ -160,12 +198,16 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         return browser.permissions.request(permissions);
     }
 
-    public addListenerOnPermissionsAdded(callback: (permissions: Permissions.Permissions) => void): void {
+    public addListenerOnPermissionsAdded(
+        callback: (permissions: Permissions.Permissions) => void,
+    ): void {
         // casting browser as any due to typings for permissions onAdded not currently supported.
         (browser as any).permissions.onAdded.addListener(callback);
     }
 
-    public addListenerOnPermissionsRemoved(callback: (permissions: Permissions.Permissions) => void): void {
+    public addListenerOnPermissionsRemoved(
+        callback: (permissions: Permissions.Permissions) => void,
+    ): void {
         // casting browser as any due to typings for permissions onRemoved not currently supported.
         (browser as any).permissions.onRemoved.addListener(callback);
     }

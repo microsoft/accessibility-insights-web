@@ -16,7 +16,11 @@ export interface VisualizationConfiguration extends AssessmentVisualizationConfi
     getTestView: (props: TestViewProps) => JSX.Element;
     getStoreData: (data: TestsEnabledState) => ScanData;
     getAssessmentData?: (data: AssessmentStoreData) => AssessmentData;
-    setAssessmentData?: (data: AssessmentStoreData, selectorMap: DictionaryStringTo<any>, instanceMap?: DictionaryStringTo<any>) => void;
+    setAssessmentData?: (
+        data: AssessmentStoreData,
+        selectorMap: DictionaryStringTo<any>,
+        instanceMap?: DictionaryStringTo<any>,
+    ) => void;
     displayableData: DisplayableVisualizationTypeData;
     chromeCommand: string;
     launchPanelDisplayOrder: number;
