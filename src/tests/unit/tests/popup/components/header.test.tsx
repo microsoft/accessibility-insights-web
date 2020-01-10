@@ -5,27 +5,33 @@ import { Header, HeaderProps } from 'popup/components/header';
 import * as React from 'react';
 
 describe('Header', () => {
-    test('render', () => {
-        const props: HeaderProps = {
-            title: 'title',
-            subtitle: 'sub-title',
-        };
+    describe('render', () => {
+        const title = 'test-title';
 
-        const wrapper = shallow(<Header {...props} />);
+        it.each(['test-sub-title', undefined])('with subtitle <%s>', subtitle => {
+            const props: HeaderProps = {
+                title,
+                subtitle,
+            };
 
-        expect(wrapper.debug()).toMatchSnapshot();
-    });
+            const wrapper = shallow(<Header {...props} />);
 
-    test('render with children prop', () => {
-        const children: JSX.Element = <div>my content</div>;
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
 
-        const props: HeaderProps = {
-            title: null,
-            subtitle: null,
-        };
+        it.each`
+            description             | children
+            ${'non-empty children'} | ${(<span>test children</span>)}
+            ${'null children'}      | ${null}
+        `('with children: $description', ({ children }) => {
+            const props: HeaderProps = {
+                title,
+                children,
+            };
 
-        const wrapper = shallow(<Header {...props}>{children}</Header>);
+            const wrapper = shallow(<Header {...props} />);
 
-        expect(wrapper.debug()).toMatchSnapshot();
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
     });
 });
