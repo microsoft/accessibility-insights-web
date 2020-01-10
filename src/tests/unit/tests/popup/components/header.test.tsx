@@ -4,23 +4,11 @@ import { shallow } from 'enzyme';
 import { Header, HeaderProps } from 'popup/components/header';
 import * as React from 'react';
 
-describe('HeaderTest', () => {
+describe('Header', () => {
     test('render', () => {
         const props: HeaderProps = {
             title: 'title',
             subtitle: 'sub-title',
-        };
-
-        const wrapper = shallow(<Header {...props} />);
-
-        expect(wrapper.debug()).toMatchSnapshot();
-    });
-
-    test('render with rowExtraClassName prop', () => {
-        const props: HeaderProps = {
-            title: null,
-            subtitle: null,
-            rowExtraClassName: 'extra-class',
         };
 
         const wrapper = shallow(<Header {...props} />);

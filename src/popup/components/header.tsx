@@ -8,14 +8,13 @@ import * as styles from './header.scss';
 export interface HeaderProps {
     title: string;
     subtitle?: React.ReactChild;
-    rowExtraClassName?: string;
     children?: JSX.Element;
 }
 
 export const Header = NamedFC<HeaderProps>('Header', props => {
     return (
         <header className={styles.launchPanelHeader}>
-            <div className={css('ms-Grid-row', props.rowExtraClassName)}>
+            <div className="ms-Grid-row">
                 <div
                     role="heading"
                     aria-level={1}
