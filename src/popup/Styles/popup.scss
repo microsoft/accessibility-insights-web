@@ -89,10 +89,6 @@ html {
 #popup-container [role='heading'] {
     width: fit-content;
     padding-left: 0;
-
-    &.old {
-        padding-left: 8px;
-    }
 }
 
 #popup-container .launch-panel {
