@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
+import { Header, HeaderProps } from 'popup/components/header';
 import * as React from 'react';
-import { Header, HeaderProps } from '../../../../../popup/components/header';
 
 describe('HeaderTest', () => {
     test('render', () => {

@@ -1,35 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`HeaderTest render 1`] = `
-"<header className=\\"ms-Grid launch-panel-header\\">
+"<header className=\\"launchPanelHeader\\">
   <div className=\\"ms-Grid-row\\">
     <div role=\\"heading\\" aria-level={1} className=\\"ms-Grid-col ms-u-sm10 ms-fontColor-neutralPrimary ms-font-xl old\\">
       title
     </div>
   </div>
-  <div className=\\"header-subtitle ms-fontWeight-semilight ms-fontSize-xs\\">
+  <div className=\\"headerSubtitle ms-fontWeight-semilight ms-fontSize-xs\\">
     sub-title
   </div>
 </header>"
 `;
 
 exports[`HeaderTest render with children prop 1`] = `
-"<header className=\\"ms-Grid launch-panel-header\\">
+"<header className=\\"launchPanelHeader\\">
   <div className=\\"ms-Grid-row\\">
     <div role=\\"heading\\" aria-level={1} className=\\"ms-Grid-col ms-u-sm10 ms-fontColor-neutralPrimary ms-font-xl old\\" />
     <div>
       my content
     </div>
   </div>
-  <div className=\\"header-subtitle ms-fontWeight-semilight ms-fontSize-xs\\" />
+  <div className=\\"headerSubtitle ms-fontWeight-semilight ms-fontSize-xs\\" />
 </header>"
 `;
 
 exports[`HeaderTest render with rowExtraClassName prop 1`] = `
-"<header className=\\"ms-Grid launch-panel-header\\">
+"<header className=\\"launchPanelHeader\\">
   <div className=\\"ms-Grid-row extra-class\\">
     <div role=\\"heading\\" aria-level={1} className=\\"ms-Grid-col ms-u-sm10 ms-fontColor-neutralPrimary ms-font-xl old\\" />
   </div>
-  <div className=\\"header-subtitle ms-fontWeight-semilight ms-fontSize-xs\\" />
+  <div className=\\"headerSubtitle ms-fontWeight-semilight ms-fontSize-xs\\" />
 </header>"
 `;

@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IconButton } from 'office-ui-fabric-react';
-import { IContextualMenuItem } from 'office-ui-fabric-react';
+import { GearOptionsButtonComponent } from 'common/components/gear-options-button-component';
+import { DropdownClickHandler } from 'common/dropdown-click-handler';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { IconButton, IContextualMenuItem } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { GearOptionsButtonComponent } from '../../common/components/gear-options-button-component';
-import { DropdownClickHandler } from '../../common/dropdown-click-handler';
-import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
 import { LaunchPanelHeaderClickHandler } from '../handlers/launch-panel-header-click-handler';
 import { Header } from './header';
 import { HeaderContextualMenu, HeaderContextualMenuDeps } from './header-contextual-menu';
+import * as styles from './launch-panel-header.scss';
 
 export type LaunchPanelHeaderDeps = {
     popupActionMessageCreator: PopupActionMessageCreator;
@@ -44,11 +44,7 @@ export class LaunchPanelHeader extends React.Component<
 
     public render(): JSX.Element {
         return (
-            <Header
-                title={this.props.title}
-                subtitle={this.props.subtitle}
-                rowExtraClassName="header-title"
-            >
+            <Header title={this.props.title} subtitle={this.props.subtitle}>
                 {this.renderGearOptionsButton()}
             </Header>
         );
@@ -58,7 +54,7 @@ export class LaunchPanelHeader extends React.Component<
         const { dropdownClickHandler, launchPanelHeaderClickHandler } = this.props.deps;
 
         return (
-            <div className="ms-Grid-col ms-u-sm2 feedback-collapseMenuButton-col">
+            <div className={styles.feedbackCollapseMenuButtonCol}>
                 <GearOptionsButtonComponent
                     dropdownClickHandler={dropdownClickHandler}
                     featureFlags={this.props.featureFlags}

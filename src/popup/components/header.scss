@@ -1,0 +1,15 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../common/styles/colors.scss';
+
+.launch-panel-header {
+    margin-bottom: 12px;
+    margin-left: 14px;
+    margin-right: 14px;
+
+    padding: 0 8px;
+
+    .header-subtitle {
+        color: $neutral-60;
+    }
+}

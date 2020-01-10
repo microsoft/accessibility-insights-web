@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { css } from '@uifabric/utilities';
+import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
-import { NamedFC } from '../../common/react/named-fc';
+import * as styles from './header.scss';
 
 export interface HeaderProps {
     title: string;
@@ -13,7 +14,7 @@ export interface HeaderProps {
 
 export const Header = NamedFC<HeaderProps>('Header', props => {
     return (
-        <header className="ms-Grid launch-panel-header">
+        <header className={styles.launchPanelHeader}>
             <div className={css('ms-Grid-row', props.rowExtraClassName)}>
                 <div
                     role="heading"
@@ -24,7 +25,7 @@ export const Header = NamedFC<HeaderProps>('Header', props => {
                 </div>
                 {props.children}
             </div>
-            <div className="header-subtitle ms-fontWeight-semilight ms-fontSize-xs">
+            <div className={css(styles.headerSubtitle, 'ms-fontWeight-semilight ms-fontSize-xs')}>
                 {props.subtitle}
             </div>
         </header>
