@@ -76,7 +76,7 @@ describe('DiagnosticViewToggleTest', () => {
     });
 
     describe('user interaction: ', () => {
-        it('handles click on details view link, it will open fast pass when Assessment enabled', () => {
+        it('handles click on details view link, it will open FastPass when Assessment enabled', () => {
             const visualizationType = VisualizationType.Issues;
             const event = eventStubFactory.createKeypressEvent();
             const propsBuilder = new DiagnosticViewTogglePropsBuilder(visualizationType, testTelemetrySource);
