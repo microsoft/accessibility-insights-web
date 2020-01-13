@@ -11,4 +11,9 @@
         color: $neutral-100;
         font-size: 2em;
     }
+
+    :global(.ms-Panel-contentInner) {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
 }
