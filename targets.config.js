@@ -116,4 +116,30 @@ module.exports = {
         bundleFolder: 'electronBundle',
         mustExistFile: 'main.bundle.js',
     },
+    electronInsider: {
+        config: {
+            options: {
+                ...internalOptions,
+                ...icons.dev,
+                fullName: 'Accessibility Insights for Android - Insider',
+                telemetryBuildName: 'AI Android - Insider',
+                productCategory: 'electron',
+            },
+        },
+        bundleFolder: 'electronBundle',
+        mustExistFile: 'main.bundle.js',
+    },
+    electronProduction: {
+        config: {
+            options: {
+                ...internalOptions,
+                ...icons.dev,
+                fullName: 'Accessibility Insights for Android',
+                telemetryBuildName: 'AI Android - Production',
+                productCategory: 'electron',
+            },
+        },
+        bundleFolder: 'electronBundle',
+        mustExistFile: 'main.bundle.js',
+    },
 };
