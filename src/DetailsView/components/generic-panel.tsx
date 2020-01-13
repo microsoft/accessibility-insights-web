@@ -3,6 +3,7 @@
 import { css, IRenderFunction } from '@uifabric/utilities';
 import { IPanelProps, Panel, PanelType } from 'office-ui-fabric-react';
 import * as React from 'react';
+import * as styles from './generic-panel.scss';
 
 export interface GenericPanelProps {
     isOpen: boolean;
@@ -23,13 +24,13 @@ export class GenericPanel extends React.Component<GenericPanelProps> {
                 isOpen={this.props.isOpen}
                 type={PanelType.custom}
                 customWidth="550px"
-                className={css('generic-panel', this.props.className)}
+                className={css(styles.genericPanel, this.props.className)}
                 isLightDismiss={true}
                 onDismiss={this.props.onDismiss}
                 closeButtonAriaLabel={this.props.closeButtonAriaLabel}
                 hasCloseButton={this.props.hasCloseButton}
                 headerText={this.props.title}
-                headerClassName="header-text"
+                headerClassName={styles.headerText}
                 onRenderFooter={this.props.onRenderFooterContent}
             >
                 {this.props.children}
