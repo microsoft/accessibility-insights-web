@@ -33,18 +33,20 @@ exports[`Details View -> Preview Features Panel should match content in snapshot
             title="Close preview features panel"
             type="button"
           >
-            <div
+            <span
               class="ms-Button-flexContainer flexContainer-000"
+              data-automationid="splitbuttonprimary"
             >
               <i
                 aria-hidden="true"
-                class="ms-Button-icon icon-000"
+                class="ms-Icon root-000 css-000 ms-Button-icon icon-000"
                 data-icon-name="Cancel"
                 role="presentation"
+                style="font-family: FabricMDL2Icons;"
               >
                 
               </i>
-            </div>
+            </span>
           </button>
         </div>
       </div>
