@@ -45,6 +45,7 @@ describe('element-snapshot-formatter', () => {
     describe('normalize css module class names', () => {
         it.each`
             actualClassName                                            | expectedClassName
+            ${'launch-panel-header--3-IL0'}                            | ${`launch-panel-header--${CSS_MODULE_HASH_REPLACEMENT}`}
             ${'my-class--Fs0Df'}                                       | ${`my-class--${CSS_MODULE_HASH_REPLACEMENT}`}
             ${'no-css-hash'}                                           | ${'no-css-hash'}
             ${'ms-Panel-headerText header-text--0nPhV headerText-198'} | ${`ms-Panel-headerText header-text--${CSS_MODULE_HASH_REPLACEMENT} headerText-198`}

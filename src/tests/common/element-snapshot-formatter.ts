@@ -44,7 +44,7 @@ export function normalizeCssModuleClassNames(htmlString: string): string {
     return htmlString.replace(classAttributeMatcher, classAttributeMatched => {
         // only matches css module generated class name of the type:
         // <original-class-name-string>--<5-chars-hash>
-        const cssModuleClassNameMatcher = /([\w-]+--)[A-Za-z0-9]{5}/g;
+        const cssModuleClassNameMatcher = /([\w-]+--)[A-Za-z0-9+\/=-]{5}/g;
 
         return classAttributeMatched.replace(cssModuleClassNameMatcher, `$1${CSS_MODULE_HASH_REPLACEMENT}`);
     });
