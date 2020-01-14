@@ -30,12 +30,18 @@ export function formatHtmlForSnapshot(htmlString: string): Node {
 // office fabric generates a random class & id name which changes every time.
 // We remove the random number before snapshot comparison to avoid flakiness
 export function normalizeOfficeFabricGeneratedClassNames(htmlString: string): string {
-    return htmlString.replace(/(class|id)="([\w\s-]+[\d]+|Panel\d+-\w+)"/g, subString => {
-        return subString.replace(/[\d]+/g, '000');
+    const attributeMatcher = /[class|id]="(.+)"/g;
+
+    return htmlString.replace(attributeMatcher, attributeMatch => {
+        const classValueMatcher = /[\w-]+[\d]+|Panel\d+-\w+/g;
+        return attributeMatch.replace(classValueMatcher, valueMatch => {
+            return valueMatch.replace(/[\d]+/g, '000');
+        });
     });
 }
 
 export const CSS_MODULE_HASH_REPLACEMENT = '{{CSS_MODULE_HASH}}';
+
 // Our webpack config adds generated suffixes of form "--abc12" to the end of class names defined in
 // CSS. This normalizes them to avoid causing E2Es to fail for unrelated style changes.
 export function normalizeCssModuleClassNames(htmlString: string): string {
