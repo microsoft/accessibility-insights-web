@@ -2,11 +2,10 @@
 // Licensed under the MIT License.
 import { app, BrowserWindow } from 'electron';
 import log from 'electron-log';
-import { autoUpdater, UpdateDownloadedEvent } from 'electron-updater';
+import { autoUpdater } from 'electron-updater';
 import { AutoUpdaterClient } from 'electron/auto-update/auto-updater-client';
 import { OSType, PlatformInfo } from 'electron/window-management/platform-info';
 import * as path from 'path';
-import { verifySignatureOnLinux } from '../linux-sign-verify/linux-sign-verify';
 import { mainWindowConfig } from './main-window-config';
 
 let mainWindow: BrowserWindow;
@@ -14,11 +13,6 @@ const platformInfo = new PlatformInfo(process);
 
 log.transports.file.level = 'info';
 autoUpdater.logger = log;
-
-autoUpdater.signals.updateDownloaded(_ => {
-    console.log('update-downloaded');
-    verifySignatureOnLinux();
-});
 
 let recurringUpdateCheck;
 const electronAutoUpdateCheck = new AutoUpdaterClient(autoUpdater);
