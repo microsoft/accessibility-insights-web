@@ -13,6 +13,7 @@ steps:
               electron-builder.yml
               **/extension/icons/**
               **/src/electron/resources/**
+              **/pipeline/scripts/**
           TargetFolder: '$(System.DefaultWorkingDirectory)/builtproduct'
           CleanTargetFolder: true
 
