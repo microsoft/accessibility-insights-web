@@ -55,6 +55,7 @@ describe('element-snapshot-formatter', () => {
             ${'header-text--0nPhV headerText-198'}                     | ${`header-text--${CSS_MODULE_HASH_REPLACEMENT} headerText-198`}
             ${'ms-Panel-headerText header-text--0nPhV'}                | ${`ms-Panel-headerText header-text--${CSS_MODULE_HASH_REPLACEMENT}`}
             ${'header-text--0nPhV header-title--1mQiW'}                | ${`header-text--${CSS_MODULE_HASH_REPLACEMENT} header-title--${CSS_MODULE_HASH_REPLACEMENT}`}
+            ${'ms-Button--primary'}                                    | ${'ms-Button--primary'}
         `('normalize "$actualClassName" to "$expectedClassName"', ({ actualClassName, expectedClassName }) => {
             const actualHtml = buildSimpleHtmlFragment('class', actualClassName);
 
