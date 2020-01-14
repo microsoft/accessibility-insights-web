@@ -46,6 +46,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         id="current-target-page-link"
       >
         <StyledLinkBase
+          as="a"
           className="insights-link target-page-link"
           onClick={[Function]}
           role="link"
@@ -141,6 +142,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         id="current-target-page-link"
       >
         <StyledLinkBase
+          as="a"
           className="insights-link target-page-link"
           onClick={[Function]}
           role="link"
@@ -236,6 +238,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         id="current-target-page-link"
       >
         <StyledLinkBase
+          as="a"
           className="insights-link target-page-link"
           onClick={[Function]}
           role="link"
@@ -331,6 +334,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         id="current-target-page-link"
       >
         <StyledLinkBase
+          as="a"
           className="insights-link target-page-link"
           onClick={[Function]}
           role="link"
@@ -426,6 +430,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         id="current-target-page-link"
       >
         <StyledLinkBase
+          as="a"
           className="insights-link target-page-link"
           onClick={[Function]}
           role="link"
