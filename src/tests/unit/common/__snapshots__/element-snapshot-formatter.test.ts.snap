@@ -4,7 +4,7 @@ exports[`element-snapshot-formatter format html for snapshot normalizing ms-Pane
 <DocumentFragment>
   <div>
     <div
-      class="ms-Panel-headerText header-text--000nPhV headerText-000"
+      class="ms-Panel-headerText header-text--{{CSS_MODULE_HASH}} headerText-198"
     >
       Hello world!
     </div>

@@ -30,7 +30,7 @@ export function formatHtmlForSnapshot(htmlString: string): Node {
 // office fabric generates a random class & id name which changes every time.
 // We remove the random number before snapshot comparison to avoid flakiness
 export function normalizeOfficeFabricGeneratedClassNames(htmlString: string): string {
-    return htmlString.replace(/(class|id)="([\w\s-]+[\d]+|Panel\d+-\w+)"/g, (subString, args) => {
+    return htmlString.replace(/(class|id)="([\w\s-]+[\d]+|Panel\d+-\w+)"/g, subString => {
         return subString.replace(/[\d]+/g, '000');
     });
 }
@@ -39,7 +39,15 @@ export const CSS_MODULE_HASH_REPLACEMENT = '{{CSS_MODULE_HASH}}';
 // Our webpack config adds generated suffixes of form "--abc12" to the end of class names defined in
 // CSS. This normalizes them to avoid causing E2Es to fail for unrelated style changes.
 export function normalizeCssModuleClassNames(htmlString: string): string {
-    return htmlString.replace(/(class="[^"]+--)[A-Za-z0-9+\/=-]{5}(")/g, `$1${CSS_MODULE_HASH_REPLACEMENT}$2`);
+    const classAttributeMatcher = /class="[\w- ]+"/g;
+
+    return htmlString.replace(classAttributeMatcher, classAttributeMatched => {
+        // only matches css module generated class name of the type:
+        // <original-class-name-string>--<5-chars-hash>
+        const cssModuleClassNameMatcher = /([\w-]+--)[A-Za-z0-9]{5}/g;
+
+        return classAttributeMatched.replace(cssModuleClassNameMatcher, `$1${CSS_MODULE_HASH_REPLACEMENT}`);
+    });
 }
 
 // in some cases (eg, stylesheet links), HTML can contain absolute chrome-extension://{generated-id} paths
