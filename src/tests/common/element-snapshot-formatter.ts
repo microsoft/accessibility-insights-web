@@ -29,16 +29,17 @@ export function formatHtmlForSnapshot(htmlString: string): Node {
 
 // office fabric generates a random class & id name which changes every time.
 // We remove the random number before snapshot comparison to avoid flakiness
-function normalizeOfficeFabricGeneratedClassNames(htmlString: string): string {
+export function normalizeOfficeFabricGeneratedClassNames(htmlString: string): string {
     return htmlString.replace(/(class|id)="([\w\s-]+[\d]+|Panel\d+-\w+)"/g, (subString, args) => {
         return subString.replace(/[\d]+/g, '000');
     });
 }
 
+export const CSS_MODULE_HASH_REPLACEMENT = '{{CSS_MODULE_HASH}}';
 // Our webpack config adds generated suffixes of form "--abc12" to the end of class names defined in
 // CSS. This normalizes them to avoid causing E2Es to fail for unrelated style changes.
-function normalizeCssModuleClassNames(htmlString: string): string {
-    return htmlString.replace(/(class="[^"]+--)[A-Za-z0-9+\/=-]{5}(")/g, '$1{{CSS_MODULE_HASH}}$2');
+export function normalizeCssModuleClassNames(htmlString: string): string {
+    return htmlString.replace(/(class="[^"]+--)[A-Za-z0-9+\/=-]{5}(")/g, `$1${CSS_MODULE_HASH_REPLACEMENT}$2`);
 }
 
 // in some cases (eg, stylesheet links), HTML can contain absolute chrome-extension://{generated-id} paths
