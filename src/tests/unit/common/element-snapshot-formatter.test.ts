@@ -11,16 +11,17 @@ import {
 describe('element-snapshot-formatter', () => {
     describe('normalize office fabric generated class names', () => {
         describe.each`
-            actualClassName                                                                     | expectedClassName
-            ${'thumb-123'}                                                                      | ${'thumb-000'}
-            ${'ms-Panel-234'}                                                                   | ${'ms-Panel-000'}
-            ${'thumb-321 ms-Panel-432'}                                                         | ${'thumb-000 ms-Panel-000'}
-            ${'no-numbers'}                                                                     | ${'no-numbers'}
-            ${'no-numbers thumb-543'}                                                           | ${'no-numbers thumb-000'}
-            ${'Panel765-word'}                                                                  | ${'Panel000-word'}
-            ${'Panel765-word thumb-123'}                                                        | ${'Panel000-word thumb-000'}
-            ${'headerText-198'}                                                                 | ${'headerText-000'}
-            ${`ms-Panel-headerText header-text--${CSS_MODULE_HASH_REPLACEMENT} headerText-198`} | ${`ms-Panel-headerText header-text--${CSS_MODULE_HASH_REPLACEMENT} headerText-000`}
+            actualClassName                                                 | expectedClassName
+            ${'thumb-123'}                                                  | ${'thumb-000'}
+            ${'ms-Panel-234'}                                               | ${'ms-Panel-000'}
+            ${'thumb-321 ms-Panel-432'}                                     | ${'thumb-000 ms-Panel-000'}
+            ${'no-numbers'}                                                 | ${'no-numbers'}
+            ${'no-numbers thumb-543'}                                       | ${'no-numbers thumb-000'}
+            ${'Panel765-word'}                                              | ${'Panel000-word'}
+            ${'Panel765-word thumb-123'}                                    | ${'Panel000-word thumb-000'}
+            ${'headerText-198'}                                             | ${'headerText-000'}
+            ${`header-text--${CSS_MODULE_HASH_REPLACEMENT} headerText-198`} | ${`header-text--${CSS_MODULE_HASH_REPLACEMENT} headerText-000`}
+            ${'thumb-123 name-not-ending-in-digit'}                         | ${'thumb-000 name-not-ending-in-digit'}
         `('normalize "$actualClassName" to "$expectedClassName"', ({ actualClassName, expectedClassName }) => {
             it('when in the class property', () => {
                 const actualHtml = buildSimpleHtmlFragment('class', actualClassName);
