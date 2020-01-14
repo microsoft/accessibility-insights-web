@@ -9,10 +9,10 @@ steps:
       inputs:
           SourceFolder: '$(System.DefaultWorkingDirectory)'
           Contents: |
-              drop
+              **/drop/**
               electron-builder.yml
-              extension/icons
-              src/electron/resources
+              **/extension/icons/**
+              **/src/electron/resources/**
           TargetFolder: '$(System.DefaultWorkingDirectory)/builtproduct'
           CleanTargetFolder: true
 
