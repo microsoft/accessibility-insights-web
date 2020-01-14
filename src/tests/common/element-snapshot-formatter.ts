@@ -33,7 +33,7 @@ export function normalizeOfficeFabricGeneratedClassNames(htmlString: string): st
     const attributeMatcher = /(class|id)="([^".]+)"/g;
 
     return htmlString.replace(attributeMatcher, (match, attribute, value) => {
-        const classMatcher = /([a-zA-Z-]+)(\d+)(-{0,1}\w+)?/g;
+        const classMatcher = /([a-zA-Z-_]+)(\d+)(-{0,1}\w+)?/g;
 
         const normalizedValue = value.replace(classMatcher, '$1000$3');
 
