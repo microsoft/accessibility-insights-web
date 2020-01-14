@@ -8,8 +8,8 @@ steps:
     - script: yarn pack:electron ${{ parameters.platforms }}
       displayName: pack electron distributables
       env:
-          ELECTRON_MIRROR: $(ELECTRON_MIRROR)
-          ELECTRON_CUSTOM_DIR: $(ELECTRON_CUSTOM_DIR)
+          ELECTRON_MIRROR: $(ELECTRON_MIRROR_VAR)
+          ELECTRON_CUSTOM_DIR: $(ELECTRON_CUSTOM_DIR_VAR)
 
     - task: CopyFiles@2
       displayName: 'Copy the AppImage file to detachedSignature'
