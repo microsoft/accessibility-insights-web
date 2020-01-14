@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DetailsViewPanelTest render - isPanelOpen: false 1`] = `
+<StyledPanelBase
+  className="genericPanel panel-custom-class"
+  closeButtonAriaLabel="close button label"
+  customWidth="550px"
+  hasCloseButton={true}
+  headerClassName="headerText"
+  headerText="panel title"
+  isLightDismiss={true}
+  isOpen={false}
+  onDismiss={[Function]}
+  type={7}
+>
+  <div>
+    child content
+  </div>
+</StyledPanelBase>
+`;
+
+exports[`DetailsViewPanelTest render - isPanelOpen: true 1`] = `
+<StyledPanelBase
+  className="genericPanel panel-custom-class"
+  closeButtonAriaLabel="close button label"
+  customWidth="550px"
+  hasCloseButton={true}
+  headerClassName="headerText"
+  headerText="panel title"
+  isLightDismiss={true}
+  isOpen={true}
+  onDismiss={[Function]}
+  type={7}
+>
+  <div>
+    child content
+  </div>
+</StyledPanelBase>
+`;
