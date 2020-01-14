@@ -7,20 +7,16 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
     id="new-launch-pad"
   >
     <header
-      class="ms-Grid launch-panel-header"
+      class="launch-panel-header--{{CSS_MODULE_HASH}}"
     >
-      <div
-        class="ms-Grid-row header-title"
+      <h1
+        class="title--{{CSS_MODULE_HASH}}"
       >
+        Accessibility Insights for Web
+      </h1>
+      <div>
         <div
-          aria-level="1"
-          class="ms-Grid-col ms-u-sm10 ms-fontColor-neutralPrimary ms-font-xl old"
-          role="heading"
-        >
-          Accessibility Insights for Web
-        </div>
-        <div
-          class="ms-Grid-col ms-u-sm2 feedback-collapseMenuButton-col"
+          class="feedback-collapseMenuButton-col--{{CSS_MODULE_HASH}}"
         >
           <div
             class="gear-options-button-component--{{CSS_MODULE_HASH}}"
@@ -67,7 +63,7 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
         </div>
       </div>
       <div
-        class="header-subtitle ms-fontWeight-semilight ms-fontSize-xs"
+        class="subtitle--{{CSS_MODULE_HASH}}"
       >
         <a
           aria-label="demo video"

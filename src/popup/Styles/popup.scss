@@ -89,10 +89,6 @@ html {
 #popup-container [role='heading'] {
     width: fit-content;
     padding-left: 0;
-
-    &.old {
-        padding-left: 8px;
-    }
 }
 
 #popup-container .launch-panel {
@@ -133,36 +129,8 @@ html {
     color: $secondary-text;
 }
 
-#popup-container .launch-panel-header {
-    margin-bottom: 12px;
-    margin-left: 14px;
-    margin-right: 14px;
-}
-
 .popup-menu .ms-ContextualMenu-icon {
     max-height: 30px;
-}
-
-#popup-container .launch-panel-header .header-title {
-    height: 32px;
-}
-
-#popup-container .launch-panel-header .header-subtitle {
-    color: $neutral-60;
-}
-
-#popup-container .launch-panel-header .feedback-collapseMenuButton-col {
-    padding-right: 0;
-    padding-left: 0;
-    float: right;
-
-    #feedback-collapse-menu-button {
-        color: $neutral-alpha-90;
-    }
-
-    .gear-button {
-        color: $neutral-alpha-90;
-    }
 }
 
 #popup-container .main-section .ad-hoc-tools-panel-group-0 {

@@ -38,7 +38,7 @@ function normalizeOfficeFabricGeneratedClassNames(htmlString: string): string {
 // Our webpack config adds generated suffixes of form "--abc12" to the end of class names defined in
 // CSS. This normalizes them to avoid causing E2Es to fail for unrelated style changes.
 function normalizeCssModuleClassNames(htmlString: string): string {
-    return htmlString.replace(/(class="[^"]+--)[A-Za-z0-9+\/=]{5}(")/g, '$1{{CSS_MODULE_HASH}}$2');
+    return htmlString.replace(/(class="[^"]+--)[A-Za-z0-9+\/=-]{5}(")/g, '$1{{CSS_MODULE_HASH}}$2');
 }
 
 // in some cases (eg, stylesheet links), HTML can contain absolute chrome-extension://{generated-id} paths

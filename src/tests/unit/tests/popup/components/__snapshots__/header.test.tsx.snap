@@ -1,35 +1,71 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`HeaderTest render 1`] = `
-"<header className=\\"ms-Grid launch-panel-header\\">
-  <div className=\\"ms-Grid-row\\">
-    <div role=\\"heading\\" aria-level={1} className=\\"ms-Grid-col ms-u-sm10 ms-fontColor-neutralPrimary ms-font-xl old\\">
-      title
-    </div>
+exports[`Header render with children: non-empty children 1`] = `
+<header
+  className="launchPanelHeader"
+>
+  <h1
+    className="title"
+  >
+    test-title
+  </h1>
+  <div>
+    <span>
+      test children
+    </span>
   </div>
-  <div className=\\"header-subtitle ms-fontWeight-semilight ms-fontSize-xs\\">
-    sub-title
-  </div>
-</header>"
+  <div
+    className="subtitle"
+  />
+</header>
 `;
 
-exports[`HeaderTest render with children prop 1`] = `
-"<header className=\\"ms-Grid launch-panel-header\\">
-  <div className=\\"ms-Grid-row\\">
-    <div role=\\"heading\\" aria-level={1} className=\\"ms-Grid-col ms-u-sm10 ms-fontColor-neutralPrimary ms-font-xl old\\" />
-    <div>
-      my content
-    </div>
-  </div>
-  <div className=\\"header-subtitle ms-fontWeight-semilight ms-fontSize-xs\\" />
-</header>"
+exports[`Header render with children: null children 1`] = `
+<header
+  className="launchPanelHeader"
+>
+  <h1
+    className="title"
+  >
+    test-title
+  </h1>
+  <div />
+  <div
+    className="subtitle"
+  />
+</header>
 `;
 
-exports[`HeaderTest render with rowExtraClassName prop 1`] = `
-"<header className=\\"ms-Grid launch-panel-header\\">
-  <div className=\\"ms-Grid-row extra-class\\">
-    <div role=\\"heading\\" aria-level={1} className=\\"ms-Grid-col ms-u-sm10 ms-fontColor-neutralPrimary ms-font-xl old\\" />
+exports[`Header render with subtitle <test-sub-title> 1`] = `
+<header
+  className="launchPanelHeader"
+>
+  <h1
+    className="title"
+  >
+    test-title
+  </h1>
+  <div />
+  <div
+    className="subtitle"
+  >
+    test-sub-title
   </div>
-  <div className=\\"header-subtitle ms-fontWeight-semilight ms-fontSize-xs\\" />
-</header>"
+</header>
+`;
+
+exports[`Header render with subtitle <undefined> 1`] = `
+<header
+  className="launchPanelHeader"
+>
+  <h1
+    className="title"
+  >
+    test-title
+  </h1>
+  <div />
+  <div
+    className="subtitle"
+  />
+</header>
 `;
