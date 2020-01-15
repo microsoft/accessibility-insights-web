@@ -1,5 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
+variables:
+    stagingFolderName: builtproduct
 steps:
     - script: yarn build:electron:all
       displayName: build all electron flavors
@@ -14,11 +16,11 @@ steps:
               **/extension/icons/**
               **/src/electron/resources/**
               **/pipeline/scripts/**
-          TargetFolder: '$(System.DefaultWorkingDirectory)/builtproduct'
+          TargetFolder: '$(System.DefaultWorkingDirectory)/$(stagingFolderName)'
           CleanTargetFolder: true
 
     - task: PublishBuildArtifacts@1
       inputs:
-          pathtoPublish: '$(System.DefaultWorkingDirectory)/builtproduct'
+          pathtoPublish: '$(System.DefaultWorkingDirectory)/$(stagingFolderName)'
           artifactName: '$(Agent.JobName)-product'
       displayName: publish built product
