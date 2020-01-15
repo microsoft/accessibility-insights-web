@@ -103,7 +103,7 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
               >
                 <div
                   aria-hidden="true"
-                  class="ms-Grid-col ms-sm3 popup-start-dialog-icon-circle"
+                  class="ms-Grid-col ms-sm000 popup-start-dialog-icon-circle"
                 >
                   <i
                     aria-hidden="true"
@@ -151,7 +151,7 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
               >
                 <div
                   aria-hidden="true"
-                  class="ms-Grid-col ms-sm3 popup-start-dialog-icon-circle"
+                  class="ms-Grid-col ms-sm000 popup-start-dialog-icon-circle"
                 >
                   <i
                     aria-hidden="true"
@@ -199,7 +199,7 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
               >
                 <div
                   aria-hidden="true"
-                  class="ms-Grid-col ms-sm3 popup-start-dialog-icon-circle"
+                  class="ms-Grid-col ms-sm000 popup-start-dialog-icon-circle"
                 >
                   <i
                     aria-hidden="true"
