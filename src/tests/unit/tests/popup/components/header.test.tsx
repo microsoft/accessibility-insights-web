@@ -1,43 +1,37 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
+import { Header, HeaderProps } from 'popup/components/header';
 import * as React from 'react';
-import { Header, HeaderProps } from '../../../../../popup/components/header';
 
-describe('HeaderTest', () => {
-    test('render', () => {
-        const props: HeaderProps = {
-            title: 'title',
-            subtitle: 'sub-title',
-        };
+describe('Header', () => {
+    describe('render', () => {
+        const title = 'test-title';
 
-        const wrapper = shallow(<Header {...props} />);
+        it.each(['test-sub-title', undefined])('with subtitle <%s>', subtitle => {
+            const props: HeaderProps = {
+                title,
+                subtitle,
+            };
 
-        expect(wrapper.debug()).toMatchSnapshot();
-    });
+            const wrapper = shallow(<Header {...props} />);
 
-    test('render with rowExtraClassName prop', () => {
-        const props: HeaderProps = {
-            title: null,
-            subtitle: null,
-            rowExtraClassName: 'extra-class',
-        };
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
 
-        const wrapper = shallow(<Header {...props} />);
+        it.each`
+            description             | children
+            ${'non-empty children'} | ${(<span>test children</span>)}
+            ${'null children'}      | ${null}
+        `('with children: $description', ({ children }) => {
+            const props: HeaderProps = {
+                title,
+                children,
+            };
 
-        expect(wrapper.debug()).toMatchSnapshot();
-    });
+            const wrapper = shallow(<Header {...props} />);
 
-    test('render with children prop', () => {
-        const children: JSX.Element = <div>my content</div>;
-
-        const props: HeaderProps = {
-            title: null,
-            subtitle: null,
-        };
-
-        const wrapper = shallow(<Header {...props}>{children}</Header>);
-
-        expect(wrapper.debug()).toMatchSnapshot();
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
     });
 });

@@ -8,8 +8,8 @@ steps:
     - script: yarn pack:electron ${{ parameters.platforms }}
       displayName: create electron distributables
       env:
-          ELECTRON_MIRROR: $(ELECTRON_MIRROR)
-          ELECTRON_CUSTOM_DIR: $(ELECTRON_CUSTOM_DIR)
+          ELECTRON_MIRROR: $(ELECTRON_MIRROR_VAR)
+          ELECTRON_CUSTOM_DIR: $(ELECTRON_CUSTOM_DIR_VAR)
 
     - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
       displayName: 'sign dist'

@@ -117,16 +117,6 @@ div.insights-file-issue-details-dialog-container {
     right: 0 !important;
 }
 
-.generic-panel {
-    margin-left: auto;
-    margin-right: auto;
-    color: $neutral-100;
-    .header-text {
-        color: $neutral-100;
-        font-size: 2em;
-    }
-}
-
 .scoping-panel {
     .scoping-container {
         .scoping-description {
@@ -313,6 +303,7 @@ div.insights-file-issue-details-dialog-container {
                 margin-bottom: 0px;
             }
             .button-flex-container .status-icon {
+                color: $primary-text;
                 margin-left: 24px;
                 font-size: 18px;
                 &.negative-outcome-icon {

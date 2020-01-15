@@ -2,12 +2,11 @@
 
 exports[`LaunchPanelHeaderTest render 1`] = `
 <Header
-  rowExtraClassName="header-title"
   subtitle="test subtitle"
   title="test title"
 >
   <div
-    className="ms-Grid-col ms-u-sm2 feedback-collapseMenuButton-col"
+    className="feedbackCollapseMenuButtonCol"
   >
     <GearOptionsButtonComponent
       dropdownClickHandler={Object {}}
@@ -29,12 +28,11 @@ exports[`LaunchPanelHeaderTest render 1`] = `
 
 exports[`LaunchPanelHeaderTest render contextual menu renders with new assessment experience 1`] = `
 <Header
-  rowExtraClassName="header-title"
   subtitle="test subtitle"
   title="test title"
 >
   <div
-    className="ms-Grid-col ms-u-sm2 feedback-collapseMenuButton-col"
+    className="feedbackCollapseMenuButtonCol"
   >
     <GearOptionsButtonComponent
       dropdownClickHandler={Object {}}
@@ -143,12 +141,11 @@ exports[`LaunchPanelHeaderTest render contextual menu renders with new assessmen
               "_numberOfReRenders": 0,
               "_renderPhaseUpdates": null,
               "_rendered": <Header
-                rowExtraClassName="header-title"
                 subtitle="test subtitle"
                 title="test title"
               >
                 <div
-                  className="ms-Grid-col ms-u-sm2 feedback-collapseMenuButton-col"
+                  className="feedbackCollapseMenuButtonCol"
                 >
                   <GearOptionsButtonComponent
                     dropdownClickHandler={Object {}}
@@ -203,12 +200,11 @@ exports[`LaunchPanelHeaderTest render contextual menu renders with new assessmen
 
 exports[`LaunchPanelHeaderTest render contextual menu renders without new assessment experience 1`] = `
 <Header
-  rowExtraClassName="header-title"
   subtitle="test subtitle"
   title="test title"
 >
   <div
-    className="ms-Grid-col ms-u-sm2 feedback-collapseMenuButton-col"
+    className="feedbackCollapseMenuButtonCol"
   >
     <GearOptionsButtonComponent
       dropdownClickHandler={Object {}}
@@ -303,12 +299,11 @@ exports[`LaunchPanelHeaderTest render contextual menu renders without new assess
               "_numberOfReRenders": 0,
               "_renderPhaseUpdates": null,
               "_rendered": <Header
-                rowExtraClassName="header-title"
                 subtitle="test subtitle"
                 title="test title"
               >
                 <div
-                  className="ms-Grid-col ms-u-sm2 feedback-collapseMenuButton-col"
+                  className="feedbackCollapseMenuButtonCol"
                 >
                   <GearOptionsButtonComponent
                     dropdownClickHandler={Object {}}
