@@ -4,7 +4,7 @@ exports[`Details View -> Preview Features Panel should match content in snapshot
 <DocumentFragment>
   <div
     aria-hidden="false"
-    class="ms-Panel is-open ms-Panel--hasCloseButton ms-Panel--custom generic-panel--000CjX000 preview-features-panel root-000"
+    class="ms-Panel is-open ms-Panel--hasCloseButton ms-Panel--custom generic-panel--{{CSS_MODULE_HASH}} preview-features-panel root-000"
   >
     <div
       class="ms-Overlay overlay-000"
@@ -58,7 +58,7 @@ exports[`Details View -> Preview Features Panel should match content in snapshot
         >
           <p
             aria-level="2"
-            class="ms-Panel-headerText header-text--000nPhV headerText-000"
+            class="ms-Panel-headerText header-text--{{CSS_MODULE_HASH}} headerText-000"
             id="Panel000-headerText"
             role="heading"
           >
