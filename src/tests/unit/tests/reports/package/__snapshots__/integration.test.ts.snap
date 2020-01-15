@@ -117,7 +117,7 @@ exports[`report package integration with issues 1`] = `
             color-interpolation-filters="sRGB"
             filterUnits="userSpaceOnUse"
             height="29.5269"
-            id="filter0_d"
+            id="filter000_d"
             width="29.5246"
             x="15.748"
             y="6.50654"
@@ -155,7 +155,7 @@ exports[`report package integration with issues 1`] = `
           </filter>
           <lineargradient
             gradientUnits="userSpaceOnUse"
-            id="paint0_linear"
+            id="paint000_linear"
             x1="14.3166"
             x2="5.92409"
             y1="16.8744"
@@ -174,7 +174,7 @@ exports[`report package integration with issues 1`] = `
           </lineargradient>
           <lineargradient
             gradientUnits="userSpaceOnUse"
-            id="paint1_linear"
+            id="paint000_linear"
             x1="14.3166"
             x2="5.92409"
             y1="16.8744"
@@ -193,7 +193,7 @@ exports[`report package integration with issues 1`] = `
           </lineargradient>
           <lineargradient
             gradientUnits="userSpaceOnUse"
-            id="paint2_linear"
+            id="paint000_linear"
             x1="11.3179"
             x2="11.0819"
             y1="20.1024"
@@ -6165,7 +6165,7 @@ exports[`report package integration with no issues 1`] = `
             color-interpolation-filters="sRGB"
             filterUnits="userSpaceOnUse"
             height="29.5269"
-            id="filter0_d"
+            id="filter000_d"
             width="29.5246"
             x="15.748"
             y="6.50654"
@@ -6203,7 +6203,7 @@ exports[`report package integration with no issues 1`] = `
           </filter>
           <lineargradient
             gradientUnits="userSpaceOnUse"
-            id="paint0_linear"
+            id="paint000_linear"
             x1="14.3166"
             x2="5.92409"
             y1="16.8744"
@@ -6222,7 +6222,7 @@ exports[`report package integration with no issues 1`] = `
           </lineargradient>
           <lineargradient
             gradientUnits="userSpaceOnUse"
-            id="paint1_linear"
+            id="paint000_linear"
             x1="14.3166"
             x2="5.92409"
             y1="16.8744"
@@ -6241,7 +6241,7 @@ exports[`report package integration with no issues 1`] = `
           </lineargradient>
           <lineargradient
             gradientUnits="userSpaceOnUse"
-            id="paint2_linear"
+            id="paint000_linear"
             x1="11.3179"
             x2="11.0819"
             y1="20.1024"
