@@ -7,6 +7,7 @@ jobs:
       steps:
           - template: ../install-node-prerequisites.yaml
           - template: download-electron-mirror.yaml
+          - template: build-publish-electron-flavors.yaml
           - template: electron-e2e-test-interactive.yaml
           - template: electron-e2e-publish-results.yaml
           - template: electron-update-config.yaml
@@ -18,6 +19,7 @@ jobs:
       steps:
           - template: ../install-node-prerequisites.yaml
           - template: download-electron-mirror.yaml
+          - template: build-publish-electron-flavors.yaml
           - template: electron-e2e-test-linux.yaml
           - template: electron-e2e-publish-results.yaml
           - template: electron-update-config.yaml
@@ -29,6 +31,7 @@ jobs:
       steps:
           - template: ../install-node-prerequisites.yaml
           - template: download-electron-mirror.yaml
+          - template: build-publish-electron-flavors.yaml
           - template: electron-e2e-test-interactive.yaml
           - template: electron-e2e-publish-results.yaml
           - template: electron-update-config.yaml

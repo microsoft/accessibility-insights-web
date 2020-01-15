@@ -1,0 +1,24 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+steps:
+    - script: yarn build:electron:all
+      displayName: build all electron flavors
+
+    - task: CopyFiles@2
+      displayName: 'copy files to publish'
+      inputs:
+          SourceFolder: '$(System.DefaultWorkingDirectory)'
+          Contents: |
+              **/drop/**
+              electron-builder.yml
+              **/extension/icons/**
+              **/src/electron/resources/**
+              **/pipeline/scripts/**
+          TargetFolder: '$(System.DefaultWorkingDirectory)/builtproduct'
+          CleanTargetFolder: true
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+          pathtoPublish: '$(System.DefaultWorkingDirectory)/builtproduct'
+          artifactName: '$(Agent.JobName)-product'
+      displayName: publish built product
