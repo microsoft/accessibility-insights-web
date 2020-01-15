@@ -1,24 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`element-snapshot-formatter format html for snapshot normalizing ms-Panel-headerText header-text--0nPhV headerText-198 1`] = `
+exports[`element-snapshot-formatter format html for snapshot normalizing class = "ms-Panel is-open ms-Panel--hasCloseButton ms-Panel--custom generic-panel--4CjX1 preview-features-panel root-127" and id = "custom-id123" 1`] = `
 <DocumentFragment>
   <div>
-    <div
-      class="ms-Panel-headerText header-text--000nPhV headerText-000"
-    >
-      Hello world!
+    <div>
+      <div
+        class="ms-Panel is-open ms-Panel--hasCloseButton ms-Panel--custom generic-panel--{{CSS_MODULE_HASH}} preview-features-panel root-000"
+      >
+        Hello world!
+      </div>
+    </div>
+    <div>
+      <div
+        id="custom-id000"
+      >
+        Hello world!
+      </div>
     </div>
   </div>
 </DocumentFragment>
 `;
 
-exports[`element-snapshot-formatter format html for snapshot normalizing test-class-one test-class-two 1`] = `
+exports[`element-snapshot-formatter format html for snapshot normalizing class = "test-class-one test-class-two" and id = "custom-id" 1`] = `
 <DocumentFragment>
   <div>
-    <div
-      class="test-class-one test-class-two"
-    >
-      Hello world!
+    <div>
+      <div
+        class="test-class-one test-class-two"
+      >
+        Hello world!
+      </div>
+    </div>
+    <div>
+      <div
+        id="custom-id"
+      >
+        Hello world!
+      </div>
     </div>
   </div>
 </DocumentFragment>
