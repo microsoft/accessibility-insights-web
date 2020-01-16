@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BrowserMessageBroadcasterFactory } from 'background/browser-message-broadcaster-factory';
+import { BrowserMessageBroadcasterFactory, connectionErrorMessage } from 'background/browser-message-broadcaster-factory';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { Logger } from 'common/logging/logger';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
@@ -71,6 +71,21 @@ describe('BrowserMessageBroadcasterFactory', () => {
             browserAdapterMock.setup(ba => ba.sendMessageToTab(It.isAny(), It.isAny())).returns(() => Promise.reject(testError));
 
             loggerMock.setup(m => m.error(expectedMessage)).verifiable(Times.once());
+
+            await testSubject.allTabsBroadcaster(testMessage);
+
+            loggerMock.verifyAll();
+        });
+
+        it('does not propagate know error message', async () => {
+            const testMessage = { someData: 'test data' } as any;
+            const testError = { message: connectionErrorMessage };
+
+            browserAdapterMock.setup(ba => ba.tabsQuery({})).returns(() => Promise.resolve([{ id: 1 } as Tabs.Tab]));
+            browserAdapterMock.setup(ba => ba.sendMessageToFrames(It.isAny())).returns(() => Promise.resolve());
+            browserAdapterMock.setup(ba => ba.sendMessageToTab(It.isAny(), It.isAny())).returns(() => Promise.reject(testError));
+
+            loggerMock.setup(m => m.error(It.isAny())).verifiable(Times.never());
 
             await testSubject.allTabsBroadcaster(testMessage);
 
