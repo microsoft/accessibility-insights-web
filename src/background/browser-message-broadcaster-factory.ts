@@ -6,6 +6,9 @@ import { inspect } from 'util';
 
 export type MessageBroadcaster = (message: any) => Promise<void>;
 
+export const connectionErrorMessage =
+    'Could not establish connection. Receiving end does not exist.';
+
 export class BrowserMessageBroadcasterFactory {
     constructor(private readonly browserAdapter: BrowserAdapter, private readonly logger: Logger) {}
 
@@ -48,6 +51,13 @@ export class BrowserMessageBroadcasterFactory {
         message: any,
         chromeError: chrome.runtime.LastError,
     ) => {
+        // We get this message when we have not yet injected our content script on the tab we are
+        // sending the message to.
+        // Filtering this out (not log it to the console) to avoid generating meaningless noise
+        if (chromeError.message === connectionErrorMessage) {
+            return;
+        }
+
         const msg = `${operationDescription} failed for message ${inspect(
             message,
         )} with browser error message: ${chromeError.message}`;
