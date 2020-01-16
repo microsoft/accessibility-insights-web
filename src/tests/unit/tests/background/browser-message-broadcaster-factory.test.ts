@@ -146,5 +146,3 @@ describe('BrowserMessageBroadcasterFactory', () => {
         });
     });
 });
-
-//
