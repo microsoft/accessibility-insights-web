@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FeatureFlags } from 'common/feature-flags';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { StartOverDropdown, StartOverProps } from 'DetailsView/components/start-over-dropdown';
 import { ActionButton } from 'office-ui-fabric-react';
@@ -24,10 +23,6 @@ export function getStartOverComponentForAssessment(props: CommandBarProps): JSX.
 export const startOverAutomationId = 'start-over';
 
 export function getStartOverComponentForFastPass(props: CommandBarProps): JSX.Element {
-    if (!props.featureFlagStoreData[FeatureFlags.universalCardsUI]) {
-        return null;
-    }
-
     const selectedTest = props.visualizationStoreData.selectedFastPassDetailsView;
     const detailsViewActionMessageCreator = props.deps.detailsViewActionMessageCreator;
 

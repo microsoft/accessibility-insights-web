@@ -12,7 +12,6 @@ export class FeatureFlags {
     public static readonly scoping = 'scoping';
     public static readonly showInstanceVisibility = 'showInstanceVisibility';
     public static readonly manualInstanceDetails = 'manualInstanceDetails';
-    public static readonly universalCardsUI = 'universalCardsUI';
 }
 
 export interface FeatureFlagDetail {
@@ -87,14 +86,6 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
                 'populates the corresponding code snippet when adding manual failure instance.',
             isPreviewFeature: false,
             forceDefault: false,
-        },
-        {
-            id: FeatureFlags.universalCardsUI,
-            defaultValue: true,
-            displayableName: 'Enable universal cards UI',
-            displayableDescription: 'Show results in cards using the universal cards UI.',
-            isPreviewFeature: false,
-            forceDefault: true,
         },
     ];
 }

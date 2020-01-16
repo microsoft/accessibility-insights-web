@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { FeatureFlags } from 'common/feature-flags';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { GetElementBasedViewModelCallback } from 'injected/element-based-view-model-creator';
 import { AssessmentVisualizationInstance } from 'injected/frameCommunicators/html-element-axe-results-helper';
@@ -48,21 +46,7 @@ describe('SelectorMapHelperTest', () => {
         });
     });
 
-    test('getState: issues with universalCardsUI feature flag disabled', () => {
-        const selectorMap = { key1: { target: ['element1'] } };
-        const state = new VisualizationScanResultStoreDataBuilder().withIssuesSelectedTargets(selectorMap as any).build();
-        const featureFlagData: FeatureFlagStoreData = {
-            [FeatureFlags.universalCardsUI]: false,
-        };
-        const storeData: VisualizationRelatedStoreData = {
-            visualizationScanResultStoreData: state,
-            featureFlagStoreData: featureFlagData,
-        } as VisualizationRelatedStoreData;
-
-        expect(testSubject.getSelectorMap(VisualizationType.Issues, null, storeData)).toEqual(selectorMap);
-    });
-
-    test('getState: issues with universalCardsUI feature flag enabled', () => {
+    test('getState: issues', () => {
         const selectorMap = { key1: { target: ['element1'] } as AssessmentVisualizationInstance };
         const rulesStub: UnifiedRule[] = [{ id: 'some rule' } as UnifiedRule];
         const resultsStub: UnifiedResult[] = [exampleUnifiedResult];
@@ -70,12 +54,8 @@ describe('SelectorMapHelperTest', () => {
             rules: rulesStub,
             results: resultsStub,
         };
-        const featureFlagData: FeatureFlagStoreData = {
-            [FeatureFlags.universalCardsUI]: true,
-        };
         const storeData: VisualizationRelatedStoreData = {
             unifiedScanResultStoreData: unifiedScanData,
-            featureFlagStoreData: featureFlagData,
             cardSelectionStoreData: {},
         } as VisualizationRelatedStoreData;
 

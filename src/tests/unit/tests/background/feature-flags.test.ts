@@ -21,7 +21,6 @@ describe('FeatureFlagsTest', () => {
             [FeatureFlags.scoping]: false,
             [FeatureFlags.showInstanceVisibility]: false,
             [FeatureFlags.manualInstanceDetails]: false,
-            [FeatureFlags.universalCardsUI]: true,
         };
 
         const featureFlagValueKeys = keys(featureFlagValues);
