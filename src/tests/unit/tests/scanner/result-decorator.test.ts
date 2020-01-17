@@ -48,13 +48,22 @@ describe('ResultDecorator', () => {
 
     describe('constructor', () => {
         it('should construct the generator', () => {
-            const resultDecorator = new ResultDecorator(documentUtilsMock.object, messageDecoratorMock.object, getHelpUrlMock.object);
+            const guidanceLink = {} as any;
+            const configuration = {
+                'test-rule': [guidanceLink],
+            };
+            const resultDecorator = new ResultDecorator(
+                documentUtilsMock.object,
+                messageDecoratorMock.object,
+                getHelpUrlMock.object,
+                configuration,
+            );
             expect(resultDecorator).not.toBeNull();
         });
     });
 
     describe('decorateResults: w/ no configuration', () => {
-        it('should return without guidace links', () => {
+        it('should return without guidance links', () => {
             const scanResultInstance: RuleResult = {
                 ...instanceStub,
                 guidanceLinks: null,
@@ -87,7 +96,12 @@ describe('ResultDecorator', () => {
                 })
                 .verifiable();
 
-            const testSubject = new ResultDecorator(documentUtilsMock.object, messageDecoratorMock.object, getHelpUrlMock.object);
+            const testSubject = new ResultDecorator(
+                documentUtilsMock.object,
+                messageDecoratorMock.object,
+                getHelpUrlMock.object,
+                undefined,
+            );
             let decoratedResult;
             GlobalScope.using(suppressChecksByMessagesMock).with(() => {
                 decoratedResult = testSubject.decorateResults(nonEmptyResultStub);
@@ -100,13 +114,13 @@ describe('ResultDecorator', () => {
         });
     });
 
-    describe('decorateResults: w/ setRuleToLinksConfiguration', () => {
+    describe('decorateResults: with ruleToLinksConfiguration', () => {
         it('should call success callback with correct result', () => {
             const guidanceLink = {} as any;
             const configuration = {
                 'test-rule': [guidanceLink],
             };
-            const resultStubWithGuidacenLinks = {
+            const resultStubWithGuidanceLinks = {
                 passes: [],
                 violations: [
                     {
@@ -141,14 +155,18 @@ describe('ResultDecorator', () => {
                 })
                 .verifiable();
 
-            const testSubject = new ResultDecorator(documentUtilsMock.object, messageDecoratorMock.object, getHelpUrlMock.object);
+            const testSubject = new ResultDecorator(
+                documentUtilsMock.object,
+                messageDecoratorMock.object,
+                getHelpUrlMock.object,
+                configuration,
+            );
             let decoratedResult;
-            testSubject.setRuleToLinksConfiguration(configuration);
             GlobalScope.using(suppressChecksByMessagesMock).with(() => {
                 decoratedResult = testSubject.decorateResults(nonEmptyResultStub);
             });
 
-            expect(decoratedResult).toEqual(resultStubWithGuidacenLinks);
+            expect(decoratedResult).toEqual(resultStubWithGuidanceLinks);
             suppressChecksByMessagesMock.verifyAll();
             documentUtilsMock.verifyAll();
             messageDecoratorMock.verifyAll();
@@ -171,26 +189,26 @@ describe('ResultDecorator', () => {
                 targetPageTitle: 'test title',
                 url: 'https://test_url',
             };
-            const guidaceLinkStub = {} as any;
+            const guidanceLinkStub = {} as any;
             const configuration = {
-                'test-rule': [guidaceLinkStub],
-                'test-inapplicable-rule': [guidaceLinkStub],
+                'test-rule': [guidanceLinkStub],
+                'test-inapplicable-rule': [guidanceLinkStub],
             };
-            const resultStubWithGuidacenLinks = {
+            const resultStubWithGuidanceLinks = {
                 passes: [],
                 violations: [
                     {
                         id: 'test-rule',
                         nodes: [nodeStub],
                         description: null,
-                        guidanceLinks: [guidaceLinkStub],
+                        guidanceLinks: [guidanceLinkStub],
                         helpUrl: urlStub,
                     },
                 ],
                 inapplicable: [
                     {
                         ...inapplicableInstance,
-                        guidanceLinks: [guidaceLinkStub],
+                        guidanceLinks: [guidanceLinkStub],
                         helpUrl: urlStub,
                     },
                 ],
@@ -228,14 +246,18 @@ describe('ResultDecorator', () => {
                 })
                 .verifiable();
 
-            const testSubject = new ResultDecorator(documentUtilsMock.object, messageDecoratorMock.object, getHelpUrlMock.object);
+            const testSubject = new ResultDecorator(
+                documentUtilsMock.object,
+                messageDecoratorMock.object,
+                getHelpUrlMock.object,
+                configuration,
+            );
             let decoratedResult;
-            testSubject.setRuleToLinksConfiguration(configuration);
             GlobalScope.using(suppressChecksByMessagesMock).with(() => {
                 decoratedResult = testSubject.decorateResults(nonEmptyResultWithInapplicable as any);
             });
 
-            expect(decoratedResult).toEqual(resultStubWithGuidacenLinks);
+            expect(decoratedResult).toEqual(resultStubWithGuidanceLinks);
             suppressChecksByMessagesMock.verifyAll();
             documentUtilsMock.verifyAll();
             messageDecoratorMock.verifyAll();
@@ -275,9 +297,13 @@ describe('ResultDecorator', () => {
                 })
                 .verifiable();
 
-            const testSubject = new ResultDecorator(documentUtilsMock.object, messageDecoratorMock.object, getHelpUrlMock.object);
+            const testSubject = new ResultDecorator(
+                documentUtilsMock.object,
+                messageDecoratorMock.object,
+                getHelpUrlMock.object,
+                configuration,
+            );
             let decoratedResult;
-            testSubject.setRuleToLinksConfiguration(configuration);
             GlobalScope.using(suppressChecksByMessagesMock).with(() => {
                 decoratedResult = testSubject.decorateResults(nonEmptyResultStub);
             });

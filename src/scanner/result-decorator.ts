@@ -10,18 +10,12 @@ import { MessageDecorator } from './message-decorator';
 import { Processor } from './processor';
 
 export class ResultDecorator {
-    private ruleToLinkConfiguration: DictionaryStringTo<HyperlinkDefinition[]>;
-    private documentUtils: DocumentUtils;
-    private messageDecorator: MessageDecorator;
-
     constructor(
-        documentUtils: DocumentUtils,
-        messageDecorator: MessageDecorator,
+        private readonly documentUtils: DocumentUtils,
+        private readonly messageDecorator: MessageDecorator,
         private getHelpUrl: (ruleId: string, axeHelpUrl: string) => string,
-    ) {
-        this.documentUtils = documentUtils;
-        this.messageDecorator = messageDecorator;
-    }
+        private readonly ruleToLinkConfiguration: DictionaryStringTo<HyperlinkDefinition[]>,
+    ) {}
 
     public decorateResults(results: Axe.AxeResults): ScanResults {
         const scanResults: ScanResults = {
@@ -63,11 +57,5 @@ export class ResultDecorator {
         }
 
         return this.ruleToLinkConfiguration[ruleId];
-    }
-
-    public setRuleToLinksConfiguration(
-        configuration: DictionaryStringTo<HyperlinkDefinition[]>,
-    ): void {
-        this.ruleToLinkConfiguration = configuration;
     }
 }

@@ -16,6 +16,7 @@ import { DocumentUtils } from 'scanner/document-utils';
 import { HelpUrlGetter } from 'scanner/help-url-getter';
 import { MessageDecorator } from 'scanner/message-decorator';
 import { ResultDecorator } from 'scanner/result-decorator';
+import { ruleToLinkConfiguration } from 'scanner/rule-to-links-mappings';
 import { FixInstructionProcessor } from '../../common/components/fix-instruction-processor';
 import { getPropertyConfiguration } from '../../common/configs/unified-result-property-configurations';
 import { DateProvider } from '../../common/date-provider';
@@ -70,6 +71,7 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
     const helpUrlGetter = new HelpUrlGetter(configuration);
     const resultDecorator = new ResultDecorator(titleProvider, messageDecorator, (ruleId, axeHelpUrl) =>
         helpUrlGetter.getHelpUrl(ruleId, axeHelpUrl),
+        ruleToLinkConfiguration,
     );
 
     const deps: AxeResultsReportDeps = {
