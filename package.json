@@ -24,8 +24,8 @@
         "copyright:check": "license-check-and-add check -f copyright-header.config.json",
         "copyright:fix": "license-check-and-add add -f copyright-header.config.json",
         "pack:electron": "electron-builder -p never",
-        "fastpass": "npm-run-all --print-label --parallel copyright:check lint:check format:check",
-        "fastpass:fix": "npm-run-all --print-label --serial copyright:fix lint:fix format:fix",
+        "fastpass": "npm-run-all --print-label --parallel scss:clean copyright:check lint:check format:check",
+        "fastpass:fix": "npm-run-all --print-label --serial scss:clean copyright:fix lint:fix format:fix",
         "format:check": "prettier --config prettier.config.js --check \"**/*\"",
         "format:fix": "prettier --config prettier.config.js --write \"**/*\"",
         "lint:check": "tslint -c ./tslint.json -p ./tsconfig.json",
@@ -147,7 +147,7 @@
         "react-router-dom": "^5.1.2",
         "ua-parser-js": "^0.7.21",
         "unzipper": "^0.10.5",
-        "uuid": "^3.3.3",
+        "uuid": "^3.4.0",
         "webextension-polyfill-ts": "^0.11.0"
     }
 }
