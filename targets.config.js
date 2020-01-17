@@ -6,6 +6,7 @@ function iconSet(key) {
         icon16: `icons/brand/${key}/brand-${key}-16px.png`,
         icon48: `icons/brand/${key}/brand-${key}-48px.png`,
         icon128: `icons/brand/${key}/brand-${key}-128px.png`,
+        icon512: `icons/brand/${key}/brand-${key}-512px.png`,
     };
 }
 
@@ -17,32 +18,27 @@ const icons = {
     production: iconSet('blue'),
 };
 
-const commonOptions = {
+const commonExtensionOptions = {
     fullName: 'Accessibility Insights for Web',
     extensionDescription: 'Accessibility Insights for Web helps developers quickly find and fix accessibility issues.',
-    ...icons.production,
     bundled: true,
+    productCategory: 'extension',
 };
 
-const publicOptions = {
-    ...commonOptions,
-    requireSignInForPreviewFeatures: false,
-};
-
-const internalOptions = {
-    ...commonOptions,
-    requireSignInForPreviewFeatures: true,
+const commonUnifiedOptions = {
+    fullName: 'Accessibility Insights for Android',
+    bundled: true,
+    productCategory: 'electron',
 };
 
 module.exports = {
     dev: {
         config: {
             options: {
-                ...internalOptions,
+                ...commonExtensionOptions,
                 ...icons.dev,
                 fullName: 'Accessibility Insights for Web - Dev',
                 telemetryBuildName: 'Dev',
-                productCategory: 'extension',
             },
         },
         bundleFolder: 'devBundle',
@@ -52,11 +48,10 @@ module.exports = {
         release: true,
         config: {
             options: {
-                ...publicOptions,
+                ...commonExtensionOptions,
                 ...icons.playground,
                 fullName: 'Accessibility Insights for Web - Playground',
                 telemetryBuildName: 'Playground',
-                productCategory: 'extension',
             },
         },
         bundleFolder: 'devBundle',
@@ -66,11 +61,10 @@ module.exports = {
         release: true,
         config: {
             options: {
-                ...internalOptions,
+                ...commonExtensionOptions,
                 ...icons.canary,
                 fullName: 'Accessibility Insights for Web - Canary',
                 telemetryBuildName: 'Canary',
-                productCategory: 'extension',
             },
         },
         bundleFolder: 'devBundle',
@@ -80,11 +74,10 @@ module.exports = {
         release: true,
         config: {
             options: {
-                ...internalOptions,
+                ...commonExtensionOptions,
                 ...icons.insider,
                 fullName: 'Accessibility Insights for Web - Insider',
                 telemetryBuildName: 'Insider',
-                productCategory: 'extension',
             },
         },
         bundleFolder: 'prodBundle',
@@ -94,52 +87,70 @@ module.exports = {
         release: true,
         config: {
             options: {
-                ...internalOptions,
+                ...commonExtensionOptions,
                 ...icons.production,
                 telemetryBuildName: 'Production',
-                productCategory: 'extension',
             },
         },
         bundleFolder: 'prodBundle',
         mustExistFile: 'background.bundle.js',
     },
-    electron: {
+    unifiedDev: {
         config: {
             options: {
-                ...internalOptions,
+                ...commonUnifiedOptions,
                 ...icons.dev,
                 fullName: 'Accessibility Insights for Android - Dev',
                 telemetryBuildName: 'AI Android - Dev',
-                productCategory: 'electron',
             },
         },
         bundleFolder: 'electronBundle',
         mustExistFile: 'main.bundle.js',
     },
-    electronInsider: {
+    unifiedCanary: {
+        release: true,
         config: {
             options: {
-                ...internalOptions,
-                ...icons.dev,
+                ...commonUnifiedOptions,
+                ...icons.canary,
+                fullName: 'Accessibility Insights for Android - Canary',
+                telemetryBuildName: 'AI Android - Canary',
+            },
+        },
+        bundleFolder: 'electronBundle',
+        mustExistFile: 'main.bundle.js',
+        // Note: this non-canary-looking appId is intentional for backcompat
+        appId: 'com.microsoft.accessibilityinsights',
+        publishUrl: 'https://a11yinsightsandroidblob.blob.core.windows.net/aimobile-canary',
+    },
+    unifiedInsider: {
+        release: true,
+        config: {
+            options: {
+                ...commonUnifiedOptions,
+                ...icons.insider,
                 fullName: 'Accessibility Insights for Android - Insider',
                 telemetryBuildName: 'AI Android - Insider',
-                productCategory: 'electron',
             },
         },
         bundleFolder: 'electronBundle',
         mustExistFile: 'main.bundle.js',
+        appId: 'com.microsoft.accessibilityinsights.unified.insider',
+        publishUrl: 'https://a11yinsightsandroidblob-insiders.blob.core.windows.net/aimobile-insiders',
     },
-    electronProduction: {
+    unifiedProduction: {
+        release: true,
         config: {
             options: {
-                ...internalOptions,
-                ...icons.dev,
+                ...commonUnifiedOptions,
+                ...icons.production,
                 fullName: 'Accessibility Insights for Android',
                 telemetryBuildName: 'AI Android - Production',
-                productCategory: 'electron',
             },
         },
         bundleFolder: 'electronBundle',
         mustExistFile: 'main.bundle.js',
+        appId: 'com.microsoft.accessibilityinsights.unified.production',
+        publishUrl: 'https://a11yinsightsandroidblob-production.blob.core.windows.net/aimobile-production',
     },
 };
