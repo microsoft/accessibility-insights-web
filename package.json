@@ -12,7 +12,6 @@
         "yarn": "^1.17.3"
     },
     "scripts": {
-        "download:electron-mirror": "node ./pipeline/scripts/download-electron-mirror.js",
         "assessment": "npm-run-all --serial scss:clean fastpass build:all test test:e2e test:electron",
         "build": "grunt",
         "build:all": "grunt build-all",
@@ -23,13 +22,14 @@
         "build:prod": "grunt build-prod",
         "copyright:check": "license-check-and-add check -f copyright-header.config.json",
         "copyright:fix": "license-check-and-add add -f copyright-header.config.json",
-        "pack:electron": "electron-builder -p never",
+        "download:electron-mirror": "node ./pipeline/scripts/download-electron-mirror.js",
         "fastpass": "npm-run-all --print-label --parallel scss:clean copyright:check lint:check format:check",
         "fastpass:fix": "npm-run-all --print-label --serial scss:clean copyright:fix lint:fix format:fix",
         "format:check": "prettier --config prettier.config.js --check \"**/*\"",
         "format:fix": "prettier --config prettier.config.js --write \"**/*\"",
         "lint:check": "tslint -c ./tslint.json -p ./tsconfig.json",
         "lint:fix": "tslint --fix -c ./tslint.json -p ./tsconfig.json",
+        "pack:electron": "electron-builder -p never",
         "scss:build": "tsm \"src/**/*.scss\"",
         "scss:clean": "grunt clean:scss",
         "serve:mock-axe-android": "http-server -p 9051 -e json ./src/tests/miscellaneous/mock-axe-android",
