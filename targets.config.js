@@ -95,7 +95,8 @@ module.exports = {
         bundleFolder: 'prodBundle',
         mustExistFile: 'background.bundle.js',
     },
-    unifiedDev: {
+    // to be changed later to unified-dev
+    electron: {
         config: {
             options: {
                 ...commonUnifiedOptions,
@@ -107,7 +108,7 @@ module.exports = {
         bundleFolder: 'electronBundle',
         mustExistFile: 'main.bundle.js',
     },
-    unifiedCanary: {
+    'unified-canary': {
         release: true,
         config: {
             options: {
@@ -123,7 +124,7 @@ module.exports = {
         appId: 'com.microsoft.accessibilityinsights',
         publishUrl: 'https://a11yinsightsandroidblob.blob.core.windows.net/aimobile-canary',
     },
-    unifiedInsider: {
+    'unified-insider': {
         release: true,
         config: {
             options: {
@@ -138,7 +139,7 @@ module.exports = {
         appId: 'com.microsoft.accessibilityinsights.unified.insider',
         publishUrl: 'https://a11yinsightsandroidblob-insiders.blob.core.windows.net/aimobile-insiders',
     },
-    unifiedProduction: {
+    'unified-production': {
         release: true,
         config: {
             options: {

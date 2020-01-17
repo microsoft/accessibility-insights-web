@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 appId: com.microsoft.accessibilityinsights
 directories:
-    app: drop/electron/unifiedDev
+    app: drop/electron/electron
     buildResources: src/electron/resources
 extraMetadata:
     main: product/bundle/main.bundle.js
