@@ -503,7 +503,7 @@ module.exports = function(grunt) {
         'build-assets',
         'drop:dev',
         'drop:electron',
-        'web-release-drops',
+        'extension-release-drops',
     ]);
 
     grunt.registerTask('default', ['build-dev']);
