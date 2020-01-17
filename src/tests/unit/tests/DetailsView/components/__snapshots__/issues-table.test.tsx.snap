@@ -18,9 +18,9 @@ exports[`IssuesTableTest automated checks disabled 1`] = `
         <span>
           Use the 
           <Term>
-            Start over
+            Start over button
           </Term>
-           button to scan the target page.
+           to scan the target page.
         </span>
       </div>
     </React.Fragment>

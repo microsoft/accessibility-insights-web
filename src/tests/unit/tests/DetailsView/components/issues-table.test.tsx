@@ -12,7 +12,6 @@ import { ReportGenerator } from 'reports/report-generator';
 import { RuleResult } from 'scanner/iruleresults';
 import { IMock, Mock } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
-
 import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
 
 describe('IssuesTableTest', () => {

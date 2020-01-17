@@ -107,7 +107,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
     private renderDisabledMessage(): JSX.Element {
         const disabledMessage = (
             <span>
-                Use the <Markup.Term>Start over</Markup.Term> button to scan the target page.
+                Use the <Markup.Term>Start over button</Markup.Term> to scan the target page.
             </span>
         );
 
