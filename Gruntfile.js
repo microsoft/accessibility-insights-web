@@ -478,14 +478,14 @@ module.exports = function(grunt) {
         'exec:generate-scss-typings',
         'exec:webpack-electron',
         'build-assets',
-        'drop:unifiedDev',
+        'drop:electron',
     ]);
     grunt.registerTask('build-electron-all', [
         'clean:intermediates',
         'exec:generate-scss-typings',
         'exec:webpack-electron',
         'build-assets',
-        'drop:unifiedDev',
+        'drop:electron',
         'unified-release-drops',
     ]);
     grunt.registerTask('build-package-report', [
@@ -502,7 +502,7 @@ module.exports = function(grunt) {
         'concurrent:webpack-all',
         'build-assets',
         'drop:dev',
-        'drop:unifiedDev',
+        'drop:electron',
         'web-release-drops',
     ]);
 
