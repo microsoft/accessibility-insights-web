@@ -1,0 +1,28 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../common/styles/colors.scss';
+
+:global(.test-step-view) {
+    .instance-visibility-button {
+        color: $primary-text;
+        padding-bottom: 6px;
+    }
+
+    .test-instance-selected {
+        padding: 2px;
+        color: $neutral-0;
+    }
+
+    .test-instance-selected-hidden {
+        background-color: $neutral-60;
+        cursor: default;
+    }
+
+    .test-instance-selected-visible {
+        background-color: $communication-primary;
+    }
+
+    .test-instance-selected-hidden-button {
+        background-color: transparent;
+    }
+}

@@ -1,201 +1,107 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IconButton } from 'office-ui-fabric-react';
-import * as React from 'react';
-import { It, Mock, Times } from 'typemoq';
-
-import { VisualizationType } from '../../../../../common/types/visualization-type';
+import { VisualizationType } from 'common/types/visualization-type';
 import {
     AssessmentInstanceSelectedButton,
     AssessmentInstanceSelectedButtonProps,
-} from '../../../../../DetailsView/components/assessment-instance-selected-button';
+} from 'DetailsView/components/assessment-instance-selected-button';
+import { shallow } from 'enzyme';
+import * as React from 'react';
+import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
+import { IMock, It, Mock, Times } from 'typemoq';
 
 describe('AssessmentInstanceSelectedButton', () => {
-    test('constructor', () => {
-        const testObject = new AssessmentInstanceSelectedButton({} as AssessmentInstanceSelectedButtonProps);
-        expect(testObject).toBeInstanceOf(React.Component);
-    });
+    describe('render', () => {
+        const onSelectedStub = () => {};
 
-    test('render when element is selected and visible', () => {
-        const onSelectedStub = (selected, test, step, selector) => {};
-        const onButtonClickedStub = ev => {};
-
-        const props: AssessmentInstanceSelectedButtonProps = {
+        const baseProps: Partial<AssessmentInstanceSelectedButtonProps> = {
             test: VisualizationType.HeadingsAssessment,
             step: 'headingLevel',
             selector: 'selector',
-            isVisualizationEnabled: true,
-            isVisible: true,
             onSelected: onSelectedStub,
         };
-        const testSubject = new AssessmentInstanceSelectedButton(props);
-        (testSubject as any).onButtonClicked = onButtonClickedStub;
 
-        const expected = (
-            <IconButton
-                className={'instance-visibility-button'}
-                iconProps={{ className: 'test-instance-selected test-instance-selected-visible', iconName: 'view' }}
-                onClick={onButtonClickedStub}
-                disabled={false}
-                role="checkbox"
-                aria-checked={props.isVisualizationEnabled}
-                aria-label="Visualization"
-            />
-        );
+        it.each`
+            description                                          | isVisualizationEnabled | isVisible
+            ${'when element is selected and visible'}            | ${true}                | ${true}
+            ${'when element is selected but hidden'}             | ${true}                | ${false}
+            ${'when element is not selected and is visible'}     | ${false}               | ${true}
+            ${'when element is not selected and is not visible'} | ${false}               | ${false}
+        `('$description', ({ isVisualizationEnabled, isVisible }) => {
+            const props: AssessmentInstanceSelectedButtonProps = {
+                ...baseProps,
+                isVisualizationEnabled,
+                isVisible,
+            } as AssessmentInstanceSelectedButtonProps;
 
-        expect(testSubject.render()).toEqual(expected);
+            const wrapped = shallow(<AssessmentInstanceSelectedButton {...props} />);
+
+            expect(wrapped.getElement()).toMatchSnapshot();
+        });
     });
 
-    test('render when element is selected but hidden', () => {
-        const onSelectedStub = (selected, test, step, selector) => {};
-        const onButtonClickedStub = ev => {};
+    describe('user interaction', () => {
+        const eventStub = new EventStubFactory().createMouseClickEvent();
+        let baseProps: Partial<AssessmentInstanceSelectedButtonProps>;
 
-        const props: AssessmentInstanceSelectedButtonProps = {
-            test: VisualizationType.HeadingsAssessment,
-            step: 'headingLevel',
-            selector: 'selector',
-            isVisualizationEnabled: true,
-            isVisible: false,
-            onSelected: onSelectedStub,
-        };
-        const testSubject = new AssessmentInstanceSelectedButton(props);
-        (testSubject as any).onButtonClicked = onButtonClickedStub;
+        type OnSelected = AssessmentInstanceSelectedButtonProps['onSelected'];
 
-        const expected = (
-            <IconButton
-                className={'instance-visibility-button test-instance-selected-hidden-button'}
-                iconProps={{ className: 'test-instance-selected test-instance-selected-hidden', iconName: 'hide2' }}
-                onClick={onButtonClickedStub}
-                disabled={true}
-                role="checkbox"
-                aria-checked={props.isVisualizationEnabled}
-                aria-label="Visualization"
-            />
-        );
+        let onSelectedMock: IMock<OnSelected>;
 
-        expect(testSubject.render()).toEqual(expected);
-    });
+        beforeEach(() => {
+            onSelectedMock = Mock.ofType<OnSelected>();
 
-    test('render when element is not selected and is visible', () => {
-        const onSelectedStub = (selected, test, step, selector) => {};
-        const onButtonClickedStub = ev => {};
+            baseProps = {
+                test: VisualizationType.HeadingsAssessment,
+                step: 'headingLevel',
+                selector: 'selector',
+                onSelected: onSelectedMock.object,
+            };
+        });
 
-        const props: AssessmentInstanceSelectedButtonProps = {
-            test: VisualizationType.HeadingsAssessment,
-            step: 'headingLevel',
-            selector: 'selector',
-            isVisualizationEnabled: false,
-            isVisible: true,
-            onSelected: onSelectedStub,
-        };
-        const testSubject = new AssessmentInstanceSelectedButton(props);
-        (testSubject as any).onButtonClicked = onButtonClickedStub;
+        test('onButtonClicked: true', () => {
+            onSelectedMock.setup(s => s(It.isAny(), It.isAny(), It.isAny(), It.isAny())).verifiable(Times.once());
 
-        const expected = (
-            <IconButton
-                className={'instance-visibility-button'}
-                iconProps={{ className: '', iconName: 'checkBox' }}
-                onClick={onButtonClickedStub}
-                disabled={false}
-                role="checkbox"
-                aria-checked={props.isVisualizationEnabled}
-                aria-label="Visualization"
-            />
-        );
+            const props: AssessmentInstanceSelectedButtonProps = {
+                ...baseProps,
+                isVisualizationEnabled: true,
+                isVisible: true,
+            } as AssessmentInstanceSelectedButtonProps;
+            const testSubject = new AssessmentInstanceSelectedButton(props);
 
-        expect(testSubject.render()).toEqual(expected);
-    });
+            (testSubject as any).onButtonClicked(eventStub);
 
-    test('render when element is not selected and is not visible', () => {
-        const onSelectedStub = (selected, test, step, selector) => {};
-        const onButtonClickedStub = ev => {};
+            onSelectedMock.verifyAll();
+        });
 
-        const props: AssessmentInstanceSelectedButtonProps = {
-            test: VisualizationType.HeadingsAssessment,
-            step: 'headingLevel',
-            selector: 'selector',
-            isVisualizationEnabled: false,
-            isVisible: false,
-            onSelected: onSelectedStub,
-        };
-        const testSubject = new AssessmentInstanceSelectedButton(props);
-        (testSubject as any).onButtonClicked = onButtonClickedStub;
+        test('onButtonClicked: false', () => {
+            onSelectedMock.setup(s => s(It.isAny(), It.isAny(), It.isAny(), It.isAny())).verifiable(Times.once());
 
-        const expected = (
-            <IconButton
-                className={'instance-visibility-button test-instance-selected-hidden-button'}
-                iconProps={{ className: '', iconName: 'hide2' }}
-                onClick={onButtonClickedStub}
-                disabled={true}
-                role="checkbox"
-                aria-checked={props.isVisualizationEnabled}
-                aria-label="Visualization"
-            />
-        );
+            const props: AssessmentInstanceSelectedButtonProps = {
+                ...baseProps,
+                isVisualizationEnabled: false,
+                isVisible: true,
+            } as AssessmentInstanceSelectedButtonProps;
+            const testSubject = new AssessmentInstanceSelectedButton(props);
 
-        expect(testSubject.render()).toEqual(expected);
-    });
+            (testSubject as any).onButtonClicked(eventStub);
 
-    test('onButtonClicked: true', () => {
-        const eventStub = {} as any;
-        const onSelectedMock = Mock.ofInstance((selected, test, step, selector) => {});
+            onSelectedMock.verifyAll();
+        });
 
-        onSelectedMock.setup(s => s(It.isAny(), It.isAny(), It.isAny(), It.isAny())).verifiable(Times.once());
+        test('onButtonClicked: invisible', () => {
+            onSelectedMock.setup(s => s(It.isAny(), It.isAny(), It.isAny(), It.isAny())).verifiable(Times.never());
 
-        const props: AssessmentInstanceSelectedButtonProps = {
-            test: VisualizationType.HeadingsAssessment,
-            step: 'headingLevel',
-            selector: 'selector',
-            isVisualizationEnabled: true,
-            isVisible: true,
-            onSelected: onSelectedMock.object,
-        };
-        const testSubject = new AssessmentInstanceSelectedButton(props);
+            const props: AssessmentInstanceSelectedButtonProps = {
+                ...baseProps,
+                isVisualizationEnabled: true,
+                isVisible: false,
+            } as AssessmentInstanceSelectedButtonProps;
+            const testSubject = new AssessmentInstanceSelectedButton(props);
 
-        (testSubject as any).onButtonClicked(eventStub);
+            (testSubject as any).onButtonClicked(eventStub);
 
-        onSelectedMock.verifyAll();
-    });
-
-    test('onButtonClicked: false', () => {
-        const eventStub = {} as any;
-        const onSelectedMock = Mock.ofInstance((selected, test, step, selector) => {});
-
-        onSelectedMock.setup(s => s(It.isAny(), It.isAny(), It.isAny(), It.isAny())).verifiable(Times.once());
-
-        const props: AssessmentInstanceSelectedButtonProps = {
-            test: VisualizationType.HeadingsAssessment,
-            step: 'headingLevel',
-            selector: 'selector',
-            isVisualizationEnabled: false,
-            isVisible: true,
-            onSelected: onSelectedMock.object,
-        };
-        const testSubject = new AssessmentInstanceSelectedButton(props);
-
-        (testSubject as any).onButtonClicked(eventStub);
-
-        onSelectedMock.verifyAll();
-    });
-
-    test('onButtonClicked: invisible', () => {
-        const eventStub = {} as any;
-        const onSelectedMock = Mock.ofInstance((selected, test, step, selector) => {});
-
-        onSelectedMock.setup(s => s(It.isAny(), It.isAny(), It.isAny(), It.isAny())).verifiable(Times.never());
-
-        const props: AssessmentInstanceSelectedButtonProps = {
-            test: VisualizationType.HeadingsAssessment,
-            step: 'headingLevel',
-            selector: 'selector',
-            isVisualizationEnabled: true,
-            isVisible: false,
-            onSelected: onSelectedMock.object,
-        };
-        const testSubject = new AssessmentInstanceSelectedButton(props);
-
-        (testSubject as any).onButtonClicked(eventStub);
-
-        onSelectedMock.verifyAll();
+            onSelectedMock.verifyAll();
+        });
     });
 });
