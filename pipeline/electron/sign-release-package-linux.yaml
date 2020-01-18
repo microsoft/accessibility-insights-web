@@ -8,7 +8,7 @@ parameters:
 jobs:
     - job: $(signedArtifactName)
       pool:
-          vmImage: ubuntu-latest
+          vmImage: 'ubuntu-16.04'
       steps:
           - template: ../install-node-prerequisites.yaml
 
