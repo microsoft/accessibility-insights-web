@@ -1,0 +1,22 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+parameters:
+    packedOutputPath: null
+    artifactName: null
+
+steps:
+    - task: CopyFiles@2
+      displayName: 'copy package files to upload'
+      inputs:
+          SourceFolder: $(packedOutputPath)
+          Contents: |
+              latest*.yml
+              Accessibility Insights for Android*.*
+          TargetFolder: '$(System.ArtifactStagingDirectory)/$(artifactName)'
+          CleanTargetFolder: true
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+          pathtoPublish: '$(System.ArtifactStagingDirectory)/$(artifactName)'
+          artifactName: $(artifactName)
+      displayName: publish artifact $(artifactName)
