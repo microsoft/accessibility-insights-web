@@ -1,0 +1,25 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+parameters:
+    unsignedPipelineResource: null
+    unsignedArtifactName: null
+    signedArtifactName: null
+
+jobs:
+    - template: sign-release-package.yaml
+      parameters:
+          unsignedPipelineResource: $(unsignedPipelineResource)
+          unsignedArtifactName: $(unsignedArtifactName)
+          signedArtifactName: $(signedArtifactName)
+          vmImage: macOS-10.14
+          filePattern: '*.dmg, *.zip'
+          inlineSignParams: |
+              [
+                  {
+                      "keyCode": "CP-401337-Apple",
+                      "operationSetCode": "MacAppDeveloperSign",
+                      "parameters": [],
+                      "toolName": "sign",
+                      "toolVersion": "1.0"
+                  }
+              ]
