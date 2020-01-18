@@ -1,0 +1,41 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+
+# The TARGET_SPECIFIC placeholders in this template are filled in from targets.config.js during
+# "yarn build:electron:all" by the grunt configure-electron-builder task
+
+appId: TARGET_SPECIFIC
+
+directories:
+    app: TARGET_SPECIFIC
+    output: TARGET_SPECIFIC
+    buildResources: src/electron/resources
+
+extraMetadata:
+    main: product/bundle/main.bundle.js
+    name: TARGET_SPECIFIC
+    version: TARGET_SPECIFIC
+
+linux:
+    artifactName: ${productName}.${ext}
+    target: AppImage
+
+mac:
+    artifactName: ${productName}.${ext}
+    icon: TARGET_SPECIFIC
+    target: dmg # can be changed to a zip, app or something else. ref: https://www.electron.build/configuration/mac
+    identity: null
+
+win:
+    artifactName: ${productName} setup.${ext}
+    icon: TARGET_SPECIFIC
+    publisherName: 'Microsoft Corporation'
+    target: nsis
+
+nsis:
+    oneClick: true
+    perMachine: false
+    deleteAppDataOnUninstall: true
+
+publish:
+    provider: generic

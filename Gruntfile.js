@@ -4,6 +4,7 @@ const sass = require('node-sass');
 const path = require('path');
 const targets = require('./targets.config');
 const merge = require('lodash/merge');
+const yaml = require('js-yaml');
 
 module.exports = function(grunt) {
     const extensionPath = 'extension';
@@ -188,6 +189,37 @@ module.exports = function(grunt) {
 
     const targetNames = Object.keys(targets);
     const releaseTargets = Object.keys(targets).filter(t => targets[t].release);
+    const extensionReleaseTargets = releaseTargets.filter(t => targets[t].config.options.productCategory === 'extension');
+    const unifiedReleaseTargets = releaseTargets.filter(t => targets[t].config.options.productCategory === 'electron');
+
+    unifiedReleaseTargets.forEach(targetName => {
+        const { config, appId, publishUrl } = targets[targetName];
+        const { icon512, fullName, productCategory } = config.options;
+        const dropPath = `drop/${productCategory}/${targetName}`;
+
+        grunt.config.merge({
+            'configure-electron-builder': {
+                [targetName]: {
+                    dropPath,
+                    icon512: `src/${icon512}`,
+                    fullName,
+                    appId,
+                    publishUrl,
+                },
+            },
+            'electron-builder-pack': {
+                [targetName]: {
+                    dropPath: dropPath,
+                },
+            },
+            'unified-release-drop': {
+                [targetName]: {
+                    // empty on purpose
+                },
+            },
+        });
+    });
+
     targetNames.forEach(targetName => {
         const { config, bundleFolder } = targets[targetName];
 
@@ -295,6 +327,14 @@ module.exports = function(grunt) {
 
     grunt.registerMultiTask('configure', function() {
         const { config, configJSONPath, configJSPath } = this.data;
+
+        // We pass this as an option from a build variable not because it is a secret
+        // (it can be found easily enough from released builds), but to make it harder
+        // to accidentally pollute release telemetry with data from local builds.
+        if (grunt.option('app-insights-instrumentation-key')) {
+            config.options.appInsightsInstrumentationKey = grunt.option('app-insights-instrumentation-key');
+        }
+
         const configJSON = JSON.stringify(config, undefined, 4);
         grunt.file.write(configJSONPath, configJSON);
         const copyrightHeader = '// Copyright (c) Microsoft Corporation. All rights reserved.\n// Licensed under the MIT License.\n';
@@ -344,6 +384,61 @@ module.exports = function(grunt) {
         console.log(`${targetName} extension is in ${dropExtensionPath}`);
     });
 
+    grunt.registerMultiTask('configure-electron-builder', function() {
+        grunt.task.requires('drop:' + this.target);
+        const { dropPath, icon512, fullName, appId, publishUrl } = this.data;
+
+        const outElectronBuilderConfigFile = path.join(dropPath, 'electron-builder.yml');
+        const srcElectronBuilderConfigFile = path.join('src', 'electron', 'electron-builder', `electron-builder.template.yaml`);
+
+        const version = grunt.option('unified-version') || '0.0.0';
+
+        const config = grunt.file.readYAML(srcElectronBuilderConfigFile);
+        config.appId = appId;
+        config.directories.app = dropPath;
+        config.directories.output = `${dropPath}/packed`;
+        config.extraMetadata.version = version;
+        config.publish.url = publishUrl;
+        config.productName = fullName;
+        config.extraMetadata.name = fullName;
+        config.win.icon = icon512;
+        config.mac.icon = icon512;
+
+        const configFileContent = yaml.safeDump(config);
+        grunt.file.write(outElectronBuilderConfigFile, configFileContent);
+        grunt.log.writeln(`generated ${outElectronBuilderConfigFile} from target config`);
+    });
+
+    grunt.registerMultiTask('electron-builder-pack', function() {
+        grunt.task.requires('drop:' + this.target);
+        grunt.task.requires('configure-electron-builder:' + this.target);
+
+        const { dropPath } = this.data;
+        const configFile = path.join(dropPath, 'electron-builder.yml');
+
+        const taskDoneCallback = this.async();
+
+        grunt.util.spawn(
+            {
+                cmd: 'node',
+                args: ['node_modules/electron-builder/out/cli/cli.js', '-p', 'never', '-c', configFile],
+            },
+            (error, result, code) => {
+                if (error) {
+                    grunt.fail.fatal(`electron-builder exited with error code ${code}:\n\n${result.stdout}`, code);
+                }
+
+                taskDoneCallback();
+            },
+        );
+    });
+
+    grunt.registerMultiTask('unified-release-drop', function() {
+        grunt.task.run(`drop:${this.target}`);
+        grunt.task.run(`configure-electron-builder:${this.target}`);
+        grunt.task.run(`electron-builder-pack:${this.target}`);
+    });
+
     grunt.registerTask('package-report', function() {
         const mustExistPath = path.join(packageReportBundlePath, 'report.bundle.js');
 
@@ -355,9 +450,15 @@ module.exports = function(grunt) {
         console.log(`package is in ${packageReportDropPath}`);
     });
 
-    grunt.registerTask('release-drops', function() {
-        releaseTargets.forEach(targetName => {
+    grunt.registerTask('extension-release-drops', function() {
+        extensionReleaseTargets.forEach(targetName => {
             grunt.task.run('drop:' + targetName);
+        });
+    });
+
+    grunt.registerTask('unified-release-drops', function() {
+        unifiedReleaseTargets.forEach(targetName => {
+            grunt.task.run('unified-release-drop:' + targetName);
         });
     });
 
@@ -385,8 +486,7 @@ module.exports = function(grunt) {
         'exec:webpack-electron',
         'build-assets',
         'drop:electron',
-        'drop:electronInsider',
-        'drop:electronProduction',
+        'unified-release-drops',
     ]);
     grunt.registerTask('build-package-report', [
         'clean:intermediates',
@@ -403,7 +503,7 @@ module.exports = function(grunt) {
         'build-assets',
         'drop:dev',
         'drop:electron',
-        'release-drops',
+        'extension-release-drops',
     ]);
 
     grunt.registerTask('default', ['build-dev']);
