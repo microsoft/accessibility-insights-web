@@ -100,7 +100,7 @@
         "jest-circus": "^24.9.0",
         "jest-junit": "^10.0.0",
         "js-yaml": "^3.13.1",
-        "license-check-and-add": "^3.0.3",
+        "license-check-and-add": "^3.0.4",
         "make-dir": "^3.0.0",
         "mini-css-extract-plugin": "0.9.0",
         "node-sass": "^4.13.1",
