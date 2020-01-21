@@ -18,38 +18,47 @@ export interface FixInstructionPanelProps {
     renderTitleElement: (titleText: string) => JSX.Element;
 }
 
-export const FixInstructionPanel = NamedFC<FixInstructionPanelProps>('FixInstructionPanel', props => {
-    const { fixInstructionProcessor } = props.deps;
+export const FixInstructionPanel = NamedFC<FixInstructionPanelProps>(
+    'FixInstructionPanel',
+    props => {
+        const { fixInstructionProcessor } = props.deps;
 
-    const getPanelTitle = (checkType: CheckType, checkCount: number): string => {
-        if (checkCount === 1) {
-            return 'Fix the following:';
+        const getPanelTitle = (checkType: CheckType, checkCount: number): string => {
+            if (checkCount === 1) {
+                return 'Fix the following:';
+            }
+            if (checkType === CheckType.Any) {
+                return 'Fix ONE of the following:';
+            } else {
+                return 'Fix ALL of the following:';
+            }
+        };
+
+        const renderInstructions = (checkType: CheckType): JSX.Element[] => {
+            const instructionList = props.checks.map((check, checkIndex) => {
+                return (
+                    <li key={`instruction-${CheckType[checkType]}-${checkIndex + 1}`}>
+                        {fixInstructionProcessor.process(check.message)}
+                    </li>
+                );
+            });
+
+            return instructionList;
+        };
+
+        if (props.checks.length === 0) {
+            return null;
         }
-        if (checkType === CheckType.Any) {
-            return 'Fix ONE of the following:';
-        } else {
-            return 'Fix ALL of the following:';
-        }
-    };
 
-    const renderInstructions = (checkType: CheckType): JSX.Element[] => {
-        const instructionList = props.checks.map((check, checkIndex) => {
-            return <li key={`instruction-${CheckType[checkType]}-${checkIndex + 1}`}>{fixInstructionProcessor.process(check.message)}</li>;
-        });
+        const title: string = getPanelTitle(props.checkType, props.checks.length);
 
-        return instructionList;
-    };
-
-    if (props.checks.length === 0) {
-        return null;
-    }
-
-    const title: string = getPanelTitle(props.checkType, props.checks.length);
-
-    return (
-        <div>
-            {props.renderTitleElement(title)}
-            <ul className={styles.insightsFixInstructionList}>{renderInstructions(props.checkType)}</ul>
-        </div>
-    );
-});
+        return (
+            <div>
+                {props.renderTitleElement(title)}
+                <ul className={styles.insightsFixInstructionList}>
+                    {renderInstructions(props.checkType)}
+                </ul>
+            </div>
+        );
+    },
+);
