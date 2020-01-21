@@ -20,6 +20,9 @@ steps:
 
     - script: yarn build:electron:all --unified-version=$(Build.BuildNumber) --app-insights-instrumentation-key=$(AppInsightsInstrumentationKey)
       displayName: yarn build:electron:all
+      env:
+          ELECTRON_MIRROR: $(ELECTRON_MIRROR_VAR)
+          ELECTRON_CUSTOM_DIR: $(ELECTRON_CUSTOM_DIR_VAR)
 
     - template: publish-packed-build-output.yaml
       parameters:
