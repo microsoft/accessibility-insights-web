@@ -40,5 +40,5 @@ steps:
           packedOutputPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-production/packed'
           artifactName: unified-$(platform)-production-unsigned
 
-    - template: electron-e2e-test-interactive.yaml
-    - template: electron-e2e-publish-results.yaml
+    - template: ../electron/electron-e2e-test-interactive.yaml
+    - template: ../electron/electron-e2e-publish-results.yaml
