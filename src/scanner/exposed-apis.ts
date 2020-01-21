@@ -36,6 +36,7 @@ export let scan = (
         documentUtils,
         messageDecorator,
         (ruleId, axeHelpUrl) => helpUrlGetter.getHelpUrl(ruleId, axeHelpUrl),
+        ruleToLinkConfiguration,
     );
     const launcher = new Launcher(axe, scanParameterGenerator, document, options);
     const axeResponseHandler = new AxeResponseHandler(
@@ -43,8 +44,6 @@ export let scan = (
         errorCallback,
         resultDecorator,
     );
-
-    resultDecorator.setRuleToLinksConfiguration(ruleToLinkConfiguration);
     launcher.runScan(axeResponseHandler);
 };
 
