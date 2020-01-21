@@ -9433,10 +9433,10 @@ type-is@~1.6.17, type-is@~1.6.18:
     media-typer "0.3.0"
     mime-types "~2.1.24"
 
-typed-scss-modules@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/typed-scss-modules/-/typed-scss-modules-1.0.1.tgz#1e465d20f83882b05e41f7aa53aa30791f61c9c8"
-  integrity sha512-ORa6Bl94S44CBvr1k5r3jnnODKVJSujt5JoQ6b7/nNFL/iCULmQ9D5LTULdJJEqXfoUl88m9DGkeh3aM4tPMBQ==
+typed-scss-modules@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/typed-scss-modules/-/typed-scss-modules-1.1.0.tgz#989683d17b1bbe59728ed8e1851b8f4d3e41b492"
+  integrity sha512-ZoB437O7zCrJ+SbAoqZ5jwqSqodGEc+GpT7G/ljcyBcC/82BSGZl9N2S1cXEsJS5uSvBU2Ph0CVkSOYYWgI/hQ==
   dependencies:
     camelcase "^5.0.0"
     chalk "^3.0.0"
