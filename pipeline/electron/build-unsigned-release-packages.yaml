@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 
 # Note: this will become the version of the released packages!
-name: $(Year:yyyy).$(Month)$(Day:dd).$(Rev:r)
+name: $(Year:yyyy).$(Month)$(DayOfMonth:dd).$(Rev:r)
 
 variables:
     windowsVmImage: 'windows-latest'
