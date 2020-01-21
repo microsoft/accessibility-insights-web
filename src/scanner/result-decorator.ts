@@ -13,7 +13,7 @@ export class ResultDecorator {
     constructor(
         private readonly documentUtils: DocumentUtils,
         private readonly messageDecorator: MessageDecorator,
-        private getHelpUrl: (ruleId: string, axeHelpUrl: string) => string,
+        private readonly getHelpUrl: (ruleId: string, axeHelpUrl: string) => string,
         private readonly ruleToLinkConfiguration: DictionaryStringTo<HyperlinkDefinition[]>,
     ) {}
 
