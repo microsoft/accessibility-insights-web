@@ -6,6 +6,7 @@ import {
     AssessmentInstanceSelectedButtonProps,
 } from 'DetailsView/components/assessment-instance-selected-button';
 import { shallow } from 'enzyme';
+import { IconButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, It, Mock, Times } from 'typemoq';
@@ -59,47 +60,40 @@ describe('AssessmentInstanceSelectedButton', () => {
             };
         });
 
-        test('onButtonClicked: true', () => {
-            onSelectedMock.setup(s => s(It.isAny(), It.isAny(), It.isAny(), It.isAny())).verifiable(Times.once());
-
+        it.each([true, false])('onButtonClicked: with visualization enabled = %s', isVisualizationEnabled => {
             const props: AssessmentInstanceSelectedButtonProps = {
                 ...baseProps,
-                isVisualizationEnabled: true,
+                isVisualizationEnabled,
                 isVisible: true,
             } as AssessmentInstanceSelectedButtonProps;
-            const testSubject = new AssessmentInstanceSelectedButton(props);
 
-            (testSubject as any).onButtonClicked(eventStub);
+            onSelectedMock
+                .setup(handler => handler(!isVisualizationEnabled, baseProps.test, baseProps.step, baseProps.selector))
+                .verifiable(Times.once());
+
+            const wrapped = shallow(<AssessmentInstanceSelectedButton {...props} />);
+
+            const iconButton = wrapped.find(IconButton);
+
+            iconButton.simulate('click', eventStub);
 
             onSelectedMock.verifyAll();
         });
 
-        test('onButtonClicked: false', () => {
-            onSelectedMock.setup(s => s(It.isAny(), It.isAny(), It.isAny(), It.isAny())).verifiable(Times.once());
-
-            const props: AssessmentInstanceSelectedButtonProps = {
-                ...baseProps,
-                isVisualizationEnabled: false,
-                isVisible: true,
-            } as AssessmentInstanceSelectedButtonProps;
-            const testSubject = new AssessmentInstanceSelectedButton(props);
-
-            (testSubject as any).onButtonClicked(eventStub);
-
-            onSelectedMock.verifyAll();
-        });
-
-        test('onButtonClicked: invisible', () => {
-            onSelectedMock.setup(s => s(It.isAny(), It.isAny(), It.isAny(), It.isAny())).verifiable(Times.never());
-
+        test('onButtonClicked: isVisible = false', () => {
             const props: AssessmentInstanceSelectedButtonProps = {
                 ...baseProps,
                 isVisualizationEnabled: true,
                 isVisible: false,
             } as AssessmentInstanceSelectedButtonProps;
-            const testSubject = new AssessmentInstanceSelectedButton(props);
 
-            (testSubject as any).onButtonClicked(eventStub);
+            onSelectedMock.setup(handler => handler(It.isAny(), It.isAny(), It.isAny(), It.isAny())).verifiable(Times.never());
+
+            const wrapped = shallow(<AssessmentInstanceSelectedButton {...props} />);
+
+            const iconButton = wrapped.find(IconButton);
+
+            iconButton.simulate('click', eventStub);
 
             onSelectedMock.verifyAll();
         });
