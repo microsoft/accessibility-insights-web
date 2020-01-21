@@ -6,7 +6,6 @@ import { Interpreter } from 'background/interpreter';
 import { TabContext } from 'background/tab-context';
 import { TabContextFactory } from 'background/tab-context-factory';
 import { TargetPageController } from 'background/target-page-controller';
-import { TriggeredByNotApplicable } from 'common/extension-telemetry-events';
 import { Logger } from 'common/logging/logger';
 import { Messages } from 'common/messages';
 import { isFunction, values } from 'lodash';
@@ -143,7 +142,7 @@ describe('TargetPageController', () => {
 
                 const expectedMessage = {
                     messageType: Messages.Tab.ExistingTabUpdated,
-                    payload: { ...EXISTING_ACTIVE_TAB, telemetry: undefined },
+                    payload: { ...EXISTING_ACTIVE_TAB },
                     tabId: EXISTING_ACTIVE_TAB_ID,
                 };
                 mockTabInterpreters[EXISTING_ACTIVE_TAB_ID].verify(i => i.interpret(expectedMessage), Times.once());
@@ -317,10 +316,6 @@ describe('TargetPageController', () => {
                     payload: {
                         ...EXISTING_ACTIVE_TAB,
                         url: changeInfoWithUrl.url,
-                        telemetry: {
-                            source: null,
-                            triggeredBy: TriggeredByNotApplicable,
-                        },
                     },
                     tabId: EXISTING_ACTIVE_TAB_ID,
                 };
