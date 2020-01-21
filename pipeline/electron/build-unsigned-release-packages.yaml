@@ -2,6 +2,7 @@
 # Licensed under the MIT License.
 
 # Note: this will become the version of the released packages!
+# must be parseable by node-semver, so month leading zero is omitted
 name: $(Year:yyyy).$(Date:Mdd).$(Rev:r)
 
 strategy:
