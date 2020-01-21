@@ -17,7 +17,7 @@ pool:
 steps:
     - template: ../install-node-prerequisites.yaml
 
-    - template: ../download-electron-mirror.yaml
+    - template: ../electron/download-electron-mirror.yaml
 
     - script: yarn build:electron:all --unified-version=$(Build.BuildNumber) --app-insights-instrumentation-key=$(AppInsightsInstrumentationKey)
       displayName: yarn build:electron:all
