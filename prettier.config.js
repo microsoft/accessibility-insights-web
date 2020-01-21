@@ -15,6 +15,7 @@ module.exports = {
                 'src/common/action/**/*',
                 'src/common/assessment/**/*',
                 'src/common/browser-adapters/**/*',
+                'src/common/components/cards/**/*',
                 'src/common/configs/**/*',
                 'src/common/configuration/**/*',
                 'src/common/constants/**/*',

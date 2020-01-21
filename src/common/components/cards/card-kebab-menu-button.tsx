@@ -12,7 +12,10 @@ import { IssueFilingService } from '../../../issue-filing/types/issue-filing-ser
 import { NavigatorUtils } from '../../navigator-utils';
 import { CreateIssueDetailsTextData } from '../../types/create-issue-details-text-data';
 import { IssueFilingNeedsSettingsContentProps } from '../../types/issue-filing-needs-setting-content';
-import { IssueFilingServiceProperties, UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
+import {
+    IssueFilingServiceProperties,
+    UserConfigurationStoreData,
+} from '../../types/store-data/user-configuration-store';
 import { IssueFilingButtonDeps } from '../issue-filing-button';
 import { Toast, ToastDeps } from '../toast';
 import { CardInteractionSupport } from './card-interaction-support';
@@ -37,7 +40,10 @@ export interface CardKebabMenuButtonProps {
     kebabMenuAriaLabel?: string;
 }
 
-export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProps, CardKebabMenuButtonState> {
+export class CardKebabMenuButton extends React.Component<
+    CardKebabMenuButtonProps,
+    CardKebabMenuButtonState
+> {
     private toastRef: React.RefObject<Toast>;
     constructor(props: CardKebabMenuButtonProps) {
         super(props);
@@ -125,14 +131,22 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
         const { issueDetailsData, userConfigurationStoreData, deps } = this.props;
         const { issueFilingServiceProvider, issueFilingActionMessageCreator } = deps;
 
-        const selectedBugFilingService = issueFilingServiceProvider.forKey(userConfigurationStoreData.bugService);
+        const selectedBugFilingService = issueFilingServiceProvider.forKey(
+            userConfigurationStoreData.bugService,
+        );
         const selectedBugFilingServiceData = selectedBugFilingService.getSettingsFromStoreData(
             userConfigurationStoreData.bugServicePropertiesMap,
         );
-        const isSettingValid = selectedBugFilingService.isSettingsValid(selectedBugFilingServiceData);
+        const isSettingValid = selectedBugFilingService.isSettingsValid(
+            selectedBugFilingServiceData,
+        );
 
         if (isSettingValid) {
-            issueFilingActionMessageCreator.fileIssue(event, userConfigurationStoreData.bugService, issueDetailsData);
+            issueFilingActionMessageCreator.fileIssue(
+                event,
+                userConfigurationStoreData.bugService,
+                issueDetailsData,
+            );
             this.closeNeedsSettingsContent();
         } else {
             this.openNeedsSettingsContent();
@@ -140,7 +154,9 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
     };
 
     private copyFailureDetails = async (event: React.MouseEvent<any>): Promise<void> => {
-        const text = this.props.deps.issueDetailsTextGenerator.buildText(this.props.issueDetailsData);
+        const text = this.props.deps.issueDetailsTextGenerator.buildText(
+            this.props.issueDetailsData,
+        );
         this.props.deps.detailsViewActionMessageCreator.copyIssueDetailsClicked(event);
 
         try {
@@ -160,7 +176,9 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
             return null;
         }
 
-        const selectedIssueFilingService: IssueFilingService = issueFilingServiceProvider.forKey(userConfigurationStoreData.bugService);
+        const selectedIssueFilingService: IssueFilingService = issueFilingServiceProvider.forKey(
+            userConfigurationStoreData.bugService,
+        );
         const selectedIssueFilingServiceData: IssueFilingServiceProperties = selectedIssueFilingService.getSettingsFromStoreData(
             userConfigurationStoreData.bugServicePropertiesMap,
         );

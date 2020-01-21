@@ -50,16 +50,25 @@ const CollapsibleComponentCards = NamedFC<CollapsibleComponentCardsProps>(
         const showContent = isExpanded || false;
 
         if (showContent) {
-            contentWrapper = <div className={css(contentClassName, styles.collapsibleContainerContent)}>{content}</div>;
+            contentWrapper = (
+                <div className={css(contentClassName, styles.collapsibleContainerContent)}>
+                    {content}
+                </div>
+            );
             collapsedCSSClassName = null;
         }
 
-        const onClick = (event: React.MouseEvent<HTMLDivElement>) => deps.cardSelectionMessageCreator.toggleRuleExpandCollapse(id, event);
+        const onClick = (event: React.MouseEvent<HTMLDivElement>) =>
+            deps.cardSelectionMessageCreator.toggleRuleExpandCollapse(id, event);
 
         return (
             <div
                 data-automation-id={containerAutomationId}
-                className={css(containerClassName, styles.collapsibleContainer, collapsedCSSClassName)}
+                className={css(
+                    containerClassName,
+                    styles.collapsibleContainer,
+                    collapsedCSSClassName,
+                )}
             >
                 <div {...containerProps}>
                     <ActionButton
@@ -78,6 +87,6 @@ const CollapsibleComponentCards = NamedFC<CollapsibleComponentCardsProps>(
     },
 );
 
-export const CardsCollapsibleControl = (collapsibleControlProps: CollapsibleComponentCardsProps) => (
-    <CollapsibleComponentCards {...collapsibleControlProps} />
-);
+export const CardsCollapsibleControl = (
+    collapsibleControlProps: CollapsibleComponentCardsProps,
+) => <CollapsibleComponentCards {...collapsibleControlProps} />;

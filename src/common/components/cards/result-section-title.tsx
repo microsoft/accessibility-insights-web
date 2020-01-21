@@ -25,7 +25,8 @@ export const ResultSectionTitle = NamedFC<ResultSectionTitleProps>('ResultSectio
     return (
         <span className={styles.resultSectionTitle}>
             <span className="screen-reader-only">
-                {props.title} {props.shouldAlertFailuresCount ? alertingFailuresCount : props.badgeCount}
+                {props.title}{' '}
+                {props.shouldAlertFailuresCount ? alertingFailuresCount : props.badgeCount}
             </span>
             <span className={styles.title} aria-hidden="true">
                 {props.title}
