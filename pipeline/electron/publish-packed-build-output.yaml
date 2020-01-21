@@ -8,15 +8,15 @@ steps:
     - task: CopyFiles@2
       displayName: 'copy package files to upload'
       inputs:
-          SourceFolder: $(packedOutputPath)
+          SourceFolder: ${{ parameters.packedOutputPath }}
           Contents: |
               latest*.yml
               Accessibility Insights for Android*.*
-          TargetFolder: '$(System.ArtifactStagingDirectory)/$(artifactName)'
+          TargetFolder: '$(System.ArtifactStagingDirectory)/${{ parameters.artifactName }}'
           CleanTargetFolder: true
 
     - task: PublishBuildArtifacts@1
       inputs:
-          pathtoPublish: '$(System.ArtifactStagingDirectory)/$(artifactName)'
-          artifactName: $(artifactName)
-      displayName: publish artifact $(artifactName)
+          pathtoPublish: '$(System.ArtifactStagingDirectory)/${{ parameters.artifactName }}'
+          artifactName: ${{ parameters.artifactName }}
+      displayName: publish artifact ${{ parameters.artifactName }}
