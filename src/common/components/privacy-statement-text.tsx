@@ -18,7 +18,6 @@ export const PrivacyStatementText = NamedFC<PrivacyStatementTextProps>(
         <>
             Read our{' '}
             <props.deps.LinkComponent href="http://go.microsoft.com/fwlink/?LinkId=521839">
-                {' '}
                 privacy statement
             </props.deps.LinkComponent>{' '}
             to learn more.
