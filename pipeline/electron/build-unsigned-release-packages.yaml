@@ -5,16 +5,13 @@
 name: $(Year:yyyy).$(Date:MMdd).$(Rev:r)
 
 variables:
-    windowsVmImage: 'windows-latest'
-    macVmImage: 'macOS-10.14'
-    linuxVmImage: 'ubuntu-16.04'
     AppInsightsInstrumentationKey: 'SET_THIS_IN_AZURE_DEVOPS'
 
 strategy:
     matrix:
-        windows: { vmImage: $(windowsVmImage), platform: 'windows' }
-        mac: { vmImage: $(macVmImage), platform: 'mac' }
-        linux: { vmImage: $(linuxVmImage), platform: 'linux' }
+        windows: { vmImage: 'windows-latest'), platform: 'windows' }
+        mac: { vmImage: 'macOS-10.14', platform: 'mac' }
+        linux: { vmImage: 'ubuntu-16.04', platform: 'linux' }
 
 pool:
     vmImage: $(vmImage)
