@@ -102,6 +102,7 @@ module.exports = function(grunt) {
             version = versionFromDate();
         }
         manifest.version = version;
+        grunt.log.writeln(`publishing ai-web version ${version}`);
         grunt.file.write(manifestPath, JSON.stringify(manifest, undefined, 4));
     });
     grunt.registerTask('zip', ['update-config', 'update-manifest', 'compress:extension']);
