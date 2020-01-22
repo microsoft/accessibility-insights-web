@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-const path = require('path');
 const YAML = require('js-yaml');
 
 module.exports = function(grunt) {
