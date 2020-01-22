@@ -55,7 +55,7 @@
     },
     "devDependencies": {
         "@types/applicationinsights-js": "^1.0.7",
-        "@types/chrome": "0.0.91",
+        "@types/chrome": "0.0.92",
         "@types/enzyme": "^3.10.4",
         "@types/enzyme-adapter-react-16": "^1.0.5",
         "@types/jest": "^24.9.0",
