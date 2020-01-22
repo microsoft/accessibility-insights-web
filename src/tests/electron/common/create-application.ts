@@ -13,7 +13,7 @@ export async function createApplication(): Promise<AppController> {
     const app = new Application({
         path: fs.existsSync(electronLocal) ? electronLocal : (Electron as any),
         args: [electronPath, '--no-sandbox'],
-        chromeDriverLogPath: `${(global as any).rootDir}/test-results/`,
+        chromeDriverLogPath: `${(global as any).rootDir}/test-results/e2e/`,
     });
 
     await app.start();
