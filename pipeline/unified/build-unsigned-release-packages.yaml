@@ -19,12 +19,7 @@ steps:
 
     - template: ../electron/download-electron-mirror.yaml
 
-    # e2e tests require different job for linux
     - template: ../electron/electron-e2e-test-interactive.yaml
-      condition: and(succeeded(), ne(variables.platform, 'linux'))
-
-    - template: ../electron/electron-e2e-test-linux.yaml
-      condition: and(succeeded(), eq(variables.platform, 'linux'))
 
     - template: ../electron/electron-e2e-publish-results.yaml
 
