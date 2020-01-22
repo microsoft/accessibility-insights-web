@@ -9569,10 +9569,10 @@ unset-value@^1.0.0:
     has-value "^0.3.1"
     isobject "^3.0.0"
 
-unzipper@^0.10.5:
-  version "0.10.5"
-  resolved "https://registry.yarnpkg.com/unzipper/-/unzipper-0.10.5.tgz#4d189ae6f8af634b26efe1a1817c399e0dd4a1a0"
-  integrity sha512-i5ufkXNjWZYxU/0nKKf6LkvW8kn9YzRvfwuPWjXP+JTFce/8bqeR0gEfbiN2IDdJa6ZU6/2IzFRLK0z1v0uptw==
+unzipper@^0.10.7:
+  version "0.10.7"
+  resolved "https://registry.yarnpkg.com/unzipper/-/unzipper-0.10.7.tgz#ed5d72d12337f66f790d42fef47eb9f9de0a0906"
+  integrity sha512-0ltrg7/F12h3KqY1zBfZB6bVnPTVlzhdK1iu2xCaGxGMF/Es9ETMAS0M89CnCB4hemPb/AoTWtj+62l7XFZKqQ==
   dependencies:
     big-integer "^1.6.17"
     binary "~0.3.0"

@@ -146,7 +146,7 @@
         "react-helmet": "^5.2.0",
         "react-router-dom": "^5.1.2",
         "ua-parser-js": "^0.7.21",
-        "unzipper": "^0.10.5",
+        "unzipper": "^0.10.7",
         "uuid": "^3.4.0",
         "webextension-polyfill-ts": "^0.11.0"
     }
