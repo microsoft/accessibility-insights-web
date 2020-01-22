@@ -27,7 +27,9 @@ export class ThemeInner extends React.Component<ThemeInnerProps> {
         if (enableHighContrastCurr === enableHighContrastPrev) {
             return;
         }
-        this.props.deps.loadTheme(enableHighContrastCurr ? HighContrastThemePalette : DefaultThemePalette);
+        this.props.deps.loadTheme(
+            enableHighContrastCurr ? HighContrastThemePalette : DefaultThemePalette,
+        );
     }
 
     public render(): JSX.Element {
@@ -45,7 +47,10 @@ export class ThemeInner extends React.Component<ThemeInnerProps> {
         const { storeState } = props;
         const { userConfigurationStoreData } = storeState;
 
-        const enableHighContrastFlag = storeState && userConfigurationStoreData && userConfigurationStoreData.enableHighContrast;
+        const enableHighContrastFlag =
+            storeState &&
+            userConfigurationStoreData &&
+            userConfigurationStoreData.enableHighContrast;
 
         return enableHighContrastFlag;
     }
