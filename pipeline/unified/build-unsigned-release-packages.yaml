@@ -19,6 +19,9 @@ steps:
 
     - template: ../electron/download-electron-mirror.yaml
 
+    - template: ../electron/electron-e2e-test-interactive.yaml
+    - template: ../electron/electron-e2e-publish-results.yaml
+
     - script: yarn build:electron:all --unified-version=$(Build.BuildNumber) --app-insights-instrumentation-key=$(AppInsightsInstrumentationKey)
       displayName: yarn build:electron:all
       env:
@@ -39,6 +42,3 @@ steps:
       parameters:
           packedOutputPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-production/packed'
           artifactName: unified-$(platform)-production-unsigned
-
-    - template: ../electron/electron-e2e-test-interactive.yaml
-    - template: ../electron/electron-e2e-publish-results.yaml
