@@ -97,7 +97,7 @@
         "http-server": "^0.12.1",
         "identity-obj-proxy": "^3.0.0",
         "jest": "^24.9.0",
-        "jest-circus": "^24.9.0",
+        "jest-circus": "^25.1.0",
         "jest-junit": "^10.0.0",
         "js-yaml": "^3.13.1",
         "license-check-and-add": "^3.0.4",
