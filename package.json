@@ -130,7 +130,7 @@
     "dependencies": {
         "applicationinsights-js": "^1.0.20",
         "axe-core": "3.3.2",
-        "axios": "^0.19.1",
+        "axios": "^0.19.2",
         "classnames": "^2.2.6",
         "electron-download": "^4.1.1",
         "electron-log": "^4.0.3",
