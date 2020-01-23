@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-const path = require('path');
 const YAML = require('js-yaml');
 
 module.exports = function(grunt) {
@@ -102,6 +101,7 @@ module.exports = function(grunt) {
             version = versionFromDate();
         }
         manifest.version = version;
+        grunt.log.writeln(`publishing ai-web version ${version}`);
         grunt.file.write(manifestPath, JSON.stringify(manifest, undefined, 4));
     });
     grunt.registerTask('zip', ['update-config', 'update-manifest', 'compress:extension']);
