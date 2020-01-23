@@ -41,8 +41,6 @@ const generalNavigationHowToTest: JSX.Element = (
             <li>
                 Verify that the page provides two or more ways to locate pages within the site or
                 app, such as:
-            </li>
-            <li>
                 <ol>
                     <li>Site maps</li>
                     <li>Site search</li>
