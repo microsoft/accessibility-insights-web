@@ -78,6 +78,7 @@ export class AppInsightsTelemetryClient implements TelemetryClient {
     }
 
     private initializeInternal(): void {
+        this.appInsights.context.operation.name = '';
         this.appInsights.context.addTelemetryInitializer((envelope: ExtendedEnvelop) => {
             const baseData = envelope.data.baseData;
             baseData.properties = {
