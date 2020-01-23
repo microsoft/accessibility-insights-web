@@ -9,7 +9,10 @@ export class DropdownClickHandler {
     private dropdownActionMessageCreator: DropdownActionMessageCreator;
     private source: TelemetryEventSource;
 
-    constructor(dropdownActionMessageCreator: DropdownActionMessageCreator, source: TelemetryEventSource) {
+    constructor(
+        dropdownActionMessageCreator: DropdownActionMessageCreator,
+        source: TelemetryEventSource,
+    ) {
         this.source = source;
         this.dropdownActionMessageCreator = dropdownActionMessageCreator;
     }

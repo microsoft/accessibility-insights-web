@@ -42,14 +42,22 @@ export const getCardViewData: GetCardViewData = (
                 continue;
             }
 
-            const isExpanded = isFailedInstance ? includes(cardSelectionViewData.expandedRuleIds, rule.id) : false;
+            const isExpanded = isFailedInstance
+                ? includes(cardSelectionViewData.expandedRuleIds, rule.id)
+                : false;
 
             ruleResult = createCardRuleResult(result.status, rule, isExpanded);
             ruleResults.push(ruleResult);
         }
 
-        const isSelected = isFailedInstance ? includes(cardSelectionViewData.selectedResultUids, result.uid) : false;
-        const highlightStatus = getHighlightStatus(isFailedInstance, cardSelectionViewData.highlightedResultUids, result.uid);
+        const isSelected = isFailedInstance
+            ? includes(cardSelectionViewData.selectedResultUids, result.uid)
+            : false;
+        const highlightStatus = getHighlightStatus(
+            isFailedInstance,
+            cardSelectionViewData.highlightedResultUids,
+            result.uid,
+        );
 
         ruleResult.nodes.push(createCardResult(result, isSelected, highlightStatus));
 
@@ -69,7 +77,10 @@ export const getCardViewData: GetCardViewData = (
     };
 };
 
-const getExistingRuleFromResults = (ruleId: string, ruleResults: CardRuleResult[]): CardRuleResult => {
+const getExistingRuleFromResults = (
+    ruleId: string,
+    ruleResults: CardRuleResult[],
+): CardRuleResult => {
     const ruleResultIndex: number = getRuleResultIndex(ruleId, ruleResults);
 
     return ruleResultIndex !== -1 ? ruleResults[ruleResultIndex] : null;
@@ -85,7 +96,11 @@ const getEmptyStatusResults = (): CardRuleResultsByStatus => {
     return statusResults as CardRuleResultsByStatus;
 };
 
-const getHighlightStatus = (isFailedInstance: boolean, highlightedResultUids: string[], resultUid: string) => {
+const getHighlightStatus = (
+    isFailedInstance: boolean,
+    highlightedResultUids: string[],
+    resultUid: string,
+) => {
     if (!isFailedInstance) {
         return 'unavailable';
     }
@@ -97,7 +112,11 @@ const getHighlightStatus = (isFailedInstance: boolean, highlightedResultUids: st
     return 'hidden';
 };
 
-const createCardRuleResult = (status: string, rule: UnifiedRule, isExpanded: boolean): CardRuleResult => ({
+const createCardRuleResult = (
+    status: string,
+    rule: UnifiedRule,
+    isExpanded: boolean,
+): CardRuleResult => ({
     id: rule.id,
     status: status,
     nodes: [],
@@ -107,7 +126,10 @@ const createCardRuleResult = (status: string, rule: UnifiedRule, isExpanded: boo
     isExpanded: isExpanded,
 });
 
-const createRuleResultWithoutNodes = (status: CardRuleResultStatus, rule: UnifiedRule): CardRuleResult => ({
+const createRuleResultWithoutNodes = (
+    status: CardRuleResultStatus,
+    rule: UnifiedRule,
+): CardRuleResult => ({
     id: rule.id,
     status: status,
     nodes: [],
@@ -117,7 +139,11 @@ const createRuleResultWithoutNodes = (status: CardRuleResultStatus, rule: Unifie
     isExpanded: false,
 });
 
-const createCardResult = (unifiedResult: UnifiedResult, isSelected: boolean, highlightStatus: HighlightState): CardResult => {
+const createCardResult = (
+    unifiedResult: UnifiedResult,
+    isSelected: boolean,
+    highlightStatus: HighlightState,
+): CardResult => {
     return {
         ...unifiedResult,
         isSelected,
@@ -125,6 +151,8 @@ const createCardResult = (unifiedResult: UnifiedResult, isSelected: boolean, hig
     };
 };
 
-const getUnifiedRule = (id: string, rules: UnifiedRule[]): UnifiedRule => rules.find(rule => rule.id === id);
+const getUnifiedRule = (id: string, rules: UnifiedRule[]): UnifiedRule =>
+    rules.find(rule => rule.id === id);
 
-const getRuleResultIndex = (ruleId: string, ruleResults: CardRuleResult[]): number => ruleResults.findIndex(result => result.id === ruleId);
+const getRuleResultIndex = (ruleId: string, ruleResults: CardRuleResult[]): number =>
+    ruleResults.findIndex(result => result.id === ruleId);
