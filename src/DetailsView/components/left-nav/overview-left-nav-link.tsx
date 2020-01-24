@@ -11,15 +11,15 @@ export const OverviewLeftNavLink = NamedFC<BaseLeftNavLinkProps>(
     'OverviewLeftNavLink',
     ({ link }) => {
         return (
-            <div className={'button-flex-container'} aria-hidden="true">
-                <div>
+            <span className={'button-flex-container'} aria-hidden="true">
+                <span>
                     <Icon iconName="home" className={css('status-icon', 'dark-gray')} />
-                </div>
-                <div className="ms-Button-label overview-label">
-                    <div className="overview-name">{link.name}</div>
-                    <div className="overview-percent">{link.percentComplete}% Completed</div>
-                </div>
-            </div>
+                </span>
+                <span className="ms-Button-label overview-label">
+                    <span className="overview-name">{link.name}</span>
+                    <span className="overview-percent">{link.percentComplete}% Completed</span>
+                </span>
+            </span>
         );
     },
 );

@@ -9,10 +9,10 @@ export const TestViewLeftNavLink = NamedFC<BaseLeftNavLinkProps>(
     'TestViewLeftNavLink',
     ({ link, renderIcon }) => {
         return (
-            <div className={'button-flex-container'} aria-hidden="true">
+            <span className={'button-flex-container'} aria-hidden="true">
                 {renderIcon(link)}
-                <div className={'ms-Button-label test-name'}>{link.name}</div>
-            </div>
+                <span className={'ms-Button-label test-name'}>{link.name}</span>
+            </span>
         );
     },
 );

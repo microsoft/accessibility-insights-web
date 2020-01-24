@@ -1159,11 +1159,11 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": t
           data-is-focusable="true"
           type="button"
         >
-          <div
+          <span
             className="ms-button-flex-container"
           >
             <CancelIcon />
-          </div>
+          </span>
         </button>
       </div>
     </div>
@@ -1499,11 +1499,11 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": t
                           data-is-focusable="true"
                           type="button"
                         >
-                          <div
+                          <span
                             className="ms-button-flex-container"
                           >
                             <CancelIcon />
-                          </div>
+                          </span>
                         </button>
                       </div>
                     </div>
@@ -2299,11 +2299,11 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": tr
           data-is-focusable="true"
           type="button"
         >
-          <div
+          <span
             className="ms-button-flex-container"
           >
             <CancelIcon />
-          </div>
+          </span>
         </button>
       </div>
     </div>
@@ -2639,11 +2639,11 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": tr
                           data-is-focusable="true"
                           type="button"
                         >
-                          <div
+                          <span
                             className="ms-button-flex-container"
                           >
                             <CancelIcon />
-                          </div>
+                          </span>
                         </button>
                       </div>
                     </div>
