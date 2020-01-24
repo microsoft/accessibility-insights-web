@@ -46,6 +46,7 @@ import {
 import { PlatformInfo } from 'electron/window-management/platform-info';
 import { WindowFrameListener } from 'electron/window-management/window-frame-listener';
 import { WindowFrameUpdater } from 'electron/window-management/window-frame-updater';
+import { setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
@@ -237,6 +238,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             navigatorUtils: null,
             unifiedResultToIssueFilingDataConverter: null, // we don't support issue filing right now
             windowUtils: null,
+            setFocusVisibility,
         };
 
         const props: RootContainerProps = {
