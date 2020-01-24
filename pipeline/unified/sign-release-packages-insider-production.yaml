@@ -2,13 +2,13 @@
 # Licensed under the MIT License.
 name: $(resources.pipeline.build-unsigned-release-packages.runName)-InsiderProductionSigning-$(Rev:r)
 
-trigger: null
+trigger: none
 
 resources:
     pipelines:
         - pipeline: build-unsigned-release-packages
           source: build-unsigned-release-packages
-          trigger: null # manual
+          trigger: none # manual
 
 jobs:
     - template: sign-release-packages-for-channel.yaml
