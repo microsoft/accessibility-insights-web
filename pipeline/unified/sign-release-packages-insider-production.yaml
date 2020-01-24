@@ -11,14 +11,14 @@ resources:
           trigger: none # manual
 
 jobs:
-    - template: sign-release-packages-for-channel.yaml
+    - template: channel/sign-release-packages-for-channel.yaml
       parameters:
           unsignedProjectID: $(resources.pipeline.build-unsigned-release-packages.projectID)
           unsignedPipelineID: $(resources.pipeline.build-unsigned-release-packages.pipelineID)
           unsignedRunID: $(resources.pipeline.build-unsigned-release-packages.runID)
           channel: insider
 
-    - template: sign-release-packages-for-channel.yaml
+    - template: channel/sign-release-packages-for-channel.yaml
       parameters:
           unsignedPipelineResource: $(resources.pipeline.build-unsigned-release-packages)
           channel: production
