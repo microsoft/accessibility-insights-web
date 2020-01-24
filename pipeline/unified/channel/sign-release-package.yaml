@@ -38,5 +38,6 @@ jobs:
             displayName: update electron checksum after signing
 
           - template: publish-packed-build-output.yaml
-            packedOutputPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/$(signedArtifactName)'
-            artifactName: $(signedArtifactName)
+            parameters:
+                packedOutputPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/$(signedArtifactName)'
+                artifactName: $(signedArtifactName)
