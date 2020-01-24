@@ -6,11 +6,21 @@ export class WindowUtils {
         win.postMessage(JSON.stringify(data), targetOrigin);
     }
 
-    public addEventListener(win: Window, command: string, callback: (e: MessageEvent) => void, useCapture: boolean): void {
+    public addEventListener(
+        win: Window,
+        command: string,
+        callback: (e: MessageEvent) => void,
+        useCapture: boolean,
+    ): void {
         win.addEventListener(command, callback, useCapture);
     }
 
-    public removeEventListener(win: Window, command: string, callback: (e: MessageEvent) => void, useCapture: boolean): void {
+    public removeEventListener(
+        win: Window,
+        command: string,
+        callback: (e: MessageEvent) => void,
+        useCapture: boolean,
+    ): void {
         win.removeEventListener(command, callback);
     }
 

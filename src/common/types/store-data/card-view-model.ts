@@ -28,4 +28,9 @@ export interface CardResult extends UnifiedResult {
     isSelected: boolean;
     highlightStatus: HighlightState;
 }
-export const AllRuleResultStatuses: CardRuleResultStatus[] = ['pass', 'fail', 'unknown', 'inapplicable'];
+export const AllRuleResultStatuses: CardRuleResultStatus[] = [
+    'pass',
+    'fail',
+    'unknown',
+    'inapplicable',
+];

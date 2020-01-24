@@ -21,7 +21,11 @@ export interface LoggedNode {
 }
 
 export class A11YSelfValidator {
-    constructor(private scannerUtils: ScannerUtils, private docUtils: HTMLElementUtils, private logger: Logger) {}
+    constructor(
+        private scannerUtils: ScannerUtils,
+        private docUtils: HTMLElementUtils,
+        private logger: Logger,
+    ) {}
 
     public validate(): void {
         this.scannerUtils.scan(null, this.logAxeResults);
