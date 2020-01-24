@@ -11,6 +11,8 @@ resources:
           trigger: none # manual
 
 jobs:
+    - script: echo $(resources.pipeline.build-unsigned-release-packages.projectID) $(resources.pipeline.build-unsigned-release-packages.pipelineID) $(resources.pipeline.build-unsigned-release-packages.runID)
+
     - template: channel/sign-release-packages-for-channel.yaml
       parameters:
           unsignedProjectID: $(resources.pipeline.build-unsigned-release-packages.projectID)
