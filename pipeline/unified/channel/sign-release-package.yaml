@@ -13,7 +13,7 @@ jobs:
       pool:
           vmImage: $(vmImage)
       steps:
-          - template: ../install-node-prerequisites.yaml
+          - template: ../../install-node-prerequisites.yaml
 
           - task: DownloadBuildArtifacts@0
             inputs:

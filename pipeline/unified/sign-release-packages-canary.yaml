@@ -12,7 +12,7 @@ resources:
               branches: [master]
 
 jobs:
-    - template: sign-release-packages-for-channel.yaml
+    - template: channel/sign-release-packages-for-channel.yaml
       parameters:
           unsignedPipelineResource: $(resources.pipeline.build-unsigned-release-packages)
           channel: canary
