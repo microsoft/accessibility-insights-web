@@ -13,14 +13,14 @@ export const LeftNavStatusIcon = NamedFC<LeftNavIconProps>('LeftNavStatusIcon', 
     const { item } = props;
 
     return (
-        <div>
+        <span>
             <StatusIcon status={item.status} className={'dark-gray'} level="test" />
-        </div>
+        </span>
     );
 });
 
 export const LeftNavIndexIcon = NamedFC<LeftNavIconProps>('LeftNavIndexIcon', props => {
     const { item } = props;
 
-    return <div className={'index-circle'}>{item.index}</div>;
+    return <span className={'index-circle'}>{item.index}</span>;
 });

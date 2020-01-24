@@ -543,6 +543,8 @@ div.insights-file-issue-details-dialog-container {
                 text-align: left;
                 margin-top: 6px;
                 margin-bottom: 6px;
+                display: flex;
+                flex-direction: column;
             }
             .overview-name {
                 line-height: 20px;
