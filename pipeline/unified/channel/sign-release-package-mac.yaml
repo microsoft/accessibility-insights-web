@@ -8,9 +8,9 @@ parameters:
 jobs:
     - template: sign-release-package.yaml
       parameters:
-          unsignedPipelineResource: $(unsignedPipelineResource)
-          unsignedArtifactName: $(unsignedArtifactName)
-          signedArtifactName: $(signedArtifactName)
+          unsignedPipelineResource: ${{ parameters.unsignedPipelineResource }}
+          unsignedArtifactName: ${{ parameters.unsignedArtifactName }}
+          signedArtifactName: ${{ parameters.signedArtifactName }}
           vmImage: macOS-10.14
           filePattern: '*.dmg, *.zip'
           inlineSignParams: |
