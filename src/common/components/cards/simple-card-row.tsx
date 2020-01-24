@@ -13,13 +13,18 @@ export interface SimpleCardRowProps {
     contentClassName?: string;
 }
 
-export const SimpleCardRow = NamedFC<SimpleCardRowProps>('SimpleCardRow', ({ label: givenLabel, content, rowKey, contentClassName }) => {
-    const contentStyling = css(styles.instanceListRowContent, contentClassName);
+export const SimpleCardRow = NamedFC<SimpleCardRowProps>(
+    'SimpleCardRow',
+    ({ label: givenLabel, content, rowKey, contentClassName }) => {
+        const contentStyling = css(styles.instanceListRowContent, contentClassName);
 
-    return (
-        <tr className={styles.row} key={rowKey}>
-            <th className={css(styles.label, 'report-instance-table-label-overrides')}>{givenLabel}</th>
-            <td className={contentStyling}>{content}</td>
-        </tr>
-    );
-});
+        return (
+            <tr className={styles.row} key={rowKey}>
+                <th className={css(styles.label, 'report-instance-table-label-overrides')}>
+                    {givenLabel}
+                </th>
+                <td className={contentStyling}>{content}</td>
+            </tr>
+        );
+    },
+);

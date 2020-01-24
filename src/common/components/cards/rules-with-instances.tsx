@@ -33,8 +33,19 @@ export const ruleDetailsGroupAutomationId = 'rule-details-group';
 
 export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
     'RulesWithInstances',
-    ({ rules, outcomeType, fixInstructionProcessor, deps, userConfigurationStoreData, targetAppInfo }) => {
-        const getCollapsibleComponentProps = (rule: CardRuleResult, idx: number, buttonAriaLabel: string) => {
+    ({
+        rules,
+        outcomeType,
+        fixInstructionProcessor,
+        deps,
+        userConfigurationStoreData,
+        targetAppInfo,
+    }) => {
+        const getCollapsibleComponentProps = (
+            rule: CardRuleResult,
+            idx: number,
+            buttonAriaLabel: string,
+        ) => {
             return {
                 id: rule.id,
                 key: `summary-details-${idx + 1}`,
@@ -59,11 +70,16 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
         };
 
         return (
-            <div className={styles.ruleDetailsGroup} data-automation-id={ruleDetailsGroupAutomationId}>
+            <div
+                className={styles.ruleDetailsGroup}
+                data-automation-id={ruleDetailsGroupAutomationId}
+            >
                 {rules.map((rule, idx) => {
                     const { pastTense } = outcomeTypeSemantics[outcomeType];
                     const buttonAriaLabel = `${rule.id} ${rule.nodes.length} ${pastTense} ${rule.description}`;
-                    const CollapsibleComponent = deps.collapsibleControl(getCollapsibleComponentProps(rule, idx, buttonAriaLabel));
+                    const CollapsibleComponent = deps.collapsibleControl(
+                        getCollapsibleComponentProps(rule, idx, buttonAriaLabel),
+                    );
                     return CollapsibleComponent;
                 })}
             </div>

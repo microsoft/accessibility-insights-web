@@ -13,7 +13,9 @@ import { UserConfigurationStoreData } from '../../types/store-data/user-configur
 import { RulesWithInstances, RulesWithInstancesDeps } from './rules-with-instances';
 
 export type ResultSectionContentDeps = RulesWithInstancesDeps & {
-    cardsVisualizationModifierButtons: ReactFCWithDisplayName<CardsVisualizationModifierButtonsProps>;
+    cardsVisualizationModifierButtons: ReactFCWithDisplayName<
+        CardsVisualizationModifierButtonsProps
+    >;
 };
 
 export type ResultSectionContentProps = {
@@ -27,23 +29,33 @@ export type ResultSectionContentProps = {
     allCardsCollapsed: boolean;
 };
 
-export const ResultSectionContent = NamedFC<ResultSectionContentProps>('ResultSectionContent', props => {
-    const { results, outcomeType, fixInstructionProcessor, deps, userConfigurationStoreData, targetAppInfo } = props;
-    if (results.length === 0) {
-        return <NoFailedInstancesCongrats />;
-    }
+export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
+    'ResultSectionContent',
+    props => {
+        const {
+            results,
+            outcomeType,
+            fixInstructionProcessor,
+            deps,
+            userConfigurationStoreData,
+            targetAppInfo,
+        } = props;
+        if (results.length === 0) {
+            return <NoFailedInstancesCongrats />;
+        }
 
-    return (
-        <>
-            <deps.cardsVisualizationModifierButtons {...props} />
-            <RulesWithInstances
-                deps={deps}
-                rules={results}
-                outcomeType={outcomeType}
-                fixInstructionProcessor={fixInstructionProcessor}
-                userConfigurationStoreData={userConfigurationStoreData}
-                targetAppInfo={targetAppInfo}
-            />
-        </>
-    );
-});
+        return (
+            <>
+                <deps.cardsVisualizationModifierButtons {...props} />
+                <RulesWithInstances
+                    deps={deps}
+                    rules={results}
+                    outcomeType={outcomeType}
+                    fixInstructionProcessor={fixInstructionProcessor}
+                    userConfigurationStoreData={userConfigurationStoreData}
+                    targetAppInfo={targetAppInfo}
+                />
+            </>
+        );
+    },
+);

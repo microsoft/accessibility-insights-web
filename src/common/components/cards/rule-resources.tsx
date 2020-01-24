@@ -22,7 +22,9 @@ export const RuleResources = NamedFC<RuleResourcesProps>('RuleResources', ({ dep
         return null;
     }
 
-    const renderTitle = () => <div className={styles.moreResourcesTitle}>Resources for this rule</div>;
+    const renderTitle = () => (
+        <div className={styles.moreResourcesTitle}>Resources for this rule</div>
+    );
 
     const renderRuleLink = () => {
         if (rule.url == null) {

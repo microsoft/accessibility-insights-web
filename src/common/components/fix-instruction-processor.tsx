@@ -12,9 +12,15 @@ export class FixInstructionProcessor {
     private readonly colorGroupName = 'color';
     private readonly colorValueMatcher = `(?<${this.colorGroupName}>#[0-9a-f]{6})`;
     private readonly foregroundColorText = 'foreground color: ';
-    private readonly foregroundRegExp = new RegExp(`${this.foregroundColorText}${this.colorValueMatcher}`, 'i');
+    private readonly foregroundRegExp = new RegExp(
+        `${this.foregroundColorText}${this.colorValueMatcher}`,
+        'i',
+    );
     private readonly backgroundColorText = 'background color: ';
-    private readonly backgroundRegExp = new RegExp(`${this.backgroundColorText}${this.colorValueMatcher}`, 'i');
+    private readonly backgroundRegExp = new RegExp(
+        `${this.backgroundColorText}${this.colorValueMatcher}`,
+        'i',
+    );
 
     public process(fixInstruction: string): JSX.Element {
         const foregroundMatch = this.getColorMatch(fixInstruction, this.foregroundRegExp);
@@ -42,7 +48,9 @@ export class FixInstructionProcessor {
     }
 
     private splitFixInstruction(fixInstruction: string, matches: ColorMatch[]): JSX.Element {
-        const properMatches = matches.filter(current => current != null).sort((a, b) => a.splitIndex - b.splitIndex);
+        const properMatches = matches
+            .filter(current => current != null)
+            .sort((a, b) => a.splitIndex - b.splitIndex);
 
         if (properMatches.length === 0) {
             return <>{fixInstruction}</>;

@@ -106,6 +106,7 @@ export class TargetChangeDialog extends React.Component<TargetChangeDialogProps>
             >
                 <Link
                     as="a" // force Link to use an anchor tag in order have proper dom structure
+                    tabIndex={0}
                     role="link"
                     className={css('insights-link', 'target-page-link')}
                     onClick={this.props.deps.detailsViewActionMessageCreator.switchToTargetTab}
