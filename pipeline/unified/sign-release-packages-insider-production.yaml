@@ -6,7 +6,7 @@ trigger: none
 
 resources:
     pipelines:
-        - pipeline: [dev] build unified unsigned installers
+        - pipeline: build-unsigned-release-packages
           source: build-unsigned-release-packages
           trigger: none # manual
 
