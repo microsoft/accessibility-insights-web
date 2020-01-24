@@ -1,11 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IPoint } from '@uifabric/utilities';
-import { DirectionalHint } from 'office-ui-fabric-react';
-import { ContextualMenu, IContextualMenuItem } from 'office-ui-fabric-react';
-import { Icon } from 'office-ui-fabric-react';
-import { Link } from 'office-ui-fabric-react';
+import {
+    ContextualMenu,
+    DirectionalHint,
+    Icon,
+    IContextualMenuItem,
+    Link,
+} from 'office-ui-fabric-react';
 import * as React from 'react';
+import * as styles from './details-view-dropdown.scss';
 
 export interface DetailsViewDropDownProps {
     menuItems: IContextualMenuItem[];
@@ -31,11 +35,11 @@ export class DetailsViewDropDown extends React.Component<
     public render(): JSX.Element {
         return (
             <div className="details-view-dropdown">
-                <Link className={'gear-button'} onClick={this.openDropdown}>
+                <Link className={styles.gearButton} onClick={this.openDropdown}>
                     <Icon
-                        className="gear-options-icon"
+                        className={styles.gearOptionsIcon}
                         iconName="Gear"
-                        ariaLabel={'Manage Settings'}
+                        ariaLabel="Manage Settings"
                     />
                 </Link>
                 {this.renderContextMenu()}

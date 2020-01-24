@@ -5,7 +5,7 @@ import { ContextualMenu, IContextualMenuItem } from 'office-ui-fabric-react';
 import { Link } from 'office-ui-fabric-react';
 import * as React from 'react';
 
-import { DetailsViewDropDown, DetailsViewDropDownProps } from '../../../../../DetailsView/components/details-view-dropdown';
+import { DetailsViewDropDown, DetailsViewDropDownProps } from 'DetailsView/components/details-view-dropdown';
 
 describe('DetailsViewDropDownTest', () => {
     describe('renders', () => {

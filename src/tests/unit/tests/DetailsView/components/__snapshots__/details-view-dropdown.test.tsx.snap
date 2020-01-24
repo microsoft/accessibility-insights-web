@@ -5,7 +5,7 @@ exports[`DetailsViewDropDownTest renders with isContextMenuVisible = false 1`] =
   className="details-view-dropdown"
 >
   <StyledLinkBase
-    className="gear-button"
+    className="gearButton"
     onClick={[Function]}
   >
     <StyledIconBase
@@ -22,7 +22,7 @@ exports[`DetailsViewDropDownTest renders with isContextMenuVisible = true 1`] = 
   className="details-view-dropdown"
 >
   <StyledLinkBase
-    className="gear-button"
+    className="gearButton"
     onClick={[Function]}
   >
     <StyledIconBase
