@@ -12,11 +12,7 @@ export type LeftNavIconProps = {
 export const LeftNavStatusIcon = NamedFC<LeftNavIconProps>('LeftNavStatusIcon', props => {
     const { item } = props;
 
-    return (
-        <span>
-            <StatusIcon status={item.status} className={'dark-gray'} level="test" />
-        </span>
-    );
+    return <StatusIcon status={item.status} className={'dark-gray'} level="test" />;
 });
 
 export const LeftNavIndexIcon = NamedFC<LeftNavIconProps>('LeftNavIndexIcon', props => {
