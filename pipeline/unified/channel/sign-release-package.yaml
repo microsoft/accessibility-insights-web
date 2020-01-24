@@ -9,35 +9,35 @@ parameters:
     signedArtifactName: null
 
 jobs:
-    - job: $(signedArtifactName)
+    - job: ${{ parameters.signedArtifactName }}
       pool:
-          vmImage: $(vmImage)
+          vmImage: ${{ parameters.vmImage }}
       steps:
           - template: ../../install-node-prerequisites.yaml
 
           - task: DownloadBuildArtifacts@0
             inputs:
-                artifactName: $(unsignedArtifactName)
-                downloadPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/$(signedArtifactName)'
+                artifactName: ${{ parameters.unsignedArtifactName }}
+                downloadPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
                 buildType: specific
                 buildVersionToDownload: specific
-                project: $(unsignedPipelineResource.projectID)
-                pipeline: $(unsignedPipelineResource.pipelineID)
-                buildId: $(unsignedPipelineResource.runID)
+                project: ${{ parameters.unsignedPipelineResource }}.projectID
+                pipeline: ${{ parameters.unsignedPipelineResource }}.pipelineID
+                buildId: ${{ parameters.unsignedPipelineResource }}.runID
 
           - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
             displayName: 'Send to ESRP Code Signing service'
             inputs:
                 ConnectedServiceName: 'ESRP Code Signing'
-                FolderPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/$(signedArtifactName)'
-                Pattern: $(filePattern)
+                FolderPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
+                Pattern: ${{ parameters.filePattern }}
                 signConfigType: inlineSignParams
-                inlineOperation: $(inlineSignParams)
+                inlineOperation: ${{ parameters.inlineSignParams }}
 
           - script: yarn update:electron-checksum
             displayName: update electron checksum after signing
 
           - template: ../publish-packed-build-output.yaml
             parameters:
-                packedOutputPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/$(signedArtifactName)'
-                artifactName: $(signedArtifactName)
+                packedOutputPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
+                artifactName: ${{ parameters.signedArtifactName }}
