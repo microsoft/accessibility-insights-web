@@ -6,7 +6,7 @@ parameters:
     signedArtifactName: null
 
 jobs:
-    - job: $(signedArtifactName)
+    - job: ${{ parameters.signedArtifactName }}
       pool:
           vmImage: 'ubuntu-16.04'
       steps:
@@ -14,18 +14,18 @@ jobs:
 
           - task: DownloadBuildArtifacts@0
             inputs:
-                artifactName: $(unsignedArtifactName)
-                downloadPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/$(signedArtifactName)'
+                artifactName: ${{ parameters.unsignedArtifactName }}
+                downloadPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
                 buildType: specific
                 buildVersionToDownload: specific
-                project: $(unsignedPipelineResource.projectID)
-                pipeline: $(unsignedPipelineResource.pipelineID)
-                buildId: $(unsignedPipelineResource.runID)
+                project: ${{ parameters.unsignedPipelineResource }}.projectID)
+                pipeline: ${{ parameters.unsignedPipelineResource }}.pipelineID)
+                buildId: ${{ parameters.unsignedPipelineResource }}.runID)
 
           - task: CopyFiles@2
             displayName: 'Copy the AppImage file to detachedSignature'
             inputs:
-                SourceFolder: '$(System.DefaultWorkingDirectory)/signing-in-progress/$(signedArtifactName)'
+                SourceFolder: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
                 contents: |
                     Accessibility Insights for Android*.*
                 TargetFolder: '$(System.DefaultWorkingDirectory)/detachedSignature'
@@ -57,12 +57,12 @@ jobs:
                 SourceFolder: $(System.DefaultWorkingDirectory)/detachedSignature
                 contents: |
                     Accessibility Insights for Android*.*
-                TargetFolder: '$(System.DefaultWorkingDirectory)/signing-in-progress/$(signedArtifactName)'
+                TargetFolder: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
 
           - script: yarn update:electron-checksum
             displayName: update electron checksum after signing
 
           - template: ../publish-packed-build-output.yaml
             parameters:
-                packedOutputPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/$(signedArtifactName)'
-                artifactName: $(signedArtifactName)
+                packedOutputPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
+                artifactName: ${{ parameters.signedArtifactName }}
