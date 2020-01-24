@@ -12,6 +12,7 @@ resources:
 
 jobs:
     - template: channel/sign-release-packages-for-channel.yaml
+      displayName: test
       parameters:
           unsignedProjectID: $(resources.pipeline.build-unsigned-release-packages.projectID)
           unsignedPipelineID: $(resources.pipeline.build-unsigned-release-packages.pipelineID)
