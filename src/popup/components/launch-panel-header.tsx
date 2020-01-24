@@ -62,6 +62,7 @@ export class LaunchPanelHeader extends React.Component<
                 <IconButton
                     iconProps={{ iconName: 'GlobalNavButton' }}
                     id="feedback-collapse-menu-button"
+                    className={styles.feedbackCollapseMenuButton}
                     onClick={event =>
                         launchPanelHeaderClickHandler.onOpenContextualMenu(this, event)
                     }
