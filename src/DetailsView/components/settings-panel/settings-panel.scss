@@ -24,14 +24,6 @@
         }
     }
 
-    :global(.ms-Panel-commands) {
-        margin-bottom: 25px;
-
-        i[data-icon-name='Cancel'] {
-            font-size: 24px;
-        }
-    }
-
     :global(.ms-Panel-content) {
         padding-top: 20px;
     }
