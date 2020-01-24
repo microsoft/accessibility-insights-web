@@ -9,11 +9,9 @@ exports[`LeftNavIndexIcon render 1`] = `
 `;
 
 exports[`LeftNavStatusIcon render 1`] = `
-<span>
-  <StatusIcon
-    className="dark-gray"
-    level="test"
-    status={0}
-  />
-</span>
+<StatusIcon
+  className="dark-gray"
+  level="test"
+  status={0}
+/>
 `;

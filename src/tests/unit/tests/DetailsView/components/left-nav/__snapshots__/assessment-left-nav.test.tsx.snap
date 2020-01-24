@@ -41,11 +41,9 @@ exports[`AssessmentLeftNav render with status icon 1`] = `
 `;
 
 exports[`AssessmentLeftNav render with status icon 2`] = `
-<span>
-  <StatusIcon
-    className="dark-gray"
-    level="test"
-    status={-1}
-  />
-</span>
+<StatusIcon
+  className="dark-gray"
+  level="test"
+  status={-1}
+/>
 `;
