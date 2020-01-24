@@ -9,18 +9,18 @@ parameters:
 jobs:
     - template: sign-release-package-windows.yaml
       parameters:
-          unsignedPipelineResource: $(unsignedPipelineResource)
-          unsignedArtifactName: unified-windows-$(channel)-unsigned
-          signedArtifactName: unified-windows-$(channel)-signed
+          unsignedPipelineResource: ${{ parameters.unsignedPipelineResource }}
+          unsignedArtifactName: unified-windows-${{ parameters.channel }}-unsigned
+          signedArtifactName: unified-windows-${{ parameters.channel }}-signed
 
     - template: sign-release-package-mac.yaml
       parameters:
-          unsignedPipelineResource: $(unsignedPipelineResource)
-          unsignedArtifactName: unified-mac-$(channel)-unsigned
-          signedArtifactName: unified-mac-$(channel)-signed
+          unsignedPipelineResource: ${{ parameters.unsignedPipelineResource }}
+          unsignedArtifactName: unified-mac-${{ parameters.channel }}-unsigned
+          signedArtifactName: unified-mac-${{ parameters.channel }}-signed
 
     - template: sign-release-package-linux.yaml
       parameters:
-          unsignedPipelineResource: $(unsignedPipelineResource)
-          unsignedArtifactName: unified-linux-$(channel)-unsigned
-          signedArtifactName: unified-linux-$(channel)-signed
+          unsignedPipelineResource: ${{ parameters.unsignedPipelineResource }}
+          unsignedArtifactName: unified-linux-${{ parameters.channel }}-unsigned
+          signedArtifactName: unified-linux-${{ parameters.channel }}-signed
