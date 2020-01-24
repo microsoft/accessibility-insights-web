@@ -62,7 +62,7 @@ jobs:
           - script: yarn update:electron-checksum
             displayName: update electron checksum after signing
 
-          - template: publish-packed-build-output.yaml
+          - template: ../publish-packed-build-output.yaml
             parameters:
                 packedOutputPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/$(signedArtifactName)'
                 artifactName: $(signedArtifactName)
