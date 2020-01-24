@@ -1,0 +1,67 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+parameters:
+    unsignedPipelineResource: null
+    unsignedArtifactName: null
+    signedArtifactName: null
+
+jobs:
+    - job: $(signedArtifactName)
+      pool:
+          vmImage: 'ubuntu-16.04'
+      steps:
+          - template: ../install-node-prerequisites.yaml
+
+          - task: DownloadBuildArtifacts@0
+            inputs:
+                artifactName: $(unsignedArtifactName)
+                downloadPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/$(signedArtifactName)'
+                buildType: specific
+                buildVersionToDownload: specific
+                project: $(unsignedPipelineResource.projectID)
+                pipeline: $(unsignedPipelineResource.pipelineID)
+                buildId: $(unsignedPipelineResource.runID)
+
+          - task: CopyFiles@2
+            displayName: 'Copy the AppImage file to detachedSignature'
+            inputs:
+                SourceFolder: '$(System.DefaultWorkingDirectory)/signing-in-progress/$(signedArtifactName)'
+                contents: |
+                    Accessibility Insights for Android*.*
+                TargetFolder: '$(System.DefaultWorkingDirectory)/detachedSignature'
+
+          - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
+            displayName: 'sign dist/detachedSignature'
+            inputs:
+                ConnectedServiceName: 'ESRP Code Signing'
+                FolderPath: '$(System.DefaultWorkingDirectory)/detachedSignature'
+                Pattern: '*.AppImage'
+                signConfigType: inlineSignParams
+                inlineOperation: |
+                    [
+                        {
+                            "keyCode": "CP-450779-Pgp",
+                            "operationSetCode": "LinuxSign",
+                            "parameters": [],
+                            "toolName": "sign",
+                            "toolVersion": "1.0"
+                        }
+                    ]
+
+          - script: 'mv "$(System.DefaultWorkingDirectory)/detachedSignature/Accessibility Insights for Android.AppImage" "$(System.DefaultWorkingDirectory)/detachedSignature/Accessibility Insights for Android.sig"'
+            displayName: 'Change signature file extension to sig'
+
+          - task: CopyFiles@2
+            displayName: 'Copy the detachedSignature file to working folder'
+            inputs:
+                SourceFolder: $(System.DefaultWorkingDirectory)/detachedSignature
+                contents: |
+                    Accessibility Insights for Android*.*
+                TargetFolder: '$(System.DefaultWorkingDirectory)/signing-in-progress/$(signedArtifactName)'
+
+          - script: yarn update:electron-checksum
+            displayName: update electron checksum after signing
+
+          - template: publish-packed-build-output.yaml
+            packedOutputPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/$(signedArtifactName)'
+            artifactName: $(signedArtifactName)

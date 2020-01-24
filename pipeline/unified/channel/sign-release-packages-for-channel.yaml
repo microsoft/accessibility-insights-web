@@ -1,0 +1,26 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+parameters:
+    # canary | insider | production
+    channel: null
+    # Should come from a pipeline resource based on build-unsigned-release-packages.yaml
+    unsignedPipelineResource: null
+
+jobs:
+    - template: sign-release-package-windows.yaml
+      parameters:
+          unsignedPipelineResource: $(unsignedPipelineResource)
+          unsignedArtifactName: unified-windows-$(channel)-unsigned
+          signedArtifactName: unified-windows-$(channel)-signed
+
+    - template: sign-release-package-mac.yaml
+      parameters:
+          unsignedPipelineResource: $(unsignedPipelineResource)
+          unsignedArtifactName: unified-mac-$(channel)-unsigned
+          signedArtifactName: unified-mac-$(channel)-signed
+
+    - template: sign-release-package-linux.yaml
+      parameters:
+          unsignedPipelineResource: $(unsignedPipelineResource)
+          unsignedArtifactName: unified-linux-$(channel)-unsigned
+          signedArtifactName: unified-linux-$(channel)-signed

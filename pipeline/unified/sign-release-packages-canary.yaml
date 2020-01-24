@@ -1,0 +1,18 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+name: $(resources.pipeline.build-unsigned-release-packages.runName)-CanarySigning-$(Rev:r)
+
+trigger: null
+
+resources:
+    pipelines:
+        - pipeline: build-unsigned-release-packages
+          source: build-unsigned-release-packages
+          trigger:
+              branches: [master]
+
+jobs:
+    - template: sign-release-packages-for-channel.yaml
+      parameters:
+          unsignedPipelineResource: $(resources.pipeline.build-unsigned-release-packages)
+          channel: canary
