@@ -10,3 +10,18 @@
     margin-right: 5px;
     margin-top: 10px;
 }
+
+.details-view-dropdown-callout {
+    right: 43px !important;
+}
+
+:global(.high-contrast-theme) {
+    .details-view-dropdown-callout {
+        box-sizing: border-box;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 5px 0px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgb(57, 57, 57);
+        outline: transparent;
+    }
+}

@@ -10,7 +10,7 @@ exports[`DetailsViewDropDownTest renders with isContextMenuVisible = false 1`] =
   >
     <StyledIconBase
       ariaLabel="Manage Settings"
-      className="gear-options-icon"
+      className="gearOptionsIcon"
       iconName="Gear"
     />
   </StyledLinkBase>
@@ -27,14 +27,14 @@ exports[`DetailsViewDropDownTest renders with isContextMenuVisible = true 1`] = 
   >
     <StyledIconBase
       ariaLabel="Manage Settings"
-      className="gear-options-icon"
+      className="gearOptionsIcon"
       iconName="Gear"
     />
   </StyledLinkBase>
   <StyledWithResponsiveMode
     calloutProps={
       Object {
-        "className": "details-view-dropdown-callout",
+        "className": "detailsViewDropdownCallout",
       }
     }
     directionalHint={6}
