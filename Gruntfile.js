@@ -221,7 +221,7 @@ module.exports = function(grunt) {
     });
 
     targetNames.forEach(targetName => {
-        const { config, bundleFolder } = targets[targetName];
+        const { config, bundleFolder, appInsightsInstrumentationKey } = targets[targetName];
 
         const { productCategory } = config.options;
 
@@ -239,6 +239,7 @@ module.exports = function(grunt) {
                     configJSPath: path.join(dropExtensionPath, 'insights.config.js'),
                     configJSONPath: path.join(dropExtensionPath, 'insights.config.json'),
                     config,
+                    appInsightsInstrumentationKey,
                 },
             },
             manifest: {
@@ -332,8 +333,9 @@ module.exports = function(grunt) {
         // (it can be found easily enough from released builds), but to make it harder
         // to accidentally pollute release telemetry with data from local builds.
         if (grunt.option('app-insights-instrumentation-key')) {
-            config.options.appInsightsInstrumentationKey = grunt.option('app-insights-instrumentation-key');
+            config.options.appInsightsInstrumentationKey = grunt.option(appInsightsInstrumentationKey);
         }
+        `      `;
 
         const configJSON = JSON.stringify(config, undefined, 4);
         grunt.file.write(configJSONPath, configJSON);
