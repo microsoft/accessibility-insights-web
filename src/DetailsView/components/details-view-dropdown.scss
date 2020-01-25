@@ -5,6 +5,7 @@
 .gear-button {
     .gear-options-icon {
         color: $neutral-alpha-90;
+        padding-right: 5px;
     }
 
     margin-right: 5px;
@@ -12,7 +13,7 @@
 }
 
 .details-view-dropdown-callout {
-    right: 43px !important;
+    right: 48px !important;
 }
 
 :global(.high-contrast-theme) {

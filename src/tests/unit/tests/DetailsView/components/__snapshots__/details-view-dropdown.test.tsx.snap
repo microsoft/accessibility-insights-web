@@ -3,6 +3,7 @@
 exports[`DetailsViewDropDownTest renders with isContextMenuVisible = false 1`] = `
 <div
   className="details-view-dropdown"
+  data-automation-id="gear-button"
 >
   <StyledLinkBase
     className="gearButton"
@@ -11,6 +12,7 @@ exports[`DetailsViewDropDownTest renders with isContextMenuVisible = false 1`] =
     <StyledIconBase
       ariaLabel="Manage Settings"
       className="gearOptionsIcon"
+      data-automation-id="gear-options-icon"
       iconName="Gear"
     />
   </StyledLinkBase>
@@ -20,6 +22,7 @@ exports[`DetailsViewDropDownTest renders with isContextMenuVisible = false 1`] =
 exports[`DetailsViewDropDownTest renders with isContextMenuVisible = true 1`] = `
 <div
   className="details-view-dropdown"
+  data-automation-id="gear-button"
 >
   <StyledLinkBase
     className="gearButton"
@@ -28,6 +31,7 @@ exports[`DetailsViewDropDownTest renders with isContextMenuVisible = true 1`] = 
     <StyledIconBase
       ariaLabel="Manage Settings"
       className="gearOptionsIcon"
+      data-automation-id="gear-options-icon"
       iconName="Gear"
     />
   </StyledLinkBase>

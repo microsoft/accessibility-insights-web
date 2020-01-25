@@ -23,14 +23,16 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
           >
             <div
               class="details-view-dropdown"
+              data-automation-id="gear-button"
             >
               <button
-                class="ms-Link gear-button root-000"
+                class="ms-Link gear-button--{{CSS_MODULE_HASH}} root-000"
                 type="button"
               >
                 <i
                   aria-label="Manage Settings"
-                  class="gear-options-icon root-000"
+                  class="gear-options-icon--{{CSS_MODULE_HASH}} root-000"
+                  data-automation-id="gear-options-icon"
                   data-icon-name="Gear"
                 >
                   
@@ -40,7 +42,7 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
           </div>
           <button
             aria-label="help menu"
-            class="ms-Button ms-Button--icon root-000"
+            class="ms-Button ms-Button--icon feedback-collapse-menu-button--{{CSS_MODULE_HASH}} root-000"
             data-is-focusable="true"
             id="feedback-collapse-menu-button"
             type="button"

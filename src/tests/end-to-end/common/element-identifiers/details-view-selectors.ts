@@ -2,14 +2,14 @@
 // Licensed under the MIT License.
 import { resultSectionAutomationId } from 'common/components/cards/result-section';
 import { ruleDetailsGroupAutomationId } from 'common/components/cards/rules-with-instances';
+import { gearOptionsIconAutomationId } from 'DetailsView/components/details-view-dropdown';
 import { IframeWarningContainerAutomationId } from 'DetailsView/components/iframe-warning';
 import { overviewHeadingAutomationId } from 'DetailsView/components/overview-content/overview-heading';
 import { settingsPanelAutomationId } from 'DetailsView/components/settings-panel/settings-panel';
 import { startOverAutomationId } from 'DetailsView/components/start-over-component-factory';
 import { failureCountAutomationId } from 'reports/components/outcome-chip';
 import { cardsRuleIdAutomationId, ruleDetailAutomationId } from 'reports/components/report-sections/minimal-rule-header';
-
-const getAutomationIdSelector = (id: string) => `[data-automation-id="${id}"]`;
+import { getAutomationIdSelector } from 'tests/end-to-end/common/element-identifiers/get-automation-id-selector';
 
 export const detailsViewSelectors = {
     previewFeaturesPanel: '.preview-features-panel',
@@ -19,7 +19,7 @@ export const detailsViewSelectors = {
     mainContent: '[role=main]',
     instanceTableTextContent: '.assessment-instance-textContent',
 
-    gearButton: '.gear-options-icon',
+    gearButton: getAutomationIdSelector(gearOptionsIconAutomationId),
     settingsButton: 'button[name="Settings"]',
 
     automatedChecksResultSection: getAutomationIdSelector(resultSectionAutomationId),

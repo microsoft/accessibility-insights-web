@@ -20,6 +20,9 @@ export interface DetailsViewDropDownState {
     target?: HTMLElement | string | MouseEvent | IPoint | null;
 }
 
+export const gearButtonAutomationId = 'gear-button';
+export const gearOptionsIconAutomationId = 'gear-options-icon';
+
 export class DetailsViewDropDown extends React.Component<
     DetailsViewDropDownProps,
     DetailsViewDropDownState
@@ -34,9 +37,10 @@ export class DetailsViewDropDown extends React.Component<
 
     public render(): JSX.Element {
         return (
-            <div className="details-view-dropdown">
+            <div data-automation-id={gearButtonAutomationId} className="details-view-dropdown">
                 <Link className={styles.gearButton} onClick={this.openDropdown}>
                     <Icon
+                        data-automation-id={gearOptionsIconAutomationId}
                         className={styles.gearOptionsIcon}
                         iconName="Gear"
                         ariaLabel="Manage Settings"
