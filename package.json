@@ -76,7 +76,7 @@
         "app-builder-lib": "^22.3.1",
         "case-sensitive-paths-webpack-plugin": "^2.3.0",
         "core-js-bundle": "^3.6.4",
-        "cross-env": "^6.0.3",
+        "cross-env": "^7.0.0",
         "css-loader": "^3.4.2",
         "electron": "7.0.1",
         "electron-builder": "^22.2.0",
