@@ -23,9 +23,9 @@ jobs:
                 downloadPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
                 buildType: specific
                 buildVersionToDownload: specific
-                project: ${{ parameters.unsignedPipelineResource }}.projectID
-                pipeline: ${{ parameters.unsignedPipelineResource }}.pipelineID
-                buildId: ${{ parameters.unsignedPipelineResource }}.runID
+                project: $(resources.pipeline.${{ parameters.unsignedPipelineResource }}).projectID
+                pipeline: $(resources.pipeline.${{ parameters.unsignedPipelineResource }}).pipelineID
+                buildId: $(resources.pipeline.${{ parameters.unsignedPipelineResource }}).runID
 
           - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
             displayName: 'Send to ESRP Code Signing service'
