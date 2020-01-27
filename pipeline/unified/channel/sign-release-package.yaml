@@ -17,20 +17,15 @@ jobs:
 
           - script: echo ${{ parameters.unsignedArtifactName }} ${{ parameters.unsignedPipelineResource }} $(resources.pipeline.${{ parameters.unsignedPipelineResource }}.projectID)
 
-          - download: ${{ parameters.unsignedPipelineResource }}
-
-          - download: ${{ parameters.unsignedPipelineResource }}
-            artifact: ${{ parameters.unsignedArtifactName }}
-
-          - task: DownloadBuildArtifacts@0
+          - task: DownloadPipelineArtifact@2
             inputs:
-                artifactName: ${{ parameters.unsignedArtifactName }}
-                downloadPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
-                buildType: specific
-                buildVersionToDownload: specific
+                source: 'specific'
+                runVersion: 'specific'
                 project: $(resources.pipeline.${{ parameters.unsignedPipelineResource }}).projectID
                 pipeline: $(resources.pipeline.${{ parameters.unsignedPipelineResource }}).pipelineID
-                buildId: $(resources.pipeline.${{ parameters.unsignedPipelineResource }}).runID
+                runId: $(resources.pipeline.${{ parameters.unsignedPipelineResource }}).runID
+                artifact: ${{ parameters.unsignedArtifactName }}
+                path: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
 
           - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
             displayName: 'Send to ESRP Code Signing service'
