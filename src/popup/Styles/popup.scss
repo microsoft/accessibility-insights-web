@@ -10,6 +10,13 @@ body {
     font-family: $fontFamily;
 }
 
+.high-contrast-theme {
+    div.details-view-dropdown-callout {
+        box-shadow: $always-white 0px 0px 1px 0px !important;
+        border-radius: unset;
+    }
+}
+
 .telemetry-permission-dialog-modal {
     .ms-Overlay {
         background-color: $neutral-alpha-20;
