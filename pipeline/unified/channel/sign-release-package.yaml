@@ -21,9 +21,9 @@ jobs:
             inputs:
                 source: 'specific'
                 runVersion: 'specific'
-                project: $(resources.pipeline.${{ parameters.unsignedPipelineResource }}).projectID
-                pipeline: $(resources.pipeline.${{ parameters.unsignedPipelineResource }}).pipelineID
-                runId: $(resources.pipeline.${{ parameters.unsignedPipelineResource }}).runID
+                project: $(resources.pipeline.${{ parameters.unsignedPipelineResource }}.projectID)
+                pipeline: $(resources.pipeline.${{ parameters.unsignedPipelineResource }}.pipelineID)
+                runId: $(resources.pipeline.${{ parameters.unsignedPipelineResource }}.runID)
                 artifact: ${{ parameters.unsignedArtifactName }}
                 path: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
 
