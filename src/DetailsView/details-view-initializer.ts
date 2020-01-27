@@ -10,7 +10,7 @@ import { createDefaultLogger } from 'common/logging/default-logger';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
-import { loadTheme } from 'office-ui-fabric-react';
+import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
 import { AssessmentReportModelBuilderFactory } from 'reports/assessment-report-model-builder-factory';
@@ -408,6 +408,7 @@ if (isNaN(tabId) === false) {
                     browserAdapter,
                     detailsViewActionMessageCreator,
                 ),
+                setFocusVisibility,
             };
 
             const renderer = new DetailsViewRenderer(

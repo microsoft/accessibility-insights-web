@@ -3,22 +3,25 @@
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
-
 import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
 import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
 import { outcomeTypeSemantics } from '../../../reports/components/outcome-type';
 import { MinimalRuleHeader } from '../../../reports/components/report-sections/minimal-rule-header';
 import { CardRuleResult } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
-import { CollapsibleComponentCardsProps } from './collapsible-component-cards';
+import {
+    CollapsibleComponentCardsDeps,
+    CollapsibleComponentCardsProps,
+} from './collapsible-component-cards';
 import { RuleContent, RuleContentDeps } from './rule-content';
 import * as styles from './rules-with-instances.scss';
 
 export const ruleGroupAutomationId = 'cards-rule-group';
 
-export type RulesWithInstancesDeps = RuleContentDeps & {
-    collapsibleControl: (props: CollapsibleComponentCardsProps) => JSX.Element;
-};
+export type RulesWithInstancesDeps = RuleContentDeps &
+    CollapsibleComponentCardsDeps & {
+        collapsibleControl: (props: CollapsibleComponentCardsProps) => JSX.Element;
+    };
 
 export type RulesWithInstancesProps = {
     deps: RulesWithInstancesDeps;
