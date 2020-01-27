@@ -9,3 +9,10 @@
         color: $neutral-alpha-90;
     }
 }
+
+:global(.high-contrast-theme) {
+    :global(.ms-Callout) {
+        box-shadow: $always-white 0px 0px 1px 0px !important;
+        border-radius: unset;
+    }
+}
