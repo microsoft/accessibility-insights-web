@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 name: CanarySigning-$(Rev:r)
 
-trigger: null
+trigger: none
 
 resources:
     pipelines:
