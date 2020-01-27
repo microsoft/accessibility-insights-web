@@ -15,7 +15,7 @@ jobs:
       steps:
           - template: ../../install-node-prerequisites.yaml
 
-          - script: echo ${{ parameters.unsignedArtifactName }} ${{ parameters.unsignedPipelineResource }} ${{ parameters.unsignedPipelineResource }}.projectID
+          - script: echo ${{ parameters.unsignedArtifactName }} ${{ parameters.unsignedPipelineResource }} $(resources.pipeline.${{ parameters.unsignedPipelineResource }}.projectID)
 
           - task: DownloadBuildArtifacts@0
             inputs:
