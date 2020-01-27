@@ -48,7 +48,7 @@ jobs:
                         }
                     ]
 
-          - script: 'mv "$(System.DefaultWorkingDirectory)/detachedSignature/Accessibility Insights for Android.AppImage" "$(System.DefaultWorkingDirectory)/detachedSignature/Accessibility Insights for Android.sig"'
+          - script: 'rename "s/\.AppImage$/.sig/" $(System.DefaultWorkingDirectory)/detachedSignature/*.AppImage'
             displayName: 'Change signature file extension to sig'
 
           - task: CopyFiles@2
