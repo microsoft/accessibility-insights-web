@@ -1,6 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+@import '../../common//styles/colors.scss';
 
 .feedback-collapseMenuButton-col {
     float: right;
+
+    > button {
+        color: $neutral-alpha-90;
+    }
 }
