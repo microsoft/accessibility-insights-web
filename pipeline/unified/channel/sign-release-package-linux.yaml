@@ -59,7 +59,7 @@ jobs:
                     Accessibility Insights for Android*.*
                 TargetFolder: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
 
-          - script: yarn update:electron-checksum
+          - script: yarn update:electron-checksum signing-in-progress/${{ parameters.signedArtifactName }}
             displayName: update electron checksum after signing
 
           - template: ../publish-packed-build-output.yaml
