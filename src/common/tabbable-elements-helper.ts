@@ -14,7 +14,12 @@ export class TabbableElementsHelper {
         const offsetHeight = this.htmlElementUtils.getOffsetHeight(element);
         const offsetWidth = this.htmlElementUtils.getOffsetWidth(element);
         const clientRects = this.htmlElementUtils.getClientRects(element);
-        const result = style.visibility !== 'hidden' && style.display !== 'none' && offsetHeight && offsetWidth && clientRects.length > 0;
+        const result =
+            style.visibility !== 'hidden' &&
+            style.display !== 'none' &&
+            offsetHeight &&
+            offsetWidth &&
+            clientRects.length > 0;
         return result;
     };
 
@@ -26,7 +31,9 @@ export class TabbableElementsHelper {
         const parent = element.parentElement;
 
         if (this.htmlElementUtils.getTagName(parent) === 'map') {
-            return this.getMappedImage(parent as HTMLMapElement) ? (parent as HTMLMapElement) : null;
+            return this.getMappedImage(parent as HTMLMapElement)
+                ? (parent as HTMLMapElement)
+                : null;
         }
 
         return this.getAncestorMap(parent);

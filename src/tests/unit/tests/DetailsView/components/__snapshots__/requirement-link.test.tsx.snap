@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RequirementLink renders with index 1`] = `
-<div
+<span
   aria-hidden="true"
   className="button-flex-container"
 >
-  <div
+  <span
     className="ms-Button-label reqDescription"
   >
     <span
@@ -22,20 +22,20 @@ exports[`RequirementLink renders with index 1`] = `
     <span>
       Link with index description
     </span>
-  </div>
+  </span>
   <StatusIcon
     level="requirement"
     status={0}
   />
-</div>
+</span>
 `;
 
 exports[`RequirementLink renders without index 1`] = `
-<div
+<span
   aria-hidden="true"
   className="button-flex-container"
 >
-  <div
+  <span
     className="ms-Button-label reqDescription"
   >
     <span
@@ -47,10 +47,10 @@ exports[`RequirementLink renders without index 1`] = `
     <span>
       Link without index description
     </span>
-  </div>
+  </span>
   <StatusIcon
     level="requirement"
     status={0}
   />
-</div>
+</span>
 `;

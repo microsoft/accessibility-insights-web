@@ -20,7 +20,11 @@ export class IssueFilingActionMessageCreator {
 
     public openSettingsPanel(event: React.MouseEvent<HTMLElement>): void {
         const messageType = Messages.SettingsPanel.OpenPanel;
-        const telemetry = this.telemetryFactory.forSettingsPanelOpen(event, this.source, 'fileIssueSettingsPrompt');
+        const telemetry = this.telemetryFactory.forSettingsPanelOpen(
+            event,
+            this.source,
+            'fileIssueSettingsPrompt',
+        );
         const payload: BaseActionPayload = {
             telemetry,
         };
@@ -35,7 +39,11 @@ export class IssueFilingActionMessageCreator {
         this.dispatcher.sendTelemetry(FILE_ISSUE_CLICK, telemetry);
     }
 
-    public fileIssue(event: SupportedMouseEvent, serviceKey: string, issueData: CreateIssueDetailsTextData): void {
+    public fileIssue(
+        event: SupportedMouseEvent,
+        serviceKey: string,
+        issueData: CreateIssueDetailsTextData,
+    ): void {
         const messageType = Messages.IssueFiling.FileIssue;
         const telemetry = this.telemetryFactory.forFileIssueClick(event, this.source, serviceKey);
         const payload: FileIssuePayload = {

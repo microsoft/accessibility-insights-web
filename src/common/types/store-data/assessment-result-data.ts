@@ -82,6 +82,8 @@ export interface LandmarksAssessmentProperties {
     label: string;
 }
 
-export type AssessmentInstancesMap<T = {}, K = {}> = DictionaryStringTo<GeneratedAssessmentInstance<T, K>>;
+export type AssessmentInstancesMap<T = {}, K = {}> = DictionaryStringTo<
+    GeneratedAssessmentInstance<T, K>
+>;
 
 export type AssessmentResultType<K> = { [testStepName in keyof K]: TestStepResult };

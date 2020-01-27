@@ -16,7 +16,9 @@ export interface CardSelectionViewData {
 
 export type GetCardSelectionViewData = (storeData: CardSelectionStoreData) => CardSelectionViewData;
 
-export const getCardSelectionViewData: GetCardSelectionViewData = (storeData: CardSelectionStoreData): CardSelectionViewData => {
+export const getCardSelectionViewData: GetCardSelectionViewData = (
+    storeData: CardSelectionStoreData,
+): CardSelectionViewData => {
     const viewData = getEmptyViewData();
 
     if (!storeData) {
@@ -37,7 +39,10 @@ export const getCardSelectionViewData: GetCardSelectionViewData = (storeData: Ca
         return viewData;
     }
 
-    viewData.selectedResultUids = getOnlyResultUidsFromSelectedCards(storeData.rules, viewData.expandedRuleIds);
+    viewData.selectedResultUids = getOnlyResultUidsFromSelectedCards(
+        storeData.rules,
+        viewData.expandedRuleIds,
+    );
 
     viewData.highlightedResultUids = viewData.selectedResultUids.length
         ? viewData.selectedResultUids
@@ -77,7 +82,10 @@ function getAllResultUids(ruleDictionary: RuleExpandCollapseDataDictionary): str
     return getAllResultUidsFromRuleIdArray(ruleDictionary, keys(ruleDictionary));
 }
 
-function getAllResultUidsFromRuleIdArray(ruleDictionary: RuleExpandCollapseDataDictionary, ruleIds: string[]): string[] {
+function getAllResultUidsFromRuleIdArray(
+    ruleDictionary: RuleExpandCollapseDataDictionary,
+    ruleIds: string[],
+): string[] {
     return flatMap(ruleIds, key => getAllResultUidsFromRule(ruleDictionary[key]));
 }
 
@@ -85,7 +93,10 @@ function getAllResultUidsFromRule(rule: RuleExpandCollapseData): string[] {
     return keys(rule.cards);
 }
 
-function getOnlyResultUidsFromSelectedCards(ruleDictionary: RuleExpandCollapseDataDictionary, ruleIds: string[]): string[] {
+function getOnlyResultUidsFromSelectedCards(
+    ruleDictionary: RuleExpandCollapseDataDictionary,
+    ruleIds: string[],
+): string[] {
     return flatMap(ruleIds, key => getResultUidsFromSelectedCards(ruleDictionary[key]));
 }
 

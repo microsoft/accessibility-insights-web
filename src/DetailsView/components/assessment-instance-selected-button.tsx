@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as classNames from 'classnames';
+import { VisualizationType } from 'common/types/visualization-type';
 import { IconButton } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { VisualizationType } from '../../common/types/visualization-type';
+import * as styles from './assessment-instance-selected-button.scss';
 
 export interface AssessmentInstanceSelectedButtonProps {
     test: VisualizationType;
@@ -11,7 +12,12 @@ export interface AssessmentInstanceSelectedButtonProps {
     selector: string;
     isVisualizationEnabled: boolean;
     isVisible: boolean;
-    onSelected: (selected, test, step, selector) => void;
+    onSelected: (
+        selected: boolean,
+        test: VisualizationType,
+        step: string,
+        selector: string,
+    ) => void;
 }
 
 export class AssessmentInstanceSelectedButton extends React.Component<
@@ -21,14 +27,14 @@ export class AssessmentInstanceSelectedButton extends React.Component<
         const { isVisualizationEnabled, isVisible } = this.props;
 
         const iconStyling = classNames({
-            'instance-visibility-button': true,
-            'test-instance-selected-hidden-button': !isVisible,
+            [styles.instanceVisibilityButton]: true,
+            [styles.testInstanceSelectedHiddenButton]: !isVisible,
         });
 
         const iconPropsStyling = classNames({
-            'test-instance-selected': isVisualizationEnabled,
-            'test-instance-selected-hidden': !isVisible && isVisualizationEnabled,
-            'test-instance-selected-visible': isVisible && isVisualizationEnabled,
+            [styles.testInstanceSelected]: isVisualizationEnabled,
+            [styles.testInstanceSelectedHidden]: !isVisible && isVisualizationEnabled,
+            [styles.testInstanceSelectedVisible]: isVisible && isVisualizationEnabled,
         });
 
         return (
@@ -47,7 +53,7 @@ export class AssessmentInstanceSelectedButton extends React.Component<
         );
     }
 
-    private onButtonClicked = (event: React.MouseEvent<any>): void => {
+    private onButtonClicked = (): void => {
         if (this.props.isVisible) {
             const checked = !this.props.isVisualizationEnabled;
             this.props.onSelected(checked, this.props.test, this.props.step, this.props.selector);

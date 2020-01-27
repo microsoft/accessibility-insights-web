@@ -47,7 +47,8 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             id: FeatureFlags.logTelemetryToConsole,
             defaultValue: false,
             displayableName: 'Log telemetry to console',
-            displayableDescription: 'Write telemetry payload information to the developer tools console.',
+            displayableDescription:
+                'Write telemetry payload information to the developer tools console.',
             isPreviewFeature: false,
             forceDefault: false,
         },
@@ -63,7 +64,8 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             id: FeatureFlags.scoping,
             defaultValue: false,
             displayableName: 'Scoping experience',
-            displayableDescription: 'Enable scoping to limit scanning to selected portions of the webpage.',
+            displayableDescription:
+                'Enable scoping to limit scanning to selected portions of the webpage.',
             isPreviewFeature: false,
             forceDefault: false,
         },

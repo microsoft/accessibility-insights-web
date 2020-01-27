@@ -16,34 +16,40 @@ const generalNavigationDescription: JSX.Element = (
 const generalNavigationHowToTest: JSX.Element = (
     <div>
         <ol>
-            <li>Examine the target page to determine whether:</li>
-            <ol>
-                <li>The page is part of a multi-page website or web app.</li>
+            <li>
+                Examine the target page to determine whether:
                 <ol>
                     <li>
-                        If there are no other pages within the site or app, select <Term>Pass</Term>
-                        .
+                        The page is part of a multi-page website or web app.
+                        <ol>
+                            <li>
+                                If there are no other pages within the site or app, select{' '}
+                                <Term>Pass</Term>.
+                            </li>
+                        </ol>
                     </li>
-                </ol>
-                <li>The page is the result of, or a step in, a process.</li>
-                <ol>
                     <li>
-                        If the page is part of a process, select <Term>Pass</Term>.
+                        The page is the result of, or a step in, a process.
+                        <ol>
+                            <li>
+                                If the page is part of a process, select <Term>Pass</Term>.
+                            </li>
+                        </ol>
                     </li>
                 </ol>
-            </ol>
+            </li>
             <li>
                 Verify that the page provides two or more ways to locate pages within the site or
                 app, such as:
+                <ol>
+                    <li>Site maps</li>
+                    <li>Site search</li>
+                    <li>Tables of contents</li>
+                    <li>Navigation menus or dropdowns</li>
+                    <li>Navigation trees</li>
+                    <li>Links between pages</li>
+                </ol>
             </li>
-            <ol>
-                <li>Site maps</li>
-                <li>Site search</li>
-                <li>Tables of contents</li>
-                <li>Navigation menus or dropdowns</li>
-                <li>Navigation trees</li>
-                <li>Links between pages</li>
-            </ol>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
     </div>

@@ -400,38 +400,15 @@ div.insights-file-issue-details-dialog-container {
                         color: $secondary-text;
                     }
                 }
-                .no-failure-view {
-                    font-size: 15px;
-                    font-weight: normal;
-                    padding: 15px 0px 0px 15px;
-                }
-                .instance-visibility-button {
-                    color: $primary-text;
-                    padding-bottom: 6px;
-                }
                 .test-step-choice-group-container {
                     margin-left: 8px;
                     margin-bottom: 4px;
                     margin-top: 20px;
                 }
-                .test-instance-selected {
-                    padding: 2px;
-                    color: $neutral-0;
-                }
-                .test-instance-selected-hidden {
-                    background-color: $neutral-60;
-                    cursor: default;
-                }
-                .test-instance-selected-visible {
-                    background-color: $communication-primary;
-                }
                 .master-visualization-column-header-selected {
                     background-color: $communication-primary;
                     color: $neutral-0;
                     display: inline;
-                }
-                .test-instance-selected-hidden-button {
-                    background-color: transparent;
                 }
                 .property-bag-container {
                     display: flex;
@@ -548,6 +525,8 @@ div.insights-file-issue-details-dialog-container {
                 text-align: left;
                 margin-top: 6px;
                 margin-bottom: 6px;
+                display: flex;
+                flex-direction: column;
             }
             .overview-name {
                 line-height: 20px;

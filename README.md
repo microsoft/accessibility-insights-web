@@ -12,7 +12,7 @@ Licensed under the MIT License.
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/pbjjkligggfmakdaogkfomddhfmpjeni.svg)](https://chrome.google.com/webstore/detail/accessibility-insights-fo/pbjjkligggfmakdaogkfomddhfmpjeni/reviews)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=microsoft/accessibility-insights-web)](https://dependabot.com)
 
-Accessibility Insights for Web is a Google Chrome and Microsoft Edge Insider browser extension for assessing the accessibility of web sites and web applications.
+Accessibility Insights for Web is a browser extension for Google Chrome and the new Microsoft Edge, used for assessing the accessibility of web sites and web applications.
 
 ### Running the extension
 

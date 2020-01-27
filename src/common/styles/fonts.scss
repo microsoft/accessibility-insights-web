@@ -4,7 +4,11 @@
     $comma: '';
     $family: '';
     @each $font in $fonts {
-        $font: if(str-index($font, ' ') == null and str-index($font, '-') != 1, $font, "'#{$font}'");
+        $font: if(
+            str-index($font, ' ') == null and str-index($font, '-') != 1,
+            $font,
+            "'#{$font}'"
+        );
         $family: $family + $comma + $font;
         $comma: ',';
     }

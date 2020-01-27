@@ -11,7 +11,11 @@ import { VisualizationType } from '../types/visualization-type';
 export class VisualizationActionMessageCreator {
     constructor(private readonly dispatcher: ActionMessageDispatcher) {}
 
-    public setVisualizationState(test: VisualizationType, enabled: boolean, telemetry: ToggleTelemetryData): void {
+    public setVisualizationState(
+        test: VisualizationType,
+        enabled: boolean,
+        telemetry: ToggleTelemetryData,
+    ): void {
         const payload: VisualizationTogglePayload = {
             test,
             enabled,

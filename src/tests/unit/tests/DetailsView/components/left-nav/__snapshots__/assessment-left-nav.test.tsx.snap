@@ -18,7 +18,7 @@ exports[`AssessmentLeftNav render with index icon 1`] = `
 `;
 
 exports[`AssessmentLeftNav render with index icon 2`] = `
-<div
+<span
   className="index-circle"
 />
 `;
@@ -41,11 +41,9 @@ exports[`AssessmentLeftNav render with status icon 1`] = `
 `;
 
 exports[`AssessmentLeftNav render with status icon 2`] = `
-<div>
-  <StatusIcon
-    className="dark-gray"
-    level="test"
-    status={-1}
-  />
-</div>
+<StatusIcon
+  className="dark-gray"
+  level="test"
+  status={-1}
+/>
 `;

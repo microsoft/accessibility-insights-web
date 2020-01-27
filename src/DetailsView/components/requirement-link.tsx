@@ -17,29 +17,29 @@ export interface RequirementLinkProps {
 export class RequirementLink extends React.Component<RequirementLinkProps> {
     public render(): JSX.Element {
         return (
-            <div className={'button-flex-container'} aria-hidden="true">
+            <span className={'button-flex-container'} aria-hidden="true">
                 {this.props.renderRequirementDescription(this)}
                 <StatusIcon status={this.props.status} level="requirement" />
-            </div>
+            </span>
         );
     }
 
     public renderRequirementDescriptionWithIndex(): JSX.Element {
         return (
-            <div className={css('ms-Button-label', styles.reqDescription)}>
+            <span className={css('ms-Button-label', styles.reqDescription)}>
                 <span className={styles.reqIndex}>{this.props.link.index}</span>
                 <span className={styles.reqName}>{this.props.link.name}.</span>
                 {this.props.link.description}
-            </div>
+            </span>
         );
     }
 
     public renderRequirementDescriptionWithoutIndex(): JSX.Element {
         return (
-            <div className={css('ms-Button-label', styles.reqDescription)}>
+            <span className={css('ms-Button-label', styles.reqDescription)}>
                 <span className={styles.reqName}>{this.props.link.name}.</span>
                 {this.props.link.description}
-            </div>
+            </span>
         );
     }
 }
