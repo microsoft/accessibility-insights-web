@@ -1,6 +1,6 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-name: $(resources.pipeline.build-unsigned-release-packages.runName)-InsiderProductionSigning-$(Rev:r)
+name: InsiderProductionSigning-$(Rev:r)
 
 trigger: none
 
@@ -11,10 +11,6 @@ resources:
           trigger: none # manual
 
 jobs:
-    - job: echo
-      steps:
-          - script: echo $(resources.pipeline.build-unsigned-release-packages.projectID) $(resources.pipeline.build-unsigned-release-packages.pipelineID) $(resources.pipeline.build-unsigned-release-packages.runID)
-
     - template: channel/sign-release-packages-for-channel.yaml
       parameters:
           unsignedPipelineResource: build-unsigned-release-packages
