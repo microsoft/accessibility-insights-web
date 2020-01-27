@@ -327,7 +327,7 @@ module.exports = function(grunt) {
     });
 
     grunt.registerMultiTask('configure', function() {
-        const { config, configJSONPath, configJSPath } = this.data;
+        const { config, configJSONPath, configJSPath, appInsightsInstrumentationKey } = this.data;
 
         // We pass this as an option from a build variable not because it is a secret
         // (it can be found easily enough from released builds), but to make it harder
