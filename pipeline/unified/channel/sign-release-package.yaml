@@ -36,7 +36,7 @@ jobs:
                 signConfigType: inlineSignParams
                 inlineOperation: ${{ parameters.inlineSignParams }}
 
-          - script: yarn update:electron-checksum
+          - script: yarn update:electron-checksum --signing-in-progress/${{ parameters.signedArtifactName }}
             displayName: update electron checksum after signing
 
           - template: ../publish-packed-build-output.yaml
