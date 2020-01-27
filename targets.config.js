@@ -123,7 +123,7 @@ module.exports = {
         // Note: this non-canary-looking appId is intentional for backcompat
         appId: 'com.microsoft.accessibilityinsights',
         publishUrl: 'https://a11yinsightsandroidblob.blob.core.windows.net/aimobile-canary',
-        appInsightsInstrumentationKey: 'unified-canary-telemetry',
+        telemetryKeyIdentifier: 'unified-canary-instrumentation-key',
     },
     'unified-insider': {
         release: true,
@@ -139,7 +139,7 @@ module.exports = {
         mustExistFile: 'main.bundle.js',
         appId: 'com.microsoft.accessibilityinsights.unified.insider',
         publishUrl: 'https://a11yinsightsandroidblob-insiders.blob.core.windows.net/aimobile-insiders',
-        appInsightsInstrumentationKey: 'unified-insider-telemetry',
+        telemetryKeyIdentifier: 'unified-insider-instrumentation-key',
     },
     'unified-production': {
         release: true,
@@ -155,6 +155,6 @@ module.exports = {
         mustExistFile: 'main.bundle.js',
         appId: 'com.microsoft.accessibilityinsights.unified.production',
         publishUrl: 'https://a11yinsightsandroidblob-production.blob.core.windows.net/aimobile-production',
-        appInsightsInstrumentationKey: 'unified-prod-telemetry',
+        telemetryKeyIdentifier: 'unified-prod-instrumentation-key',
     },
 };

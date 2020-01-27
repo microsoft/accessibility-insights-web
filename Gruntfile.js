@@ -221,7 +221,7 @@ module.exports = function(grunt) {
     });
 
     targetNames.forEach(targetName => {
-        const { config, bundleFolder, appInsightsInstrumentationKey } = targets[targetName];
+        const { config, bundleFolder, telemetryKeyIdentifier } = targets[targetName];
 
         const { productCategory } = config.options;
 
@@ -239,7 +239,7 @@ module.exports = function(grunt) {
                     configJSPath: path.join(dropExtensionPath, 'insights.config.js'),
                     configJSONPath: path.join(dropExtensionPath, 'insights.config.json'),
                     config,
-                    appInsightsInstrumentationKey,
+                    telemetryKeyIdentifier,
                 },
             },
             manifest: {
@@ -327,15 +327,13 @@ module.exports = function(grunt) {
     });
 
     grunt.registerMultiTask('configure', function() {
-        const { config, configJSONPath, configJSPath, appInsightsInstrumentationKey } = this.data;
-
+        const { config, configJSONPath, configJSPath, telemetryKeyIdentifier } = this.data;
         // We pass this as an option from a build variable not because it is a secret
         // (it can be found easily enough from released builds), but to make it harder
         // to accidentally pollute release telemetry with data from local builds.
-        if (grunt.option('app-insights-instrumentation-key')) {
-            config.options.appInsightsInstrumentationKey = grunt.option(appInsightsInstrumentationKey);
+        if (telemetryKeyIdentifier && grunt.option(telemetryKeyIdentifier)) {
+            config.options.appInsightsInstrumentationKey = grunt.option(telemetryKeyIdentifier);
         }
-        `      `;
 
         const configJSON = JSON.stringify(config, undefined, 4);
         grunt.file.write(configJSONPath, configJSON);
