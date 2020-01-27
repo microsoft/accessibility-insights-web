@@ -18,6 +18,8 @@ jobs:
           - script: echo ${{ parameters.unsignedArtifactName }} ${{ parameters.unsignedPipelineResource }} $(resources.pipeline.${{ parameters.unsignedPipelineResource }}.projectID)
 
           - download: ${{ parameters.unsignedPipelineResource }}
+
+          - download: ${{ parameters.unsignedPipelineResource }}
             artifact: ${{ parameters.unsignedArtifactName }}
 
           - task: DownloadBuildArtifacts@0
