@@ -25,6 +25,18 @@ exports[`Details View -> Preview Features Panel should match content in snapshot
         <div
           class="ms-Panel-navigation navigation-000"
         >
+          <div
+            class="ms-Panel-header header-000"
+          >
+            <p
+              aria-level="2"
+              class="ms-Panel-headerText header-text--{{CSS_MODULE_HASH}} headerText-000"
+              id="Panel000-headerText"
+              role="heading"
+            >
+              Preview features
+            </p>
+          </div>
           <button
             aria-label="Close preview features panel"
             class="ms-Button ms-Button--icon ms-Panel-closeButton ms-PanelAction-close closeButton-000"
@@ -53,18 +65,6 @@ exports[`Details View -> Preview Features Panel should match content in snapshot
       <div
         class="ms-Panel-contentInner contentInner-000"
       >
-        <div
-          class="ms-Panel-header header-000"
-        >
-          <p
-            aria-level="2"
-            class="ms-Panel-headerText header-text--{{CSS_MODULE_HASH}} headerText-000"
-            id="Panel000-headerText"
-            role="heading"
-          >
-            Preview features
-          </p>
-        </div>
         <div
           class="ms-Panel-scrollableContent scrollableContent-000"
           data-is-scrollable="true"
