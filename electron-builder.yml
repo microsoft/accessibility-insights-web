@@ -25,8 +25,10 @@ win:
     target: nsis
 
 nsis:
-    oneClick: true
+    oneClick: false
     perMachine: false
     deleteAppDataOnUninstall: true
+    include: src/electron/resources/installer.nsh
+
 publish:
     provider: generic
