@@ -45,6 +45,7 @@ module.exports = function(grunt) {
                     zip: 'extension.zip',
                 },
             },
+            onError: e => grunt.fail.fatal(e.errorMsg),
         },
     });
 
