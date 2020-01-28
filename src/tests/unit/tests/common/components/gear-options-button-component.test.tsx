@@ -53,20 +53,22 @@ describe('GearOptionsButtonComponent', () => {
 
         it('handle settings menu item click', () => {
             dropdownClickHandlerMock.verify(handler => handler.openSettingsPanelHandler(It.isAny()), Times.never());
-            buttonProps.menuProps.items.filter(item => item.key === 'settings')[0].onClick(eventStub);
+            findMenuItemByKey('settings').onClick(eventStub);
             dropdownClickHandlerMock.verify(handler => handler.openSettingsPanelHandler(eventStub), Times.once());
         });
 
         it('handle preview features menu item click', () => {
             dropdownClickHandlerMock.verify(handler => handler.openPreviewFeaturesPanelHandler(It.isAny()), Times.never());
-            buttonProps.menuProps.items.filter(item => item.key === 'preview-features')[0].onClick(eventStub);
+            findMenuItemByKey('preview-features').onClick(eventStub);
             dropdownClickHandlerMock.verify(handler => handler.openPreviewFeaturesPanelHandler(eventStub), Times.once());
         });
 
         it('handle scoping menu item click', () => {
             dropdownClickHandlerMock.verify(handler => handler.openScopingPanelHandler(It.isAny()), Times.never());
-            buttonProps.menuProps.items.filter(item => item.key === 'scoping-feature')[0].onClick(eventStub);
+            findMenuItemByKey('scoping-feature').onClick(eventStub);
             dropdownClickHandlerMock.verify(handler => handler.openScopingPanelHandler(eventStub), Times.once());
         });
+
+        const findMenuItemByKey = (key: string) => buttonProps.menuProps.items.find(item => item.key === key);
     });
 });
