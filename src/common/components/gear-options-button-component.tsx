@@ -1,13 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IContextualMenuItem } from 'office-ui-fabric-react';
+import { IconButton, IContextualMenuItem } from 'office-ui-fabric-react';
 import * as React from 'react';
-
-import { DetailsViewDropDown } from '../../DetailsView/components/details-view-dropdown';
 import { DropdownClickHandler } from '../dropdown-click-handler';
 import { FeatureFlags } from '../feature-flags';
 import { FeatureFlagStoreData } from '../types/store-data/feature-flag-store-data';
-import * as styles from './gear-options-button-component.scss';
 
 export interface GearOptionsButtonComponentProps {
     dropdownClickHandler: DropdownClickHandler;
@@ -16,47 +13,42 @@ export interface GearOptionsButtonComponentProps {
 
 export class GearOptionsButtonComponent extends React.Component<GearOptionsButtonComponentProps> {
     public render(): JSX.Element {
-        return <div className={styles.gearOptionsButtonComponent}>{this.renderButton()}</div>;
-    }
-
-    private renderButton(): JSX.Element {
-        return <DetailsViewDropDown menuItems={this.getMenuItems()} />;
+        return (
+            <IconButton
+                iconProps={{ iconName: 'Gear' }}
+                menuProps={{ items: this.getMenuItems() }}
+                onRenderMenuIcon={() => null}
+                ariaLabel="manage settings"
+            />
+        );
     }
 
     private getMenuItems(): IContextualMenuItem[] {
-        const menuToReturn = [];
-        menuToReturn.push(this.getSettingsMenuItem());
-
-        menuToReturn.push(this.getPreviewFeatureMenuItem());
+        const menuToReturn: IContextualMenuItem[] = [
+            {
+                key: 'settings',
+                iconProps: {
+                    iconName: 'gear',
+                },
+                onClick: this.props.dropdownClickHandler.openSettingsPanelHandler,
+                name: 'Settings',
+            },
+            {
+                key: 'preview-features',
+                iconProps: {
+                    iconName: 'giftboxOpen',
+                },
+                onClick: this.props.dropdownClickHandler.openPreviewFeaturesPanelHandler,
+                name: 'Preview features',
+                className: 'preview-features-drop-down-button',
+            },
+        ];
 
         if (this.props.featureFlags[FeatureFlags.scoping]) {
             menuToReturn.push(this.getScopingFeatureMenuItem());
         }
 
         return menuToReturn;
-    }
-
-    private getPreviewFeatureMenuItem(): IContextualMenuItem {
-        return {
-            key: 'preview-features',
-            iconProps: {
-                iconName: 'giftboxOpen',
-            },
-            onClick: this.props.dropdownClickHandler.openPreviewFeaturesPanelHandler,
-            name: 'Preview features',
-            className: 'preview-features-drop-down-button',
-        };
-    }
-
-    private getSettingsMenuItem(): IContextualMenuItem {
-        return {
-            key: 'settings',
-            iconProps: {
-                iconName: 'gear',
-            },
-            onClick: this.props.dropdownClickHandler.openSettingsPanelHandler,
-            name: 'Settings',
-        };
     }
 
     private getScopingFeatureMenuItem(): IContextualMenuItem {

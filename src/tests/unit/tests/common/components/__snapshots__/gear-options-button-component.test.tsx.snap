@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GearOptionsButtonComponent renders proper button with scoping enabled = false 1`] = `
+<CustomizedIconButton
+  ariaLabel="manage settings"
+  iconProps={
+    Object {
+      "iconName": "Gear",
+    }
+  }
+  menuProps={
+    Object {
+      "items": Array [
+        Object {
+          "iconProps": Object {
+            "iconName": "gear",
+          },
+          "key": "settings",
+          "name": "Settings",
+          "onClick": [Function],
+        },
+        Object {
+          "className": "preview-features-drop-down-button",
+          "iconProps": Object {
+            "iconName": "giftboxOpen",
+          },
+          "key": "preview-features",
+          "name": "Preview features",
+          "onClick": [Function],
+        },
+      ],
+    }
+  }
+  onRenderMenuIcon={[Function]}
+/>
+`;
+
+exports[`GearOptionsButtonComponent renders proper button with scoping enabled = true 1`] = `
+<CustomizedIconButton
+  ariaLabel="manage settings"
+  iconProps={
+    Object {
+      "iconName": "Gear",
+    }
+  }
+  menuProps={
+    Object {
+      "items": Array [
+        Object {
+          "iconProps": Object {
+            "iconName": "gear",
+          },
+          "key": "settings",
+          "name": "Settings",
+          "onClick": [Function],
+        },
+        Object {
+          "className": "preview-features-drop-down-button",
+          "iconProps": Object {
+            "iconName": "giftboxOpen",
+          },
+          "key": "preview-features",
+          "name": "Preview features",
+          "onClick": [Function],
+        },
+        Object {
+          "iconProps": Object {
+            "iconName": "scopeTemplate",
+          },
+          "key": "scoping-feature",
+          "name": "Scoping",
+          "onClick": [Function],
+        },
+      ],
+    }
+  }
+  onRenderMenuIcon={[Function]}
+/>
+`;
