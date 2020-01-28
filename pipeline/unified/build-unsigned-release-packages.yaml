@@ -23,7 +23,7 @@ steps:
 
     - template: ../electron/electron-e2e-publish-results.yaml
 
-    - script: yarn build:electron:all --unified-version=$(Build.BuildNumber) --app-insights-instrumentation-key=$(AppInsightsInstrumentationKey)
+    - script: yarn build:electron:all --unified-version=$(Build.BuildNumber) --unified-canary-instrumentation-key=$(UnifiedCanaryInstrumentationKey) --unified-insider-instrumentation-key=$(UnifiedInsiderInstrumentationKey) --unified-prod-instrumentation-key=$(UnifiedProdInstrumentationKey)
       displayName: yarn build:electron:all
       env:
           ELECTRON_MIRROR: $(ELECTRON_MIRROR_VAR)
