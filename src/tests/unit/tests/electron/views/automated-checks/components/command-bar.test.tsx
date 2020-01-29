@@ -43,7 +43,7 @@ describe('CommandBar', () => {
         });
     });
 
-    test('rescan click', () => {
+    test('start over click', () => {
         const eventStub = new EventStubFactory().createMouseClickEvent() as React.MouseEvent<Button>;
 
         const port = 111;
@@ -64,7 +64,7 @@ describe('CommandBar', () => {
         } as CommandBarProps;
 
         const rendered = mount(<CommandBar {...props} />);
-        const button = rendered.find('button[name="Rescan"]');
+        const button = rendered.find('button[name="Start over"]');
 
         button.simulate('click', eventStub);
 
