@@ -120,9 +120,8 @@ module.exports = {
         },
         bundleFolder: 'electronBundle',
         mustExistFile: 'main.bundle.js',
-        // Note: this non-canary-looking appId is intentional for backcompat
-        appId: 'com.microsoft.accessibilityinsights',
-        publishUrl: 'https://a11yinsightsandroidblob.blob.core.windows.net/aimobile-canary',
+        appId: 'com.microsoft.accessibilityinsights.unified.canary',
+        publishUrl: 'https://a11yunifiedcanaryblob.blob.core.windows.net/a11yunified-canary',
         telemetryKeyIdentifier: 'unified-canary-instrumentation-key',
     },
     'unified-insider': {
@@ -138,7 +137,7 @@ module.exports = {
         bundleFolder: 'electronBundle',
         mustExistFile: 'main.bundle.js',
         appId: 'com.microsoft.accessibilityinsights.unified.insider',
-        publishUrl: 'https://a11yinsightsandroidblob-insiders.blob.core.windows.net/aimobile-insiders',
+        publishUrl: 'https://a11yunifiedinsiderblob.blob.core.windows.net/a11yunified-insider',
         telemetryKeyIdentifier: 'unified-insider-instrumentation-key',
     },
     'unified-production': {
@@ -154,7 +153,7 @@ module.exports = {
         bundleFolder: 'electronBundle',
         mustExistFile: 'main.bundle.js',
         appId: 'com.microsoft.accessibilityinsights.unified.production',
-        publishUrl: 'https://a11yinsightsandroidblob-production.blob.core.windows.net/aimobile-production',
+        publishUrl: 'https://a11yunifiedprodblob.blob.core.windows.net/a11yunified-prod',
         telemetryKeyIdentifier: 'unified-prod-instrumentation-key',
     },
 };
