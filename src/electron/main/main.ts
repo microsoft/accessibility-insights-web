@@ -28,10 +28,6 @@ const createWindow = () => {
         frame: os === OSType.Mac,
         minHeight: mainWindowConfig.minHeight,
         minWidth: mainWindowConfig.minWidth,
-<<<<<<< HEAD
-=======
-        icon: path.resolve(__dirname, '../icons/brand/blue/brand-blue-512px.png'),
->>>>>>> Revert "needed changes for icon updates"
     });
 
     if (platformInfo.isMac()) {
