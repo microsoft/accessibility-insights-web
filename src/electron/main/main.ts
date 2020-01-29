@@ -29,6 +29,7 @@ const createWindow = () => {
         minHeight: mainWindowConfig.minHeight,
         minWidth: mainWindowConfig.minWidth,
     });
+
     if (platformInfo.isMac()) {
         // We need this so that if there are any system dialog, they will not be placed on top of the title bar.
         mainWindow.setSheetOffset(22);
