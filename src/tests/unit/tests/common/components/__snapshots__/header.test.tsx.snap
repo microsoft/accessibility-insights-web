@@ -8,9 +8,16 @@ exports[`Header renders per snapshot 1`] = `
     deps={Object {}}
   />
   <span
-    className="headerText"
+    className="headerTitle"
   >
     Accessibility Insights for Web
   </span>
+  <div />
+  <div
+    className="spacer"
+  />
+  <div
+    className="farItems"
+  />
 </header>
 `;

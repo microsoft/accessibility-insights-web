@@ -7,15 +7,22 @@ import { NamedFC } from 'common/react/named-fc';
 import { title } from 'content/strings/application';
 import * as styles from './header.scss';
 
-export type HeaderProps = { deps: HeaderDeps };
 export type HeaderDeps = HeaderIconDeps;
+
+export type HeaderProps = {
+    deps: HeaderDeps;
+    nearItems?: JSX.Element;
+    farItems?: JSX.Element;
+};
 
 export const Header = NamedFC<HeaderProps>('Header', props => {
     return (
         <header className={styles.headerBar}>
             <HeaderIcon deps={props.deps} />
-            <span className={styles.headerText}>{title}</span>
-            {props.children}
+            <span className={styles.headerTitle}>{title}</span>
+            <div>{props.nearItems}</div>
+            <div className={styles.spacer}></div>
+            <div className={styles.farItems}>{props.farItems}</div>
         </header>
     );
 });

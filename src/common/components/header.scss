@@ -6,24 +6,22 @@
 
 .header-bar {
     display: flex;
+    flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: center;
-    flex-wrap: nowrap;
+    align-content: stretch;
 
     background-color: $ada-brand-color;
     height: $detailsViewHeaderBarHeight;
     width: 100%;
 
-    > * {
-        flex-shrink: 0;
-    }
-
     :global(.header-icon) {
         margin-left: 16px;
         height: 22px;
+        flex-shrink: 0;
     }
 
-    .header-text {
+    .header-title {
         // Note: this is slightly off from the mock-up (which says 40px); we're using 32px
         // temporarily until we add more complete reflow behavior for the header bar because
         // 32px is just small enough for a user at default zoom levels to resize the window
@@ -35,8 +33,32 @@
         font-size: $fontSizeML;
         font-family: $fontFamily;
 
-        // This is for the benefit of higher-zoom-level users.
-        flex-shrink: 1;
         @include ellipsedText();
+    }
+
+    .spacer {
+        flex: 1 1 auto;
+    }
+
+    .far-items {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-right: 12px;
+
+        button {
+            &,
+            &:focus,
+            &:hover,
+            &:active,
+            &:hover:active {
+                background-color: unset;
+            }
+        }
+
+        i {
+            font-size: 20px;
+            color: $neutral-0;
+        }
     }
 }
