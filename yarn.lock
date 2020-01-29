@@ -599,6 +599,13 @@
   resolved "https://registry.yarnpkg.com/@types/filewriter/-/filewriter-0.0.28.tgz#c054e8af4d9dd75db4e63abc76f885168714d4b3"
   integrity sha1-wFTor02d11205jq8dviFFocU1LM=
 
+"@types/fs-extra@^8.0.1":
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-8.0.1.tgz#a2378d6e7e8afea1564e44aafa2e207dadf77686"
+  integrity sha512-J00cVDALmi/hJOYsunyT52Hva5TnJeKP5yd1r+mH/ZU0mbYZflR0Z5kw5kITtKTRYMhm1JMClOFYdHnQszEvqw==
+  dependencies:
+    "@types/node" "*"
+
 "@types/glob@^7.1.1":
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/@types/glob/-/glob-7.1.1.tgz#aa59a1c6e3fbc421e07ccd31a944c30eba521575"
@@ -1206,6 +1213,11 @@ app-builder-bin@3.5.1:
   resolved "https://registry.yarnpkg.com/app-builder-bin/-/app-builder-bin-3.5.1.tgz#68dcbe4eb8b7d80be22945ba7f7b72c812ea1eb4"
   integrity sha512-71FeTdKU+L4/afnKYeCS9S9g6wa2AyiMLxGtYms6sPnnzUEd81wBhfvRb8/O/f4tLrU1MDbkjA8aGGiK9/ZT6A==
 
+app-builder-bin@3.5.2:
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/app-builder-bin/-/app-builder-bin-3.5.2.tgz#fba56e6e9ef76fcd37816738c5f9a0b3992d7183"
+  integrity sha512-tYeNHp8js5c5MT+mzGEMsZhDBXRVAkCgrvz80rzNLlCojG6YrNLRSzfCWZiKJCv5W2faHjxTkKQoRAMY3RWaow==
+
 app-builder-lib@22.2.0:
   version "22.2.0"
   resolved "https://registry.yarnpkg.com/app-builder-lib/-/app-builder-lib-22.2.0.tgz#2a5b657088f66f58785a01d6eb599e6c43dd5829"
@@ -1234,21 +1246,21 @@ app-builder-lib@22.2.0:
     semver "^6.3.0"
     temp-file "^3.3.6"
 
-app-builder-lib@^22.3.1:
-  version "22.3.1"
-  resolved "https://registry.yarnpkg.com/app-builder-lib/-/app-builder-lib-22.3.1.tgz#2b27f0e2f6b84face01fcf01df1e97df008b7764"
-  integrity sha512-/MlDMmeNvNp1/39orsPBee06YqjT+cxfX5BzH1fJmOTf9jdtvYuTnIwehyHcLjqGBm7qR6FMvZi0lfgBKD8rXA==
+app-builder-lib@^22.3.3:
+  version "22.3.3"
+  resolved "https://registry.yarnpkg.com/app-builder-lib/-/app-builder-lib-22.3.3.tgz#9a95a3c14f69fb6131834dd840fba561191c9998"
+  integrity sha512-zZJyuF3djIA5K6tbx8t3w40M0iVoBR6K2k4KMHOu96+ffmfvdlu+UrsvDqvP1N1cgwFoSSyvW/Hg9/SP12pnEQ==
   dependencies:
     "7zip-bin" "~5.0.3"
     "@develar/schema-utils" "~2.1.0"
     async-exit-hook "^2.0.1"
     bluebird-lst "^1.0.9"
-    builder-util "22.3.1"
+    builder-util "22.3.3"
     builder-util-runtime "8.6.0"
     chromium-pickle-js "^0.2.0"
     debug "^4.1.1"
     ejs "^3.0.1"
-    electron-publish "22.3.1"
+    electron-publish "22.3.3"
     fs-extra "^8.1.0"
     hosted-git-info "^3.0.2"
     is-ci "^2.0.0"
@@ -1993,14 +2005,15 @@ builder-util@22.2.0, builder-util@~22.2.0:
     stat-mode "^1.0.0"
     temp-file "^3.3.6"
 
-builder-util@22.3.1, builder-util@~22.3.1:
-  version "22.3.1"
-  resolved "https://registry.yarnpkg.com/builder-util/-/builder-util-22.3.1.tgz#2dc5beb309ee8fa4171d0e8e866a221a21bde9c1"
-  integrity sha512-hV62BDqsDQp/DVkhxQFuliEnB74pyFRzqaqiz67gDn3W8INhU/CcgWKZQOCXkr8BTK1YQhnl7v/yE+7h+gcRxA==
+builder-util@22.3.3, builder-util@~22.3.3:
+  version "22.3.3"
+  resolved "https://registry.yarnpkg.com/builder-util/-/builder-util-22.3.3.tgz#62f0527ceaa1a2e4a60596a9b38ad1ffe3e20ae6"
+  integrity sha512-VzQALenLDdeaz7hXaQgS9N0Xz3zlgkK64Dp2Vn61XTbhI0MgVneTeEKKDFwdBC/l7v0cHsOPeao/xeWmyznC2g==
   dependencies:
     "7zip-bin" "~5.0.3"
     "@types/debug" "^4.1.5"
-    app-builder-bin "3.5.1"
+    "@types/fs-extra" "^8.0.1"
+    app-builder-bin "3.5.2"
     bluebird-lst "^1.0.9"
     builder-util-runtime "8.6.0"
     chalk "^3.0.0"
@@ -3254,13 +3267,14 @@ electron-publish@22.2.0:
     lazy-val "^1.0.4"
     mime "^2.4.4"
 
-electron-publish@22.3.1:
-  version "22.3.1"
-  resolved "https://registry.yarnpkg.com/electron-publish/-/electron-publish-22.3.1.tgz#b8f8277963c6cdc446c71ede1a6a8eeb2fefacc3"
-  integrity sha512-MrOcH5lgbQAHZ3Rk/8zAq83svV4JrlhUdk6lwsLj69Nps3eQ4+GbS8zkRUkQZvddwB7PoP3Jhxqia7+3QBvYNA==
+electron-publish@22.3.3:
+  version "22.3.3"
+  resolved "https://registry.yarnpkg.com/electron-publish/-/electron-publish-22.3.3.tgz#7d1e757a20ce0558fdc42900b6e3d773fdae9d9e"
+  integrity sha512-QfdS6gyqdjX+JBm3DhRT8nwO2TKQF9Z2dsZBXxCfE+FXYe2XmxMXWeXY2vPBHxSOpBYeAYVIkBiNL+gWcSfA+w==
   dependencies:
+    "@types/fs-extra" "^8.0.1"
     bluebird-lst "^1.0.9"
-    builder-util "~22.3.1"
+    builder-util "~22.3.3"
     builder-util-runtime "8.6.0"
     chalk "^3.0.0"
     fs-extra "^8.1.0"
