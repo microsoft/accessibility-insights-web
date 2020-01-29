@@ -38,5 +38,16 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', (props: Command
 
     const items: ICommandBarItemProps[] = [startOverCommandBarItem];
 
-    return <UICommandBar items={items} className={styles.commandBar} />;
+    const settingsCommandBarItem: ICommandBarItemProps = {
+        key: 'settings',
+        iconProps: {
+            className: styles.buttonIcon,
+            iconName: 'Gear',
+        },
+        className: styles.menuItemButton,
+    };
+
+    const farItems: ICommandBarItemProps[] = [settingsCommandBarItem];
+
+    return <UICommandBar items={items} className={styles.commandBar} farItems={farItems} />;
 });

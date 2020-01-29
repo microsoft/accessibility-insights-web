@@ -3,6 +3,18 @@
 exports[`CommandBar renders while status is <Completed> 1`] = `
 <StyledCommandBarBase
   className="commandBar"
+  farItems={
+    Array [
+      Object {
+        "className": "menuItemButton",
+        "iconProps": Object {
+          "className": "buttonIcon",
+          "iconName": "Gear",
+        },
+        "key": "settings",
+      },
+    ]
+  }
   items={
     Array [
       Object {
@@ -24,6 +36,18 @@ exports[`CommandBar renders while status is <Completed> 1`] = `
 exports[`CommandBar renders while status is <Default> 1`] = `
 <StyledCommandBarBase
   className="commandBar"
+  farItems={
+    Array [
+      Object {
+        "className": "menuItemButton",
+        "iconProps": Object {
+          "className": "buttonIcon",
+          "iconName": "Gear",
+        },
+        "key": "settings",
+      },
+    ]
+  }
   items={
     Array [
       Object {
@@ -45,6 +69,18 @@ exports[`CommandBar renders while status is <Default> 1`] = `
 exports[`CommandBar renders while status is <Failed> 1`] = `
 <StyledCommandBarBase
   className="commandBar"
+  farItems={
+    Array [
+      Object {
+        "className": "menuItemButton",
+        "iconProps": Object {
+          "className": "buttonIcon",
+          "iconName": "Gear",
+        },
+        "key": "settings",
+      },
+    ]
+  }
   items={
     Array [
       Object {
@@ -66,6 +102,18 @@ exports[`CommandBar renders while status is <Failed> 1`] = `
 exports[`CommandBar renders while status is <Scanning> 1`] = `
 <StyledCommandBarBase
   className="commandBar"
+  farItems={
+    Array [
+      Object {
+        "className": "menuItemButton",
+        "iconProps": Object {
+          "className": "buttonIcon",
+          "iconName": "Gear",
+        },
+        "key": "settings",
+      },
+    ]
+  }
   items={
     Array [
       Object {
