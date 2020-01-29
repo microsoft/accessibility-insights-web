@@ -23,20 +23,20 @@ export interface CommandBarProps {
 export const CommandBar = NamedFC<CommandBarProps>('CommandBar', (props: CommandBarProps) => {
     const { deps, deviceStoreData } = props;
 
-    const onRescanClick = () => deps.scanActionCreator.scan(deviceStoreData.port);
-    const rescanCommandBarItem: ICommandBarItemProps = {
-        key: 'rescan',
-        name: 'Rescan',
+    const onStartOverClick = () => deps.scanActionCreator.scan(deviceStoreData.port);
+    const startOverCommandBarItem: ICommandBarItemProps = {
+        key: 'startOver',
+        name: 'Start over',
         iconProps: {
             className: styles.buttonIcon,
             iconName: 'Refresh',
         },
         className: styles.menuItemButton,
-        onClick: onRescanClick,
+        onClick: onStartOverClick,
         disabled: props.scanStoreData.status === ScanStatus.Scanning,
     };
 
-    const items: ICommandBarItemProps[] = [rescanCommandBarItem];
+    const items: ICommandBarItemProps[] = [startOverCommandBarItem];
 
     return <UICommandBar items={items} className={styles.commandBar} />;
 });

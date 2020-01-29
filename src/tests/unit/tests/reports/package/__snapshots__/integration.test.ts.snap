@@ -7676,7 +7676,7 @@ exports[`report package integration with no issues 1`] = `
             <div
               class="reportCongratsInfo"
             >
-              No failed automated checks were found.
+              No failed automated checks were found. Continue investigating your app's accessibility compliance through manual testing.
             </div>
           </div>
         </div>

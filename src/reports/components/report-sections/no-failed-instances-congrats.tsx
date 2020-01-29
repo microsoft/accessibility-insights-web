@@ -9,7 +9,10 @@ export const NoFailedInstancesCongrats = NamedFC('NoFailedInstancesCongrats', ()
     return (
         <div className={styles.reportCongratsMessage}>
             <div className={styles.reportCongratsHead}>Congratulations!</div>
-            <div className={styles.reportCongratsInfo}>No failed automated checks were found.</div>
+            <div className={styles.reportCongratsInfo}>
+                No failed automated checks were found. Continue investigating your app's
+                accessibility compliance through manual testing.
+            </div>
         </div>
     );
 });

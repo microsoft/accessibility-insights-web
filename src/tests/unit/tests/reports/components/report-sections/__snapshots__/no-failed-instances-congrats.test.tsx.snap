@@ -12,7 +12,7 @@ exports[`NoFailedInstancesCongrats renders 1`] = `
   <div
     className="reportCongratsInfo"
   >
-    No failed automated checks were found.
+    No failed automated checks were found. Continue investigating your app's accessibility compliance through manual testing.
   </div>
 </div>
 `;
