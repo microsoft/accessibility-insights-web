@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GearMenuButton } from 'common/components/gear-options-button-component';
+import { GearMenuButton } from 'common/components/gear-menu-button';
 import {
     HamburgerMenuButton,
     HamburgerMenuButtonDeps,

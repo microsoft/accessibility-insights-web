@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GearMenuButton } from 'common/components/gear-options-button-component';
+import { GearMenuButton } from 'common/components/gear-menu-button';
 import { Header, HeaderDeps } from 'common/components/header';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { NamedFC } from 'common/react/named-fc';
