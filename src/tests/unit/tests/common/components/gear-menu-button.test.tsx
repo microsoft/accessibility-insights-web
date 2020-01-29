@@ -9,7 +9,7 @@ import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-describe('GearOptionsButtonComponent', () => {
+describe('GearMenuButton', () => {
     describe('renders', () => {
         const props: GearOptionsButtonComponentProps = {
             dropdownClickHandler: Mock.ofType(DropdownClickHandler).object,

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`GearOptionsButtonComponent renders proper button with scoping enabled = false 1`] = `
+exports[`GearMenuButton renders proper button with scoping enabled = false 1`] = `
 <CustomizedIconButton
   ariaLabel="manage settings"
   className="gearMenuButton"
@@ -39,7 +39,7 @@ exports[`GearOptionsButtonComponent renders proper button with scoping enabled =
 />
 `;
 
-exports[`GearOptionsButtonComponent renders proper button with scoping enabled = true 1`] = `
+exports[`GearMenuButton renders proper button with scoping enabled = true 1`] = `
 <CustomizedIconButton
   ariaLabel="manage settings"
   className="gearMenuButton"
