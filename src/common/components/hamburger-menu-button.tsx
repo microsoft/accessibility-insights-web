@@ -9,6 +9,7 @@ import { PopupActionMessageCreator } from 'popup/actions/popup-action-message-cr
 import { LaunchPanelHeader } from 'popup/components/launch-panel-header';
 import { LaunchPanelHeaderClickHandler } from 'popup/handlers/launch-panel-header-click-handler';
 import * as React from 'react';
+import * as styles from './hamburger-menu-button.scss';
 
 const telemetryEventSource = TelemetryEventSource.HamburgerMenu;
 
@@ -89,8 +90,14 @@ export const HamburgerMenuButton = NamedFC<HamburgerMenuButtonProps>(
 
         return (
             <IconButton
+                className={styles.hamburgerMenuButton}
                 iconProps={{ iconName: 'GlobalNavButton' }}
-                menuProps={{ items: getMenuItems() }}
+                menuProps={{
+                    items: getMenuItems(),
+                    calloutProps: {
+                        className: styles.hamburgerMenuButtonCallout,
+                    },
+                }}
                 onRenderMenuIcon={() => null}
                 ariaLabel="help menu"
             />

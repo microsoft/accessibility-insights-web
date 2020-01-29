@@ -6,6 +6,7 @@ import * as React from 'react';
 import { DropdownClickHandler } from '../dropdown-click-handler';
 import { FeatureFlags } from '../feature-flags';
 import { FeatureFlagStoreData } from '../types/store-data/feature-flag-store-data';
+import * as styles from './gear-options-button-component.scss';
 
 export interface GearOptionsButtonComponentProps {
     dropdownClickHandler: DropdownClickHandler;
@@ -56,8 +57,14 @@ export const GearOptionsButtonComponent = NamedFC<GearOptionsButtonComponentProp
 
         return (
             <IconButton
+                className={styles.gearMenuButton}
                 iconProps={{ iconName: 'Gear' }}
-                menuProps={{ items: getMenuItems() }}
+                menuProps={{
+                    items: getMenuItems(),
+                    calloutProps: {
+                        className: styles.gearMenuButtonCallout,
+                    },
+                }}
                 onRenderMenuIcon={() => null}
                 ariaLabel="manage settings"
             />

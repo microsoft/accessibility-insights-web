@@ -3,6 +3,7 @@
 exports[`GearOptionsButtonComponent renders proper button with scoping enabled = false 1`] = `
 <CustomizedIconButton
   ariaLabel="manage settings"
+  className="gearMenuButton"
   iconProps={
     Object {
       "iconName": "Gear",
@@ -10,6 +11,9 @@ exports[`GearOptionsButtonComponent renders proper button with scoping enabled =
   }
   menuProps={
     Object {
+      "calloutProps": Object {
+        "className": "gearMenuButtonCallout",
+      },
       "items": Array [
         Object {
           "iconProps": Object {
@@ -38,6 +42,7 @@ exports[`GearOptionsButtonComponent renders proper button with scoping enabled =
 exports[`GearOptionsButtonComponent renders proper button with scoping enabled = true 1`] = `
 <CustomizedIconButton
   ariaLabel="manage settings"
+  className="gearMenuButton"
   iconProps={
     Object {
       "iconName": "Gear",
@@ -45,6 +50,9 @@ exports[`GearOptionsButtonComponent renders proper button with scoping enabled =
   }
   menuProps={
     Object {
+      "calloutProps": Object {
+        "className": "gearMenuButtonCallout",
+      },
       "items": Array [
         Object {
           "iconProps": Object {

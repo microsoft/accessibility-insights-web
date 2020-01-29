@@ -3,6 +3,7 @@
 exports[`HamburgerMenuButton renders proper button and menu item props 1`] = `
 <CustomizedIconButton
   ariaLabel="help menu"
+  className="hamburgerMenuButton"
   iconProps={
     Object {
       "iconName": "GlobalNavButton",
@@ -10,6 +11,9 @@ exports[`HamburgerMenuButton renders proper button and menu item props 1`] = `
   }
   menuProps={
     Object {
+      "calloutProps": Object {
+        "className": "hamburgerMenuButtonCallout",
+      },
       "items": Array [
         Object {
           "iconProps": Object {
