@@ -22,7 +22,6 @@ export const detailsViewSelectors = {
     mainContent: '[role=main]',
     instanceTableTextContent: '.assessment-instance-textContent',
 
-    gearButton: '.gear-options-icon',
     settingsButton: 'button[name="Settings"]',
 
     automatedChecksResultSection: getAutomationIdSelector(resultSectionAutomationId),
