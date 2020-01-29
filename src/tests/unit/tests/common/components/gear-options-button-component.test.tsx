@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GearOptionsButtonComponent, GearOptionsButtonComponentProps } from 'common/components/gear-options-button-component';
+import { GearMenuButton, GearOptionsButtonComponentProps } from 'common/components/gear-options-button-component';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { FeatureFlags } from 'common/feature-flags';
 import { shallow } from 'enzyme';
@@ -19,12 +19,12 @@ describe('GearOptionsButtonComponent', () => {
         it.each([true, false])('proper button with scoping enabled = %s', isScopingEnabled => {
             props.featureFlags = { [FeatureFlags[FeatureFlags.scoping]]: isScopingEnabled };
 
-            const testSubject = shallow(<GearOptionsButtonComponent {...props} />);
+            const testSubject = shallow(<GearMenuButton {...props} />);
             expect(testSubject.getElement()).toMatchSnapshot();
         });
 
         it('no down chevron menu icon', () => {
-            const wrapped = shallow(<GearOptionsButtonComponent {...props} />);
+            const wrapped = shallow(<GearMenuButton {...props} />);
             const testSubject = wrapped.find<IButtonProps>(IconButton).prop('onRenderMenuIcon');
 
             expect(testSubject()).toBeNull();
@@ -47,7 +47,7 @@ describe('GearOptionsButtonComponent', () => {
                 featureFlags: { [FeatureFlags[FeatureFlags.scoping]]: true },
             };
 
-            const testSubject = shallow(<GearOptionsButtonComponent {...props} />);
+            const testSubject = shallow(<GearMenuButton {...props} />);
             buttonProps = testSubject.find(IconButton).props();
         });
 

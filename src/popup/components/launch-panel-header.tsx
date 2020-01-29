@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GearOptionsButtonComponent } from 'common/components/gear-options-button-component';
+import { GearMenuButton } from 'common/components/gear-options-button-component';
 import {
     HamburgerMenuButton,
     HamburgerMenuButtonDeps,
@@ -57,7 +57,7 @@ export class LaunchPanelHeader extends React.Component<
 
         return (
             <>
-                <GearOptionsButtonComponent
+                <GearMenuButton
                     dropdownClickHandler={dropdownClickHandler}
                     featureFlags={this.props.featureFlags}
                 />

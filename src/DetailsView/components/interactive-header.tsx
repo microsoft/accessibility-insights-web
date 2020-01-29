@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GearOptionsButtonComponent } from 'common/components/gear-options-button-component';
+import { GearMenuButton } from 'common/components/gear-options-button-component';
 import { Header, HeaderDeps } from 'common/components/header';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { NamedFC } from 'common/react/named-fc';
@@ -27,7 +27,7 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
     const getNearItems = () => <Switcher deps={props.deps} pivotKey={props.selectedPivot} />;
 
     const getFarItems = () => (
-        <GearOptionsButtonComponent
+        <GearMenuButton
             dropdownClickHandler={props.dropdownClickHandler}
             featureFlags={props.featureFlagStoreData}
         />

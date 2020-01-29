@@ -13,7 +13,7 @@ export interface GearOptionsButtonComponentProps {
     featureFlags: FeatureFlagStoreData;
 }
 
-export const GearOptionsButtonComponent = NamedFC<GearOptionsButtonComponentProps>(
+export const GearMenuButton = NamedFC<GearOptionsButtonComponentProps>(
     'GearOptionsButtonComponent',
     props => {
         const getMenuItems = () => {
