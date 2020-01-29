@@ -28,7 +28,6 @@ const createWindow = () => {
         frame: os === OSType.Mac,
         minHeight: mainWindowConfig.minHeight,
         minWidth: mainWindowConfig.minWidth,
-        icon: path.resolve(__dirname, '../icons/brand/blue/brand-blue-512px.png'),
     });
     if (platformInfo.isMac()) {
         // We need this so that if there are any system dialog, they will not be placed on top of the title bar.
