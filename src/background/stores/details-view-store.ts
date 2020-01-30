@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { StoreNames } from 'common/stores/store-names';
 import { CurrentPanel } from 'common/types/store-data/current-panel';
-import { DetailsViewData } from 'common/types/store-data/details-view-data';
+import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
 import { DetailsViewRightContentPanelType } from 'DetailsView/components/left-nav/details-view-right-content-panel-type';
 import { ContentActions } from '../actions/content-actions';
 import { DetailsViewActions } from '../actions/details-view-actions';
@@ -10,7 +10,7 @@ import { ScopingActions } from '../actions/scoping-actions';
 import { PreviewFeaturesActions } from './../actions/preview-features-actions';
 import { BaseStoreImpl } from './base-store-impl';
 
-export class DetailsViewStore extends BaseStoreImpl<DetailsViewData> {
+export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
     constructor(
         private previewFeaturesActions: PreviewFeaturesActions,
         private scopingActions: ScopingActions,
@@ -20,8 +20,8 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewData> {
         super(StoreNames.DetailsViewStore);
     }
 
-    public getDefaultState(): DetailsViewData {
-        const data: DetailsViewData = {
+    public getDefaultState(): DetailsViewStoreData {
+        const data: DetailsViewStoreData = {
             contentPath: '',
             currentPanel: {
                 isPreviewFeaturesOpen: false,
@@ -66,7 +66,7 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewData> {
 
     private onOpen = (
         flagName: keyof CurrentPanel,
-        mutator?: (data: DetailsViewData) => void,
+        mutator?: (data: DetailsViewStoreData) => void,
     ): void => {
         Object.keys(this.state.currentPanel).forEach(key => {
             this.state.currentPanel[key] = false;
@@ -83,7 +83,7 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewData> {
 
     private onClose = (
         flagName: keyof CurrentPanel,
-        mutator?: (data: DetailsViewData) => void,
+        mutator?: (data: DetailsViewStoreData) => void,
     ): void => {
         this.state.currentPanel[flagName] = false;
 
