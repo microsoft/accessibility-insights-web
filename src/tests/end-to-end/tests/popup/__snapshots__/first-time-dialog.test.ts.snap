@@ -26,14 +26,14 @@ exports[`First time Dialog content should match snapshot 1`] = `
           <div
             class="ms-Dialog-header header-000"
           >
-            <p
+            <div
               aria-level="2"
               class="ms-Dialog-title title-000"
               id="telemetry-permission-title"
               role="heading"
             >
               We need your help
-            </p>
+            </div>
             <div
               class="topButton-000"
             />
