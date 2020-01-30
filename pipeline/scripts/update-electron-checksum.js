@@ -5,9 +5,9 @@ const fs = require('fs');
 const YAML = require('js-yaml');
 const path = require('path');
 
-const getLatestYAMLPath = () => {
+const getLatestYAMLPath = parentDir => {
     const platformModifier = process.platform == 'darwin' ? '-mac' : process.platform == 'linux' ? '-linux' : '';
-    const latestPath = path.join('dist', `latest${platformModifier}.yml`);
+    const latestPath = path.join(parentDir, `latest${platformModifier}.yml`);
     return latestPath;
 };
 
@@ -17,8 +17,7 @@ const readLatestYAML = latestPath => {
     return latest;
 };
 
-const getSetupChecksum = async latest => {
-    const setupFilePath = path.join('dist', latest.path);
+const getSetupChecksum = async setupFilePath => {
     const setupChecksum = await hashUtil.hashFile(setupFilePath, 'sha512', 'base64');
     return setupChecksum;
 };
@@ -34,9 +33,10 @@ const writeLatestYAML = (latestPath, latest) => {
 };
 
 const updateElectronChecksum = async () => {
-    const latestPath = getLatestYAMLPath();
+    const parentDir = process.argv.length > 2 ? process.argv[2] : 'dist'; // TODO - refactor using library/envvar?
+    const latestPath = getLatestYAMLPath(parentDir);
     const latest = readLatestYAML(latestPath);
-    const setupChecksum = await getSetupChecksum(latest);
+    const setupChecksum = await getSetupChecksum(path.join(parentDir, latest.path));
 
     updateChecksumInLatest(latest, setupChecksum);
     writeLatestYAML(latestPath, latest);
