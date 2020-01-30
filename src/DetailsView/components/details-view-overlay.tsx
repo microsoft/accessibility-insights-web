@@ -5,7 +5,7 @@ import * as React from 'react';
 import { ContentPanel, ContentPanelDeps, ContentPanelProps } from 'views/content/content-panel';
 import { InspectActionMessageCreator } from '../../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../../common/message-creators/scoping-action-message-creator';
-import { DetailsViewData } from '../../common/types/store-data/details-view-data';
+import { DetailsViewStoreData } from '../../common/types/store-data/details-view-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { ScopingStoreData } from '../../common/types/store-data/scoping-store-data';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
@@ -25,7 +25,7 @@ export type DetailsViewOverlayDeps = {
 
 export interface DetailsViewOverlayProps {
     deps: DetailsViewOverlayDeps;
-    detailsViewStoreData: DetailsViewData;
+    detailsViewStoreData: DetailsViewStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
     previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
     scopingStoreData: ScopingStoreData;

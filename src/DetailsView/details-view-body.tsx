@@ -11,7 +11,7 @@ import * as React from 'react';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
-import { DetailsViewData } from '../common/types/store-data/details-view-data';
+import { DetailsViewStoreData } from '../common/types/store-data/details-view-data';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
@@ -44,7 +44,7 @@ export interface DetailsViewBodyProps {
     assessmentStoreData: AssessmentStoreData;
     pathSnippetStoreData: PathSnippetStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
-    detailsViewStoreData: DetailsViewData;
+    detailsViewStoreData: DetailsViewStoreData;
     selectedTest: VisualizationType;
     visualizationStoreData: VisualizationStoreData;
     visualizationScanResultData: VisualizationScanResultData;

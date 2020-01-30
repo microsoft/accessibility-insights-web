@@ -68,7 +68,7 @@ import { BaseClientStoresHub } from '../common/stores/base-client-stores-hub';
 import { StoreNames } from '../common/stores/store-names';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
-import { DetailsViewData } from '../common/types/store-data/details-view-data';
+import { DetailsViewStoreData } from '../common/types/store-data/details-view-data';
 import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
@@ -147,7 +147,7 @@ if (isNaN(tabId) === false) {
                 browserAdapter,
                 tab.id,
             );
-            const detailsViewStore = new StoreProxy<DetailsViewData>(
+            const detailsViewStore = new StoreProxy<DetailsViewStoreData>(
                 StoreNames[StoreNames.DetailsViewStore],
                 browserAdapter,
                 tab.id,

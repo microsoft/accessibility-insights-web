@@ -10,7 +10,7 @@ import { ScopingActionMessageCreator } from '../../../../common/message-creators
 import { StoreActionMessageCreator } from '../../../../common/message-creators/store-action-message-creator';
 import { BaseClientStoresHub } from '../../../../common/stores/base-client-stores-hub';
 import { AssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
-import { DetailsViewData } from '../../../../common/types/store-data/details-view-data';
+import { DetailsViewStoreData } from '../../../../common/types/store-data/details-view-data';
 import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import { UnifiedScanResultStoreData } from '../../../../common/types/store-data/unified-data-interface';
@@ -32,7 +32,7 @@ export class DetailsViewContainerPropsBuilder {
     private tabStore: BaseStore<TabStoreData>;
     private featureFlagStore: BaseStore<DictionaryStringTo<boolean>>;
     private scopingStateStore: BaseStore<ScopingStoreData>;
-    private detailsViewStore: BaseStore<DetailsViewData>;
+    private detailsViewStore: BaseStore<DetailsViewStoreData>;
     private scopingActionMessageCreator: ScopingActionMessageCreator;
     private inspectActionMessageCreator: InspectActionMessageCreator;
     private storeActionCreator: StoreActionMessageCreator;
