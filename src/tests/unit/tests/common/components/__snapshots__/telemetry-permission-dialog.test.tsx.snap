@@ -5,7 +5,9 @@ exports[`TelemetryPermissionDialogTest render dialog 1`] = `
   dialogContentProps={
     Object {
       "title": "We need your help",
-      "titleId": "telemetry-permission-title",
+      "titleProps": Object {
+        "id": "telemetry-permission-title",
+      },
       "type": 0,
     }
   }
