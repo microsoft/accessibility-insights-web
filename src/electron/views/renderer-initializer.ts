@@ -49,6 +49,7 @@ import { WindowStateStore } from 'electron/flux/store/window-state-store';
 import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { ScanController } from 'electron/platform/android/scan-controller';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
+import { AndroidSettingsProvider } from 'electron/settings/android-settings-provider';
 import {
     RootContainerDeps,
     RootContainerState,
@@ -82,6 +83,7 @@ import { ElectronLink } from './device-connect-view/components/electron-link';
 import { sendAppInitializedTelemetryEvent } from './device-connect-view/send-app-initialized-telemetry';
 import { RootContainerRenderer } from './root-container/root-container-renderer';
 import { screenshotViewModelProvider } from './screenshot/screenshot-view-model-provider';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 
 initializeFabricIcons();
 
@@ -172,6 +174,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             scanStore,
             unifiedScanResultStore,
             cardSelectionStore,
+            detailsViewStore,
         ]);
 
         const telemetryStateListener = new TelemetryStateListener(
@@ -257,6 +260,11 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             TelemetryEventSource.ElectronAutomatedChecksView,
         );
 
+        const detailsViewActionMessageCreator = new DetailsViewActionMessageCreator(
+            telemetryDataFactory,
+            dispatcher,
+        );
+
         const fixInstructionProcessor = new FixInstructionProcessor();
 
         const cardsViewDeps: CardsViewDeps = {
@@ -271,7 +279,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
             userConfigMessageCreator: userConfigMessageCreator,
             cardSelectionMessageCreator,
-            detailsViewActionMessageCreator: null,
+
+            detailsViewActionMessageCreator,
             issueFilingActionMessageCreator: null, // we don't support issue filing right now
 
             environmentInfoProvider: null,
@@ -304,6 +313,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             screenshotViewModelProvider,
             ...cardsViewDeps,
             storeActionMessageCreator: new NullStoreActionMessageCreator(),
+            settingsProvider: AndroidSettingsProvider,
         };
 
         const renderer = new RootContainerRenderer(ReactDOM.render, document, deps);
