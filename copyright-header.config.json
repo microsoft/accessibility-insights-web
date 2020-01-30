@@ -27,7 +27,7 @@
         "yarn.lock"
     ],
     "licenseFormats": {
-        "yaml|npmrc|yml|ps1|gitignore|dockerignore|prettierignore|yarnrc": {
+        "yaml|npmrc|yml|ps1|gitignore|dockerignore|prettierignore|yarnrc|nsh": {
             "eachLine": {
                 "prepend": "# "
             }
