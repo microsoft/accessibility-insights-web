@@ -5,6 +5,8 @@
 # must be parseable by node-semver, so month leading zero is omitted
 name: $(Year:yyyy).$(Date:Mdd).$(Rev:r)
 
+trigger: none
+
 strategy:
     matrix:
         windows: { vmImage: 'windows-latest', platform: 'windows' }
