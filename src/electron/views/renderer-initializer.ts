@@ -4,6 +4,8 @@ import { AppInsights } from 'applicationinsights-js';
 import axios from 'axios';
 import { CardSelectionActionCreator } from 'background/actions/card-selection-action-creator';
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
+import { DetailsViewActionCreator } from 'background/actions/details-view-action-creator';
+import { DetailsViewActions } from 'background/actions/details-view-actions';
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { registerUserConfigurationMessageCallback } from 'background/global-action-creators/registrar/register-user-configuration-message-callbacks';
 import { UserConfigurationActionCreator } from 'background/global-action-creators/user-configuration-action-creator';
@@ -29,6 +31,7 @@ import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { CardsViewDeps } from 'DetailsView/components/cards-view';
 import { remote } from 'electron';
 import { DirectActionMessageDispatcher } from 'electron/adapters/direct-action-message-dispatcher';
+import { NullDetailsViewController } from 'electron/adapters/null-details-view-controller';
 import { NullStoreActionMessageCreator } from 'electron/adapters/null-store-action-message-creator';
 import { createGetToolDataDelegate } from 'electron/common/application-properties-provider';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
@@ -87,6 +90,7 @@ const windowStateActions = new WindowStateActions();
 const scanActions = new ScanActions();
 const unifiedScanResultActions = new UnifiedScanResultActions();
 const cardSelectionActions = new CardSelectionActions();
+const detailsViewActions = new DetailsViewActions();
 
 const storageAdapter = new ElectronStorageAdapter(indexedDBInstance);
 const appDataAdapter = new ElectronAppDataAdapter();
@@ -190,6 +194,18 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             telemetryEventHandler,
         );
         cardSelectionActionCreator.registerCallbacks();
+
+        const nullDetailsViewController = new NullDetailsViewController();
+
+        const detailsViewActionCreator = new DetailsViewActionCreator(
+            interpreter,
+            detailsViewActions,
+            nullDetailsViewController,
+            telemetryEventHandler,
+            logger,
+        );
+        detailsViewActionCreator.registerCallback();
+
         const cardSelectionMessageCreator = new CardSelectionMessageCreator(
             dispatcher,
             telemetryDataFactory,
