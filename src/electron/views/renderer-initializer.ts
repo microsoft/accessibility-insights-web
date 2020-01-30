@@ -4,13 +4,17 @@ import { AppInsights } from 'applicationinsights-js';
 import axios from 'axios';
 import { CardSelectionActionCreator } from 'background/actions/card-selection-action-creator';
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
+import { ContentActions } from 'background/actions/content-actions';
 import { DetailsViewActionCreator } from 'background/actions/details-view-action-creator';
 import { DetailsViewActions } from 'background/actions/details-view-actions';
+import { PreviewFeaturesActions } from 'background/actions/preview-features-actions';
+import { ScopingActions } from 'background/actions/scoping-actions';
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { registerUserConfigurationMessageCallback } from 'background/global-action-creators/registrar/register-user-configuration-message-callbacks';
 import { UserConfigurationActionCreator } from 'background/global-action-creators/user-configuration-action-creator';
 import { Interpreter } from 'background/interpreter';
 import { CardSelectionStore } from 'background/stores/card-selection-store';
+import { DetailsViewStore } from 'background/stores/details-view-store';
 import { UnifiedScanResultStore } from 'background/stores/unified-scan-result-store';
 import { onlyHighlightingSupported } from 'common/components/cards/card-interaction-support';
 import { CardsVisualizationModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
@@ -91,6 +95,9 @@ const scanActions = new ScanActions();
 const unifiedScanResultActions = new UnifiedScanResultActions();
 const cardSelectionActions = new CardSelectionActions();
 const detailsViewActions = new DetailsViewActions();
+const previewFeaturesActions = new PreviewFeaturesActions(); // not really used but needed by DetailsViewStore
+const scopingActions = new ScopingActions(); // not really used but needed by DetailsViewStore
+const contentActions = new ContentActions(); // not really used but needed by DetailsViewStore
 
 const storageAdapter = new ElectronStorageAdapter(indexedDBInstance);
 const appDataAdapter = new ElectronAppDataAdapter();
@@ -145,6 +152,14 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             unifiedScanResultActions,
         );
         cardSelectionStore.initialize();
+
+        const detailsViewStore = new DetailsViewStore(
+            previewFeaturesActions,
+            scopingActions,
+            contentActions,
+            detailsViewActions,
+        );
+        detailsViewStore.initialize();
 
         const currentWindow = remote.getCurrentWindow();
         const windowFrameUpdater = new WindowFrameUpdater(windowFrameActions, currentWindow);
