@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { StoreNames } from '../../common/stores/store-names';
-import { CurrentPanel } from '../../common/types/store-data/current-panel';
-import { DetailsViewData } from '../../common/types/store-data/details-view-data';
-import { DetailsViewRightContentPanelType } from '../../DetailsView/components/left-nav/details-view-right-content-panel-type';
+import { StoreNames } from 'common/stores/store-names';
+import { CurrentPanel } from 'common/types/store-data/current-panel';
+import { DetailsViewData } from 'common/types/store-data/details-view-data';
+import { DetailsViewRightContentPanelType } from 'DetailsView/components/left-nav/details-view-right-content-panel-type';
 import { ContentActions } from '../actions/content-actions';
 import { DetailsViewActions } from '../actions/details-view-actions';
 import { ScopingActions } from '../actions/scoping-actions';
@@ -64,10 +64,14 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewData> {
         this.detailsViewActions.getCurrentState.addListener(this.onGetCurrentState);
     }
 
-    private onOpen = (flagName: keyof CurrentPanel, mutator?: (IDetailsViewData) => void): void => {
+    private onOpen = (
+        flagName: keyof CurrentPanel,
+        mutator?: (data: DetailsViewData) => void,
+    ): void => {
         Object.keys(this.state.currentPanel).forEach(key => {
             this.state.currentPanel[key] = false;
         });
+
         this.state.currentPanel[flagName] = true;
 
         if (mutator != null) {
@@ -79,13 +83,14 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewData> {
 
     private onClose = (
         flagName: keyof CurrentPanel,
-        mutator?: (IDetailsViewData) => void,
+        mutator?: (data: DetailsViewData) => void,
     ): void => {
         this.state.currentPanel[flagName] = false;
 
         if (mutator != null) {
             mutator(this.state);
         }
+
         this.emitChanged();
     };
 
