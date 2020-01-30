@@ -8,7 +8,9 @@ import { mount, shallow } from 'enzyme';
 import { Button } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
-import { Mock, MockBehavior, Times } from 'typemoq';
+import { Mock, MockBehavior, Times, It } from 'typemoq';
+import { DropdownClickHandler } from 'common/dropdown-click-handler';
+import { commandBar } from 'electron/views/automated-checks/components/command-bar.scss';
 
 describe('CommandBar', () => {
     describe('renders', () => {
@@ -43,31 +45,53 @@ describe('CommandBar', () => {
         });
     });
 
-    test('start over click', () => {
-        const eventStub = new EventStubFactory().createMouseClickEvent() as React.MouseEvent<Button>;
+    describe('user interaction', () => {
+        const eventStub = new EventStubFactory().createMouseClickEvent() as any;
 
-        const port = 111;
+        it('handles start over click', () => {
+            const port = 111;
 
-        const scanActionCreatorMock = Mock.ofType<ScanActionCreator>(undefined, MockBehavior.Strict);
-        scanActionCreatorMock.setup(creator => creator.scan(port)).verifiable(Times.once());
+            const scanActionCreatorMock = Mock.ofType<ScanActionCreator>(undefined, MockBehavior.Strict);
+            scanActionCreatorMock.setup(creator => creator.scan(port)).verifiable(Times.once());
 
-        const props = {
-            deps: {
-                scanActionCreator: scanActionCreatorMock.object,
-            },
-            deviceStoreData: {
-                port,
-            },
-            scanStoreData: {
-                status: ScanStatus.Default,
-            },
-        } as CommandBarProps;
+            const props = {
+                deps: {
+                    scanActionCreator: scanActionCreatorMock.object,
+                },
+                deviceStoreData: {
+                    port,
+                },
+                scanStoreData: {
+                    status: ScanStatus.Default,
+                },
+            } as CommandBarProps;
 
-        const rendered = mount(<CommandBar {...props} />);
-        const button = rendered.find('button[name="Start over"]');
+            const rendered = mount(<CommandBar {...props} />);
+            const button = rendered.find('button[name="Start over"]');
 
-        button.simulate('click', eventStub);
+            button.simulate('click', eventStub);
 
-        scanActionCreatorMock.verifyAll();
+            scanActionCreatorMock.verifyAll();
+        });
+
+        it('handles settings click', () => {
+            const dropdownClickHandlerMock = Mock.ofType<DropdownClickHandler>();
+
+            const props = {
+                deps: {
+                    dropdownClickHandler: dropdownClickHandlerMock.object,
+                },
+                scanStoreData: {
+                    status: ScanStatus.Default,
+                },
+            } as CommandBarProps;
+
+            const rendered = mount(<CommandBar {...props} />);
+            const button = rendered.find('button[aria-label="settings"]');
+
+            button.simulate('click', eventStub);
+
+            dropdownClickHandlerMock.verify(handler => handler.openSettingsPanelHandler(It.isAny()), Times.once());
+        });
     });
 });

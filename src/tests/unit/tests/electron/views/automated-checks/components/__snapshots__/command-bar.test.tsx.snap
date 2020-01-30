@@ -6,12 +6,14 @@ exports[`CommandBar renders while status is <Completed> 1`] = `
   farItems={
     Array [
       Object {
+        "ariaLabel": "settings",
         "className": "menuItemButton",
         "iconProps": Object {
           "className": "buttonIcon",
           "iconName": "Gear",
         },
         "key": "settings",
+        "onClick": [Function],
       },
     ]
   }
@@ -39,12 +41,14 @@ exports[`CommandBar renders while status is <Default> 1`] = `
   farItems={
     Array [
       Object {
+        "ariaLabel": "settings",
         "className": "menuItemButton",
         "iconProps": Object {
           "className": "buttonIcon",
           "iconName": "Gear",
         },
         "key": "settings",
+        "onClick": [Function],
       },
     ]
   }
@@ -72,12 +76,14 @@ exports[`CommandBar renders while status is <Failed> 1`] = `
   farItems={
     Array [
       Object {
+        "ariaLabel": "settings",
         "className": "menuItemButton",
         "iconProps": Object {
           "className": "buttonIcon",
           "iconName": "Gear",
         },
         "key": "settings",
+        "onClick": [Function],
       },
     ]
   }
@@ -105,12 +111,14 @@ exports[`CommandBar renders while status is <Scanning> 1`] = `
   farItems={
     Array [
       Object {
+        "ariaLabel": "settings",
         "className": "menuItemButton",
         "iconProps": Object {
           "className": "buttonIcon",
           "iconName": "Gear",
         },
         "key": "settings",
+        "onClick": [Function],
       },
     ]
   }

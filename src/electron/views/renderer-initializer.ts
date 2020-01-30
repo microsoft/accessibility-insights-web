@@ -16,11 +16,13 @@ import { CardsCollapsibleControl } from 'common/components/cards/collapsible-com
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { getPropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { DateProvider } from 'common/date-provider';
+import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
+import { DropdownActionMessageCreator } from 'common/message-creators/dropdown-action-message-creator';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
@@ -214,6 +216,16 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         scanController.initialize();
 
+        const dropdownActionMessageCreator = new DropdownActionMessageCreator(
+            telemetryDataFactory,
+            dispatcher,
+        );
+
+        const dropdownClickHandler = new DropdownClickHandler(
+            dropdownActionMessageCreator,
+            TelemetryEventSource.ElectronAutomatedChecksView,
+        );
+
         const fixInstructionProcessor = new FixInstructionProcessor();
 
         const cardsViewDeps: CardsViewDeps = {
@@ -248,6 +260,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             deviceStore,
             userConfigMessageCreator,
             windowStateActionCreator,
+            dropdownClickHandler,
             LinkComponent: ElectronLink,
             fetchScanResults,
             deviceConnectActionCreator,
