@@ -6,7 +6,7 @@ import { PreviewFeaturesActions } from 'background/actions/preview-features-acti
 import { ScopingActions } from 'background/actions/scoping-actions';
 import { DetailsViewStore } from 'background/stores/details-view-store';
 import { StoreNames } from 'common/stores/store-names';
-import { DetailsViewStoreData } from 'common/types/store-data/details-view-data';
+import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
 import { DetailsViewStoreDataBuilder } from '../../../common/details-view-store-data-builder';
 import { StoreTester } from '../../../common/store-tester';
 

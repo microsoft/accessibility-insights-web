@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { StoreNames } from 'common/stores/store-names';
 import { CurrentPanel } from 'common/types/store-data/current-panel';
-import { DetailsViewStoreData } from 'common/types/store-data/details-view-data';
+import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
 import { DetailsViewRightContentPanelType } from 'DetailsView/components/left-nav/details-view-right-content-panel-type';
 import { ContentActions } from '../actions/content-actions';
 import { DetailsViewActions } from '../actions/details-view-actions';

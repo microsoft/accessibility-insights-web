@@ -5,7 +5,7 @@ import { ContentActionMessageCreator } from '../../../../../common/message-creat
 import { InspectActionMessageCreator } from '../../../../../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../../../../../common/message-creators/scoping-action-message-creator';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
-import { DetailsViewStoreData } from '../../../../../common/types/store-data/details-view-data';
+import { DetailsViewStoreData } from '../../../../../common/types/store-data/details-view-store-data';
 import { ScopingStoreData } from '../../../../../common/types/store-data/scoping-store-data';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';

@@ -18,7 +18,7 @@ import { InspectActionMessageCreator } from '../common/message-creators/inspect-
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
 import { GetCardViewData } from '../common/rule-based-view-model-provider';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
-import { DetailsViewStoreData } from '../common/types/store-data/details-view-data';
+import { DetailsViewStoreData } from '../common/types/store-data/details-view-store-data';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';

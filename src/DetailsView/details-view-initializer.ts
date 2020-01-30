@@ -68,7 +68,7 @@ import { BaseClientStoresHub } from '../common/stores/base-client-stores-hub';
 import { StoreNames } from '../common/stores/store-names';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
-import { DetailsViewStoreData } from '../common/types/store-data/details-view-data';
+import { DetailsViewStoreData } from '../common/types/store-data/details-view-store-data';
 import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
