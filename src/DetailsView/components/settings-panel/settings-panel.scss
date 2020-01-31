@@ -3,7 +3,7 @@
 @import '../../../common/styles/colors.scss';
 
 .settings-panel {
-    .generic-toggle-component .toggle-description {
+    :global(.toggle-description) {
         color: $secondary-text;
     }
 
