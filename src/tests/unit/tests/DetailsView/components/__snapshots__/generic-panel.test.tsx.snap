@@ -37,3 +37,13 @@ exports[`GenericPanel renders isPanelOpen: true 1`] = `
   </div>
 </StyledPanelBase>
 `;
+
+exports[`GenericPanel renders minimal content 1`] = `
+<StyledPanelBase
+  className="genericPanel"
+  customWidth="550px"
+  headerClassName="headerText"
+  isLightDismiss={true}
+  type={7}
+/>
+`;

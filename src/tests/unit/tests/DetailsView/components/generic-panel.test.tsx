@@ -22,5 +22,13 @@ describe('GenericPanel', () => {
 
             expect(wrapper.getElement()).toMatchSnapshot();
         });
+
+        it('minimal content', () => {
+            const props: GenericPanelProps = {};
+
+            const wrapper = shallow(<GenericPanel {...props} />);
+
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
     });
 });
