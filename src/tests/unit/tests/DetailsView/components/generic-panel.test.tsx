@@ -4,7 +4,7 @@ import { GenericPanel, GenericPanelProps } from 'DetailsView/components/generic-
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-describe('DetailsViewPanelTest', () => {
+describe('GenericPanel', () => {
     test.each([true, false])('render - isPanelOpen: %s', (isPanelOpen: boolean) => {
         const childContent = <div>child content</div>;
 
