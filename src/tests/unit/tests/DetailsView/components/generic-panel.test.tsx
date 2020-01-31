@@ -11,7 +11,7 @@ describe('DetailsViewPanelTest', () => {
         const props: GenericPanelProps = {
             isOpen: isPanelOpen,
             onDismiss: () => {},
-            title: 'panel title',
+            headerText: 'panel title',
             className: 'panel-custom-class',
             closeButtonAriaLabel: 'close button label',
             children: childContent,

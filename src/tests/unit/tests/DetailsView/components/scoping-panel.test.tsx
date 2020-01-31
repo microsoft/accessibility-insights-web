@@ -48,7 +48,7 @@ describe('ScopingPanelTest', () => {
                 onDismiss={testProps.deps.detailsViewActionMessageCreator.closeScopingPanel}
                 closeButtonAriaLabel={'Close scoping feature panel'}
                 hasCloseButton={true}
-                title="Scoping"
+                headerText="Scoping"
             >
                 <ScopingContainer
                     deps={testProps.deps}

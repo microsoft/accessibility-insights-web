@@ -36,7 +36,7 @@ export const SettingsPanel = NamedFC<SettingsPanelProps>('SettingsPanel', props 
             onDismiss={detailsViewActionMessageCreator.closeSettingsPanel}
             closeButtonAriaLabel="Close settings panel"
             hasCloseButton={true}
-            title="Settings"
+            headerText="Settings"
         >
             {settingsProvider.all().map((TheComponent: SettingsComponent, index: number) => (
                 <TheComponent

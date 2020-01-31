@@ -8,7 +8,7 @@ import * as styles from './generic-panel.scss';
 export interface GenericPanelProps {
     isOpen: boolean;
     onDismiss: () => void;
-    title: string;
+    headerText: string;
     className?: string;
     closeButtonAriaLabel: string;
     hasCloseButton: boolean;
@@ -29,7 +29,7 @@ export class GenericPanel extends React.Component<GenericPanelProps> {
                 onDismiss={this.props.onDismiss}
                 closeButtonAriaLabel={this.props.closeButtonAriaLabel}
                 hasCloseButton={this.props.hasCloseButton}
-                headerText={this.props.title}
+                headerText={this.props.headerText}
                 headerClassName={styles.headerText}
                 onRenderFooter={this.props.onRenderFooterContent}
             >

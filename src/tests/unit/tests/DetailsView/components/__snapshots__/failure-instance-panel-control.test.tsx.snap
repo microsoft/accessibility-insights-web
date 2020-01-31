@@ -18,9 +18,9 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: cre
     className="failureInstancePanel"
     closeButtonAriaLabel="Close failure instance panel"
     hasCloseButton={true}
+    headerText="Add a failure instance"
     isOpen={false}
     onDismiss={[Function]}
-    title="Add a failure instance"
   >
     <FlaggedComponent
       enableJSXElement={
@@ -73,9 +73,9 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edi
     className="failureInstancePanel"
     closeButtonAriaLabel="Close failure instance panel"
     hasCloseButton={true}
+    headerText="Edit failure instance"
     isOpen={false}
     onDismiss={[Function]}
-    title="Edit failure instance"
   >
     <FlaggedComponent
       enableJSXElement={
@@ -131,9 +131,9 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: par
     className="failureInstancePanel"
     closeButtonAriaLabel="Close failure instance panel"
     hasCloseButton={true}
+    headerText="Add a failure instance"
     isOpen={false}
     onDismiss={[Function]}
-    title="Add a failure instance"
   >
     <FlaggedComponent
       enableJSXElement={

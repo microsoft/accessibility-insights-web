@@ -28,7 +28,7 @@ export class ScopingPanel extends React.Component<ScopingPanelProps> {
     public render(): JSX.Element {
         return (
             <GenericPanel
-                title="Scoping"
+                headerText="Scoping"
                 isOpen={this.props.isOpen}
                 className="scoping-panel"
                 onDismiss={this.props.deps.detailsViewActionMessageCreator.closeScopingPanel}
