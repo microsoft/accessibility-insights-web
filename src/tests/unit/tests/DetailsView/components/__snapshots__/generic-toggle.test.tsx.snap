@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`GenericToggleTest render with jsx content 1`] = `
+exports[`GenericToggleTest renders description content is JSX.Element 1`] = `
 <div
   className="genericToggleComponent"
 >
@@ -32,7 +32,37 @@ exports[`GenericToggleTest render with jsx content 1`] = `
 </div>
 `;
 
-exports[`GenericToggleTest render with string content - toggleState : false 1`] = `
+exports[`GenericToggleTest renders description content is string 1`] = `
+<div
+  className="genericToggleComponent"
+>
+  <div
+    className="toggleContainer"
+  >
+    <div
+      className="toggleName"
+    >
+      test name
+    </div>
+    <StyledToggleBase
+      ariaLabel="test name"
+      checked={true}
+      className="toggle"
+      id="test-id-1"
+      offText="Off"
+      onClick={[Function]}
+      onText="On"
+    />
+  </div>
+  <div
+    className="toggle-description"
+  >
+    test string description
+  </div>
+</div>
+`;
+
+exports[`GenericToggleTest renders toggle enable = false 1`] = `
 <div
   className="genericToggleComponent"
 >
@@ -62,7 +92,7 @@ exports[`GenericToggleTest render with string content - toggleState : false 1`] 
 </div>
 `;
 
-exports[`GenericToggleTest render with string content - toggleState : true 1`] = `
+exports[`GenericToggleTest renders toggle enable = true 1`] = `
 <div
   className="genericToggleComponent"
 >
