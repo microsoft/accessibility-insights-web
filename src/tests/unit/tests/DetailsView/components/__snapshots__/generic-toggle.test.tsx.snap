@@ -2,13 +2,13 @@
 
 exports[`GenericToggleTest render with jsx content 1`] = `
 <div
-  className="generic-toggle-component"
+  className="genericToggleComponent"
 >
   <div
-    className="toggle-container"
+    className="toggleContainer"
   >
     <div
-      className="toggle-name"
+      className="toggleName"
     >
       test name
     </div>
@@ -34,13 +34,13 @@ exports[`GenericToggleTest render with jsx content 1`] = `
 
 exports[`GenericToggleTest render with string content - toggleState : false 1`] = `
 <div
-  className="generic-toggle-component"
+  className="genericToggleComponent"
 >
   <div
-    className="toggle-container"
+    className="toggleContainer"
   >
     <div
-      className="toggle-name"
+      className="toggleName"
     >
       test name
     </div>
@@ -64,43 +64,13 @@ exports[`GenericToggleTest render with string content - toggleState : false 1`] 
 
 exports[`GenericToggleTest render with string content - toggleState : true 1`] = `
 <div
-  className="generic-toggle-component"
+  className="genericToggleComponent"
 >
   <div
-    className="toggle-container"
+    className="toggleContainer"
   >
     <div
-      className="toggle-name"
-    >
-      test name
-    </div>
-    <StyledToggleBase
-      ariaLabel="test name"
-      checked={true}
-      className="toggle"
-      id="test-id-1"
-      offText="Off"
-      onClick={[Function]}
-      onText="On"
-    />
-  </div>
-  <div
-    className="toggle-description"
-  >
-    test description
-  </div>
-</div>
-`;
-
-exports[`GenericToggleTest verify if the classname passed from prop is added properly 1`] = `
-<div
-  className="generic-toggle-component"
->
-  <div
-    className="toggle-container"
-  >
-    <div
-      className="toggle-name"
+      className="toggleName"
     >
       test name
     </div>

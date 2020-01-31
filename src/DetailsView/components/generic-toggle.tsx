@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NamedFC } from 'common/react/named-fc';
 import { Toggle } from 'office-ui-fabric-react';
 import * as React from 'react';
-
-import { NamedFC } from '../../common/react/named-fc';
+import * as styles from './generic-toggle.scss';
 
 export interface GenericToggleProps {
     enabled: boolean;
@@ -19,12 +19,12 @@ export const GenericToggle = NamedFC<GenericToggleProps>('GenericToggle', props 
     };
 
     return (
-        <div className={'generic-toggle-component'}>
-            <div className={'toggle-container'}>
-                <div className={'toggle-name'}>{props.name}</div>
+        <div className={styles.genericToggleComponent}>
+            <div className={styles.toggleContainer}>
+                <div className={styles.toggleName}>{props.name}</div>
                 <Toggle
                     id={props.id}
-                    className={'toggle'}
+                    className={styles.toggle}
                     checked={props.enabled}
                     onClick={onClick}
                     onText={'On'}

@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
-import { GenericToggle, GenericToggleProps } from '../../../../../DetailsView/components/generic-toggle';
+import { GenericToggle, GenericToggleProps } from 'DetailsView/components/generic-toggle';
 
 describe('GenericToggleTest', () => {
     let onClickMock: IMock<(id: string, enabled: boolean, event: React.MouseEvent<HTMLElement>) => void>;
@@ -55,18 +55,5 @@ describe('GenericToggleTest', () => {
         toggle.simulate('click', eventStub);
 
         onClickMock.verify(ocm => ocm(props.id, !props.enabled, eventStub), Times.once());
-    });
-
-    test('verify if the classname passed from prop is added properly', () => {
-        const props: GenericToggleProps = {
-            name: 'test name',
-            description: 'test description',
-            enabled: true,
-            onClick: onClickMock.object,
-            id: 'test-id-1',
-        };
-
-        const wrapper = shallow(<GenericToggle {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
     });
 });
