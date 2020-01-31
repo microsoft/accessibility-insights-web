@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`GenericPanel render - isPanelOpen: false 1`] = `
+exports[`GenericPanel renders isPanelOpen: false 1`] = `
 <StyledPanelBase
   className="genericPanel panel-custom-class"
   closeButtonAriaLabel="close button label"
@@ -19,7 +19,7 @@ exports[`GenericPanel render - isPanelOpen: false 1`] = `
 </StyledPanelBase>
 `;
 
-exports[`GenericPanel render - isPanelOpen: true 1`] = `
+exports[`GenericPanel renders isPanelOpen: true 1`] = `
 <StyledPanelBase
   className="genericPanel panel-custom-class"
   closeButtonAriaLabel="close button label"

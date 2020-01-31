@@ -5,20 +5,22 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe('GenericPanel', () => {
-    test.each([true, false])('render - isPanelOpen: %s', (isPanelOpen: boolean) => {
-        const childContent = <div>child content</div>;
+    describe('renders', () => {
+        it.each([true, false])('isPanelOpen: %s', (isPanelOpen: boolean) => {
+            const childContent = <div>child content</div>;
 
-        const props: GenericPanelProps = {
-            isOpen: isPanelOpen,
-            onDismiss: () => {},
-            headerText: 'panel title',
-            className: 'panel-custom-class',
-            closeButtonAriaLabel: 'close button label',
-            hasCloseButton: true,
-        };
+            const props: GenericPanelProps = {
+                isOpen: isPanelOpen,
+                onDismiss: () => {},
+                headerText: 'panel title',
+                className: 'panel-custom-class',
+                closeButtonAriaLabel: 'close button label',
+                hasCloseButton: true,
+            };
 
-        const wrapper = shallow(<GenericPanel {...props}>{childContent}</GenericPanel>);
+            const wrapper = shallow(<GenericPanel {...props}>{childContent}</GenericPanel>);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
     });
 });
