@@ -32,7 +32,7 @@ describe('PreviewFeaturesPanelTest', () => {
 
         const expected = (
             <GenericPanel
-                title="Preview features"
+                headerText="Preview features"
                 isOpen={true}
                 className={'preview-features-panel'}
                 onDismiss={testProps.deps.detailsViewActionMessageCreator.closePreviewFeaturesPanel}

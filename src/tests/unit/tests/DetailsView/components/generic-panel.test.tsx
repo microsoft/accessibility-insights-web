@@ -4,22 +4,31 @@ import { GenericPanel, GenericPanelProps } from 'DetailsView/components/generic-
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-describe('DetailsViewPanelTest', () => {
-    test.each([true, false])('render - isPanelOpen: %s', (isPanelOpen: boolean) => {
-        const childContent = <div>child content</div>;
+describe('GenericPanel', () => {
+    describe('renders', () => {
+        it.each([true, false])('isPanelOpen: %s', (isPanelOpen: boolean) => {
+            const childContent = <div>child content</div>;
 
-        const props: GenericPanelProps = {
-            isOpen: isPanelOpen,
-            onDismiss: () => {},
-            title: 'panel title',
-            className: 'panel-custom-class',
-            closeButtonAriaLabel: 'close button label',
-            children: childContent,
-            hasCloseButton: true,
-        };
+            const props: GenericPanelProps = {
+                isOpen: isPanelOpen,
+                onDismiss: () => {},
+                headerText: 'panel title',
+                className: 'panel-custom-class',
+                closeButtonAriaLabel: 'close button label',
+                hasCloseButton: true,
+            };
 
-        const wrapper = shallow(<GenericPanel {...props} />);
+            const wrapper = shallow(<GenericPanel {...props}>{childContent}</GenericPanel>);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
+
+        it('minimal content', () => {
+            const props: GenericPanelProps = {};
+
+            const wrapper = shallow(<GenericPanel {...props} />);
+
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
     });
 });
