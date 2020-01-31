@@ -14,11 +14,10 @@ describe('GenericPanel', () => {
             headerText: 'panel title',
             className: 'panel-custom-class',
             closeButtonAriaLabel: 'close button label',
-            children: childContent,
             hasCloseButton: true,
         };
 
-        const wrapper = shallow(<GenericPanel {...props} />);
+        const wrapper = shallow(<GenericPanel {...props}>{childContent}</GenericPanel>);
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });
