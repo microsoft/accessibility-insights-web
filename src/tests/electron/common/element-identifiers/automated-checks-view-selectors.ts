@@ -19,13 +19,16 @@ export const AutomatedChecksViewSelectors = {
 
     nthRuleGroupCollapseExpandButton: (position: number) =>
         `${nthRuleGroup(position)} [data-automation-id="${collapsibleButtonAutomationId}"]`,
-    nthRuleGroupTitle: (position: number) => `${nthRuleGroup(position)} [data-automation-id="${cardsRuleIdAutomationId}"]`,
-    nthRuleGroupInstances: (position: number) => `${nthRuleGroup(position)} [data-automation-id="${instanceCardAutomationId}"]`,
+    nthRuleGroupTitle: (position: number) =>
+        `${nthRuleGroup(position)} [data-automation-id="${cardsRuleIdAutomationId}"]`,
+    nthRuleGroupInstances: (position: number) =>
+        `${nthRuleGroup(position)} [data-automation-id="${instanceCardAutomationId}"]`,
 };
 
 export const ScreenshotViewSelectors = {
     screenshotView: `[data-automation-id="${screenshotViewAutomationId}"]`,
     screenshotImage: `[data-automation-id="${screenshotImageAutomationId}"]`,
     highlightBox: `[data-automation-id="${highlightBoxAutomationId}"]`,
-    getHighlightBoxByIndex: (index: number) => `${ScreenshotViewSelectors.highlightBox}:nth-of-type(${index})`,
+    getHighlightBoxByIndex: (index: number) =>
+        `${ScreenshotViewSelectors.highlightBox}:nth-of-type(${index})`,
 };

@@ -8,7 +8,10 @@ export async function formatPageElementForSnapshot(page: Page, selector: string)
     return formatHtmlForSnapshot(outerHtml);
 }
 
-export async function formatChildElementForSnapshot(rootElement: ElementHandle<Element>, childSelector: string): Promise<Node> {
+export async function formatChildElementForSnapshot(
+    rootElement: ElementHandle<Element>,
+    childSelector: string,
+): Promise<Node> {
     const childOuterHtml = await rootElement.$eval(childSelector, el => el.outerHTML);
     return formatHtmlForSnapshot(childOuterHtml);
 }
@@ -22,7 +25,9 @@ export function formatHtmlForSnapshot(htmlString: string): Node {
     const template = document.createElement('template');
     template.innerHTML = htmlString;
 
-    Array.from(template.content.querySelectorAll('.insights-highlight-box')).forEach(normalizeEnvironmentSensitivePositionStyles);
+    Array.from(template.content.querySelectorAll('.insights-highlight-box')).forEach(
+        normalizeEnvironmentSensitivePositionStyles,
+    );
 
     return template.content.cloneNode(true);
 }
