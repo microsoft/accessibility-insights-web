@@ -7,7 +7,9 @@ import { Application } from 'spectron';
 import { AppController } from './view-controllers/app-controller';
 
 export async function createApplication(): Promise<AppController> {
-    const electronPath = `${(global as any).rootDir}/drop/electron/electron/product/bundle/main.bundle.js`;
+    const electronPath = `${
+        (global as any).rootDir
+    }/drop/electron/electron/product/bundle/main.bundle.js`;
     const electronLocal = `${(global as any).rootDir}/drop/electron-local/electron.exe`;
 
     const app = new Application({
