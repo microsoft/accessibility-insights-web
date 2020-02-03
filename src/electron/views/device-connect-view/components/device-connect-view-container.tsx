@@ -10,11 +10,10 @@ import { brand } from 'content/strings/application';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { BrandBlue } from 'icons/brand/blue/brand-blue';
 import * as React from 'react';
-
 import { DeviceStoreData } from '../../../flux/types/device-store-data';
+import { WindowTitle, WindowTitleDeps } from '../../common/window-title';
 import { deviceConnectView, mainContentWrapper } from '../device-connect-view.scss';
 import { DeviceConnectBody, DeviceConnectBodyDeps } from './device-connect-body';
-import { WindowTitle, WindowTitleDeps } from './window-title';
 
 export type DeviceConnectViewContainerDeps = TelemetryPermissionDialogDeps &
     DeviceConnectBodyDeps &
