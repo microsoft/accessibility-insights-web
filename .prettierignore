@@ -5,6 +5,7 @@
 **/*.gitattributes
 **/*.gitignore
 **/*.ico
+**/*.nsh
 **/*.png
 **/*.snap
 **/Dockerfile
