@@ -19,7 +19,7 @@ pool:
 steps:
     - template: ../install-node-prerequisites.yaml
 
-    - template: ../electron/download-electron-mirror.yaml
+    - template: ../unified/download-electron-mirror.yaml
 
     - template: ../electron/electron-e2e-test-interactive.yaml
 
