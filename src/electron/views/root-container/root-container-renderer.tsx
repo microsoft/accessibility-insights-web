@@ -3,7 +3,6 @@
 import {
     RootContainer,
     RootContainerDeps,
-    RootContainerProps,
 } from 'electron/views/root-container/components/root-container';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';

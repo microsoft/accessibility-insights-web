@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { BrowserWindow } from 'electron';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
-import { RootContainer, RootContainerDeps, RootContainerProps } from 'electron/views/root-container/components/root-container';
+import { RootContainer, RootContainerDeps } from 'electron/views/root-container/components/root-container';
 import { RootContainerRenderer } from 'electron/views/root-container/root-container-renderer';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
@@ -27,12 +27,7 @@ describe('RootContainerRendererTest', () => {
             currentWindow: browserWindow,
             windowStateActionCreator: windowStateActionCreatorMock.object,
         } as RootContainerDeps;
-        const props = {
-            deps: {
-                currentWindow: browserWindow,
-                windowStateActionCreator: windowStateActionCreatorMock.object,
-            },
-        } as RootContainerProps;
+
         const expectedComponent = <RootContainer deps={deps} />;
 
         renderMock.setup(r => r(It.isValue(expectedComponent), containerDiv)).verifiable();
