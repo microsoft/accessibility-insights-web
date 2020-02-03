@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
-import { WindowTitle, WindowTitleProps } from 'electron/views/device-connect-view/components/window-title';
+import { WindowTitle, WindowTitleProps } from 'electron/views/common/window-title';
 import { PlatformInfo } from 'electron/window-management/platform-info';
 import { shallow } from 'enzyme';
 import * as React from 'react';
