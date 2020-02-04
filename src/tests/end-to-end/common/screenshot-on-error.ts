@@ -14,7 +14,10 @@ async function takeScreenshot(saveScreenshot: (path) => Promise<Buffer>): Promis
     console.log(`Screenshot file is located at: ${path}`);
 }
 
-export async function screenshotOnError<T>(saveScreenshot: (path) => Promise<Buffer>, wrappedFunction: () => Promise<T>): Promise<T> {
+export async function screenshotOnError<T>(
+    saveScreenshot: (path) => Promise<Buffer>,
+    wrappedFunction: () => Promise<T>,
+): Promise<T> {
     try {
         return await wrappedFunction();
     } catch (originalError) {

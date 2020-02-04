@@ -26,16 +26,25 @@ describe('Details View -> Overview Page', () => {
         }
     });
 
-    it.each([true, false])('should pass accessibility validation with highContrastMode=%s', async highContrastMode => {
-        await browser.setHighContrastMode(highContrastMode);
-        await overviewPage.waitForHighContrastMode(highContrastMode);
+    it.each([true, false])(
+        'should pass accessibility validation with highContrastMode=%s',
+        async highContrastMode => {
+            await browser.setHighContrastMode(highContrastMode);
+            await overviewPage.waitForHighContrastMode(highContrastMode);
 
-        const results = await scanForAccessibilityIssues(overviewPage, overviewSelectors.overview);
-        expect(results).toHaveLength(0);
-    });
+            const results = await scanForAccessibilityIssues(
+                overviewPage,
+                overviewSelectors.overview,
+            );
+            expect(results).toHaveLength(0);
+        },
+    );
 });
 
-async function openOverviewPage(browser: Browser, targetPage: TargetPage): Promise<DetailsViewPage> {
+async function openOverviewPage(
+    browser: Browser,
+    targetPage: TargetPage,
+): Promise<DetailsViewPage> {
     const detailsViewPage = await browser.newDetailsViewPage(targetPage);
     await detailsViewPage.switchToAssessment();
     await detailsViewPage.waitForSelector(overviewSelectors.overviewHeading);

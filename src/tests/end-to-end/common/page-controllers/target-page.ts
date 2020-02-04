@@ -27,7 +27,11 @@ export function targetPageUrl(options?: TargetPageUrlOptions): string {
 }
 
 export class TargetPage extends Page {
-    constructor(underlyingPage: Puppeteer.Page, public readonly tabId: number, options?: PageOptions) {
+    constructor(
+        underlyingPage: Puppeteer.Page,
+        public readonly tabId: number,
+        options?: PageOptions,
+    ) {
         super(underlyingPage, options);
     }
 
