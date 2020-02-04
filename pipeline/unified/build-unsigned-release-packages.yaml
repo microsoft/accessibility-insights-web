@@ -21,7 +21,7 @@ steps:
 
     - template: ../unified/download-electron-mirror.yaml
 
-    - template: ../electron/electron-e2e-test-interactive.yaml
+    - template: ../unified/unified-e2e-test-interactive.yaml
 
     - template: ../electron/electron-e2e-publish-results.yaml
 
