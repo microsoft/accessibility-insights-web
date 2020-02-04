@@ -95,8 +95,7 @@ module.exports = {
         bundleFolder: 'prodBundle',
         mustExistFile: 'background.bundle.js',
     },
-    // to be changed later to unified-dev
-    electron: {
+    'unified-dev': {
         config: {
             options: {
                 ...commonUnifiedOptions,
@@ -105,7 +104,7 @@ module.exports = {
                 telemetryBuildName: 'AI Android - Dev',
             },
         },
-        bundleFolder: 'electronBundle',
+        bundleFolder: 'unifiedBundle',
         mustExistFile: 'main.bundle.js',
     },
     'unified-canary': {
@@ -118,7 +117,7 @@ module.exports = {
                 telemetryBuildName: 'AI Android - Canary',
             },
         },
-        bundleFolder: 'electronBundle',
+        bundleFolder: 'unifiedBundle',
         mustExistFile: 'main.bundle.js',
         appId: 'com.microsoft.accessibilityinsights.unified.canary',
         publishUrl: 'https://a11yunifiedcanaryblob.blob.core.windows.net/a11yunified-canary',
@@ -134,7 +133,7 @@ module.exports = {
                 telemetryBuildName: 'AI Android - Insider',
             },
         },
-        bundleFolder: 'electronBundle',
+        bundleFolder: 'unifiedBundle',
         mustExistFile: 'main.bundle.js',
         appId: 'com.microsoft.accessibilityinsights.unified.insider',
         publishUrl: 'https://a11yunifiedinsiderblob.blob.core.windows.net/a11yunified-insider',
@@ -150,7 +149,7 @@ module.exports = {
                 telemetryBuildName: 'AI Android - Production',
             },
         },
-        bundleFolder: 'electronBundle',
+        bundleFolder: 'unifiedBundle',
         mustExistFile: 'main.bundle.js',
         appId: 'com.microsoft.accessibilityinsights.unified.production',
         publishUrl: 'https://a11yunifiedprodblob.blob.core.windows.net/a11yunified-prod',

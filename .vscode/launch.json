@@ -53,7 +53,7 @@
             "windows": {
                 "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
             },
-            "args": ["drop/electron/electron/product/bundle/main.bundle.js"],
+            "args": ["drop/electron/unified-dev/product/bundle/main.bundle.js"],
             "runtimeArgs": ["--remote-debugging-port=9222"],
             "outputCapture": "std"
         },
@@ -62,7 +62,7 @@
             "type": "chrome",
             "request": "attach",
             "port": 9222,
-            "webRoot": "${workspaceFolder}/drop/electron/electron/product",
+            "webRoot": "${workspaceFolder}/drop/electron/unified-dev/product",
             "sourceMapPathOverrides": {
                 "webpack:///./*": "${workspaceFolder}/*"
             }

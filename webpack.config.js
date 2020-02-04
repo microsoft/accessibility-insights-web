@@ -91,14 +91,14 @@ const commonConfig = {
     },
 };
 
-const electronConfig = {
+const unifiedConfig = {
     ...commonConfig,
     entry: electronEntryFiles,
-    name: 'electron',
+    name: 'unified',
     mode: 'development',
     devtool: 'source-map',
     output: {
-        path: path.join(__dirname, 'extension/electronBundle'),
+        path: path.join(__dirname, 'extension/unifiedBundle'),
         filename: '[name].bundle.js',
     },
     node: {
@@ -177,4 +177,4 @@ const packageReportConfig = {
 };
 
 // For just one config, use "webpack --config-name dev", "webpack --config-name prod", etc
-module.exports = [devConfig, prodConfig, electronConfig, packageReportConfig];
+module.exports = [devConfig, prodConfig, unifiedConfig, packageReportConfig];
