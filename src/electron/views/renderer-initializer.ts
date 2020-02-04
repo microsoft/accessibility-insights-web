@@ -27,6 +27,7 @@ import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { CardsViewDeps } from 'DetailsView/components/cards-view';
 import { remote } from 'electron';
 import { DirectActionMessageDispatcher } from 'electron/adapters/direct-action-message-dispatcher';
+import { NullStoreActionMessageCreator } from 'electron/adapters/null-store-action-message-creator';
 import { createGetToolDataDelegate } from 'electron/common/application-properties-provider';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
@@ -40,7 +41,7 @@ import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-r
 import { ScanController } from 'electron/platform/android/scan-controller';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
 import {
-    RootContainerProps,
+    RootContainerDeps,
     RootContainerState,
 } from 'electron/views/root-container/components/root-container';
 import { PlatformInfo } from 'electron/window-management/platform-info';
@@ -143,7 +144,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const windowFrameUpdater = new WindowFrameUpdater(windowFrameActions, currentWindow);
         windowFrameUpdater.initialize();
 
-        const storeHub = new BaseClientStoresHub<RootContainerState>([
+        const storesHub = new BaseClientStoresHub<RootContainerState>([
             userConfigurationStore,
             deviceStore,
             windowStateStore,
@@ -241,28 +242,27 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             setFocusVisibility,
         };
 
-        const props: RootContainerProps = {
-            deps: {
-                currentWindow,
-                userConfigurationStore,
-                deviceStore,
-                userConfigMessageCreator,
-                windowStateActionCreator,
-                LinkComponent: ElectronLink,
-                fetchScanResults,
-                deviceConnectActionCreator,
-                storeHub,
-                scanActionCreator,
-                windowFrameActionCreator,
-                platformInfo: new PlatformInfo(process),
-                getCardsViewData: getCardViewData,
-                getCardSelectionViewData: getCardSelectionViewData,
-                screenshotViewModelProvider,
-                ...cardsViewDeps,
-            },
+        const deps: RootContainerDeps = {
+            currentWindow,
+            userConfigurationStore,
+            deviceStore,
+            userConfigMessageCreator,
+            windowStateActionCreator,
+            LinkComponent: ElectronLink,
+            fetchScanResults,
+            deviceConnectActionCreator,
+            storesHub,
+            scanActionCreator,
+            windowFrameActionCreator,
+            platformInfo: new PlatformInfo(process),
+            getCardsViewData: getCardViewData,
+            getCardSelectionViewData: getCardSelectionViewData,
+            screenshotViewModelProvider,
+            ...cardsViewDeps,
+            storeActionMessageCreator: new NullStoreActionMessageCreator(),
         };
 
-        const renderer = new RootContainerRenderer(ReactDOM.render, document, props);
+        const renderer = new RootContainerRenderer(ReactDOM.render, document, deps);
         renderer.render();
 
         sendAppInitializedTelemetryEvent(telemetryEventHandler, platformInfo);
