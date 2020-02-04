@@ -29,15 +29,21 @@ describe('Popup -> Launch Pad', () => {
     });
 
     it('content should match snapshot', async () => {
-        const element = await formatPageElementForSnapshot(popupPage, popupPageElementIdentifiers.launchPad);
+        const element = await formatPageElementForSnapshot(
+            popupPage,
+            popupPageElementIdentifiers.launchPad,
+        );
         expect(element).toMatchSnapshot();
     });
 
-    it.each([true, false])('should pass accessibility validation with highContrastMode=%s', async highContrastMode => {
-        await browser.setHighContrastMode(highContrastMode);
-        await popupPage.waitForHighContrastMode(highContrastMode);
+    it.each([true, false])(
+        'should pass accessibility validation with highContrastMode=%s',
+        async highContrastMode => {
+            await browser.setHighContrastMode(highContrastMode);
+            await popupPage.waitForHighContrastMode(highContrastMode);
 
-        const results = await scanForAccessibilityIssues(popupPage, '*');
-        expect(results).toHaveLength(0);
-    });
+            const results = await scanForAccessibilityIssues(popupPage, '*');
+            expect(results).toHaveLength(0);
+        },
+    );
 });

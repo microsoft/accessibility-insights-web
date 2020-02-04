@@ -44,29 +44,41 @@ describe('Settings Dropdown', () => {
         expect(popupDropdownElement).toMatchSnapshot();
     });
 
-    it.each([true, false])('should pass accessibility validation in popup with highContrastMode=%s', async highContrastMode => {
-        await browser.setHighContrastMode(highContrastMode);
-        const popupPage = await browser.newPopupPage(targetPage);
-        await popupPage.waitForHighContrastMode(highContrastMode);
+    it.each([true, false])(
+        'should pass accessibility validation in popup with highContrastMode=%s',
+        async highContrastMode => {
+            await browser.setHighContrastMode(highContrastMode);
+            const popupPage = await browser.newPopupPage(targetPage);
+            await popupPage.waitForHighContrastMode(highContrastMode);
 
-        await popupPage.clickSelector(CommonSelectors.settingsGearButton);
+            await popupPage.clickSelector(CommonSelectors.settingsGearButton);
 
-        const results = await scanForAccessibilityIssues(popupPage, CommonSelectors.settingsDropdownMenu);
-        expect(results).toHaveLength(0);
-    });
+            const results = await scanForAccessibilityIssues(
+                popupPage,
+                CommonSelectors.settingsDropdownMenu,
+            );
+            expect(results).toHaveLength(0);
+        },
+    );
 
-    it.each([true, false])('should pass accessibility validation in details view with highContrastMode=%s', async highContrastMode => {
-        await browser.setHighContrastMode(highContrastMode);
-        await browser.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
+    it.each([true, false])(
+        'should pass accessibility validation in details view with highContrastMode=%s',
+        async highContrastMode => {
+            await browser.setHighContrastMode(highContrastMode);
+            await browser.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
 
-        const detailsViewPage = await browser.newDetailsViewPage(targetPage);
-        await detailsViewPage.waitForHighContrastMode(highContrastMode);
+            const detailsViewPage = await browser.newDetailsViewPage(targetPage);
+            await detailsViewPage.waitForHighContrastMode(highContrastMode);
 
-        await detailsViewPage.clickSelector(CommonSelectors.settingsGearButton);
+            await detailsViewPage.clickSelector(CommonSelectors.settingsGearButton);
 
-        const results = await scanForAccessibilityIssues(detailsViewPage, CommonSelectors.settingsDropdownMenu);
-        expect(results).toHaveLength(0);
-    });
+            const results = await scanForAccessibilityIssues(
+                detailsViewPage,
+                CommonSelectors.settingsDropdownMenu,
+            );
+            expect(results).toHaveLength(0);
+        },
+    );
 
     async function getDropdownPanelElement(page: Page): Promise<Node> {
         await page.clickSelector(CommonSelectors.settingsGearButton);

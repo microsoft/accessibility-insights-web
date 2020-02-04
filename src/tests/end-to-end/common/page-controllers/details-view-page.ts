@@ -2,7 +2,10 @@
 // Licensed under the MIT License.
 import * as Puppeteer from 'puppeteer';
 import { CommonSelectors } from '../element-identifiers/common-selectors';
-import { detailsViewSelectors, settingsPanelSelectors } from '../element-identifiers/details-view-selectors';
+import {
+    detailsViewSelectors,
+    settingsPanelSelectors,
+} from '../element-identifiers/details-view-selectors';
 import { Page, PageOptions } from './page';
 
 export class DetailsViewPage extends Page {

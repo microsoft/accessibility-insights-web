@@ -30,25 +30,41 @@ describe('Details View -> Preview Features Panel', () => {
     });
 
     it('should match content in snapshot', async () => {
-        const previewFeaturesPanel = await formatPageElementForSnapshot(detailsViewPage, detailsViewSelectors.previewFeaturesPanel);
+        const previewFeaturesPanel = await formatPageElementForSnapshot(
+            detailsViewPage,
+            detailsViewSelectors.previewFeaturesPanel,
+        );
         expect(previewFeaturesPanel).toMatchSnapshot();
     });
 
-    it.each([true, false])('should pass accessibility validation with highContrastMode=%s', async highContrastMode => {
-        await browser.setHighContrastMode(highContrastMode);
-        await detailsViewPage.waitForHighContrastMode(highContrastMode);
+    it.each([true, false])(
+        'should pass accessibility validation with highContrastMode=%s',
+        async highContrastMode => {
+            await browser.setHighContrastMode(highContrastMode);
+            await detailsViewPage.waitForHighContrastMode(highContrastMode);
 
-        const results = await scanForAccessibilityIssues(detailsViewPage, detailsViewSelectors.previewFeaturesPanel);
-        expect(results).toHaveLength(0);
-    });
+            const results = await scanForAccessibilityIssues(
+                detailsViewPage,
+                detailsViewSelectors.previewFeaturesPanel,
+            );
+            expect(results).toHaveLength(0);
+        },
+    );
 });
 
-async function openPreviewFeaturesPanel(browser: Browser, targetPage: TargetPage): Promise<DetailsViewPage> {
+async function openPreviewFeaturesPanel(
+    browser: Browser,
+    targetPage: TargetPage,
+): Promise<DetailsViewPage> {
     const popupPage = await browser.newPopupPage(targetPage);
 
     await popupPage.clickSelector(CommonSelectors.settingsGearButton);
 
-    const detailsViewPage = await waitForDetailsViewWithPreviewFeaturesPanel(browser, popupPage, targetPage);
+    const detailsViewPage = await waitForDetailsViewWithPreviewFeaturesPanel(
+        browser,
+        popupPage,
+        targetPage,
+    );
 
     await detailsViewPage.waitForId(componentId);
 

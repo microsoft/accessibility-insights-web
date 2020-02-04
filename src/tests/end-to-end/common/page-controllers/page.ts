@@ -24,7 +24,9 @@ export type PageOptions = {
 export class Page {
     constructor(protected readonly underlyingPage: Puppeteer.Page, options?: PageOptions) {
         function forceEventFailure(eventDescription: string): void {
-            forceTestFailure(`Puppeteer.Page '${underlyingPage.url()}' emitted ${eventDescription}`);
+            forceTestFailure(
+                `Puppeteer.Page '${underlyingPage.url()}' emitted ${eventDescription}`,
+            );
         }
 
         function serializeError(error: Error): string {
@@ -32,7 +34,12 @@ export class Page {
         }
 
         underlyingPage.on('error', error => {
-            if (error.stack && error.stack.includes('Page crashed!') && options && options.onPageCrash) {
+            if (
+                error.stack &&
+                error.stack.includes('Page crashed!') &&
+                options &&
+                options.onPageCrash
+            ) {
                 options.onPageCrash();
             }
 
@@ -40,8 +47,12 @@ export class Page {
         });
         underlyingPage.on('pageerror', error => {
             if (
-                error.message.startsWith("TypeError: Cannot read property 'focusElement' of null") &&
-                error.message.includes('office-ui-fabric-react/lib/components/Dropdown/Dropdown.base.js')
+                error.message.startsWith(
+                    "TypeError: Cannot read property 'focusElement' of null",
+                ) &&
+                error.message.includes(
+                    'office-ui-fabric-react/lib/components/Dropdown/Dropdown.base.js',
+                )
             ) {
                 return; // benign; caused by https://github.com/OfficeDev/office-ui-fabric-react/issues/9715
             }
@@ -52,7 +63,9 @@ export class Page {
             const url = request.url();
             // Checking for 'fonts' and 'icons' in url as a workaround for #923
             if (!includes(url, 'fonts') && !includes(url, 'icons')) {
-                forceEventFailure(`'requestfailed' from '${url}' with errorText: ${request.failure().errorText}`);
+                forceEventFailure(
+                    `'requestfailed' from '${url}' with errorText: ${request.failure().errorText}`,
+                );
             }
         });
         underlyingPage.on('response', response => {
@@ -108,7 +121,10 @@ export class Page {
         return await promiseFactory.timeout(this.underlyingPage.evaluate(fn, ...args), timeout);
     }
 
-    public async getMatchingElements<T>(selector: string, elementProperty?: keyof Element): Promise<T[]> {
+    public async getMatchingElements<T>(
+        selector: string,
+        elementProperty?: keyof Element,
+    ): Promise<T[]> {
         return await this.screenshotOnError(
             async () =>
                 await this.evaluate(
@@ -126,15 +142,25 @@ export class Page {
         await this.screenshotOnError(async () => await this.underlyingPage.waitFor(durationMs));
     }
 
-    public async waitForSelector(selector: string, options?: Puppeteer.WaitForSelectorOptions): Promise<Puppeteer.ElementHandle<Element>> {
+    public async waitForSelector(
+        selector: string,
+        options?: Puppeteer.WaitForSelectorOptions,
+    ): Promise<Puppeteer.ElementHandle<Element>> {
         return await this.screenshotOnError(
-            async () => await this.underlyingPage.waitForSelector(selector, { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS, ...options }),
+            async () =>
+                await this.underlyingPage.waitForSelector(selector, {
+                    timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
+                    ...options,
+                }),
         );
     }
 
     public async waitForSelectorXPath(xpath: string): Promise<Puppeteer.ElementHandle<Element>> {
         return await this.screenshotOnError(
-            async () => await this.underlyingPage.waitForXPath(xpath, { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS }),
+            async () =>
+                await this.underlyingPage.waitForXPath(xpath, {
+                    timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
+                }),
         );
     }
 
@@ -183,7 +209,9 @@ export class Page {
         });
     }
 
-    public async waitForShadowRootOfSelector(selector: string): Promise<Puppeteer.ElementHandle<Element>> {
+    public async waitForShadowRootOfSelector(
+        selector: string,
+    ): Promise<Puppeteer.ElementHandle<Element>> {
         return await this.screenshotOnError(async () => {
             const shadowRootHandle = await this.underlyingPage.waitForFunction(
                 selectorInEval => {
@@ -199,7 +227,9 @@ export class Page {
 
     public async clickSelector(selector: string): Promise<void> {
         await this.screenshotOnError(async () => {
-            await this.underlyingPage.waitForSelector(selector, { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS });
+            await this.underlyingPage.waitForSelector(selector, {
+                timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
+            });
             await this.underlyingPage.hover(selector);
             await this.underlyingPage.waitFor(DEFAULT_CLICK_HOVER_DELAY_MS);
             await this.underlyingPage.click(selector, { delay: DEFAULT_CLICK_MOUSEUP_DELAY_MS });
@@ -237,7 +267,9 @@ export class Page {
         });
     }
 
-    public async getSelectorElements(selector: string): Promise<Puppeteer.ElementHandle<Element>[]> {
+    public async getSelectorElements(
+        selector: string,
+    ): Promise<Puppeteer.ElementHandle<Element>[]> {
         return await this.screenshotOnError(async () => {
             return await this.underlyingPage.$$(selector);
         });
@@ -285,6 +317,9 @@ export class Page {
     }
 
     private async screenshotOnError<T>(wrappedFunction: () => Promise<T>): Promise<T> {
-        return await screenshotOnError(path => this.underlyingPage.screenshot({ path, fullPage: true }), wrappedFunction);
+        return await screenshotOnError(
+            path => this.underlyingPage.screenshot({ path, fullPage: true }),
+            wrappedFunction,
+        );
     }
 }
