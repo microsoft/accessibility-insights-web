@@ -194,14 +194,15 @@ module.exports = function(grunt) {
 
     unifiedReleaseTargets.forEach(targetName => {
         const { config, appId, publishUrl } = targets[targetName];
-        const { icon512, fullName, productCategory } = config.options;
+        const { iconMacIcns, iconWinIco, fullName, productCategory } = config.options;
         const dropPath = `drop/${productCategory}/${targetName}`;
 
         grunt.config.merge({
             'configure-electron-builder': {
                 [targetName]: {
                     dropPath,
-                    icon512: `src/${icon512}`,
+                    iconMacIcns: `src/${iconMacIcns}`,
+                    iconWinIco: `src/${iconWinIco}`,
                     fullName,
                     appId,
                     publishUrl,
@@ -386,7 +387,7 @@ module.exports = function(grunt) {
 
     grunt.registerMultiTask('configure-electron-builder', function() {
         grunt.task.requires('drop:' + this.target);
-        const { dropPath, icon512, fullName, appId, publishUrl } = this.data;
+        const { dropPath, iconMacIcns, iconWinIco, fullName, appId, publishUrl } = this.data;
 
         const outElectronBuilderConfigFile = path.join(dropPath, 'electron-builder.yml');
         const srcElectronBuilderConfigFile = path.join('src', 'electron', 'electron-builder', `electron-builder.template.yaml`);
@@ -401,8 +402,8 @@ module.exports = function(grunt) {
         config.publish.url = publishUrl;
         config.productName = fullName;
         config.extraMetadata.name = fullName;
-        config.win.icon = icon512;
-        config.mac.icon = icon512;
+        config.win.icon = iconWinIco;
+        config.mac.icon = iconMacIcns;
 
         const configFileContent = yaml.safeDump(config);
         grunt.file.write(outElectronBuilderConfigFile, configFileContent);

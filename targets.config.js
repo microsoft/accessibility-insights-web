@@ -6,7 +6,8 @@ function iconSet(key) {
         icon16: `icons/brand/${key}/brand-${key}-16px.png`,
         icon48: `icons/brand/${key}/brand-${key}-48px.png`,
         icon128: `icons/brand/${key}/brand-${key}-128px.png`,
-        icon512: `icons/brand/${key}/brand-${key}-512px.png`,
+        iconMacIcns: `icons/brand/${key}/brand-${key}.icns`,
+        iconWinIco: `icons/brand/${key}/brand-${key}.ico`,
     };
 }
 
