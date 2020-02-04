@@ -7,7 +7,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { brand } from 'content/strings/application';
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
-import { WindowTitle, WindowTitleDeps } from 'electron/views/common/window-title';
+import { WindowTitle, WindowTitleDeps } from 'electron/views/common/window-title/window-title';
 import { BrandWhite } from 'icons/brand/white/brand-white';
 import { MaximizeRestoreButton } from './maximize-restore-button';
 import * as styles from './title-bar.scss';
