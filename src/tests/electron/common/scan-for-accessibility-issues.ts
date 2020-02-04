@@ -1,12 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { source as axeCoreSource } from 'axe-core';
-import { prettyPrintAxeViolations, PrintableAxeResult } from 'tests/end-to-end/common/pretty-print-axe-violations';
+import {
+    prettyPrintAxeViolations,
+    PrintableAxeResult,
+} from 'tests/end-to-end/common/pretty-print-axe-violations';
 import { ViewController } from './view-controllers/view-controller';
 
 declare var axe;
 
-export async function scanForAccessibilityIssues(view: ViewController): Promise<PrintableAxeResult[]> {
+export async function scanForAccessibilityIssues(
+    view: ViewController,
+): Promise<PrintableAxeResult[]> {
     await injectAxeIfUndefined(view);
 
     const axeRunOptions = {

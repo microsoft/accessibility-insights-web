@@ -11,6 +11,9 @@ directories:
     output: TARGET_SPECIFIC
     buildResources: src/electron/resources
 
+files:
+    - '!packed${/*}'
+
 extraMetadata:
     main: product/bundle/main.bundle.js
     name: TARGET_SPECIFIC
@@ -33,9 +36,9 @@ win:
     target: nsis
 
 nsis:
-    oneClick: true
+    oneClick: false
     perMachine: false
     deleteAppDataOnUninstall: true
-
+    include: src/electron/resources/installer.nsh
 publish:
     provider: generic
