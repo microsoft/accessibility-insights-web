@@ -14,7 +14,7 @@ jobs:
       steps:
           - template: ../install-node-prerequisites.yaml
           - template: ./unified-e2e-test-interactive.yaml
-          - template: ./electron-e2e-publish-results.yaml
+          - template: ./unified-e2e-publish-results.yaml
 
     - job: 'electron_e2e_tests_mac${{ parameters.jobNameSuffix }}'
       pool:
@@ -22,7 +22,7 @@ jobs:
       steps:
           - template: ../install-node-prerequisites.yaml
           - template: ./unified-e2e-test-interactive.yaml
-          - template: ./electron-e2e-publish-results.yaml
+          - template: ./unified-e2e-publish-results.yaml
 
     - job: 'electron_e2e_tests_linux${{ parameters.jobNameSuffix }}'
       pool:
@@ -30,4 +30,4 @@ jobs:
       steps:
           - template: ../install-node-prerequisites.yaml
           - template: ./unified-e2e-test-linux.yaml
-          - template: ./electron-e2e-publish-results.yaml
+          - template: ./unified-e2e-publish-results.yaml
