@@ -4,6 +4,23 @@
 @import '../../../../common/styles/fonts.scss';
 @import './window-title-const.scss';
 
+:global(.is-mac-os) .window-title {
+    height: $mac-title-height;
+
+    .title-container {
+        padding-left: 60px;
+    }
+
+    .header-text {
+        line-height: 18px;
+        font-size: 12px;
+    }
+
+    .header-icon {
+        height: 12px;
+    }
+}
+
 .window-title {
     flex-grow: 0;
     flex-shrink: 0;
@@ -22,23 +39,6 @@
 
         > * {
             padding-left: 10px;
-        }
-    }
-
-    &.mac-window-title {
-        height: $mac-title-height;
-
-        .title-container {
-            padding-left: 60px;
-        }
-
-        .header-text {
-            line-height: 18px;
-            font-size: 12px;
-        }
-
-        .header-icon {
-            height: 12px;
         }
     }
 

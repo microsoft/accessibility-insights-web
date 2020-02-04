@@ -6,7 +6,6 @@ import { WindowStateStoreData } from 'electron/flux/types/window-state-store-dat
 import { PlatformInfo } from 'electron/window-management/platform-info';
 import { isEmpty } from 'lodash';
 import * as React from 'react';
-
 import * as styles from './window-title.scss';
 
 export interface WindowTitleDeps {
@@ -26,13 +25,8 @@ export const WindowTitle = NamedFC<WindowTitleProps>('WindowTitle', (props: Wind
         return null;
     }
 
-    const windowTitleClassNames = [styles.windowTitle, props.className];
-
-    if (props.deps.platformInfo.isMac()) {
-        windowTitleClassNames.push(styles.macWindowTitle);
-    }
     return (
-        <header className={css(...windowTitleClassNames)}>
+        <header className={css(styles.windowTitle, props.className)}>
             <div className={styles.titleContainer}>
                 {props.children}
                 <h1 className={styles.headerText}>{props.title}</h1>
@@ -43,9 +37,11 @@ export const WindowTitle = NamedFC<WindowTitleProps>('WindowTitle', (props: Wind
 });
 
 function getIconsContainer(props: WindowTitleProps): JSX.Element {
-    if (!props.deps.platformInfo.isMac() && !isEmpty(props.actionableIcons)) {
-        return <div className={styles.actionableIconsContainer}>{props.actionableIcons}</div>;
+    const { platformInfo } = props.deps;
+
+    if (platformInfo.isMac() || isEmpty(props.actionableIcons)) {
+        return null;
     }
 
-    return null;
+    return <div className={styles.actionableIconsContainer}>{props.actionableIcons}</div>;
 }
