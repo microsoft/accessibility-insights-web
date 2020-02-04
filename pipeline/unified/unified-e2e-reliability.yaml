@@ -9,17 +9,17 @@ pr:
             - src/tests/electron/
 
 jobs:
-    - template: ../electron/electron-e2e-job-per-environment.yaml
+    - template: ./unified-e2e-job-per-environment
       parameters: { jobNameSuffix: _1 }
 
-    - template: ../electron/electron-e2e-job-per-environment.yaml
+    - template: ./unified-e2e-job-per-environment
       parameters: { jobNameSuffix: _2 }
 
-    - template: ../electron/electron-e2e-job-per-environment.yaml
+    - template: ./unified-e2e-job-per-environment
       parameters: { jobNameSuffix: _3 }
 
-    - template: ../electron/electron-e2e-job-per-environment.yaml
+    - template: ./unified-e2e-job-per-environment
       parameters: { jobNameSuffix: _4 }
 
-    - template: ../electron/electron-e2e-job-per-environment.yaml
+    - template: ./unified-e2e-job-per-environment
       parameters: { jobNameSuffix: _5 }
