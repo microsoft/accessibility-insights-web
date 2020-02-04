@@ -95,7 +95,6 @@ module.exports = {
         bundleFolder: 'prodBundle',
         mustExistFile: 'background.bundle.js',
     },
-    // to be changed later to unified-dev
     'unified-dev': {
         config: {
             options: {
