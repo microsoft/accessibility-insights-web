@@ -108,6 +108,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                     {optionalSidePanel}
                 </div>
                 <SettingsPanel
+                    layerClassName={styles.settingsPanelLayerHost}
                     deps={this.props.deps}
                     isOpen={this.props.detailsViewStoreData.currentPanel.isSettingsOpen}
                     featureFlagData={{}}

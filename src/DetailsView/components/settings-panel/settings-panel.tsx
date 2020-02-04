@@ -20,16 +20,18 @@ export interface SettingsPanelProps {
     userConfigStoreState: UserConfigurationStoreData;
     isOpen: boolean;
     featureFlagData: FeatureFlagStoreData;
+    layerClassName?: string;
 }
 
 export const settingsPanelAutomationId = 'settings-panel';
 
 export const SettingsPanel = NamedFC<SettingsPanelProps>('SettingsPanel', props => {
-    const { deps, userConfigStoreState, featureFlagData, isOpen } = props;
+    const { deps, userConfigStoreState, featureFlagData, isOpen, layerClassName } = props;
     const { detailsViewActionMessageCreator, settingsProvider } = deps;
 
     return (
         <GenericPanel
+            layerProps={{ className: layerClassName }}
             isOpen={isOpen}
             className={styles.settingsPanel}
             innerPanelAutomationId={settingsPanelAutomationId}
