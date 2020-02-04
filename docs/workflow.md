@@ -20,7 +20,7 @@ Any time a non-test source file is changed, the build will automatically run.
 To test the (currently experimental) Electron app form of the extension:
 
 ```sh
-yarn build:electron
+yarn build:unified
 yarn start:electron:dev
 ```
 

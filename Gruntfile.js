@@ -473,14 +473,14 @@ module.exports = function(grunt) {
         'build-assets',
         'drop:production',
     ]);
-    grunt.registerTask('build-electron', [
+    grunt.registerTask('build-unified', [
         'clean:intermediates',
         'exec:generate-scss-typings',
         'exec:webpack-electron',
         'build-assets',
         'drop:electron',
     ]);
-    grunt.registerTask('build-electron-all', [
+    grunt.registerTask('build-unified-all', [
         'clean:intermediates',
         'exec:generate-scss-typings',
         'exec:webpack-electron',

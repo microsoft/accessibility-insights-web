@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 
 # The TARGET_SPECIFIC placeholders in this template are filled in from targets.config.js during
-# "yarn build:electron:all" by the grunt configure-electron-builder task
+# "yarn build:unified:all" by the grunt configure-electron-builder task
 
 appId: TARGET_SPECIFIC
 
