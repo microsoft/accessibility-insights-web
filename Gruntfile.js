@@ -403,6 +403,7 @@ module.exports = function(grunt) {
         config.extraMetadata.name = fullName;
         config.win.icon = icon512;
         config.mac.icon = icon512;
+        config.linux.icon = icon512;
 
         const configFileContent = yaml.safeDump(config);
         grunt.file.write(outElectronBuilderConfigFile, configFileContent);
@@ -421,7 +422,7 @@ module.exports = function(grunt) {
         grunt.util.spawn(
             {
                 cmd: 'node',
-                args: ['node_modules/electron-builder/out/cli/cli.js', '-p', 'never', '-c', configFile],
+                args: ['node_modules/electron-builder/out/cli/cli.js', '-p', 'never', '-c', configFile, '-l'],
             },
             (error, result, code) => {
                 if (error) {
