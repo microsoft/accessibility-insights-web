@@ -21,12 +21,17 @@ export class DetailsViewStoreDataBuilder extends BaseDataBuilder<DetailsViewStor
         return this;
     }
 
-    public withDetailsViewRightContentPanel(detailsViewRightContentPanel: DetailsViewRightContentPanelType): DetailsViewStoreDataBuilder {
+    public withDetailsViewRightContentPanel(
+        detailsViewRightContentPanel: DetailsViewRightContentPanelType,
+    ): DetailsViewStoreDataBuilder {
         this.data.detailsViewRightContentPanel = detailsViewRightContentPanel;
         return this;
     }
 
-    public withContentOpen(isContentOpen: boolean, contentPath?: string): DetailsViewStoreDataBuilder {
+    public withContentOpen(
+        isContentOpen: boolean,
+        contentPath?: string,
+    ): DetailsViewStoreDataBuilder {
         this.data.currentPanel.isContentOpen = isContentOpen;
         this.data.contentPath = contentPath || null;
         return this;
