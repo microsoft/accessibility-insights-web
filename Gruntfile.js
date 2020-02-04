@@ -422,7 +422,7 @@ module.exports = function(grunt) {
         grunt.util.spawn(
             {
                 cmd: 'node',
-                args: ['node_modules/electron-builder/out/cli/cli.js', '-p', 'never', '-c', configFile, '-l'],
+                args: ['node_modules/electron-builder/out/cli/cli.js', '-p', 'never', '-c', configFile],
             },
             (error, result, code) => {
                 if (error) {
