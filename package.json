@@ -50,7 +50,7 @@
         "watch:grunt": "grunt watch",
         "watch:test": "jest --watch --projects src/tests/unit --coverage false --colors",
         "watch:webpack-dev-browser": "webpack --watch --config-name dev --colors --progress",
-        "watch:webpack-unified": "webpack --watch --config-name electron --colors --progress",
+        "watch:webpack-unified": "webpack --watch --config-name unified --colors --progress",
         "with:mock-axe-android": "npm-run-all --race --parallel serve:mock-axe-android"
     },
     "devDependencies": {

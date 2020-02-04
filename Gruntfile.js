@@ -28,7 +28,7 @@ module.exports = function(grunt) {
             intermediates: ['dist', extensionPath],
         },
         concurrent: {
-            'webpack-all': ['exec:webpack-dev', 'exec:webpack-electron', 'exec:webpack-prod'],
+            'webpack-all': ['exec:webpack-dev', 'exec:webpack-unified', 'exec:webpack-prod'],
         },
         copy: {
             code: {
@@ -133,7 +133,7 @@ module.exports = function(grunt) {
         exec: {
             'webpack-dev': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name dev`,
             'webpack-prod': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name prod`,
-            'webpack-electron': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name electron`,
+            'webpack-unified': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name unified`,
             'webpack-package-report': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name package-report`,
             'generate-scss-typings': `"${path.resolve('./node_modules/.bin/tsm')}" src`,
         },
@@ -180,8 +180,8 @@ module.exports = function(grunt) {
                 files: ['extension/devBundle/**/*.*'],
                 tasks: ['drop:dev'],
             },
-            'webpack-electron-output': {
-                files: ['extension/electronBundle/**/*.*'],
+            'webpack-unified-output': {
+                files: ['extension/unifiedBundle/**/*.*'],
                 tasks: ['drop:unified-dev'],
             },
         },
@@ -476,14 +476,14 @@ module.exports = function(grunt) {
     grunt.registerTask('build-unified', [
         'clean:intermediates',
         'exec:generate-scss-typings',
-        'exec:webpack-electron',
+        'exec:webpack-unified',
         'build-assets',
         'drop:unified-dev',
     ]);
     grunt.registerTask('build-unified-all', [
         'clean:intermediates',
         'exec:generate-scss-typings',
-        'exec:webpack-electron',
+        'exec:webpack-unified',
         'build-assets',
         'drop:unified-dev',
         'unified-release-drops',
