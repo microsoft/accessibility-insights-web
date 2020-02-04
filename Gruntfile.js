@@ -165,15 +165,15 @@ module.exports = function(grunt) {
         watch: {
             images: {
                 files: ['src/**/*.png'],
-                tasks: ['copy:images', 'drop:dev', 'drop:electron'],
+                tasks: ['copy:images', 'drop:dev', 'drop:unified-dev'],
             },
             'non-webpack-code': {
                 files: ['src/**/*.html', 'src/manifest.json'],
-                tasks: ['copy:code', 'drop:dev', 'drop:electron'],
+                tasks: ['copy:code', 'drop:dev', 'drop:unified-dev'],
             },
             scss: {
                 files: ['src/**/*.scss'],
-                tasks: ['sass', 'copy:styles', 'drop:dev', 'drop:electron'],
+                tasks: ['sass', 'copy:styles', 'drop:dev', 'drop:unified-dev'],
             },
             // We assume webpack --watch is running separately (usually via 'yarn watch')
             'webpack-dev-output': {
@@ -182,7 +182,7 @@ module.exports = function(grunt) {
             },
             'webpack-electron-output': {
                 files: ['extension/electronBundle/**/*.*'],
-                tasks: ['drop:electron'],
+                tasks: ['drop:unified-dev'],
             },
         },
     });
@@ -478,14 +478,14 @@ module.exports = function(grunt) {
         'exec:generate-scss-typings',
         'exec:webpack-electron',
         'build-assets',
-        'drop:electron',
+        'drop:unified-dev',
     ]);
     grunt.registerTask('build-unified-all', [
         'clean:intermediates',
         'exec:generate-scss-typings',
         'exec:webpack-electron',
         'build-assets',
-        'drop:electron',
+        'drop:unified-dev',
         'unified-release-drops',
     ]);
     grunt.registerTask('build-package-report', [
@@ -502,7 +502,7 @@ module.exports = function(grunt) {
         'concurrent:webpack-all',
         'build-assets',
         'drop:dev',
-        'drop:electron',
+        'drop:unified-dev',
         'extension-release-drops',
     ]);
 

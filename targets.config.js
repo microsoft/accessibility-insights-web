@@ -96,7 +96,7 @@ module.exports = {
         mustExistFile: 'background.bundle.js',
     },
     // to be changed later to unified-dev
-    electron: {
+    'unified-dev': {
         config: {
             options: {
                 ...commonUnifiedOptions,
