@@ -406,7 +406,7 @@ module.exports = function(grunt) {
         config.extraMetadata.name = fullName;
         // This is necessary for the AppImage to display using our brand icon
         // See electron-userland/electron-builder#3547 and AppImage/AppImageKit#678
-        config.linux.artifactName = fullName.replace(' - ', '_').replace(' ', '_') + '.${ext}';
+        config.linux.artifactName = fullName.replace(/ (- )?/g, '_') + '.${ext}';
 
         const configFileContent = yaml.safeDump(config);
         grunt.file.write(outElectronBuilderConfigFile, configFileContent);
