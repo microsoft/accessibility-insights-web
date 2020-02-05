@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { MainProcessConfiguration } from 'common/configuration';
+import { config } from 'common/configuration';
 import { app, BrowserWindow } from 'electron';
 import log from 'electron-log';
 import { autoUpdater } from 'electron-updater';
@@ -20,11 +20,9 @@ const electronAutoUpdateCheck = new AutoUpdaterClient(autoUpdater);
 
 const os = platformInfo.getOs();
 
-const config = new MainProcessConfiguration();
 const iconBaseName = path.join(__dirname, '..', config.getOption('electronIconBaseName'));
 const iconExtension = os === OSType.Windows ? 'ico' : os === OSType.Mac ? 'icns' : 'png';
 const iconPath = `${iconBaseName}.${iconExtension}`;
-console.log(iconPath);
 
 const createWindow = () => {
     mainWindow = new BrowserWindow({
