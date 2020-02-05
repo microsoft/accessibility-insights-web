@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-const YAML = require('js-yaml');
-
 module.exports = function(grunt) {
     const webStoreAccount = {
         client_id: grunt.option('webstore-client-id'),
@@ -54,8 +52,6 @@ module.exports = function(grunt) {
 
     const versionFromDate = () => makeVersionFromDateString('.');
 
-    const versionFromDateElectron = () => makeVersionFromDateString('');
-
     const makeVersionFromDateString = lastSeperator => {
         const now = new Date();
         return `${now.getUTCFullYear()}.${now.getUTCMonth() + 1}.${now.getUTCDate()}${lastSeperator}${now.getUTCHours() * 100 +
@@ -75,23 +71,6 @@ module.exports = function(grunt) {
         const copyrightHeader = '// Copyright (c) Microsoft Corporation. All rights reserved.\n// Licensed under the MIT License.\n';
         const configJS = `${copyrightHeader}window.insights = ${configJSON}`;
         grunt.file.write(configJSPath, configJS);
-    });
-
-    grunt.registerTask('update-electron-config', function() {
-        const electronBuilderYAMLPath = '../../../electron-builder.yml';
-        const config = grunt.file.readYAML(electronBuilderYAMLPath);
-        let version = options.extensionVersion;
-
-        if (version == 'auto') {
-            version = versionFromDateElectron();
-        }
-
-        config.extraMetadata.version = version;
-        config.publish.url = options.electronUpdateURL;
-
-        const configYAML = YAML.safeDump(config);
-        grunt.file.write(electronBuilderYAMLPath, configYAML);
-        grunt.log.writeln(`embedded version ${version} in electron-builder.yml`);
     });
 
     grunt.registerTask('update-manifest', function() {
