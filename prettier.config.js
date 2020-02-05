@@ -25,6 +25,7 @@ module.exports = {
                 'src/tests/electron/**/*',
                 'src/tests/end-to-end/**/*',
                 'src/tests/miscellaneous/**/*',
+                'src/tests/unit/common/**/*',
                 'src/types/**/*',
                 'src/views/**/*',
             ],

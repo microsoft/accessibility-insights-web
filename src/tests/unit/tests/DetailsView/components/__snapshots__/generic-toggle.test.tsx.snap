@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`GenericToggleTest render with jsx content 1`] = `
+exports[`GenericToggleTest renders description content is JSX.Element 1`] = `
 <div
-  className="generic-toggle-component"
+  className="genericToggleComponent"
 >
   <div
-    className="toggle-container"
+    className="toggleContainer"
   >
     <div
-      className="toggle-name"
+      className="toggleName"
     >
       test name
     </div>
@@ -23,7 +23,7 @@ exports[`GenericToggleTest render with jsx content 1`] = `
     />
   </div>
   <div
-    className="toggle-description"
+    className="toggleDescription"
   >
     <h1>
       hello
@@ -32,15 +32,45 @@ exports[`GenericToggleTest render with jsx content 1`] = `
 </div>
 `;
 
-exports[`GenericToggleTest render with string content - toggleState : false 1`] = `
+exports[`GenericToggleTest renders description content is string 1`] = `
 <div
-  className="generic-toggle-component"
+  className="genericToggleComponent"
 >
   <div
-    className="toggle-container"
+    className="toggleContainer"
   >
     <div
-      className="toggle-name"
+      className="toggleName"
+    >
+      test name
+    </div>
+    <StyledToggleBase
+      ariaLabel="test name"
+      checked={true}
+      className="toggle"
+      id="test-id-1"
+      offText="Off"
+      onClick={[Function]}
+      onText="On"
+    />
+  </div>
+  <div
+    className="toggleDescription"
+  >
+    test string description
+  </div>
+</div>
+`;
+
+exports[`GenericToggleTest renders toggle enable = false 1`] = `
+<div
+  className="genericToggleComponent"
+>
+  <div
+    className="toggleContainer"
+  >
+    <div
+      className="toggleName"
     >
       test name
     </div>
@@ -55,22 +85,22 @@ exports[`GenericToggleTest render with string content - toggleState : false 1`] 
     />
   </div>
   <div
-    className="toggle-description"
+    className="toggleDescription"
   >
     test description
   </div>
 </div>
 `;
 
-exports[`GenericToggleTest render with string content - toggleState : true 1`] = `
+exports[`GenericToggleTest renders toggle enable = true 1`] = `
 <div
-  className="generic-toggle-component"
+  className="genericToggleComponent"
 >
   <div
-    className="toggle-container"
+    className="toggleContainer"
   >
     <div
-      className="toggle-name"
+      className="toggleName"
     >
       test name
     </div>
@@ -85,37 +115,7 @@ exports[`GenericToggleTest render with string content - toggleState : true 1`] =
     />
   </div>
   <div
-    className="toggle-description"
-  >
-    test description
-  </div>
-</div>
-`;
-
-exports[`GenericToggleTest verify if the classname passed from prop is added properly 1`] = `
-<div
-  className="generic-toggle-component"
->
-  <div
-    className="toggle-container"
-  >
-    <div
-      className="toggle-name"
-    >
-      test name
-    </div>
-    <StyledToggleBase
-      ariaLabel="test name"
-      checked={true}
-      className="toggle"
-      id="test-id-1"
-      offText="Off"
-      onClick={[Function]}
-      onText="On"
-    />
-  </div>
-  <div
-    className="toggle-description"
+    className="toggleDescription"
   >
     test description
   </div>

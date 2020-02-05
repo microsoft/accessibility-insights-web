@@ -1,0 +1,25 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../common/styles/colors.scss';
+
+.generic-toggle-component {
+    margin-bottom: 4vh;
+
+    .toggle-container {
+        margin-bottom: 1vh;
+
+        .toggle-name {
+            display: inline-block;
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .toggle {
+            float: right;
+        }
+    }
+
+    .toggle-description {
+        color: $secondary-text;
+    }
+}

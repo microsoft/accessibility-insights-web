@@ -4,14 +4,22 @@ import { VisualizationStore } from 'background/stores/visualization-store';
 import { cloneDeep, forOwn } from 'lodash';
 import { VisualizationConfigurationFactory } from '../../../common/configs/visualization-configuration-factory';
 import { DetailsViewPivotType } from '../../../common/types/details-view-pivot-type';
-import { AssessmentScanData, VisualizationStoreData } from '../../../common/types/store-data/visualization-store-data';
+import {
+    AssessmentScanData,
+    VisualizationStoreData,
+} from '../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { BaseDataBuilder } from './base-data-builder';
 
 export class VisualizationStoreDataBuilder extends BaseDataBuilder<VisualizationStoreData> {
     constructor() {
         super();
-        this.data = new VisualizationStore(null, null, null, new VisualizationConfigurationFactory()).getDefaultState();
+        this.data = new VisualizationStore(
+            null,
+            null,
+            null,
+            new VisualizationConfigurationFactory(),
+        ).getDefaultState();
     }
 
     public withFocusedTarget(target: string[]): VisualizationStoreDataBuilder {
@@ -113,13 +121,21 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<Visualization
         return this;
     }
 
-    private withAssessment(assessment: AssessmentScanData, enabled: boolean, step: string): VisualizationStoreDataBuilder {
+    private withAssessment(
+        assessment: AssessmentScanData,
+        enabled: boolean,
+        step: string,
+    ): VisualizationStoreDataBuilder {
         assessment.stepStatus[step] = enabled;
-        assessment.enabled = Object.keys(assessment.stepStatus).some(currentStep => assessment.stepStatus[currentStep] === true);
+        assessment.enabled = Object.keys(assessment.stepStatus).some(
+            currentStep => assessment.stepStatus[currentStep] === true,
+        );
         return this;
     }
 
-    public withSelectedDetailsViewPivot(pivot: DetailsViewPivotType): VisualizationStoreDataBuilder {
+    public withSelectedDetailsViewPivot(
+        pivot: DetailsViewPivotType,
+    ): VisualizationStoreDataBuilder {
         this.data.selectedDetailsViewPivot = pivot;
         return this;
     }

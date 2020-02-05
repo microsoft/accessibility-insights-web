@@ -177,12 +177,14 @@ const simpleAssessmentWithFeatureFlag = {
     featureFlag: { required: [FeatureFlags.showAllAssessments] },
 };
 
-export const CreateTestAssessmentProvider = () => AssessmentsProviderImpl.Create([assessmentWithColumns, simpleAssessment]);
+export const CreateTestAssessmentProvider = () =>
+    AssessmentsProviderImpl.Create([assessmentWithColumns, simpleAssessment]);
 
 export const CreateTestAssessmentProviderWithFeatureFlag = () =>
     AssessmentsProviderImpl.Create([assessmentWithColumns, simpleAssessmentWithFeatureFlag]);
 
-export const CreateTestAssessmentProviderAutomated = () => AssessmentsProviderImpl.Create([automatedAssessment]);
+export const CreateTestAssessmentProviderAutomated = () =>
+    AssessmentsProviderImpl.Create([automatedAssessment]);
 
 export const TestStatusChoiceColumn: Readonly<IColumn> = {
     key: 'test - statusChoiceGroup',
