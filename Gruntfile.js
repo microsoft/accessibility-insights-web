@@ -398,12 +398,15 @@ module.exports = function(grunt) {
         config.directories.app = dropPath;
         config.directories.output = `${dropPath}/packed`;
         config.extraMetadata.version = version;
+        config.win.icon = `src/${electronIconBaseName}.ico`;
+        // electron-builder infers the linux icon from the mac one
+        config.mac.icon = `src/${electronIconBaseName}.icns`;
         config.publish.url = publishUrl;
         config.productName = fullName;
         config.extraMetadata.name = fullName;
-        config.win.icon = `src/${electronIconBaseName}.ico`;
-        config.mac.icon = `src/${electronIconBaseName}.icns`;
-        // electron-builder infers the linux icon from the mac one
+        // This is necessary for the AppImage to display using our brand icon
+        // See electron-userland/electron-builder#3547 and AppImage/AppImageKit#678
+        config.linux.artifactName = fullName.replace(' - ', '_').replace(' ', '_') + '.${ext}';
 
         const configFileContent = yaml.safeDump(config);
         grunt.file.write(outElectronBuilderConfigFile, configFileContent);
