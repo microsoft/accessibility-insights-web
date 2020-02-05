@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-const YAML = require('js-yaml');
-
 module.exports = function(grunt) {
     const webStoreAccount = {
         client_id: grunt.option('webstore-client-id'),
@@ -53,8 +51,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-webstore-upload');
 
     const versionFromDate = () => makeVersionFromDateString('.');
-
-    const versionFromDateElectron = () => makeVersionFromDateString('');
 
     const makeVersionFromDateString = lastSeperator => {
         const now = new Date();
