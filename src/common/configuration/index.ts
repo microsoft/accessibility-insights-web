@@ -61,7 +61,7 @@ export class MainProcessConfiguration implements ConfigAccessor {
     }
     public readonly config: InsightsConfiguration;
     constructor() {
-        const configJsonPath = path.join(__dirname, '../../insights.config.json');
+        const configJsonPath = path.join(__dirname, '../insights.config.json');
         try {
             const configJsonRawContent = fs.readFileSync(configJsonPath).toString();
             const configJson = JSON.parse(configJsonRawContent);
