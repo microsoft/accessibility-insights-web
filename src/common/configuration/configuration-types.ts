@@ -12,3 +12,18 @@ export type InsightsConfigurationOptions = {
     bundled?: string;
     telemetryBuildName?: string;
 };
+
+export interface ConfigAccessor {
+    readonly config: InsightsConfiguration;
+    getOption<K extends keyof InsightsConfigurationOptions>(
+        name: K,
+    ): InsightsConfigurationOptions[K];
+}
+
+export interface ConfigMutator extends ConfigAccessor {
+    reset(): ConfigMutator;
+    setOption<K extends keyof InsightsConfigurationOptions>(
+        name: K,
+        value: InsightsConfigurationOptions[K],
+    ): ConfigMutator;
+}
