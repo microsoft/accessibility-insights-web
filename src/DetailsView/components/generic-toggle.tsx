@@ -32,7 +32,7 @@ export const GenericToggle = NamedFC<GenericToggleProps>('GenericToggle', props 
                     ariaLabel={props.name}
                 />
             </div>
-            <div className={'toggle-description'}>{props.description}</div>
+            <div className={styles.toggleDescription}>{props.description}</div>
         </div>
     );
 });

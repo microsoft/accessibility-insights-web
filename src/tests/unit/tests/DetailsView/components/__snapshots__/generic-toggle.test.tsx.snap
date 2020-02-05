@@ -23,7 +23,7 @@ exports[`GenericToggleTest renders description content is JSX.Element 1`] = `
     />
   </div>
   <div
-    className="toggle-description"
+    className="toggleDescription"
   >
     <h1>
       hello
@@ -55,7 +55,7 @@ exports[`GenericToggleTest renders description content is string 1`] = `
     />
   </div>
   <div
-    className="toggle-description"
+    className="toggleDescription"
   >
     test string description
   </div>
@@ -85,7 +85,7 @@ exports[`GenericToggleTest renders toggle enable = false 1`] = `
     />
   </div>
   <div
-    className="toggle-description"
+    className="toggleDescription"
   >
     test description
   </div>
@@ -115,7 +115,7 @@ exports[`GenericToggleTest renders toggle enable = true 1`] = `
     />
   </div>
   <div
-    className="toggle-description"
+    className="toggleDescription"
   >
     test description
   </div>

@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+@import '../../common/styles/colors.scss';
+
 .generic-toggle-component {
     margin-bottom: 4vh;
 
@@ -15,5 +17,9 @@
         .toggle {
             float: right;
         }
+    }
+
+    .toggle-description {
+        color: $secondary-text;
     }
 }

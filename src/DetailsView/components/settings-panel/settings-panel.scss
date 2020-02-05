@@ -3,10 +3,6 @@
 @import '../../../common/styles/colors.scss';
 
 .settings-panel {
-    :global(.toggle-description) {
-        color: $secondary-text;
-    }
-
     h3 {
         font-size: 17px;
         margin-block-end: 8px;
