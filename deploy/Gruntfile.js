@@ -77,23 +77,6 @@ module.exports = function(grunt) {
         grunt.file.write(configJSPath, configJS);
     });
 
-    grunt.registerTask('update-electron-config', function() {
-        const electronBuilderYAMLPath = '../../../electron-builder.yml';
-        const config = grunt.file.readYAML(electronBuilderYAMLPath);
-        let version = options.extensionVersion;
-
-        if (version == 'auto') {
-            version = versionFromDateElectron();
-        }
-
-        config.extraMetadata.version = version;
-        config.publish.url = options.electronUpdateURL;
-
-        const configYAML = YAML.safeDump(config);
-        grunt.file.write(electronBuilderYAMLPath, configYAML);
-        grunt.log.writeln(`embedded version ${version} in electron-builder.yml`);
-    });
-
     grunt.registerTask('update-manifest', function() {
         const manifestPath = 'product/manifest.json';
         const manifest = grunt.file.readJSON(manifestPath);
