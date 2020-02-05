@@ -39,22 +39,6 @@ button::after {
     color: $neutral-100;
 }
 
-.generic-toggle-component {
-    margin-bottom: 4vh;
-    .toggle-container {
-        margin-bottom: 1vh;
-        .toggle-name {
-            display: inline-block;
-            font-size: 17px;
-            font-weight: bold;
-        }
-
-        .toggle {
-            float: right;
-        }
-    }
-}
-
 .high-contrast-theme {
     .insights-link {
         &:hover {
