@@ -5,6 +5,9 @@ import { defaultsDeep } from 'lodash';
 import { defaults } from './configuration-defaults';
 import { InsightsConfiguration, InsightsConfigurationOptions } from './configuration-types';
 
+import * as fs from 'fs';
+import * as path from 'path';
+
 const globalVariableName = 'insights';
 
 interface ConfigAccessor {
@@ -47,6 +50,25 @@ class Configuration implements ConfigAccessor, ConfigMutator {
     ): Configuration {
         this.config.options[name] = value;
         return this;
+    }
+}
+
+export class MainProcessConfiguration implements ConfigAccessor {
+    public getOption<K extends keyof InsightsConfigurationOptions>(
+        name: K,
+    ): InsightsConfigurationOptions[K] {
+        return this.config.options[name];
+    }
+    public readonly config: InsightsConfiguration;
+    constructor() {
+        const configJsonPath = path.join(__dirname, '../../insights.config.json');
+        try {
+            const configJsonRawContent = fs.readFileSync(configJsonPath).toString();
+            const configJson = JSON.parse(configJsonRawContent);
+            this.config = defaultsDeep(configJson, defaults);
+        } catch (e) {
+            this.config = defaults;
+        }
     }
 }
 
