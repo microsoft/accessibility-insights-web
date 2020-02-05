@@ -28,15 +28,24 @@ describe('Popup -> Hamburger menu', () => {
     });
 
     it('should have content matching snapshot', async () => {
-        const hamburgerMenu = await formatPageElementForSnapshot(popupPage, popupPageElementIdentifiers.hamburgerMenu);
+        const hamburgerMenu = await formatPageElementForSnapshot(
+            popupPage,
+            popupPageElementIdentifiers.hamburgerMenu,
+        );
         expect(hamburgerMenu).toMatchSnapshot();
     });
 
-    it.each([true, false])('should pass accessibility validation with highContrastMode=%s', async highContrastMode => {
-        await browser.setHighContrastMode(highContrastMode);
-        await popupPage.waitForHighContrastMode(highContrastMode);
+    it.each([true, false])(
+        'should pass accessibility validation with highContrastMode=%s',
+        async highContrastMode => {
+            await browser.setHighContrastMode(highContrastMode);
+            await popupPage.waitForHighContrastMode(highContrastMode);
 
-        const results = await scanForAccessibilityIssues(popupPage, popupPageElementIdentifiers.hamburgerMenu);
-        expect(results).toHaveLength(0);
-    });
+            const results = await scanForAccessibilityIssues(
+                popupPage,
+                popupPageElementIdentifiers.hamburgerMenu,
+            );
+            expect(results).toHaveLength(0);
+        },
+    );
 });

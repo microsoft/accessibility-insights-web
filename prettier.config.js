@@ -23,6 +23,7 @@ module.exports = {
                 'src/scanner/**/*',
                 'src/tests/common/**/*',
                 'src/tests/electron/**/*',
+                'src/tests/end-to-end/**/*',
                 'src/tests/miscellaneous/**/*',
                 'src/types/**/*',
                 'src/views/**/*',

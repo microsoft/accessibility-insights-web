@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import {
     RootContainer,
-    RootContainerProps,
+    RootContainerDeps,
 } from 'electron/views/root-container/components/root-container';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
@@ -11,13 +11,13 @@ export class RootContainerRenderer {
     constructor(
         private readonly renderer: typeof ReactDOM.render,
         private readonly dom: ParentNode,
-        private readonly props: RootContainerProps,
+        private readonly deps: RootContainerDeps,
     ) {}
 
     public render(): void {
-        this.props.deps.windowStateActionCreator.setRoute({ routeId: 'deviceConnectView' });
+        this.deps.windowStateActionCreator.setRoute({ routeId: 'deviceConnectView' });
 
         const rootContainer = this.dom.querySelector('#root-container');
-        this.renderer(<RootContainer {...this.props} />, rootContainer);
+        this.renderer(<RootContainer deps={this.deps} />, rootContainer);
     }
 }

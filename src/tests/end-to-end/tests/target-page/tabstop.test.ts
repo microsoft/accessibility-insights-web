@@ -12,8 +12,13 @@ describe('Tab stops visualization', () => {
     let popupPage: PopupPage;
 
     beforeEach(async () => {
-        browser = await launchBrowser({ suppressFirstTimeDialog: true, addExtraPermissionsToManifest: 'fake-activeTab' });
-        targetPage = await browser.newTargetPage({ testResourcePath: 'native-widgets/input-type-radio.html' });
+        browser = await launchBrowser({
+            suppressFirstTimeDialog: true,
+            addExtraPermissionsToManifest: 'fake-activeTab',
+        });
+        targetPage = await browser.newTargetPage({
+            testResourcePath: 'native-widgets/input-type-radio.html',
+        });
     });
 
     afterEach(async () => {

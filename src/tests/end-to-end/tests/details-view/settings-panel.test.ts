@@ -33,45 +33,77 @@ describe('Details View -> Settings Panel', () => {
 
     describe('Telemetry toggle', () => {
         it('should default to "off" in the usual configuration our E2E tests use', async () => {
-            await detailsViewPage.expectToggleState(settingsPanelSelectors.telemetryStateToggle, false);
+            await detailsViewPage.expectToggleState(
+                settingsPanelSelectors.telemetryStateToggle,
+                false,
+            );
         });
 
         it('should reflect the state applied via the background page insightsUserConfiguration controller all other tests use', async () => {
             await backgroundPage.setTelemetryState(true);
-            await detailsViewPage.expectToggleState(settingsPanelSelectors.telemetryStateToggle, true);
+            await detailsViewPage.expectToggleState(
+                settingsPanelSelectors.telemetryStateToggle,
+                true,
+            );
 
             await backgroundPage.setTelemetryState(false);
-            await detailsViewPage.expectToggleState(settingsPanelSelectors.telemetryStateToggle, false);
+            await detailsViewPage.expectToggleState(
+                settingsPanelSelectors.telemetryStateToggle,
+                false,
+            );
         });
     });
 
     describe('High Contrast Mode toggle', () => {
         it('should default to non-high-contrast mode', async () => {
-            await detailsViewPage.expectToggleState(settingsPanelSelectors.highContrastModeToggle, false);
+            await detailsViewPage.expectToggleState(
+                settingsPanelSelectors.highContrastModeToggle,
+                false,
+            );
         });
 
         it('should apply the appropriate CSS style when High Contrast Mode setting is toggled', async () => {
-            await detailsViewPage.setToggleState(settingsPanelSelectors.highContrastModeToggle, true);
+            await detailsViewPage.setToggleState(
+                settingsPanelSelectors.highContrastModeToggle,
+                true,
+            );
             await detailsViewPage.waitForSelector(CommonSelectors.highContrastThemeSelector);
 
-            await detailsViewPage.setToggleState(settingsPanelSelectors.highContrastModeToggle, false);
-            await detailsViewPage.waitForSelectorToDisappear(CommonSelectors.highContrastThemeSelector);
+            await detailsViewPage.setToggleState(
+                settingsPanelSelectors.highContrastModeToggle,
+                false,
+            );
+            await detailsViewPage.waitForSelectorToDisappear(
+                CommonSelectors.highContrastThemeSelector,
+            );
         });
 
         it('should reflect the state applied via the background page insightsUserConfiguration controller all other tests use', async () => {
             await backgroundPage.setHighContrastMode(true);
-            await detailsViewPage.expectToggleState(settingsPanelSelectors.highContrastModeToggle, true);
+            await detailsViewPage.expectToggleState(
+                settingsPanelSelectors.highContrastModeToggle,
+                true,
+            );
 
             await backgroundPage.setHighContrastMode(false);
-            await detailsViewPage.expectToggleState(settingsPanelSelectors.highContrastModeToggle, false);
+            await detailsViewPage.expectToggleState(
+                settingsPanelSelectors.highContrastModeToggle,
+                false,
+            );
         });
     });
 
-    it.each([true, false])('should pass accessibility validation with highContrastMode=%s', async highContrastMode => {
-        await backgroundPage.setHighContrastMode(highContrastMode);
-        await detailsViewPage.waitForHighContrastMode(highContrastMode);
+    it.each([true, false])(
+        'should pass accessibility validation with highContrastMode=%s',
+        async highContrastMode => {
+            await backgroundPage.setHighContrastMode(highContrastMode);
+            await detailsViewPage.waitForHighContrastMode(highContrastMode);
 
-        const results = await scanForAccessibilityIssues(detailsViewPage, settingsPanelSelectors.settingsPanel);
-        expect(results).toHaveLength(0);
-    });
+            const results = await scanForAccessibilityIssues(
+                detailsViewPage,
+                settingsPanelSelectors.settingsPanel,
+            );
+            expect(results).toHaveLength(0);
+        },
+    );
 });

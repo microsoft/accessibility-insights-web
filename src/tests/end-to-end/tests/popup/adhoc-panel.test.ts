@@ -13,7 +13,10 @@ describe('Popup -> Ad-hoc tools', () => {
     let popupPage: PopupPage;
 
     beforeEach(async () => {
-        browser = await launchBrowser({ suppressFirstTimeDialog: true, addExtraPermissionsToManifest: 'fake-activeTab' });
+        browser = await launchBrowser({
+            suppressFirstTimeDialog: true,
+            addExtraPermissionsToManifest: 'fake-activeTab',
+        });
         targetPage = await browser.newTargetPage();
         popupPage = await browser.newPopupPage(targetPage);
         await popupPage.bringToFront();
@@ -47,15 +50,18 @@ describe('Popup -> Ad-hoc tools', () => {
         await popupPage.verifyLaunchPadLoaded();
     });
 
-    it.each([true, false])('should pass accessibility validation with highContrastMode=%s', async highContrastMode => {
-        await browser.setHighContrastMode(highContrastMode);
-        await popupPage.waitForHighContrastMode(highContrastMode);
+    it.each([true, false])(
+        'should pass accessibility validation with highContrastMode=%s',
+        async highContrastMode => {
+            await browser.setHighContrastMode(highContrastMode);
+            await popupPage.waitForHighContrastMode(highContrastMode);
 
-        await popupPage.gotoAdhocPanel();
+            await popupPage.gotoAdhocPanel();
 
-        const results = await scanForAccessibilityIssues(popupPage, '*');
-        expect(results).toHaveLength(0);
-    });
+            const results = await scanForAccessibilityIssues(popupPage, '*');
+            expect(results).toHaveLength(0);
+        },
+    );
 
     it.each(['Automated checks', 'Landmarks', 'Headings', 'Color'])(
         'should display the pinned target page visualizations when enabling the "%s" toggle',

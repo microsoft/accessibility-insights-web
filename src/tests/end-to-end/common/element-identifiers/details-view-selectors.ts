@@ -7,7 +7,10 @@ import { overviewHeadingAutomationId } from 'DetailsView/components/overview-con
 import { settingsPanelAutomationId } from 'DetailsView/components/settings-panel/settings-panel';
 import { startOverAutomationId } from 'DetailsView/components/start-over-component-factory';
 import { failureCountAutomationId } from 'reports/components/outcome-chip';
-import { cardsRuleIdAutomationId, ruleDetailAutomationId } from 'reports/components/report-sections/minimal-rule-header';
+import {
+    cardsRuleIdAutomationId,
+    ruleDetailAutomationId,
+} from 'reports/components/report-sections/minimal-rule-header';
 
 const getAutomationIdSelector = (id: string) => `[data-automation-id="${id}"]`;
 

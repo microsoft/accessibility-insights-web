@@ -14,7 +14,10 @@ describe('Details View -> Assessment -> Headings', () => {
     let headingsPage: DetailsViewPage;
 
     beforeAll(async () => {
-        browser = await launchBrowser({ suppressFirstTimeDialog: true, addExtraPermissionsToManifest: 'fake-activeTab' });
+        browser = await launchBrowser({
+            suppressFirstTimeDialog: true,
+            addExtraPermissionsToManifest: 'fake-activeTab',
+        });
         targetPage = await browser.newTargetPage();
         await browser.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
         headingsPage = await openHeadingsPage(browser, targetPage);
@@ -27,16 +30,25 @@ describe('Details View -> Assessment -> Headings', () => {
         }
     });
 
-    it.each([true, false])('should pass accessibility validation with highContrastMode=%s', async highContrastMode => {
-        await browser.setHighContrastMode(highContrastMode);
-        await headingsPage.waitForHighContrastMode(highContrastMode);
+    it.each([true, false])(
+        'should pass accessibility validation with highContrastMode=%s',
+        async highContrastMode => {
+            await browser.setHighContrastMode(highContrastMode);
+            await headingsPage.waitForHighContrastMode(highContrastMode);
 
-        const results = await scanForAccessibilityIssues(headingsPage, detailsViewSelectors.mainContent);
-        expect(results).toHaveLength(0);
-    });
+            const results = await scanForAccessibilityIssues(
+                headingsPage,
+                detailsViewSelectors.mainContent,
+            );
+            expect(results).toHaveLength(0);
+        },
+    );
 });
 
-async function openHeadingsPage(browser: Browser, targetPage: TargetPage): Promise<DetailsViewPage> {
+async function openHeadingsPage(
+    browser: Browser,
+    targetPage: TargetPage,
+): Promise<DetailsViewPage> {
     const detailsViewPage = await browser.newDetailsViewPage(targetPage);
     await detailsViewPage.switchToAssessment();
 

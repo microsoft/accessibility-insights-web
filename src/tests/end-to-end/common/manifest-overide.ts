@@ -35,5 +35,6 @@ export class ManifestOveride {
         await ManifestOveride.writeFile(this.manifestPath, content);
     }
 
-    public restoreOriginalManifest = async (): Promise<void> => await ManifestOveride.writeFile(this.manifestPath, this.originalManifest);
+    public restoreOriginalManifest = async (): Promise<void> =>
+        await ManifestOveride.writeFile(this.manifestPath, this.originalManifest);
 }
