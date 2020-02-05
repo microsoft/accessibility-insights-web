@@ -3,7 +3,7 @@
 import { FileSystemConfiguration } from 'common/configuration/file-system-configuration';
 import * as path from 'path';
 
-describe('WindowVariableConfiguration', () => {
+describe('FileSystemConfiguration', () => {
     const configFileWithFullNameSet = path.join(__dirname, 'insights.config.test.json');
     const nonExistentConfigFile = path.join(__dirname, 'doesnt_exist.json');
 
