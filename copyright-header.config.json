@@ -20,6 +20,7 @@
         ".gitattributes",
         ".ignoredRevs",
         "**/.DS_Store",
+        "**/*.icns",
         "**/*.scss.d.ts",
         "**/*.snap",
         "**/*.svg",
