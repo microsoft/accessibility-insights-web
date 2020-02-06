@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { config } from 'common/configuration';
 import { app, BrowserWindow } from 'electron';
 import log from 'electron-log';
 import { autoUpdater } from 'electron-updater';
@@ -17,8 +18,13 @@ autoUpdater.logger = log;
 let recurringUpdateCheck;
 const electronAutoUpdateCheck = new AutoUpdaterClient(autoUpdater);
 
+const os = platformInfo.getOs();
+
+const iconBaseName = path.join(__dirname, '..', config.getOption('electronIconBaseName'));
+const iconExtension = os === OSType.Windows ? 'ico' : os === OSType.Mac ? 'icns' : 'png';
+const iconPath = `${iconBaseName}.${iconExtension}`;
+
 const createWindow = () => {
-    const os = platformInfo.getOs();
     mainWindow = new BrowserWindow({
         show: false,
         webPreferences: { nodeIntegration: true },
@@ -28,6 +34,7 @@ const createWindow = () => {
         frame: os === OSType.Mac,
         minHeight: mainWindowConfig.minHeight,
         minWidth: mainWindowConfig.minWidth,
+        icon: iconPath,
     });
     if (platformInfo.isMac()) {
         // We need this so that if there are any system dialog, they will not be placed on top of the title bar.
