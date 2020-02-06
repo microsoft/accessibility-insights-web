@@ -6,6 +6,7 @@ import { app, BrowserWindow } from 'electron';
 import log from 'electron-log';
 import { autoUpdater } from 'electron-updater';
 import { AutoUpdaterClient } from 'electron/auto-update/auto-updater-client';
+import { getElectronIconPath } from 'electron/common/get-electron-icon-path';
 import { OSType, PlatformInfo } from 'electron/window-management/platform-info';
 import * as path from 'path';
 import { mainWindowConfig } from './main-window-config';
@@ -23,10 +24,6 @@ const electronAutoUpdateCheck = new AutoUpdaterClient(autoUpdater);
 
 const os = platformInfo.getOs();
 
-const iconBaseName = path.join(__dirname, '..', config.getOption('electronIconBaseName'));
-const iconExtension = os === OSType.Windows ? 'ico' : os === OSType.Mac ? 'icns' : 'png';
-const iconPath = `${iconBaseName}.${iconExtension}`;
-
 const createWindow = () => {
     mainWindow = new BrowserWindow({
         show: false,
@@ -37,7 +34,7 @@ const createWindow = () => {
         frame: os === OSType.Mac,
         minHeight: mainWindowConfig.minHeight,
         minWidth: mainWindowConfig.minWidth,
-        icon: iconPath,
+        icon: getElectronIconPath(config, os),
     });
     if (platformInfo.isMac()) {
         // We need this so that if there are any system dialog, they will not be placed on top of the title bar.
