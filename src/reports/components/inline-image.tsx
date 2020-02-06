@@ -21,6 +21,7 @@ export enum InlineImageType {
 export interface InlineImageProps {
     imageType: InlineImageType;
     alt: string;
+    className?: string;
 }
 
 const inlineImageTypeToData: DictionaryNumberTo<string> = {
@@ -36,11 +37,14 @@ const inlineImageTypeToData: DictionaryNumberTo<string> = {
         'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAEOSURBVHgBrVI7boNAEJ1dXKQkN+AIiYA6rbukTeVUCKqQE0R0KV0CVdylTJkuKVOAlCNwBNIgWeLjN3hXQrItQPaT3u7ssG9nnhhBA4RhaFZV9YzwCbRU+k8IwYziOC6G94UOgiBY1XW9xiWTjqMEozRN1zph8OJ53kPXdR8QXtFp8Lelbdv/eZ7/9pV937fatv0etDmGUkp5yxZk0zThDCHDVBqSaPWOZgKae94X4I3KFeBmRLeifZdWX5nOwEJVtBRfJ+oKXXms1QPA808vBt7xj8uZ4oh3I8uy0nGcLeLlRG2UJMlnL+aFJ4YnZ8IDLxjPN30wdMAPuK67gYVrHE1FYkuwloCPqPhFl8IO01xYOdncfcYAAAAASUVORK5CYII=',
 };
 
-export const InlineImage = NamedFC<InlineImageProps>('InlineImage', ({ imageType, alt }) => {
-    const imageData = inlineImageTypeToData[imageType];
-    if (imageData === undefined) {
-        return null;
-    }
+export const InlineImage = NamedFC<InlineImageProps>(
+    'InlineImage',
+    ({ imageType, alt, className }) => {
+        const imageData = inlineImageTypeToData[imageType];
+        if (imageData === undefined) {
+            return null;
+        }
 
-    return <img src={imageData} alt={alt} />;
-});
+        return <img className={className} src={imageData} alt={alt} />;
+    },
+);

@@ -19,6 +19,15 @@ describe('InlineImageTest', () => {
         testInvalidImage(1234);
     });
 
+    test('optional class name', () => {
+        const testClassName = 'test-class-name';
+        const wrapped = shallow(<InlineImage imageType={InlineImageType.SleepingAda} alt="" className={testClassName} />);
+
+        const element = wrapped.getElement();
+
+        expect(element.props.className).toEqual(testClassName);
+    });
+
     function testInvalidImage(imageType: InlineImageType): void {
         const props: InlineImageProps = { imageType, alt: '' };
 
