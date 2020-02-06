@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { shallow } from 'enzyme';
 import { startsWith } from 'lodash';
+import * as React from 'react';
 import { InlineImage, InlineImageProps, InlineImageType } from 'reports/components/inline-image';
 
 describe('InlineImageTest', () => {
@@ -17,19 +19,19 @@ describe('InlineImageTest', () => {
     });
 
     function testInvalidImage(imageType: InlineImageType): void {
-        const props: InlineImageProps = { imageType: imageType, alt: '' };
-        const testObject = new InlineImage(props);
+        const props: InlineImageProps = { imageType, alt: '' };
 
-        const element = testObject.render();
+        const wrapped = shallow(<InlineImage {...props} />);
 
-        expect(element).toBeNull();
+        expect(wrapped.getElement()).toBeNull();
     }
 
     function testInlineImage(imageType: InlineImageType, alt: string): void {
-        const props: InlineImageProps = { imageType: imageType, alt };
-        const testObject = new InlineImage(props);
+        const props: InlineImageProps = { imageType, alt };
 
-        const element = testObject.render();
+        const wrapped = shallow(<InlineImage {...props} />);
+
+        const element = wrapped.getElement();
 
         expect(element.type).toEqual('img');
         expect(startsWith(element.props.src, 'data:image/png;base64,iVBO')).toBeTruthy();
