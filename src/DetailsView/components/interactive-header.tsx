@@ -33,5 +33,5 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
         />
     );
 
-    return <Header deps={props.deps} nearItems={getNearItems()} farItems={getFarItems()}></Header>;
+    return <Header deps={props.deps} items={getNearItems()} farItems={getFarItems()}></Header>;
 });

@@ -11,7 +11,7 @@ export type HeaderDeps = HeaderIconDeps;
 
 export type HeaderProps = {
     deps: HeaderDeps;
-    nearItems?: JSX.Element;
+    items?: JSX.Element;
     farItems?: JSX.Element;
 };
 
@@ -20,7 +20,7 @@ export const Header = NamedFC<HeaderProps>('Header', props => {
         <header className={styles.headerBar}>
             <HeaderIcon deps={props.deps} />
             <span className={styles.headerTitle}>{title}</span>
-            <div>{props.nearItems}</div>
+            <div>{props.items}</div>
             <div className={styles.spacer}></div>
             <div className={styles.farItems}>{props.farItems}</div>
         </header>
