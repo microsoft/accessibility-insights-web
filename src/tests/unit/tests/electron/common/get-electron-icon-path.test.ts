@@ -4,7 +4,7 @@ import { FileSystemConfiguration } from 'common/configuration/file-system-config
 import { getElectronIconPath } from 'electron/common/get-electron-icon-path';
 import { OSType } from 'electron/window-management/platform-info';
 import * as path from 'path';
-import { Mock, GlobalMock, It, GlobalScope, MockBehavior } from 'typemoq';
+import { GlobalMock, GlobalScope, It, Mock, MockBehavior } from 'typemoq';
 
 describe('getElectronIconPath', () => {
     const fakeBase = 'base';
