@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
 import { FileSystemConfiguration } from 'common/configuration/file-system-configuration';
 import { app, BrowserWindow } from 'electron';
 import log from 'electron-log';
@@ -13,7 +12,7 @@ import { mainWindowConfig } from './main-window-config';
 
 let mainWindow: BrowserWindow;
 const platformInfo = new PlatformInfo(process);
-
+const os = platformInfo.getOs();
 const config = new FileSystemConfiguration();
 
 log.transports.file.level = 'info';
@@ -21,8 +20,6 @@ autoUpdater.logger = log;
 
 let recurringUpdateCheck;
 const electronAutoUpdateCheck = new AutoUpdaterClient(autoUpdater);
-
-const os = platformInfo.getOs();
 
 const createWindow = () => {
     mainWindow = new BrowserWindow({
