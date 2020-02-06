@@ -8,6 +8,7 @@ export const defaults = {
         icon16: `icons/brand/blue/brand-blue-16px.png`,
         icon48: `icons/brand/blue/brand-blue-48px.png`,
         icon128: `icons/brand/blue/brand-blue-128px.png`,
+        electronIconBaseName: `icons/brand/blue/electron-icons/icon`,
         telemetryBuildName: 'unknownBuild',
     },
 };

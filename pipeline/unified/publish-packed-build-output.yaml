@@ -11,7 +11,7 @@ steps:
           SourceFolder: ${{ parameters.packedOutputPath }}
           Contents: |
               latest*.yml
-              Accessibility Insights for Android*.*
+              Accessibility?Insights?for?Android*.*
           TargetFolder: '$(System.ArtifactStagingDirectory)/${{ parameters.artifactName }}'
           CleanTargetFolder: true
 
