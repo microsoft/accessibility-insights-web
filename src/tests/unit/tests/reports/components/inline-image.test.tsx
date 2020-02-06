@@ -12,6 +12,7 @@ describe('InlineImageTest', () => {
         testInlineImage(InlineImageType.FailIcon, 'Fail icon');
         testInlineImage(InlineImageType.NotApplicableIcon, 'Not applicable icon');
         testInlineImage(InlineImageType.AdaTheCat, 'Ada the cat');
+        testInlineImage(InlineImageType.SleepingAda, 'Sleeping Ada');
     });
 
     test('Invalid type returns null', () => {
