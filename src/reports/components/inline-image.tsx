@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
-
+import { NamedFC } from 'common/react/named-fc';
 import { adaLaptop } from 'icons/ada/ada-laptop-base64';
 import { adaMulticolorBubbles } from 'icons/ada/ada-multicolor-bubbles-base64';
 import { blue48 } from 'icons/brand/blue/brand-blue-48px-base64';
+import * as React from 'react';
 import { DictionaryNumberTo } from 'types/common-types';
 
 export enum InlineImageType {
@@ -21,16 +21,8 @@ export interface InlineImageProps {
     alt: string;
 }
 
-export class InlineImage extends React.Component<InlineImageProps> {
-    public render(): JSX.Element {
-        const imageData = this.inlineImageTypeToData[this.props.imageType];
-        if (imageData === undefined) {
-            return null;
-        }
-        return <img src={imageData} alt={this.props.alt} />;
-    }
-
-    private inlineImageTypeToData: DictionaryNumberTo<string> = {
+export const InlineImage = NamedFC<InlineImageProps>('InlineImage', ({ imageType, alt }) => {
+    const inlineImageTypeToData: DictionaryNumberTo<string> = {
         [InlineImageType.AdaTheCat]: adaMulticolorBubbles,
         [InlineImageType.AdaLaptop]: adaLaptop,
         [InlineImageType.InsightsLogo48]: blue48,
@@ -41,4 +33,11 @@ export class InlineImage extends React.Component<InlineImageProps> {
         [InlineImageType.NotApplicableIcon]:
             'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAEOSURBVHgBrVI7boNAEJ1dXKQkN+AIiYA6rbukTeVUCKqQE0R0KV0CVdylTJkuKVOAlCNwBNIgWeLjN3hXQrItQPaT3u7ssG9nnhhBA4RhaFZV9YzwCbRU+k8IwYziOC6G94UOgiBY1XW9xiWTjqMEozRN1zph8OJ53kPXdR8QXtFp8Lelbdv/eZ7/9pV937fatv0etDmGUkp5yxZk0zThDCHDVBqSaPWOZgKae94X4I3KFeBmRLeifZdWX5nOwEJVtBRfJ+oKXXms1QPA808vBt7xj8uZ4oh3I8uy0nGcLeLlRG2UJMlnL+aFJ4YnZ8IDLxjPN30wdMAPuK67gYVrHE1FYkuwloCPqPhFl8IO01xYOdncfcYAAAAASUVORK5CYII=',
     };
-}
+
+    const imageData = inlineImageTypeToData[imageType];
+    if (imageData === undefined) {
+        return null;
+    }
+
+    return <img src={imageData} alt={alt} />;
+});
