@@ -10,7 +10,11 @@ export const NoFailedInstancesCongrats = NamedFC('NoFailedInstancesCongrats', ()
         <div className={styles.reportCongratsMessage}>
             <div className={styles.reportCongratsHead}>Congratulations!</div>
             <div className={styles.reportCongratsInfo}>No failed automated checks were found.</div>
-            <InlineImage imageType={InlineImageType.SleepingAda} alt="" />
+            <InlineImage
+                className={styles.sleepingAda}
+                imageType={InlineImageType.SleepingAda}
+                alt=""
+            />
         </div>
     );
 });

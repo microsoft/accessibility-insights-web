@@ -16,6 +16,7 @@ exports[`NoFailedInstancesCongrats renders 1`] = `
   </div>
   <InlineImage
     alt=""
+    className="sleepingAda"
     imageType={6}
   />
 </div>
