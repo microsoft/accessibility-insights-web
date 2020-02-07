@@ -14,7 +14,7 @@ export const Header = NamedFC<HeaderProps>('Header', props => {
     return (
         <header className={styles.launchPanelHeader}>
             <h1 className={styles.title}>{props.title}</h1>
-            <div>{props.children}</div>
+            <div className={styles.children}>{props.children}</div>
             <div className={styles.subtitle}>{props.subtitle}</div>
         </header>
     );

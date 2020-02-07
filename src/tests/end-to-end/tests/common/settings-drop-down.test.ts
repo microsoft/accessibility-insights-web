@@ -53,10 +53,12 @@ describe('Settings Dropdown', () => {
 
             await popupPage.clickSelector(CommonSelectors.settingsGearButton);
 
-            const results = await scanForAccessibilityIssues(
-                popupPage,
-                CommonSelectors.settingsDropdownMenu,
+            const button = await popupPage.getSelectorElement(CommonSelectors.settingsGearButton);
+            const menuCalloutId = await button.evaluate(element =>
+                element.getAttribute('aria-owns'),
             );
+
+            const results = await scanForAccessibilityIssues(popupPage, `#${menuCalloutId}`);
             expect(results).toHaveLength(0);
         },
     );
@@ -72,16 +74,24 @@ describe('Settings Dropdown', () => {
 
             await detailsViewPage.clickSelector(CommonSelectors.settingsGearButton);
 
-            const results = await scanForAccessibilityIssues(
-                detailsViewPage,
-                CommonSelectors.settingsDropdownMenu,
+            const button = await detailsViewPage.getSelectorElement(
+                CommonSelectors.settingsGearButton,
             );
+            const menuCalloutId = await button.evaluate(element =>
+                element.getAttribute('aria-owns'),
+            );
+
+            const results = await scanForAccessibilityIssues(detailsViewPage, `#${menuCalloutId}`);
             expect(results).toHaveLength(0);
         },
     );
 
     async function getDropdownPanelElement(page: Page): Promise<Node> {
         await page.clickSelector(CommonSelectors.settingsGearButton);
-        return await formatPageElementForSnapshot(page, CommonSelectors.settingsDropdownMenu);
+
+        const button = await page.getSelectorElement(CommonSelectors.settingsGearButton);
+        const menuCalloutId = await button.evaluate(element => element.getAttribute('aria-owns'));
+
+        return await formatPageElementForSnapshot(page, `#${menuCalloutId}`);
     }
 });

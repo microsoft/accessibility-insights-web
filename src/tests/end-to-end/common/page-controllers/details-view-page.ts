@@ -34,7 +34,7 @@ export class DetailsViewPage extends Page {
     public async openSettingsPanel(): Promise<void> {
         await this.ensureNoModals();
 
-        await this.clickSelector(detailsViewSelectors.gearButton);
+        await this.clickSelector(CommonSelectors.settingsGearButton);
         await this.clickSelector(detailsViewSelectors.settingsButton);
         await this.waitForSelector(settingsPanelSelectors.settingsPanel);
     }

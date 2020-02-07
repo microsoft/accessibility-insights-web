@@ -1,51 +1,44 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { getRTL } from '@uifabric/utilities';
-import {
-    ContextualMenu,
-    ContextualMenuItemType,
-    DirectionalHint,
-    IContextualMenuItem,
-} from 'office-ui-fabric-react';
+import { TelemetryEventSource } from 'common/extension-telemetry-events';
+import { NamedFC } from 'common/react/named-fc';
+import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { VisualizationType } from 'common/types/visualization-type';
+import { ContextualMenuItemType, IconButton, IContextualMenuItem } from 'office-ui-fabric-react';
+import { PopupActionMessageCreator } from 'popup/actions/popup-action-message-creator';
+import { LaunchPanelHeader } from 'popup/components/launch-panel-header';
+import { LaunchPanelHeaderClickHandler } from 'popup/handlers/launch-panel-header-click-handler';
 import * as React from 'react';
-import { TelemetryEventSource } from '../../common/extension-telemetry-events';
-import { NamedFC } from '../../common/react/named-fc';
-import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
-import { VisualizationType } from '../../common/types/visualization-type';
-import { DictionaryStringTo } from '../../types/common-types';
-import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
-import { LaunchPanelHeaderClickHandler } from '../handlers/launch-panel-header-click-handler';
-import { LaunchPanelHeader } from './launch-panel-header';
+import * as styles from './hamburger-menu-button.scss';
 
-export type HeaderContextualMenuDeps = {
+const telemetryEventSource = TelemetryEventSource.HamburgerMenu;
+
+export type HamburgerMenuButtonDeps = {
     popupActionMessageCreator: PopupActionMessageCreator;
     launchPanelHeaderClickHandler: LaunchPanelHeaderClickHandler;
 };
 
-export type HeaderContextualMenuProps = {
-    deps: HeaderContextualMenuDeps;
-    header: LaunchPanelHeader;
+export type HamburgerMenuButtonProps = {
+    deps: HamburgerMenuButtonDeps;
     popupWindow: Window;
-    featureFlags: DictionaryStringTo<boolean>;
-} & Pick<IContextualMenuItem, 'target'>;
+    header: LaunchPanelHeader;
+};
 
-const telemetryEventSource = TelemetryEventSource.HamburgerMenu;
-
-export const HeaderContextualMenu = NamedFC<HeaderContextualMenuProps>(
-    'HeaderContextualMenu',
+export const HamburgerMenuButton = NamedFC<HamburgerMenuButtonProps>(
+    'HamburgerMenuButton',
     props => {
         const { deps, header, popupWindow } = props;
-        const { popupActionMessageCreator, launchPanelHeaderClickHandler } = deps;
+        const { launchPanelHeaderClickHandler, popupActionMessageCreator } = deps;
 
-        const getItems = (): IContextualMenuItem[] => [
+        const getMenuItems = (): IContextualMenuItem[] => [
             {
                 key: 'fast-pass',
                 iconProps: {
                     iconName: 'Rocket',
                 },
-                onClick: ev =>
+                onClick: event =>
                     popupActionMessageCreator.openDetailsView(
-                        ev,
+                        event,
                         VisualizationType.Issues,
                         telemetryEventSource,
                         DetailsViewPivotType.fastPass,
@@ -57,9 +50,9 @@ export const HeaderContextualMenu = NamedFC<HeaderContextualMenuProps>(
                 iconProps: {
                     iconName: 'testBeakerSolid',
                 },
-                onClick: ev =>
+                onClick: event =>
                     popupActionMessageCreator.openDetailsView(
-                        ev,
+                        event,
                         null,
                         telemetryEventSource,
                         DetailsViewPivotType.assessment,
@@ -81,7 +74,7 @@ export const HeaderContextualMenu = NamedFC<HeaderContextualMenuProps>(
             {
                 key: 'modify-shortcuts',
                 name: 'Keyboard shortcuts',
-                onClick: event => popupActionMessageCreator.openShortcutConfigureTab(event as any),
+                onClick: event => popupActionMessageCreator.openShortcutConfigureTab(event),
             },
             {
                 key: 'help',
@@ -96,17 +89,17 @@ export const HeaderContextualMenu = NamedFC<HeaderContextualMenuProps>(
         ];
 
         return (
-            <ContextualMenu
-                className="popup-menu"
-                shouldFocusOnMount={true}
-                target={props.target}
-                onDismiss={event =>
-                    launchPanelHeaderClickHandler.onDismissFeedbackMenu(header, event)
-                }
-                directionalHint={
-                    getRTL() ? DirectionalHint.bottomRightEdge : DirectionalHint.bottomLeftEdge
-                }
-                items={getItems()}
+            <IconButton
+                className={styles.hamburgerMenuButton}
+                iconProps={{ iconName: 'GlobalNavButton' }}
+                menuProps={{
+                    items: getMenuItems(),
+                    calloutProps: {
+                        className: styles.hamburgerMenuButtonCallout,
+                    },
+                }}
+                onRenderMenuIcon={() => null}
+                ariaLabel="help menu"
             />
         );
     },
