@@ -15,13 +15,19 @@ function testTextContrast(
 ): void {
     windowMock
         .setup(m => m(It.isAny()))
-        .returns(currentNode => ({ getPropertyValue: property => currentNode[property] } as CSSStyleDeclaration));
+        .returns(
+            currentNode =>
+                ({ getPropertyValue: property => currentNode[property] } as CSSStyleDeclaration),
+        );
 
     dataSetterMock.setup(d => d(expectedData));
 
     let result;
     GlobalScope.using(windowMock, axeUtilsMock).with(() => {
-        result = textContrastConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, node);
+        result = textContrastConfiguration.checks[0].evaluate.call(
+            { data: dataSetterMock.object },
+            node,
+        );
     });
     expect(result).toBe(false);
 
@@ -43,12 +49,24 @@ describe('text contrast', () => {
 
     describe('verify evaluate', () => {
         let dataSetterMock: IMock<(data) => void>;
-        const axeUtilsMock = GlobalMock.ofInstance(AxeUtils.getEvaluateFromCheck, 'getEvaluateFromCheck', AxeUtils, MockBehavior.Strict);
-        const windowMock = GlobalMock.ofInstance(window.getComputedStyle, 'getComputedStyle', window, MockBehavior.Strict);
+        const axeUtilsMock = GlobalMock.ofInstance(
+            AxeUtils.getEvaluateFromCheck,
+            'getEvaluateFromCheck',
+            AxeUtils,
+            MockBehavior.Strict,
+        );
+        const windowMock = GlobalMock.ofInstance(
+            window.getComputedStyle,
+            'getComputedStyle',
+            window,
+            MockBehavior.Strict,
+        );
 
         beforeEach(() => {
             dataSetterMock = Mock.ofInstance(data => {});
-            axeUtilsMock.setup(m => m(It.isAnyString())).returns(_ => (node, options, virtualNode, context) => false);
+            axeUtilsMock
+                .setup(m => m(It.isAnyString()))
+                .returns(_ => (node, options, virtualNode, context) => false);
         });
 
         it('large font size / regular font weight', () => {

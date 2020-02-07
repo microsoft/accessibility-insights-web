@@ -29,18 +29,29 @@ describe('Launcher', () => {
             const optionsStub = {};
             const errorMock = Mock.ofType(Error);
 
-            scanParameterGeneratorMock.setup(spgm => spgm.getAxeEngineOptions(optionsStub)).returns(() => defaultOptions);
+            scanParameterGeneratorMock
+                .setup(spgm => spgm.getAxeEngineOptions(optionsStub))
+                .returns(() => defaultOptions);
 
-            scanParameterGeneratorMock.setup(spgm => spgm.getContext(domMock.object, optionsStub)).returns(() => domMock.object);
+            scanParameterGeneratorMock
+                .setup(spgm => spgm.getContext(domMock.object, optionsStub))
+                .returns(() => domMock.object);
 
-            axeResponseHandlerMock.setup(arhm => arhm.handleResponse(errorMock.object, emptyResultsStub)).verifiable(Times.once());
+            axeResponseHandlerMock
+                .setup(arhm => arhm.handleResponse(errorMock.object, emptyResultsStub))
+                .verifiable(Times.once());
 
             axeMock
                 .setup(axe => axe.run(domMock.object as any, defaultOptions, It.is(isFunction)))
                 .callback((dom, options, callback) => callback(errorMock.object, emptyResultsStub))
                 .verifiable(Times.once());
 
-            const testObject = new Launcher(axeMock.object, scanParameterGeneratorMock.object, domMock.object, optionsStub);
+            const testObject = new Launcher(
+                axeMock.object,
+                scanParameterGeneratorMock.object,
+                domMock.object,
+                optionsStub,
+            );
             testObject.runScan(axeResponseHandlerMock.object);
 
             axeResponseHandlerMock.verifyAll();

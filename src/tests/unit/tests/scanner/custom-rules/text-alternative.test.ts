@@ -11,11 +11,15 @@ describe('text alternative', () => {
         it('should have correct props', () => {
             expect(textAlternativeConfiguration.rule.id).toBe('accessible-image');
             expect(textAlternativeConfiguration.rule.selector).toBe('*');
-            expect(textAlternativeConfiguration.rule.any[0]).toBe('text-alternative-data-collector');
+            expect(textAlternativeConfiguration.rule.any[0]).toBe(
+                'text-alternative-data-collector',
+            );
             expect(textAlternativeConfiguration.rule.all).toEqual([]);
             expect(textAlternativeConfiguration.rule.all.length).toBe(0);
             expect(textAlternativeConfiguration.rule.any.length).toBe(1);
-            expect(textAlternativeConfiguration.checks[0].id).toBe('text-alternative-data-collector');
+            expect(textAlternativeConfiguration.checks[0].id).toBe(
+                'text-alternative-data-collector',
+            );
         });
     });
 
@@ -106,7 +110,10 @@ describe('text alternative', () => {
             dataSetterMock.setup(d => d(It.isAny()));
             let result;
             GlobalScope.using(getAccessibleDescriptionMock).with(() => {
-                result = textAlternativeConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, element1);
+                result = textAlternativeConfiguration.checks[0].evaluate.call(
+                    { data: dataSetterMock.object },
+                    element1,
+                );
             });
             expect(result).toBe(true);
         });
@@ -131,7 +138,10 @@ describe('text alternative', () => {
             dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
             let result;
             GlobalScope.using(getAccessibleDescriptionMock).with(() => {
-                result = textAlternativeConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, element1);
+                result = textAlternativeConfiguration.checks[0].evaluate.call(
+                    { data: dataSetterMock.object },
+                    element1,
+                );
             });
             expect(result).toBe(true);
             dataSetterMock.verifyAll();

@@ -33,6 +33,7 @@ module.exports = {
                 'src/tests/unit/tests/assessments/**/*',
                 'src/tests/unit/tests/content/**/*',
                 'src/tests/unit/tests/DevTools/**/*',
+                'src/tests/unit/tests/scanner/**/*',
                 'src/types/**/*',
                 'src/views/**/*',
             ],
