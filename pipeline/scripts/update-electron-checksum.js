@@ -5,6 +5,8 @@ const fs = require('fs');
 const YAML = require('js-yaml');
 const path = require('path');
 
+const parentDir = process.argv[2];
+
 const getLatestYAMLPath = parentDir => {
     const platformModifier = process.platform == 'darwin' ? '-mac' : process.platform == 'linux' ? '-linux' : '';
     const latestPath = path.join(parentDir, `latest${platformModifier}.yml`);
@@ -13,33 +15,38 @@ const getLatestYAMLPath = parentDir => {
 
 const readLatestYAML = latestPath => {
     const latestString = fs.readFileSync(latestPath);
-    const latest = YAML.safeLoad(latestString);
-    return latest;
+    const latestContent = YAML.safeLoad(latestString);
+    return latestContent;
 };
 
-const getSetupChecksum = async setupFilePath => {
-    const setupChecksum = await hashUtil.hashFile(setupFilePath, 'sha512', 'base64');
-    return setupChecksum;
+const calculateSha512 = async absoluteFilePath => {
+    return await hashUtil.hashFile(absoluteFilePath, 'sha512', 'base64');
 };
 
-const updateChecksumInLatest = (latest, setupChecksum) => {
-    latest.sha512 = setupChecksum;
-    latest.files[0].sha512 = setupChecksum;
+const updateSha512PropertyFromFile = async (objectWithSha512Property, relativeFilePath) => {
+    const absoluteFilePath = path.join(parentDir, relativeFilePath);
+    const sha512 = await calculateSha512(absoluteFilePath);
+    objectWithSha512Property.sha512 = sha512;
 };
 
-const writeLatestYAML = (latestPath, latest) => {
-    const latestYAML = YAML.safeDump(latest);
-    fs.writeFileSync(latestPath, latestYAML);
+const updateAllSha512s = async latestContent => {
+    await updateSha512PropertyFromFile(latestContent, latestContent.path);
+
+    for (file of latestContent.files) {
+        await updateSha512PropertyFromFile(file, file.url);
+    }
+};
+
+const writeLatestYAML = (latestPath, latestContent) => {
+    const rawLatestContent = YAML.safeDump(latestContent);
+    fs.writeFileSync(latestPath, rawLatestContent);
 };
 
 const updateElectronChecksum = async () => {
-    const parentDir = process.argv.length > 2 ? process.argv[2] : 'dist'; // TODO - refactor using library/envvar?
     const latestPath = getLatestYAMLPath(parentDir);
-    const latest = readLatestYAML(latestPath);
-    const setupChecksum = await getSetupChecksum(path.join(parentDir, latest.path));
-
-    updateChecksumInLatest(latest, setupChecksum);
-    writeLatestYAML(latestPath, latest);
+    const latestContent = readLatestYAML(latestPath);
+    await updateAllSha512s(latestContent);
+    writeLatestYAML(latestPath, latestContent);
 };
 
 updateElectronChecksum();
