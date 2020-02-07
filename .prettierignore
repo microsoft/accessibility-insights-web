@@ -4,6 +4,7 @@
 **/*.dockerignore
 **/*.gitattributes
 **/*.gitignore
+**/*.icns
 **/*.ico
 **/*.nsh
 **/*.png
