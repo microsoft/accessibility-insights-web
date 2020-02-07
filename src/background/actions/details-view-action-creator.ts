@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DetailsViewControllerType } from 'background/details-view-controller-type';
+import { DetailsViewController } from 'background/details-view-controller-type';
 import { SETTINGS_PANEL_CLOSE, SETTINGS_PANEL_OPEN } from 'common/extension-telemetry-events';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { Logger } from 'common/logging/logger';
@@ -16,7 +16,7 @@ export class DetailsViewActionCreator {
     constructor(
         private readonly interpreter: Interpreter,
         private readonly detailsViewActions: DetailsViewActions,
-        private readonly detailsViewController: DetailsViewControllerType,
+        private readonly detailsViewController: DetailsViewController,
         private readonly telemetryEventHandler: TelemetryEventHandler,
         private readonly logger: Logger = createDefaultLogger(),
     ) {}

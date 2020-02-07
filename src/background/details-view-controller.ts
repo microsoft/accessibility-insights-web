@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DetailsViewControllerType } from 'background/details-view-controller-type';
+import { DetailsViewController } from 'background/details-view-controller-type';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { DictionaryStringTo } from '../types/common-types';
 
-export class ExtensionDetailsViewController implements DetailsViewControllerType {
+export class ExtensionDetailsViewController implements DetailsViewController {
     private tabIdToDetailsViewMap: DictionaryStringTo<number> = {};
     private detailsViewRemovedHandler: (tabId: number) => void;
 
