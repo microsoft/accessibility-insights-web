@@ -3,7 +3,7 @@
 import { BaseActionPayload } from 'background/actions/action-payloads';
 import { ContentActionCreator } from 'background/actions/content-action-creator';
 import { ContentActions, ContentPayload } from 'background/actions/content-actions';
-import { ExtensionDetailsViewController } from 'background/details-view-controller';
+import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { Interpreter } from 'background/interpreter';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { CONTENT_PANEL_CLOSED, CONTENT_PANEL_OPENED, TelemetryEventSource } from 'common/extension-telemetry-events';

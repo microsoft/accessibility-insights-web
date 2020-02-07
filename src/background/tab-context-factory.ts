@@ -23,7 +23,7 @@ import { ShortcutsPageActionCreator } from './actions/shortcuts-page-action-crea
 import { TabActionCreator } from './actions/tab-action-creator';
 import { UnifiedScanResultActionCreator } from './actions/unified-scan-result-action-creator';
 import { AssessmentScanPolicyRunner } from './assessment-scan-policy-runner';
-import { ExtensionDetailsViewController } from './details-view-controller';
+import { ExtensionDetailsViewController } from './extension-details-view-controller';
 import { InjectorController } from './injector-controller';
 import { ContentScriptInjector } from './injector/content-script-injector';
 import { Interpreter } from './interpreter';

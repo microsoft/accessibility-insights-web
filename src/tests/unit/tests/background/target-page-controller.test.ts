@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserMessageBroadcasterFactory } from 'background/browser-message-broadcaster-factory';
-import { ExtensionDetailsViewController } from 'background/details-view-controller';
+import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { Interpreter } from 'background/interpreter';
 import { TabContext } from 'background/tab-context';
 import { TabContextFactory } from 'background/tab-context-factory';

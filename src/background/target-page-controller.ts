@@ -6,7 +6,7 @@ import { Message } from 'common/message';
 import { Messages } from 'common/messages';
 import { PageVisibilityChangeTabPayload } from './actions/action-payloads';
 import { BrowserMessageBroadcasterFactory } from './browser-message-broadcaster-factory';
-import { ExtensionDetailsViewController } from './details-view-controller';
+import { ExtensionDetailsViewController } from './extension-details-view-controller';
 import { TabToContextMap } from './tab-context';
 import { TabContextFactory } from './tab-context-factory';
 

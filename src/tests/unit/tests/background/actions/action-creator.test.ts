@@ -20,7 +20,7 @@ import { PreviewFeaturesActions } from 'background/actions/preview-features-acti
 import { ScopingActions } from 'background/actions/scoping-actions';
 import { VisualizationActions } from 'background/actions/visualization-actions';
 import { VisualizationScanResultActions } from 'background/actions/visualization-scan-result-actions';
-import { ExtensionDetailsViewController } from 'background/details-view-controller';
+import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { ContentScriptInjector } from 'background/injector/content-script-injector';
 import { Interpreter } from 'background/interpreter';
 import { TargetTabController } from 'background/target-tab-controller';

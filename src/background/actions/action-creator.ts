@@ -14,7 +14,7 @@ import { DictionaryNumberTo } from 'types/common-types';
 
 import { VisualizationActions } from '../actions/visualization-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
-import { ExtensionDetailsViewController } from '../details-view-controller';
+import { ExtensionDetailsViewController } from '../extension-details-view-controller';
 import { Interpreter } from '../interpreter';
 import { TargetTabController } from '../target-tab-controller';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';

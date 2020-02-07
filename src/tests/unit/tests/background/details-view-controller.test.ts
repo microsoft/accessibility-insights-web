@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ExtensionDetailsViewController } from 'background/details-view-controller';
+import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { Tabs } from 'webextension-polyfill-ts';

@@ -19,7 +19,7 @@ import { WindowUtils } from '../common/window-utils';
 import { title } from '../content/strings/application';
 import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-service-provider-impl';
 import { BrowserMessageBroadcasterFactory } from './browser-message-broadcaster-factory';
-import { ExtensionDetailsViewController } from './details-view-controller';
+import { ExtensionDetailsViewController } from './extension-details-view-controller';
 import { DevToolsListener } from './dev-tools-listener';
 import { getPersistedData } from './get-persisted-data';
 import { GlobalContextFactory } from './global-context-factory';

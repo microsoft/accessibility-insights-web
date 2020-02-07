@@ -3,7 +3,7 @@
 import { BaseActionPayload } from 'background/actions/action-payloads';
 import { ScopingActions } from 'background/actions/scoping-actions';
 import { ScopingPanelActionCreator } from 'background/actions/scoping-panel-action-creator';
-import { ExtensionDetailsViewController } from 'background/details-view-controller';
+import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { Interpreter } from 'background/interpreter';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { SCOPING_CLOSE, SCOPING_OPEN } from 'common/extension-telemetry-events';
