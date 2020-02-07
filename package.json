@@ -58,7 +58,7 @@
         "@types/chrome": "0.0.93",
         "@types/enzyme": "^3.10.4",
         "@types/enzyme-adapter-react-16": "^1.0.5",
-        "@types/jest": "^25.1.1",
+        "@types/jest": "^25.1.2",
         "@types/jsdom": "^12.2.4",
         "@types/lodash": "^4.14.149",
         "@types/make-dir": "^2.1.0",
