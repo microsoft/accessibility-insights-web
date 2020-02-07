@@ -30,6 +30,9 @@ describe('AutomatedChecksView', () => {
                 deviceStoreData: {
                     connectedDevice: 'TEST DEVICE',
                 },
+                detailsViewStoreData: {
+                    currentPanel: { isSettingsOpen: false },
+                },
                 windowStateStoreData: 'window state store data' as any,
             } as AutomatedChecksViewProps;
         });
@@ -101,6 +104,9 @@ describe('AutomatedChecksView', () => {
                 userConfigurationStoreData: {
                     isFirstTime: false,
                 },
+                detailsViewStoreData: {
+                    currentPanel: {},
+                },
                 unifiedScanResultStoreData,
             } as AutomatedChecksViewProps;
 
@@ -128,6 +134,10 @@ describe('AutomatedChecksView', () => {
             deviceStoreData: {
                 port,
             },
+
+            detailsViewStoreData: {
+                currentPanel: {},
+            },
         } as AutomatedChecksViewProps;
 
         shallow(<AutomatedChecksView {...props} />);
@@ -150,6 +160,9 @@ describe('AutomatedChecksView', () => {
                 },
                 deviceStoreData: {
                     port,
+                },
+                detailsViewStoreData: {
+                    currentPanel: {},
                 },
             } as AutomatedChecksViewProps;
 
@@ -175,6 +188,9 @@ describe('AutomatedChecksView', () => {
                     status: ScanStatus.Failed,
                 },
                 deviceStoreData: {},
+                detailsViewStoreData: {
+                    currentPanel: {},
+                },
             } as AutomatedChecksViewProps;
 
             const wrapped = shallow(<AutomatedChecksView {...props} />);
