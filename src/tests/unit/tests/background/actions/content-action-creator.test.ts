@@ -3,7 +3,7 @@
 import { BaseActionPayload } from 'background/actions/action-payloads';
 import { ContentActionCreator } from 'background/actions/content-action-creator';
 import { ContentActions, ContentPayload } from 'background/actions/content-actions';
-import { DetailsViewController } from 'background/details-view-controller';
+import { ExtensionDetailsViewController } from 'background/details-view-controller';
 import { Interpreter } from 'background/interpreter';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { CONTENT_PANEL_CLOSED, CONTENT_PANEL_OPENED, TelemetryEventSource } from 'common/extension-telemetry-events';
@@ -36,14 +36,14 @@ describe('ContentActionMessageCreator', () => {
         const tabId = -2;
 
         let openContentPanelMock: IMock<Action<ContentPayload>>;
-        let detailsViewControllerMock: IMock<DetailsViewController>;
+        let detailsViewControllerMock: IMock<ExtensionDetailsViewController>;
         let loggerMock: IMock<Logger>;
 
         beforeEach(() => {
             openContentPanelMock = createActionMock(payload);
             actionsMock = createActionsMock('openContentPanel', openContentPanelMock.object);
             interpreterMock = createInterpreterMock(Messages.ContentPanel.OpenPanel, payload, tabId);
-            detailsViewControllerMock = Mock.ofType<DetailsViewController>();
+            detailsViewControllerMock = Mock.ofType<ExtensionDetailsViewController>();
             loggerMock = Mock.ofType<Logger>();
             testSubject = new ContentActionCreator(
                 interpreterMock.object,

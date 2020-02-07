@@ -3,7 +3,7 @@
 import { BaseActionPayload } from 'background/actions/action-payloads';
 import { ScopingActions } from 'background/actions/scoping-actions';
 import { ScopingPanelActionCreator } from 'background/actions/scoping-panel-action-creator';
-import { DetailsViewController } from 'background/details-view-controller';
+import { ExtensionDetailsViewController } from 'background/details-view-controller';
 import { Interpreter } from 'background/interpreter';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { SCOPING_CLOSE, SCOPING_OPEN } from 'common/extension-telemetry-events';
@@ -16,7 +16,7 @@ import { createActionMock, createInterpreterMock } from '../global-action-creato
 
 describe('ScopingPanelActionCreatorTest', () => {
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
-    let detailsViewControllerStrictMock: IMock<DetailsViewController>;
+    let detailsViewControllerStrictMock: IMock<ExtensionDetailsViewController>;
     let actionsMocks: IMock<ScopingActions>;
     let interpreterMock: IMock<Interpreter>;
 
@@ -24,7 +24,7 @@ describe('ScopingPanelActionCreatorTest', () => {
 
     beforeEach(() => {
         telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler, MockBehavior.Strict);
-        detailsViewControllerStrictMock = Mock.ofType<DetailsViewController>(undefined, MockBehavior.Strict);
+        detailsViewControllerStrictMock = Mock.ofType<ExtensionDetailsViewController>(undefined, MockBehavior.Strict);
     });
 
     describe('handles OpenPanel message', () => {

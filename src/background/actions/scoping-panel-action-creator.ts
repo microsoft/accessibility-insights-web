@@ -4,7 +4,7 @@ import { SCOPING_CLOSE, SCOPING_OPEN } from 'common/extension-telemetry-events';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { Logger } from 'common/logging/logger';
 import { Messages } from 'common/messages';
-import { DetailsViewController } from '../details-view-controller';
+import { ExtensionDetailsViewController } from '../details-view-controller';
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import { BaseActionPayload } from './action-payloads';
@@ -15,7 +15,7 @@ export class ScopingPanelActionCreator {
         private readonly interpreter: Interpreter,
         private readonly scopingActions: ScopingActions,
         private readonly telemetryEventHandler: TelemetryEventHandler,
-        private readonly detailsViewController: DetailsViewController,
+        private readonly detailsViewController: ExtensionDetailsViewController,
         private readonly logger: Logger = createDefaultLogger(),
     ) {}
 

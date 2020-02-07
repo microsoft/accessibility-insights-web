@@ -20,7 +20,7 @@ import { PreviewFeaturesActions } from 'background/actions/preview-features-acti
 import { ScopingActions } from 'background/actions/scoping-actions';
 import { VisualizationActions } from 'background/actions/visualization-actions';
 import { VisualizationScanResultActions } from 'background/actions/visualization-scan-result-actions';
-import { DetailsViewController } from 'background/details-view-controller';
+import { ExtensionDetailsViewController } from 'background/details-view-controller';
 import { ContentScriptInjector } from 'background/injector/content-script-injector';
 import { Interpreter } from 'background/interpreter';
 import { TargetTabController } from 'background/target-tab-controller';
@@ -945,7 +945,10 @@ class ActionCreatorValidator {
     private telemetryEventHandlerStrictMock = Mock.ofType<TelemetryEventHandler>(null, MockBehavior.Strict);
     private notificationCreatorStrictMock = Mock.ofType<NotificationCreator>(null, MockBehavior.Strict);
     private targetTabControllerStrictMock = Mock.ofType<TargetTabController>(null, MockBehavior.Strict);
-    private detailsViewControllerStrictMock: IMock<DetailsViewController> = Mock.ofType<DetailsViewController>(null, MockBehavior.Strict);
+    private detailsViewControllerStrictMock: IMock<ExtensionDetailsViewController> = Mock.ofType<ExtensionDetailsViewController>(
+        null,
+        MockBehavior.Strict,
+    );
 
     private loggerMock = Mock.ofType<Logger>();
 

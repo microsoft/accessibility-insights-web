@@ -4,7 +4,7 @@ import { DetailsViewControllerType } from 'background/details-view-controller-ty
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { DictionaryStringTo } from '../types/common-types';
 
-export class DetailsViewController implements DetailsViewControllerType {
+export class ExtensionDetailsViewController implements DetailsViewControllerType {
     private tabIdToDetailsViewMap: DictionaryStringTo<number> = {};
     private detailsViewRemovedHandler: (tabId: number) => void;
 
