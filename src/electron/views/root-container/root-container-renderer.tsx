@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BodyClassModifier } from 'electron/views/common/body-class-modifier/body-class-modifier';
 import {
     RootContainer,
     RootContainerDeps,
@@ -18,6 +19,12 @@ export class RootContainerRenderer {
         this.deps.windowStateActionCreator.setRoute({ routeId: 'deviceConnectView' });
 
         const rootContainer = this.dom.querySelector('#root-container');
-        this.renderer(<RootContainer deps={this.deps} />, rootContainer);
+        this.renderer(
+            <>
+                <BodyClassModifier deps={this.deps} />
+                <RootContainer deps={this.deps} />
+            </>,
+            rootContainer,
+        );
     }
 }
