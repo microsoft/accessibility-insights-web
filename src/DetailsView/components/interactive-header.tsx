@@ -24,7 +24,7 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
         return <Header deps={props.deps} />;
     }
 
-    const getNearItems = () => <Switcher deps={props.deps} pivotKey={props.selectedPivot} />;
+    const getItems = () => <Switcher deps={props.deps} pivotKey={props.selectedPivot} />;
 
     const getFarItems = () => (
         <GearMenuButton
@@ -33,5 +33,5 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
         />
     );
 
-    return <Header deps={props.deps} items={getNearItems()} farItems={getFarItems()}></Header>;
+    return <Header deps={props.deps} items={getItems()} farItems={getFarItems()}></Header>;
 });
