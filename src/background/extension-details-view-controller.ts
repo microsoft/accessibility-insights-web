@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DetailsViewController } from 'background/details-view-controller-type';
+import { DetailsViewController } from 'background/details-view-controller';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { DictionaryStringTo } from '../types/common-types';
 

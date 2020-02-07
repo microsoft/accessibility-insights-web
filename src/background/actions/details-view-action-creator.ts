@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DetailsViewController } from 'background/details-view-controller-type';
+import { DetailsViewController } from 'background/details-view-controller';
 import { SETTINGS_PANEL_CLOSE, SETTINGS_PANEL_OPEN } from 'common/extension-telemetry-events';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { Logger } from 'common/logging/logger';
