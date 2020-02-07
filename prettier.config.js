@@ -9,6 +9,7 @@ module.exports = {
     overrides: [
         {
             files: [
+                'src/debug-tools/**/*',
                 'src/ad-hoc-visualizations/**/*',
                 'src/assessments/**/*',
                 'src/background/**/*',
