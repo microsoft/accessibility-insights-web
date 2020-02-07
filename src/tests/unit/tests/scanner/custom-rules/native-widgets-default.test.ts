@@ -13,8 +13,13 @@ import { createNodeStub, testNativeWidgetConfiguration } from '../helpers';
 describe('native widgets default', () => {
     describe('verify native widgets default configs', () => {
         it('should have correct props', () => {
-            testNativeWidgetConfiguration('native-widgets-default', 'native-widgets-default-collector');
-            expect(nativeWidgetSelector).toBe('button, input[list], input[type]:not([type="hidden"]), select, textarea');
+            testNativeWidgetConfiguration(
+                'native-widgets-default',
+                'native-widgets-default-collector',
+            );
+            expect(nativeWidgetSelector).toBe(
+                'button, input[list], input[type]:not([type="hidden"]), select, textarea',
+            );
         });
     });
 
@@ -68,12 +73,19 @@ describe('native widgets default', () => {
             const nodeStub = createNodeStub(expectedData.element, {});
 
             dataSetterMock.setup(m => m(It.isValue(expectedData))).verifiable(Times.once());
-            getAccessibleDescriptionMock.setup(m => m(nodeStub)).returns(v => expectedData.accessibleDescription);
-            getAccessibleTextMock.setup(m => m(nodeStub, false)).returns(n => expectedData.accessibleName);
+            getAccessibleDescriptionMock
+                .setup(m => m(nodeStub))
+                .returns(v => expectedData.accessibleDescription);
+            getAccessibleTextMock
+                .setup(m => m(nodeStub, false))
+                .returns(n => expectedData.accessibleName);
 
             let result;
             GlobalScope.using(getAccessibleDescriptionMock, getAccessibleTextMock).with(() => {
-                result = nativeWidgetsDefaultConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, nodeStub);
+                result = nativeWidgetsDefaultConfiguration.checks[0].evaluate.call(
+                    { data: dataSetterMock.object },
+                    nodeStub,
+                );
             });
 
             expect(result).toBe(true);

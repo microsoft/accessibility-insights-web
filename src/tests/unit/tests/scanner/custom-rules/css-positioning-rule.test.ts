@@ -18,8 +18,18 @@ describe('verify meaningful sequence configs', () => {
 });
 
 describe('verify evaluate', () => {
-    const getComputedStyleMock = GlobalMock.ofInstance(window.getComputedStyle, 'getComputedStyle', window, MockBehavior.Strict);
-    const axeVisibilityMock = GlobalMock.ofInstance(axe.commons.dom.isVisible, 'isVisible', axe.commons.dom, MockBehavior.Strict);
+    const getComputedStyleMock = GlobalMock.ofInstance(
+        window.getComputedStyle,
+        'getComputedStyle',
+        window,
+        MockBehavior.Strict,
+    );
+    const axeVisibilityMock = GlobalMock.ofInstance(
+        axe.commons.dom.isVisible,
+        'isVisible',
+        axe.commons.dom,
+        MockBehavior.Strict,
+    );
 
     beforeEach(() => {
         getComputedStyleMock.reset();
@@ -74,18 +84,31 @@ describe('verify evaluate', () => {
         },
     ];
 
-    it.each(testFixture)('check for different combinations of nodeStyleStub and visibility %p', testStub => {
-        testMeaningfulSequence(testStub.nodeStyleStub, testStub.isVisible, testStub.expectedResult);
-    });
+    it.each(testFixture)(
+        'check for different combinations of nodeStyleStub and visibility %p',
+        testStub => {
+            testMeaningfulSequence(
+                testStub.nodeStyleStub,
+                testStub.isVisible,
+                testStub.expectedResult,
+            );
+        },
+    );
 
-    function testMeaningfulSequence(nodeStyleStub: DictionaryStringTo<string>, isVisibleParam: boolean, expectedResult: boolean): void {
+    function testMeaningfulSequence(
+        nodeStyleStub: DictionaryStringTo<string>,
+        isVisibleParam: boolean,
+        expectedResult: boolean,
+    ): void {
         axeVisibilityMock
             .setup(isVisible => isVisible(nodeStyleStub))
             .returns(() => isVisibleParam)
             .verifiable();
         getComputedStyleMock
             .setup(m => m(It.isAny()))
-            .returns(style => ({ getPropertyValue: property => style[property] } as CSSStyleDeclaration))
+            .returns(
+                style => ({ getPropertyValue: property => style[property] } as CSSStyleDeclaration),
+            )
             .verifiable(Times.once());
 
         let result: boolean;

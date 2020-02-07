@@ -85,7 +85,9 @@ describe('ResultDecorator', () => {
                 MockBehavior.Strict,
             );
 
-            messageDecoratorMock.setup(mdm => mdm.decorateResultWithMessages(instanceStub)).verifiable(Times.once());
+            messageDecoratorMock
+                .setup(mdm => mdm.decorateResultWithMessages(instanceStub))
+                .verifiable(Times.once());
 
             getHelpUrlMock.setup(gchm => gchm(instanceStub.id, It.isAny())).returns(() => urlStub);
 
@@ -144,7 +146,9 @@ describe('ResultDecorator', () => {
                 MockBehavior.Strict,
             );
 
-            messageDecoratorMock.setup(mdm => mdm.decorateResultWithMessages(instanceStub)).verifiable(Times.once());
+            messageDecoratorMock
+                .setup(mdm => mdm.decorateResultWithMessages(instanceStub))
+                .verifiable(Times.once());
 
             getHelpUrlMock.setup(gchm => gchm(instanceStub.id, It.isAny())).returns(() => urlStub);
 
@@ -224,13 +228,19 @@ describe('ResultDecorator', () => {
                 MockBehavior.Strict,
             );
 
-            messageDecoratorMock.setup(mdm => mdm.decorateResultWithMessages(instanceStub)).verifiable(Times.once());
+            messageDecoratorMock
+                .setup(mdm => mdm.decorateResultWithMessages(instanceStub))
+                .verifiable(Times.once());
 
-            messageDecoratorMock.setup(mdm => mdm.decorateResultWithMessages(inapplicableInstance)).verifiable(Times.once());
+            messageDecoratorMock
+                .setup(mdm => mdm.decorateResultWithMessages(inapplicableInstance))
+                .verifiable(Times.once());
 
             getHelpUrlMock.setup(gchm => gchm(instanceStub.id, It.isAny())).returns(() => urlStub);
 
-            getHelpUrlMock.setup(gchm => gchm(inapplicableInstance.id, It.isAny())).returns(() => urlStub);
+            getHelpUrlMock
+                .setup(gchm => gchm(inapplicableInstance.id, It.isAny()))
+                .returns(() => urlStub);
 
             suppressChecksByMessagesMock
                 .setup(scbmm => scbmm(instanceStub, true))
@@ -254,7 +264,9 @@ describe('ResultDecorator', () => {
             );
             let decoratedResult;
             GlobalScope.using(suppressChecksByMessagesMock).with(() => {
-                decoratedResult = testSubject.decorateResults(nonEmptyResultWithInapplicable as any);
+                decoratedResult = testSubject.decorateResults(
+                    nonEmptyResultWithInapplicable as any,
+                );
             });
 
             expect(decoratedResult).toEqual(resultStubWithGuidanceLinks);
@@ -288,7 +300,9 @@ describe('ResultDecorator', () => {
 
             instanceStub.nodes = [];
 
-            messageDecoratorMock.setup(mdm => mdm.decorateResultWithMessages(instanceStub)).verifiable(Times.once());
+            messageDecoratorMock
+                .setup(mdm => mdm.decorateResultWithMessages(instanceStub))
+                .verifiable(Times.once());
 
             suppressChecksByMessagesMock
                 .setup(scbmm => scbmm(instanceStub, true))
