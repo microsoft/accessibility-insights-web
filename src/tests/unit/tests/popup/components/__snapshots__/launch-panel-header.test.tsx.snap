@@ -6,6 +6,20 @@ exports[`LaunchPanelHeaderTest renders 1`] = `
   title="test title"
 >
   <React.Fragment>
+    <FlaggedComponent
+      enableJSXElement={
+        <CustomizedIconButton
+          ariaLabel="open debug tools"
+          iconProps={
+            Object {
+              "iconName": "Cat",
+            }
+          }
+        />
+      }
+      featureFlag="debugTools"
+      featureFlagStoreData={Object {}}
+    />
     <GearOptionsButtonComponent
       dropdownClickHandler={Object {}}
       featureFlags={Object {}}
@@ -91,6 +105,20 @@ exports[`LaunchPanelHeaderTest renders 1`] = `
                 title="test title"
               >
                 <React.Fragment>
+                  <FlaggedComponent
+                    enableJSXElement={
+                      <CustomizedIconButton
+                        ariaLabel="open debug tools"
+                        iconProps={
+                          Object {
+                            "iconName": "Cat",
+                          }
+                        }
+                      />
+                    }
+                    featureFlag="debugTools"
+                    featureFlagStoreData={Object {}}
+                  />
                   <GearOptionsButtonComponent
                     dropdownClickHandler={Object {}}
                     featureFlags={Object {}}

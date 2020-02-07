@@ -51,7 +51,7 @@ describe('DropdownActionMessageCreatorTest', () => {
         dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
     });
 
-    it('dispatches message foropenSettingsPanel', () => {
+    it('dispatches message for openSettingsPanel', () => {
         const expectedMessage = getExpectedMessage(Messages.SettingsPanel.OpenPanel);
         const sourceItem: SettingsOpenSourceItem = 'menu';
         expectedMessage.payload.telemetry.sourceItem = sourceItem;
@@ -61,6 +61,12 @@ describe('DropdownActionMessageCreatorTest', () => {
         testObject.openSettingsPanel(event, testSource);
 
         dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
+    });
+
+    it('dispatches message for openDebugTools', () => {
+        testObject.openDebugTools();
+
+        dispatcherMock.verify(dispatcher => dispatcher.dispatchType(Messages.DebugTools.Open), Times.once());
     });
 
     function getExpectedMessage(messageType: string): Message {

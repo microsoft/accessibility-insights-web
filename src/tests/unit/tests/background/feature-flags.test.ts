@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FeatureFlags, getAllFeatureFlagDetails, getDefaultFeatureFlagValues } from 'common/feature-flags';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { findIndex, forEach, indexOf, keys } from 'lodash';
-
-import { FeatureFlags, getAllFeatureFlagDetails, getDefaultFeatureFlagValues } from '../../../../common/feature-flags';
-import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 
 describe('FeatureFlagsTest', () => {
     let featureFlagValues: FeatureFlagStoreData;
@@ -21,6 +20,7 @@ describe('FeatureFlagsTest', () => {
             [FeatureFlags.scoping]: false,
             [FeatureFlags.showInstanceVisibility]: false,
             [FeatureFlags.manualInstanceDetails]: false,
+            [FeatureFlags.debugTools]: false,
         };
 
         const featureFlagValueKeys = keys(featureFlagValues);

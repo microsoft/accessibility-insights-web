@@ -19,6 +19,7 @@ export function initializeFabricIcons(): void {
             back: '\uE72B',
             calculatorAddition: '\uE948',
             cancel: '\uE711',
+            cat: '\uED7F',
             checkBox: '\uE739',
             checkMark: '\uE73E',
             chevronDown: '\uE70D',

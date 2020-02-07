@@ -1,22 +1,22 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FlaggedComponent } from 'common/components/flagged-component';
 import { GearMenuButton } from 'common/components/gear-menu-button';
 import {
     HamburgerMenuButton,
     HamburgerMenuButtonDeps,
 } from 'common/components/hamburger-menu-button';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
+import { FeatureFlags } from 'common/feature-flags';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { IContextualMenuItem } from 'office-ui-fabric-react';
+import { IconButton, IContextualMenuItem } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
-import { LaunchPanelHeaderClickHandler } from '../handlers/launch-panel-header-click-handler';
 import { Header } from './header';
 
 export type LaunchPanelHeaderDeps = {
     popupActionMessageCreator: PopupActionMessageCreator;
     dropdownClickHandler: DropdownClickHandler;
-    launchPanelHeaderClickHandler: LaunchPanelHeaderClickHandler;
 } & HamburgerMenuButtonDeps;
 
 export interface LaunchPanelHeaderProps {
@@ -53,13 +53,25 @@ export class LaunchPanelHeader extends React.Component<
     }
 
     private renderMenuButtons(): JSX.Element {
-        const { dropdownClickHandler } = this.props.deps;
+        const { deps, featureFlags } = this.props;
+        const { dropdownClickHandler } = deps;
 
         return (
             <>
+                <FlaggedComponent
+                    featureFlag={FeatureFlags.debugTools}
+                    featureFlagStoreData={featureFlags}
+                    enableJSXElement={
+                        <IconButton
+                            iconProps={{ iconName: 'Cat' }}
+                            ariaLabel="open debug tools"
+                            onClick={dropdownClickHandler.openDebugTools}
+                        />
+                    }
+                />
                 <GearMenuButton
                     dropdownClickHandler={dropdownClickHandler}
-                    featureFlags={this.props.featureFlags}
+                    featureFlags={featureFlags}
                 />
                 <HamburgerMenuButton
                     deps={this.props.deps}
