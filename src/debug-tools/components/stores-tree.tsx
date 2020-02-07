@@ -3,7 +3,16 @@
 import { BaseStore } from 'common/base-store';
 import { StoreActionMessageCreator } from 'common/message-creators/store-action-message-creator';
 import { forEach, isEmpty } from 'lodash';
-import { DetailsRow, FocusZone, GroupedList, IColumn, Selection, SelectionMode, SelectionZone, Spinner } from 'office-ui-fabric-react';
+import {
+    DetailsRow,
+    FocusZone,
+    GroupedList,
+    IColumn,
+    Selection,
+    SelectionMode,
+    SelectionZone,
+    Spinner,
+} from 'office-ui-fabric-react';
 import * as React from 'react';
 
 export type StoresTreeProps = {

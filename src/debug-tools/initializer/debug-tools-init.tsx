@@ -33,21 +33,36 @@ export const initializeDebugTools = () => {
 };
 
 const createStoreProxies = (browserAdapter: BrowserAdapter) => {
-    const featureFlagStore = new StoreProxy<FeatureFlagStoreData>(StoreNames[StoreNames.FeatureFlagStore], browserAdapter);
-    const scopingStore = new StoreProxy<ScopingStoreData>(StoreNames[StoreNames.ScopingPanelStateStore], browserAdapter);
+    const featureFlagStore = new StoreProxy<FeatureFlagStoreData>(
+        StoreNames[StoreNames.FeatureFlagStore],
+        browserAdapter,
+    );
+    const scopingStore = new StoreProxy<ScopingStoreData>(
+        StoreNames[StoreNames.ScopingPanelStateStore],
+        browserAdapter,
+    );
     const userConfigurationStore = new StoreProxy<UserConfigurationStoreData>(
         StoreNames[StoreNames.UserConfigurationStore],
         browserAdapter,
     );
-    const permissionsStore = new StoreProxy<PermissionsStateStoreData>(StoreNames[StoreNames.PermissionsStateStore], browserAdapter);
+    const permissionsStore = new StoreProxy<PermissionsStateStoreData>(
+        StoreNames[StoreNames.PermissionsStateStore],
+        browserAdapter,
+    );
 
     return [featureFlagStore, scopingStore, userConfigurationStore, permissionsStore];
 };
 
 const getStoreActionMessageCreator = (browserAdapter: BrowserAdapter, stores: BaseStore<any>[]) => {
-    const actionMessageDispatcher = new RemoteActionMessageDispatcher(browserAdapter.sendMessageToFrames, null, createDefaultLogger());
+    const actionMessageDispatcher = new RemoteActionMessageDispatcher(
+        browserAdapter.sendMessageToFrames,
+        null,
+        createDefaultLogger(),
+    );
 
-    const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(actionMessageDispatcher);
+    const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
+        actionMessageDispatcher,
+    );
 
     return storeActionMessageCreatorFactory.fromStores(stores);
 };
