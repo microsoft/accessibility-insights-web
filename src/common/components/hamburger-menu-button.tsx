@@ -73,6 +73,9 @@ export const HamburgerMenuButton = NamedFC<HamburgerMenuButtonProps>(
             },
             {
                 key: 'modify-shortcuts',
+                iconProps: {
+                    iconName: 'KeyboardClassic',
+                },
                 name: 'Keyboard shortcuts',
                 onClick: event => popupActionMessageCreator.openShortcutConfigureTab(event),
             },
