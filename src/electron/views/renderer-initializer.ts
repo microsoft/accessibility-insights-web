@@ -32,6 +32,7 @@ import { DropdownActionMessageCreator } from 'common/message-creators/dropdown-a
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { CardsViewDeps } from 'DetailsView/components/cards-view';
 import { remote } from 'electron';
 import { DirectActionMessageDispatcher } from 'electron/adapters/direct-action-message-dispatcher';
@@ -83,7 +84,6 @@ import { ElectronLink } from './device-connect-view/components/electron-link';
 import { sendAppInitializedTelemetryEvent } from './device-connect-view/send-app-initialized-telemetry';
 import { RootContainerRenderer } from './root-container/root-container-renderer';
 import { screenshotViewModelProvider } from './screenshot/screenshot-view-model-provider';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 
 initializeFabricIcons();
 

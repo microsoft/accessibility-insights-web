@@ -1,16 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { EnumHelper } from 'common/enum-helper';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { CommandBar, CommandBarProps } from 'electron/views/automated-checks/components/command-bar';
 import { mount, shallow } from 'enzyme';
-import { Button } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
-import { Mock, MockBehavior, Times, It } from 'typemoq';
-import { DropdownClickHandler } from 'common/dropdown-click-handler';
-import { commandBar } from 'electron/views/automated-checks/components/command-bar.scss';
+import { It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('CommandBar', () => {
     describe('renders', () => {
