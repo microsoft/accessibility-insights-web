@@ -1,7 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FlaggedComponent } from 'common/components/flagged-component';
 import { GearOptionsButtonComponent } from 'common/components/gear-options-button-component';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
+import { FeatureFlags } from 'common/feature-flags';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { IconButton, IContextualMenuItem } from 'office-ui-fabric-react';
 import * as React from 'react';
@@ -51,13 +53,25 @@ export class LaunchPanelHeader extends React.Component<
     }
 
     private renderGearOptionsButton(): JSX.Element {
-        const { dropdownClickHandler, launchPanelHeaderClickHandler } = this.props.deps;
+        const { deps, featureFlags } = this.props;
+        const { dropdownClickHandler, launchPanelHeaderClickHandler } = deps;
 
         return (
             <div className={styles.feedbackCollapseMenuButtonCol}>
+                <FlaggedComponent
+                    featureFlag={FeatureFlags.debugTools}
+                    featureFlagStoreData={featureFlags}
+                    enableJSXElement={
+                        <IconButton
+                            iconProps={{ iconName: 'Cat' }}
+                            ariaLabel="open debug tools"
+                            onClick={dropdownClickHandler.openDebugTools}
+                        />
+                    }
+                />
                 <GearOptionsButtonComponent
                     dropdownClickHandler={dropdownClickHandler}
-                    featureFlags={this.props.featureFlags}
+                    featureFlags={featureFlags}
                 />
                 <IconButton
                     iconProps={{ iconName: 'GlobalNavButton' }}

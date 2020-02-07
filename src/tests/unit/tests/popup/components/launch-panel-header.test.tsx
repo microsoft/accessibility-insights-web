@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FlaggedComponent } from 'common/components/flagged-component';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { mount, shallow } from 'enzyme';
@@ -80,6 +81,23 @@ describe('LaunchPanelHeaderTest', () => {
             iconButton.simulate('click', eventStub);
 
             launchPanelHeaderClickHandlerMock.verifyAll();
+        });
+
+        it('handle open debug tools button activation', () => {
+            const dropdownClickHandlerMock = Mock.ofType<DropdownClickHandler>();
+            props.deps.dropdownClickHandler = dropdownClickHandlerMock.object;
+
+            const wrapped = mount(<LaunchPanelHeader {...props} />);
+
+            dropdownClickHandlerMock.setup(handler => handler.openDebugTools()).verifiable(Times.once());
+
+            const flaggedComponent = wrapped.find(FlaggedComponent);
+
+            const wrappedIconButton = shallow(flaggedComponent.prop('enableJSXElement'));
+
+            wrappedIconButton.simulate('click');
+
+            dropdownClickHandlerMock.verifyAll();
         });
     });
 });

@@ -8,6 +8,20 @@ exports[`LaunchPanelHeaderTest render 1`] = `
   <div
     className="feedbackCollapseMenuButtonCol"
   >
+    <FlaggedComponent
+      enableJSXElement={
+        <CustomizedIconButton
+          ariaLabel="open debug tools"
+          iconProps={
+            Object {
+              "iconName": "Cat",
+            }
+          }
+        />
+      }
+      featureFlag="debugTools"
+      featureFlagStoreData={Object {}}
+    />
     <GearOptionsButtonComponent
       dropdownClickHandler={Object {}}
       featureFlags={Object {}}
@@ -34,6 +48,24 @@ exports[`LaunchPanelHeaderTest render contextual menu renders with new assessmen
   <div
     className="feedbackCollapseMenuButtonCol"
   >
+    <FlaggedComponent
+      enableJSXElement={
+        <CustomizedIconButton
+          ariaLabel="open debug tools"
+          iconProps={
+            Object {
+              "iconName": "Cat",
+            }
+          }
+        />
+      }
+      featureFlag="debugTools"
+      featureFlagStoreData={
+        Object {
+          "newAssessmentExperience": true,
+        }
+      }
+    />
     <GearOptionsButtonComponent
       dropdownClickHandler={Object {}}
       featureFlags={
@@ -147,6 +179,24 @@ exports[`LaunchPanelHeaderTest render contextual menu renders with new assessmen
                 <div
                   className="feedbackCollapseMenuButtonCol"
                 >
+                  <FlaggedComponent
+                    enableJSXElement={
+                      <CustomizedIconButton
+                        ariaLabel="open debug tools"
+                        iconProps={
+                          Object {
+                            "iconName": "Cat",
+                          }
+                        }
+                      />
+                    }
+                    featureFlag="debugTools"
+                    featureFlagStoreData={
+                      Object {
+                        "newAssessmentExperience": true,
+                      }
+                    }
+                  />
                   <GearOptionsButtonComponent
                     dropdownClickHandler={Object {}}
                     featureFlags={
@@ -206,6 +256,20 @@ exports[`LaunchPanelHeaderTest render contextual menu renders without new assess
   <div
     className="feedbackCollapseMenuButtonCol"
   >
+    <FlaggedComponent
+      enableJSXElement={
+        <CustomizedIconButton
+          ariaLabel="open debug tools"
+          iconProps={
+            Object {
+              "iconName": "Cat",
+            }
+          }
+        />
+      }
+      featureFlag="debugTools"
+      featureFlagStoreData={Object {}}
+    />
     <GearOptionsButtonComponent
       dropdownClickHandler={Object {}}
       featureFlags={Object {}}
@@ -305,6 +369,20 @@ exports[`LaunchPanelHeaderTest render contextual menu renders without new assess
                 <div
                   className="feedbackCollapseMenuButtonCol"
                 >
+                  <FlaggedComponent
+                    enableJSXElement={
+                      <CustomizedIconButton
+                        ariaLabel="open debug tools"
+                        iconProps={
+                          Object {
+                            "iconName": "Cat",
+                          }
+                        }
+                      />
+                    }
+                    featureFlag="debugTools"
+                    featureFlagStoreData={Object {}}
+                  />
                   <GearOptionsButtonComponent
                     dropdownClickHandler={Object {}}
                     featureFlags={Object {}}

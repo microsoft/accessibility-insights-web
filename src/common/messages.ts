@@ -205,4 +205,8 @@ export class Messages {
     public static readonly PermissionsState = {
         SetPermissionsState: `${messagePrefix}/permissionsState/setPermissionsState`,
     };
+
+    public static readonly DebugTools = {
+        Open: `${messagePrefix}/debugTools/open`,
+    };
 }

@@ -28,4 +28,8 @@ export class DropdownClickHandler {
     public openSettingsPanelHandler = (event: React.MouseEvent<HTMLElement>): void => {
         this.dropdownActionMessageCreator.openSettingsPanel(event, this.source);
     };
+
+    public openDebugTools = (): void => {
+        this.dropdownActionMessageCreator.openDebugTools();
+    };
 }

@@ -61,4 +61,8 @@ export class DropdownActionMessageCreator {
         };
         this.dispatcher.dispatchMessage(message);
     }
+
+    public openDebugTools(): void {
+        this.dispatcher.dispatchType(Messages.DebugTools.Open);
+    }
 }
