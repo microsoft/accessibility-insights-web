@@ -11,7 +11,7 @@ import { WindowStateStoreData } from 'electron/flux/types/window-state-store-dat
 import { BrandBlue } from 'icons/brand/blue/brand-blue';
 import * as React from 'react';
 import { DeviceStoreData } from '../../../flux/types/device-store-data';
-import { WindowTitle, WindowTitleDeps } from '../../common/window-title';
+import { WindowTitle, WindowTitleDeps } from '../../common/window-title/window-title';
 import { deviceConnectView, mainContentWrapper } from '../device-connect-view.scss';
 import { DeviceConnectBody, DeviceConnectBodyDeps } from './device-connect-body';
 

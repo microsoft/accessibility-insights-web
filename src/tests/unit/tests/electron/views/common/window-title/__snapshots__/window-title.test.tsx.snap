@@ -62,7 +62,7 @@ exports[`WindowTitleTest renders with custom class name 1`] = `
 
 exports[`WindowTitleTest renders without actionable buttons for mac 1`] = `
 <header
-  className="windowTitle macWindowTitle"
+  className="windowTitle"
 >
   <div
     className="titleContainer"

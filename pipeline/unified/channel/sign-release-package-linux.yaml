@@ -27,7 +27,7 @@ jobs:
             inputs:
                 SourceFolder: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
                 contents: |
-                    Accessibility Insights for Android*.*
+                    Accessibility_Insights_for_Android*.*
                 TargetFolder: '$(System.DefaultWorkingDirectory)/detachedSignature'
 
           - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
@@ -56,7 +56,7 @@ jobs:
             inputs:
                 SourceFolder: $(System.DefaultWorkingDirectory)/detachedSignature
                 contents: |
-                    Accessibility Insights for Android*.*
+                    Accessibility_Insights_for_Android*.*
                 TargetFolder: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
 
           - script: yarn update:electron-checksum signing-in-progress/${{ parameters.signedArtifactName }}

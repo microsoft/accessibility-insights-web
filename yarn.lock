@@ -7695,10 +7695,10 @@ punycode@^2.1.0, punycode@^2.1.1:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
 
-puppeteer@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/puppeteer/-/puppeteer-2.1.0.tgz#c10cabc5525f57c6766eed4f3006b6e10afcafc1"
-  integrity sha512-PC4oKMtwAElo8YtS/cYnk2/dew/3TonsGKKzjpFLWwkhBCteFsOZCVOXTt2QlP6w53mH0YsJE+fPLPzOW+DCug==
+puppeteer@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/puppeteer/-/puppeteer-2.1.1.tgz#ccde47c2a688f131883b50f2d697bd25189da27e"
+  integrity sha512-LWzaDVQkk1EPiuYeTOj+CZRIjda4k2s5w4MK4xoH2+kgWV/SDlkYHmxatDdtYrciHUKSXTsGgPgPP8ILVdBsxg==
   dependencies:
     "@types/mime-types" "^2.1.0"
     debug "^4.1.0"
@@ -9715,10 +9715,10 @@ unset-value@^1.0.0:
     has-value "^0.3.1"
     isobject "^3.0.0"
 
-unzipper@^0.10.7:
-  version "0.10.7"
-  resolved "https://registry.yarnpkg.com/unzipper/-/unzipper-0.10.7.tgz#ed5d72d12337f66f790d42fef47eb9f9de0a0906"
-  integrity sha512-0ltrg7/F12h3KqY1zBfZB6bVnPTVlzhdK1iu2xCaGxGMF/Es9ETMAS0M89CnCB4hemPb/AoTWtj+62l7XFZKqQ==
+unzipper@^0.10.8:
+  version "0.10.8"
+  resolved "https://registry.yarnpkg.com/unzipper/-/unzipper-0.10.8.tgz#d7e898f572009128692641331c29b398ff3e5f16"
+  integrity sha512-CZRd20MbyAfWL1Xc+lqgNFYDj5e/HaH9pLEWZgseQWCvEtNfX0wOjnhaJ6PcGpNnDvifSW1ZNSCHX6GoNliR0A==
   dependencies:
     big-integer "^1.6.17"
     binary "~0.3.0"

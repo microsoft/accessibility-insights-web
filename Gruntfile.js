@@ -51,7 +51,7 @@ module.exports = function(grunt) {
                 files: [
                     {
                         cwd: './src',
-                        src: ['./**/*.png', '!./tests/**/*'],
+                        src: ['./**/*.{png,ico,icns}', '!./tests/**/*'],
                         dest: extensionPath,
                         expand: true,
                     },
@@ -164,7 +164,7 @@ module.exports = function(grunt) {
         },
         watch: {
             images: {
-                files: ['src/**/*.png'],
+                files: ['src/**/*.{png,ico,icns}'],
                 tasks: ['copy:images', 'drop:dev', 'drop:unified-dev'],
             },
             'non-webpack-code': {
@@ -194,14 +194,14 @@ module.exports = function(grunt) {
 
     unifiedReleaseTargets.forEach(targetName => {
         const { config, appId, publishUrl } = targets[targetName];
-        const { icon512, fullName, productCategory } = config.options;
+        const { electronIconBaseName, fullName, productCategory } = config.options;
         const dropPath = `drop/${productCategory}/${targetName}`;
 
         grunt.config.merge({
             'configure-electron-builder': {
                 [targetName]: {
                     dropPath,
-                    icon512: `src/${icon512}`,
+                    electronIconBaseName,
                     fullName,
                     appId,
                     publishUrl,
@@ -274,7 +274,7 @@ module.exports = function(grunt) {
                         },
                         {
                             cwd: extensionPath,
-                            src: ['**/*.png', '**/*.css', '**/*.woff'],
+                            src: ['**/*.{png,icns,ico,css,woff}'],
                             dest: dropExtensionPath,
                             expand: true,
                         },
@@ -386,7 +386,7 @@ module.exports = function(grunt) {
 
     grunt.registerMultiTask('configure-electron-builder', function() {
         grunt.task.requires('drop:' + this.target);
-        const { dropPath, icon512, fullName, appId, publishUrl } = this.data;
+        const { dropPath, electronIconBaseName, fullName, appId, publishUrl } = this.data;
 
         const outElectronBuilderConfigFile = path.join(dropPath, 'electron-builder.yml');
         const srcElectronBuilderConfigFile = path.join('src', 'electron', 'electron-builder', `electron-builder.template.yaml`);
@@ -398,11 +398,15 @@ module.exports = function(grunt) {
         config.directories.app = dropPath;
         config.directories.output = `${dropPath}/packed`;
         config.extraMetadata.version = version;
+        config.win.icon = `src/${electronIconBaseName}.ico`;
+        // electron-builder infers the linux icon from the mac one
+        config.mac.icon = `src/${electronIconBaseName}.icns`;
         config.publish.url = publishUrl;
         config.productName = fullName;
         config.extraMetadata.name = fullName;
-        config.win.icon = icon512;
-        config.mac.icon = icon512;
+        // This is necessary for the AppImage to display using our brand icon
+        // See electron-userland/electron-builder#3547 and AppImage/AppImageKit#678
+        config.linux.artifactName = fullName.replace(/ (- )?/g, '_') + '.${ext}';
 
         const configFileContent = yaml.safeDump(config);
         grunt.file.write(outElectronBuilderConfigFile, configFileContent);

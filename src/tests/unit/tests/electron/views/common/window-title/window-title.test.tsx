@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
-import { WindowTitle, WindowTitleProps } from 'electron/views/common/window-title';
+import { WindowTitle, WindowTitleProps } from 'electron/views/common/window-title/window-title';
 import { PlatformInfo } from 'electron/window-management/platform-info';
 import { shallow } from 'enzyme';
 import * as React from 'react';

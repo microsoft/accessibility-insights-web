@@ -107,7 +107,7 @@
         "npm-run-all": "^4.1.5",
         "preprocess": "^3.1.0",
         "prettier": "^1.19.1",
-        "puppeteer": "^2.1.0",
+        "puppeteer": "^2.1.1",
         "regenerator-runtime": "^0.13.3",
         "sass-loader": "^8.0.2",
         "script-loader": "0.7.2",
@@ -146,7 +146,7 @@
         "react-helmet": "^5.2.0",
         "react-router-dom": "^5.1.2",
         "ua-parser-js": "^0.7.21",
-        "unzipper": "^0.10.7",
+        "unzipper": "^0.10.8",
         "uuid": "^3.4.0",
         "webextension-polyfill-ts": "^0.12.0"
     }
