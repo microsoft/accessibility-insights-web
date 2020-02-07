@@ -49,6 +49,8 @@ describe('AnalyzerConfigurationFactoryTest', () => {
 
         const result = AnalyzerConfigurationFactory.forScanner(baseConfig);
 
-        expect(forRuleAnalyzerScanStub).toEqual(result.telemetryProcessor(telemetryFactoryStub as TelemetryDataFactory));
+        expect(forRuleAnalyzerScanStub).toEqual(
+            result.telemetryProcessor(telemetryFactoryStub as TelemetryDataFactory),
+        );
     });
 });
