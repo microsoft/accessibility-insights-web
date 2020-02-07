@@ -12,13 +12,11 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { IconButton, IContextualMenuItem } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
-import { LaunchPanelHeaderClickHandler } from '../handlers/launch-panel-header-click-handler';
 import { Header } from './header';
 
 export type LaunchPanelHeaderDeps = {
     popupActionMessageCreator: PopupActionMessageCreator;
     dropdownClickHandler: DropdownClickHandler;
-    launchPanelHeaderClickHandler: LaunchPanelHeaderClickHandler;
 } & HamburgerMenuButtonDeps;
 
 export interface LaunchPanelHeaderProps {
@@ -56,7 +54,7 @@ export class LaunchPanelHeader extends React.Component<
 
     private renderMenuButtons(): JSX.Element {
         const { deps, featureFlags } = this.props;
-        const { dropdownClickHandler, launchPanelHeaderClickHandler } = deps;
+        const { dropdownClickHandler } = deps;
 
         return (
             <>
