@@ -8,6 +8,11 @@ exports[`SettingsPanelTest render - isPanelOpen = false 1`] = `
   headerText="Settings"
   innerPanelAutomationId="settings-panel"
   isOpen={false}
+  layerProps={
+    Object {
+      "className": undefined,
+    }
+  }
   onDismiss={[Function]}
 >
   <TestSettings
@@ -78,6 +83,85 @@ exports[`SettingsPanelTest render - isPanelOpen = true 1`] = `
   headerText="Settings"
   innerPanelAutomationId="settings-panel"
   isOpen={true}
+  layerProps={
+    Object {
+      "className": undefined,
+    }
+  }
+  onDismiss={[Function]}
+>
+  <TestSettings
+    deps={
+      Object {
+        "detailsViewActionMessageCreator": Object {
+          "closeSettingsPanel": [Function],
+        },
+        "settingsProvider": Object {
+          "all": [Function],
+        },
+        "userConfigMessageCreator": Object {},
+      }
+    }
+    featureFlagData={
+      Object {
+        "test-flag": false,
+      }
+    }
+    userConfigurationStoreState={Object {}}
+  />
+  <TestSettings
+    deps={
+      Object {
+        "detailsViewActionMessageCreator": Object {
+          "closeSettingsPanel": [Function],
+        },
+        "settingsProvider": Object {
+          "all": [Function],
+        },
+        "userConfigMessageCreator": Object {},
+      }
+    }
+    featureFlagData={
+      Object {
+        "test-flag": false,
+      }
+    }
+    userConfigurationStoreState={Object {}}
+  />
+  <TestSettings
+    deps={
+      Object {
+        "detailsViewActionMessageCreator": Object {
+          "closeSettingsPanel": [Function],
+        },
+        "settingsProvider": Object {
+          "all": [Function],
+        },
+        "userConfigMessageCreator": Object {},
+      }
+    }
+    featureFlagData={
+      Object {
+        "test-flag": false,
+      }
+    }
+    userConfigurationStoreState={Object {}}
+  />
+</GenericPanel>
+`;
+
+exports[`SettingsPanelTest render - with custom layer class name 1`] = `
+<GenericPanel
+  className="settingsPanel"
+  closeButtonAriaLabel="Close settings panel"
+  hasCloseButton={true}
+  headerText="Settings"
+  innerPanelAutomationId="settings-panel"
+  layerProps={
+    Object {
+      "className": "test-layer-class-name",
+    }
+  }
   onDismiss={[Function]}
 >
   <TestSettings

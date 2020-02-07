@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
-import { NamedFC } from 'common/react/named-fc';
+import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { SettingsPanel, SettingsPanelDeps, SettingsPanelProps } from 'DetailsView/components/settings-panel/settings-panel';
@@ -11,36 +11,46 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe('SettingsPanelTest', () => {
-    let userConfigStoreData: UserConfigurationStoreData;
+    const testSettingsProvider = createSettingsProvider([
+        createTestSettings('test-settings-1'),
+        createTestSettings('test-settings-2'),
+        createTestSettings('test-settings-3'),
+    ]);
+
+    const testProps: Partial<SettingsPanelProps> = {
+        deps: {
+            detailsViewActionMessageCreator: {
+                closeSettingsPanel: () => {},
+            } as DetailsViewActionMessageCreator,
+            userConfigMessageCreator: {} as UserConfigMessageCreator,
+            settingsProvider: testSettingsProvider,
+        } as SettingsPanelDeps,
+        userConfigStoreState: {} as UserConfigurationStoreData,
+        featureFlagData: { 'test-flag': false },
+    };
 
     it.each([true, false])('render - isPanelOpen = %s', isPanelOpen => {
-        userConfigStoreData = {} as UserConfigurationStoreData;
-
-        const testSettingsProvider = createSettingsProvider([
-            createTestSettings('test-settings-1'),
-            createTestSettings('test-settings-2'),
-            createTestSettings('test-settings-3'),
-        ]);
-
-        const testProps: SettingsPanelProps = {
+        const props: SettingsPanelProps = {
+            ...testProps,
             isOpen: isPanelOpen,
-            deps: {
-                detailsViewActionMessageCreator: {
-                    closeSettingsPanel: () => {},
-                } as DetailsViewActionMessageCreator,
-                userConfigMessageCreator: {} as UserConfigMessageCreator,
-                settingsProvider: testSettingsProvider,
-            } as SettingsPanelDeps,
-            userConfigStoreState: userConfigStoreData,
-            featureFlagData: { 'test-flag': false },
-        };
+        } as SettingsPanelProps;
 
-        const wrapped = shallow(<SettingsPanel {...testProps} />);
+        const wrapped = shallow(<SettingsPanel {...props} />);
+        expect(wrapped.getElement()).toMatchSnapshot();
+    });
+
+    it('render - with custom layer class name', () => {
+        const props: SettingsPanelProps = {
+            ...testProps,
+            layerClassName: 'test-layer-class-name',
+        } as SettingsPanelProps;
+
+        const wrapped = shallow(<SettingsPanel {...props} />);
         expect(wrapped.getElement()).toMatchSnapshot();
     });
 });
 
-const createTestSettings = (name: string) => {
+function createTestSettings(name: string): ReactFCWithDisplayName<SettingsProps> {
     return NamedFC<SettingsProps>('TestSettings', props => {
         return (
             <div className="test-settings">
@@ -49,4 +59,4 @@ const createTestSettings = (name: string) => {
             </div>
         );
     });
-};
+}
