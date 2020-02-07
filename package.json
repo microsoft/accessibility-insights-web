@@ -29,7 +29,6 @@
         "format:fix": "prettier --config prettier.config.js --write \"**/*\"",
         "lint:check": "tslint -c ./tslint.json -p ./tsconfig.json",
         "lint:fix": "tslint --fix -c ./tslint.json -p ./tsconfig.json",
-        "pack:electron": "electron-builder -p never",
         "scss:build": "tsm \"src/**/*.scss\"",
         "scss:clean": "grunt clean:scss",
         "serve:mock-axe-android": "http-server -p 9051 -e json ./src/tests/miscellaneous/mock-axe-android",
