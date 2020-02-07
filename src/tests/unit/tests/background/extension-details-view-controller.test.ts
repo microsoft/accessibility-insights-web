@@ -5,7 +5,7 @@ import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { Tabs } from 'webextension-polyfill-ts';
 
-describe('DetailsViewControllerTest', () => {
+describe('ExtensionDetailsViewController', () => {
     let browserAdapterMock: IMock<BrowserAdapter>;
     let testSubject: ExtensionDetailsViewController;
     let onTabRemoveCallback: (tabId: number, removeInfo: chrome.tabs.TabRemoveInfo) => void;
