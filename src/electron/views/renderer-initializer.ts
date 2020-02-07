@@ -50,7 +50,7 @@ import { WindowStateStore } from 'electron/flux/store/window-state-store';
 import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { ScanController } from 'electron/platform/android/scan-controller';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
-import { AndroidSettingsProvider } from 'electron/settings/android-settings-provider';
+import { UnifiedSettingsProvider } from 'electron/settings/android-settings-provider';
 import {
     RootContainerDeps,
     RootContainerState,
@@ -313,7 +313,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             screenshotViewModelProvider,
             ...cardsViewDeps,
             storeActionMessageCreator: new NullStoreActionMessageCreator(),
-            settingsProvider: AndroidSettingsProvider,
+            settingsProvider: UnifiedSettingsProvider,
         };
 
         const renderer = new RootContainerRenderer(ReactDOM.render, document, deps);
