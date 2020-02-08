@@ -7,20 +7,8 @@ parameters:
     unsignedPipelineResource: null
 
 jobs:
-    - template: sign-release-package-windows.yaml
-      parameters:
-          unsignedPipelineResource: ${{ parameters.unsignedPipelineResource }}
-          unsignedArtifactName: unified-windows-${{ parameters.channel }}-unsigned
-          signedArtifactName: unified_windows_${{ parameters.channel }}_signed
-
     - template: sign-release-package-mac.yaml
       parameters:
           unsignedPipelineResource: ${{ parameters.unsignedPipelineResource }}
           unsignedArtifactName: unified-mac-${{ parameters.channel }}-unsigned
           signedArtifactName: unified_mac_${{ parameters.channel }}_signed
-
-    - template: sign-release-package-linux.yaml
-      parameters:
-          unsignedPipelineResource: ${{ parameters.unsignedPipelineResource }}
-          unsignedArtifactName: unified-linux-${{ parameters.channel }}-unsigned
-          signedArtifactName: unified_linux_${{ parameters.channel }}_signed
