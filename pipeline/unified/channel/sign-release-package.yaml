@@ -7,13 +7,16 @@ parameters:
     unsignedPipelineResource: null
     unsignedArtifactName: null
     signedArtifactName: null
-    platform: null
 
 jobs:
     - job: ${{ parameters.signedArtifactName }}
       pool:
           vmImage: ${{ parameters.vmImage }}
       steps:
+          - script: echo 'test'
+            displayName: check if mac
+            condition: eq(variables['Agent.OS'], 'Darwin')
+
           - template: ../../install-node-prerequisites.yaml
 
           - task: DownloadPipelineArtifact@2
@@ -37,7 +40,7 @@ jobs:
 
           - script: npx 7z d signing-in-progress/${{ parameters.signedArtifactName }}/Accessibility*.zip *.pkg
             displayName: remove .pkg binary from zip file
-            condition: and(succeeded(), eq(variables.platform, 'mac'))
+            condition: eq(variables['Agent.OS'], 'Darwin')
 
           - script: yarn update:electron-checksum signing-in-progress/${{ parameters.signedArtifactName }}
             displayName: update electron checksum after signing

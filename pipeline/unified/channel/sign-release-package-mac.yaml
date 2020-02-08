@@ -4,7 +4,6 @@ parameters:
     unsignedPipelineResource: null
     unsignedArtifactName: null
     signedArtifactName: null
-    platform: 'mac'
 
 jobs:
     - template: sign-release-package.yaml
@@ -12,7 +11,6 @@ jobs:
           unsignedPipelineResource: ${{ parameters.unsignedPipelineResource }}
           unsignedArtifactName: ${{ parameters.unsignedArtifactName }}
           signedArtifactName: ${{ parameters.signedArtifactName }}
-          platform: ${{ parameters.platform }}
           vmImage: macOS-10.14
           filePattern: '*.dmg, *.zip'
           inlineSignParams: |
