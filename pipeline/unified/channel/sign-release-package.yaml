@@ -38,7 +38,7 @@ jobs:
                 signConfigType: inlineSignParams
                 inlineOperation: ${{ parameters.inlineSignParams }}
 
-          - script: node ./pipeline/scripts/update-electron-checksum.js signing-in-progress/${{ parameters.signedArtifactName }}
+          - script: node ./pipeline/scripts/remove-pkg.js signing-in-progress/${{ parameters.signedArtifactName }}
             displayName: remove .pkg binary from zip file
             condition: eq(variables['Agent.OS'], 'Darwin')
 
