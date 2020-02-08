@@ -38,9 +38,7 @@ jobs:
                 signConfigType: inlineSignParams
                 inlineOperation: ${{ parameters.inlineSignParams }}
 
-          - script: npm i -g 7zip@latest
-
-          - script: 7z d $(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}/Accessibility*.zip *.pkg
+          - script: node ./pipeline/scripts/update-electron-checksum.js signing-in-progress/${{ parameters.signedArtifactName }}
             displayName: remove .pkg binary from zip file
             condition: eq(variables['Agent.OS'], 'Darwin')
 
