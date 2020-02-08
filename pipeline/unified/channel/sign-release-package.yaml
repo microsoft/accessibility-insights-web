@@ -7,6 +7,7 @@ parameters:
     unsignedPipelineResource: null
     unsignedArtifactName: null
     signedArtifactName: null
+    platform: null
 
 jobs:
     - job: ${{ parameters.signedArtifactName }}
@@ -36,7 +37,7 @@ jobs:
 
           - script: npx 7z d signing-in-progress/${{ parameters.signedArtifactName }}/Accessibility*.zip *.pkg
             displayName: remove .pkg binary from zip file
-            condition: and(succeeded(), eq(${{ parameters.vmImage }}, 'macOS-10.14'))
+            condition: and(succeeded(), eq(variables.platform, 'mac'))
 
           - script: yarn update:electron-checksum signing-in-progress/${{ parameters.signedArtifactName }}
             displayName: update electron checksum after signing
