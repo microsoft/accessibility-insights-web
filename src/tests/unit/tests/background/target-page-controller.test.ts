@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserMessageBroadcasterFactory } from 'background/browser-message-broadcaster-factory';
-import { DetailsViewController } from 'background/details-view-controller';
+import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { Interpreter } from 'background/interpreter';
 import { TabContext } from 'background/tab-context';
 import { TabContextFactory } from 'background/tab-context-factory';
@@ -338,12 +338,12 @@ describe('TargetPageController', () => {
         }
     }
 
-    type SimulatedDetailsViewController = IMock<DetailsViewController> & {
+    type SimulatedDetailsViewController = IMock<ExtensionDetailsViewController> & {
         notifyDetailsViewTabRemoved?: (tabId: number) => void;
     };
 
     function setupMockDetailsViewController(): SimulatedDetailsViewController {
-        const mock: SimulatedDetailsViewController = Mock.ofType<DetailsViewController>();
+        const mock: SimulatedDetailsViewController = Mock.ofType<ExtensionDetailsViewController>();
         mock.setup(m => m.setupDetailsViewTabRemovedHandler(It.is(isFunction))).callback(c => (mock.notifyDetailsViewTabRemoved = c));
         return mock;
     }

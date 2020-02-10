@@ -6,6 +6,7 @@ import {
 } from 'common/components/with-store-subscription';
 import { NamedFC } from 'common/react/named-fc';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
+import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { DeviceStoreData } from 'electron/flux/types/device-store-data';
@@ -38,6 +39,7 @@ export type RootContainerState = {
     scanStoreData: ScanStoreData;
     unifiedScanResultStoreData: UnifiedScanResultStoreData;
     cardSelectionStoreData: CardSelectionStoreData;
+    detailsViewStoreData: DetailsViewStoreData;
 };
 
 export const RootContainerInternal = NamedFC<RootContainerProps>('RootContainerInternal', props => {

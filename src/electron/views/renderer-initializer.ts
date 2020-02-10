@@ -4,11 +4,17 @@ import { AppInsights } from 'applicationinsights-js';
 import axios from 'axios';
 import { CardSelectionActionCreator } from 'background/actions/card-selection-action-creator';
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
+import { ContentActions } from 'background/actions/content-actions';
+import { DetailsViewActionCreator } from 'background/actions/details-view-action-creator';
+import { DetailsViewActions } from 'background/actions/details-view-actions';
+import { PreviewFeaturesActions } from 'background/actions/preview-features-actions';
+import { ScopingActions } from 'background/actions/scoping-actions';
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { registerUserConfigurationMessageCallback } from 'background/global-action-creators/registrar/register-user-configuration-message-callbacks';
 import { UserConfigurationActionCreator } from 'background/global-action-creators/user-configuration-action-creator';
 import { Interpreter } from 'background/interpreter';
 import { CardSelectionStore } from 'background/stores/card-selection-store';
+import { DetailsViewStore } from 'background/stores/details-view-store';
 import { UnifiedScanResultStore } from 'background/stores/unified-scan-result-store';
 import { onlyHighlightingSupported } from 'common/components/cards/card-interaction-support';
 import { CardsVisualizationModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
@@ -16,17 +22,21 @@ import { CardsCollapsibleControl } from 'common/components/cards/collapsible-com
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { getPropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { DateProvider } from 'common/date-provider';
+import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
+import { DropdownActionMessageCreator } from 'common/message-creators/dropdown-action-message-creator';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { CardsViewDeps } from 'DetailsView/components/cards-view';
 import { remote } from 'electron';
 import { DirectActionMessageDispatcher } from 'electron/adapters/direct-action-message-dispatcher';
+import { NullDetailsViewController } from 'electron/adapters/null-details-view-controller';
 import { NullStoreActionMessageCreator } from 'electron/adapters/null-store-action-message-creator';
 import { createGetToolDataDelegate } from 'electron/common/application-properties-provider';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
@@ -40,6 +50,7 @@ import { WindowStateStore } from 'electron/flux/store/window-state-store';
 import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { ScanController } from 'electron/platform/android/scan-controller';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
+import { UnifiedSettingsProvider } from 'electron/settings/unified-settings-provider';
 import {
     RootContainerDeps,
     RootContainerState,
@@ -85,6 +96,10 @@ const windowStateActions = new WindowStateActions();
 const scanActions = new ScanActions();
 const unifiedScanResultActions = new UnifiedScanResultActions();
 const cardSelectionActions = new CardSelectionActions();
+const detailsViewActions = new DetailsViewActions();
+const previewFeaturesActions = new PreviewFeaturesActions(); // not really used but needed by DetailsViewStore
+const scopingActions = new ScopingActions(); // not really used but needed by DetailsViewStore
+const contentActions = new ContentActions(); // not really used but needed by DetailsViewStore
 
 const storageAdapter = new ElectronStorageAdapter(indexedDBInstance);
 const appDataAdapter = new ElectronAppDataAdapter();
@@ -140,6 +155,14 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         );
         cardSelectionStore.initialize();
 
+        const detailsViewStore = new DetailsViewStore(
+            previewFeaturesActions,
+            scopingActions,
+            contentActions,
+            detailsViewActions,
+        );
+        detailsViewStore.initialize();
+
         const currentWindow = remote.getCurrentWindow();
         const windowFrameUpdater = new WindowFrameUpdater(windowFrameActions, currentWindow);
         windowFrameUpdater.initialize();
@@ -151,6 +174,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             scanStore,
             unifiedScanResultStore,
             cardSelectionStore,
+            detailsViewStore,
         ]);
 
         const telemetryStateListener = new TelemetryStateListener(
@@ -188,6 +212,18 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             telemetryEventHandler,
         );
         cardSelectionActionCreator.registerCallbacks();
+
+        const nullDetailsViewController = new NullDetailsViewController();
+
+        const detailsViewActionCreator = new DetailsViewActionCreator(
+            interpreter,
+            detailsViewActions,
+            nullDetailsViewController,
+            telemetryEventHandler,
+            logger,
+        );
+        detailsViewActionCreator.registerCallback();
+
         const cardSelectionMessageCreator = new CardSelectionMessageCreator(
             dispatcher,
             telemetryDataFactory,
@@ -214,6 +250,21 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         scanController.initialize();
 
+        const dropdownActionMessageCreator = new DropdownActionMessageCreator(
+            telemetryDataFactory,
+            dispatcher,
+        );
+
+        const dropdownClickHandler = new DropdownClickHandler(
+            dropdownActionMessageCreator,
+            TelemetryEventSource.ElectronAutomatedChecksView,
+        );
+
+        const detailsViewActionMessageCreator = new DetailsViewActionMessageCreator(
+            telemetryDataFactory,
+            dispatcher,
+        );
+
         const fixInstructionProcessor = new FixInstructionProcessor();
 
         const cardsViewDeps: CardsViewDeps = {
@@ -228,7 +279,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
             userConfigMessageCreator: userConfigMessageCreator,
             cardSelectionMessageCreator,
-            detailsViewActionMessageCreator: null,
+
+            detailsViewActionMessageCreator,
             issueFilingActionMessageCreator: null, // we don't support issue filing right now
 
             environmentInfoProvider: null,
@@ -248,6 +300,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             deviceStore,
             userConfigMessageCreator,
             windowStateActionCreator,
+            dropdownClickHandler,
             LinkComponent: ElectronLink,
             fetchScanResults,
             deviceConnectActionCreator,
@@ -260,6 +313,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             screenshotViewModelProvider,
             ...cardsViewDeps,
             storeActionMessageCreator: new NullStoreActionMessageCreator(),
+            settingsProvider: UnifiedSettingsProvider,
         };
 
         const renderer = new RootContainerRenderer(ReactDOM.render, document, deps);

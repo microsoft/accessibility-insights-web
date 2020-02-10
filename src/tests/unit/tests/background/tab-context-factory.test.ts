@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
-import { DetailsViewController } from 'background/details-view-controller';
+import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { Interpreter } from 'background/interpreter';
 import { AssessmentStore } from 'background/stores/assessment-store';
 import { CardSelectionStore } from 'background/stores/card-selection-store';
@@ -33,14 +33,14 @@ function getConfigs(visualizationType: VisualizationType): VisualizationConfigur
 }
 
 describe('TabContextFactoryTest', () => {
-    let mockDetailsViewController: IMock<DetailsViewController>;
+    let mockDetailsViewController: IMock<ExtensionDetailsViewController>;
     let mockBrowserAdapter: IMock<BrowserAdapter>;
     let mockLogger: IMock<Logger>;
 
     beforeEach(() => {
         mockBrowserAdapter = Mock.ofType<BrowserAdapter>();
         mockLogger = Mock.ofType<Logger>();
-        mockDetailsViewController = Mock.ofType<DetailsViewController>();
+        mockDetailsViewController = Mock.ofType<ExtensionDetailsViewController>();
     });
 
     it('createInterpreter', () => {

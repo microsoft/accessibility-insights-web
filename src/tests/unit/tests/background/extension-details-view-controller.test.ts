@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DetailsViewController } from 'background/details-view-controller';
+import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { Tabs } from 'webextension-polyfill-ts';
 
-describe('DetailsViewControllerTest', () => {
+describe('ExtensionDetailsViewController', () => {
     let browserAdapterMock: IMock<BrowserAdapter>;
-    let testSubject: DetailsViewController;
+    let testSubject: ExtensionDetailsViewController;
     let onTabRemoveCallback: (tabId: number, removeInfo: chrome.tabs.TabRemoveInfo) => void;
     let onUpdateTabCallback: (tabId: number, changeInfo: chrome.tabs.TabChangeInfo, tab: chrome.tabs.Tab) => void;
 
@@ -28,7 +28,7 @@ describe('DetailsViewControllerTest', () => {
             })
             .verifiable();
 
-        testSubject = new DetailsViewController(browserAdapterMock.object);
+        testSubject = new ExtensionDetailsViewController(browserAdapterMock.object);
     });
 
     describe('showDetailsView', () => {

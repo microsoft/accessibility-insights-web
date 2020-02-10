@@ -14,7 +14,7 @@ import { DictionaryNumberTo } from 'types/common-types';
 
 import { VisualizationActions } from '../actions/visualization-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
-import { DetailsViewController } from '../details-view-controller';
+import { ExtensionDetailsViewController } from '../extension-details-view-controller';
 import { Interpreter } from '../interpreter';
 import { TargetTabController } from '../target-tab-controller';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
@@ -49,7 +49,7 @@ export class ActionCreator {
     constructor(
         private readonly interpreter: Interpreter,
         readonly actionHub: ActionHub,
-        private readonly detailsViewController: DetailsViewController,
+        private readonly detailsViewController: ExtensionDetailsViewController,
         private readonly telemetryEventHandler: TelemetryEventHandler,
         private readonly notificationCreator: NotificationCreator,
         private readonly visualizationConfigurationFactory: VisualizationConfigurationFactory,

@@ -91,6 +91,26 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
       }
     />
   </div>
+  <SettingsPanel
+    deps={
+      Object {
+        "getCardSelectionViewData": [Function],
+        "getCardsViewData": [Function],
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "scanActions": undefined,
+        },
+        "screenshotViewModelProvider": [Function],
+      }
+    }
+    featureFlagData={Object {}}
+    layerClassName="settingsPanelLayerHost"
+    userConfigStoreState={
+      Object {
+        "isFirstTime": false,
+      }
+    }
+  />
 </div>
 `;
 
@@ -156,6 +176,24 @@ exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
       </main>
     </div>
   </div>
+  <SettingsPanel
+    deps={
+      Object {
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "scanActions": undefined,
+        },
+        "windowStateActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "windowFrameActionCreator": undefined,
+          "windowStateActions": undefined,
+        },
+      }
+    }
+    featureFlagData={Object {}}
+    isOpen={false}
+    layerClassName="settingsPanelLayerHost"
+  />
 </div>
 `;
 
@@ -221,6 +259,24 @@ exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
       </main>
     </div>
   </div>
+  <SettingsPanel
+    deps={
+      Object {
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "scanActions": undefined,
+        },
+        "windowStateActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "windowFrameActionCreator": undefined,
+          "windowStateActions": undefined,
+        },
+      }
+    }
+    featureFlagData={Object {}}
+    isOpen={false}
+    layerClassName="settingsPanelLayerHost"
+  />
 </div>
 `;
 
@@ -286,5 +342,23 @@ exports[`AutomatedChecksView renders when status scan <undefined> 1`] = `
       </main>
     </div>
   </div>
+  <SettingsPanel
+    deps={
+      Object {
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "scanActions": undefined,
+        },
+        "windowStateActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "windowFrameActionCreator": undefined,
+          "windowStateActions": undefined,
+        },
+      }
+    }
+    featureFlagData={Object {}}
+    isOpen={false}
+    layerClassName="settingsPanelLayerHost"
+  />
 </div>
 `;
