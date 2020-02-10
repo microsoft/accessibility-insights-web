@@ -21,17 +21,13 @@ steps:
 
     - template: ./download-electron-mirror.yaml
 
-    - template: ./unified-e2e-test-interactive.yaml
-
-    - template: ./unified-e2e-publish-results.yaml
-
     - script: yarn build:unified:all --unified-version=$(Build.BuildNumber) --unified-canary-instrumentation-key=$(UnifiedCanaryInstrumentationKey) --unified-insider-instrumentation-key=$(UnifiedInsiderInstrumentationKey) --unified-prod-instrumentation-key=$(UnifiedProdInstrumentationKey)
       displayName: yarn build:unified:all
       env:
           ELECTRON_MIRROR: $(ELECTRON_MIRROR_VAR)
           ELECTRON_CUSTOM_DIR: $(ELECTRON_CUSTOM_DIR_VAR)
 
-    - script: node ../scripts/rezip.js $(System.DefaultWorkingDirectory)/drop/electron/unified-canary/packed
+    - script: node ./pipelines/scripts/rezip.js $(System.DefaultWorkingDirectory)/drop/electron/unified-canary/packed
       displayName: create zip file
       condition: eq(variables['Agent.OS'], 'Darwin')
 
