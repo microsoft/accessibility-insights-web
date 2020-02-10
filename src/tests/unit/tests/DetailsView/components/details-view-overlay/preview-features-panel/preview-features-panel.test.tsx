@@ -1,16 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
-import { Mock } from 'typemoq';
-
-import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import { GenericPanel } from '../../../../../DetailsView/components/generic-panel';
-import { PreviewFeaturesContainer } from '../../../../../DetailsView/components/details-view-overlay/preview-features-panel/preview-features-container';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { PreviewFeaturesContainer } from 'DetailsView/components/details-view-overlay/preview-features-panel/preview-features-container';
 import {
     PreviewFeaturesPanel,
     PreviewFeaturesPanelProps,
-} from '../../../../../DetailsView/components/details-view-overlay/preview-features-panel/preview-features-panel';
-import { PreviewFeatureFlagsHandler } from '../../../../../DetailsView/handlers/preview-feature-flags-handler';
+} from 'DetailsView/components/details-view-overlay/preview-features-panel/preview-features-panel';
+import { GenericPanel } from 'DetailsView/components/generic-panel';
+import { PreviewFeatureFlagsHandler } from 'DetailsView/handlers/preview-feature-flags-handler';
+import * as React from 'react';
+import { Mock } from 'typemoq';
 
 describe('PreviewFeaturesPanelTest', () => {
     test('constructor', () => {
