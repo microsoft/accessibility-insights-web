@@ -3,20 +3,20 @@
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import * as React from 'react';
 import { ContentPanel, ContentPanelDeps, ContentPanelProps } from 'views/content/content-panel';
-import { InspectActionMessageCreator } from '../../common/message-creators/inspect-action-message-creator';
-import { ScopingActionMessageCreator } from '../../common/message-creators/scoping-action-message-creator';
-import { DetailsViewStoreData } from '../../common/types/store-data/details-view-store-data';
-import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
-import { ScopingStoreData } from '../../common/types/store-data/scoping-store-data';
-import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
-import { PreviewFeatureFlagsHandler } from '../handlers/preview-feature-flags-handler';
-import { PreviewFeaturesPanel, PreviewFeaturesPanelProps } from './preview-features-panel';
-import { ScopingPanel, ScopingPanelProps } from './scoping-panel';
+import { InspectActionMessageCreator } from '../../../common/message-creators/inspect-action-message-creator';
+import { ScopingActionMessageCreator } from '../../../common/message-creators/scoping-action-message-creator';
+import { DetailsViewStoreData } from '../../../common/types/store-data/details-view-store-data';
+import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
+import { ScopingStoreData } from '../../../common/types/store-data/scoping-store-data';
+import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
+import { PreviewFeatureFlagsHandler } from '../../handlers/preview-feature-flags-handler';
+import { PreviewFeaturesPanel, PreviewFeaturesPanelProps } from '../preview-features-panel';
+import { ScopingPanel, ScopingPanelProps } from '../scoping-panel';
 import {
     SettingsPanel,
     SettingsPanelDeps,
     SettingsPanelProps,
-} from './settings-panel/settings-panel';
+} from '../settings-panel/settings-panel';
 
 export type DetailsViewOverlayDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;

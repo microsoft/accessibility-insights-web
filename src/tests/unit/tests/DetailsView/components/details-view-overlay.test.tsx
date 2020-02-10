@@ -13,7 +13,7 @@ import {
     DetailsViewOverlay,
     DetailsViewOverlayDeps,
     DetailsViewOverlayProps,
-} from '../../../../../DetailsView/components/details-view-overlay';
+} from '../../../../../DetailsView/components/details-view-overlay/details-view-overlay';
 import { SettingsProvider } from '../../../../../DetailsView/components/settings-panel/settings/settings-provider';
 import { PreviewFeatureFlagsHandler } from '../../../../../DetailsView/handlers/preview-feature-flags-handler';
 
