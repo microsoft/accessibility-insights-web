@@ -27,6 +27,10 @@ steps:
           ELECTRON_MIRROR: $(ELECTRON_MIRROR_VAR)
           ELECTRON_CUSTOM_DIR: $(ELECTRON_CUSTOM_DIR_VAR)
 
+    - script: rm $(System.DefaultWorkingDirectory)/drop/electron/unified-canary/packed/*.zip
+      displayName: remove original zip file
+      condition: eq(variables['Agent.OS'], 'Darwin')
+
     - script: node ./pipeline/scripts/rezip.js $(System.DefaultWorkingDirectory)/drop/electron/unified-canary/packed
       displayName: create zip file
       condition: eq(variables['Agent.OS'], 'Darwin')
