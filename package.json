@@ -116,7 +116,7 @@
         "terser-webpack-plugin": "^2.3.4",
         "ts-jest": "^25.2.0",
         "ts-loader": "^6.2.1",
-        "tslint": "^5.20.1",
+        "tslint": "^6.0.0",
         "tslint-microsoft-contrib": "6.2.0",
         "typed-scss-modules": "^1.1.0",
         "typemoq": "^2.1.0",
