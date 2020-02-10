@@ -4,7 +4,7 @@ import { resultSectionAutomationId } from 'common/components/cards/result-sectio
 import { ruleDetailsGroupAutomationId } from 'common/components/cards/rules-with-instances';
 import { IframeWarningContainerAutomationId } from 'DetailsView/components/iframe-warning';
 import { overviewHeadingAutomationId } from 'DetailsView/components/overview-content/overview-heading';
-import { settingsPanelAutomationId } from 'DetailsView/components/settings-panel/settings-panel';
+import { settingsPanelAutomationId } from 'DetailsView/components/details-view-overlay/settings-panel/settings-panel';
 import { startOverAutomationId } from 'DetailsView/components/start-over-component-factory';
 import { failureCountAutomationId } from 'reports/components/outcome-chip';
 import {

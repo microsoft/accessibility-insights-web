@@ -12,7 +12,7 @@ import { GenericToggle } from '../../../../../../../../DetailsView/components/ge
 import {
     TelemetrySettings,
     TelemetrySettingsProps,
-} from '../../../../../../../../DetailsView/components/settings-panel/settings/telemetry/telemetry-settings';
+} from '../../../../../../../../DetailsView/components/details-view-overlay/settings-panel/settings/telemetry/telemetry-settings';
 
 describe('TelemetrySettings', () => {
     const enableStates = [true, false];

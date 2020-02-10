@@ -7,8 +7,11 @@ import { Mock, Times } from 'typemoq';
 
 import { UserConfigMessageCreator } from '../../../../../../../../common/message-creators/user-config-message-creator';
 import { UserConfigurationStoreData } from '../../../../../../../../common/types/store-data/user-configuration-store';
-import { HighContrastSettings } from '../../../../../../../../DetailsView/components/settings-panel/settings/high-contrast/high-contrast-settings';
-import { SettingsDeps, SettingsProps } from '../../../../../../../../DetailsView/components/settings-panel/settings/settings-props';
+import { HighContrastSettings } from '../../../../../../../../DetailsView/components/details-view-overlay/settings-panel/settings/high-contrast/high-contrast-settings';
+import {
+    SettingsDeps,
+    SettingsProps,
+} from '../../../../../../../../DetailsView/components/details-view-overlay/settings-panel/settings/settings-props';
 
 describe('HighContrastSettings', () => {
     const enableStates = [true, false];

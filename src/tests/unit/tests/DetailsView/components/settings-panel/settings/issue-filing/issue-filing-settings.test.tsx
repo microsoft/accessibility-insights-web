@@ -3,8 +3,8 @@
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
-import { IssueFilingSettings } from 'DetailsView/components/settings-panel/settings/issue-filing/issue-filing-settings';
-import { SettingsDeps, SettingsProps } from 'DetailsView/components/settings-panel/settings/settings-props';
+import { IssueFilingSettings } from 'DetailsView/components/details-view-overlay/settings-panel/settings/issue-filing/issue-filing-settings';
+import { SettingsDeps, SettingsProps } from 'DetailsView/components/details-view-overlay/settings-panel/settings/settings-props';
 import { shallow } from 'enzyme';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from 'issue-filing/types/issue-filing-service';

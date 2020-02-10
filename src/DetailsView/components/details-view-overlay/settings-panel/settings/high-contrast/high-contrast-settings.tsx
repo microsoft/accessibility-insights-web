@@ -5,8 +5,8 @@ import {
     highContrastSettingsDescription,
 } from 'content/settings/high-contrast-mode';
 import * as React from 'react';
-import { NamedFC } from '../../../../../common/react/named-fc';
-import { GenericToggle } from '../../../generic-toggle';
+import { NamedFC } from '../../../../../../common/react/named-fc';
+import { GenericToggle } from '../../../../generic-toggle';
 import { SettingsProps } from '../settings-props';
 
 export const HighContrastSettings = NamedFC<SettingsProps>('HighContrastSettings', props => {

@@ -16,7 +16,7 @@ import {
     SettingsPanel,
     SettingsPanelDeps,
     SettingsPanelProps,
-} from '../settings-panel/settings-panel';
+} from './settings-panel/settings-panel';
 
 export type DetailsViewOverlayDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;

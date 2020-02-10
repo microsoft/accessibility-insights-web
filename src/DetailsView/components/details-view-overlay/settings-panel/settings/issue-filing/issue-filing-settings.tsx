@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedFC } from '../../../../../common/react/named-fc';
-import { IssueFilingSettingsContainer } from '../../../../../issue-filing/components/issue-filing-settings-container';
+import { NamedFC } from '../../../../../../common/react/named-fc';
+import { IssueFilingSettingsContainer } from '../../../../../../issue-filing/components/issue-filing-settings-container';
 import { SettingsProps } from '../settings-props';
 
 export const issueFilingTitleId = 'issue-filing-heading';

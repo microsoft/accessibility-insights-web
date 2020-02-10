@@ -14,7 +14,7 @@ import {
     DetailsViewOverlayDeps,
     DetailsViewOverlayProps,
 } from '../../../../../../DetailsView/components/details-view-overlay/details-view-overlay';
-import { SettingsProvider } from '../../../../../../DetailsView/components/settings-panel/settings/settings-provider';
+import { SettingsProvider } from '../../../../../../DetailsView/components/details-view-overlay/settings-panel/settings/settings-provider';
 import { PreviewFeatureFlagsHandler } from '../../../../../../DetailsView/handlers/preview-feature-flags-handler';
 
 describe('DetailsViewOverlay', () => {

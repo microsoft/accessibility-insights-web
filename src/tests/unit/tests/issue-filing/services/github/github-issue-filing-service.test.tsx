@@ -6,7 +6,7 @@ import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { IssueFilingServicePropertiesMap } from '../../../../../../common/types/store-data/user-configuration-store';
-import { SettingsDeps } from '../../../../../../DetailsView/components/settings-panel/settings/settings-props';
+import { SettingsDeps } from '../../../../../../DetailsView/components/details-view-overlay/settings-panel/settings/settings-props';
 import { OnPropertyUpdateCallback } from '../../../../../../issue-filing/components/issue-filing-settings-container';
 import { GitHubIssueFilingService } from '../../../../../../issue-filing/services/github/github-issue-filing-service';
 import { GitHubIssueFilingSettings } from '../../../../../../issue-filing/services/github/github-issue-filing-settings';

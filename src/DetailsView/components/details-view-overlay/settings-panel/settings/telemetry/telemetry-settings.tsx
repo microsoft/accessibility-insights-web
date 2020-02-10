@@ -5,9 +5,9 @@ import * as React from 'react';
 import {
     EnableTelemetrySettingDescription,
     EnableTelemetrySettingDescriptionProps,
-} from '../../../../../common/components/enable-telemetry-setting-description';
-import { NamedFC } from '../../../../../common/react/named-fc';
-import { GenericToggle } from '../../../generic-toggle';
+} from '../../../../../../common/components/enable-telemetry-setting-description';
+import { NamedFC } from '../../../../../../common/react/named-fc';
+import { GenericToggle } from '../../../../generic-toggle';
 import { SettingsProps } from '../settings-props';
 
 export type TelemetrySettingsProps = SettingsProps & EnableTelemetrySettingDescriptionProps;
