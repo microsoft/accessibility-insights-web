@@ -7,7 +7,7 @@ const fs = require('fs');
 
 const parentDir = process.argv[2];
 const files = fs.readdirSync(parentDir);
-const existingDmg = files.find(f => path.extname(f) === '.exe' && f.startsWith('Accessibility'));
+const existingDmg = files.find(f => path.extname(f) === '.dmg' && f.startsWith('Accessibility'));
 
 const appName = path.basename(existingDmg, path.extname(existingDmg));
 
