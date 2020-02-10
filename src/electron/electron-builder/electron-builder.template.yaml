@@ -26,7 +26,7 @@ linux:
 mac:
     artifactName: ${productName}.${ext}
     icon: TARGET_SPECIFIC
-    target: [dmg, zip] # zip is required because of electron-userland/electron-builder#2199
+    target: dmg #[dmg, zip] # zip is required because of electron-userland/electron-builder#2199
     identity: null
 
 win:
