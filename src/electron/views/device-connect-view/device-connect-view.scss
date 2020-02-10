@@ -5,43 +5,16 @@
 @import '../../../reports/components/outcome.scss';
 @import '../../../common/components/cards/fix-instruction-color-box.scss';
 
-body {
-    margin: 0px;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    background-color: $neutral-0;
-}
-
 .device-connect-view {
     -webkit-app-region: drag;
-}
 
-:global(.device-connect-view),
-:global(.automated-checks-view) {
     display: flex;
     flex-direction: column;
     height: 100%;
     width: 100%;
 
-    :global(.window-title) {
-        flex: 0 0 auto;
-    }
-
     .main-content-wrapper {
         flex: 1 1 auto;
         overflow: auto;
     }
-}
-
-button {
-    -webkit-app-region: no-drag;
-}
-
-input {
-    -webkit-app-region: no-drag;
-}
-
-.report-instance-table .label {
-    width: 127px;
 }

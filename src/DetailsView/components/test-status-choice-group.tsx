@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { isEqual } from 'lodash';
-import { ChoiceGroup, IChoiceGroup, IChoiceGroupOption } from 'office-ui-fabric-react/lib/ChoiceGroup';
-import { Icon } from 'office-ui-fabric-react/lib/Icon';
-import { Link } from 'office-ui-fabric-react/lib/Link';
+import { ChoiceGroup, IChoiceGroup, IChoiceGroupOption } from 'office-ui-fabric-react';
+import { Icon } from 'office-ui-fabric-react';
+import { Link } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { ManualTestStatus } from '../../common/types/manual-test-status';
@@ -25,7 +25,10 @@ interface ChoiceGroupState {
     selectedKey: string;
 }
 
-export class TestStatusChoiceGroup extends React.Component<TestStatusChoiceGroupProps, ChoiceGroupState> {
+export class TestStatusChoiceGroup extends React.Component<
+    TestStatusChoiceGroupProps,
+    ChoiceGroupState
+> {
     protected choiceGroup: IChoiceGroup;
 
     constructor(props) {
@@ -49,8 +52,16 @@ export class TestStatusChoiceGroup extends React.Component<TestStatusChoiceGroup
                         componentRef={this.compomentRef}
                         selectedKey={this.state.selectedKey}
                         options={[
-                            { key: ManualTestStatus[ManualTestStatus.PASS], text: 'Pass', onRenderLabel: this.onRenderLabel },
-                            { key: ManualTestStatus[ManualTestStatus.FAIL], text: 'Fail', onRenderLabel: this.onRenderLabel },
+                            {
+                                key: ManualTestStatus[ManualTestStatus.PASS],
+                                text: 'Pass',
+                                onRenderLabel: this.onRenderLabel,
+                            },
+                            {
+                                key: ManualTestStatus[ManualTestStatus.FAIL],
+                                text: 'Fail',
+                                onRenderLabel: this.onRenderLabel,
+                            },
                         ]}
                     />
                 </div>
@@ -86,7 +97,12 @@ export class TestStatusChoiceGroup extends React.Component<TestStatusChoiceGroup
 
     protected onChange = (ev: React.FocusEvent<HTMLElement>, option: IChoiceGroupOption): void => {
         this.setState({ selectedKey: option.key });
-        this.props.onGroupChoiceChange(ManualTestStatus[option.key], this.props.test, this.props.step, this.props.selector);
+        this.props.onGroupChoiceChange(
+            ManualTestStatus[option.key],
+            this.props.test,
+            this.props.step,
+            this.props.selector,
+        );
     };
 
     protected onUndoClicked = (): void => {

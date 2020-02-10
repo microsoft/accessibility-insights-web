@@ -74,7 +74,10 @@ export class AnalyzerController {
             const config = this.visualizationConfigurationFactory.getConfiguration(test);
             if (this.assessmentsProvider.isValidType(test)) {
                 this.assessmentsProvider.forType(test).requirements.forEach(stepConfig => {
-                    this.analyzers[stepConfig.key] = config.getAnalyzer(this.analyzerProvider, stepConfig.key);
+                    this.analyzers[stepConfig.key] = config.getAnalyzer(
+                        this.analyzerProvider,
+                        stepConfig.key,
+                    );
                 });
             } else {
                 const key = config.getIdentifier();
@@ -92,7 +95,9 @@ export class AnalyzerController {
 
     private hasInitializedStores(): boolean {
         return (
-            this.visualizationstore.getState() != null && this.scopingStore.getState() != null && this.featureFlagStore.getState() != null
+            this.visualizationstore.getState() != null &&
+            this.scopingStore.getState() != null &&
+            this.featureFlagStore.getState() != null
         );
     }
 }

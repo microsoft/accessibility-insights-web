@@ -20,7 +20,10 @@ export class ScrollingController {
     }
 
     public initialize(): void {
-        this.frameCommunicator.subscribe(ScrollingController.triggerScrollingCommand, this.onTriggerScrolling);
+        this.frameCommunicator.subscribe(
+            ScrollingController.triggerScrollingCommand,
+            this.onTriggerScrolling,
+        );
     }
 
     private onTriggerScrolling = (
@@ -57,7 +60,10 @@ export class ScrollingController {
         this.frameCommunicator.sendMessage(this.createFrameRequestMessage(frame, message));
     }
 
-    private createFrameRequestMessage(frame: HTMLIFrameElement, message: ScrollingWindowMessage): MessageRequest<ScrollingWindowMessage> {
+    private createFrameRequestMessage(
+        frame: HTMLIFrameElement,
+        message: ScrollingWindowMessage,
+    ): MessageRequest<ScrollingWindowMessage> {
         return {
             command: ScrollingController.triggerScrollingCommand,
             frame: frame,

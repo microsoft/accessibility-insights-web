@@ -5,7 +5,11 @@ import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data
 import { CheckData } from 'injected/element-based-view-model-creator';
 import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
 
-export type GetDecoratedAxeNodeCallback = (unifiedResult: UnifiedResult, rule: UnifiedRule, selector: string) => DecoratedAxeNodeResult;
+export type GetDecoratedAxeNodeCallback = (
+    unifiedResult: UnifiedResult,
+    rule: UnifiedRule,
+    selector: string,
+) => DecoratedAxeNodeResult;
 
 export const getDecoratedAxeNode: GetDecoratedAxeNodeCallback = (unifiedResult, rule, selector) => {
     return {

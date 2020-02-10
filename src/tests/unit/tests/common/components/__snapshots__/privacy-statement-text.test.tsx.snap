@@ -2,7 +2,8 @@
 
 exports[`PrivacyStatementPopupText renders 1`] = `
 <React.Fragment>
-  You can change this choice anytime in settings. 
+  You can change this choice anytime in settings.
+   
   <PrivacyStatementText
     deps={
       Object {
@@ -20,8 +21,9 @@ exports[`PrivacyStatementText renders 1`] = `
   <NewTabLink
     href="http://go.microsoft.com/fwlink/?LinkId=521839"
   >
-     privacy statement
+    privacy statement
   </NewTabLink>
-   to learn more.
+   
+  to learn more.
 </React.Fragment>
 `;

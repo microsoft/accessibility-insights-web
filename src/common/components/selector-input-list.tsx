@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as _ from 'lodash/index';
-import { DefaultButton, IconButton } from 'office-ui-fabric-react/lib/Button';
-import { FocusZone, FocusZoneDirection } from 'office-ui-fabric-react/lib/FocusZone';
-import { List } from 'office-ui-fabric-react/lib/List';
-import { ITextField, TextField } from 'office-ui-fabric-react/lib/TextField';
+import { DefaultButton, IconButton } from 'office-ui-fabric-react';
+import { FocusZone, FocusZoneDirection } from 'office-ui-fabric-react';
+import { List } from 'office-ui-fabric-react';
+import { ITextField, TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { SingleElementSelector } from '../types/store-data/scoping-store-data';
 
@@ -15,8 +15,16 @@ export interface SelectorInputListProps {
     inputType: string;
     inspectMode: string;
     instructions?: JSX.Element;
-    onAddSelector: (event: React.MouseEvent<HTMLButtonElement>, inputType: string, selector: string[]) => void;
-    onDeleteSelector: (event: React.MouseEvent<HTMLButtonElement>, inputType: string, selector: string[]) => void;
+    onAddSelector: (
+        event: React.MouseEvent<HTMLButtonElement>,
+        inputType: string,
+        selector: string[],
+    ) => void;
+    onDeleteSelector: (
+        event: React.MouseEvent<HTMLButtonElement>,
+        inputType: string,
+        selector: string[],
+    ) => void;
     onChangeInspectMode: (event: React.MouseEvent<HTMLButtonElement>, inspectType: string) => void;
 }
 
@@ -25,7 +33,10 @@ export interface SelectorInputListState {
     value: string;
 }
 
-export class SelectorInputList extends React.Component<SelectorInputListProps, SelectorInputListState> {
+export class SelectorInputList extends React.Component<
+    SelectorInputListProps,
+    SelectorInputListState
+> {
     private textField: ITextField;
     private emptyStringInitialValue = '';
 
@@ -68,13 +79,20 @@ export class SelectorInputList extends React.Component<SelectorInputListProps, S
                             text="Add Selector"
                         />
                         <IconButton
-                            iconProps={{ iconName: 'scopeTemplate', className: 'inspect-add-selector-button' }}
+                            iconProps={{
+                                iconName: 'scopeTemplate',
+                                className: 'inspect-add-selector-button',
+                            }}
                             onClick={this.onChangeSelectorHandler}
                         />
                     </div>
                 </div>
                 <FocusZone className="selector-focus-zone" direction={FocusZoneDirection.vertical}>
-                    <List className="selector-list" items={this.props.items} onRenderCell={this.onRenderCell} />
+                    <List
+                        className="selector-list"
+                        items={this.props.items}
+                        onRenderCell={this.onRenderCell}
+                    />
                 </FocusZone>
             </div>
         );
@@ -137,7 +155,9 @@ export class SelectorInputList extends React.Component<SelectorInputListProps, S
         this.props.onDeleteSelector(event, this.props.inputType, item);
     }
 
-    private getDeleteSelectorHandler = (item: string[]): ((event: React.MouseEvent<HTMLButtonElement>) => void) => {
+    private getDeleteSelectorHandler = (
+        item: string[],
+    ): ((event: React.MouseEvent<HTMLButtonElement>) => void) => {
         return (event: React.MouseEvent<HTMLButtonElement>) => {
             this.deleteSelector(event, item);
         };
@@ -147,7 +167,10 @@ export class SelectorInputList extends React.Component<SelectorInputListProps, S
         this.onChangeSelector(event, this.props.inspectMode);
     };
 
-    private onChangeSelector(event: React.MouseEvent<HTMLButtonElement>, inspectType: string): void {
+    private onChangeSelector(
+        event: React.MouseEvent<HTMLButtonElement>,
+        inspectType: string,
+    ): void {
         this.props.onChangeInspectMode(event, inspectType);
     }
 

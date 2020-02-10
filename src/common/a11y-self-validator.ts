@@ -3,7 +3,6 @@
 import { ScannerUtils } from '../injected/scanner-utils';
 import { ScanResults } from '../scanner/iruleresults';
 import { HTMLElementUtils } from './html-element-utils';
-import { createDefaultLogger } from './logging/default-logger';
 import { Logger } from './logging/logger';
 
 export interface LoggedRule {
@@ -22,7 +21,11 @@ export interface LoggedNode {
 }
 
 export class A11YSelfValidator {
-    constructor(private scannerUtils: ScannerUtils, private docUtils: HTMLElementUtils, private logger: Logger = createDefaultLogger()) {}
+    constructor(
+        private scannerUtils: ScannerUtils,
+        private docUtils: HTMLElementUtils,
+        private logger: Logger,
+    ) {}
 
     public validate(): void {
         this.scannerUtils.scan(null, this.logAxeResults);

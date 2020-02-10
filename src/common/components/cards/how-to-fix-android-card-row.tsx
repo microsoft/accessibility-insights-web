@@ -13,16 +13,19 @@ export interface HowToFixAndroidCardRowProps extends CardRowProps {
     propertyData: FormattableResolution;
 }
 
-export const HowToFixAndroidCardRow = NamedFC<HowToFixAndroidCardRowProps>('HowToFixAndroidCardRow', props => {
-    return (
-        <SimpleCardRow
-            label="How to fix"
-            content={<span>{getHowToFixContent(props)}</span>}
-            rowKey={`how-to-fix-row-${props.index}`}
-            contentClassName="how-to-fix-card-row"
-        />
-    );
-});
+export const HowToFixAndroidCardRow = NamedFC<HowToFixAndroidCardRowProps>(
+    'HowToFixAndroidCardRow',
+    props => {
+        return (
+            <SimpleCardRow
+                label="How to fix"
+                content={<span>{getHowToFixContent(props)}</span>}
+                rowKey={`how-to-fix-row-${props.index}`}
+                contentClassName="how-to-fix-card-row"
+            />
+        );
+    },
+);
 
 type HowToFixSplit = {
     str?: string;
@@ -63,7 +66,10 @@ function getHowToFixContent(props: HowToFixAndroidCardRowProps): (JSX.Element | 
     return result;
 }
 
-function getHowToFixSplitsForPattern(pattern: string, previousHowToFixSplit: HowToFixSplit[]): HowToFixSplit[] {
+function getHowToFixSplitsForPattern(
+    pattern: string,
+    previousHowToFixSplit: HowToFixSplit[],
+): HowToFixSplit[] {
     const newHowToFixSplit: HowToFixSplit[] = [];
 
     previousHowToFixSplit.forEach(prop => {

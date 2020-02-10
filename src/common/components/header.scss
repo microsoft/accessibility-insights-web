@@ -1,0 +1,64 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../common/styles/colors.scss';
+@import '../../common/styles/common.scss';
+@import '../../common/styles/fonts.scss';
+
+.header-bar {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: stretch;
+
+    background-color: $ada-brand-color;
+    height: $detailsViewHeaderBarHeight;
+    width: 100%;
+
+    :global(.header-icon) {
+        margin-left: 16px;
+        height: 22px;
+        flex-shrink: 0;
+    }
+
+    .header-title {
+        // Note: this is slightly off from the mock-up (which says 40px); we're using 32px
+        // temporarily until we add more complete reflow behavior for the header bar because
+        // 32px is just small enough for a user at default zoom levels to resize the window
+        // to the minimum 500px allowed by Chrome and not have the title get cut off.
+        margin-right: 32px;
+        margin-left: 8px;
+
+        color: $header-bar-title-color;
+        font-size: $fontSizeML;
+        font-family: $fontFamily;
+
+        @include ellipsedText();
+    }
+
+    .spacer {
+        flex: 1 1 auto;
+    }
+
+    .far-items {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-right: 12px;
+
+        button {
+            &,
+            &:focus,
+            &:hover,
+            &:active,
+            &:hover:active {
+                background-color: unset;
+            }
+        }
+
+        i {
+            font-size: 20px;
+            color: $neutral-0;
+        }
+    }
+}

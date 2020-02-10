@@ -1,8 +1,0 @@
-# Copyright (c) Microsoft Corporation. All rights reserved.
-# Licensed under the MIT License.
-steps:
-    - script: yarn replace:electron-mirror
-      displayName: replace open source build with local build
-      env:
-          ELECTRON_MIRROR: $(ELECTRON_MIRROR)
-          ELECTRON_CUSTOM_DIR: $(ELECTRON_CUSTOM_DIR)

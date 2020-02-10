@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DropdownClickHandler } from 'common/dropdown-click-handler';
+import { TelemetryEventSource } from 'common/extension-telemetry-events';
+import { DropdownActionMessageCreator } from 'common/message-creators/dropdown-action-message-creator';
 import { IMock, Mock, Times } from 'typemoq';
-
-import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
-import { TelemetryEventSource } from '../../../../common/extension-telemetry-events';
-import { DropdownActionMessageCreator } from '../../../../common/message-creators/dropdown-action-message-creator';
 import { EventStubFactory } from '../../common/event-stub-factory';
 
 describe('DropdownClickHandlerTest', () => {
@@ -45,6 +44,14 @@ describe('DropdownClickHandlerTest', () => {
         actionMessageCreatorMock.setup(acm => acm.openSettingsPanel(eventStub, sourceStub)).verifiable(Times.once());
 
         testSubject.openSettingsPanelHandler(eventStub);
+
+        actionMessageCreatorMock.verifyAll();
+    });
+
+    test('openDebugToolsHandler', () => {
+        actionMessageCreatorMock.setup(acm => acm.openDebugTools()).verifiable(Times.once());
+
+        testSubject.openDebugTools();
 
         actionMessageCreatorMock.verifyAll();
     });

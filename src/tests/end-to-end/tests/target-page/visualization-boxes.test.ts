@@ -13,7 +13,10 @@ describe('Target Page visualization boxes', () => {
     let popupPage: PopupPage;
 
     beforeEach(async () => {
-        browser = await launchBrowser({ suppressFirstTimeDialog: true, addLocalhostToPermissions: true });
+        browser = await launchBrowser({
+            suppressFirstTimeDialog: true,
+            addExtraPermissionsToManifest: 'fake-activeTab',
+        });
         targetPage = await browser.newTargetPage();
         popupPage = await browser.newPopupPage(targetPage);
         await popupPage.gotoAdhocPanel();
@@ -28,12 +31,21 @@ describe('Target Page visualization boxes', () => {
 
     const adhocTools = ['Landmarks', 'Headings', 'Automated checks'];
 
-    it.each(adhocTools)('for adhoc tool "%s" should pass accessibility validation', async adhocTool => {
-        await popupPage.enableToggleByAriaLabel(adhocTool);
+    it.each(adhocTools)(
+        'for adhoc tool "%s" should pass accessibility validation',
+        async adhocTool => {
+            await popupPage.enableToggleByAriaLabel(adhocTool);
 
-        await targetPage.waitForSelectorInShadowRoot(TargetPageInjectedComponentSelectors.insightsVisualizationBox, { visible: true });
+            await targetPage.waitForSelectorInShadowRoot(
+                TargetPageInjectedComponentSelectors.insightsVisualizationBox,
+                { visible: true },
+            );
 
-        const results = await scanForAccessibilityIssues(targetPage, TargetPageInjectedComponentSelectors.insightsRootContainer);
-        expect(results).toHaveLength(0);
-    });
+            const results = await scanForAccessibilityIssues(
+                targetPage,
+                TargetPageInjectedComponentSelectors.insightsRootContainer,
+            );
+            expect(results).toHaveLength(0);
+        },
+    );
 });

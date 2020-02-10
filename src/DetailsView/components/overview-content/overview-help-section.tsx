@@ -14,11 +14,14 @@ export interface OverviewHelpSectionProps {
     linkDataSource: HyperlinkDefinition[];
 }
 
-export const OverviewHelpSection = NamedFC('OverviewHelpSection', (props: OverviewHelpSectionProps) => {
-    return (
-        <section className={styles.overviewHelpContainer}>
-            <h3 className={styles.helpHeading}>Help</h3>
-            <HelpLinks linkInformation={props.linkDataSource} deps={props.deps} />
-        </section>
-    );
-});
+export const OverviewHelpSection = NamedFC(
+    'OverviewHelpSection',
+    (props: OverviewHelpSectionProps) => {
+        return (
+            <section className={styles.overviewHelpContainer}>
+                <h3 className={styles.helpHeading}>Help</h3>
+                <HelpLinks linkInformation={props.linkDataSource} deps={props.deps} />
+            </section>
+        );
+    },
+);

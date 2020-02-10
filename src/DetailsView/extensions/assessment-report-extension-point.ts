@@ -7,4 +7,7 @@ const defaultComponent = {
     alterRequirementReportModel: (model: RequirementReportModel) => {},
 };
 
-export const assessmentReportExtensionPoint = createCallChainExtensionPoint('assessmentReportExtensionPoint', defaultComponent);
+export const assessmentReportExtensionPoint = createCallChainExtensionPoint(
+    'assessmentReportExtensionPoint',
+    defaultComponent,
+);

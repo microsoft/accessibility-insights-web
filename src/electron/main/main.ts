@@ -1,30 +1,37 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FileSystemConfiguration } from 'common/configuration/file-system-configuration';
 import { app, BrowserWindow } from 'electron';
+import log from 'electron-log';
 import { autoUpdater } from 'electron-updater';
 import { AutoUpdaterClient } from 'electron/auto-update/auto-updater-client';
+import { getElectronIconPath } from 'electron/common/get-electron-icon-path';
 import { OSType, PlatformInfo } from 'electron/window-management/platform-info';
 import * as path from 'path';
+import { mainWindowConfig } from './main-window-config';
 
 let mainWindow: BrowserWindow;
 const platformInfo = new PlatformInfo(process);
+const os = platformInfo.getOs();
+const config = new FileSystemConfiguration();
 
-const electronAutoUpdateCheck = new AutoUpdaterClient(autoUpdater);
+log.transports.file.level = 'info';
+autoUpdater.logger = log;
+
 let recurringUpdateCheck;
+const electronAutoUpdateCheck = new AutoUpdaterClient(autoUpdater);
 
 const createWindow = () => {
-    recurringUpdateCheck = setupRecurringUpdateCheck();
-    const os = platformInfo.getOs();
     mainWindow = new BrowserWindow({
         show: false,
         webPreferences: { nodeIntegration: true },
         titleBarStyle: 'hidden',
-        width: 600,
-        height: 391,
+        width: mainWindowConfig.defaultWidth,
+        height: mainWindowConfig.defaultHeight,
         frame: os === OSType.Mac,
-        minHeight: 300,
-        minWidth: 400,
-        icon: path.resolve(__dirname, '../icons/brand/blue/brand-blue-512px.png'),
+        minHeight: mainWindowConfig.minHeight,
+        minWidth: mainWindowConfig.minWidth,
+        icon: getElectronIconPath(config, os),
     });
     if (platformInfo.isMac()) {
         // We need this so that if there are any system dialog, they will not be placed on top of the title bar.
@@ -41,6 +48,19 @@ const createWindow = () => {
         mainWindow.show();
         enableDevMode(mainWindow);
     });
+
+    mainWindow.on('closed', () => {
+        // Dereference the window object, to force garbage collection
+        mainWindow = null;
+    });
+
+    electronAutoUpdateCheck
+        .check()
+        .then(() => {
+            console.log('checked for updates');
+            setupRecurringUpdateCheck();
+        })
+        .catch(console.log);
 };
 
 const enableDevMode = (window: BrowserWindow) => {
@@ -52,7 +72,7 @@ const enableDevMode = (window: BrowserWindow) => {
 };
 
 const setupRecurringUpdateCheck = () => {
-    return setInterval(async () => {
+    recurringUpdateCheck = setInterval(async () => {
         await electronAutoUpdateCheck.check();
     }, 60 * 60 * 1000);
 };
@@ -61,4 +81,5 @@ app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
     clearInterval(recurringUpdateCheck);
+    app.quit();
 });

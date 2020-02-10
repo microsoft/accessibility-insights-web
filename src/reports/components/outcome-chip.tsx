@@ -6,6 +6,8 @@ import * as React from 'react';
 import { OutcomeIcon } from './outcome-icon';
 import { OutcomeType, outcomeTypeSemantics } from './outcome-type';
 
+export const failureCountAutomationId = 'count';
+
 interface OutcomeChipProps {
     outcomeType: OutcomeType;
     count: number;
@@ -22,7 +24,11 @@ export const OutcomeChip = NamedFC<OutcomeChipProps>('OutcomeChip', props => {
             <span className="icon">
                 <OutcomeIcon outcomeType={outcomeType} />
             </span>
-            <span className="count" aria-hidden="true">
+            <span
+                data-automation-id={failureCountAutomationId}
+                className="count"
+                aria-hidden="true"
+            >
                 {' '}
                 {count}
             </span>

@@ -5,11 +5,9 @@ import { DictionaryStringTo } from '../types/common-types';
 
 export class DetailsViewController {
     private tabIdToDetailsViewMap: DictionaryStringTo<number> = {};
-    private browserAdapter: BrowserAdapter;
     private detailsViewRemovedHandler: (tabId: number) => void;
 
-    constructor(adapter: BrowserAdapter) {
-        this.browserAdapter = adapter;
+    constructor(private readonly browserAdapter: BrowserAdapter) {
         this.browserAdapter.addListenerToTabsOnRemoved(this.onRemoveTab);
         this.browserAdapter.addListenerToTabsOnUpdated(this.onUpdateTab);
     }
@@ -18,20 +16,17 @@ export class DetailsViewController {
         this.detailsViewRemovedHandler = handler;
     }
 
-    public showDetailsView(targetTabId: number): void {
+    public async showDetailsView(targetTabId: number): Promise<void> {
         const detailsViewTabId = this.tabIdToDetailsViewMap[targetTabId];
 
         if (detailsViewTabId != null) {
-            this.browserAdapter.switchToTab(detailsViewTabId);
+            await this.browserAdapter.switchToTab(detailsViewTabId);
             return;
         }
 
-        this.browserAdapter.createTabInNewWindow(
-            this.getDetailsUrl(targetTabId),
-            (tab: chrome.tabs.Tab) => {
-                this.tabIdToDetailsViewMap[targetTabId] = tab.id;
-            },
-        );
+        const tab = await this.browserAdapter.createTabInNewWindow(this.getDetailsUrl(targetTabId));
+
+        this.tabIdToDetailsViewMap[targetTabId] = tab.id;
     }
 
     private onUpdateTab = (

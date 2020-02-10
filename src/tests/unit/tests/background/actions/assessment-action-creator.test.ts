@@ -311,7 +311,7 @@ describe('AssessmentActionCreatorTest', () => {
 
         const resetDataMock = createActionMock(payload);
         const actionsMock = createActionsMock('resetData', resetDataMock.object);
-        const interpreterMock = createInterpreterMock(AssessmentMessages.StartOver, payload);
+        const interpreterMock = createInterpreterMock(AssessmentMessages.StartOverTest, payload);
 
         const testSubject = new AssessmentActionCreator(interpreterMock.object, actionsMock.object, telemetryEventHandlerMock.object);
 

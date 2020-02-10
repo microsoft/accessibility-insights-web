@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-const path = require('path');
-
 module.exports = function(grunt) {
     const webStoreAccount = {
         client_id: grunt.option('webstore-client-id'),
@@ -12,6 +10,7 @@ module.exports = function(grunt) {
 
     const options = {
         appInsightsInstrumentationKey: grunt.option('app-insights-instrumentation-key'),
+        electronUpdateURL: grunt.option('electron-update-url'),
         extensionVersion: grunt.option('extension-version'),
         webstoreAppId: grunt.option('webstore-app-id'),
     };
@@ -29,7 +28,9 @@ module.exports = function(grunt) {
                 cwd: 'product',
                 src: '**/*',
                 expand: true,
-                options: { archive: 'extension.zip' },
+                options: {
+                    archive: 'extension.zip',
+                },
             },
         },
         webstore_upload: {
@@ -37,17 +38,24 @@ module.exports = function(grunt) {
                 default: webStoreAccount,
             },
             extensions: {
-                open: { appID: options.webstoreAppId, zip: 'extension.zip' },
+                open: {
+                    appID: options.webstoreAppId,
+                    zip: 'extension.zip',
+                },
             },
+            onError: e => grunt.fail.fatal(e.errorMsg),
         },
     });
 
     grunt.loadNpmTasks('grunt-contrib-compress');
     grunt.loadNpmTasks('grunt-webstore-upload');
 
-    const versionFromDate = () => {
+    const versionFromDate = () => makeVersionFromDateString('.');
+
+    const makeVersionFromDateString = lastSeperator => {
         const now = new Date();
-        return `${now.getUTCFullYear()}.${now.getUTCMonth() + 1}.${now.getUTCDate()}.${now.getUTCHours() * 100 + now.getUTCMinutes()}`;
+        return `${now.getUTCFullYear()}.${now.getUTCMonth() + 1}.${now.getUTCDate()}${lastSeperator}${now.getUTCHours() * 100 +
+            now.getUTCMinutes()}`;
     };
 
     grunt.registerTask('update-config', function() {
@@ -73,6 +81,7 @@ module.exports = function(grunt) {
             version = versionFromDate();
         }
         manifest.version = version;
+        grunt.log.writeln(`publishing ai-web version ${version}`);
         grunt.file.write(manifestPath, JSON.stringify(manifest, undefined, 4));
     });
     grunt.registerTask('zip', ['update-config', 'update-manifest', 'compress:extension']);

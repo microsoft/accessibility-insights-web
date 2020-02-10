@@ -30,7 +30,8 @@ describe('NavigatorUtils', () => {
             const navigatorInfo = {
                 userAgent: userAgent,
             };
-            const testSubject = new NavigatorUtils(navigatorInfo as Navigator);
+            const loggerMock = Mock.ofType<Logger>();
+            const testSubject = new NavigatorUtils(navigatorInfo as Navigator, loggerMock.object);
             const actual = testSubject.getBrowserSpec();
             expect(actual).toEqual(expected);
         }
@@ -60,11 +61,12 @@ describe('NavigatorUtils', () => {
         });
 
         it('passes through to the underlying Clipboard in the happy path', async () => {
+            const loggerMock = Mock.ofType<Logger>();
             const clipboardMock = Mock.ofType<Clipboard>();
             const mockNavigatorInfo = {
                 clipboard: clipboardMock.object,
             } as Navigator;
-            const testSubject = new NavigatorUtils(mockNavigatorInfo);
+            const testSubject = new NavigatorUtils(mockNavigatorInfo, loggerMock.object);
 
             const testText = 'test text';
             clipboardMock

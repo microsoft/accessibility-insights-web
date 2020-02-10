@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ActionButton } from 'office-ui-fabric-react/lib/Button';
+import { ActionButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
@@ -18,19 +18,22 @@ export type ContentPanelButtonProps = {
     iconName: string;
 };
 
-export const ContentPanelButton = NamedFC<ContentPanelButtonProps>('ContentPanelButton', ({ deps, reference, children, iconName }) => {
-    const { contentProvider, contentActionMessageCreator } = deps;
+export const ContentPanelButton = NamedFC<ContentPanelButtonProps>(
+    'ContentPanelButton',
+    ({ deps, reference, children, iconName }) => {
+        const { contentProvider, contentActionMessageCreator } = deps;
 
-    if (!reference) {
-        return null;
-    }
+        if (!reference) {
+            return null;
+        }
 
-    const contentPath = contentProvider.pathFromReference(reference);
-    const onClick = ev => contentActionMessageCreator.openContentPanel(ev, contentPath);
+        const contentPath = contentProvider.pathFromReference(reference);
+        const onClick = ev => contentActionMessageCreator.openContentPanel(ev, contentPath);
 
-    return (
-        <ActionButton iconProps={{ iconName }} onClick={onClick}>
-            {children}
-        </ActionButton>
-    );
-});
+        return (
+            <ActionButton iconProps={{ iconName }} onClick={onClick}>
+                {children}
+            </ActionButton>
+        );
+    },
+);

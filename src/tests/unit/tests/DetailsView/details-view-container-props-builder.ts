@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
+import { ISelection } from 'office-ui-fabric-react';
 import { BaseStore } from '../../../../common/base-store';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
@@ -10,7 +10,7 @@ import { ScopingActionMessageCreator } from '../../../../common/message-creators
 import { StoreActionMessageCreator } from '../../../../common/message-creators/store-action-message-creator';
 import { BaseClientStoresHub } from '../../../../common/stores/base-client-stores-hub';
 import { AssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
-import { DetailsViewData } from '../../../../common/types/store-data/details-view-data';
+import { DetailsViewStoreData } from '../../../../common/types/store-data/details-view-store-data';
 import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import { UnifiedScanResultStoreData } from '../../../../common/types/store-data/unified-data-interface';
@@ -32,7 +32,7 @@ export class DetailsViewContainerPropsBuilder {
     private tabStore: BaseStore<TabStoreData>;
     private featureFlagStore: BaseStore<DictionaryStringTo<boolean>>;
     private scopingStateStore: BaseStore<ScopingStoreData>;
-    private detailsViewStore: BaseStore<DetailsViewData>;
+    private detailsViewStore: BaseStore<DetailsViewStoreData>;
     private scopingActionMessageCreator: ScopingActionMessageCreator;
     private inspectActionMessageCreator: InspectActionMessageCreator;
     private storeActionCreator: StoreActionMessageCreator;

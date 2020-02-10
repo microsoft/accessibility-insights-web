@@ -42,9 +42,18 @@ export class TabStopsListener {
     }
 
     public initialize(): void {
-        this.frameCommunicator.subscribe(TabStopsListener.startListeningCommand, this.onStartListenToTabStops);
-        this.frameCommunicator.subscribe(TabStopsListener.getTabbedElementsCommand, this.onGetTabbedElements);
-        this.frameCommunicator.subscribe(TabStopsListener.stopListeningCommand, this.onStopListenToTabStops);
+        this.frameCommunicator.subscribe(
+            TabStopsListener.startListeningCommand,
+            this.onStartListenToTabStops,
+        );
+        this.frameCommunicator.subscribe(
+            TabStopsListener.getTabbedElementsCommand,
+            this.onGetTabbedElements,
+        );
+        this.frameCommunicator.subscribe(
+            TabStopsListener.stopListeningCommand,
+            this.onStopListenToTabStops,
+        );
     }
 
     public setTabEventListenerOnMainWindow(callback: (tabbedItems: TabStopEvent) => void): void {
@@ -169,6 +178,8 @@ export class TabStopsListener {
     };
 
     private getAllFrames(): HTMLCollectionOf<HTMLIFrameElement> {
-        return this.htmlElementUtils.getAllElementsByTagName('iframe') as HTMLCollectionOf<HTMLIFrameElement>;
+        return this.htmlElementUtils.getAllElementsByTagName('iframe') as HTMLCollectionOf<
+            HTMLIFrameElement
+        >;
     }
 }

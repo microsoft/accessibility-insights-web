@@ -2,12 +2,13 @@
 
 exports[`SettingsPanelTest render - isPanelOpen = false 1`] = `
 <GenericPanel
-  className="settings-panel"
+  className="settingsPanel"
   closeButtonAriaLabel="Close settings panel"
   hasCloseButton={true}
+  headerText="Settings"
+  innerPanelAutomationId="settings-panel"
   isOpen={false}
   onDismiss={[Function]}
-  title="Settings"
 >
   <TestSettings
     deps={
@@ -71,12 +72,13 @@ exports[`SettingsPanelTest render - isPanelOpen = false 1`] = `
 
 exports[`SettingsPanelTest render - isPanelOpen = true 1`] = `
 <GenericPanel
-  className="settings-panel"
+  className="settingsPanel"
   closeButtonAriaLabel="Close settings panel"
   hasCloseButton={true}
+  headerText="Settings"
+  innerPanelAutomationId="settings-panel"
   isOpen={true}
   onDismiss={[Function]}
-  title="Settings"
 >
   <TestSettings
     deps={

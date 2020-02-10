@@ -2,17 +2,38 @@
 // Licensed under the MIT License.
 import { AssessmentCommandBar } from 'DetailsView/components/assessment-command-bar';
 import { AutomatedChecksCommandBar } from 'DetailsView/components/automated-checks-command-bar';
-import { CommandBarProps, ReportExportComponentFactory, StartOverComponentFactory } from 'DetailsView/components/details-view-command-bar';
+import {
+    CommandBarProps,
+    ReportExportComponentFactory,
+    StartOverComponentFactory,
+} from 'DetailsView/components/details-view-command-bar';
 import {
     getReportExportComponentForAssessment,
     getReportExportComponentForFastPass,
 } from 'DetailsView/components/report-export-component-factory';
-import { getStartOverComponentForAssessment, getStartOverComponentForFastPass } from 'DetailsView/components/start-over-component-factory';
+import {
+    getStartOverComponentForAssessment,
+    getStartOverComponentForFastPass,
+} from 'DetailsView/components/start-over-component-factory';
+import {
+    assessmentWarningConfiguration,
+    fastpassWarningConfiguration,
+    WarningConfiguration,
+} from 'DetailsView/components/warning-configuration';
+
 import { ReactFCWithDisplayName } from '../../common/react/named-fc';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../common/types/visualization-type';
-import { AssessmentLeftNav, AssessmentLeftNavDeps, AssessmentLeftNavProps } from './left-nav/assessment-left-nav';
-import { FastPassLeftNav, FastPassLeftNavDeps, FastPassLeftNavProps } from './left-nav/fast-pass-left-nav';
+import {
+    AssessmentLeftNav,
+    AssessmentLeftNavDeps,
+    AssessmentLeftNavProps,
+} from './left-nav/assessment-left-nav';
+import {
+    FastPassLeftNav,
+    FastPassLeftNavDeps,
+    FastPassLeftNavProps,
+} from './left-nav/fast-pass-left-nav';
 import {
     getAssessmentSelectedDetailsView,
     getFastPassSelectedDetailsView,
@@ -36,6 +57,7 @@ export type DetailsViewSwitcherNavConfiguration = Readonly<{
     StartOverComponentFactory: StartOverComponentFactory;
     LeftNav: ReactFCWithDisplayName<LeftNavProps>;
     getSelectedDetailsView: (props: GetSelectedDetailsViewProps) => VisualizationType;
+    warningConfiguration: WarningConfiguration;
 }>;
 
 type InternalDetailsViewSwitcherNavConfiguration = Readonly<{
@@ -44,19 +66,23 @@ type InternalDetailsViewSwitcherNavConfiguration = Readonly<{
     StartOverComponentFactory: StartOverComponentFactory;
     LeftNav: ReactFCWithDisplayName<InternalLeftNavProps>;
     getSelectedDetailsView: (props: GetSelectedDetailsViewProps) => VisualizationType;
+    warningConfiguration: WarningConfiguration;
 }>;
 
 export type GetDetailsSwitcherNavConfigurationProps = {
     selectedDetailsViewPivot: DetailsViewPivotType;
 };
 
-const detailsViewSwitcherNavs: { [key in DetailsViewPivotType]: InternalDetailsViewSwitcherNavConfiguration } = {
+const detailsViewSwitcherNavs: {
+    [key in DetailsViewPivotType]: InternalDetailsViewSwitcherNavConfiguration;
+} = {
     [DetailsViewPivotType.assessment]: {
         CommandBar: AssessmentCommandBar,
         ReportExportComponentFactory: getReportExportComponentForAssessment,
         StartOverComponentFactory: getStartOverComponentForAssessment,
         LeftNav: AssessmentLeftNav,
         getSelectedDetailsView: getAssessmentSelectedDetailsView,
+        warningConfiguration: assessmentWarningConfiguration,
     },
     [DetailsViewPivotType.fastPass]: {
         CommandBar: AutomatedChecksCommandBar,
@@ -64,18 +90,18 @@ const detailsViewSwitcherNavs: { [key in DetailsViewPivotType]: InternalDetailsV
         StartOverComponentFactory: getStartOverComponentForFastPass,
         LeftNav: FastPassLeftNav,
         getSelectedDetailsView: getFastPassSelectedDetailsView,
-    },
-    [DetailsViewPivotType.allTest]: {
-        CommandBar: null,
-        ReportExportComponentFactory: null,
-        StartOverComponentFactory: null,
-        LeftNav: null,
-        getSelectedDetailsView: null,
+        warningConfiguration: fastpassWarningConfiguration,
     },
 };
 
-export type GetDetailsSwitcherNavConfiguration = (props: GetDetailsSwitcherNavConfigurationProps) => DetailsViewSwitcherNavConfiguration;
+export type GetDetailsSwitcherNavConfiguration = (
+    props: GetDetailsSwitcherNavConfigurationProps,
+) => DetailsViewSwitcherNavConfiguration;
 
-export const GetDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration = (props: GetDetailsSwitcherNavConfigurationProps) => {
-    return detailsViewSwitcherNavs[props.selectedDetailsViewPivot] as DetailsViewSwitcherNavConfiguration;
+export const GetDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration = (
+    props: GetDetailsSwitcherNavConfigurationProps,
+) => {
+    return detailsViewSwitcherNavs[
+        props.selectedDetailsViewPivot
+    ] as DetailsViewSwitcherNavConfiguration;
 };

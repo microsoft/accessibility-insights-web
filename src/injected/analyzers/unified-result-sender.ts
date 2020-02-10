@@ -1,5 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ScanIncompleteWarningsTelemetryData } from 'common/extension-telemetry-events';
+import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
+import { isEmpty } from 'lodash';
 import { UnifiedScanCompletedPayload } from '../../background/actions/action-payloads';
 import { EnvironmentInfoProvider } from '../../common/environment-info-provider';
 import { Messages } from '../../common/messages';
@@ -16,17 +19,33 @@ export class UnifiedResultSender {
         private readonly convertScanResultsToUnifiedRules: ConvertScanResultsToUnifiedRulesDelegate,
         private readonly environmentInfoProvider: EnvironmentInfoProvider,
         private readonly generateUID: UUIDGenerator,
+        private readonly scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
     ) {}
 
     public sendResults: PostResolveCallback = (axeResults: AxeAnalyzerResult) => {
+        const scanIncompleteWarnings = this.scanIncompleteWarningDetector.detectScanIncompleteWarnings();
+
+        let telemetry: ScanIncompleteWarningsTelemetryData = null;
+
+        if (!isEmpty(scanIncompleteWarnings)) {
+            telemetry = {
+                scanIncompleteWarnings,
+            };
+        }
+
         const payload: UnifiedScanCompletedPayload = {
-            scanResult: this.convertScanResultsToUnifiedResults(axeResults.originalResult, this.generateUID),
+            scanResult: this.convertScanResultsToUnifiedResults(
+                axeResults.originalResult,
+                this.generateUID,
+            ),
             rules: this.convertScanResultsToUnifiedRules(axeResults.originalResult),
             toolInfo: this.environmentInfoProvider.getToolData(),
             targetAppInfo: {
                 name: axeResults.originalResult.targetPageTitle,
                 url: axeResults.originalResult.targetPageUrl,
             },
+            scanIncompleteWarnings,
+            telemetry,
         };
 
         this.sendMessage({

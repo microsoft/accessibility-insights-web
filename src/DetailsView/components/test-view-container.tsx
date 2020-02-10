@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
+import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
+import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
+import { ISelection } from 'office-ui-fabric-react';
 
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { NamedFC } from '../../common/react/named-fc';
@@ -43,10 +45,14 @@ export interface TestViewContainerProps {
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
     cardsViewData: CardsViewModel;
+    switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
+    scanIncompleteWarnings: ScanIncompleteWarningId[];
 }
 
 export const TestViewContainer = NamedFC<TestViewContainerProps>('TestViewContainer', props => {
-    const configuration = props.visualizationConfigurationFactory.getConfiguration(props.selectedTest);
+    const configuration = props.visualizationConfigurationFactory.getConfiguration(
+        props.selectedTest,
+    );
     const testViewProps = { configuration, ...props };
     return configuration.getTestView(testViewProps);
 });

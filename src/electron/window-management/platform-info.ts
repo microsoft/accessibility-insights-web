@@ -24,4 +24,8 @@ export class PlatformInfo {
     public isMac(): boolean {
         return this.getOs() === OSType.Mac;
     }
+
+    public getOsName(): string {
+        return this.currentProcess.platform || null;
+    }
 }

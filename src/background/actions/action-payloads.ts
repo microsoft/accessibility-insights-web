@@ -10,6 +10,7 @@ import { Tab } from 'common/itab';
 import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { ManualTestStatus } from 'common/types/manual-test-status';
+import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import {
     PlatformData,
     ScreenshotData,
@@ -161,6 +162,7 @@ export interface UnifiedScanCompletedPayload extends BaseActionPayload {
     rules: UnifiedRule[];
     toolInfo: ToolData;
     targetAppInfo: TargetAppData;
+    scanIncompleteWarnings: ScanIncompleteWarningId[];
     screenshotData?: ScreenshotData;
     platformInfo?: PlatformData;
 }
@@ -176,6 +178,10 @@ export interface CardSelectionPayload extends BaseActionPayload {
 
 export interface PopupInitializedPayload extends BaseActionPayload {
     tab: Tab;
+}
+
+export interface SetAllUrlsPermissionStatePayload extends BaseActionPayload {
+    hasAllUrlAndFilePermissions: boolean;
 }
 
 export type ExistingTabUpdatedPayload = BaseActionPayload & Tab;

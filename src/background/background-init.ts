@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { AppInsights } from 'applicationinsights-js';
 import { Assessments } from 'assessments/assessments';
-
 import { AxeInfo } from '../common/axe-info';
 import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -19,16 +18,16 @@ import { UrlValidator } from '../common/url-validator';
 import { WindowUtils } from '../common/window-utils';
 import { title } from '../content/strings/application';
 import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-service-provider-impl';
-import { ChromeCommandHandler } from './chrome-command-handler';
+import { BrowserMessageBroadcasterFactory } from './browser-message-broadcaster-factory';
 import { DetailsViewController } from './details-view-controller';
 import { DevToolsListener } from './dev-tools-listener';
 import { getPersistedData } from './get-persisted-data';
 import { GlobalContextFactory } from './global-context-factory';
 import { IndexedDBDataKeys } from './IndexedDBDataKeys';
+import { KeyboardShortcutHandler } from './keyboard-shortcut-handler';
 import { deprecatedStorageDataKeys, storageDataKeys } from './local-storage-data-keys';
 import { MessageDistributor } from './message-distributor';
 import { TabToContextMap } from './tab-context';
-import { TabContextBroadcaster } from './tab-context-broadcaster';
 import { TabContextFactory } from './tab-context-factory';
 import { TargetPageController } from './target-page-controller';
 import { TargetTabController } from './target-tab-controller';
@@ -65,7 +64,9 @@ async function initialize(): Promise<void> {
     const assessmentsProvider = Assessments;
     const windowUtils = new WindowUtils();
     const telemetryDataFactory = new TelemetryDataFactory();
-    const telemetryLogger = new TelemetryLogger();
+
+    const logger = createDefaultLogger();
+    const telemetryLogger = new TelemetryLogger(logger);
 
     const { installationData } = userData;
     const telemetryClient = getTelemetryClient(
@@ -79,14 +80,14 @@ async function initialize(): Promise<void> {
 
     const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
 
-    const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
+    const browserSpec = new NavigatorUtils(window.navigator, logger).getBrowserSpec();
     const environmentInfoProvider = new EnvironmentInfoProvider(
         browserAdapter.getVersion(),
         browserSpec,
         AxeInfo.Default.version,
     );
 
-    const globalContext = GlobalContextFactory.createContext(
+    const globalContext = await GlobalContextFactory.createContext(
         browserAdapter,
         telemetryEventHandler,
         userData,
@@ -98,6 +99,7 @@ async function initialize(): Promise<void> {
         environmentInfoProvider.getEnvironmentInfo(),
         browserAdapter,
         browserAdapter,
+        logger,
     );
     telemetryLogger.initialize(globalContext.featureFlagsController);
 
@@ -107,7 +109,7 @@ async function initialize(): Promise<void> {
     );
     telemetryStateListener.initialize();
 
-    const broadcaster = new TabContextBroadcaster(browserAdapter);
+    const messageBroadcasterFactory = new BrowserMessageBroadcasterFactory(browserAdapter, logger);
     const detailsViewController = new DetailsViewController(browserAdapter);
 
     const tabToContextMap: TabToContextMap = {};
@@ -116,9 +118,10 @@ async function initialize(): Promise<void> {
     const notificationCreator = new NotificationCreator(
         browserAdapter,
         visualizationConfigurationFactory,
+        logger,
     );
 
-    const chromeCommandHandler = new ChromeCommandHandler(
+    const keyboardShortcutHandler = new KeyboardShortcutHandler(
         tabToContextMap,
         browserAdapter,
         urlValidator,
@@ -127,13 +130,15 @@ async function initialize(): Promise<void> {
         telemetryDataFactory,
         globalContext.stores.userConfigurationStore,
         browserAdapter,
+        logger,
     );
-    chromeCommandHandler.initialize();
+    keyboardShortcutHandler.initialize();
 
     const messageDistributor = new MessageDistributor(
         globalContext,
         tabToContextMap,
         browserAdapter,
+        logger,
     );
     messageDistributor.initialize();
 
@@ -152,18 +157,19 @@ async function initialize(): Promise<void> {
         globalContext.stores.assessmentStore,
         assessmentsProvider,
         promiseFactory,
+        logger,
     );
 
-    const clientHandler = new TargetPageController(
+    const targetPageController = new TargetPageController(
         tabToContextMap,
-        broadcaster,
+        messageBroadcasterFactory,
         browserAdapter,
         detailsViewController,
         tabContextFactory,
-        createDefaultLogger(),
+        logger,
     );
 
-    clientHandler.initialize();
+    await targetPageController.initialize();
 
     const devToolsBackgroundListener = new DevToolsListener(tabToContextMap, browserAdapter);
     devToolsBackgroundListener.initialize();

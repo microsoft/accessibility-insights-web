@@ -1,23 +1,29 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import * as Q from 'q';
 
 import { Message } from '../../common/message';
 import { VisualizationType } from '../../common/types/visualization-type';
-import { Analyzer, AnalyzerConfiguration, AxeAnalyzerResult, ScanCompletedPayload } from './analyzer';
+import {
+    Analyzer,
+    AnalyzerConfiguration,
+    AxeAnalyzerResult,
+    ScanCompletedPayload,
+} from './analyzer';
 
 export class BaseAnalyzer implements Analyzer {
-    protected sendMessage: (message: Message) => void;
     protected visualizationType: VisualizationType;
-    protected config: AnalyzerConfiguration;
     protected emptyResults: AxeAnalyzerResult = {
         results: {},
         originalResult: null,
     };
 
-    constructor(config: AnalyzerConfiguration, sendMessageDelegate: (message) => void) {
-        this.config = config;
-        this.sendMessage = sendMessageDelegate;
+    constructor(
+        protected config: AnalyzerConfiguration,
+        protected sendMessage: (message) => void,
+        private scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
+    ) {
         this.visualizationType = config.testType;
     }
 
@@ -41,7 +47,10 @@ export class BaseAnalyzer implements Analyzer {
         this.sendMessage(this.createBaseMessage(analyzerResult, this.config));
     };
 
-    protected createBaseMessage(analyzerResult: AxeAnalyzerResult, config: AnalyzerConfiguration): Message {
+    protected createBaseMessage(
+        analyzerResult: AxeAnalyzerResult,
+        config: AnalyzerConfiguration,
+    ): Message {
         const messageType = config.analyzerMessageType;
         const originalAxeResult = analyzerResult.originalResult;
         const payload: ScanCompletedPayload<any> = {
@@ -49,6 +58,7 @@ export class BaseAnalyzer implements Analyzer {
             selectorMap: analyzerResult.results,
             scanResult: originalAxeResult,
             testType: config.testType,
+            scanIncompleteWarnings: this.scanIncompleteWarningDetector.detectScanIncompleteWarnings(),
         };
 
         return {

@@ -6,6 +6,7 @@ import { NavigatorUtils } from 'common/navigator-utils';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
+import { FixInstructionProcessor } from '../common/components/fix-instruction-processor';
 import { NewTabLink } from '../common/components/new-tab-link';
 import { FeatureFlags } from '../common/feature-flags';
 import { HTMLElementUtils } from '../common/html-element-utils';
@@ -19,11 +20,13 @@ import { AxeResultToIssueFilingDataConverter } from '../issue-filing/rule-result
 import { DictionaryStringTo } from '../types/common-types';
 import { rootContainerId } from './constants';
 import { DetailsDialogHandler } from './details-dialog-handler';
-import { FixInstructionProcessor } from './fix-instruction-processor';
 import { ErrorMessageContent } from './frameCommunicators/error-message-content';
 import { FrameCommunicator, MessageRequest } from './frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from './frameCommunicators/window-message-handler';
-import { LayeredDetailsDialogComponent, LayeredDetailsDialogDeps } from './layered-details-dialog-component';
+import {
+    LayeredDetailsDialogComponent,
+    LayeredDetailsDialogDeps,
+} from './layered-details-dialog-component';
 import { MainWindowContext } from './main-window-context';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from './scanner-utils';
 import { ShadowUtils } from './shadow-utils';
@@ -33,7 +36,10 @@ export interface DetailsDialogWindowMessage {
     featureFlagStoreData: FeatureFlagStoreData;
 }
 
-export type RenderDialog = (data: HtmlElementAxeResults, featureFlagStoreData: FeatureFlagStoreData) => void;
+export type RenderDialog = (
+    data: HtmlElementAxeResults,
+    featureFlagStoreData: FeatureFlagStoreData,
+) => void;
 
 export class DialogRenderer {
     private static readonly renderDetailsDialogCommand = 'insights.detailsDialog';
@@ -51,17 +57,25 @@ export class DialogRenderer {
         private readonly detailsDialogHandler: DetailsDialogHandler,
     ) {
         if (this.isInMainWindow()) {
-            this.frameCommunicator.subscribe(DialogRenderer.renderDetailsDialogCommand, this.processRequest);
+            this.frameCommunicator.subscribe(
+                DialogRenderer.renderDetailsDialogCommand,
+                this.processRequest,
+            );
         }
     }
 
-    public render: RenderDialog = (data: HtmlElementAxeResults, featureFlagStoreData: FeatureFlagStoreData) => {
+    public render: RenderDialog = (
+        data: HtmlElementAxeResults,
+        featureFlagStoreData: FeatureFlagStoreData,
+    ) => {
         if (this.isInMainWindow()) {
             const mainWindowContext = MainWindowContext.getMainWindowContext();
             mainWindowContext.getTargetPageActionMessageCreator().openIssuesDialog();
 
             const elementSelector: string = this.getElementSelector(data);
-            const failedRules: DictionaryStringTo<DecoratedAxeNodeResult> = this.getFailedRules(data);
+            const failedRules: DictionaryStringTo<DecoratedAxeNodeResult> = this.getFailedRules(
+                data,
+            );
             const target: string[] = this.getTarget(data);
             const dialogContainer: HTMLDivElement = featureFlagStoreData[FeatureFlags.shadowDialog]
                 ? this.initializeDialogContainerInShadowDom()
@@ -147,7 +161,9 @@ export class DialogRenderer {
         return dialogContainer;
     }
 
-    private getFailedRules(data: HtmlElementAxeResults): DictionaryStringTo<DecoratedAxeNodeResult> {
+    private getFailedRules(
+        data: HtmlElementAxeResults,
+    ): DictionaryStringTo<DecoratedAxeNodeResult> {
         return data.ruleResults;
     }
 

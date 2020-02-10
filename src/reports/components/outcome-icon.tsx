@@ -8,4 +8,7 @@ interface OutcomeIconProps {
     outcomeType: OutcomeType;
 }
 
-export const OutcomeIcon = NamedFC<OutcomeIconProps>('OutcomeIcon', props => outcomeIconMap[props.outcomeType]);
+export const OutcomeIcon = NamedFC<OutcomeIconProps>(
+    'OutcomeIcon',
+    props => outcomeIconMap[props.outcomeType],
+);

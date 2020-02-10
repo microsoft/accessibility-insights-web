@@ -46,9 +46,11 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         id="current-target-page-link"
       >
         <StyledLinkBase
+          as="a"
           className="insights-link target-page-link"
           onClick={[Function]}
           role="link"
+          tabIndex={0}
         >
           test title 2
         </StyledLinkBase>
@@ -70,20 +72,20 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       className="target-change-dialog-button-container"
     >
       <div
-        className="button ms-Grid-col  action-cancel-button-col restart-button"
-      >
-        <CustomizedDefaultButton
-          onClick={[Function]}
-          text="Start new"
-        />
-      </div>
-      <div
         className="button ms-Grid-col  action-cancel-button-col continue-button"
       >
         <CustomizedDefaultButton
           autoFocus={true}
           onClick={[Function]}
           text="Continue previous"
+        />
+      </div>
+      <div
+        className="button ms-Grid-col  action-cancel-button-col restart-button"
+      >
+        <CustomizedDefaultButton
+          onClick={[Function]}
+          text="Start new"
         />
       </div>
     </div>
@@ -141,9 +143,11 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         id="current-target-page-link"
       >
         <StyledLinkBase
+          as="a"
           className="insights-link target-page-link"
           onClick={[Function]}
           role="link"
+          tabIndex={0}
         >
           test title 2
         </StyledLinkBase>
@@ -165,20 +169,20 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       className="target-change-dialog-button-container"
     >
       <div
-        className="button ms-Grid-col  action-cancel-button-col restart-button"
-      >
-        <CustomizedDefaultButton
-          onClick={[Function]}
-          text="Start new"
-        />
-      </div>
-      <div
         className="button ms-Grid-col  action-cancel-button-col continue-button"
       >
         <CustomizedDefaultButton
           autoFocus={true}
           onClick={[Function]}
           text="Continue previous"
+        />
+      </div>
+      <div
+        className="button ms-Grid-col  action-cancel-button-col restart-button"
+      >
+        <CustomizedDefaultButton
+          onClick={[Function]}
+          text="Start new"
         />
       </div>
     </div>
@@ -236,9 +240,11 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         id="current-target-page-link"
       >
         <StyledLinkBase
+          as="a"
           className="insights-link target-page-link"
           onClick={[Function]}
           role="link"
+          tabIndex={0}
         >
           test title 2
         </StyledLinkBase>
@@ -260,20 +266,20 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       className="target-change-dialog-button-container"
     >
       <div
-        className="button ms-Grid-col  action-cancel-button-col restart-button"
-      >
-        <CustomizedDefaultButton
-          onClick={[Function]}
-          text="Start new"
-        />
-      </div>
-      <div
         className="button ms-Grid-col  action-cancel-button-col continue-button"
       >
         <CustomizedDefaultButton
           autoFocus={true}
           onClick={[Function]}
           text="Continue previous"
+        />
+      </div>
+      <div
+        className="button ms-Grid-col  action-cancel-button-col restart-button"
+      >
+        <CustomizedDefaultButton
+          onClick={[Function]}
+          text="Start new"
         />
       </div>
     </div>
@@ -331,9 +337,11 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         id="current-target-page-link"
       >
         <StyledLinkBase
+          as="a"
           className="insights-link target-page-link"
           onClick={[Function]}
           role="link"
+          tabIndex={0}
         >
           test title 2
         </StyledLinkBase>
@@ -355,20 +363,20 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       className="target-change-dialog-button-container"
     >
       <div
-        className="button ms-Grid-col  action-cancel-button-col restart-button"
-      >
-        <CustomizedDefaultButton
-          onClick={[Function]}
-          text="Start new"
-        />
-      </div>
-      <div
         className="button ms-Grid-col  action-cancel-button-col continue-button"
       >
         <CustomizedDefaultButton
           autoFocus={true}
           onClick={[Function]}
           text="Continue previous"
+        />
+      </div>
+      <div
+        className="button ms-Grid-col  action-cancel-button-col restart-button"
+      >
+        <CustomizedDefaultButton
+          onClick={[Function]}
+          text="Start new"
         />
       </div>
     </div>
@@ -426,9 +434,11 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         id="current-target-page-link"
       >
         <StyledLinkBase
+          as="a"
           className="insights-link target-page-link"
           onClick={[Function]}
           role="link"
+          tabIndex={0}
         >
           test title 2
         </StyledLinkBase>
@@ -450,20 +460,20 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       className="target-change-dialog-button-container"
     >
       <div
-        className="button ms-Grid-col  action-cancel-button-col restart-button"
-      >
-        <CustomizedDefaultButton
-          onClick={[Function]}
-          text="Start new"
-        />
-      </div>
-      <div
         className="button ms-Grid-col  action-cancel-button-col continue-button"
       >
         <CustomizedDefaultButton
           autoFocus={true}
           onClick={[Function]}
           text="Continue previous"
+        />
+      </div>
+      <div
+        className="button ms-Grid-col  action-cancel-button-col restart-button"
+      >
+        <CustomizedDefaultButton
+          onClick={[Function]}
+          text="Start new"
         />
       </div>
     </div>

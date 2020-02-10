@@ -19,14 +19,20 @@ export function outcomeTypeFromTestStatus(testStatus: ManualTestStatus): Require
     return statusMap[testStatus];
 }
 
-export function outcomeTypeSemanticsFromTestStatus(testStatus: ManualTestStatus): OutcomeTypeSemantic {
+export function outcomeTypeSemanticsFromTestStatus(
+    testStatus: ManualTestStatus,
+): OutcomeTypeSemantic {
     return outcomeTypeSemantics[outcomeTypeFromTestStatus(testStatus)];
 }
 
 export type RequirementOutcomeStats = { [OT in RequirementOutcomeType]: number };
 
-export function outcomeStatsFromManualTestStatus(testStepStatus: ManualTestStatusData): RequirementOutcomeStats {
-    const outcomeTypeSet = values(testStepStatus).map(s => outcomeTypeFromTestStatus(s.stepFinalResult));
+export function outcomeStatsFromManualTestStatus(
+    testStepStatus: ManualTestStatusData,
+): RequirementOutcomeStats {
+    const outcomeTypeSet = values(testStepStatus).map(s =>
+        outcomeTypeFromTestStatus(s.stepFinalResult),
+    );
     const stats = countBy(outcomeTypeSet) as RequirementOutcomeStats;
     stats.pass = stats.pass || 0;
     stats.incomplete = stats.incomplete || 0;

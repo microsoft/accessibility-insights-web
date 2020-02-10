@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AssessmentInstanceSelectedButton render when element is not selected and is not visible 1`] = `
+<CustomizedIconButton
+  aria-checked={false}
+  aria-label="Visualization"
+  className="instanceVisibilityButton testInstanceSelectedHiddenButton"
+  disabled={true}
+  iconProps={
+    Object {
+      "className": "",
+      "iconName": "hide2",
+    }
+  }
+  onClick={[Function]}
+  role="checkbox"
+/>
+`;
+
+exports[`AssessmentInstanceSelectedButton render when element is not selected and is visible 1`] = `
+<CustomizedIconButton
+  aria-checked={false}
+  aria-label="Visualization"
+  className="instanceVisibilityButton"
+  disabled={false}
+  iconProps={
+    Object {
+      "className": "",
+      "iconName": "checkBox",
+    }
+  }
+  onClick={[Function]}
+  role="checkbox"
+/>
+`;
+
+exports[`AssessmentInstanceSelectedButton render when element is selected and visible 1`] = `
+<CustomizedIconButton
+  aria-checked={true}
+  aria-label="Visualization"
+  className="instanceVisibilityButton"
+  disabled={false}
+  iconProps={
+    Object {
+      "className": "testInstanceSelected testInstanceSelectedVisible",
+      "iconName": "view",
+    }
+  }
+  onClick={[Function]}
+  role="checkbox"
+/>
+`;
+
+exports[`AssessmentInstanceSelectedButton render when element is selected but hidden 1`] = `
+<CustomizedIconButton
+  aria-checked={true}
+  aria-label="Visualization"
+  className="instanceVisibilityButton testInstanceSelectedHiddenButton"
+  disabled={true}
+  iconProps={
+    Object {
+      "className": "testInstanceSelected testInstanceSelectedHidden",
+      "iconName": "hide2",
+    }
+  }
+  onClick={[Function]}
+  role="checkbox"
+/>
+`;

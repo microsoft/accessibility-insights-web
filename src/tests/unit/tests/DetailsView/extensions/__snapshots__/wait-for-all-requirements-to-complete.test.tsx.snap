@@ -6,6 +6,6 @@ exports[`WaitForAllRequirementsToComplete renders children when oneHundredPercen
 </Fragment>"
 `;
 
-exports[`WaitForAllRequirementsToComplete renders spinner when fiftyPercent 1`] = `"<StyledSpinnerBase className=\\"details-view-spinner\\" size={3} label=\\"Scanning 50%\\" />"`;
+exports[`WaitForAllRequirementsToComplete renders spinner when fiftyPercent 1`] = `"<ScanningSpinner isSpinning={true} label=\\"Scanning 50%\\" />"`;
 
-exports[`WaitForAllRequirementsToComplete renders spinner when zeroPercent 1`] = `"<StyledSpinnerBase className=\\"details-view-spinner\\" size={3} label=\\"Scanning 0%\\" />"`;
+exports[`WaitForAllRequirementsToComplete renders spinner when zeroPercent 1`] = `"<ScanningSpinner isSpinning={true} label=\\"Scanning 0%\\" />"`;

@@ -70,12 +70,29 @@ describe('link function', () => {
             AxeUtils,
             MockBehavior.Strict,
         );
-        const getAccessibleTextMock = GlobalMock.ofInstance(AxeUtils.getAccessibleText, 'getAccessibleText', AxeUtils, MockBehavior.Strict);
+        const getAccessibleTextMock = GlobalMock.ofInstance(
+            AxeUtils.getAccessibleText,
+            'getAccessibleText',
+            AxeUtils,
+            MockBehavior.Strict,
+        );
         it('evaluates when both accessible-name and url are specified (node html as snippet)', () => {
-            testEvaluate('accessible-name', 'url', getPropertyValuesMock, getAccessibleTextMock, true);
+            testEvaluate(
+                'accessible-name',
+                'url',
+                getPropertyValuesMock,
+                getAccessibleTextMock,
+                true,
+            );
         });
         it('evaluates when url is unspecified (parent html as snippet)', () => {
-            testEvaluate('accessible-name', null, getPropertyValuesMock, getAccessibleTextMock, false);
+            testEvaluate(
+                'accessible-name',
+                null,
+                getPropertyValuesMock,
+                getAccessibleTextMock,
+                false,
+            );
         });
         it('evaluates when accessible-name is unspecified (parent html as snippet)', () => {
             testEvaluate(null, 'url', getPropertyValuesMock, getAccessibleTextMock, false);
@@ -105,18 +122,27 @@ function testEvaluate(
     const nodeStub = getNodeStub(expectedData.url, expectedData.role, expectedData.tabIndex);
 
     dataSetterMock.setup(m => m(It.isValue(expectedData))).verifiable(Times.once());
-    getPropertyValuesMock.setup(m => m(It.isValue(nodeStub), It.isAny())).returns(v => expectedData.ariaAttributes);
+    getPropertyValuesMock
+        .setup(m => m(It.isValue(nodeStub), It.isAny()))
+        .returns(v => expectedData.ariaAttributes);
     getAccessibleTextMock.setup(m => m(nodeStub, false)).returns(n => expectedData.accessibleName);
 
     let result;
     GlobalScope.using(getPropertyValuesMock, getAccessibleTextMock).with(() => {
-        result = linkFunctionConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, nodeStub);
+        result = linkFunctionConfiguration.checks[0].evaluate.call(
+            { data: dataSetterMock.object },
+            nodeStub,
+        );
     });
     expect(result).toBe(true);
     dataSetterMock.verifyAll();
 }
 
-function testMatches(href: string, expectedHasCustomWidgetMarkup: boolean, expectedResult: boolean): void {
+function testMatches(
+    href: string,
+    expectedHasCustomWidgetMarkup: boolean,
+    expectedResult: boolean,
+): void {
     const nodeStub = getNodeStub(href, null, null);
     const hasCustomWidgetMarkupMock = GlobalMock.ofInstance(
         AxeUtils.hasCustomWidgetMarkup,
@@ -124,7 +150,9 @@ function testMatches(href: string, expectedHasCustomWidgetMarkup: boolean, expec
         AxeUtils,
         MockBehavior.Strict,
     );
-    hasCustomWidgetMarkupMock.setup(m => m(It.isValue(nodeStub))).returns(v => expectedHasCustomWidgetMarkup);
+    hasCustomWidgetMarkupMock
+        .setup(m => m(It.isValue(nodeStub)))
+        .returns(v => expectedHasCustomWidgetMarkup);
     let result;
     GlobalScope.using(hasCustomWidgetMarkupMock).with(() => {
         result = linkFunctionConfiguration.rule.matches(nodeStub, null);

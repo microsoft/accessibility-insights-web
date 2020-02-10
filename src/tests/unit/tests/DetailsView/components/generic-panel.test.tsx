@@ -1,48 +1,34 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Panel, PanelType } from 'office-ui-fabric-react/lib/Panel';
+import { GenericPanel, GenericPanelProps } from 'DetailsView/components/generic-panel';
+import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { GenericPanel, GenericPanelProps } from '../../../../../DetailsView/components/generic-panel';
+describe('GenericPanel', () => {
+    describe('renders', () => {
+        it.each([true, false])('isPanelOpen: %s', (isPanelOpen: boolean) => {
+            const childContent = <div>child content</div>;
 
-describe('DetailsViewPanelTest', () => {
-    test('constructor', () => {
-        const testSubject = new GenericPanel({} as GenericPanelProps);
-        expect(testSubject).toBeDefined();
-    });
+            const props: GenericPanelProps = {
+                isOpen: isPanelOpen,
+                onDismiss: () => {},
+                headerText: 'panel title',
+                className: 'panel-custom-class',
+                closeButtonAriaLabel: 'close button label',
+                hasCloseButton: true,
+            };
 
-    test.each([true, false])('render - isPanelOpen: %s', (isPanelOpen: boolean) => {
-        const childContent = <div>child content</div>;
+            const wrapper = shallow(<GenericPanel {...props}>{childContent}</GenericPanel>);
 
-        const testProps: GenericPanelProps = {
-            isOpen: isPanelOpen,
-            onDismiss: () => {},
-            title: 'panel title',
-            className: 'panel-custom-class',
-            closeButtonAriaLabel: 'close button label',
-            children: childContent,
-            hasCloseButton: true,
-        };
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
 
-        const testSubject = new GenericPanel(testProps);
+        it('minimal content', () => {
+            const props: GenericPanelProps = {};
 
-        const expected = (
-            <Panel
-                isLightDismiss={true}
-                isOpen={isPanelOpen}
-                type={PanelType.custom}
-                customWidth={'550px'}
-                className={'generic-panel panel-custom-class'}
-                onDismiss={testProps.onDismiss}
-                closeButtonAriaLabel={testProps.closeButtonAriaLabel}
-                hasCloseButton={true}
-                headerText={testProps.title}
-                headerClassName="header-text"
-            >
-                {childContent}
-            </Panel>
-        );
+            const wrapper = shallow(<GenericPanel {...props} />);
 
-        expect(testSubject.render()).toEqual(expected);
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
     });
 });

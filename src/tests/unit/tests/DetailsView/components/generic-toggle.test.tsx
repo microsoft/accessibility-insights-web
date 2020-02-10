@@ -1,72 +1,67 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { GenericToggle, GenericToggleProps } from 'DetailsView/components/generic-toggle';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
-import { GenericToggle, GenericToggleProps } from '../../../../../DetailsView/components/generic-toggle';
-
 describe('GenericToggleTest', () => {
-    let onClickMock: IMock<(id: string, enabled: boolean, event: React.MouseEvent<HTMLElement>) => void>;
+    type OnClick = GenericToggleProps['onClick'];
+    let onClickMock: IMock<OnClick>;
 
     beforeEach(() => {
-        onClickMock = Mock.ofInstance((id: string, enabled: boolean, event: React.MouseEvent<HTMLElement>) => {});
+        onClickMock = Mock.ofType<OnClick>();
     });
 
-    test.each([true, false])('render with string content - toggleState : %s', (toggleState: boolean) => {
-        const props: GenericToggleProps = {
-            name: 'test name',
-            description: 'test description',
-            enabled: toggleState,
-            onClick: onClickMock.object,
-            id: 'test-id-1',
-        };
+    describe('renders', () => {
+        it.each([true, false])('toggle enable = %s', enabled => {
+            const props: GenericToggleProps = {
+                name: 'test name',
+                description: 'test description',
+                enabled,
+                onClick: onClickMock.object,
+                id: 'test-id-1',
+            };
 
-        const wrapped = shallow(<GenericToggle {...props} />);
-        expect(wrapped.getElement()).toMatchSnapshot();
+            const wrapped = shallow(<GenericToggle {...props} />);
+            expect(wrapped.getElement()).toMatchSnapshot();
+        });
+
+        it.each`
+            testDescription     | descriptionContent
+            ${'is string'}      | ${'test string description'}
+            ${'is JSX.Element'} | ${(<h1>hello</h1>)}
+        `('description content $testDescription', ({ descriptionContent }) => {
+            const props: GenericToggleProps = {
+                name: 'test name',
+                description: descriptionContent,
+                enabled: true,
+                onClick: onClickMock.object,
+                id: 'test-id-1',
+            };
+
+            const wrapped = shallow(<GenericToggle {...props} />);
+            expect(wrapped.getElement()).toMatchSnapshot();
+        });
     });
 
-    test('render with jsx content', () => {
-        const props: GenericToggleProps = {
-            name: 'test name',
-            description: <h1>hello</h1>,
-            enabled: true,
-            onClick: onClickMock.object,
-            id: 'test-id-1',
-        };
+    describe('user interaction', () => {
+        it('handles toggle click', () => {
+            const props: GenericToggleProps = {
+                name: 'test name',
+                description: 'test description',
+                enabled: true,
+                onClick: onClickMock.object,
+                id: 'test-id-1',
+            };
 
-        const wrapped = shallow(<GenericToggle {...props} />);
-        expect(wrapped.getElement()).toMatchSnapshot();
-    });
+            const wrapped = shallow(<GenericToggle {...props} />);
 
-    test('verify onclick call', () => {
-        const props: GenericToggleProps = {
-            name: 'test name',
-            description: 'test description',
-            enabled: true,
-            onClick: onClickMock.object,
-            id: 'test-id-1',
-        };
+            const toggle = wrapped.find(`#${props.id}`);
+            const eventStub: any = {};
+            toggle.simulate('click', eventStub);
 
-        const wrapped = shallow(<GenericToggle {...props} />);
-
-        const toggle = wrapped.find(`#${props.id}`);
-        const eventStub: any = {};
-        toggle.simulate('click', eventStub);
-
-        onClickMock.verify(ocm => ocm(props.id, !props.enabled, eventStub), Times.once());
-    });
-
-    test('verify if the classname passed from prop is added properly', () => {
-        const props: GenericToggleProps = {
-            name: 'test name',
-            description: 'test description',
-            enabled: true,
-            onClick: onClickMock.object,
-            id: 'test-id-1',
-        };
-
-        const wrapper = shallow(<GenericToggle {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
+            onClickMock.verify(handler => handler(props.id, !props.enabled, eventStub), Times.once());
+        });
     });
 });

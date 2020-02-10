@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { LinkPurposePropertyBag } from 'common/types/property-bag/ilink-purpose';
+import { LinkPurposePropertyBag } from 'common/types/property-bag/link-purpose-property-bag';
 import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import { title } from 'content/strings/application';

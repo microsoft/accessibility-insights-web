@@ -4,7 +4,7 @@ import * as express from 'express';
 import * as serveStatic from 'serve-static';
 import { ResourceServerConfig } from 'tests/miscellaneous/test-resource-server/resource-server-config';
 
-let server = null;
+const serverMap = {};
 
 export function startServer(config: ResourceServerConfig): void {
     const app = express();
@@ -16,9 +16,17 @@ export function startServer(config: ResourceServerConfig): void {
     };
 
     app.use(serveStatic(dirPath, serveStaticOptions));
-    server = app.listen(config.port);
+    serverMap[config.port] = app.listen(config.port);
 }
 
-export function stopServer(): void {
-    server.close();
+export function stopServer(config: ResourceServerConfig): void {
+    serverMap[config.port].close();
+    delete serverMap[config.port];
+}
+
+export function stopAllServers(): void {
+    Object.keys(serverMap).forEach(port => {
+        serverMap[port].close();
+        delete serverMap[port];
+    });
 }

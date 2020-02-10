@@ -3,8 +3,12 @@
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { InstanceCount, TelemetryEventSource } from 'common/extension-telemetry-events';
-import { createDefaultLogger } from 'common/logging/default-logger';
-import { SCAN_COMPLETED, SCAN_FAILED, SCAN_STARTED } from 'electron/common/electron-telemetry-events';
+import { Logger } from 'common/logging/logger';
+import {
+    SCAN_COMPLETED,
+    SCAN_FAILED,
+    SCAN_STARTED,
+} from 'electron/common/electron-telemetry-events';
 import { PortPayload } from 'electron/flux/action/device-action-payloads';
 import { ScanActions } from 'electron/flux/action/scan-actions';
 import { ScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
@@ -19,7 +23,7 @@ export class ScanController {
         private readonly unifiedResultsBuilder: UnifiedScanCompletedPayloadBuilder,
         private readonly telemetryEventHandler: TelemetryEventHandler,
         private readonly getCurrentDate: () => Date,
-        private readonly logger = createDefaultLogger(),
+        private readonly logger: Logger,
     ) {}
 
     public initialize(): void {

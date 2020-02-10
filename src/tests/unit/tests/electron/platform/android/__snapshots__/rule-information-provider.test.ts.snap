@@ -67,8 +67,8 @@ Object {
       "minWidth",
       "minHeight",
     ],
-    "howToFix": "The element has an insufficient target size (width: 42.222dp, height: 38.222dp). Set the element's minWidth and minHeight attributes to at least 48dp.",
+    "howToFix": "The element has an insufficient target size (width: 42.222dp, height: 38.222dp). Set the element's minWidth and minHeight attributes to at least 44dp.",
   },
-  "howToFixSummary": "The element has an insufficient target size (width: 42.222dp, height: 38.222dp). Set the element's minWidth and minHeight attributes to at least 48dp.",
+  "howToFixSummary": "The element has an insufficient target size (width: 42.222dp, height: 38.222dp). Set the element's minWidth and minHeight attributes to at least 44dp.",
 }
 `;

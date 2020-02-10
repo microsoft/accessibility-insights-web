@@ -12,16 +12,8 @@ exports[`TargetPageChangedView renders with subtitle=test subtitle content and f
   >
     test subtitle content
   </div>
-  <StyledToggleBase
-    checked={false}
-    className="details-view-toggle"
-    label="test toggle label"
-    offText="Off"
-    onClick={[Function]}
-    onText="On"
-  />
   <p>
-    The target page was changed. Use the toggle to enable the visualization in the current target page.
+    The target page has changed. Use the start over button to scan the new target page.
   </p>
 </div>
 `;
@@ -36,16 +28,8 @@ exports[`TargetPageChangedView renders with subtitle=undefined and feature flag=
   <div
     className="target-page-changed-subtitle"
   />
-  <StyledToggleBase
-    checked={false}
-    className="details-view-toggle"
-    label="test toggle label"
-    offText="Off"
-    onClick={[Function]}
-    onText="On"
-  />
   <p>
-    The target page was changed. Use the toggle to enable the visualization in the current target page.
+    The target page has changed. Use the start over button to scan the new target page.
   </p>
 </div>
 `;

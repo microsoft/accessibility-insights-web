@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
+import { IColumn } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { ContentPage } from 'views/content/content-page';
 import { RequirementComparer } from '../../../common/assessment/requirement-comparer';
-import { AssesssmentVisualizationConfiguration } from '../../../common/configs/assesssment-visualization-configuration';
+import { AssessmentVisualizationConfiguration } from '../../../common/configs/assessment-visualization-configuration';
 import { FeatureFlags } from '../../../common/feature-flags';
 import { ManualTestStatus } from '../../../common/types/manual-test-status';
 import { AssessmentData } from '../../../common/types/store-data/assessment-result-data';
@@ -81,7 +81,7 @@ const assessmentWithColumns: Assessment = {
     getVisualizationConfiguration: () => {
         return {
             getAssessmentData: data => data.assessments['assessment-1'],
-        } as AssesssmentVisualizationConfiguration;
+        } as AssessmentVisualizationConfiguration;
     },
     requirementOrder: RequirementComparer.byOrdinal,
 };
@@ -117,7 +117,7 @@ const simpleAssessment = {
     getVisualizationConfiguration: () => {
         return {
             getAssessmentData: data => data.assessments['assessment-2'],
-        } as AssesssmentVisualizationConfiguration;
+        } as AssessmentVisualizationConfiguration;
     },
     requirementOrder: RequirementComparer.byOrdinal,
 };
@@ -159,7 +159,7 @@ const automatedAssessment = {
     getVisualizationConfiguration: () => {
         return {
             getAssessmentData: data => data.assessments['assessment-3'],
-        } as AssesssmentVisualizationConfiguration;
+        } as AssessmentVisualizationConfiguration;
     },
     requirementOrder: RequirementComparer.byOutcomeAndName,
 };
@@ -177,12 +177,14 @@ const simpleAssessmentWithFeatureFlag = {
     featureFlag: { required: [FeatureFlags.showAllAssessments] },
 };
 
-export const CreateTestAssessmentProvider = () => AssessmentsProviderImpl.Create([assessmentWithColumns, simpleAssessment]);
+export const CreateTestAssessmentProvider = () =>
+    AssessmentsProviderImpl.Create([assessmentWithColumns, simpleAssessment]);
 
 export const CreateTestAssessmentProviderWithFeatureFlag = () =>
     AssessmentsProviderImpl.Create([assessmentWithColumns, simpleAssessmentWithFeatureFlag]);
 
-export const CreateTestAssessmentProviderAutomated = () => AssessmentsProviderImpl.Create([automatedAssessment]);
+export const CreateTestAssessmentProviderAutomated = () =>
+    AssessmentsProviderImpl.Create([automatedAssessment]);
 
 export const TestStatusChoiceColumn: Readonly<IColumn> = {
     key: 'test - statusChoiceGroup',

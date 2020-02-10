@@ -3,6 +3,7 @@
 import { ExistingTabUpdatedPayload, PageVisibilityChangeTabPayload, SwitchToTargetTabPayload } from 'background/actions/action-payloads';
 import { TabActionCreator } from 'background/actions/tab-action-creator';
 import { TabActions } from 'background/actions/tab-actions';
+import { Interpreter } from 'background/interpreter';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import {
@@ -12,18 +13,22 @@ import {
     TriggeredBy,
     TriggeredByNotApplicable,
 } from 'common/extension-telemetry-events';
+import { Logger } from 'common/logging/logger';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
+import { tick } from 'tests/unit/common/tick';
 import { IMock, Mock, Times } from 'typemoq';
 import { createActionMock, createInterpreterMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('TestActionCreatorTest', () => {
     let browserAdapterMock: IMock<BrowserAdapter>;
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
+    let loggerMock: IMock<Logger>;
 
     beforeEach(() => {
         browserAdapterMock = Mock.ofType<BrowserAdapter>();
         telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();
+        loggerMock = Mock.ofType<Logger>();
     });
 
     it('handles Tab.NewTabCreated message', () => {
@@ -38,7 +43,13 @@ describe('TestActionCreatorTest', () => {
         const actionsMock = createActionsMock('newTabCreated', actionMock.object);
         const interpreterMock = createInterpreterMock(Messages.Tab.NewTabCreated, payload);
 
-        const testSubject = new TabActionCreator(interpreterMock.object, actionsMock.object, null, telemetryEventHandlerMock.object);
+        const testSubject = new TabActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+            null,
+            telemetryEventHandlerMock.object,
+            loggerMock.object,
+        );
 
         testSubject.registerCallbacks();
 
@@ -51,7 +62,7 @@ describe('TestActionCreatorTest', () => {
         const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
         const interpreterMock = createInterpreterMock(getStoreStateMessage(StoreNames.TabStore), null);
 
-        const testSubject = new TabActionCreator(interpreterMock.object, actionsMock.object, null, null);
+        const testSubject = new TabActionCreator(interpreterMock.object, actionsMock.object, null, null, loggerMock.object);
 
         testSubject.registerCallbacks();
 
@@ -63,7 +74,7 @@ describe('TestActionCreatorTest', () => {
         const actionsMock = createActionsMock('tabRemove', tabRemoveMock.object);
         const interpreterMock = createInterpreterMock(Messages.Tab.Remove, null);
 
-        const testSubject = new TabActionCreator(interpreterMock.object, actionsMock.object, null, null);
+        const testSubject = new TabActionCreator(interpreterMock.object, actionsMock.object, null, null, loggerMock.object);
 
         testSubject.registerCallbacks();
 
@@ -85,7 +96,13 @@ describe('TestActionCreatorTest', () => {
         const actionsMock = createActionsMock('existingTabUpdated', actionMock.object);
         const interpreterMock = createInterpreterMock(Messages.Tab.ExistingTabUpdated, payload);
 
-        const testSubject = new TabActionCreator(interpreterMock.object, actionsMock.object, null, telemetryEventHandlerMock.object);
+        const testSubject = new TabActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+            null,
+            telemetryEventHandlerMock.object,
+            loggerMock.object,
+        );
 
         testSubject.registerCallbacks();
 
@@ -93,7 +110,7 @@ describe('TestActionCreatorTest', () => {
         telemetryEventHandlerMock.verify(handler => handler.publishTelemetry(EXISTING_TAB_URL_UPDATED, payload), Times.once());
     });
 
-    it('handles Tab.Switch message', () => {
+    describe('handles Tab.Switch message', () => {
         const payload: SwitchToTargetTabPayload = {
             telemetry: {
                 triggeredBy: 'test' as TriggeredBy,
@@ -103,14 +120,42 @@ describe('TestActionCreatorTest', () => {
 
         const tabId: number = -1;
 
-        const interpreterMock = createInterpreterMock(Messages.Tab.Switch, payload, tabId);
+        let interpreterMock: IMock<Interpreter>;
+        let testSubject: TabActionCreator;
 
-        const testSubject = new TabActionCreator(interpreterMock.object, null, browserAdapterMock.object, telemetryEventHandlerMock.object);
+        beforeEach(() => {
+            interpreterMock = createInterpreterMock(Messages.Tab.Switch, payload, tabId);
 
-        testSubject.registerCallbacks();
+            testSubject = new TabActionCreator(
+                interpreterMock.object,
+                null,
+                browserAdapterMock.object,
+                telemetryEventHandlerMock.object,
+                loggerMock.object,
+            );
+        });
 
-        browserAdapterMock.verify(ba => ba.switchToTab(tabId), Times.once());
-        telemetryEventHandlerMock.verify(tp => tp.publishTelemetry(SWITCH_BACK_TO_TARGET, payload), Times.once());
+        it('switch to tab succeed', async () => {
+            browserAdapterMock.setup(adapter => adapter.switchToTab(tabId)).returns(() => Promise.resolve());
+
+            testSubject.registerCallbacks();
+
+            await tick();
+
+            telemetryEventHandlerMock.verify(tp => tp.publishTelemetry(SWITCH_BACK_TO_TARGET, payload), Times.once());
+        });
+
+        it('logs error when switch to tab fails', async () => {
+            const dummyError = 'switch to tab dummy error';
+            browserAdapterMock.setup(adapter => adapter.switchToTab(tabId)).returns(() => Promise.reject(dummyError));
+
+            testSubject.registerCallbacks();
+
+            await tick();
+
+            telemetryEventHandlerMock.verify(tp => tp.publishTelemetry(SWITCH_BACK_TO_TARGET, payload), Times.once());
+            loggerMock.verify(logger => logger.error(`switchToTab failed: ${dummyError}`), Times.once());
+        });
     });
 
     it('handles Tab.VisibilityChange message', () => {
@@ -122,7 +167,7 @@ describe('TestActionCreatorTest', () => {
         const actionsMock = createActionsMock('tabVisibilityChange', tabVisibilityChangeMock.object);
         const interpreterMock = createInterpreterMock(Messages.Tab.VisibilityChange, payload);
 
-        const testSubject = new TabActionCreator(interpreterMock.object, actionsMock.object, null, null);
+        const testSubject = new TabActionCreator(interpreterMock.object, actionsMock.object, null, null, loggerMock.object);
 
         testSubject.registerCallbacks();
 

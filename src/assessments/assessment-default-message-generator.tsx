@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { isEmpty, size } from 'lodash';
-import * as React from 'react';
-
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import {
     AssessmentInstancesMap,
     InstanceIdToInstanceDataMap,
     TestStepResult,
 } from 'common/types/store-data/assessment-result-data';
+import { isEmpty, size } from 'lodash';
+import * as React from 'react';
+import * as styles from './assessment-default-message-generator.scss';
 
 export type IMessageGenerator = (
     instancesMap: AssessmentInstancesMap,
@@ -77,7 +77,7 @@ export class AssessmentDefaultMessageGenerator {
 
     private getNoMatchingInstancesResult(): DefaultMessageInterface {
         return {
-            message: <div className="no-failure-view">No matching instances</div>,
+            message: <div className={styles.noFailureView}>No matching instances</div>,
             instanceCount: 0,
         };
     }
@@ -86,7 +86,7 @@ export class AssessmentDefaultMessageGenerator {
         passingInstanceKeys: TestStepResult[],
     ): DefaultMessageInterface {
         return {
-            message: <div className="no-failure-view">No failing instances</div>,
+            message: <div className={styles.noFailureView}>No failing instances</div>,
             instanceCount: size(passingInstanceKeys),
         };
     }

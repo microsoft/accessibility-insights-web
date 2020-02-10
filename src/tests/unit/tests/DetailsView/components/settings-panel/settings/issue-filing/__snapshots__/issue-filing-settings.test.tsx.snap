@@ -2,7 +2,9 @@
 
 exports[`IssueFilingSettings renders 1`] = `
 <React.Fragment>
-  <h3>
+  <h3
+    id="issue-filing-heading"
+  >
     Issue filing
   </h3>
   <IssueFilingSettingsContainer

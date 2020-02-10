@@ -1,20 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { DateProvider } from 'common/date-provider';
-import { FeatureFlags } from 'common/feature-flags';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { IssuesTable, IssuesTableDeps, IssuesTableProps } from 'DetailsView/components/issues-table';
 import { DetailsRowData, IssuesTableHandler } from 'DetailsView/components/issues-table-handler';
 import { shallow } from 'enzyme';
 import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
-import { ISelection, Selection } from 'office-ui-fabric-react/lib/DetailsList';
+import { ISelection, Selection } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { RuleResult } from 'scanner/iruleresults';
 import { IMock, Mock } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
-
 import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
 
 describe('IssuesTableTest', () => {
@@ -45,25 +42,22 @@ describe('IssuesTableTest', () => {
         expect(wrapped.debug()).toMatchSnapshot();
     });
 
-    describe('automated checks disabled', () => {
-        it.each([false, true])('universalCardsUI = %s', universalCardsUI => {
-            const issuesEnabled = false;
-            const selectionMock = Mock.ofType<ISelection>(Selection);
+    test('automated checks disabled', () => {
+        const issuesEnabled = false;
+        const selectionMock = Mock.ofType<ISelection>(Selection);
 
-            const toggleClickHandlerMock = Mock.ofInstance(event => {});
+        const toggleClickHandlerMock = Mock.ofInstance(event => {});
 
-            const props = new TestPropsBuilder()
-                .setFeatureFlag(FeatureFlags.universalCardsUI, universalCardsUI)
-                .setDeps(deps)
-                .setIssuesEnabled(issuesEnabled)
-                .setIssuesSelection(selectionMock.object)
-                .setToggleClickHandler(toggleClickHandlerMock.object)
-                .build();
+        const props = new TestPropsBuilder()
+            .setDeps(deps)
+            .setIssuesEnabled(issuesEnabled)
+            .setIssuesSelection(selectionMock.object)
+            .setToggleClickHandler(toggleClickHandlerMock.object)
+            .build();
 
-            const wrapped = shallow(<IssuesTable {...props} />);
+        const wrapped = shallow(<IssuesTable {...props} />);
 
-            expect(wrapped.getElement()).toMatchSnapshot();
-        });
+        expect(wrapped.getElement()).toMatchSnapshot();
     });
 
     it('spinner for scanning state', () => {
@@ -200,11 +194,6 @@ class TestPropsBuilder {
         return this;
     }
 
-    public setFeatureFlag(name: string, value: boolean): TestPropsBuilder {
-        this.featureFlags[name] = value;
-        return this;
-    }
-
     public setSubtitle(subtitle?: JSX.Element): TestPropsBuilder {
         this.subtitle = subtitle;
         return this;
@@ -223,7 +212,6 @@ class TestPropsBuilder {
             scanning: this.scanning,
             toggleClickHandler: this.clickHandler,
             violations: this.violations,
-            visualizationConfigurationFactory: new VisualizationConfigurationFactory(),
             featureFlags: this.featureFlags,
             selectedIdToRuleResultMap: {},
             scanResult: {

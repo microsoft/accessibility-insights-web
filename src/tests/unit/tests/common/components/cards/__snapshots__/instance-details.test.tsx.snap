@@ -3,6 +3,7 @@
 exports[`InstanceDetails isSelected drives the styling for the card 1`] = `
 <div
   className="instanceDetailsCardContainer selected"
+  data-automation-id="instance-card"
   role="table"
 >
   <div
@@ -68,6 +69,7 @@ exports[`InstanceDetails isSelected drives the styling for the card 1`] = `
 exports[`InstanceDetails isSelected drives the styling for the card 2`] = `
 <div
   className="instanceDetailsCardContainer"
+  data-automation-id="instance-card"
   role="table"
 >
   <div
@@ -133,6 +135,7 @@ exports[`InstanceDetails isSelected drives the styling for the card 2`] = `
 exports[`InstanceDetails renders 1`] = `
 <div
   className="instanceDetailsCardContainer"
+  data-automation-id="instance-card"
   role="table"
 >
   <div
@@ -297,6 +300,7 @@ exports[`InstanceDetails renders 1`] = `
 exports[`InstanceDetails renders nothing when there is no card row config for the property / no property 1`] = `
 <div
   className="instanceDetailsCardContainer"
+  data-automation-id="instance-card"
   role="table"
 >
   <div

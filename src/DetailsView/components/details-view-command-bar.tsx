@@ -6,11 +6,14 @@ import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { detailsViewCommandButtons } from 'DetailsView/components/details-view-command-bar.scss';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { StartOverDeps } from 'DetailsView/components/start-over-dropdown';
-import { Link } from 'office-ui-fabric-react/lib/Link';
+import { Link } from 'office-ui-fabric-react';
+import { ITooltipHostStyles, TooltipHost } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
+
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
@@ -60,17 +63,21 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
 
     private renderTargetPageInfo(): JSX.Element {
         const targetPageTitle: string = this.props.tabStoreData.title;
+        const tooltipContent = `Switch to target page: ${targetPageTitle}`;
+        const hostStyles: Partial<ITooltipHostStyles> = { root: { display: 'inline-block' } };
         return (
-            <div className="details-view-target-page">
-                Target page:&nbsp;
-                <Link
-                    role="link"
-                    title="Switch to target page"
-                    className={css('insights-link', 'target-page-link')}
-                    onClick={this.props.deps.detailsViewActionMessageCreator.switchToTargetTab}
-                >
-                    {targetPageTitle}
-                </Link>
+            <div className="details-view-target-page" aria-labelledby="switch-to-target">
+                <span id="switch-to-target">Target page:&nbsp;</span>
+                <TooltipHost content={tooltipContent} styles={hostStyles}>
+                    <Link
+                        role="link"
+                        className={css('insights-link', 'target-page-link')}
+                        onClick={this.props.deps.detailsViewActionMessageCreator.switchToTargetTab}
+                        aria-label={tooltipContent}
+                    >
+                        {targetPageTitle}
+                    </Link>
+                </TooltipHost>
             </div>
         );
     }
@@ -81,7 +88,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
 
         if (reportExportElement || startOverElement) {
             return (
-                <div className="details-view-command-buttons">
+                <div className={detailsViewCommandButtons}>
                     {reportExportElement}
                     {startOverElement}
                 </div>

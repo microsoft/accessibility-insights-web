@@ -14,7 +14,7 @@ exports[`VisualizationBasedLeftNav renders with index icon 1`] = `
 `;
 
 exports[`VisualizationBasedLeftNav renders with index icon 2`] = `
-<div
+<span
   className="index-circle"
 />
 `;

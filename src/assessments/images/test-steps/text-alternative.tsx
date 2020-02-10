@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { TextAlternativePropertyBag } from 'common/types/property-bag/itext-alternative';
+import { TextAlternativePropertyBag } from 'common/types/property-bag/text-alternative-property-bag';
 import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import { productName } from 'content/strings/application';

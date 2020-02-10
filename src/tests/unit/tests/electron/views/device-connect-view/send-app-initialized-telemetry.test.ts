@@ -5,24 +5,28 @@ import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-hand
 import { TelemetryEventSource, TriggeredByNotApplicable } from 'common/extension-telemetry-events';
 import { APP_INITIALIZED } from 'electron/common/electron-telemetry-events';
 import { sendAppInitializedTelemetryEvent } from 'electron/views/device-connect-view/send-app-initialized-telemetry';
+import { PlatformInfo } from 'electron/window-management/platform-info';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 describe('sendAppInitializedTelemetry', () => {
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
-
+    let platformInfoMock: IMock<PlatformInfo>;
     const testSubject = sendAppInitializedTelemetryEvent;
 
     beforeEach(() => {
         telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();
+        platformInfoMock = Mock.ofType<PlatformInfo>();
     });
 
     it('send telemetry', () => {
-        testSubject(telemetryEventHandlerMock.object);
+        platformInfoMock.setup(x => x.getOsName()).returns(() => 'osName');
+        testSubject(telemetryEventHandlerMock.object, platformInfoMock.object);
 
         const expectedTelemetry: BaseActionPayload = {
             telemetry: {
                 source: TelemetryEventSource.ElectronDeviceConnect,
                 triggeredBy: TriggeredByNotApplicable,
+                os: 'osName',
             },
         };
 

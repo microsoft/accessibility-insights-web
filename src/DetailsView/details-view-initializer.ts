@@ -4,10 +4,13 @@ import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-defaul
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
+import { CardsVisualizationModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
+import { createDefaultLogger } from 'common/logging/default-logger';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
-import { loadTheme } from 'office-ui-fabric-react';
+import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
+import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
 import { AssessmentReportModelBuilderFactory } from 'reports/assessment-report-model-builder-factory';
@@ -26,14 +29,14 @@ import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ReportNameGenerator } from 'reports/report-name-generator';
-
-import { CardsVisualizationModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { A11YSelfValidator } from '../common/a11y-self-validator';
+import { AutoChecker } from '../common/auto-checker';
 import { AxeInfo } from '../common/axe-info';
 import { provideBlob } from '../common/blob-provider';
 import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
 import { allCardInteractionsSupported } from '../common/components/cards/card-interaction-support';
 import { CardsCollapsibleControl } from '../common/components/cards/collapsible-component-cards';
+import { FixInstructionProcessor } from '../common/components/fix-instruction-processor';
 import { NewTabLink } from '../common/components/new-tab-link';
 import { getPropertyConfiguration } from '../common/configs/unified-result-property-configurations';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -60,14 +63,12 @@ import { UserConfigMessageCreator } from '../common/message-creators/user-config
 import { VisualizationActionMessageCreator } from '../common/message-creators/visualization-action-message-creator';
 import { NavigatorUtils } from '../common/navigator-utils';
 import { getCardViewData } from '../common/rule-based-view-model-provider';
-import { AutoChecker } from '../common/self-validator';
 import { StoreProxy } from '../common/store-proxy';
 import { BaseClientStoresHub } from '../common/stores/base-client-stores-hub';
 import { StoreNames } from '../common/stores/store-names';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
-import { DetailsViewData } from '../common/types/store-data/details-view-data';
-import { InspectStoreData } from '../common/types/store-data/inspect-store-data';
+import { DetailsViewStoreData } from '../common/types/store-data/details-view-store-data';
 import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
@@ -78,7 +79,6 @@ import { VisualizationStoreData } from '../common/types/store-data/visualization
 import { UrlParser } from '../common/url-parser';
 import { WindowUtils } from '../common/window-utils';
 import { contentPages } from '../content';
-import { FixInstructionProcessor } from '../injected/fix-instruction-processor';
 import { ScannerUtils } from '../injected/scanner-utils';
 import { createIssueDetailsBuilder } from '../issue-filing/common/create-issue-details-builder';
 import { IssueFilingUrlStringUtils } from '../issue-filing/common/issue-filing-url-string-utils';
@@ -122,27 +122,61 @@ if (isNaN(tabId) === false) {
         (tab: Tab): void => {
             const telemetryFactory = new TelemetryDataFactory();
 
-            const visualizationStore = new StoreProxy<VisualizationStoreData>(StoreNames[StoreNames.VisualizationStore], browserAdapter);
-            const tabStore = new StoreProxy<TabStoreData>(StoreNames[StoreNames.TabStore], browserAdapter);
+            const visualizationStore = new StoreProxy<VisualizationStoreData>(
+                StoreNames[StoreNames.VisualizationStore],
+                browserAdapter,
+                tab.id,
+            );
+            const tabStore = new StoreProxy<TabStoreData>(
+                StoreNames[StoreNames.TabStore],
+                browserAdapter,
+                tab.id,
+            );
             const visualizationScanResultStore = new StoreProxy<VisualizationScanResultData>(
                 StoreNames[StoreNames.VisualizationScanResultStore],
                 browserAdapter,
+                tab.id,
             );
             const unifiedScanResultStore = new StoreProxy<UnifiedScanResultStoreData>(
                 StoreNames[StoreNames.UnifiedScanResultStore],
                 browserAdapter,
+                tab.id,
             );
-            const pathSnippetStore = new StoreProxy<PathSnippetStoreData>(StoreNames[StoreNames.PathSnippetStore], browserAdapter);
-            const detailsViewStore = new StoreProxy<DetailsViewData>(StoreNames[StoreNames.DetailsViewStore], browserAdapter);
-            const assessmentStore = new StoreProxy<AssessmentStoreData>(StoreNames[StoreNames.AssessmentStore], browserAdapter);
-            const featureFlagStore = new StoreProxy<DictionaryStringTo<boolean>>(StoreNames[StoreNames.FeatureFlagStore], browserAdapter);
-            const scopingStore = new StoreProxy<ScopingStoreData>(StoreNames[StoreNames.ScopingPanelStateStore], browserAdapter);
-            const inspectStore = new StoreProxy<InspectStoreData>(StoreNames[StoreNames.InspectStore], browserAdapter);
+            const pathSnippetStore = new StoreProxy<PathSnippetStoreData>(
+                StoreNames[StoreNames.PathSnippetStore],
+                browserAdapter,
+                tab.id,
+            );
+            const detailsViewStore = new StoreProxy<DetailsViewStoreData>(
+                StoreNames[StoreNames.DetailsViewStore],
+                browserAdapter,
+                tab.id,
+            );
+            const assessmentStore = new StoreProxy<AssessmentStoreData>(
+                StoreNames[StoreNames.AssessmentStore],
+                browserAdapter,
+                tab.id,
+            );
+            const featureFlagStore = new StoreProxy<DictionaryStringTo<boolean>>(
+                StoreNames[StoreNames.FeatureFlagStore],
+                browserAdapter,
+                tab.id,
+            );
+            const scopingStore = new StoreProxy<ScopingStoreData>(
+                StoreNames[StoreNames.ScopingPanelStateStore],
+                browserAdapter,
+                tab.id,
+            );
             const userConfigStore = new StoreProxy<UserConfigurationStoreData>(
                 StoreNames[StoreNames.UserConfigurationStore],
                 browserAdapter,
+                tab.id,
             );
-            const cardSelectionStore = new StoreProxy<CardSelectionStoreData>(StoreNames[StoreNames.CardSelectionStore], browserAdapter);
+            const cardSelectionStore = new StoreProxy<CardSelectionStoreData>(
+                StoreNames[StoreNames.CardSelectionStore],
+                browserAdapter,
+                tab.id,
+            );
 
             const storesHub = new BaseClientStoresHub<DetailsViewContainerState>([
                 detailsViewStore,
@@ -158,9 +192,17 @@ if (isNaN(tabId) === false) {
                 cardSelectionStore,
             ]);
 
-            const actionMessageDispatcher = new RemoteActionMessageDispatcher(browserAdapter.sendMessageToFrames, tab.id);
+            const logger = createDefaultLogger();
+            const actionMessageDispatcher = new RemoteActionMessageDispatcher(
+                browserAdapter.sendMessageToFrames,
+                tab.id,
+                logger,
+            );
 
-            const detailsViewActionMessageCreator = new DetailsViewActionMessageCreator(telemetryFactory, actionMessageDispatcher);
+            const detailsViewActionMessageCreator = new DetailsViewActionMessageCreator(
+                telemetryFactory,
+                actionMessageDispatcher,
+            );
             const scopingActionMessageCreator = new ScopingActionMessageCreator(
                 telemetryFactory,
                 TelemetryEventSource.DetailsView,
@@ -171,7 +213,10 @@ if (isNaN(tabId) === false) {
                 TelemetryEventSource.DetailsView,
                 actionMessageDispatcher,
             );
-            const dropdownActionMessageCreator = new DropdownActionMessageCreator(telemetryFactory, actionMessageDispatcher);
+            const dropdownActionMessageCreator = new DropdownActionMessageCreator(
+                telemetryFactory,
+                actionMessageDispatcher,
+            );
 
             const issueFilingActionMessageCreator = new IssueFilingActionMessageCreator(
                 actionMessageDispatcher,
@@ -179,7 +224,9 @@ if (isNaN(tabId) === false) {
                 TelemetryEventSource.DetailsView,
             );
 
-            const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(actionMessageDispatcher);
+            const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
+                actionMessageDispatcher,
+            );
 
             const contentActionMessageCreator = new ContentActionMessageCreator(
                 telemetryFactory,
@@ -188,30 +235,51 @@ if (isNaN(tabId) === false) {
             );
 
             const userConfigMessageCreator = new UserConfigMessageCreator(actionMessageDispatcher);
-            const storeActionMessageCreator = storeActionMessageCreatorFactory.fromStores(storesHub.stores);
+            const storeActionMessageCreator = storeActionMessageCreatorFactory.fromStores(
+                storesHub.stores,
+            );
 
-            const visualizationActionCreator = new VisualizationActionMessageCreator(actionMessageDispatcher);
+            const visualizationActionCreator = new VisualizationActionMessageCreator(
+                actionMessageDispatcher,
+            );
 
-            const issuesSelection = new IssuesSelectionFactory().createSelection(detailsViewActionMessageCreator);
-            const clickHandlerFactory = new DetailsViewToggleClickHandlerFactory(visualizationActionCreator, telemetryFactory);
+            const issuesSelection = new IssuesSelectionFactory().createSelection(
+                detailsViewActionMessageCreator,
+            );
+            const clickHandlerFactory = new DetailsViewToggleClickHandlerFactory(
+                visualizationActionCreator,
+                telemetryFactory,
+            );
             const visualizationConfigurationFactory = new VisualizationConfigurationFactory();
             const assessmentDefaultMessageGenerator = new AssessmentDefaultMessageGenerator();
             const assessmentInstanceTableHandler = new AssessmentInstanceTableHandler(
                 detailsViewActionMessageCreator,
-                new AssessmentTableColumnConfigHandler(new MasterCheckBoxConfigProvider(detailsViewActionMessageCreator), Assessments),
+                new AssessmentTableColumnConfigHandler(
+                    new MasterCheckBoxConfigProvider(detailsViewActionMessageCreator),
+                    Assessments,
+                ),
                 Assessments,
             );
             const issuesTableHandler = new IssuesTableHandler();
-            const previewFeatureFlagsHandler = new PreviewFeatureFlagsHandler(getAllFeatureFlagDetails());
+            const previewFeatureFlagsHandler = new PreviewFeatureFlagsHandler(
+                getAllFeatureFlagDetails(),
+            );
             const scopingFlagsHandler = new PreviewFeatureFlagsHandler(getAllFeatureFlagDetails());
-            const dropdownClickHandler = new DropdownClickHandler(dropdownActionMessageCreator, TelemetryEventSource.DetailsView);
+            const dropdownClickHandler = new DropdownClickHandler(
+                dropdownActionMessageCreator,
+                TelemetryEventSource.DetailsView,
+            );
 
-            const navigatorUtils = new NavigatorUtils(window.navigator);
+            const navigatorUtils = new NavigatorUtils(window.navigator, logger);
             const extensionVersion = browserAdapter.getManifest().version;
             const axeVersion = getVersion();
             const browserSpec = navigatorUtils.getBrowserSpec();
 
-            const environmentInfoProvider = new EnvironmentInfoProvider(browserAdapter.getVersion(), browserSpec, AxeInfo.Default.version);
+            const environmentInfoProvider = new EnvironmentInfoProvider(
+                browserAdapter.getVersion(),
+                browserSpec,
+                AxeInfo.Default.version,
+            );
 
             const reactStaticRenderer = new ReactStaticRenderer();
             const reportNameGenerator = new ReportNameGenerator();
@@ -244,15 +312,6 @@ if (isNaN(tabId) === false) {
                 assessmentDefaultMessageGenerator,
             );
 
-            visualizationStore.setTabId(tab.id);
-            tabStore.setTabId(tab.id);
-            visualizationScanResultStore.setTabId(tab.id);
-            detailsViewStore.setTabId(tab.id);
-            assessmentStore.setTabId(tab.id);
-            scopingStore.setTabId(tab.id);
-            inspectStore.setTabId(tab.id);
-            unifiedScanResultStore.setTabId(tab.id);
-
             const actionInitiators = {
                 ...contentActionMessageCreator.initiators,
             };
@@ -284,7 +343,11 @@ if (isNaN(tabId) === false) {
 
             const fileURLProvider = new FileURLProvider(windowUtils, provideBlob);
 
-            const reportGenerator = new ReportGenerator(reportNameGenerator, reportHtmlGenerator, assessmentReportHtmlGenerator);
+            const reportGenerator = new ReportGenerator(
+                reportNameGenerator,
+                reportHtmlGenerator,
+                assessmentReportHtmlGenerator,
+            );
 
             const axeResultToIssueFilingDataConverter = new AxeResultToIssueFilingDataConverter(
                 IssueFilingUrlStringUtils.getSelectorLastPart,
@@ -341,6 +404,11 @@ if (isNaN(tabId) === false) {
                 cardSelectionMessageCreator,
                 getCardSelectionViewData: getCardSelectionViewData,
                 cardsVisualizationModifierButtons: CardsVisualizationModifierButtons,
+                allUrlsPermissionHandler: new AllUrlsPermissionHandler(
+                    browserAdapter,
+                    detailsViewActionMessageCreator,
+                ),
+                setFocusVisibility,
             };
 
             const renderer = new DetailsViewRenderer(
@@ -362,7 +430,11 @@ if (isNaN(tabId) === false) {
             );
             renderer.render();
 
-            const a11ySelfValidator = new A11YSelfValidator(new ScannerUtils(scan), new HTMLElementUtils());
+            const a11ySelfValidator = new A11YSelfValidator(
+                new ScannerUtils(scan, logger),
+                new HTMLElementUtils(),
+                logger,
+            );
             window.A11YSelfValidator = a11ySelfValidator;
         },
         () => {

@@ -2,12 +2,18 @@
 // Licensed under the MIT License.
 import { flatMap } from 'lodash';
 
-import { InstanceResultStatus, UnifiedResult } from '../../common/types/store-data/unified-data-interface';
+import {
+    InstanceResultStatus,
+    UnifiedResult,
+} from '../../common/types/store-data/unified-data-interface';
 import { UUIDGenerator } from '../../common/uid-generator';
 import { AxeNodeResult, RuleResult, ScanResults } from '../../scanner/iruleresults';
 import { IssueFilingUrlStringUtils } from './../../issue-filing/common/issue-filing-url-string-utils';
 
-export type ConvertScanResultsToUnifiedResultsDelegate = (scanResults: ScanResults, uuidGenerator: UUIDGenerator) => UnifiedResult[];
+export type ConvertScanResultsToUnifiedResultsDelegate = (
+    scanResults: ScanResults,
+    uuidGenerator: UUIDGenerator,
+) => UnifiedResult[];
 
 interface RuleResultData {
     status: InstanceResultStatus;
@@ -25,14 +31,20 @@ interface CreationData extends RuleResultData {
     };
 }
 
-export const convertScanResultsToUnifiedResults = (scanResults: ScanResults, uuidGenerator: UUIDGenerator): UnifiedResult[] => {
+export const convertScanResultsToUnifiedResults = (
+    scanResults: ScanResults,
+    uuidGenerator: UUIDGenerator,
+): UnifiedResult[] => {
     if (!scanResults) {
         return [];
     }
     return createUnifiedResultsFromScanResults(scanResults, uuidGenerator);
 };
 
-const createUnifiedResultsFromScanResults = (scanResults: ScanResults, uuidGenerator: UUIDGenerator): UnifiedResult[] => {
+const createUnifiedResultsFromScanResults = (
+    scanResults: ScanResults,
+    uuidGenerator: UUIDGenerator,
+): UnifiedResult[] => {
     return [
         ...createUnifiedResultsFromRuleResults(scanResults.violations, 'fail', uuidGenerator),
         ...createUnifiedResultsFromRuleResults(scanResults.passes, 'pass', uuidGenerator),

@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header renders per snapshot 1`] = `
+<header
+  className="headerBar"
+>
+  <Component
+    deps={Object {}}
+  />
+  <span
+    className="headerTitle"
+  >
+    Accessibility Insights for Web
+  </span>
+  <div />
+  <div
+    className="spacer"
+  />
+  <div
+    className="farItems"
+  />
+</header>
+`;

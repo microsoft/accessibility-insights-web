@@ -28,7 +28,12 @@ function createUnifiedRulesFromScanResults(scanResults: ScanResults): UnifiedRul
 }
 
 function getAllRuleResults(scanResults: ScanResults): RuleResult[] {
-    return [...scanResults.passes, ...scanResults.violations, ...scanResults.incomplete, ...scanResults.inapplicable];
+    return [
+        ...scanResults.passes,
+        ...scanResults.violations,
+        ...scanResults.incomplete,
+        ...scanResults.inapplicable,
+    ];
 }
 
 function createUnifiedRuleFromRuleResult(ruleResult: RuleResult): UnifiedRule {

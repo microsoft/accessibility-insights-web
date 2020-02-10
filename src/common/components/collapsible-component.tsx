@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { css } from '@uifabric/utilities';
-import { ActionButton } from 'office-ui-fabric-react/lib/Button';
+import { ActionButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 export interface CollapsibleComponentProps {
@@ -15,7 +15,10 @@ interface CollapsibleComponentState {
     showContent: boolean;
 }
 
-export class CollapsibleComponent extends React.Component<CollapsibleComponentProps, CollapsibleComponentState> {
+export class CollapsibleComponent extends React.Component<
+    CollapsibleComponentProps,
+    CollapsibleComponentState
+> {
     private readonly iconNameDown = 'ChevronDown';
     private readonly iconNameUp = 'ChevronRight';
 
@@ -36,7 +39,11 @@ export class CollapsibleComponent extends React.Component<CollapsibleComponentPr
 
         if (showContent) {
             iconName = this.iconNameDown;
-            content = <div className={css(this.props.contentClassName, 'collapsible-content')}>{this.props.content}</div>;
+            content = (
+                <div className={css(this.props.contentClassName, 'collapsible-content')}>
+                    {this.props.content}
+                </div>
+            );
         }
 
         return (

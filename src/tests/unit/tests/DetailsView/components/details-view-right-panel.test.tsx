@@ -12,15 +12,6 @@ import { getOverviewTitle, getTestViewTitle } from '../../../../../DetailsView/h
 
 describe('DetailsViewRightPanelTests', () => {
     describe('GetDetailsRightPanelConfiguration', () => {
-        it('GetDetailsRightPanelConfiguration: return TestView object when all test is selected', () => {
-            const testSubject = GetDetailsRightPanelConfiguration({
-                selectedDetailsViewPivot: DetailsViewPivotType.allTest,
-                detailsViewRightContentPanel: 'Overview',
-            });
-
-            validateTestView(testSubject);
-        });
-
         it('GetDetailsRightPanelConfiguration: return TestView object when fast pass is selected', () => {
             const testSubject = GetDetailsRightPanelConfiguration({
                 selectedDetailsViewPivot: DetailsViewPivotType.fastPass,

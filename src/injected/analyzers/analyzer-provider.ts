@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
+
 import { BaseStore } from '../../common/base-store';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
@@ -7,7 +9,12 @@ import { ScopingStoreData } from '../../common/types/store-data/scoping-store-da
 import { WindowUtils } from '../../common/window-utils';
 import { ScannerUtils } from '../scanner-utils';
 import { TabStopsListener } from '../tab-stops-listener';
-import { Analyzer, AnalyzerConfiguration, FocusAnalyzerConfiguration, RuleAnalyzerConfiguration } from './analyzer';
+import {
+    Analyzer,
+    AnalyzerConfiguration,
+    FocusAnalyzerConfiguration,
+    RuleAnalyzerConfiguration,
+} from './analyzer';
 import { BaseAnalyzer } from './base-analyzer';
 import { BatchedRuleAnalyzer, IResultRuleFilter } from './batched-rule-analyzer';
 import { PostResolveCallback, RuleAnalyzer } from './rule-analyzer';
@@ -31,6 +38,7 @@ export class AnalyzerProvider {
         private readonly visualizationConfigFactory: VisualizationConfigurationFactory,
         private filterResultsByRules: IResultRuleFilter,
         private sendConvertedResults: PostResolveCallback,
+        private scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
     ) {
         this.tabStopsListener = tabStopsListener;
         this.scopingStore = scopingStore;
@@ -50,6 +58,7 @@ export class AnalyzerProvider {
             this.telemetryDataFactory,
             this.visualizationConfigFactory,
             null,
+            this.scanIncompleteWarningDetector,
         );
     }
 
@@ -65,6 +74,7 @@ export class AnalyzerProvider {
             this.telemetryDataFactory,
             this.visualizationConfigFactory,
             this.sendConvertedResults,
+            this.scanIncompleteWarningDetector,
         );
     }
 
@@ -78,14 +88,25 @@ export class AnalyzerProvider {
             this.telemetryDataFactory,
             this.visualizationConfigFactory,
             this.filterResultsByRules,
+            this.scanIncompleteWarningDetector,
         );
     }
 
     public createFocusTrackingAnalyzer(config: FocusAnalyzerConfiguration): Analyzer {
-        return new TabStopsAnalyzer(config, this.tabStopsListener, new WindowUtils(), this.sendMessageDelegate);
+        return new TabStopsAnalyzer(
+            config,
+            this.tabStopsListener,
+            new WindowUtils(),
+            this.sendMessageDelegate,
+            this.scanIncompleteWarningDetector,
+        );
     }
 
     public createBaseAnalyzer(config: AnalyzerConfiguration): Analyzer {
-        return new BaseAnalyzer(config, this.sendMessageDelegate);
+        return new BaseAnalyzer(
+            config,
+            this.sendMessageDelegate,
+            this.scanIncompleteWarningDetector,
+        );
     }
 }

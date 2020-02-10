@@ -4,7 +4,9 @@
 **/*.dockerignore
 **/*.gitattributes
 **/*.gitignore
+**/*.icns
 **/*.ico
+**/*.nsh
 **/*.png
 **/*.snap
 **/Dockerfile

@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InteractiveHeader render: no feature flag store data 1`] = `"<Header deps={{...}} />"`;
+
+exports[`InteractiveHeader render: tabClosed is false 1`] = `
+<Header
+  deps={null}
+  farItems={
+    <GearOptionsButtonComponent
+      dropdownClickHandler={
+        proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "dropdownActionMessageCreator": undefined,
+          "openDebugTools": [Function],
+          "openPreviewFeaturesPanelHandler": [Function],
+          "openScopingPanelHandler": [Function],
+          "openSettingsPanelHandler": [Function],
+          "source": undefined,
+        }
+      }
+      featureFlags={
+        Object {
+          "test-flag": true,
+        }
+      }
+    />
+  }
+  items={
+    <Switcher
+      deps={null}
+      pivotKey={2}
+    />
+  }
+/>
+`;
+
+exports[`InteractiveHeader render: tabClosed is true 1`] = `
+<Header
+  deps={null}
+/>
+`;

@@ -5,7 +5,7 @@ import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-crea
 import { DeviceStoreData } from 'electron/flux/types/device-store-data';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
-import { CommandBar as UICommandBar, ICommandBarItemProps } from 'office-ui-fabric-react/lib/CommandBar';
+import { CommandBar as UICommandBar, ICommandBarItemProps } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import * as styles from './command-bar.scss';
@@ -23,22 +23,20 @@ export interface CommandBarProps {
 export const CommandBar = NamedFC<CommandBarProps>('CommandBar', (props: CommandBarProps) => {
     const { deps, deviceStoreData } = props;
 
-    const onRescanClick = () => deps.scanActionCreator.scan(deviceStoreData.port);
-    const rescanCommandBarItem: ICommandBarItemProps = {
-        key: 'rescan',
-        name: 'Rescan',
+    const onStartOverClick = () => deps.scanActionCreator.scan(deviceStoreData.port);
+    const startOverCommandBarItem: ICommandBarItemProps = {
+        key: 'startOver',
+        name: 'Start over',
         iconProps: {
             className: styles.buttonIcon,
             iconName: 'Refresh',
         },
         className: styles.menuItemButton,
-        onClick: onRescanClick,
+        onClick: onStartOverClick,
         disabled: props.scanStoreData.status === ScanStatus.Scanning,
     };
 
-    // UICommandBar doesn't do null checks for these. Use empty lists for "no items", not null/undefined.
-    const items: ICommandBarItemProps[] = [rescanCommandBarItem];
-    const farItems: ICommandBarItemProps[] = [];
+    const items: ICommandBarItemProps[] = [startOverCommandBarItem];
 
-    return <UICommandBar items={items} farItems={farItems} className={styles.commandBar} />;
+    return <UICommandBar items={items} className={styles.commandBar} />;
 });

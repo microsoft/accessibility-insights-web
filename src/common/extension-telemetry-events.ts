@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { UnifiedScanCompletedPayload } from 'background/actions/action-payloads';
 import { SingleElementSelector } from './types/store-data/scoping-store-data';
 
 export const POPUP_INITIALIZED: string = 'PopupInitialized';
@@ -35,7 +36,8 @@ export const UNDO_TEST_STATUS_CHANGE: string = 'undoTestStatusChange';
 export const UNDO_REQUIREMENT_STATUS_CHANGE: string = 'undoRequirementStatusChange';
 export const CHANGE_INSTANCE_STATUS: string = 'changeInstanceStatus';
 export const CHANGE_ASSESSMENT_VISUALIZATION_STATUS: string = 'changeAssessmentVisualizationState';
-export const CHANGE_ASSESSMENT_VISUALIZATION_STATUS_FOR_ALL: string = 'changeAssessmentVisualizationStateForAll';
+export const CHANGE_ASSESSMENT_VISUALIZATION_STATUS_FOR_ALL: string =
+    'changeAssessmentVisualizationStateForAll';
 export const DISABLE_VISUAL_HELPER: string = 'disableVisualHelper';
 export const CHANGE_OVERALL_REQUIREMENT_STATUS: string = 'changeOverallRequirementStatus';
 export const PREVIEW_FEATURES_CLOSE: string = 'PreviewFeaturesClose';
@@ -61,6 +63,8 @@ export const ALL_RULES_EXPANDED: string = 'allRulesExpanded';
 export const ALL_RULES_COLLAPSED: string = 'allRulesCollapsed';
 export const RESCAN_VISUALIZATION: string = 'rescanVisualization';
 export const EXISTING_TAB_URL_UPDATED: string = 'existingTabUrlUpdated';
+export const SCAN_INCOMPLETE_WARNINGS: string = 'scanIncompleteWarnings';
+export const ALL_URLS_PERMISSION_UPDATED: string = 'allUrlsPermissionUpdated';
 
 export const TriggeredByNotApplicable: TriggeredBy = 'N/A';
 export type TriggeredBy = 'mouseclick' | 'keypress' | 'shortcut' | 'N/A';
@@ -200,6 +204,15 @@ export type AndroidScanFailedTelemetryData = {
     scanDuration: number;
 };
 
+export type SetAllUrlsPermissionTelemetryData = {
+    permissionState: boolean;
+} & BaseTelemetryData;
+
+export type ScanIncompleteWarningsTelemetryData = Pick<
+    UnifiedScanCompletedPayload,
+    'scanIncompleteWarnings'
+>;
+
 export type TelemetryData =
     | BaseTelemetryData
     | ToggleTelemetryData
@@ -222,4 +235,6 @@ export type TelemetryData =
     | RequirementStatusTelemetryData
     | ValidatePortTelemetryData
     | AndroidScanCompletedTelemetryData
-    | AndroidScanFailedTelemetryData;
+    | AndroidScanFailedTelemetryData
+    | ScanIncompleteWarningsTelemetryData
+    | SetAllUrlsPermissionTelemetryData;

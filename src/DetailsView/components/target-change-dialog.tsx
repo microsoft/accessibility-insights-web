@@ -1,19 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { isEmpty } from 'lodash';
-import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
-import { DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
-import { Link } from 'office-ui-fabric-react/lib/Link';
-import { TooltipHost } from 'office-ui-fabric-react/lib/Tooltip';
-import * as React from 'react';
-
 import { css } from '@uifabric/utilities';
 import * as Markup from 'assessments/markup';
-import { BlockingDialog } from '../../common/components/blocking-dialog';
-import { NewTabLink } from '../../common/components/new-tab-link';
-import { Tab } from '../../common/itab';
-import { PersistedTabInfo } from '../../common/types/store-data/assessment-result-data';
-import { UrlParser } from '../../common/url-parser';
+import { BlockingDialog } from 'common/components/blocking-dialog';
+import { NewTabLink } from 'common/components/new-tab-link';
+import { Tab } from 'common/itab';
+import { PersistedTabInfo } from 'common/types/store-data/assessment-result-data';
+import { UrlParser } from 'common/url-parser';
+import { isEmpty } from 'lodash';
+import { DefaultButton, DialogFooter, DialogType, Link, TooltipHost } from 'office-ui-fabric-react';
+import * as React from 'react';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 
 export type TargetChangeDialogDeps = {
@@ -49,31 +45,36 @@ export class TargetChangeDialog extends React.Component<TargetChangeDialogProps>
                 <div id="target-change-dialog-description">
                     <div>
                         There is already an assessment running on&nbsp;
-                        {this.renderPreviousTabLink(this.props.prevTab)}. Would you like to continue your current assessment on the new
-                        target of&nbsp;
+                        {this.renderPreviousTabLink(this.props.prevTab)}. Would you like to continue
+                        your current assessment on the new target of&nbsp;
                         {this.renderCurrentTabLink(this.props.newTab)}?
                     </div>
                     <p>
-                        <Markup.Term>Note</Markup.Term>: If 'Continue previous' is selected, the previous assessment will be connected to
-                        this new page.
+                        <Markup.Term>Note</Markup.Term>: If 'Continue previous' is selected, the
+                        previous assessment will be connected to this new page.
                     </p>
                     <p>If 'Start new' is selected, all previous progress will be lost.</p>
                 </div>
 
                 <DialogFooter>
                     <div className="target-change-dialog-button-container">
-                        <div className="button ms-Grid-col  action-cancel-button-col restart-button">
-                            <DefaultButton
-                                text="Start new"
-                                onClick={this.props.deps.detailsViewActionMessageCreator.startOverAllAssessments}
-                            />
-                        </div>
-
                         <div className="button ms-Grid-col  action-cancel-button-col continue-button">
                             <DefaultButton
                                 autoFocus={true}
                                 text="Continue previous"
-                                onClick={this.props.deps.detailsViewActionMessageCreator.continuePreviousAssessment}
+                                onClick={
+                                    this.props.deps.detailsViewActionMessageCreator
+                                        .continuePreviousAssessment
+                                }
+                            />
+                        </div>
+                        <div className="button ms-Grid-col  action-cancel-button-col restart-button">
+                            <DefaultButton
+                                text="Start new"
+                                onClick={
+                                    this.props.deps.detailsViewActionMessageCreator
+                                        .startOverAllAssessments
+                                }
                             />
                         </div>
                     </div>
@@ -84,7 +85,11 @@ export class TargetChangeDialog extends React.Component<TargetChangeDialogProps>
 
     private renderPreviousTabLink(tab: Tab): JSX.Element {
         return (
-            <TooltipHost content={tab.url} id={'previous-target-page-link'} calloutProps={{ gapSpace: 0 }}>
+            <TooltipHost
+                content={tab.url}
+                id={'previous-target-page-link'}
+                calloutProps={{ gapSpace: 0 }}
+            >
                 <NewTabLink role="link" className="target-page-link" href={tab.url}>
                     {tab.title}
                 </NewTabLink>
@@ -94,8 +99,14 @@ export class TargetChangeDialog extends React.Component<TargetChangeDialogProps>
 
     private renderCurrentTabLink(tab: Tab): JSX.Element {
         return (
-            <TooltipHost content={tab.url} id={'current-target-page-link'} calloutProps={{ gapSpace: 0 }}>
+            <TooltipHost
+                content={tab.url}
+                id={'current-target-page-link'}
+                calloutProps={{ gapSpace: 0 }}
+            >
                 <Link
+                    as="a" // force Link to use an anchor tag in order have proper dom structure
+                    tabIndex={0}
                     role="link"
                     className={css('insights-link', 'target-page-link')}
                     onClick={this.props.deps.detailsViewActionMessageCreator.switchToTargetTab}

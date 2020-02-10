@@ -36,9 +36,13 @@ export class Browser {
             return this.memoizedBackgroundPage;
         }
 
-        const backgroundPageTarget = await this.underlyingBrowser.waitForTarget(isBackgroundPageTarget);
+        const backgroundPageTarget = await this.underlyingBrowser.waitForTarget(
+            isBackgroundPageTarget,
+        );
 
-        this.memoizedBackgroundPage = new BackgroundPage(await backgroundPageTarget.page(), { onPageCrash: this.onPageCrash });
+        this.memoizedBackgroundPage = new BackgroundPage(await backgroundPageTarget.page(), {
+            onPageCrash: this.onPageCrash,
+        });
 
         return this.memoizedBackgroundPage;
     }
@@ -81,7 +85,9 @@ export class Browser {
 
     public async waitForDetailsViewPage(targetPage: TargetPage): Promise<DetailsViewPage> {
         const expectedUrl = await this.getExtensionUrl(detailsViewRelativeUrl(targetPage.tabId));
-        const underlyingTarget = await this.underlyingBrowser.waitForTarget(t => t.url().toLowerCase() === expectedUrl.toLowerCase());
+        const underlyingTarget = await this.underlyingBrowser.waitForTarget(
+            t => t.url().toLowerCase() === expectedUrl.toLowerCase(),
+        );
         const underlyingPage = await underlyingTarget.page();
         const page = new DetailsViewPage(underlyingPage, { onPageCrash: this.onPageCrash });
         this.pages.push(page);
@@ -117,7 +123,9 @@ export class Browser {
         const backgroundPage = await this.backgroundPage();
         return await backgroundPage.evaluate(() => {
             return new Promise(resolve => {
-                chrome.tabs.query({ active: true, currentWindow: true }, tabs => resolve(tabs[0].id));
+                chrome.tabs.query({ active: true, currentWindow: true }, tabs =>
+                    resolve(tabs[0].id),
+                );
             });
         });
     }
@@ -131,7 +139,9 @@ export class Browser {
     }
 
     private onPageCrash = () => {
-        const errorMessage = `!!! Browser.onPageCrashed: see detailed chrome logs '${browserLogPath(this.browserInstanceId)}'`;
+        const errorMessage = `!!! Browser.onPageCrashed: see detailed chrome logs '${browserLogPath(
+            this.browserInstanceId,
+        )}'`;
         console.error(errorMessage);
     };
 }

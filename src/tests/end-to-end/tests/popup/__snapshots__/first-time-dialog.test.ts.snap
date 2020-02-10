@@ -26,14 +26,14 @@ exports[`First time Dialog content should match snapshot 1`] = `
           <div
             class="ms-Dialog-header header-000"
           >
-            <p
+            <div
               aria-level="2"
               class="ms-Dialog-title title-000"
               id="telemetry-permission-title"
               role="heading"
             >
               We need your help
-            </p>
+            </div>
             <div
               class="topButton-000"
             />
@@ -69,6 +69,7 @@ exports[`First time Dialog content should match snapshot 1`] = `
                   class="ms-Checkbox is-checked is-enabled telemetry-agree-checkbox root-000"
                 >
                   <input
+                    aria-checked="true"
                     aria-label="I agree to enable telemetry"
                     checked=""
                     class="input-000"
@@ -77,7 +78,7 @@ exports[`First time Dialog content should match snapshot 1`] = `
                   />
                   <label
                     class="ms-Checkbox-label label-000"
-                    for="checkbox-6"
+                    for="checkbox-9"
                   >
                     <div
                       class="ms-Checkbox-checkbox checkbox-000"
@@ -86,7 +87,6 @@ exports[`First time Dialog content should match snapshot 1`] = `
                         aria-hidden="true"
                         class="ms-Checkbox-checkmark checkmark-000"
                         data-icon-name="CheckMark"
-                        role="presentation"
                       >
                         
                       </i>
@@ -105,7 +105,7 @@ exports[`First time Dialog content should match snapshot 1`] = `
                   href="http://go.microsoft.com/fwlink/?LinkId=521839"
                   target="_blank"
                 >
-                   privacy statement
+                  privacy statement
                 </a>
                  to learn more.
               </div>
@@ -124,20 +124,21 @@ exports[`First time Dialog content should match snapshot 1`] = `
                     data-is-focusable="true"
                     type="button"
                   >
-                    <div
+                    <span
                       class="ms-Button-flexContainer flexContainer-000"
+                      data-automationid="splitbuttonprimary"
                     >
-                      <div
+                      <span
                         class="ms-Button-textContainer textContainer-000"
                       >
-                        <div
+                        <span
                           class="ms-Button-label label-000"
                           id="id__000"
                         >
                           OK
-                        </div>
-                      </div>
-                    </div>
+                        </span>
+                      </span>
+                    </span>
                   </button>
                 </span>
               </div>

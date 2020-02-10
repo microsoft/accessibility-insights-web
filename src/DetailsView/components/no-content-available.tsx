@@ -12,11 +12,14 @@ export const NoContentAvailable = NamedFC('NoContentAvailable', () => {
         <main className={styles.noContentAvailable}>
             <h1>No content available</h1>
             <ul>
-                <li>If the target page was closed, you can close this tab or reuse it for something else.</li>
                 <li>
-                    If the URL was changed on the target page, you can reactivate this tab by pressing the{' '}
-                    <Markup.Term>{productName}</Markup.Term> extension icon on the browser toolbar or by using the extension keyboard
-                    shortcuts.
+                    If the target page was closed, you can close this tab or reuse it for something
+                    else.
+                </li>
+                <li>
+                    If the URL was changed on the target page, you can reactivate{' '}
+                    <Markup.Term>{productName}</Markup.Term> by selecting the extension icon on the
+                    browser toolbar or by using the extension keyboard shortcuts.
                 </li>
             </ul>
         </main>

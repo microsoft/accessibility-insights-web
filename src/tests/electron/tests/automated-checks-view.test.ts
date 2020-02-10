@@ -47,17 +47,22 @@ describe('AutomatedChecksView', () => {
         expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(0);
 
         await automatedChecksView.toggleRuleGroupAtPosition(1);
+        await assertExpandedRuleGroup(1, 'ImageViewName', 1);
+
         await automatedChecksView.toggleRuleGroupAtPosition(2);
+        await assertExpandedRuleGroup(2, 'ActiveViewName', 2);
+
         await automatedChecksView.toggleRuleGroupAtPosition(3);
+        await assertExpandedRuleGroup(3, 'TouchSizeWcag', 1);
 
         expect(await countHighlightBoxes()).toBe(4);
         expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(3);
-        await assertExpandedRuleGroup(1, 'ImageViewName', 1);
-        await assertExpandedRuleGroup(2, 'ActiveViewName', 2);
-        await assertExpandedRuleGroup(3, 'TouchSizeWcag', 1);
 
         await automatedChecksView.toggleRuleGroupAtPosition(1);
+        await assertCollapsedRuleGroup(1, 'ImageViewName');
+
         await automatedChecksView.toggleRuleGroupAtPosition(2);
+        await assertCollapsedRuleGroup(2, 'ActiveViewName');
 
         expect(await countHighlightBoxes()).toBe(1);
         expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(1);
@@ -69,21 +74,52 @@ describe('AutomatedChecksView', () => {
         expect(violations).toStrictEqual([]);
     });
 
-    async function assertExpandedRuleGroup(position: number, expectedTitle: string, expectedFailures: number): Promise<void> {
-        const title = await automatedChecksView.client.$(AutomatedChecksViewSelectors.getRuleDetailsIdSelector(position)).getText();
+    async function assertExpandedRuleGroup(
+        position: number,
+        expectedTitle: string,
+        expectedFailures: number,
+    ): Promise<void> {
+        const title = await automatedChecksView.client
+            .$(AutomatedChecksViewSelectors.nthRuleGroupTitle(position))
+            .getText();
         expect(title).toEqual(expectedTitle);
 
-        const failures = await automatedChecksView.client.$$(AutomatedChecksViewSelectors.getLiFailuresSelector(position));
+        const failures = await automatedChecksView.client.$$(
+            AutomatedChecksViewSelectors.nthRuleGroupInstances(position),
+        );
         expect(failures).toHaveLength(expectedFailures);
     }
 
+    async function assertCollapsedRuleGroup(
+        position: number,
+        expectedTitle: string,
+    ): Promise<void> {
+        const title = await automatedChecksView.client
+            .$(AutomatedChecksViewSelectors.nthRuleGroupTitle(position))
+            .getText();
+        expect(title).toEqual(expectedTitle);
+
+        const failures = await automatedChecksView.client.$$(
+            AutomatedChecksViewSelectors.nthRuleGroupInstances(position),
+        );
+        expect(failures).toHaveLength(0);
+    }
+
     it('ScreenshotView renders screenshot image from specified source', async () => {
-        const resultExamplePath = path.join(testResourceServerConfig.absolutePath, 'axe/result.json');
-        const axeRuleResultExample = JSON.parse(fs.readFileSync(resultExamplePath, { encoding: 'utf-8' }));
+        const resultExamplePath = path.join(
+            testResourceServerConfig.absolutePath,
+            'axe/result.json',
+        );
+        const axeRuleResultExample = JSON.parse(
+            fs.readFileSync(resultExamplePath, { encoding: 'utf-8' }),
+        );
 
-        const expectedScreenshotImage = 'data:image/png;base64,' + axeRuleResultExample.axeContext.screenshot;
+        const expectedScreenshotImage =
+            'data:image/png;base64,' + axeRuleResultExample.axeContext.screenshot;
 
-        const actualScreenshotImage = await automatedChecksView.findElement(ScreenshotViewSelectors.screenshotImage).getAttribute('src');
+        const actualScreenshotImage = await automatedChecksView
+            .findElement(ScreenshotViewSelectors.screenshotImage)
+            .getAttribute('src');
 
         expect(actualScreenshotImage).toEqual(expectedScreenshotImage);
     });
@@ -91,11 +127,15 @@ describe('AutomatedChecksView', () => {
     it('ScreenshotView renders expected number/size of highlight boxes in expected positions', async () => {
         await automatedChecksView.waitForScreenshotViewVisible();
 
-        const highlightBoxes = await automatedChecksView.client.$$(ScreenshotViewSelectors.highlightBox);
+        const highlightBoxes = await automatedChecksView.client.$$(
+            ScreenshotViewSelectors.highlightBox,
+        );
 
         const actualHighlightBoxStyles: PositionStyles[] = [];
         for (let i = 1; i <= highlightBoxes.length; i++) {
-            const style = await automatedChecksView.findElement(ScreenshotViewSelectors.getHighlightBoxByIndex(i)).getAttribute('style');
+            const style = await automatedChecksView
+                .findElement(ScreenshotViewSelectors.getHighlightBoxByIndex(i))
+                .getAttribute('style');
             actualHighlightBoxStyles.push(extractPositionStyles(style));
         }
 
@@ -128,7 +168,10 @@ describe('AutomatedChecksView', () => {
         return parseFloat(RegExp(`${propertyName}: (-?\\d+(\\.\\d+)?)%`).exec(styleValue)[1]);
     }
 
-    function verifyHighlightBoxStyles(actualHighlightBoxStyles: PositionStyles[], expectedHighlightBoxStyles: PositionStyles[]): void {
+    function verifyHighlightBoxStyles(
+        actualHighlightBoxStyles: PositionStyles[],
+        expectedHighlightBoxStyles: PositionStyles[],
+    ): void {
         expect(actualHighlightBoxStyles).toHaveLength(expectedHighlightBoxStyles.length);
 
         actualHighlightBoxStyles.forEach((boxStyle, index) => {

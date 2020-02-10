@@ -26,7 +26,10 @@ export class AssessmentScanDetails extends React.Component<AssessmentScanDetails
                                 <UrlIcon />
                             </td>
                             <td>
-                                <NewTabLink href={this.props.details.url} title="Navigate to target page">
+                                <NewTabLink
+                                    href={this.props.details.url}
+                                    title="Navigate to target page"
+                                >
                                     {this.props.details.url}
                                 </NewTabLink>
                             </td>
@@ -43,7 +46,9 @@ export class AssessmentScanDetails extends React.Component<AssessmentScanDetails
                             <td className="icon" aria-hidden="true">
                                 <CommentIcon />
                             </td>
-                            <td className="assessment-scan-details-description">{this.props.description}</td>
+                            <td className="assessment-scan-details-description">
+                                {this.props.description}
+                            </td>
                         </tr>
                     </tbody>
                 </table>

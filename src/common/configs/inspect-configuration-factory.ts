@@ -29,7 +29,9 @@ export class InspectConfigurationFactory {
         [InspectMode.scopingAddExclude]: this.addExcludeSelector,
     };
 
-    public getConfigurationByKey(key: ConfigurationKey): (event: MouseEvent, selector: string[]) => void {
+    public getConfigurationByKey(
+        key: ConfigurationKey,
+    ): (event: MouseEvent, selector: string[]) => void {
         const configuration = this.configurationByType[key];
 
         if (configuration == null) {

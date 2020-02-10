@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { NavigatorUtils } from 'common/navigator-utils';
-import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
+import { DefaultButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { CopyIcon } from '../../common/icons/copy-icon';
@@ -37,7 +37,9 @@ export class CopyIssueDetailsButton extends React.Component<CopyIssueDetailsButt
             this.props.onClick(event);
         }
         try {
-            await this.props.deps.navigatorUtils.copyToClipboard(this.getIssueDetailsText(this.props.issueDetailsData));
+            await this.props.deps.navigatorUtils.copyToClipboard(
+                this.getIssueDetailsText(this.props.issueDetailsData),
+            );
         } catch (error) {
             this.toastRef.current.show('Failed to copy failure details. Please try again.');
             return;
@@ -49,7 +51,10 @@ export class CopyIssueDetailsButton extends React.Component<CopyIssueDetailsButt
         return (
             <>
                 <Toast ref={this.toastRef} deps={this.props.deps} />
-                <DefaultButton className={'copy-issue-details-button'} onClick={this.copyButtonClicked}>
+                <DefaultButton
+                    className={'copy-issue-details-button'}
+                    onClick={this.copyButtonClicked}
+                >
                     <CopyIcon />
                     <div className="ms-Button-label">Copy failure details</div>
                 </DefaultButton>

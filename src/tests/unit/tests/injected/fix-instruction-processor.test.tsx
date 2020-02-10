@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FixInstructionProcessor } from '../../../../injected/fix-instruction-processor';
+import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 
 describe('FixInstructionProcessor', () => {
     let testSubject: FixInstructionProcessor;

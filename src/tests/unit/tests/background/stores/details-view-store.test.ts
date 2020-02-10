@@ -5,8 +5,8 @@ import { DetailsViewActions } from 'background/actions/details-view-actions';
 import { PreviewFeaturesActions } from 'background/actions/preview-features-actions';
 import { ScopingActions } from 'background/actions/scoping-actions';
 import { DetailsViewStore } from 'background/stores/details-view-store';
-import { StoreNames } from '../../../../../common/stores/store-names';
-import { DetailsViewData } from '../../../../../common/types/store-data/details-view-data';
+import { StoreNames } from 'common/stores/store-names';
+import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
 import { DetailsViewStoreDataBuilder } from '../../../common/details-view-store-data-builder';
 import { StoreTester } from '../../../common/store-tester';
 
@@ -94,20 +94,20 @@ describe('DetailsViewStoreTest', () => {
 
     function createStoreTesterForPreviewFeatureActions(
         actionName: keyof PreviewFeaturesActions,
-    ): StoreTester<DetailsViewData, PreviewFeaturesActions> {
+    ): StoreTester<DetailsViewStoreData, PreviewFeaturesActions> {
         const factory = (actions: PreviewFeaturesActions) =>
             new DetailsViewStore(actions, new ScopingActions(), new ContentActions(), new DetailsViewActions());
         return new StoreTester(PreviewFeaturesActions, actionName, factory);
     }
 
-    function createStoreTesterForScopingActions(actionName: keyof ScopingActions): StoreTester<DetailsViewData, ScopingActions> {
+    function createStoreTesterForScopingActions(actionName: keyof ScopingActions): StoreTester<DetailsViewStoreData, ScopingActions> {
         const factory = (actions: ScopingActions) =>
             new DetailsViewStore(new PreviewFeaturesActions(), actions, new ContentActions(), new DetailsViewActions());
 
         return new StoreTester(ScopingActions, actionName, factory);
     }
 
-    function createStoreTesterForContentActions(actionName: keyof ContentActions): StoreTester<DetailsViewData, ContentActions> {
+    function createStoreTesterForContentActions(actionName: keyof ContentActions): StoreTester<DetailsViewStoreData, ContentActions> {
         const factory = (actions: ContentActions) =>
             new DetailsViewStore(new PreviewFeaturesActions(), new ScopingActions(), actions, new DetailsViewActions());
 
@@ -116,7 +116,7 @@ describe('DetailsViewStoreTest', () => {
 
     function createStoreTesterForDetailsViewActions(
         actionName: keyof DetailsViewActions,
-    ): StoreTester<DetailsViewData, DetailsViewActions> {
+    ): StoreTester<DetailsViewStoreData, DetailsViewActions> {
         const factory = (actions: DetailsViewActions) =>
             new DetailsViewStore(new PreviewFeaturesActions(), new ScopingActions(), new ContentActions(), actions);
 

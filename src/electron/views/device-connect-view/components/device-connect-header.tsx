@@ -9,8 +9,10 @@ import { ElectronLink } from './electron-link';
 export const DeviceConnectHeader = NamedFC('DeviceConnectHeader', () => {
     return (
         <header className={styles.deviceConnectHeader}>
-            <h2>Connect to your android device</h2>
-            <ElectronLink href="https://go.microsoft.com/fwlink/?linkid=2101252">How do I connect to my device?</ElectronLink>
+            <h2>Connect to your Android device</h2>
+            <ElectronLink href="https://go.microsoft.com/fwlink/?linkid=2101252">
+                How do I connect to my device?
+            </ElectronLink>
         </header>
     );
 });

@@ -3,6 +3,7 @@
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 import { A11YSelfValidator } from '../common/a11y-self-validator';
+import { AutoChecker } from '../common/auto-checker';
 import { AxeInfo } from '../common/axe-info';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { NewTabLink } from '../common/components/new-tab-link';
@@ -12,7 +13,6 @@ import { EnumHelper } from '../common/enum-helper';
 import { TelemetryEventSource } from '../common/extension-telemetry-events';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { IsSupportedBrowser } from '../common/is-supported-browser';
-import { createDefaultLogger } from '../common/logging/default-logger';
 import { Logger } from '../common/logging/logger';
 import { ContentActionMessageCreator } from '../common/message-creators/content-action-message-creator';
 import { DropdownActionMessageCreator } from '../common/message-creators/dropdown-action-message-creator';
@@ -20,7 +20,6 @@ import { RemoteActionMessageDispatcher } from '../common/message-creators/remote
 import { StoreActionMessageCreatorFactory } from '../common/message-creators/store-action-message-creator-factory';
 import { UserConfigMessageCreator } from '../common/message-creators/user-config-message-creator';
 import { VisualizationActionMessageCreator } from '../common/message-creators/visualization-action-message-creator';
-import { AutoChecker } from '../common/self-validator';
 import { StoreProxy } from '../common/store-proxy';
 import { BaseClientStoresHub } from '../common/stores/base-client-stores-hub';
 import { StoreNames } from '../common/stores/store-names';
@@ -40,13 +39,12 @@ import { DiagnosticViewToggleDeps } from './components/diagnostic-view-toggle';
 import { DiagnosticViewToggleFactory } from './components/diagnostic-view-toggle-factory';
 import { PopupViewControllerState } from './components/popup-view';
 import { DiagnosticViewClickHandler } from './handlers/diagnostic-view-toggle-click-handler';
-import { IPopupHandlers } from './handlers/ipopup-handlers';
 import { LaunchPanelHeaderClickHandler } from './handlers/launch-panel-header-click-handler';
+import { PopupHandlers } from './handlers/popup-handlers';
 import { PopupViewControllerHandler } from './handlers/popup-view-controller-handler';
 import { IncompatibleBrowserRenderer } from './incompatible-browser-renderer';
 import { LaunchPadRowConfigurationFactory } from './launch-pad-row-configuration-factory';
 import { MainRenderer, MainRendererDeps } from './main-renderer';
-import { SupportLinkHandler } from './support-link-handler';
 import { TargetTabFinder, TargetTabInfo } from './target-tab-finder';
 
 declare var window: AutoChecker & Window;
@@ -58,7 +56,7 @@ export class PopupInitializer {
         private readonly browserAdapter: BrowserAdapter,
         private readonly targetTabFinder: TargetTabFinder,
         private readonly isSupportedBrowser: IsSupportedBrowser,
-        private logger: Logger = createDefaultLogger(),
+        private logger: Logger,
     ) {}
 
     public initialize(): Promise<void> {
@@ -87,9 +85,11 @@ export class PopupInitializer {
 
     private initializePopup = (): void => {
         const telemetryFactory = new TelemetryDataFactory();
+        const tab = this.targetTabInfo.tab;
         const actionMessageDispatcher = new RemoteActionMessageDispatcher(
             this.browserAdapter.sendMessageToFrames,
-            this.targetTabInfo.tab.id,
+            tab.id,
+            this.logger,
         );
         const visualizationActionCreator = new VisualizationActionMessageCreator(
             actionMessageDispatcher,
@@ -124,22 +124,27 @@ export class PopupInitializer {
         const visualizationStore = new StoreProxy<VisualizationStoreData>(
             visualizationStoreName,
             this.browserAdapter,
+            tab.id,
         );
         const launchPanelStateStore = new StoreProxy<LaunchPanelStoreData>(
             launchPanelStateStoreName,
             this.browserAdapter,
+            tab.id,
         );
         const commandStore = new StoreProxy<CommandStoreData>(
             commandStoreName,
             this.browserAdapter,
+            tab.id,
         );
         const featureFlagStore = new StoreProxy<FeatureFlagStoreData>(
             featureFlagStoreName,
             this.browserAdapter,
+            tab.id,
         );
         const userConfigurationStore = new StoreProxy<UserConfigurationStoreData>(
             userConfigurationStoreName,
             this.browserAdapter,
+            tab.id,
         );
 
         const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
@@ -153,12 +158,6 @@ export class PopupInitializer {
             featureFlagStore,
             userConfigurationStore,
         ]);
-
-        visualizationStore.setTabId(this.targetTabInfo.tab.id);
-        commandStore.setTabId(this.targetTabInfo.tab.id);
-        featureFlagStore.setTabId(this.targetTabInfo.tab.id);
-        launchPanelStateStore.setTabId(this.targetTabInfo.tab.id);
-        userConfigurationStore.setTabId(this.targetTabInfo.tab.id);
 
         const visualizationConfigurationFactory = new VisualizationConfigurationFactory();
         const launchPadRowConfigurationFactory = new LaunchPadRowConfigurationFactory();
@@ -175,13 +174,11 @@ export class PopupInitializer {
             TelemetryEventSource.LaunchPad,
         );
         const launchPanelHeaderClickHandler = new LaunchPanelHeaderClickHandler();
-        const supportLinkHandler = new SupportLinkHandler(this.browserAdapter, windowUtils);
 
-        const popupHandlers: IPopupHandlers = {
+        const popupHandlers: PopupHandlers = {
             diagnosticViewClickHandler,
             popupViewControllerHandler,
             launchPanelHeaderClickHandler,
-            supportLinkHandler,
         };
 
         const actionInitiators = {
@@ -235,18 +232,19 @@ export class PopupInitializer {
             ReactDOM.render,
             document,
             window,
-            this.targetTabInfo.tab.url,
+            tab.url,
             this.targetTabInfo.hasAccess,
             launchPadRowConfigurationFactory,
             diagnosticViewToggleFactory,
             dropdownClickHandler,
         );
         renderer.render();
-        popupActionMessageCreator.popupInitialized(this.targetTabInfo.tab);
+        popupActionMessageCreator.popupInitialized(tab);
 
         const a11ySelfValidator = new A11YSelfValidator(
-            new ScannerUtils(scan),
+            new ScannerUtils(scan, this.logger),
             new HTMLElementUtils(),
+            this.logger,
         );
         window.A11YSelfValidator = a11ySelfValidator;
     };

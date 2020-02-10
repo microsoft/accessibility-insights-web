@@ -6,7 +6,10 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentDataConverter } from 'background/assessment-data-converter';
 import { InitialAssessmentStoreDataGenerator } from 'background/initial-assessment-store-data-generator';
 import { AssessmentStore } from 'background/stores/assessment-store';
-import { AssessmentData, AssessmentStoreData } from '../../../common/types/store-data/assessment-result-data';
+import {
+    AssessmentData,
+    AssessmentStoreData,
+} from '../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { BaseDataBuilder } from './base-data-builder';
 
@@ -32,7 +35,10 @@ export class AssessmentsStoreDataBuilder extends BaseDataBuilder<AssessmentStore
     }
 
     private getPreparedMock(): InitialAssessmentStoreDataGenerator {
-        this.storeDataGeneratorMock = Mock.ofType(InitialAssessmentStoreDataGenerator, MockBehavior.Strict);
+        this.storeDataGeneratorMock = Mock.ofType(
+            InitialAssessmentStoreDataGenerator,
+            MockBehavior.Strict,
+        );
         const stubData: AssessmentStoreData = {
             persistedTabInfo: null,
             assessments: {},
@@ -40,12 +46,17 @@ export class AssessmentsStoreDataBuilder extends BaseDataBuilder<AssessmentStore
             resultDescription: '',
         };
 
-        this.storeDataGeneratorMock.setup(mock => mock.generateInitialState(It.isAny())).returns(() => stubData);
+        this.storeDataGeneratorMock
+            .setup(mock => mock.generateInitialState(It.isAny()))
+            .returns(() => stubData);
 
         return this.storeDataGeneratorMock.object;
     }
 
-    public withAssessment(assessmentName: string, data: AssessmentData): AssessmentsStoreDataBuilder {
+    public withAssessment(
+        assessmentName: string,
+        data: AssessmentData,
+    ): AssessmentsStoreDataBuilder {
         this.data.assessments[assessmentName] = data;
         return this;
     }
@@ -60,7 +71,12 @@ export class AssessmentsStoreDataBuilder extends BaseDataBuilder<AssessmentStore
         return this;
     }
 
-    public withTargetTab(id: number, url: string, title: string, appRefreshed: boolean): AssessmentsStoreDataBuilder {
+    public withTargetTab(
+        id: number,
+        url: string,
+        title: string,
+        appRefreshed: boolean,
+    ): AssessmentsStoreDataBuilder {
         this.data.persistedTabInfo = { id, url, title, appRefreshed };
         return this;
     }

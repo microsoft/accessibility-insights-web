@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { DictionaryStringTo } from '../../../types/common-types';
 import { Tab } from '../../itab';
 import { ManualTestStatus, ManualTestStatusData } from '../manual-test-status';
@@ -28,6 +29,7 @@ export interface AssessmentData {
     generatedAssessmentInstancesMap?: InstanceIdToInstanceDataMap;
     manualTestStepResultMap?: RequirementIdToResultMap;
     testStepStatus: ManualTestStatusData;
+    scanIncompleteWarnings?: ScanIncompleteWarningId[];
 }
 
 export interface ManualTestStepResult {
@@ -80,6 +82,8 @@ export interface LandmarksAssessmentProperties {
     label: string;
 }
 
-export type AssessmentInstancesMap<T = {}, K = {}> = DictionaryStringTo<GeneratedAssessmentInstance<T, K>>;
+export type AssessmentInstancesMap<T = {}, K = {}> = DictionaryStringTo<
+    GeneratedAssessmentInstance<T, K>
+>;
 
 export type AssessmentResultType<K> = { [testStepName in keyof K]: TestStepResult };

@@ -13,7 +13,9 @@ export class PortOnDisconnectMock extends ChromeEventMock {
         this.portOnDisconnectMock = this.eventMock as IMock<PortDisconnectStub>;
     }
 
-    public setupAddListenerMock(callback?: (onAddListener: (msg: any, port: chrome.runtime.Port) => void) => void): ChromeEventMock {
+    public setupAddListenerMock(
+        callback?: (onAddListener: (msg: any, port: chrome.runtime.Port) => void) => void,
+    ): ChromeEventMock {
         return super.setupAddListenerMock(callback) as PortOnDisconnectMock;
     }
 

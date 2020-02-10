@@ -17,7 +17,10 @@ export class UrlValidator {
     }
 
     private hasSupportedPrefix(lowerCasedUrl: string): boolean {
-        const unsupportedPrefixes = ['https://chrome.google.com/', 'https://microsoftedge.microsoft.com/'];
+        const unsupportedPrefixes = [
+            'https://chrome.google.com/',
+            'https://microsoftedge.microsoft.com/',
+        ];
         return unsupportedPrefixes.every(prefix => !lowerCasedUrl.startsWith(prefix));
     }
 
@@ -26,8 +29,6 @@ export class UrlValidator {
     }
 
     private checkAccessToFileUrl(): Promise<boolean> {
-        return new Promise<boolean>(resolve => {
-            this.browserAdapter.isAllowedFileSchemeAccess(resolve);
-        });
+        return this.browserAdapter.isAllowedFileSchemeAccess();
     }
 }

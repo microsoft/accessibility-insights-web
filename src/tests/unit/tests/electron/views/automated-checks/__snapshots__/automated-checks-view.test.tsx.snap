@@ -3,6 +3,7 @@
 exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
 <div
   className="automatedChecksView"
+  data-automation-id="automated-checks-view"
 >
   <TitleBar
     deps={
@@ -96,6 +97,7 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
 exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
 <div
   className="automatedChecksView"
+  data-automation-id="automated-checks-view"
 >
   <TitleBar
     deps={
@@ -160,6 +162,7 @@ exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
 exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
 <div
   className="automatedChecksView"
+  data-automation-id="automated-checks-view"
 >
   <TitleBar
     deps={
@@ -224,6 +227,7 @@ exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
 exports[`AutomatedChecksView renders when status scan <undefined> 1`] = `
 <div
   className="automatedChecksView"
+  data-automation-id="automated-checks-view"
 >
   <TitleBar
     deps={

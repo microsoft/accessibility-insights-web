@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IPoint } from '@uifabric/utilities';
-import { ActionButton } from 'office-ui-fabric-react/lib/Button';
-import { ContextualMenu, IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
+import { ActionButton } from 'office-ui-fabric-react';
+import { ContextualMenu, IContextualMenuItem } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { VisualizationType } from '../../common/types/visualization-type';
@@ -65,7 +65,13 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
             return null;
         }
 
-        return <ContextualMenu onDismiss={() => this.dismissDropdown()} target={this.state.target} items={this.getMenuItems()} />;
+        return (
+            <ContextualMenu
+                onDismiss={() => this.dismissDropdown()}
+                target={this.state.target}
+                items={this.getMenuItems()}
+            />
+        );
     }
 
     private getMenuItems(): IContextualMenuItem[] {
@@ -83,7 +89,9 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
             },
         ];
 
-        return rightPanelConfiguration.GetStartOverContextualMenuItemKeys().map(key => items.find(item => item.key === key));
+        return rightPanelConfiguration
+            .GetStartOverContextualMenuItemKeys()
+            .map(key => items.find(item => item.key === key));
     }
 
     private onStartOverTestMenu = (): void => {
@@ -143,9 +151,9 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
 
     private onStartTestOver = (event: React.MouseEvent<any>): void => {
         const detailsViewActionMessageCreator = this.props.deps.detailsViewActionMessageCreator;
-        const { requirementKey, test } = this.props;
+        const { test } = this.props;
 
-        detailsViewActionMessageCreator.startOverAssessment(event, test, requirementKey);
+        detailsViewActionMessageCreator.startOverTest(event, test);
 
         this.setState({ dialogState: 'none' });
     };

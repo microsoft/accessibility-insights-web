@@ -1,9 +1,0 @@
-# Copyright (c) Microsoft Corporation. All rights reserved.
-# Licensed under the MIT License.
-steps:
-    - task: PublishTestResults@2
-      inputs:
-          testResultsFiles: test-results/electron/junit-electron.xml
-          testRunTitle: $(Agent.JobName)
-      condition: succeededOrFailed()
-      displayName: publish electron e2e test results

@@ -13,7 +13,10 @@ import { DetailsViewSwitcherNavConfiguration, LeftNavDeps } from '../details-vie
 
 export type DetailsViewLeftNavDeps = {
     assessmentsProvider: AssessmentsProvider;
-    assessmentsProviderWithFeaturesEnabled: (assessmentProvider: AssessmentsProvider, flags: FeatureFlagStoreData) => AssessmentsProvider;
+    assessmentsProviderWithFeaturesEnabled: (
+        assessmentProvider: AssessmentsProvider,
+        flags: FeatureFlagStoreData,
+    ) => AssessmentsProvider;
 } & LeftNavDeps;
 
 export type DetailsViewLeftNavProps = {
@@ -26,12 +29,24 @@ export type DetailsViewLeftNavProps = {
 };
 
 export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewLeftNav', props => {
-    const { deps, selectedTest, switcherNavConfiguration, rightPanelConfiguration, featureFlagStoreData, assessmentStoreData } = props;
+    const {
+        deps,
+        selectedTest,
+        switcherNavConfiguration,
+        rightPanelConfiguration,
+        featureFlagStoreData,
+        assessmentStoreData,
+    } = props;
 
     const { assessmentsProvider, assessmentsProviderWithFeaturesEnabled } = deps;
 
-    const selectedKey: string = rightPanelConfiguration.GetLeftNavSelectedKey({ visualizationType: selectedTest });
-    const filteredProvider = assessmentsProviderWithFeaturesEnabled(assessmentsProvider, featureFlagStoreData);
+    const selectedKey: string = rightPanelConfiguration.GetLeftNavSelectedKey({
+        visualizationType: selectedTest,
+    });
+    const filteredProvider = assessmentsProviderWithFeaturesEnabled(
+        assessmentsProvider,
+        featureFlagStoreData,
+    );
 
     const leftNav: JSX.Element = (
         <div className="left-nav main-nav">
@@ -39,7 +54,10 @@ export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewL
                 {...props}
                 assessmentsProvider={filteredProvider}
                 selectedKey={selectedKey}
-                assessmentsData={mapValues(assessmentStoreData.assessments, data => data.testStepStatus)}
+                assessmentsData={mapValues(
+                    assessmentStoreData.assessments,
+                    data => data.testStepStatus,
+                )}
             />
         </div>
     );

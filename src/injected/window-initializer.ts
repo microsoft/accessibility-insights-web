@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { getRTL } from '@uifabric/utilities';
-import * as Q from 'q';
-
+import { createDefaultLogger } from 'common/logging/default-logger';
 import { NavigatorUtils } from 'common/navigator-utils';
+import * as Q from 'q';
 import { AppDataAdapter } from '../common/browser-adapters/app-data-adapter';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
@@ -61,11 +61,16 @@ export class WindowInitializer {
         this.windowUtils = new WindowUtils();
         const htmlElementUtils = new HTMLElementUtils();
         this.clientUtils = new ClientUtils(window);
-        this.scannerUtils = new ScannerUtils(scan);
+        const logger = createDefaultLogger();
+        this.scannerUtils = new ScannerUtils(scan, logger);
 
         new RootContainerCreator(htmlElementUtils).create(rootContainerId);
 
-        this.shadowInitializer = new ShadowInitializer(this.browserAdapter, htmlElementUtils);
+        this.shadowInitializer = new ShadowInitializer(
+            this.browserAdapter,
+            htmlElementUtils,
+            logger,
+        );
         asyncInitializationSteps.push(this.shadowInitializer.initialize());
 
         this.visualizationConfigurationFactory = new VisualizationConfigurationFactory();
@@ -74,12 +79,22 @@ export class WindowInitializer {
             this.windowUtils,
             new WindowMessageMarshaller(this.browserAdapter, generateUID),
         );
-        this.frameCommunicator = new FrameCommunicator(windowMessageHandler, htmlElementUtils, Q);
-        this.tabStopsListener = new TabStopsListener(this.frameCommunicator, this.windowUtils, htmlElementUtils, this.scannerUtils);
+        this.frameCommunicator = new FrameCommunicator(
+            windowMessageHandler,
+            htmlElementUtils,
+            Q,
+            logger,
+        );
+        this.tabStopsListener = new TabStopsListener(
+            this.frameCommunicator,
+            this.windowUtils,
+            htmlElementUtils,
+            this.scannerUtils,
+        );
         const drawerProvider = new DrawerProvider(
             htmlElementUtils,
             this.windowUtils,
-            new NavigatorUtils(window.navigator),
+            new NavigatorUtils(window.navigator, logger),
             new ShadowUtils(new HTMLElementUtils()),
             new DrawerUtils(document),
             this.clientUtils,
@@ -91,11 +106,18 @@ export class WindowInitializer {
         );
         this.drawingController = new DrawingController(
             this.frameCommunicator,
-            new HtmlElementAxeResultsHelper(htmlElementUtils),
+            new HtmlElementAxeResultsHelper(htmlElementUtils, logger),
             htmlElementUtils,
         );
-        this.scrollingController = new ScrollingController(this.frameCommunicator, htmlElementUtils);
-        this.frameUrlFinder = new FrameUrlFinder(this.frameCommunicator, this.windowUtils, htmlElementUtils);
+        this.scrollingController = new ScrollingController(
+            this.frameCommunicator,
+            htmlElementUtils,
+        );
+        this.frameUrlFinder = new FrameUrlFinder(
+            this.frameCommunicator,
+            this.windowUtils,
+            htmlElementUtils,
+        );
         windowMessageHandler.initialize();
         this.tabStopsListener.initialize();
         this.frameCommunicator.initialize();
@@ -109,7 +131,9 @@ export class WindowInitializer {
             Assessments,
             drawerProvider,
         );
-        EnumHelper.getNumericValues(VisualizationType).forEach(visualizationTypeDrawerRegistrar.registerType);
+        EnumHelper.getNumericValues(VisualizationType).forEach(
+            visualizationTypeDrawerRegistrar.registerType,
+        );
 
         const port = this.browserAdapter.connect();
         port.onDisconnect.addListener(() => this.dispose());
@@ -123,7 +147,10 @@ export class WindowInitializer {
         );
         this.elementFinderByPosition.initialize();
 
-        this.elementFinderByPath = new ElementFinderByPath(htmlElementUtils, this.frameCommunicator);
+        this.elementFinderByPath = new ElementFinderByPath(
+            htmlElementUtils,
+            this.frameCommunicator,
+        );
         this.elementFinderByPath.initialize();
 
         await Promise.all(asyncInitializationSteps);

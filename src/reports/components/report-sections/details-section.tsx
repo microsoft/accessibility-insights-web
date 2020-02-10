@@ -10,12 +10,20 @@ import { UrlIcon } from 'common/icons/url-icon';
 import { NamedFC } from 'common/react/named-fc';
 import { SectionProps } from './report-section-factory';
 
-export type DetailsSectionProps = Pick<SectionProps, 'pageTitle' | 'pageUrl' | 'description' | 'scanDate' | 'toUtcString'>;
+export type DetailsSectionProps = Pick<
+    SectionProps,
+    'pageTitle' | 'pageUrl' | 'description' | 'scanDate' | 'toUtcString'
+>;
 
 export const DetailsSection = NamedFC<DetailsSectionProps>('DetailsSection', props => {
     const { pageTitle, pageUrl, description, scanDate, toUtcString } = props;
 
-    const createListItem = (icon: JSX.Element, label: string, content: string | JSX.Element, contentClassName?: string) => (
+    const createListItem = (
+        icon: JSX.Element,
+        label: string,
+        content: string | JSX.Element,
+        contentClassName?: string,
+    ) => (
         <li>
             <span className="icon" aria-hidden="true">
                 {icon}
@@ -40,7 +48,8 @@ export const DetailsSection = NamedFC<DetailsSectionProps>('DetailsSection', pro
                     </NewTabLink>,
                 )}
                 {createListItem(<DateIcon />, 'scan date:', scanDateUTC)}
-                {showCommentRow && createListItem(<CommentIcon />, 'comment:', description, 'description-text')}
+                {showCommentRow &&
+                    createListItem(<CommentIcon />, 'comment:', description, 'description-text')}
             </ul>
         </div>
     );

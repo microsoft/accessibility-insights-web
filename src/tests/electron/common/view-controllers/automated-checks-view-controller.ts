@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as WebDriverIO from 'webdriverio';
-import { AutomatedChecksViewSelectors, ScreenshotViewSelectors } from '../element-identifiers/automated-checks-view-selectors';
+import {
+    AutomatedChecksViewSelectors,
+    ScreenshotViewSelectors,
+} from '../element-identifiers/automated-checks-view-selectors';
 import { ViewController } from './view-controller';
 
 export class AutomatedChecksViewController extends ViewController {
@@ -10,22 +13,24 @@ export class AutomatedChecksViewController extends ViewController {
     }
 
     public async queryRuleGroups(): Promise<any[]> {
-        return this.client.$$(AutomatedChecksViewSelectors.collapsibleRuleDetailsGroup);
+        return this.client.$$(AutomatedChecksViewSelectors.ruleGroup);
     }
 
     public async queryRuleGroupContents(): Promise<any[]> {
-        return this.client.$$(AutomatedChecksViewSelectors.collapsibleContainerContent);
+        return this.client.$$(AutomatedChecksViewSelectors.ruleContent);
     }
 
     public async toggleRuleGroupAtPosition(position: number): Promise<void> {
-        await this.client.click(AutomatedChecksViewSelectors.getCollapseExpandButtonByGroupPosition(position));
+        const selector = AutomatedChecksViewSelectors.nthRuleGroupCollapseExpandButton(position);
+        await this.waitForSelector(selector);
+        await this.client.click(selector);
     }
 
-    public async waitForVisible(): Promise<void> {
-        await this.waitForSelectorVisible(AutomatedChecksViewSelectors.mainContainer);
+    public async waitForViewVisible(): Promise<void> {
+        await this.waitForSelector(AutomatedChecksViewSelectors.mainContainer);
     }
 
     public async waitForScreenshotViewVisible(): Promise<void> {
-        await this.waitForSelectorVisible(ScreenshotViewSelectors.screenshotView);
+        await this.waitForSelector(ScreenshotViewSelectors.screenshotView);
     }
 }

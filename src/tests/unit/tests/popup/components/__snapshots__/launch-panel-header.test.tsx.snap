@@ -1,60 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LaunchPanelHeaderTest render 1`] = `
+exports[`LaunchPanelHeaderTest renders 1`] = `
 <Header
-  rowExtraClassName="header-title"
   subtitle="test subtitle"
   title="test title"
 >
-  <div
-    className="ms-Grid-col ms-u-sm2 feedback-collapseMenuButton-col"
-  >
+  <React.Fragment>
+    <FlaggedComponent
+      enableJSXElement={
+        <CustomizedIconButton
+          ariaLabel="open debug tools"
+          iconProps={
+            Object {
+              "iconName": "Cat",
+            }
+          }
+        />
+      }
+      featureFlag="debugTools"
+      featureFlagStoreData={Object {}}
+    />
     <GearOptionsButtonComponent
       dropdownClickHandler={Object {}}
       featureFlags={Object {}}
     />
-    <CustomizedIconButton
-      ariaLabel="Help and Feedback menu"
-      iconProps={
-        Object {
-          "iconName": "GlobalNavButton",
-        }
-      }
-      id="feedback-collapse-menu-button"
-      onClick={[Function]}
-    />
-  </div>
-</Header>
-`;
-
-exports[`LaunchPanelHeaderTest render contextual menu renders with new assessment experience 1`] = `
-<Header
-  rowExtraClassName="header-title"
-  subtitle="test subtitle"
-  title="test title"
->
-  <div
-    className="ms-Grid-col ms-u-sm2 feedback-collapseMenuButton-col"
-  >
-    <GearOptionsButtonComponent
-      dropdownClickHandler={Object {}}
-      featureFlags={
-        Object {
-          "newAssessmentExperience": true,
-        }
-      }
-    />
-    <CustomizedIconButton
-      ariaLabel="Help and Feedback menu"
-      iconProps={
-        Object {
-          "iconName": "GlobalNavButton",
-        }
-      }
-      id="feedback-collapse-menu-button"
-      onClick={[Function]}
-    />
-    <HeaderContextualMenu
+    <HamburgerMenuButton
       deps={
         Object {
           "dropdownClickHandler": Object {},
@@ -62,179 +32,6 @@ exports[`LaunchPanelHeaderTest render contextual menu renders with new assessmen
           "popupActionMessageCreator": Object {},
         }
       }
-      featureFlags={
-        Object {
-          "newAssessmentExperience": true,
-        }
-      }
-      header={
-        LaunchPanelHeader {
-          "context": Object {},
-          "props": Object {
-            "deps": Object {
-              "dropdownClickHandler": Object {},
-              "launchPanelHeaderClickHandler": Object {},
-              "popupActionMessageCreator": Object {},
-            },
-            "dropdownClickHandler": Object {},
-            "featureFlags": Object {
-              "newAssessmentExperience": true,
-            },
-            "openAdhocToolsPanel": [Function],
-            "openFeedbackDialog": Object {},
-            "openGettingStartedDialog": Object {},
-            "popupWindow": Object {},
-            "subtitle": "test subtitle",
-            "supportLinkHandler": Object {},
-            "title": "test title",
-          },
-          "refs": Object {},
-          "setState": [Function],
-          "state": Object {
-            "isContextMenuVisible": true,
-            "target": "test-target",
-          },
-          "updater": Updater {
-            "_callbacks": Array [],
-            "_renderer": ReactShallowRenderer {
-              "_context": Object {},
-              "_didScheduleRenderPhaseUpdate": false,
-              "_dispatcher": Object {
-                "readContext": [Function],
-                "useCallback": [Function],
-                "useContext": [Function],
-                "useDebugValue": [Function],
-                "useDeferredValue": [Function],
-                "useEffect": [Function],
-                "useImperativeHandle": [Function],
-                "useLayoutEffect": [Function],
-                "useMemo": [Function],
-                "useReducer": [Function],
-                "useRef": [Function],
-                "useResponder": [Function],
-                "useState": [Function],
-                "useTransition": [Function],
-              },
-              "_element": <LaunchPanelHeader
-                deps={
-                  Object {
-                    "dropdownClickHandler": Object {},
-                    "launchPanelHeaderClickHandler": Object {},
-                    "popupActionMessageCreator": Object {},
-                  }
-                }
-                dropdownClickHandler={Object {}}
-                featureFlags={
-                  Object {
-                    "newAssessmentExperience": true,
-                  }
-                }
-                openAdhocToolsPanel={[Function]}
-                openFeedbackDialog={Object {}}
-                openGettingStartedDialog={Object {}}
-                popupWindow={Object {}}
-                subtitle="test subtitle"
-                supportLinkHandler={Object {}}
-                title="test title"
-              />,
-              "_firstWorkInProgressHook": null,
-              "_forcedUpdate": false,
-              "_instance": [Circular],
-              "_isReRender": false,
-              "_newState": null,
-              "_numberOfReRenders": 0,
-              "_renderPhaseUpdates": null,
-              "_rendered": <Header
-                rowExtraClassName="header-title"
-                subtitle="test subtitle"
-                title="test title"
-              >
-                <div
-                  className="ms-Grid-col ms-u-sm2 feedback-collapseMenuButton-col"
-                >
-                  <GearOptionsButtonComponent
-                    dropdownClickHandler={Object {}}
-                    featureFlags={
-                      Object {
-                        "newAssessmentExperience": true,
-                      }
-                    }
-                  />
-                  <CustomizedIconButton
-                    ariaLabel="Help and Feedback menu"
-                    iconProps={
-                      Object {
-                        "iconName": "GlobalNavButton",
-                      }
-                    }
-                    id="feedback-collapse-menu-button"
-                    onClick={[Function]}
-                  />
-                  <HeaderContextualMenu
-                    deps={
-                      Object {
-                        "dropdownClickHandler": Object {},
-                        "launchPanelHeaderClickHandler": Object {},
-                        "popupActionMessageCreator": Object {},
-                      }
-                    }
-                    featureFlags={
-                      Object {
-                        "newAssessmentExperience": true,
-                      }
-                    }
-                    header={[Circular]}
-                    popupWindow={Object {}}
-                    target="test-target"
-                  />
-                </div>
-              </Header>,
-              "_rendering": false,
-              "_updater": [Circular],
-              "_workInProgressHook": null,
-            },
-          },
-        }
-      }
-      popupWindow={Object {}}
-      target="test-target"
-    />
-  </div>
-</Header>
-`;
-
-exports[`LaunchPanelHeaderTest render contextual menu renders without new assessment experience 1`] = `
-<Header
-  rowExtraClassName="header-title"
-  subtitle="test subtitle"
-  title="test title"
->
-  <div
-    className="ms-Grid-col ms-u-sm2 feedback-collapseMenuButton-col"
-  >
-    <GearOptionsButtonComponent
-      dropdownClickHandler={Object {}}
-      featureFlags={Object {}}
-    />
-    <CustomizedIconButton
-      ariaLabel="Help and Feedback menu"
-      iconProps={
-        Object {
-          "iconName": "GlobalNavButton",
-        }
-      }
-      id="feedback-collapse-menu-button"
-      onClick={[Function]}
-    />
-    <HeaderContextualMenu
-      deps={
-        Object {
-          "dropdownClickHandler": Object {},
-          "launchPanelHeaderClickHandler": Object {},
-          "popupActionMessageCreator": Object {},
-        }
-      }
-      featureFlags={Object {}}
       header={
         LaunchPanelHeader {
           "context": Object {},
@@ -251,14 +48,12 @@ exports[`LaunchPanelHeaderTest render contextual menu renders without new assess
             "openGettingStartedDialog": Object {},
             "popupWindow": Object {},
             "subtitle": "test subtitle",
-            "supportLinkHandler": Object {},
             "title": "test title",
           },
           "refs": Object {},
           "setState": [Function],
           "state": Object {
-            "isContextMenuVisible": true,
-            "target": "test-target",
+            "isContextMenuVisible": false,
           },
           "updater": Updater {
             "_callbacks": Array [],
@@ -296,7 +91,6 @@ exports[`LaunchPanelHeaderTest render contextual menu renders without new assess
                 openGettingStartedDialog={Object {}}
                 popupWindow={Object {}}
                 subtitle="test subtitle"
-                supportLinkHandler={Object {}}
                 title="test title"
               />,
               "_firstWorkInProgressHook": null,
@@ -307,28 +101,29 @@ exports[`LaunchPanelHeaderTest render contextual menu renders without new assess
               "_numberOfReRenders": 0,
               "_renderPhaseUpdates": null,
               "_rendered": <Header
-                rowExtraClassName="header-title"
                 subtitle="test subtitle"
                 title="test title"
               >
-                <div
-                  className="ms-Grid-col ms-u-sm2 feedback-collapseMenuButton-col"
-                >
+                <React.Fragment>
+                  <FlaggedComponent
+                    enableJSXElement={
+                      <CustomizedIconButton
+                        ariaLabel="open debug tools"
+                        iconProps={
+                          Object {
+                            "iconName": "Cat",
+                          }
+                        }
+                      />
+                    }
+                    featureFlag="debugTools"
+                    featureFlagStoreData={Object {}}
+                  />
                   <GearOptionsButtonComponent
                     dropdownClickHandler={Object {}}
                     featureFlags={Object {}}
                   />
-                  <CustomizedIconButton
-                    ariaLabel="Help and Feedback menu"
-                    iconProps={
-                      Object {
-                        "iconName": "GlobalNavButton",
-                      }
-                    }
-                    id="feedback-collapse-menu-button"
-                    onClick={[Function]}
-                  />
-                  <HeaderContextualMenu
+                  <HamburgerMenuButton
                     deps={
                       Object {
                         "dropdownClickHandler": Object {},
@@ -336,12 +131,10 @@ exports[`LaunchPanelHeaderTest render contextual menu renders without new assess
                         "popupActionMessageCreator": Object {},
                       }
                     }
-                    featureFlags={Object {}}
                     header={[Circular]}
                     popupWindow={Object {}}
-                    target="test-target"
                   />
-                </div>
+                </React.Fragment>
               </Header>,
               "_rendering": false,
               "_updater": [Circular],
@@ -351,8 +144,7 @@ exports[`LaunchPanelHeaderTest render contextual menu renders without new assess
         }
       }
       popupWindow={Object {}}
-      target="test-target"
     />
-  </div>
+  </React.Fragment>
 </Header>
 `;

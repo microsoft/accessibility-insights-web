@@ -1,16 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BrowserMessageBroadcasterFactory } from 'background/browser-message-broadcaster-factory';
 import { DetailsViewController } from 'background/details-view-controller';
 import { Interpreter } from 'background/interpreter';
 import { TabContext } from 'background/tab-context';
-import { TabContextBroadcaster } from 'background/tab-context-broadcaster';
 import { TabContextFactory } from 'background/tab-context-factory';
 import { TargetPageController } from 'background/target-page-controller';
-import { TriggeredByNotApplicable } from 'common/extension-telemetry-events';
 import { Logger } from 'common/logging/logger';
 import { Messages } from 'common/messages';
 import { isFunction, values } from 'lodash';
 import { createSimulatedBrowserAdapter, SimulatedBrowserAdapter } from 'tests/unit/common/simulated-browser-adapter';
+import { tick } from 'tests/unit/common/tick';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DictionaryNumberTo } from 'types/common-types';
 
@@ -18,8 +18,8 @@ describe('TargetPageController', () => {
     let testSubject: TargetPageController;
 
     let mockLogger: IMock<Logger>;
-    const stubBroadcastDelegate = (message: any) => {};
-    let mockBroadcasterStrictMock: IMock<TabContextBroadcaster>;
+    const stubBroadcastDelegate = (message: any) => Promise.resolve();
+    let mockBroadcasterFactoryStrictMock: IMock<BrowserMessageBroadcasterFactory>;
     let mockTabContextFactory: IMock<TabContextFactory>;
     let mockBrowserAdapter: SimulatedBrowserAdapter;
     let mockDetailsViewController: SimulatedDetailsViewController;
@@ -40,8 +40,8 @@ describe('TargetPageController', () => {
 
     beforeEach(() => {
         mockLogger = Mock.ofType<Logger>();
-        mockBroadcasterStrictMock = Mock.ofType<TabContextBroadcaster>(undefined, MockBehavior.Strict);
-        mockBroadcasterStrictMock.setup(m => m.getBroadcastMessageDelegate(It.isAny())).returns(_ => stubBroadcastDelegate);
+        mockBroadcasterFactoryStrictMock = Mock.ofType<BrowserMessageBroadcasterFactory>(undefined, MockBehavior.Strict);
+        mockBroadcasterFactoryStrictMock.setup(m => m.createTabSpecificBroadcaster(It.isAny())).returns(_ => stubBroadcastDelegate);
         mockBrowserAdapter = createSimulatedBrowserAdapter([EXISTING_ACTIVE_TAB, EXISTING_INACTIVE_TAB], [EXISTING_WINDOW]);
         mockDetailsViewController = setupMockDetailsViewController();
         tabToContextMap = {};
@@ -53,7 +53,7 @@ describe('TargetPageController', () => {
 
         testSubject = new TargetPageController(
             tabToContextMap,
-            mockBroadcasterStrictMock.object,
+            mockBroadcasterFactoryStrictMock.object,
             mockBrowserAdapter.object,
             mockDetailsViewController.object,
             mockTabContextFactory.object,
@@ -62,8 +62,8 @@ describe('TargetPageController', () => {
     });
 
     describe('initialize', () => {
-        it('should register the expected listeners', () => {
-            testSubject.initialize();
+        it('should register the expected listeners', async () => {
+            await testSubject.initialize();
 
             mockBrowserAdapter.verify(m => m.addListenerOnConnect(It.isAny()), Times.once());
             mockBrowserAdapter.verify(m => m.addListenerOnWindowsFocusChanged(It.isAny()), Times.once());
@@ -75,8 +75,8 @@ describe('TargetPageController', () => {
             mockDetailsViewController.verify(m => m.setupDetailsViewTabRemovedHandler(It.isAny()), Times.once());
         });
 
-        it('should create a tab context for each pre-existing tab', () => {
-            testSubject.initialize();
+        it('should create a tab context for each pre-existing tab', async () => {
+            await testSubject.initialize();
 
             mockTabContextFactory.verify(f => f.createTabContext(It.isAny(), It.isAny(), It.isAny(), EXISTING_ACTIVE_TAB_ID), Times.once());
             expect(tabToContextMap[EXISTING_ACTIVE_TAB_ID]).toHaveProperty(
@@ -99,8 +99,8 @@ describe('TargetPageController', () => {
     });
 
     describe('in initialized state', () => {
-        beforeEach(() => {
-            testSubject.initialize();
+        beforeEach(async () => {
+            await testSubject.initialize();
             resetInterpreterMocks(mockTabInterpreters);
         });
 
@@ -142,7 +142,7 @@ describe('TargetPageController', () => {
 
                 const expectedMessage = {
                     messageType: Messages.Tab.ExistingTabUpdated,
-                    payload: { ...EXISTING_ACTIVE_TAB, telemetry: undefined },
+                    payload: { ...EXISTING_ACTIVE_TAB },
                     tabId: EXISTING_ACTIVE_TAB_ID,
                 };
                 mockTabInterpreters[EXISTING_ACTIVE_TAB_ID].verify(i => i.interpret(expectedMessage), Times.once());
@@ -208,11 +208,13 @@ describe('TargetPageController', () => {
                 ${'unrecognized'} | ${false}
             `(
                 'should send a Tab.VisibilityChange message with hidden=$expectedHiddenValue for active tabs in windows with state $windowState',
-                ({ windowState, expectedHiddenValue }) => {
+                async ({ windowState, expectedHiddenValue }) => {
                     mockBrowserAdapter.windows.forEach(w => {
                         w.state = windowState;
                     });
                     mockBrowserAdapter.notifyWindowsFocusChanged(irrelevantWindowId);
+
+                    await tick();
 
                     const expectedMessage = {
                         messageType: Messages.Tab.VisibilityChange,
@@ -254,8 +256,9 @@ describe('TargetPageController', () => {
                 mockTabInterpreters[EXISTING_INACTIVE_TAB_ID].verify(i => i.interpret(expectedMessage), Times.once());
             });
 
-            it('should send a Tab.VisibilityChange message with isHidden=true for other known tabs in the same window when a known tab is activated', () => {
+            it('should send a Tab.VisibilityChange message with isHidden=true for other known tabs in the same window when a known tab is activated', async () => {
                 mockBrowserAdapter.activateTab(EXISTING_INACTIVE_TAB);
+                await tick();
 
                 const expectedMessage = {
                     messageType: Messages.Tab.VisibilityChange,
@@ -265,8 +268,9 @@ describe('TargetPageController', () => {
                 mockTabInterpreters[EXISTING_ACTIVE_TAB_ID].verify(i => i.interpret(expectedMessage), Times.once());
             });
 
-            it('should send a Tab.VisibilityChange message with isHidden=true for other known tabs in the same window when an untracked tab is activated', () => {
+            it('should send a Tab.VisibilityChange message with isHidden=true for other known tabs in the same window when an untracked tab is activated', async () => {
                 mockBrowserAdapter.activateTab(NEW_TAB);
+                await tick();
 
                 const expectedMessage = {
                     messageType: Messages.Tab.VisibilityChange,
@@ -312,10 +316,6 @@ describe('TargetPageController', () => {
                     payload: {
                         ...EXISTING_ACTIVE_TAB,
                         url: changeInfoWithUrl.url,
-                        telemetry: {
-                            source: null,
-                            triggeredBy: TriggeredByNotApplicable,
-                        },
                     },
                     tabId: EXISTING_ACTIVE_TAB_ID,
                 };

@@ -1,34 +1,32 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
-import { BaseTelemetryData, TriggeredByNotApplicable } from 'common/extension-telemetry-events';
 import { Logger } from 'common/logging/logger';
 import { Message } from 'common/message';
 import { Messages } from 'common/messages';
 import { PageVisibilityChangeTabPayload } from './actions/action-payloads';
+import { BrowserMessageBroadcasterFactory } from './browser-message-broadcaster-factory';
 import { DetailsViewController } from './details-view-controller';
 import { TabToContextMap } from './tab-context';
-import { TabContextBroadcaster } from './tab-context-broadcaster';
 import { TabContextFactory } from './tab-context-factory';
 
 export class TargetPageController {
     constructor(
         private readonly targetPageTabIdToContextMap: TabToContextMap,
-        private readonly broadcaster: TabContextBroadcaster,
+        private readonly broadcasterFactory: BrowserMessageBroadcasterFactory,
         private readonly browserAdapter: BrowserAdapter,
         private readonly detailsViewController: DetailsViewController,
         private readonly tabContextFactory: TabContextFactory,
         private readonly logger: Logger,
     ) {}
 
-    public initialize(): void {
-        this.browserAdapter.tabsQuery({}, (tabs: chrome.tabs.Tab[]) => {
-            if (tabs) {
-                tabs.forEach(tab => {
-                    this.handleTabUrlUpdate(tab.id);
-                });
-            }
-        });
+    public async initialize(): Promise<void> {
+        const tabs = await this.browserAdapter.tabsQuery({});
+        if (tabs) {
+            tabs.forEach(tab => {
+                this.handleTabUrlUpdate(tab.id);
+            });
+        }
 
         this.browserAdapter.addListenerOnConnect(port => {
             // do not remove this. We need this to detect if the extension is reloaded from the content scripts
@@ -53,61 +51,51 @@ export class TargetPageController {
 
     private onTabUpdated = (tabId: number, changeInfo: chrome.tabs.TabChangeInfo): void => {
         if (changeInfo.url) {
-            const telemetry: BaseTelemetryData = {
-                source: null,
-                triggeredBy: TriggeredByNotApplicable,
-            };
-            this.handleTabUrlUpdate(tabId, telemetry);
+            this.handleTabUrlUpdate(tabId);
         }
     };
 
-    private onTabActivated = (activeInfo: chrome.tabs.TabActiveInfo): void => {
+    private onTabActivated = async (activeInfo: chrome.tabs.TabActiveInfo): Promise<void> => {
         const activeTabId = activeInfo.tabId;
         const windowId = activeInfo.windowId;
 
         this.sendTabVisibilityChangeAction(activeTabId, false);
 
-        this.browserAdapter.tabsQuery({ windowId: windowId }, (tabs: chrome.tabs.Tab[]) => {
-            tabs.forEach((tab: chrome.tabs.Tab) => {
-                if (!tab.active) {
-                    this.sendTabVisibilityChangeAction(tab.id, true);
-                }
-            });
+        const tabs = await this.browserAdapter.tabsQuery({ windowId });
+        tabs.forEach(tab => {
+            if (!tab.active) {
+                this.sendTabVisibilityChangeAction(tab.id, true);
+            }
         });
     };
 
-    private onWindowFocusChanged = (windowId: number): void => {
-        this.browserAdapter.getAllWindows(
-            { populate: false, windowTypes: ['normal', 'popup'] },
-            (chromeWindows: chrome.windows.Window[]) => {
-                chromeWindows.forEach((chromeWindow: chrome.windows.Window) => {
-                    this.browserAdapter.tabsQuery(
-                        {
-                            active: true,
-                            windowId: chromeWindow.id,
-                        },
-                        (activeTabs: chrome.tabs.Tab[]) => {
-                            if (!this.browserAdapter.getRuntimeLastError()) {
-                                for (const activeTab of activeTabs) {
-                                    this.sendTabVisibilityChangeAction(
-                                        activeTab.id,
-                                        chromeWindow.state === 'minimized',
-                                    );
-                                }
-                            }
-                        },
-                    );
-                });
-            },
-        );
+    private onWindowFocusChanged = async (windowId: number): Promise<void> => {
+        const chromeWindows = await this.browserAdapter.getAllWindows({
+            populate: false,
+            windowTypes: ['normal', 'popup'],
+        });
+
+        chromeWindows.forEach(async chromeWindow => {
+            const activeTabs = await this.browserAdapter.tabsQuery({
+                active: true,
+                windowId: chromeWindow.id,
+            });
+
+            for (const activeTab of activeTabs) {
+                this.sendTabVisibilityChangeAction(
+                    activeTab.id,
+                    chromeWindow.state === 'minimized',
+                );
+            }
+        });
     };
 
-    private handleTabUrlUpdate = (tabId: number, telemetry?: BaseTelemetryData): void => {
+    private handleTabUrlUpdate = (tabId: number): void => {
         if (!this.hasTabContext(tabId)) {
             this.addTabContext(tabId);
         }
 
-        this.sendTabUrlUpdatedAction(tabId, telemetry);
+        this.sendTabUrlUpdatedAction(tabId);
     };
 
     private hasTabContext(tabId: number): boolean {
@@ -116,14 +104,14 @@ export class TargetPageController {
 
     private addTabContext(tabId: number): void {
         this.targetPageTabIdToContextMap[tabId] = this.tabContextFactory.createTabContext(
-            this.broadcaster.getBroadcastMessageDelegate(tabId),
+            this.broadcasterFactory.createTabSpecificBroadcaster(tabId),
             this.browserAdapter,
             this.detailsViewController,
             tabId,
         );
     }
 
-    private sendTabUrlUpdatedAction(tabId: number, telemetry?: BaseTelemetryData): void {
+    private sendTabUrlUpdatedAction(tabId: number): void {
         this.browserAdapter.getTab(
             tabId,
             (tab: chrome.tabs.Tab) => {
@@ -132,7 +120,7 @@ export class TargetPageController {
                     const interpreter = tabContext.interpreter;
                     interpreter.interpret({
                         messageType: Messages.Tab.ExistingTabUpdated,
-                        payload: { ...tab, telemetry },
+                        payload: tab,
                         tabId: tabId,
                     });
                 }

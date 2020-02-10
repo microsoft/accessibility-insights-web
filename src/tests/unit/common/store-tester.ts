@@ -15,7 +15,11 @@ export class StoreTester<TStoreData, TActions> {
     private storeFactory: (actions) => BaseStoreImpl<TStoreData>;
     private postListenerMock: IMock<any>;
 
-    constructor(actions: DefaultConstructor<TActions>, actionName: keyof TActions, storeFactory: (actions) => BaseStoreImpl<TStoreData>) {
+    constructor(
+        actions: DefaultConstructor<TActions>,
+        actionName: keyof TActions,
+        storeFactory: (actions) => BaseStoreImpl<TStoreData>,
+    ) {
         this.actionName = actionName as string;
         this.storeFactory = storeFactory;
         this.actions = actions;
@@ -77,15 +81,22 @@ export class StoreTester<TStoreData, TActions> {
     private createActionMock(): IMock<Action<{}>> {
         const actionMock = Mock.ofType(Action);
 
-        actionMock.setup(a => a.addListener(It.is(param => param instanceof Function))).callback(listener => (this.listener = listener));
+        actionMock
+            .setup(a => a.addListener(It.is(param => param instanceof Function)))
+            .callback(listener => (this.listener = listener));
 
         return actionMock;
     }
 
-    private createChangeListener(store: BaseStore<TStoreData>, times: Times): IMock<(store, args) => void> {
+    private createChangeListener(
+        store: BaseStore<TStoreData>,
+        times: Times,
+    ): IMock<(store, args) => void> {
         const listenerMock = Mock.ofInstance((theStore, args) => {});
 
-        listenerMock.setup(l => l(this.isSameStoreTypeMatcher(store), It.isAny())).verifiable(times);
+        listenerMock
+            .setup(l => l(this.isSameStoreTypeMatcher(store), It.isAny()))
+            .verifiable(times);
 
         return listenerMock;
     }

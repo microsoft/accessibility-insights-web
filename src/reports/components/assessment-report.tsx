@@ -22,8 +22,15 @@ export class AssessmentReport extends React.Component<AssessmentReportProps> {
     public render(): JSX.Element {
         return (
             <React.Fragment>
-                <HeaderSection pageTitle={this.props.data.scanDetails.targetPage} pageUrl={this.props.data.scanDetails.url} />
-                <AssessmentReportBody deps={this.props.deps} data={this.props.data} description={this.props.description} />
+                <HeaderSection
+                    pageTitle={this.props.data.scanDetails.targetPage}
+                    pageUrl={this.props.data.scanDetails.url}
+                />
+                <AssessmentReportBody
+                    deps={this.props.deps}
+                    data={this.props.data}
+                    description={this.props.description}
+                />
 
                 <AssessmentReportFooter
                     extensionVersion={this.props.extensionVersion}

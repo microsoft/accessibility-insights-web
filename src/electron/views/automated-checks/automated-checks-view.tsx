@@ -15,7 +15,6 @@ import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { TitleBar, TitleBarDeps } from 'electron/views/automated-checks/components/title-bar';
-import { mainContentWrapper } from 'electron/views/device-connect-view/device-connect-view.scss';
 import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
 import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
 import { ScreenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
@@ -24,6 +23,8 @@ import * as React from 'react';
 import * as styles from './automated-checks-view.scss';
 import { CommandBar, CommandBarDeps } from './components/command-bar';
 import { HeaderSection } from './components/header-section';
+
+export const automatedChecksViewAutomationId = 'automated-checks-view';
 
 export type AutomatedChecksViewDeps = CommandBarDeps &
     TitleBarDeps &
@@ -64,18 +65,30 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                 cardSelectionViewData.highlightedResultUids,
             );
 
-            return this.renderLayout(this.renderResults(cardsViewData), <ScreenshotView viewModel={screenshotViewModel} />);
+            return this.renderLayout(
+                this.renderResults(cardsViewData),
+                <ScreenshotView viewModel={screenshotViewModel} />,
+            );
         } else {
             return this.renderLayout(this.renderScanningSpinner());
         }
     }
 
-    private renderLayout(primaryContent: JSX.Element, optionalSidePanel?: JSX.Element): JSX.Element {
+    private renderLayout(
+        primaryContent: JSX.Element,
+        optionalSidePanel?: JSX.Element,
+    ): JSX.Element {
         return (
-            <div className={styles.automatedChecksView}>
-                <TitleBar deps={this.props.deps} windowStateStoreData={this.props.windowStateStoreData}></TitleBar>
+            <div
+                className={styles.automatedChecksView}
+                data-automation-id={automatedChecksViewAutomationId}
+            >
+                <TitleBar
+                    deps={this.props.deps}
+                    windowStateStoreData={this.props.windowStateStoreData}
+                ></TitleBar>
                 <div className={styles.automatedChecksPanelLayout}>
-                    <div className={mainContentWrapper}>
+                    <div className={styles.mainContentWrapper}>
                         <CommandBar
                             deps={this.props.deps}
                             deviceStoreData={this.props.deviceStoreData}
@@ -96,8 +109,14 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
         return (
             <DeviceDisconnectedPopup
                 deviceName={this.props.deviceStoreData.connectedDevice}
-                onConnectNewDevice={() => this.props.deps.windowStateActionCreator.setRoute({ routeId: 'deviceConnectView' })}
-                onRescanDevice={() => this.props.deps.scanActionCreator.scan(this.props.deviceStoreData.port)}
+                onConnectNewDevice={() =>
+                    this.props.deps.windowStateActionCreator.setRoute({
+                        routeId: 'deviceConnectView',
+                    })
+                }
+                onRescanDevice={() =>
+                    this.props.deps.scanActionCreator.scan(this.props.deviceStoreData.port)
+                }
             />
         );
     }

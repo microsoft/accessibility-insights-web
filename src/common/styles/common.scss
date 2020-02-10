@@ -39,22 +39,6 @@ button::after {
     color: $neutral-100;
 }
 
-.generic-toggle-component {
-    margin-bottom: 4vh;
-    .toggle-container {
-        margin-bottom: 1vh;
-        .toggle-name {
-            display: inline-block;
-            font-size: 17px;
-            font-weight: bold;
-        }
-
-        .toggle {
-            float: right;
-        }
-    }
-}
-
 .high-contrast-theme {
     .insights-link {
         &:hover {
@@ -99,27 +83,16 @@ $detailsViewNavPivotsHeight: 41px !default;
 $detailsViewCommandBarHeight: 40px !default;
 $detailsViewCommandBarBorderHeight: 1px !default;
 $detailsViewLeftNavWidth: 200px !default;
-$detailsViewTotalHeaderHeight: (#{$detailsViewCommandBarBorderHeight} + #{$detailsViewCommandBarHeight} + #{$detailsViewHeaderBarHeight});
+$detailsViewTotalHeaderHeight: (
+    #{$detailsViewCommandBarBorderHeight} + #{$detailsViewCommandBarHeight} + #{$detailsViewHeaderBarHeight}
+);
 
 $fastPassRightPanelMarginRight: 24px !default;
 $fastPassRightPanelMarginLeft: 24px !default;
 $fastPassRightPanelMarginTop: 24px !default;
 
-.header-bar,
-.report-header-bar {
-    background-color: $ada-brand-color;
-    height: $detailsViewHeaderBarHeight;
-    width: 100%;
-
-    .header-text {
-        padding-top: 8px;
-        color: $header-bar-title-color;
-        font-size: 18px;
-        display: inline-block;
-    }
-    .header-icon {
-        float: left;
-        padding: 8px 8px;
-        height: 22px;
-    }
+@mixin ellipsedText {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

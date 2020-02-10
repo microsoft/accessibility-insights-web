@@ -5,7 +5,7 @@ import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-crea
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { CommandBar, CommandBarProps } from 'electron/views/automated-checks/components/command-bar';
 import { mount, shallow } from 'enzyme';
-import { Button } from 'office-ui-fabric-react/lib/Button';
+import { Button } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { Mock, MockBehavior, Times } from 'typemoq';
@@ -43,7 +43,7 @@ describe('CommandBar', () => {
         });
     });
 
-    test('rescan click', () => {
+    test('start over click', () => {
         const eventStub = new EventStubFactory().createMouseClickEvent() as React.MouseEvent<Button>;
 
         const port = 111;
@@ -64,7 +64,7 @@ describe('CommandBar', () => {
         } as CommandBarProps;
 
         const rendered = mount(<CommandBar {...props} />);
-        const button = rendered.find('button[name="Rescan"]');
+        const button = rendered.find('button[name="Start over"]');
 
         button.simulate('click', eventStub);
 

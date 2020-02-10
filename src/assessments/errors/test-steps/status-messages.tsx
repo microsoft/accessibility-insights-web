@@ -10,10 +10,7 @@ import { Requirement } from '../../types/requirement';
 import { ErrorsTestStep } from './test-steps';
 
 const description: JSX.Element = (
-    <span>
-        If an input error is automatically detected, the item in error must be identified, and the
-        error described, in text.
-    </span>
+    <span>Status messages must be programmatically determinable without receiving focus.</span>
 );
 
 const howToTest: JSX.Element = (

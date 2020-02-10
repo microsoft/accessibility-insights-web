@@ -6,13 +6,27 @@ import { NamedFC } from 'common/react/named-fc';
 import { CardResult } from 'common/types/store-data/card-view-model';
 import { forOwn, isEmpty } from 'lodash';
 import * as React from 'react';
-import { instanceDetailsCard, instanceDetailsCardContainer, reportInstanceTable, selected } from 'reports/components/instance-details.scss';
+import {
+    instanceDetailsCard,
+    instanceDetailsCardContainer,
+    reportInstanceTable,
+    selected,
+} from 'reports/components/instance-details.scss';
 
-import { CardRowDeps, PropertyConfiguration } from '../../../common/configs/unified-result-property-configurations';
+import {
+    CardRowDeps,
+    PropertyConfiguration,
+} from '../../../common/configs/unified-result-property-configurations';
 import { CardSelectionMessageCreator } from '../../../common/message-creators/card-selection-message-creator';
-import { StoredInstancePropertyBag, TargetAppData, UnifiedRule } from '../../../common/types/store-data/unified-data-interface';
+import {
+    StoredInstancePropertyBag,
+    TargetAppData,
+    UnifiedRule,
+} from '../../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { InstanceDetailsFooter, InstanceDetailsFooterDeps } from './instance-details-footer';
+
+export const instanceCardAutomationId = 'instance-card';
 
 export type InstanceDetailsDeps = {
     getPropertyConfigById: (id: string) => PropertyConfiguration;
@@ -42,7 +56,14 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
             if (!isEmpty(propertyConfig)) {
                 const CardRow = propertyConfig.cardRow;
                 ++propertyIndex;
-                cardRows.push(<CardRow deps={deps} propertyData={propertyData} index={index} key={`${propertyName}-${propertyIndex}`} />);
+                cardRows.push(
+                    <CardRow
+                        deps={deps}
+                        propertyData={propertyData}
+                        index={index}
+                        key={`${propertyName}-${propertyIndex}`}
+                    />,
+                );
             }
         });
         return <>{cardRows}</>;
@@ -55,7 +76,10 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
     };
 
     const cardKeyPressHandler = (event: React.KeyboardEvent<any>): void => {
-        if (event.keyCode === KeyCodeConstants.ENTER || event.keyCode === KeyCodeConstants.SPACEBAR) {
+        if (
+            event.keyCode === KeyCodeConstants.ENTER ||
+            event.keyCode === KeyCodeConstants.SPACEBAR
+        ) {
             event.preventDefault();
             cardClickHandler(event);
         }
@@ -71,10 +95,16 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         [selected]: isHighlightSupported ? result.isSelected : false,
     });
 
-    const cardAriaLabel = `${result.identifiers && result.identifiers.identifier ? result.identifiers.identifier : ''} card`;
+    const cardAriaLabel = `${
+        result.identifiers && result.identifiers.identifier ? result.identifiers.identifier : ''
+    } card`;
 
     return (
-        <div className={instanceDetailsCardContainerStyling} role="table">
+        <div
+            data-automation-id={instanceCardAutomationId}
+            className={instanceDetailsCardContainerStyling}
+            role="table"
+        >
             <div
                 className={instanceDetailsCardStyling}
                 tabIndex={0}

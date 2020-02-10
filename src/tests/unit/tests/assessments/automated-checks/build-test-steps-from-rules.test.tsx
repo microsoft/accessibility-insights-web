@@ -13,7 +13,10 @@ import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { AssessmentInstanceRowData, AssessmentInstanceTable } from '../../../../../DetailsView/components/assessment-instance-table';
+import {
+    AssessmentInstanceRowData,
+    AssessmentInstanceTable,
+} from '../../../../../DetailsView/components/assessment-instance-table';
 import { RequirementLink } from '../../../../../DetailsView/components/requirement-link';
 import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../../../../injected/analyzers/analyzer-provider';
@@ -86,7 +89,9 @@ describe('buildTestStepsFromRules', () => {
             .setup(apm => apm.createBatchedRuleAnalyzer(It.isAny()))
             .callback((result: RuleAnalyzerConfiguration) => {
                 expectResultToContainBase(result, expectedConfig);
-                expect(result.telemetryProcessor(telemetryProcessorStub)).toBe(forRuleAnalyzerScanStub);
+                expect(result.telemetryProcessor(telemetryProcessorStub)).toBe(
+                    forRuleAnalyzerScanStub,
+                );
                 expect(result.resultProcessor(scannerStub)).toBe(getFailingOrPassingInstances);
             })
             .verifiable();
@@ -106,8 +111,12 @@ describe('buildTestStepsFromRules', () => {
 
     function validateInstanceTableSettings(actual: Requirement): void {
         expect(actual.getInstanceStatus).toBeDefined();
-        expect(actual.getInstanceStatus({ status: true } as DecoratedAxeNodeResult)).toBe(ManualTestStatus.PASS);
-        expect(actual.getInstanceStatus({ status: false } as DecoratedAxeNodeResult)).toBe(ManualTestStatus.FAIL);
+        expect(actual.getInstanceStatus({ status: true } as DecoratedAxeNodeResult)).toBe(
+            ManualTestStatus.PASS,
+        );
+        expect(actual.getInstanceStatus({ status: false } as DecoratedAxeNodeResult)).toBe(
+            ManualTestStatus.FAIL,
+        );
 
         expect(actual.getInstanceStatusColumns).toBeDefined();
         expect(actual.getInstanceStatusColumns()).toHaveLength(0);
@@ -136,7 +145,12 @@ describe('buildTestStepsFromRules', () => {
         validateInstanceColumnsRender(actual.columnsConfig, ['A', 'B'], 'XY', 'two');
     }
 
-    function validateInstanceColumnsRender(actualColumns: InstanceTableColumn[], target: string[], html: string, message: string): void {
+    function validateInstanceColumnsRender(
+        actualColumns: InstanceTableColumn[],
+        target: string[],
+        html: string,
+        message: string,
+    ): void {
         const item: AssessmentInstanceRowData = {
             statusChoiceGroup: null,
             visualizationButton: null,

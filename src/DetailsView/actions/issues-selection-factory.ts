@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
+import { ISelection } from 'office-ui-fabric-react';
 
 import { DetailsRowData } from '../components/issues-table-handler';
 import { DetailsViewActionMessageCreator } from './details-view-action-message-creator';
@@ -14,7 +14,9 @@ export class IssuesSelectionFactory {
                 const targets = items.map(item => '' + item.key);
                 messageCreator.updateIssuesSelectedTargets(targets);
                 const firstSelectedInstance = items[0];
-                messageCreator.updateFocusedInstanceTarget(firstSelectedInstance ? firstSelectedInstance.target : null);
+                messageCreator.updateFocusedInstanceTarget(
+                    firstSelectedInstance ? firstSelectedInstance.target : null,
+                );
             },
         });
         return selection;

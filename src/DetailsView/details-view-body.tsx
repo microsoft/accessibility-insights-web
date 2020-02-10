@@ -1,16 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { TargetAppData } from 'common/types/store-data/unified-data-interface';
-import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
+import { DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
+import { ISelection } from 'office-ui-fabric-react';
 import * as React from 'react';
 
-import { DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
-import { DetailsViewData } from '../common/types/store-data/details-view-data';
+import { DetailsViewStoreData } from '../common/types/store-data/details-view-store-data';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
@@ -19,15 +20,23 @@ import { VisualizationScanResultData } from '../common/types/store-data/visualiz
 import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DetailsViewCommandBarDeps } from './components/details-view-command-bar';
-import { DetailsRightPanelConfiguration, DetailsViewContentDeps } from './components/details-view-right-panel';
+import {
+    DetailsRightPanelConfiguration,
+    DetailsViewContentDeps,
+} from './components/details-view-right-panel';
 import { DetailsViewSwitcherNavConfiguration } from './components/details-view-switcher-nav';
 import { IssuesTableHandler } from './components/issues-table-handler';
-import { DetailsViewLeftNav, DetailsViewLeftNavDeps } from './components/left-nav/details-view-left-nav';
-import { TabInfo } from './components/tab-info';
+import {
+    DetailsViewLeftNav,
+    DetailsViewLeftNavDeps,
+} from './components/left-nav/details-view-left-nav';
+import { TargetPageHiddenBar } from './components/target-page-hidden-bar';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 
-export type DetailsViewBodyDeps = DetailsViewContentDeps & DetailsViewLeftNavDeps & DetailsViewCommandBarDeps;
+export type DetailsViewBodyDeps = DetailsViewContentDeps &
+    DetailsViewLeftNavDeps &
+    DetailsViewCommandBarDeps;
 
 export interface DetailsViewBodyProps {
     deps: DetailsViewBodyDeps;
@@ -35,7 +44,7 @@ export interface DetailsViewBodyProps {
     assessmentStoreData: AssessmentStoreData;
     pathSnippetStoreData: PathSnippetStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
-    detailsViewStoreData: DetailsViewData;
+    detailsViewStoreData: DetailsViewStoreData;
     selectedTest: VisualizationType;
     visualizationStoreData: VisualizationStoreData;
     visualizationScanResultData: VisualizationScanResultData;
@@ -51,6 +60,7 @@ export interface DetailsViewBodyProps {
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
     cardsViewData: CardsViewModel;
+    scanIncompleteWarnings: ScanIncompleteWarningId[];
 }
 
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
@@ -61,7 +71,7 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
                 <div className="details-view-body-nav-content-layout">
                     {this.renderNavBar()}
                     <div className="details-view-body-content-pane">
-                        {this.getTabInfo(this.props.tabStoreData.isClosed)}
+                        {this.getTargetPageHiddenBar()}
                         <div className="view" role="main">
                             <this.props.rightPanelConfiguration.RightPanel {...this.props} />
                         </div>
@@ -91,20 +101,13 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
         return <DetailsViewLeftNav {...this.props} />;
     }
 
-    private getTabInfo(tabClosed: boolean): JSX.Element {
-        if (tabClosed) {
+    private getTargetPageHiddenBar(): JSX.Element {
+        const { tabStoreData } = this.props;
+
+        if (tabStoreData.isClosed) {
             return null;
         }
 
-        return (
-            <TabInfo
-                deps={this.props.deps}
-                isTargetPageHidden={this.props.tabStoreData.isPageHidden}
-                url={this.props.tabStoreData.url}
-                title={this.props.tabStoreData.title}
-                selectedPivot={this.props.visualizationStoreData.selectedDetailsViewPivot}
-                dropdownClickHandler={this.props.dropdownClickHandler}
-            />
-        );
+        return <TargetPageHiddenBar isTargetPageHidden={tabStoreData.isPageHidden} />;
     }
 }

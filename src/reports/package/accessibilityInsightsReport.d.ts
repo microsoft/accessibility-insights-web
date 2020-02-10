@@ -9,7 +9,6 @@ declare namespace AccessibilityInsightsReport {
     };
 
     export type ScanContext = {
-        browserSpec: string;
         pageTitle: string;
     };
 

@@ -4,7 +4,7 @@ import { CardSelectionViewData, GetCardSelectionViewData } from 'common/get-card
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { shallow } from 'enzyme';
-import { ISelection, Selection } from 'office-ui-fabric-react/lib/DetailsList';
+import { ISelection, Selection } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
@@ -35,7 +35,7 @@ import {
     GetDetailsSwitcherNavConfiguration,
     GetDetailsSwitcherNavConfigurationProps,
 } from '../../../../DetailsView/components/details-view-switcher-nav';
-import { Header } from '../../../../DetailsView/components/header';
+import { InteractiveHeader } from '../../../../DetailsView/components/interactive-header';
 import { DetailsViewRightContentPanelType } from '../../../../DetailsView/components/left-nav/details-view-right-content-panel-type';
 import { GetSelectedDetailsViewProps } from '../../../../DetailsView/components/left-nav/get-selected-details-view';
 import { DetailsViewBody } from '../../../../DetailsView/details-view-body';
@@ -315,6 +315,7 @@ describe('DetailsViewContainer', () => {
                 cardsViewData={cardsViewData}
                 targetAppInfo={targetApp}
                 cardSelectionStoreData={storeMocks.cardSelectionStoreData}
+                scanIncompleteWarnings={storeMocks.unifiedScanResultStoreData.scanIncompleteWarnings}
             />
         );
     }
@@ -479,7 +480,7 @@ describe('DetailsViewContainer', () => {
 
         const expected: JSX.Element = (
             <>
-                <Header
+                <InteractiveHeader
                     deps={props.deps}
                     selectedPivot={DetailsViewPivotType.fastPass}
                     featureFlagStoreData={storeMocks.featureFlagStoreData}

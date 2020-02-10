@@ -37,7 +37,11 @@ describe('getDefaultAxeRules', () => {
 
     it('suppressChecksByMessages: removes only suppressed checks.', () => {
         const initialRuleResult: AxeNodeResult = {
-            any: [suppressedChecks.requiredChildrenListbox, suppressedChecks.requiredChildrenTextbox, nonSuppressedCheck],
+            any: [
+                suppressedChecks.requiredChildrenListbox,
+                suppressedChecks.requiredChildrenTextbox,
+                nonSuppressedCheck,
+            ],
             none: [],
             all: [],
             html: null,

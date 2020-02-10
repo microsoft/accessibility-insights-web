@@ -5,4 +5,8 @@ import { IssueFilingSettings } from './issue-filing/issue-filing-settings';
 import { createSettingsProvider } from './settings-provider';
 import { TelemetrySettings } from './telemetry/telemetry-settings';
 
-export const SettingsProviderImpl = createSettingsProvider([TelemetrySettings, HighContrastSettings, IssueFilingSettings]);
+export const SettingsProviderImpl = createSettingsProvider([
+    TelemetrySettings,
+    HighContrastSettings,
+    IssueFilingSettings,
+]);

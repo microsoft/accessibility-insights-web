@@ -56,7 +56,9 @@ export class RuleInformationProvider {
         };
     }
 
-    private getColorContrastUnifiedFormattableResolution = (ruleResultsData: RuleResultsData): UnifiedFormattableResolution => {
+    private getColorContrastUnifiedFormattableResolution = (
+        ruleResultsData: RuleResultsData,
+    ): UnifiedFormattableResolution => {
         const ratio = this.floorTo3Decimal(ruleResultsData.props['Color Contrast Ratio'] as number);
         const foreground = this.getColorValue(ruleResultsData, 'Foreground Color');
         const background = this.getColorValue(ruleResultsData, 'Background Color');
@@ -78,7 +80,9 @@ export class RuleInformationProvider {
         return result;
     }
 
-    private getTouchSizeUnifiedFormattableResolution = (ruleResultsData: RuleResultsData): UnifiedFormattableResolution => {
+    private getTouchSizeUnifiedFormattableResolution = (
+        ruleResultsData: RuleResultsData,
+    ): UnifiedFormattableResolution => {
         const dpi: number = ruleResultsData.props['Screen Dots Per Inch'];
         const boundingRect = ruleResultsData.props['boundsInScreen'];
         const physicalWidth: number = boundingRect['right'] - boundingRect['left'];
@@ -87,13 +91,19 @@ export class RuleInformationProvider {
         const logicalHeight = this.floorTo3Decimal(physicalHeight / dpi);
 
         return this.buildUnifiedFormattableResolution(
-            `The element has an insufficient target size (width: ${logicalWidth}dp, height: ${logicalHeight}dp). Set the element's minWidth and minHeight attributes to at least 48dp.`,
+            `The element has an insufficient target size (width: ${logicalWidth}dp, height: ${logicalHeight}dp). Set the element's minWidth and minHeight attributes to at least 44dp.`,
             ['minWidth', 'minHeight'],
         );
     };
 
-    private buildUnifiedFormattableResolution(unformattedText: string, codeStrings: string[] = null): UnifiedFormattableResolution {
-        return { howToFixSummary: unformattedText, howToFixFormat: { howToFix: unformattedText, formatAsCode: codeStrings } };
+    private buildUnifiedFormattableResolution(
+        unformattedText: string,
+        codeStrings: string[] = null,
+    ): UnifiedFormattableResolution {
+        return {
+            howToFixSummary: unformattedText,
+            howToFixFormat: { howToFix: unformattedText, formatAsCode: codeStrings },
+        };
     }
 
     private includeColorContrastResult = (ruleResultsData: RuleResultsData): boolean => {

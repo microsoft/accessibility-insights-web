@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Icon } from 'office-ui-fabric-react/lib/Icon';
+import { Icon } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { NewTabLink } from '../../common/components/new-tab-link';
@@ -20,21 +20,28 @@ export type ContentLinkProps = {
     iconName?: string;
 };
 
-export const ContentLink = NamedFC<ContentLinkProps>('ContentLink', ({ deps, reference, iconName, linkText }) => {
-    const { contentProvider, contentActionMessageCreator } = deps;
-    const { openContentPage } = contentActionMessageCreator;
+export const ContentLink = NamedFC<ContentLinkProps>(
+    'ContentLink',
+    ({ deps, reference, iconName, linkText }) => {
+        const { contentProvider, contentActionMessageCreator } = deps;
+        const { openContentPage } = contentActionMessageCreator;
 
-    if (!reference) {
-        return null;
-    }
+        if (!reference) {
+            return null;
+        }
 
-    const contentPath = contentProvider.pathFromReference(reference);
-    const icon = iconName && <Icon iconName={iconName} />;
+        const contentPath = contentProvider.pathFromReference(reference);
+        const icon = iconName && <Icon iconName={iconName} />;
 
-    return (
-        <NewTabLink href={`/insights.html#/content/${contentPath}`} title="Guidance" onClick={ev => openContentPage(ev, contentPath)}>
-            {icon}
-            {linkText}
-        </NewTabLink>
-    );
-});
+        return (
+            <NewTabLink
+                href={`/insights.html#/content/${contentPath}`}
+                title="Guidance"
+                onClick={ev => openContentPage(ev, contentPath)}
+            >
+                {icon}
+                {linkText}
+            </NewTabLink>
+        );
+    },
+);

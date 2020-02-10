@@ -1,11 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import {
+    FixInstructionPanel,
+    FixInstructionPanelDeps,
+} from 'common/components/fix-instruction-panel';
 import { isEmpty, size } from 'lodash';
 import { css } from 'office-ui-fabric-react';
-import { Dialog, DialogType } from 'office-ui-fabric-react/lib/Dialog';
+import { Dialog, DialogType } from 'office-ui-fabric-react';
 import * as React from 'react';
-
 import { HyperlinkDefinition } from 'views/content/content-page';
+
 import { BaseStore } from '../../common/base-store';
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { GuidanceLinks } from '../../common/components/guidance-links';
@@ -13,15 +17,17 @@ import { NewTabLink } from '../../common/components/new-tab-link';
 import { FeatureFlags } from '../../common/feature-flags';
 import { CancelIcon } from '../../common/icons/cancel-icon';
 import { DevToolActionMessageCreator } from '../../common/message-creators/dev-tool-action-message-creator';
-import { DevToolState } from '../../common/types/store-data/idev-tool-state';
+import { DevToolStoreData } from '../../common/types/store-data/dev-tool-store-data';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { DictionaryStringTo } from '../../types/common-types';
 import { DetailsDialogHandler } from '../details-dialog-handler';
 import { DecoratedAxeNodeResult } from '../scanner-utils';
 import { TargetPageActionMessageCreator } from '../target-page-action-message-creator';
 import { CommandBar, CommandBarDeps, CommandBarProps } from './command-bar';
-import { FixInstructionPanel, FixInstructionPanelDeps } from './fix-instruction-panel';
-import { IssueDetailsNavigationControls, IssueDetailsNavigationControlsProps } from './issue-details-navigation-controls';
+import {
+    IssueDetailsNavigationControls,
+    IssueDetailsNavigationControlsProps,
+} from './issue-details-navigation-controls';
 
 export enum CheckType {
     All,
@@ -42,7 +48,7 @@ export interface DetailsDialogProps {
     failedRules: DictionaryStringTo<DecoratedAxeNodeResult>;
     target: string[];
     dialogHandler: DetailsDialogHandler;
-    devToolStore: BaseStore<DevToolState>;
+    devToolStore: BaseStore<DevToolStoreData>;
     devToolActionMessageCreator: DevToolActionMessageCreator;
     featureFlagStoreData: DictionaryStringTo<boolean>;
     devToolsShortcut: string;
@@ -141,9 +147,11 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
             deps: this.props.deps,
             devToolsShortcut: this.props.devToolsShortcut,
             failedRules: this.props.failedRules,
-            onClickCopyIssueDetailsButton: this.props.deps.targetPageActionMessageCreator.copyIssueDetailsClicked,
+            onClickCopyIssueDetailsButton: this.props.deps.targetPageActionMessageCreator
+                .copyIssueDetailsClicked,
             onClickInspectButton: this.getOnClickWhenNotInShadowDom(this.onClickInspectButton),
-            shouldShowInspectButtonMessage: () => this.props.dialogHandler.shouldShowInspectButtonMessage(this),
+            shouldShowInspectButtonMessage: () =>
+                this.props.dialogHandler.shouldShowInspectButtonMessage(this),
             userConfigurationStoreData: this.state.userConfigurationStoreData,
         };
 
@@ -165,8 +173,12 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         return <IssueDetailsNavigationControls {...navigationControlsProps} />;
     }
 
-    private renderSectionTitle(sectionTitle: string, className?: string): JSX.Element {
-        return <h3 className={css('insights-dialog-section-title', className)}>{sectionTitle}</h3>;
+    private renderSectionTitle(sectionTitle: string, ariaLabel?: string): JSX.Element {
+        return (
+            <h3 className={css('insights-dialog-section-title')} id={ariaLabel}>
+                {sectionTitle}
+            </h3>
+        );
     }
 
     private renderRuleName(rule: DecoratedAxeNodeResult): JSX.Element {
@@ -179,11 +191,13 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
             }
         };
 
+        const ruleNameID = 'rule-name';
+
         return (
-            <div className="insights-dialog-rule-name">
-                {this.renderSectionTitle('Rule name')}
+            <section className="insights-dialog-rule-name" aria-labelledby={ruleNameID}>
+                {this.renderSectionTitle('Rule name', ruleNameID)}
                 <NewTabLink href={fixUrl(rule.helpUrl)}>{rule.ruleId}</NewTabLink>
-            </div>
+            </section>
         );
     }
 
@@ -191,22 +205,26 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         if (isEmpty(ruleGuidanceLinks)) {
             return null;
         }
-        const sectionTitle: string = ruleGuidanceLinks.length === 1 ? 'Success criterion' : 'Success criteria';
+        const sectionTitle: string =
+            ruleGuidanceLinks.length === 1 ? 'Success criterion' : 'Success criteria';
+        const successTitleId = 'success-criteria';
 
         return (
-            <div className="insights-dialog-success-criteria">
-                {this.renderSectionTitle(sectionTitle)}
-                <GuidanceLinks links={ruleGuidanceLinks} />
-            </div>
+            <section className="insights-dialog-success-criteria" aria-labelledby={successTitleId}>
+                {this.renderSectionTitle(sectionTitle, successTitleId)}
+                <div>
+                    <GuidanceLinks links={ruleGuidanceLinks} />
+                </div>
+            </section>
         );
     }
 
     private renderPathSelector(): JSX.Element {
         return (
-            <div className="insights-dialog-path-selector-container">
+            <section className="insights-dialog-path-selector-container">
                 {this.renderSectionTitle('Path')}
                 {this.props.elementSelector}
-            </div>
+            </section>
         );
     }
 
@@ -244,7 +262,10 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
 
     private withshadowDomTurnedOn(rule: DecoratedAxeNodeResult): JSX.Element {
         return (
-            <div style={{ visibility: this.state.showDialog ? 'visible' : 'hidden' }} className="insights-dialog-main-override-shadow">
+            <div
+                style={{ visibility: this.state.showDialog ? 'visible' : 'hidden' }}
+                className="insights-dialog-main-override-shadow"
+            >
                 <div className="insights-dialog-container">
                     <div className="insights-dialog-header">
                         <p className="ms-Dialog-title insights-dialog-title">{rule.help}</p>
@@ -255,9 +276,9 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
                                 aria-label="Close"
                                 data-is-focusable="true"
                             >
-                                <div className="ms-button-flex-container">
+                                <span className="ms-button-flex-container">
                                     <CancelIcon />
-                                </div>
+                                </span>
                             </button>
                         </div>
                     </div>
@@ -287,7 +308,8 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
                 }}
                 modalProps={{
                     isBlocking: false,
-                    containerClassName: 'insights-dialog-main-override insights-dialog-main-container',
+                    containerClassName:
+                        'insights-dialog-main-override insights-dialog-main-container',
                     layerProps: {
                         onLayerDidMount: this.onLayoutDidMount,
                         hostId: 'insights-dialog-layer-host',

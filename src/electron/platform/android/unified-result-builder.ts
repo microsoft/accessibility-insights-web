@@ -19,7 +19,9 @@ import {
     ConvertScanResultsToUnifiedRulesDelegate,
 } from 'electron/platform/android/scan-results-to-unified-rules';
 
-export type UnifiedScanCompletedPayloadBuilder = (scanResults: ScanResults) => UnifiedScanCompletedPayload;
+export type UnifiedScanCompletedPayloadBuilder = (
+    scanResults: ScanResults,
+) => UnifiedScanCompletedPayload;
 
 export const createBuilder = (
     getUnifiedResults: ConvertScanResultsToUnifiedResultsDelegate,
@@ -37,6 +39,7 @@ export const createBuilder = (
         targetAppInfo: {
             name: scanResults.appIdentifier,
         },
+        scanIncompleteWarnings: [],
         screenshotData: scanResults.screenshot,
     };
     return payload;

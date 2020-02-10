@@ -30,7 +30,17 @@ export interface ElementHighlightProps {
 }
 
 export const ElementHighlight = NamedFC<ElementHighlightProps>('ElementHighlight', props => {
-    const { deps, drawerConfig, featureFlagStoreData, dialogRender, element, elementResult, bodyStyle, docStyle, getBoundingRect } = props;
+    const {
+        deps,
+        drawerConfig,
+        featureFlagStoreData,
+        dialogRender,
+        element,
+        elementResult,
+        bodyStyle,
+        docStyle,
+        getBoundingRect,
+    } = props;
     const { clientUtils, drawerUtils } = deps;
 
     if (!drawerConfig.showVisualization) {
@@ -40,7 +50,9 @@ export const ElementHighlight = NamedFC<ElementHighlightProps>('ElementHighlight
     const currentDom = drawerUtils.getDocumentElement();
     const elementBoundingClientRect = getBoundingRect(element);
 
-    if (drawerUtils.isOutsideOfDocument(elementBoundingClientRect, currentDom, bodyStyle, docStyle)) {
+    if (
+        drawerUtils.isOutsideOfDocument(elementBoundingClientRect, currentDom, bodyStyle, docStyle)
+    ) {
         return null;
     }
 
@@ -54,13 +66,30 @@ export const ElementHighlight = NamedFC<ElementHighlightProps>('ElementHighlight
         outlineColor: drawerConfig.borderColor,
         top: drawerUtils.getContainerTopOffset(offset),
         left: drawerUtils.getContainerLeftOffset(offset),
-        minWidth: drawerUtils.getContainerWidth(offset, currentDom, elementBoundingClientRect.width, bodyStyle, docStyle),
-        minHeight: drawerUtils.getContainerHeight(offset, currentDom, elementBoundingClientRect.height, bodyStyle, docStyle),
+        minWidth: drawerUtils.getContainerWidth(
+            offset,
+            currentDom,
+            elementBoundingClientRect.width,
+            bodyStyle,
+            docStyle,
+        ),
+        minHeight: drawerUtils.getContainerHeight(
+            offset,
+            currentDom,
+            elementBoundingClientRect.height,
+            bodyStyle,
+            docStyle,
+        ),
     };
 
     return (
         <div title={drawerConfig.toolTip} className={'insights-highlight-box'} style={styles}>
-            <HighlightBox deps={deps} drawerConfig={drawerConfig} boxConfig={drawerConfig.textBoxConfig} className={'text-label'} />
+            <HighlightBox
+                deps={deps}
+                drawerConfig={drawerConfig}
+                boxConfig={drawerConfig.textBoxConfig}
+                className={'text-label'}
+            />
             <HighlightBox
                 deps={deps}
                 drawerConfig={drawerConfig}

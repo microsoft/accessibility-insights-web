@@ -2,7 +2,7 @@
 
 exports[`RulesOnly renders 1`] = `
 <div
-  className="rule-details-group"
+  className="ruleDetailsGroup"
 >
   <FullRuleHeader
     cardRuleResult={

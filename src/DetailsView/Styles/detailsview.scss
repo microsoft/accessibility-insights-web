@@ -28,14 +28,6 @@ body {
     }
 }
 
-.switcher-dropdown-option {
-    display: flex;
-    flex-direction: row;
-    i {
-        margin-right: 8px;
-    }
-}
-
 .hidden {
     display: none !important;
 }
@@ -48,10 +40,13 @@ div.insights-dialog-main-override.insights-file-issue-details-dialog-container {
         font-weight: $fontWeightSemiBold;
     }
     .target-change-dialog-button-container {
+        display: flex;
+        height: 40px;
+        justify-content: flex-end;
+
         .action-cancel-button-col {
             text-align: right;
             padding-left: 0px;
-            float: right;
             margin-top: 4px;
             margin-bottom: 24px;
         }
@@ -120,39 +115,6 @@ div.insights-file-issue-details-dialog-container {
 
 .details-view-dropdown-callout {
     right: 0 !important;
-}
-
-.generic-panel {
-    margin-left: auto;
-    margin-right: auto;
-    color: $neutral-100;
-    .header-text {
-        color: $neutral-100;
-        font-size: 2em;
-    }
-}
-
-.settings-panel {
-    .generic-toggle-component .toggle-description {
-        color: $secondary-text;
-    }
-
-    h3 {
-        font-size: 17px;
-        margin-block-end: 8px;
-    }
-
-    .issue-setting {
-        .ms-Label {
-            color: $neutral-100;
-            padding-top: 8px;
-            padding-bottom: 8px;
-        }
-
-        .ms-TextField-field {
-            color: $neutral-100;
-        }
-    }
 }
 
 .scoping-panel {
@@ -235,9 +197,6 @@ div.insights-file-issue-details-dialog-container {
     display: flex;
     flex-direction: column;
 
-    .details-view-body {
-        margin-top: $detailsViewHeaderBarHeight;
-    }
     .ms-Nav-compositeLink a {
         border-left: $pivotItemLeftBorderWidth $pivotItemBorderStyle $neutral-0;
         border-top: 0px;
@@ -301,69 +260,6 @@ div.insights-file-issue-details-dialog-container {
                 color: $communication-primary;
             }
         }
-        .details-view-command-buttons {
-            display: flex;
-            margin-right: 16px;
-        }
-    }
-    .header-bar {
-        padding-left: 12px;
-        position: fixed;
-        z-index: 1000;
-        .gear-options-button-component {
-            float: right;
-            margin-right: 16px;
-            .sign-in-link {
-                color: $neutral-0;
-                margin-top: 11px;
-                margin-right: 8px;
-            }
-        }
-        .details-view-dropdown {
-            height: 100%;
-            width: 100%;
-        }
-        .ms-Dropdown-container {
-            display: inline-flex;
-            margin-left: 24px;
-            .ms-Dropdown {
-                &:focus {
-                    .ms-Dropdown-title {
-                        border: 2px $switcher-focus-border solid;
-                        border-style: dotted;
-                    }
-                }
-            }
-            .ms-Dropdown-title {
-                background-color: $ada-brand-variant;
-                height: 32px;
-                border: 2px $switcher-border solid;
-                box-sizing: border-box;
-                border-radius: 2px;
-                width: 165px;
-                color: $neutral-0;
-                i {
-                    margin-right: 8px;
-                }
-            }
-            .ms-Dropdown-caretDownWrapper {
-                top: 4px;
-            }
-            .ms-Dropdown-caretDown {
-                color: $neutral-0;
-            }
-        }
-        .gear-button {
-            color: $neutral-0;
-            float: right;
-            margin-right: 20px;
-            height: fit-content;
-            width: fit-content;
-            margin-top: 10px;
-        }
-        .gear-options-icon {
-            font-size: 18px;
-        }
     }
     .details-view-body-nav-content-layout {
         padding-left: 0px;
@@ -376,7 +272,9 @@ div.insights-file-issue-details-dialog-container {
 
         .details-view-test-nav-area {
             box-sizing: border-box;
-            max-height: calc(100vh - #{detailsViewNavPivotsHeight} - #{$detailsViewHeaderBarHeight} - #{$detailsViewCommandBarHeight});
+            max-height: calc(
+                100vh - #{detailsViewNavPivotsHeight} - #{$detailsViewHeaderBarHeight} - #{$detailsViewCommandBarHeight}
+            );
             .ms-Nav-groupContent,
             .ms-Nav-navItems {
                 margin-bottom: 0px;
@@ -405,6 +303,7 @@ div.insights-file-issue-details-dialog-container {
                 margin-bottom: 0px;
             }
             .button-flex-container .status-icon {
+                color: $primary-text;
                 margin-left: 24px;
                 font-size: 18px;
                 &.negative-outcome-icon {
@@ -501,37 +400,15 @@ div.insights-file-issue-details-dialog-container {
                         color: $secondary-text;
                     }
                 }
-                .no-failure-view {
-                    font-size: 15px;
-                    font-weight: normal;
-                    padding: 15px 0px 0px 15px;
-                }
-                .instance-visibility-button {
-                    padding-bottom: 6px;
-                }
                 .test-step-choice-group-container {
                     margin-left: 8px;
                     margin-bottom: 4px;
                     margin-top: 20px;
                 }
-                .test-instance-selected {
-                    padding: 2px;
-                    color: $neutral-0;
-                }
-                .test-instance-selected-hidden {
-                    background-color: $neutral-60;
-                    cursor: default;
-                }
-                .test-instance-selected-visible {
-                    background-color: $communication-primary;
-                }
                 .master-visualization-column-header-selected {
                     background-color: $communication-primary;
                     color: $neutral-0;
                     display: inline;
-                }
-                .test-instance-selected-hidden-button {
-                    background-color: transparent;
                 }
                 .property-bag-container {
                     display: flex;
@@ -648,6 +525,8 @@ div.insights-file-issue-details-dialog-container {
                 text-align: left;
                 margin-top: 6px;
                 margin-bottom: 6px;
+                display: flex;
+                flex-direction: column;
             }
             .overview-name {
                 line-height: 20px;
@@ -780,14 +659,17 @@ div.insights-file-issue-details-dialog-container {
                     }
                 }
                 .issues-table {
+                    background-color: $neutral-2;
                     height: 100%;
-                    width: calc(100% - #{$fastPassRightPanelMarginRight} - #{$fastPassRightPanelMarginLeft});
+                    width: calc(
+                        100% - #{$fastPassRightPanelMarginRight} - #{$fastPassRightPanelMarginLeft}
+                    );
                     display: flex;
                     flex-direction: column;
-                    margin-top: $fastPassRightPanelMarginTop;
-                    margin-right: $fastPassRightPanelMarginRight;
-                    margin-left: $fastPassRightPanelMarginLeft;
-                    margin-bottom: auto;
+                    padding-top: $fastPassRightPanelMarginTop;
+                    padding-right: $fastPassRightPanelMarginRight;
+                    padding-left: $fastPassRightPanelMarginLeft;
+                    padding-bottom: auto;
 
                     .issues-table-subtitle {
                         color: $secondary-text;
@@ -1209,28 +1091,6 @@ div.insights-file-issue-details-dialog-container {
                         .fix-content ul {
                             margin: 0px;
                             -webkit-padding-start: 20px;
-                        }
-                        .fix-content {
-                            .insights-fix-instruction-list {
-                                li {
-                                    span.fix-instruction-color-box {
-                                        width: 14px;
-                                        height: 14px;
-                                        display: inline-block;
-                                        vertical-align: -15%;
-                                        margin: 0px 2px;
-                                        border: 1px solid $always-black;
-                                    }
-                                }
-                                .screen-reader-only {
-                                    position: absolute;
-                                    left: -10000px;
-                                    top: auto;
-                                    width: 1px;
-                                    height: 1px;
-                                    overflow: hidden;
-                                }
-                            }
                         }
                     }
                     .issue-detail-select-message {

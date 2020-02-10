@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { INavLink, Nav } from 'office-ui-fabric-react/lib/Nav';
+import { INavLink, Nav } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
@@ -65,22 +65,35 @@ export class TestStepsNav extends React.Component<TestStepNavProps> {
         return this.props.stepStatus[key].stepFinalResult;
     }
 
-    protected onTestStepSelected = (event?: React.MouseEvent<HTMLElement>, item?: INavLink): void => {
+    protected onTestStepSelected = (
+        event?: React.MouseEvent<HTMLElement>,
+        item?: INavLink,
+    ): void => {
         if (item) {
-            this.props.deps.detailsViewActionMessageCreator.selectRequirement(event, item.key, this.props.selectedTest);
+            this.props.deps.detailsViewActionMessageCreator.selectRequirement(
+                event,
+                item.key,
+                this.props.selectedTest,
+            );
         }
     };
 
     private getLinks(): INavLink[] {
         const { selectedTest, stepStatus } = this.props;
-        const { assessmentsProvider, getInnerTextFromJsxElement, outcomeTypeSemanticsFromTestStatus } = this.props.deps;
+        const {
+            assessmentsProvider,
+            getInnerTextFromJsxElement,
+            outcomeTypeSemanticsFromTestStatus,
+        } = this.props.deps;
         const results = getRequirementsResults(assessmentsProvider, selectedTest, stepStatus);
 
         return results.map(result => {
             const { definition: step } = result;
             const status = this.getStepStatus(step.key);
             const uiDisplayableStatus = outcomeTypeSemanticsFromTestStatus(status).pastTense;
-            const title = `${step.name}. ${uiDisplayableStatus}. ${getInnerTextFromJsxElement(step.description)}`;
+            const title = `${step.name}. ${uiDisplayableStatus}. ${getInnerTextFromJsxElement(
+                step.description,
+            )}`;
 
             return {
                 key: step.key,

@@ -1,9 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { forOwn } from 'lodash';
-
 import { HTMLElementUtils } from '../../common/html-element-utils';
-import { createDefaultLogger } from '../../common/logging/default-logger';
 import { Logger } from '../../common/logging/logger';
 import { DictionaryStringTo } from '../../types/common-types';
 import { HtmlElementAxeResults } from '../scanner-utils';
@@ -24,7 +22,7 @@ export interface AssessmentVisualizationInstance extends AxeResultsWithFrameLeve
 }
 
 export class HtmlElementAxeResultsHelper {
-    constructor(private htmlElementUtils: HTMLElementUtils, private logger: Logger = createDefaultLogger()) {}
+    constructor(private htmlElementUtils: HTMLElementUtils, private logger: Logger) {}
 
     public splitResultsByFrame(elementResults: AxeResultsWithFrameLevel[]): HTMLIFrameResult[] {
         const frameSelectorToResultsMap = this.getFrameSelectorToResultMap(elementResults);
@@ -34,7 +32,9 @@ export class HtmlElementAxeResultsHelper {
         return results;
     }
 
-    private getFrameResultsFromSelectorMap(selectorMap: DictionaryStringTo<AxeResultsWithFrameLevel[]>): HTMLIFrameResult[] {
+    private getFrameResultsFromSelectorMap(
+        selectorMap: DictionaryStringTo<AxeResultsWithFrameLevel[]>,
+    ): HTMLIFrameResult[] {
         const results: HTMLIFrameResult[] = [];
         forOwn(selectorMap, (frameResults, selectorKey) => {
             if (selectorKey) {
@@ -62,7 +62,9 @@ export class HtmlElementAxeResultsHelper {
         const missingFrames: HTMLIFrameElement[] = [];
 
         const allFramesIncludingCurrentFrames = Array.prototype.slice.call(
-            this.htmlElementUtils.getAllElementsByTagName('iframe') as HTMLCollectionOf<HTMLIFrameElement>,
+            this.htmlElementUtils.getAllElementsByTagName('iframe') as HTMLCollectionOf<
+                HTMLIFrameElement
+            >,
         );
         allFramesIncludingCurrentFrames.push(null); // current frame
 
@@ -88,7 +90,9 @@ export class HtmlElementAxeResultsHelper {
         });
     }
 
-    private getFrameSelectorToResultMap(elementResults: AxeResultsWithFrameLevel[]): DictionaryStringTo<AxeResultsWithFrameLevel[]> {
+    private getFrameSelectorToResultMap(
+        elementResults: AxeResultsWithFrameLevel[],
+    ): DictionaryStringTo<AxeResultsWithFrameLevel[]> {
         const elementResultsByFrame: DictionaryStringTo<AxeResultsWithFrameLevel[]> = {};
 
         for (let i = 0; i < elementResults.length; i++) {

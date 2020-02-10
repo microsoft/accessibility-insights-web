@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { BaseActionPayload } from 'background/actions/action-payloads';
+import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { IAnalyzerTelemetryCallback } from '../../common/types/analyzer-telemetry-callbacks';
 import { SingleElementSelector } from '../../common/types/store-data/scoping-store-data';
 import { TelemetryProcessor } from '../../common/types/telemetry-processor';
@@ -26,6 +27,7 @@ export interface Analyzer {
 export interface ScanCompletedPayload<TSelectorValue> extends ScanBasePayload {
     selectorMap: DictionaryStringTo<TSelectorValue>;
     scanResult: ScanResults;
+    scanIncompleteWarnings: ScanIncompleteWarningId[];
 }
 
 export interface ScanUpdatePayload extends ScanBasePayload {
@@ -45,7 +47,9 @@ export interface AnalyzerConfiguration {
 
 export interface RuleAnalyzerConfiguration extends AnalyzerConfiguration {
     rules: string[];
-    resultProcessor: (scanner: ScannerUtils) => (results: ScanResults) => DictionaryStringTo<HtmlElementAxeResults>;
+    resultProcessor: (
+        scanner: ScannerUtils,
+    ) => (results: ScanResults) => DictionaryStringTo<HtmlElementAxeResults>;
     telemetryProcessor: TelemetryProcessor<IAnalyzerTelemetryCallback>;
 }
 

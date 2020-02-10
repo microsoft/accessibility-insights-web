@@ -119,7 +119,7 @@ export class Messages {
         TrackingCompleted: `${messagePrefix}/assessment/tab-stops/recording-completed`,
         CancelStartOver: `${messagePrefix}/assessment/cancel-start-over`,
         CancelStartOverAllAssessments: `${messagePrefix}/assessment/cancel-start-over-all-assessments`,
-        StartOver: `${messagePrefix}/assessment/startOver`,
+        StartOverTest: `${messagePrefix}/assessment/startOverTest`,
         StartOverAllAssessments: `${messagePrefix}/assessment/startOverAllAssessments`,
         EnableVisualHelper: `${messagePrefix}/assessment/enableVisualHelper`,
         EnableVisualHelperWithoutScan: `${messagePrefix}/assessment/enableVisualHelperWithoutScan`,
@@ -200,5 +200,13 @@ export class Messages {
         CollapseAllRules: `${messagePrefix}/cardSelection/collapseAllRules`,
         ExpandAllRules: `${messagePrefix}/cardSelection/expandAllRules`,
         ToggleVisualHelper: `${messagePrefix}/cardSelection/toggleVisualHelper`,
+    };
+
+    public static readonly PermissionsState = {
+        SetPermissionsState: `${messagePrefix}/permissionsState/setPermissionsState`,
+    };
+
+    public static readonly DebugTools = {
+        Open: `${messagePrefix}/debugTools/open`,
     };
 }

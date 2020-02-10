@@ -20,16 +20,18 @@ Any time a non-test source file is changed, the build will automatically run.
 To test the (currently experimental) Electron app form of the extension:
 
 ```sh
-yarn build:electron
-yarn start:electron:dev
+yarn build:unified
+yarn start:unified:dev
 ```
+
+To debug the built app in vscode, you can run the `Debug electron main process with --remote-debugging-port=9222` configuration. Once this is running, you can debug the renderer process via the `Attach debugger to electron renderer process` configuration.
 
 Most of the functionality of the Electron app relies on connecting to a running [Axe for Android](https://www.deque.com/axe/axe-for-android/) service.
 
 To simulate Axe for Android (running on port 9051) for local testing of the app, use:
 
 ```sh
-yarn with:mock-axe-android start:electron:dev
+yarn with:mock-axe-android start:unified:dev
 ```
 
 ## Pull Request title tagging convention (Labelling commit messages)

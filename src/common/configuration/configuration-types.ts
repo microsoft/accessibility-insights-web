@@ -8,8 +8,23 @@ export type InsightsConfigurationOptions = {
     icon16?: string;
     icon48?: string;
     icon128?: string;
+    electronIconBaseName?: string;
     appInsightsInstrumentationKey?: string;
-    emailHelpAlias?: string;
     bundled?: string;
     telemetryBuildName?: string;
 };
+
+export interface ConfigAccessor {
+    readonly config: InsightsConfiguration;
+    getOption<K extends keyof InsightsConfigurationOptions>(
+        name: K,
+    ): InsightsConfigurationOptions[K];
+}
+
+export interface ConfigMutator extends ConfigAccessor {
+    reset(): ConfigMutator;
+    setOption<K extends keyof InsightsConfigurationOptions>(
+        name: K,
+        value: InsightsConfigurationOptions[K],
+    ): ConfigMutator;
+}

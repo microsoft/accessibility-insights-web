@@ -44,11 +44,16 @@ export class SingleTargetDrawer implements Drawer {
         return this.isEnabled;
     }
 
-    private getFirstElementTarget(document: Document, elementResults: HtmlElementAxeResults[]): HTMLElement {
+    private getFirstElementTarget(
+        document: Document,
+        elementResults: HtmlElementAxeResults[],
+    ): HTMLElement {
         if (!elementResults[0]) {
             return null;
         }
 
-        return document.querySelector(elementResults[0].target[elementResults[0].target.length - 1]) as HTMLElement;
+        return document.querySelector(
+            elementResults[0].target[elementResults[0].target.length - 1],
+        ) as HTMLElement;
     }
 }

@@ -3,6 +3,7 @@
 exports[`MinimalRuleHeader renders, outcomeType = fail 1`] = `
 <span
   className="rule-detail"
+  data-automation-id="rule-detail"
 >
   <span
     className="outcomeChipContainer"
@@ -19,6 +20,7 @@ exports[`MinimalRuleHeader renders, outcomeType = fail 1`] = `
   <span>
     <span
       className="rule-details-id"
+      data-automation-id="cards-rule-id"
     >
       rule id
     </span>
@@ -35,6 +37,7 @@ exports[`MinimalRuleHeader renders, outcomeType = fail 1`] = `
 exports[`MinimalRuleHeader renders, outcomeType = inapplicable 1`] = `
 <span
   className="rule-detail"
+  data-automation-id="rule-detail"
 >
   <span
     className="outcomeChipContainer"
@@ -42,6 +45,7 @@ exports[`MinimalRuleHeader renders, outcomeType = inapplicable 1`] = `
   <span>
     <span
       className="rule-details-id"
+      data-automation-id="cards-rule-id"
     >
       rule id
     </span>
@@ -58,6 +62,7 @@ exports[`MinimalRuleHeader renders, outcomeType = inapplicable 1`] = `
 exports[`MinimalRuleHeader renders, outcomeType = pass 1`] = `
 <span
   className="rule-detail"
+  data-automation-id="rule-detail"
 >
   <span
     className="outcomeChipContainer"
@@ -65,6 +70,7 @@ exports[`MinimalRuleHeader renders, outcomeType = pass 1`] = `
   <span>
     <span
       className="rule-details-id"
+      data-automation-id="cards-rule-id"
     >
       rule id
     </span>

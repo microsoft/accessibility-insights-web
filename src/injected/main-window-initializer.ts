@@ -2,20 +2,23 @@
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
 import { EnumHelper } from 'common/enum-helper';
+import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
+import { createDefaultLogger } from 'common/logging/default-logger';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
+import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
+import { PermissionsStateStoreData } from 'common/types/store-data/permissions-state-store-data';
+import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { VisualizationType } from 'common/types/visualization-type';
 import { ClientStoreListener, TargetPageStoreData } from 'injected/client-store-listener';
+import { ElementBasedViewModelCreator } from 'injected/element-based-view-model-creator';
 import { FocusChangeHandler } from 'injected/focus-change-handler';
+import { getDecoratedAxeNode } from 'injected/get-decorated-axe-node';
+import { IframeDetector } from 'injected/iframe-detector';
 import { isVisualizationEnabled } from 'injected/is-visualization-enabled';
+import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { TargetPageVisualizationUpdater } from 'injected/target-page-visualization-updater';
 import { visualizationNeedsUpdate } from 'injected/visualization-needs-update';
 import { VisualizationStateChangeHandler } from 'injected/visualization-state-change-handler';
-
-import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
-import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
-import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
-import { ElementBasedViewModelCreator } from 'injected/element-based-view-model-creator';
-import { getDecoratedAxeNode } from 'injected/get-decorated-axe-node';
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
@@ -34,8 +37,8 @@ import { StoreProxy } from '../common/store-proxy';
 import { StoreNames } from '../common/stores/store-names';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
+import { DevToolStoreData } from '../common/types/store-data/dev-tool-store-data';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
-import { DevToolState } from '../common/types/store-data/idev-tool-state';
 import { InspectStoreData } from '../common/types/store-data/inspect-store-data';
 import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
@@ -82,10 +85,11 @@ export class MainWindowInitializer extends WindowInitializer {
     private visualizationScanResultStoreProxy: StoreProxy<VisualizationScanResultData>;
     private scopingStoreProxy: StoreProxy<ScopingStoreData>;
     private tabStoreProxy: StoreProxy<TabStoreData>;
-    private devToolStoreProxy: StoreProxy<DevToolState>;
+    private devToolStoreProxy: StoreProxy<DevToolStoreData>;
     private pathSnippetStoreProxy: StoreProxy<PathSnippetStoreData>;
     private unifiedScanResultStoreProxy: StoreProxy<UnifiedScanResultStoreData>;
     private cardSelectionStoreProxy: StoreProxy<CardSelectionStoreData>;
+    private permissionsStateStoreProxy: StoreProxy<PermissionsStateStoreData>;
 
     public async initialize(): Promise<void> {
         const asyncInitializationSteps: Promise<void>[] = [];
@@ -95,8 +99,14 @@ export class MainWindowInitializer extends WindowInitializer {
             StoreNames[StoreNames.VisualizationStore],
             this.browserAdapter,
         );
-        this.scopingStoreProxy = new StoreProxy<ScopingStoreData>(StoreNames[StoreNames.ScopingPanelStateStore], this.browserAdapter);
-        this.featureFlagStoreProxy = new StoreProxy<FeatureFlagStoreData>(StoreNames[StoreNames.FeatureFlagStore], this.browserAdapter);
+        this.scopingStoreProxy = new StoreProxy<ScopingStoreData>(
+            StoreNames[StoreNames.ScopingPanelStateStore],
+            this.browserAdapter,
+        );
+        this.featureFlagStoreProxy = new StoreProxy<FeatureFlagStoreData>(
+            StoreNames[StoreNames.FeatureFlagStore],
+            this.browserAdapter,
+        );
         this.userConfigStoreProxy = new StoreProxy<UserConfigurationStoreData>(
             StoreNames[StoreNames.UserConfigurationStore],
             this.browserAdapter,
@@ -105,11 +115,26 @@ export class MainWindowInitializer extends WindowInitializer {
             StoreNames[StoreNames.VisualizationScanResultStore],
             this.browserAdapter,
         );
-        this.assessmentStoreProxy = new StoreProxy<AssessmentStoreData>(StoreNames[StoreNames.AssessmentStore], this.browserAdapter);
-        this.tabStoreProxy = new StoreProxy<TabStoreData>(StoreNames[StoreNames.TabStore], this.browserAdapter);
-        this.devToolStoreProxy = new StoreProxy<DevToolState>(StoreNames[StoreNames.DevToolsStore], this.browserAdapter);
-        this.inspectStoreProxy = new StoreProxy<InspectStoreData>(StoreNames[StoreNames.InspectStore], this.browserAdapter);
-        this.pathSnippetStoreProxy = new StoreProxy<PathSnippetStoreData>(StoreNames[StoreNames.PathSnippetStore], this.browserAdapter);
+        this.assessmentStoreProxy = new StoreProxy<AssessmentStoreData>(
+            StoreNames[StoreNames.AssessmentStore],
+            this.browserAdapter,
+        );
+        this.tabStoreProxy = new StoreProxy<TabStoreData>(
+            StoreNames[StoreNames.TabStore],
+            this.browserAdapter,
+        );
+        this.devToolStoreProxy = new StoreProxy<DevToolStoreData>(
+            StoreNames[StoreNames.DevToolsStore],
+            this.browserAdapter,
+        );
+        this.inspectStoreProxy = new StoreProxy<InspectStoreData>(
+            StoreNames[StoreNames.InspectStore],
+            this.browserAdapter,
+        );
+        this.pathSnippetStoreProxy = new StoreProxy<PathSnippetStoreData>(
+            StoreNames[StoreNames.PathSnippetStore],
+            this.browserAdapter,
+        );
         this.unifiedScanResultStoreProxy = new StoreProxy<UnifiedScanResultStoreData>(
             StoreNames[StoreNames.UnifiedScanResultStore],
             this.browserAdapter,
@@ -118,10 +143,22 @@ export class MainWindowInitializer extends WindowInitializer {
             StoreNames[StoreNames.CardSelectionStore],
             this.browserAdapter,
         );
+        this.permissionsStateStoreProxy = new StoreProxy<PermissionsStateStoreData>(
+            StoreNames[StoreNames.PermissionsStateStore],
+            this.browserAdapter,
+        );
 
-        const actionMessageDispatcher = new RemoteActionMessageDispatcher(this.browserAdapter.sendMessageToFrames, null);
+        const logger = createDefaultLogger();
 
-        const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(actionMessageDispatcher);
+        const actionMessageDispatcher = new RemoteActionMessageDispatcher(
+            this.browserAdapter.sendMessageToFrames,
+            null,
+            logger,
+        );
+
+        const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
+            actionMessageDispatcher,
+        );
 
         const storeActionMessageCreator = storeActionMessageCreatorFactory.fromStores([
             this.visualizationStoreProxy,
@@ -136,13 +173,20 @@ export class MainWindowInitializer extends WindowInitializer {
             this.pathSnippetStoreProxy,
             this.unifiedScanResultStoreProxy,
             this.cardSelectionStoreProxy,
+            this.permissionsStateStoreProxy,
         ]);
         storeActionMessageCreator.getAllStates();
 
         const telemetryDataFactory = new TelemetryDataFactory();
-        const devToolActionMessageCreator = new DevToolActionMessageCreator(telemetryDataFactory, actionMessageDispatcher);
+        const devToolActionMessageCreator = new DevToolActionMessageCreator(
+            telemetryDataFactory,
+            actionMessageDispatcher,
+        );
 
-        const targetPageActionMessageCreator = new TargetPageActionMessageCreator(telemetryDataFactory, actionMessageDispatcher);
+        const targetPageActionMessageCreator = new TargetPageActionMessageCreator(
+            telemetryDataFactory,
+            actionMessageDispatcher,
+        );
         const issueFilingActionMessageCreator = new IssueFilingActionMessageCreator(
             actionMessageDispatcher,
             telemetryDataFactory,
@@ -151,9 +195,13 @@ export class MainWindowInitializer extends WindowInitializer {
 
         const userConfigMessageCreator = new UserConfigMessageCreator(actionMessageDispatcher);
 
-        const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
+        const browserSpec = new NavigatorUtils(window.navigator, logger).getBrowserSpec();
 
-        const environmentInfoProvider = new EnvironmentInfoProvider(this.appDataAdapter.getVersion(), browserSpec, AxeInfo.Default.version);
+        const environmentInfoProvider = new EnvironmentInfoProvider(
+            this.appDataAdapter.getVersion(),
+            browserSpec,
+            AxeInfo.Default.version,
+        );
 
         MainWindowContext.initialize(
             this.devToolStoreProxy,
@@ -167,9 +215,18 @@ export class MainWindowInitializer extends WindowInitializer {
         );
 
         const drawingInitiator = new DrawingInitiator(this.drawingController);
-        const elementBasedViewModelCreator = new ElementBasedViewModelCreator(getDecoratedAxeNode, getCardSelectionViewData);
-        const selectorMapHelper = new SelectorMapHelper(Assessments, elementBasedViewModelCreator.getElementBasedViewModel);
-        const frameUrlMessageDispatcher = new FrameUrlMessageDispatcher(devToolActionMessageCreator, this.frameCommunicator);
+        const elementBasedViewModelCreator = new ElementBasedViewModelCreator(
+            getDecoratedAxeNode,
+            getCardSelectionViewData,
+        );
+        const selectorMapHelper = new SelectorMapHelper(
+            Assessments,
+            elementBasedViewModelCreator.getElementBasedViewModel,
+        );
+        const frameUrlMessageDispatcher = new FrameUrlMessageDispatcher(
+            devToolActionMessageCreator,
+            this.frameCommunicator,
+        );
         frameUrlMessageDispatcher.initialize();
 
         const storeHub = new BaseClientStoresHub<TargetPageStoreData>([
@@ -181,11 +238,15 @@ export class MainWindowInitializer extends WindowInitializer {
             this.userConfigStoreProxy,
             this.unifiedScanResultStoreProxy,
             this.cardSelectionStoreProxy,
+            this.permissionsStateStoreProxy,
         ]);
 
         const clientStoreListener = new ClientStoreListener(storeHub);
 
-        const focusChangeHandler = new FocusChangeHandler(targetPageActionMessageCreator, this.scrollingController);
+        const focusChangeHandler = new FocusChangeHandler(
+            targetPageActionMessageCreator,
+            this.scrollingController,
+        );
 
         const targetPageVisualizationUpdater = new TargetPageVisualizationUpdater(
             this.visualizationConfigurationFactory,
@@ -201,14 +262,25 @@ export class MainWindowInitializer extends WindowInitializer {
             Assessments,
         );
 
-        clientStoreListener.registerOnReadyToExecuteVisualizationCallback(focusChangeHandler.handleFocusChangeWithStoreData);
+        clientStoreListener.registerOnReadyToExecuteVisualizationCallback(
+            focusChangeHandler.handleFocusChangeWithStoreData,
+        );
         clientStoreListener.registerOnReadyToExecuteVisualizationCallback(
             visualizationStateChangeHandler.updateVisualizationsWithStoreData,
         );
 
-        this.frameUrlSearchInitiator = new FrameUrlSearchInitiator(this.devToolStoreProxy, this.frameUrlFinder);
+        this.frameUrlSearchInitiator = new FrameUrlSearchInitiator(
+            this.devToolStoreProxy,
+            this.frameUrlFinder,
+        );
 
         this.frameUrlSearchInitiator.listenToStore();
+
+        const iframeDetector = new IframeDetector(document);
+        const scanIncompleteWarningDetector = new ScanIncompleteWarningDetector(
+            iframeDetector,
+            this.permissionsStateStoreProxy,
+        );
 
         const unifiedResultSender = new UnifiedResultSender(
             this.browserAdapter.sendMessageToFrames,
@@ -216,21 +288,25 @@ export class MainWindowInitializer extends WindowInitializer {
             convertScanResultsToUnifiedRules,
             environmentInfoProvider,
             generateUID,
+            scanIncompleteWarningDetector,
         );
 
         const analyzerProvider = new AnalyzerProvider(
             this.tabStopsListener,
             this.scopingStoreProxy,
             this.browserAdapter.sendMessageToFrames,
-            new ScannerUtils(scan, generateUID),
+            new ScannerUtils(scan, logger, generateUID),
             telemetryDataFactory,
             DateProvider.getCurrentDate,
             this.visualizationConfigurationFactory,
             filterResultsByRules,
             unifiedResultSender.sendResults,
+            scanIncompleteWarningDetector,
         );
 
-        const analyzerStateUpdateHandler = new AnalyzerStateUpdateHandler(this.visualizationConfigurationFactory);
+        const analyzerStateUpdateHandler = new AnalyzerStateUpdateHandler(
+            this.visualizationConfigurationFactory,
+        );
         this.analyzerController = new AnalyzerController(
             this.visualizationStoreProxy,
             this.featureFlagStoreProxy,
@@ -245,7 +321,12 @@ export class MainWindowInitializer extends WindowInitializer {
 
         const htmlElementUtils = new HTMLElementUtils();
         const shadowUtils = new ShadowUtils(htmlElementUtils);
-        const scopingListener = new ScopingListener(this.elementFinderByPosition, this.windowUtils, shadowUtils, document);
+        const scopingListener = new ScopingListener(
+            this.elementFinderByPosition,
+            this.windowUtils,
+            shadowUtils,
+            document,
+        );
         const inspectActionMessageCreator = new InspectActionMessageCreator(
             telemetryDataFactory,
             TelemetryEventSource.TargetPage,
@@ -258,7 +339,9 @@ export class MainWindowInitializer extends WindowInitializer {
             actionMessageDispatcher,
         );
 
-        const pathSnippetActionMessageCreator = new PathSnippetActionMessageCreator(actionMessageDispatcher);
+        const pathSnippetActionMessageCreator = new PathSnippetActionMessageCreator(
+            actionMessageDispatcher,
+        );
 
         this.inspectController = new InspectController(
             this.inspectStoreProxy,

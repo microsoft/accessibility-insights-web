@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
+import { DefaultButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { InspectActionMessageCreator } from '../../common/message-creators/inspect-action-message-creator';
@@ -28,7 +28,7 @@ export class ScopingPanel extends React.Component<ScopingPanelProps> {
     public render(): JSX.Element {
         return (
             <GenericPanel
-                title="Scoping"
+                headerText="Scoping"
                 isOpen={this.props.isOpen}
                 className="scoping-panel"
                 onDismiss={this.props.deps.detailsViewActionMessageCreator.closeScopingPanel}

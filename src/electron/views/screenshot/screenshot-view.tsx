@@ -11,16 +11,25 @@ export const screenshotViewAutomationId = 'screenshot-view';
 
 export type ScreenshotViewProps = { viewModel: ScreenshotViewModel };
 
-export const ScreenshotView = NamedFC<ScreenshotViewProps>('ScreenshotView', (props: ScreenshotViewProps) => {
-    const isUnavailable = isEmpty(props.viewModel.screenshotData);
+export const ScreenshotView = NamedFC<ScreenshotViewProps>(
+    'ScreenshotView',
+    (props: ScreenshotViewProps) => {
+        const isUnavailable = isEmpty(props.viewModel.screenshotData);
 
-    return (
-        <div role="complementary" className={styles.screenshotView} data-automation-id={screenshotViewAutomationId}>
-            {renderHeader()}
-            {isUnavailable ? renderUnavailableMessage() : renderScreenshotContainer(props.viewModel)}
-        </div>
-    );
-});
+        return (
+            <div
+                role="complementary"
+                className={styles.screenshotView}
+                data-automation-id={screenshotViewAutomationId}
+            >
+                {renderHeader()}
+                {isUnavailable
+                    ? renderUnavailableMessage()
+                    : renderScreenshotContainer(props.viewModel)}
+            </div>
+        );
+    },
+);
 
 function renderHeader(): JSX.Element {
     // The tabIndex=0 is because the view is independently scrollable, which means there must always be at least one focusable element

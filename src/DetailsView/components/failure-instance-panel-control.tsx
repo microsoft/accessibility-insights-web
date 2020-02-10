@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { clone, isEqual } from 'lodash';
-import { ActionButton } from 'office-ui-fabric-react/lib/Button';
-import { Icon } from 'office-ui-fabric-react/lib/Icon';
-import { ILabelStyles } from 'office-ui-fabric-react/lib/Label';
-import { Link } from 'office-ui-fabric-react/lib/Link';
-import { ITextFieldStyles, TextField } from 'office-ui-fabric-react/lib/TextField';
+import { ActionButton } from 'office-ui-fabric-react';
+import { Icon } from 'office-ui-fabric-react';
+import { ILabelStyles } from 'office-ui-fabric-react';
+import { Link } from 'office-ui-fabric-react';
+import { ITextFieldStyles, TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { FlaggedComponent } from '../../common/components/flagged-component';
@@ -48,7 +48,10 @@ export enum CapturedInstanceActionType {
     CREATE,
 }
 
-export class FailureInstancePanelControl extends React.Component<FailureInstancePanelControlProps, FailureInstancePanelControlState> {
+export class FailureInstancePanelControl extends React.Component<
+    FailureInstancePanelControlProps,
+    FailureInstancePanelControlState
+> {
     private static readonly addFailureInstanceLabel: string = 'Add a failure instance';
 
     constructor(props) {
@@ -112,13 +115,16 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
     }
 
     private renderPanel(): JSX.Element {
-        const testStepConfig = this.props.assessmentsProvider.getStep(this.props.test, this.props.step);
+        const testStepConfig = this.props.assessmentsProvider.getStep(
+            this.props.test,
+            this.props.step,
+        );
 
         const panelProps: GenericPanelProps = {
             isOpen: this.state.isPanelOpen,
             className: styles.failureInstancePanel,
             onDismiss: this.closeFailureInstancePanel,
-            title:
+            headerText:
                 this.props.actionType === CapturedInstanceActionType.CREATE
                     ? FailureInstancePanelControl.addFailureInstanceLabel
                     : 'Edit failure instance',
@@ -164,7 +170,8 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
                 <ActionAndCancelButtonsComponent
                     isHidden={false}
                     primaryButtonDisabled={
-                        this.state.currentInstance.failureDescription === null && this.state.currentInstance.path === null
+                        this.state.currentInstance.failureDescription === null &&
+                        this.state.currentInstance.path === null
                     }
                     primaryButtonText={primaryButtonText}
                     primaryButtonOnClick={primaryButtonOnClick}
@@ -217,7 +224,12 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
     };
 
     protected onSaveEditedFailureInstance = (): void => {
-        this.props.editFailureInstance(this.state.currentInstance, this.props.test, this.props.step, this.props.instanceId);
+        this.props.editFailureInstance(
+            this.state.currentInstance,
+            this.props.test,
+            this.props.step,
+            this.props.instanceId,
+        );
         this.closeFailureInstancePanel();
     };
 

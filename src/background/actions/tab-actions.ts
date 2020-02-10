@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Action } from 'common/flux/action';
-
-import { Tab } from '../../common/itab.d';
+import { Tab } from 'common/itab';
 
 export class TabActions {
     public readonly newTabCreated = new Action<Tab>();

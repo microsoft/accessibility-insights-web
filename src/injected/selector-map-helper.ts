@@ -1,9 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { FeatureFlags } from 'common/feature-flags';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { TargetPageStoreData } from 'injected/client-store-listener';
 import { GetElementBasedViewModelCallback } from 'injected/element-based-view-model-creator';
@@ -19,14 +17,16 @@ import { AssessmentVisualizationInstance } from './frameCommunicators/html-eleme
 export type VisualizationRelatedStoreData = Pick<
     TargetPageStoreData,
     | 'assessmentStoreData'
-    | 'featureFlagStoreData'
     | 'unifiedScanResultStoreData'
     | 'visualizationScanResultStoreData'
     | 'cardSelectionStoreData'
 >;
 
 export class SelectorMapHelper {
-    constructor(private assessmentsProvider: AssessmentsProvider, private getElementBasedViewModel: GetElementBasedViewModelCallback) {}
+    constructor(
+        private assessmentsProvider: AssessmentsProvider,
+        private getElementBasedViewModel: GetElementBasedViewModelCallback,
+    ) {}
 
     public getSelectorMap(
         visualizationType: VisualizationType,
@@ -37,7 +37,6 @@ export class SelectorMapHelper {
         const {
             visualizationScanResultStoreData,
             unifiedScanResultStoreData,
-            featureFlagStoreData,
             assessmentStoreData,
             cardSelectionStoreData,
         } = visualizationRelatedStoreData;
@@ -47,14 +46,16 @@ export class SelectorMapHelper {
                 visualizationType,
                 visualizationScanResultStoreData,
                 unifiedScanResultStoreData,
-                featureFlagStoreData,
                 cardSelectionStoreData,
             );
         }
 
         if (this.assessmentsProvider.isValidType(visualizationType)) {
             const key = this.assessmentsProvider.forType(visualizationType).key;
-            selectorMap = this.getFilteredSelectorMap(assessmentStoreData.assessments[key].generatedAssessmentInstancesMap, stepKey);
+            selectorMap = this.getFilteredSelectorMap(
+                assessmentStoreData.assessments[key].generatedAssessmentInstancesMap,
+                stepKey,
+            );
         }
 
         return selectorMap;
@@ -77,17 +78,16 @@ export class SelectorMapHelper {
         visualizationType: VisualizationType,
         visualizationScanResultData: VisualizationScanResultData,
         unifiedScanData: UnifiedScanResultStoreData,
-        featureFlagData: FeatureFlagStoreData,
         cardSelectionStoreData: CardSelectionStoreData,
     ): DictionaryStringTo<AssessmentVisualizationInstance> {
         let selectorMap = {};
         switch (visualizationType) {
             case VisualizationType.Issues:
-                if (featureFlagData[FeatureFlags.universalCardsUI] === true) {
-                    selectorMap = this.getElementBasedViewModel(unifiedScanData.rules, unifiedScanData.results, cardSelectionStoreData);
-                } else {
-                    selectorMap = visualizationScanResultData.issues.selectedAxeResultsMap;
-                }
+                selectorMap = this.getElementBasedViewModel(
+                    unifiedScanData.rules,
+                    unifiedScanData.results,
+                    cardSelectionStoreData,
+                );
                 break;
             case VisualizationType.Headings:
                 selectorMap = visualizationScanResultData.headings.fullAxeResultsMap;

@@ -1,17 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TestViewLeftNavLink renders 1`] = `
-<div
+<span
   aria-hidden="true"
   className="button-flex-container"
 >
   <i>
     test-props-renderIcon
   </i>
-  <div
+  <span
     className="ms-Button-label test-name"
   >
     test-props-link-name
-  </div>
-</div>
+  </span>
+</span>
 `;

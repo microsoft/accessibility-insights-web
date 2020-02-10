@@ -20,10 +20,18 @@ export class IssueFilingControllerImpl implements IssueFilingController {
         private readonly userConfigurationStore: BaseStore<UserConfigurationStoreData>,
     ) {}
 
-    public fileIssue = (serviceKey: string, issueData: CreateIssueDetailsTextData): Promise<void> => {
+    public fileIssue = (
+        serviceKey: string,
+        issueData: CreateIssueDetailsTextData,
+    ): Promise<void> => {
         const service = this.provider.forKey(serviceKey);
         const userConfigurationStoreData = this.userConfigurationStore.getState();
 
-        return service.fileIssue(this.browserAdapter, userConfigurationStoreData.bugServicePropertiesMap, issueData, this.environmentInfo);
+        return service.fileIssue(
+            this.browserAdapter,
+            userConfigurationStoreData.bugServicePropertiesMap,
+            issueData,
+            this.environmentInfo,
+        );
     };
 }

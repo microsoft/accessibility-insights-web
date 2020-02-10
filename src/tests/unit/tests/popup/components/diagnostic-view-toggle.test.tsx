@@ -1,24 +1,23 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { VisualizationToggle } from 'common/components/visualization-toggle';
+import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { TelemetryEventSource } from 'common/extension-telemetry-events';
+import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import { VisualizationType } from 'common/types/visualization-type';
 import { mount, shallow } from 'enzyme';
-import { Link } from 'office-ui-fabric-react/lib/Link';
+import { Link } from 'office-ui-fabric-react';
+import { PopupActionMessageCreator } from 'popup/actions/popup-action-message-creator';
+import { DiagnosticViewToggle, DiagnosticViewToggleProps } from 'popup/components/diagnostic-view-toggle';
+import { DiagnosticViewClickHandler } from 'popup/handlers/diagnostic-view-toggle-click-handler';
 import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { IMock, It, Mock, Times } from 'typemoq';
-
+import { DictionaryStringTo } from 'types/common-types';
 import { ContentLinkDeps } from 'views/content/content-link';
 import { ContentProvider } from 'views/content/content-page';
-import { VisualizationToggle } from '../../../../../common/components/visualization-toggle';
-import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
-import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
-import { TelemetryEventSource } from '../../../../../common/extension-telemetry-events';
-import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
-import { VisualizationStoreData } from '../../../../../common/types/store-data/visualization-store-data';
-import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { PopupActionMessageCreator } from '../../../../../popup/actions/popup-action-message-creator';
-import { DiagnosticViewToggle, DiagnosticViewToggleProps } from '../../../../../popup/components/diagnostic-view-toggle';
-import { DiagnosticViewClickHandler } from '../../../../../popup/handlers/diagnostic-view-toggle-click-handler';
-import { DictionaryStringTo } from '../../../../../types/common-types';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 import { ShortcutCommandsTestData } from '../../../common/sample-test-data';
 import { VisualizationStoreDataBuilder } from '../../../common/visualization-store-data-builder';
@@ -77,7 +76,7 @@ describe('DiagnosticViewToggleTest', () => {
     });
 
     describe('user interaction: ', () => {
-        it('hanldes click on details view link, it will open fastpass when Assessment enabled', () => {
+        it('handles click on details view link, it will open FastPass when Assessment enabled', () => {
             const visualizationType = VisualizationType.Issues;
             const event = eventStubFactory.createKeypressEvent();
             const propsBuilder = new DiagnosticViewTogglePropsBuilder(visualizationType, testTelemetrySource);
@@ -128,7 +127,7 @@ describe('DiagnosticViewToggleTest', () => {
             propsBuilder.verifyAll();
         });
 
-        it('hanldes click on the link when toggle is present', () => {
+        it('handles click on the link when toggle is present', () => {
             const visualizationType = VisualizationType.Issues;
             const event = eventStubFactory.createKeypressEvent();
 
@@ -159,7 +158,7 @@ describe('DiagnosticViewToggleTest', () => {
         });
     });
 
-    describe('lifecycle events', () => {
+    describe('life cycle events', () => {
         it('sets focus when componentDidMount', () => {
             const visualizationType = VisualizationType.TabStops;
             const event = eventStubFactory.createKeypressEvent();

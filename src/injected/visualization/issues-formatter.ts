@@ -47,7 +47,10 @@ export class IssuesFormatter implements Formatter {
         fontColor: '#FFFFFF',
     };
 
-    public getDrawerConfiguration(element: HTMLElement, data: HtmlElementAxeResults): DrawerConfiguration {
+    public getDrawerConfiguration(
+        element: HTMLElement,
+        data: HtmlElementAxeResults,
+    ): DrawerConfiguration {
         const config: DrawerConfiguration = {
             failureBoxConfig: {
                 background: IssuesFormatter.style.borderColor,

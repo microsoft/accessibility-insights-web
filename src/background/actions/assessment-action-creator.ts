@@ -51,7 +51,7 @@ export class AssessmentActionCreator {
             this.onAssessmentScanCompleted,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            AssessmentMessages.StartOver,
+            AssessmentMessages.StartOverTest,
             this.onStartOverAssessment,
         );
         this.interpreter.registerTypeToPayloadCallback(

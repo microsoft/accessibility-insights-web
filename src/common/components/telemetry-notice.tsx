@@ -22,8 +22,9 @@ export const TelemetryNotice = NamedFC<TelemetryNoticeProps>('TelemetryNotice', 
             develop inclusive software.
         </p>
         <p>
-            We collect anonymized data to identify the top accessibility issues found by the users. This will help focus the accessibility
-            tools and standards community to improve guidelines, rules engines, and features.
+            We collect anonymized data to identify the top accessibility issues found by the users.
+            This will help focus the accessibility tools and standards community to improve
+            guidelines, rules engines, and features.
         </p>
     </>
 ));

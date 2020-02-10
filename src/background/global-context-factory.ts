@@ -1,5 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BrowserPermissionsTracker } from 'background/browser-permissions-tracker';
+import { Logger } from 'common/logging/logger';
+import { DebugToolsActionCreator } from 'debug-tools/action-creators/debug-tools-action-creator';
+import { DebugToolsController } from 'debug-tools/controllers/debug-tools-controller';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { CommandsAdapter } from '../common/browser-adapters/commands-adapter';
 import { StorageAdapter } from '../common/browser-adapters/storage-adapter';
@@ -12,12 +16,14 @@ import { IssueFilingServiceProvider } from '../issue-filing/issue-filing-service
 import { AssessmentsProvider } from './../assessments/types/assessments-provider';
 import { AssessmentActionCreator } from './actions/assessment-action-creator';
 import { GlobalActionHub } from './actions/global-action-hub';
+import { BrowserMessageBroadcasterFactory } from './browser-message-broadcaster-factory';
 import { CompletedTestStepTelemetryCreator } from './completed-test-step-telemetry-creator';
 import { FeatureFlagsController } from './feature-flags-controller';
 import { PersistedData } from './get-persisted-data';
 import { FeatureFlagsActionCreator } from './global-action-creators/feature-flags-action-creator';
 import { GlobalActionCreator } from './global-action-creators/global-action-creator';
 import { IssueFilingActionCreator } from './global-action-creators/issue-filing-action-creator';
+import { PermissionsStateActionCreator } from './global-action-creators/permissions-state-action-creator';
 import { registerUserConfigurationMessageCallback } from './global-action-creators/registrar/register-user-configuration-message-callbacks';
 import { ScopingActionCreator } from './global-action-creators/scoping-action-creator';
 import { UserConfigurationActionCreator } from './global-action-creators/user-configuration-action-creator';
@@ -29,7 +35,7 @@ import { TelemetryEventHandler } from './telemetry/telemetry-event-handler';
 import { UserConfigurationController } from './user-configuration-controller';
 
 export class GlobalContextFactory {
-    public static createContext(
+    public static async createContext(
         browserAdapter: BrowserAdapter,
         telemetryEventHandler: TelemetryEventHandler,
         userData: LocalStorageData,
@@ -41,7 +47,8 @@ export class GlobalContextFactory {
         environmentInfo: EnvironmentInfo,
         storageAdapter: StorageAdapter,
         commandsAdapter: CommandsAdapter,
-    ): GlobalContext {
+        logger: Logger,
+    ): Promise<GlobalContext> {
         const interpreter = new Interpreter();
 
         const globalActionsHub = new GlobalActionHub();
@@ -99,6 +106,15 @@ export class GlobalContextFactory {
             globalActionsHub.featureFlagActions,
             telemetryEventHandler,
         );
+        const permissionsStateActionCreator = new PermissionsStateActionCreator(
+            interpreter,
+            globalActionsHub.permissionsStateActions,
+            telemetryEventHandler,
+        );
+        const debugToolsActionCreator = new DebugToolsActionCreator(
+            interpreter,
+            new DebugToolsController(browserAdapter),
+        );
 
         issueFilingActionCreator.registerCallbacks();
         actionCreator.registerCallbacks();
@@ -106,10 +122,17 @@ export class GlobalContextFactory {
         registerUserConfigurationMessageCallback(interpreter, userConfigurationActionCreator);
         scopingActionCreator.registerCallback();
         featureFlagsActionCreator.registerCallbacks();
+        permissionsStateActionCreator.registerCallbacks();
+        debugToolsActionCreator.registerCallback();
 
+        const messageBroadcasterFactory = new BrowserMessageBroadcasterFactory(
+            browserAdapter,
+            logger,
+        );
         const dispatcher = new StateDispatcher(
-            browserAdapter.sendMessageToAllFramesAndTabs,
+            messageBroadcasterFactory.allTabsBroadcaster,
             globalStoreHub,
+            logger,
         );
         dispatcher.initialize();
 
@@ -120,6 +143,13 @@ export class GlobalContextFactory {
             interpreter,
         );
         assessmentChangeHandler.initialize();
+
+        const browserPermissionTracker = new BrowserPermissionsTracker(
+            browserAdapter,
+            interpreter,
+            logger,
+        );
+        await browserPermissionTracker.initialize();
 
         return new GlobalContext(
             interpreter,

@@ -2,7 +2,8 @@
 // Licensed under the MIT License.
 import { BrowserWindow } from 'electron';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
-import { RootContainer, RootContainerProps } from 'electron/views/root-container/components/root-container';
+import { BodyClassModifier } from 'electron/views/common/body-class-modifier/body-class-modifier';
+import { RootContainer, RootContainerDeps } from 'electron/views/root-container/components/root-container';
 import { RootContainerRenderer } from 'electron/views/root-container/root-container-renderer';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
@@ -23,18 +24,22 @@ describe('RootContainerRendererTest', () => {
         containerDiv.setAttribute('id', 'root-container');
         dom.appendChild(containerDiv);
 
-        const props = {
-            deps: {
-                currentWindow: browserWindow,
-                windowStateActionCreator: windowStateActionCreatorMock.object,
-            },
-        } as RootContainerProps;
-        const expectedComponent = <RootContainer {...props} />;
+        const deps = {
+            currentWindow: browserWindow,
+            windowStateActionCreator: windowStateActionCreatorMock.object,
+        } as RootContainerDeps;
+
+        const expectedComponent = (
+            <>
+                <BodyClassModifier deps={deps} />
+                <RootContainer deps={deps} />
+            </>
+        );
 
         renderMock.setup(r => r(It.isValue(expectedComponent), containerDiv)).verifiable();
         windowStateActionCreatorMock.setup(w => w.setRoute({ routeId: 'deviceConnectView' })).verifiable(Times.once());
 
-        const renderer = new RootContainerRenderer(renderMock.object, dom, props);
+        const renderer = new RootContainerRenderer(renderMock.object, dom, deps);
 
         renderer.render();
 

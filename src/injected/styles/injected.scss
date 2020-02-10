@@ -101,11 +101,6 @@
         padding: 0 19px 20px !important;
     }
 
-    .insights-dialog-main-override button {
-        // This is to prevent conflicts with target page CSS, see issue #578
-        border: 0 !important;
-    }
-
     .insights-dialog-main-override .insights-dialog-button-inspect svg path {
         fill: $primary-text !important;
     }
@@ -324,27 +319,6 @@
             ul {
                 margin: 8px 8px 0px 8px !important;
                 padding-left: 8px !important;
-            }
-
-            .insights-fix-instruction-list {
-                li {
-                    span.fix-instruction-color-box {
-                        width: 14px;
-                        height: 14px;
-                        display: inline-block;
-                        vertical-align: -5%;
-                        margin: 0px 2px;
-                        border: 1px solid $always-black;
-                    }
-                }
-                .screen-reader-only {
-                    position: absolute;
-                    left: -10000px;
-                    top: auto;
-                    width: 1px;
-                    height: 1px;
-                    overflow: hidden;
-                }
             }
         }
 

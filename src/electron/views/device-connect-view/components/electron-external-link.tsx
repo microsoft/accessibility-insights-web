@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import { Shell } from 'electron';
-import { Link } from 'office-ui-fabric-react/lib/Link';
+import { Link } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 export interface ElectronExternalLinkProps {
@@ -11,7 +11,10 @@ export interface ElectronExternalLinkProps {
     children: React.ReactNode;
 }
 
-export const ElectronExternalLink = NamedFC<ElectronExternalLinkProps>('ElectronExternalLink', (props: ElectronExternalLinkProps) => {
-    const onClick = () => props.shell.openExternal(props.href);
-    return <Link onClick={onClick}>{props.children}</Link>;
-});
+export const ElectronExternalLink = NamedFC<ElectronExternalLinkProps>(
+    'ElectronExternalLink',
+    (props: ElectronExternalLinkProps) => {
+        const onClick = () => props.shell.openExternal(props.href);
+        return <Link onClick={onClick}>{props.children}</Link>;
+    },
+);

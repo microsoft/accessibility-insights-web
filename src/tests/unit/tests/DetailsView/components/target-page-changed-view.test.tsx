@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DisplayableVisualizationTypeData } from 'common/configs/visualization-configuration-factory';
-import { FeatureFlags } from 'common/feature-flags';
 import { VisualizationType } from 'common/types/visualization-type';
 import { TargetPageChangedView, TargetPageChangedViewProps } from 'DetailsView/components/target-page-changed-view';
 import { shallow } from 'enzyme';
@@ -26,9 +25,6 @@ describe('TargetPageChangedView', () => {
             visualizationType,
             displayableData,
             toggleClickHandler: clickHandlerStub,
-            featureFlagStoreData: {
-                [FeatureFlags.universalCardsUI]: isCardsUIEnabled,
-            },
         };
 
         const wrapped = shallow(<TargetPageChangedView {...props} />);

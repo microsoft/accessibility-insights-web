@@ -1,17 +1,21 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
+import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { NullComponent } from 'common/components/null-component';
 import { PropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { EnvironmentInfo } from 'common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
-import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
 import { ReportHead } from './components/report-head';
 import { ReportBody, ReportBodyProps } from './components/report-sections/report-body';
 import { ReportCollapsibleContainerControl } from './components/report-sections/report-collapsible-container';
-import { ReportSectionFactory, SectionDeps, SectionProps } from './components/report-sections/report-section-factory';
+import {
+    ReportSectionFactory,
+    SectionDeps,
+    SectionProps,
+} from './components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from './react-static-renderer';
 
 export class ReportHtmlGenerator {
@@ -26,7 +30,13 @@ export class ReportHtmlGenerator {
         private readonly getPropertyConfiguration: (id: string) => Readonly<PropertyConfiguration>,
     ) {}
 
-    public generateHtml(scanDate: Date, pageTitle: string, pageUrl: string, description: string, cardsViewData: CardsViewModel): string {
+    public generateHtml(
+        scanDate: Date,
+        pageTitle: string,
+        pageUrl: string,
+        description: string,
+        cardsViewData: CardsViewModel,
+    ): string {
         const headElement: JSX.Element = <ReportHead />;
         const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(headElement);
 

@@ -7,7 +7,7 @@ import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results
 import { AutomatedChecksReportSectionFactory } from 'reports/components/report-sections/automated-checks-report-section-factory';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
 import { AxeResultsReport, AxeResultsReportDeps } from 'reports/package/axe-results-report';
-import { PackageReportFooter } from 'reports/package/package-report-footer-text';
+import { FooterTextForService } from 'reports/package/footer-text-for-service';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { CheckMessageTransformer } from 'scanner/check-message-transformer';
@@ -16,12 +16,13 @@ import { DocumentUtils } from 'scanner/document-utils';
 import { HelpUrlGetter } from 'scanner/help-url-getter';
 import { MessageDecorator } from 'scanner/message-decorator';
 import { ResultDecorator } from 'scanner/result-decorator';
+import { ruleToLinkConfiguration } from 'scanner/rule-to-links-mappings';
+import { FixInstructionProcessor } from '../../common/components/fix-instruction-processor';
 import { getPropertyConfiguration } from '../../common/configs/unified-result-property-configurations';
 import { DateProvider } from '../../common/date-provider';
 import { EnvironmentInfoProvider } from '../../common/environment-info-provider';
 import { initializeFabricIcons } from '../../common/fabric-icons';
 import { GetGuidanceTagsFromGuidanceLinks } from '../../common/get-guidance-tags-from-guidance-links';
-import { FixInstructionProcessor } from '../../injected/fix-instruction-processor';
 import { AxeReportParameters, ReporterFactory } from './accessibilityInsightsReport';
 import { Reporter } from './reporter';
 
@@ -31,22 +32,25 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
             testEngine: {
                 version: axeVersion,
             },
+            testEnvironment: {
+                userAgent,
+            },
         },
         scanContext: {
-            browserSpec, pageTitle: targetPageTitle,
+            pageTitle: targetPageTitle,
         },
         serviceName,
     } = parameters;
 
-    const environmentInfoProvider = new EnvironmentInfoProvider('', browserSpec, axeVersion);
+    const environmentInfoProvider = new EnvironmentInfoProvider('', userAgent, axeVersion);
     const reactStaticRenderer = new ReactStaticRenderer();
     const fixInstructionProcessor = new FixInstructionProcessor();
 
-    const FooterSection = PackageReportFooter(serviceName, AutomatedChecksReportSectionFactory.FooterSection);
+    const FooterText = FooterTextForService(serviceName);
 
     const sectionFactory = {
-         ...AutomatedChecksReportSectionFactory,
-          FooterSection,
+        ...AutomatedChecksReportSectionFactory,
+        FooterText,
     };
 
     const reportHtmlGenerator = new ReportHtmlGenerator(
@@ -67,6 +71,7 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
     const helpUrlGetter = new HelpUrlGetter(configuration);
     const resultDecorator = new ResultDecorator(titleProvider, messageDecorator, (ruleId, axeHelpUrl) =>
         helpUrlGetter.getHelpUrl(ruleId, axeHelpUrl),
+        ruleToLinkConfiguration,
     );
 
     const deps: AxeResultsReportDeps = {
