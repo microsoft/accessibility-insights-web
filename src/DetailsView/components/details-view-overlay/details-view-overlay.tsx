@@ -10,7 +10,10 @@ import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-f
 import { ScopingStoreData } from '../../../common/types/store-data/scoping-store-data';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import { PreviewFeatureFlagsHandler } from '../../handlers/preview-feature-flags-handler';
-import { PreviewFeaturesPanel, PreviewFeaturesPanelProps } from '../preview-features-panel';
+import {
+    PreviewFeaturesPanel,
+    PreviewFeaturesPanelProps,
+} from './preview-features-panel/preview-features-panel';
 import { ScopingPanel, ScopingPanelProps } from '../scoping-panel';
 import {
     SettingsPanel,

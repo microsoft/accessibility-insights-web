@@ -5,8 +5,11 @@ import { Mock } from 'typemoq';
 
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { GenericPanel } from '../../../../../DetailsView/components/generic-panel';
-import { PreviewFeaturesContainer } from '../../../../../DetailsView/components/preview-features-container';
-import { PreviewFeaturesPanel, PreviewFeaturesPanelProps } from '../../../../../DetailsView/components/preview-features-panel';
+import { PreviewFeaturesContainer } from '../../../../../DetailsView/components/details-view-overlay/preview-features-panel/preview-features-container';
+import {
+    PreviewFeaturesPanel,
+    PreviewFeaturesPanelProps,
+} from '../../../../../DetailsView/components/details-view-overlay/preview-features-panel/preview-features-panel';
 import { PreviewFeatureFlagsHandler } from '../../../../../DetailsView/handlers/preview-feature-flags-handler';
 
 describe('PreviewFeaturesPanelTest', () => {

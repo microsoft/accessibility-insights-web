@@ -2,7 +2,10 @@
 // Licensed under the MIT License.
 import { DisplayableFeatureFlag } from 'common/types/store-data/displayable-feature-flag';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
-import { PreviewFeaturesContainer, PreviewFeaturesContainerProps } from 'DetailsView/components/preview-features-container';
+import {
+    PreviewFeaturesContainer,
+    PreviewFeaturesContainerProps,
+} from 'DetailsView/components/details-view-overlay/preview-features-panel/preview-features-container';
 import { PreviewFeatureFlagsHandler } from 'DetailsView/handlers/preview-feature-flags-handler';
 import { shallow } from 'enzyme';
 import * as React from 'react';

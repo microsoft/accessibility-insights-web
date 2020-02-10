@@ -6,10 +6,10 @@ import { DisplayableFeatureFlag } from 'common/types/store-data/displayable-feat
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import * as React from 'react';
 
-import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
-import { PreviewFeatureFlagsHandler } from '../handlers/preview-feature-flags-handler';
-import { NoDisplayableFeatureFlagMessage } from './no-displayable-preview-features-message';
-import { PreviewFeaturesToggleList } from './preview-features-toggle-list';
+import { DetailsViewActionMessageCreator } from '../../../actions/details-view-action-message-creator';
+import { PreviewFeatureFlagsHandler } from '../../../handlers/preview-feature-flags-handler';
+import { NoDisplayableFeatureFlagMessage } from '../../no-displayable-preview-features-message';
+import { PreviewFeaturesToggleList } from '../../preview-features-toggle-list';
 
 export type PreviewFeaturesContainerDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;

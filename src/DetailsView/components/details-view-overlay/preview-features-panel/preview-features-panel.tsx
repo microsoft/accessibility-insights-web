@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
-import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
-import { PreviewFeatureFlagsHandler } from '../handlers/preview-feature-flags-handler';
-import { GenericPanel } from './generic-panel';
+import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
+import { DetailsViewActionMessageCreator } from '../../../actions/details-view-action-message-creator';
+import { PreviewFeatureFlagsHandler } from '../../../handlers/preview-feature-flags-handler';
+import { GenericPanel } from '../../generic-panel';
 import { PreviewFeaturesContainer } from './preview-features-container';
 
 export type PreviewFeaturesPanelDeps = {
