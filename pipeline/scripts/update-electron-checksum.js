@@ -34,6 +34,10 @@ const updateAllSha512s = async latestContent => {
 
     for (file of latestContent.files) {
         await updateSha512PropertyFromFile(file, file.url);
+        if (file.url.endsWith('zip')) {
+            delete file.size;
+            delete file.blockMapSize;
+        }
     }
 };
 
