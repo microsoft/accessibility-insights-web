@@ -17,7 +17,7 @@ console.log(sevenBin.path7za);
 
 process.chdir(parentDir);
 
-Seven.add(`${appName}.zip`, '*', {
+Seven.add(`${appName}.zip`, 'mac', {
     $bin: sevenBin.path7za,
     recursive: true,
 });
