@@ -1,21 +1,21 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ContentProvider } from 'views/content/content-page';
-import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
-import { InspectActionMessageCreator } from '../../../../../common/message-creators/inspect-action-message-creator';
-import { ScopingActionMessageCreator } from '../../../../../common/message-creators/scoping-action-message-creator';
-import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
-import { DetailsViewStoreData } from '../../../../../common/types/store-data/details-view-store-data';
-import { ScopingStoreData } from '../../../../../common/types/store-data/scoping-store-data';
-import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
-import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
+import { ContentActionMessageCreator } from '../../../../../../common/message-creators/content-action-message-creator';
+import { InspectActionMessageCreator } from '../../../../../../common/message-creators/inspect-action-message-creator';
+import { ScopingActionMessageCreator } from '../../../../../../common/message-creators/scoping-action-message-creator';
+import { UserConfigMessageCreator } from '../../../../../../common/message-creators/user-config-message-creator';
+import { DetailsViewStoreData } from '../../../../../../common/types/store-data/details-view-store-data';
+import { ScopingStoreData } from '../../../../../../common/types/store-data/scoping-store-data';
+import { UserConfigurationStoreData } from '../../../../../../common/types/store-data/user-configuration-store';
+import { DetailsViewActionMessageCreator } from '../../../../../../DetailsView/actions/details-view-action-message-creator';
 import {
     DetailsViewOverlay,
     DetailsViewOverlayDeps,
     DetailsViewOverlayProps,
-} from '../../../../../DetailsView/components/details-view-overlay/details-view-overlay';
-import { SettingsProvider } from '../../../../../DetailsView/components/settings-panel/settings/settings-provider';
-import { PreviewFeatureFlagsHandler } from '../../../../../DetailsView/handlers/preview-feature-flags-handler';
+} from '../../../../../../DetailsView/components/details-view-overlay/details-view-overlay';
+import { SettingsProvider } from '../../../../../../DetailsView/components/settings-panel/settings/settings-provider';
+import { PreviewFeatureFlagsHandler } from '../../../../../../DetailsView/handlers/preview-feature-flags-handler';
 
 describe('DetailsViewOverlay', () => {
     const detailsViewActionMessageCreator = {
