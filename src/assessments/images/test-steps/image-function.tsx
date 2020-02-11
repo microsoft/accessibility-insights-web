@@ -72,6 +72,11 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<ImageFunctionPropertyBa
         displayName: 'Accessible name',
         defaultValue: NoValue,
     },
+    {
+        propertyName: 'ariaRole',
+        displayName: 'ARIA role',
+        defaultValue: NoValue,
+    },
 ];
 
 export const ImageFunction: Requirement = {

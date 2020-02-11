@@ -117,6 +117,7 @@ describe('imageRule', () => {
                 imageType: '<img>',
                 accessibleName: 'hello',
                 codedAs: 'Meaningful',
+                role: null,
             };
             dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
 
@@ -135,6 +136,7 @@ describe('imageRule', () => {
                 imageType: '<img>',
                 accessibleName: '',
                 codedAs: 'Decorative',
+                role: 'none',
             };
             dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
 
@@ -153,6 +155,7 @@ describe('imageRule', () => {
                 imageType: '<img>',
                 accessibleName: '',
                 codedAs: 'Decorative',
+                role: 'presentation',
             };
             dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
 
@@ -171,6 +174,7 @@ describe('imageRule', () => {
                 imageType: '<img>',
                 accessibleName: '',
                 codedAs: 'Decorative',
+                role: null,
             };
             dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
 
@@ -189,6 +193,7 @@ describe('imageRule', () => {
                 imageType: '<img>',
                 accessibleName: '',
                 codedAs: null,
+                role: null,
             };
             dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
 
@@ -204,6 +209,7 @@ describe('imageRule', () => {
                 imageType: 'Role="img"',
                 accessibleName: '',
                 codedAs: null,
+                role: 'img',
             };
             dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
             fixture.appendChild(node);
@@ -219,6 +225,7 @@ describe('imageRule', () => {
                 imageType: 'icon fonts (empty <i> elements)',
                 accessibleName: '',
                 codedAs: null,
+                role: null,
             };
             dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
             fixture.appendChild(node);
@@ -235,6 +242,7 @@ describe('imageRule', () => {
                 imageType: 'CSS background-image',
                 accessibleName: '',
                 codedAs: null,
+                role: null,
             };
             dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
             fixture.appendChild(node);
