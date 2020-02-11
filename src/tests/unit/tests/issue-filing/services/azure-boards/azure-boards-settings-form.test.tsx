@@ -1,18 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { SettingsDeps } from 'DetailsView/components/details-view-overlay/settings-panel/settings/settings-props';
 import { shallow } from 'enzyme';
-import { Dropdown } from 'office-ui-fabric-react';
-import { TextField } from 'office-ui-fabric-react';
+import { OnPropertyUpdateCallback } from 'issue-filing/components/issue-filing-settings-container';
+import { AzureBoardsIssueFilingService } from 'issue-filing/services/azure-boards/azure-boards-issue-filing-service';
+import { AzureBoardsIssueFilingSettings } from 'issue-filing/services/azure-boards/azure-boards-issue-filing-settings';
+import { AzureBoardsSettingsForm } from 'issue-filing/services/azure-boards/azure-boards-settings-form';
+import { SettingsFormProps } from 'issue-filing/types/settings-form-props';
+import { Dropdown, TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
+import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, Mock, Times } from 'typemoq';
-
-import { SettingsDeps } from '../../../../../../DetailsView/components/details-view-overlay/settings-panel/settings/settings-props';
-import { OnPropertyUpdateCallback } from '../../../../../../issue-filing/components/issue-filing-settings-container';
-import { AzureBoardsIssueFilingService } from '../../../../../../issue-filing/services/azure-boards/azure-boards-issue-filing-service';
-import { AzureBoardsIssueFilingSettings } from '../../../../../../issue-filing/services/azure-boards/azure-boards-issue-filing-settings';
-import { AzureBoardsSettingsForm } from '../../../../../../issue-filing/services/azure-boards/azure-boards-settings-form';
-import { SettingsFormProps } from '../../../../../../issue-filing/types/settings-form-props';
-import { EventStubFactory } from '../../../../common/event-stub-factory';
 
 describe('AzureBoardsSettingsForm', () => {
     let props: SettingsFormProps<AzureBoardsIssueFilingSettings>;

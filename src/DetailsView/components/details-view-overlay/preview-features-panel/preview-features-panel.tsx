@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import * as React from 'react';
-
-import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import { DetailsViewActionMessageCreator } from '../../../actions/details-view-action-message-creator';
 import { PreviewFeatureFlagsHandler } from '../../../handlers/preview-feature-flags-handler';
 import { GenericPanel } from '../../generic-panel';
