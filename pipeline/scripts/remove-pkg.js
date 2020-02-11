@@ -16,6 +16,6 @@ console.log(`path to 7z: ${sevenBin.path7za}`);
 child_process.execSync(`cd ${parentDir}`, {
     stdio: 'inherit',
 });
-child_process.execSync(`${sevenBin.path7za} d ${zipTarget} *.pkg`, {
+child_process.execSync(`${sevenBin.path7za} d "${zipTarget}" *.pkg`, {
     stdio: 'inherit',
 });
