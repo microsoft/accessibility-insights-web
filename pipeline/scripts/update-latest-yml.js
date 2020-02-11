@@ -61,7 +61,7 @@ const updateFileList = latestContent => {
     }
 };
 
-const updateElectronChecksum = async () => {
+const updateLatestYaml = async () => {
     const latestPath = getLatestYAMLPath(parentDir);
     const latestContent = readLatestYAML(latestPath);
     updateFileList(latestContent);
@@ -69,4 +69,4 @@ const updateElectronChecksum = async () => {
     writeLatestYAML(latestPath, latestContent);
 };
 
-updateElectronChecksum();
+updateLatestYaml();
