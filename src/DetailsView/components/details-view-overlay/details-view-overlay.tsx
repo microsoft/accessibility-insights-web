@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import * as React from 'react';
 import { ContentPanel, ContentPanelDeps, ContentPanelProps } from 'views/content/content-panel';
 import { InspectActionMessageCreator } from '../../../common/message-creators/inspect-action-message-creator';
@@ -9,12 +8,13 @@ import { DetailsViewStoreData } from '../../../common/types/store-data/details-v
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
 import { ScopingStoreData } from '../../../common/types/store-data/scoping-store-data';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
+import { DetailsViewActionMessageCreator } from '../../actions/details-view-action-message-creator';
 import { PreviewFeatureFlagsHandler } from '../../handlers/preview-feature-flags-handler';
+import { ScopingPanel, ScopingPanelProps } from '../scoping-panel';
 import {
     PreviewFeaturesPanel,
     PreviewFeaturesPanelProps,
 } from './preview-features-panel/preview-features-panel';
-import { ScopingPanel, ScopingPanelProps } from '../scoping-panel';
 import {
     SettingsPanel,
     SettingsPanelDeps,
