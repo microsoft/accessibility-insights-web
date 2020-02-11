@@ -13,7 +13,9 @@ console.log(`parentDir: ${parentDir}`);
 console.log(`zipTarget to remove pkg from: ${zipTarget}`);
 console.log(`path to 7z: ${sevenBin.path7za}`);
 
-let stdout = child_process.execSync(`cd ${parentDir}`);
-console.log(stdout);
-stdout = child_process.execSync(`${sevenBin.path7za} d ${zipTarget} *.pkg`);
-console.log(stdout);
+child_process.execSync(`cd ${parentDir}`, {
+    stdio: 'inherit',
+});
+child_process.execSync(`${sevenBin.path7za} d ${zipTarget} *.pkg`, {
+    stdio: 'inherit',
+});

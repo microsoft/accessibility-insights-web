@@ -14,7 +14,9 @@ console.log(`existingDmg: ${existingDmg}`);
 console.log(`appName: ${appName}`);
 console.log(`path to 7z: ${sevenBin.path7za}`);
 
-let stdout = child_process.execSync(`cd ${parentDir}`);
-console.log(stdout);
-stdout = child_process.execSync(`${sevenBin.path7za} a ${appName}.zip mac`);
-console.log(stdout);
+child_process.execSync(`cd ${parentDir}`, {
+    stdio: 'inherit',
+});
+child_process.execSync(`${sevenBin.path7za} a ${appName}.zip mac`, {
+    stdio: 'inherit',
+});
