@@ -13,6 +13,7 @@ jobs:
           signedArtifactName: ${{ parameters.signedArtifactName }}
           vmImage: macOS-10.14
           filePattern: '*.dmg, *.zip'
+          platform: mac
           inlineSignParams: |
               [
                   {

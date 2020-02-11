@@ -7,6 +7,7 @@ parameters:
     unsignedPipelineResource: null
     unsignedArtifactName: null
     signedArtifactName: null
+    platform: null
 
 jobs:
     - job: ${{ parameters.signedArtifactName }}
@@ -38,7 +39,7 @@ jobs:
             displayName: remove .pkg binary from zip file
             condition: eq(variables['Agent.OS'], 'Darwin')
 
-          - script: yarn update:electron-checksum signing-in-progress/${{ parameters.signedArtifactName }}
+          - script: yarn update:electron-checksum signing-in-progress/${{ parameters.signedArtifactName }} ${{ parameters.platform }}
             displayName: update electron checksum after signing
 
           - template: ../publish-packed-build-output.yaml

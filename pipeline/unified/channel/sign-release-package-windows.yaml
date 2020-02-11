@@ -13,6 +13,7 @@ jobs:
           signedArtifactName: ${{ parameters.signedArtifactName }}
           vmImage: windows-latest
           filePattern: '*.exe, *.dll'
+          platform: windows
           inlineSignParams: |
               [
                   {
