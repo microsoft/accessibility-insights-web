@@ -285,7 +285,7 @@ module.exports = function(grunt) {
                         },
                         {
                             cwd: 'deploy',
-                            src: ['Gruntfile.js', 'package.json'],
+                            src: ['Gruntfile.js', 'package.json', '.npmrc', '.yarnrc'],
                             dest: dropPath,
                             expand: true,
                         },
