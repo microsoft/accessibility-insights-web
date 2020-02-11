@@ -5,7 +5,7 @@ import { NewTabLink } from 'common/components/new-tab-link';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import {
-    TelemetrySettings,
+    createTelemetrySettings,
     TelemetrySettingsProps,
 } from 'DetailsView/components/details-view-overlay/settings-panel/settings/telemetry/telemetry-settings';
 import { GenericToggle } from 'DetailsView/components/generic-toggle';
@@ -16,6 +16,8 @@ import { Mock, Times } from 'typemoq';
 
 describe('TelemetrySettings', () => {
     const enableStates = [true, false];
+
+    const TelemetrySettings = createTelemetrySettings('test-product-name');
 
     describe('renders', () => {
         it.each(enableStates)('with enabled = %s', enabled => {
