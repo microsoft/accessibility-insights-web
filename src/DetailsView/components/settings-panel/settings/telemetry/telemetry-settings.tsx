@@ -26,3 +26,20 @@ export const TelemetrySettings = NamedFC<TelemetrySettingsProps>('TelemetrySetti
         />
     );
 });
+
+export const createTelemetrySettings = (productName: string) => {
+    return NamedFC<TelemetrySettingsProps>('TelemetrySettings', props => {
+        const { deps } = props;
+        const { userConfigMessageCreator } = deps;
+
+        return (
+            <GenericToggle
+                enabled={props.userConfigurationStoreState.enableTelemetry}
+                id="enable-telemetry"
+                name={`Help improve ${productName}`}
+                description={<EnableTelemetrySettingDescription deps={deps} />}
+                onClick={(id, state) => userConfigMessageCreator.setTelemetryState(state)}
+            />
+        );
+    });
+};
