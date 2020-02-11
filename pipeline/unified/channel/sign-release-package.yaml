@@ -13,10 +13,6 @@ jobs:
       pool:
           vmImage: ${{ parameters.vmImage }}
       steps:
-          - script: echo 'test'
-            displayName: check if mac
-            condition: eq(variables['Agent.OS'], 'Darwin')
-
           - template: ../../install-node-prerequisites.yaml
 
           - task: DownloadPipelineArtifact@2

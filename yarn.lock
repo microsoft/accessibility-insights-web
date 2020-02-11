@@ -6535,16 +6535,6 @@ no-case@^3.0.2:
     lower-case "^2.0.1"
     tslib "^1.10.0"
 
-node-7z@^2.0.5:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/node-7z/-/node-7z-2.0.5.tgz#3156510139527c4fe7a277fdd50d34e2cca97a43"
-  integrity sha512-f6vS64T2q53ZenPGD2DEmCN9l2qLJHLje49yDA7DE1ZDqxOV1dOoB/z4jzxJAjHwrvgi9EjddaMXnJWoio52jg==
-  dependencies:
-    cross-spawn "^7.0.1"
-    debug "^4.1.1"
-    lodash "^4.17.15"
-    normalize-path "^3.0.0"
-
 node-gyp@^3.8.0:
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/node-gyp/-/node-gyp-3.8.0.tgz#540304261c330e80d0d5edce253a68cb3964218c"

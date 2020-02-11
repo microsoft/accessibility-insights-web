@@ -139,7 +139,6 @@
         "idb-keyval": "^3.2.0",
         "lodash": "^4.17.15",
         "moment": "^2.24.0",
-        "node-7z": "^2.0.5",
         "office-ui-fabric-react": "7.89.1",
         "q": "1.5.1",
         "react": "^16.12.0",
