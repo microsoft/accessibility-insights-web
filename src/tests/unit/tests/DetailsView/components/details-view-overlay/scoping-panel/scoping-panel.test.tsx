@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ScopingInputTypes } from 'background/scoping-input-types';
+import { InspectActionMessageCreator } from 'common/message-creators/inspect-action-message-creator';
+import { ScopingActionMessageCreator } from 'common/message-creators/scoping-action-message-creator';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { ScopingContainer } from 'DetailsView/components/details-view-overlay/scoping-panel/scoping-container';
+import { ScopingPanel, ScopingPanelProps } from 'DetailsView/components/details-view-overlay/scoping-panel/scoping-panel';
+import { GenericPanel } from 'DetailsView/components/generic-panel';
 import { DefaultButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { Mock } from 'typemoq';
-import { InspectActionMessageCreator } from '../../../../../common/message-creators/inspect-action-message-creator';
-import { ScopingActionMessageCreator } from '../../../../../common/message-creators/scoping-action-message-creator';
-import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import { ScopingContainer } from '../../../../../DetailsView/components/details-view-overlay/scoping-panel/scoping-container';
-import { ScopingPanel, ScopingPanelProps } from '../../../../../DetailsView/components/details-view-overlay/scoping-panel/scoping-panel';
-import { GenericPanel } from '../../../../../DetailsView/components/generic-panel';
 
 describe('ScopingPanelTest', () => {
     test('constructor', () => {
