@@ -13,7 +13,7 @@ exports[`TelemetrySettings renders with enabled = false 1`] = `
   }
   enabled={false}
   id="enable-telemetry"
-  name="Help improve Accessibility Insights for Web"
+  name="Help improve test-product-name"
   onClick={[Function]}
 />
 `;
@@ -31,7 +31,7 @@ exports[`TelemetrySettings renders with enabled = true 1`] = `
   }
   enabled={true}
   id="enable-telemetry"
-  name="Help improve Accessibility Insights for Web"
+  name="Help improve test-product-name"
   onClick={[Function]}
 />
 `;
