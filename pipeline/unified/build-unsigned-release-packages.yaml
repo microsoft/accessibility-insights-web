@@ -25,8 +25,8 @@ steps:
 
     - template: ./unified-e2e-publish-results.yaml
 
-    - script: yarn build:unified:all --unified-version=$(Build.BuildNumber) --unified-canary-instrumentation-key=$(UnifiedCanaryInstrumentationKey) --unified-insider-instrumentation-key=$(UnifiedInsiderInstrumentationKey) --unified-prod-instrumentation-key=$(UnifiedProdInstrumentationKey)
-      displayName: yarn build:unified:all
+    - script: npx grunt build-unified-all --unified-version=$(Build.BuildNumber) --unified-canary-instrumentation-key=$(UnifiedCanaryInstrumentationKey) --unified-insider-instrumentation-key=$(UnifiedInsiderInstrumentationKey) --unified-prod-instrumentation-key=$(UnifiedProdInstrumentationKey)
+      displayName: npx grunt build:unified:all
       env:
           ELECTRON_MIRROR: $(ELECTRON_MIRROR_VAR)
           ELECTRON_CUSTOM_DIR: $(ELECTRON_CUSTOM_DIR_VAR)
