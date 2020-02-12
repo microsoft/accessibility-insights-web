@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BodyClassModifier } from 'electron/views/common/body-class-modifier/body-class-modifier';
+import {
+    BodyClassModifier,
+    BodyClassModifierDeps,
+} from 'electron/views/common/body-class-modifier/body-class-modifier';
 import {
     RootContainer,
     RootContainerDeps,
@@ -8,11 +11,13 @@ import {
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
+export type RootContainerRendererDeps = RootContainerDeps & BodyClassModifierDeps;
+
 export class RootContainerRenderer {
     constructor(
         private readonly renderer: typeof ReactDOM.render,
         private readonly dom: ParentNode,
-        private readonly deps: RootContainerDeps,
+        private readonly deps: RootContainerRendererDeps,
     ) {}
 
     public render(): void {

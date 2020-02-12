@@ -1,23 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BodyClassModifier renders with isMac = false 1`] = `
+exports[`BodyClassModifier renders 1`] = `
 <HelmetWrapper
   defer={true}
   encodeSpecialCharacters={true}
 >
   <body
-    className=""
-  />
-</HelmetWrapper>
-`;
-
-exports[`BodyClassModifier renders with isMac = true 1`] = `
-<HelmetWrapper
-  defer={true}
-  encodeSpecialCharacters={true}
->
-  <body
-    className="is-mac-os"
+    className="test-class-one test-class-two duplicated-class"
   />
 </HelmetWrapper>
 `;

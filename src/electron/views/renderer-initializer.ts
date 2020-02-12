@@ -51,10 +51,8 @@ import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-r
 import { ScanController } from 'electron/platform/android/scan-controller';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
 import { UnifiedSettingsProvider } from 'electron/settings/unified-settings-provider';
-import {
-    RootContainerDeps,
-    RootContainerState,
-} from 'electron/views/root-container/components/root-container';
+import { MacOsClassAssigner } from 'electron/views/common/body-class-modifier/mac-os-class-assigner';
+import { RootContainerState } from 'electron/views/root-container/components/root-container';
 import { PlatformInfo } from 'electron/window-management/platform-info';
 import { WindowFrameListener } from 'electron/window-management/window-frame-listener';
 import { WindowFrameUpdater } from 'electron/window-management/window-frame-updater';
@@ -82,7 +80,10 @@ import { DeviceActions } from '../flux/action/device-actions';
 import { DeviceStore } from '../flux/store/device-store';
 import { ElectronLink } from './device-connect-view/components/electron-link';
 import { sendAppInitializedTelemetryEvent } from './device-connect-view/send-app-initialized-telemetry';
-import { RootContainerRenderer } from './root-container/root-container-renderer';
+import {
+    RootContainerRenderer,
+    RootContainerRendererDeps,
+} from './root-container/root-container-renderer';
 import { screenshotViewModelProvider } from './screenshot/screenshot-view-model-provider';
 
 initializeFabricIcons();
@@ -267,6 +268,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         const fixInstructionProcessor = new FixInstructionProcessor();
 
+        const classAssigners = [new MacOsClassAssigner(platformInfo)];
+
         const cardsViewDeps: CardsViewDeps = {
             LinkComponent: ElectronLink,
 
@@ -294,7 +297,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             setFocusVisibility,
         };
 
-        const deps: RootContainerDeps = {
+        const deps: RootContainerRendererDeps = {
             currentWindow,
             userConfigurationStore,
             deviceStore,
@@ -314,6 +317,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             ...cardsViewDeps,
             storeActionMessageCreator: new NullStoreActionMessageCreator(),
             settingsProvider: UnifiedSettingsProvider,
+            classAssigners,
         };
 
         const renderer = new RootContainerRenderer(ReactDOM.render, document, deps);

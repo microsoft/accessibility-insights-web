@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { PlatformInfo } from 'electron/window-management/platform-info';
+import { ClassAssigner } from 'electron/views/common/body-class-modifier/class-assigner';
+import { uniq } from 'lodash';
 import { css } from 'office-ui-fabric-react';
 import * as React from 'react';
 import Helmet from 'react-helmet';
 
 export type BodyClassModifierDeps = {
-    platformInfo: PlatformInfo;
+    classAssigners: ClassAssigner[];
 };
 
 export type BodyClassModifierProps = {
@@ -15,15 +16,11 @@ export type BodyClassModifierProps = {
 
 export class BodyClassModifier extends React.Component<BodyClassModifierProps> {
     public render(): JSX.Element {
-        const classNames = [];
-
-        if (this.props.deps.platformInfo.isMac()) {
-            classNames.push('is-mac-os');
-        }
+        const classNames = this.props.deps.classAssigners.map(assigner => assigner.assign());
 
         return (
             <Helmet>
-                <body className={css(...classNames)} />
+                <body className={css(...uniq(classNames))} />
             </Helmet>
         );
     }

@@ -1,32 +1,46 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BodyClassModifier, BodyClassModifierProps } from 'electron/views/common/body-class-modifier/body-class-modifier';
-import { PlatformInfo } from 'electron/window-management/platform-info';
+import { ClassAssigner } from 'electron/views/common/body-class-modifier/class-assigner';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, Mock } from 'typemoq';
+import { Mock } from 'typemoq';
 
 describe('BodyClassModifier', () => {
-    describe('renders', () => {
-        let platformInfoMock: IMock<PlatformInfo>;
-        let props: BodyClassModifierProps;
+    let classAssigners: ClassAssigner[];
+    let props: BodyClassModifierProps;
 
-        beforeEach(() => {
-            platformInfoMock = Mock.ofType<PlatformInfo>();
+    beforeEach(() => {
+        classAssigners = [];
 
-            props = {
-                deps: {
-                    platformInfo: platformInfoMock.object,
-                },
-            };
-        });
+        classAssigners.push(createClassAssignerMock('test-class-one').object);
+        classAssigners.push(createClassAssignerMock('test-class-two').object);
+        classAssigners.push(createClassAssignerMock('duplicated-class').object);
+        classAssigners.push(createClassAssignerMock('duplicated-class').object);
+        classAssigners.push(createClassAssignerMock(null).object);
+        classAssigners.push(createClassAssignerMock(undefined).object);
 
-        it.each([true, false])('with isMac = %s', isMacOs => {
-            platformInfoMock.setup(info => info.isMac()).returns(() => isMacOs);
-
-            const wrapped = shallow(<BodyClassModifier {...props} />);
-
-            expect(wrapped.getElement()).toMatchSnapshot();
-        });
+        props = {
+            deps: {
+                classAssigners,
+                storeActionMessageCreator: null,
+                storesHub: null,
+            },
+            storeState: null,
+        };
     });
+
+    it('renders', () => {
+        const wrapped = shallow(<BodyClassModifier {...props} />);
+
+        expect(wrapped.getElement()).toMatchSnapshot();
+    });
+
+    const createClassAssignerMock = (classToAssign: string) => {
+        const mock = Mock.ofType<ClassAssigner>();
+
+        mock.setup(assigner => assigner.assign()).returns(() => classToAssign);
+
+        return mock;
+    };
 });
