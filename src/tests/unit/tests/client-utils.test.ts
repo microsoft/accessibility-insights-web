@@ -2,7 +2,13 @@
 // Licensed under the MIT License.
 import { IMock, Mock } from 'typemoq';
 
-import { BoundRectAccessor, ClientRectOffset, ClientUtils, ElementMatcher, ScrollAccessor } from '../../../injected/client-utils';
+import {
+    BoundRectAccessor,
+    ClientRectOffset,
+    ClientUtils,
+    ElementMatcher,
+    ScrollAccessor,
+} from '../../../injected/client-utils';
 
 class ScrollAccessorStub implements ScrollAccessor {
     public scrollX: number = 0;

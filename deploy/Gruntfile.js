@@ -54,8 +54,8 @@ module.exports = function(grunt) {
 
     const makeVersionFromDateString = lastSeperator => {
         const now = new Date();
-        return `${now.getUTCFullYear()}.${now.getUTCMonth() + 1}.${now.getUTCDate()}${lastSeperator}${now.getUTCHours() * 100 +
-            now.getUTCMinutes()}`;
+        return `${now.getUTCFullYear()}.${now.getUTCMonth() +
+            1}.${now.getUTCDate()}${lastSeperator}${now.getUTCHours() * 100 + now.getUTCMinutes()}`;
     };
 
     grunt.registerTask('update-config', function() {
@@ -68,7 +68,8 @@ module.exports = function(grunt) {
         const configJSON = JSON.stringify(config, undefined, 4);
         grunt.file.write(configJSONPath, configJSON);
 
-        const copyrightHeader = '// Copyright (c) Microsoft Corporation. All rights reserved.\n// Licensed under the MIT License.\n';
+        const copyrightHeader =
+            '// Copyright (c) Microsoft Corporation. All rights reserved.\n// Licensed under the MIT License.\n';
         const configJS = `${copyrightHeader}window.insights = ${configJSON}`;
         grunt.file.write(configJSPath, configJS);
     });

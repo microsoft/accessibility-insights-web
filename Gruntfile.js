@@ -86,7 +86,10 @@ module.exports = function(grunt) {
                     {
                         cwd: './dist/src/electron/views/device-connect-view',
                         src: '*.css',
-                        dest: path.join(extensionPath, 'electron/views/device-connect-view/styles/default'),
+                        dest: path.join(
+                            extensionPath,
+                            'electron/views/device-connect-view/styles/default',
+                        ),
                         expand: true,
                     },
                     {
@@ -133,8 +136,12 @@ module.exports = function(grunt) {
         exec: {
             'webpack-dev': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name dev`,
             'webpack-prod': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name prod`,
-            'webpack-unified': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name unified`,
-            'webpack-package-report': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name package-report`,
+            'webpack-unified': `"${path.resolve(
+                './node_modules/.bin/webpack',
+            )}" --config-name unified`,
+            'webpack-package-report': `"${path.resolve(
+                './node_modules/.bin/webpack',
+            )}" --config-name package-report`,
             'generate-scss-typings': `"${path.resolve('./node_modules/.bin/tsm')}" src`,
         },
         sass: {
@@ -189,8 +196,12 @@ module.exports = function(grunt) {
 
     const targetNames = Object.keys(targets);
     const releaseTargets = Object.keys(targets).filter(t => targets[t].release);
-    const extensionReleaseTargets = releaseTargets.filter(t => targets[t].config.options.productCategory === 'extension');
-    const unifiedReleaseTargets = releaseTargets.filter(t => targets[t].config.options.productCategory === 'electron');
+    const extensionReleaseTargets = releaseTargets.filter(
+        t => targets[t].config.options.productCategory === 'extension',
+    );
+    const unifiedReleaseTargets = releaseTargets.filter(
+        t => targets[t].config.options.productCategory === 'electron',
+    );
 
     unifiedReleaseTargets.forEach(targetName => {
         const { config, appId, publishUrl } = targets[targetName];
@@ -342,7 +353,8 @@ module.exports = function(grunt) {
 
         const configJSON = JSON.stringify(config, undefined, 4);
         grunt.file.write(configJSONPath, configJSON);
-        const copyrightHeader = '// Copyright (c) Microsoft Corporation. All rights reserved.\n// Licensed under the MIT License.\n';
+        const copyrightHeader =
+            '// Copyright (c) Microsoft Corporation. All rights reserved.\n// Licensed under the MIT License.\n';
         const configJS = `${copyrightHeader}window.insights = ${configJSON}`;
         grunt.file.write(configJSPath, configJS);
     });
@@ -394,7 +406,12 @@ module.exports = function(grunt) {
         const { dropPath, electronIconBaseName, fullName, appId, publishUrl } = this.data;
 
         const outElectronBuilderConfigFile = path.join(dropPath, 'electron-builder.yml');
-        const srcElectronBuilderConfigFile = path.join('src', 'electron', 'electron-builder', `electron-builder.template.yaml`);
+        const srcElectronBuilderConfigFile = path.join(
+            'src',
+            'electron',
+            'electron-builder',
+            `electron-builder.template.yaml`,
+        );
 
         const version = grunt.option('unified-version') || '0.0.0';
 
@@ -430,11 +447,20 @@ module.exports = function(grunt) {
         grunt.util.spawn(
             {
                 cmd: 'node',
-                args: ['node_modules/electron-builder/out/cli/cli.js', '-p', 'never', '-c', configFile],
+                args: [
+                    'node_modules/electron-builder/out/cli/cli.js',
+                    '-p',
+                    'never',
+                    '-c',
+                    configFile,
+                ],
             },
             (error, result, code) => {
                 if (error) {
-                    grunt.fail.fatal(`electron-builder exited with error code ${code}:\n\n${result.stdout}`, code);
+                    grunt.fail.fatal(
+                        `electron-builder exited with error code ${code}:\n\n${result.stdout}`,
+                        code,
+                    );
                 }
 
                 taskDoneCallback();
@@ -469,7 +495,10 @@ module.exports = function(grunt) {
             },
             (error, result, code) => {
                 if (error) {
-                    grunt.fail.fatal(`zipping mac folder exited with error code ${code}:\n\n${result.stdout}`, code);
+                    grunt.fail.fatal(
+                        `zipping mac folder exited with error code ${code}:\n\n${result.stdout}`,
+                        code,
+                    );
                 }
 
                 taskDoneCallback();
@@ -510,7 +539,13 @@ module.exports = function(grunt) {
     grunt.registerTask('build-assets', ['sass', 'copy:code', 'copy:styles', 'copy:images']);
 
     // Main entry points for npm scripts:
-    grunt.registerTask('build-dev', ['clean:intermediates', 'exec:generate-scss-typings', 'exec:webpack-dev', 'build-assets', 'drop:dev']);
+    grunt.registerTask('build-dev', [
+        'clean:intermediates',
+        'exec:generate-scss-typings',
+        'exec:webpack-dev',
+        'build-assets',
+        'drop:dev',
+    ]);
     grunt.registerTask('build-prod', [
         'clean:intermediates',
         'exec:generate-scss-typings',
