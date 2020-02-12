@@ -37,7 +37,7 @@ jobs:
 
           - script: node ./pipeline/scripts/remove-pkg.js signing-in-progress/${{ parameters.signedArtifactName }}
             displayName: remove .pkg binary from zip file
-            condition: eq(variables['Agent.OS'], 'Darwin')
+            condition: eq('${{ parameters.platform }}', 'mac')
 
           - script: node ./pipeline/scripts/update-latest-yml.js signing-in-progress/${{ parameters.signedArtifactName }} ${{ parameters.platform }}
             displayName: update electron-builder latest.yml after signing
