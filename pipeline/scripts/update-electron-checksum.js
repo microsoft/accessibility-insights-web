@@ -8,7 +8,8 @@ const path = require('path');
 const parentDir = process.argv[2];
 
 const getLatestYAMLPath = parentDir => {
-    const platformModifier = process.platform == 'darwin' ? '-mac' : process.platform == 'linux' ? '-linux' : '';
+    const platformModifier =
+        process.platform == 'darwin' ? '-mac' : process.platform == 'linux' ? '-linux' : '';
     const latestPath = path.join(parentDir, `latest${platformModifier}.yml`);
     return latestPath;
 };
