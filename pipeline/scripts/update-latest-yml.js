@@ -52,7 +52,7 @@ const updateFileList = latestContent => {
         latestContent.files.push({
             url: path.basename(zipFile),
             sha512: 'WILL BE OVERWRITTEN',
-            size: fs.statSync(path.resolve(zipFile)).size,
+            size: fs.statSync(path.resolve(parentDir, zipFile)).size,
         });
     }
 };
