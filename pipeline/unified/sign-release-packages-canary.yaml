@@ -8,7 +8,8 @@ resources:
     pipelines:
         - pipeline: build-unsigned-release-packages
           source: Accessibility Insights Unified - build-unsigned-release-packages
-          branch: mac
+          trigger:
+              branches: [master]
 
 jobs:
     - template: channel/sign-release-packages-for-channel.yaml
