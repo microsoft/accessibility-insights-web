@@ -52,17 +52,17 @@ const updateFileList = latestContent => {
         latestContent.files.push({
             url: path.basename(zipFile),
             sha512: 'WILL BE OVERWRITTEN',
-            size: fs.statSync(zipFile).size,
+            size: fs.statSync(path.resolve(zipFile)).size,
         });
     }
 };
 
-const updateLatestYaml = async () => {
+async function updateLatestYaml() {
     const latestPath = getLatestYAMLPath(parentDir);
     const latestContent = readLatestYAML(latestPath);
     updateFileList(latestContent);
     await updateAllSha512s(latestContent);
     writeLatestYAML(latestPath, latestContent);
-};
+}
 
-updateLatestYaml();
+updateLatestYaml().catch(error => console.error(error));
