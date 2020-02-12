@@ -6,10 +6,10 @@ const YAML = require('js-yaml');
 const path = require('path');
 
 const parentDir = process.argv[2];
+const platform = process.argv[3]; // should be 'mac', 'linux', or 'windows'
 
 const getLatestYAMLPath = parentDir => {
-    const platformModifier =
-        process.platform == 'darwin' ? '-mac' : process.platform == 'linux' ? '-linux' : '';
+    const platformModifier = platform === 'windows' ? '' : `-${platform}`;
     const latestPath = path.join(parentDir, `latest${platformModifier}.yml`);
     return latestPath;
 };
@@ -43,11 +43,29 @@ const writeLatestYAML = (latestPath, latestContent) => {
     fs.writeFileSync(latestPath, rawLatestContent);
 };
 
-const updateElectronChecksum = async () => {
+// On mac we add the zip file ourselves & thus need
+// to update the latest-mac.yml files entry
+const updateFileList = latestContent => {
+    if (platform === 'mac') {
+        const files = fs.readdirSync(parentDir);
+        const zipFile = files.find(f => path.extname(f) === '.zip');
+        latestContent.files.push({
+            url: path.basename(zipFile),
+            sha512: 'WILL BE OVERWRITTEN',
+            size: fs.statSync(path.resolve(parentDir, zipFile)).size,
+        });
+    }
+};
+
+const updateLatestYaml = async () => {
     const latestPath = getLatestYAMLPath(parentDir);
     const latestContent = readLatestYAML(latestPath);
+    updateFileList(latestContent);
     await updateAllSha512s(latestContent);
     writeLatestYAML(latestPath, latestContent);
 };
 
-updateElectronChecksum();
+updateLatestYaml().catch(err => {
+    console.error(err);
+    process.exit(1);
+});

@@ -40,7 +40,6 @@
         "test:e2e:docker:run": "docker run -t accessibility-insights-web-e2e",
         "test:e2e:docker": "npm-run-all --serial test:e2e:docker:build \"test:e2e:docker:run {@}\" --",
         "test:unified": "cross-env --max-old-space-size=16384 jest --projects src/tests/electron --runInBand",
-        "update:electron-checksum": "node ./pipeline/scripts/update-electron-checksum.js",
         "watch": "npm-run-all --parallel --race --print-label watch:scss watch:grunt watch:test watch:webpack-dev-browser watch:webpack-unified",
         "watch:build:all": "npm-run-all --parallel --race --print-label watch:scss watch:grunt watch:webpack-dev-browser watch:webpack-unified",
         "watch:build:web": "npm-run-all --parallel --race --print-label watch:scss watch:grunt watch:webpack-dev-browser",
@@ -127,6 +126,7 @@
         "webpack-node-externals": "^1.7.2"
     },
     "dependencies": {
+        "7zip-bin": "^5.0.3",
         "applicationinsights-js": "^1.0.21",
         "axe-core": "3.3.2",
         "axios": "^0.19.2",
@@ -137,7 +137,7 @@
         "idb-keyval": "^3.2.0",
         "lodash": "^4.17.15",
         "moment": "^2.24.0",
-        "office-ui-fabric-react": "7.90.1",
+        "office-ui-fabric-react": "7.93.0",
         "q": "1.5.1",
         "react": "^16.12.0",
         "react-copy-to-clipboard": "^5.0.2",

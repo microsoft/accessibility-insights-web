@@ -228,6 +228,11 @@ module.exports = function(grunt) {
                     // empty on purpose
                 },
             },
+            'zip-mac-folder': {
+                [targetName]: {
+                    dropPath: dropPath,
+                },
+            },
         });
     });
 
@@ -463,10 +468,46 @@ module.exports = function(grunt) {
         );
     });
 
+    grunt.registerMultiTask('zip-mac-folder', function() {
+        grunt.task.requires('drop:' + this.target);
+        grunt.task.requires('configure-electron-builder:' + this.target);
+        grunt.task.requires('electron-builder-pack:' + this.target);
+
+        // We found that the mac update fails unless we produce the
+        // zip file ourselves; electron-builder requires a zip file, but
+        // the zip file it produces leads to 'couldn't find pkzip signatures'
+        // during the eventual update.
+
+        if (process.platform !== 'darwin') {
+            grunt.log.writeln(`task not required for this platform (${process.platform})`);
+            return true;
+        }
+
+        const { dropPath } = this.data;
+        const packedPath = `${dropPath}/packed`;
+
+        const taskDoneCallback = this.async();
+
+        grunt.util.spawn(
+            {
+                cmd: 'node',
+                args: ['pipeline/scripts/zip-mac-folder.js', packedPath],
+            },
+            (error, result, code) => {
+                if (error) {
+                    grunt.fail.fatal(`zipping mac folder exited with error code ${code}:\n\n${result.stdout}`, code);
+                }
+
+                taskDoneCallback();
+            },
+        );
+    });
+
     grunt.registerMultiTask('unified-release-drop', function() {
         grunt.task.run(`drop:${this.target}`);
         grunt.task.run(`configure-electron-builder:${this.target}`);
         grunt.task.run(`electron-builder-pack:${this.target}`);
+        grunt.task.run(`zip-mac-folder:${this.target}`);
     });
 
     grunt.registerTask('package-report', function() {
