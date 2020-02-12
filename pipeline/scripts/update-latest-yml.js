@@ -57,12 +57,15 @@ const updateFileList = latestContent => {
     }
 };
 
-async function updateLatestYaml() {
+const updateLatestYaml = async () => {
     const latestPath = getLatestYAMLPath(parentDir);
     const latestContent = readLatestYAML(latestPath);
     updateFileList(latestContent);
     await updateAllSha512s(latestContent);
     writeLatestYAML(latestPath, latestContent);
-}
+};
 
-updateLatestYaml().catch(error => console.error(error));
+updateLatestYaml().catch(err => {
+    console.error(err);
+    process.exit(1);
+});
