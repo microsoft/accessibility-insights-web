@@ -495,7 +495,10 @@ module.exports = function(grunt) {
             },
             (error, result, code) => {
                 if (error) {
-                    grunt.fail.fatal(`zipping mac folder exited with error code ${code}:\n\n${result.stdout}`, code);
+                    grunt.fail.fatal(
+                        `zipping mac folder exited with error code ${code}:\n\n${result.stdout}`,
+                        code,
+                    );
                 }
 
                 taskDoneCallback();
