@@ -64,7 +64,11 @@ describe('KeyboardShortcutHandler', () => {
         browserAdapterMock = Mock.ofType<BrowserAdapter>();
         browserAdapterMock
             .setup(adapter => adapter.tabsQuery(It.isValue({ active: true, currentWindow: true })))
-            .returns(() => Promise.resolve([{ id: simulatedActiveTabId, url: simulatedActiveTabUrl } as Tabs.Tab]))
+            .returns(() =>
+                Promise.resolve([
+                    { id: simulatedActiveTabId, url: simulatedActiveTabUrl } as Tabs.Tab,
+                ]),
+            )
             .verifiable();
 
         commandsAdapterMock = Mock.ofType<CommandsAdapter>();
@@ -136,80 +140,96 @@ describe('KeyboardShortcutHandler', () => {
         ['Color', VisualizationType.Color],
     ];
 
-    const visualizationTypesThatShouldNotNotifyOnEnable = [['TabStops', VisualizationType.TabStops]];
+    const visualizationTypesThatShouldNotNotifyOnEnable = [
+        ['TabStops', VisualizationType.TabStops],
+    ];
 
-    it.each(supportedVisualizationTypes)(`enables previously-disabled '%s' visualizer`, async (_, visualizationType: VisualizationType) => {
-        storeState = new VisualizationStoreDataBuilder().withDisable(visualizationType).build();
-        const configuration = visualizationConfigurationFactory.getConfiguration(visualizationType);
+    it.each(supportedVisualizationTypes)(
+        `enables previously-disabled '%s' visualizer`,
+        async (_, visualizationType: VisualizationType) => {
+            storeState = new VisualizationStoreDataBuilder().withDisable(visualizationType).build();
+            const configuration = visualizationConfigurationFactory.getConfiguration(
+                visualizationType,
+            );
 
-        let receivedMessage: Message;
-        interpreterMock
-            .setup(x => x.interpret(It.isAny()))
-            .returns(message => {
-                receivedMessage = message;
-                return true;
-            })
-            .verifiable();
+            let receivedMessage: Message;
+            interpreterMock
+                .setup(x => x.interpret(It.isAny()))
+                .returns(message => {
+                    receivedMessage = message;
+                    return true;
+                })
+                .verifiable();
 
-        await commandCallback(configuration.chromeCommand);
+            await commandCallback(configuration.chromeCommand);
 
-        expect(receivedMessage).toEqual({
-            tabId: existingTabId,
-            messageType: Messages.Visualizations.Common.Toggle,
-            payload: {
-                enabled: true,
-                telemetry: {
-                    triggeredBy: 'shortcut',
+            expect(receivedMessage).toEqual({
+                tabId: existingTabId,
+                messageType: Messages.Visualizations.Common.Toggle,
+                payload: {
                     enabled: true,
-                    source: testSource,
+                    telemetry: {
+                        triggeredBy: 'shortcut',
+                        enabled: true,
+                        source: testSource,
+                    },
+                    test: visualizationType,
                 },
-                test: visualizationType,
-            },
-        });
+            });
 
-        interpreterMock.verifyAll();
-    });
+            interpreterMock.verifyAll();
+        },
+    );
 
-    it.each(supportedVisualizationTypes)(`disables previously-enabled '%s' visualizer`, async (_, visualizationType: VisualizationType) => {
-        storeState = new VisualizationStoreDataBuilder().withEnable(visualizationType).build();
-        const configuration = visualizationConfigurationFactory.getConfiguration(visualizationType);
+    it.each(supportedVisualizationTypes)(
+        `disables previously-enabled '%s' visualizer`,
+        async (_, visualizationType: VisualizationType) => {
+            storeState = new VisualizationStoreDataBuilder().withEnable(visualizationType).build();
+            const configuration = visualizationConfigurationFactory.getConfiguration(
+                visualizationType,
+            );
 
-        let receivedMessage: Message;
-        interpreterMock
-            .setup(x => x.interpret(It.isAny()))
-            .returns(message => {
-                receivedMessage = message;
-                return true;
-            })
-            .verifiable();
+            let receivedMessage: Message;
+            interpreterMock
+                .setup(x => x.interpret(It.isAny()))
+                .returns(message => {
+                    receivedMessage = message;
+                    return true;
+                })
+                .verifiable();
 
-        await commandCallback(configuration.chromeCommand);
+            await commandCallback(configuration.chromeCommand);
 
-        expect(receivedMessage).toEqual({
-            tabId: existingTabId,
-            messageType: Messages.Visualizations.Common.Toggle,
-            payload: {
-                enabled: false,
-                telemetry: {
-                    triggeredBy: 'shortcut',
+            expect(receivedMessage).toEqual({
+                tabId: existingTabId,
+                messageType: Messages.Visualizations.Common.Toggle,
+                payload: {
                     enabled: false,
-                    source: testSource,
+                    telemetry: {
+                        triggeredBy: 'shortcut',
+                        enabled: false,
+                        source: testSource,
+                    },
+                    test: visualizationType,
                 },
-                test: visualizationType,
-            },
-        });
+            });
 
-        interpreterMock.verifyAll();
-    });
+            interpreterMock.verifyAll();
+        },
+    );
 
     it.each(visualizationTypesThatShouldNotifyOnEnable)(
         `emits the expected 'enabled' notification when enabling '%s' visualizer`,
         async (_, visualizationType: VisualizationType) => {
             storeState = new VisualizationStoreDataBuilder().withDisable(visualizationType).build();
-            const configuration = visualizationConfigurationFactory.getConfiguration(visualizationType);
+            const configuration = visualizationConfigurationFactory.getConfiguration(
+                visualizationType,
+            );
 
             const enableMessage = configuration.displayableData.enableMessage;
-            notificationCreatorMock.setup(nc => nc.createNotification(enableMessage)).verifiable(Times.once());
+            notificationCreatorMock
+                .setup(nc => nc.createNotification(enableMessage))
+                .verifiable(Times.once());
 
             await commandCallback(configuration.chromeCommand);
 
@@ -221,9 +241,13 @@ describe('KeyboardShortcutHandler', () => {
         `does not emit unexpected 'enabled' notification when enabling '%s' visualizer`,
         async (_, visualizationType: VisualizationType) => {
             storeState = new VisualizationStoreDataBuilder().withDisable(visualizationType).build();
-            const configuration = visualizationConfigurationFactory.getConfiguration(visualizationType);
+            const configuration = visualizationConfigurationFactory.getConfiguration(
+                visualizationType,
+            );
 
-            notificationCreatorMock.setup(nc => nc.createNotification(It.isAny())).verifiable(Times.never());
+            notificationCreatorMock
+                .setup(nc => nc.createNotification(It.isAny()))
+                .verifiable(Times.never());
 
             await commandCallback(configuration.chromeCommand);
 
@@ -266,7 +290,9 @@ describe('KeyboardShortcutHandler', () => {
             .withEnable(VisualizationType.Headings)
             .with('scanning', 'headings')
             .build();
-        const configuration = visualizationConfigurationFactory.getConfiguration(VisualizationType.Issues);
+        const configuration = visualizationConfigurationFactory.getConfiguration(
+            VisualizationType.Issues,
+        );
 
         interpreterMock.setup(x => x.interpret(It.isAny())).verifiable(Times.never());
 
@@ -295,7 +321,9 @@ describe('KeyboardShortcutHandler', () => {
             simulatedActiveTabUrl = `${protocol}arbitrary-host`;
             simulatedIsSupportedUrlResponse = false;
 
-            notificationCreatorMock.setup(nc => nc.createNotification(expectedNotificationMessage)).verifiable();
+            notificationCreatorMock
+                .setup(nc => nc.createNotification(expectedNotificationMessage))
+                .verifiable();
 
             await commandCallback(getArbitraryValidChromeCommand());
 
@@ -304,7 +332,9 @@ describe('KeyboardShortcutHandler', () => {
     );
 
     function getArbitraryValidChromeCommand(): string {
-        const configuration = visualizationConfigurationFactory.getConfiguration(VisualizationType.Issues);
+        const configuration = visualizationConfigurationFactory.getConfiguration(
+            VisualizationType.Issues,
+        );
         return configuration.chromeCommand;
     }
 });

@@ -6,7 +6,10 @@ import { IMock, Mock } from 'typemoq';
 
 import { InstallationData } from '../../../../background/installation-data';
 import { IndexedDBAPI } from '../../../../common/indexedDB/indexedDB';
-import { AssessmentStoreData, PersistedTabInfo } from '../../../../common/types/store-data/assessment-result-data';
+import {
+    AssessmentStoreData,
+    PersistedTabInfo,
+} from '../../../../common/types/store-data/assessment-result-data';
 import { UserConfigurationStoreData } from '../../../../common/types/store-data/user-configuration-store';
 
 describe('GetPersistedDataTest', () => {
@@ -38,12 +41,22 @@ describe('GetPersistedDataTest', () => {
     });
 
     it('propagates the results of IndexedDBAPI.getItem for the appropriate keys', async () => {
-        const indexedDataKeysToFetch = [IndexedDBDataKeys.assessmentStore, IndexedDBDataKeys.userConfiguration];
+        const indexedDataKeysToFetch = [
+            IndexedDBDataKeys.assessmentStore,
+            IndexedDBDataKeys.userConfiguration,
+        ];
 
-        indexedDBInstanceStrictMock.setup(i => i.getItem(IndexedDBDataKeys.assessmentStore)).returns(async () => assessmentStoreData);
-        indexedDBInstanceStrictMock.setup(i => i.getItem(IndexedDBDataKeys.userConfiguration)).returns(async () => userConfigurationData);
+        indexedDBInstanceStrictMock
+            .setup(i => i.getItem(IndexedDBDataKeys.assessmentStore))
+            .returns(async () => assessmentStoreData);
+        indexedDBInstanceStrictMock
+            .setup(i => i.getItem(IndexedDBDataKeys.userConfiguration))
+            .returns(async () => userConfigurationData);
 
-        const data = await getPersistedData(indexedDBInstanceStrictMock.object, indexedDataKeysToFetch);
+        const data = await getPersistedData(
+            indexedDBInstanceStrictMock.object,
+            indexedDataKeysToFetch,
+        );
 
         expect(data).toEqual({
             assessmentStoreData: assessmentStoreData,
@@ -52,12 +65,22 @@ describe('GetPersistedDataTest', () => {
     });
 
     it('uses specified data keys to read persisted data', async () => {
-        const indexedDataKeysToFetch = [IndexedDBDataKeys.userConfiguration, IndexedDBDataKeys.installation];
+        const indexedDataKeysToFetch = [
+            IndexedDBDataKeys.userConfiguration,
+            IndexedDBDataKeys.installation,
+        ];
 
-        indexedDBInstanceStrictMock.setup(i => i.getItem(IndexedDBDataKeys.userConfiguration)).returns(async () => userConfigurationData);
-        indexedDBInstanceStrictMock.setup(i => i.getItem(IndexedDBDataKeys.installation)).returns(async () => installationData);
+        indexedDBInstanceStrictMock
+            .setup(i => i.getItem(IndexedDBDataKeys.userConfiguration))
+            .returns(async () => userConfigurationData);
+        indexedDBInstanceStrictMock
+            .setup(i => i.getItem(IndexedDBDataKeys.installation))
+            .returns(async () => installationData);
 
-        const data = await getPersistedData(indexedDBInstanceStrictMock.object, indexedDataKeysToFetch);
+        const data = await getPersistedData(
+            indexedDBInstanceStrictMock.object,
+            indexedDataKeysToFetch,
+        );
 
         expect(data).toEqual({
             userConfigurationData: userConfigurationData,

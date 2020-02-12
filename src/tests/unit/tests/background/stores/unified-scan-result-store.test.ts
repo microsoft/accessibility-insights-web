@@ -36,7 +36,10 @@ describe('UnifiedScanResultStore Test', () => {
         const initialState = getDefaultState();
         const finalState = getDefaultState();
 
-        createStoreForUnifiedScanResultActions('getCurrentState').testListenerToBeCalledOnce(initialState, finalState);
+        createStoreForUnifiedScanResultActions('getCurrentState').testListenerToBeCalledOnce(
+            initialState,
+            finalState,
+        );
     });
 
     test('onScanCompleted', () => {

@@ -1,7 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { SetAllUrlsPermissionStatePayload } from 'background/actions/action-payloads';
-import { allUrlAndFilePermissions, BrowserPermissionsTracker, permissionsCheckErrorMessage } from 'background/browser-permissions-tracker';
+import {
+    allUrlAndFilePermissions,
+    BrowserPermissionsTracker,
+    permissionsCheckErrorMessage,
+} from 'background/browser-permissions-tracker';
 import { Interpreter } from 'background/interpreter';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { Logger } from 'common/logging/logger';
@@ -21,15 +25,25 @@ describe('BrowserPermissionsTracker', () => {
         loggerMock = Mock.ofType<Logger>();
         browserAdapterMock = createBrowserAdapterMock();
 
-        testSubject = new BrowserPermissionsTracker(browserAdapterMock.object, interpreterMock.object, loggerMock.object);
+        testSubject = new BrowserPermissionsTracker(
+            browserAdapterMock.object,
+            interpreterMock.object,
+            loggerMock.object,
+        );
     });
 
     describe('initialize', () => {
         it('registers the expected listeners', async () => {
             await testSubject.initialize();
 
-            browserAdapterMock.verify(adapter => adapter.addListenerOnPermissionsAdded(It.is(isFunction)), Times.once());
-            browserAdapterMock.verify(adapter => adapter.addListenerOnPermissionsRemoved(It.is(isFunction)), Times.once());
+            browserAdapterMock.verify(
+                adapter => adapter.addListenerOnPermissionsAdded(It.is(isFunction)),
+                Times.once(),
+            );
+            browserAdapterMock.verify(
+                adapter => adapter.addListenerOnPermissionsRemoved(It.is(isFunction)),
+                Times.once(),
+            );
         });
     });
 

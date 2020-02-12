@@ -11,7 +11,11 @@ export const createActionMock = <Payload>(payload: Payload): IMock<Action<Payloa
     return actionMock;
 };
 
-export const createInterpreterMock = <Payload>(message: string, payload: Payload, tabId?: number): IMock<Interpreter> => {
+export const createInterpreterMock = <Payload>(
+    message: string,
+    payload: Payload,
+    tabId?: number,
+): IMock<Interpreter> => {
     const interpreterMock = Mock.ofType<Interpreter>();
     interpreterMock
         .setup(interpreter => interpreter.registerTypeToPayloadCallback(message, It.is(isFunction)))

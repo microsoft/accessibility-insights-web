@@ -5,7 +5,10 @@ import { TabActions } from 'background/actions/tab-actions';
 import { VisualizationScanResultActions } from 'background/actions/visualization-scan-result-actions';
 import { VisualizationScanResultStore } from 'background/stores/visualization-scan-result-store';
 import { StoreNames } from '../../../../../common/stores/store-names';
-import { TabbedElementData, VisualizationScanResultData } from '../../../../../common/types/store-data/visualization-scan-result-data';
+import {
+    TabbedElementData,
+    VisualizationScanResultData,
+} from '../../../../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { HtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { ScanResults } from '../../../../../scanner/iruleresults';
@@ -32,7 +35,10 @@ describe('VisualizationScanResultStoreTest', () => {
         const initialState = new VisualizationScanResultStoreDataBuilder().build();
         const finalState = new VisualizationScanResultStoreDataBuilder().build();
 
-        createStoreTesterForVisualizationScanResultActions(actionName).testListenerToBeCalledOnce(initialState, finalState);
+        createStoreTesterForVisualizationScanResultActions(actionName).testListenerToBeCalledOnce(
+            initialState,
+            finalState,
+        );
     });
 
     test('onIssuesDisabled', () => {
@@ -147,7 +153,9 @@ describe('VisualizationScanResultStoreTest', () => {
             .withIssuesSelectedTargets(selectorMap)
             .build();
 
-        createStoreTesterForVisualizationScanResultActions('disableIssues').testListenerToBeCalledOnce(initialState, expectedState);
+        createStoreTesterForVisualizationScanResultActions(
+            'disableIssues',
+        ).testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     test('onTabStopDisabled', () => {
@@ -160,11 +168,17 @@ describe('VisualizationScanResultStoreTest', () => {
             },
         ];
 
-        const initialState = new VisualizationScanResultStoreDataBuilder().withTabStopsTabbedElements(tabEvents).build();
+        const initialState = new VisualizationScanResultStoreDataBuilder()
+            .withTabStopsTabbedElements(tabEvents)
+            .build();
 
-        const expectedState = new VisualizationScanResultStoreDataBuilder().withTabStopsTabbedElements(null).build();
+        const expectedState = new VisualizationScanResultStoreDataBuilder()
+            .withTabStopsTabbedElements(null)
+            .build();
 
-        createStoreTesterForVisualizationScanResultActions('disableTabStop').testListenerToBeCalledOnce(initialState, expectedState);
+        createStoreTesterForVisualizationScanResultActions(
+            'disableTabStop',
+        ).testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     test('onScanCompleted', () => {
@@ -445,7 +459,9 @@ describe('VisualizationScanResultStoreTest', () => {
             },
         ];
 
-        const expectedState = new VisualizationScanResultStoreDataBuilder().withTabStopsTabbedElements(tabbedElements).build();
+        const expectedState = new VisualizationScanResultStoreDataBuilder()
+            .withTabStopsTabbedElements(tabbedElements)
+            .build();
 
         createStoreTesterForVisualizationScanResultActions('addTabbedElement')
             .withActionParam(payload)
@@ -468,7 +484,9 @@ describe('VisualizationScanResultStoreTest', () => {
             },
         ];
 
-        const initialState = new VisualizationScanResultStoreDataBuilder().withTabStopsTabbedElements(initialTabbedElements).build();
+        const initialState = new VisualizationScanResultStoreDataBuilder()
+            .withTabStopsTabbedElements(initialTabbedElements)
+            .build();
 
         const payload: AddTabbedElementPayload = {
             tabbedElements: [
@@ -496,7 +514,9 @@ describe('VisualizationScanResultStoreTest', () => {
             },
         ];
 
-        const expectedState = new VisualizationScanResultStoreDataBuilder().withTabStopsTabbedElements(expectedTabbedElements).build();
+        const expectedState = new VisualizationScanResultStoreDataBuilder()
+            .withTabStopsTabbedElements(expectedTabbedElements)
+            .build();
 
         createStoreTesterForVisualizationScanResultActions('addTabbedElement')
             .withActionParam(payload)
@@ -512,19 +532,26 @@ describe('VisualizationScanResultStoreTest', () => {
 
         const expectedState = new VisualizationScanResultStoreDataBuilder().build();
 
-        createStoreTesterForTabActions('existingTabUpdated').testListenerToBeCalledOnce(initialState, expectedState);
+        createStoreTesterForTabActions('existingTabUpdated').testListenerToBeCalledOnce(
+            initialState,
+            expectedState,
+        );
     });
 
     function createStoreTesterForVisualizationScanResultActions(
         actionName: keyof VisualizationScanResultActions,
     ): StoreTester<VisualizationScanResultData, VisualizationScanResultActions> {
-        const factory = (actions: VisualizationScanResultActions) => new VisualizationScanResultStore(actions, new TabActions());
+        const factory = (actions: VisualizationScanResultActions) =>
+            new VisualizationScanResultStore(actions, new TabActions());
 
         return new StoreTester(VisualizationScanResultActions, actionName, factory);
     }
 
-    function createStoreTesterForTabActions(actionName: keyof TabActions): StoreTester<VisualizationScanResultData, TabActions> {
-        const factory = (actions: TabActions) => new VisualizationScanResultStore(new VisualizationScanResultActions(), actions);
+    function createStoreTesterForTabActions(
+        actionName: keyof TabActions,
+    ): StoreTester<VisualizationScanResultData, TabActions> {
+        const factory = (actions: TabActions) =>
+            new VisualizationScanResultStore(new VisualizationScanResultActions(), actions);
 
         return new StoreTester(TabActions, actionName, factory);
     }

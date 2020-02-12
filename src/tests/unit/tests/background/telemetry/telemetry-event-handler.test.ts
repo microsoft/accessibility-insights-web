@@ -5,7 +5,10 @@ import { TelemetryClient } from 'background/telemetry/telemetry-client';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { each } from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { TelemetryEventSource, TriggeredBy } from '../../../../../common/extension-telemetry-events';
+import {
+    TelemetryEventSource,
+    TriggeredBy,
+} from '../../../../../common/extension-telemetry-events';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 
 describe('TelemetryEventHandlerTest', () => {
@@ -35,7 +38,9 @@ describe('TelemetryEventHandlerTest', () => {
     });
 
     test('test for when tab is null', () => {
-        telemetryClientStrictMock.setup(te => te.trackEvent(It.isAny(), It.isAny())).verifiable(Times.once());
+        telemetryClientStrictMock
+            .setup(te => te.trackEvent(It.isAny(), It.isAny()))
+            .verifiable(Times.once());
 
         const testObject = createAndEnableTelemetryEventHandler();
         testObject.publishTelemetry(testEventName, testTelemetryPayload);
@@ -102,7 +107,9 @@ describe('TelemetryEventHandlerTest', () => {
         telemetryClientStrictMock.verifyAll();
     });
 
-    function createExpectedAppInsightsTelemetry(customFields?: DictionaryStringTo<any>): DictionaryStringTo<string> {
+    function createExpectedAppInsightsTelemetry(
+        customFields?: DictionaryStringTo<any>,
+    ): DictionaryStringTo<string> {
         const telemetry: any = {
             source: undefined,
             triggeredBy: 'triggered by test',
@@ -125,7 +132,12 @@ describe('TelemetryEventHandlerTest', () => {
         return telemetryEventHandler;
     }
 
-    function setupTrackEvent(eventName: string, expectedTelemetry: DictionaryStringTo<string>): void {
-        telemetryClientStrictMock.setup(te => te.trackEvent(It.isValue(eventName), It.isValue(expectedTelemetry))).verifiable(Times.once());
+    function setupTrackEvent(
+        eventName: string,
+        expectedTelemetry: DictionaryStringTo<string>,
+    ): void {
+        telemetryClientStrictMock
+            .setup(te => te.trackEvent(It.isValue(eventName), It.isValue(expectedTelemetry)))
+            .verifiable(Times.once());
     }
 });
