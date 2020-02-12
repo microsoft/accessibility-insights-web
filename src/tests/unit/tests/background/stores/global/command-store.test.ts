@@ -5,7 +5,10 @@ import { IMock, It, Mock, Times } from 'typemoq';
 import { CommandActions, GetCommandsPayload } from 'background/actions/command-actions';
 import { CommandStore } from 'background/stores/global/command-store';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
-import { ModifiedCommandsTelemetryData, SHORTCUT_MODIFIED } from '../../../../../../common/extension-telemetry-events';
+import {
+    ModifiedCommandsTelemetryData,
+    SHORTCUT_MODIFIED,
+} from '../../../../../../common/extension-telemetry-events';
 import { StoreNames } from '../../../../../../common/stores/store-names';
 import { CommandStoreData } from '../../../../../../common/types/store-data/command-store-data';
 import { createStoreWithNullParams, StoreTester } from '../../../../common/store-tester';
@@ -116,8 +119,11 @@ describe('CommandStoreTest', () => {
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    function createStoreTesterForCommandActions(actionName: keyof CommandActions): StoreTester<CommandStoreData, CommandActions> {
-        const factory = (actions: CommandActions) => new CommandStore(actions, telemetryEventHandlerMock.object);
+    function createStoreTesterForCommandActions(
+        actionName: keyof CommandActions,
+    ): StoreTester<CommandStoreData, CommandActions> {
+        const factory = (actions: CommandActions) =>
+            new CommandStore(actions, telemetryEventHandlerMock.object);
 
         return new StoreTester(CommandActions, actionName, factory);
     }

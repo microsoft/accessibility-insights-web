@@ -126,39 +126,68 @@ class GlobalActionCreatorValidator {
     private actionsSetup: boolean = false;
 
     public setupActionOnCommandActions(actionName: string): GlobalActionCreatorValidator {
-        return this.setupAction(actionName, this.commandActionsContainerMock, this.commandActionMocksMap);
+        return this.setupAction(
+            actionName,
+            this.commandActionsContainerMock,
+            this.commandActionMocksMap,
+        );
     }
 
     public setupActionOnFeatureFlagActions(actionName: string): GlobalActionCreatorValidator {
-        return this.setupAction(actionName, this.featureFlagActionsContainerMock, this.featureFlagActionsMockMap);
+        return this.setupAction(
+            actionName,
+            this.featureFlagActionsContainerMock,
+            this.featureFlagActionsMockMap,
+        );
     }
 
     public setupActionOnLaunchPanelActions(actionName: string): GlobalActionCreatorValidator {
-        return this.setupAction(actionName, this.launchPanelStateActionsContainerMock, this.launchPanelActionsMockMap);
+        return this.setupAction(
+            actionName,
+            this.launchPanelStateActionsContainerMock,
+            this.launchPanelActionsMockMap,
+        );
     }
 
-    public setupGetCommandsFromAdapter(commands: chrome.commands.Command[]): GlobalActionCreatorValidator {
+    public setupGetCommandsFromAdapter(
+        commands: chrome.commands.Command[],
+    ): GlobalActionCreatorValidator {
         this.commandsAdapterMock.setup(x => x.getCommands(It.isAny())).callback(cb => cb(commands));
 
         return this;
     }
 
-    public setupCommandActionWithInvokeParameter(actionName: keyof CommandActions, expectedInvokeParam: any): GlobalActionCreatorValidator {
-        return this.setupActionWithInvokeParameter(actionName, expectedInvokeParam, this.commandActionMocksMap);
+    public setupCommandActionWithInvokeParameter(
+        actionName: keyof CommandActions,
+        expectedInvokeParam: any,
+    ): GlobalActionCreatorValidator {
+        return this.setupActionWithInvokeParameter(
+            actionName,
+            expectedInvokeParam,
+            this.commandActionMocksMap,
+        );
     }
 
     public setupFeatureFlagActionWithInvokeParameter(
         actionName: keyof FeatureFlagActions,
         expectedInvokeParam: any,
     ): GlobalActionCreatorValidator {
-        return this.setupActionWithInvokeParameter(actionName, expectedInvokeParam, this.featureFlagActionsMockMap);
+        return this.setupActionWithInvokeParameter(
+            actionName,
+            expectedInvokeParam,
+            this.featureFlagActionsMockMap,
+        );
     }
 
     public setupLaunchPanelActionWithInvokeParameter(
         actionName: keyof LaunchPanelStateActions,
         expectedInvokeParam: any,
     ): GlobalActionCreatorValidator {
-        return this.setupActionWithInvokeParameter(actionName, expectedInvokeParam, this.launchPanelActionsMockMap);
+        return this.setupActionWithInvokeParameter(
+            actionName,
+            expectedInvokeParam,
+            this.launchPanelActionsMockMap,
+        );
     }
 
     private setupActionWithInvokeParameter(
@@ -173,7 +202,10 @@ class GlobalActionCreatorValidator {
         return this;
     }
 
-    private getOrCreateAction(actionName: string, actionsMockMap: DictionaryStringTo<IMock<Action<any>>>): IMock<Action<any>> {
+    private getOrCreateAction(
+        actionName: string,
+        actionsMockMap: DictionaryStringTo<IMock<Action<any>>>,
+    ): IMock<Action<any>> {
         let action = actionsMockMap[actionName];
 
         if (action == null) {
@@ -199,7 +231,10 @@ class GlobalActionCreatorValidator {
         return this;
     }
 
-    public setupRegistrationCallback(expectedType: string, callbackParams?: any[]): GlobalActionCreatorValidator {
+    public setupRegistrationCallback(
+        expectedType: string,
+        callbackParams?: any[],
+    ): GlobalActionCreatorValidator {
         this.interpreterMock
             .setup(x => x.registerTypeToPayloadCallback(It.isValue(expectedType), It.isAny()))
             .callback((messageType, callback) => {
@@ -214,7 +249,9 @@ class GlobalActionCreatorValidator {
     }
 
     public setupTelemetrySend(eventName: string): GlobalActionCreatorValidator {
-        this.telemetryEventHandlerMock.setup(tsm => tsm.publishTelemetry(It.isValue(eventName), It.isAny())).verifiable(Times.once());
+        this.telemetryEventHandlerMock
+            .setup(tsm => tsm.publishTelemetry(It.isValue(eventName), It.isAny()))
+            .verifiable(Times.once());
 
         return this;
     }

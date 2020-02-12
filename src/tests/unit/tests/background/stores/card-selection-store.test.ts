@@ -10,7 +10,10 @@ import { CardSelectionActions } from '../../../../../background/actions/card-sel
 import { UnifiedScanResultActions } from '../../../../../background/actions/unified-scan-result-actions';
 import { CardSelectionStore } from '../../../../../background/stores/card-selection-store';
 import { StoreNames } from '../../../../../common/stores/store-names';
-import { CardSelectionStoreData, RuleExpandCollapseData } from '../../../../../common/types/store-data/card-selection-store-data';
+import {
+    CardSelectionStoreData,
+    RuleExpandCollapseData,
+} from '../../../../../common/types/store-data/card-selection-store-data';
 import { UnifiedResult } from '../../../../../common/types/store-data/unified-data-interface';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
 
@@ -76,7 +79,8 @@ describe('CardSelectionStore Test', () => {
     function createStoreForUnifiedScanResultActions(
         actionName: keyof UnifiedScanResultActions,
     ): StoreTester<CardSelectionStoreData, UnifiedScanResultActions> {
-        const factory = (actions: UnifiedScanResultActions) => new CardSelectionStore(new CardSelectionActions(), actions);
+        const factory = (actions: UnifiedScanResultActions) =>
+            new CardSelectionStore(new CardSelectionActions(), actions);
 
         return new StoreTester(UnifiedScanResultActions, actionName, factory);
     }
@@ -229,7 +233,10 @@ describe('CardSelectionStore Test', () => {
         expandRuleSelectCards(initialState.rules['sampleRuleId1']);
         expandRuleSelectCards(initialState.rules['sampleRuleId2']);
 
-        createStoreForCardSelectionActions('collapseAllRules').testListenerToBeCalledOnce(initialState, expectedState);
+        createStoreForCardSelectionActions('collapseAllRules').testListenerToBeCalledOnce(
+            initialState,
+            expectedState,
+        );
     });
 
     test('expandAllRules', () => {
@@ -240,7 +247,10 @@ describe('CardSelectionStore Test', () => {
         expectedState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
         expectedState.rules['sampleRuleId2'].isExpanded = true;
 
-        createStoreForCardSelectionActions('expandAllRules').testListenerToBeCalledOnce(initialState, expectedState);
+        createStoreForCardSelectionActions('expandAllRules').testListenerToBeCalledOnce(
+            initialState,
+            expectedState,
+        );
     });
 
     test('toggleVisualHelper on - no card selection or rule expansion changes', () => {
@@ -250,7 +260,10 @@ describe('CardSelectionStore Test', () => {
         expectedState = cloneDeep(initialState);
         expectedState.visualHelperEnabled = true;
 
-        createStoreForCardSelectionActions('toggleVisualHelper').testListenerToBeCalledOnce(initialState, expectedState);
+        createStoreForCardSelectionActions('toggleVisualHelper').testListenerToBeCalledOnce(
+            initialState,
+            expectedState,
+        );
     });
 
     test('toggleVisualHelper off - cards deselected, no rule expansion changes', () => {
@@ -260,7 +273,10 @@ describe('CardSelectionStore Test', () => {
 
         expectedState.rules['sampleRuleId1'].isExpanded = true;
 
-        createStoreForCardSelectionActions('toggleVisualHelper').testListenerToBeCalledOnce(initialState, expectedState);
+        createStoreForCardSelectionActions('toggleVisualHelper').testListenerToBeCalledOnce(
+            initialState,
+            expectedState,
+        );
     });
 
     function expandRuleSelectCards(rule: RuleExpandCollapseData): void {
@@ -274,7 +290,8 @@ describe('CardSelectionStore Test', () => {
     function createStoreForCardSelectionActions(
         actionName: keyof CardSelectionActions,
     ): StoreTester<CardSelectionStoreData, CardSelectionActions> {
-        const factory = (actions: CardSelectionActions) => new CardSelectionStore(actions, new UnifiedScanResultActions());
+        const factory = (actions: CardSelectionActions) =>
+            new CardSelectionStore(actions, new UnifiedScanResultActions());
 
         return new StoreTester(CardSelectionActions, actionName, factory);
     }

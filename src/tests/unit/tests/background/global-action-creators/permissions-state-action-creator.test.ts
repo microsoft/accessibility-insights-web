@@ -23,33 +23,40 @@ describe('PermissionsStateActionCreator', () => {
         const interpreterMock = createInterpreterMock(expectedMessage, null);
         const getCurrentStateMock = createActionMock(null);
         setupActionsMock('getCurrentState', getCurrentStateMock.object);
-        const testSubject = new PermissionsStateActionCreator(interpreterMock.object, permissionsStateActionsMock.object, null);
+        const testSubject = new PermissionsStateActionCreator(
+            interpreterMock.object,
+            permissionsStateActionsMock.object,
+            null,
+        );
 
         testSubject.registerCallbacks();
 
         getCurrentStateMock.verifyAll();
     });
 
-    it.each([true, false])('handles SetPermissionsState message for payload %p', (permissionState: boolean) => {
-        const expectedMessage = Messages.PermissionsState.SetPermissionsState;
-        const payload: SetAllUrlsPermissionStatePayload = {
-            hasAllUrlAndFilePermissions: permissionState,
-            telemetry: {} as TelemetryData,
-        };
-        const interpreterMock = createInterpreterMock(expectedMessage, payload);
-        const setPermissionsStateMock = createActionMock(payload);
-        const telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();
-        setupActionsMock('setPermissionsState', setPermissionsStateMock.object);
-        const testSubject = new PermissionsStateActionCreator(
-            interpreterMock.object,
-            permissionsStateActionsMock.object,
-            telemetryEventHandlerMock.object,
-        );
+    it.each([true, false])(
+        'handles SetPermissionsState message for payload %p',
+        (permissionState: boolean) => {
+            const expectedMessage = Messages.PermissionsState.SetPermissionsState;
+            const payload: SetAllUrlsPermissionStatePayload = {
+                hasAllUrlAndFilePermissions: permissionState,
+                telemetry: {} as TelemetryData,
+            };
+            const interpreterMock = createInterpreterMock(expectedMessage, payload);
+            const setPermissionsStateMock = createActionMock(payload);
+            const telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();
+            setupActionsMock('setPermissionsState', setPermissionsStateMock.object);
+            const testSubject = new PermissionsStateActionCreator(
+                interpreterMock.object,
+                permissionsStateActionsMock.object,
+                telemetryEventHandlerMock.object,
+            );
 
-        testSubject.registerCallbacks();
+            testSubject.registerCallbacks();
 
-        setPermissionsStateMock.verifyAll();
-    });
+            setPermissionsStateMock.verifyAll();
+        },
+    );
 
     const setupActionsMock = <ActionName extends keyof PermissionsStateActions>(
         actionName: ActionName,

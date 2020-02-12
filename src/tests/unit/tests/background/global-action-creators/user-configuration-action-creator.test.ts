@@ -41,7 +41,10 @@ describe('UserConfigurationActionCreator', () => {
             enableHighContrast: true,
         };
         const setHighContrastConfigMock = createActionMock(payload);
-        const actionsMock = createActionsMock('setHighContrastMode', setHighContrastConfigMock.object);
+        const actionsMock = createActionsMock(
+            'setHighContrastMode',
+            setHighContrastConfigMock.object,
+        );
         const testSubject = new UserConfigurationActionCreator(actionsMock.object);
 
         testSubject.setHighContrastMode(payload);
@@ -69,7 +72,10 @@ describe('UserConfigurationActionCreator', () => {
             propertyValue: 'property-value',
         };
         const setIssueFilingServicePropertyMock = createActionMock(payload);
-        const actionsMock = createActionsMock('setIssueFilingServiceProperty', setIssueFilingServicePropertyMock.object);
+        const actionsMock = createActionsMock(
+            'setIssueFilingServiceProperty',
+            setIssueFilingServicePropertyMock.object,
+        );
         const testSubject = new UserConfigurationActionCreator(actionsMock.object);
 
         testSubject.setIssueFilingServiceProperty(payload);
@@ -83,7 +89,10 @@ describe('UserConfigurationActionCreator', () => {
             issueFilingSettings: { name: 'issueFilingSettings' },
         };
         const setIssueFilingSettings = createActionMock(payload);
-        const actionsMock = createActionsMock('saveIssueFilingSettings', setIssueFilingSettings.object);
+        const actionsMock = createActionsMock(
+            'saveIssueFilingSettings',
+            setIssueFilingSettings.object,
+        );
         const testSubject = new UserConfigurationActionCreator(actionsMock.object);
 
         testSubject.saveIssueFilingSettings(payload);

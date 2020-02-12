@@ -6,7 +6,10 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 import { Assessment } from 'assessments/types/iassessment';
 import { InitialDataCreator } from 'background/create-initial-assessment-test-data';
 import { InitialAssessmentStoreDataGenerator } from 'background/initial-assessment-store-data-generator';
-import { AssessmentData, AssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
+import {
+    AssessmentData,
+    AssessmentStoreData,
+} from '../../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../../../types/common-types';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
@@ -17,7 +20,9 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
     const validTargetTab = { id: 1, url: 'url', title: 'title', appRefreshed: false };
     const knownTestType = assessments[0].visualizationType;
     const unknownTestType = -100 as VisualizationType;
-    const knownRequirementIds = flatMap(assessments, test => test.requirements.map(step => step.key));
+    const knownRequirementIds = flatMap(assessments, test =>
+        test.requirements.map(step => step.key),
+    );
     const knownRequirement1 = knownRequirementIds[0];
     const unknownRequirement: string = 'unknown-requirement';
     const assessmentDataStub = {} as AssessmentData;
@@ -29,7 +34,9 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
         initialDataCreatorMock = Mock.ofInstance(() => null, MockBehavior.Strict);
         assessments.forEach(assessment => {
             (assessment as Assessment).initialDataCreator = initialDataCreatorMock.object;
-            initialDataCreatorMock.setup(mock => mock(assessment, null)).returns(() => assessmentDataStub);
+            initialDataCreatorMock
+                .setup(mock => mock(assessment, null))
+                .returns(() => assessmentDataStub);
         });
         generator = new InitialAssessmentStoreDataGenerator(assessments);
         defaultState = generator.generateInitialState();
@@ -56,7 +63,9 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
         assessments.forEach(assessment => {
             persistedAssessments[assessment.key] = {} as AssessmentData;
             (assessment as Assessment).initialDataCreator = initialDataCreatorMock.object;
-            initialDataCreatorMock.setup(mock => mock(assessment, persistedAssessments[assessment.key])).returns(() => assessmentDataStub);
+            initialDataCreatorMock
+                .setup(mock => mock(assessment, persistedAssessments[assessment.key]))
+                .returns(() => assessmentDataStub);
         });
 
         const generatedState = generator.generateInitialState({
@@ -76,13 +85,16 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
         expect(generatedState.resultDescription).toEqual(persistedDescription);
     });
 
-    it.each([[undefined], [null]])('propagates unspecified persistedTabInfo values as-is', persistedTabInfo => {
-        const generatedState = generator.generateInitialState({
-            persistedTabInfo,
-        } as AssessmentStoreData);
+    it.each([[undefined], [null]])(
+        'propagates unspecified persistedTabInfo values as-is',
+        persistedTabInfo => {
+            const generatedState = generator.generateInitialState({
+                persistedTabInfo,
+            } as AssessmentStoreData);
 
-        expect(generatedState.persistedTabInfo).toEqual(persistedTabInfo);
-    });
+            expect(generatedState.persistedTabInfo).toEqual(persistedTabInfo);
+        },
+    );
 
     it.each([[undefined], [true], [false]])(
         'outputs persistedTabInfo.appRefreshed as true even if it was set to %p in input persistedData',

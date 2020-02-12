@@ -46,7 +46,10 @@ describe('TabContextFactoryTest', () => {
     it('createInterpreter', () => {
         const tabId = -1;
         const windowUtilsStub = Mock.ofType(WindowUtils);
-        const broadcastMock = Mock.ofType<(message: Object) => Promise<void>>(null, MockBehavior.Strict);
+        const broadcastMock = Mock.ofType<(message: Object) => Promise<void>>(
+            null,
+            MockBehavior.Strict,
+        );
         const telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler);
         const targetTabControllerMock = Mock.ofType(TargetTabController);
         const assessmentStore = Mock.ofType(AssessmentStore);
@@ -66,7 +69,13 @@ describe('TabContextFactoryTest', () => {
 
         storeNames.forEach(storeName => {
             broadcastMock
-                .setup(bm => bm(It.isObjectWith({ storeId: StoreNames[storeName] } as StoreUpdateMessage<any>)))
+                .setup(bm =>
+                    bm(
+                        It.isObjectWith({ storeId: StoreNames[storeName] } as StoreUpdateMessage<
+                            any
+                        >),
+                    ),
+                )
                 .returns(() => Promise.resolve())
                 .verifiable(Times.once());
         });
@@ -74,8 +83,12 @@ describe('TabContextFactoryTest', () => {
         mockBrowserAdapter.setup(ba => ba.addListenerToTabsOnRemoved(It.isAny())).verifiable();
         mockBrowserAdapter.setup(ba => ba.addListenerToTabsOnUpdated(It.isAny())).verifiable();
 
-        const visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
-        visualizationConfigurationFactoryMock.setup(vcfm => vcfm.getConfiguration(It.isAny())).returns(theType => getConfigs(theType));
+        const visualizationConfigurationFactoryMock = Mock.ofType(
+            VisualizationConfigurationFactory,
+        );
+        visualizationConfigurationFactoryMock
+            .setup(vcfm => vcfm.getConfiguration(It.isAny()))
+            .returns(theType => getConfigs(theType));
 
         const promiseFactoryMock = Mock.ofType<PromiseFactory>();
         const testObject = new TabContextFactory(
@@ -100,7 +113,13 @@ describe('TabContextFactoryTest', () => {
         broadcastMock.reset();
 
         broadcastMock
-            .setup(bm => bm(It.isObjectWith({ storeId: StoreNames[StoreNames.VisualizationScanResultStore] } as StoreUpdateMessage<any>)))
+            .setup(bm =>
+                bm(
+                    It.isObjectWith({
+                        storeId: StoreNames[StoreNames.VisualizationScanResultStore],
+                    } as StoreUpdateMessage<any>),
+                ),
+            )
             .returns(() => Promise.resolve())
             .verifiable(Times.once());
 
@@ -114,7 +133,9 @@ describe('TabContextFactoryTest', () => {
         expect(tabContext.interpreter).toBeInstanceOf(Interpreter);
         expect(tabContext.stores.visualizationStore).toBeInstanceOf(VisualizationStore);
         expect(tabContext.stores.tabStore).toBeInstanceOf(TabStore);
-        expect(tabContext.stores.visualizationScanResultStore).toBeInstanceOf(VisualizationScanResultStore);
+        expect(tabContext.stores.visualizationScanResultStore).toBeInstanceOf(
+            VisualizationScanResultStore,
+        );
         expect(tabContext.stores.devToolStore).toBeInstanceOf(DevToolStore);
         expect(tabContext.stores.detailsViewStore).toBeInstanceOf(DetailsViewStore);
         expect(tabContext.stores.inspectStore).toBeInstanceOf(InspectStore);

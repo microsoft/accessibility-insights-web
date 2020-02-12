@@ -82,7 +82,10 @@ describe('FeatureFlagStoreTest', () => {
         const initialState = getDefaultFeatureFlagValues();
         const finalState = getDefaultFeatureFlagValues();
 
-        createStoreTesterForFeatureFlagActions('getCurrentState').testListenerToBeCalledOnce(initialState, finalState);
+        createStoreTesterForFeatureFlagActions('getCurrentState').testListenerToBeCalledOnce(
+            initialState,
+            finalState,
+        );
     });
 
     test('on setFeatureFlag', () => {
@@ -101,7 +104,9 @@ describe('FeatureFlagStoreTest', () => {
         };
 
         storageAdapterMock
-            .setup(ba => ba.setUserData(It.isValue({ [LocalStorageDataKeys.featureFlags]: finalState })))
+            .setup(ba =>
+                ba.setUserData(It.isValue({ [LocalStorageDataKeys.featureFlags]: finalState })),
+            )
             .returns(() => Promise.resolve());
 
         createStoreTesterForFeatureFlagActions('setFeatureFlag', userDataStub)
@@ -116,18 +121,26 @@ describe('FeatureFlagStoreTest', () => {
 
         const finalState = getDefaultFeatureFlagValues();
 
-        createStoreTesterForFeatureFlagActions('resetFeatureFlags').testListenerToBeCalledOnce(initialState, finalState);
+        createStoreTesterForFeatureFlagActions('resetFeatureFlags').testListenerToBeCalledOnce(
+            initialState,
+            finalState,
+        );
     });
 
     function createDefaultTestObject(userDataStub: LocalStorageData): FeatureFlagStore {
-        return new FeatureFlagStore(new FeatureFlagActions(), storageAdapterMock.object, userDataStub);
+        return new FeatureFlagStore(
+            new FeatureFlagActions(),
+            storageAdapterMock.object,
+            userDataStub,
+        );
     }
 
     function createStoreTesterForFeatureFlagActions(
         actionName: keyof FeatureFlagActions,
         userData: LocalStorageData = null,
     ): StoreTester<DictionaryStringTo<boolean>, FeatureFlagActions> {
-        const factory = (actions: FeatureFlagActions) => new FeatureFlagStore(actions, storageAdapterMock.object, userData);
+        const factory = (actions: FeatureFlagActions) =>
+            new FeatureFlagStore(actions, storageAdapterMock.object, userData);
         return new StoreTester(FeatureFlagActions, actionName, factory);
     }
 });

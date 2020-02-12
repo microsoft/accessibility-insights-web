@@ -77,7 +77,9 @@ describe('ScopingActionCreator', () => {
 
     const setupInterpreterMock = <Payload>(expectedMessage: string, payload?: Payload): void => {
         interpreterMock
-            .setup(interpreter => interpreter.registerTypeToPayloadCallback(expectedMessage, It.is(isFunction)))
+            .setup(interpreter =>
+                interpreter.registerTypeToPayloadCallback(expectedMessage, It.is(isFunction)),
+            )
             .callback((message, handler) => {
                 if (payload) {
                     handler(payload);
@@ -87,7 +89,10 @@ describe('ScopingActionCreator', () => {
             });
     };
 
-    const setupActionsMock = <ActionName extends keyof ScopingActions>(actionName: ActionName, action: ScopingActions[ActionName]) => {
+    const setupActionsMock = <ActionName extends keyof ScopingActions>(
+        actionName: ActionName,
+        action: ScopingActions[ActionName],
+    ) => {
         scopingActionsMock.setup(actions => actions[actionName]).returns(() => action);
     };
 });

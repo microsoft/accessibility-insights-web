@@ -32,6 +32,7 @@ module.exports = {
                 'src/tests/unit/stubs/**/*',
                 'src/tests/unit/tests/ad-hoc-visualizations/**/*',
                 'src/tests/unit/tests/assessments/**/*',
+                'src/tests/unit/tests/background/**/*',
                 'src/tests/unit/tests/content/**/*',
                 'src/tests/unit/tests/DevTools/**/*',
                 'src/tests/unit/tests/scanner/**/*',

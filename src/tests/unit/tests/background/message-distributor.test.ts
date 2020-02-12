@@ -27,7 +27,12 @@ describe('MessageDistributorTest', () => {
         globalContextMock.setup(x => x.interpreter).returns(() => globalInterpreter);
 
         loggerMock = Mock.ofType<Logger>();
-        testSubject = new MessageDistributor(globalContextMock.object, tabToInterpreterMap, mockBrowserAdapter.object, loggerMock.object);
+        testSubject = new MessageDistributor(
+            globalContextMock.object,
+            tabToInterpreterMap,
+            mockBrowserAdapter.object,
+            loggerMock.object,
+        );
 
         mockBrowserAdapter
             .setup(adapter => adapter.addListenerOnMessage(It.isAny()))

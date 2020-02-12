@@ -28,7 +28,10 @@ describe('PathSnippetStoreTest', () => {
         const initialState = getDefaultState();
         const finalState = getDefaultState();
 
-        createStoreForPathSnippetActions('getCurrentState').testListenerToBeCalledOnce(initialState, finalState);
+        createStoreForPathSnippetActions('getCurrentState').testListenerToBeCalledOnce(
+            initialState,
+            finalState,
+        );
     });
 
     test('on addPath', () => {
@@ -69,7 +72,9 @@ describe('PathSnippetStoreTest', () => {
         return createStoreWithNullParams(PathSnippetStore).getDefaultState();
     }
 
-    function createStoreForPathSnippetActions(actionName: keyof PathSnippetActions): StoreTester<PathSnippetStoreData, PathSnippetActions> {
+    function createStoreForPathSnippetActions(
+        actionName: keyof PathSnippetActions,
+    ): StoreTester<PathSnippetStoreData, PathSnippetActions> {
         const factory = (actions: PathSnippetActions) => new PathSnippetStore(actions);
         return new StoreTester(PathSnippetActions, actionName, factory);
     }

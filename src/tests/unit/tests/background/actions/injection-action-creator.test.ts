@@ -3,14 +3,20 @@
 import { InjectionActionCreator } from 'background/actions/injection-action-creator';
 import { InjectionActions } from 'background/actions/injection-actions';
 import { Messages } from 'common/messages';
-import { createActionMock, createInterpreterMock } from 'tests/unit/tests/background/global-action-creators/action-creator-test-helpers';
+import {
+    createActionMock,
+    createInterpreterMock,
+} from 'tests/unit/tests/background/global-action-creators/action-creator-test-helpers';
 import { IMock, Mock } from 'typemoq';
 
 describe('InjectionActionCreator', () => {
     it('handles InjectionStarted message', () => {
         const injectionStartedMock = createActionMock(null);
         const actionsMock = createActionsMock('injectionStarted', injectionStartedMock.object);
-        const interpreterMock = createInterpreterMock(Messages.Visualizations.State.InjectionStarted, null);
+        const interpreterMock = createInterpreterMock(
+            Messages.Visualizations.State.InjectionStarted,
+            null,
+        );
 
         const testSubject = new InjectionActionCreator(interpreterMock.object, actionsMock.object);
 
@@ -22,7 +28,10 @@ describe('InjectionActionCreator', () => {
     it.only('handles InjectionCompleted message', () => {
         const injectionCompletedMock = createActionMock<void>(null);
         const actionsMock = createActionsMock('injectionCompleted', injectionCompletedMock.object);
-        const interpreterMock = createInterpreterMock(Messages.Visualizations.State.InjectionCompleted, null);
+        const interpreterMock = createInterpreterMock(
+            Messages.Visualizations.State.InjectionCompleted,
+            null,
+        );
 
         const testSubject = new InjectionActionCreator(interpreterMock.object, actionsMock.object);
 

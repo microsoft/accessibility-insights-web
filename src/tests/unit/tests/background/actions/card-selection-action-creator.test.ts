@@ -1,6 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BaseActionPayload, CardSelectionPayload, RuleExpandCollapsePayload } from 'background/actions/action-payloads';
+import {
+    BaseActionPayload,
+    CardSelectionPayload,
+    RuleExpandCollapsePayload,
+} from 'background/actions/action-payloads';
 import { CardSelectionActionCreator } from 'background/actions/card-selection-action-creator';
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
@@ -8,7 +12,10 @@ import * as TelemetryEvents from 'common/extension-telemetry-events';
 import { Messages } from 'common/messages';
 import { IMock, Mock, Times } from 'typemoq';
 
-import { createActionMock, createInterpreterMock } from '../global-action-creators/action-creator-test-helpers';
+import {
+    createActionMock,
+    createInterpreterMock,
+} from '../global-action-creators/action-creator-test-helpers';
 
 describe('CardSelectionActionCreator', () => {
     const tabId = -2;
@@ -24,10 +31,21 @@ describe('CardSelectionActionCreator', () => {
             ruleId: 'test-rule-id',
         };
         const toggleCardSelectionMock = createActionMock(payload);
-        const actionsMock = createActionsMock('toggleCardSelection', toggleCardSelectionMock.object);
-        const interpreterMock = createInterpreterMock(Messages.CardSelection.CardSelectionToggled, payload, tabId);
+        const actionsMock = createActionsMock(
+            'toggleCardSelection',
+            toggleCardSelectionMock.object,
+        );
+        const interpreterMock = createInterpreterMock(
+            Messages.CardSelection.CardSelectionToggled,
+            payload,
+            tabId,
+        );
 
-        const testSubject = new CardSelectionActionCreator(interpreterMock.object, actionsMock.object, telemetryEventHandlerMock.object);
+        const testSubject = new CardSelectionActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
 
         testSubject.registerCallbacks();
 
@@ -43,10 +61,21 @@ describe('CardSelectionActionCreator', () => {
             ruleId: 'test-rule-id',
         };
         const ruleExpansionToggleMock = createActionMock(payload);
-        const actionsMock = createActionsMock('toggleRuleExpandCollapse', ruleExpansionToggleMock.object);
-        const interpreterMock = createInterpreterMock(Messages.CardSelection.RuleExpansionToggled, payload, tabId);
+        const actionsMock = createActionsMock(
+            'toggleRuleExpandCollapse',
+            ruleExpansionToggleMock.object,
+        );
+        const interpreterMock = createInterpreterMock(
+            Messages.CardSelection.RuleExpansionToggled,
+            payload,
+            tabId,
+        );
 
-        const testSubject = new CardSelectionActionCreator(interpreterMock.object, actionsMock.object, telemetryEventHandlerMock.object);
+        const testSubject = new CardSelectionActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
 
         testSubject.registerCallbacks();
 
@@ -61,9 +90,17 @@ describe('CardSelectionActionCreator', () => {
         const payloadStub: BaseActionPayload = {};
         const toggleVisualHelperMock = createActionMock(null);
         const actionsMock = createActionsMock('toggleVisualHelper', toggleVisualHelperMock.object);
-        const interpreterMock = createInterpreterMock(Messages.CardSelection.ToggleVisualHelper, payloadStub, tabId);
+        const interpreterMock = createInterpreterMock(
+            Messages.CardSelection.ToggleVisualHelper,
+            payloadStub,
+            tabId,
+        );
 
-        const testSubject = new CardSelectionActionCreator(interpreterMock.object, actionsMock.object, telemetryEventHandlerMock.object);
+        const testSubject = new CardSelectionActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
 
         testSubject.registerCallbacks();
 
@@ -77,10 +114,21 @@ describe('CardSelectionActionCreator', () => {
     test('onCollapseAllRules', () => {
         const payloadStub: BaseActionPayload = {};
         const collapseAllRulesActionMock = createActionMock(null);
-        const actionsMock = createActionsMock('collapseAllRules', collapseAllRulesActionMock.object);
-        const interpreterMock = createInterpreterMock(Messages.CardSelection.CollapseAllRules, payloadStub, tabId);
+        const actionsMock = createActionsMock(
+            'collapseAllRules',
+            collapseAllRulesActionMock.object,
+        );
+        const interpreterMock = createInterpreterMock(
+            Messages.CardSelection.CollapseAllRules,
+            payloadStub,
+            tabId,
+        );
 
-        const testSubject = new CardSelectionActionCreator(interpreterMock.object, actionsMock.object, telemetryEventHandlerMock.object);
+        const testSubject = new CardSelectionActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
 
         testSubject.registerCallbacks();
 
@@ -95,9 +143,17 @@ describe('CardSelectionActionCreator', () => {
         const payloadStub: BaseActionPayload = {};
         const expandAllRulesActionMock = createActionMock(null);
         const actionsMock = createActionsMock('expandAllRules', expandAllRulesActionMock.object);
-        const interpreterMock = createInterpreterMock(Messages.CardSelection.ExpandAllRules, payloadStub, tabId);
+        const interpreterMock = createInterpreterMock(
+            Messages.CardSelection.ExpandAllRules,
+            payloadStub,
+            tabId,
+        );
 
-        const testSubject = new CardSelectionActionCreator(interpreterMock.object, actionsMock.object, telemetryEventHandlerMock.object);
+        const testSubject = new CardSelectionActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
 
         testSubject.registerCallbacks();
 
