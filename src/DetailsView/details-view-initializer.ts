@@ -91,13 +91,13 @@ import { UnifiedResultToIssueFilingDataConverter } from './../issue-filing/unifi
 import { DetailsViewActionMessageCreator } from './actions/details-view-action-message-creator';
 import { IssuesSelectionFactory } from './actions/issues-selection-factory';
 import { AssessmentTableColumnConfigHandler } from './components/assessment-table-column-config-handler';
+import { SettingsProviderImpl } from './components/details-view-overlay/settings-panel/settings/settings-provider-impl';
 import { GetDetailsRightPanelConfiguration } from './components/details-view-right-panel';
 import { GetDetailsSwitcherNavConfiguration } from './components/details-view-switcher-nav';
 import { IssuesTableHandler } from './components/issues-table-handler';
 import { getStatusForTest } from './components/left-nav/get-status-for-test';
 import { LeftNavLinkBuilder } from './components/left-nav/left-nav-link-builder';
 import { NavLinkHandler } from './components/left-nav/nav-link-handler';
-import { SettingsProviderImpl } from './components/settings-panel/settings/settings-provider-impl';
 import { DetailsViewContainerDeps, DetailsViewContainerState } from './details-view-container';
 import { DetailsViewRenderer } from './details-view-renderer';
 import { DocumentTitleUpdater } from './document-title-updater';

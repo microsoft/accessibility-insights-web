@@ -29,7 +29,10 @@ import { VisualizationScanResultData } from '../common/types/store-data/visualiz
 import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DetailsViewCommandBarDeps } from './components/details-view-command-bar';
-import { DetailsViewOverlay, DetailsViewOverlayDeps } from './components/details-view-overlay';
+import {
+    DetailsViewOverlay,
+    DetailsViewOverlayDeps,
+} from './components/details-view-overlay/details-view-overlay';
 import {
     DetailsRightPanelConfiguration,
     GetDetailsRightPanelConfiguration,

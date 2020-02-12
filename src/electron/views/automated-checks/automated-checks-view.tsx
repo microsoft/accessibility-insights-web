@@ -12,7 +12,7 @@ import { CardsView, CardsViewDeps } from 'DetailsView/components/cards-view';
 import {
     SettingsPanel,
     SettingsPanelDeps,
-} from 'DetailsView/components/settings-panel/settings-panel';
+} from 'DetailsView/components/details-view-overlay/settings-panel/settings-panel';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { DeviceStoreData } from 'electron/flux/types/device-store-data';
