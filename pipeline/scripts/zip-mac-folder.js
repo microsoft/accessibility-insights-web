@@ -1,5 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+
+/* 
+    The macOS electron-builder update process requires a zip file
+    (electron-builder #4230), but the zip file produced by 
+    electron-builder is corrupted (electron-builder #3534).
+    We use 7z to create the zip file ourselves.
+*/
+
 const child_process = require('child_process');
 const fs = require('fs');
 const path = require('path');

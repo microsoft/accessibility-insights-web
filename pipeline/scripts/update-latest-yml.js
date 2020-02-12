@@ -6,10 +6,10 @@ const YAML = require('js-yaml');
 const path = require('path');
 
 const parentDir = process.argv[2];
-const platform = process.argv.length > 3 ? process.argv[3] : process.platform;
+const platform = process.argv[3]; // should be 'mac', 'linux', or 'windows'
 
 const getLatestYAMLPath = parentDir => {
-    const platformModifier = process.platform == 'darwin' ? '-mac' : process.platform == 'linux' ? '-linux' : '';
+    const platformModifier = platform === 'windows' ? '' : `-${platform}`;
     const latestPath = path.join(parentDir, `latest${platformModifier}.yml`);
     return latestPath;
 };
