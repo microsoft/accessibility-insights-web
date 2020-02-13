@@ -4,10 +4,9 @@ import * as React from 'react';
 
 import { HeaderIcon, HeaderIconDeps } from 'common/components/header-icon';
 import { NamedFC } from 'common/react/named-fc';
-import { title } from 'content/strings/application';
 import * as styles from './header.scss';
 
-export type HeaderDeps = HeaderIconDeps;
+export type HeaderDeps = { applicationTitle: string } & HeaderIconDeps;
 
 export type HeaderProps = {
     deps: HeaderDeps;
@@ -16,6 +15,7 @@ export type HeaderProps = {
 };
 
 export const Header = NamedFC<HeaderProps>('Header', props => {
+    const { applicationTitle: title } = props.deps;
     return (
         <header className={styles.headerBar}>
             <HeaderIcon deps={props.deps} />
