@@ -91,7 +91,7 @@ import { UnifiedResultToIssueFilingDataConverter } from './../issue-filing/unifi
 import { DetailsViewActionMessageCreator } from './actions/details-view-action-message-creator';
 import { IssuesSelectionFactory } from './actions/issues-selection-factory';
 import { AssessmentTableColumnConfigHandler } from './components/assessment-table-column-config-handler';
-import { SettingsProviderImpl } from './components/details-view-overlay/settings-panel/settings/extension-settings-provider';
+import { ExtensionSettingsProvider } from './components/details-view-overlay/settings-panel/settings/extension-settings-provider';
 import { GetDetailsRightPanelConfiguration } from './components/details-view-right-panel';
 import { GetDetailsSwitcherNavConfiguration } from './components/details-view-switcher-nav';
 import { IssuesTableHandler } from './components/issues-table-handler';
@@ -390,7 +390,7 @@ if (isNaN(tabId) === false) {
                 urlParser,
                 getDateFromTimestamp: DateProvider.getDateFromTimestamp,
                 getCurrentDate: DateProvider.getCurrentDate,
-                settingsProvider: SettingsProviderImpl,
+                settingsProvider: ExtensionSettingsProvider,
                 LinkComponent: NewTabLink,
                 environmentInfoProvider,
                 issueFilingServiceProvider: IssueFilingServiceProviderImpl,

@@ -6,7 +6,7 @@ import { HighContrastSettings } from './high-contrast/high-contrast-settings';
 import { IssueFilingSettings } from './issue-filing/issue-filing-settings';
 import { createSettingsProvider } from './settings-provider';
 
-export const SettingsProviderImpl = createSettingsProvider([
+export const ExtensionSettingsProvider = createSettingsProvider([
     createTelemetrySettings(title),
     HighContrastSettings,
     IssueFilingSettings,
