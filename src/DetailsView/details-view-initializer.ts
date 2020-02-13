@@ -91,7 +91,7 @@ import { UnifiedResultToIssueFilingDataConverter } from './../issue-filing/unifi
 import { DetailsViewActionMessageCreator } from './actions/details-view-action-message-creator';
 import { IssuesSelectionFactory } from './actions/issues-selection-factory';
 import { AssessmentTableColumnConfigHandler } from './components/assessment-table-column-config-handler';
-import { SettingsProviderImpl } from './components/details-view-overlay/settings-panel/settings/settings-provider-impl';
+import { SettingsProviderImpl } from './components/details-view-overlay/settings-panel/settings/extension-settings-provider';
 import { GetDetailsRightPanelConfiguration } from './components/details-view-right-panel';
 import { GetDetailsSwitcherNavConfiguration } from './components/details-view-switcher-nav';
 import { IssuesTableHandler } from './components/issues-table-handler';
