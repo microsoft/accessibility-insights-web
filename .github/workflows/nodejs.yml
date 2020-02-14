@@ -1,0 +1,32 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+name: CodeCoverageCommenter
+
+on:
+  push:
+    branches:
+      - master
+    pull-request:
+        branches:
+          - '**'
+
+jobs:
+    - job: 'unit_tests'
+
+      pool:
+          vmImage: 'macOS-10.14'
+
+      steps:
+          - template: pipeline/install-node-prerequisites.yaml
+
+          - script: yarn scss:build
+            displayName: generate typings for scss files
+
+          - script: yarn test --ci
+            displayName: run unit tests
+
+          - name: Publish code coverage
+            uses: 5monkeys/cobertura-action@master
+            with:
+              path: ${{ github.workspace }}/test-results/unit/coverage/cobertura-coverage.xml
+              minimum_coverage: 85%
