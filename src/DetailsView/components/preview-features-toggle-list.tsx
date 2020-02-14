@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DisplayableFeatureFlag } from 'common/types/store-data/displayable-feature-flag';
 import * as React from 'react';
-
-import { DisplayableFeatureFlag } from '../../common/types/store-data/displayable-feature-flag';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { GenericToggle } from './generic-toggle';
 import * as styles from './preview-features-toggle-list.scss';
