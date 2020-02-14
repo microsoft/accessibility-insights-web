@@ -1,32 +1,40 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
+
 name: CodeCoverageCommenter
 
 on:
   push:
     branches:
       - master
-    pull-request:
-        branches:
-          - '**'
-
+  pull_request:
+    branches:
+      - '**'
 jobs:
-    - job: 'unit_tests'
+  test:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
 
-      pool:
-          vmImage: 'macOS-10.14'
+    - name: Setup node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.13.0'
 
-      steps:
-          - template: pipeline/install-node-prerequisites.yaml
+    - name: Install dependencies
+      run: yarn install --frozen-lockfile
 
-          - script: yarn scss:build
-            displayName: generate typings for scss files
+    - name: Generate typings for scss files
+      run: yarn scss:build
 
-          - script: yarn test --ci
-            displayName: run unit tests
+    - name: Run tests
+      run: yarn jest --ci
 
-          - name: Publish code coverage
-            uses: 5monkeys/cobertura-action@master
-            with:
-              path: ${{ github.workspace }}/test-results/unit/coverage/cobertura-coverage.xml
-              minimum_coverage: 85%
+    - name: Publish code coverage
+      uses: 5monkeys/cobertura-action@master
+      with:
+        path: ${{ github.workspace }}/test-results/unit/coverage/cobertura-coverage.xml
+        minimum_coverage: 85%
+
