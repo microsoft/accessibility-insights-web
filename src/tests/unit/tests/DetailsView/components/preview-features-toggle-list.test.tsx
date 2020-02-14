@@ -8,11 +8,6 @@ import * as React from 'react';
 import { Mock } from 'typemoq';
 
 describe('PreviewFeaturesToggleListTest', () => {
-    test('constructor', () => {
-        const testSubject = new PreviewFeaturesToggleList({} as PreviewFeaturesToggleListProps);
-        expect(testSubject).toBeDefined();
-    });
-
     test('render', () => {
         const displayableFeatureFlagsStub: DisplayableFeatureFlag[] = [
             {
