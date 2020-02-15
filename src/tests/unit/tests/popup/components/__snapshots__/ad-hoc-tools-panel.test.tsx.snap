@@ -2,44 +2,25 @@
 
 exports[`AdHocToolsPanelTest adhoc panel matches snapshot 1`] = `
 <div
-  className="ms-Grid main-section"
+  className="main-section adHocToolsPanel"
 >
-  <main>
-    <div
-      className="ms-Grid-row"
-    >
-      <div
-        className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 ad-hoc-tools-panel-group-0"
-      >
-        <div>
-          first
-        </div>
-        <div
-          className="ms-fontColor-neutralLight launch-panel-hr"
-        />
-        <div>
-          second
-        </div>
-        <div
-          className="ms-fontColor-neutralLight launch-panel-hr"
-        />
-        <div>
-          third
-        </div>
-      </div>
-      <div
-        className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 ad-hoc-tools-panel-group-1"
-      >
-        <div>
-          fourth
-        </div>
-        <div
-          className="ms-fontColor-neutralLight launch-panel-hr"
-        />
-        <div>
-          fifth
-        </div>
-      </div>
+  <main
+    className="adHocToolsGrid"
+  >
+    <div>
+      first
+    </div>
+    <div>
+      second
+    </div>
+    <div>
+      third
+    </div>
+    <div>
+      fourth
+    </div>
+    <div>
+      fifth
     </div>
   </main>
   <div
