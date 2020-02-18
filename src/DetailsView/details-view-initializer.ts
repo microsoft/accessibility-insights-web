@@ -9,6 +9,7 @@ import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
+import { title as applicationTitle } from 'content/strings/application';
 import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
 import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
@@ -356,6 +357,7 @@ if (isNaN(tabId) === false) {
             const unifiedResultToIssueFilingDataConverter = new UnifiedResultToIssueFilingDataConverter();
 
             const deps: DetailsViewContainerDeps = {
+                applicationTitle,
                 fixInstructionProcessor,
                 axeResultToIssueFilingDataConverter,
                 unifiedResultToIssueFilingDataConverter,

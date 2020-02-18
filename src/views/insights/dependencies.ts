@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Logger } from 'common/logging/logger';
+import { title as applicationTitle } from 'content/strings/application';
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
@@ -48,6 +49,7 @@ export const rendererDependencies: (
     const storeActionMessageCreator = storeActionMessageCreatorFactory.fromStores(storesHub.stores);
 
     return {
+        applicationTitle,
         dom: document,
         render: ReactDOM.render,
         initializeFabricIcons,
