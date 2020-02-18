@@ -1,15 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`content view renders 1`] = `
-"<Page deps={{...}}>
-  <div className=\\"content-container\\">
-    <div className=\\"content-left\\" />
-    <div className=\\"content\\">
+<Page
+  deps={
+    Object {
+      "applicationTitle": "THE TITLE OF OUR APPLICATION",
+    }
+  }
+>
+  <div
+    className="content-container"
+  >
+    <div
+      className="content-left"
+    />
+    <div
+      className="content"
+    >
       <p>
         THE CONTENT
       </p>
     </div>
-    <div className=\\"content-right\\" />
+    <div
+      className="content-right"
+    />
   </div>
-</Page>"
+</Page>
 `;

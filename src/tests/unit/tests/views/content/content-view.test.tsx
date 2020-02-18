@@ -17,6 +17,6 @@ describe('content view', () => {
         );
         const result = shallow(component);
 
-        expect(result.debug()).toMatchSnapshot();
+        expect(result.getElement()).toMatchSnapshot();
     });
 });
