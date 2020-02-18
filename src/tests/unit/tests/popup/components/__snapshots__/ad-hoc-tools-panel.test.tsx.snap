@@ -10,30 +10,39 @@ exports[`AdHocToolsPanelTest adhoc panel matches snapshot 1`] = `
     <div>
       first
     </div>
+    <span
+      className="divider"
+    />
     <div>
       second
     </div>
+    <span
+      className="divider"
+    />
     <div>
       third
     </div>
     <div>
       fourth
     </div>
+    <span
+      className="divider"
+    />
     <div>
       fifth
     </div>
   </main>
   <div
-    className="ad-hoc-tools-panel-footer"
+    className="adHocToolsPanelFooter"
     role="navigation"
   >
     <StyledLinkBase
-      className="insights-link"
+      className="link"
       id="back-to-launchpad-link"
       onClick={null}
     >
       <StyledIconBase
-        className="back-to-launch-pad-icon"
+        className="backToLaunchPadIcon"
         iconName="back"
       />
       Back to launch pad

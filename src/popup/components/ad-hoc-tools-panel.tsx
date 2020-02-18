@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
+import { flatMap } from 'lodash';
 import { css, Icon, Link } from 'office-ui-fabric-react';
 import * as React from 'react';
 import * as styles from './ad-hoc-tools-panel.scss';
@@ -12,11 +13,44 @@ export interface AdHocToolsPanelProps {
 }
 
 export const AdHocToolsPanel = NamedFC<AdHocToolsPanelProps>('AdHocToolsPanel', props => {
-    const toggles = props.diagnosticViewToggleFactory.createTogglesForAdHocToolsPanel();
+    const getTogglesWithDividers = () => {
+        const toggles = props.diagnosticViewToggleFactory.createTogglesForAdHocToolsPanel();
+
+        let dividerIndex = 0;
+
+        const getDivider = () => (
+            <span key={`divider-${dividerIndex++}`} className={styles.divider}></span>
+        );
+
+        const totalRows = 3;
+        const totalIterableRows = totalRows - 1; // we treat the last row differently
+
+        const result = flatMap(toggles, (toggle, index) => {
+            console.log('index', index);
+
+            if (index === 0) {
+                return [toggle, getDivider()];
+            }
+
+            if (index % totalIterableRows === 0) {
+                return [toggle];
+            }
+
+            if (index === toggles.length) {
+                return [toggles];
+            }
+
+            return [toggle, getDivider()];
+        });
+
+        return result;
+    };
+
+    const togglesWithDividers = getTogglesWithDividers();
 
     return (
         <div className={css('main-section', styles.adHocToolsPanel)}>
-            <main className={styles.adHocToolsGrid}>{toggles}</main>
+            <main className={styles.adHocToolsGrid}>{togglesWithDividers}</main>
             <div role="navigation" className={styles.adHocToolsPanelFooter}>
                 <Link
                     className={styles.link}

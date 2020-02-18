@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+@import '../../common/styles/colors.scss';
+
 .ad-hoc-tools-panel {
     padding-right: 8px;
     padding-left: 8px;
@@ -7,11 +9,17 @@
     .ad-hoc-tools-grid {
         display: grid;
 
+        grid-auto-flow: column;
+
         grid-template-columns: auto auto;
-        grid-template-rows: auto auto auto;
+        grid-template-rows: auto 1px auto 1px auto;
 
         grid-column-gap: 30px;
-        grid-row-gap: 28px;
+        grid-row-gap: 14px;
+    }
+
+    .divider {
+        border-bottom: 1px solid $neutral-8;
     }
 
     .ad-hoc-tools-panel-footer {
