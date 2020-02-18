@@ -15,6 +15,10 @@ export const ElectronExternalLink = NamedFC<ElectronExternalLinkProps>(
     'ElectronExternalLink',
     (props: ElectronExternalLinkProps) => {
         const onClick = () => props.shell.openExternal(props.href);
-        return <Link onClick={onClick}>{props.children}</Link>;
+        return (
+            <Link as="a" tabIndex={0} onClick={onClick}>
+                {props.children}
+            </Link>
+        );
     },
 );

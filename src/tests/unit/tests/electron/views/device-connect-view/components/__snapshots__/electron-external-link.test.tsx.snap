@@ -2,7 +2,9 @@
 
 exports[`ElectronExternalLinkTest render 1`] = `
 <StyledLinkBase
+  as="a"
   onClick={[Function]}
+  tabIndex={0}
 >
   test-text
 </StyledLinkBase>
