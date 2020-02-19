@@ -7,14 +7,16 @@ exports[`Header renders per snapshot 1`] = `
   <Component
     deps={
       Object {
-        "applicationTitle": "APPLICATION_TITLE",
+        "textContent": Object {
+          "applicationTitle": "THE_APPLICATION_TITLE",
+        },
       }
     }
   />
   <span
     className="headerTitle"
   >
-    APPLICATION_TITLE
+    THE_APPLICATION_TITLE
   </span>
   <div />
   <div

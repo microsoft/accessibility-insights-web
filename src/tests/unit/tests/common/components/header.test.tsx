@@ -7,8 +7,11 @@ import { Header, HeaderDeps } from 'common/components/header';
 
 describe('Header', () => {
     it('renders per snapshot', () => {
+        const applicationTitle = 'THE_APPLICATION_TITLE';
         const deps = {
-            applicationTitle: 'APPLICATION_TITLE',
+            textContent: {
+                applicationTitle,
+            },
         } as HeaderDeps;
         const wrapper = shallow(<Header deps={deps} />);
         expect(wrapper.getElement()).toMatchSnapshot();

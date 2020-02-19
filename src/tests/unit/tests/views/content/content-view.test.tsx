@@ -7,8 +7,12 @@ import { ContentView, ContentViewDeps } from 'views/content/content-view';
 
 describe('content view', () => {
     it('renders', () => {
-        const applicationTitle = 'THE TITLE OF OUR APPLICATION';
-        const deps = { applicationTitle } as ContentViewDeps;
+        const applicationTitle = 'THE_APPLICATION_TITLE';
+        const deps = {
+            textContent: {
+                applicationTitle,
+            },
+        } as ContentViewDeps;
 
         const component = (
             <ContentView deps={deps}>
