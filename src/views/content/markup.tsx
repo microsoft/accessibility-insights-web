@@ -10,6 +10,7 @@ import { CrossIcon } from '../../common/icons/cross-icon';
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
 import { ContentPageComponent, ContentPageOptions } from './content-page';
 import { CodeExample, CodeExampleProps } from './markup/code-example';
+import { TextContent } from 'content/strings/application';
 
 type PassFailProps = {
     passText: JSX.Element;
@@ -43,7 +44,7 @@ export type Markup = {
 };
 
 export type MarkupDeps = {
-    applicationTitle: string;
+    textContent: Pick<TextContent, 'applicationTitle'>,
     contentActionMessageCreator: ContentActionMessageCreator;
 };
 
@@ -54,7 +55,7 @@ export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
     }
 
     function Title(props: { children: string }): JSX.Element {
-        const { applicationTitle } = deps;
+        const { applicationTitle } = deps.textContent;
         const helmet = (
             <Helmet>
                 <title>

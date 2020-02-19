@@ -10,7 +10,9 @@ import { contentPages } from '../../../../content';
 describe('content', () => {
     const contentActionMessageCreator = Mock.ofType<ContentActionMessageCreator>().object;
     const deps = {
-        applicationTitle: 'MY_APPLICATION_TITLE',
+        textContent: {
+            applicationTitle: 'THE_APPLICATION_TITLE',
+        },
         contentActionMessageCreator,
     };
 
