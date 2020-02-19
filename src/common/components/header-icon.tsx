@@ -12,21 +12,27 @@ import {
     WithStoreSubscriptionProps,
 } from './with-store-subscription';
 
-export type HeaderIconDeps = WithStoreSubscriptionDeps<HeaderIconState>;
-
-export type HeaderIconProps = WithStoreSubscriptionProps<HeaderIconState>;
-
 export type HeaderIconState = ThemeInnerState;
 
-export const HeaderIconComponent = NamedFC<HeaderIconProps>(
-    'HeaderIconComponent',
-    (props: HeaderIconProps) => {
-        const state = props.storeState.userConfigurationStoreData;
-        const enableHighContrast = state && state.enableHighContrast;
+export type HeaderIconDeps = WithStoreSubscriptionDeps<HeaderIconState>;
 
-        return enableHighContrast ? <BrandBlue /> : <BrandWhite />;
-    },
-);
+export type HeaderIconProps = {
+    invertColors?: boolean;
+} & WithStoreSubscriptionProps<HeaderIconState>;
+
+export const HeaderIconComponent = NamedFC<HeaderIconProps>('HeaderIconComponent', props => {
+    const state = props.storeState.userConfigurationStoreData;
+    const enableHighContrast = state && state.enableHighContrast;
+
+    const { invertColors = false } = props;
+
+    console.log('invertColors', invertColors);
+
+    const defaultIcon = invertColors ? <BrandBlue /> : <BrandWhite />;
+    const highContrastIcon = invertColors ? <BrandWhite /> : <BrandBlue />;
+
+    return enableHighContrast ? highContrastIcon : defaultIcon;
+});
 
 export const HeaderIcon = withStoreSubscription<HeaderIconProps, HeaderIconState>(
     HeaderIconComponent,
