@@ -4,7 +4,7 @@ jobs:
     - job: 'unit_tests_and_lints'
 
       pool:
-          vmImage: 'ubuntu-16.04'
+          vmImage: 'macOS-10.14'
 
       steps:
           - template: pipeline/install-node-prerequisites.yaml
@@ -42,7 +42,7 @@ jobs:
                 # reportDirectory: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/lcov-report
             displayName: publish code coverage
 
-          - script: yarn publish-code-coverage
+          - script: yarn publish-code-coverage -t CODECOV_TOKEN
             displayName: Publish code coverage to codecov
 
           # CI build only
