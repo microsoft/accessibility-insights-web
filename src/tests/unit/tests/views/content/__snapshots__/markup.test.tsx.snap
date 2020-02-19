@@ -357,7 +357,7 @@ exports[`ContentPage .Markup <Title> renders where setPageTitle === true 1`] = `
     <title>
       TEST
        - 
-      Accessibility Insights for Web
+      THE_APPLICATION_TITLE
     </title>
   </HelmetWrapper>
   <h1>
