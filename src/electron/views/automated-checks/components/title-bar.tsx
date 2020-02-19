@@ -1,20 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ActionButton } from 'office-ui-fabric-react';
-import * as React from 'react';
-
+import { HeaderIcon, HeaderIconDeps } from 'common/components/header-icon';
 import { NamedFC } from 'common/react/named-fc';
 import { brand } from 'content/strings/application';
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { WindowTitle, WindowTitleDeps } from 'electron/views/common/window-title/window-title';
-import { BrandWhite } from 'icons/brand/white/brand-white';
+import { ActionButton } from 'office-ui-fabric-react';
+import * as React from 'react';
 import { MaximizeRestoreButton } from './maximize-restore-button';
 import * as styles from './title-bar.scss';
 
 export type TitleBarDeps = {
     windowFrameActionCreator: WindowFrameActionCreator;
-} & WindowTitleDeps;
+} & WindowTitleDeps &
+    HeaderIconDeps;
 
 export interface TitleBarProps {
     deps: TitleBarDeps;
@@ -66,7 +66,7 @@ export const TitleBar = NamedFC<TitleBarProps>('TitleBar', (props: TitleBarProps
             deps={props.deps}
             className={styles.titleBar}
         >
-            <BrandWhite />
+            <HeaderIcon deps={props.deps} />
         </WindowTitle>
     );
 });
