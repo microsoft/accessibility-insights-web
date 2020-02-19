@@ -15,6 +15,7 @@ describe('ContentInclude', () => {
     };
 
     const deps = {
+        applicationTitle: 'MY_APPLICATION_TITLE',
         contentProvider: ContentPage.provider(content),
         contentActionMessageCreator: ({} as any) as ContentActionMessageCreator,
     };
