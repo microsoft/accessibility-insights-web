@@ -4,7 +4,7 @@ jobs:
     - job: 'unit_tests_and_lints'
 
       pool:
-          vmImage: 'macOS-10.14'
+          vmImage: 'ubuntu-16.04'
 
       steps:
           - template: pipeline/install-node-prerequisites.yaml
