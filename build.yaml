@@ -42,7 +42,7 @@ jobs:
                 # reportDirectory: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/lcov-report
             displayName: publish code coverage
 
-          - script: yarn publish-code-coverage -t CODECOV_TOKEN
+          - script: yarn publish-code-coverage -t $(CODECOV_TOKEN)
             displayName: Publish code coverage to codecov
 
           # CI build only
