@@ -44,7 +44,7 @@ export type Markup = {
 };
 
 export type MarkupDeps = {
-    textContent: Pick<TextContent, 'applicationTitle'>,
+    textContent: Pick<TextContent, 'applicationTitle'>;
     contentActionMessageCreator: ContentActionMessageCreator;
 };
 
