@@ -43,12 +43,11 @@ export type Markup = {
 };
 
 export type MarkupDeps = {
-    applicationTitle: string,
-    contentActionMessageCreator: ContentActionMessageCreator,
+    applicationTitle: string;
+    contentActionMessageCreator: ContentActionMessageCreator;
 };
 
 export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
-
     function Include(props: { content: ContentPageComponent }): JSX.Element {
         const Content = props.content;
         return <Content deps={deps} options={options} />;
