@@ -34,15 +34,13 @@ export class ThemeInner extends React.Component<ThemeInnerProps> {
     }
 
     public render(): JSX.Element {
-        const enableHighContrast = this.isHighContrastEnabled(this.props);
-        const classNames = enableHighContrast ? ['high-contrast-theme'] : [];
+        const classNames = ['theme-switcher'];
 
-        return (
-            <BodyClassModifier
-                documentManipulator={this.props.deps.documentManipulator}
-                classNames={classNames}
-            />
-        );
+        if (this.isHighContrastEnabled(this.props)) {
+            classNames.push('high-contrast-theme');
+        }
+
+        return <BodyClassModifier deps={this.props.deps} classNames={classNames} />;
     }
 
     private isHighContrastEnabled(props: ThemeInnerProps): boolean {

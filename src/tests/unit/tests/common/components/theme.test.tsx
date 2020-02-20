@@ -12,7 +12,7 @@ import { HighContrastThemePalette } from 'common/styles/high-contrast-theme-pale
 describe('ThemeInner', () => {
     let props: ThemeInnerProps;
     const loadThemeMock = jest.fn();
-    const documentManipulatorMock = Mock.ofType<DocumentManipulator>();
+    const documentManipulatorMock = Mock.ofType(DocumentManipulator);
 
     beforeEach(() => {
         props = {
