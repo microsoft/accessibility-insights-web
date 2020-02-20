@@ -7,9 +7,16 @@ exports[`PlatformInfo Renders per snapshot for mac 1`] = `
       "is-mac-os",
     ]
   }
-  documentManipulator={
+  deps={
     Object {
-      "id": "stubDocumentManipulator",
+      "documentManipulator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "document": undefined,
+      },
+      "platformInfo": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "currentProcess": undefined,
+      },
     }
   }
 />

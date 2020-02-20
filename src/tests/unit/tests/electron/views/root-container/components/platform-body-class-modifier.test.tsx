@@ -15,10 +15,10 @@ describe(PlatformInfo, () => {
     let mockDeps: PlatformBodyClassModifierDeps;
 
     beforeEach(() => {
-        mockPlatformInfo = Mock.ofType<PlatformInfo>();
+        mockPlatformInfo = Mock.ofType(PlatformInfo);
         mockDeps = {
             platformInfo: mockPlatformInfo.object,
-            documentManipulator: ({ id: 'stubDocumentManipulator' } as any) as DocumentManipulator,
+            documentManipulator: Mock.ofType(DocumentManipulator).object,
         };
     });
 

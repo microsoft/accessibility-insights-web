@@ -22,11 +22,6 @@ export const PlatformBodyClassModifier = NamedFC<PlatformBodyClassModifierProps>
             return null;
         }
 
-        return (
-            <BodyClassModifier
-                documentManipulator={props.deps.documentManipulator}
-                classNames={['is-mac-os']}
-            />
-        );
+        return <BodyClassModifier deps={props.deps} classNames={['is-mac-os']} />;
     },
 );

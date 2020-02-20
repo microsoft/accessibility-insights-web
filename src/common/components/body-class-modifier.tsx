@@ -3,9 +3,13 @@
 import { DocumentManipulator } from 'common/document-manipulator';
 import * as React from 'react';
 
+export type BodyClassModifierDeps = {
+    documentManipulator: DocumentManipulator;
+};
+
 export type BodyClassModifierProps = {
     classNames: string[];
-    documentManipulator: DocumentManipulator;
+    deps: BodyClassModifierDeps;
 };
 
 // We user our own BodyClassModifier rather than using Helmet's similar functionality because we
@@ -29,7 +33,7 @@ export class BodyClassModifier extends React.Component<BodyClassModifierProps> {
     }
 
     private updateClassNames(oldClassNames: string[], newClassNames: string[]): void {
-        const { documentManipulator } = this.props;
+        const { documentManipulator } = this.props.deps;
 
         const addedClassNames = newClassNames.filter(newName => !oldClassNames.includes(newName));
         const removedClassNames = oldClassNames.filter(oldName => !newClassNames.includes(oldName));
