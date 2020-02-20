@@ -15,7 +15,10 @@ export class IncompatibleBrowserRenderer {
 
     public render(): void {
         const container = this.dom.querySelector('#popup-container');
-
+        
+        if(container === null) {
+            console.log('null');
+        }
         this.renderer(
             <>
                 <div className="ms-Fabric unsupported-browser-info-panel">
