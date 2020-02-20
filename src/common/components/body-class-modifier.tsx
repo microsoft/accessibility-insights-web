@@ -8,30 +8,37 @@ export type BodyClassModifierProps = {
     documentManipulator: DocumentManipulator;
 };
 
+// We user our own BodyClassModifier rather than using Helmet's similar functionality because we
+// need multiple BodyClassModifiers to be able to co-exist without overwriting each other or the
+// body classes office fabric maintains.
 export class BodyClassModifier extends React.Component<BodyClassModifierProps> {
     public render(): JSX.Element {
         return null;
     }
 
-    private updateClassNamesFrom(prevClassNames: string[]): void {
-        const { classNames, documentManipulator } = this.props;
+    public componentDidMount(): void {
+        this.updateClassNames([], this.props.classNames);
+    }
 
-        const addedClassNames = classNames.filter(n => !prevClassNames.includes(n));
-        const removedClassNames = prevClassNames.filter(n => !classNames.includes(n));
+    public componentDidUpdate(prevProps: BodyClassModifierProps): void {
+        this.updateClassNames(prevProps.classNames, this.props.classNames);
+    }
 
-        // Note: may include class names not managed by us; leave them as-is
+    public componentWillUnmount(): void {
+        this.updateClassNames(this.props.classNames, []);
+    }
+
+    private updateClassNames(oldClassNames: string[], newClassNames): void {
+        const { documentManipulator } = this.props;
+
+        const addedClassNames = newClassNames.filter(n => !oldClassNames.includes(n));
+        const removedClassNames = oldClassNames.filter(n => !newClassNames.includes(n));
+
+        // document.body may include classes not managed by this BodyClassModifier; leave them as-is
         let allBodyClassNames = documentManipulator.bodyClassNames;
         allBodyClassNames = allBodyClassNames.filter(n => !removedClassNames.includes(n));
         allBodyClassNames.push(...addedClassNames);
 
         documentManipulator.bodyClassNames = allBodyClassNames;
-    }
-
-    public componentDidMount(): void {
-        this.updateClassNamesFrom([]);
-    }
-
-    public componentDidUpdate(prevProps: BodyClassModifierProps): void {
-        this.updateClassNamesFrom(prevProps.classNames);
     }
 }
