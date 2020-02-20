@@ -20,10 +20,18 @@
         color: $primary-text;
         font-size: $fontSizeM;
         font-family: $fontFamily;
+
+        &:hover {
+            color: $button-hover;
+        }
     }
 
     .button-icon {
         color: $primary-text;
         line-height: 16px;
+
+        &:hover {
+            color: $button-hover;
+        }
     }
 }
