@@ -62,7 +62,7 @@ exports[`TitleBar renders 1`] = `
     }
   }
 >
-  <Component
+  <WithStoreSubscriptionForHeaderIconComponent
     deps={
       Object {
         "platformInfo": proxy {

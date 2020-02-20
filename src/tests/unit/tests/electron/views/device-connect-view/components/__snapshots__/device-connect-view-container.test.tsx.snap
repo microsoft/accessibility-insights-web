@@ -14,7 +14,7 @@ exports[`DeviceConnectViewContainer renders 1`] = `
       }
     }
   >
-    <Component
+    <WithStoreSubscriptionForHeaderIconComponent
       deps={Object {}}
       invertColors={true}
     />
