@@ -28,7 +28,7 @@ export class BodyClassModifier extends React.Component<BodyClassModifierProps> {
         this.updateClassNames(this.props.classNames, []);
     }
 
-    private updateClassNames(oldClassNames: string[], newClassNames): void {
+    private updateClassNames(oldClassNames: string[], newClassNames: string[]): void {
         const { documentManipulator } = this.props;
 
         const addedClassNames = newClassNames.filter(n => !oldClassNames.includes(n));
