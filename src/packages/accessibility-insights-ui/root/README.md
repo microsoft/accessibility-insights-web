@@ -5,7 +5,7 @@ Licensed under the MIT License.
 
 # accessibility-insights-ui
 
-This library was created so the Accessibility Insights website can share the overall UI 
+This library was created so the Accessibility Insights website can share the overall UI
 presentation and style with our other products. It was built and is being maintained for that
 purpose alone and we are not intended it to be consumed by the broader open-source community.
 
