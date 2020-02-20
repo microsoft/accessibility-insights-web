@@ -5,7 +5,6 @@ import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ViewRoutes } from 'electron/flux/types/window-state-store-data';
 import {
-    RootContainer,
     RootContainerDeps,
     RootContainerInternal,
     RootContainerProps,
