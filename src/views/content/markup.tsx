@@ -45,7 +45,7 @@ export type Markup = {
 
 export type MarkupDeps = {
     textContent: Pick<TextContent, 'applicationTitle'>;
-    contentActionMessageCreator: ContentActionMessageCreator;
+    contentActionMessageCreator: Pick<ContentActionMessageCreator, 'openContentHyperLink'>;
 };
 
 export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {

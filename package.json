@@ -19,6 +19,7 @@
         "build:unified": "grunt build-unified",
         "build:unified:all": "grunt build-unified-all",
         "build:package:report": "grunt build-package-report",
+        "build:package:ui": "grunt build-package-ui",
         "build:prod": "grunt build-prod",
         "copyright:check": "license-check-and-add check -f copyright-header.config.json",
         "copyright:fix": "license-check-and-add add -f copyright-header.config.json",
