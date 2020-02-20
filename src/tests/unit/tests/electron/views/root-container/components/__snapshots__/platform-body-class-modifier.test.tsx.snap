@@ -1,15 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PlatformInfo Renders per snapshot for mac 1`] = `
-"<BodyClassModifier documentManipulator={[Function: function () {
-                    var args = [];
-                    for (var _i = 0; _i < arguments.length; _i++) {
-                        args[_i] = arguments[_i];
-                    }
-                    _this._interceptor.removeInvocation(invocation_1);
-                    var method = new MethodInfo(target, p);
-                    var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
-                    _this._interceptor.intercept(methodInvocation);
-                    return methodInvocation.returnValue;
-                }]} classNames={{...}} />"
+<BodyClassModifier
+  classNames={
+    Array [
+      "is-mac-os",
+    ]
+  }
+  documentManipulator={
+    Object {
+      "id": "stubDocumentManipulator",
+    }
+  }
+/>
 `;

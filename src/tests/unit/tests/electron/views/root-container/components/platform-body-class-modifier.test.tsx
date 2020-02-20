@@ -12,15 +12,13 @@ import { IMock, Mock } from 'typemoq';
 
 describe(PlatformInfo, () => {
     let mockPlatformInfo: IMock<PlatformInfo>;
-    let mockDocumentManipulator: IMock<DocumentManipulator>;
     let mockDeps: PlatformBodyClassModifierDeps;
 
     beforeEach(() => {
         mockPlatformInfo = Mock.ofType<PlatformInfo>();
-        mockDocumentManipulator = Mock.ofType<DocumentManipulator>();
         mockDeps = {
             platformInfo: mockPlatformInfo.object,
-            documentManipulator: mockDocumentManipulator.object,
+            documentManipulator: ({ id: 'stubDocumentManipulator' } as any) as DocumentManipulator,
         };
     });
 
@@ -37,6 +35,6 @@ describe(PlatformInfo, () => {
 
         const testSubject = shallow(<PlatformBodyClassModifier deps={mockDeps} />);
 
-        expect(testSubject.debug()).toMatchSnapshot();
+        expect(testSubject.getElement()).toMatchSnapshot();
     });
 });
