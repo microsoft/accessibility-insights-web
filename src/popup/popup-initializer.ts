@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DocumentManipulator } from 'common/document-manipulator';
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 import { A11YSelfValidator } from '../common/a11y-self-validator';
@@ -198,6 +199,8 @@ export class PopupInitializer {
 
         const axeInfo = AxeInfo.Default;
 
+        const documentManipulator = new DocumentManipulator(document);
+
         const deps: DiagnosticViewToggleDeps & MainRendererDeps = {
             contentProvider: contentPages,
             popupActionMessageCreator,
@@ -212,6 +215,7 @@ export class PopupInitializer {
             launchPanelHeaderClickHandler,
             browserAdapter: this.browserAdapter,
             LinkComponent: NewTabLink,
+            documentManipulator,
         };
 
         const diagnosticViewToggleFactory = new DiagnosticViewToggleFactory(
