@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import { BrowserWindow } from 'electron';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
-import { BodyClassModifier } from 'electron/views/common/body-class-modifier/body-class-modifier';
-import { RootContainer, RootContainerDeps } from 'electron/views/root-container/components/root-container';
-import { RootContainerRenderer } from 'electron/views/root-container/root-container-renderer';
+import { PlatformBodyClassModifier } from 'electron/views/root-container/components/platform-body-class-modifier';
+import { RootContainer } from 'electron/views/root-container/components/root-container';
+import { RootContainerRenderer, RootContainerRendererDeps } from 'electron/views/root-container/root-container-renderer';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { IMock, It, Mock, Times } from 'typemoq';
@@ -27,11 +27,11 @@ describe('RootContainerRendererTest', () => {
         const deps = {
             currentWindow: browserWindow,
             windowStateActionCreator: windowStateActionCreatorMock.object,
-        } as RootContainerDeps;
+        } as RootContainerRendererDeps;
 
         const expectedComponent = (
             <>
-                <BodyClassModifier deps={deps} />
+                <PlatformBodyClassModifier deps={deps} />
                 <RootContainer deps={deps} />
             </>
         );
