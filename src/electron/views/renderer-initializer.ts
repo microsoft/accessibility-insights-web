@@ -292,6 +292,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             unifiedResultToIssueFilingDataConverter: null, // we don't support issue filing right now
             windowUtils: null,
             setFocusVisibility,
+            customCongratsMessage:
+                "No failed automated checks were found. Continue investigating your app's accessibility compliance through manual testing",
         };
 
         const deps: RootContainerDeps = {
