@@ -617,7 +617,6 @@ module.exports = function(grunt) {
     grunt.registerTask('build-package-ui', [
         'clean:intermediates',
         'exec:generate-scss-typings',
-        // 'exec:webpack-prod', // required to get the css assets
         'exec:webpack-package-ui',
         'build-assets',
         'package-ui',
