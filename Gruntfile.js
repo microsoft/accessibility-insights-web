@@ -13,6 +13,10 @@ module.exports = function(grunt) {
     const packageReportBundlePath = path.join(packageReportPath, 'bundle');
     const packageReportDropPath = path.join(packageReportPath, 'drop');
 
+    const packageUIPath = path.join('package', 'ui');
+    const packageUIBundlePath = path.join(packageUIPath, 'bundle');
+    const packageUIDropPath = path.join(packageUIPath, 'drop');
+
     function mustExist(file, reason) {
         const normalizedFile = path.normalize(file);
         if (!grunt.file.exists(normalizedFile)) {
@@ -132,6 +136,26 @@ module.exports = function(grunt) {
                     },
                 ],
             },
+            'package-ui': {
+                files: [
+                    {
+                        cwd: '.',
+                        src: path.join(packageUIBundlePath, 'ui.bundle.js'),
+                        dest: path.join(packageUIDropPath, 'index.js'),
+                    },
+                    {
+                        cwd: '.',
+                        src: path.join(packageUIBundlePath, 'ui.css'),
+                        dest: path.join(packageUIDropPath, 'ui.css'),
+                    },
+                    {
+                        cwd: './src/packages/accessibility-insights-ui/root',
+                        src: '*',
+                        dest: packageUIDropPath,
+                        expand: true,
+                    },
+                ],
+            },
         },
         exec: {
             'webpack-dev': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name dev`,
@@ -142,6 +166,9 @@ module.exports = function(grunt) {
             'webpack-package-report': `"${path.resolve(
                 './node_modules/.bin/webpack',
             )}" --config-name package-report`,
+            'webpack-package-ui': `"${path.resolve(
+                './node_modules/.bin/webpack',
+            )}" --config-name package-ui`,
             'generate-scss-typings': `"${path.resolve('./node_modules/.bin/tsm')}" src`,
         },
         sass: {
@@ -268,6 +295,7 @@ module.exports = function(grunt) {
             clean: {
                 [targetName]: dropPath,
                 'package-report': packageReportDropPath,
+                'package-ui': packageUIDropPath,
                 scss: path.join('src', '**/*.scss.d.ts'),
             },
             'embed-styles': {
@@ -524,6 +552,16 @@ module.exports = function(grunt) {
         console.log(`package is in ${packageReportDropPath}`);
     });
 
+    grunt.registerTask('package-ui', function() {
+        const mustExistPath = path.join(packageUIBundlePath, 'ui.bundle.js');
+
+        mustExist(mustExistPath, 'Have you run webpack?');
+
+        grunt.task.run('clean:package-ui');
+        grunt.task.run('copy:package-ui');
+        console.log(`package is in ${packageUIDropPath}`);
+    });
+
     grunt.registerTask('extension-release-drops', function() {
         extensionReleaseTargets.forEach(targetName => {
             grunt.task.run('drop:' + targetName);
@@ -575,6 +613,13 @@ module.exports = function(grunt) {
         'exec:webpack-package-report',
         'build-assets',
         'package-report',
+    ]);
+    grunt.registerTask('build-package-ui', [
+        'clean:intermediates',
+        'exec:generate-scss-typings',
+        'exec:webpack-package-ui',
+        'build-assets',
+        'package-ui',
     ]);
     grunt.registerTask('build-all', [
         'clean:intermediates',

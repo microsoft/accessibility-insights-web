@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UIFactory exports ContentView 1`] = `
+<Content
+  deps={
+    Object {
+      "storeActionMessageCreator": Object {
+        "getAllStates": [Function],
+      },
+      "storesActionCreator": null,
+      "storesHub": null,
+      "textContent": Object {
+        "applicationTitle": "THE_APPLICATION_TITLE",
+      },
+    }
+  }
+>
+  CONTENTS
+</Content>
+`;

@@ -94,6 +94,7 @@
     --screenshot-image-outline: #8b8b8b;
     --card-border: transparent;
     --card-footer-border: var(--neutral-10);
+    --button-hover: var(--communication-primary);
 
     // Landmark colors
     --landmark-contentinfo: #00a88c;
@@ -164,6 +165,7 @@
         --screenshot-image-outline: var(--white);
         --card-border: var(--white);
         --card-footer-border: var(--white);
+        --button-hover: #0078d4; // this is the same color office fabric uses on hover
     }
 }
 
@@ -202,7 +204,6 @@ $neutral-55: var(--neutral-55);
 $neutral-60: var(--neutral-60);
 $neutral-70: var(--neutral-70);
 $neutral-80: var(--neutral-80);
-$neutral-90: var(--neutral-90);
 $neutral-alpha-2: var(--neutral-alpha-2);
 $neutral-alpha-4: var(--neutral-alpha-4);
 $neutral-alpha-6: var(--neutral-alpha-6);
@@ -262,6 +263,7 @@ $menu-background: var(--menu-background);
 $screenshot-image-outline: var(--screenshot-image-outline);
 $card-border: var(--card-border);
 $card-footer-border: var(--card-footer-border);
+$button-hover: var(--button-hover);
 
 // consistent colors
 $always-white: #ffffff;

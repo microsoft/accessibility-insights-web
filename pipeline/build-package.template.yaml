@@ -1,13 +1,17 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
+parameters:
+    - name: suffix
+      type: string
+
 jobs:
-    - job: 'unit_tests_and_lints'
+    - job: 'build_and_publish_package'
 
       pool:
           vmImage: 'macOS-10.14'
 
       steps:
-          - template: pipeline/install-node-prerequisites.yaml
+          - template: install-node-prerequisites.yaml
 
           - script: yarn lint:check
             displayName: check lint errors
@@ -42,9 +46,6 @@ jobs:
                 # reportDirectory: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/lcov-report
             displayName: publish code coverage
 
-          - script: yarn publish-code-coverage -t $(CODECOV_TOKEN)
-            displayName: Publish code coverage to codecov
-
           # CI build only
           - task: ComponentGovernanceComponentDetection@0
             displayName: 'Component Detection'
@@ -52,43 +53,11 @@ jobs:
             inputs:
                 verbosity: Normal
 
-    - job: 'publish_build_drops'
-      pool:
-          vmImage: 'ubuntu-16.04'
-      steps:
-          - template: pipeline/install-node-prerequisites.yaml
+          - script: yarn build:package:${{ parameters.suffix }}
+            displayName: build:package:${{ parameters.suffix }}
 
-          - script: yarn build:all
-            displayName: build:all
-
-          - task: PublishBuildArtifacts@1
+          - task: Npm@1
             inputs:
-                pathtoPublish: '$(System.DefaultWorkingDirectory)/drop'
-                artifactName: 'drop'
-            displayName: publish drop
-
-    - job: 'e2e_mac_web_unified'
-      pool:
-          vmImage: macOS-10.14
-      steps:
-          - template: pipeline/install-node-prerequisites.yaml
-          - template: pipeline/e2e-test-from-agent.yaml
-          - template: pipeline/e2e-test-publish-results.yaml
-          - template: pipeline/unified/unified-e2e-test-interactive.yaml
-          - template: pipeline/unified/unified-e2e-publish-results.yaml
-
-    - job: 'e2e_linux_unified'
-      pool:
-          vmImage: ubuntu-16.04
-      steps:
-          - template: pipeline/install-node-prerequisites.yaml
-          - template: pipeline/unified/unified-e2e-test-linux.yaml
-          - template: pipeline/unified/unified-e2e-publish-results.yaml
-
-    - job: 'e2e_windows_unified'
-      pool:
-          vmImage: windows-latest
-      steps:
-          - template: pipeline/install-node-prerequisites.yaml
-          - template: pipeline/unified/unified-e2e-test-interactive.yaml
-          - template: pipeline/unified/unified-e2e-publish-results.yaml
+                command: 'publish'
+                publishEndpoint: 'npmjs.com (accessibility-insights-team)'
+                workingDir: '$(System.DefaultWorkingDirectory)/package/${{ parameters.suffix }}/drop'

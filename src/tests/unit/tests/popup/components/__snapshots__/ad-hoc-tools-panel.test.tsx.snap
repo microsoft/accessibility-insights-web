@@ -2,57 +2,47 @@
 
 exports[`AdHocToolsPanelTest adhoc panel matches snapshot 1`] = `
 <div
-  className="ms-Grid main-section"
+  className="main-section adHocToolsPanel"
 >
-  <main>
-    <div
-      className="ms-Grid-row"
-    >
-      <div
-        className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 ad-hoc-tools-panel-group-0"
-      >
-        <div>
-          first
-        </div>
-        <div
-          className="ms-fontColor-neutralLight launch-panel-hr"
-        />
-        <div>
-          second
-        </div>
-        <div
-          className="ms-fontColor-neutralLight launch-panel-hr"
-        />
-        <div>
-          third
-        </div>
-      </div>
-      <div
-        className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 ad-hoc-tools-panel-group-1"
-      >
-        <div>
-          fourth
-        </div>
-        <div
-          className="ms-fontColor-neutralLight launch-panel-hr"
-        />
-        <div>
-          fifth
-        </div>
-      </div>
+  <main
+    className="adHocToolsGrid"
+  >
+    <div>
+      first
+    </div>
+    <span
+      className="divider"
+    />
+    <div>
+      second
+    </div>
+    <span
+      className="divider"
+    />
+    <div>
+      third
+    </div>
+    <div>
+      fourth
+    </div>
+    <span
+      className="divider"
+    />
+    <div>
+      fifth
     </div>
   </main>
   <div
-    className="ad-hoc-tools-panel-footer"
+    className="adHocToolsPanelFooter"
     role="navigation"
   >
     <StyledLinkBase
-      className="insights-link"
+      className="link"
       id="back-to-launchpad-link"
       onClick={null}
     >
       <StyledIconBase
-        className="back-to-launch-pad-icon"
+        className="backToLaunchPadIcon"
         iconName="back"
       />
       Back to launch pad

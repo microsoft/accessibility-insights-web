@@ -3,4 +3,4 @@
 jobs:
     - template: build-package.template.yaml
       parameters:
-          suffix: report
+          suffix: ui
