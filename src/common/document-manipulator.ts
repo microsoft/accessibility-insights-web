@@ -8,6 +8,7 @@ export class DocumentManipulator {
     public get bodyClassNames(): string[] {
         return this.document.body.className.split(' ');
     }
+
     public set bodyClassNames(value: string[]) {
         this.document.body.className = css(...value);
     }
