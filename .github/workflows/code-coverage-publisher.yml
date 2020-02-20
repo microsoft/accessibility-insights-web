@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - devaradhanm/*
   pull_request:
     branches: '**'
 
