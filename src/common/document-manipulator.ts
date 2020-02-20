@@ -5,11 +5,11 @@ import { css } from 'office-ui-fabric-react';
 export class DocumentManipulator {
     constructor(private document: Document) {}
 
-    public get bodyClassNames(): string[] {
+    public getBodyClassNames(): string[] {
         return this.document.body.className.split(' ');
     }
 
-    public set bodyClassNames(value: string[]) {
+    public setBodyClassNames(value: string[]): void {
         this.document.body.className = css(...value);
     }
 

@@ -34,13 +34,13 @@ describe('DocumentManipulator', () => {
         it("reflects the document body tag's className attribute", () => {
             const jsdom = new JSDOM('<html><body class="first second"></body></html>');
             const testSubject = new DocumentManipulator(jsdom.window.document);
-            expect(testSubject.bodyClassNames).toEqual(['first', 'second']);
+            expect(testSubject.getBodyClassNames()).toEqual(['first', 'second']);
         });
 
         it("sets the body tag's className attribute according to values in the setter", () => {
             const jsdom = new JSDOM('<html><body class="original"></body></html>');
             const testSubject = new DocumentManipulator(jsdom.window.document);
-            testSubject.bodyClassNames = ['a', 'b', 'c'];
+            testSubject.setBodyClassNames(['a', 'b', 'c']);
             expect(jsdom.window.document.body.className).toEqual('a b c');
         });
     });

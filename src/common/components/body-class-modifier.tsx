@@ -35,10 +35,10 @@ export class BodyClassModifier extends React.Component<BodyClassModifierProps> {
         const removedClassNames = oldClassNames.filter(oldName => !newClassNames.includes(oldName));
 
         // document.body may include classes not managed by this BodyClassModifier; leave them as-is
-        let allBodyClassNames = documentManipulator.bodyClassNames;
+        let allBodyClassNames = documentManipulator.getBodyClassNames();
         allBodyClassNames = allBodyClassNames.filter(n => !removedClassNames.includes(n));
         allBodyClassNames.push(...addedClassNames);
 
-        documentManipulator.bodyClassNames = allBodyClassNames;
+        documentManipulator.setBodyClassNames(allBodyClassNames);
     }
 }

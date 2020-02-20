@@ -7,10 +7,17 @@ import { BodyClassModifier } from 'common/components/body-class-modifier';
 import { DocumentManipulator } from 'common/document-manipulator';
 
 describe('BodyClassModifier', () => {
+    let bodyClassNames: string[];
     let documentManipulator: DocumentManipulator;
 
     beforeEach(() => {
-        documentManipulator = { bodyClassNames: [] } as DocumentManipulator;
+        bodyClassNames = [];
+        documentManipulator = {
+            getBodyClassNames: () => bodyClassNames,
+            setBodyClassNames: newClassNames => {
+                bodyClassNames = newClassNames;
+            },
+        } as DocumentManipulator;
     });
 
     it('should render as null', () => {
@@ -19,20 +26,20 @@ describe('BodyClassModifier', () => {
     });
 
     it('should not modify class names it is not responsible for', () => {
-        documentManipulator.bodyClassNames = ['pre-existing'];
+        bodyClassNames = ['pre-existing'];
 
         const testSubject = shallow(<BodyClassModifier classNames={['from-test-subject']} documentManipulator={documentManipulator} />);
 
-        expect(documentManipulator.bodyClassNames).toContain('pre-existing');
+        expect(bodyClassNames).toContain('pre-existing');
 
         testSubject.setProps({ classNames: [] });
 
-        expect(documentManipulator.bodyClassNames).toContain('pre-existing');
+        expect(bodyClassNames).toContain('pre-existing');
     });
 
     it('should add classNames to documentManipulator.bodyClassNames when mounted', () => {
         shallow(<BodyClassModifier classNames={['test-class']} documentManipulator={documentManipulator} />).render();
-        expect(documentManipulator.bodyClassNames).toEqual(['test-class']);
+        expect(bodyClassNames).toEqual(['test-class']);
     });
 
     it('should update classNames in documentManipulator.bodyClassNames when props are updated', () => {
@@ -40,7 +47,7 @@ describe('BodyClassModifier', () => {
         testSubject.render();
         testSubject.setProps({ classNames: ['from-set-props'] });
 
-        expect(documentManipulator.bodyClassNames).toEqual(['from-set-props']);
+        expect(bodyClassNames).toEqual(['from-set-props']);
     });
 
     it('should not change documentManipulator.bodyClassNames when props receive no-op updates', () => {
@@ -48,14 +55,14 @@ describe('BodyClassModifier', () => {
         testSubject.render();
         testSubject.setProps({ classNames: ['test-class'] });
 
-        expect(documentManipulator.bodyClassNames).toEqual(['test-class']);
+        expect(bodyClassNames).toEqual(['test-class']);
     });
 
     it('should remove classNames to documentManipulator.bodyClassNames when unmounted', () => {
         const testSubject = shallow(<BodyClassModifier classNames={['test-class']} documentManipulator={documentManipulator} />);
         testSubject.render();
         testSubject.unmount();
-        expect(documentManipulator.bodyClassNames).toEqual([]);
+        expect(bodyClassNames).toEqual([]);
     });
 
     it('should cooperate with other BodyClassModifiers responsible for different classNames', () => {
@@ -66,6 +73,6 @@ describe('BodyClassModifier', () => {
         ];
         testSubjects.forEach(s => s.render());
 
-        expect(documentManipulator.bodyClassNames).toEqual(['class-1', 'class-2', 'class-3']);
+        expect(bodyClassNames).toEqual(['class-1', 'class-2', 'class-3']);
     });
 });
