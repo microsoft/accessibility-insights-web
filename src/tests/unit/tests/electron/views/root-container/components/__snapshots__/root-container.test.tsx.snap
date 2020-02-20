@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component renders with routeId = deviceConnectView 1`] = `
+exports[`RootContainer renders with routeId = deviceConnectView 1`] = `
 <DeviceConnectViewContainer
   cardSelectionStoreData={
     Object {
@@ -44,7 +44,7 @@ exports[`Component renders with routeId = deviceConnectView 1`] = `
 />
 `;
 
-exports[`Component renders with routeId = resultsView 1`] = `
+exports[`RootContainer renders with routeId = resultsView 1`] = `
 <AutomatedChecksView
   cardSelectionStoreData={
     Object {

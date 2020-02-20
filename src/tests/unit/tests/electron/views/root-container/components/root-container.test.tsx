@@ -15,7 +15,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
 
-describe(RootContainer, () => {
+describe('RootContainer', () => {
     let deps: RootContainerDeps;
     let storeHubMock: IMock<ClientStoresHub<RootContainerState>>;
     let props: RootContainerProps;

@@ -4,7 +4,7 @@ exports[`Header renders per snapshot 1`] = `
 <header
   className="headerBar"
 >
-  <Component
+  <WithStoreSubscriptionForHeaderIconComponent
     deps={
       Object {
         "textContent": Object {
