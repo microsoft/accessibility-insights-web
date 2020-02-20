@@ -9,14 +9,14 @@ jobs:
       steps:
           - template: pipeline/install-node-prerequisites.yaml
 
-          - script: yarn lint:check
-            displayName: check lint errors
+#           - script: yarn lint:check
+#             displayName: check lint errors
 
-          - script: yarn format:check
-            displayName: check formatting errors
+#           - script: yarn format:check
+#             displayName: check formatting errors
 
-          - script: yarn copyright:check
-            displayName: check copyrightheaders
+#           - script: yarn copyright:check
+#             displayName: check copyrightheaders
 
           - script: yarn scss:build
             displayName: generate typings for scss files
