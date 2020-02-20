@@ -56,7 +56,7 @@ import { RootContainerState } from 'electron/views/root-container/components/roo
 import { PlatformInfo } from 'electron/window-management/platform-info';
 import { WindowFrameListener } from 'electron/window-management/window-frame-listener';
 import { WindowFrameUpdater } from 'electron/window-management/window-frame-updater';
-import { setFocusVisibility } from 'office-ui-fabric-react';
+import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
@@ -310,13 +310,14 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             storesHub,
             scanActionCreator,
             windowFrameActionCreator,
-            platformInfo: new PlatformInfo(process),
+            platformInfo,
             getCardsViewData: getCardViewData,
             getCardSelectionViewData: getCardSelectionViewData,
             screenshotViewModelProvider,
             ...cardsViewDeps,
             storeActionMessageCreator: new NullStoreActionMessageCreator(),
             settingsProvider: UnifiedSettingsProvider,
+            loadTheme,
             documentManipulator,
         };
 
