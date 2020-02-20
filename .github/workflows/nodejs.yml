@@ -1,0 +1,42 @@
+name: code-coverage-publisher
+
+on:
+  push:
+    branches:
+      - master
+      - devaradhanm/*
+  pull_request:
+    branches: '**'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+      
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+        
+    - name: install dependencies
+      run: yarn install --frozen-lockfile
+      
+    - name: build scss
+      run: yarn scss:build
+      
+    - name: Run tests
+      run: npx jest --projects src/tests/unit
+      env:
+        NODE_OPTIONS: --max_old_space_size=4096
+    
+    - name: Publish code coverage to codecov
+      uses: codecov/codecov-action@v1.0.5
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        fail_ci_if_error: true
+      
+    
