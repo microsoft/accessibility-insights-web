@@ -34,7 +34,8 @@ jobs:
         NODE_OPTIONS: max_old_space_size=512
     
     - name: Publish code coverage to codecov
-      uses: codecov/codecov-action@v1.0.5
+      uses: codecov/codecov-action@v1
+      if: always()
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         fail_ci_if_error: true
