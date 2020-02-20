@@ -34,7 +34,7 @@ exports[`NoFailedInstancesCongrats with default message renders 1`] = `
   <div
     className="reportCongratsInfo"
   >
-    No failed automated checks were found. Continue investigating your website's accessibility compliance through manual testing using Tab stops and Assessment in Accessibility Insights for Web
+    No failed automated checks were found. Continue investigating your website's accessibility compliance through manual testing using Tab stops and Assessment in Accessibility Insights for Web.
   </div>
   <InlineImage
     alt=""

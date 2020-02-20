@@ -18,7 +18,7 @@ export const NoFailedInstancesCongrats = NamedFC<NoFailedInstancesCongratsProps>
     props => {
         const message = props.deps.customCongratsMessage
             ? props.deps.customCongratsMessage
-            : "No failed automated checks were found. Continue investigating your website's accessibility compliance through manual testing using Tab stops and Assessment in Accessibility Insights for Web";
+            : "No failed automated checks were found. Continue investigating your website's accessibility compliance through manual testing using Tab stops and Assessment in Accessibility Insights for Web.";
         return (
             <div className={styles.reportCongratsMessage}>
                 <div className={styles.reportCongratsHead}>Congratulations!</div>

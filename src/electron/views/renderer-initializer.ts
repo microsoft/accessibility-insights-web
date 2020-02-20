@@ -293,7 +293,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             windowUtils: null,
             setFocusVisibility,
             customCongratsMessage:
-                "No failed automated checks were found. Continue investigating your app's accessibility compliance through manual testing",
+                "No failed automated checks were found. Continue investigating your app's accessibility compliance through manual testing.",
         };
 
         const deps: RootContainerDeps = {
