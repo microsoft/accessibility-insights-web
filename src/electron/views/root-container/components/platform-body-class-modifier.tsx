@@ -18,14 +18,15 @@ export type PlatformBodyClassModifierProps = {
 export const PlatformBodyClassModifier = NamedFC<PlatformBodyClassModifierProps>(
     'PlatformBodyClassModifier',
     props => {
-        if (props.deps.platformInfo.isMac()) {
-            return (
-                <BodyClassModifier
-                    documentManipulator={props.deps.documentManipulator}
-                    classNames={['is-mac-os']}
-                />
-            );
+        if (!props.deps.platformInfo.isMac()) {
+            return null;
         }
-        return null;
+
+        return (
+            <BodyClassModifier
+                documentManipulator={props.deps.documentManipulator}
+                classNames={['is-mac-os']}
+            />
+        );
     },
 );
