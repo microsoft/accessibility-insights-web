@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Theme } from 'common/components/theme';
+import { DocumentManipulator } from 'common/document-manipulator';
 import { BrowserWindow } from 'electron';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { PlatformBodyClassModifier } from 'electron/views/root-container/components/platform-body-class-modifier';
@@ -13,6 +15,7 @@ describe('RootContainerRendererTest', () => {
     test('render', () => {
         const dom = document.createElement('div');
         const containerDiv = document.createElement('div');
+        const documentManipulatorMock = Mock.ofType<DocumentManipulator>();
         const renderMock: IMock<typeof ReactDOM.render> = Mock.ofInstance(() => null);
         const windowStateActionCreatorMock = Mock.ofType(WindowStateActionCreator);
         const browserWindow: BrowserWindow = {
@@ -27,11 +30,13 @@ describe('RootContainerRendererTest', () => {
         const deps = {
             currentWindow: browserWindow,
             windowStateActionCreator: windowStateActionCreatorMock.object,
+            documentManipulator: documentManipulatorMock.object,
         } as RootContainerRendererDeps;
 
         const expectedComponent = (
             <>
                 <PlatformBodyClassModifier deps={deps} />
+                <Theme deps={deps} />
                 <RootContainer deps={deps} />
             </>
         );

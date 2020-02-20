@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { css } from '@uifabric/utilities';
 import * as React from 'react';
-import { Helmet } from 'react-helmet';
 
+import { DocumentManipulator } from 'common/document-manipulator';
 import { DefaultThemePalette } from '../styles/default-theme-palette';
 import { HighContrastThemePalette } from '../styles/high-contrast-theme-palette';
 import { UserConfigurationStoreData } from '../types/store-data/user-configuration-store';
+import { BodyClassModifier } from './body-class-modifier';
 import { withStoreSubscription, WithStoreSubscriptionDeps } from './with-store-subscription';
 
 export interface ThemeInnerState {
@@ -17,6 +17,7 @@ export type ThemeInnerProps = {
     storeState: ThemeInnerState;
 };
 export type ThemeDeps = WithStoreSubscriptionDeps<ThemeInnerState> & {
+    documentManipulator: DocumentManipulator;
     loadTheme: (theme) => void;
 };
 
@@ -33,14 +34,13 @@ export class ThemeInner extends React.Component<ThemeInnerProps> {
     }
 
     public render(): JSX.Element {
-        const enableHighContrast = this.isHighContrastEnabled(this.props);
-        const className = css('theme-switcher', enableHighContrast && 'high-contrast-theme');
+        const classNames = ['theme-switcher'];
 
-        return (
-            <Helmet>
-                <body className={className} />
-            </Helmet>
-        );
+        if (this.isHighContrastEnabled(this.props)) {
+            classNames.push('high-contrast-theme');
+        }
+
+        return <BodyClassModifier deps={this.props.deps} classNames={classNames} />;
     }
 
     private isHighContrastEnabled(props: ThemeInnerProps): boolean {

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Theme, ThemeDeps } from 'common/components/theme';
 import {
     PlatformBodyClassModifier,
     PlatformBodyClassModifierDeps,
@@ -11,7 +12,10 @@ import {
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-export type RootContainerRendererDeps = PlatformBodyClassModifierDeps & RootContainerDeps;
+export type RootContainerRendererDeps = RootContainerDeps &
+    ThemeDeps &
+    PlatformBodyClassModifierDeps;
+
 export class RootContainerRenderer {
     constructor(
         private readonly renderer: typeof ReactDOM.render,
@@ -26,6 +30,7 @@ export class RootContainerRenderer {
         this.renderer(
             <>
                 <PlatformBodyClassModifier deps={this.deps} />
+                <Theme deps={this.deps} />
                 <RootContainer deps={this.deps} />
             </>,
             rootContainer,
