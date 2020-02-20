@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { HeaderIcon, HeaderIconDeps } from 'common/components/header-icon';
 import {
     TelemetryPermissionDialog,
     TelemetryPermissionDialogDeps,
@@ -8,7 +9,6 @@ import { NamedFC } from 'common/react/named-fc';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { brand } from 'content/strings/application';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
-import { BrandBlue } from 'icons/brand/blue/brand-blue';
 import * as React from 'react';
 import { DeviceStoreData } from '../../../flux/types/device-store-data';
 import { WindowTitle, WindowTitleDeps } from '../../common/window-title/window-title';
@@ -17,7 +17,8 @@ import { DeviceConnectBody, DeviceConnectBodyDeps } from './device-connect-body'
 
 export type DeviceConnectViewContainerDeps = TelemetryPermissionDialogDeps &
     DeviceConnectBodyDeps &
-    WindowTitleDeps;
+    WindowTitleDeps &
+    HeaderIconDeps;
 
 export type DeviceConnectViewContainerProps = {
     deps: DeviceConnectViewContainerDeps;
@@ -36,7 +37,7 @@ export const DeviceConnectViewContainer = NamedFC<DeviceConnectViewContainerProp
                     deps={props.deps}
                     windowStateStoreData={props.windowStateStoreData}
                 >
-                    <BrandBlue />
+                    <HeaderIcon invertColors deps={props.deps} />
                 </WindowTitle>
                 <div className={mainContentWrapper}>
                     <DeviceConnectBody

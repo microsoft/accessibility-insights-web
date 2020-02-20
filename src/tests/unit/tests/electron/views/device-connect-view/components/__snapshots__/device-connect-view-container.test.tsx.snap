@@ -14,7 +14,10 @@ exports[`DeviceConnectViewContainer renders 1`] = `
       }
     }
   >
-    <BrandBlue />
+    <Component
+      deps={Object {}}
+      invertColors={true}
+    />
   </WindowTitle>
   <div
     className="mainContentWrapper"

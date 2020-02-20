@@ -4,7 +4,9 @@ exports[`content view renders 1`] = `
 <Page
   deps={
     Object {
-      "applicationTitle": "THE TITLE OF OUR APPLICATION",
+      "textContent": Object {
+        "applicationTitle": "THE_APPLICATION_TITLE",
+      },
     }
   }
 >

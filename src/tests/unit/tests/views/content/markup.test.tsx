@@ -10,7 +10,13 @@ import { ContentActionMessageCreator } from '../../../../../common/message-creat
 
 describe('ContentPage', () => {
     const contentActionMessageCreatorMock = Mock.ofType<ContentActionMessageCreator>();
-    const deps = { contentActionMessageCreator: contentActionMessageCreatorMock.object };
+    const applicationTitle = 'THE_APPLICATION_TITLE';
+    const deps = {
+        textContent: {
+            applicationTitle,
+        },
+        contentActionMessageCreator: contentActionMessageCreatorMock.object,
+    };
 
     beforeEach(() => {
         contentActionMessageCreatorMock.reset();

@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`HeaderIconComponent is high contrast mode enabled: false 1`] = `<BrandWhite />`;
+exports[`HeaderIconComponent renders with invertColors = false and high contrast mode = false 1`] = `<BrandWhite />`;
 
-exports[`HeaderIconComponent is high contrast mode enabled: true 1`] = `<BrandBlue />`;
+exports[`HeaderIconComponent renders with invertColors = false and high contrast mode = true 1`] = `<BrandBlue />`;
+
+exports[`HeaderIconComponent renders with invertColors = true and high contrast mode = false 1`] = `<BrandBlue />`;
+
+exports[`HeaderIconComponent renders with invertColors = true and high contrast mode = true 1`] = `<BrandWhite />`;
+
+exports[`HeaderIconComponent renders with invertColors = undefined and high contrast mode = false 1`] = `<BrandWhite />`;
+
+exports[`HeaderIconComponent renders with invertColors = undefined and high contrast mode = true 1`] = `<BrandBlue />`;
