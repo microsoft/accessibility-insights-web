@@ -7,16 +7,20 @@ import * as React from 'react';
 
 import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
 import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
-import { NoFailedInstancesCongrats } from '../../../reports/components/report-sections/no-failed-instances-congrats';
+import {
+    NoFailedInstancesCongrats,
+    NoFailedInstancesCongratsDeps,
+} from '../../../reports/components/report-sections/no-failed-instances-congrats';
 import { CardRuleResult } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { RulesWithInstances, RulesWithInstancesDeps } from './rules-with-instances';
 
-export type ResultSectionContentDeps = RulesWithInstancesDeps & {
-    cardsVisualizationModifierButtons: ReactFCWithDisplayName<
-        CardsVisualizationModifierButtonsProps
-    >;
-};
+export type ResultSectionContentDeps = RulesWithInstancesDeps &
+    NoFailedInstancesCongratsDeps & {
+        cardsVisualizationModifierButtons: ReactFCWithDisplayName<
+            CardsVisualizationModifierButtonsProps
+        >;
+    };
 
 export type ResultSectionContentProps = {
     deps: ResultSectionContentDeps;
@@ -41,7 +45,7 @@ export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
             targetAppInfo,
         } = props;
         if (results.length === 0) {
-            return <NoFailedInstancesCongrats />;
+            return <NoFailedInstancesCongrats deps={props.deps} />;
         }
 
         return (

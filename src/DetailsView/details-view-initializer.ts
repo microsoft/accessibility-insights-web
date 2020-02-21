@@ -414,6 +414,7 @@ if (isNaN(tabId) === false) {
                 ),
                 setFocusVisibility,
                 documentManipulator,
+                customCongratsMessage: null, // uses default message
             };
 
             const renderer = new DetailsViewRenderer(
