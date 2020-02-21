@@ -1,14 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { identity } from 'lodash';
 import { BaseStore } from '../../common/base-store';
 import { Store } from '../../common/flux/store';
 import { StoreNames } from '../../common/stores/store-names';
 
+export type StateProcessor<State> = (state: State) => State;
+
 export abstract class BaseStoreImpl<TState> extends Store implements BaseStore<TState> {
-    private storeName: StoreNames;
     protected state: TState;
 
-    constructor(storeName: StoreNames) {
+    constructor(
+        private readonly storeName: StoreNames,
+        private readonly getStateProcessor: StateProcessor<TState> = identity,
+    ) {
         super();
         this.storeName = storeName;
         this.onGetCurrentState = this.onGetCurrentState.bind(this);
@@ -28,7 +33,7 @@ export abstract class BaseStoreImpl<TState> extends Store implements BaseStore<T
     }
 
     public getState(): TState {
-        return this.state;
+        return this.getStateProcessor(this.state);
     }
 
     protected onGetCurrentState(): void {

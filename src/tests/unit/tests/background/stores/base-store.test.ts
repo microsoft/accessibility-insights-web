@@ -5,6 +5,7 @@ import { It, Mock, MockBehavior, Times } from 'typemoq';
 import { BaseStoreImpl } from 'background/stores/base-store-impl';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { IsSameObject } from '../../../common/typemoq-helper';
+import { cloneDeep } from 'lodash';
 
 describe('BaseStoreTest', () => {
     test('getId', () => {
@@ -66,6 +67,30 @@ describe('BaseStoreTest', () => {
         changedListener.verifyAll();
     });
 
+    describe('get state decorator', () => {
+        const initialState: TestData = {
+            value: 'initial-value',
+        };
+
+        it('return same object when no decorator is passed', () => {
+            const testObject = new TestStore(() => {});
+
+            testObject.initialize(initialState);
+
+            expect(testObject.getState()).toEqual(initialState);
+            expect(testObject.getState()).toBe(initialState);
+        });
+
+        it('return different object, same values when deepClone decorator is passed', () => {
+            const testObject = new TestStore(() => {}, cloneDeep);
+
+            testObject.initialize(initialState);
+
+            expect(testObject.getState()).not.toBe(initialState);
+            expect(testObject.getState()).toEqual(initialState);
+        });
+    });
+
     interface TestData {
         value: string;
     }
@@ -73,8 +98,8 @@ describe('BaseStoreTest', () => {
     class TestStore extends BaseStoreImpl<TestData> {
         private listener: () => void;
 
-        constructor(listener: () => void) {
-            super(StoreNames[StoreNames[0]]);
+        constructor(listener: () => void, getStateDecorator?: (state: TestData) => TestData) {
+            super(StoreNames[StoreNames[0]], getStateDecorator);
 
             this.listener = listener;
         }
