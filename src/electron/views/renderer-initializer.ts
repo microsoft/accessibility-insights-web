@@ -86,6 +86,7 @@ import {
     RootContainerRendererDeps,
 } from './root-container/root-container-renderer';
 import { screenshotViewModelProvider } from './screenshot/screenshot-view-model-provider';
+import { IPC_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME } from 'electron/ipc/ipc-channel-names';
 
 initializeFabricIcons();
 
@@ -330,7 +331,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const renderer = new RootContainerRenderer(ReactDOM.render, document, deps);
         renderer.render();
 
-        ipcRenderer.send('renderer-initializer-completed');
         sendAppInitializedTelemetryEvent(telemetryEventHandler, platformInfo);
+
+        ipcRenderer.send(IPC_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME);
     },
 );

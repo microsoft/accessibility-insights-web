@@ -5,7 +5,7 @@ import { Logger } from 'common/logging/logger';
 import { InterpreterMessage } from 'common/message';
 import { IpcRenderer, IpcRendererEvent } from 'electron';
 import { isObject, isString } from 'lodash';
-import { IPC_MESSAGE_CHANNEL_NAME } from './ipc-message-channel-name';
+import { IPC_MESSAGE_CHANNEL_NAME } from './ipc-channel-names';
 
 export class IpcMessageReceiver {
     constructor(

@@ -12,6 +12,7 @@ import { OSType, PlatformInfo } from 'electron/window-management/platform-info';
 import * as path from 'path';
 import { mainWindowConfig } from './main-window-config';
 import { NativeHighContrastModeListener } from './native-high-contrast-mode-listener';
+import { IPC_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME } from 'electron/ipc/ipc-channel-names';
 
 let mainWindow: BrowserWindow;
 const platformInfo = new PlatformInfo(process);
@@ -50,8 +51,7 @@ const createWindow = () => {
 
     const mainWindowMessageSink: IpcMessageSink = (id, msg) => mainWindow.webContents.send(id, msg);
 
-    ipcMain.on('renderer-initializer-completed', () => {
-        console.log('Registering mainWindow as an IPC message sink');
+    ipcMain.on(IPC_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME, () => {
         ipcMessageDispatcher.registerMessageSink(mainWindowMessageSink);
     });
 
