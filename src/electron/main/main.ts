@@ -67,8 +67,8 @@ const createWindow = () => {
     });
 
     mainWindow.on('closed', () => {
+        // Drop all references to the window object, to force garbage collection
         ipcMessageDispatcher.unregisterMessageSink(mainWindowMessageSink);
-        // Dereference the window object, to force garbage collection
         mainWindow = null;
     });
 

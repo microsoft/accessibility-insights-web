@@ -11,12 +11,10 @@ export type IpcMessageSink = (channelName: string, message: Message) => void;
 export class IpcMessageDispatcher implements ActionMessageDispatcher {
     public dispatchMessage(message: Message): void {
         if (this.registeredSinks.length === 0) {
-            console.log(`IpcMessageDispatcher backlogging: ${JSON.stringify(message)}`);
             this.messageBacklog.push(message);
             return;
         }
 
-        console.log(`IpcMessageDispatcher sending: ${JSON.stringify(message)}`);
         for (const sink of this.registeredSinks) {
             sink(IPC_MESSAGE_CHANNEL_NAME, message);
         }
