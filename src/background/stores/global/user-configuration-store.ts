@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
+import { StoreNames } from 'common/stores/store-names';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { cloneDeep, isPlainObject } from 'lodash';
-
-import { IndexedDBAPI } from '../../../common/indexedDB/indexedDB';
-import { StoreNames } from '../../../common/stores/store-names';
-import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import {
     SaveIssueFilingSettingsPayload,
     SetHighContrastModePayload,
@@ -13,7 +12,7 @@ import {
 } from '../../actions/action-payloads';
 import { UserConfigurationActions } from '../../actions/user-configuration-actions';
 import { IndexedDBDataKeys } from '../../IndexedDBDataKeys';
-import { BaseStoreImpl } from '../base-store-impl';
+import { BaseStoreImpl, StateProcessor } from '../base-store-impl';
 
 export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStoreData> {
     public static readonly defaultState: UserConfigurationStoreData = {
@@ -28,8 +27,9 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         private readonly persistedState: UserConfigurationStoreData,
         private readonly userConfigActions: UserConfigurationActions,
         private readonly indexDbApi: IndexedDBAPI,
+        getStateProcessor?: StateProcessor<UserConfigurationStoreData>,
     ) {
-        super(StoreNames.UserConfigurationStore);
+        super(StoreNames.UserConfigurationStore, getStateProcessor);
     }
 
     private generateDefaultState(
