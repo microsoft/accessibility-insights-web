@@ -56,6 +56,7 @@ import { RootContainerState } from 'electron/views/root-container/components/roo
 import { PlatformInfo } from 'electron/window-management/platform-info';
 import { WindowFrameListener } from 'electron/window-management/window-frame-listener';
 import { WindowFrameUpdater } from 'electron/window-management/window-frame-updater';
+import { cloneDeep } from 'lodash';
 import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
@@ -135,6 +136,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             persistedData.userConfigurationData,
             userConfigActions,
             indexedDBInstance,
+            cloneDeep,
         );
         userConfigurationStore.initialize();
 
