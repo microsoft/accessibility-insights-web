@@ -8,9 +8,9 @@ exports[`DeviceConnectPortEntryTest renders with "Connected" 1`] = `
     Android device port number
   </h3>
   <MaskedTextField
-    ariaLabel="Android Device port number e.g. 12345"
     className="portNumberField"
     data-automation-id="device-connect-port-number-field"
+    label="Android device port number"
     mask="99999"
     maskChar=""
     maskFormat={
@@ -42,9 +42,9 @@ exports[`DeviceConnectPortEntryTest renders with "Connected" and some text in th
     Android device port number
   </h3>
   <MaskedTextField
-    ariaLabel="Android Device port number e.g. 12345"
     className="portNumberField"
     data-automation-id="device-connect-port-number-field"
+    label="Android device port number"
     mask="99999"
     maskChar=""
     maskFormat={
@@ -76,9 +76,9 @@ exports[`DeviceConnectPortEntryTest renders with "Connecting" 1`] = `
     Android device port number
   </h3>
   <MaskedTextField
-    ariaLabel="Android Device port number e.g. 12345"
     className="portNumberField"
     data-automation-id="device-connect-port-number-field"
+    label="Android device port number"
     mask="99999"
     maskChar=""
     maskFormat={
@@ -110,9 +110,9 @@ exports[`DeviceConnectPortEntryTest renders with "Connecting" and some text in t
     Android device port number
   </h3>
   <MaskedTextField
-    ariaLabel="Android Device port number e.g. 12345"
     className="portNumberField"
     data-automation-id="device-connect-port-number-field"
+    label="Android device port number"
     mask="99999"
     maskChar=""
     maskFormat={
@@ -144,9 +144,9 @@ exports[`DeviceConnectPortEntryTest renders with "Default" 1`] = `
     Android device port number
   </h3>
   <MaskedTextField
-    ariaLabel="Android Device port number e.g. 12345"
     className="portNumberField"
     data-automation-id="device-connect-port-number-field"
+    label="Android device port number"
     mask="99999"
     maskChar=""
     maskFormat={
@@ -178,9 +178,9 @@ exports[`DeviceConnectPortEntryTest renders with "Default" and some text in the 
     Android device port number
   </h3>
   <MaskedTextField
-    ariaLabel="Android Device port number e.g. 12345"
     className="portNumberField"
     data-automation-id="device-connect-port-number-field"
+    label="Android device port number"
     mask="99999"
     maskChar=""
     maskFormat={
@@ -212,9 +212,9 @@ exports[`DeviceConnectPortEntryTest renders with "Error" 1`] = `
     Android device port number
   </h3>
   <MaskedTextField
-    ariaLabel="Android Device port number e.g. 12345"
     className="portNumberField"
     data-automation-id="device-connect-port-number-field"
+    label="Android device port number"
     mask="99999"
     maskChar=""
     maskFormat={
@@ -246,9 +246,9 @@ exports[`DeviceConnectPortEntryTest renders with "Error" and some text in the po
     Android device port number
   </h3>
   <MaskedTextField
-    ariaLabel="Android Device port number e.g. 12345"
     className="portNumberField"
     data-automation-id="device-connect-port-number-field"
+    label="Android device port number"
     mask="99999"
     maskChar=""
     maskFormat={
