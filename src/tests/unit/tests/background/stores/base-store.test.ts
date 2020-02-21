@@ -1,11 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { BaseStoreImpl } from 'background/stores/base-store-impl';
-import { StoreNames } from '../../../../../common/stores/store-names';
-import { IsSameObject } from '../../../common/typemoq-helper';
+import { StoreNames } from 'common/stores/store-names';
 import { cloneDeep } from 'lodash';
+import { It, Mock, MockBehavior, Times } from 'typemoq';
+import { IsSameObject } from '../../../common/typemoq-helper';
 
 describe('BaseStoreTest', () => {
     test('getId', () => {
