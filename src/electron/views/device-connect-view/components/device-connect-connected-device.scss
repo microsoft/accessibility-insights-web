@@ -6,9 +6,13 @@
 .device-connect-connected-device {
     .device-connect-spinner {
         font-family: $fontFamily;
-        font-size: 12px;
         line-height: 16px;
         float: left;
+
+        :global(.ms-Spinner-label) {
+            font-size: 14px;
+            color: $communication-tint-40;
+        }
     }
 
     .scanned-text {
