@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { isEmpty } from 'lodash';
+
 import { TargetPageStoreData } from './client-store-listener';
 import {
     ScrollingController,
@@ -17,7 +19,7 @@ export class FocusChangeHandler {
     public handleFocusChangeWithStoreData = (storeData: TargetPageStoreData) => {
         const newTarget = this.getTarget(storeData);
         this.handleFocusChange(newTarget);
-        this.previousFocusedTarget = storeData.visualizationStoreData.focusedTarget;
+        this.previousFocusedTarget = newTarget;
     };
 
     private handleFocusChange = (newTarget: string[]) => {
@@ -36,18 +38,13 @@ export class FocusChangeHandler {
     };
 
     private getTarget(storeData: TargetPageStoreData): string[] {
-        if (this.previousFocusedTarget == null) {
-            return (
-                storeData.visualizationStoreData.focusedTarget ||
-                this.getCardResultTarget(storeData)
-            );
-        }
-
-        return null;
+        return (
+            storeData.visualizationStoreData.focusedTarget || this.getCardResultTarget(storeData)
+        );
     }
 
     private getCardResultTarget(storeData: TargetPageStoreData): string[] {
-        if (storeData.unifiedScanResultStoreData.results == null) {
+        if (isEmpty(storeData.unifiedScanResultStoreData.results)) {
             return null;
         }
 
@@ -55,6 +52,10 @@ export class FocusChangeHandler {
             result => result.uid === storeData.cardSelectionStoreData.focusedResultUid,
         );
 
-        return focusedResult ? focusedResult.identifiers.identifier.split(';') : null;
+        if (focusedResult == null) {
+            throw 'focused result was not found';
+        }
+
+        return focusedResult.identifiers.identifier.split(';');
     }
 }

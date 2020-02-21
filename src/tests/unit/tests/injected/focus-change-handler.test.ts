@@ -13,6 +13,7 @@ describe('FocusChangeHandler', () => {
     let testSubject: FocusChangeHandler;
     let sampleTarget: string[];
     let sampleMessage: ScrollingWindowMessage;
+    let sampleUid: string;
 
     beforeEach(() => {
         targetPageActionMessageCreatorMock = Mock.ofType<TargetPageActionMessageCreator>();
@@ -21,14 +22,18 @@ describe('FocusChangeHandler', () => {
         sampleMessage = {
             focusedTarget: sampleTarget,
         };
+        sampleUid = 'some uid';
 
         testSubject = new FocusChangeHandler(targetPageActionMessageCreatorMock.object, scrollingControllerMock.object);
     });
 
-    test('onStoreChange: new target is null', () => {
+    test('onStoreChange: no new target', () => {
         const storeData: TargetPageStoreData = {
             visualizationStoreData: {
                 focusedTarget: null,
+            },
+            unifiedScanResultStoreData: {
+                results: [],
             },
         } as TargetPageStoreData;
 
@@ -41,10 +46,13 @@ describe('FocusChangeHandler', () => {
         scrollingControllerMock.verifyAll();
     });
 
-    test('onStoreChange: new target is not null', () => {
+    test('onStoreChange: new target from visualization store data is not null and different from old target', () => {
         const storeData: TargetPageStoreData = {
             visualizationStoreData: {
                 focusedTarget: sampleTarget,
+            },
+            unifiedScanResultStoreData: {
+                results: [],
             },
         } as TargetPageStoreData;
 
@@ -57,10 +65,62 @@ describe('FocusChangeHandler', () => {
         scrollingControllerMock.verifyAll();
     });
 
+    test('onStoreChange: new target from card selection is not null, matches a result, and different from old target', () => {
+        const storeData: TargetPageStoreData = {
+            visualizationStoreData: {
+                focusedTarget: null,
+            },
+            unifiedScanResultStoreData: {
+                results: [
+                    {
+                        uid: sampleUid,
+                        identifiers: {
+                            identifier: sampleTarget.join(';'),
+                        },
+                    },
+                ],
+            },
+            cardSelectionStoreData: {
+                focusedResultUid: sampleUid,
+            },
+        } as TargetPageStoreData;
+
+        targetPageActionMessageCreatorMock.setup(acm => acm.scrollRequested()).verifiable(Times.once());
+        scrollingControllerMock.setup(scm => scm.processRequest(sampleMessage)).verifiable(Times.once());
+
+        testSubject.handleFocusChangeWithStoreData(storeData);
+
+        targetPageActionMessageCreatorMock.verifyAll();
+        scrollingControllerMock.verifyAll();
+    });
+
+    test('onStoreChange: new target from card selection is not null, does not match a result and different from old target', () => {
+        const storeData: TargetPageStoreData = {
+            visualizationStoreData: {
+                focusedTarget: null,
+            },
+            unifiedScanResultStoreData: {
+                results: [
+                    {
+                        uid: 'some other id',
+                    },
+                ],
+            },
+            cardSelectionStoreData: {
+                focusedResultUid: sampleUid,
+            },
+        } as TargetPageStoreData;
+
+        expect(() => testSubject.handleFocusChangeWithStoreData(storeData)).toThrow('focused result was not found');
+    });
+
     test('onStoreChange: new target and old target are same', () => {
         const storeData: TargetPageStoreData = {
             visualizationStoreData: {
                 focusedTarget: sampleTarget,
+            },
+            unifiedScanResultStoreData: {
+                results: [],
             },
         } as TargetPageStoreData;
 
