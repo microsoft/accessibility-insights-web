@@ -7,12 +7,12 @@ import log from 'electron-log';
 import { autoUpdater } from 'electron-updater';
 import { AutoUpdaterClient } from 'electron/auto-update/auto-updater-client';
 import { getElectronIconPath } from 'electron/common/get-electron-icon-path';
+import { IPC_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME } from 'electron/ipc/ipc-channel-names';
 import { IpcMessageDispatcher, IpcMessageSink } from 'electron/ipc/ipc-message-dispatcher';
 import { OSType, PlatformInfo } from 'electron/window-management/platform-info';
 import * as path from 'path';
 import { mainWindowConfig } from './main-window-config';
 import { NativeHighContrastModeListener } from './native-high-contrast-mode-listener';
-import { IPC_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME } from 'electron/ipc/ipc-channel-names';
 
 let mainWindow: BrowserWindow;
 const platformInfo = new PlatformInfo(process);
