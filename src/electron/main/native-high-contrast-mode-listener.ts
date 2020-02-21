@@ -1,16 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { NativeTheme } from 'electron';
-import { NativeHighContrastModeChangedMessage } from 'electron/main/ipc-message-dispatcher';
 
 export class NativeHighContrastModeListener {
     private lastHighContrastUpdate: boolean;
 
     public constructor(
         private readonly nativeTheme: NativeTheme,
-        private readonly onHighContrastModeChanged: (
-            message: NativeHighContrastModeChangedMessage,
-        ) => void,
+        private readonly userConfigMessageCreator: UserConfigMessageCreator,
     ) {}
 
     public startListening = (): void => {
@@ -24,10 +22,7 @@ export class NativeHighContrastModeListener {
 
     private notifyHighContrastModeChanged = (): void => {
         this.lastHighContrastUpdate = this.nativeTheme.shouldUseHighContrastColors;
-        this.onHighContrastModeChanged({
-            id: 'nativeHighContrastModeChanged',
-            isHighContrastMode: this.lastHighContrastUpdate,
-        });
+        this.userConfigMessageCreator.setHighContrastMode(this.lastHighContrastUpdate);
     };
 
     private onNativeThemeUpdated = (): void => {

@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { FileSystemConfiguration } from 'common/configuration/file-system-configuration';
-import { app, BrowserWindow, nativeTheme, ipcMain } from 'electron';
+import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
+import { app, BrowserWindow, ipcMain, nativeTheme } from 'electron';
 import log from 'electron-log';
 import { autoUpdater } from 'electron-updater';
 import { AutoUpdaterClient } from 'electron/auto-update/auto-updater-client';
 import { getElectronIconPath } from 'electron/common/get-electron-icon-path';
-import { IpcMessageDispatcher, IpcMessageSink } from 'electron/main/ipc-message-dispatcher';
+import { IpcMessageDispatcher, IpcMessageSink } from 'electron/ipc/ipc-message-dispatcher';
 import { OSType, PlatformInfo } from 'electron/window-management/platform-info';
 import * as path from 'path';
 import { mainWindowConfig } from './main-window-config';
@@ -16,10 +17,12 @@ let mainWindow: BrowserWindow;
 const platformInfo = new PlatformInfo(process);
 const os = platformInfo.getOs();
 const config = new FileSystemConfiguration();
+
 const ipcMessageDispatcher = new IpcMessageDispatcher();
+const userConfigMessageCreator = new UserConfigMessageCreator(ipcMessageDispatcher);
 const nativeHighContrastModeListener = new NativeHighContrastModeListener(
     nativeTheme,
-    ipcMessageDispatcher.sendMessage,
+    userConfigMessageCreator,
 );
 
 log.transports.file.level = 'info';
