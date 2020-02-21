@@ -9,7 +9,9 @@ export interface GetTestViewTitleProps {
 }
 
 export function getTestViewTitle(props: GetTestViewTitleProps): string {
-    const configuration = props.visualizationConfigurationFactory.getConfiguration(props.selectedDetailsView);
+    const configuration = props.visualizationConfigurationFactory.getConfiguration(
+        props.selectedDetailsView,
+    );
     const displayableData = configuration.displayableData;
 
     return displayableData.title;

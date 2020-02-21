@@ -117,16 +117,6 @@ div.insights-file-issue-details-dialog-container {
     right: 0 !important;
 }
 
-.generic-panel {
-    margin-left: auto;
-    margin-right: auto;
-    color: $neutral-100;
-    .header-text {
-        color: $neutral-100;
-        font-size: 2em;
-    }
-}
-
 .scoping-panel {
     .scoping-container {
         .scoping-description {
@@ -186,16 +176,6 @@ div.insights-file-issue-details-dialog-container {
             justify-content: space-between;
             align-items: center;
         }
-    }
-}
-
-.preview-features-panel {
-    .preview-feature-toggle-list {
-        margin-top: 2vh;
-    }
-    .no-preview-feature-message {
-        font-size: 20px;
-        font-family: $semiBoldFontFamily;
     }
 }
 
@@ -282,7 +262,9 @@ div.insights-file-issue-details-dialog-container {
 
         .details-view-test-nav-area {
             box-sizing: border-box;
-            max-height: calc(100vh - #{detailsViewNavPivotsHeight} - #{$detailsViewHeaderBarHeight} - #{$detailsViewCommandBarHeight});
+            max-height: calc(
+                100vh - #{detailsViewNavPivotsHeight} - #{$detailsViewHeaderBarHeight} - #{$detailsViewCommandBarHeight}
+            );
             .ms-Nav-groupContent,
             .ms-Nav-navItems {
                 margin-bottom: 0px;
@@ -311,6 +293,7 @@ div.insights-file-issue-details-dialog-container {
                 margin-bottom: 0px;
             }
             .button-flex-container .status-icon {
+                color: $primary-text;
                 margin-left: 24px;
                 font-size: 18px;
                 &.negative-outcome-icon {
@@ -407,37 +390,15 @@ div.insights-file-issue-details-dialog-container {
                         color: $secondary-text;
                     }
                 }
-                .no-failure-view {
-                    font-size: 15px;
-                    font-weight: normal;
-                    padding: 15px 0px 0px 15px;
-                }
-                .instance-visibility-button {
-                    padding-bottom: 6px;
-                }
                 .test-step-choice-group-container {
                     margin-left: 8px;
                     margin-bottom: 4px;
                     margin-top: 20px;
                 }
-                .test-instance-selected {
-                    padding: 2px;
-                    color: $neutral-0;
-                }
-                .test-instance-selected-hidden {
-                    background-color: $neutral-60;
-                    cursor: default;
-                }
-                .test-instance-selected-visible {
-                    background-color: $communication-primary;
-                }
                 .master-visualization-column-header-selected {
                     background-color: $communication-primary;
                     color: $neutral-0;
                     display: inline;
-                }
-                .test-instance-selected-hidden-button {
-                    background-color: transparent;
                 }
                 .property-bag-container {
                     display: flex;
@@ -554,6 +515,8 @@ div.insights-file-issue-details-dialog-container {
                 text-align: left;
                 margin-top: 6px;
                 margin-bottom: 6px;
+                display: flex;
+                flex-direction: column;
             }
             .overview-name {
                 line-height: 20px;
@@ -686,14 +649,17 @@ div.insights-file-issue-details-dialog-container {
                     }
                 }
                 .issues-table {
+                    background-color: $neutral-2;
                     height: 100%;
-                    width: calc(100% - #{$fastPassRightPanelMarginRight} - #{$fastPassRightPanelMarginLeft});
+                    width: calc(
+                        100% - #{$fastPassRightPanelMarginRight} - #{$fastPassRightPanelMarginLeft}
+                    );
                     display: flex;
                     flex-direction: column;
-                    margin-top: $fastPassRightPanelMarginTop;
-                    margin-right: $fastPassRightPanelMarginRight;
-                    margin-left: $fastPassRightPanelMarginLeft;
-                    margin-bottom: auto;
+                    padding-top: $fastPassRightPanelMarginTop;
+                    padding-right: $fastPassRightPanelMarginRight;
+                    padding-left: $fastPassRightPanelMarginLeft;
+                    padding-bottom: auto;
 
                     .issues-table-subtitle {
                         color: $secondary-text;

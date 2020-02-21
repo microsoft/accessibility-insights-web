@@ -20,21 +20,28 @@ export type ContentLinkProps = {
     iconName?: string;
 };
 
-export const ContentLink = NamedFC<ContentLinkProps>('ContentLink', ({ deps, reference, iconName, linkText }) => {
-    const { contentProvider, contentActionMessageCreator } = deps;
-    const { openContentPage } = contentActionMessageCreator;
+export const ContentLink = NamedFC<ContentLinkProps>(
+    'ContentLink',
+    ({ deps, reference, iconName, linkText }) => {
+        const { contentProvider, contentActionMessageCreator } = deps;
+        const { openContentPage } = contentActionMessageCreator;
 
-    if (!reference) {
-        return null;
-    }
+        if (!reference) {
+            return null;
+        }
 
-    const contentPath = contentProvider.pathFromReference(reference);
-    const icon = iconName && <Icon iconName={iconName} />;
+        const contentPath = contentProvider.pathFromReference(reference);
+        const icon = iconName && <Icon iconName={iconName} />;
 
-    return (
-        <NewTabLink href={`/insights.html#/content/${contentPath}`} title="Guidance" onClick={ev => openContentPage(ev, contentPath)}>
-            {icon}
-            {linkText}
-        </NewTabLink>
-    );
-});
+        return (
+            <NewTabLink
+                href={`/insights.html#/content/${contentPath}`}
+                title="Guidance"
+                onClick={ev => openContentPage(ev, contentPath)}
+            >
+                {icon}
+                {linkText}
+            </NewTabLink>
+        );
+    },
+);

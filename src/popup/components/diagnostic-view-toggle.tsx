@@ -1,21 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Link } from 'office-ui-fabric-react';
-import { Spinner, SpinnerSize } from 'office-ui-fabric-react';
-import { IToggle } from 'office-ui-fabric-react';
+import { VisualizationToggle } from 'common/components/visualization-toggle';
+import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { KeyCodeConstants } from 'common/constants/keycode-constants';
+import { TelemetryEventSource } from 'common/extension-telemetry-events';
+import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import { VisualizationType } from 'common/types/visualization-type';
+import { IToggle, Link, Spinner, SpinnerSize } from 'office-ui-fabric-react';
 import * as React from 'react';
+import { DictionaryStringTo } from 'types/common-types';
 import { ContentLink, ContentLinkDeps } from 'views/content/content-link';
-import { VisualizationToggle } from '../../common/components/visualization-toggle';
-import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
-import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
-import { KeyCodeConstants } from '../../common/constants/keycode-constants';
-import { TelemetryEventSource } from '../../common/extension-telemetry-events';
-import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
-import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
-import { VisualizationType } from '../../common/types/visualization-type';
-import { DictionaryStringTo } from '../../types/common-types';
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
 import { DiagnosticViewClickHandler } from '../handlers/diagnostic-view-toggle-click-handler';
+import * as styles from './diagnostic-view-toggle.scss';
 
 export interface DiagnosticViewToggleProps {
     deps: DiagnosticViewToggleDeps;
@@ -65,26 +64,13 @@ export class DiagnosticViewToggle extends React.Component<
     public render(): JSX.Element {
         const displayableData = this.configuration.displayableData;
         const shortcut = this.getCommandShortcut();
+
         return (
-            <div>
-                <div className="ms-Grid-row view-toggle-row">
-                    <div className="ms-Grid-col ms-sm7">
-                        <div className="ms-fontColor-neutralPrimary ms-fontWeight-semibold ms-fontSize-mPlus">
-                            {displayableData.title}
-                        </div>
-                    </div>
-                    <div className="ms-Grid-col ms-sm5 view-toggle-col" style={{ float: 'right' }}>
-                        {this.renderToggleOrSpinner()}
-                    </div>
-                </div>
-                <div className="ms-Grid-row">
-                    <div className="ms-Grid-col ms-sm8">
-                        {this.renderLink(displayableData.linkToDetailsViewText)}
-                    </div>
-                    <div className="ms-Grid-col ms-sm4 shortcut-label" style={{ float: 'right' }}>
-                        <div className="ms-font-xs">{shortcut}</div>
-                    </div>
-                </div>
+            <div className={styles.diagnosticViewToggle}>
+                <div className={styles.title}>{displayableData.title}</div>
+                <div className={styles.toggle}>{this.renderToggleOrSpinner()}</div>
+                <div>{this.renderLink(displayableData.linkToDetailsViewText)}</div>
+                <div className={styles.shortcut}>{shortcut}</div>
             </div>
         );
     }

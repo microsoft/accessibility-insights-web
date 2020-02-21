@@ -1,6 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { ThemeInnerState } from 'common/components/theme';
+import { StoreActionMessageCreatorImpl } from 'common/message-creators/store-action-message-creator-impl';
+import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
+import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { MaximizeRestoreButtonProps } from 'electron/views/automated-checks/components/maximize-restore-button';
@@ -25,6 +29,8 @@ describe('TitleBar', () => {
             deps: {
                 windowFrameActionCreator: windowFrameActionCreator.object,
                 platformInfo: Mock.ofType(PlatformInfo).object,
+                storeActionMessageCreator: Mock.ofType(StoreActionMessageCreatorImpl).object,
+                storesHub: Mock.ofType<ClientStoresHub<ThemeInnerState>>(BaseClientStoresHub).object,
             },
             windowStateStoreData,
         };

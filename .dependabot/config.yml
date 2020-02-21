@@ -12,12 +12,6 @@ update_configs:
       include_scope: true
     ignored_updates:
       - match:
-          # Major Office Fabric updates require enough extra validation
-          # that we schedule them as feature work, rather than having
-          # dependabot auto-update them like other deps.
-          dependency_name: "office-ui-fabric-react"
-          version_requirement: ">=7.0.0"
-      - match:
           # We use webdriverio only indirectly via spectron; our direct
           # dependency on the package is only for the sake of typings, so
           # we stick to the major version of webdriverio used by spectron.

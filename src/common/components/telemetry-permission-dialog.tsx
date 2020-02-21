@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { telemetryPopupCheckboxTitle, telemetryPopupTitle } from 'content/settings/improve-accessibility-insights';
+import {
+    telemetryPopupCheckboxTitle,
+    telemetryPopupTitle,
+} from 'content/settings/improve-accessibility-insights';
 import { PrimaryButton } from 'office-ui-fabric-react';
 import { Checkbox } from 'office-ui-fabric-react';
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react';
@@ -26,7 +29,10 @@ export type TelemetryPermissionDialogDeps = {
 } & TelemetryNoticeDeps &
     PrivacyStatementTextDeps;
 
-export class TelemetryPermissionDialog extends React.Component<TelemetryPermissionDialogProps, TelemetryPermissionDialogState> {
+export class TelemetryPermissionDialog extends React.Component<
+    TelemetryPermissionDialogProps,
+    TelemetryPermissionDialogState
+> {
     constructor(props) {
         super(props);
         this.state = {
@@ -44,7 +50,9 @@ export class TelemetryPermissionDialog extends React.Component<TelemetryPermissi
                 dialogContentProps={{
                     type: DialogType.normal,
                     title: telemetryPopupTitle,
-                    titleId: 'telemetry-permission-title',
+                    titleProps: {
+                        id: 'telemetry-permission-title',
+                    },
                 }}
                 modalProps={{
                     className: 'telemetry-permission-dialog-modal',
@@ -68,7 +76,11 @@ export class TelemetryPermissionDialog extends React.Component<TelemetryPermissi
                     <PrimaryButton
                         className="start-using-product-button"
                         text={`OK`}
-                        onClick={() => this.props.deps.userConfigMessageCreator.setTelemetryState(this.state.isEnableTelemetryChecked)}
+                        onClick={() =>
+                            this.props.deps.userConfigMessageCreator.setTelemetryState(
+                                this.state.isEnableTelemetryChecked,
+                            )
+                        }
                     />
                 </DialogFooter>
             </Dialog>

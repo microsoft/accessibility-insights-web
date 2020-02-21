@@ -1,13 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`content view renders 1`] = `
-"<Page deps={{...}}>
-  <div className=\\"content-container\\">
-    <div className=\\"content-left\\" />
-    <div className=\\"content\\">
-      <THE-CONTENT deps={{...}} options={{...}} />
-    </div>
-    <div className=\\"content-right\\" />
-  </div>
-</Page>"
+exports[`content renders 1`] = `
+"<Content deps={{...}}>
+  <THE-CONTENT deps={{...}} options={{...}} />
+</Content>"
 `;

@@ -28,7 +28,9 @@ describe('ShortcutsPageActionCreator', () => {
         interpreterMock = Mock.ofType<Interpreter>();
 
         interpreterMock
-            .setup(interpreter => interpreter.registerTypeToPayloadCallback(expectedMessage, It.is(isFunction)))
+            .setup(interpreter =>
+                interpreter.registerTypeToPayloadCallback(expectedMessage, It.is(isFunction)),
+            )
             .callback((message, handler) => {
                 handler(payload);
             });
@@ -47,35 +49,50 @@ describe('ShortcutsPageActionCreator', () => {
 
     describe('handles ConfigureShortcuts message', () => {
         it('opens the shortcuts tab', async () => {
-            shortcutsPageControllerMock.setup(controller => controller.openShortcutsTab()).returns(() => Promise.resolve());
+            shortcutsPageControllerMock
+                .setup(controller => controller.openShortcutsTab())
+                .returns(() => Promise.resolve());
 
             testSubject.registerCallbacks();
 
             await tick();
 
-            shortcutsPageControllerMock.verify(controller => controller.openShortcutsTab(), Times.once());
+            shortcutsPageControllerMock.verify(
+                controller => controller.openShortcutsTab(),
+                Times.once(),
+            );
         });
 
         describe('sends telemetry', () => {
             it('when opening shortcuts tab succeeds', async () => {
-                shortcutsPageControllerMock.setup(controller => controller.openShortcutsTab()).returns(() => Promise.resolve());
+                shortcutsPageControllerMock
+                    .setup(controller => controller.openShortcutsTab())
+                    .returns(() => Promise.resolve());
 
                 testSubject.registerCallbacks();
 
                 await tick();
 
-                telemetryHandlerMock.verify(handler => handler.publishTelemetry(SHORTCUT_CONFIGURE_OPEN, payload), Times.once());
+                telemetryHandlerMock.verify(
+                    handler => handler.publishTelemetry(SHORTCUT_CONFIGURE_OPEN, payload),
+                    Times.once(),
+                );
             });
 
             it('when opening shortcuts tab fails', async () => {
                 const errorMessage = 'dummy error';
-                shortcutsPageControllerMock.setup(controller => controller.openShortcutsTab()).returns(() => Promise.reject(errorMessage));
+                shortcutsPageControllerMock
+                    .setup(controller => controller.openShortcutsTab())
+                    .returns(() => Promise.reject(errorMessage));
 
                 testSubject.registerCallbacks();
 
                 await tick();
 
-                telemetryHandlerMock.verify(handler => handler.publishTelemetry(SHORTCUT_CONFIGURE_OPEN, payload), Times.once());
+                telemetryHandlerMock.verify(
+                    handler => handler.publishTelemetry(SHORTCUT_CONFIGURE_OPEN, payload),
+                    Times.once(),
+                );
                 loggerMock.verify(logger => logger.error(errorMessage), Times.once());
             });
         });

@@ -64,28 +64,28 @@ jobs:
                 artifactName: 'drop'
             displayName: publish drop
 
-    - job: 'e2e_mac_web_electron'
+    - job: 'e2e_mac_web_unified'
       pool:
           vmImage: macOS-10.14
       steps:
           - template: pipeline/install-node-prerequisites.yaml
           - template: pipeline/e2e-test-from-agent.yaml
           - template: pipeline/e2e-test-publish-results.yaml
-          - template: pipeline/electron/electron-e2e-test-interactive.yaml
-          - template: pipeline/electron/electron-e2e-publish-results.yaml
+          - template: pipeline/unified/unified-e2e-test-interactive.yaml
+          - template: pipeline/unified/unified-e2e-publish-results.yaml
 
-    - job: 'e2e_linux_electron'
+    - job: 'e2e_linux_unified'
       pool:
           vmImage: ubuntu-16.04
       steps:
           - template: pipeline/install-node-prerequisites.yaml
-          - template: pipeline/electron/electron-e2e-test-linux.yaml
-          - template: pipeline/electron/electron-e2e-publish-results.yaml
+          - template: pipeline/unified/unified-e2e-test-linux.yaml
+          - template: pipeline/unified/unified-e2e-publish-results.yaml
 
-    - job: 'e2e_windows_electron'
+    - job: 'e2e_windows_unified'
       pool:
           vmImage: windows-latest
       steps:
           - template: pipeline/install-node-prerequisites.yaml
-          - template: pipeline/electron/electron-e2e-test-interactive.yaml
-          - template: pipeline/electron/electron-e2e-publish-results.yaml
+          - template: pipeline/unified/unified-e2e-test-interactive.yaml
+          - template: pipeline/unified/unified-e2e-publish-results.yaml

@@ -30,11 +30,9 @@
         }
     }
 
-    &:focus {
-        :global(.ms-Dropdown-title) {
-            border: 2px $switcher-focus-border solid;
-            border-style: dotted;
-        }
+    :global(.ms-Dropdown):focus::after {
+        border: 2px $switcher-focus-border solid;
+        border-style: dotted;
     }
 }
 

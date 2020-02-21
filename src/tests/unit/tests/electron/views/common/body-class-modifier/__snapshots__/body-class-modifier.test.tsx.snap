@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BodyClassModifier renders with isMac = false 1`] = `
+<HelmetWrapper
+  defer={true}
+  encodeSpecialCharacters={true}
+>
+  <body
+    className=""
+  />
+</HelmetWrapper>
+`;
+
+exports[`BodyClassModifier renders with isMac = true 1`] = `
+<HelmetWrapper
+  defer={true}
+  encodeSpecialCharacters={true}
+>
+  <body
+    className="is-mac-os"
+  />
+</HelmetWrapper>
+`;

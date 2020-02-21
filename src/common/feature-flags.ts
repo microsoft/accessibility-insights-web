@@ -12,7 +12,7 @@ export class FeatureFlags {
     public static readonly scoping = 'scoping';
     public static readonly showInstanceVisibility = 'showInstanceVisibility';
     public static readonly manualInstanceDetails = 'manualInstanceDetails';
-    public static readonly universalCardsUI = 'universalCardsUI';
+    public static readonly debugTools = 'debugTools';
 }
 
 export interface FeatureFlagDetail {
@@ -48,7 +48,8 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             id: FeatureFlags.logTelemetryToConsole,
             defaultValue: false,
             displayableName: 'Log telemetry to console',
-            displayableDescription: 'Write telemetry payload information to the developer tools console.',
+            displayableDescription:
+                'Write telemetry payload information to the developer tools console.',
             isPreviewFeature: false,
             forceDefault: false,
         },
@@ -64,7 +65,8 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             id: FeatureFlags.scoping,
             defaultValue: false,
             displayableName: 'Scoping experience',
-            displayableDescription: 'Enable scoping to limit scanning to selected portions of the webpage.',
+            displayableDescription:
+                'Enable scoping to limit scanning to selected portions of the webpage.',
             isPreviewFeature: false,
             forceDefault: false,
         },
@@ -89,12 +91,13 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             forceDefault: false,
         },
         {
-            id: FeatureFlags.universalCardsUI,
-            defaultValue: true,
-            displayableName: 'Enable universal cards UI',
-            displayableDescription: 'Show results in cards using the universal cards UI.',
+            id: FeatureFlags.debugTools,
+            defaultValue: false,
+            displayableName: 'Enable debug tools',
+            displayableDescription:
+                'Click on the new icon close to the gear to open the debug tools',
             isPreviewFeature: false,
-            forceDefault: true,
+            forceDefault: false,
         },
     ];
 }

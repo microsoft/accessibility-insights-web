@@ -1,6 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 @import '../../../common/styles/colors.scss';
+@import '../common/window-title/window-title-const.scss';
+
+:global(.is-mac-os) .settings-panel-layer-host {
+    top: $mac-title-height !important;
+}
+.settings-panel-layer-host {
+    top: $default-title-height !important;
+}
 
 .automated-checks-view {
     display: flex;

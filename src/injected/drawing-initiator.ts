@@ -4,8 +4,14 @@ import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-st
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryStringTo } from '../types/common-types';
 import { DrawingController, VisualizationWindowMessage } from './drawing-controller';
-import { AssessmentVisualizationInstance, AxeResultsWithFrameLevel } from './frameCommunicators/html-element-axe-results-helper';
-import { PropertyBags, VisualizationInstanceProcessorCallback } from './visualization-instance-processor';
+import {
+    AssessmentVisualizationInstance,
+    AxeResultsWithFrameLevel,
+} from './frameCommunicators/html-element-axe-results-helper';
+import {
+    PropertyBags,
+    VisualizationInstanceProcessorCallback,
+} from './visualization-instance-processor';
 
 export class DrawingInitiator {
     private drawingController: DrawingController;
@@ -25,7 +31,9 @@ export class DrawingInitiator {
             return;
         }
 
-        const elementResults: AssessmentVisualizationInstance[] = processor(this.getElementResults(selectorMap));
+        const elementResults: AssessmentVisualizationInstance[] = processor(
+            this.getElementResults(selectorMap),
+        );
 
         this.initializeTargetIndex(elementResults);
 
@@ -48,7 +56,11 @@ export class DrawingInitiator {
         }
     }
 
-    public disableVisualization(visualizationType: VisualizationType, featureFlagStoreData: FeatureFlagStoreData, configId: string): void {
+    public disableVisualization(
+        visualizationType: VisualizationType,
+        featureFlagStoreData: FeatureFlagStoreData,
+        configId: string,
+    ): void {
         const visualizationMessage: VisualizationWindowMessage = {
             visualizationType: visualizationType,
             isEnabled: false,
@@ -59,7 +71,9 @@ export class DrawingInitiator {
         this.drawingController.processRequest(visualizationMessage);
     }
 
-    private getElementResults(selectorMap: DictionaryStringTo<AssessmentVisualizationInstance>): AssessmentVisualizationInstance[] {
+    private getElementResults(
+        selectorMap: DictionaryStringTo<AssessmentVisualizationInstance>,
+    ): AssessmentVisualizationInstance[] {
         return Object.keys(selectorMap).map(key => selectorMap[key]);
     }
 }

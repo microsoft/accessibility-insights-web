@@ -50,30 +50,49 @@ input[type="color"]',
             dataSetterMock = Mock.ofInstance(data => {});
         });
 
-        it.each(['text', 'search', 'url', 'tel', 'email', 'password', 'date', 'date-time', 'date-time-local', 'range', 'color'])(
-            'validate input with type %s is collected by rule',
-            (inputType: string) => {
-                testDom = TestDocumentCreator.createTestDocument(`<input type="${inputType}" id="test-node">`);
-                const node = testDom.querySelector('#test-node');
-                const expectedData = {
-                    inputType,
-                    autocomplete: null,
-                };
-                dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
-                const result = autocompleteRuleConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, node);
-                expect(result).toBe(true);
-            },
-        );
+        it.each([
+            'text',
+            'search',
+            'url',
+            'tel',
+            'email',
+            'password',
+            'date',
+            'date-time',
+            'date-time-local',
+            'range',
+            'color',
+        ])('validate input with type %s is collected by rule', (inputType: string) => {
+            testDom = TestDocumentCreator.createTestDocument(
+                `<input type="${inputType}" id="test-node">`,
+            );
+            const node = testDom.querySelector('#test-node');
+            const expectedData = {
+                inputType,
+                autocomplete: null,
+            };
+            dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
+            const result = autocompleteRuleConfiguration.checks[0].evaluate.call(
+                { data: dataSetterMock.object },
+                node,
+            );
+            expect(result).toBe(true);
+        });
 
         it.each(['on', 'off'])('should pick autocomplete value', (autocomplete: string) => {
-            testDom = TestDocumentCreator.createTestDocument(`<input type="text" autocomplete="${autocomplete}" id="test-node">`);
+            testDom = TestDocumentCreator.createTestDocument(
+                `<input type="text" autocomplete="${autocomplete}" id="test-node">`,
+            );
             const node = testDom.querySelector('#test-node');
             const expectedData = {
                 inputType: 'text',
                 autocomplete,
             };
             dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
-            const result = autocompleteRuleConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, node);
+            const result = autocompleteRuleConfiguration.checks[0].evaluate.call(
+                { data: dataSetterMock.object },
+                node,
+            );
             expect(result).toBe(true);
         });
     });

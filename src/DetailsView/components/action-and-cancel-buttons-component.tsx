@@ -15,7 +15,9 @@ export interface ActionAndCancelButtonsComponentProps {
     primaryButtonHref?: string;
 }
 
-export class ActionAndCancelButtonsComponent extends React.Component<ActionAndCancelButtonsComponentProps> {
+export class ActionAndCancelButtonsComponent extends React.Component<
+    ActionAndCancelButtonsComponentProps
+> {
     public render(): JSX.Element {
         return (
             <div className={styles.actionAndCancelButtonsComponent} hidden={this.props.isHidden}>

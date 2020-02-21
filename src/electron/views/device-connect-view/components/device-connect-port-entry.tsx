@@ -46,7 +46,7 @@ export class DeviceConnectPortEntry extends React.Component<
                     data-automation-id={deviceConnectPortNumberFieldAutomationId}
                     ariaLabel="Port number"
                     onChange={this.onPortTextChanged}
-                    placeholder="12345"
+                    placeholder="Ex: 12345"
                     className={styles.portNumberField}
                     maskChar=""
                     mask="99999"

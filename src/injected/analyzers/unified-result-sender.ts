@@ -34,7 +34,10 @@ export class UnifiedResultSender {
         }
 
         const payload: UnifiedScanCompletedPayload = {
-            scanResult: this.convertScanResultsToUnifiedResults(axeResults.originalResult, this.generateUID),
+            scanResult: this.convertScanResultsToUnifiedResults(
+                axeResults.originalResult,
+                this.generateUID,
+            ),
             rules: this.convertScanResultsToUnifiedRules(axeResults.originalResult),
             toolInfo: this.environmentInfoProvider.getToolData(),
             targetAppInfo: {

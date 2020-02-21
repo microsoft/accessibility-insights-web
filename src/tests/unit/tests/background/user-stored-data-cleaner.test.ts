@@ -19,8 +19,12 @@ describe('cleanKeysFromStorage', () => {
             exist: 'yes it does',
         };
 
-        storageAdapterMock.setup(storage => storage.getUserData(keys)).returns(() => Promise.resolve(data));
-        storageAdapterMock.setup(storage => storage.removeUserData('exist')).returns(() => Promise.resolve());
+        storageAdapterMock
+            .setup(storage => storage.getUserData(keys))
+            .returns(() => Promise.resolve(data));
+        storageAdapterMock
+            .setup(storage => storage.removeUserData('exist'))
+            .returns(() => Promise.resolve());
 
         await testObject(storageAdapterMock.object, keys);
     });

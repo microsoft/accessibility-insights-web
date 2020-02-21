@@ -9,7 +9,11 @@ export class ShadowInitializer {
     public static readonly injectedCssPath: string = 'injected/styles/default/injected.css';
     public static readonly generatedBundleInjectedCssPath: string = 'bundle/injected.css';
 
-    constructor(private browserAdapter: BrowserAdapter, private htmlElementUtils: HTMLElementUtils, private logger: Logger) {}
+    constructor(
+        private browserAdapter: BrowserAdapter,
+        private htmlElementUtils: HTMLElementUtils,
+        private logger: Logger,
+    ) {}
 
     public async initialize(): Promise<void> {
         try {

@@ -1,16 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserMessageBroadcasterFactory } from 'background/browser-message-broadcaster-factory';
-import { DetailsViewController } from 'background/details-view-controller';
+import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { Interpreter } from 'background/interpreter';
 import { TabContext } from 'background/tab-context';
 import { TabContextFactory } from 'background/tab-context-factory';
 import { TargetPageController } from 'background/target-page-controller';
-import { TriggeredByNotApplicable } from 'common/extension-telemetry-events';
 import { Logger } from 'common/logging/logger';
 import { Messages } from 'common/messages';
 import { isFunction, values } from 'lodash';
-import { createSimulatedBrowserAdapter, SimulatedBrowserAdapter } from 'tests/unit/common/simulated-browser-adapter';
+import {
+    createSimulatedBrowserAdapter,
+    SimulatedBrowserAdapter,
+} from 'tests/unit/common/simulated-browser-adapter';
 import { tick } from 'tests/unit/common/tick';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DictionaryNumberTo } from 'types/common-types';
@@ -31,19 +33,39 @@ describe('TargetPageController', () => {
     const EXISTING_WINDOW = { id: EXISTING_WINDOW_ID } as chrome.windows.Window;
 
     const EXISTING_ACTIVE_TAB_ID = 1;
-    const EXISTING_ACTIVE_TAB = { id: EXISTING_ACTIVE_TAB_ID, windowId: EXISTING_WINDOW_ID, active: true } as chrome.tabs.Tab;
+    const EXISTING_ACTIVE_TAB = {
+        id: EXISTING_ACTIVE_TAB_ID,
+        windowId: EXISTING_WINDOW_ID,
+        active: true,
+    } as chrome.tabs.Tab;
 
     const EXISTING_INACTIVE_TAB_ID = 2;
-    const EXISTING_INACTIVE_TAB = { id: EXISTING_INACTIVE_TAB_ID, windowId: EXISTING_WINDOW_ID, active: false } as chrome.tabs.Tab;
+    const EXISTING_INACTIVE_TAB = {
+        id: EXISTING_INACTIVE_TAB_ID,
+        windowId: EXISTING_WINDOW_ID,
+        active: false,
+    } as chrome.tabs.Tab;
 
     const NEW_TAB_ID = 3;
-    const NEW_TAB = { id: NEW_TAB_ID, windowId: EXISTING_WINDOW_ID, active: true } as chrome.tabs.Tab;
+    const NEW_TAB = {
+        id: NEW_TAB_ID,
+        windowId: EXISTING_WINDOW_ID,
+        active: true,
+    } as chrome.tabs.Tab;
 
     beforeEach(() => {
         mockLogger = Mock.ofType<Logger>();
-        mockBroadcasterFactoryStrictMock = Mock.ofType<BrowserMessageBroadcasterFactory>(undefined, MockBehavior.Strict);
-        mockBroadcasterFactoryStrictMock.setup(m => m.createTabSpecificBroadcaster(It.isAny())).returns(_ => stubBroadcastDelegate);
-        mockBrowserAdapter = createSimulatedBrowserAdapter([EXISTING_ACTIVE_TAB, EXISTING_INACTIVE_TAB], [EXISTING_WINDOW]);
+        mockBroadcasterFactoryStrictMock = Mock.ofType<BrowserMessageBroadcasterFactory>(
+            undefined,
+            MockBehavior.Strict,
+        );
+        mockBroadcasterFactoryStrictMock
+            .setup(m => m.createTabSpecificBroadcaster(It.isAny()))
+            .returns(_ => stubBroadcastDelegate);
+        mockBrowserAdapter = createSimulatedBrowserAdapter(
+            [EXISTING_ACTIVE_TAB, EXISTING_INACTIVE_TAB],
+            [EXISTING_WINDOW],
+        );
         mockDetailsViewController = setupMockDetailsViewController();
         tabToContextMap = {};
         mockTabInterpreters = {};
@@ -67,26 +89,47 @@ describe('TargetPageController', () => {
             await testSubject.initialize();
 
             mockBrowserAdapter.verify(m => m.addListenerOnConnect(It.isAny()), Times.once());
-            mockBrowserAdapter.verify(m => m.addListenerOnWindowsFocusChanged(It.isAny()), Times.once());
-            mockBrowserAdapter.verify(m => m.addListenerToTabsOnActivated(It.isAny()), Times.once());
+            mockBrowserAdapter.verify(
+                m => m.addListenerOnWindowsFocusChanged(It.isAny()),
+                Times.once(),
+            );
+            mockBrowserAdapter.verify(
+                m => m.addListenerToTabsOnActivated(It.isAny()),
+                Times.once(),
+            );
             mockBrowserAdapter.verify(m => m.addListenerToTabsOnRemoved(It.isAny()), Times.once());
             mockBrowserAdapter.verify(m => m.addListenerToTabsOnUpdated(It.isAny()), Times.once());
-            mockBrowserAdapter.verify(m => m.addListenerToWebNavigationUpdated(It.isAny()), Times.once());
+            mockBrowserAdapter.verify(
+                m => m.addListenerToWebNavigationUpdated(It.isAny()),
+                Times.once(),
+            );
 
-            mockDetailsViewController.verify(m => m.setupDetailsViewTabRemovedHandler(It.isAny()), Times.once());
+            mockDetailsViewController.verify(
+                m => m.setupDetailsViewTabRemovedHandler(It.isAny()),
+                Times.once(),
+            );
         });
 
         it('should create a tab context for each pre-existing tab', async () => {
             await testSubject.initialize();
 
-            mockTabContextFactory.verify(f => f.createTabContext(It.isAny(), It.isAny(), It.isAny(), EXISTING_ACTIVE_TAB_ID), Times.once());
+            mockTabContextFactory.verify(
+                f => f.createTabContext(It.isAny(), It.isAny(), It.isAny(), EXISTING_ACTIVE_TAB_ID),
+                Times.once(),
+            );
             expect(tabToContextMap[EXISTING_ACTIVE_TAB_ID]).toHaveProperty(
                 'interpreter',
                 mockTabInterpreters[EXISTING_ACTIVE_TAB_ID].object,
             );
 
             mockTabContextFactory.verify(
-                f => f.createTabContext(It.isAny(), It.isAny(), It.isAny(), EXISTING_INACTIVE_TAB_ID),
+                f =>
+                    f.createTabContext(
+                        It.isAny(),
+                        It.isAny(),
+                        It.isAny(),
+                        EXISTING_INACTIVE_TAB_ID,
+                    ),
                 Times.once(),
             );
             expect(tabToContextMap[EXISTING_INACTIVE_TAB_ID]).toHaveProperty(
@@ -94,7 +137,10 @@ describe('TargetPageController', () => {
                 mockTabInterpreters[EXISTING_INACTIVE_TAB_ID].object,
             );
 
-            mockTabContextFactory.verify(f => f.createTabContext(It.isAny(), It.isAny(), It.isAny(), NEW_TAB_ID), Times.never());
+            mockTabContextFactory.verify(
+                f => f.createTabContext(It.isAny(), It.isAny(), It.isAny(), NEW_TAB_ID),
+                Times.never(),
+            );
             expect(tabToContextMap[NEW_TAB_ID]).toBeUndefined();
         });
     });
@@ -107,7 +153,9 @@ describe('TargetPageController', () => {
 
         describe('onConnect', () => {
             it('should not have any observable effect', () => {
-                mockBrowserAdapter.notifyOnConnect({ name: 'irrelevant port' } as chrome.runtime.Port);
+                mockBrowserAdapter.notifyOnConnect({
+                    name: 'irrelevant port',
+                } as chrome.runtime.Port);
                 verifyNoInterpreterMessages(mockTabInterpreters);
             });
         });
@@ -131,8 +179,14 @@ describe('TargetPageController', () => {
                     tabId: NEW_TAB_ID,
                 } as chrome.webNavigation.WebNavigationFramedCallbackDetails);
 
-                mockTabContextFactory.verify(f => f.createTabContext(It.isAny(), It.isAny(), It.isAny(), NEW_TAB_ID), Times.once());
-                expect(tabToContextMap[NEW_TAB_ID]).toHaveProperty('interpreter', mockTabInterpreters[NEW_TAB_ID].object);
+                mockTabContextFactory.verify(
+                    f => f.createTabContext(It.isAny(), It.isAny(), It.isAny(), NEW_TAB_ID),
+                    Times.once(),
+                );
+                expect(tabToContextMap[NEW_TAB_ID]).toHaveProperty(
+                    'interpreter',
+                    mockTabInterpreters[NEW_TAB_ID].object,
+                );
             });
 
             it('should send an Tab.ExistingTabUpdated message for root frames in existing tabs', () => {
@@ -143,10 +197,13 @@ describe('TargetPageController', () => {
 
                 const expectedMessage = {
                     messageType: Messages.Tab.ExistingTabUpdated,
-                    payload: { ...EXISTING_ACTIVE_TAB, telemetry: undefined },
+                    payload: { ...EXISTING_ACTIVE_TAB },
                     tabId: EXISTING_ACTIVE_TAB_ID,
                 };
-                mockTabInterpreters[EXISTING_ACTIVE_TAB_ID].verify(i => i.interpret(expectedMessage), Times.once());
+                mockTabInterpreters[EXISTING_ACTIVE_TAB_ID].verify(
+                    i => i.interpret(expectedMessage),
+                    Times.once(),
+                );
             });
         });
 
@@ -163,7 +220,10 @@ describe('TargetPageController', () => {
                     tabId: EXISTING_ACTIVE_TAB_ID,
                 };
                 mockBrowserAdapter.notifyTabsOnRemoved(EXISTING_ACTIVE_TAB_ID, null);
-                mockTabInterpreters[EXISTING_ACTIVE_TAB_ID].verify(i => i.interpret(expectedMessage), Times.once());
+                mockTabInterpreters[EXISTING_ACTIVE_TAB_ID].verify(
+                    i => i.interpret(expectedMessage),
+                    Times.once(),
+                );
             });
 
             it('should remove tabToContextMap entries for tabs that are removed', () => {
@@ -195,7 +255,10 @@ describe('TargetPageController', () => {
                     payload: null,
                     tabId: EXISTING_ACTIVE_TAB_ID,
                 };
-                mockTabInterpreters[EXISTING_ACTIVE_TAB_ID].verify(i => i.interpret(expectedMessage), Times.once());
+                mockTabInterpreters[EXISTING_ACTIVE_TAB_ID].verify(
+                    i => i.interpret(expectedMessage),
+                    Times.once(),
+                );
             });
         });
 
@@ -222,7 +285,10 @@ describe('TargetPageController', () => {
                         payload: { hidden: expectedHiddenValue },
                         tabId: EXISTING_ACTIVE_TAB_ID,
                     };
-                    mockTabInterpreters[EXISTING_ACTIVE_TAB_ID].verify(i => i.interpret(expectedMessage), Times.once());
+                    mockTabInterpreters[EXISTING_ACTIVE_TAB_ID].verify(
+                        i => i.interpret(expectedMessage),
+                        Times.once(),
+                    );
                 },
             );
 
@@ -233,12 +299,17 @@ describe('TargetPageController', () => {
 
             it('should ignore inactive tabs', () => {
                 mockBrowserAdapter.notifyWindowsFocusChanged(irrelevantWindowId);
-                mockTabInterpreters[EXISTING_INACTIVE_TAB_ID].verify(i => i.interpret(It.isAny()), Times.never());
+                mockTabInterpreters[EXISTING_INACTIVE_TAB_ID].verify(
+                    i => i.interpret(It.isAny()),
+                    Times.never(),
+                );
             });
 
             it('should ignore tabs for windows which result in a runtime error when queried', () => {
                 mockBrowserAdapter.object.getRuntimeLastError(); // clear out the first method setup from setupMockBrowserAdapter()
-                mockBrowserAdapter.setup(m => m.getRuntimeLastError()).returns(() => ({ message: 'test error' }));
+                mockBrowserAdapter
+                    .setup(m => m.getRuntimeLastError())
+                    .returns(() => ({ message: 'test error' }));
 
                 mockBrowserAdapter.notifyWindowsFocusChanged(irrelevantWindowId);
                 verifyNoInterpreterMessages(mockTabInterpreters);
@@ -254,7 +325,10 @@ describe('TargetPageController', () => {
                     payload: { hidden: false },
                     tabId: EXISTING_INACTIVE_TAB_ID,
                 };
-                mockTabInterpreters[EXISTING_INACTIVE_TAB_ID].verify(i => i.interpret(expectedMessage), Times.once());
+                mockTabInterpreters[EXISTING_INACTIVE_TAB_ID].verify(
+                    i => i.interpret(expectedMessage),
+                    Times.once(),
+                );
             });
 
             it('should send a Tab.VisibilityChange message with isHidden=true for other known tabs in the same window when a known tab is activated', async () => {
@@ -266,7 +340,10 @@ describe('TargetPageController', () => {
                     payload: { hidden: true },
                     tabId: EXISTING_ACTIVE_TAB_ID,
                 };
-                mockTabInterpreters[EXISTING_ACTIVE_TAB_ID].verify(i => i.interpret(expectedMessage), Times.once());
+                mockTabInterpreters[EXISTING_ACTIVE_TAB_ID].verify(
+                    i => i.interpret(expectedMessage),
+                    Times.once(),
+                );
             });
 
             it('should send a Tab.VisibilityChange message with isHidden=true for other known tabs in the same window when an untracked tab is activated', async () => {
@@ -278,7 +355,10 @@ describe('TargetPageController', () => {
                     payload: { hidden: true },
                     tabId: EXISTING_ACTIVE_TAB_ID,
                 };
-                mockTabInterpreters[EXISTING_ACTIVE_TAB_ID].verify(i => i.interpret(expectedMessage), Times.once());
+                mockTabInterpreters[EXISTING_ACTIVE_TAB_ID].verify(
+                    i => i.interpret(expectedMessage),
+                    Times.once(),
+                );
             });
 
             it('should not send activation messages for untracked tabs', () => {
@@ -296,7 +376,9 @@ describe('TargetPageController', () => {
 
         describe('onTabUpdated', () => {
             const changeInfoWithoutUrl: chrome.tabs.TabChangeInfo = {};
-            const changeInfoWithUrl: chrome.tabs.TabChangeInfo = { url: 'https://new-host/new-page' };
+            const changeInfoWithUrl: chrome.tabs.TabChangeInfo = {
+                url: 'https://new-host/new-page',
+            };
 
             it("should ignore updates that don't change the url", () => {
                 mockBrowserAdapter.updateTab(EXISTING_ACTIVE_TAB_ID, changeInfoWithoutUrl);
@@ -307,8 +389,14 @@ describe('TargetPageController', () => {
                 mockBrowserAdapter.tabs.push(NEW_TAB);
                 mockBrowserAdapter.updateTab(NEW_TAB_ID, changeInfoWithUrl);
 
-                mockTabContextFactory.verify(f => f.createTabContext(It.isAny(), It.isAny(), It.isAny(), NEW_TAB_ID), Times.once());
-                expect(tabToContextMap[NEW_TAB_ID]).toHaveProperty('interpreter', mockTabInterpreters[NEW_TAB_ID].object);
+                mockTabContextFactory.verify(
+                    f => f.createTabContext(It.isAny(), It.isAny(), It.isAny(), NEW_TAB_ID),
+                    Times.once(),
+                );
+                expect(tabToContextMap[NEW_TAB_ID]).toHaveProperty(
+                    'interpreter',
+                    mockTabInterpreters[NEW_TAB_ID].object,
+                );
             });
 
             it('should send a Tab.ExistingTabUpdated message for url changes in tracked tabs', () => {
@@ -317,16 +405,15 @@ describe('TargetPageController', () => {
                     payload: {
                         ...EXISTING_ACTIVE_TAB,
                         url: changeInfoWithUrl.url,
-                        telemetry: {
-                            source: null,
-                            triggeredBy: TriggeredByNotApplicable,
-                        },
                     },
                     tabId: EXISTING_ACTIVE_TAB_ID,
                 };
                 mockBrowserAdapter.updateTab(EXISTING_ACTIVE_TAB_ID, changeInfoWithUrl);
 
-                mockTabInterpreters[EXISTING_ACTIVE_TAB_ID].verify(i => i.interpret(expectedMessage), Times.once());
+                mockTabInterpreters[EXISTING_ACTIVE_TAB_ID].verify(
+                    i => i.interpret(expectedMessage),
+                    Times.once(),
+                );
             });
         });
     });
@@ -337,26 +424,37 @@ describe('TargetPageController', () => {
         }
     }
 
-    function verifyNoInterpreterMessages(interpreters: DictionaryNumberTo<IMock<Interpreter>>): void {
+    function verifyNoInterpreterMessages(
+        interpreters: DictionaryNumberTo<IMock<Interpreter>>,
+    ): void {
         for (const interpreter of values(interpreters)) {
             interpreter.verify(i => i.interpret(It.isAny()), Times.never());
         }
     }
 
-    type SimulatedDetailsViewController = IMock<DetailsViewController> & {
+    type SimulatedDetailsViewController = IMock<ExtensionDetailsViewController> & {
         notifyDetailsViewTabRemoved?: (tabId: number) => void;
     };
 
     function setupMockDetailsViewController(): SimulatedDetailsViewController {
-        const mock: SimulatedDetailsViewController = Mock.ofType<DetailsViewController>();
-        mock.setup(m => m.setupDetailsViewTabRemovedHandler(It.is(isFunction))).callback(c => (mock.notifyDetailsViewTabRemoved = c));
+        const mock: SimulatedDetailsViewController = Mock.ofType<ExtensionDetailsViewController>();
+        mock.setup(m => m.setupDetailsViewTabRemovedHandler(It.is(isFunction))).callback(
+            c => (mock.notifyDetailsViewTabRemoved = c),
+        );
         return mock;
     }
 
-    function setupMockTabContextFactory(interpreters: DictionaryNumberTo<IMock<Interpreter>>): IMock<TabContextFactory> {
+    function setupMockTabContextFactory(
+        interpreters: DictionaryNumberTo<IMock<Interpreter>>,
+    ): IMock<TabContextFactory> {
         const mock = Mock.ofType(TabContextFactory);
         mock.setup(m =>
-            m.createTabContext(stubBroadcastDelegate, mockBrowserAdapter.object, mockDetailsViewController.object, It.isAnyNumber()),
+            m.createTabContext(
+                stubBroadcastDelegate,
+                mockBrowserAdapter.object,
+                mockDetailsViewController.object,
+                It.isAnyNumber(),
+            ),
         ).returns((_1, _2, _3, tabId) => ({
             stores: null,
             interpreter: interpreters[tabId].object,

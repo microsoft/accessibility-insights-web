@@ -32,7 +32,10 @@ describe('FeatureFlagsControllerTest', () => {
             .returns(() => storeDataStub)
             .verifiable(Times.exactly(3));
 
-        testObject = new FeatureFlagsController(featureFlagStoreMock.object, interpreterMock.object);
+        testObject = new FeatureFlagsController(
+            featureFlagStoreMock.object,
+            interpreterMock.object,
+        );
 
         expect(testObject.isEnabled(FeatureFlags.logTelemetryToConsole)).toBeFalsy();
         expect(testObject.isEnabled('testFeatureFlag')).toBeTruthy();
@@ -53,7 +56,10 @@ describe('FeatureFlagsControllerTest', () => {
             })
             .verifiable();
 
-        testObject = new FeatureFlagsController(featureFlagStoreMock.object, interpreterMock.object);
+        testObject = new FeatureFlagsController(
+            featureFlagStoreMock.object,
+            interpreterMock.object,
+        );
         expect(testObject.listFeatureFlags()).toEqual(storeDataStub);
         featureFlagStoreMock.verifyAll();
     });
@@ -78,8 +84,13 @@ describe('FeatureFlagsControllerTest', () => {
             .setup(f => f.getState())
             .returns(() => storeDataStub)
             .verifiable();
-        testObject = new FeatureFlagsController(featureFlagStoreMock.object, interpreterMock.object);
-        const storeState = enabled ? testObject.enableFeature(feature) : testObject.disableFeature(feature);
+        testObject = new FeatureFlagsController(
+            featureFlagStoreMock.object,
+            interpreterMock.object,
+        );
+        const storeState = enabled
+            ? testObject.enableFeature(feature)
+            : testObject.disableFeature(feature);
         expect(storeState).toEqual(storeDataStub);
         interpreterMock.verifyAll();
         featureFlagStoreMock.verifyAll();
@@ -92,7 +103,10 @@ describe('FeatureFlagsControllerTest', () => {
         };
         interpreterMock.setup(i => i.interpret(It.isObjectWith(message))).verifiable();
 
-        testObject = new FeatureFlagsController(featureFlagStoreMock.object, interpreterMock.object);
+        testObject = new FeatureFlagsController(
+            featureFlagStoreMock.object,
+            interpreterMock.object,
+        );
         testObject.resetFeatureFlags();
         interpreterMock.verifyAll();
     });

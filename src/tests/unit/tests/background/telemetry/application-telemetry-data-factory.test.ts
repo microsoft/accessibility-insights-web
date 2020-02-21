@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { InstallDataGenerator } from 'background/install-data-generator';
-import { ApplicationTelemetryData, ApplicationTelemetryDataFactory } from 'background/telemetry/application-telemetry-data-factory';
+import {
+    ApplicationTelemetryData,
+    ApplicationTelemetryDataFactory,
+} from 'background/telemetry/application-telemetry-data-factory';
 import { IMock, Mock } from 'typemoq';
 
 describe('ApplicationTelemetryDataFactoryTest', () => {

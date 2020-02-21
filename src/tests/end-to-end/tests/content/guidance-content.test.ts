@@ -35,17 +35,23 @@ describe('Guidance Content pages', () => {
         });
 
         it('matches the snapshot', async () => {
-            const mainContentContainer = await formatPageElementForSnapshot(contentPage, GuidanceContentSelectors.mainContentContainer);
+            const mainContentContainer = await formatPageElementForSnapshot(
+                contentPage,
+                GuidanceContentSelectors.mainContentContainer,
+            );
             expect(mainContentContainer).toMatchSnapshot();
         });
 
-        it.each([true, false])('has no accessibility issues with highContrastMode=%s', async highContrastMode => {
-            await browser.setHighContrastMode(highContrastMode);
-            await contentPage.bringToFront();
-            await contentPage.waitForHighContrastMode(highContrastMode);
+        it.each([true, false])(
+            'has no accessibility issues with highContrastMode=%s',
+            async highContrastMode => {
+                await browser.setHighContrastMode(highContrastMode);
+                await contentPage.bringToFront();
+                await contentPage.waitForHighContrastMode(highContrastMode);
 
-            const results = await scanForAccessibilityIssues(contentPage, '*');
-            expect(results).toHaveLength(0);
-        });
+                const results = await scanForAccessibilityIssues(contentPage, '*');
+                expect(results).toHaveLength(0);
+            },
+        );
     });
 });

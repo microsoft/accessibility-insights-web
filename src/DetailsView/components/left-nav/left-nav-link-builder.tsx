@@ -15,7 +15,9 @@ import { BaseLeftNavLink, onBaseLeftNavItemClick, onBaseLeftNavItemRender } from
 import { OverviewLeftNavLink } from './overview-left-nav-link';
 import { TestViewLeftNavLink } from './test-view-left-nav-link';
 
-export type LeftNavLinkBuilderDeps = OverviewLinkBuilderDeps & AssessmentLinkBuilderDeps & VisualizationConfigurationLinkBuilderDeps;
+export type LeftNavLinkBuilderDeps = OverviewLinkBuilderDeps &
+    AssessmentLinkBuilderDeps &
+    VisualizationConfigurationLinkBuilderDeps;
 
 export type OverviewLinkBuilderDeps = {
     getAssessmentSummaryModelFromProviderAndStatusData: GetAssessmentSummaryModelFromProviderAndStatusData;
@@ -24,7 +26,9 @@ export type OverviewLinkBuilderDeps = {
 export type AssessmentLinkBuilderDeps = {
     getStatusForTest: (stats: RequirementOutcomeStats) => ManualTestStatus;
     outcomeTypeSemanticsFromTestStatus: (testStatus: ManualTestStatus) => OutcomeTypeSemantic;
-    outcomeStatsFromManualTestStatus: (testStepStatus: ManualTestStatusData) => RequirementOutcomeStats;
+    outcomeStatsFromManualTestStatus: (
+        testStepStatus: ManualTestStatusData,
+    ) => RequirementOutcomeStats;
 };
 
 export type VisualizationConfigurationLinkBuilderDeps = {};
@@ -39,7 +43,10 @@ export class LeftNavLinkBuilder {
     ): BaseLeftNavLink {
         const { getAssessmentSummaryModelFromProviderAndStatusData } = deps;
 
-        const reportModel = getAssessmentSummaryModelFromProviderAndStatusData(assessmentsProvider, assessmentsData);
+        const reportModel = getAssessmentSummaryModelFromProviderAndStatusData(
+            assessmentsProvider,
+            assessmentsData,
+        );
         const percentComplete = 100 - reportModel.byPercentage.incomplete;
 
         const baselink = this.buildLink(
@@ -66,7 +73,11 @@ export class LeftNavLinkBuilder {
         assessmentsData: DictionaryStringTo<ManualTestStatusData>,
         startingIndex: number,
     ): BaseLeftNavLink[] {
-        const { getStatusForTest, outcomeTypeSemanticsFromTestStatus, outcomeStatsFromManualTestStatus } = deps;
+        const {
+            getStatusForTest,
+            outcomeTypeSemanticsFromTestStatus,
+            outcomeStatsFromManualTestStatus,
+        } = deps;
 
         const assessments = assessmentsProvider.all();
         let index = startingIndex;

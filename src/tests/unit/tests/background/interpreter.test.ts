@@ -10,7 +10,9 @@ class TestableInterpreter extends Interpreter {
         return this.messageToActionMapping;
     }
 
-    public setMessageToActionMapping(messageToActionMapping: DictionaryStringTo<PayloadCallback<any>>): void {
+    public setMessageToActionMapping(
+        messageToActionMapping: DictionaryStringTo<PayloadCallback<any>>,
+    ): void {
         this.messageToActionMapping = messageToActionMapping;
     }
 }

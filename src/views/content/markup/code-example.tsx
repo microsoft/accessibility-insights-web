@@ -37,7 +37,9 @@ export function CodeExample(props: CodeExampleProps): JSX.Element {
     }
 
     function renderLineBreaks(str: string): React.ReactNode[] {
-        return flatten(str.split('\n').map(s => [<br key={`line-breaker-${lineCount++}`} />, s])).slice(1);
+        return flatten(
+            str.split('\n').map(s => [<br key={`line-breaker-${lineCount++}`} />, s]),
+        ).slice(1);
     }
 
     function renderRegion(str: string, index: number): React.ReactNode[] {

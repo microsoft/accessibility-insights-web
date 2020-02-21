@@ -45,13 +45,21 @@ describe('UserConfigurationStoreTest', () => {
     });
 
     test('verify state before initialize', () => {
-        const testSubject = new UserConfigurationStore(initialStoreData, new UserConfigurationActions(), indexDbStrictMock.object);
+        const testSubject = new UserConfigurationStore(
+            initialStoreData,
+            new UserConfigurationActions(),
+            indexDbStrictMock.object,
+        );
 
         expect(testSubject.getState()).toBeUndefined();
     });
 
     test('verify initial state when null', () => {
-        const testSubject = new UserConfigurationStore(null, new UserConfigurationActions(), indexDbStrictMock.object);
+        const testSubject = new UserConfigurationStore(
+            null,
+            new UserConfigurationActions(),
+            indexDbStrictMock.object,
+        );
 
         testSubject.initialize();
 
@@ -108,7 +116,11 @@ describe('UserConfigurationStoreTest', () => {
     });
 
     test('getDefaultState returns cloned data when initial state is null', () => {
-        const testSubject = new UserConfigurationStore(null, new UserConfigurationActions(), indexDbStrictMock.object);
+        const testSubject = new UserConfigurationStore(
+            null,
+            new UserConfigurationActions(),
+            indexDbStrictMock.object,
+        );
 
         const firstCallDefaultState = testSubject.getDefaultState();
         expect(firstCallDefaultState).toEqual(defaultStoreData);
@@ -119,7 +131,11 @@ describe('UserConfigurationStoreTest', () => {
     });
 
     test('verify store id', () => {
-        const testSubject = new UserConfigurationStore(initialStoreData, new UserConfigurationActions(), indexDbStrictMock.object);
+        const testSubject = new UserConfigurationStore(
+            initialStoreData,
+            new UserConfigurationActions(),
+            indexDbStrictMock.object,
+        );
 
         expect(testSubject.getId()).toBe(StoreNames[StoreNames.UserConfigurationStore]);
     });
@@ -136,10 +152,26 @@ describe('UserConfigurationStoreTest', () => {
         enableHighContrastMode: boolean;
     };
     test.each([
-        { enableTelemetry: true, isFirstTime: true, enableHighContrastMode: false } as SetUserConfigTestCase,
-        { enableTelemetry: true, isFirstTime: false, enableHighContrastMode: false } as SetUserConfigTestCase,
-        { enableTelemetry: false, isFirstTime: false, enableHighContrastMode: false } as SetUserConfigTestCase,
-        { enableTelemetry: false, isFirstTime: true, enableHighContrastMode: false } as SetUserConfigTestCase,
+        {
+            enableTelemetry: true,
+            isFirstTime: true,
+            enableHighContrastMode: false,
+        } as SetUserConfigTestCase,
+        {
+            enableTelemetry: true,
+            isFirstTime: false,
+            enableHighContrastMode: false,
+        } as SetUserConfigTestCase,
+        {
+            enableTelemetry: false,
+            isFirstTime: false,
+            enableHighContrastMode: false,
+        } as SetUserConfigTestCase,
+        {
+            enableTelemetry: false,
+            isFirstTime: true,
+            enableHighContrastMode: false,
+        } as SetUserConfigTestCase,
     ])('setTelemetryConfig action: %p', (testCase: SetUserConfigTestCase) => {
         const storeTester = createStoreToTestAction('setTelemetryState');
         initialStoreData = {
@@ -158,7 +190,9 @@ describe('UserConfigurationStoreTest', () => {
             bugServicePropertiesMap: {},
         };
 
-        indexDbStrictMock.setup(i => i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState))).verifiable(Times.once());
+        indexDbStrictMock
+            .setup(i => i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)))
+            .verifiable(Times.once());
 
         storeTester
             .withActionParam(testCase.enableTelemetry)
@@ -167,8 +201,16 @@ describe('UserConfigurationStoreTest', () => {
     });
 
     test.each([
-        { enableTelemetry: false, isFirstTime: false, enableHighContrastMode: true } as SetUserConfigTestCase,
-        { enableTelemetry: false, isFirstTime: false, enableHighContrastMode: false } as SetUserConfigTestCase,
+        {
+            enableTelemetry: false,
+            isFirstTime: false,
+            enableHighContrastMode: true,
+        } as SetUserConfigTestCase,
+        {
+            enableTelemetry: false,
+            isFirstTime: false,
+            enableHighContrastMode: false,
+        } as SetUserConfigTestCase,
     ])('setHighContrast action: %p', (testCase: SetUserConfigTestCase) => {
         const storeTester = createStoreToTestAction('setHighContrastMode');
         initialStoreData = {
@@ -191,7 +233,9 @@ describe('UserConfigurationStoreTest', () => {
             bugServicePropertiesMap: {},
         };
 
-        indexDbStrictMock.setup(i => i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState))).verifiable(Times.once());
+        indexDbStrictMock
+            .setup(i => i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)))
+            .verifiable(Times.once());
 
         storeTester
             .withActionParam(setHighContrastData)
@@ -221,7 +265,9 @@ describe('UserConfigurationStoreTest', () => {
             };
 
             indexDbStrictMock
-                .setup(i => i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)))
+                .setup(i =>
+                    i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)),
+                )
                 .verifiable(Times.once());
 
             storeTester
@@ -231,7 +277,13 @@ describe('UserConfigurationStoreTest', () => {
         },
     );
 
-    test.each([undefined, null, {}, { 'test-service': {} }, { 'test-service': { 'test-name': 'test-value' } }])(
+    test.each([
+        undefined,
+        null,
+        {},
+        { 'test-service': {} },
+        { 'test-service': { 'test-name': 'test-value' } },
+    ])(
         'setIssueFilingServiceProperty with initial map state %p',
         (initialMapState: IssueFilingServicePropertiesMap) => {
             const storeTester = createStoreToTestAction('setIssueFilingServiceProperty');
@@ -255,7 +307,9 @@ describe('UserConfigurationStoreTest', () => {
             };
 
             indexDbStrictMock
-                .setup(indexDb => indexDb.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)))
+                .setup(indexDb =>
+                    indexDb.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)),
+                )
                 .verifiable(Times.once());
 
             storeTester
@@ -282,7 +336,9 @@ describe('UserConfigurationStoreTest', () => {
         };
 
         indexDbStrictMock
-            .setup(indexDb => indexDb.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)))
+            .setup(indexDb =>
+                indexDb.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)),
+            )
             .verifiable(Times.once());
 
         storeTester

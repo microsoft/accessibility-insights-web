@@ -5,12 +5,25 @@ exports[`Header renders per snapshot 1`] = `
   className="headerBar"
 >
   <Component
-    deps={Object {}}
+    deps={
+      Object {
+        "textContent": Object {
+          "applicationTitle": "THE_APPLICATION_TITLE",
+        },
+      }
+    }
   />
   <span
-    className="headerText"
+    className="headerTitle"
   >
-    Accessibility Insights for Web
+    THE_APPLICATION_TITLE
   </span>
+  <div />
+  <div
+    className="spacer"
+  />
+  <div
+    className="farItems"
+  />
 </header>
 `;

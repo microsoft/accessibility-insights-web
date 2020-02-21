@@ -2,18 +2,18 @@
 // Licensed under the MIT License.
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
-import { DeviceConnectState } from 'electron/flux/types/device-connect-state';
 import { ScanStatus } from 'electron/flux/types/scan-status';
+import { ViewRoutes } from 'electron/flux/types/window-state-store-data';
 import {
     RootContainer,
     RootContainerDeps,
+    RootContainerInternal,
     RootContainerProps,
     RootContainerState,
 } from 'electron/views/root-container/components/root-container';
 import { shallow } from 'enzyme';
-import { isFunction } from 'lodash';
 import * as React from 'react';
-import { IMock, It, Mock } from 'typemoq';
+import { IMock, Mock } from 'typemoq';
 
 describe(RootContainer, () => {
     let deps: RootContainerDeps;
@@ -23,81 +23,39 @@ describe(RootContainer, () => {
     beforeEach(() => {
         storeHubMock = Mock.ofType<ClientStoresHub<RootContainerState>>(BaseClientStoresHub);
 
-        deps = { storeHub: storeHubMock.object } as RootContainerDeps;
+        deps = { storesHub: storeHubMock.object } as RootContainerDeps;
         props = {
             deps,
+            storeState: {
+                windowStateStoreData: { routeId: 'deviceConnectView', currentWindowState: 'customSize' },
+                userConfigurationStoreData: {
+                    isFirstTime: false,
+                },
+                deviceStoreData: {
+                    port: 111,
+                },
+                scanStoreData: {
+                    status: ScanStatus.Completed,
+                },
+                unifiedScanResultStoreData: {
+                    rules: [],
+                },
+                cardSelectionStoreData: {
+                    rules: {},
+                },
+            },
         } as RootContainerProps;
     });
 
     describe('renders', () => {
-        it('device connect view container when route is deviceConnectView', () => {
-            storeHubMock
-                .setup(hub => hub.getAllStoreData())
-                .returns(() => {
-                    return {
-                        windowStateStoreData: { routeId: 'deviceConnectView', currentWindowState: 'customSize' },
-                        userConfigurationStoreData: { isFirstTime: true },
-                        deviceStoreData: { deviceConnectState: DeviceConnectState.Connected },
-                        unifiedScanResultStoreData: { targetAppInfo: { name: 'test-target-app-name' } },
-                        scanStoreData: { status: ScanStatus.Completed },
-                    } as RootContainerState;
-                });
+        const routeIds: ViewRoutes[] = ['deviceConnectView', 'resultsView'];
 
-            const wrapped = shallow(<RootContainer {...props} />);
+        it.each(routeIds)('with routeId = %s', routeId => {
+            props.storeState.windowStateStoreData.routeId = routeId;
+
+            const wrapped = shallow(<RootContainerInternal {...props} />);
 
             expect(wrapped.getElement()).toMatchSnapshot();
-        });
-
-        it('results view container when route is resultsView', () => {
-            storeHubMock
-                .setup(hub => hub.getAllStoreData())
-                .returns(() => {
-                    return {
-                        windowStateStoreData: { routeId: 'resultsView', currentWindowState: 'customSize' },
-                        userConfigurationStoreData: { isFirstTime: true },
-                        deviceStoreData: { deviceConnectState: DeviceConnectState.Connected, port: 11111 },
-                        scanStoreData: { status: ScanStatus.Default },
-                    } as RootContainerState;
-                });
-
-            const wrapped = shallow(<RootContainer {...props} />);
-
-            expect(wrapped.getElement()).toMatchSnapshot();
-        });
-    });
-
-    describe('store listening', () => {
-        it('uses the store to update the state', () => {
-            storeHubMock
-                .setup(hub => hub.getAllStoreData())
-                .returns(() => {
-                    return {
-                        windowStateStoreData: { routeId: 'deviceConnectView', currentWindowState: 'customSize' },
-                        userConfigurationStoreData: { isFirstTime: true },
-                        deviceStoreData: { deviceConnectState: DeviceConnectState.Connected },
-                    } as RootContainerState;
-                });
-            storeHubMock
-                .setup(hub => hub.getAllStoreData())
-                .returns(() => {
-                    return {
-                        windowStateStoreData: { routeId: 'resultsView', currentWindowState: 'customSize' },
-                        userConfigurationStoreData: { isFirstTime: true },
-                        deviceStoreData: { deviceConnectState: DeviceConnectState.Connected },
-                    } as RootContainerState;
-                });
-            let storeListener: Function;
-            storeHubMock
-                .setup(hub => hub.addChangedListenerToAllStores(It.is(isFunction)))
-                .callback(cb => {
-                    storeListener = cb;
-                });
-
-            const wrapped = shallow(<RootContainer {...props} />);
-            expect(wrapped.state()).toMatchSnapshot('initial state');
-
-            storeListener();
-            expect(wrapped.state()).toMatchSnapshot('updated state');
         });
     });
 });

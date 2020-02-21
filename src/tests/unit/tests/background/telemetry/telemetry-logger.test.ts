@@ -27,18 +27,28 @@ describe('TelemetryLoggerTest', () => {
     });
 
     it('logs telemetry (flag: enabled)', () => {
-        controllerMock.setup(cm => cm.isEnabled(FeatureFlags.logTelemetryToConsole)).returns(() => true);
+        controllerMock
+            .setup(cm => cm.isEnabled(FeatureFlags.logTelemetryToConsole))
+            .returns(() => true);
 
         testObject.log(testTelemetryData);
 
         loggerMock.verify(
-            logger => logger.log('eventName: ', testTelemetryData.name, '; customProperties: ', testTelemetryData.properties),
+            logger =>
+                logger.log(
+                    'eventName: ',
+                    testTelemetryData.name,
+                    '; customProperties: ',
+                    testTelemetryData.properties,
+                ),
             Times.once(),
         );
     });
 
     it('logs telemetry (flag: disabled)', () => {
-        controllerMock.setup(cm => cm.isEnabled(FeatureFlags.logTelemetryToConsole)).returns(() => false);
+        controllerMock
+            .setup(cm => cm.isEnabled(FeatureFlags.logTelemetryToConsole))
+            .returns(() => false);
 
         testObject.log(testTelemetryData);
 

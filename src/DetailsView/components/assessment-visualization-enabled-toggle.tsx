@@ -16,13 +16,22 @@ export class AssessmentVisualizationEnabledToggle extends BaseVisualHelperToggle
 
     protected onClick = (event): void => {
         this.props.deps.detailsViewActionMessageCreator.changeAssessmentVisualizationStateForAll(
-            !this.isAnyInstanceVisible(this.filterInstancesByTestStep(this.props.assessmentNavState, this.props.instancesMap)),
+            !this.isAnyInstanceVisible(
+                this.filterInstancesByTestStep(
+                    this.props.assessmentNavState,
+                    this.props.instancesMap,
+                ),
+            ),
             this.props.assessmentNavState.selectedTestType,
             this.props.assessmentNavState.selectedTestStep,
         );
     };
 
     private isAnyInstanceVisible(instances: GeneratedAssessmentInstance<{}, {}>[]): boolean {
-        return instances.some(instance => instance.testStepResults[this.props.assessmentNavState.selectedTestStep].isVisualizationEnabled);
+        return instances.some(
+            instance =>
+                instance.testStepResults[this.props.assessmentNavState.selectedTestStep]
+                    .isVisualizationEnabled,
+        );
     }
 }

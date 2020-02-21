@@ -3,8 +3,14 @@
 import { INavLink, Nav } from 'office-ui-fabric-react';
 import * as React from 'react';
 
-export type onBaseLeftNavItemClick = (event: React.MouseEvent<HTMLElement>, item: BaseLeftNavLink) => void;
-export type onBaseLeftNavItemRender = (link: BaseLeftNavLink, renderIcon: (link: BaseLeftNavLink) => JSX.Element) => JSX.Element;
+export type onBaseLeftNavItemClick = (
+    event: React.MouseEvent<HTMLElement>,
+    item: BaseLeftNavLink,
+) => void;
+export type onBaseLeftNavItemRender = (
+    link: BaseLeftNavLink,
+    renderIcon: (link: BaseLeftNavLink) => JSX.Element,
+) => JSX.Element;
 
 export type BaseLeftNavProps = {
     selectedKey: string;
@@ -43,7 +49,10 @@ export class BaseLeftNav extends React.Component<BaseLeftNavProps> {
         );
     }
 
-    protected onNavLinkClick = (event: React.MouseEvent<HTMLElement>, item: BaseLeftNavLink): void => {
+    protected onNavLinkClick = (
+        event: React.MouseEvent<HTMLElement>,
+        item: BaseLeftNavLink,
+    ): void => {
         if (item) {
             item.onClickNavLink(event, item);
         }

@@ -22,7 +22,11 @@ describe('AxeResponseHandler', () => {
 
             errorCallbackMock.setup(scb => scb(errorStub)).verifiable();
 
-            const testSubject = new AxeResponseHandler(successCallbackMock.object, errorCallbackMock.object, null);
+            const testSubject = new AxeResponseHandler(
+                successCallbackMock.object,
+                errorCallbackMock.object,
+                null,
+            );
 
             const failingFunction = () => {
                 testSubject.handleResponse(errorStub, null);
@@ -47,7 +51,11 @@ describe('AxeResponseHandler', () => {
 
             successCallbackMock.setup(scm => scm(scanResultsStub)).verifiable();
 
-            const testSubject = new AxeResponseHandler(successCallbackMock.object, null, resultDecoratorMock.object);
+            const testSubject = new AxeResponseHandler(
+                successCallbackMock.object,
+                null,
+                resultDecoratorMock.object,
+            );
 
             testSubject.handleResponse(null, axeResultStub as any);
 

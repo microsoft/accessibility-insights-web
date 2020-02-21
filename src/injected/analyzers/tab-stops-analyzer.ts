@@ -5,7 +5,12 @@ import * as Q from 'q';
 
 import { WindowUtils } from '../../common/window-utils';
 import { TabStopEvent, TabStopsListener } from '../tab-stops-listener';
-import { AxeAnalyzerResult, FocusAnalyzerConfiguration, ScanBasePayload, ScanUpdatePayload } from './analyzer';
+import {
+    AxeAnalyzerResult,
+    FocusAnalyzerConfiguration,
+    ScanBasePayload,
+    ScanUpdatePayload,
+} from './analyzer';
 import { BaseAnalyzer } from './base-analyzer';
 
 export interface ProgressResult<T> {

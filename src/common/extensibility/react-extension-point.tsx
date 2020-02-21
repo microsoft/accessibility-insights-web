@@ -34,7 +34,9 @@ function isReactExtension(extension: Extension<any>): extension is ReactExtensio
     return (extension as AnyExtension).extensionType === 'reactComponent';
 }
 
-export function reactExtensionPoint<P extends {}>(extensionPointKey: string): ReactExtensionPoint<P> {
+export function reactExtensionPoint<P extends {}>(
+    extensionPointKey: string,
+): ReactExtensionPoint<P> {
     const component = NamedFC<P & { extensions: Extension<any>[] }>(extensionPointKey, props => {
         const { children, extensions } = props;
 

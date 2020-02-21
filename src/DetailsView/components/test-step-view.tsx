@@ -51,9 +51,16 @@ export class TestStepView extends React.Component<TestStepViewProps> {
                 <div className="test-step-title-container">
                     <h3 className="test-step-view-title">
                         {this.props.testStep.name}
-                        <GuidanceTags deps={this.props.deps} links={this.props.testStep.guidanceLinks} />
+                        <GuidanceTags
+                            deps={this.props.deps}
+                            links={this.props.testStep.guidanceLinks}
+                        />
                     </h3>
-                    <ContentPanelButton deps={this.props.deps} reference={this.props.testStep.infoAndExamples} iconName="info">
+                    <ContentPanelButton
+                        deps={this.props.deps}
+                        reference={this.props.testStep.infoAndExamples}
+                        iconName="info"
+                    >
                         Info &amp; examples
                     </ContentPanelButton>
                 </div>
@@ -84,7 +91,13 @@ export class TestStepView extends React.Component<TestStepViewProps> {
         }
 
         if (this.props.isScanning) {
-            return <Spinner className="details-view-spinner" size={SpinnerSize.large} label={'Scanning'} />;
+            return (
+                <Spinner
+                    className="details-view-spinner"
+                    size={SpinnerSize.large}
+                    label={'Scanning'}
+                />
+            );
         }
 
         return (

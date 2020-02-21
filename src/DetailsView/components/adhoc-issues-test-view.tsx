@@ -13,7 +13,10 @@ import { VisualizationStoreData } from 'common/types/store-data/visualization-st
 import { VisualizationType } from 'common/types/visualization-type';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { IssuesTableHandler } from 'DetailsView/components/issues-table-handler';
-import { ScanIncompleteWarning, ScanIncompleteWarningDeps } from 'DetailsView/components/scan-incomplete-warning';
+import {
+    ScanIncompleteWarning,
+    ScanIncompleteWarningDeps,
+} from 'DetailsView/components/scan-incomplete-warning';
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { ISelection } from 'office-ui-fabric-react';
 import * as React from 'react';
@@ -43,28 +46,34 @@ export type AdhocIssuesTestViewProps = {
     cardsViewData: CardsViewModel;
 };
 
-export const AdhocIssuesTestView = NamedFC<AdhocIssuesTestViewProps>('AdhocIssuesTestView', props => {
-    if (props.tabStoreData.isChanged) {
-        return createTargetPageChangedView(props);
-    }
+export const AdhocIssuesTestView = NamedFC<AdhocIssuesTestViewProps>(
+    'AdhocIssuesTestView',
+    props => {
+        if (props.tabStoreData.isChanged) {
+            return createTargetPageChangedView(props);
+        }
 
-    return (
-        <>
-            <ScanIncompleteWarning
-                deps={props.deps}
-                warnings={props.scanIncompleteWarnings}
-                warningConfiguration={props.switcherNavConfiguration.warningConfiguration}
-                test={props.selectedTest}
-            />
-            <DetailsListIssuesView {...props} />
-        </>
-    );
-});
+        return (
+            <>
+                <ScanIncompleteWarning
+                    deps={props.deps}
+                    warnings={props.scanIncompleteWarnings}
+                    warningConfiguration={props.switcherNavConfiguration.warningConfiguration}
+                    test={props.selectedTest}
+                />
+                <DetailsListIssuesView {...props} />
+            </>
+        );
+    },
+);
 
 function createTargetPageChangedView(props: AdhocIssuesTestViewProps): JSX.Element {
     const selectedTest = props.selectedTest;
     const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
-    const clickHandler = props.clickHandlerFactory.createClickHandler(selectedTest, !scanData.enabled);
+    const clickHandler = props.clickHandlerFactory.createClickHandler(
+        selectedTest,
+        !scanData.enabled,
+    );
 
     return (
         <TargetPageChangedView

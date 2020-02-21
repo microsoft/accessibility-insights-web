@@ -15,7 +15,15 @@ const d =
     '8.5 12ZM14.2031 13.5L11.8516 15.8516L11.1484 15.1484L12.7969 13.5L11.1484 11.8516L11.8516 11.1484L14.2031 13.5Z';
 
 export const FileHTMLIcon = NamedFC('FileHTMLIcon', () => (
-    <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+    <svg
+        width="15"
+        height="16"
+        viewBox="0 0 15 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-hidden="true"
+    >
         <path d={d} />
     </svg>
 ));

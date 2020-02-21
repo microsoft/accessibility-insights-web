@@ -32,7 +32,9 @@ export class HtmlElementAxeResultsHelper {
         return results;
     }
 
-    private getFrameResultsFromSelectorMap(selectorMap: DictionaryStringTo<AxeResultsWithFrameLevel[]>): HTMLIFrameResult[] {
+    private getFrameResultsFromSelectorMap(
+        selectorMap: DictionaryStringTo<AxeResultsWithFrameLevel[]>,
+    ): HTMLIFrameResult[] {
         const results: HTMLIFrameResult[] = [];
         forOwn(selectorMap, (frameResults, selectorKey) => {
             if (selectorKey) {
@@ -60,7 +62,9 @@ export class HtmlElementAxeResultsHelper {
         const missingFrames: HTMLIFrameElement[] = [];
 
         const allFramesIncludingCurrentFrames = Array.prototype.slice.call(
-            this.htmlElementUtils.getAllElementsByTagName('iframe') as HTMLCollectionOf<HTMLIFrameElement>,
+            this.htmlElementUtils.getAllElementsByTagName('iframe') as HTMLCollectionOf<
+                HTMLIFrameElement
+            >,
         );
         allFramesIncludingCurrentFrames.push(null); // current frame
 
@@ -86,7 +90,9 @@ export class HtmlElementAxeResultsHelper {
         });
     }
 
-    private getFrameSelectorToResultMap(elementResults: AxeResultsWithFrameLevel[]): DictionaryStringTo<AxeResultsWithFrameLevel[]> {
+    private getFrameSelectorToResultMap(
+        elementResults: AxeResultsWithFrameLevel[],
+    ): DictionaryStringTo<AxeResultsWithFrameLevel[]> {
         const elementResultsByFrame: DictionaryStringTo<AxeResultsWithFrameLevel[]> = {};
 
         for (let i = 0; i < elementResults.length; i++) {

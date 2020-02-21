@@ -36,7 +36,8 @@ export const UNDO_TEST_STATUS_CHANGE: string = 'undoTestStatusChange';
 export const UNDO_REQUIREMENT_STATUS_CHANGE: string = 'undoRequirementStatusChange';
 export const CHANGE_INSTANCE_STATUS: string = 'changeInstanceStatus';
 export const CHANGE_ASSESSMENT_VISUALIZATION_STATUS: string = 'changeAssessmentVisualizationState';
-export const CHANGE_ASSESSMENT_VISUALIZATION_STATUS_FOR_ALL: string = 'changeAssessmentVisualizationStateForAll';
+export const CHANGE_ASSESSMENT_VISUALIZATION_STATUS_FOR_ALL: string =
+    'changeAssessmentVisualizationStateForAll';
 export const DISABLE_VISUAL_HELPER: string = 'disableVisualHelper';
 export const CHANGE_OVERALL_REQUIREMENT_STATUS: string = 'changeOverallRequirementStatus';
 export const PREVIEW_FEATURES_CLOSE: string = 'PreviewFeaturesClose';
@@ -207,7 +208,10 @@ export type SetAllUrlsPermissionTelemetryData = {
     permissionState: boolean;
 } & BaseTelemetryData;
 
-export type ScanIncompleteWarningsTelemetryData = Pick<UnifiedScanCompletedPayload, 'scanIncompleteWarnings'>;
+export type ScanIncompleteWarningsTelemetryData = Pick<
+    UnifiedScanCompletedPayload,
+    'scanIncompleteWarnings'
+>;
 
 export type TelemetryData =
     | BaseTelemetryData

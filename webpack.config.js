@@ -28,12 +28,16 @@ const commonPlugins = [
 ];
 
 const commonEntryFiles = {
-    injected: [path.resolve(__dirname, 'src/injected/stylesheet-init.ts'), path.resolve(__dirname, 'src/injected/client-init.ts')],
+    injected: [
+        path.resolve(__dirname, 'src/injected/stylesheet-init.ts'),
+        path.resolve(__dirname, 'src/injected/client-init.ts'),
+    ],
     popup: path.resolve(__dirname, 'src/popup/popup-init.ts'),
     insights: [path.resolve(__dirname, 'src/views/insights/initializer.ts')],
     detailsView: [path.resolve(__dirname, 'src/DetailsView/details-view-initializer.ts')],
     devtools: [path.resolve(__dirname, 'src/Devtools/dev-tool-init.ts')],
     background: [path.resolve(__dirname, 'src/background/background-init.ts')],
+    debugTools: path.resolve(__dirname, 'src/debug-tools/initializer/debug-tools-init.tsx'),
 };
 
 const electronEntryFiles = {
@@ -91,14 +95,14 @@ const commonConfig = {
     },
 };
 
-const electronConfig = {
+const unifiedConfig = {
     ...commonConfig,
     entry: electronEntryFiles,
-    name: 'electron',
+    name: 'unified',
     mode: 'development',
     devtool: 'source-map',
     output: {
-        path: path.join(__dirname, 'extension/electronBundle'),
+        path: path.join(__dirname, 'extension/unifiedBundle'),
         filename: '[name].bundle.js',
     },
     node: {
@@ -177,4 +181,4 @@ const packageReportConfig = {
 };
 
 // For just one config, use "webpack --config-name dev", "webpack --config-name prod", etc
-module.exports = [devConfig, prodConfig, electronConfig, packageReportConfig];
+module.exports = [devConfig, prodConfig, unifiedConfig, packageReportConfig];

@@ -7,65 +7,65 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
     id="new-launch-pad"
   >
     <header
-      class="ms-Grid launch-panel-header"
+      class="launch-panel-header--{{CSS_MODULE_HASH}}"
     >
-      <div
-        class="ms-Grid-row header-title"
+      <h1
+        class="title--{{CSS_MODULE_HASH}}"
       >
-        <div
-          aria-level="1"
-          class="ms-Grid-col ms-u-sm10 ms-fontColor-neutralPrimary ms-font-xl old"
-          role="heading"
+        Accessibility Insights for Web
+      </h1>
+      <div
+        class="children--{{CSS_MODULE_HASH}}"
+      >
+        <button
+          aria-expanded="false"
+          aria-haspopup="true"
+          aria-label="manage settings"
+          class="ms-Button ms-Button--icon ms-Button--hasMenu gear-menu-button--{{CSS_MODULE_HASH}} root-000"
+          data-is-focusable="true"
+          type="button"
         >
-          Accessibility Insights for Web
-        </div>
-        <div
-          class="ms-Grid-col ms-u-sm2 feedback-collapseMenuButton-col"
+          <span
+            class="ms-Button-flexContainer flexContainer-000"
+            data-automationid="splitbuttonprimary"
+          >
+            <i
+              aria-hidden="true"
+              class="ms-Icon root-000 css-000 ms-Button-icon icon-000"
+              data-icon-name="Gear"
+              role="presentation"
+              style="font-family: FabricMDL2Icons;"
+            >
+              
+            </i>
+          </span>
+        </button>
+        <button
+          aria-expanded="false"
+          aria-haspopup="true"
+          aria-label="help menu"
+          class="ms-Button ms-Button--icon ms-Button--hasMenu hamburger-menu-button--{{CSS_MODULE_HASH}} root-000"
+          data-is-focusable="true"
+          type="button"
         >
-          <div
-            class="gear-options-button-component--{{CSS_MODULE_HASH}}"
+          <span
+            class="ms-Button-flexContainer flexContainer-000"
+            data-automationid="splitbuttonprimary"
           >
-            <div
-              class="details-view-dropdown"
+            <i
+              aria-hidden="true"
+              class="ms-Icon root-000 css-000 ms-Button-icon icon-000"
+              data-icon-name="GlobalNavButton"
+              role="presentation"
+              style="font-family: FabricMDL2Icons;"
             >
-              <button
-                class="ms-Link gear-button root-000"
-                type="button"
-              >
-                <i
-                  aria-label="Manage Settings"
-                  class="gear-options-icon root-000"
-                  data-icon-name="Gear"
-                >
-                  
-                </i>
-              </button>
-            </div>
-          </div>
-          <button
-            aria-label="help menu"
-            class="ms-Button ms-Button--icon root-000"
-            data-is-focusable="true"
-            id="feedback-collapse-menu-button"
-            type="button"
-          >
-            <div
-              class="ms-Button-flexContainer flexContainer-000"
-            >
-              <i
-                aria-hidden="true"
-                class="ms-Button-icon icon-000"
-                data-icon-name="GlobalNavButton"
-                role="presentation"
-              >
-                
-              </i>
-            </div>
-          </button>
-        </div>
+              
+            </i>
+          </span>
+        </button>
       </div>
       <div
-        class="header-subtitle ms-fontWeight-semilight ms-fontSize-xs"
+        class="subtitle--{{CSS_MODULE_HASH}}"
       >
         <a
           aria-label="demo video"
@@ -105,13 +105,12 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
               >
                 <div
                   aria-hidden="true"
-                  class="ms-Grid-col ms-sm3 popup-start-dialog-icon-circle"
+                  class="ms-Grid-col ms-sm000 popup-start-dialog-icon-circle"
                 >
                   <i
                     aria-hidden="true"
                     class="popup-start-dialog-icon root-000"
                     data-icon-name="Rocket"
-                    role="presentation"
                   >
                     
                   </i>
@@ -154,13 +153,12 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
               >
                 <div
                   aria-hidden="true"
-                  class="ms-Grid-col ms-sm3 popup-start-dialog-icon-circle"
+                  class="ms-Grid-col ms-sm000 popup-start-dialog-icon-circle"
                 >
                   <i
                     aria-hidden="true"
                     class="popup-start-dialog-icon root-000"
                     data-icon-name="testBeaker"
-                    role="presentation"
                   >
                     
                   </i>
@@ -203,13 +201,12 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
               >
                 <div
                   aria-hidden="true"
-                  class="ms-Grid-col ms-sm3 popup-start-dialog-icon-circle"
+                  class="ms-Grid-col ms-sm000 popup-start-dialog-icon-circle"
                 >
                   <i
                     aria-hidden="true"
                     class="popup-start-dialog-icon root-000"
                     data-icon-name="Medical"
-                    role="presentation"
                   >
                     
                   </i>

@@ -4,7 +4,7 @@ exports[`Details View -> Preview Features Panel should match content in snapshot
 <DocumentFragment>
   <div
     aria-hidden="false"
-    class="ms-Panel is-open ms-Panel--hasCloseButton ms-Panel--custom generic-panel preview-features-panel root-000"
+    class="ms-Panel is-open ms-Panel--hasCloseButton ms-Panel--custom generic-panel--{{CSS_MODULE_HASH}} preview-features-panel root-000"
   >
     <div
       class="ms-Overlay overlay-000"
@@ -25,6 +25,18 @@ exports[`Details View -> Preview Features Panel should match content in snapshot
         <div
           class="ms-Panel-navigation navigation-000"
         >
+          <div
+            class="ms-Panel-header header-000"
+          >
+            <div
+              aria-level="2"
+              class="ms-Panel-headerText header-text--{{CSS_MODULE_HASH}} headerText-000"
+              id="Panel000-headerText"
+              role="heading"
+            >
+              Preview features
+            </div>
+          </div>
           <button
             aria-label="Close preview features panel"
             class="ms-Button ms-Button--icon ms-Panel-closeButton ms-PanelAction-close closeButton-000"
@@ -33,36 +45,26 @@ exports[`Details View -> Preview Features Panel should match content in snapshot
             title="Close preview features panel"
             type="button"
           >
-            <div
+            <span
               class="ms-Button-flexContainer flexContainer-000"
+              data-automationid="splitbuttonprimary"
             >
               <i
                 aria-hidden="true"
-                class="ms-Button-icon icon-000"
+                class="ms-Icon root-000 css-000 ms-Button-icon icon-000"
                 data-icon-name="Cancel"
                 role="presentation"
+                style="font-family: FabricMDL2Icons;"
               >
                 
               </i>
-            </div>
+            </span>
           </button>
         </div>
       </div>
       <div
         class="ms-Panel-contentInner contentInner-000"
       >
-        <div
-          class="ms-Panel-header header-000"
-        >
-          <p
-            aria-level="2"
-            class="ms-Panel-headerText header-text headerText-000"
-            id="Panel000-headerText"
-            role="heading"
-          >
-            Preview features
-          </p>
-        </div>
         <div
           class="ms-Panel-scrollableContent scrollableContent-000"
           data-is-scrollable="true"

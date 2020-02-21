@@ -12,10 +12,16 @@ export interface ElementFinderByPathMessage {
 export class ElementFinderByPath {
     public static readonly findElementByPathCommand = 'insights.findElementByPathCommand';
 
-    constructor(private readonly htmlElementUtils: HTMLElementUtils, private readonly frameCommunicator: FrameCommunicator) {}
+    constructor(
+        private readonly htmlElementUtils: HTMLElementUtils,
+        private readonly frameCommunicator: FrameCommunicator,
+    ) {}
 
     public initialize = (): void => {
-        this.frameCommunicator.subscribe(ElementFinderByPath.findElementByPathCommand, this.onFindElementByPath);
+        this.frameCommunicator.subscribe(
+            ElementFinderByPath.findElementByPathCommand,
+            this.onFindElementByPath,
+        );
     };
 
     protected onFindElementByPath = (
@@ -57,7 +63,10 @@ export class ElementFinderByPath {
         return this.iterateDeeperOnIframe(element, message);
     };
 
-    private iterateDeeperOnIframe = (element: HTMLElement, message: ElementFinderByPathMessage): PromiseLike<string> => {
+    private iterateDeeperOnIframe = (
+        element: HTMLElement,
+        message: ElementFinderByPathMessage,
+    ): PromiseLike<string> => {
         message.path.shift();
 
         return this.frameCommunicator.sendMessage<ElementFinderByPathMessage, string>({

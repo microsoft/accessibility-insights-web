@@ -24,7 +24,7 @@ import {
 import { UserConfigurationStoreData } from '../../../../common/types/store-data/user-configuration-store';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../DetailsView/actions/details-view-action-message-creator';
-import { DetailsViewOverlay } from '../../../../DetailsView/components/details-view-overlay';
+import { DetailsViewOverlay } from '../../../../DetailsView/components/details-view-overlay/details-view-overlay';
 import {
     DetailsRightPanelConfiguration,
     GetDetailsRightPanelConfiguration,

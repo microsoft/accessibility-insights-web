@@ -34,7 +34,9 @@ module.exports = wallaby => {
 
             // Normally, jest transforms jest-setup.ts to .js itself. Since we're suppressing jest's transform,
             // we need to redirect it to the wallaby-generated .js version ourselves.
-            jestConfig.setupFiles = jestConfig.setupFiles.map(filePath => filePath.replace(/\.ts$/, '.js'));
+            jestConfig.setupFiles = jestConfig.setupFiles.map(filePath =>
+                filePath.replace(/\.ts$/, '.js'),
+            );
 
             // It looks like wallaby doesn't support jest-circus yet, so falling back to the default runner.
             jestConfig.testRunner = 'jasmine2';

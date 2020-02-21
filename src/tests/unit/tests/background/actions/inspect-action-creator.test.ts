@@ -13,7 +13,10 @@ import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
 import { tick } from 'tests/unit/common/tick';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
-import { createActionMock, createInterpreterMock } from '../global-action-creators/action-creator-test-helpers';
+import {
+    createActionMock,
+    createInterpreterMock,
+} from '../global-action-creators/action-creator-test-helpers';
 
 describe('InspectActionCreator', () => {
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
@@ -29,7 +32,10 @@ describe('InspectActionCreator', () => {
     it('handles GetState message', () => {
         const getCurrentStateMock = createActionMock(null);
         const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
-        const interpreterMock = createInterpreterMock(getStoreStateMessage(StoreNames.InspectStore), null);
+        const interpreterMock = createInterpreterMock(
+            getStoreStateMessage(StoreNames.InspectStore),
+            null,
+        );
 
         const testSubject = new InspectActionCreator(
             interpreterMock.object,
@@ -58,11 +64,17 @@ describe('InspectActionCreator', () => {
         let testSubject: InspectActionCreator;
 
         beforeEach(() => {
-            telemetryEventHandlerMock.setup(publisher => publisher.publishTelemetry(CHANGE_INSPECT_MODE, payload)).verifiable(Times.once());
+            telemetryEventHandlerMock
+                .setup(publisher => publisher.publishTelemetry(CHANGE_INSPECT_MODE, payload))
+                .verifiable(Times.once());
 
             changeInspectModeMock = createActionMock(payload);
             actionsMock = createActionsMock('changeInspectMode', changeInspectModeMock.object);
-            interpreterMock = createInterpreterMock(Messages.Inspect.ChangeInspectMode, payload, tabId);
+            interpreterMock = createInterpreterMock(
+                Messages.Inspect.ChangeInspectMode,
+                payload,
+                tabId,
+            );
 
             testSubject = new InspectActionCreator(
                 interpreterMock.object,
@@ -74,7 +86,9 @@ describe('InspectActionCreator', () => {
         });
 
         it('switch to tab succeed', async () => {
-            browserAdapterMock.setup(adapter => adapter.switchToTab(tabId)).returns(() => Promise.resolve());
+            browserAdapterMock
+                .setup(adapter => adapter.switchToTab(tabId))
+                .returns(() => Promise.resolve());
 
             testSubject.registerCallbacks();
 
@@ -85,14 +99,19 @@ describe('InspectActionCreator', () => {
 
         it('logs error when switch to tab fails', async () => {
             const dummyError = 'test-dummy-error';
-            browserAdapterMock.setup(adapter => adapter.switchToTab(tabId)).returns(() => Promise.reject(dummyError));
+            browserAdapterMock
+                .setup(adapter => adapter.switchToTab(tabId))
+                .returns(() => Promise.reject(dummyError));
 
             testSubject.registerCallbacks();
 
             await tick();
 
             changeInspectModeMock.verifyAll();
-            loggerMock.verify(logger => logger.error(`switchToTab failed: ${dummyError}`), Times.once());
+            loggerMock.verify(
+                logger => logger.error(`switchToTab failed: ${dummyError}`),
+                Times.once(),
+            );
         });
     });
 

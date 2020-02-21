@@ -14,11 +14,22 @@ export class NavLinkHandler {
     };
 
     public onFastPassTestClick = (event: React.MouseEvent<HTMLElement>, item: BaseLeftNavLink) => {
-        this.detailsViewActionMessageCreator.selectDetailsView(event, VisualizationType[item.key], DetailsViewPivotType.fastPass);
+        this.detailsViewActionMessageCreator.selectDetailsView(
+            event,
+            VisualizationType[item.key],
+            DetailsViewPivotType.fastPass,
+        );
     };
 
-    public onAssessmentTestClick = (event: React.MouseEvent<HTMLElement>, item: BaseLeftNavLink) => {
-        this.detailsViewActionMessageCreator.selectDetailsView(event, VisualizationType[item.key], DetailsViewPivotType.assessment);
+    public onAssessmentTestClick = (
+        event: React.MouseEvent<HTMLElement>,
+        item: BaseLeftNavLink,
+    ) => {
+        this.detailsViewActionMessageCreator.selectDetailsView(
+            event,
+            VisualizationType[item.key],
+            DetailsViewPivotType.assessment,
+        );
         this.detailsViewActionMessageCreator.changeRightContentPanel('TestView');
     };
 }

@@ -19,7 +19,9 @@ describe('unique-landmark', () => {
     });
 
     it('returns correct url', () => {
-        expect(uniqueLandmarkConfiguration.rule.helpUrl).toBe('/insights.html#/content/rules/uniqueLandmark');
+        expect(uniqueLandmarkConfiguration.rule.helpUrl).toBe(
+            '/insights.html#/content/rules/uniqueLandmark',
+        );
     });
 
     it('should not match because not a landmark', () => {

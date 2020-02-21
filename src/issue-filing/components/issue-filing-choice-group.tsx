@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { issueFilingTitleId } from 'DetailsView/components/settings-panel/settings/issue-filing/issue-filing-settings';
+import { issueFilingTitleId } from 'DetailsView/components/details-view-overlay/settings-panel/settings/issue-filing/issue-filing-settings';
 import { ChoiceGroup, IChoiceGroupOption } from 'office-ui-fabric-react';
 import * as React from 'react';
 

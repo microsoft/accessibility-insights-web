@@ -1,14 +1,21 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
-import { FeatureFlags } from 'common/feature-flags';
 import { VisualizationType } from 'common/types/visualization-type';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
-import { ReportExportComponent, ReportExportComponentProps } from 'DetailsView/components/report-export-component';
+import {
+    ReportExportComponent,
+    ReportExportComponentProps,
+} from 'DetailsView/components/report-export-component';
 import * as React from 'react';
 
 export function getReportExportComponentForAssessment(props: CommandBarProps): JSX.Element {
-    const { deps, assessmentStoreData, assessmentsProvider, featureFlagStoreData, tabStoreData } = props;
+    const {
+        deps,
+        assessmentStoreData,
+        assessmentsProvider,
+        featureFlagStoreData,
+        tabStoreData,
+    } = props;
     const reportGenerator = deps.reportGenerator;
     const reportExportComponentProps: ReportExportComponentProps = {
         deps: deps,
@@ -24,7 +31,8 @@ export function getReportExportComponentForAssessment(props: CommandBarProps): J
                 tabStoreData,
                 description,
             ),
-        updatePersistedDescription: value => props.deps.detailsViewActionMessageCreator.addResultDescription(value),
+        updatePersistedDescription: value =>
+            props.deps.detailsViewActionMessageCreator.addResultDescription(value),
         getExportDescription: () => props.assessmentStoreData.resultDescription,
     };
 
@@ -32,10 +40,6 @@ export function getReportExportComponentForAssessment(props: CommandBarProps): J
 }
 
 export function getReportExportComponentForFastPass(props: CommandBarProps): JSX.Element {
-    if (!props.featureFlagStoreData[FeatureFlags.universalCardsUI]) {
-        return null;
-    }
-
     const scanResult = props.visualizationScanResultData.issues.scanResult;
 
     if (!scanResult) {

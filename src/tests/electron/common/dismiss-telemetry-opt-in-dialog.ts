@@ -8,6 +8,9 @@ import { Client } from 'webdriverio';
 export async function dismissTelemetryOptInDialog(app: Application): Promise<void> {
     const webDriverClient: Client<void> = app.client;
 
-    await webDriverClient.waitForVisible(popupPageElementIdentifiers.telemetryDialog, DEFAULT_ELECTRON_TEST_TIMEOUT_MS);
+    await webDriverClient.waitForVisible(
+        popupPageElementIdentifiers.telemetryDialog,
+        DEFAULT_ELECTRON_TEST_TIMEOUT_MS,
+    );
     await webDriverClient.click(popupPageElementIdentifiers.startUsingProductButton);
 }

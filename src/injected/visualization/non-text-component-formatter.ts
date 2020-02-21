@@ -10,7 +10,10 @@ export class NonTextComponentFormatter extends CustomWidgetsFormatter {
         super();
     }
 
-    public getDrawerConfiguration(element: HTMLElement, data: AssessmentVisualizationInstance): DrawerConfiguration {
+    public getDrawerConfiguration(
+        element: HTMLElement,
+        data: AssessmentVisualizationInstance,
+    ): DrawerConfiguration {
         const drawerConfig: DrawerConfiguration = {
             ...super.getDrawerConfiguration(element, data),
             getBoundingRect: this.getBoundingRectWithPadding,

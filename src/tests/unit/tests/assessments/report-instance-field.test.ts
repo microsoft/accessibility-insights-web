@@ -99,7 +99,11 @@ describe('ReportInstanceField', () => {
     });
 
     describe('fromPropertyBagFunction', () => {
-        const field = ReportInstanceField.fromPropertyBagFunction<Bag>('Three', 'three', b => b.one + ' + ' + b.two);
+        const field = ReportInstanceField.fromPropertyBagFunction<Bag>(
+            'Three',
+            'three',
+            b => b.one + ' + ' + b.two,
+        );
 
         it('returns key', () => {
             expect(field.key).toEqual('three');

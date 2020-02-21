@@ -69,7 +69,10 @@ export class HighlightBoxDrawer extends BaseDrawer {
 
         let drawerConfig = HighlightBoxDrawer.defaultConfiguration;
         if (this.formatter) {
-            drawerConfig = this.formatter.getDrawerConfiguration(element, data) as DrawerConfiguration;
+            drawerConfig = this.formatter.getDrawerConfiguration(
+                element,
+                data,
+            ) as DrawerConfiguration;
         }
 
         let elementBoundingClientRect: ClientRect = element.getBoundingClientRect();
@@ -80,7 +83,14 @@ export class HighlightBoxDrawer extends BaseDrawer {
         const offset = this.clientUtils.getOffsetFromBoundingRect(elementBoundingClientRect);
 
         const docStyle = this.windowUtils.getComputedStyle(currentDom.documentElement);
-        if (this.drawerUtils.isOutsideOfDocument(elementBoundingClientRect, currentDom, bodyStyle, docStyle)) {
+        if (
+            this.drawerUtils.isOutsideOfDocument(
+                elementBoundingClientRect,
+                currentDom,
+                bodyStyle,
+                docStyle,
+            )
+        ) {
             return;
         }
 
@@ -96,19 +106,44 @@ export class HighlightBoxDrawer extends BaseDrawer {
         wrapper.style.top = this.drawerUtils.getContainerTopOffset(offset).toString() + 'px';
         wrapper.style.left = this.drawerUtils.getContainerLeftOffset(offset).toString() + 'px';
         wrapper.style.minWidth =
-            this.drawerUtils.getContainerWidth(offset, currentDom, elementBoundingClientRect.width, bodyStyle, docStyle).toString() + 'px';
+            this.drawerUtils
+                .getContainerWidth(
+                    offset,
+                    currentDom,
+                    elementBoundingClientRect.width,
+                    bodyStyle,
+                    docStyle,
+                )
+                .toString() + 'px';
         wrapper.style.minHeight =
-            this.drawerUtils.getContainerHeight(offset, currentDom, elementBoundingClientRect.height, bodyStyle, docStyle).toString() +
-            'px';
+            this.drawerUtils
+                .getContainerHeight(
+                    offset,
+                    currentDom,
+                    elementBoundingClientRect.height,
+                    bodyStyle,
+                    docStyle,
+                )
+                .toString() + 'px';
 
         if (drawerConfig.textBoxConfig) {
-            const textBox = this.createtBox(wrapper, drawerConfig, drawerConfig.textBoxConfig, currentDom);
+            const textBox = this.createtBox(
+                wrapper,
+                drawerConfig,
+                drawerConfig.textBoxConfig,
+                currentDom,
+            );
             textBox.classList.add('text-label');
             wrapper.appendChild(textBox);
         }
 
         if (drawerConfig.failureBoxConfig) {
-            const failureBox = this.createtBox(wrapper, drawerConfig, drawerConfig.failureBoxConfig, currentDom);
+            const failureBox = this.createtBox(
+                wrapper,
+                drawerConfig,
+                drawerConfig.failureBoxConfig,
+                currentDom,
+            );
             failureBox.classList.add('failure-label');
 
             if (drawerConfig.failureBoxConfig.hasDialogView) {
@@ -149,10 +184,15 @@ export class HighlightBoxDrawer extends BaseDrawer {
 
         for (let i = 0; i < this.elementResults.length; i++) {
             const elementResult = this.elementResults[i];
-            const elementsFound = this.dom.querySelectorAll(elementResult.target[elementResult.targetIndex]);
+            const elementsFound = this.dom.querySelectorAll(
+                elementResult.target[elementResult.targetIndex],
+            );
 
             for (let elementPos = 0; elementPos < elementsFound.length; elementPos++) {
-                const element = this.createHighlightElement(elementsFound[elementPos], elementResult);
+                const element = this.createHighlightElement(
+                    elementsFound[elementPos],
+                    elementResult,
+                );
                 if (element) {
                     highlightElements.push(element);
                 }

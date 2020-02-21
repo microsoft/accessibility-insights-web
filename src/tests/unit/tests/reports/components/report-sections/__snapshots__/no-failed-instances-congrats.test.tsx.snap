@@ -14,5 +14,10 @@ exports[`NoFailedInstancesCongrats renders 1`] = `
   >
     No failed automated checks were found.
   </div>
+  <InlineImage
+    alt=""
+    className="sleepingAda"
+    imageType={6}
+  />
 </div>
 `;

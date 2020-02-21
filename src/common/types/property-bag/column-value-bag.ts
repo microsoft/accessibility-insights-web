@@ -6,5 +6,10 @@ export type ColumnValue = ScalarColumnValue | BagOf<ScalarColumnValue>;
 export type ColumnValueBag = BagOf<ColumnValue>;
 
 export function isScalarColumnValue(value): value is ScalarColumnValue {
-    return typeof value === 'string' || typeof value === 'boolean' || typeof value === 'number' || value instanceof Date;
+    return (
+        typeof value === 'string' ||
+        typeof value === 'boolean' ||
+        typeof value === 'number' ||
+        value instanceof Date
+    );
 }

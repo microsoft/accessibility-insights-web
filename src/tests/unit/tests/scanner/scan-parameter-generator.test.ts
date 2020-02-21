@@ -157,7 +157,9 @@ describe('ScanParameterGenerator', () => {
             const selectorFirstReturnedContext = 'test-selector';
 
             expect(generator.getContext(null, domFirstOptions)).toEqual(domFirstReturnedContext);
-            expect(generator.getContext(null, selectorFirstOptions)).toEqual(selectorFirstReturnedContext);
+            expect(generator.getContext(null, selectorFirstOptions)).toEqual(
+                selectorFirstReturnedContext,
+            );
         });
     });
 });

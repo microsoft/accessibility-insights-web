@@ -65,7 +65,13 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
             return null;
         }
 
-        return <ContextualMenu onDismiss={() => this.dismissDropdown()} target={this.state.target} items={this.getMenuItems()} />;
+        return (
+            <ContextualMenu
+                onDismiss={() => this.dismissDropdown()}
+                target={this.state.target}
+                items={this.getMenuItems()}
+            />
+        );
     }
 
     private getMenuItems(): IContextualMenuItem[] {
@@ -83,7 +89,9 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
             },
         ];
 
-        return rightPanelConfiguration.GetStartOverContextualMenuItemKeys().map(key => items.find(item => item.key === key));
+        return rightPanelConfiguration
+            .GetStartOverContextualMenuItemKeys()
+            .map(key => items.find(item => item.key === key));
     }
 
     private onStartOverTestMenu = (): void => {

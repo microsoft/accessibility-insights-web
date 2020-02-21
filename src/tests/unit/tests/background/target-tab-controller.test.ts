@@ -27,12 +27,17 @@ describe('TargetTabControllerTest', () => {
 
         configurationFactoryMock.setup(cfm => cfm.getConfiguration(test)).returns(() => configStub);
 
-        testSubject = new TargetTabController(browserAdapterMock.object, configurationFactoryMock.object);
+        testSubject = new TargetTabController(
+            browserAdapterMock.object,
+            configurationFactoryMock.object,
+        );
     });
 
     describe('showTargetTab', () => {
         it("test doesn't switch to target tab", async () => {
-            configurationFactoryMock.setup(cfm => cfm.getConfiguration(test)).returns(() => configStub);
+            configurationFactoryMock
+                .setup(cfm => cfm.getConfiguration(test))
+                .returns(() => configStub);
 
             getSwitchToTargetTabCallbackMock
                 .setup(cm => cm(null))
@@ -64,9 +69,13 @@ describe('TargetTabControllerTest', () => {
                 .verifiable(Times.once());
 
             const errorMessage = 'switchToTab failed error message';
-            browserAdapterMock.setup(adapter => adapter.switchToTab(tabId)).returns(() => Promise.reject(errorMessage));
+            browserAdapterMock
+                .setup(adapter => adapter.switchToTab(tabId))
+                .returns(() => Promise.reject(errorMessage));
 
-            await expect(testSubject.showTargetTab(tabId, test, step)).rejects.toEqual(errorMessage);
+            await expect(testSubject.showTargetTab(tabId, test, step)).rejects.toEqual(
+                errorMessage,
+            );
         });
     });
 

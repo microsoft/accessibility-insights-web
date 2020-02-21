@@ -4,13 +4,12 @@ exports[`Settings Dropdown content should match snapshot 1`] = `
 <DocumentFragment>
   <div
     class="ms-ContextualMenu-container container-000"
-    id="settings-dropdown-menu"
-    tabindex="-1"
+    id="id__000-menu"
+    tabindex="0"
   >
     <div
-      class="ms-FocusZone css-000 ms-ContextualMenu is-open root-000"
+      class="ms-FocusZone css-000 ms-ContextualMenu is-open ms-BaseButton-menuhost root-000"
       data-focuszone-id="FocusZone000"
-      role="presentation"
     >
       <ul
         class="ms-ContextualMenu-list is-open list-000"
@@ -36,7 +35,6 @@ exports[`Settings Dropdown content should match snapshot 1`] = `
                 aria-hidden="true"
                 class="ms-ContextualMenu-icon icon-000"
                 data-icon-name="gear"
-                role="presentation"
               >
                 
               </i>
@@ -68,7 +66,6 @@ exports[`Settings Dropdown content should match snapshot 1`] = `
                 aria-hidden="true"
                 class="ms-ContextualMenu-icon icon-000"
                 data-icon-name="giftboxOpen"
-                role="presentation"
               >
                 
               </i>

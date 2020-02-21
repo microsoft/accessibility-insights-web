@@ -34,7 +34,10 @@ export class FrameFormatter extends FailureInstanceFormatter {
         return null;
     }
 
-    public getDrawerConfiguration(element: HTMLElement, data: AssessmentVisualizationInstance): DrawerConfiguration {
+    public getDrawerConfiguration(
+        element: HTMLElement,
+        data: AssessmentVisualizationInstance,
+    ): DrawerConfiguration {
         const frameType = element.tagName.toLowerCase();
         const style = FrameFormatter.frameStyles[frameType] || FrameFormatter.frameStyles.default;
 

@@ -1,21 +1,23 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IconButton } from 'office-ui-fabric-react';
-import { IContextualMenuItem } from 'office-ui-fabric-react';
+import { FlaggedComponent } from 'common/components/flagged-component';
+import { GearMenuButton } from 'common/components/gear-menu-button';
+import {
+    HamburgerMenuButton,
+    HamburgerMenuButtonDeps,
+} from 'common/components/hamburger-menu-button';
+import { DropdownClickHandler } from 'common/dropdown-click-handler';
+import { FeatureFlags } from 'common/feature-flags';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { IconButton, IContextualMenuItem } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { GearOptionsButtonComponent } from '../../common/components/gear-options-button-component';
-import { DropdownClickHandler } from '../../common/dropdown-click-handler';
-import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
-import { LaunchPanelHeaderClickHandler } from '../handlers/launch-panel-header-click-handler';
 import { Header } from './header';
-import { HeaderContextualMenu, HeaderContextualMenuDeps } from './header-contextual-menu';
 
 export type LaunchPanelHeaderDeps = {
     popupActionMessageCreator: PopupActionMessageCreator;
     dropdownClickHandler: DropdownClickHandler;
-    launchPanelHeaderClickHandler: LaunchPanelHeaderClickHandler;
-} & HeaderContextualMenuDeps;
+} & HamburgerMenuButtonDeps;
 
 export interface LaunchPanelHeaderProps {
     deps: LaunchPanelHeaderDeps;
@@ -44,53 +46,39 @@ export class LaunchPanelHeader extends React.Component<
 
     public render(): JSX.Element {
         return (
-            <Header
-                title={this.props.title}
-                subtitle={this.props.subtitle}
-                rowExtraClassName="header-title"
-            >
-                {this.renderGearOptionsButton()}
+            <Header title={this.props.title} subtitle={this.props.subtitle}>
+                {this.renderMenuButtons()}
             </Header>
         );
     }
 
-    private renderGearOptionsButton(): JSX.Element {
-        const { dropdownClickHandler, launchPanelHeaderClickHandler } = this.props.deps;
+    private renderMenuButtons(): JSX.Element {
+        const { deps, featureFlags } = this.props;
+        const { dropdownClickHandler } = deps;
 
         return (
-            <div className="ms-Grid-col ms-u-sm2 feedback-collapseMenuButton-col">
-                <GearOptionsButtonComponent
-                    dropdownClickHandler={dropdownClickHandler}
-                    featureFlags={this.props.featureFlags}
-                />
-                <IconButton
-                    iconProps={{ iconName: 'GlobalNavButton' }}
-                    id="feedback-collapse-menu-button"
-                    onClick={event =>
-                        launchPanelHeaderClickHandler.onOpenContextualMenu(this, event)
+            <>
+                <FlaggedComponent
+                    featureFlag={FeatureFlags.debugTools}
+                    featureFlagStoreData={featureFlags}
+                    enableJSXElement={
+                        <IconButton
+                            iconProps={{ iconName: 'Cat' }}
+                            ariaLabel="open debug tools"
+                            onClick={dropdownClickHandler.openDebugTools}
+                        />
                     }
-                    ariaLabel="help menu"
                 />
-                {this.renderContextualMenu(this.state.isContextMenuVisible)}
-            </div>
+                <GearMenuButton
+                    dropdownClickHandler={dropdownClickHandler}
+                    featureFlags={featureFlags}
+                />
+                <HamburgerMenuButton
+                    deps={this.props.deps}
+                    popupWindow={this.props.popupWindow}
+                    header={this}
+                />
+            </>
         );
-    }
-
-    public renderContextualMenu(isContextMenuVisible: boolean): JSX.Element {
-        if (!isContextMenuVisible) {
-            return null;
-        }
-
-        const { deps, popupWindow, featureFlags } = this.props;
-
-        const props = {
-            deps,
-            popupWindow,
-            featureFlags,
-            header: this,
-            target: this.state.target,
-        };
-
-        return <HeaderContextualMenu {...props} />;
     }
 }

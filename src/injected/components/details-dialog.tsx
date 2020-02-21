@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FixInstructionPanel, FixInstructionPanelDeps } from 'common/components/fix-instruction-panel';
+import {
+    FixInstructionPanel,
+    FixInstructionPanelDeps,
+} from 'common/components/fix-instruction-panel';
 import { isEmpty, size } from 'lodash';
 import { css } from 'office-ui-fabric-react';
 import { Dialog, DialogType } from 'office-ui-fabric-react';
@@ -21,7 +24,10 @@ import { DetailsDialogHandler } from '../details-dialog-handler';
 import { DecoratedAxeNodeResult } from '../scanner-utils';
 import { TargetPageActionMessageCreator } from '../target-page-action-message-creator';
 import { CommandBar, CommandBarDeps, CommandBarProps } from './command-bar';
-import { IssueDetailsNavigationControls, IssueDetailsNavigationControlsProps } from './issue-details-navigation-controls';
+import {
+    IssueDetailsNavigationControls,
+    IssueDetailsNavigationControlsProps,
+} from './issue-details-navigation-controls';
 
 export enum CheckType {
     All,
@@ -141,9 +147,11 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
             deps: this.props.deps,
             devToolsShortcut: this.props.devToolsShortcut,
             failedRules: this.props.failedRules,
-            onClickCopyIssueDetailsButton: this.props.deps.targetPageActionMessageCreator.copyIssueDetailsClicked,
+            onClickCopyIssueDetailsButton: this.props.deps.targetPageActionMessageCreator
+                .copyIssueDetailsClicked,
             onClickInspectButton: this.getOnClickWhenNotInShadowDom(this.onClickInspectButton),
-            shouldShowInspectButtonMessage: () => this.props.dialogHandler.shouldShowInspectButtonMessage(this),
+            shouldShowInspectButtonMessage: () =>
+                this.props.dialogHandler.shouldShowInspectButtonMessage(this),
             userConfigurationStoreData: this.state.userConfigurationStoreData,
         };
 
@@ -197,7 +205,8 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         if (isEmpty(ruleGuidanceLinks)) {
             return null;
         }
-        const sectionTitle: string = ruleGuidanceLinks.length === 1 ? 'Success criterion' : 'Success criteria';
+        const sectionTitle: string =
+            ruleGuidanceLinks.length === 1 ? 'Success criterion' : 'Success criteria';
         const successTitleId = 'success-criteria';
 
         return (
@@ -253,7 +262,10 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
 
     private withshadowDomTurnedOn(rule: DecoratedAxeNodeResult): JSX.Element {
         return (
-            <div style={{ visibility: this.state.showDialog ? 'visible' : 'hidden' }} className="insights-dialog-main-override-shadow">
+            <div
+                style={{ visibility: this.state.showDialog ? 'visible' : 'hidden' }}
+                className="insights-dialog-main-override-shadow"
+            >
                 <div className="insights-dialog-container">
                     <div className="insights-dialog-header">
                         <p className="ms-Dialog-title insights-dialog-title">{rule.help}</p>
@@ -264,9 +276,9 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
                                 aria-label="Close"
                                 data-is-focusable="true"
                             >
-                                <div className="ms-button-flex-container">
+                                <span className="ms-button-flex-container">
                                     <CancelIcon />
-                                </div>
+                                </span>
                             </button>
                         </div>
                     </div>
@@ -296,7 +308,8 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
                 }}
                 modalProps={{
                     isBlocking: false,
-                    containerClassName: 'insights-dialog-main-override insights-dialog-main-container',
+                    containerClassName:
+                        'insights-dialog-main-override insights-dialog-main-container',
                     layerProps: {
                         onLayerDidMount: this.onLayoutDidMount,
                         hostId: 'insights-dialog-layer-host',

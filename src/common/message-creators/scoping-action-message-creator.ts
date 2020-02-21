@@ -15,7 +15,11 @@ export class ScopingActionMessageCreator {
         private readonly dispatcher: ActionMessageDispatcher,
     ) {}
 
-    public addSelector = (event: React.MouseEvent<HTMLElement> | MouseEvent, inputType: string, selector: string[]): void => {
+    public addSelector = (
+        event: React.MouseEvent<HTMLElement> | MouseEvent,
+        inputType: string,
+        selector: string[],
+    ): void => {
         const messageType = Messages.Scoping.AddSelector;
         const telemetry = this.telemetryFactory.forAddSelector(event, inputType, this.source);
         const payload: ScopingPayload = {
@@ -30,7 +34,11 @@ export class ScopingActionMessageCreator {
         });
     };
 
-    public deleteSelector = (event: React.MouseEvent<HTMLElement> | MouseEvent, inputType: string, selector: string[]): void => {
+    public deleteSelector = (
+        event: React.MouseEvent<HTMLElement> | MouseEvent,
+        inputType: string,
+        selector: string[],
+    ): void => {
         const messageType = Messages.Scoping.DeleteSelector;
         const telemetry = this.telemetryFactory.forDeleteSelector(event, inputType, this.source);
         const payload: ScopingPayload = {

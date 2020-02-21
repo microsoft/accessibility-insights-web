@@ -13,7 +13,8 @@ import { DEFAULT_BROWSER_LAUNCH_TIMEOUT_MS } from './timeouts';
 
 export const chromeLogsPath = path.join(__dirname, '../../../../test-results/e2e/chrome-logs/');
 
-export const browserLogPath = (browserInstanceId: string): string => path.join(chromeLogsPath, browserInstanceId);
+export const browserLogPath = (browserInstanceId: string): string =>
+    path.join(chromeLogsPath, browserInstanceId);
 
 const fileExists = util.promisify(fs.exists);
 
@@ -37,7 +38,11 @@ export async function launchBrowser(extensionOptions: ExtensionOptions): Promise
 
     const puppeteerBrowser = await launchNewBrowser(browserInstanceId, devExtensionPath);
 
-    const browser = new Browser(browserInstanceId, puppeteerBrowser, manifestOveride.restoreOriginalManifest);
+    const browser = new Browser(
+        browserInstanceId,
+        puppeteerBrowser,
+        manifestOveride.restoreOriginalManifest,
+    );
 
     const backgroundPage = await browser.backgroundPage();
     if (extensionOptions.suppressFirstTimeDialog) {
@@ -62,7 +67,10 @@ async function verifyExtensionIsBuilt(extensionPath: string): Promise<void> {
     }
 }
 
-const addPermissions = (extensionOptions: ExtensionOptions, manifestOveride: ManifestOveride): void => {
+const addPermissions = (
+    extensionOptions: ExtensionOptions,
+    manifestOveride: ManifestOveride,
+): void => {
     const { addExtraPermissionsToManifest } = extensionOptions;
 
     switch (addExtraPermissionsToManifest) {
@@ -71,7 +79,9 @@ const addPermissions = (extensionOptions: ExtensionOptions, manifestOveride: Man
             // the main reason is puppeteer lacks an API to activate the extension
             // via clicking the extenion icon (on the toolbar) or sending the extension shortcut
             // see https://github.com/puppeteer/puppeteer/issues/2486 for more details
-            manifestOveride.addTemporaryPermission(`http://localhost:${testResourceServerConfig.port}/*`);
+            manifestOveride.addTemporaryPermission(
+                `http://localhost:${testResourceServerConfig.port}/*`,
+            );
             break;
 
         case 'all-origins':
@@ -82,7 +92,10 @@ const addPermissions = (extensionOptions: ExtensionOptions, manifestOveride: Man
     }
 };
 
-async function launchNewBrowser(browserInstanceId: string, extensionPath: string): Promise<Puppeteer.Browser> {
+async function launchNewBrowser(
+    browserInstanceId: string,
+    extensionPath: string,
+): Promise<Puppeteer.Browser> {
     // It's important that we verify this before calling Puppeteer.launch because its behavior if the
     // extension can't be loaded is "the Chromium instance hangs with an alert and everything on Puppeteer's
     // end shows up as a generic timeout error with no meaningful logging".

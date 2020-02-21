@@ -8,14 +8,18 @@ export type TargetPageHiddenBarProps = {
     isTargetPageHidden: boolean;
 };
 
-export const TargetPageHiddenBar = NamedFC<TargetPageHiddenBarProps>('TargetPageHiddenBar', props => {
-    if (!props.isTargetPageHidden) {
-        return null;
-    }
+export const TargetPageHiddenBar = NamedFC<TargetPageHiddenBarProps>(
+    'TargetPageHiddenBar',
+    props => {
+        if (!props.isTargetPageHidden) {
+            return null;
+        }
 
-    return (
-        <MessageBar messageBarType={MessageBarType.warning}>
-            The Target page is in a hidden state. For better performance, use the Target page link above to make the page visible.
-        </MessageBar>
-    );
-});
+        return (
+            <MessageBar messageBarType={MessageBarType.warning}>
+                The Target page is in a hidden state. For better performance, use the Target page
+                link above to make the page visible.
+            </MessageBar>
+        );
+    },
+);

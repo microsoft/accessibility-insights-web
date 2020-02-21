@@ -13,7 +13,10 @@ import { RequirementComparer } from '../../../../common/assessment/requirement-c
 import { Messages } from '../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
-import { AssessmentScanData, TestsEnabledState } from '../../../../common/types/store-data/visualization-store-data';
+import {
+    AssessmentScanData,
+    TestsEnabledState,
+} from '../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { AssessmentInstanceTable } from '../../../../DetailsView/components/assessment-instance-table';
 import { AssessmentTestView } from '../../../../DetailsView/components/assessment-test-view';
@@ -72,7 +75,9 @@ describe('AssessmentBuilderTest', () => {
             analyzerMessageType: Messages.Assessment.AssessmentScanCompleted,
         };
 
-        analyzerProviderMock.setup(a => a.createBaseAnalyzer(It.isValue(expectedConfig))).verifiable(Times.once());
+        analyzerProviderMock
+            .setup(a => a.createBaseAnalyzer(It.isValue(expectedConfig)))
+            .verifiable(Times.once());
 
         drawerProviderMock.setup(d => d.createNullDrawer()).verifiable(Times.once());
 
@@ -102,8 +107,12 @@ describe('AssessmentBuilderTest', () => {
         expect(config.getStoreData(vizStoreData)).toEqual(scanData);
 
         expect(config.getIdentifier(selectedRequirementKey)).toBe(requirement.key);
-        expect(config.visualizationInstanceProcessor()).toBe(VisualizationInstanceProcessor.nullProcessor);
-        expect(config.getInstanceIdentiferGenerator(selectedRequirementKey)).toBe(getInstanceIdentifierMock.object);
+        expect(config.visualizationInstanceProcessor()).toBe(
+            VisualizationInstanceProcessor.nullProcessor,
+        );
+        expect(config.getInstanceIdentiferGenerator(selectedRequirementKey)).toBe(
+            getInstanceIdentifierMock.object,
+        );
         expect(
             <div>
                 description<span>dot should get removed</span>
@@ -114,8 +123,12 @@ describe('AssessmentBuilderTest', () => {
                 description<span>dot should get removed</span>
             </div>,
         ).toEqual(requirement2.renderReportDescription());
-        expect(config.getInstanceIdentiferGenerator(requirement2.key)).toEqual(InstanceIdentifierGenerator.defaultHtmlSelectorIdentifier);
-        expect(config.getInstanceIdentiferGenerator('non existent key')).toEqual(InstanceIdentifierGenerator.defaultHtmlSelectorIdentifier);
+        expect(config.getInstanceIdentiferGenerator(requirement2.key)).toEqual(
+            InstanceIdentifierGenerator.defaultHtmlSelectorIdentifier,
+        );
+        expect(config.getInstanceIdentiferGenerator('non existent key')).toEqual(
+            InstanceIdentifierGenerator.defaultHtmlSelectorIdentifier,
+        );
         expect(config.getTestView(testViewPropsStub)).toEqual(expectedTestView);
 
         validateInstanceTableSettings(requirement);
@@ -148,7 +161,9 @@ describe('AssessmentBuilderTest', () => {
         });
         getAnalyzerMock.setup(gam => gam(providerMock.object)).verifiable(Times.once());
         const getDrawerMock = Mock.ofInstance((provider, ffStoreData?) => null);
-        getDrawerMock.setup(gdm => gdm(drawerProviderMock.object, undefined)).verifiable(Times.once());
+        getDrawerMock
+            .setup(gdm => gdm(drawerProviderMock.object, undefined))
+            .verifiable(Times.once());
 
         const requirement1: Requirement = {
             description: (
@@ -205,7 +220,14 @@ describe('AssessmentBuilderTest', () => {
             visualizationType: -1 as VisualizationType,
             title: 'manual assessment title',
             gettingStarted: <span>getting started</span>,
-            requirements: [requirement1, requirement2, requirement3, requirement4, requirement5, requirement6],
+            requirements: [
+                requirement1,
+                requirement2,
+                requirement3,
+                requirement4,
+                requirement5,
+                requirement6,
+            ],
             storeDataKey: 'headingsAssessment',
             visualizationConfiguration: {},
             requirementOrder: RequirementComparer.byOutcomeAndName,
@@ -228,7 +250,12 @@ describe('AssessmentBuilderTest', () => {
         manualRequirement.forEach(requirement => {
             expect(requirement.reportInstanceFields).toEqual([comment, manualPath, manualSnippet]);
         });
-        expect(requirement4.reportInstanceFields).toEqual([comment, manualPath, manualSnippet, extraField]);
+        expect(requirement4.reportInstanceFields).toEqual([
+            comment,
+            manualPath,
+            manualSnippet,
+            extraField,
+        ]);
         expect(requirement5.reportInstanceFields).toEqual([path, snippet]);
 
         Object.keys(assistedAssessment).forEach(assessmentKey => {
@@ -245,7 +272,10 @@ describe('AssessmentBuilderTest', () => {
         const key = requirement1.key;
         const scanData = { enabled: true, stepStatus: {} } as AssessmentScanData;
         scanData.stepStatus[key] = true;
-        const vizStoreData = { assessments: { headingsAssessment: scanData }, adhoc: {} } as TestsEnabledState;
+        const vizStoreData = {
+            assessments: { headingsAssessment: scanData },
+            adhoc: {},
+        } as TestsEnabledState;
 
         config.getAnalyzer(providerMock.object, requirement1.key);
         config.getDrawer(drawerProviderMock.object, requirement1.key);
@@ -257,26 +287,40 @@ describe('AssessmentBuilderTest', () => {
         config.getDrawer(drawerProviderMock.object, requirement5.key);
 
         expect(config.getStoreData(vizStoreData)).toEqual(scanData);
-        expect(config.resultProcessor(scannerStub as ScannerUtils)).toEqual(scannerStub.getAllCompletedInstances);
+        expect(config.resultProcessor(scannerStub as ScannerUtils)).toEqual(
+            scannerStub.getAllCompletedInstances,
+        );
         expect(config.telemetryProcessor(telemetryFactoryStub as TelemetryDataFactory)).toEqual(
             telemetryFactoryStub.forAssessmentRequirementScan,
         );
         expect(config.getIdentifier(selectedRequirementKey)).toBe(requirement1.key);
-        expect(config.visualizationInstanceProcessor(selectedRequirementKey)).toBe(visualizationInstanceProcessorMock.object);
-        expect(config.visualizationInstanceProcessor(requirement5.key)).toBe(VisualizationInstanceProcessor.nullProcessor);
-        expect(config.visualizationInstanceProcessor('non existent key')).toBe(VisualizationInstanceProcessor.nullProcessor);
+        expect(config.visualizationInstanceProcessor(selectedRequirementKey)).toBe(
+            visualizationInstanceProcessorMock.object,
+        );
+        expect(config.visualizationInstanceProcessor(requirement5.key)).toBe(
+            VisualizationInstanceProcessor.nullProcessor,
+        );
+        expect(config.visualizationInstanceProcessor('non existent key')).toBe(
+            VisualizationInstanceProcessor.nullProcessor,
+        );
         expect(config.getTestStatus(scanData, requirement1.key)).toBe(true);
         expect(config.getTestStatus(scanData, requirement5.key)).toBe(false);
         expect(config.getSwitchToTargetTabOnScan(requirement1.key)).toBe(true);
         expect(config.getSwitchToTargetTabOnScan(requirement5.key)).toBe(false);
-        expect(config.getInstanceIdentiferGenerator(selectedRequirementKey)).toEqual(getInstanceIdentifierMock.object);
+        expect(config.getInstanceIdentiferGenerator(selectedRequirementKey)).toEqual(
+            getInstanceIdentifierMock.object,
+        );
         expect(requirement1.renderReportDescription()).toEqual(
             <div>
                 <span>dot should get removed</span>description
             </div>,
         );
-        expect(config.getInstanceIdentiferGenerator(requirement5.key)).toEqual(InstanceIdentifierGenerator.defaultHtmlSelectorIdentifier);
-        expect(config.getInstanceIdentiferGenerator('non existent key')).toEqual(InstanceIdentifierGenerator.defaultHtmlSelectorIdentifier);
+        expect(config.getInstanceIdentiferGenerator(requirement5.key)).toEqual(
+            InstanceIdentifierGenerator.defaultHtmlSelectorIdentifier,
+        );
+        expect(config.getInstanceIdentiferGenerator('non existent key')).toEqual(
+            InstanceIdentifierGenerator.defaultHtmlSelectorIdentifier,
+        );
         expect(config.getTestView(testViewPropsStub)).toEqual(expectedTestView);
 
         validateInstanceTableSettings(requirement1);
@@ -304,7 +348,9 @@ describe('AssessmentBuilderTest', () => {
 
     function validateInstanceTableSettings(requirement: Requirement): void {
         expect(requirement.getInstanceStatus).toBeDefined();
-        expect(requirement.getInstanceStatus({} as DecoratedAxeNodeResult)).toBe(ManualTestStatus.UNKNOWN);
+        expect(requirement.getInstanceStatus({} as DecoratedAxeNodeResult)).toBe(
+            ManualTestStatus.UNKNOWN,
+        );
 
         expect(requirement.getInstanceStatusColumns).toBeDefined();
         const columns = requirement.getInstanceStatusColumns();

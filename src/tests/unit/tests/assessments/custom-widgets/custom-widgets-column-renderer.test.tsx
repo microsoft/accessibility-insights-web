@@ -52,15 +52,29 @@ describe('CustomWidgetsColumnRenderer', () => {
         expect(designPatternSpan).not.toBeUndefined();
         expect(designPatternSpan.hasClass('property-bag-div')).toBeTruthy();
         expect(designPatternSpan.children()).toHaveLength(2);
-        expect(designPatternSpan.text()).toEqual(`${configs[0].displayName}: ${item.instance.propertyBag.a}`);
+        expect(designPatternSpan.text()).toEqual(
+            `${configs[0].displayName}: ${item.instance.propertyBag.a}`,
+        );
     });
 
     it('should render expected links when role is set', () => {
         const expectedValues = [
-            { designPattern: 'Accordion', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#accordion' },
-            { designPattern: 'Button', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#button' },
-            { designPattern: 'Disclosure (Show/Hide)', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#disclosure' },
-            { designPattern: 'Menu Button', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#menubutton' },
+            {
+                designPattern: 'Accordion',
+                URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#accordion',
+            },
+            {
+                designPattern: 'Button',
+                URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#button',
+            },
+            {
+                designPattern: 'Disclosure (Show/Hide)',
+                URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#disclosure',
+            },
+            {
+                designPattern: 'Menu Button',
+                URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#menubutton',
+            },
         ];
         item.instance.propertyBag.role = 'button';
 
@@ -86,8 +100,14 @@ describe('CustomWidgetsColumnRenderer', () => {
 
     it('should render expected spans when role is set', () => {
         const expectedValues = [
-            { designPattern: 'Slider', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#slider' },
-            { designPattern: 'Slider (Multi-thumb)', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#sliderwothumb' },
+            {
+                designPattern: 'Slider',
+                URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#slider',
+            },
+            {
+                designPattern: 'Slider (Multi-thumb)',
+                URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#sliderwothumb',
+            },
         ];
         item.instance.propertyBag.role = 'slider';
 

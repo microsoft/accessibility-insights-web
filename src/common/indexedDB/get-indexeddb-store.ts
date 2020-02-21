@@ -8,6 +8,9 @@ enum IndexedDBConstants {
 }
 
 export const getIndexedDBStore: () => IndexedDBStore = () => {
-    const store = new IndexedDBStore(IndexedDBConstants.defaultIndexedDBName, IndexedDBConstants.defaultIndexedDBStoreName);
+    const store = new IndexedDBStore(
+        IndexedDBConstants.defaultIndexedDBName,
+        IndexedDBConstants.defaultIndexedDBStoreName,
+    );
     return store;
 };

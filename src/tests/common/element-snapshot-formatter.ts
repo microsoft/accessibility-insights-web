@@ -8,37 +8,78 @@ export async function formatPageElementForSnapshot(page: Page, selector: string)
     return formatHtmlForSnapshot(outerHtml);
 }
 
-export async function formatChildElementForSnapshot(rootElement: ElementHandle<Element>, childSelector: string): Promise<Node> {
+export async function formatChildElementForSnapshot(
+    rootElement: ElementHandle<Element>,
+    childSelector: string,
+): Promise<Node> {
     const childOuterHtml = await rootElement.$eval(childSelector, el => el.outerHTML);
     return formatHtmlForSnapshot(childOuterHtml);
 }
 
 export function formatHtmlForSnapshot(htmlString: string): Node {
-    htmlString = normalizeCssModuleClassNames(htmlString);
-    htmlString = normalizeOfficeFabricGeneratedClassNames(htmlString);
+    htmlString = normalizeClassName(htmlString);
+    htmlString = normalizeId(htmlString);
     htmlString = normalizeExtensionUrls(htmlString);
     htmlString = htmlString.trim();
 
     const template = document.createElement('template');
     template.innerHTML = htmlString;
 
-    Array.from(template.content.querySelectorAll('.insights-highlight-box')).forEach(normalizeEnvironmentSensitivePositionStyles);
+    Array.from(template.content.querySelectorAll('.insights-highlight-box')).forEach(
+        normalizeEnvironmentSensitivePositionStyles,
+    );
 
     return template.content.cloneNode(true);
 }
 
-// office fabric generates a random class & id name which changes every time.
-// We remove the random number before snapshot comparison to avoid flakiness
-function normalizeOfficeFabricGeneratedClassNames(htmlString: string): string {
-    return htmlString.replace(/(class|id)="([\w\s-]+[\d]+|Panel\d+-\w+)"/g, (subString, args) => {
-        return subString.replace(/[\d]+/g, '000');
+export function normalizeId(htmlString: string): string {
+    // matches a string like: id="*"
+    // we process only the string value on the right side
+    const idAttributeMatcher = /id="([^".]+)"/g;
+
+    return htmlString.replace(idAttributeMatcher, (_, idMatch: string) => {
+        const officeFabricIdMatcher = /^([a-zA-Z-_]+)(\d+)(-{0,1}\w+)?$/;
+
+        const idValue = idMatch.replace(officeFabricIdMatcher, `$1000$3`);
+
+        return `id="${idValue}"`;
     });
 }
 
+export function normalizeClassName(htmlString: string): string {
+    // matches a string like: class="*"
+    // we process only the string value on the right side
+    const classAttributeMatcher = /class="([^".]+)"/g;
+
+    return htmlString.replace(classAttributeMatcher, (_, classNamesMatch: string) => {
+        let classNames = classNamesMatch.split(' ');
+
+        classNames = classNames.map(className => {
+            let result = normalizeCssModuleClassName(className);
+            result = normalizeOfficeFabricClassName(result);
+            return result;
+        });
+
+        return `class="${classNames.join(' ')}"`;
+    });
+}
+
+// office fabric generates a "random" class & id name which changes every time.
+// We remove the "random" number before snapshot comparison to avoid flakiness
+export function normalizeOfficeFabricClassName(className: string): string {
+    const officeFabricClassNameMatcher = /^([a-zA-Z-_]+)(\d+)(-{0,1}\w+)?$/;
+
+    return className.replace(officeFabricClassNameMatcher, '$1000$3');
+}
+
+export const CSS_MODULE_HASH_REPLACEMENT = '{{CSS_MODULE_HASH}}';
+
 // Our webpack config adds generated suffixes of form "--abc12" to the end of class names defined in
 // CSS. This normalizes them to avoid causing E2Es to fail for unrelated style changes.
-function normalizeCssModuleClassNames(htmlString: string): string {
-    return htmlString.replace(/(class="[^"]+--)[A-Za-z0-9+\/=]{5}(")/g, '$1{{CSS_MODULE_HASH}}$2');
+export function normalizeCssModuleClassName(className: string): string {
+    const cssModuleClassNameMatcher = /^([\w-]+--)[A-Za-z0-9+\/=-]{5}$/;
+
+    return className.replace(cssModuleClassNameMatcher, `$1${CSS_MODULE_HASH_REPLACEMENT}`);
 }
 
 // in some cases (eg, stylesheet links), HTML can contain absolute chrome-extension://{generated-id} paths

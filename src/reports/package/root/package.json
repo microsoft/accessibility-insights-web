@@ -1,6 +1,6 @@
 {
     "name": "accessibility-insights-report",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "description": "Accessibility Insights Report",
     "license": "MIT",
     "repository": {
@@ -12,9 +12,10 @@
         "classnames": "^2.2.6",
         "lodash": "^4.17.15",
         "moment": "^2.24.0",
-        "office-ui-fabric-react": "6.211.1",
+        "office-ui-fabric-react": "7.93.1",
         "react": "^16.12.0",
         "react-dom": "^16.12.0",
-        "uuid": "^3.3.3"
+        "react-helmet": "^5.2.0",
+        "uuid": "^3.4.0"
     }
 }

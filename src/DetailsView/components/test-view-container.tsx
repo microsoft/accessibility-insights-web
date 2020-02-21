@@ -50,7 +50,9 @@ export interface TestViewContainerProps {
 }
 
 export const TestViewContainer = NamedFC<TestViewContainerProps>('TestViewContainer', props => {
-    const configuration = props.visualizationConfigurationFactory.getConfiguration(props.selectedTest);
+    const configuration = props.visualizationConfigurationFactory.getConfiguration(
+        props.selectedTest,
+    );
     const testViewProps = { configuration, ...props };
     return configuration.getTestView(testViewProps);
 });

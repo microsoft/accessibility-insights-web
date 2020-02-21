@@ -82,7 +82,12 @@ describe('cues rule', () => {
 
 function testCuesEvaluateWithData(expectedData, nodeData): void {
     const nodeStub = createNodeStub(expectedData.element, nodeData);
-    const getAccessibleTextMock = GlobalMock.ofInstance(AxeUtils.getAccessibleText, 'getAccessibleText', AxeUtils, MockBehavior.Strict);
+    const getAccessibleTextMock = GlobalMock.ofInstance(
+        AxeUtils.getAccessibleText,
+        'getAccessibleText',
+        AxeUtils,
+        MockBehavior.Strict,
+    );
 
     const dataSetterMock = Mock.ofInstance(data => {});
 
@@ -91,7 +96,10 @@ function testCuesEvaluateWithData(expectedData, nodeData): void {
 
     let result;
     GlobalScope.using(getAccessibleTextMock).with(() => {
-        result = cuesConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, nodeStub);
+        result = cuesConfiguration.checks[0].evaluate.call(
+            { data: dataSetterMock.object },
+            nodeStub,
+        );
     });
 
     expect(result).toBe(true);

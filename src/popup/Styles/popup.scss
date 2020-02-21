@@ -89,10 +89,6 @@ html {
 #popup-container [role='heading'] {
     width: fit-content;
     padding-left: 0;
-
-    &.old {
-        padding-left: 8px;
-    }
 }
 
 #popup-container .launch-panel {
@@ -133,36 +129,8 @@ html {
     color: $secondary-text;
 }
 
-#popup-container .launch-panel-header {
-    margin-bottom: 12px;
-    margin-left: 14px;
-    margin-right: 14px;
-}
-
 .popup-menu .ms-ContextualMenu-icon {
-    color: $communication-primary;
     max-height: 30px;
-}
-
-#popup-container .launch-panel-header .header-title {
-    height: 32px;
-}
-
-#popup-container .launch-panel-header .header-subtitle {
-    color: $neutral-60;
-}
-
-#popup-container .launch-panel-header .feedback-collapseMenuButton-col {
-    padding-right: 0;
-    padding-left: 0;
-    float: right;
-}
-
-#popup-container .main-section .shortcut-label {
-    color: $secondary-text;
-    text-align: right;
-    padding-top: 3px;
-    padding-bottom: 0px;
 }
 
 #popup-container .main-section .ad-hoc-tools-panel-group-0 {
@@ -217,15 +185,6 @@ html {
 
 #popup-container .main-section .ms-Spinner {
     padding-top: 3px;
-}
-
-#popup-container .main-section .view-toggle-row {
-    height: 25px;
-}
-
-#popup-container .main-section .view-toggle-col {
-    padding-right: 0;
-    text-align: right;
 }
 
 #popup-container .main-section .ms-Checkbox-checkbox {

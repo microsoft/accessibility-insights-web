@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
-import { FeatureFlags } from 'common/feature-flags';
 import { NamedFC } from 'common/react/named-fc';
 import { AssessmentNavState, AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
@@ -83,10 +82,6 @@ describe('StartOverComponentFactory', () => {
         scanResult = {} as ScanResults;
     }
 
-    function setCardsUiFlag(flagValue: boolean): void {
-        featureFlagStoreData[FeatureFlags.universalCardsUI] = flagValue;
-    }
-
     describe('getStartOverComponentForAssessments', () => {
         it('renders', () => {
             const props = getProps(true);
@@ -98,41 +93,23 @@ describe('StartOverComponentFactory', () => {
 
     describe('getStartOverComponentPropsForFastPass', () => {
         describe('renders', () => {
-            test('CardsUI is undefined => component is null', () => {
+            test('scanResults is null => component matches snapshot', () => {
                 const props = getProps(false);
                 const rendered = getStartOverComponentForFastPass(props);
 
                 expect(rendered).toMatchSnapshot();
             });
 
-            test('CardsUI is false => component is null', () => {
-                setCardsUiFlag(false);
-                const props = getProps(false);
-                const rendered = getStartOverComponentForFastPass(props);
-
-                expect(rendered).toMatchSnapshot();
-            });
-
-            test('CardsUI is true, scanResults is null => component matches snapshot', () => {
-                setCardsUiFlag(true);
-                const props = getProps(false);
-                const rendered = getStartOverComponentForFastPass(props);
-
-                expect(rendered).toMatchSnapshot();
-            });
-
-            test('CardsUI is true, scanResults is not null, scanning is false => component matches snapshot', () => {
+            test('scanResults is not null, scanning is false => component matches snapshot', () => {
                 setScanResult();
-                setCardsUiFlag(true);
                 const props = getProps(false);
                 const rendered = getStartOverComponentForFastPass(props);
 
                 expect(rendered).toMatchSnapshot();
             });
 
-            test('CardsUI is true, scanResults is not null, scanning is true => component matches snapshot', () => {
+            test('scanResults is not null, scanning is true => component matches snapshot', () => {
                 setScanResult();
-                setCardsUiFlag(true);
                 scanning = 'some string';
                 const props = getProps(false);
                 const rendered = getStartOverComponentForFastPass(props);
@@ -147,7 +124,6 @@ describe('StartOverComponentFactory', () => {
 
                 const actionMessageCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
 
-                setCardsUiFlag(true);
                 const props = getProps(false);
                 props.deps.detailsViewActionMessageCreator = actionMessageCreatorMock.object;
 

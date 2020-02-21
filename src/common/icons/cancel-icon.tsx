@@ -9,7 +9,15 @@ const d =
     '0.991211L7.99121 7Z';
 
 export const CancelIcon = NamedFC('CancelIcon', () => (
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+    <svg
+        width="14"
+        height="14"
+        viewBox="0 0 14 14"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-hidden="true"
+    >
         <path d={d} fill="black" fillOpacity="0.9" />
     </svg>
 ));

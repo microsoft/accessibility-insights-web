@@ -9,7 +9,13 @@ import { contentPages } from '../../../../content';
 
 describe('content', () => {
     const contentActionMessageCreator = Mock.ofType<ContentActionMessageCreator>().object;
-    const deps = { contentActionMessageCreator };
+    const applicationTitle = 'THE_APPLICATION_TITLE';
+    const deps = {
+        textContent: {
+            applicationTitle,
+        },
+        contentActionMessageCreator,
+    };
 
     contentPages.allPaths().forEach(path =>
         it(`can render ${path}`, () => {

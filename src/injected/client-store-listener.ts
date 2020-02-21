@@ -29,7 +29,9 @@ export class ClientStoreListener {
         this.storeHub.addChangedListenerToAllStores(this.onChangedState);
     }
 
-    public registerOnReadyToExecuteVisualizationCallback = (callback: (storeData: TargetPageStoreData) => void) => {
+    public registerOnReadyToExecuteVisualizationCallback = (
+        callback: (storeData: TargetPageStoreData) => void,
+    ) => {
         this.onReadyToExecuteVisualizationUpdates.push(callback);
     };
 

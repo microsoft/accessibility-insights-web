@@ -28,7 +28,10 @@ describe('InspectStoreTest', () => {
         const initialState = getDefaultState();
         const finalState = getDefaultState();
 
-        createStoreForInspectActions('getCurrentState').testListenerToBeCalledOnce(initialState, finalState);
+        createStoreForInspectActions('getCurrentState').testListenerToBeCalledOnce(
+            initialState,
+            finalState,
+        );
     });
 
     test('on changeMode', () => {
@@ -68,14 +71,18 @@ describe('InspectStoreTest', () => {
         return createStoreWithNullParams(InspectStore).getDefaultState();
     }
 
-    function createStoreForInspectActions(actionName: keyof InspectActions): StoreTester<InspectStoreData, InspectActions> {
+    function createStoreForInspectActions(
+        actionName: keyof InspectActions,
+    ): StoreTester<InspectStoreData, InspectActions> {
         const tabActions = new TabActions();
         const factory = (actions: InspectActions) => new InspectStore(actions, tabActions);
 
         return new StoreTester(InspectActions, actionName, factory);
     }
 
-    function createStoreForTabActions(actionName: keyof TabActions): StoreTester<InspectStoreData, TabActions> {
+    function createStoreForTabActions(
+        actionName: keyof TabActions,
+    ): StoreTester<InspectStoreData, TabActions> {
         const factory = (actions: TabActions) => new InspectStore(new InspectActions(), actions);
         return new StoreTester(TabActions, actionName, factory);
     }
