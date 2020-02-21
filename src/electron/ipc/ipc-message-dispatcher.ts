@@ -3,7 +3,7 @@
 import { TelemetryData } from 'common/extension-telemetry-events';
 import { Message } from 'common/message';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
-import { IPC_MESSAGE_CHANNEL_NAME } from './ipc-message-channel-name';
+import { IPC_MESSAGE_CHANNEL_NAME } from './ipc-channel-names';
 
 // The most common type of sink is BrowserWindow.webContext.send
 export type IpcMessageSink = (channelName: string, message: Message) => void;

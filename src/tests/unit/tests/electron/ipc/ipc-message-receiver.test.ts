@@ -4,7 +4,7 @@ import { Interpreter } from 'background/interpreter';
 import { Logger } from 'common/logging/logger';
 import { InterpreterMessage } from 'common/message';
 import { IpcRenderer } from 'electron';
-import { IPC_MESSAGE_CHANNEL_NAME } from 'electron/ipc/ipc-message-channel-name';
+import { IPC_MESSAGE_CHANNEL_NAME } from 'electron/ipc/ipc-channel-names';
 import { IpcMessageReceiver } from 'electron/ipc/ipc-message-receiver';
 import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
