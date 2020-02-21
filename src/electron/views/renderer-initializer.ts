@@ -102,6 +102,7 @@ const detailsViewActions = new DetailsViewActions();
 const previewFeaturesActions = new PreviewFeaturesActions(); // not really used but needed by DetailsViewStore
 const scopingActions = new ScopingActions(); // not really used but needed by DetailsViewStore
 const contentActions = new ContentActions(); // not really used but needed by DetailsViewStore
+
 const storageAdapter = new ElectronStorageAdapter(indexedDBInstance);
 const appDataAdapter = new ElectronAppDataAdapter();
 
