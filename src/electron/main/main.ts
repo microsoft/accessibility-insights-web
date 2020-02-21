@@ -1,19 +1,26 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { FileSystemConfiguration } from 'common/configuration/file-system-configuration';
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, nativeTheme, ipcMain } from 'electron';
 import log from 'electron-log';
 import { autoUpdater } from 'electron-updater';
 import { AutoUpdaterClient } from 'electron/auto-update/auto-updater-client';
 import { getElectronIconPath } from 'electron/common/get-electron-icon-path';
+import { IpcMessageDispatcher, IpcMessageSink } from 'electron/main/ipc-message-dispatcher';
 import { OSType, PlatformInfo } from 'electron/window-management/platform-info';
 import * as path from 'path';
 import { mainWindowConfig } from './main-window-config';
+import { NativeHighContrastModeListener } from './native-high-contrast-mode-listener';
 
 let mainWindow: BrowserWindow;
 const platformInfo = new PlatformInfo(process);
 const os = platformInfo.getOs();
 const config = new FileSystemConfiguration();
+const ipcMessageDispatcher = new IpcMessageDispatcher();
+const nativeHighContrastModeListener = new NativeHighContrastModeListener(
+    nativeTheme,
+    ipcMessageDispatcher.sendMessage,
+);
 
 log.transports.file.level = 'info';
 autoUpdater.logger = log;
@@ -38,6 +45,13 @@ const createWindow = () => {
         mainWindow.setSheetOffset(22);
     }
 
+    const mainWindowMessageSink: IpcMessageSink = (id, msg) => mainWindow.webContents.send(id, msg);
+
+    ipcMain.on('renderer-initializer-completed', () => {
+        console.log('Registering mainWindow as an IPC message sink');
+        ipcMessageDispatcher.registerMessageSink(mainWindowMessageSink);
+    });
+
     mainWindow
         .loadFile(path.resolve(__dirname, '../electron/views/index.html'))
         .then(() => console.log('url loaded'))
@@ -50,6 +64,7 @@ const createWindow = () => {
     });
 
     mainWindow.on('closed', () => {
+        ipcMessageDispatcher.unregisterMessageSink(mainWindowMessageSink);
         // Dereference the window object, to force garbage collection
         mainWindow = null;
     });
@@ -77,9 +92,13 @@ const setupRecurringUpdateCheck = () => {
     }, 60 * 60 * 1000);
 };
 
-app.on('ready', createWindow);
+app.on('ready', () => {
+    createWindow();
+    nativeHighContrastModeListener.startListening();
+});
 
 app.on('window-all-closed', () => {
+    nativeHighContrastModeListener.stopListening();
     clearInterval(recurringUpdateCheck);
     app.quit();
 });

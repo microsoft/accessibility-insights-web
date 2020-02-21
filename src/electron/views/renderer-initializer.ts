@@ -35,7 +35,7 @@ import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { CardsViewDeps } from 'DetailsView/components/cards-view';
-import { remote } from 'electron';
+import { remote, ipcRenderer, IpcRendererEvent } from 'electron';
 import { DirectActionMessageDispatcher } from 'electron/adapters/direct-action-message-dispatcher';
 import { NullDetailsViewController } from 'electron/adapters/null-details-view-controller';
 import { NullStoreActionMessageCreator } from 'electron/adapters/null-store-action-message-creator';
@@ -85,6 +85,7 @@ import {
     RootContainerRendererDeps,
 } from './root-container/root-container-renderer';
 import { screenshotViewModelProvider } from './screenshot/screenshot-view-model-provider';
+import { NativeHighContrastModeChangedMessage } from 'electron/main/ipc-message-dispatcher';
 
 initializeFabricIcons();
 
@@ -101,7 +102,6 @@ const detailsViewActions = new DetailsViewActions();
 const previewFeaturesActions = new PreviewFeaturesActions(); // not really used but needed by DetailsViewStore
 const scopingActions = new ScopingActions(); // not really used but needed by DetailsViewStore
 const contentActions = new ContentActions(); // not really used but needed by DetailsViewStore
-
 const storageAdapter = new ElectronStorageAdapter(indexedDBInstance);
 const appDataAdapter = new ElectronAppDataAdapter();
 
@@ -194,6 +194,14 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         );
 
         registerUserConfigurationMessageCallback(interpreter, userConfigurationActionCreator);
+
+        ipcRenderer.on(
+            'nativeHighContrastModeChanged',
+            (event: IpcRendererEvent, message: NativeHighContrastModeChangedMessage) => {
+                console.log(`ipcRenderer received: ${JSON.stringify(message)}`);
+                userConfigMessageCreator.setHighContrastMode(message.isHighContrastMode);
+            },
+        );
 
         const deviceConnectActionCreator = new DeviceConnectActionCreator(
             deviceActions,
@@ -323,6 +331,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const renderer = new RootContainerRenderer(ReactDOM.render, document, deps);
         renderer.render();
 
+        ipcRenderer.send('renderer-initializer-completed');
         sendAppInitializedTelemetryEvent(telemetryEventHandler, platformInfo);
     },
 );
