@@ -356,6 +356,8 @@ if (isNaN(tabId) === false) {
 
             const unifiedResultToIssueFilingDataConverter = new UnifiedResultToIssueFilingDataConverter();
 
+            const documentManipulator = new DocumentManipulator(document);
+
             const deps: DetailsViewContainerDeps = {
                 textContent,
                 fixInstructionProcessor,
@@ -411,6 +413,8 @@ if (isNaN(tabId) === false) {
                     detailsViewActionMessageCreator,
                 ),
                 setFocusVisibility,
+                documentManipulator,
+                customCongratsMessage: null, // uses default message
             };
 
             const renderer = new DetailsViewRenderer(

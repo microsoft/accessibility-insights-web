@@ -2,19 +2,23 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { Mock } from 'typemoq';
 
-import { ThemeDeps, ThemeInner, ThemeInnerProps } from '../../../../../common/components/theme';
-import { DefaultThemePalette } from '../../../../../common/styles/default-theme-palette';
-import { HighContrastThemePalette } from '../../../../../common/styles/high-contrast-theme-palette';
+import { ThemeDeps, ThemeInner, ThemeInnerProps } from 'common/components/theme';
+import { DocumentManipulator } from 'common/document-manipulator';
+import { DefaultThemePalette } from 'common/styles/default-theme-palette';
+import { HighContrastThemePalette } from 'common/styles/high-contrast-theme-palette';
 
 describe('ThemeInner', () => {
     let props: ThemeInnerProps;
     const loadThemeMock = jest.fn();
+    const documentManipulatorMock = Mock.ofType(DocumentManipulator);
 
     beforeEach(() => {
         props = {
             deps: {
                 loadTheme: loadThemeMock,
+                documentManipulator: documentManipulatorMock.object,
                 storeActionMessageCreator: null,
                 storesHub: null,
             } as ThemeDeps,
