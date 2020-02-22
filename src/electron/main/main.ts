@@ -53,6 +53,7 @@ const createWindow = () => {
 
     ipcMain.on(IPC_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME, () => {
         ipcMessageDispatcher.registerMessageSink(mainWindowMessageSink);
+        nativeHighContrastModeListener.startListening();
     });
 
     mainWindow
@@ -95,10 +96,7 @@ const setupRecurringUpdateCheck = () => {
     }, 60 * 60 * 1000);
 };
 
-app.on('ready', () => {
-    createWindow();
-    nativeHighContrastModeListener.startListening();
-});
+app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
     nativeHighContrastModeListener.stopListening();

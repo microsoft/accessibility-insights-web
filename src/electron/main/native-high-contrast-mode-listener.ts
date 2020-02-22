@@ -4,7 +4,7 @@ import { UserConfigMessageCreator } from 'common/message-creators/user-config-me
 import { NativeTheme } from 'electron';
 
 export class NativeHighContrastModeListener {
-    private lastHighContrastUpdate: boolean;
+    private highContrastStateAtLastNotify: boolean;
 
     public constructor(
         private readonly nativeTheme: NativeTheme,
@@ -21,12 +21,12 @@ export class NativeHighContrastModeListener {
     };
 
     private notifyHighContrastModeChanged = (): void => {
-        this.lastHighContrastUpdate = this.nativeTheme.shouldUseHighContrastColors;
-        this.userConfigMessageCreator.setHighContrastMode(this.lastHighContrastUpdate);
+        this.highContrastStateAtLastNotify = this.nativeTheme.shouldUseHighContrastColors;
+        this.userConfigMessageCreator.setHighContrastMode(this.highContrastStateAtLastNotify);
     };
 
     private onNativeThemeUpdated = (): void => {
-        if (this.lastHighContrastUpdate !== this.nativeTheme.shouldUseHighContrastColors) {
+        if (this.highContrastStateAtLastNotify !== this.nativeTheme.shouldUseHighContrastColors) {
             this.notifyHighContrastModeChanged();
         }
     };

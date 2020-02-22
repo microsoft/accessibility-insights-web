@@ -5,10 +5,6 @@ describe('IpcMessageDispatcher', () => {
         throw new Error('TODO: implement me before marking PR non-draft!');
     });
 
-    it('should queue messages until the first sink is registered', () => {
-        throw new Error('TODO: implement me before marking PR non-draft!');
-    });
-
     it('should stop dispatching messages to unregistered sinks', () => {
         throw new Error('TODO: implement me before marking PR non-draft!');
     });

@@ -48,7 +48,7 @@ describe('IpcMessageReceiver', () => {
         testSubjectMessageHandler({ senderId: 1 }, validMessage);
 
         expect(sentMessages).toEqual([]);
-        mockLogger.verify(l => l.error('Ignoring spoofed message from non-main-process senderId'), Times.once());
+        mockLogger.verify(l => l.error('Ignoring unexpected message from non-main-process senderId'), Times.once());
     });
 
     it('rejects messages with no args', () => {

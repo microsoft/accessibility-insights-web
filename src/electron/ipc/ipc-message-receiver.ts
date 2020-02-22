@@ -20,7 +20,7 @@ export class IpcMessageReceiver {
 
     private onMessageReceived = (event: IpcRendererEvent, ...args: any[]) => {
         if (event.senderId !== 0) {
-            this.logger.error('Ignoring spoofed message from non-main-process senderId');
+            this.logger.error('Ignoring unexpected message from non-main-process senderId');
             return;
         }
         if (args.length !== 1 || !isObject(args[0]) || !isString(args[0]['messageType'])) {

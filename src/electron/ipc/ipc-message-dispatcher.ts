@@ -9,12 +9,9 @@ import { IPC_MESSAGE_CHANNEL_NAME } from './ipc-channel-names';
 export type IpcMessageSink = (channelName: string, message: Message) => void;
 
 export class IpcMessageDispatcher implements ActionMessageDispatcher {
-    public dispatchMessage(message: Message): void {
-        if (this.registeredSinks.length === 0) {
-            this.messageBacklog.push(message);
-            return;
-        }
+    private registeredSinks: IpcMessageSink[] = [];
 
+    public dispatchMessage(message: Message): void {
         for (const sink of this.registeredSinks) {
             sink(IPC_MESSAGE_CHANNEL_NAME, message);
         }
@@ -27,26 +24,13 @@ export class IpcMessageDispatcher implements ActionMessageDispatcher {
         throw new Error('Method not implemented (not yet required for any main process events).');
     }
 
-    private messageBacklog: Message[] = [];
-    private registeredSinks: IpcMessageSink[] = [];
-
     public registerMessageSink = (sink: IpcMessageSink): void => {
         this.registeredSinks.push(sink);
-
-        if (this.registeredSinks.length === 1) {
-            this.flushMessageBacklog();
-        }
     };
 
     public unregisterMessageSink = (sink: IpcMessageSink): void => {
         this.registeredSinks = this.registeredSinks.filter(
             registeredSink => registeredSink !== sink,
         );
-    };
-
-    private flushMessageBacklog = (): void => {
-        while (this.messageBacklog.length > 0) {
-            this.dispatchMessage(this.messageBacklog.shift());
-        }
     };
 }
