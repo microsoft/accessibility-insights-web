@@ -7,11 +7,12 @@ export class ElectronStorageAdapter implements StorageAdapter {
     constructor(private readonly indexedDBInstance: IndexedDBAPI) {}
 
     public async setUserData(items: Object): Promise<void> {
-        const setItemPromises = Object.keys(items).map(itemKey =>
-            this.indexedDBInstance.setItem(itemKey, items[itemKey]),
-        );
+        const keys = Object.keys(items);
 
-        await Promise.all(setItemPromises);
+        for (let index = 0; index < keys.length; index++) {
+            const key = keys[index];
+            await this.indexedDBInstance.setItem(key, items[key]);
+        }
     }
 
     public async getUserData(keys: string[]): Promise<{ [key: string]: any }> {
