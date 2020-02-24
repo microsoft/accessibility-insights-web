@@ -22,6 +22,7 @@ import { CardsCollapsibleControl } from 'common/components/cards/collapsible-com
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { getPropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { DateProvider } from 'common/date-provider';
+import { DocumentManipulator } from 'common/document-manipulator';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
@@ -51,14 +52,11 @@ import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-r
 import { ScanController } from 'electron/platform/android/scan-controller';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
 import { UnifiedSettingsProvider } from 'electron/settings/unified-settings-provider';
-import {
-    RootContainerDeps,
-    RootContainerState,
-} from 'electron/views/root-container/components/root-container';
+import { RootContainerState } from 'electron/views/root-container/components/root-container';
 import { PlatformInfo } from 'electron/window-management/platform-info';
 import { WindowFrameListener } from 'electron/window-management/window-frame-listener';
 import { WindowFrameUpdater } from 'electron/window-management/window-frame-updater';
-import { setFocusVisibility } from 'office-ui-fabric-react';
+import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
@@ -82,7 +80,10 @@ import { DeviceActions } from '../flux/action/device-actions';
 import { DeviceStore } from '../flux/store/device-store';
 import { ElectronLink } from './device-connect-view/components/electron-link';
 import { sendAppInitializedTelemetryEvent } from './device-connect-view/send-app-initialized-telemetry';
-import { RootContainerRenderer } from './root-container/root-container-renderer';
+import {
+    RootContainerRenderer,
+    RootContainerRendererDeps,
+} from './root-container/root-container-renderer';
 import { screenshotViewModelProvider } from './screenshot/screenshot-view-model-provider';
 
 initializeFabricIcons();
@@ -292,9 +293,13 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             unifiedResultToIssueFilingDataConverter: null, // we don't support issue filing right now
             windowUtils: null,
             setFocusVisibility,
+            customCongratsMessage:
+                "No failed automated checks were found. Continue investigating your app's accessibility compliance through manual testing.",
         };
 
-        const deps: RootContainerDeps = {
+        const documentManipulator = new DocumentManipulator(document);
+
+        const deps: RootContainerRendererDeps = {
             currentWindow,
             userConfigurationStore,
             deviceStore,
@@ -307,13 +312,15 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             storesHub,
             scanActionCreator,
             windowFrameActionCreator,
-            platformInfo: new PlatformInfo(process),
+            platformInfo,
             getCardsViewData: getCardViewData,
             getCardSelectionViewData: getCardSelectionViewData,
             screenshotViewModelProvider,
             ...cardsViewDeps,
             storeActionMessageCreator: new NullStoreActionMessageCreator(),
             settingsProvider: UnifiedSettingsProvider,
+            loadTheme,
+            documentManipulator,
         };
 
         const renderer = new RootContainerRenderer(ReactDOM.render, document, deps);

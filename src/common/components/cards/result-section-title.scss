@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 @import '../../../common/styles/fonts.scss';
+@import '../../../common/styles/colors.scss';
 
 .result-section-title {
     display: flex;
@@ -29,6 +30,7 @@
     .title {
         @include text-style-title-s;
         margin-right: 6px;
+        color: $primary-text;
     }
 
     .outcome-chip-container {

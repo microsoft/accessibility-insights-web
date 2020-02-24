@@ -1,6 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BodyClassModifier } from 'electron/views/common/body-class-modifier/body-class-modifier';
+import { Theme, ThemeDeps } from 'common/components/theme';
+import {
+    PlatformBodyClassModifier,
+    PlatformBodyClassModifierDeps,
+} from 'electron/views/root-container/components/platform-body-class-modifier';
 import {
     RootContainer,
     RootContainerDeps,
@@ -8,11 +12,15 @@ import {
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
+export type RootContainerRendererDeps = RootContainerDeps &
+    ThemeDeps &
+    PlatformBodyClassModifierDeps;
+
 export class RootContainerRenderer {
     constructor(
         private readonly renderer: typeof ReactDOM.render,
         private readonly dom: ParentNode,
-        private readonly deps: RootContainerDeps,
+        private readonly deps: RootContainerRendererDeps,
     ) {}
 
     public render(): void {
@@ -21,7 +29,8 @@ export class RootContainerRenderer {
         const rootContainer = this.dom.querySelector('#root-container');
         this.renderer(
             <>
-                <BodyClassModifier deps={this.deps} />
+                <PlatformBodyClassModifier deps={this.deps} />
+                <Theme deps={this.deps} />
                 <RootContainer deps={this.deps} />
             </>,
             rootContainer,

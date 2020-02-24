@@ -1,23 +1,44 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ThemeInner is high contrast mode enabled: false 1`] = `
-<HelmetWrapper
-  defer={true}
-  encodeSpecialCharacters={true}
->
-  <body
-    className="theme-switcher"
-  />
-</HelmetWrapper>
+<BodyClassModifier
+  classNames={
+    Array [
+      "theme-switcher",
+    ]
+  }
+  deps={
+    Object {
+      "documentManipulator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "document": undefined,
+      },
+      "loadTheme": [MockFunction],
+      "storeActionMessageCreator": null,
+      "storesHub": null,
+    }
+  }
+/>
 `;
 
 exports[`ThemeInner is high contrast mode enabled: true 1`] = `
-<HelmetWrapper
-  defer={true}
-  encodeSpecialCharacters={true}
->
-  <body
-    className="theme-switcher high-contrast-theme"
-  />
-</HelmetWrapper>
+<BodyClassModifier
+  classNames={
+    Array [
+      "theme-switcher",
+      "high-contrast-theme",
+    ]
+  }
+  deps={
+    Object {
+      "documentManipulator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "document": undefined,
+      },
+      "loadTheme": [MockFunction],
+      "storeActionMessageCreator": null,
+      "storesHub": null,
+    }
+  }
+/>
 `;

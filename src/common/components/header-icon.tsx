@@ -26,8 +26,6 @@ export const HeaderIconComponent = NamedFC<HeaderIconProps>('HeaderIconComponent
 
     const { invertColors = false } = props;
 
-    console.log('invertColors', invertColors);
-
     const defaultIcon = invertColors ? <BrandBlue /> : <BrandWhite />;
     const highContrastIcon = invertColors ? <BrandWhite /> : <BrandBlue />;
 

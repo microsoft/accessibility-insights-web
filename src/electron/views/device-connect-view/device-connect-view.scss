@@ -5,6 +5,10 @@
 @import '../../../reports/components/outcome.scss';
 @import '../../../common/components/cards/fix-instruction-color-box.scss';
 
+body.ms-Fabric {
+    color: $primary-text;
+}
+
 .device-connect-view {
     -webkit-app-region: drag;
 

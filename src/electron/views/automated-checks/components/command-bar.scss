@@ -20,6 +20,10 @@
         color: $primary-text;
         font-size: $fontSizeM;
         font-family: $fontFamily;
+
+        &:hover {
+            color: $button-hover;
+        }
     }
 
     .button-icon {
