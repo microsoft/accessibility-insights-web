@@ -43,7 +43,7 @@ describe('ElectronStorageAdapter', () => {
     });
 
     describe('getUserData', () => {
-        it.only.each`
+        it.each`
             items
             ${{}}
             ${{ first: 1 }}
