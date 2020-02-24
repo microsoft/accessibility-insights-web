@@ -36,6 +36,8 @@ describe('ThemeInner', () => {
     test.each(testStub)('is high contrast mode enabled: %s', (enableHighContrast: boolean) => {
         props.storeState.userConfigurationStoreData.enableHighContrast = enableHighContrast;
         const wrapper = shallow(<ThemeInner {...props} />);
+
+        loadThemeMock.mockReset(); // omits irrelevant mock-call records from snapshot
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
