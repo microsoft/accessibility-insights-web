@@ -9,44 +9,30 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe('DeviceConnectConnectedDeviceTest', () => {
-    const testProps = [
-        [
-            'no content',
-            {
-                deviceConnectState: DeviceConnectState.Default,
-            },
-        ],
-        [
-            'user change the port number',
-            {
-                connectedDevice: 'A Test Device!',
-                deviceConnectState: DeviceConnectState.Default,
-            },
-        ],
-        [
-            'scanning spinner',
-            {
-                deviceConnectState: DeviceConnectState.Connecting,
-            },
-        ],
-        [
-            'connection success',
-            {
-                connectedDevice: 'A Test Device!',
-                deviceConnectState: DeviceConnectState.Connected,
-            },
-        ],
-        [
-            'connection failure',
-            {
-                deviceConnectState: DeviceConnectState.Error,
-            },
-        ],
-    ];
+    it.each`
+        state
+        ${DeviceConnectState[DeviceConnectState.Connecting]}
+        ${DeviceConnectState[DeviceConnectState.Error]}
+        ${DeviceConnectState[DeviceConnectState.Default]}
+        ${DeviceConnectState[DeviceConnectState.Connected]}
+    `('renders for deviceConnectState = $state', ({ state }) => {
+        const props: DeviceConnectConnectedDeviceProps = {
+            deviceConnectState: DeviceConnectState[state as string],
+        };
 
-    test.each(testProps)('render %s', (testName: string, props: DeviceConnectConnectedDeviceProps) => {
         const rendered = shallow(<DeviceConnectConnectedDevice {...props} />);
 
-        expect(rendered.getElement()).toMatchSnapshot(testName);
+        expect(rendered.getElement()).toMatchSnapshot();
+    });
+
+    it('renders the device name when state is connected', () => {
+        const props: DeviceConnectConnectedDeviceProps = {
+            deviceConnectState: DeviceConnectState.Connected,
+            connectedDevice: 'test-device',
+        };
+
+        const rendered = shallow(<DeviceConnectConnectedDevice {...props} />);
+
+        expect(rendered.getElement()).toMatchSnapshot();
     });
 });
