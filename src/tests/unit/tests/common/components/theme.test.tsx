@@ -8,6 +8,7 @@ import { ThemeDeps, ThemeInner, ThemeInnerProps } from 'common/components/theme'
 import { DocumentManipulator } from 'common/document-manipulator';
 import { DefaultThemePalette } from 'common/styles/default-theme-palette';
 import { HighContrastThemePalette } from 'common/styles/high-contrast-theme-palette';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 
 describe('ThemeInner', () => {
     let props: ThemeInnerProps;
@@ -35,12 +36,24 @@ describe('ThemeInner', () => {
     test.each(testStub)('is high contrast mode enabled: %s', (enableHighContrast: boolean) => {
         props.storeState.userConfigurationStoreData.enableHighContrast = enableHighContrast;
         const wrapper = shallow(<ThemeInner {...props} />);
+
+        loadThemeMock.mockReset(); // omits irrelevant mock-call records from snapshot
         expect(wrapper.getElement()).toMatchSnapshot();
+    });
+
+    test.each(testStub)('componentDidMount: is high contrast mode enabled: %s', (enableHighContrast: boolean) => {
+        const theme = enableHighContrast ? HighContrastThemePalette : DefaultThemePalette;
+        const userConfigurationStoreData = { enableHighContrast } as UserConfigurationStoreData;
+        shallow(<ThemeInner {...props} storeState={{ userConfigurationStoreData }} />);
+
+        expect(loadThemeMock).toBeCalledWith(theme);
     });
 
     test.each(testStub)('componentDidUpdate: is high contrast mode enabled: %s', (enableHighContrast: boolean) => {
         const theme = enableHighContrast ? HighContrastThemePalette : DefaultThemePalette;
         const wrapper = shallow(<ThemeInner {...props} />);
+
+        loadThemeMock.mockReset();
         wrapper.setProps({
             storeState: {
                 userConfigurationStoreData: { enableHighContrast },
