@@ -1,30 +1,36 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { StorageAdapter } from 'common/browser-adapters/storage-adapter';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
-import { pick } from 'lodash';
 
 export class ElectronStorageAdapter implements StorageAdapter {
     constructor(private readonly indexedDBInstance: IndexedDBAPI) {}
 
     public async setUserData(items: Object): Promise<void> {
-        await this.indexedDBInstance.setItem(IndexedDBDataKeys.installation, items);
+        const keys = Object.keys(items);
+
+        for (let index = 0; index < keys.length; index++) {
+            const key = keys[index];
+            await this.indexedDBInstance.setItem(key, items[key]);
+        }
     }
 
     public async getUserData(keys: string[]): Promise<{ [key: string]: any }> {
-        const data = await this.indexedDBInstance.getItem(IndexedDBDataKeys.installation);
-        return pick(data, keys);
+        const result = {};
+
+        for (let index = 0; index < keys.length; index++) {
+            const key = keys[index];
+            const value = await this.indexedDBInstance.getItem(key);
+
+            if (value != null) {
+                result[key] = value;
+            }
+        }
+
+        return result;
     }
 
     public async removeUserData(key: string): Promise<void> {
-        const data = await this.indexedDBInstance.getItem(IndexedDBDataKeys.installation);
-        const filtered = Object.keys(data)
-            .filter(internalKey => internalKey !== key)
-            .reduce((obj, k) => {
-                obj[k] = data[k];
-                return obj;
-            }, {});
-        await this.indexedDBInstance.setItem(IndexedDBDataKeys.installation, filtered);
+        await this.indexedDBInstance.removeItem(key);
     }
 }
