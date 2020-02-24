@@ -35,7 +35,7 @@ import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { CardsViewDeps } from 'DetailsView/components/cards-view';
-import { remote } from 'electron';
+import { ipcRenderer, remote } from 'electron';
 import { DirectActionMessageDispatcher } from 'electron/adapters/direct-action-message-dispatcher';
 import { NullDetailsViewController } from 'electron/adapters/null-details-view-controller';
 import { NullStoreActionMessageCreator } from 'electron/adapters/null-store-action-message-creator';
@@ -48,6 +48,8 @@ import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
 import { WindowStateActions } from 'electron/flux/action/window-state-actions';
 import { ScanStore } from 'electron/flux/store/scan-store';
 import { WindowStateStore } from 'electron/flux/store/window-state-store';
+import { IPC_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME } from 'electron/ipc/ipc-channel-names';
+import { IpcMessageReceiver } from 'electron/ipc/ipc-message-receiver';
 import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { ScanController } from 'electron/platform/android/scan-controller';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
@@ -195,6 +197,9 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         registerUserConfigurationMessageCallback(interpreter, userConfigurationActionCreator);
 
+        const ipcMessageReceiver = new IpcMessageReceiver(interpreter, ipcRenderer, logger);
+        ipcMessageReceiver.initialize();
+
         const deviceConnectActionCreator = new DeviceConnectActionCreator(
             deviceActions,
             fetchScanResults,
@@ -327,5 +332,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         renderer.render();
 
         sendAppInitializedTelemetryEvent(telemetryEventHandler, platformInfo);
+
+        ipcRenderer.send(IPC_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME);
     },
 );
