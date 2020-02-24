@@ -80,6 +80,7 @@
     --menu-item-background-hover: var(--neutral-alpha-4);
     --menu-item-background-active: var(--neutral-alpha-8);
     --link: var(--communication-primary);
+    --unified-link: var(black);
     --link-hover: var(--communication-shade-20);
     --switcher-border: var(--ada-brand-variant);
     --switcher-focus-border: var(--neutral-0);
@@ -149,6 +150,7 @@
         --group-selected-background: var(--grey);
         --row-hover-background: var(--communication-tint-40);
         --link: var(--communication-shade-10);
+        --unified-link: var(--communication-tint-40);
         --link-hover: var(--communication-shade-10);
         --switcher-border: var(--brand-blue);
         --switcher-focus-border: var(--black);
@@ -247,6 +249,7 @@ $row-selected-background: var(--row-selected-background);
 $group-selected-background: var(--group-selected-background);
 $row-hover-background: var(--row-hover-background);
 $link: var(--link);
+$unified-link: var(--unified-link);
 $link-hover: var(--link-hover);
 $switcher-border: var(--switcher-border);
 $switcher-focus-border: var(--switcher-focus-border);
