@@ -8,7 +8,7 @@ import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { Mock, Times } from 'typemoq';
 
-describe('ElectronExternalLinkTest', () => {
+describe('ElectronExternalLink', () => {
     const testHref = 'test-href';
     const testText = 'test-text';
 

@@ -54,7 +54,7 @@ describe('UserConfigurationStoreTest', () => {
         expect(testSubject.getState()).toBeUndefined();
     });
 
-    test('verify initial state when null', () => {
+    test('verify initial state when persisted state is null', () => {
         const testSubject = new UserConfigurationStore(
             null,
             new UserConfigurationActions(),
@@ -98,6 +98,21 @@ describe('UserConfigurationStoreTest', () => {
         testSubject.initialize();
 
         expect(testSubject.getState()).toEqual(expected);
+    });
+
+    test('get state returns clone data', () => {
+        const testSubject = new UserConfigurationStore(
+            null,
+            new UserConfigurationActions(),
+            indexDbStrictMock.object,
+        );
+        testSubject.initialize();
+
+        const firstResult = testSubject.getState();
+        const secondResult = testSubject.getState();
+
+        expect(firstResult).toEqual(secondResult);
+        expect(firstResult).not.toBe(secondResult);
     });
 
     test('getDefaultState returns cloned data when initial state is not null', () => {
