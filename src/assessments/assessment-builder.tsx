@@ -375,6 +375,4 @@ export class AssessmentBuilder {
 
         return children;
     }
-
-    private static nullScanPolicy(scan, data): void {}
 }

@@ -1,9 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { Interpreter } from 'background/interpreter';
-import { AssessmentStore } from 'background/stores/assessment-store';
 import { CardSelectionStore } from 'background/stores/card-selection-store';
 import { DetailsViewStore } from 'background/stores/details-view-store';
 import { DevToolStore } from 'background/stores/dev-tools-store';
@@ -26,7 +24,6 @@ import { PromiseFactory } from '../../../../common/promises/promise-factory';
 import { StoreNames } from '../../../../common/stores/store-names';
 import { StoreUpdateMessage } from '../../../../common/types/store-update-message';
 import { VisualizationType } from '../../../../common/types/visualization-type';
-import { WindowUtils } from '../../../../common/window-utils';
 
 function getConfigs(visualizationType: VisualizationType): VisualizationConfiguration {
     return new VisualizationConfigurationFactory().getConfiguration(visualizationType);
@@ -44,16 +41,12 @@ describe('TabContextFactoryTest', () => {
     });
 
     it('createInterpreter', () => {
-        const tabId = -1;
-        const windowUtilsStub = Mock.ofType(WindowUtils);
         const broadcastMock = Mock.ofType<(message: Object) => Promise<void>>(
             null,
             MockBehavior.Strict,
         );
         const telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler);
         const targetTabControllerMock = Mock.ofType(TargetTabController);
-        const assessmentStore = Mock.ofType(AssessmentStore);
-        const assessmentProvider = Mock.ofType(AssessmentsProviderImpl);
 
         const storeNames: StoreNames[] = [
             StoreNames.VisualizationScanResultStore,
@@ -94,10 +87,7 @@ describe('TabContextFactoryTest', () => {
         const testObject = new TabContextFactory(
             visualizationConfigurationFactoryMock.object,
             telemetryEventHandlerMock.object,
-            windowUtilsStub.object,
             targetTabControllerMock.object,
-            assessmentStore.object,
-            assessmentProvider.object,
             promiseFactoryMock.object,
             mockLogger.object,
         );
@@ -106,7 +96,6 @@ describe('TabContextFactoryTest', () => {
             broadcastMock.object,
             mockBrowserAdapter.object,
             mockDetailsViewController.object,
-            tabId,
         );
 
         broadcastMock.verifyAll();

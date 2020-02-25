@@ -15,7 +15,6 @@ import { NotificationCreator } from '../common/notification-creator';
 import { createDefaultPromiseFactory } from '../common/promises/promise-factory';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { UrlValidator } from '../common/url-validator';
-import { WindowUtils } from '../common/window-utils';
 import { title } from '../content/strings/application';
 import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-service-provider-impl';
 import { BrowserMessageBroadcasterFactory } from './browser-message-broadcaster-factory';
@@ -62,7 +61,6 @@ async function initialize(): Promise<void> {
     const userData = await userDataPromise;
 
     const assessmentsProvider = Assessments;
-    const windowUtils = new WindowUtils();
     const telemetryDataFactory = new TelemetryDataFactory();
 
     const logger = createDefaultLogger();
@@ -152,10 +150,7 @@ async function initialize(): Promise<void> {
     const tabContextFactory = new TabContextFactory(
         visualizationConfigurationFactory,
         telemetryEventHandler,
-        windowUtils,
         targetTabController,
-        globalContext.stores.assessmentStore,
-        assessmentsProvider,
         promiseFactory,
         logger,
     );

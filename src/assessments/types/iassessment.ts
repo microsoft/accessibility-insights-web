@@ -4,7 +4,6 @@ import { InitialDataCreator } from 'background/create-initial-assessment-test-da
 import { RequirementOrdering } from 'common/assessment/requirement';
 import { AssessmentVisualizationConfiguration } from 'common/configs/assessment-visualization-configuration';
 import { AnyExtension } from 'common/extensibility/extension-point';
-import { AssessmentData } from 'common/types/store-data/assessment-result-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { ContentPageComponent } from 'views/content/content-page';
 import { Requirement } from './requirement';

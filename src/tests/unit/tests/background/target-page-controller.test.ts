@@ -114,7 +114,7 @@ describe('TargetPageController', () => {
             await testSubject.initialize();
 
             mockTabContextFactory.verify(
-                f => f.createTabContext(It.isAny(), It.isAny(), It.isAny(), EXISTING_ACTIVE_TAB_ID),
+                f => f.createTabContext(It.isAny(), It.isAny(), It.isAny()),
                 Times.once(),
             );
             expect(tabToContextMap[EXISTING_ACTIVE_TAB_ID]).toHaveProperty(
@@ -123,13 +123,7 @@ describe('TargetPageController', () => {
             );
 
             mockTabContextFactory.verify(
-                f =>
-                    f.createTabContext(
-                        It.isAny(),
-                        It.isAny(),
-                        It.isAny(),
-                        EXISTING_INACTIVE_TAB_ID,
-                    ),
+                f => f.createTabContext(It.isAny(), It.isAny(), It.isAny()),
                 Times.once(),
             );
             expect(tabToContextMap[EXISTING_INACTIVE_TAB_ID]).toHaveProperty(
@@ -138,7 +132,7 @@ describe('TargetPageController', () => {
             );
 
             mockTabContextFactory.verify(
-                f => f.createTabContext(It.isAny(), It.isAny(), It.isAny(), NEW_TAB_ID),
+                f => f.createTabContext(It.isAny(), It.isAny(), It.isAny()),
                 Times.never(),
             );
             expect(tabToContextMap[NEW_TAB_ID]).toBeUndefined();
@@ -180,7 +174,7 @@ describe('TargetPageController', () => {
                 } as chrome.webNavigation.WebNavigationFramedCallbackDetails);
 
                 mockTabContextFactory.verify(
-                    f => f.createTabContext(It.isAny(), It.isAny(), It.isAny(), NEW_TAB_ID),
+                    f => f.createTabContext(It.isAny(), It.isAny(), It.isAny()),
                     Times.once(),
                 );
                 expect(tabToContextMap[NEW_TAB_ID]).toHaveProperty(
@@ -390,7 +384,7 @@ describe('TargetPageController', () => {
                 mockBrowserAdapter.updateTab(NEW_TAB_ID, changeInfoWithUrl);
 
                 mockTabContextFactory.verify(
-                    f => f.createTabContext(It.isAny(), It.isAny(), It.isAny(), NEW_TAB_ID),
+                    f => f.createTabContext(It.isAny(), It.isAny(), It.isAny()),
                     Times.once(),
                 );
                 expect(tabToContextMap[NEW_TAB_ID]).toHaveProperty(
@@ -453,7 +447,6 @@ describe('TargetPageController', () => {
                 stubBroadcastDelegate,
                 mockBrowserAdapter.object,
                 mockDetailsViewController.object,
-                It.isAnyNumber(),
             ),
         ).returns((_1, _2, _3, tabId) => ({
             stores: null,
