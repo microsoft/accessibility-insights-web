@@ -21,7 +21,9 @@
         font-size: $fontSizeM;
         font-family: $fontFamily;
 
-        &:hover {
+        &:hover,
+        &:active,
+        &:hover:active {
             color: $button-hover;
         }
     }
