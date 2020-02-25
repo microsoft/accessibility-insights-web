@@ -25,10 +25,14 @@
         &:active,
         &:hover:active {
             color: $button-hover;
+
+            i.button-icon {
+                color: $button-hover;
+            }
         }
     }
 
-    .button-icon {
+    i.button-icon {
         color: $primary-text;
         line-height: 16px;
     }
