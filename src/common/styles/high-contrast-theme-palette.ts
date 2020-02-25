@@ -34,5 +34,6 @@ export const HighContrastThemePalette: IPartialTheme = {
         link: '#FFFF00',
         menuIcon: '#FFFFFF',
         disabledText: '#C285FF',
+        primaryButtonBackground: '#38A9FF',
     },
 };
