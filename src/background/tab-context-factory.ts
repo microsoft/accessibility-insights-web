@@ -1,13 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { Logger } from 'common/logging/logger';
 import { NotificationCreator } from 'common/notification-creator';
 import { PromiseFactory } from 'common/promises/promise-factory';
 import { StateDispatcher } from 'common/state-dispatcher';
-import { WindowUtils } from 'common/window-utils';
 import { ActionCreator } from './actions/action-creator';
 import { ActionHub } from './actions/action-hub';
 import { CardSelectionActionCreator } from './actions/card-selection-action-creator';
@@ -22,15 +20,11 @@ import { ScopingPanelActionCreator } from './actions/scoping-panel-action-creato
 import { ShortcutsPageActionCreator } from './actions/shortcuts-page-action-creator';
 import { TabActionCreator } from './actions/tab-action-creator';
 import { UnifiedScanResultActionCreator } from './actions/unified-scan-result-action-creator';
-import { AssessmentScanPolicyRunner } from './assessment-scan-policy-runner';
 import { ExtensionDetailsViewController } from './extension-details-view-controller';
 import { InjectorController } from './injector-controller';
 import { ContentScriptInjector } from './injector/content-script-injector';
 import { Interpreter } from './interpreter';
-import { isAnAssessmentSelected } from './is-an-assessment-selected';
-import { ScannerUtility } from './scanner-utility';
 import { ShortcutsPageController } from './shortcuts-page-controller';
-import { AssessmentStore } from './stores/assessment-store';
 import { TabContextStoreHub } from './stores/tab-context-store-hub';
 import { TabContext } from './tab-context';
 import { TargetTabController } from './target-tab-controller';
@@ -40,10 +34,7 @@ export class TabContextFactory {
     constructor(
         private visualizationConfigurationFactory: VisualizationConfigurationFactory,
         private telemetryEventHandler: TelemetryEventHandler,
-        private windowUtils: WindowUtils,
         private targetTabController: TargetTabController,
-        private assessmentStore: AssessmentStore,
-        private assessmentsProvider: AssessmentsProvider,
         private readonly promiseFactory: PromiseFactory,
         private readonly logger: Logger,
     ) {}
@@ -52,7 +43,6 @@ export class TabContextFactory {
         broadcastMessage: (message) => Promise<void>,
         browserAdapter: BrowserAdapter,
         detailsViewController: ExtensionDetailsViewController,
-        tabId: number,
     ): TabContext {
         const interpreter = new Interpreter();
         const actionsHub = new ActionHub();
@@ -150,17 +140,6 @@ export class TabContextFactory {
             storeHub.tabStore,
             storeHub.inspectStore,
         );
-
-        const scannerUtility = new ScannerUtility(interpreter, this.windowUtils);
-        const simpleSequentialScanner = new AssessmentScanPolicyRunner(
-            this.assessmentStore,
-            storeHub.visualizationStore,
-            scannerUtility.executeScan,
-            this.assessmentsProvider,
-            isAnAssessmentSelected,
-            tabId,
-        );
-        simpleSequentialScanner.beginListeningToStores();
 
         shortcutsPageActionCreator.registerCallbacks();
         actionCreator.registerCallbacks();

@@ -107,7 +107,6 @@ export class TargetPageController {
             this.broadcasterFactory.createTabSpecificBroadcaster(tabId),
             this.browserAdapter,
             this.detailsViewController,
-            tabId,
         );
     }
 
