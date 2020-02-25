@@ -65,7 +65,6 @@ describe('AssessmentBuilderTest', () => {
 
         const nonDefaultAssessment: ManualAssessment = {
             ...baseAssessment,
-            executeAssessmentScanPolicy: () => null,
             requirements: [],
         };
 
@@ -89,8 +88,6 @@ describe('AssessmentBuilderTest', () => {
         Object.keys(baseAssessment).forEach(assessmentKey => {
             expect(manual[assessmentKey]).toEqual(baseAssessment[assessmentKey]);
         });
-
-        expect(manual.executeAssessmentScanPolicy).toBeDefined();
 
         const nonDefaultManual = AssessmentBuilder.Manual(nonDefaultAssessment);
 
@@ -235,7 +232,6 @@ describe('AssessmentBuilderTest', () => {
 
         const nonDefaultAssessment: AssistedAssessment = {
             ...assistedAssessment,
-            executeAssessmentScanPolicy: () => null,
             requirements: [],
         };
 
@@ -265,8 +261,6 @@ describe('AssessmentBuilderTest', () => {
         Object.keys(nonDefaultAssessment).forEach(assessmentKey => {
             expect(nonDefaultAssisted[assessmentKey]).toEqual(nonDefaultAssessment[assessmentKey]);
         });
-
-        expect(assisted.executeAssessmentScanPolicy).toBeDefined();
 
         const config = assisted.getVisualizationConfiguration();
         const key = requirement1.key;

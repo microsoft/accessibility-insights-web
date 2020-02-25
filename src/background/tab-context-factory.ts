@@ -22,13 +22,10 @@ import { ScopingPanelActionCreator } from './actions/scoping-panel-action-creato
 import { ShortcutsPageActionCreator } from './actions/shortcuts-page-action-creator';
 import { TabActionCreator } from './actions/tab-action-creator';
 import { UnifiedScanResultActionCreator } from './actions/unified-scan-result-action-creator';
-import { AssessmentScanPolicyRunner } from './assessment-scan-policy-runner';
 import { ExtensionDetailsViewController } from './extension-details-view-controller';
 import { InjectorController } from './injector-controller';
 import { ContentScriptInjector } from './injector/content-script-injector';
 import { Interpreter } from './interpreter';
-import { isAnAssessmentSelected } from './is-an-assessment-selected';
-import { ScannerUtility } from './scanner-utility';
 import { ShortcutsPageController } from './shortcuts-page-controller';
 import { AssessmentStore } from './stores/assessment-store';
 import { TabContextStoreHub } from './stores/tab-context-store-hub';
@@ -150,17 +147,6 @@ export class TabContextFactory {
             storeHub.tabStore,
             storeHub.inspectStore,
         );
-
-        const scannerUtility = new ScannerUtility(interpreter, this.windowUtils);
-        const simpleSequentialScanner = new AssessmentScanPolicyRunner(
-            this.assessmentStore,
-            storeHub.visualizationStore,
-            scannerUtility.executeScan,
-            this.assessmentsProvider,
-            isAnAssessmentSelected,
-            tabId,
-        );
-        simpleSequentialScanner.beginListeningToStores();
 
         shortcutsPageActionCreator.registerCallbacks();
         actionCreator.registerCallbacks();
