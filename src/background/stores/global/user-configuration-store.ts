@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { cloneDeep, isPlainObject } from 'lodash';
-
 import { IndexedDBAPI } from '../../../common/indexedDB/indexedDB';
 import { StoreNames } from '../../../common/stores/store-names';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
@@ -42,6 +41,10 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
 
     public getDefaultState(): UserConfigurationStoreData {
         return this.generateDefaultState(this.persistedState);
+    }
+
+    public getState(): UserConfigurationStoreData {
+        return cloneDeep(this.state);
     }
 
     protected addActionListeners(): void {
