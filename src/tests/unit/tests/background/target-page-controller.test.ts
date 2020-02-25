@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BrowserMessageBroadcasterFactory } from 'background/browser-message-broadcaster-factory';
+import {
+    BrowserMessageBroadcasterFactory,
+    MessageBroadcaster,
+} from 'background/browser-message-broadcaster-factory';
 import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { Interpreter } from 'background/interpreter';
 import { TabContext } from 'background/tab-context';
@@ -21,7 +24,6 @@ describe('TargetPageController', () => {
     let testSubject: TargetPageController;
 
     let mockLogger: IMock<Logger>;
-    const stubBroadcastDelegate = (message: any) => Promise.resolve();
     let mockBroadcasterFactoryStrictMock: IMock<BrowserMessageBroadcasterFactory>;
     let mockTabContextFactory: IMock<TabContextFactory>;
     let mockBrowserAdapter: SimulatedBrowserAdapter;
@@ -61,7 +63,7 @@ describe('TargetPageController', () => {
         );
         mockBroadcasterFactoryStrictMock
             .setup(m => m.createTabSpecificBroadcaster(It.isAny()))
-            .returns(_ => stubBroadcastDelegate);
+            .returns(tabId => fakeBroadcasterForTabId(tabId));
         mockBrowserAdapter = createSimulatedBrowserAdapter(
             [EXISTING_ACTIVE_TAB, EXISTING_INACTIVE_TAB],
             [EXISTING_WINDOW],
@@ -114,7 +116,12 @@ describe('TargetPageController', () => {
             await testSubject.initialize();
 
             mockTabContextFactory.verify(
-                f => f.createTabContext(It.isAny(), It.isAny(), It.isAny()),
+                f =>
+                    f.createTabContext(
+                        itIsFakeBroadcasterForTabId(EXISTING_ACTIVE_TAB_ID),
+                        It.isAny(),
+                        It.isAny(),
+                    ),
                 Times.once(),
             );
             expect(tabToContextMap[EXISTING_ACTIVE_TAB_ID]).toHaveProperty(
@@ -123,7 +130,12 @@ describe('TargetPageController', () => {
             );
 
             mockTabContextFactory.verify(
-                f => f.createTabContext(It.isAny(), It.isAny(), It.isAny()),
+                f =>
+                    f.createTabContext(
+                        itIsFakeBroadcasterForTabId(EXISTING_INACTIVE_TAB_ID),
+                        It.isAny(),
+                        It.isAny(),
+                    ),
                 Times.once(),
             );
             expect(tabToContextMap[EXISTING_INACTIVE_TAB_ID]).toHaveProperty(
@@ -132,7 +144,12 @@ describe('TargetPageController', () => {
             );
 
             mockTabContextFactory.verify(
-                f => f.createTabContext(It.isAny(), It.isAny(), It.isAny()),
+                f =>
+                    f.createTabContext(
+                        itIsFakeBroadcasterForTabId(NEW_TAB_ID),
+                        It.isAny(),
+                        It.isAny(),
+                    ),
                 Times.never(),
             );
             expect(tabToContextMap[NEW_TAB_ID]).toBeUndefined();
@@ -174,7 +191,12 @@ describe('TargetPageController', () => {
                 } as chrome.webNavigation.WebNavigationFramedCallbackDetails);
 
                 mockTabContextFactory.verify(
-                    f => f.createTabContext(It.isAny(), It.isAny(), It.isAny()),
+                    f =>
+                        f.createTabContext(
+                            itIsFakeBroadcasterForTabId(NEW_TAB_ID),
+                            It.isAny(),
+                            It.isAny(),
+                        ),
                     Times.once(),
                 );
                 expect(tabToContextMap[NEW_TAB_ID]).toHaveProperty(
@@ -384,7 +406,12 @@ describe('TargetPageController', () => {
                 mockBrowserAdapter.updateTab(NEW_TAB_ID, changeInfoWithUrl);
 
                 mockTabContextFactory.verify(
-                    f => f.createTabContext(It.isAny(), It.isAny(), It.isAny()),
+                    f =>
+                        f.createTabContext(
+                            itIsFakeBroadcasterForTabId(NEW_TAB_ID),
+                            It.isAny(),
+                            It.isAny(),
+                        ),
                     Times.once(),
                 );
                 expect(tabToContextMap[NEW_TAB_ID]).toHaveProperty(
@@ -438,19 +465,29 @@ describe('TargetPageController', () => {
         return mock;
     }
 
+    const fakeBroadcasterForTabId = (tabId: number): MessageBroadcaster => {
+        const fake = (message: any) => Promise.resolve();
+        fake.tabId = tabId;
+        return fake;
+    };
+
+    const itIsFakeBroadcasterForTabId = (tabId: number): MessageBroadcaster => {
+        return It.is<MessageBroadcaster>(object => object['tabId'] === tabId);
+    };
+
     function setupMockTabContextFactory(
         interpreters: DictionaryNumberTo<IMock<Interpreter>>,
     ): IMock<TabContextFactory> {
         const mock = Mock.ofType(TabContextFactory);
         mock.setup(m =>
             m.createTabContext(
-                stubBroadcastDelegate,
+                It.isAny(),
                 mockBrowserAdapter.object,
                 mockDetailsViewController.object,
             ),
-        ).returns((_1, _2, _3, tabId) => ({
+        ).returns((fakeBroadcaster, _2, _3) => ({
             stores: null,
-            interpreter: interpreters[tabId].object,
+            interpreter: interpreters[fakeBroadcaster.tabId].object,
         }));
         return mock;
     }
