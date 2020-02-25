@@ -44,7 +44,10 @@ export class FocusChangeHandler {
     }
 
     private getCardResultTarget(storeData: TargetPageStoreData): string[] {
-        if (isEmpty(storeData.unifiedScanResultStoreData.results)) {
+        if (
+            storeData.cardSelectionStoreData.focusedResultUid == null ||
+            isEmpty(storeData.unifiedScanResultStoreData.results)
+        ) {
             return null;
         }
 

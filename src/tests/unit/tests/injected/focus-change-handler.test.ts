@@ -27,13 +27,16 @@ describe('FocusChangeHandler', () => {
         testSubject = new FocusChangeHandler(targetPageActionMessageCreatorMock.object, scrollingControllerMock.object);
     });
 
-    test('onStoreChange: no new target', () => {
+    test('onStoreChange: no target in visualizationStoreData OR cardSelectionStoreData', () => {
         const storeData: TargetPageStoreData = {
             visualizationStoreData: {
                 focusedTarget: null,
             },
             unifiedScanResultStoreData: {
-                results: [],
+                results: [{}],
+            },
+            cardSelectionStoreData: {
+                focusedResultUid: null,
             },
         } as TargetPageStoreData;
 
