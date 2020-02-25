@@ -135,7 +135,7 @@
         "axios": "^0.19.2",
         "classnames": "^2.2.6",
         "electron-download": "^4.1.1",
-        "electron-log": "^4.0.6",
+        "electron-log": "^4.0.7",
         "electron-updater": "^4.2.2",
         "idb-keyval": "^3.2.0",
         "lodash": "^4.17.15",
