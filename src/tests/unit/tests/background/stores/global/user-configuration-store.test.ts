@@ -100,7 +100,7 @@ describe('UserConfigurationStoreTest', () => {
         expect(testSubject.getState()).toEqual(expected);
     });
 
-    test.only('get state returns clone data', () => {
+    test('get state returns clone data', () => {
         const testSubject = new UserConfigurationStore(
             null,
             new UserConfigurationActions(),
