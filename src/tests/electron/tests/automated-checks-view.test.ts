@@ -108,7 +108,7 @@ describe('AutomatedChecksView', () => {
     it('ScreenshotView renders screenshot image from specified source', async () => {
         const resultExamplePath = path.join(
             testResourceServerConfig.absolutePath,
-            'axe/result.json',
+            'AccessibilityInsights/result.json',
         );
         const axeRuleResultExample = JSON.parse(
             fs.readFileSync(resultExamplePath, { encoding: 'utf-8' }),
