@@ -577,7 +577,7 @@ module.exports = function(grunt) {
     grunt.registerTask('ada-cat', function() {
         if (process.env.SHOW_ADA !== 'false') {
             console.log(
-                'Image of Ada sleeping follows. Set environment variable SHOW_ADA to false to suppress.',
+                'Image of Ada sleeping follows. Set environment variable SHOW_ADA to false to hide.',
             );
             const adaFile = 'docs/art/ada-cat.ansi256.txt';
             const adaArt = grunt.file.read(adaFile);
