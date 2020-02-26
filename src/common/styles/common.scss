@@ -22,14 +22,6 @@ button::after {
     position: absolute;
 }
 
-.ms-Button.ms-Button--primary:not(.is-disabled) {
-    background: $communication-primary;
-
-    &:hover {
-        background: $communication-shade-10;
-    }
-}
-
 .ms-fontColor-neutralPrimary,
 .ms-fontColor-neutralPrimary--hover:hover {
     color: $neutral-100 !important;
