@@ -284,7 +284,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             collapsibleControl: CardsCollapsibleControl,
             cardsVisualizationModifierButtons: CardsVisualizationModifierButtons,
             fixInstructionProcessor,
-            getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks, // I don't think we have guidance links for axe-android
+            getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
 
             userConfigMessageCreator: userConfigMessageCreator,
             cardSelectionMessageCreator,

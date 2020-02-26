@@ -32,7 +32,7 @@
         "lint:fix": "tslint --fix -c ./tslint.json -p ./tsconfig.json",
         "scss:build": "tsm \"src/**/*.scss\"",
         "scss:clean": "grunt clean:scss",
-        "serve:mock-axe-android": "http-server -p 9051 -e json ./src/tests/miscellaneous/mock-axe-android",
+        "serve:mock-service-for-android": "http-server -p 9051 -e json ./src/tests/miscellaneous/mock-service-for-android",
         "start:unified": "electron drop/electron/unified-dev/product/bundle/main.bundle.js",
         "start:unified:dev": "cross-env DEV_MODE=true electron drop/electron/unified-dev/product/bundle/main.bundle.js",
         "test": "cross-env --max-old-space-size=16384  jest --projects src/tests/unit",
@@ -51,7 +51,7 @@
         "watch:test": "jest --watch --projects src/tests/unit --coverage false --colors",
         "watch:webpack-dev-browser": "webpack --watch --config-name dev --colors --progress",
         "watch:webpack-unified": "webpack --watch --config-name unified --colors --progress",
-        "with:mock-axe-android": "npm-run-all --race --parallel serve:mock-axe-android"
+        "with:mock-service-for-android": "npm-run-all --race --parallel serve:mock-service-for-android"
     },
     "devDependencies": {
         "@types/applicationinsights-js": "^1.0.7",
