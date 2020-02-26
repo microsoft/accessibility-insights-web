@@ -575,12 +575,9 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('ada-cat', function() {
-        const adaFile =
-            process.env.TERM === 'xterm-256color'
-                ? 'docs/art/ada-cat.ansi256.txt'
-                : 'docs/art/ada-cat.ascii.txt';
-        const ada = grunt.file.read(adaFile);
-        console.log(ada);
+        const adaFile = 'docs/art/ada-cat.ansi256.txt';
+        const adaArt = grunt.file.read(adaFile);
+        console.log(adaArt);
     });
 
     grunt.registerTask('build-assets', ['sass', 'copy:code', 'copy:styles', 'copy:images']);
