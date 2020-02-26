@@ -574,6 +574,15 @@ module.exports = function(grunt) {
         });
     });
 
+    grunt.registerTask('ada-cat', function() {
+        const adaFile =
+            process.env.TERM === 'xterm-256color'
+                ? 'docs/art/ada-cat.ansi256.txt'
+                : 'docs/art/ada-cat.ascii.txt';
+        const ada = grunt.file.read(adaFile);
+        console.log(ada);
+    });
+
     grunt.registerTask('build-assets', ['sass', 'copy:code', 'copy:styles', 'copy:images']);
 
     // Main entry points for npm scripts:

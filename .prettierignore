@@ -19,6 +19,8 @@
 AppXManifest.xml
 copyright-header.txt
 dist/
+docs/art/ada-cat.ansi256.txt
+docs/art/ada-cat.ascii.txt
 docs/LICENSE.txt
 src/electron/resources/license_en.txt
 src/electron/resources/license.txt
