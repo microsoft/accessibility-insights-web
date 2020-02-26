@@ -114,7 +114,7 @@ describe('FocusChangeHandler', () => {
             },
         } as TargetPageStoreData;
 
-        expect(() => testSubject.handleFocusChangeWithStoreData(storeData)).toThrow('focused result was not found');
+        expect(() => testSubject.handleFocusChangeWithStoreData(storeData)).toThrowError('focused result was not found');
     });
 
     test('onStoreChange: new target and old target are same', () => {

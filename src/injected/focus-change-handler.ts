@@ -39,6 +39,7 @@ export class FocusChangeHandler {
 
     private getTarget(storeData: TargetPageStoreData): string[] {
         return (
+            // We need to check the visualization store data since the assessment UX uses it.
             storeData.visualizationStoreData.focusedTarget || this.getCardResultTarget(storeData)
         );
     }
@@ -56,7 +57,7 @@ export class FocusChangeHandler {
         );
 
         if (focusedResult == null) {
-            throw 'focused result was not found';
+            throw new Error('focused result was not found');
         }
 
         return focusedResult.identifiers.identifier.split(';');
