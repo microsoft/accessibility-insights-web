@@ -1,7 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { cloneDeep, forOwn } from 'lodash';
+
 import {
+    BaseActionPayload,
     CardSelectionPayload,
     RuleExpandCollapsePayload,
     UnifiedScanCompletedPayload,
@@ -64,6 +66,7 @@ describe('CardSelectionStore Test', () => {
                     },
                 },
             },
+            focusedResultUid: null,
             visualHelperEnabled: true,
         };
 
@@ -109,6 +112,7 @@ describe('CardSelectionStore Test', () => {
                 },
             },
             visualHelperEnabled: false,
+            focusedResultUid: null,
         };
 
         initialState = cloneDeep(defaultState);
@@ -123,6 +127,16 @@ describe('CardSelectionStore Test', () => {
         expectedState.rules['sampleRuleId1'].isExpanded = true;
 
         createStoreForCardSelectionActions('toggleRuleExpandCollapse')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
+    test('onResetFocusedIdentifier', () => {
+        const payload: BaseActionPayload = {};
+
+        initialState.focusedResultUid = 'some uid';
+
+        createStoreForCardSelectionActions('resetFocusedIdentifier')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
@@ -173,6 +187,7 @@ describe('CardSelectionStore Test', () => {
         };
 
         expectedState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+        expectedState.focusedResultUid = 'sampleUid1';
         expectedState.visualHelperEnabled = true;
 
         createStoreForCardSelectionActions('toggleCardSelection')

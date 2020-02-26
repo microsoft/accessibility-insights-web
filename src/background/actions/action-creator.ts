@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CardSelectionActions } from 'background/actions/card-selection-actions';
 import { TestMode } from 'common/configs/test-mode';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import * as TelemetryEvents from 'common/extension-telemetry-events';
@@ -45,6 +46,7 @@ export class ActionCreator {
         [VisualizationType.TabStops]: TelemetryEvents.TABSTOPS_TOGGLE,
     };
     private inspectActions: InspectActions;
+    private cardSelectionActions: CardSelectionActions;
 
     constructor(
         private readonly interpreter: Interpreter,
@@ -60,6 +62,7 @@ export class ActionCreator {
         this.previewFeaturesActions = actionHub.previewFeaturesActions;
         this.visualizationScanResultActions = actionHub.visualizationScanResultActions;
         this.inspectActions = actionHub.inspectActions;
+        this.cardSelectionActions = actionHub.cardSelectionActions;
     }
 
     public registerCallbacks(): void {
@@ -301,6 +304,7 @@ export class ActionCreator {
 
     private onScrollRequested = (payload: BaseActionPayload): void => {
         this.visualizationActions.scrollRequested.invoke(null);
+        this.cardSelectionActions.resetFocusedIdentifier.invoke(null);
     };
 
     private onDetailsViewOpen = async (

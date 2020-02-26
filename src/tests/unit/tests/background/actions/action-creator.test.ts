@@ -13,6 +13,7 @@ import {
     VisualizationTogglePayload,
 } from 'background/actions/action-payloads';
 import { AssessmentActions } from 'background/actions/assessment-actions';
+import { CardSelectionActions } from 'background/actions/card-selection-actions';
 import { DetailsViewActions } from 'background/actions/details-view-actions';
 import { DevToolActions } from 'background/actions/dev-tools-actions';
 import { InspectActions } from 'background/actions/inspect-actions';
@@ -388,6 +389,7 @@ describe('ActionCreatorTest', () => {
         const builder = new ActionCreatorValidator()
             .setupActionOnVisualizationActions(actionName)
             .setupVisualizationActionWithInvokeParameter(actionName, null)
+            .setupCardSelectionActionWithInvokeParameter('resetFocusedIdentifier', null)
             .setupRegistrationCallback(VisualizationMessage.Common.ScrollRequested, [null, tabId]);
 
         const actionCreator = builder.buildActionCreator();
@@ -988,6 +990,7 @@ class ActionCreatorValidator {
     private visualizationActionsContainerMock = Mock.ofType(VisualizationActions);
     private visualizationActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
     private devToolsActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
+    private cardSelectionActionsMocks: DictionaryStringTo<IMock<Action<any>>> = {};
 
     private visualizationScanResultActionsContainerMock = Mock.ofType(
         VisualizationScanResultActions,
@@ -1084,6 +1087,18 @@ class ActionCreatorValidator {
             actionName,
             expectedInvokeParam,
             this.visualizationActionMocks,
+        );
+        return this;
+    }
+
+    public setupCardSelectionActionWithInvokeParameter(
+        actionName: keyof CardSelectionActions,
+        expectedInvokeParam: any,
+    ): ActionCreatorValidator {
+        this.setupActionWithInvokeParameter(
+            actionName,
+            expectedInvokeParam,
+            this.cardSelectionActionsMocks,
         );
         return this;
     }
@@ -1300,6 +1315,7 @@ class ActionCreatorValidator {
         this.verifyAllActions(this.detailsViewActionsMocks);
         this.verifyAllActions(this.previewFeaturesActionMocks);
         this.verifyAllActions(this.scopingActionMocks);
+        this.verifyAllActions(this.cardSelectionActionsMocks);
     }
 
     private verifyAllActions(actionsMap: DictionaryStringTo<IMock<Action<any>>>): void {
