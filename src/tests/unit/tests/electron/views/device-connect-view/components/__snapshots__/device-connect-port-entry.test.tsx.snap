@@ -4,7 +4,7 @@ exports[`DeviceConnectPortEntryTest renders renderedDescription 1`] = `
 <div
   className="portNumberFieldDescription"
 >
-  The port number must be between 0 and 99999.
+  The port number must be between 0 and 65535.
 </div>
 `;
 

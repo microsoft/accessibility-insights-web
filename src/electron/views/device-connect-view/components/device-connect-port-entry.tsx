@@ -54,7 +54,7 @@ export class DeviceConnectPortEntry extends React.Component<
                         onRenderDescription={() => {
                             return (
                                 <div className={styles.portNumberFieldDescription}>
-                                    The port number must be between 0 and 99999.
+                                    The port number must be between 0 and 65535.
                                 </div>
                             );
                         }}

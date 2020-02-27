@@ -37,6 +37,7 @@ describe('DeviceConnectPortEntryTest', () => {
                     deviceConnectState: DeviceConnectState[deviceConnectStateName],
                 },
             } as DeviceConnectPortEntryProps;
+
             const rendered = shallow(<DeviceConnectPortEntry {...props} />);
 
             expect(rendered.getElement()).toMatchSnapshot();
