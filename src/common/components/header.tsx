@@ -19,10 +19,11 @@ export const Header = NamedFC<HeaderProps>('Header', props => {
     const { applicationTitle } = props.deps.textContent;
     return (
         <header className={styles.headerBar}>
-            <HeaderIcon deps={props.deps} />
-            <span className={styles.headerTitle}>{applicationTitle}</span>
-            <div>{props.items}</div>
-            <div className={styles.spacer}></div>
+            <div className={styles.items}>
+                <HeaderIcon deps={props.deps} />
+                <span className={styles.headerTitle}>{applicationTitle}</span>
+                <div>{props.items}</div>
+            </div>
             <div className={styles.farItems}>{props.farItems}</div>
         </header>
     );

@@ -13,6 +13,7 @@ describe('Header', () => {
                 applicationTitle,
             },
         } as HeaderDeps;
+
         const wrapper = shallow(<Header deps={deps} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });

@@ -4,24 +4,25 @@ exports[`Header renders per snapshot 1`] = `
 <header
   className="headerBar"
 >
-  <WithStoreSubscriptionForHeaderIconComponent
-    deps={
-      Object {
-        "textContent": Object {
-          "applicationTitle": "THE_APPLICATION_TITLE",
-        },
-      }
-    }
-  />
-  <span
-    className="headerTitle"
-  >
-    THE_APPLICATION_TITLE
-  </span>
-  <div />
   <div
-    className="spacer"
-  />
+    className="items"
+  >
+    <WithStoreSubscriptionForHeaderIconComponent
+      deps={
+        Object {
+          "textContent": Object {
+            "applicationTitle": "THE_APPLICATION_TITLE",
+          },
+        }
+      }
+    />
+    <span
+      className="headerTitle"
+    >
+      THE_APPLICATION_TITLE
+    </span>
+    <div />
+  </div>
   <div
     className="farItems"
   />
