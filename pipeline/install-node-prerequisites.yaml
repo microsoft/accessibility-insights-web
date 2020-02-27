@@ -5,6 +5,9 @@ parameters:
       type: boolean
       default: false
 
+variables:
+    YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
+
 steps:
     - task: NodeTool@0
       inputs:
@@ -22,7 +25,7 @@ steps:
     - task: Cache@2
       inputs:
           key: 'yarn | "$(Agent.OS)" | yarn.lock'
-          path: $(Pipeline.Workspace)/.yarn
+          path: $(YARN_CACHE_FOLDER)
       displayName: Cache Yarn packages
       condition: and(succeeded(), eq('${{ parameters.useCache }}', true))
 
