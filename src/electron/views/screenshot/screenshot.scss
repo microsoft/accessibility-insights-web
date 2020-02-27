@@ -7,4 +7,9 @@
     object-fit: contain;
     outline: 1px solid $screenshot-image-outline;
     box-shadow: 0px 6px 12px $neutral-alpha-20;
+
+    &:focus {
+        outline-offset: 4px;
+        outline: 2px solid $primary-text;
+    }
 }

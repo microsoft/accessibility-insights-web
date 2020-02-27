@@ -5,9 +5,11 @@ import { CardRuleResult } from 'common/types/store-data/card-view-model';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { CardsVisualizationModifierButtonsProps } from 'common/components/cards/cards-visualization-modifier-buttons';
-import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
-import { DetailsViewBodyProps } from 'DetailsView/details-view-body';
+import {
+    CardsVisualizationModifierButtons,
+    CardsVisualizationModifierButtonsProps,
+} from 'common/components/cards/cards-visualization-modifier-buttons';
+import { NamedFC } from 'common/react/named-fc';
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
 describe('ResultSectionContent', () => {
@@ -16,13 +18,13 @@ describe('ResultSectionContent', () => {
     const depsStub = {} as ResultSectionContentDeps;
 
     it('renders, with some rules', () => {
-        const cardsVisaulizerModifierButtonsStub: Readonly<ReactFCWithDisplayName<CardsVisualizationModifierButtonsProps>> = NamedFC<
-            DetailsViewBodyProps
+        const cardsVisualizationModifierButtonsStub: Readonly<CardsVisualizationModifierButtons> = NamedFC<
+            CardsVisualizationModifierButtonsProps
         >('test', _ => null);
 
         const props = {
             deps: {
-                cardsVisualizationModifierButtons: cardsVisaulizerModifierButtonsStub,
+                cardsVisualizationModifierButtons: cardsVisualizationModifierButtonsStub,
             },
             results: someRules,
             outcomeType: 'pass',

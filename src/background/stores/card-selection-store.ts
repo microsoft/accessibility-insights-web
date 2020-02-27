@@ -33,12 +33,14 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
         this.cardSelectionActions.toggleVisualHelper.addListener(this.toggleVisualHelper);
         this.cardSelectionActions.getCurrentState.addListener(this.onGetCurrentState);
         this.unifiedScanResultActions.scanCompleted.addListener(this.onScanCompleted);
+        this.cardSelectionActions.resetFocusedIdentifier.addListener(this.onResetFocusedIdentifier);
     }
 
     public getDefaultState(): CardSelectionStoreData {
         const defaultValue: CardSelectionStoreData = {
             rules: {},
             visualHelperEnabled: false,
+            focusedResultUid: null,
         };
 
         return defaultValue;
@@ -86,12 +88,13 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
         }
 
         const rule = this.state.rules[payload.ruleId];
-
-        rule.cards[payload.resultInstanceUid] = !rule.cards[payload.resultInstanceUid];
+        const isSelected = !rule.cards[payload.resultInstanceUid];
+        rule.cards[payload.resultInstanceUid] = isSelected;
 
         // whenever a card is selected, the visual helper is enabled
-        if (rule.cards[payload.resultInstanceUid]) {
+        if (isSelected) {
             this.state.visualHelperEnabled = true;
+            this.state.focusedResultUid = payload.resultInstanceUid;
         }
 
         this.emitChanged();
@@ -148,6 +151,11 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
 
         this.state.visualHelperEnabled = true;
 
+        this.emitChanged();
+    };
+
+    private onResetFocusedIdentifier = (): void => {
+        this.state.focusedResultUid = null;
         this.emitChanged();
     };
 }

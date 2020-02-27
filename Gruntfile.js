@@ -574,6 +574,17 @@ module.exports = function(grunt) {
         });
     });
 
+    grunt.registerTask('ada-cat', function() {
+        if (process.env.SHOW_ADA !== 'false') {
+            console.log(
+                'Image of Ada sleeping follows. Set environment variable SHOW_ADA to false to hide.',
+            );
+            const adaFile = 'docs/art/ada-cat.ansi256.txt';
+            const adaArt = grunt.file.read(adaFile);
+            console.log(adaArt);
+        }
+    });
+
     grunt.registerTask('build-assets', ['sass', 'copy:code', 'copy:styles', 'copy:images']);
 
     // Main entry points for npm scripts:

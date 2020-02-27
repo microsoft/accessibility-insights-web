@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExpandCollapseOnlyModifierButtons renders per snapshot 1`] = `
+<div
+  className="cardsVisualizationModifiersContainer"
+>
+  <ExpandCollapseAllButton
+    allCardsCollapsed={true}
+    deps={Object {}}
+    visualHelperEnabled={true}
+  />
+</div>
+`;
+
+exports[`ExpandCollapseVisualHelperModifierButtons renders per snapshot 1`] = `
+<div
+  className="cardsVisualizationModifiersContainer"
+>
+  <ExpandCollapseAllButton
+    allCardsCollapsed={true}
+    deps={Object {}}
+    visualHelperEnabled={true}
+  />
+  <VisualHelperToggle
+    allCardsCollapsed={true}
+    deps={Object {}}
+    visualHelperEnabled={true}
+  />
+</div>
+`;
