@@ -1,5 +1,10 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
+parameters:
+    - name: useCache
+      type: boolean
+      default: false
+
 steps:
     - task: NodeTool@0
       inputs:
@@ -11,6 +16,13 @@ steps:
 
     - script: npm install yarn@1.17.3 -g
       displayName: install yarn as a global dependency
+
+    - task: Cache@2
+      inputs:
+          key: 'yarn | "$(Agent.OS)" | yarn.lock'
+          path: $(Pipeline.Workspace)/.yarn
+      displayName: Cache Yarn packages
+      condition: and(succeeded(), eq('${{ parameters.useCache }}', true))
 
     - script: yarn install --frozen-lockfile
       displayName: install packages and dependencies

@@ -8,6 +8,8 @@ jobs:
 
       steps:
           - template: pipeline/install-node-prerequisites.yaml
+            parameters:
+                useCache: true
 
           - script: yarn lint:check
             displayName: check lint errors
