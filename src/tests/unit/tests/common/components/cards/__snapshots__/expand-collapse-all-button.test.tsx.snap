@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExpandCollapseAllButton renders per snapshot with allCardsCollapsed false 1`] = `
+<CustomizedActionButton
+  aria-expanded={true}
+  className="expandCollapseAllButton"
+  iconProps={
+    Object {
+      "iconName": "ChevronDown",
+    }
+  }
+  onClick={[Function]}
+>
+  Collapse all
+</CustomizedActionButton>
+`;
+
+exports[`ExpandCollapseAllButton renders per snapshot with allCardsCollapsed true 1`] = `
+<CustomizedActionButton
+  aria-expanded={false}
+  className="expandCollapseAllButton"
+  iconProps={
+    Object {
+      "iconName": "ChevronRight",
+    }
+  }
+  onClick={[Function]}
+>
+  Expand all
+</CustomizedActionButton>
+`;

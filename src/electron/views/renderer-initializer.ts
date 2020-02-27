@@ -17,7 +17,7 @@ import { CardSelectionStore } from 'background/stores/card-selection-store';
 import { DetailsViewStore } from 'background/stores/details-view-store';
 import { UnifiedScanResultStore } from 'background/stores/unified-scan-result-store';
 import { onlyHighlightingSupported } from 'common/components/cards/card-interaction-support';
-import { CardsVisualizationModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
+import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { CardsCollapsibleControl } from 'common/components/cards/collapsible-component-cards';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { getPropertyConfiguration } from 'common/configs/unified-result-property-configurations';
@@ -279,7 +279,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             cardInteractionSupport: onlyHighlightingSupported, // once we have a working settings experience, switch to allCardInteractionsSupported
             getCardSelectionViewData: getCardSelectionViewData,
             collapsibleControl: CardsCollapsibleControl,
-            cardsVisualizationModifierButtons: CardsVisualizationModifierButtons,
+            cardsVisualizationModifierButtons: ExpandCollapseVisualHelperModifierButtons,
             fixInstructionProcessor,
             getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks, // I don't think we have guidance links for axe-android
 

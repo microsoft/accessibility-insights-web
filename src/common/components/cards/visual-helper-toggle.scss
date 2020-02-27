@@ -1,0 +1,15 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../../common/styles/fonts.scss';
+
+.visual-helper-toggle {
+    display: flex;
+    align-items: center;
+    word-wrap: break-word;
+    margin: unset;
+
+    label {
+        @include text-style-body-m;
+        margin-right: 8px;
+    }
+}
