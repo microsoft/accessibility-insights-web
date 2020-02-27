@@ -5,9 +5,6 @@ parameters:
       type: boolean
       default: false
 
-variables:
-    YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
-
 steps:
     - task: NodeTool@0
       inputs:
