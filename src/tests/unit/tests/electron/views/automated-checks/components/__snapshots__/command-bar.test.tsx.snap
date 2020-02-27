@@ -2,7 +2,7 @@
 
 exports[`CommandBar renders while status is <Completed> 1`] = `
 <div
-  className="commandBarTwo"
+  className="commandBar"
 >
   <div
     className="items"
@@ -21,9 +21,6 @@ exports[`CommandBar renders while status is <Completed> 1`] = `
       text="Start over"
     />
   </div>
-  <div
-    className="spacer"
-  />
   <div
     className="farItems"
   >
@@ -44,7 +41,7 @@ exports[`CommandBar renders while status is <Completed> 1`] = `
 
 exports[`CommandBar renders while status is <Default> 1`] = `
 <div
-  className="commandBarTwo"
+  className="commandBar"
 >
   <div
     className="items"
@@ -63,9 +60,6 @@ exports[`CommandBar renders while status is <Default> 1`] = `
       text="Start over"
     />
   </div>
-  <div
-    className="spacer"
-  />
   <div
     className="farItems"
   >
@@ -86,7 +80,7 @@ exports[`CommandBar renders while status is <Default> 1`] = `
 
 exports[`CommandBar renders while status is <Failed> 1`] = `
 <div
-  className="commandBarTwo"
+  className="commandBar"
 >
   <div
     className="items"
@@ -105,9 +99,6 @@ exports[`CommandBar renders while status is <Failed> 1`] = `
       text="Start over"
     />
   </div>
-  <div
-    className="spacer"
-  />
   <div
     className="farItems"
   >
@@ -128,7 +119,7 @@ exports[`CommandBar renders while status is <Failed> 1`] = `
 
 exports[`CommandBar renders while status is <Scanning> 1`] = `
 <div
-  className="commandBarTwo"
+  className="commandBar"
 >
   <div
     className="items"
@@ -147,9 +138,6 @@ exports[`CommandBar renders while status is <Scanning> 1`] = `
       text="Start over"
     />
   </div>
-  <div
-    className="spacer"
-  />
   <div
     className="farItems"
   >
