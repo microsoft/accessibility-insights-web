@@ -11,8 +11,7 @@ import {
 } from 'electron/views/device-connect-view/components/device-connect-port-entry';
 import { portNumberField } from 'electron/views/device-connect-view/components/device-connect-port-entry.scss';
 import { shallow } from 'enzyme';
-import { Button } from 'office-ui-fabric-react';
-import { MaskedTextField } from 'office-ui-fabric-react';
+import { Button, MaskedTextField } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
@@ -55,6 +54,17 @@ describe('DeviceConnectPortEntryTest', () => {
             rendered.setState({ port: '1234' });
 
             expect(rendered.getElement()).toMatchSnapshot();
+        });
+
+        it('renderedDescription', () => {
+            const props: DeviceConnectPortEntryProps = {
+                viewState: {},
+            } as DeviceConnectPortEntryProps;
+
+            const rendered = shallow(<DeviceConnectPortEntry {...props} />);
+            const renderedDescription = shallow(rendered.find(MaskedTextField).prop('onRenderDescription')());
+
+            expect(renderedDescription.getElement()).toMatchSnapshot();
         });
     });
 

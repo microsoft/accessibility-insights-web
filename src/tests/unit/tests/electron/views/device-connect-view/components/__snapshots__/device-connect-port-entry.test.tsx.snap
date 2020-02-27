@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`DeviceConnectPortEntryTest renders renderedDescription 1`] = `
+<div
+  className="portNumberFieldDescription"
+>
+  The port number must be between 0 and 65535.
+</div>
+`;
+
 exports[`DeviceConnectPortEntryTest renders with "Connected" 1`] = `
 <div
   className="deviceConnectPortEntry"
@@ -7,30 +15,35 @@ exports[`DeviceConnectPortEntryTest renders with "Connected" 1`] = `
   <h3>
     Android device port number
   </h3>
-  <MaskedTextField
-    ariaLabel="Port number"
-    className="portNumberField"
-    data-automation-id="device-connect-port-number-field"
-    mask="99999"
-    maskChar=""
-    maskFormat={
-      Object {
-        "*": /\\[a-zA-Z0-9\\]/,
-        "9": /\\[0-9\\]/,
-        "a": /\\[a-zA-Z\\]/,
-      }
-    }
-    onChange={[Function]}
-    onKeyDown={[Function]}
-    placeholder="Ex: 12345"
-  />
-  <CustomizedDefaultButton
-    data-automation-id="device-connect-validate-port-button"
-    disabled={true}
-    onClick={[Function]}
+  <div
+    className="deviceConnectPortEntryBody"
   >
-    Validate port number
-  </CustomizedDefaultButton>
+    <MaskedTextField
+      ariaLabel="Port number"
+      className="portNumberField"
+      data-automation-id="device-connect-port-number-field"
+      mask="99999"
+      maskChar=""
+      maskFormat={
+        Object {
+          "*": /\\[a-zA-Z0-9\\]/,
+          "9": /\\[0-9\\]/,
+          "a": /\\[a-zA-Z\\]/,
+        }
+      }
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      onRenderDescription={[Function]}
+      placeholder="Ex: 12345"
+    />
+    <CustomizedDefaultButton
+      data-automation-id="device-connect-validate-port-button"
+      disabled={true}
+      onClick={[Function]}
+    >
+      Validate port number
+    </CustomizedDefaultButton>
+  </div>
 </div>
 `;
 
@@ -41,30 +54,35 @@ exports[`DeviceConnectPortEntryTest renders with "Connected" and some text in th
   <h3>
     Android device port number
   </h3>
-  <MaskedTextField
-    ariaLabel="Port number"
-    className="portNumberField"
-    data-automation-id="device-connect-port-number-field"
-    mask="99999"
-    maskChar=""
-    maskFormat={
-      Object {
-        "*": /\\[a-zA-Z0-9\\]/,
-        "9": /\\[0-9\\]/,
-        "a": /\\[a-zA-Z\\]/,
-      }
-    }
-    onChange={[Function]}
-    onKeyDown={[Function]}
-    placeholder="Ex: 12345"
-  />
-  <CustomizedDefaultButton
-    data-automation-id="device-connect-validate-port-button"
-    disabled={false}
-    onClick={[Function]}
+  <div
+    className="deviceConnectPortEntryBody"
   >
-    Validate port number
-  </CustomizedDefaultButton>
+    <MaskedTextField
+      ariaLabel="Port number"
+      className="portNumberField"
+      data-automation-id="device-connect-port-number-field"
+      mask="99999"
+      maskChar=""
+      maskFormat={
+        Object {
+          "*": /\\[a-zA-Z0-9\\]/,
+          "9": /\\[0-9\\]/,
+          "a": /\\[a-zA-Z\\]/,
+        }
+      }
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      onRenderDescription={[Function]}
+      placeholder="Ex: 12345"
+    />
+    <CustomizedDefaultButton
+      data-automation-id="device-connect-validate-port-button"
+      disabled={false}
+      onClick={[Function]}
+    >
+      Validate port number
+    </CustomizedDefaultButton>
+  </div>
 </div>
 `;
 
@@ -75,30 +93,35 @@ exports[`DeviceConnectPortEntryTest renders with "Connecting" 1`] = `
   <h3>
     Android device port number
   </h3>
-  <MaskedTextField
-    ariaLabel="Port number"
-    className="portNumberField"
-    data-automation-id="device-connect-port-number-field"
-    mask="99999"
-    maskChar=""
-    maskFormat={
-      Object {
-        "*": /\\[a-zA-Z0-9\\]/,
-        "9": /\\[0-9\\]/,
-        "a": /\\[a-zA-Z\\]/,
-      }
-    }
-    onChange={[Function]}
-    onKeyDown={[Function]}
-    placeholder="Ex: 12345"
-  />
-  <CustomizedPrimaryButton
-    data-automation-id="device-connect-validate-port-button"
-    disabled={true}
-    onClick={[Function]}
+  <div
+    className="deviceConnectPortEntryBody"
   >
-    Validate port number
-  </CustomizedPrimaryButton>
+    <MaskedTextField
+      ariaLabel="Port number"
+      className="portNumberField"
+      data-automation-id="device-connect-port-number-field"
+      mask="99999"
+      maskChar=""
+      maskFormat={
+        Object {
+          "*": /\\[a-zA-Z0-9\\]/,
+          "9": /\\[0-9\\]/,
+          "a": /\\[a-zA-Z\\]/,
+        }
+      }
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      onRenderDescription={[Function]}
+      placeholder="Ex: 12345"
+    />
+    <CustomizedPrimaryButton
+      data-automation-id="device-connect-validate-port-button"
+      disabled={true}
+      onClick={[Function]}
+    >
+      Validate port number
+    </CustomizedPrimaryButton>
+  </div>
 </div>
 `;
 
@@ -109,30 +132,35 @@ exports[`DeviceConnectPortEntryTest renders with "Connecting" and some text in t
   <h3>
     Android device port number
   </h3>
-  <MaskedTextField
-    ariaLabel="Port number"
-    className="portNumberField"
-    data-automation-id="device-connect-port-number-field"
-    mask="99999"
-    maskChar=""
-    maskFormat={
-      Object {
-        "*": /\\[a-zA-Z0-9\\]/,
-        "9": /\\[0-9\\]/,
-        "a": /\\[a-zA-Z\\]/,
-      }
-    }
-    onChange={[Function]}
-    onKeyDown={[Function]}
-    placeholder="Ex: 12345"
-  />
-  <CustomizedPrimaryButton
-    data-automation-id="device-connect-validate-port-button"
-    disabled={true}
-    onClick={[Function]}
+  <div
+    className="deviceConnectPortEntryBody"
   >
-    Validate port number
-  </CustomizedPrimaryButton>
+    <MaskedTextField
+      ariaLabel="Port number"
+      className="portNumberField"
+      data-automation-id="device-connect-port-number-field"
+      mask="99999"
+      maskChar=""
+      maskFormat={
+        Object {
+          "*": /\\[a-zA-Z0-9\\]/,
+          "9": /\\[0-9\\]/,
+          "a": /\\[a-zA-Z\\]/,
+        }
+      }
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      onRenderDescription={[Function]}
+      placeholder="Ex: 12345"
+    />
+    <CustomizedPrimaryButton
+      data-automation-id="device-connect-validate-port-button"
+      disabled={true}
+      onClick={[Function]}
+    >
+      Validate port number
+    </CustomizedPrimaryButton>
+  </div>
 </div>
 `;
 
@@ -143,30 +171,35 @@ exports[`DeviceConnectPortEntryTest renders with "Default" 1`] = `
   <h3>
     Android device port number
   </h3>
-  <MaskedTextField
-    ariaLabel="Port number"
-    className="portNumberField"
-    data-automation-id="device-connect-port-number-field"
-    mask="99999"
-    maskChar=""
-    maskFormat={
-      Object {
-        "*": /\\[a-zA-Z0-9\\]/,
-        "9": /\\[0-9\\]/,
-        "a": /\\[a-zA-Z\\]/,
-      }
-    }
-    onChange={[Function]}
-    onKeyDown={[Function]}
-    placeholder="Ex: 12345"
-  />
-  <CustomizedPrimaryButton
-    data-automation-id="device-connect-validate-port-button"
-    disabled={true}
-    onClick={[Function]}
+  <div
+    className="deviceConnectPortEntryBody"
   >
-    Validate port number
-  </CustomizedPrimaryButton>
+    <MaskedTextField
+      ariaLabel="Port number"
+      className="portNumberField"
+      data-automation-id="device-connect-port-number-field"
+      mask="99999"
+      maskChar=""
+      maskFormat={
+        Object {
+          "*": /\\[a-zA-Z0-9\\]/,
+          "9": /\\[0-9\\]/,
+          "a": /\\[a-zA-Z\\]/,
+        }
+      }
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      onRenderDescription={[Function]}
+      placeholder="Ex: 12345"
+    />
+    <CustomizedPrimaryButton
+      data-automation-id="device-connect-validate-port-button"
+      disabled={true}
+      onClick={[Function]}
+    >
+      Validate port number
+    </CustomizedPrimaryButton>
+  </div>
 </div>
 `;
 
@@ -177,30 +210,35 @@ exports[`DeviceConnectPortEntryTest renders with "Default" and some text in the 
   <h3>
     Android device port number
   </h3>
-  <MaskedTextField
-    ariaLabel="Port number"
-    className="portNumberField"
-    data-automation-id="device-connect-port-number-field"
-    mask="99999"
-    maskChar=""
-    maskFormat={
-      Object {
-        "*": /\\[a-zA-Z0-9\\]/,
-        "9": /\\[0-9\\]/,
-        "a": /\\[a-zA-Z\\]/,
-      }
-    }
-    onChange={[Function]}
-    onKeyDown={[Function]}
-    placeholder="Ex: 12345"
-  />
-  <CustomizedPrimaryButton
-    data-automation-id="device-connect-validate-port-button"
-    disabled={false}
-    onClick={[Function]}
+  <div
+    className="deviceConnectPortEntryBody"
   >
-    Validate port number
-  </CustomizedPrimaryButton>
+    <MaskedTextField
+      ariaLabel="Port number"
+      className="portNumberField"
+      data-automation-id="device-connect-port-number-field"
+      mask="99999"
+      maskChar=""
+      maskFormat={
+        Object {
+          "*": /\\[a-zA-Z0-9\\]/,
+          "9": /\\[0-9\\]/,
+          "a": /\\[a-zA-Z\\]/,
+        }
+      }
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      onRenderDescription={[Function]}
+      placeholder="Ex: 12345"
+    />
+    <CustomizedPrimaryButton
+      data-automation-id="device-connect-validate-port-button"
+      disabled={false}
+      onClick={[Function]}
+    >
+      Validate port number
+    </CustomizedPrimaryButton>
+  </div>
 </div>
 `;
 
@@ -211,30 +249,35 @@ exports[`DeviceConnectPortEntryTest renders with "Error" 1`] = `
   <h3>
     Android device port number
   </h3>
-  <MaskedTextField
-    ariaLabel="Port number"
-    className="portNumberField"
-    data-automation-id="device-connect-port-number-field"
-    mask="99999"
-    maskChar=""
-    maskFormat={
-      Object {
-        "*": /\\[a-zA-Z0-9\\]/,
-        "9": /\\[0-9\\]/,
-        "a": /\\[a-zA-Z\\]/,
-      }
-    }
-    onChange={[Function]}
-    onKeyDown={[Function]}
-    placeholder="Ex: 12345"
-  />
-  <CustomizedPrimaryButton
-    data-automation-id="device-connect-validate-port-button"
-    disabled={true}
-    onClick={[Function]}
+  <div
+    className="deviceConnectPortEntryBody"
   >
-    Validate port number
-  </CustomizedPrimaryButton>
+    <MaskedTextField
+      ariaLabel="Port number"
+      className="portNumberField"
+      data-automation-id="device-connect-port-number-field"
+      mask="99999"
+      maskChar=""
+      maskFormat={
+        Object {
+          "*": /\\[a-zA-Z0-9\\]/,
+          "9": /\\[0-9\\]/,
+          "a": /\\[a-zA-Z\\]/,
+        }
+      }
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      onRenderDescription={[Function]}
+      placeholder="Ex: 12345"
+    />
+    <CustomizedPrimaryButton
+      data-automation-id="device-connect-validate-port-button"
+      disabled={true}
+      onClick={[Function]}
+    >
+      Validate port number
+    </CustomizedPrimaryButton>
+  </div>
 </div>
 `;
 
@@ -245,30 +288,35 @@ exports[`DeviceConnectPortEntryTest renders with "Error" and some text in the po
   <h3>
     Android device port number
   </h3>
-  <MaskedTextField
-    ariaLabel="Port number"
-    className="portNumberField"
-    data-automation-id="device-connect-port-number-field"
-    mask="99999"
-    maskChar=""
-    maskFormat={
-      Object {
-        "*": /\\[a-zA-Z0-9\\]/,
-        "9": /\\[0-9\\]/,
-        "a": /\\[a-zA-Z\\]/,
-      }
-    }
-    onChange={[Function]}
-    onKeyDown={[Function]}
-    placeholder="Ex: 12345"
-  />
-  <CustomizedPrimaryButton
-    data-automation-id="device-connect-validate-port-button"
-    disabled={false}
-    onClick={[Function]}
+  <div
+    className="deviceConnectPortEntryBody"
   >
-    Validate port number
-  </CustomizedPrimaryButton>
+    <MaskedTextField
+      ariaLabel="Port number"
+      className="portNumberField"
+      data-automation-id="device-connect-port-number-field"
+      mask="99999"
+      maskChar=""
+      maskFormat={
+        Object {
+          "*": /\\[a-zA-Z0-9\\]/,
+          "9": /\\[0-9\\]/,
+          "a": /\\[a-zA-Z\\]/,
+        }
+      }
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      onRenderDescription={[Function]}
+      placeholder="Ex: 12345"
+    />
+    <CustomizedPrimaryButton
+      data-automation-id="device-connect-validate-port-button"
+      disabled={false}
+      onClick={[Function]}
+    >
+      Validate port number
+    </CustomizedPrimaryButton>
+  </div>
 </div>
 `;
 
