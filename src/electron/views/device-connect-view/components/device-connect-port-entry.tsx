@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { KeyCodeConstants } from 'common/constants/keycode-constants';
-import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react';
-import { MaskedTextField } from 'office-ui-fabric-react';
+import { DefaultButton, MaskedTextField, PrimaryButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { DeviceConnectActionCreator } from '../../../flux/action-creator/device-connect-action-creator';
@@ -42,17 +41,26 @@ export class DeviceConnectPortEntry extends React.Component<
         return (
             <div className={styles.deviceConnectPortEntry}>
                 <h3>Android device port number</h3>
-                <MaskedTextField
-                    data-automation-id={deviceConnectPortNumberFieldAutomationId}
-                    ariaLabel="Port number"
-                    onChange={this.onPortTextChanged}
-                    placeholder="Ex: 12345"
-                    className={styles.portNumberField}
-                    maskChar=""
-                    mask="99999"
-                    onKeyDown={this.onEnterKey}
-                />
-                {this.renderValidationPortButton()}
+                <div className={styles.deviceConnectPortEntryBody}>
+                    <MaskedTextField
+                        data-automation-id={deviceConnectPortNumberFieldAutomationId}
+                        ariaLabel="Port number"
+                        onChange={this.onPortTextChanged}
+                        placeholder="Ex: 12345"
+                        className={styles.portNumberField}
+                        maskChar=""
+                        mask="99999"
+                        onKeyDown={this.onEnterKey}
+                        onRenderDescription={() => {
+                            return (
+                                <div className={styles.portNumberFieldDescription}>
+                                    The port number must be between 0 and 99999.
+                                </div>
+                            );
+                        }}
+                    />
+                    {this.renderValidationPortButton()}
+                </div>
             </div>
         );
     }
