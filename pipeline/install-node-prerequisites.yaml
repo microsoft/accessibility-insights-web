@@ -17,6 +17,8 @@ steps:
     - script: npm install yarn@1.17.3 -g
       displayName: install yarn as a global dependency
 
+    - script: yarn cache dir
+
     - task: Cache@2
       inputs:
           key: 'yarn | "$(Agent.OS)" | yarn.lock'
