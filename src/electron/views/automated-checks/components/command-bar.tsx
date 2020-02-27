@@ -38,7 +38,6 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
                     disabled={props.scanStoreData.status === ScanStatus.Scanning}
                 />
             </div>
-            <div className={styles.spacer} />
             <div className={styles.farItems}>
                 <CommandButton
                     ariaLabel="settings"
