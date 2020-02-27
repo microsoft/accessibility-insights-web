@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CardsVisualizationModifierButtonsProps } from 'common/components/cards/cards-visualization-modifier-buttons';
+import { CardsVisualizationModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
-import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
+import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
 import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
@@ -17,9 +17,7 @@ import { RulesWithInstances, RulesWithInstancesDeps } from './rules-with-instanc
 
 export type ResultSectionContentDeps = RulesWithInstancesDeps &
     NoFailedInstancesCongratsDeps & {
-        cardsVisualizationModifierButtons: ReactFCWithDisplayName<
-            CardsVisualizationModifierButtonsProps
-        >;
+        cardsVisualizationModifierButtons: CardsVisualizationModifierButtons;
     };
 
 export type ResultSectionContentProps = {
