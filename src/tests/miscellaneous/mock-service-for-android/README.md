@@ -8,4 +8,4 @@ Licensed under the MIT License.
 This directory is for the benefit of the "yarn serve:mock-service-for-android" command (see package.json).
 
 The specific folder/file names here ("/AccessibilityInsights/result.json") are important to leave as-is because they
-correspond to the endpoint that Accessibility Insights for Android Service normally creates ("http://localhost:port/AccessibilityInsights/result").
+correspond to the endpoints that the Accessibility Insights for Android Service normally creates ("http://localhost:port/AccessibilityInsights/result").
