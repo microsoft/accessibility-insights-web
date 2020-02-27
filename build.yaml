@@ -1,8 +1,5 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-variables:
-    YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
-
 jobs:
     - job: 'unit_tests_and_lints'
 
@@ -34,6 +31,8 @@ jobs:
           vmImage: macOS-10.14
       steps:
           - template: pipeline/install-node-prerequisites.yaml
+            parameters:
+                useCache: true
           - template: pipeline/e2e-test-from-agent.yaml
           - template: pipeline/e2e-test-publish-results.yaml
           - template: pipeline/unified/unified-e2e-test-interactive.yaml
@@ -52,5 +51,7 @@ jobs:
           vmImage: windows-latest
       steps:
           - template: pipeline/install-node-prerequisites.yaml
+            parameters:
+                useCache: true
           - template: pipeline/unified/unified-e2e-test-interactive.yaml
           - template: pipeline/unified/unified-e2e-publish-results.yaml
