@@ -1,57 +1,38 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
-    cardsVisualizationModifiersContainer,
-    expandCollapseAllButton,
-    visualHelperToggle,
-} from 'common/components/cards/cards-visualization-modifiers-buttons.scss';
-import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
-import { NamedFC } from 'common/react/named-fc';
-import { ActionButton, Toggle } from 'office-ui-fabric-react';
+    ExpandCollapseAllButton,
+    ExpandCollapseAllButtonProps,
+} from 'common/components/cards/expand-collapse-all-button';
+import {
+    VisualHelperToggle,
+    VisualHelperToggleProps,
+} from 'common/components/cards/visual-helper-toggle';
+import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
 import * as React from 'react';
+import * as styles from './cards-visualization-modifier-buttons.scss';
 
-export type CardsVisualizationModifierButtonsDeps = {
-    cardSelectionMessageCreator: CardSelectionMessageCreator;
-};
+export type CardsVisualizationModifierButtonsProps = ExpandCollapseAllButtonProps &
+    VisualHelperToggleProps;
 
-export type CardsVisualizationModifierButtonsProps = {
-    deps: CardsVisualizationModifierButtonsDeps;
-    visualHelperEnabled: boolean;
-    allCardsCollapsed: boolean;
-};
-
-export const CardsVisualizationModifierButtons = NamedFC<CardsVisualizationModifierButtonsProps>(
-    'CardsVisualizationModifierButtons',
+export const ExpandCollapseOnlyModifierButtons = NamedFC<CardsVisualizationModifierButtonsProps>(
+    'CardsVisualizationExpandCollapseAllButton',
     props => {
-        const { deps, visualHelperEnabled, allCardsCollapsed } = props;
-
-        let expandCollapseAllButtonHandler = deps.cardSelectionMessageCreator.collapseAllRules;
-        let buttonText = 'Collapse all';
-        let iconName = 'ChevronDown';
-
-        if (allCardsCollapsed) {
-            expandCollapseAllButtonHandler = deps.cardSelectionMessageCreator.expandAllRules;
-            buttonText = 'Expand all';
-            iconName = 'ChevronRight';
-        }
-
         return (
-            <div className={cardsVisualizationModifiersContainer}>
-                <ActionButton
-                    iconProps={{ iconName }}
-                    onClick={expandCollapseAllButtonHandler}
-                    aria-expanded={!allCardsCollapsed}
-                    className={expandCollapseAllButton}
-                >
-                    {buttonText}
-                </ActionButton>
-                <Toggle
-                    onClick={deps.cardSelectionMessageCreator.toggleVisualHelper}
-                    label="Visual helper"
-                    checked={visualHelperEnabled}
-                    className={visualHelperToggle}
-                />
+            <div className={styles.cardsVisualizationModifiersContainer}>
+                <ExpandCollapseAllButton {...props} />
             </div>
         );
     },
 );
+
+export const ExpandCollapseVisualHelperModifierButtons = NamedFC<
+    CardsVisualizationModifierButtonsProps
+>('CardsVisualizationModifierButtons', props => {
+    return (
+        <div className={styles.cardsVisualizationModifiersContainer}>
+            <ExpandCollapseAllButton {...props} />
+            <VisualHelperToggle {...props} />
+        </div>
+    );
+});
