@@ -13,12 +13,16 @@ export type ScreenshotProps = {
 export const Screenshot = NamedFC<ScreenshotProps>('Screenshot', props => {
     const altText = 'axe-android results screenshot with highlighted components';
 
+    // The tabIndex=0 is because the view is independently scrollable, which means there must always
+    // be at least one focusable element inside it to enable keyboard users to scroll it. See
+    // https://dequeuniversity.com/rules/axe/3.3/scrollable-region-focusable
     return (
         <img
             className={styles.screenshotImage}
             src={'data:image/png;base64,' + props.encodedImage}
             alt={altText}
             data-automation-id={screenshotImageAutomationId}
+            tabIndex={0}
         />
     );
 });
