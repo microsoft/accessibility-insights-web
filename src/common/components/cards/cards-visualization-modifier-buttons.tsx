@@ -21,7 +21,7 @@ export type CardsVisualizationModifierButtons = ReactFCWithDisplayName<
 
 export const ExpandCollapseOnlyModifierButtons: CardsVisualizationModifierButtons = NamedFC<
     CardsVisualizationModifierButtonsProps
->('CardsVisualizationExpandCollapseAllButton', props => {
+>('ExpandCollapseOnlyModifierButtons', props => {
     return (
         <div className={styles.cardsVisualizationModifiersContainer}>
             <ExpandCollapseAllButton {...props} />
@@ -31,7 +31,7 @@ export const ExpandCollapseOnlyModifierButtons: CardsVisualizationModifierButton
 
 export const ExpandCollapseVisualHelperModifierButtons: CardsVisualizationModifierButtons = NamedFC<
     CardsVisualizationModifierButtonsProps
->('CardsVisualizationModifierButtons', props => {
+>('ExpandCollapseVisualHelperModifierButtons', props => {
     return (
         <div className={styles.cardsVisualizationModifiersContainer}>
             <ExpandCollapseAllButton {...props} />
