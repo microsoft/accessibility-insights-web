@@ -6,7 +6,7 @@ import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-crea
 import { DeviceStoreData } from 'electron/flux/types/device-store-data';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
-import { CommandBar as UICommandBar, ICommandBarItemProps } from 'office-ui-fabric-react';
+import { CommandButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import * as styles from './command-bar.scss';
 
@@ -21,35 +21,33 @@ export interface CommandBarProps {
     scanStoreData: ScanStoreData;
 }
 
-export const CommandBar = NamedFC<CommandBarProps>('CommandBar', (props: CommandBarProps) => {
+export const commandButtonRefreshId = 'command-button-refresh';
+
+export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
     const { deps, deviceStoreData } = props;
 
-    const startOverCommandBarItem: ICommandBarItemProps = {
-        key: 'startOver',
-        name: 'Start over',
-        iconProps: {
-            className: styles.buttonIcon,
-            iconName: 'Refresh',
-        },
-        className: styles.menuItemButton,
-        onClick: () => deps.scanActionCreator.scan(deviceStoreData.port),
-        disabled: props.scanStoreData.status === ScanStatus.Scanning,
-    };
-
-    const items: ICommandBarItemProps[] = [startOverCommandBarItem];
-
-    const settingsCommandBarItem: ICommandBarItemProps = {
-        key: 'settings',
-        ariaLabel: 'settings',
-        iconProps: {
-            className: styles.buttonIcon,
-            iconName: 'Gear',
-        },
-        className: styles.menuItemButton,
-        onClick: event => deps.dropdownClickHandler.openSettingsPanelHandler(event as any),
-    };
-
-    const farItems: ICommandBarItemProps[] = [settingsCommandBarItem];
-
-    return <UICommandBar items={items} className={styles.commandBar} farItems={farItems} />;
+    return (
+        <div className={styles.commandBar}>
+            <div className={styles.items}>
+                <CommandButton
+                    data-automation-id={commandButtonRefreshId}
+                    text="Start over"
+                    iconProps={{ iconName: 'Refresh', className: styles.buttonIcon }}
+                    className={styles.menuItemButton}
+                    onClick={() => deps.scanActionCreator.scan(deviceStoreData.port)}
+                    disabled={props.scanStoreData.status === ScanStatus.Scanning}
+                />
+            </div>
+            <div className={styles.farItems}>
+                <CommandButton
+                    ariaLabel="settings"
+                    iconProps={{ iconName: 'Gear', className: styles.buttonIcon }}
+                    className={styles.menuItemButton}
+                    onClick={event =>
+                        deps.dropdownClickHandler.openSettingsPanelHandler(event as any)
+                    }
+                />
+            </div>
+        </div>
+    );
 });

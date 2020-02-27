@@ -1,141 +1,157 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CommandBar renders while status is <Completed> 1`] = `
-<StyledCommandBarBase
+<div
   className="commandBar"
-  farItems={
-    Array [
-      Object {
-        "ariaLabel": "settings",
-        "className": "menuItemButton",
-        "iconProps": Object {
-          "className": "buttonIcon",
-          "iconName": "Gear",
-        },
-        "key": "settings",
-        "onClick": [Function],
-      },
-    ]
-  }
-  items={
-    Array [
-      Object {
-        "className": "menuItemButton",
-        "disabled": false,
-        "iconProps": Object {
+>
+  <div
+    className="items"
+  >
+    <CustomizedActionButton
+      className="menuItemButton"
+      data-automation-id="command-button-refresh"
+      disabled={false}
+      iconProps={
+        Object {
           "className": "buttonIcon",
           "iconName": "Refresh",
-        },
-        "key": "startOver",
-        "name": "Start over",
-        "onClick": [Function],
-      },
-    ]
-  }
-/>
+        }
+      }
+      onClick={[Function]}
+      text="Start over"
+    />
+  </div>
+  <div
+    className="farItems"
+  >
+    <CustomizedActionButton
+      ariaLabel="settings"
+      className="menuItemButton"
+      iconProps={
+        Object {
+          "className": "buttonIcon",
+          "iconName": "Gear",
+        }
+      }
+      onClick={[Function]}
+    />
+  </div>
+</div>
 `;
 
 exports[`CommandBar renders while status is <Default> 1`] = `
-<StyledCommandBarBase
+<div
   className="commandBar"
-  farItems={
-    Array [
-      Object {
-        "ariaLabel": "settings",
-        "className": "menuItemButton",
-        "iconProps": Object {
-          "className": "buttonIcon",
-          "iconName": "Gear",
-        },
-        "key": "settings",
-        "onClick": [Function],
-      },
-    ]
-  }
-  items={
-    Array [
-      Object {
-        "className": "menuItemButton",
-        "disabled": false,
-        "iconProps": Object {
+>
+  <div
+    className="items"
+  >
+    <CustomizedActionButton
+      className="menuItemButton"
+      data-automation-id="command-button-refresh"
+      disabled={false}
+      iconProps={
+        Object {
           "className": "buttonIcon",
           "iconName": "Refresh",
-        },
-        "key": "startOver",
-        "name": "Start over",
-        "onClick": [Function],
-      },
-    ]
-  }
-/>
+        }
+      }
+      onClick={[Function]}
+      text="Start over"
+    />
+  </div>
+  <div
+    className="farItems"
+  >
+    <CustomizedActionButton
+      ariaLabel="settings"
+      className="menuItemButton"
+      iconProps={
+        Object {
+          "className": "buttonIcon",
+          "iconName": "Gear",
+        }
+      }
+      onClick={[Function]}
+    />
+  </div>
+</div>
 `;
 
 exports[`CommandBar renders while status is <Failed> 1`] = `
-<StyledCommandBarBase
+<div
   className="commandBar"
-  farItems={
-    Array [
-      Object {
-        "ariaLabel": "settings",
-        "className": "menuItemButton",
-        "iconProps": Object {
-          "className": "buttonIcon",
-          "iconName": "Gear",
-        },
-        "key": "settings",
-        "onClick": [Function],
-      },
-    ]
-  }
-  items={
-    Array [
-      Object {
-        "className": "menuItemButton",
-        "disabled": false,
-        "iconProps": Object {
+>
+  <div
+    className="items"
+  >
+    <CustomizedActionButton
+      className="menuItemButton"
+      data-automation-id="command-button-refresh"
+      disabled={false}
+      iconProps={
+        Object {
           "className": "buttonIcon",
           "iconName": "Refresh",
-        },
-        "key": "startOver",
-        "name": "Start over",
-        "onClick": [Function],
-      },
-    ]
-  }
-/>
+        }
+      }
+      onClick={[Function]}
+      text="Start over"
+    />
+  </div>
+  <div
+    className="farItems"
+  >
+    <CustomizedActionButton
+      ariaLabel="settings"
+      className="menuItemButton"
+      iconProps={
+        Object {
+          "className": "buttonIcon",
+          "iconName": "Gear",
+        }
+      }
+      onClick={[Function]}
+    />
+  </div>
+</div>
 `;
 
 exports[`CommandBar renders while status is <Scanning> 1`] = `
-<StyledCommandBarBase
+<div
   className="commandBar"
-  farItems={
-    Array [
-      Object {
-        "ariaLabel": "settings",
-        "className": "menuItemButton",
-        "iconProps": Object {
-          "className": "buttonIcon",
-          "iconName": "Gear",
-        },
-        "key": "settings",
-        "onClick": [Function],
-      },
-    ]
-  }
-  items={
-    Array [
-      Object {
-        "className": "menuItemButton",
-        "disabled": true,
-        "iconProps": Object {
+>
+  <div
+    className="items"
+  >
+    <CustomizedActionButton
+      className="menuItemButton"
+      data-automation-id="command-button-refresh"
+      disabled={true}
+      iconProps={
+        Object {
           "className": "buttonIcon",
           "iconName": "Refresh",
-        },
-        "key": "startOver",
-        "name": "Start over",
-        "onClick": [Function],
-      },
-    ]
-  }
-/>
+        }
+      }
+      onClick={[Function]}
+      text="Start over"
+    />
+  </div>
+  <div
+    className="farItems"
+  >
+    <CustomizedActionButton
+      ariaLabel="settings"
+      className="menuItemButton"
+      iconProps={
+        Object {
+          "className": "buttonIcon",
+          "iconName": "Gear",
+        }
+      }
+      onClick={[Function]}
+    />
+  </div>
+</div>
 `;

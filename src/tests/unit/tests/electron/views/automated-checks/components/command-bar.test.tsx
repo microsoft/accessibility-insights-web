@@ -4,7 +4,7 @@ import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { EnumHelper } from 'common/enum-helper';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { ScanStatus } from 'electron/flux/types/scan-status';
-import { CommandBar, CommandBarProps } from 'electron/views/automated-checks/components/command-bar';
+import { CommandBar, CommandBarProps, commandButtonRefreshId } from 'electron/views/automated-checks/components/command-bar';
 import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
@@ -65,7 +65,7 @@ describe('CommandBar', () => {
             } as CommandBarProps;
 
             const rendered = mount(<CommandBar {...props} />);
-            const button = rendered.find('button[name="Start over"]');
+            const button = rendered.find(`button[data-automation-id="${commandButtonRefreshId}"]`);
 
             button.simulate('click', eventStub);
 
