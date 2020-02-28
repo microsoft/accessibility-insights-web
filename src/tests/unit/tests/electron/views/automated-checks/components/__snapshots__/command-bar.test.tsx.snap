@@ -4,7 +4,6 @@ exports[`CommandBar renders while status is <Completed> 1`] = `
 <section
   aria-label="command bar"
   className="commandBar"
-  role="region"
 >
   <div
     className="items"
@@ -45,7 +44,6 @@ exports[`CommandBar renders while status is <Default> 1`] = `
 <section
   aria-label="command bar"
   className="commandBar"
-  role="region"
 >
   <div
     className="items"
@@ -86,7 +84,6 @@ exports[`CommandBar renders while status is <Failed> 1`] = `
 <section
   aria-label="command bar"
   className="commandBar"
-  role="region"
 >
   <div
     className="items"
@@ -127,7 +124,6 @@ exports[`CommandBar renders while status is <Scanning> 1`] = `
 <section
   aria-label="command bar"
   className="commandBar"
-  role="region"
 >
   <div
     className="items"

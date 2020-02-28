@@ -27,7 +27,7 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
     const { deps, deviceStoreData } = props;
 
     return (
-        <section className={styles.commandBar} role="region" aria-label="command bar">
+        <section className={styles.commandBar} aria-label="command bar">
             <div className={styles.items}>
                 <CommandButton
                     data-automation-id={commandButtonRefreshId}
