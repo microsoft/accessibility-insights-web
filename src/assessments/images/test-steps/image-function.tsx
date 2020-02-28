@@ -68,13 +68,13 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<ImageFunctionPropertyBa
         defaultValue: NoValue,
     },
     {
-        propertyName: 'accessibleName',
-        displayName: 'Accessible name',
+        propertyName: 'ariaRole',
+        displayName: 'ARIA role',
         defaultValue: NoValue,
     },
     {
-        propertyName: 'ariaRole',
-        displayName: 'ARIA role',
+        propertyName: 'accessibleName',
+        displayName: 'Accessible name',
         defaultValue: NoValue,
     },
 ];
