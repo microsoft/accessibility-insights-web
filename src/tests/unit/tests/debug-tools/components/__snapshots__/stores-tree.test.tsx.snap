@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StoresTree handles store updates by updating the state: after update 1`] = `
+Object {
+  "global": Object {
+    "test-store-id": Object {
+      "value": "1",
+    },
+  },
+}
+`;
+
+exports[`StoresTree handles store updates by updating the state: before update 1`] = `
+Object {
+  "global": Object {},
+}
+`;
+
+exports[`StoresTree renders with NO global state 1`] = `
+<StyledSpinnerBase
+  label="loading..."
+/>
+`;
+
+exports[`StoresTree renders with global state 1`] = `
+<FocusZone
+  direction={2}
+  isCircularNavigation={false}
+>
+  <SelectionZone
+    isSelectedOnFocus={true}
+    selection={
+      Selection {
+        "_anchoredIndex": 0,
+        "_canSelectItem": [Function],
+        "_changeEventSuppressionCount": 0,
+        "_exemptedCount": 0,
+        "_exemptedIndices": Object {},
+        "_getKey": [Function],
+        "_isModal": false,
+        "_items": Array [
+          Object {
+            "key": "0",
+            "value": "1",
+          },
+          Object {
+            "key": "0",
+            "value": "2",
+          },
+        ],
+        "_keyToIndexMap": Object {
+          "0": 1,
+        },
+        "_onSelectionChanged": undefined,
+        "_selectedItems": null,
+        "_unselectableCount": 0,
+        "_unselectableIndices": Object {
+          "0": false,
+          "1": false,
+        },
+        "count": 0,
+        "mode": 2,
+      }
+    }
+    selectionMode={0}
+  >
+    <StyledGroupedListBase
+      compact={true}
+      groups={
+        Array [
+          Object {
+            "count": 1,
+            "key": "first",
+            "name": "first",
+            "startIndex": 0,
+          },
+          Object {
+            "count": 1,
+            "key": "second",
+            "name": "second",
+            "startIndex": 1,
+          },
+        ]
+      }
+      items={
+        Array [
+          Object {
+            "key": "0",
+            "value": "1",
+          },
+          Object {
+            "key": "0",
+            "value": "2",
+          },
+        ]
+      }
+      onRenderCell={[Function]}
+      selection={
+        Selection {
+          "_anchoredIndex": 0,
+          "_canSelectItem": [Function],
+          "_changeEventSuppressionCount": 0,
+          "_exemptedCount": 0,
+          "_exemptedIndices": Object {},
+          "_getKey": [Function],
+          "_isModal": false,
+          "_items": Array [
+            Object {
+              "key": "0",
+              "value": "1",
+            },
+            Object {
+              "key": "0",
+              "value": "2",
+            },
+          ],
+          "_keyToIndexMap": Object {
+            "0": 1,
+          },
+          "_onSelectionChanged": undefined,
+          "_selectedItems": null,
+          "_unselectableCount": 0,
+          "_unselectableIndices": Object {
+            "0": false,
+            "1": false,
+          },
+          "count": 0,
+          "mode": 2,
+        }
+      }
+      selectionMode={0}
+    />
+  </SelectionZone>
+</FocusZone>
+`;

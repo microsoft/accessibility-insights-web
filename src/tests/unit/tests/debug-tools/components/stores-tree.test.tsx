@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { BaseStore } from 'common/base-store';
 import { StoreActionMessageCreator } from 'common/message-creators/store-action-message-creator';
-import { StoresTree, StoresTreeProps } from 'debug-tools/components/stores-tree';
+import { StoresTree, StoresTreeProps, StoresTreeState } from 'debug-tools/components/stores-tree';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { itIsFunction } from 'tests/unit/common/it-is-function';
@@ -46,5 +46,57 @@ describe('StoresTree', () => {
 
             storeActionMessageCreatorMock.verify(creator => creator.getAllStates(), Times.once());
         });
+    });
+
+    describe('renders', () => {
+        it('with NO global state', () => {
+            const wrapped = shallow(<StoresTree {...props} />);
+
+            expect(wrapped.getElement()).toMatchSnapshot();
+        });
+
+        it('with global state', () => {
+            props = {
+                global: storeMocks.map(mock => mock.object),
+                storeActionMessageCreator: storeActionMessageCreatorMock.object,
+            };
+
+            const wrapped = shallow<StoresTreeProps, StoresTreeState>(<StoresTree {...props} />);
+
+            wrapped.setState({ global: { first: '1', second: '2' } });
+            wrapped.update();
+
+            expect(wrapped.getElement()).toMatchSnapshot();
+        });
+    });
+
+    it('handles store updates by updating the state', () => {
+        const storeMock = Mock.ofType<BaseStore<TestStoreData>>();
+
+        let storeListener: Function;
+
+        storeMock.setup(store => store.addChangedListener(itIsFunction)).callback(listener => (storeListener = listener));
+
+        storeMock.setup(store => store.getId()).returns(() => 'test-store-id');
+        storeMock
+            .setup(store => store.getState())
+            .returns(() => {
+                return {
+                    value: '1',
+                };
+            });
+
+        props = {
+            global: [storeMock.object],
+            storeActionMessageCreator: storeActionMessageCreatorMock.object,
+        };
+
+        const wrapped = shallow<StoresTreeProps, StoresTreeState>(<StoresTree {...props} />);
+
+        expect(wrapped.instance().state).toMatchSnapshot('before update');
+
+        storeListener();
+
+        expect(wrapped.instance().state).toMatchSnapshot('after update');
     });
 });

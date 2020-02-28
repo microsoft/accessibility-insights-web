@@ -20,7 +20,7 @@ export type StoresTreeProps = {
     storeActionMessageCreator: StoreActionMessageCreator;
 };
 
-type StoresTreeState = {
+export type StoresTreeState = {
     global: {
         [storeId: string]: any;
     };
