@@ -29,12 +29,25 @@ exports[`ExportDialog renders with open false 1`] = `
   />
   <StyledDialogFooterBase>
     <CustomizedPrimaryButton
+      aria-roledescription="split button"
       download="THE REPORT FILE NAME"
       href="fake-url"
+      menuProps={
+        Object {
+          "items": Array [
+            Object {
+              "key": "codepen",
+              "onClick": [Function],
+              "text": "CodePen",
+            },
+          ],
+        }
+      }
       onClick={[Function]}
-    >
-      Export
-    </CustomizedPrimaryButton>
+      split={true}
+      splitButtonAriaLabel="Export HTML to any of these format options"
+      text="Export"
+    />
   </StyledDialogFooterBase>
 </StyledWithResponsiveMode>
 `;
@@ -68,12 +81,25 @@ exports[`ExportDialog renders with open true 1`] = `
   />
   <StyledDialogFooterBase>
     <CustomizedPrimaryButton
+      aria-roledescription="split button"
       download="THE REPORT FILE NAME"
       href="fake-url"
+      menuProps={
+        Object {
+          "items": Array [
+            Object {
+              "key": "codepen",
+              "onClick": [Function],
+              "text": "CodePen",
+            },
+          ],
+        }
+      }
       onClick={[Function]}
-    >
-      Export
-    </CustomizedPrimaryButton>
+      split={true}
+      splitButtonAriaLabel="Export HTML to any of these format options"
+      text="Export"
+    />
   </StyledDialogFooterBase>
 </StyledWithResponsiveMode>
 `;
