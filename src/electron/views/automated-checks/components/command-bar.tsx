@@ -27,7 +27,7 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
     const { deps, deviceStoreData } = props;
 
     return (
-        <div className={styles.commandBar}>
+        <section className={styles.commandBar} role="region" aria-label="command bar">
             <div className={styles.items}>
                 <CommandButton
                     data-automation-id={commandButtonRefreshId}
@@ -48,6 +48,6 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
                     }
                 />
             </div>
-        </div>
+        </section>
     );
 });
