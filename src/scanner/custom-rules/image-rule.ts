@@ -16,7 +16,7 @@ export const imageConfiguration: RuleConfiguration = {
         id: 'image-function',
         selector: '*',
         any: ['image-function-data-collector'],
-        all: ['area-alt', 'image-alt', 'role-img-alt'],
+        all: [],
         matches: isImage,
         enabled: false,
     },
