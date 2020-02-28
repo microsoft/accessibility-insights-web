@@ -32,6 +32,7 @@ export const HighContrastThemePalette: IPartialTheme = {
     },
     semanticColors: {
         link: '#FFFF00',
+        linkHovered: '#D0D000',
         menuIcon: '#FFFFFF',
         disabledText: '#C285FF',
         primaryButtonBackground: '#38A9FF',
