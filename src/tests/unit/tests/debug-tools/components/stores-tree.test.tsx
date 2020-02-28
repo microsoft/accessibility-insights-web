@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import { BaseStore } from 'common/base-store';
 import { StoreActionMessageCreator } from 'common/message-creators/store-action-message-creator';
-import { StoresTree, StoresTreeProps, StoresTreeState, columns } from 'debug-tools/components/stores-tree';
+import { columns, StoresTree, StoresTreeProps, StoresTreeState } from 'debug-tools/components/stores-tree';
 import { shallow } from 'enzyme';
+import { GroupedList } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { itIsFunction } from 'tests/unit/common/it-is-function';
 import { IMock, Mock, Times } from 'typemoq';
-import { GroupedList } from 'office-ui-fabric-react';
 
 type TestStoreData = {
     value: string;
