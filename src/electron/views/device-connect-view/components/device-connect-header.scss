@@ -4,14 +4,6 @@
 @import '../../../../common/styles/fonts.scss';
 
 .device-connect-header {
-    :global(.ms-Link) {
-        font-family: $fontFamily;
-        font-size: 12px;
-        line-height: 16px;
-        color: $unified-link;
-        text-decoration: underline;
-    }
-
     h2 {
         font-family: $fontFamily;
         font-size: 21px;
