@@ -26,7 +26,7 @@ export type StoresTreeState = {
     };
 };
 
-const columns: IColumn[] = [
+export const columns: IColumn[] = [
     {
         key: 'key',
         name: 'property',

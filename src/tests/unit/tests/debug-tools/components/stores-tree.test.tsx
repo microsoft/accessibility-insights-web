@@ -2,11 +2,12 @@
 // Licensed under the MIT License.
 import { BaseStore } from 'common/base-store';
 import { StoreActionMessageCreator } from 'common/message-creators/store-action-message-creator';
-import { StoresTree, StoresTreeProps, StoresTreeState } from 'debug-tools/components/stores-tree';
+import { StoresTree, StoresTreeProps, StoresTreeState, columns } from 'debug-tools/components/stores-tree';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { itIsFunction } from 'tests/unit/common/it-is-function';
 import { IMock, Mock, Times } from 'typemoq';
+import { GroupedList } from 'office-ui-fabric-react';
 
 type TestStoreData = {
     value: string;
@@ -67,6 +68,46 @@ describe('StoresTree', () => {
             wrapped.update();
 
             expect(wrapped.getElement()).toMatchSnapshot();
+        });
+
+        it('the value column properly', () => {
+            const onRender = columns.find(column => column.key === 'value').onRender;
+
+            const testItem = {
+                first: 1,
+                second: '2',
+                third: true,
+                fourth: [4],
+                fifth: {
+                    sixth: '6',
+                },
+            };
+
+            const result = onRender({ value: testItem });
+
+            expect(result).toMatchSnapshot();
+        });
+
+        it('each row properly', () => {
+            props = {
+                global: storeMocks.map(mock => mock.object),
+                storeActionMessageCreator: storeActionMessageCreatorMock.object,
+            };
+
+            const wrapped = shallow<StoresTreeProps, StoresTreeState>(<StoresTree {...props} />);
+
+            wrapped.setState({ global: { first: '1', second: '2' } });
+            wrapped.update();
+
+            const list = wrapped.find(GroupedList);
+
+            const onRenderCell = list.prop('onRenderCell');
+
+            const testItem = {
+                key: 'value',
+            };
+
+            expect(onRenderCell(0, testItem, 1)).toMatchSnapshot();
         });
     });
 
