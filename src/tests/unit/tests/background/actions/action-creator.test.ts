@@ -495,7 +495,7 @@ describe('ActionCreatorTest', () => {
         builder.verifyAll();
     });
 
-    describe.only('registerCallback for onDetailsViewSelected', () => {
+    describe('registerCallback for onDetailsViewSelected', () => {
         const viewType = VisualizationType.Issues;
         const pivotType = DetailsViewPivotType.fastPass;
         const updateViewActionName = 'updateSelectedPivotChild';
