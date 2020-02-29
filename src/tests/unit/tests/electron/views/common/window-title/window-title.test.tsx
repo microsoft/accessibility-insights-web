@@ -72,4 +72,12 @@ describe('WindowTitleTest', () => {
 
         expect(rendered.getElement()).toMatchSnapshot();
     });
+
+    it('renders with custom header text class name', () => {
+        props.headerTextClassName = 'custom-class-name';
+
+        const rendered = shallow(<WindowTitle {...props} />);
+
+        expect(rendered.getElement()).toMatchSnapshot();
+    });
 });
