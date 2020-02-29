@@ -12,9 +12,9 @@ exports[`DeviceConnectPortEntryTest renders with "Connected" 1`] = `
 <div
   className="deviceConnectPortEntry"
 >
-  <h3>
+  <h2>
     Android device port number
-  </h3>
+  </h2>
   <div
     className="deviceConnectPortEntryBody"
   >
@@ -51,9 +51,9 @@ exports[`DeviceConnectPortEntryTest renders with "Connected" and some text in th
 <div
   className="deviceConnectPortEntry"
 >
-  <h3>
+  <h2>
     Android device port number
-  </h3>
+  </h2>
   <div
     className="deviceConnectPortEntryBody"
   >
@@ -90,9 +90,9 @@ exports[`DeviceConnectPortEntryTest renders with "Connecting" 1`] = `
 <div
   className="deviceConnectPortEntry"
 >
-  <h3>
+  <h2>
     Android device port number
-  </h3>
+  </h2>
   <div
     className="deviceConnectPortEntryBody"
   >
@@ -129,9 +129,9 @@ exports[`DeviceConnectPortEntryTest renders with "Connecting" and some text in t
 <div
   className="deviceConnectPortEntry"
 >
-  <h3>
+  <h2>
     Android device port number
-  </h3>
+  </h2>
   <div
     className="deviceConnectPortEntryBody"
   >
@@ -168,9 +168,9 @@ exports[`DeviceConnectPortEntryTest renders with "Default" 1`] = `
 <div
   className="deviceConnectPortEntry"
 >
-  <h3>
+  <h2>
     Android device port number
-  </h3>
+  </h2>
   <div
     className="deviceConnectPortEntryBody"
   >
@@ -207,9 +207,9 @@ exports[`DeviceConnectPortEntryTest renders with "Default" and some text in the 
 <div
   className="deviceConnectPortEntry"
 >
-  <h3>
+  <h2>
     Android device port number
-  </h3>
+  </h2>
   <div
     className="deviceConnectPortEntryBody"
   >
@@ -246,9 +246,9 @@ exports[`DeviceConnectPortEntryTest renders with "Error" 1`] = `
 <div
   className="deviceConnectPortEntry"
 >
-  <h3>
+  <h2>
     Android device port number
-  </h3>
+  </h2>
   <div
     className="deviceConnectPortEntryBody"
   >
@@ -285,9 +285,9 @@ exports[`DeviceConnectPortEntryTest renders with "Error" and some text in the po
 <div
   className="deviceConnectPortEntry"
 >
-  <h3>
+  <h2>
     Android device port number
-  </h3>
+  </h2>
   <div
     className="deviceConnectPortEntryBody"
   >

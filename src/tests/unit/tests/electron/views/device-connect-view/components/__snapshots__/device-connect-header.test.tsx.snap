@@ -4,9 +4,9 @@ exports[`DeviceConnectHeaderTest render 1`] = `
 <header
   className="deviceConnectHeader"
 >
-  <h2>
+  <h1>
     Connect to your Android device
-  </h2>
+  </h1>
   <ElectronLink
     href="https://go.microsoft.com/fwlink/?linkid=2101252"
   >
