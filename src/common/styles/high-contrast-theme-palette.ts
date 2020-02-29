@@ -36,5 +36,6 @@ export const HighContrastThemePalette: IPartialTheme = {
         menuIcon: '#FFFFFF',
         disabledText: '#C285FF',
         primaryButtonBackground: '#38A9FF',
+        primaryButtonBackgroundPressed: '#2184D0',
     },
 };
