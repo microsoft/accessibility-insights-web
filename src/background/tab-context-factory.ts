@@ -69,6 +69,7 @@ export class TabContextFactory {
             notificationCreator,
             this.visualizationConfigurationFactory,
             this.targetTabController,
+            this.logger,
         );
 
         const detailsViewActionCreator = new DetailsViewActionCreator(

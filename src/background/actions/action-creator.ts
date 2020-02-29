@@ -56,7 +56,7 @@ export class ActionCreator {
         private readonly notificationCreator: NotificationCreator,
         private readonly visualizationConfigurationFactory: VisualizationConfigurationFactory,
         private readonly targetTabController: TargetTabController,
-        private readonly logger: Logger = createDefaultLogger(),
+        private readonly logger: Logger,
     ) {
         this.visualizationActions = actionHub.visualizationActions;
         this.previewFeaturesActions = actionHub.previewFeaturesActions;
