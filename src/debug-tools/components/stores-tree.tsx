@@ -20,13 +20,13 @@ export type StoresTreeProps = {
     storeActionMessageCreator: StoreActionMessageCreator;
 };
 
-type StoresTreeState = {
+export type StoresTreeState = {
     global: {
         [storeId: string]: any;
     };
 };
 
-const columns: IColumn[] = [
+export const columns: IColumn[] = [
     {
         key: 'key',
         name: 'property',
