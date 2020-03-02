@@ -91,6 +91,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
             >
                 <TitleBar
                     deps={this.props.deps}
+                    pageTitle={'Automated checks'}
                     windowStateStoreData={this.props.windowStateStoreData}
                 ></TitleBar>
                 <div className={styles.automatedChecksPanelLayout}>

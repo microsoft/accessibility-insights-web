@@ -55,7 +55,7 @@ exports[`TitleBar renders 1`] = `
     }
   }
   headerTextClassName="headerText"
-  title="Accessibility Insights"
+  pageTitle="test page title"
   windowStateStoreData={
     Object {
       "currentWindowState": "maximized",
