@@ -300,7 +300,7 @@ export class ActionCreator {
         await this.targetTabController.showTargetTab(tabId, payload.testType, payload.key);
     };
 
-    private onScrollRequested = (payload: BaseActionPayload): void => {
+    private onScrollRequested = (): void => {
         this.visualizationActions.scrollRequested.invoke(null);
         this.cardSelectionActions.resetFocusedIdentifier.invoke(null);
     };

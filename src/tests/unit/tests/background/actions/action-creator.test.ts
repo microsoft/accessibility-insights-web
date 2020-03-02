@@ -384,12 +384,14 @@ describe('ActionCreatorTest', () => {
     });
 
     test('registerCallbacks for scrollRequested', () => {
-        const actionName = 'scrollRequested';
+        const visualizationActionName = 'scrollRequested';
+        const cardSelectionActionName = 'resetFocusedIdentifier';
         const tabId = 1;
         const builder = new ActionCreatorValidator()
-            .setupActionOnVisualizationActions(actionName)
-            .setupVisualizationActionWithInvokeParameter(actionName, null)
-            .setupCardSelectionActionWithInvokeParameter('resetFocusedIdentifier', null)
+            .setupActionOnVisualizationActions(visualizationActionName)
+            .setupVisualizationActionWithInvokeParameter(visualizationActionName, null)
+            .setupActionOnCardSelectionActions(cardSelectionActionName)
+            .setupCardSelectionActionWithInvokeParameter(cardSelectionActionName, null)
             .setupRegistrationCallback(VisualizationMessage.Common.ScrollRequested, [null, tabId]);
 
         const actionCreator = builder.buildActionCreator();
@@ -1002,6 +1004,7 @@ class ActionCreatorValidator {
     private scopingActionsContainerMock = Mock.ofType(ScopingActions);
     private assessmentActionsContainerMock = Mock.ofType(AssessmentActions);
     private inspectActionsContainerMock = Mock.ofType(InspectActions);
+    private cardSelectionActionsContainerMock = Mock.ofType(CardSelectionActions);
     private previewFeaturesActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
     private scopingActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
     private detailsViewActionsMocks: DictionaryStringTo<IMock<Action<any>>> = {};
@@ -1034,7 +1037,7 @@ class ActionCreatorValidator {
         detailsViewActions: this.detailsViewActionsContainerMock.object,
         pathSnippetActions: null,
         scanResultActions: null,
-        cardSelectionActions: null,
+        cardSelectionActions: this.cardSelectionActionsContainerMock.object,
         injectionActions: null,
     };
 
@@ -1208,6 +1211,18 @@ class ActionCreatorValidator {
         }
 
         actionsContainerMock.setup(x => x[actionName]).returns(() => action.object);
+
+        return this;
+    }
+
+    public setupActionOnCardSelectionActions(
+        actionName: keyof CardSelectionActions,
+    ): ActionCreatorValidator {
+        this.setupAction(
+            actionName,
+            this.cardSelectionActionsMocks,
+            this.cardSelectionActionsContainerMock,
+        );
 
         return this;
     }
