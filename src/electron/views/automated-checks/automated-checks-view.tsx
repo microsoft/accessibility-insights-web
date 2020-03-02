@@ -27,7 +27,6 @@ import * as React from 'react';
 import * as styles from './automated-checks-view.scss';
 import { CommandBar, CommandBarDeps } from './components/command-bar';
 import { HeaderSection } from './components/header-section';
-import { brand } from 'content/strings/application';
 
 export const automatedChecksViewAutomationId = 'automated-checks-view';
 
