@@ -17,6 +17,7 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
         "screenshotViewModelProvider": [Function],
       }
     }
+    pageTitle="Automated checks"
   />
   <div
     className="automatedChecksPanelLayout"
@@ -133,6 +134,7 @@ exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
         },
       }
     }
+    pageTitle="Automated checks"
     windowStateStoreData="window state store data"
   />
   <div
@@ -216,6 +218,7 @@ exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
         },
       }
     }
+    pageTitle="Automated checks"
     windowStateStoreData="window state store data"
   />
   <div
@@ -299,6 +302,7 @@ exports[`AutomatedChecksView renders when status scan <undefined> 1`] = `
         },
       }
     }
+    pageTitle="Automated checks"
     windowStateStoreData="window state store data"
   />
   <div

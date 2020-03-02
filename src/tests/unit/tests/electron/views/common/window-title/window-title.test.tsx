@@ -17,7 +17,7 @@ describe('WindowTitleTest', () => {
         windowStateStoreData = { currentWindowState: 'maximized', routeId: 'deviceConnectView' };
 
         props = {
-            title: 'title 1',
+            pageTitle: 'page title 1',
             deps: { platformInfo: platformInfoMock.object },
             children: <span>logo</span>,
             actionableIcons: [<div key="key1">icon1</div>, <div key="key2">icon2</div>],

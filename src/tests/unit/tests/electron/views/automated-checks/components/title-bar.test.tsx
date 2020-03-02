@@ -32,6 +32,7 @@ describe('TitleBar', () => {
                 storeActionMessageCreator: Mock.ofType(StoreActionMessageCreatorImpl).object,
                 storesHub: Mock.ofType<ClientStoresHub<ThemeInnerState>>(BaseClientStoresHub).object,
             },
+            pageTitle: 'test page title',
             windowStateStoreData,
         };
     });
