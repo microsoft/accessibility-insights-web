@@ -558,10 +558,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/chrome@0.0.97":
-  version "0.0.97"
-  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.97.tgz#aa0e5965a0662906cd57c632e34fe6d1462963f0"
-  integrity sha512-buJsiNcs2X/Pb22ZNShMOUuDgV6o5AH6U9bGpc0diTZfWYOVOzcA2LKfBL+Sbxp4K4VvT0rA3zsEcui24vQofg==
+"@types/chrome@0.0.98":
+  version "0.0.98"
+  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.98.tgz#1d9aef8b27d0925c099f994a7a923ea6534396cb"
+  integrity sha512-hEYcMXB8at3bDPdk7NmfleRvpw0gxUGMwHZxaWUYs3/VWFLkg9nQPTsYJauZgKHdAoW8RDBRrk4fWDvXjP3OKg==
   dependencies:
     "@types/filesystem" "*"
 
