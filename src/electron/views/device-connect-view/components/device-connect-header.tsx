@@ -19,7 +19,7 @@ export const DeviceConnectHeader = NamedFC<DeviceConnectHeaderProps>(
         const { LinkComponent } = deps;
         return (
             <header className={styles.deviceConnectHeader}>
-                <h2>Connect to your Android device</h2>
+                <h1>Connect to your Android device</h1>
                 <LinkComponent href="https://go.microsoft.com/fwlink/?linkid=2101252">
                     How do I connect to my device?
                 </LinkComponent>

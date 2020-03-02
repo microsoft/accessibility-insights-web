@@ -40,7 +40,7 @@ export class DeviceConnectPortEntry extends React.Component<
     public render(): JSX.Element {
         return (
             <div className={styles.deviceConnectPortEntry}>
-                <h3>Android device port number</h3>
+                <h2>Android device port number</h2>
                 <div className={styles.deviceConnectPortEntryBody}>
                     <MaskedTextField
                         data-automation-id={deviceConnectPortNumberFieldAutomationId}

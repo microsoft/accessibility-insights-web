@@ -17,6 +17,7 @@ export interface WindowTitleProps {
     children?: JSX.Element;
     actionableIcons?: JSX.Element[];
     className?: string;
+    headerTextClassName?: string;
     windowStateStoreData: WindowStateStoreData;
 }
 
@@ -29,7 +30,9 @@ export const WindowTitle = NamedFC<WindowTitleProps>('WindowTitle', (props: Wind
         <header className={css(styles.windowTitle, props.className)}>
             <div className={styles.titleContainer}>
                 {props.children}
-                <h1 className={styles.headerText}>{props.title}</h1>
+                <span className={css(styles.headerText, props.headerTextClassName)}>
+                    {props.title}
+                </span>
             </div>
             {getIconsContainer(props)}
         </header>

@@ -65,6 +65,7 @@ export const TitleBar = NamedFC<TitleBarProps>('TitleBar', (props: TitleBarProps
             windowStateStoreData={props.windowStateStoreData}
             deps={props.deps}
             className={styles.titleBar}
+            headerTextClassName={styles.headerText}
         >
             <HeaderIcon deps={props.deps} />
         </WindowTitle>

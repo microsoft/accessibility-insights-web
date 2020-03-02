@@ -12,11 +12,11 @@ exports[`WindowTitleTest renders with actionable icons 1`] = `
     <span>
       logo
     </span>
-    <h1
+    <span
       className="headerText"
     >
       title 1
-    </h1>
+    </span>
   </div>
   <div
     className="actionableIconsContainer"
@@ -41,11 +41,40 @@ exports[`WindowTitleTest renders with custom class name 1`] = `
     <span>
       logo
     </span>
-    <h1
+    <span
       className="headerText"
     >
       title 1
-    </h1>
+    </span>
+  </div>
+  <div
+    className="actionableIconsContainer"
+  >
+    <div>
+      icon1
+    </div>
+    <div>
+      icon2
+    </div>
+  </div>
+</header>
+`;
+
+exports[`WindowTitleTest renders with custom header text class name 1`] = `
+<header
+  className="windowTitle"
+>
+  <div
+    className="titleContainer"
+  >
+    <span>
+      logo
+    </span>
+    <span
+      className="headerText custom-class-name"
+    >
+      title 1
+    </span>
   </div>
   <div
     className="actionableIconsContainer"
@@ -70,11 +99,11 @@ exports[`WindowTitleTest renders without actionable buttons for mac 1`] = `
     <span>
       logo
     </span>
-    <h1
+    <span
       className="headerText"
     >
       title 1
-    </h1>
+    </span>
   </div>
 </header>
 `;
@@ -89,11 +118,11 @@ exports[`WindowTitleTest renders without actionable icons 1`] = `
     <span>
       logo
     </span>
-    <h1
+    <span
       className="headerText"
     >
       title 1
-    </h1>
+    </span>
   </div>
 </header>
 `;
@@ -105,11 +134,11 @@ exports[`WindowTitleTest renders without children & actionable icon 1`] = `
   <div
     className="titleContainer"
   >
-    <h1
+    <span
       className="headerText"
     >
       title 1
-    </h1>
+    </span>
   </div>
 </header>
 `;
