@@ -23,7 +23,9 @@ describe('device connection dialog', () => {
     });
 
     it('should use the expected window title', async () => {
-        expect(await app.getTitle()).toBe('Accessibility Insights for Android');
+        expect(await app.getTitle()).toBe(
+            'Accessibility Insights for Android - Connect to your Android device',
+        );
     });
 
     it('should initially have the cancel button and port field enabled, but validate and start buttons disabled', async () => {

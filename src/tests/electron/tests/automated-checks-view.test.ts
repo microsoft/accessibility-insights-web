@@ -29,6 +29,10 @@ describe('AutomatedChecksView', () => {
         }
     });
 
+    it('should use the expected window title', async () => {
+        expect(await app.getTitle()).toBe('Accessibility Insights for Android - Automated checks');
+    });
+
     it('displays automated checks results collapsed by default', async () => {
         const ruleGroups = await automatedChecksView.queryRuleGroups();
         expect(ruleGroups).toHaveLength(4);
