@@ -4,9 +4,9 @@ exports[`DeviceConnectConnectedDeviceTest renders for deviceConnectState = Conne
 <div
   className="deviceConnectConnectedDevice"
 >
-  <h2>
+  <div>
     Connected device
-  </h2>
+  </div>
   <div
     aria-live="assertive"
     role="alert"
@@ -18,9 +18,9 @@ exports[`DeviceConnectConnectedDeviceTest renders for deviceConnectState = Conne
 <div
   className="deviceConnectConnectedDevice"
 >
-  <h2>
+  <div>
     Connected device
-  </h2>
+  </div>
   <div
     aria-live="assertive"
     role="alert"
@@ -39,9 +39,9 @@ exports[`DeviceConnectConnectedDeviceTest renders for deviceConnectState = Defau
 <div
   className="deviceConnectConnectedDevice"
 >
-  <h2>
+  <div>
     Connected device
-  </h2>
+  </div>
   <div
     aria-live="assertive"
     role="alert"
@@ -53,9 +53,9 @@ exports[`DeviceConnectConnectedDeviceTest renders for deviceConnectState = Error
 <div
   className="deviceConnectConnectedDevice"
 >
-  <h2>
+  <div>
     Connected device
-  </h2>
+  </div>
   <div
     aria-live="assertive"
     role="alert"
@@ -80,9 +80,9 @@ exports[`DeviceConnectConnectedDeviceTest renders the device name when state is 
 <div
   className="deviceConnectConnectedDevice"
 >
-  <h2>
+  <div>
     Connected device
-  </h2>
+  </div>
   <div
     aria-live="assertive"
     role="alert"
