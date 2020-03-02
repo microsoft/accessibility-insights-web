@@ -1,7 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CommandBar renders while status is <Completed> 1`] = `
-<div
+<section
+  aria-label="command bar"
   className="commandBar"
 >
   <div
@@ -36,11 +37,12 @@ exports[`CommandBar renders while status is <Completed> 1`] = `
       onClick={[Function]}
     />
   </div>
-</div>
+</section>
 `;
 
 exports[`CommandBar renders while status is <Default> 1`] = `
-<div
+<section
+  aria-label="command bar"
   className="commandBar"
 >
   <div
@@ -75,11 +77,12 @@ exports[`CommandBar renders while status is <Default> 1`] = `
       onClick={[Function]}
     />
   </div>
-</div>
+</section>
 `;
 
 exports[`CommandBar renders while status is <Failed> 1`] = `
-<div
+<section
+  aria-label="command bar"
   className="commandBar"
 >
   <div
@@ -114,11 +117,12 @@ exports[`CommandBar renders while status is <Failed> 1`] = `
       onClick={[Function]}
     />
   </div>
-</div>
+</section>
 `;
 
 exports[`CommandBar renders while status is <Scanning> 1`] = `
-<div
+<section
+  aria-label="command bar"
   className="commandBar"
 >
   <div
@@ -153,5 +157,5 @@ exports[`CommandBar renders while status is <Scanning> 1`] = `
       onClick={[Function]}
     />
   </div>
-</div>
+</section>
 `;
