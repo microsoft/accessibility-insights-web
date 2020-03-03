@@ -4,7 +4,9 @@ exports[`DeviceConnectConnectedDeviceTest renders for deviceConnectState = Conne
 <div
   className="deviceConnectConnectedDevice"
 >
-  <div>
+  <div
+    className="label"
+  >
     Connected device
   </div>
   <div
@@ -18,7 +20,9 @@ exports[`DeviceConnectConnectedDeviceTest renders for deviceConnectState = Conne
 <div
   className="deviceConnectConnectedDevice"
 >
-  <div>
+  <div
+    className="label"
+  >
     Connected device
   </div>
   <div
@@ -39,7 +43,9 @@ exports[`DeviceConnectConnectedDeviceTest renders for deviceConnectState = Defau
 <div
   className="deviceConnectConnectedDevice"
 >
-  <div>
+  <div
+    className="label"
+  >
     Connected device
   </div>
   <div
@@ -53,7 +59,9 @@ exports[`DeviceConnectConnectedDeviceTest renders for deviceConnectState = Error
 <div
   className="deviceConnectConnectedDevice"
 >
-  <div>
+  <div
+    className="label"
+  >
     Connected device
   </div>
   <div
@@ -80,7 +88,9 @@ exports[`DeviceConnectConnectedDeviceTest renders the device name when state is 
 <div
   className="deviceConnectConnectedDevice"
 >
-  <div>
+  <div
+    className="label"
+  >
     Connected device
   </div>
   <div
