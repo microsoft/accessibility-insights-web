@@ -2,11 +2,9 @@
 // Licensed under the MIT License.
 @import '../../common/styles/colors.scss';
 
-:global(.ms-fabric) {
-    .gear-menu-button:focus::after {
-        border: 2px $always-white solid;
-        border-style: dotted;
-    }
+:global(.ms-Button).gear-menu-button:focus::after {
+    border: 2px $always-white solid;
+    border-style: dotted;
 }
 
 :global(.high-contrast-theme) {
