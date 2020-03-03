@@ -28,6 +28,8 @@ export interface DeviceConnectPortEntryState {
     port: string;
 }
 
+const textFieldId = 'port-number-text-field-id';
+
 export class DeviceConnectPortEntry extends React.Component<
     DeviceConnectPortEntryProps,
     DeviceConnectPortEntryState
@@ -40,24 +42,24 @@ export class DeviceConnectPortEntry extends React.Component<
     public render(): JSX.Element {
         return (
             <div className={styles.deviceConnectPortEntry}>
-                <h2>Android device port number</h2>
+                <label htmlFor={textFieldId} className={styles.portNumberLabel}>
+                    Android device port number
+                </label>
                 <div className={styles.deviceConnectPortEntryBody}>
                     <MaskedTextField
+                        id={textFieldId}
                         data-automation-id={deviceConnectPortNumberFieldAutomationId}
-                        ariaLabel="Port number"
                         onChange={this.onPortTextChanged}
                         placeholder="Ex: 12345"
                         className={styles.portNumberField}
                         maskChar=""
                         mask="99999"
                         onKeyDown={this.onEnterKey}
-                        onRenderDescription={() => {
-                            return (
-                                <div className={styles.portNumberFieldDescription}>
-                                    The port number must be between 0 and 65535.
-                                </div>
-                            );
-                        }}
+                        onRenderDescription={() => (
+                            <span className={styles.portNumberFieldDescription}>
+                                The port number must be between 0 and 65535.
+                            </span>
+                        )}
                     />
                     {this.renderValidationPortButton()}
                 </div>

@@ -1,9 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
 @import '../../../../common/styles/colors.scss';
+@import '../../../../common/styles/fonts.scss';
 
 .device-connect-port-entry {
+    .port-number-label {
+        font-weight: $fontWeightSemiBold;
+
+        display: block;
+
+        margin-top: 24px;
+        margin-bottom: 8px;
+    }
+
     .device-connect-port-entry-body {
         display: flex;
 

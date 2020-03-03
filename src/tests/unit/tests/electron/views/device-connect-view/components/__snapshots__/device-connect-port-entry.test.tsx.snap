@@ -1,27 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DeviceConnectPortEntryTest renders renderedDescription 1`] = `
-<div
+<span
   className="portNumberFieldDescription"
 >
   The port number must be between 0 and 65535.
-</div>
+</span>
 `;
 
 exports[`DeviceConnectPortEntryTest renders with "Connected" 1`] = `
 <div
   className="deviceConnectPortEntry"
 >
-  <h2>
+  <label
+    className="portNumberLabel"
+    htmlFor="port-number-text-field-id"
+  >
     Android device port number
-  </h2>
+  </label>
   <div
     className="deviceConnectPortEntryBody"
   >
     <MaskedTextField
-      ariaLabel="Port number"
       className="portNumberField"
       data-automation-id="device-connect-port-number-field"
+      id="port-number-text-field-id"
       mask="99999"
       maskChar=""
       maskFormat={
@@ -51,16 +54,19 @@ exports[`DeviceConnectPortEntryTest renders with "Connected" and some text in th
 <div
   className="deviceConnectPortEntry"
 >
-  <h2>
+  <label
+    className="portNumberLabel"
+    htmlFor="port-number-text-field-id"
+  >
     Android device port number
-  </h2>
+  </label>
   <div
     className="deviceConnectPortEntryBody"
   >
     <MaskedTextField
-      ariaLabel="Port number"
       className="portNumberField"
       data-automation-id="device-connect-port-number-field"
+      id="port-number-text-field-id"
       mask="99999"
       maskChar=""
       maskFormat={
@@ -90,16 +96,19 @@ exports[`DeviceConnectPortEntryTest renders with "Connecting" 1`] = `
 <div
   className="deviceConnectPortEntry"
 >
-  <h2>
+  <label
+    className="portNumberLabel"
+    htmlFor="port-number-text-field-id"
+  >
     Android device port number
-  </h2>
+  </label>
   <div
     className="deviceConnectPortEntryBody"
   >
     <MaskedTextField
-      ariaLabel="Port number"
       className="portNumberField"
       data-automation-id="device-connect-port-number-field"
+      id="port-number-text-field-id"
       mask="99999"
       maskChar=""
       maskFormat={
@@ -129,16 +138,19 @@ exports[`DeviceConnectPortEntryTest renders with "Connecting" and some text in t
 <div
   className="deviceConnectPortEntry"
 >
-  <h2>
+  <label
+    className="portNumberLabel"
+    htmlFor="port-number-text-field-id"
+  >
     Android device port number
-  </h2>
+  </label>
   <div
     className="deviceConnectPortEntryBody"
   >
     <MaskedTextField
-      ariaLabel="Port number"
       className="portNumberField"
       data-automation-id="device-connect-port-number-field"
+      id="port-number-text-field-id"
       mask="99999"
       maskChar=""
       maskFormat={
@@ -168,16 +180,19 @@ exports[`DeviceConnectPortEntryTest renders with "Default" 1`] = `
 <div
   className="deviceConnectPortEntry"
 >
-  <h2>
+  <label
+    className="portNumberLabel"
+    htmlFor="port-number-text-field-id"
+  >
     Android device port number
-  </h2>
+  </label>
   <div
     className="deviceConnectPortEntryBody"
   >
     <MaskedTextField
-      ariaLabel="Port number"
       className="portNumberField"
       data-automation-id="device-connect-port-number-field"
+      id="port-number-text-field-id"
       mask="99999"
       maskChar=""
       maskFormat={
@@ -207,16 +222,19 @@ exports[`DeviceConnectPortEntryTest renders with "Default" and some text in the 
 <div
   className="deviceConnectPortEntry"
 >
-  <h2>
+  <label
+    className="portNumberLabel"
+    htmlFor="port-number-text-field-id"
+  >
     Android device port number
-  </h2>
+  </label>
   <div
     className="deviceConnectPortEntryBody"
   >
     <MaskedTextField
-      ariaLabel="Port number"
       className="portNumberField"
       data-automation-id="device-connect-port-number-field"
+      id="port-number-text-field-id"
       mask="99999"
       maskChar=""
       maskFormat={
@@ -246,16 +264,19 @@ exports[`DeviceConnectPortEntryTest renders with "Error" 1`] = `
 <div
   className="deviceConnectPortEntry"
 >
-  <h2>
+  <label
+    className="portNumberLabel"
+    htmlFor="port-number-text-field-id"
+  >
     Android device port number
-  </h2>
+  </label>
   <div
     className="deviceConnectPortEntryBody"
   >
     <MaskedTextField
-      ariaLabel="Port number"
       className="portNumberField"
       data-automation-id="device-connect-port-number-field"
+      id="port-number-text-field-id"
       mask="99999"
       maskChar=""
       maskFormat={
@@ -285,16 +306,19 @@ exports[`DeviceConnectPortEntryTest renders with "Error" and some text in the po
 <div
   className="deviceConnectPortEntry"
 >
-  <h2>
+  <label
+    className="portNumberLabel"
+    htmlFor="port-number-text-field-id"
+  >
     Android device port number
-  </h2>
+  </label>
   <div
     className="deviceConnectPortEntryBody"
   >
     <MaskedTextField
-      ariaLabel="Port number"
       className="portNumberField"
       data-automation-id="device-connect-port-number-field"
+      id="port-number-text-field-id"
       mask="99999"
       maskChar=""
       maskFormat={

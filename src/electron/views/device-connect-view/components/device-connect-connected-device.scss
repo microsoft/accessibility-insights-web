@@ -4,6 +4,13 @@
 @import '../../../../common/styles/fonts.scss';
 
 .device-connect-connected-device {
+    .label {
+        font-weight: $fontWeightSemiBold;
+
+        margin-top: 24px;
+        margin-bottom: 8px;
+    }
+
     .device-connect-spinner {
         font-family: $fontFamily;
         line-height: 16px;
