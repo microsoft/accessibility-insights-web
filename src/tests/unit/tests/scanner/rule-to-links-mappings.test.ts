@@ -12,7 +12,7 @@ describe('ruleToLinkConfiguration', () => {
     const bestPracticeAxeRules: string[] = axe.getRules(['best-practice']).map(rule => rule.ruleId);
 
     // We're grandfathering this case in while we validate why axe considers it best-practice
-    const bestPracticeAxeRulesWeWantToEnforceAnyway = ['accesskeys'];
+    const bestPracticeAxeRulesWeWantToEnforceAnyway = [];
 
     it.each(allAxeRules)(`should have a mapping for axe rule %s`, rule => {
         expect(ruleToLinkConfiguration[rule]).toBeDefined();
