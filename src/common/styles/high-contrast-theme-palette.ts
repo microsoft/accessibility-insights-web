@@ -37,5 +37,6 @@ export const HighContrastThemePalette: IPartialTheme = {
         disabledText: '#C285FF',
         primaryButtonBackground: '#38A9FF',
         primaryButtonBackgroundPressed: '#2184D0',
+        inputBackgroundChecked: '#38A9FF',
     },
 };
