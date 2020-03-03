@@ -154,7 +154,7 @@ describe('AssessmentInstanceTable', () => {
                 testStepResults[selectedTestStep] = { status: ManualTestStatus.UNKNOWN };
 
                 const testSubject = mount(<AssessmentInstanceTable {...props} />);
-                expect(testSubject.find(passUnmarkedInstancesButtonSelector).prop('disabled')).toBeFalsy();
+                expect(testSubject.find(passUnmarkedInstancesButtonSelector).prop('disabled')).toBeUndefined();
             });
 
             it.each([ManualTestStatus.FAIL, ManualTestStatus.PASS])(
@@ -163,7 +163,7 @@ describe('AssessmentInstanceTable', () => {
                     testStepResults[selectedTestStep] = { status: testStatus };
 
                     const testSubject = mount(<AssessmentInstanceTable {...props} />);
-                    expect(testSubject.find(passUnmarkedInstancesButtonSelector).prop('disabled')).toBeTruthy();
+                    expect(testSubject.find(passUnmarkedInstancesButtonSelector).prop('disabled')).toBe(true);
                 },
             );
 
