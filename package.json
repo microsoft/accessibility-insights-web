@@ -141,7 +141,7 @@
         "idb-keyval": "^3.2.0",
         "lodash": "^4.17.15",
         "moment": "^2.24.0",
-        "office-ui-fabric-react": "7.97.0",
+        "office-ui-fabric-react": "7.98.2",
         "q": "1.5.1",
         "react": "^16.13.0",
         "react-copy-to-clipboard": "^5.0.2",
