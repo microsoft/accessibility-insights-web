@@ -16,8 +16,6 @@ import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
-//
-
 describe('DeviceConnectPortEntryTest', () => {
     const testPortNumber = 111;
     const eventStub = new EventStubFactory().createMouseClickEvent() as React.MouseEvent<Button>;
