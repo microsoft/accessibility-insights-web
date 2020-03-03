@@ -22,7 +22,6 @@ exports[`DeviceConnectPortEntryTest renders with "Connected" 1`] = `
     className="deviceConnectPortEntryBody"
   >
     <MaskedTextField
-      aria-labelledby="port-number-text-field-id"
       className="portNumberField"
       data-automation-id="device-connect-port-number-field"
       id="port-number-text-field-id"
@@ -65,7 +64,6 @@ exports[`DeviceConnectPortEntryTest renders with "Connected" and some text in th
     className="deviceConnectPortEntryBody"
   >
     <MaskedTextField
-      aria-labelledby="port-number-text-field-id"
       className="portNumberField"
       data-automation-id="device-connect-port-number-field"
       id="port-number-text-field-id"
@@ -108,7 +106,6 @@ exports[`DeviceConnectPortEntryTest renders with "Connecting" 1`] = `
     className="deviceConnectPortEntryBody"
   >
     <MaskedTextField
-      aria-labelledby="port-number-text-field-id"
       className="portNumberField"
       data-automation-id="device-connect-port-number-field"
       id="port-number-text-field-id"
@@ -151,7 +148,6 @@ exports[`DeviceConnectPortEntryTest renders with "Connecting" and some text in t
     className="deviceConnectPortEntryBody"
   >
     <MaskedTextField
-      aria-labelledby="port-number-text-field-id"
       className="portNumberField"
       data-automation-id="device-connect-port-number-field"
       id="port-number-text-field-id"
@@ -194,7 +190,6 @@ exports[`DeviceConnectPortEntryTest renders with "Default" 1`] = `
     className="deviceConnectPortEntryBody"
   >
     <MaskedTextField
-      aria-labelledby="port-number-text-field-id"
       className="portNumberField"
       data-automation-id="device-connect-port-number-field"
       id="port-number-text-field-id"
@@ -237,7 +232,6 @@ exports[`DeviceConnectPortEntryTest renders with "Default" and some text in the 
     className="deviceConnectPortEntryBody"
   >
     <MaskedTextField
-      aria-labelledby="port-number-text-field-id"
       className="portNumberField"
       data-automation-id="device-connect-port-number-field"
       id="port-number-text-field-id"
@@ -280,7 +274,6 @@ exports[`DeviceConnectPortEntryTest renders with "Error" 1`] = `
     className="deviceConnectPortEntryBody"
   >
     <MaskedTextField
-      aria-labelledby="port-number-text-field-id"
       className="portNumberField"
       data-automation-id="device-connect-port-number-field"
       id="port-number-text-field-id"
@@ -323,7 +316,6 @@ exports[`DeviceConnectPortEntryTest renders with "Error" and some text in the po
     className="deviceConnectPortEntryBody"
   >
     <MaskedTextField
-      aria-labelledby="port-number-text-field-id"
       className="portNumberField"
       data-automation-id="device-connect-port-number-field"
       id="port-number-text-field-id"

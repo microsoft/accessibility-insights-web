@@ -49,7 +49,6 @@ export class DeviceConnectPortEntry extends React.Component<
                     <MaskedTextField
                         id={textFieldId}
                         data-automation-id={deviceConnectPortNumberFieldAutomationId}
-                        aria-labelledby={textFieldId}
                         onChange={this.onPortTextChanged}
                         placeholder="Ex: 12345"
                         className={styles.portNumberField}
