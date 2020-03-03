@@ -134,6 +134,7 @@ describe('text alternative', () => {
                 imageType: '<img>',
                 accessibleName: 'accessibleName',
                 accessibleDescription: 'hello',
+                role: null,
             };
             dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
             let result;
