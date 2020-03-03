@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { IRenderFunction } from '@uifabric/utilities';
 import { has } from 'lodash';
-import { ActionButton } from 'office-ui-fabric-react';
 import {
     CheckboxVisibility,
     ConstrainMode,
@@ -15,6 +14,7 @@ import { Spinner, SpinnerSize } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
+import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import {
     AssessmentNavState,
@@ -124,13 +124,13 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
         );
 
         return (
-            <ActionButton
+            <InsightsCommandButton
                 iconProps={{ iconName: 'skypeCheck' }}
                 onClick={this.onPassUnmarkedInstances}
                 disabled={disabled}
             >
                 Pass unmarked instances
-            </ActionButton>
+            </InsightsCommandButton>
         );
     }
 

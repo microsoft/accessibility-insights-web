@@ -10,7 +10,7 @@ exports[`StartOverComponentFactory getStartOverComponentForAssessments renders 1
 `;
 
 exports[`StartOverComponentFactory getStartOverComponentPropsForFastPass renders scanResults is not null, scanning is false => component matches snapshot 1`] = `
-<CustomizedActionButton
+<InsightsCommandButton
   data-automation-id="start-over"
   disabled={false}
   iconProps={
@@ -21,11 +21,11 @@ exports[`StartOverComponentFactory getStartOverComponentPropsForFastPass renders
   onClick={[Function]}
 >
   Start over
-</CustomizedActionButton>
+</InsightsCommandButton>
 `;
 
 exports[`StartOverComponentFactory getStartOverComponentPropsForFastPass renders scanResults is not null, scanning is true => component matches snapshot 1`] = `
-<CustomizedActionButton
+<InsightsCommandButton
   data-automation-id="start-over"
   disabled={true}
   iconProps={
@@ -36,11 +36,11 @@ exports[`StartOverComponentFactory getStartOverComponentPropsForFastPass renders
   onClick={[Function]}
 >
   Start over
-</CustomizedActionButton>
+</InsightsCommandButton>
 `;
 
 exports[`StartOverComponentFactory getStartOverComponentPropsForFastPass renders scanResults is null => component matches snapshot 1`] = `
-<CustomizedActionButton
+<InsightsCommandButton
   data-automation-id="start-over"
   disabled={false}
   iconProps={
@@ -51,5 +51,5 @@ exports[`StartOverComponentFactory getStartOverComponentPropsForFastPass renders
   onClick={[Function]}
 >
   Start over
-</CustomizedActionButton>
+</InsightsCommandButton>
 `;

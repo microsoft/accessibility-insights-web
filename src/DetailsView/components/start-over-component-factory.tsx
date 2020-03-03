@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { StartOverDropdown, StartOverProps } from 'DetailsView/components/start-over-dropdown';
-import { ActionButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 export function getStartOverComponentForAssessment(props: CommandBarProps): JSX.Element {
@@ -27,7 +27,7 @@ export function getStartOverComponentForFastPass(props: CommandBarProps): JSX.El
     const detailsViewActionMessageCreator = props.deps.detailsViewActionMessageCreator;
 
     return (
-        <ActionButton
+        <InsightsCommandButton
             iconProps={{ iconName: 'Refresh' }}
             onClick={event =>
                 detailsViewActionMessageCreator.rescanVisualization(selectedTest, event)
@@ -36,6 +36,6 @@ export function getStartOverComponentForFastPass(props: CommandBarProps): JSX.El
             data-automation-id={startOverAutomationId}
         >
             Start over
-        </ActionButton>
+        </InsightsCommandButton>
     );
 }
