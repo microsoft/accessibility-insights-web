@@ -69,7 +69,7 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
                 key: DetailsViewPivotType.assessment,
                 text: 'Assessment',
                 data: {
-                    icon: 'testBeaker',
+                    icon: 'testBeakerSolid',
                 },
             },
         ];
