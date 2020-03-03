@@ -24,6 +24,9 @@ import {
 import { DictionaryStringTo } from '../../types/common-types';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 
+export const passUnmarkedInstancesButtonAutomationId =
+    'assessment-instance-table-pass-unmarked-instances-button';
+
 export interface AssessmentInstanceTableProps {
     instancesMap: DictionaryStringTo<GeneratedAssessmentInstance>;
     assessmentNavState: AssessmentNavState;
@@ -125,6 +128,7 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
 
         return (
             <InsightsCommandButton
+                data-automation-id={passUnmarkedInstancesButtonAutomationId}
                 iconProps={{ iconName: 'skypeCheck' }}
                 onClick={this.onPassUnmarkedInstances}
                 disabled={disabled}
