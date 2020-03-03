@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { DetailsList, IColumn } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { IMock, Mock, MockBehavior, Times, It } from 'typemoq';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import {
     AssessmentDefaultMessageGenerator,
