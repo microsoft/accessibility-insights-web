@@ -1,0 +1,9 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../../common/styles/colors.scss';
+
+button.insights-command-button {
+    &:disabled {
+        color: $disabled-text;
+    }
+}

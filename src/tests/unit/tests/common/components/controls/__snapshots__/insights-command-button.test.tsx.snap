@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InsightsCommandButton renders per snapshot with extra className combined with its own 1`] = `
+<CustomizedActionButton
+  className="insightsCommandButton test-extra-class-name"
+/>
+`;
+
+exports[`InsightsCommandButton renders per snapshot with props passed through 1`] = `
+<CustomizedActionButton
+  className="insightsCommandButton"
+  text="test-text"
+/>
+`;

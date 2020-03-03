@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ActionButton } from 'office-ui-fabric-react';
 import { CheckboxVisibility, ConstrainMode, DetailsList, IColumn } from 'office-ui-fabric-react';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react';
 import * as React from 'react';
@@ -12,6 +11,7 @@ import {
     IGetMessageGenerator,
     IMessageGenerator,
 } from 'assessments/assessment-default-message-generator';
+import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { AssessmentResultType, GeneratedAssessmentInstance } from '../../../../../common/types/store-data/assessment-result-data';
 import {
@@ -108,9 +108,13 @@ describe('AssessmentInstanceTableTest', () => {
 
         const expected = (
             <div>
-                <ActionButton iconProps={{ iconName: 'skypeCheck' }} onClick={testObject.getOnPassUnmarkedInstances()} disabled={true}>
+                <InsightsCommandButton
+                    iconProps={{ iconName: 'skypeCheck' }}
+                    onClick={testObject.getOnPassUnmarkedInstances()}
+                    disabled={true}
+                >
                     Pass unmarked instances
-                </ActionButton>
+                </InsightsCommandButton>
                 <DetailsList
                     ariaLabelForGrid="Use arrow keys to navigate inside the instances grid"
                     items={items}
