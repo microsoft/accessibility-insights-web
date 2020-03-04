@@ -23,6 +23,8 @@ export const AutomatedChecksViewSelectors = {
         `${nthRuleGroup(position)} [data-automation-id="${cardsRuleIdAutomationId}"]`,
     nthRuleGroupInstances: (position: number) =>
         `${nthRuleGroup(position)} [data-automation-id="${instanceCardAutomationId}"]`,
+
+    settingsButton: 'button[aria-label="settings"]',
 };
 
 export const ScreenshotViewSelectors = {
