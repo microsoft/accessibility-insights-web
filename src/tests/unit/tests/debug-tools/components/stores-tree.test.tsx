@@ -2,7 +2,12 @@
 // Licensed under the MIT License.
 import { BaseStore } from 'common/base-store';
 import { StoreActionMessageCreator } from 'common/message-creators/store-action-message-creator';
-import { columns, StoresTree, StoresTreeProps, StoresTreeState } from 'debug-tools/components/stores-tree';
+import {
+    columns,
+    StoresTree,
+    StoresTreeProps,
+    StoresTreeState,
+} from 'debug-tools/components/stores-tree';
 import { shallow } from 'enzyme';
 import { GroupedList } from 'office-ui-fabric-react';
 import * as React from 'react';
@@ -39,7 +44,9 @@ describe('StoresTree', () => {
         it('should add listeners to the stores', () => {
             shallow(<StoresTree {...props} />);
 
-            storeMocks.forEach(mock => mock.verify(store => store.addChangedListener(itIsFunction), Times.once()));
+            storeMocks.forEach(mock =>
+                mock.verify(store => store.addChangedListener(itIsFunction), Times.once()),
+            );
         });
 
         it('should call to get all the states', () => {
@@ -116,7 +123,9 @@ describe('StoresTree', () => {
 
         let storeListener: Function;
 
-        storeMock.setup(store => store.addChangedListener(itIsFunction)).callback(listener => (storeListener = listener));
+        storeMock
+            .setup(store => store.addChangedListener(itIsFunction))
+            .callback(listener => (storeListener = listener));
 
         storeMock.setup(store => store.getId()).returns(() => 'test-store-id');
         storeMock
