@@ -103,7 +103,7 @@ export const ruleToLinkConfiguration: DictionaryStringTo<HyperlinkDefinition[]> 
     'css-orientation-lock': [BestPractice],
     'aria-hidden-focus': [link.WCAG_4_1_2, link.WCAG_1_3_1],
     'form-field-multiple-labels': [BestPractice],
-    'label-content-name-mismatch': [link.WCAG_2_5_3],
+    'label-content-name-mismatch': [BestPractice],
     'landmark-complementary-is-top-level': [link.WCAG_1_3_1, BestPractice],
     'svg-img-alt': [link.WCAG_1_1_1],
     'aria-roledescription': [link.WCAG_4_1_2],
