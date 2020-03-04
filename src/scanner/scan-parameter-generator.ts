@@ -12,6 +12,7 @@ export class ScanParameterGenerator {
             restoreScroll: true,
             runOnly: {
                 type: 'rule',
+                values: [],
             },
         };
 
