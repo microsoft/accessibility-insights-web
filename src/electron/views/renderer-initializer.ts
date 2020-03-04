@@ -333,10 +333,10 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             documentManipulator,
         };
 
+        window.insightsUserConfiguration = new UserConfigurationController(interpreter);
+
         const renderer = new RootContainerRenderer(ReactDOM.render, document, deps);
         renderer.render();
-
-        window.insightsUserConfiguration = new UserConfigurationController(interpreter);
 
         sendAppInitializedTelemetryEvent(telemetryEventHandler, platformInfo);
 

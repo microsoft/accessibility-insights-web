@@ -3,6 +3,7 @@
 import { Application } from 'spectron';
 import { DeviceConnectionDialogController } from 'tests/electron/common/view-controllers/device-connection-dialog-controller';
 import { testResourceServerConfig } from 'tests/electron/setup/test-resource-server-config';
+import { DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS } from 'tests/electron/setup/timeouts';
 import * as WebDriverIO from 'webdriverio';
 import { dismissTelemetryOptInDialog } from '../dismiss-telemetry-opt-in-dialog';
 import { AutomatedChecksViewController } from './automated-checks-view-controller';
@@ -48,6 +49,26 @@ export class AppController {
     public async setHighContrastMode(enableHighContrast: boolean): Promise<void> {
         await this.app.webContents.executeJavaScript(
             `window.insightsUserConfiguration.setHighContrastMode(${enableHighContrast})`,
+        );
+    }
+
+    public async waitForHighContrastMode(expectedHighContrastMode: boolean): Promise<void> {
+        const highContrastThemeClass = 'high-contrast-theme';
+
+        await this.client.waitUntil(
+            async () => {
+                const classes = await this.client.$('body').getAttribute('class');
+
+                if (expectedHighContrastMode) {
+                    return classes.includes(highContrastThemeClass);
+                } else {
+                    return !classes.includes(highContrastThemeClass);
+                }
+            },
+            DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS,
+            `was expecting body element ${
+                expectedHighContrastMode ? 'with' : 'without'
+            } class high-contrast-theme`,
         );
     }
 }
