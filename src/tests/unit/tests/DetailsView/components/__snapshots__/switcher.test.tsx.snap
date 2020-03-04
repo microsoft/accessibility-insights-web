@@ -11,7 +11,7 @@ Array [
   },
   Object {
     "data": Object {
-      "icon": "testBeaker",
+      "icon": "testBeakerSolid",
     },
     "key": 2,
     "text": "Assessment",

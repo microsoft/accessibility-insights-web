@@ -2,6 +2,11 @@
 // Licensed under the MIT License.
 @import '../../common/styles/colors.scss';
 
+@mixin title-border {
+    border: 1px $neutral-0 solid;
+    border-radius: 2px;
+}
+
 // The two layers of class selector and the explicit enumeration of the states are both
 // required to beat the specificity of office fabric styles
 .header-switcher .header-switcher-dropdown {
@@ -11,11 +16,12 @@
     &:active,
     &:hover:active {
         :global(.ms-Dropdown-title) {
-            background-color: $ada-brand-variant;
+            @include title-border;
+
+            background-color: $ada-brand-color;
             height: 32px;
-            border: 2px $switcher-border solid;
+
             box-sizing: border-box;
-            border-radius: 2px;
             width: 165px;
             color: $neutral-0;
             i {
@@ -23,7 +29,8 @@
             }
         }
         :global(.ms-Dropdown-caretDownWrapper) {
-            top: 4px;
+            top: 2px;
+            right: 10px;
         }
         :global(.ms-Dropdown-caretDown) {
             color: $neutral-0;
@@ -31,8 +38,10 @@
     }
 
     :global(.ms-Dropdown):focus::after {
-        border: 2px $switcher-focus-border solid;
-        border-style: dotted;
+        @include title-border;
+
+        outline: 1px $neutral-0 solid;
+        outline-offset: -5px;
     }
 }
 
