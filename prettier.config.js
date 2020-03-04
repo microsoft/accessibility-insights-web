@@ -10,7 +10,6 @@ module.exports = {
         {
             files: [
                 'src/content/**/*',
-                'src/tests/unit/tests/common/**/*',
                 'src/tests/unit/tests/DetailsView/**/*',
                 'src/tests/unit/tests/electron/**/*',
                 'src/tests/unit/tests/injected/**/*',
