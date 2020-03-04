@@ -73,10 +73,16 @@ describe('AutomatedChecksView', () => {
         await assertExpandedRuleGroup(3, 'TouchSizeWcag', 1);
     });
 
-    it('should not contain any accessibility issues', async () => {
-        const violations = await scanForAccessibilityIssues(automatedChecksView);
-        expect(violations).toStrictEqual([]);
-    });
+    it.each([true, false])(
+        'should pass accessibility validation with highContrastMode=%s',
+        async highContrastMode => {
+            await app.setHighContrastMode(highContrastMode);
+            await app.waitForHighContrastMode(highContrastMode);
+
+            const violations = await scanForAccessibilityIssues(automatedChecksView);
+            expect(violations).toStrictEqual([]);
+        },
+    );
 
     async function assertExpandedRuleGroup(
         position: number,
