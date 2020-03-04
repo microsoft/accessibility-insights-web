@@ -3,8 +3,7 @@
 @import '../../common/styles/colors.scss';
 
 :global(.ms-Button).gear-menu-button:focus::after {
-    border: 2px $neutral-0 solid;
-    border-style: dotted;
+    border: 1px $neutral-0 solid;
 }
 
 :global(.high-contrast-theme) {
