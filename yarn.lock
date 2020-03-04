@@ -7030,10 +7030,10 @@ object.values@^1.1.1:
     function-bind "^1.1.1"
     has "^1.0.3"
 
-office-ui-fabric-react@7.98.3:
-  version "7.98.3"
-  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-7.98.3.tgz#e48fc8286cf1e4fc597a230cd7e01c38c644561b"
-  integrity sha512-7z2K60sq6+Obu8pyDvTA3Sib8CUsMMpcPO7lFbVz1THJadL0kSnwATiPPARyYdnLpCuD3UScDDksCgmGjW+zyg==
+office-ui-fabric-react@7.98.4:
+  version "7.98.4"
+  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-7.98.4.tgz#c19aad124a4a8d7b4e00b3fda827a47ea1257e31"
+  integrity sha512-W10S73NaZP1Ls5/yp5aOUN8w5Up6aUi2HG1aakjdOW/kDl4jF8cwxHMENdr1OIkjSLKnXqQhLgikvcdQu7Vxog==
   dependencies:
     "@fluentui/react-focus" "^7.1.2"
     "@microsoft/load-themed-styles" "^1.10.26"
