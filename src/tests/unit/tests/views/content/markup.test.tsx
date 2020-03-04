@@ -139,7 +139,11 @@ describe('ContentPage', () => {
                 const wrapper = shallow(
                     <PassFail
                         failText={<p>I FAILED :(</p>}
-                        failExample={<CodeExample title="How I failed">This is the failure [example].</CodeExample>}
+                        failExample={
+                            <CodeExample title="How I failed">
+                                This is the failure [example].
+                            </CodeExample>
+                        }
                         passText={<p>I PASSED!</p>}
                         passExample={
                             <CodeExample
@@ -170,7 +174,10 @@ describe('ContentPage', () => {
             it('registers click with event', () => {
                 wrapper.simulate('click');
 
-                contentActionMessageCreatorMock.verify(m => m.openContentHyperLink(It.isAny(), href), Times.once());
+                contentActionMessageCreatorMock.verify(
+                    m => m.openContentHyperLink(It.isAny(), href),
+                    Times.once(),
+                );
             });
         });
 

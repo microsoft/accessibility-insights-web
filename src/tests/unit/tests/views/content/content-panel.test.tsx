@@ -24,7 +24,9 @@ describe('ContentPanel', () => {
     };
 
     it('renders from content', () => {
-        const result = shallow(<ContentPanel deps={deps} content={content.for.testing} isOpen={true} />);
+        const result = shallow(
+            <ContentPanel deps={deps} content={content.for.testing} isOpen={true} />,
+        );
         expect(result.debug()).toMatchSnapshot();
     });
 

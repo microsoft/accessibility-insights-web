@@ -17,7 +17,6 @@ module.exports = {
                 'src/tests/unit/tests/issue-filing/**/*',
                 'src/tests/unit/tests/popup/**/*',
                 'src/tests/unit/tests/reports/**/*',
-                'src/tests/unit/tests/views/**/*',
             ],
             options: {
                 printWidth: 140,
