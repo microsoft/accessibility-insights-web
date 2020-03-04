@@ -11,19 +11,13 @@ describe('ruleToLinkConfiguration', () => {
     const allAxeRules: string[] = axe.getRules().map(rule => rule.ruleId);
     const bestPracticeAxeRules: string[] = axe.getRules(['best-practice']).map(rule => rule.ruleId);
 
-    // We're grandfathering this case in while we validate why axe considers it best-practice
-    const bestPracticeAxeRulesWeWantToEnforceAnyway = [];
-
     it.each(allAxeRules)(`should have a mapping for axe rule %s`, rule => {
         expect(ruleToLinkConfiguration[rule]).toBeDefined();
     });
 
-    it.each(difference(bestPracticeAxeRules, bestPracticeAxeRulesWeWantToEnforceAnyway))(
-        `should map axe best-practice rule %s as BestPractice`,
-        rule => {
-            expect(hasBestPracticeLink(ruleToLinkConfiguration[rule])).toBe(true);
-        },
-    );
+    it.each(bestPracticeAxeRules)(`should map axe best-practice rule %s as BestPractice`, rule => {
+        expect(hasBestPracticeLink(ruleToLinkConfiguration[rule])).toBe(true);
+    });
 
     function hasBestPracticeLink(links: HyperlinkDefinition[]): boolean {
         return links.findIndex(link => link.text === 'Best Practice') !== -1;
