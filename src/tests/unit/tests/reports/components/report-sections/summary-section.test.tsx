@@ -3,7 +3,10 @@
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { SummarySection, SummarySectionProps } from 'reports/components/report-sections/summary-section';
+import {
+    SummarySection,
+    SummarySectionProps,
+} from 'reports/components/report-sections/summary-section';
 
 describe('SummarySection', () => {
     const noViolations = [];

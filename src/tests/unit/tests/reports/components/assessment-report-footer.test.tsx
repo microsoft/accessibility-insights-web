@@ -2,7 +2,10 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { AssessmentReportFooter, AssessmentReportFooterProps } from 'reports/components/assessment-report-footer';
+import {
+    AssessmentReportFooter,
+    AssessmentReportFooterProps,
+} from 'reports/components/assessment-report-footer';
 
 describe('AssessmentReportFooter', () => {
     it('renders', () => {

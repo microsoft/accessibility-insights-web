@@ -5,7 +5,10 @@ import { AssessmentStoreData } from 'common/types/store-data/assessment-result-d
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import * as React from 'react';
-import { AssessmentReportHtmlGenerator, AssessmentReportHtmlGeneratorDeps } from 'reports/assessment-report-html-generator';
+import {
+    AssessmentReportHtmlGenerator,
+    AssessmentReportHtmlGeneratorDeps,
+} from 'reports/assessment-report-html-generator';
 import { ReportModel } from 'reports/assessment-report-model';
 import { AssessmentReportModelBuilder } from 'reports/assessment-report-model-builder';
 import { AssessmentReportModelBuilderFactory } from 'reports/assessment-report-model-builder-factory';
@@ -32,7 +35,9 @@ describe('AssessmentReportHtmlGenerator', () => {
         const description = 'generateHtml-description';
 
         const deps: AssessmentReportHtmlGeneratorDeps = {
-            outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
+            outcomeTypeSemanticsFromTestStatus: {
+                stub: 'outcomeTypeSemanticsFromTestStatus',
+            } as any,
         } as AssessmentReportHtmlGeneratorDeps;
 
         const modelBuilderMock = Mock.ofType(AssessmentReportModelBuilder, MockBehavior.Strict);
@@ -67,12 +72,22 @@ describe('AssessmentReportHtmlGenerator', () => {
         dateGetterMock.setup(dg => dg()).returns(() => testDate);
 
         factoryMock
-            .setup(f => f.create(It.isAny(), assessmentStoreData, tabStoreData, testDate, assessmentDefaultMessageGenerator))
+            .setup(f =>
+                f.create(
+                    It.isAny(),
+                    assessmentStoreData,
+                    tabStoreData,
+                    testDate,
+                    assessmentDefaultMessageGenerator,
+                ),
+            )
             .returns(() => modelBuilderMock.object);
 
         modelBuilderMock.setup(mb => mb.getReportModelData()).returns(() => model);
 
-        rendererMock.setup(r => r.renderToStaticMarkup(It.isObjectWith(expectedComponent))).returns(() => expectedBody);
+        rendererMock
+            .setup(r => r.renderToStaticMarkup(It.isObjectWith(expectedComponent)))
+            .returns(() => expectedBody);
 
         const testSubject = new AssessmentReportHtmlGenerator(
             deps,
