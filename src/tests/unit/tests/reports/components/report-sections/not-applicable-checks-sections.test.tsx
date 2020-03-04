@@ -15,7 +15,11 @@ describe('NotApplicableChecksSection', () => {
             deps: {} as SectionDeps,
             cardsViewData: {
                 cards: {
-                    inapplicable: [{} as CardRuleResult, {} as CardRuleResult, {} as CardRuleResult],
+                    inapplicable: [
+                        {} as CardRuleResult,
+                        {} as CardRuleResult,
+                        {} as CardRuleResult,
+                    ],
                     fail: [],
                     pass: [],
                     unknown: [],
