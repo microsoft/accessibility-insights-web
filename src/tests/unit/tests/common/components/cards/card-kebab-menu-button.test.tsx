@@ -96,6 +96,7 @@ describe('CardKebabMenuButtonTest', () => {
                 [testKey]: {},
             },
             enableHighContrast: false,
+            lastSelectedHighContrast: false,
             enableTelemetry: true,
             isFirstTime: true,
         };

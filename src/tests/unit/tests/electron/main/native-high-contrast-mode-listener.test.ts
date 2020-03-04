@@ -44,7 +44,7 @@ describe('NativeHighContrastModeListener', () => {
         mockNativeTheme.setup(m => m.shouldUseHighContrastColors).returns(() => initialState);
         testSubject.startListening();
 
-        mockMessageCreator.verify(m => m.setHighContrastMode(initialState), Times.once());
+        mockMessageCreator.verify(m => m.setNativeHighContrastMode(initialState), Times.once());
     });
 
     it('should send messages when the underlying high contrast state changes', () => {
@@ -56,7 +56,7 @@ describe('NativeHighContrastModeListener', () => {
         setNativeContrastMode(true);
 
         testSubjectOnNativeThemeUpdateHandler();
-        mockMessageCreator.verify(m => m.setHighContrastMode(true), Times.once());
+        mockMessageCreator.verify(m => m.setNativeHighContrastMode(true), Times.once());
     });
 
     it("should avoid sending messages for underlying state changes that don't impact high contrast mode", () => {
@@ -66,7 +66,7 @@ describe('NativeHighContrastModeListener', () => {
 
         // shouldUseHighContrastColors still false
         testSubjectOnNativeThemeUpdateHandler();
-        mockMessageCreator.verify(m => m.setHighContrastMode(It.isAny()), Times.never());
+        mockMessageCreator.verify(m => m.setNativeHighContrastMode(It.isAny()), Times.never());
     });
 
     it('should unregister all underlying event handlers on stopListening', () => {

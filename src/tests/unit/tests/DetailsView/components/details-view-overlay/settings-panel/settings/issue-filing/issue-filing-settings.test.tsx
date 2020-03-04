@@ -25,6 +25,7 @@ describe('IssueFilingSettings', () => {
             isFirstTime: true,
             enableTelemetry: true,
             enableHighContrast: true,
+            lastSelectedHighContrast: true,
             bugService: 'gitHub',
             bugServicePropertiesMap: { gitHub: { repository: 'test-repository' } },
         };

@@ -5,6 +5,7 @@ import {
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
+    SetNativeHighContrastModePayload,
     SetTelemetryStatePayload,
 } from 'background/actions/action-payloads';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
@@ -58,6 +59,21 @@ describe('UserConfigMessageCreator', () => {
             dispatcher => dispatcher.dispatchMessage(expectedMessage),
             Times.once(),
         );
+    });
+
+    it('dispatches message for setNativeHighContrastModeConfig', () => {
+        const enableHighContrast = true;
+        const payload: SetNativeHighContrastModePayload = {
+            enableHighContrast,
+        };
+        const expectedMessage: Message = {
+            messageType: Messages.UserConfig.SetNativeHighContrastConfig,
+            payload,
+        };
+
+        testSubject.setNativeHighContrastMode(enableHighContrast);
+
+        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
     });
 
     it('dispatches message for setIssueFilingService', () => {

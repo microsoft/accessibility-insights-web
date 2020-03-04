@@ -423,6 +423,7 @@ describe('DetailsViewContainer', () => {
             isFirstTime: false,
             enableTelemetry: true,
             enableHighContrast: false,
+            lastSelectedHighContrast: false,
             bugService: 'gitHub',
             bugServicePropertiesMap: { gitHub: { repository: 'gitHub-repository' } },
         };

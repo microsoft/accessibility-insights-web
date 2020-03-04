@@ -5,6 +5,7 @@ import {
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
+    SetNativeHighContrastModePayload,
 } from 'background/actions/action-payloads';
 import { UserConfigurationActions } from 'background/actions/user-configuration-actions';
 import { UserConfigurationActionCreator } from 'background/global-action-creators/user-configuration-action-creator';
@@ -50,6 +51,22 @@ describe('UserConfigurationActionCreator', () => {
         testSubject.setHighContrastMode(payload);
 
         setHighContrastConfigMock.verifyAll();
+    });
+
+    it('should SetHighContrastConfig message', () => {
+        const payload: SetNativeHighContrastModePayload = {
+            enableHighContrast: true,
+        };
+        const setNativeHighContrastConfigMock = createActionMock(payload);
+        const actionsMock = createActionsMock(
+            'setNativeHighContrastMode',
+            setNativeHighContrastConfigMock.object,
+        );
+        const testSubject = new UserConfigurationActionCreator(actionsMock.object);
+
+        testSubject.setNativeHighContrastMode(payload);
+
+        setNativeHighContrastConfigMock.verifyAll();
     });
 
     it('should SetBugService message', () => {
