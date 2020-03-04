@@ -3,7 +3,7 @@
 import { Application } from 'spectron';
 import { DeviceConnectionDialogController } from 'tests/electron/common/view-controllers/device-connection-dialog-controller';
 import { testResourceServerConfig } from 'tests/electron/setup/test-resource-server-config';
-import { DEFAULT_WAIT_FOR_ELEMENT_CLASS_TIMEOUT_MS } from 'tests/electron/setup/timeouts';
+import { DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS } from 'tests/electron/setup/timeouts';
 import * as WebDriverIO from 'webdriverio';
 import { dismissTelemetryOptInDialog } from '../dismiss-telemetry-opt-in-dialog';
 import { AutomatedChecksViewController } from './automated-checks-view-controller';
@@ -65,7 +65,7 @@ export class AppController {
                     return !classes.includes(highContrastThemeClass);
                 }
             },
-            DEFAULT_WAIT_FOR_ELEMENT_CLASS_TIMEOUT_MS,
+            DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS,
             `was expecting body element ${
                 expectedHighContrastMode ? 'with' : 'without'
             } class high-contrast-theme`,
