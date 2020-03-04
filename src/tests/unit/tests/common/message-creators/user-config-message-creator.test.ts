@@ -73,7 +73,10 @@ describe('UserConfigMessageCreator', () => {
 
         testSubject.setNativeHighContrastMode(enableHighContrast);
 
-        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
     });
 
     it('dispatches message for setIssueFilingService', () => {
