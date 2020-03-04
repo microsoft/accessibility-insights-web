@@ -138,6 +138,10 @@ export interface SetHighContrastModePayload extends BaseActionPayload {
     enableHighContrast: boolean;
 }
 
+export interface SetNativeHighContrastModePayload extends BaseActionPayload {
+    enableHighContrast: boolean;
+}
+
 export interface SetIssueFilingServicePayload extends BaseActionPayload {
     issueFilingServiceName: string;
 }

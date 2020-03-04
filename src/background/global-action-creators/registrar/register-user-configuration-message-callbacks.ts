@@ -23,6 +23,10 @@ export const registerUserConfigurationMessageCallback = (
         userConfigurationActionCreator.setHighContrastMode,
     );
     interpreter.registerTypeToPayloadCallback(
+        Messages.UserConfig.SetNativeHighContrastConfig,
+        userConfigurationActionCreator.setNativeHighContrastMode,
+    );
+    interpreter.registerTypeToPayloadCallback(
         Messages.UserConfig.SetIssueFilingService,
         userConfigurationActionCreator.setIssueFilingService,
     );
