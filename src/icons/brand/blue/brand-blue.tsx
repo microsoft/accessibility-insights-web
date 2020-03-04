@@ -5,8 +5,23 @@ import * as React from 'react';
 import { NamedFC } from '../../../common/react/named-fc';
 
 export const BrandBlue = NamedFC('BrandBlue', () => (
-    <svg role="img" aria-hidden="true" className="header-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="3" width="48" height="43">
+    <svg
+        role="img"
+        aria-hidden="true"
+        className="header-icon"
+        viewBox="0 0 48 48"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <mask
+            id="mask0"
+            mask-type="alpha"
+            maskUnits="userSpaceOnUse"
+            x="0"
+            y="3"
+            width="48"
+            height="43"
+        >
             <path
                 d="M43.8309 27.1383C49.3148 21.6544 49.3148 12.7632 43.8309 7.27931C38.347 1.7954 29.4558 1.7954 23.9719 7.27931C18.488 1.79541 9.59684 1.7954 4.11293 7.27931C-1.37098 12.7632 -1.37098 21.6544 4.11293 27.1383L21.986 45.0114C23.0828 46.1082 24.861 46.1082 25.9578 45.0114L43.8309 27.1383Z"
                 fill="white"
@@ -17,8 +32,23 @@ export const BrandBlue = NamedFC('BrandBlue', () => (
                 d="M43.8309 27.1383C49.3148 21.6544 49.3148 12.7632 43.8309 7.27931C38.347 1.7954 29.4558 1.7954 23.9719 7.27931C18.488 1.79541 9.59684 1.7954 4.11293 7.27931C-1.37098 12.7632 -1.37098 21.6544 4.11293 27.1383L21.986 45.0114C23.0828 46.1082 24.861 46.1082 25.9578 45.0114L43.8309 27.1383Z"
                 fill="#004880"
             />
-            <rect x="43.9494" y="7.24561" width="14.0948" height="42.2726" transform="rotate(45 43.9494 7.24561)" fill="#003064" />
-            <mask id="mask1" mask-type="alpha" maskUnits="userSpaceOnUse" x="-1" y="3" width="25" height="25">
+            <rect
+                x="43.9494"
+                y="7.24561"
+                width="14.0948"
+                height="42.2726"
+                transform="rotate(45 43.9494 7.24561)"
+                fill="#003064"
+            />
+            <mask
+                id="mask1"
+                mask-type="alpha"
+                maskUnits="userSpaceOnUse"
+                x="-1"
+                y="3"
+                width="25"
+                height="25"
+            >
                 <path
                     d="M23.9718 7.27863L4.11284 27.1376C-1.37106 21.6537 -1.37106 12.7625 4.11284 7.27863C9.59675 1.79473 18.4879 1.79473 23.9718 7.27863Z"
                     fill="#CFEBFF"
@@ -37,7 +67,14 @@ export const BrandBlue = NamedFC('BrandBlue', () => (
                     d="M23.9718 7.27863L4.11284 27.1376C-1.37106 21.6537 -1.37106 12.7625 4.11284 7.27863C9.59675 1.79473 18.4879 1.79473 23.9718 7.27863Z"
                     fill="url(#paint1_linear)"
                 />
-                <rect x="4.54834" y="6.88208" width="16.3577" height="42.2726" transform="rotate(-45 4.54834 6.88208)" fill="#003064" />
+                <rect
+                    x="4.54834"
+                    y="6.88208"
+                    width="16.3577"
+                    height="42.2726"
+                    transform="rotate(-45 4.54834 6.88208)"
+                    fill="#003064"
+                />
                 <rect
                     x="4.54834"
                     y="6.88208"
@@ -67,22 +104,50 @@ export const BrandBlue = NamedFC('BrandBlue', () => (
                 colorInterpolationFilters="sRGB"
             >
                 <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
+                <feColorMatrix
+                    in="SourceAlpha"
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                />
                 <feOffset dy="0.725705" />
                 <feGaussianBlur stdDeviation="0.40317" />
-                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0.027451 0 0 0 0 0.0470588 0 0 0 0.3 0" />
+                <feColorMatrix
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0.027451 0 0 0 0 0.0470588 0 0 0 0.3 0"
+                />
                 <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
                 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
             </filter>
-            <linearGradient id="paint0_linear" x1="14.3166" y1="16.8744" x2="5.92409" y2="8.23504" gradientUnits="userSpaceOnUse">
+            <linearGradient
+                id="paint0_linear"
+                x1="14.3166"
+                y1="16.8744"
+                x2="5.92409"
+                y2="8.23504"
+                gradientUnits="userSpaceOnUse"
+            >
                 <stop offset="0" stopColor="#073A5F" stopOpacity="0.3" />
                 <stop offset="1" stopColor="#CFEBFF" stopOpacity="0" />
             </linearGradient>
-            <linearGradient id="paint1_linear" x1="14.3166" y1="16.8744" x2="4.4082" y2="6.85716" gradientUnits="userSpaceOnUse">
+            <linearGradient
+                id="paint1_linear"
+                x1="14.3166"
+                y1="16.8744"
+                x2="4.4082"
+                y2="6.85716"
+                gradientUnits="userSpaceOnUse"
+            >
                 <stop offset="0" stopColor="#00070C" stopOpacity="0.29" />
                 <stop offset="1" stopColor="#004880" stopOpacity="0" />
             </linearGradient>
-            <linearGradient id="paint2_linear" x1="11.3179" y1="20.1024" x2="11.2867" y2="7.1103" gradientUnits="userSpaceOnUse">
+            <linearGradient
+                id="paint2_linear"
+                x1="11.3179"
+                y1="20.1024"
+                x2="11.2867"
+                y2="7.1103"
+                gradientUnits="userSpaceOnUse"
+            >
                 <stop offset="0" stopColor="#00070C" stopOpacity="0.29" />
                 <stop offset="1" stopColor="#003064" stopOpacity="0" />
             </linearGradient>
