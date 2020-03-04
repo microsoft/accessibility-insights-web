@@ -95,6 +95,7 @@ export class Messages {
     public static readonly UserConfig = {
         SetTelemetryConfig: `${messagePrefix}/userConfig/setTelemetryConfig`,
         SetHighContrastConfig: `${messagePrefix}/userConfig/setHighContrastConfig`,
+        SetNativeHighContrastConfig: `${messagePrefix}/userConfig/setNativeHighContrastConfig`,
         SetIssueFilingService: `${messagePrefix}/userConfig/setIssueFilingService`,
         SetIssueFilingServiceProperty: `${messagePrefix}/userConfig/setIssueFilingServiceProperty`,
         SaveIssueFilingSettings: `${messagePrefix}/userConfig/saveIssueFilingSettings`,

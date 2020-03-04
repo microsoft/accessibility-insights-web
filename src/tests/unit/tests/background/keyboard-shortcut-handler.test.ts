@@ -95,6 +95,7 @@ describe('KeyboardShortcutHandler', () => {
                     isFirstTime: simulatedIsFirstTimeUserConfiguration,
                     enableTelemetry: true,
                     enableHighContrast: false,
+                    lastSelectedHighContrast: false,
                     bugService: 'none',
                     bugServicePropertiesMap: {},
                 };
