@@ -25,6 +25,9 @@ describe('PathSnippetActionMessageCreatorTest', () => {
         };
 
         testSubject.addCorrespondingSnippet(snippet);
-        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
     });
 });

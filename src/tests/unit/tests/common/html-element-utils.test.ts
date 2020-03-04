@@ -75,7 +75,9 @@ describe('HTMLElementUtilsTest', () => {
 
         const expectedElements = HTMLCollectionOfBuilder.create(elements);
 
-        const querySelectorAllMock = Mock.ofInstance((_: string) => null as HTMLCollectionOf<Element>);
+        const querySelectorAllMock = Mock.ofInstance(
+            (_: string) => null as HTMLCollectionOf<Element>,
+        );
         querySelectorAllMock.setup(qs => qs(selector)).returns(() => expectedElements);
 
         const dom = {

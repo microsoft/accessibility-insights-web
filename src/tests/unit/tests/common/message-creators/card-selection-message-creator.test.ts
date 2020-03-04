@@ -1,6 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BaseActionPayload, CardSelectionPayload, RuleExpandCollapsePayload } from 'background/actions/action-payloads';
+import {
+    BaseActionPayload,
+    CardSelectionPayload,
+    RuleExpandCollapsePayload,
+} from 'background/actions/action-payloads';
 import { BaseTelemetryData, TelemetryEventSource } from 'common/extension-telemetry-events';
 import { Message } from 'common/message';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
@@ -23,7 +27,11 @@ describe('Card Selection Message Creator', () => {
         sourceStub = -1;
         eventStub = {} as React.SyntheticEvent;
         telemetryStub = {} as BaseTelemetryData;
-        testSubject = new CardSelectionMessageCreator(dispatcherMock.object, telemetryDataFactoryMock.object, sourceStub);
+        testSubject = new CardSelectionMessageCreator(
+            dispatcherMock.object,
+            telemetryDataFactoryMock.object,
+            sourceStub,
+        );
     });
 
     it('dispatches message for toggleCardSelection', () => {
@@ -40,7 +48,9 @@ describe('Card Selection Message Creator', () => {
             payload,
         };
 
-        telemetryDataFactoryMock.setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub)).returns(() => telemetryStub);
+        telemetryDataFactoryMock
+            .setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub))
+            .returns(() => telemetryStub);
 
         testSubject.toggleCardSelection(ruleId, resultInstanceUid, eventStub);
 
@@ -59,7 +69,9 @@ describe('Card Selection Message Creator', () => {
             payload,
         };
 
-        telemetryDataFactoryMock.setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub)).returns(() => telemetryStub);
+        telemetryDataFactoryMock
+            .setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub))
+            .returns(() => telemetryStub);
 
         testSubject.toggleRuleExpandCollapse(ruleId, eventStub);
 
@@ -76,7 +88,9 @@ describe('Card Selection Message Creator', () => {
             payload,
         };
 
-        telemetryDataFactoryMock.setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub)).returns(() => telemetryStub);
+        telemetryDataFactoryMock
+            .setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub))
+            .returns(() => telemetryStub);
 
         testSubject.collapseAllRules(eventStub);
 
@@ -93,7 +107,9 @@ describe('Card Selection Message Creator', () => {
             payload,
         };
 
-        telemetryDataFactoryMock.setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub)).returns(() => telemetryStub);
+        telemetryDataFactoryMock
+            .setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub))
+            .returns(() => telemetryStub);
 
         testSubject.expandAllRules(eventStub);
 
@@ -110,7 +126,9 @@ describe('Card Selection Message Creator', () => {
             payload,
         };
 
-        telemetryDataFactoryMock.setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub)).returns(() => telemetryStub);
+        telemetryDataFactoryMock
+            .setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub))
+            .returns(() => telemetryStub);
 
         testSubject.toggleVisualHelper(eventStub);
 

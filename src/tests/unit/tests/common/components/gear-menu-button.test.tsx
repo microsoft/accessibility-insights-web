@@ -52,23 +52,42 @@ describe('GearMenuButton', () => {
         });
 
         it('handle settings menu item click', () => {
-            dropdownClickHandlerMock.verify(handler => handler.openSettingsPanelHandler(It.isAny()), Times.never());
+            dropdownClickHandlerMock.verify(
+                handler => handler.openSettingsPanelHandler(It.isAny()),
+                Times.never(),
+            );
             findMenuItemByKey('settings').onClick(eventStub);
-            dropdownClickHandlerMock.verify(handler => handler.openSettingsPanelHandler(eventStub), Times.once());
+            dropdownClickHandlerMock.verify(
+                handler => handler.openSettingsPanelHandler(eventStub),
+                Times.once(),
+            );
         });
 
         it('handle preview features menu item click', () => {
-            dropdownClickHandlerMock.verify(handler => handler.openPreviewFeaturesPanelHandler(It.isAny()), Times.never());
+            dropdownClickHandlerMock.verify(
+                handler => handler.openPreviewFeaturesPanelHandler(It.isAny()),
+                Times.never(),
+            );
             findMenuItemByKey('preview-features').onClick(eventStub);
-            dropdownClickHandlerMock.verify(handler => handler.openPreviewFeaturesPanelHandler(eventStub), Times.once());
+            dropdownClickHandlerMock.verify(
+                handler => handler.openPreviewFeaturesPanelHandler(eventStub),
+                Times.once(),
+            );
         });
 
         it('handle scoping menu item click', () => {
-            dropdownClickHandlerMock.verify(handler => handler.openScopingPanelHandler(It.isAny()), Times.never());
+            dropdownClickHandlerMock.verify(
+                handler => handler.openScopingPanelHandler(It.isAny()),
+                Times.never(),
+            );
             findMenuItemByKey('scoping-feature').onClick(eventStub);
-            dropdownClickHandlerMock.verify(handler => handler.openScopingPanelHandler(eventStub), Times.once());
+            dropdownClickHandlerMock.verify(
+                handler => handler.openScopingPanelHandler(eventStub),
+                Times.once(),
+            );
         });
 
-        const findMenuItemByKey = (key: string) => buttonProps.menuProps.items.find(item => item.key === key);
+        const findMenuItemByKey = (key: string) =>
+            buttonProps.menuProps.items.find(item => item.key === key);
     });
 });

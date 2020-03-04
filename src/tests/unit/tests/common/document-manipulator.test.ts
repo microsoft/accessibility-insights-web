@@ -8,7 +8,9 @@ describe('DocumentManipulator', () => {
     describe('setShortcutIcon', () => {
         it("updates the document's pre-existing link tag", () => {
             const expectedHref = 'defaultIcon.png';
-            const jsdom = new JSDOM('<html><head><link rel="shortcut icon" type="image/x-icon" href="badIcon.png" /></head></html>');
+            const jsdom = new JSDOM(
+                '<html><head><link rel="shortcut icon" type="image/x-icon" href="badIcon.png" /></head></html>',
+            );
             const document = jsdom.window.document;
             const setter = new DocumentManipulator(document);
 

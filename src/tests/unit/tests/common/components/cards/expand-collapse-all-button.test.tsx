@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ExpandCollapseAllButton, ExpandCollapseAllButtonDeps } from 'common/components/cards/expand-collapse-all-button';
+import {
+    ExpandCollapseAllButton,
+    ExpandCollapseAllButtonDeps,
+} from 'common/components/cards/expand-collapse-all-button';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import { shallow } from 'enzyme';
@@ -13,20 +16,32 @@ describe('ExpandCollapseAllButton', () => {
     const stubClickEvent = {} as SupportedMouseEvent;
 
     beforeEach(() => {
-        cardSelectionMessageCreatorMock = Mock.ofType(CardSelectionMessageCreator, MockBehavior.Strict);
+        cardSelectionMessageCreatorMock = Mock.ofType(
+            CardSelectionMessageCreator,
+            MockBehavior.Strict,
+        );
         deps = {
             cardSelectionMessageCreator: cardSelectionMessageCreatorMock.object,
         };
     });
 
-    it.each([true, false])('renders per snapshot with allCardsCollapsed %p', (allCardsCollapsed: boolean) => {
-        const testSubject = shallow(<ExpandCollapseAllButton deps={deps} allCardsCollapsed={allCardsCollapsed} />);
-        expect(testSubject.getElement()).toMatchSnapshot();
-    });
+    it.each([true, false])(
+        'renders per snapshot with allCardsCollapsed %p',
+        (allCardsCollapsed: boolean) => {
+            const testSubject = shallow(
+                <ExpandCollapseAllButton deps={deps} allCardsCollapsed={allCardsCollapsed} />,
+            );
+            expect(testSubject.getElement()).toMatchSnapshot();
+        },
+    );
 
     it('sends an expandAllRules message when clicked with all cards collapsed', () => {
-        cardSelectionMessageCreatorMock.setup(mock => mock.expandAllRules(stubClickEvent)).verifiable();
-        const testSubject = shallow(<ExpandCollapseAllButton deps={deps} allCardsCollapsed={true} />);
+        cardSelectionMessageCreatorMock
+            .setup(mock => mock.expandAllRules(stubClickEvent))
+            .verifiable();
+        const testSubject = shallow(
+            <ExpandCollapseAllButton deps={deps} allCardsCollapsed={true} />,
+        );
 
         testSubject.simulate('click', stubClickEvent);
 
@@ -34,8 +49,12 @@ describe('ExpandCollapseAllButton', () => {
     });
 
     it('sends a collapseAllRules message when clicked with some cards expanded', () => {
-        cardSelectionMessageCreatorMock.setup(mock => mock.collapseAllRules(stubClickEvent)).verifiable();
-        const testSubject = shallow(<ExpandCollapseAllButton deps={deps} allCardsCollapsed={false} />);
+        cardSelectionMessageCreatorMock
+            .setup(mock => mock.collapseAllRules(stubClickEvent))
+            .verifiable();
+        const testSubject = shallow(
+            <ExpandCollapseAllButton deps={deps} allCardsCollapsed={false} />,
+        );
 
         testSubject.simulate('click', stubClickEvent);
 

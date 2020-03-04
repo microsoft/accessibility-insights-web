@@ -26,7 +26,10 @@ describe('NavigatorUtils', () => {
             validateBrowserSpecReturnedWithUserAgent(userAgent, userAgent);
         });
 
-        function validateBrowserSpecReturnedWithUserAgent(userAgent: string, expected: string): void {
+        function validateBrowserSpecReturnedWithUserAgent(
+            userAgent: string,
+            expected: string,
+        ): void {
             const navigatorInfo = {
                 userAgent: userAgent,
             };
@@ -52,7 +55,9 @@ describe('NavigatorUtils', () => {
                 .returns(() => Promise.reject(testError))
                 .verifiable(Times.once());
 
-            loggerMock.setup(l => l.error('Error during copyToClipboard: Error: test text')).verifiable(Times.once());
+            loggerMock
+                .setup(l => l.error('Error during copyToClipboard: Error: test text'))
+                .verifiable(Times.once());
 
             await expect(testSubject.copyToClipboard('irrelevant')).rejects.toBe(testError);
 

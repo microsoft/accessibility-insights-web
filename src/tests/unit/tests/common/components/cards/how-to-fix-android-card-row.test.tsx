@@ -4,7 +4,10 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { HowToFixAndroidCardRow, HowToFixAndroidCardRowProps } from 'common/components/cards/how-to-fix-android-card-row';
+import {
+    HowToFixAndroidCardRow,
+    HowToFixAndroidCardRowProps,
+} from 'common/components/cards/how-to-fix-android-card-row';
 import { IMock, It, Mock } from 'typemoq';
 import { FixInstructionProcessor } from '../../../../../../common/components/fix-instruction-processor';
 
@@ -21,7 +24,8 @@ describe(HowToFixAndroidCardRow, () => {
             index: 22,
             propertyData: {
                 formatAsCode: ["isn't", 'notPresent', 'bold'],
-                howToFix: "This isn't a simple text. It has some words that will be marked as bold.",
+                howToFix:
+                    "This isn't a simple text. It has some words that will be marked as bold.",
             },
         };
 
@@ -51,7 +55,8 @@ describe(HowToFixAndroidCardRow, () => {
             index: 22,
             propertyData: {
                 formatAsCode: [value],
-                howToFix: "This isn't a simple text. It has some words that will be marked as bold.",
+                howToFix:
+                    "This isn't a simple text. It has some words that will be marked as bold.",
             },
         };
 
@@ -106,7 +111,8 @@ describe(HowToFixAndroidCardRow, () => {
             deps: { fixInstructionProcessor: fixInstructionProcessorMock.object },
             index: 22,
             propertyData: {
-                howToFix: "This isn't a simple text. It has some words that will be marked as bold.",
+                howToFix:
+                    "This isn't a simple text. It has some words that will be marked as bold.",
             },
         };
 
@@ -121,7 +127,8 @@ describe(HowToFixAndroidCardRow, () => {
             index: 22,
             propertyData: {
                 formatAsCode: ["isn'T", 'notPresent', 'bold1'],
-                howToFix: "This isn't a simple text. It has some words that will be marked as bold.",
+                howToFix:
+                    "This isn't a simple text. It has some words that will be marked as bold.",
             },
         };
 
@@ -132,14 +139,17 @@ describe(HowToFixAndroidCardRow, () => {
 
     it('renders with colors', () => {
         fixInstructionProcessorMock.reset();
-        fixInstructionProcessorMock.setup(f => f.process(It.isAnyString())).returns(str => <>replaced-color</>);
+        fixInstructionProcessorMock
+            .setup(f => f.process(It.isAnyString()))
+            .returns(str => <>replaced-color</>);
 
         const props: HowToFixAndroidCardRowProps = {
             deps: { fixInstructionProcessor: fixInstructionProcessorMock.object },
             index: 22,
             propertyData: {
                 formatAsCode: ["isn't", 'notPresent', 'bold'],
-                howToFix: "This isn't a simple text. It has some words that will be marked as bold.",
+                howToFix:
+                    "This isn't a simple text. It has some words that will be marked as bold.",
             },
         };
 

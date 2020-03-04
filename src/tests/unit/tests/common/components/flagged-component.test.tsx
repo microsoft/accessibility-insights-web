@@ -3,7 +3,10 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { FlaggedComponent, FlaggedComponentProps } from '../../../../../common/components/flagged-component';
+import {
+    FlaggedComponent,
+    FlaggedComponentProps,
+} from '../../../../../common/components/flagged-component';
 import { FeatureFlags } from '../../../../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 

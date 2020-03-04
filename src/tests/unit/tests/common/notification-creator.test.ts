@@ -29,21 +29,34 @@ describe('NotificationCreator', () => {
     const testNotificationId = 'the-notification-id';
     const key: string = 'the-key';
     const visualizationType: VisualizationType = -1;
-    const manifestStub: chrome.runtime.Manifest = { name: 'test-name', icons: { 128: 'iconUrl' } } as any;
+    const manifestStub: chrome.runtime.Manifest = {
+        name: 'test-name',
+        icons: { 128: 'iconUrl' },
+    } as any;
 
     beforeEach(() => {
         browserAdapterMock = Mock.ofType<BrowserAdapter>(undefined, MockBehavior.Strict);
-        configFactoryMock = Mock.ofType<VisualizationConfigurationFactory>(undefined, MockBehavior.Strict);
+        configFactoryMock = Mock.ofType<VisualizationConfigurationFactory>(
+            undefined,
+            MockBehavior.Strict,
+        );
         getNotificationMessageMock = Mock.ofType<GetNotificationMessage>();
         loggerMock = Mock.ofType<Logger>();
-        testObject = new NotificationCreator(browserAdapterMock.object, configFactoryMock.object, loggerMock.object);
+        testObject = new NotificationCreator(
+            browserAdapterMock.object,
+            configFactoryMock.object,
+            loggerMock.object,
+        );
     });
 
     describe('createNotification', () => {
-        it.each([null, undefined])('does not creates a notification if there is no message (=%p)', message => {
-            testObject.createNotification(message);
-            verifyAll();
-        });
+        it.each([null, undefined])(
+            'does not creates a notification if there is no message (=%p)',
+            message => {
+                testObject.createNotification(message);
+                verifyAll();
+            },
+        );
 
         describe('with message', () => {
             const notificationOptions: Notifications.CreateNotificationOptions = {
@@ -52,7 +65,9 @@ describe('NotificationCreator', () => {
             } as Notifications.CreateNotificationOptions;
 
             beforeEach(() => {
-                browserAdapterMock.setup(adapter => adapter.getManifest()).returns(() => manifestStub);
+                browserAdapterMock
+                    .setup(adapter => adapter.getManifest())
+                    .returns(() => manifestStub);
             });
 
             it('creates the notification with the proper information', () => {
