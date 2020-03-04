@@ -44,4 +44,10 @@ export class AppController {
 
         return automatedChecksView;
     }
+
+    public async setHighContrastMode(enableHighContrast: boolean): Promise<void> {
+        await this.app.webContents.executeJavaScript(
+            `window.insightsUserConfiguration.setHighContrastMode(${enableHighContrast})`,
+        );
+    }
 }
