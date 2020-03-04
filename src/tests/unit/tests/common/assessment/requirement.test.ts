@@ -5,9 +5,15 @@ import { It, Mock } from 'typemoq';
 
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentTestDefinition } from '../../../../../common/assessment/assessment-test-result';
-import { getRequirementsResults, RequirementDefinition } from '../../../../../common/assessment/requirement';
+import {
+    getRequirementsResults,
+    RequirementDefinition,
+} from '../../../../../common/assessment/requirement';
 import { RequirementComparer } from '../../../../../common/assessment/requirement-comparer';
-import { ManualTestStatus, ManualTestStatusData } from '../../../../../common/types/manual-test-status';
+import {
+    ManualTestStatus,
+    ManualTestStatusData,
+} from '../../../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 
 describe('Requirement', () => {
@@ -37,9 +43,15 @@ describe('Requirement', () => {
 
             const providerMock = Mock.ofType<AssessmentsProvider>();
             providerMock.setup(p => p.forType(visualizationType)).returns(() => test);
-            providerMock.setup(p => p.getStep(visualizationType, It.isAnyString())).returns((_, key) => getStep(key));
+            providerMock
+                .setup(p => p.getStep(visualizationType, It.isAnyString()))
+                .returns((_, key) => getStep(key));
 
-            const results = getRequirementsResults(providerMock.object, visualizationType, stepStatus);
+            const results = getRequirementsResults(
+                providerMock.object,
+                visualizationType,
+                stepStatus,
+            );
 
             expect(results).toEqual([
                 {

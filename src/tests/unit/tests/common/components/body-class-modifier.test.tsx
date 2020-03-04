@@ -30,7 +30,9 @@ describe('BodyClassModifier', () => {
     it('should not modify class names it is not responsible for', () => {
         bodyClassNames = ['pre-existing'];
 
-        const testSubject = shallow(<BodyClassModifier classNames={['from-test-subject']} deps={deps} />);
+        const testSubject = shallow(
+            <BodyClassModifier classNames={['from-test-subject']} deps={deps} />,
+        );
         expect(bodyClassNames).toContain('pre-existing');
 
         testSubject.setProps({ classNames: [] });
@@ -43,7 +45,9 @@ describe('BodyClassModifier', () => {
     });
 
     it('should update classNames in documentManipulator.bodyClassNames when props are updated', () => {
-        const testSubject = shallow(<BodyClassModifier classNames={['from-original-props']} deps={deps} />);
+        const testSubject = shallow(
+            <BodyClassModifier classNames={['from-original-props']} deps={deps} />,
+        );
         testSubject.setProps({ classNames: ['from-set-props'] });
 
         expect(bodyClassNames).toEqual(['from-set-props']);

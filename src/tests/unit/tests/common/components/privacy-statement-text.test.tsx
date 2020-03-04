@@ -26,7 +26,9 @@ describe('PrivacyStatementPopupText', () => {
             LinkComponent: NewTabLink,
         };
 
-        const wrapper = shallow(<PrivacyStatementPopupText deps={deps}></PrivacyStatementPopupText>);
+        const wrapper = shallow(
+            <PrivacyStatementPopupText deps={deps}></PrivacyStatementPopupText>,
+        );
         const privacyStatementText = wrapper.find(PrivacyStatementText);
 
         expect(wrapper.getElement()).toMatchSnapshot();

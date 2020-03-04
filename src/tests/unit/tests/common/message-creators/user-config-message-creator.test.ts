@@ -36,7 +36,10 @@ describe('UserConfigMessageCreator', () => {
 
         testSubject.setTelemetryState(enableTelemetry);
 
-        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
     });
 
     it('dispatches message for setHighContrastModeConfig', () => {
@@ -51,7 +54,10 @@ describe('UserConfigMessageCreator', () => {
 
         testSubject.setHighContrastMode(enableHighContrast);
 
-        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
     });
 
     it('dispatches message for setIssueFilingService', () => {
@@ -66,7 +72,10 @@ describe('UserConfigMessageCreator', () => {
 
         testSubject.setIssueFilingService(payload);
 
-        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
     });
 
     it('dispatches message for setIssueFilingServiceProperty', () => {
@@ -82,7 +91,10 @@ describe('UserConfigMessageCreator', () => {
 
         testSubject.setIssueFilingServiceProperty(payload);
 
-        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
     });
 
     it('dispatches message for saveIssueFilingSettings', () => {
@@ -99,6 +111,9 @@ describe('UserConfigMessageCreator', () => {
 
         testSubject.saveIssueFilingSettings(payload);
 
-        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
     });
 });
