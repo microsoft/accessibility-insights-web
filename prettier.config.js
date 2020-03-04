@@ -12,7 +12,6 @@ module.exports = {
                 'src/content/**/*',
                 'src/icons/**/*',
                 'src/tests/unit/tests/common/**/*',
-                'src/tests/unit/tests/debug-tools/**/*',
                 'src/tests/unit/tests/DetailsView/**/*',
                 'src/tests/unit/tests/electron/**/*',
                 'src/tests/unit/tests/injected/**/*',
