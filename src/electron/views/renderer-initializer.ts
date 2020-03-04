@@ -16,6 +16,7 @@ import { Interpreter } from 'background/interpreter';
 import { CardSelectionStore } from 'background/stores/card-selection-store';
 import { DetailsViewStore } from 'background/stores/details-view-store';
 import { UnifiedScanResultStore } from 'background/stores/unified-scan-result-store';
+import { UserConfigurationController } from 'background/user-configuration-controller';
 import { onlyHighlightingSupported } from 'common/components/cards/card-interaction-support';
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { CardsCollapsibleControl } from 'common/components/cards/collapsible-component-cards';
@@ -87,6 +88,10 @@ import {
     RootContainerRendererDeps,
 } from './root-container/root-container-renderer';
 import { screenshotViewModelProvider } from './screenshot/screenshot-view-model-provider';
+
+declare var window: Window & {
+    insightsUserConfiguration: UserConfigurationController;
+};
 
 initializeFabricIcons();
 
@@ -330,6 +335,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         const renderer = new RootContainerRenderer(ReactDOM.render, document, deps);
         renderer.render();
+
+        window.insightsUserConfiguration = new UserConfigurationController(interpreter);
 
         sendAppInitializedTelemetryEvent(telemetryEventHandler, platformInfo);
 
