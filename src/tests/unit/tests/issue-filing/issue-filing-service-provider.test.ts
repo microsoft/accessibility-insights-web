@@ -34,7 +34,9 @@ describe('IssueFilingServiceProviderTest', () => {
 
         const expectedTestOptions = [givenTestOptions[0]];
 
-        expect(new IssueFilingServiceProvider(givenTestOptions).allVisible()).toEqual(expectedTestOptions);
+        expect(new IssueFilingServiceProvider(givenTestOptions).allVisible()).toEqual(
+            expectedTestOptions,
+        );
     });
 
     test('forKey', () => {
@@ -52,7 +54,9 @@ describe('IssueFilingServiceProviderTest', () => {
 
         const expectedTestOption = givenTestOptions[0];
 
-        expect(new IssueFilingServiceProvider(givenTestOptions).forKey('github')).toEqual(expectedTestOption);
+        expect(new IssueFilingServiceProvider(givenTestOptions).forKey('github')).toEqual(
+            expectedTestOption,
+        );
     });
 
     test('forKey: service not found', () => {
@@ -68,6 +72,8 @@ describe('IssueFilingServiceProviderTest', () => {
             } as IssueFilingService,
         ];
 
-        expect(new IssueFilingServiceProvider(givenTestOptions).forKey('invalid key')).not.toBeDefined();
+        expect(
+            new IssueFilingServiceProvider(givenTestOptions).forKey('invalid key'),
+        ).not.toBeDefined();
     });
 });

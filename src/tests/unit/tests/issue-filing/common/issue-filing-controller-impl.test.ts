@@ -4,7 +4,10 @@ import { BaseStore } from 'common/base-store';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { EnvironmentInfo } from 'common/environment-info-provider';
 import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
-import { IssueFilingServicePropertiesMap, UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import {
+    IssueFilingServicePropertiesMap,
+    UserConfigurationStoreData,
+} from 'common/types/store-data/user-configuration-store';
 import { IssueFilingControllerImpl } from 'issue-filing/common/issue-filing-controller-impl';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
@@ -32,11 +35,15 @@ describe('IssueFilingControllerImpl', () => {
         const browserAdapterMock = Mock.ofType<BrowserAdapter>();
         const issueFilingServiceMock = Mock.ofType<IssueFilingService>();
         issueFilingServiceMock
-            .setup(service => service.fileIssue(browserAdapterMock.object, map, issueData, environmentInfoStub))
+            .setup(service =>
+                service.fileIssue(browserAdapterMock.object, map, issueData, environmentInfoStub),
+            )
             .returns(() => Promise.resolve());
 
         const providerMock = Mock.ofType<IssueFilingServiceProvider>();
-        providerMock.setup(provider => provider.forKey(serviceKey)).returns(() => issueFilingServiceMock.object);
+        providerMock
+            .setup(provider => provider.forKey(serviceKey))
+            .returns(() => issueFilingServiceMock.object);
 
         const storeMock = Mock.ofType<BaseStore<UserConfigurationStoreData>>();
         storeMock.setup(store => store.getState()).returns(() => serviceConfig);
