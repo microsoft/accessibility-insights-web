@@ -71,4 +71,10 @@ export class AppController {
             } class high-contrast-theme`,
         );
     }
+
+    public async setTelemetryState(enableTelemetry: boolean): Promise<void> {
+        await this.app.webContents.executeJavaScript(
+            `window.insightsUserConfiguration.setTelemetryState(${enableTelemetry})`,
+        );
+    }
 }
