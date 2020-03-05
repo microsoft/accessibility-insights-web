@@ -5,7 +5,6 @@ import { DeviceConnectionDialogController } from 'tests/electron/common/view-con
 import { testResourceServerConfig } from 'tests/electron/setup/test-resource-server-config';
 import { DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS } from 'tests/electron/setup/timeouts';
 import * as WebDriverIO from 'webdriverio';
-import { dismissTelemetryOptInDialog } from '../dismiss-telemetry-opt-in-dialog';
 import { AutomatedChecksViewController } from './automated-checks-view-controller';
 
 export class AppController {
