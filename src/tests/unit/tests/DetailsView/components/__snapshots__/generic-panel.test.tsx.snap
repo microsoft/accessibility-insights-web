@@ -4,14 +4,12 @@ exports[`GenericPanel renders isPanelOpen: false 1`] = `
 <StyledPanelBase
   className="genericPanel panel-custom-class"
   closeButtonAriaLabel="close button label"
-  customWidth="550px"
   hasCloseButton={true}
   headerClassName="headerText"
   headerText="panel title"
   isLightDismiss={true}
   isOpen={false}
   onDismiss={[Function]}
-  type={7}
 >
   <div>
     child content
@@ -23,14 +21,12 @@ exports[`GenericPanel renders isPanelOpen: true 1`] = `
 <StyledPanelBase
   className="genericPanel panel-custom-class"
   closeButtonAriaLabel="close button label"
-  customWidth="550px"
   hasCloseButton={true}
   headerClassName="headerText"
   headerText="panel title"
   isLightDismiss={true}
   isOpen={true}
   onDismiss={[Function]}
-  type={7}
 >
   <div>
     child content
@@ -41,9 +37,7 @@ exports[`GenericPanel renders isPanelOpen: true 1`] = `
 exports[`GenericPanel renders minimal content 1`] = `
 <StyledPanelBase
   className="genericPanel"
-  customWidth="550px"
   headerClassName="headerText"
   isLightDismiss={true}
-  type={7}
 />
 `;
