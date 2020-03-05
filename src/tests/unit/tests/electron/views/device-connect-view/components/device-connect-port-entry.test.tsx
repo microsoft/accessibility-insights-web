@@ -13,6 +13,7 @@ import { portNumberField } from 'electron/views/device-connect-view/components/d
 import { shallow } from 'enzyme';
 import { Button, MaskedTextField } from 'office-ui-fabric-react';
 import * as React from 'react';
+import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
@@ -108,7 +109,9 @@ describe('DeviceConnectPortEntryTest', () => {
             } as DeviceConnectPortEntryProps;
             const rendered = shallow(<DeviceConnectPortEntry {...props} />);
             rendered.setState({ port: testPortNumber });
-            const button = rendered.find(`[data-automation-id="${deviceConnectValidatePortButtonAutomationId}"]`);
+
+            const buttonSelector = getAutomationIdSelector(deviceConnectValidatePortButtonAutomationId);
+            const button = rendered.find(buttonSelector);
 
             button.simulate('click', eventStub);
 

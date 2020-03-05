@@ -11,8 +11,7 @@ import {
     cardsRuleIdAutomationId,
     ruleDetailAutomationId,
 } from 'reports/components/report-sections/minimal-rule-header';
-
-const getAutomationIdSelector = (id: string) => `[data-automation-id="${id}"]`;
+import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 
 export const detailsViewSelectors = {
     previewFeaturesPanel: '.preview-features-panel',
