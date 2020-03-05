@@ -32,6 +32,20 @@ describe('AutomatedChecksView -> Settings Panel', () => {
                 false,
             );
         });
+
+        it('should reflect the state applied via the insightsUserConfiguration controller', async () => {
+            await app.setTelemetryState(true);
+            await automatedChecksView.expectToggleState(
+                settingsPanelSelectors.telemetryStateToggle,
+                true,
+            );
+
+            await app.setTelemetryState(false);
+            await automatedChecksView.expectToggleState(
+                settingsPanelSelectors.telemetryStateToggle,
+                false,
+            );
+        });
     });
 
     describe('High Contrast Mode toggle', () => {
