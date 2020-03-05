@@ -3,6 +3,5 @@
 @import '../../common/styles/fonts.scss';
 
 .no-preview-feature-message {
-    font-size: 20px;
-    font-family: $semiBoldFontFamily;
+    @include text-style-body-m;
 }
