@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { SidePanel, SidePanelActions } from 'background/actions/side-panel-actions';
 import { StoreNames } from 'common/stores/store-names';
 import { CurrentPanel } from 'common/types/store-data/current-panel';
 import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
@@ -16,6 +17,7 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
         private scopingActions: ScopingActions,
         private contentActions: ContentActions,
         private detailsViewActions: DetailsViewActions,
+        private sidePanelActions?: SidePanelActions,
     ) {
         super(StoreNames.DetailsViewStore);
     }
@@ -62,7 +64,33 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
             this.onSetSelectedDetailsViewRightContentPanel,
         );
         this.detailsViewActions.getCurrentState.addListener(this.onGetCurrentState);
+
+        this.sidePanelActions.openPanel.addListener(this.onOpenPanel);
     }
+
+    private sidePanelToStateKey = {
+        Settings: 'isSettingsOpen',
+        PreviewFeatures: 'isPreviewFeaturesOpen',
+        Scoping: 'isScopingOpen',
+        Content: 'isContentOpen',
+    };
+
+    private onOpenPanel = (sidePanel: SidePanel) => {
+        console.log('SEBAX');
+        console.log('sidePanel', sidePanel);
+
+        const stateKey = this.sidePanelToStateKey[sidePanel];
+
+        let mutator: (data: DetailsViewStoreData) => void;
+
+        if (sidePanel === 'Content') {
+            mutator = state => (state.contentPath = null);
+        }
+
+        console.log('mutator', mutator);
+
+        this.onOpen(stateKey, mutator);
+    };
 
     private onOpen = (
         flagName: keyof CurrentPanel,

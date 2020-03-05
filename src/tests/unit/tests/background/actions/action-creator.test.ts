@@ -1039,6 +1039,7 @@ class ActionCreatorValidator {
         scanResultActions: null,
         cardSelectionActions: this.cardSelectionActionsContainerMock.object,
         injectionActions: null,
+        sidePanelActions: null,
     };
 
     private telemetryEventHandlerStrictMock = Mock.ofType<TelemetryEventHandler>(

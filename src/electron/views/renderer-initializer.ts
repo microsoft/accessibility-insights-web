@@ -9,6 +9,7 @@ import { DetailsViewActionCreator } from 'background/actions/details-view-action
 import { DetailsViewActions } from 'background/actions/details-view-actions';
 import { PreviewFeaturesActions } from 'background/actions/preview-features-actions';
 import { ScopingActions } from 'background/actions/scoping-actions';
+import { SidePanelActions } from 'background/actions/side-panel-actions';
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { registerUserConfigurationMessageCallback } from 'background/global-action-creators/registrar/register-user-configuration-message-callbacks';
 import { UserConfigurationActionCreator } from 'background/global-action-creators/user-configuration-action-creator';
@@ -108,6 +109,7 @@ const detailsViewActions = new DetailsViewActions();
 const previewFeaturesActions = new PreviewFeaturesActions(); // not really used but needed by DetailsViewStore
 const scopingActions = new ScopingActions(); // not really used but needed by DetailsViewStore
 const contentActions = new ContentActions(); // not really used but needed by DetailsViewStore
+const sidePanelActions = new SidePanelActions();
 
 const storageAdapter = new ElectronStorageAdapter(indexedDBInstance);
 const appDataAdapter = new ElectronAppDataAdapter();
@@ -168,6 +170,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             scopingActions,
             contentActions,
             detailsViewActions,
+            sidePanelActions,
         );
         detailsViewStore.initialize();
 
@@ -229,6 +232,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const detailsViewActionCreator = new DetailsViewActionCreator(
             interpreter,
             detailsViewActions,
+            sidePanelActions,
             nullDetailsViewController,
             telemetryEventHandler,
             logger,

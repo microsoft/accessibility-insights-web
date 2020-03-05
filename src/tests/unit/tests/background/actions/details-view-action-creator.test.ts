@@ -70,6 +70,7 @@ describe('DetailsViewActionCreatorTest', () => {
             const testObject = new DetailsViewActionCreator(
                 interpreterMock.object,
                 actionsMock.object,
+                null, // TODO update this to be a real mock
                 detailsViewControllerMock.object,
                 telemetryEventHandlerMock.object,
                 loggerMock.object,
@@ -97,6 +98,7 @@ describe('DetailsViewActionCreatorTest', () => {
             const testObject = new DetailsViewActionCreator(
                 interpreterMock.object,
                 actionsMock.object,
+                null, // TODO update this to be a real mock
                 detailsViewControllerMock.object,
                 telemetryEventHandlerMock.object,
             );
@@ -124,6 +126,7 @@ describe('DetailsViewActionCreatorTest', () => {
         const testObject = new DetailsViewActionCreator(
             interpreterMock.object,
             actionsMock.object,
+            null, // TODO update this to be a real mock
             detailsViewControllerMock.object,
             telemetryEventHandlerMock.object,
         );
@@ -153,6 +156,7 @@ describe('DetailsViewActionCreatorTest', () => {
         const testObject = new DetailsViewActionCreator(
             interpreterMock.object,
             actionsMock.object,
+            null, // TODO update this to be a real mock
             detailsViewControllerMock.object,
             telemetryEventHandlerMock.object,
         );
@@ -173,6 +177,7 @@ describe('DetailsViewActionCreatorTest', () => {
         const testObject = new DetailsViewActionCreator(
             interpreterMock.object,
             actionsMock.object,
+            null, // TODO update this to be a real mock
             detailsViewControllerMock.object,
             telemetryEventHandlerMock.object,
         );
