@@ -1,27 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 @import '../../common/styles/colors.scss';
+@import '../../common/styles/fonts.scss';
 
 .generic-panel {
-    margin-left: auto;
-    margin-right: auto;
+    color: $neutral-100;
+}
+
+.header-text {
+    @include text-style-title-m;
     color: $neutral-100;
 
-    .header-text {
-        color: $neutral-100;
-        font-size: 2em;
-    }
-
-    :global(.ms-Panel-commands) {
-        margin-bottom: 25px;
-
-        i[data-icon-name='Cancel'] {
-            font-size: 24px;
-        }
-    }
-
-    :global(.ms-Panel-contentInner) {
-        padding-left: 16px;
-        padding-right: 16px;
-    }
+    margin-bottom: 20px;
 }
