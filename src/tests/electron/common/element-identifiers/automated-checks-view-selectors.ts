@@ -5,6 +5,7 @@ import { instanceCardAutomationId } from 'common/components/cards/instance-detai
 import { ruleContentAutomationId } from 'common/components/cards/instance-details-group';
 import { ruleGroupAutomationId } from 'common/components/cards/rules-with-instances';
 import { automatedChecksViewAutomationId } from 'electron/views/automated-checks/automated-checks-view';
+import { commandButtonSettingsId } from 'electron/views/automated-checks/components/command-bar';
 import { highlightBoxAutomationId } from 'electron/views/screenshot/highlight-box';
 import { screenshotImageAutomationId } from 'electron/views/screenshot/screenshot';
 import { screenshotViewAutomationId } from 'electron/views/screenshot/screenshot-view';
@@ -24,7 +25,7 @@ export const AutomatedChecksViewSelectors = {
     nthRuleGroupInstances: (position: number) =>
         `${nthRuleGroup(position)} [data-automation-id="${instanceCardAutomationId}"]`,
 
-    settingsButton: 'button[aria-label="settings"]',
+    settingsButton: `[data-automation-id="${commandButtonSettingsId}"]`,
 };
 
 export const ScreenshotViewSelectors = {
