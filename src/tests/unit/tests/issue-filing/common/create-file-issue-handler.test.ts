@@ -31,11 +31,16 @@ describe('createFileIssueHandler', () => {
     let browserAdapterMock: IMock<BrowserAdapter>;
 
     beforeEach(() => {
-        settingsGetterMock = Mock.ofType<(data: IssueFilingServicePropertiesMap) => any>(undefined, MockBehavior.Strict);
+        settingsGetterMock = Mock.ofType<(data: IssueFilingServicePropertiesMap) => any>(
+            undefined,
+            MockBehavior.Strict,
+        );
         settingsGetterMock.setup(getter => getter(serviceMap)).returns(() => settingsStub);
 
         urlProviderMock = Mock.ofType<IssueFilingUrlProvider<any>>(undefined, MockBehavior.Strict);
-        urlProviderMock.setup(provider => provider(settingsStub, issueData, environmentInfoStub)).returns(() => urlStub);
+        urlProviderMock
+            .setup(provider => provider(settingsStub, issueData, environmentInfoStub))
+            .returns(() => urlStub);
 
         browserAdapterMock = Mock.ofType<BrowserAdapter>(undefined, MockBehavior.Strict);
     });
@@ -46,9 +51,14 @@ describe('createFileIssueHandler', () => {
             .returns(() => Promise.resolve({} as Tabs.Tab))
             .verifiable(Times.once());
 
-        const testSubject = createFileIssueHandler(urlProviderMock.object, settingsGetterMock.object);
+        const testSubject = createFileIssueHandler(
+            urlProviderMock.object,
+            settingsGetterMock.object,
+        );
 
-        await expect(testSubject(browserAdapterMock.object, serviceMap, issueData, environmentInfoStub)).resolves.toBe(undefined);
+        await expect(
+            testSubject(browserAdapterMock.object, serviceMap, issueData, environmentInfoStub),
+        ).resolves.toBe(undefined);
 
         browserAdapterMock.verifyAll();
     });
@@ -56,10 +66,17 @@ describe('createFileIssueHandler', () => {
     it('properly surfaces errors', async () => {
         const errorMessage = 'dummy error';
 
-        browserAdapterMock.setup(adapter => adapter.createActiveTab(urlStub)).returns(() => Promise.reject(errorMessage));
+        browserAdapterMock
+            .setup(adapter => adapter.createActiveTab(urlStub))
+            .returns(() => Promise.reject(errorMessage));
 
-        const testSubject = createFileIssueHandler(urlProviderMock.object, settingsGetterMock.object);
+        const testSubject = createFileIssueHandler(
+            urlProviderMock.object,
+            settingsGetterMock.object,
+        );
 
-        await expect(testSubject(browserAdapterMock.object, serviceMap, issueData, environmentInfoStub)).rejects.toEqual(errorMessage);
+        await expect(
+            testSubject(browserAdapterMock.object, serviceMap, issueData, environmentInfoStub),
+        ).rejects.toEqual(errorMessage);
     });
 });

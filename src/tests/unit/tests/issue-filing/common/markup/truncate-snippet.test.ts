@@ -2,7 +2,10 @@
 // Licensed under the MIT License.
 import { repeat } from 'lodash';
 
-import { maxSnippetLength, truncateSnippet } from '../../../../../../issue-filing/common/markup/truncate-snippet';
+import {
+    maxSnippetLength,
+    truncateSnippet,
+} from '../../../../../../issue-filing/common/markup/truncate-snippet';
 
 describe('truncateSnippet', () => {
     const testSubject = truncateSnippet;

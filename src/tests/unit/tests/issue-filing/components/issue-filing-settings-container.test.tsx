@@ -5,7 +5,10 @@ import * as React from 'react';
 import { Mock } from 'typemoq';
 
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
-import { IssueFilingServiceProperties, UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
+import {
+    IssueFilingServiceProperties,
+    UserConfigurationStoreData,
+} from '../../../../../common/types/store-data/user-configuration-store';
 import {
     IssueFilingSettingsContainer,
     IssueFilingSettingsContainerDeps,
@@ -44,7 +47,9 @@ describe('IssueFilingSettingsContainerTest', () => {
     };
 
     test('render', () => {
-        issueFilingServicesProviderMock.setup(mock => mock.allVisible()).returns(() => issueFilingServices);
+        issueFilingServicesProviderMock
+            .setup(mock => mock.allVisible())
+            .returns(() => issueFilingServices);
         const wrapper = shallow(<IssueFilingSettingsContainer {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
