@@ -64,7 +64,7 @@ describe('AutomatedChecksView -> Settings Panel', () => {
             );
         });
 
-        it('should reflect the state applied via the background page insightsUserConfiguration controller all other tests use', async () => {
+        it('should reflect the state applied via the insightsUserConfiguration controller', async () => {
             await app.setHighContrastMode(true);
             await automatedChecksView.expectToggleState(
                 settingsPanelSelectors.highContrastModeToggle,
