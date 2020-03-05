@@ -10,6 +10,8 @@ import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 
+//
+
 describe('CommandBar', () => {
     describe('renders', () => {
         it('while status is <Scanning>', () => {
