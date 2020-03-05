@@ -7,6 +7,7 @@ import { ScanStatus } from 'electron/flux/types/scan-status';
 import { CommandBar, CommandBarProps, commandButtonRefreshId } from 'electron/views/automated-checks/components/command-bar';
 import { mount, shallow } from 'enzyme';
 import * as React from 'react';
+import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 
@@ -65,7 +66,9 @@ describe('CommandBar', () => {
             } as CommandBarProps;
 
             const rendered = mount(<CommandBar {...props} />);
-            const button = rendered.find(`button[data-automation-id="${commandButtonRefreshId}"]`);
+
+            const buttonSelector = `button${getAutomationIdSelector(commandButtonRefreshId)}`;
+            const button = rendered.find(buttonSelector);
 
             button.simulate('click', eventStub);
 
