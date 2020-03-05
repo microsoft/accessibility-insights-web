@@ -13,7 +13,6 @@ module.exports = {
                 'src/tests/unit/tests/DetailsView/**/*',
                 'src/tests/unit/tests/electron/**/*',
                 'src/tests/unit/tests/injected/**/*',
-                'src/tests/unit/tests/popup/**/*',
             ],
             options: {
                 printWidth: 140,

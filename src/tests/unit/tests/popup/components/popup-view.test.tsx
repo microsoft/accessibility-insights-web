@@ -82,14 +82,21 @@ describe('PopupView', () => {
         };
 
         beforeEach(() => {
-            actionMessageCreatorStrictMock = Mock.ofType<PopupActionMessageCreator>(null, MockBehavior.Strict);
+            actionMessageCreatorStrictMock = Mock.ofType<PopupActionMessageCreator>(
+                null,
+                MockBehavior.Strict,
+            );
             dropdownClickHandlerMock = Mock.ofType(DropdownClickHandler);
             handlerMock = Mock.ofType(PopupViewControllerHandler);
             clickHandlerMock = Mock.ofType(DiagnosticViewClickHandler);
             storesHubMock = createDefaultStoresHubMock();
             launchPadRowConfigurationFactoryMock
                 .setup(l =>
-                    l.createRowConfigs(It.isAny(), IsSameObject(actionMessageCreatorStrictMock.object), IsSameObject(handlerMock.object)),
+                    l.createRowConfigs(
+                        It.isAny(),
+                        IsSameObject(actionMessageCreatorStrictMock.object),
+                        IsSameObject(handlerMock.object),
+                    ),
                 )
                 .returns(() => rowConfigStub as any)
                 .verifiable();
@@ -108,7 +115,9 @@ describe('PopupView', () => {
         });
 
         test('render toggles view: launch pad', () => {
-            actionMessageCreatorStrictMock.setup(acm => acm.openLaunchPad(launchPanelStateStoreState.launchPanelType)).verifiable();
+            actionMessageCreatorStrictMock
+                .setup(acm => acm.openLaunchPad(launchPanelStateStoreState.launchPanelType))
+                .verifiable();
             const props = createDefaultPropsBuilder(storesHubMock.object)
                 .withDefaultTitleAndSubtitle()
                 .with('deps', deps)
@@ -119,7 +128,10 @@ describe('PopupView', () => {
                     shortcutModifyHandler: shortcutModifyHandlerStub as any,
                 })
                 .with('hasAccess', true)
-                .with('launchPadRowConfigurationFactory', launchPadRowConfigurationFactoryMock.object)
+                .with(
+                    'launchPadRowConfigurationFactory',
+                    launchPadRowConfigurationFactoryMock.object,
+                )
                 .with('storeState', storeState)
                 .build();
             props.deps.storesHub = storesHubMock.object;
@@ -147,7 +159,9 @@ describe('PopupView', () => {
                 launchPanelType: LaunchPanelType.AdhocToolsPanel,
             };
             storeState.launchPanelStateStoreData = adHocLaunchPanelStateStoreState;
-            actionMessageCreatorStrictMock.setup(acm => acm.openLaunchPad(adHocLaunchPanelStateStoreState.launchPanelType)).verifiable();
+            actionMessageCreatorStrictMock
+                .setup(acm => acm.openLaunchPad(adHocLaunchPanelStateStoreState.launchPanelType))
+                .verifiable();
             const props = createDefaultPropsBuilder(storesHubMock.object)
                 .withDefaultTitleAndSubtitle()
                 .with('deps', deps)
@@ -158,7 +172,10 @@ describe('PopupView', () => {
                     shortcutModifyHandler: shortcutModifyHandlerStub as any,
                 })
                 .with('hasAccess', true)
-                .with('launchPadRowConfigurationFactory', launchPadRowConfigurationFactoryMock.object)
+                .with(
+                    'launchPadRowConfigurationFactory',
+                    launchPadRowConfigurationFactoryMock.object,
+                )
                 .with('storeState', storeState)
                 .build();
             props.deps.storesHub = storesHubMock.object;
@@ -178,7 +195,9 @@ describe('PopupView', () => {
 
             storeState.launchPanelStateStoreData = launchPanelStateStoreStateStub;
 
-            actionMessageCreatorStrictMock.setup(acm => acm.openLaunchPad(launchPanelStateStoreStateStub.launchPanelType)).verifiable();
+            actionMessageCreatorStrictMock
+                .setup(acm => acm.openLaunchPad(launchPanelStateStoreStateStub.launchPanelType))
+                .verifiable();
 
             const props = createDefaultPropsBuilder(storesHubMock.object)
                 .withDefaultTitleAndSubtitle()
@@ -191,7 +210,10 @@ describe('PopupView', () => {
                 })
                 .with('hasAccess', true)
                 .with('diagnosticViewToggleFactory', null)
-                .with('launchPadRowConfigurationFactory', launchPadRowConfigurationFactoryMock.object)
+                .with(
+                    'launchPadRowConfigurationFactory',
+                    launchPadRowConfigurationFactoryMock.object,
+                )
                 .with('storeState', storeState)
                 .build();
             props.deps.storesHub = storesHubMock.object;
@@ -239,10 +261,15 @@ describe('PopupView', () => {
     });
 
     function createDefaultPropsBuilder(storeHub: BaseClientStoresHub<any>): PopupViewPropsBuilder {
-        return new PopupViewPropsBuilder().withStoresHub(storeHub).withBrowserAdapter(browserAdapterStub);
+        return new PopupViewPropsBuilder()
+            .withStoresHub(storeHub)
+            .withBrowserAdapter(browserAdapterStub);
     }
 
-    function createDefaultStoresHubMock(hasStores = true, hasStoreData = true): IMock<BaseClientStoresHub<any>> {
+    function createDefaultStoresHubMock(
+        hasStores = true,
+        hasStoreData = true,
+    ): IMock<BaseClientStoresHub<any>> {
         const storesHubMock = Mock.ofType(BaseClientStoresHub);
         storesHubMock.setup(s => s.hasStores()).returns(() => hasStores);
         storesHubMock.setup(s => s.hasStoreData()).returns(() => hasStoreData);

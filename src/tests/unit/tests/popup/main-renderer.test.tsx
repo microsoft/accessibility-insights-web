@@ -20,7 +20,9 @@ describe('MainRenderer', () => {
     const expectedTitle = title;
 
     test('render', () => {
-        const fakeDocument = TestDocumentCreator.createTestDocument('<div id="popup-container"></div>');
+        const fakeDocument = TestDocumentCreator.createTestDocument(
+            '<div id="popup-container"></div>',
+        );
 
         const diagnosticViewClickHandlerMock = Mock.ofType(DiagnosticViewClickHandler);
         const gettingStartedDialogHandlerMock = Mock.ofType(PopupViewControllerHandler);
@@ -48,15 +50,20 @@ describe('MainRenderer', () => {
                                 deps={deps}
                                 title={expectedTitle}
                                 popupHandlers={{
-                                    diagnosticViewClickHandler: diagnosticViewClickHandlerMock.object,
-                                    popupViewControllerHandler: gettingStartedDialogHandlerMock.object,
-                                    launchPanelHeaderClickHandler: feedbackMenuClickhandlerMock.object,
+                                    diagnosticViewClickHandler:
+                                        diagnosticViewClickHandlerMock.object,
+                                    popupViewControllerHandler:
+                                        gettingStartedDialogHandlerMock.object,
+                                    launchPanelHeaderClickHandler:
+                                        feedbackMenuClickhandlerMock.object,
                                     browserAdapter: browserAdapterMock.object,
                                 }}
                                 popupWindow={popupWindowMock.object}
                                 targetTabUrl={targetTabUrl}
                                 hasAccess={hasAccess}
-                                launchPadRowConfigurationFactory={launchPadRowConfigurationFactoryMock.object}
+                                launchPadRowConfigurationFactory={
+                                    launchPadRowConfigurationFactoryMock.object
+                                }
                                 diagnosticViewToggleFactory={diagnosticViewToggleFactoryMock.object}
                                 dropdownClickHandler={dropdownClickHandlerMock.object}
                             />
