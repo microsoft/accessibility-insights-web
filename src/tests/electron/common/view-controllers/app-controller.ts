@@ -28,8 +28,6 @@ export class AppController {
     }
 
     public async openDeviceConnectionDialog(): Promise<DeviceConnectionDialogController> {
-        await dismissTelemetryOptInDialog(this.app);
-
         const deviceConnectionDialog = new DeviceConnectionDialogController(this.client);
         await deviceConnectionDialog.waitForDialogVisible();
 

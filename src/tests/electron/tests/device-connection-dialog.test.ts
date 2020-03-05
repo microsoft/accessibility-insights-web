@@ -11,7 +11,7 @@ describe('device connection dialog', () => {
     let dialog: DeviceConnectionDialogController;
 
     beforeEach(async () => {
-        app = await createApplication();
+        app = await createApplication({ suppressFirstTimeDialog: true });
         dialog = await app.openDeviceConnectionDialog();
     });
 

@@ -12,7 +12,7 @@ describe('AutomatedChecksView -> Settings Panel', () => {
     let automatedChecksView: AutomatedChecksViewController;
 
     beforeEach(async () => {
-        app = await createApplication();
+        app = await createApplication({ suppressFirstTimeDialog: true });
         automatedChecksView = await app.openAutomatedChecksView();
         await automatedChecksView.waitForViewVisible();
         await automatedChecksView.openSettingsPanel();
@@ -26,10 +26,10 @@ describe('AutomatedChecksView -> Settings Panel', () => {
     });
 
     describe('Telemetry toggle', () => {
-        it('should default to "on" in the usual configuration our E2E tests use', async () => {
+        it('should be "off" as per our suppressFirstTimeDialog implementation of the initial state', async () => {
             await automatedChecksView.expectToggleState(
                 settingsPanelSelectors.telemetryStateToggle,
-                true,
+                false,
             );
         });
     });
