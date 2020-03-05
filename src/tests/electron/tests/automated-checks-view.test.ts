@@ -17,7 +17,7 @@ describe('AutomatedChecksView', () => {
     let automatedChecksView: AutomatedChecksViewController;
 
     beforeEach(async () => {
-        app = await createApplication();
+        app = await createApplication({ suppressFirstTimeDialog: true });
         automatedChecksView = await app.openAutomatedChecksView();
         await automatedChecksView.waitForScreenshotViewVisible();
     });

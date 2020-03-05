@@ -12,7 +12,7 @@ describe('AutomatedChecksView -> Settings Panel', () => {
     let automatedChecksView: AutomatedChecksViewController;
 
     beforeEach(async () => {
-        app = await createApplication();
+        app = await createApplication({ suppressFirstTimeDialog: true });
         automatedChecksView = await app.openAutomatedChecksView();
         await automatedChecksView.waitForViewVisible();
         await automatedChecksView.openSettingsPanel();
@@ -26,10 +26,24 @@ describe('AutomatedChecksView -> Settings Panel', () => {
     });
 
     describe('Telemetry toggle', () => {
-        it('should default to "on" in the usual configuration our E2E tests use', async () => {
+        it('should be "off" as per our suppressFirstTimeDialog implementation of the initial state', async () => {
+            await automatedChecksView.expectToggleState(
+                settingsPanelSelectors.telemetryStateToggle,
+                false,
+            );
+        });
+
+        it('should reflect the state applied via the insightsUserConfiguration controller', async () => {
+            await app.setTelemetryState(true);
             await automatedChecksView.expectToggleState(
                 settingsPanelSelectors.telemetryStateToggle,
                 true,
+            );
+
+            await app.setTelemetryState(false);
+            await automatedChecksView.expectToggleState(
+                settingsPanelSelectors.telemetryStateToggle,
+                false,
             );
         });
     });
@@ -64,7 +78,7 @@ describe('AutomatedChecksView -> Settings Panel', () => {
             );
         });
 
-        it('should reflect the state applied via the background page insightsUserConfiguration controller all other tests use', async () => {
+        it('should reflect the state applied via the insightsUserConfiguration controller', async () => {
             await app.setHighContrastMode(true);
             await automatedChecksView.expectToggleState(
                 settingsPanelSelectors.highContrastModeToggle,

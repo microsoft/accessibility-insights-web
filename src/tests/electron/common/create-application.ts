@@ -6,7 +6,11 @@ import { Application } from 'spectron';
 
 import { AppController } from './view-controllers/app-controller';
 
-export async function createApplication(): Promise<AppController> {
+export interface AppOptions {
+    suppressFirstTimeDialog: boolean;
+}
+
+export async function createApplication(options?: AppOptions): Promise<AppController> {
     const electronPath = `${
         (global as any).rootDir
     }/drop/electron/unified-dev/product/bundle/main.bundle.js`;
@@ -19,5 +23,11 @@ export async function createApplication(): Promise<AppController> {
 
     await app.start();
 
-    return new AppController(app);
+    const appController = new AppController(app);
+
+    if (options?.suppressFirstTimeDialog === true) {
+        await appController.setTelemetryState(false);
+    }
+
+    return appController;
 }
