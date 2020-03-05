@@ -22,6 +22,7 @@ export interface CommandBarProps {
 }
 
 export const commandButtonRefreshId = 'command-button-refresh';
+export const commandButtonSettingsId = 'command-button-settings';
 
 export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
     const { deps, deviceStoreData } = props;
@@ -40,6 +41,7 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
             </div>
             <div className={styles.farItems}>
                 <CommandButton
+                    data-automation-id={commandButtonSettingsId}
                     ariaLabel="settings"
                     iconProps={{ iconName: 'Gear', className: styles.buttonIcon }}
                     className={styles.menuItemButton}
