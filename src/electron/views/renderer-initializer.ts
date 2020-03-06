@@ -235,6 +235,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const detailsViewActionCreator = new DetailsViewActionCreator(
             interpreter,
             detailsViewActions,
+            sidePanelActions,
             nullDetailsViewController,
             telemetryEventHandler,
             logger,
