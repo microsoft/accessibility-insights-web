@@ -13,7 +13,7 @@ import { StoreTester } from '../../../common/store-tester';
 
 describe('DetailsViewStoreTest', () => {
     test('getId', () => {
-        const testObject = new DetailsViewStore(null, null, null, null);
+        const testObject = new DetailsViewStore(null, null, null, null, null);
         expect(testObject.getId()).toBe(StoreNames[StoreNames.DetailsViewStore]);
     });
 

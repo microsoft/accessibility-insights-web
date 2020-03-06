@@ -18,7 +18,7 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
         private scopingActions: ScopingActions,
         private contentActions: ContentActions,
         private detailsViewActions: DetailsViewActions,
-        private sidePanelActions?: SidePanelActions,
+        private sidePanelActions: SidePanelActions,
     ) {
         super(StoreNames.DetailsViewStore);
     }
