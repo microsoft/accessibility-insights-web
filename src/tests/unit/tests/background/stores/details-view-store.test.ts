@@ -82,17 +82,6 @@ describe('DetailsViewStoreTest', () => {
         );
     });
 
-    test('onOpenSettings', () => {
-        const initialState = new DetailsViewStoreDataBuilder().withSettingPanelState(false).build();
-
-        const expectedState = new DetailsViewStoreDataBuilder().withSettingPanelState(true).build();
-
-        createStoreTesterForDetailsViewActions('openSettingsPanel').testListenerToBeCalledOnce(
-            initialState,
-            expectedState,
-        );
-    });
-
     test('onCloseSettings', () => {
         const initialState = new DetailsViewStoreDataBuilder().withSettingPanelState(true).build();
 
