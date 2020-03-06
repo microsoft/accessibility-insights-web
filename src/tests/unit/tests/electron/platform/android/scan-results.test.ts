@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ScreenshotData } from 'common/types/store-data/unified-data-interface';
 import { DeviceInfo, RuleResultsData, ScanResults, ViewElementData } from 'electron/platform/android/scan-results';
 import { set } from 'lodash';
-import { buildRuleResultObject, buildScanResultsObject, buildViewElement } from './scan-results-helpers';
+import { buildRuleResultObject, buildViewElement } from './scan-results-helpers';
 
 describe('ScanResults', () => {
     it.each`
