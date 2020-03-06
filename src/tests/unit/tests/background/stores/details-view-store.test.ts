@@ -4,6 +4,7 @@ import { ContentActions } from 'background/actions/content-actions';
 import { DetailsViewActions } from 'background/actions/details-view-actions';
 import { PreviewFeaturesActions } from 'background/actions/preview-features-actions';
 import { ScopingActions } from 'background/actions/scoping-actions';
+import { SidePanelActions } from 'background/actions/side-panel-actions';
 import { DetailsViewStore } from 'background/stores/details-view-store';
 import { StoreNames } from 'common/stores/store-names';
 import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
@@ -130,6 +131,16 @@ describe('DetailsViewStoreTest', () => {
         );
     });
 
+    test('onOpenSidePanel', () => {
+        const initialState = new DetailsViewStoreDataBuilder().withSettingPanelState(false).build();
+
+        const expectedState = new DetailsViewStoreDataBuilder().withSettingPanelState(true).build();
+
+        createStoreTesterForSidePanelActions('openSidePanel')
+            .withActionParam('Settings')
+            .testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
     function createStoreTesterForPreviewFeatureActions(
         actionName: keyof PreviewFeaturesActions,
     ): StoreTester<DetailsViewStoreData, PreviewFeaturesActions> {
@@ -139,6 +150,7 @@ describe('DetailsViewStoreTest', () => {
                 new ScopingActions(),
                 new ContentActions(),
                 new DetailsViewActions(),
+                new SidePanelActions(),
             );
         return new StoreTester(PreviewFeaturesActions, actionName, factory);
     }
@@ -152,6 +164,7 @@ describe('DetailsViewStoreTest', () => {
                 actions,
                 new ContentActions(),
                 new DetailsViewActions(),
+                new SidePanelActions(),
             );
 
         return new StoreTester(ScopingActions, actionName, factory);
@@ -166,6 +179,7 @@ describe('DetailsViewStoreTest', () => {
                 new ScopingActions(),
                 actions,
                 new DetailsViewActions(),
+                new SidePanelActions(),
             );
 
         return new StoreTester(ContentActions, actionName, factory);
@@ -180,8 +194,24 @@ describe('DetailsViewStoreTest', () => {
                 new ScopingActions(),
                 new ContentActions(),
                 actions,
+                new SidePanelActions(),
             );
 
         return new StoreTester(DetailsViewActions, actionName, factory);
+    }
+
+    function createStoreTesterForSidePanelActions(
+        actionName: keyof SidePanelActions,
+    ): StoreTester<DetailsViewStoreData, SidePanelActions> {
+        const factory = (actions: SidePanelActions) =>
+            new DetailsViewStore(
+                new PreviewFeaturesActions(),
+                new ScopingActions(),
+                new ContentActions(),
+                new DetailsViewActions(),
+                actions,
+            );
+
+        return new StoreTester(SidePanelActions, actionName, factory);
     }
 });
