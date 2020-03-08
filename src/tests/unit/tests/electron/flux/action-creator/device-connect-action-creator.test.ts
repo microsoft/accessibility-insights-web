@@ -7,11 +7,10 @@ import { VALIDATE_PORT } from 'electron/common/electron-telemetry-events';
 import { DeviceConnectActionCreator } from 'electron/flux/action-creator/device-connect-action-creator';
 import { ConnectedDevicePayload, PortPayload } from 'electron/flux/action/device-action-payloads';
 import { DeviceActions } from 'electron/flux/action/device-actions';
+import { DeviceConfig } from 'electron/platform/android/device-config';
 import { DeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
 import { IMock, It, Mock, Times } from 'typemoq';
-
 import { tick } from '../../../../common/tick';
-import { DeviceConfig } from 'electron/platform/android/device-config';
 
 describe('DeviceConnectActionCreator', () => {
     const port = 1111;
