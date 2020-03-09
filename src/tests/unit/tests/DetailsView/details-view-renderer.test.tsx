@@ -1,23 +1,22 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Theme } from 'common/components/theme';
+import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { configMutator } from 'common/configuration';
+import { DocumentManipulator } from 'common/document-manipulator';
+import { DropdownClickHandler } from 'common/dropdown-click-handler';
+import { InspectActionMessageCreator } from 'common/message-creators/inspect-action-message-creator';
+import { ScopingActionMessageCreator } from 'common/message-creators/scoping-action-message-creator';
+import { IssuesTableHandler } from 'DetailsView/components/issues-table-handler';
+import { DetailsView, DetailsViewContainerDeps } from 'DetailsView/details-view-container';
+import { DetailsViewRenderer } from 'DetailsView/details-view-renderer';
+import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
+import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
+import { PreviewFeatureFlagsHandler } from 'DetailsView/handlers/preview-feature-flags-handler';
 import { ISelection, Selection } from 'office-ui-fabric-react';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
-
-import { Theme } from '../../../../common/components/theme';
-import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
-import { configMutator } from '../../../../common/configuration';
-import { DocumentManipulator } from '../../../../common/document-manipulator';
-import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
-import { InspectActionMessageCreator } from '../../../../common/message-creators/inspect-action-message-creator';
-import { ScopingActionMessageCreator } from '../../../../common/message-creators/scoping-action-message-creator';
-import { IssuesTableHandler } from '../../../../DetailsView/components/issues-table-handler';
-import { DetailsView, DetailsViewContainerDeps } from '../../../../DetailsView/details-view-container';
-import { DetailsViewRenderer } from '../../../../DetailsView/details-view-renderer';
-import { AssessmentInstanceTableHandler } from '../../../../DetailsView/handlers/assessment-instance-table-handler';
-import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
-import { PreviewFeatureFlagsHandler } from '../../../../DetailsView/handlers/preview-feature-flags-handler';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
 import { TestDocumentCreator } from '../../common/test-document-creator';
 
