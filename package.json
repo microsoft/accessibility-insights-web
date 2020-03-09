@@ -151,6 +151,6 @@
         "ua-parser-js": "^0.7.21",
         "unzipper": "^0.10.10",
         "uuid": "^7.0.2",
-        "webextension-polyfill-ts": "^0.12.0"
+        "webextension-polyfill-ts": "^0.13.0"
     }
 }
