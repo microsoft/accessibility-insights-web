@@ -117,7 +117,10 @@ describe('DeviceStore', () => {
                 deviceConnectState: DeviceConnectState.Error,
             };
 
-            createStoreTesterForDeviceActions('connectionFailed').testListenerToBeCalledOnce(initialState, expectedState);
+            createStoreTesterForDeviceActions('connectionFailed').testListenerToBeCalledOnce(
+                initialState,
+                expectedState,
+            );
         });
 
         it('does not updates if state is already Error', () => {
@@ -127,7 +130,10 @@ describe('DeviceStore', () => {
                 ...initialState,
             };
 
-            createStoreTesterForDeviceActions('connectionFailed').testListenerToNeverBeCalled(initialState, expectedState);
+            createStoreTesterForDeviceActions('connectionFailed').testListenerToNeverBeCalled(
+                initialState,
+                expectedState,
+            );
         });
     });
 
@@ -140,7 +146,10 @@ describe('DeviceStore', () => {
                 deviceConnectState: DeviceConnectState.Default,
             };
 
-            createStoreTesterForDeviceActions('resetConnection').testListenerToBeCalledOnce(initialState, expectedState);
+            createStoreTesterForDeviceActions('resetConnection').testListenerToBeCalledOnce(
+                initialState,
+                expectedState,
+            );
         });
 
         it('does not updated if status is already DEFAULT', () => {
@@ -150,11 +159,16 @@ describe('DeviceStore', () => {
                 ...initialState,
             };
 
-            createStoreTesterForDeviceActions('resetConnection').testListenerToNeverBeCalled(initialState, expectedState);
+            createStoreTesterForDeviceActions('resetConnection').testListenerToNeverBeCalled(
+                initialState,
+                expectedState,
+            );
         });
     });
 
-    function createStoreTesterForDeviceActions(actionName: keyof DeviceActions): StoreTester<DeviceStoreData, DeviceActions> {
+    function createStoreTesterForDeviceActions(
+        actionName: keyof DeviceActions,
+    ): StoreTester<DeviceStoreData, DeviceActions> {
         const factory = (actions: DeviceActions) => new DeviceStore(actions);
 
         return new StoreTester(DeviceActions, actionName, factory);
