@@ -78,7 +78,7 @@
         "case-sensitive-paths-webpack-plugin": "^2.3.0",
         "codecov": "^3.6.5",
         "core-js-bundle": "^3.6.4",
-        "cross-env": "^7.0.1",
+        "cross-env": "^7.0.2",
         "css-loader": "^3.4.2",
         "electron": "7.0.1",
         "electron-builder": "^22.4.0",
