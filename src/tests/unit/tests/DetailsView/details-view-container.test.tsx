@@ -36,7 +36,6 @@ import {
     DetailsViewContainerState,
 } from 'DetailsView/details-view-container';
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
-import { PreviewFeatureFlagsHandler } from 'DetailsView/handlers/preview-feature-flags-handler';
 import { shallow } from 'enzyme';
 import { ISelection, Selection } from 'office-ui-fabric-react';
 import * as React from 'react';
@@ -385,7 +384,6 @@ describe('DetailsViewContainer', () => {
     function testRenderStaticContent(viewType: VisualizationType, isPreviewFeaturesOpen: boolean): void {
         const selectionMock = Mock.ofType<ISelection>(Selection);
         const clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory);
-        const previewFeatureFlagsHandlerMock = Mock.ofType(PreviewFeatureFlagsHandler);
         const dropdownClickHandler = Mock.ofType(DropdownClickHandler);
         const getSelectedDetailsViewMock = Mock.ofInstance((theProps: GetSelectedDetailsViewProps) => null, MockBehavior.Strict);
         const rightContentPanelType = 'TestView';
@@ -441,11 +439,7 @@ describe('DetailsViewContainer', () => {
 
         const props = new DetailsViewContainerPropsBuilder(deps)
             .setStoreMocks(storeMocks)
-            // TODO remove any set from here for props that we move to deps
             .setIssuesSelection(selectionMock.object)
-            .setClickHandlerFactory(clickHandlerFactoryMock.object)
-            .setPreviewFeatureFlagsHandler(previewFeatureFlagsHandlerMock.object)
-            .setAssessmentProvider(assessmentProviderMock.object)
             .setStoresHubMock(storesHubMock.object)
             .build();
 
