@@ -5,7 +5,8 @@
 @import '../../../reports/components/outcome.scss';
 @import '../../../common/components/cards/fix-instruction-color-box.scss';
 
-body.ms-Fabric {
+body.ms-Fabric,
+body .ms-Fabric {
     color: $primary-text;
 }
 
