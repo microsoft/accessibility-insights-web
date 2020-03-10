@@ -2,10 +2,7 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { BaseStore } from 'common/base-store';
-import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
-import { InspectActionMessageCreator } from 'common/message-creators/inspect-action-message-creator';
-import { ScopingActionMessageCreator } from 'common/message-creators/scoping-action-message-creator';
 import { StoreActionMessageCreator } from 'common/message-creators/store-action-message-creator';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
@@ -15,9 +12,7 @@ import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
-import { IssuesTableHandler } from 'DetailsView/components/issues-table-handler';
 import { DetailsViewContainerDeps, DetailsViewContainerProps } from 'DetailsView/details-view-container';
-import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from 'DetailsView/handlers/preview-feature-flags-handler';
 import { ISelection } from 'office-ui-fabric-react';

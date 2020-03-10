@@ -1,18 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
-import { ISelection } from 'office-ui-fabric-react';
-import { Spinner, SpinnerSize } from 'office-ui-fabric-react';
+import { ISelection, Spinner, SpinnerSize } from 'office-ui-fabric-react';
 import * as React from 'react';
-
 import { ThemeDeps } from '../common/components/theme';
 import {
     withStoreSubscription,
     WithStoreSubscriptionDeps,
 } from '../common/components/with-store-subscription';
-import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
