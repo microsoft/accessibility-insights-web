@@ -28,7 +28,6 @@ describe('AssessmentInstanceDetailsColumn', () => {
 
         const label = wrapper.find(`.${styles.assessmentInstanceLabel}`);
         expect(label.getElement().props.children).toBe(props.labelText);
-        expect(label.getElement().props.className).toBe(styles.assessmentInstanceLabel);
     });
 
     test('render: N/A instance', () => {
