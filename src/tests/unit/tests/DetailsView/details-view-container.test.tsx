@@ -37,12 +37,10 @@ import {
 } from 'DetailsView/details-view-container';
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { shallow } from 'enzyme';
-import { ISelection, Selection } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DetailsViewStoreDataBuilder } from '../../common/details-view-store-data-builder';
 import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
-import { CreateTestAssessmentProviderWithFeatureFlag } from '../../common/test-assessment-provider';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 import { DetailsViewContainerPropsBuilder } from './details-view-container-props-builder';
 import { StoreMocks } from './store-mocks';
@@ -74,8 +72,6 @@ describe('DetailsViewContainer', () => {
             getCardSelectionViewData: getCardSelectionViewDataMock.object,
         } as DetailsViewContainerDeps;
     });
-
-    const assessmentProviderMock = Mock.ofInstance(CreateTestAssessmentProviderWithFeatureFlag());
 
     describe('render', () => {
         it('renders spinner when stores not ready', () => {
@@ -147,7 +143,6 @@ describe('DetailsViewContainer', () => {
 
         it('render twice; should not call details view opened on 2nd render', () => {
             const storeActionCreator = Mock.ofType(StoreActionMessageCreatorImpl, MockBehavior.Strict);
-            const clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory);
             const getSelectedDetailsViewMock = Mock.ofInstance((theProps: GetSelectedDetailsViewProps) => null, MockBehavior.Strict);
             const rightContentPanelType = 'TestView';
             const viewType = VisualizationType.Headings;
@@ -177,7 +172,6 @@ describe('DetailsViewContainer', () => {
             const props = new DetailsViewContainerPropsBuilder(deps)
                 .setStoreMocks(storeMocks)
                 .setStoreActionMessageCreator(storeActionCreator.object)
-                .setClickHandlerFactory(clickHandlerFactoryMock.object)
                 .setStoresHubMock(createStoresHubMock(storeMocks).object)
                 .build();
 
@@ -231,7 +225,6 @@ describe('DetailsViewContainer', () => {
 
             const props = new DetailsViewContainerPropsBuilder(deps)
                 .setStoreMocks(storeMocks)
-                .setClickHandlerFactory(clickHandlerFactoryMock.object)
                 .setStoreActionMessageCreator(storeActionCreator.object)
                 .setStoresHubMock(createStoresHubMock(storeMocks, false).object)
                 .build();
@@ -382,7 +375,6 @@ describe('DetailsViewContainer', () => {
     }
 
     function testRenderStaticContent(viewType: VisualizationType, isPreviewFeaturesOpen: boolean): void {
-        const selectionMock = Mock.ofType<ISelection>(Selection);
         const clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory);
         const dropdownClickHandler = Mock.ofType(DropdownClickHandler);
         const getSelectedDetailsViewMock = Mock.ofInstance((theProps: GetSelectedDetailsViewProps) => null, MockBehavior.Strict);
@@ -439,7 +431,6 @@ describe('DetailsViewContainer', () => {
 
         const props = new DetailsViewContainerPropsBuilder(deps)
             .setStoreMocks(storeMocks)
-            .setIssuesSelection(selectionMock.object)
             .setStoresHubMock(storesHubMock.object)
             .build();
 
