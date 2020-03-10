@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { GearMenuButton, GearMenuButtonDeps } from 'common/components/gear-menu-button';
 import { Header, HeaderDeps } from 'common/components/header';
-import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { NamedFC } from 'common/react/named-fc';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
