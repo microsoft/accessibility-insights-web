@@ -52,13 +52,18 @@ describe('GithubIssueFilingServiceTest', () => {
             'some other service': {},
             [GitHubIssueFilingService.key]: expectedStoreData,
         };
-        expect(GitHubIssueFilingService.getSettingsFromStoreData(givenData)).toEqual(expectedStoreData);
+        expect(GitHubIssueFilingService.getSettingsFromStoreData(givenData)).toEqual(
+            expectedStoreData,
+        );
     });
 
     describe('isSettingsValid', () => {
-        it.each(invalidTestSettings)('invalid settings with %p', (settings: GitHubIssueFilingSettings) => {
-            expect(GitHubIssueFilingService.isSettingsValid(settings)).toBe(false);
-        });
+        it.each(invalidTestSettings)(
+            'invalid settings with %p',
+            (settings: GitHubIssueFilingSettings) => {
+                expect(GitHubIssueFilingService.isSettingsValid(settings)).toBe(false);
+            },
+        );
 
         it('valid settings', () => {
             const validSettings: GitHubIssueFilingSettings = {
@@ -94,7 +99,9 @@ describe('GithubIssueFilingServiceTest', () => {
                 propertyName: 'repository',
                 propertyValue: newRepositoryValue,
             };
-            onPropertyUpdateCallbackMock.setup(updateCallback => updateCallback(It.isValue(payload))).verifiable(Times.once());
+            onPropertyUpdateCallbackMock
+                .setup(updateCallback => updateCallback(It.isValue(payload)))
+                .verifiable(Times.once());
             wrapper
                 .find(TextField)
                 .props()

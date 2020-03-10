@@ -51,6 +51,7 @@ import { ScanStore } from 'electron/flux/store/scan-store';
 import { WindowStateStore } from 'electron/flux/store/window-state-store';
 import { IPC_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME } from 'electron/ipc/ipc-channel-names';
 import { IpcMessageReceiver } from 'electron/ipc/ipc-message-receiver';
+import { createDeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
 import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { ScanController } from 'electron/platform/android/scan-controller';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
@@ -61,6 +62,7 @@ import { WindowFrameListener } from 'electron/window-management/window-frame-lis
 import { WindowFrameUpdater } from 'electron/window-management/window-frame-updater';
 import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
+
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
 import { IndexedDBDataKeys } from '../../background/IndexedDBDataKeys';
@@ -192,6 +194,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         telemetryStateListener.initialize();
 
         const fetchScanResults = createScanResultsFetcher(axios.get);
+        const fetchDeviceConfig = createDeviceConfigFetcher(axios.get);
 
         const interpreter = new Interpreter();
         const dispatcher = new DirectActionMessageDispatcher(interpreter);
@@ -207,7 +210,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         const deviceConnectActionCreator = new DeviceConnectActionCreator(
             deviceActions,
-            fetchScanResults,
+            fetchDeviceConfig,
             telemetryEventHandler,
         );
         const windowFrameActionCreator = new WindowFrameActionCreator(windowFrameActions);
@@ -286,7 +289,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             collapsibleControl: CardsCollapsibleControl,
             cardsVisualizationModifierButtons: ExpandCollapseVisualHelperModifierButtons,
             fixInstructionProcessor,
-            getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks, // I don't think we have guidance links for axe-android
+            getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
 
             userConfigMessageCreator: userConfigMessageCreator,
             cardSelectionMessageCreator,

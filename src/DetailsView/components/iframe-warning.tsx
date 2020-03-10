@@ -22,7 +22,11 @@ export const IframeWarning = NamedFC<IframeWarningProps>('IframeWarning', props 
             give Accessibility Insights additional permissions
         </Link>
         ; this will trigger a rescan of the test.
-        <NewTabLink href={'https://accessibilityinsights.io/docs/en/faq'}>
+        <NewTabLink
+            href={
+                'https://accessibilityinsights.io/docs/en/web/reference/faq#why-does-accessibility-insights-for-web-ask-for-additional-permissions-when-it-detects-iframes'
+            }
+        >
             Learn more here.
         </NewTabLink>
     </div>

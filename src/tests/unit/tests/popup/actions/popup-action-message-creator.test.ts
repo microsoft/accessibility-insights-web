@@ -63,7 +63,10 @@ describe('PopupActionMessageCreatorTest', () => {
 
         testSubject.popupInitialized(stubTab);
 
-        actionMessageDispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
+        actionMessageDispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            Times.once(),
+        );
     });
 
     it('dispatches for openLaunchPad', () => {
@@ -76,7 +79,10 @@ describe('PopupActionMessageCreatorTest', () => {
 
         testSubject.openLaunchPad(panelType);
 
-        actionMessageDispatcherMock.verify(dispatcher => dispatcher.sendTelemetry(LAUNCH_PANEL_OPEN, It.isValue(telemetry)), Times.once());
+        actionMessageDispatcherMock.verify(
+            dispatcher => dispatcher.sendTelemetry(LAUNCH_PANEL_OPEN, It.isValue(telemetry)),
+            Times.once(),
+        );
     });
 
     test('openDetailsView', () => {
@@ -100,13 +106,23 @@ describe('PopupActionMessageCreatorTest', () => {
             payload: expectedPayload,
         };
 
-        telemetryFactoryMock.setup(tf => tf.forOpenDetailsView(stubKeypressEvent, viewType, testSource)).returns(() => telemetry);
+        telemetryFactoryMock
+            .setup(tf => tf.forOpenDetailsView(stubKeypressEvent, viewType, testSource))
+            .returns(() => telemetry);
 
         mockWindowUtils.setup(x => x.closeWindow()).verifiable(Times.once());
 
-        testSubject.openDetailsView(stubKeypressEvent, VisualizationType.Headings, testSource, pivotType);
+        testSubject.openDetailsView(
+            stubKeypressEvent,
+            VisualizationType.Headings,
+            testSource,
+            pivotType,
+        );
 
-        actionMessageDispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
+        actionMessageDispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            Times.once(),
+        );
         mockWindowUtils.verifyAll();
     });
 
@@ -123,11 +139,16 @@ describe('PopupActionMessageCreatorTest', () => {
             },
         };
 
-        telemetryFactoryMock.setup(tf => tf.fromHamburgerMenu(stubKeypressEvent)).returns(() => telemetry);
+        telemetryFactoryMock
+            .setup(tf => tf.fromHamburgerMenu(stubKeypressEvent))
+            .returns(() => telemetry);
 
         testSubject.openShortcutConfigureTab(stubKeypressEvent);
 
-        actionMessageDispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(message)), Times.once());
+        actionMessageDispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(message)),
+            Times.once(),
+        );
     });
 
     it('dispatches for openTutorial', () => {
@@ -136,11 +157,16 @@ describe('PopupActionMessageCreatorTest', () => {
             source: TelemetryEventSource.LaunchPad,
         };
 
-        telemetryFactoryMock.setup(tf => tf.fromLaunchPad(stubKeypressEvent)).returns(() => telemetry);
+        telemetryFactoryMock
+            .setup(tf => tf.fromLaunchPad(stubKeypressEvent))
+            .returns(() => telemetry);
 
         testSubject.openTutorial(stubKeypressEvent);
 
-        actionMessageDispatcherMock.verify(dispatcher => dispatcher.sendTelemetry(TUTORIAL_OPEN, It.isValue(telemetry)), Times.once());
+        actionMessageDispatcherMock.verify(
+            dispatcher => dispatcher.sendTelemetry(TUTORIAL_OPEN, It.isValue(telemetry)),
+            Times.once(),
+        );
     });
 
     it('dispatches for setLaunchPanelType', () => {
@@ -157,6 +183,9 @@ describe('PopupActionMessageCreatorTest', () => {
 
         testSubject.setLaunchPanelType(panelType);
 
-        actionMessageDispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
+        actionMessageDispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            Times.once(),
+        );
     });
 });

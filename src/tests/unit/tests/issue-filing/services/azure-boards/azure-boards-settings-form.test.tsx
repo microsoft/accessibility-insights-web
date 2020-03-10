@@ -57,7 +57,9 @@ describe('AzureBoardsSettingsForm', () => {
                 propertyName: projectUrlProperty,
                 propertyValue: newProjectUrl,
             };
-            onPropertyUpdateCallbackMock.setup(updateCallback => updateCallback(payload)).verifiable(Times.once());
+            onPropertyUpdateCallbackMock
+                .setup(updateCallback => updateCallback(payload))
+                .verifiable(Times.once());
 
             const testSubject = shallow(<AzureBoardsSettingsForm {...props} />);
 
@@ -69,13 +71,16 @@ describe('AzureBoardsSettingsForm', () => {
         it('handles issues details field change', () => {
             const newIssueDetailsFieldKey = 'a-different-field-key';
 
-            const issueDetailsFieldProperty: keyof AzureBoardsIssueFilingSettings = 'issueDetailsField';
+            const issueDetailsFieldProperty: keyof AzureBoardsIssueFilingSettings =
+                'issueDetailsField';
             const payload = {
                 issueFilingServiceName: AzureBoardsIssueFilingService.key,
                 propertyName: issueDetailsFieldProperty,
                 propertyValue: newIssueDetailsFieldKey,
             };
-            onPropertyUpdateCallbackMock.setup(updateCallback => updateCallback(payload)).verifiable(Times.once());
+            onPropertyUpdateCallbackMock
+                .setup(updateCallback => updateCallback(payload))
+                .verifiable(Times.once());
 
             const testSubject = shallow(<AzureBoardsSettingsForm {...props} />);
 

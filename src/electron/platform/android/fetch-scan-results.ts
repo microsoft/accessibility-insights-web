@@ -9,7 +9,7 @@ export type HttpGet = typeof axios.get;
 
 export const createScanResultsFetcher = (httpGet: HttpGet): ScanResultsFetcher => {
     return async (port: number) => {
-        const response = await httpGet(`http://localhost:${port}/axe/result`);
+        const response = await httpGet(`http://localhost:${port}/AccessibilityInsights/result`);
         return new ScanResults(response.data);
     };
 };

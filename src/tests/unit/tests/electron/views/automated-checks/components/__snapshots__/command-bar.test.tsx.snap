@@ -28,6 +28,7 @@ exports[`CommandBar renders while status is <Completed> 1`] = `
     <CustomizedActionButton
       ariaLabel="settings"
       className="menuItemButton"
+      data-automation-id="command-button-settings"
       iconProps={
         Object {
           "className": "buttonIcon",
@@ -68,6 +69,7 @@ exports[`CommandBar renders while status is <Default> 1`] = `
     <CustomizedActionButton
       ariaLabel="settings"
       className="menuItemButton"
+      data-automation-id="command-button-settings"
       iconProps={
         Object {
           "className": "buttonIcon",
@@ -108,6 +110,7 @@ exports[`CommandBar renders while status is <Failed> 1`] = `
     <CustomizedActionButton
       ariaLabel="settings"
       className="menuItemButton"
+      data-automation-id="command-button-settings"
       iconProps={
         Object {
           "className": "buttonIcon",
@@ -148,6 +151,7 @@ exports[`CommandBar renders while status is <Scanning> 1`] = `
     <CustomizedActionButton
       ariaLabel="settings"
       className="menuItemButton"
+      data-automation-id="command-button-settings"
       iconProps={
         Object {
           "className": "buttonIcon",

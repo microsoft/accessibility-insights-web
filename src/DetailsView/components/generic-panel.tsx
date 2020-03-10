@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { css } from '@uifabric/utilities';
 import { NamedFC } from 'common/react/named-fc';
-import { IPanelProps, Panel, PanelType } from 'office-ui-fabric-react';
+import { IPanelProps, Panel } from 'office-ui-fabric-react';
 import * as React from 'react';
 import * as styles from './generic-panel.scss';
 
@@ -14,8 +14,6 @@ export const GenericPanel = NamedFC<GenericPanelProps>('GenericPanel', props => 
     <Panel
         {...props}
         data-automation-id={props.innerPanelAutomationId}
-        type={PanelType.custom}
-        customWidth="550px"
         className={css(styles.genericPanel, props.className)}
         isLightDismiss={true}
         headerClassName={styles.headerText}

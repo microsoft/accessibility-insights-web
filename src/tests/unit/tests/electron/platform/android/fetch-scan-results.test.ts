@@ -30,7 +30,7 @@ describe('fetchScanResults', () => {
         };
 
         httpGetMock
-            .setup(getter => getter(`http://localhost:${port}/axe/result`))
+            .setup(getter => getter(`http://localhost:${port}/AccessibilityInsights/result`))
             .returns(() => Promise.resolve({ data } as AxiosResponse<any>));
 
         const result = await testSubject(port);
@@ -41,7 +41,7 @@ describe('fetchScanResults', () => {
     it('propagates errors properly', async () => {
         const reason = 'test exception reason';
 
-        httpGetMock.setup(getter => getter(`http://localhost:${port}/axe/result`)).returns(() => Promise.reject(reason));
+        httpGetMock.setup(getter => getter(`http://localhost:${port}/AccessibilityInsights/result`)).returns(() => Promise.reject(reason));
 
         await expect(testSubject(port)).rejects.toMatch(reason);
     });

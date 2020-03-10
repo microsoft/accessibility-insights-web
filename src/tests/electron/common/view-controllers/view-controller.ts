@@ -24,6 +24,22 @@ export abstract class ViewController {
         await this.screenshotOnError(async () => this.client.waitForExist(selector, timeout));
     }
 
+    public async waitForSelectorToDisappear(
+        selector: string,
+        timeout: number = DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS,
+    ): Promise<void> {
+        await this.screenshotOnError(async () =>
+            this.client.waitUntil(
+                async () => {
+                    const selected = await this.client.$(selector);
+                    return selected.value === null;
+                },
+                timeout,
+                `was expecting element by selector ${selector} to disappear`,
+            ),
+        );
+    }
+
     public async click(selector: string): Promise<void> {
         await this.screenshotOnError(async () => this.client.click(selector));
     }

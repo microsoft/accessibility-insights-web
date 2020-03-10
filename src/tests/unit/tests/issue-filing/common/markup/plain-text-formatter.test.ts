@@ -15,7 +15,9 @@ describe('PlainTextFormatter', () => {
     });
 
     it('returns how to fix section', () => {
-        expect(testSubject.howToFixSection('test-failure-summary')).toEqual('\ntest-failure-summary');
+        expect(testSubject.howToFixSection('test-failure-summary')).toEqual(
+            '\ntest-failure-summary',
+        );
     });
 
     it('returns section header separator', () => {
