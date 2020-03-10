@@ -100,7 +100,12 @@ export class DetailsViewContainerPropsBuilder {
     }
 
     public setDropdownClickHandler(creator: DropdownClickHandler): DetailsViewContainerPropsBuilder {
-        this.dropdownClickHandler = creator;
+        if (this.deps == null) {
+            this.deps = {} as DetailsViewContainerDeps;
+        }
+
+        this.deps.dropdownClickHandler = creator;
+
         return this;
     }
 
@@ -148,21 +153,11 @@ export class DetailsViewContainerPropsBuilder {
             this.deps.storeActionMessageCreator = this.storeActionCreator;
         }
 
-        return {
+        const props: DetailsViewContainerProps = {
             deps: this.deps,
-            document: this.document,
-            issuesSelection: this.issuesSelection,
-            clickHandlerFactory: this.clickHandlerFactory,
-            visualizationConfigurationFactory: this.configFactory,
-            issuesTableHandler: this.issuesTableHandler,
-            previewFeatureFlagsHandler: this.previewFeatureFlagsHandler,
-            scopingFlagsHandler: this.scopingFlagsHandler,
-            dropdownClickHandler: this.dropdownClickHandler,
-            assessmentInstanceTableHandler: this.assessmentInstanceTableHandler,
-            scopingActionMessageCreator: this.scopingActionMessageCreator,
-            inspectActionMessageCreator: this.inspectActionMessageCreator,
-            assessmentsProvider: this.assessmentProvider,
             storeState: storeState,
         };
+
+        return props;
     }
 }

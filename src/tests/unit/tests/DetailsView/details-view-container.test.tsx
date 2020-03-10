@@ -1,52 +1,46 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { CardSelectionViewData, GetCardSelectionViewData } from 'common/get-card-selection-view-data';
+import { StoreActionMessageCreator } from 'common/message-creators/store-action-message-creator';
+import { StoreActionMessageCreatorImpl } from 'common/message-creators/store-action-message-creator-impl';
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
+import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
+import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
-import { shallow } from 'enzyme';
-import { ISelection, Selection } from 'office-ui-fabric-react';
-import * as React from 'react';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
-import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
-import { StoreActionMessageCreator } from '../../../../common/message-creators/store-action-message-creator';
-import { StoreActionMessageCreatorImpl } from '../../../../common/message-creators/store-action-message-creator-impl';
-import { BaseClientStoresHub } from '../../../../common/stores/base-client-stores-hub';
-import { DetailsViewPivotType } from '../../../../common/types/details-view-pivot-type';
-import { CardsViewModel } from '../../../../common/types/store-data/card-view-model';
-import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
-import {
-    TargetAppData,
-    UnifiedResult,
-    UnifiedRule,
-    UnifiedScanResultStoreData,
-} from '../../../../common/types/store-data/unified-data-interface';
-import { UserConfigurationStoreData } from '../../../../common/types/store-data/user-configuration-store';
-import { VisualizationType } from '../../../../common/types/visualization-type';
-import { DetailsViewActionMessageCreator } from '../../../../DetailsView/actions/details-view-action-message-creator';
-import { DetailsViewOverlay } from '../../../../DetailsView/components/details-view-overlay/details-view-overlay';
+import { CardsViewModel } from 'common/types/store-data/card-view-model';
+import { TabStoreData } from 'common/types/store-data/tab-store-data';
+import { TargetAppData, UnifiedResult, UnifiedRule, UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { VisualizationType } from 'common/types/visualization-type';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { DetailsViewOverlay } from 'DetailsView/components/details-view-overlay/details-view-overlay';
 import {
     DetailsRightPanelConfiguration,
     GetDetailsRightPanelConfiguration,
     GetDetailsRightPanelConfigurationProps,
-} from '../../../../DetailsView/components/details-view-right-panel';
+} from 'DetailsView/components/details-view-right-panel';
 import {
     DetailsViewSwitcherNavConfiguration,
     GetDetailsSwitcherNavConfiguration,
     GetDetailsSwitcherNavConfigurationProps,
-} from '../../../../DetailsView/components/details-view-switcher-nav';
-import { InteractiveHeader } from '../../../../DetailsView/components/interactive-header';
-import { DetailsViewRightContentPanelType } from '../../../../DetailsView/components/left-nav/details-view-right-content-panel-type';
-import { GetSelectedDetailsViewProps } from '../../../../DetailsView/components/left-nav/get-selected-details-view';
-import { DetailsViewBody } from '../../../../DetailsView/details-view-body';
+} from 'DetailsView/components/details-view-switcher-nav';
+import { InteractiveHeader } from 'DetailsView/components/interactive-header';
+import { DetailsViewRightContentPanelType } from 'DetailsView/components/left-nav/details-view-right-content-panel-type';
+import { GetSelectedDetailsViewProps } from 'DetailsView/components/left-nav/get-selected-details-view';
+import { DetailsViewBody } from 'DetailsView/details-view-body';
 import {
     DetailsViewContainer,
     DetailsViewContainerDeps,
     DetailsViewContainerProps,
     DetailsViewContainerState,
-} from '../../../../DetailsView/details-view-container';
-import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
-import { PreviewFeatureFlagsHandler } from '../../../../DetailsView/handlers/preview-feature-flags-handler';
+} from 'DetailsView/details-view-container';
+import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
+import { PreviewFeatureFlagsHandler } from 'DetailsView/handlers/preview-feature-flags-handler';
+import { shallow } from 'enzyme';
+import { ISelection, Selection } from 'office-ui-fabric-react';
+import * as React from 'react';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DetailsViewStoreDataBuilder } from '../../common/details-view-store-data-builder';
 import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { CreateTestAssessmentProviderWithFeatureFlag } from '../../common/test-assessment-provider';
@@ -113,7 +107,8 @@ describe('DetailsViewContainer', () => {
         });
 
         it('renders TargetPageClosedView when target page closed', () => {
-            const props = new DetailsViewContainerPropsBuilder(null).build();
+            const dropdownClickHandler = Mock.ofType(DropdownClickHandler);
+            const props = new DetailsViewContainerPropsBuilder(null).setDropdownClickHandler(dropdownClickHandler.object).build();
             const rendered = shallow(<DetailsViewContainer {...props} />);
             expect(rendered.debug()).toMatchSnapshot();
         });
@@ -302,13 +297,13 @@ describe('DetailsViewContainer', () => {
                 detailsViewStoreData={storeMocks.detailsViewStoreData}
                 visualizationStoreData={storeMocks.visualizationStoreData}
                 visualizationScanResultData={storeMocks.visualizationScanResultsStoreData}
-                visualizationConfigurationFactory={props.visualizationConfigurationFactory}
-                assessmentsProvider={props.assessmentsProvider}
-                dropdownClickHandler={props.dropdownClickHandler}
-                clickHandlerFactory={props.clickHandlerFactory}
-                assessmentInstanceTableHandler={props.assessmentInstanceTableHandler}
-                issuesSelection={props.issuesSelection}
-                issuesTableHandler={props.issuesTableHandler}
+                visualizationConfigurationFactory={props.deps.visualizationConfigurationFactory}
+                assessmentsProvider={props.deps.assessmentsProvider}
+                dropdownClickHandler={props.deps.dropdownClickHandler}
+                clickHandlerFactory={props.deps.clickHandlerFactory}
+                assessmentInstanceTableHandler={props.deps.assessmentInstanceTableHandler}
+                issuesSelection={props.deps.issuesSelection}
+                issuesTableHandler={props.deps.issuesTableHandler}
                 rightPanelConfiguration={rightPanelConfiguration}
                 switcherNavConfiguration={switcherNavConfiguration}
                 userConfigurationStoreData={storeMocks.userConfigurationStoreData}
@@ -346,9 +341,9 @@ describe('DetailsViewContainer', () => {
         return (
             <DetailsViewOverlay
                 deps={props.deps}
-                previewFeatureFlagsHandler={props.previewFeatureFlagsHandler}
-                scopingActionMessageCreator={props.scopingActionMessageCreator}
-                inspectActionMessageCreator={props.inspectActionMessageCreator}
+                previewFeatureFlagsHandler={props.deps.previewFeatureFlagsHandler}
+                scopingActionMessageCreator={props.deps.scopingActionMessageCreator}
+                inspectActionMessageCreator={props.deps.inspectActionMessageCreator}
                 detailsViewStoreData={storeMocks.detailsViewStoreData}
                 scopingStoreData={storeMocks.scopingStoreData}
                 featureFlagStoreData={storeMocks.featureFlagStoreData}
@@ -442,9 +437,11 @@ describe('DetailsViewContainer', () => {
 
         const storesHubMock = createStoresHubMock(storeMocks);
 
+        deps.dropdownClickHandler = dropdownClickHandler.object;
+
         const props = new DetailsViewContainerPropsBuilder(deps)
             .setStoreMocks(storeMocks)
-            .setDropdownClickHandler(dropdownClickHandler.object)
+            // TODO remove any set from here for props that we move to deps
             .setIssuesSelection(selectionMock.object)
             .setClickHandlerFactory(clickHandlerFactoryMock.object)
             .setPreviewFeatureFlagsHandler(previewFeatureFlagsHandlerMock.object)

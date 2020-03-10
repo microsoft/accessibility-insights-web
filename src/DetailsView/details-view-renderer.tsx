@@ -22,17 +22,6 @@ export class DetailsViewRenderer {
         private readonly deps: DetailsViewContainerDeps,
         private readonly dom: Document,
         private readonly renderer: typeof ReactDOM.render,
-        private readonly scopingActionMessageCreator: ScopingActionMessageCreator,
-        private readonly inspectActionMessageCreator: InspectActionMessageCreator,
-        private readonly issuesSelection: ISelection,
-        private readonly clickHandlerFactory: DetailsViewToggleClickHandlerFactory,
-        private readonly visualizationConfigurationFactory: VisualizationConfigurationFactory,
-        private readonly issuesTableHandler: IssuesTableHandler,
-        private readonly assessmentInstanceTableHandler: AssessmentInstanceTableHandler,
-        private readonly previewFeatureFlagsHandler: PreviewFeatureFlagsHandler,
-        private readonly scopingFlagsHandler: PreviewFeatureFlagsHandler,
-        private readonly dropdownClickHandler: DropdownClickHandler,
-        private readonly assessmentsProvider: AssessmentsProvider,
         private readonly documentManipulator: DocumentManipulator,
     ) {}
 
@@ -44,20 +33,7 @@ export class DetailsViewRenderer {
         this.renderer(
             <>
                 <Theme deps={this.deps} />
-                <DetailsView
-                    deps={this.deps}
-                    issuesSelection={this.issuesSelection}
-                    clickHandlerFactory={this.clickHandlerFactory}
-                    visualizationConfigurationFactory={this.visualizationConfigurationFactory}
-                    issuesTableHandler={this.issuesTableHandler}
-                    assessmentInstanceTableHandler={this.assessmentInstanceTableHandler}
-                    previewFeatureFlagsHandler={this.previewFeatureFlagsHandler}
-                    scopingFlagsHandler={this.scopingFlagsHandler}
-                    dropdownClickHandler={this.dropdownClickHandler}
-                    scopingActionMessageCreator={this.scopingActionMessageCreator}
-                    inspectActionMessageCreator={this.inspectActionMessageCreator}
-                    assessmentsProvider={this.assessmentsProvider}
-                />
+                <DetailsView deps={this.deps} />
             </>,
             detailsViewContainer,
         );

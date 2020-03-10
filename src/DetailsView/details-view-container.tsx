@@ -52,6 +52,14 @@ export type DetailsViewContainerDeps = {
     getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration;
     getCardViewData: GetCardViewData;
     getCardSelectionViewData: GetCardSelectionViewData;
+    issuesSelection: ISelection;
+    clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
+    scopingActionMessageCreator: ScopingActionMessageCreator;
+    inspectActionMessageCreator: InspectActionMessageCreator;
+    issuesTableHandler: IssuesTableHandler;
+    assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
+    previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
+    dropdownClickHandler: DropdownClickHandler;
 } & DetailsViewBodyDeps &
     DetailsViewOverlayDeps &
     DetailsViewCommandBarDeps &
@@ -62,17 +70,6 @@ export type DetailsViewContainerDeps = {
 
 export interface DetailsViewContainerProps {
     deps: DetailsViewContainerDeps;
-    issuesSelection: ISelection;
-    clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
-    scopingActionMessageCreator: ScopingActionMessageCreator;
-    inspectActionMessageCreator: InspectActionMessageCreator;
-    visualizationConfigurationFactory: VisualizationConfigurationFactory;
-    issuesTableHandler: IssuesTableHandler;
-    assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
-    previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
-    scopingFlagsHandler: PreviewFeatureFlagsHandler;
-    dropdownClickHandler: DropdownClickHandler;
-    assessmentsProvider: AssessmentsProvider;
     storeState: DetailsViewContainerState;
 }
 
@@ -153,7 +150,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
                     visualizationStoreData ? visualizationStoreData.selectedDetailsViewPivot : null
                 }
                 featureFlagStoreData={this.hasStores() ? storeState.featureFlagStoreData : null}
-                dropdownClickHandler={this.props.dropdownClickHandler}
+                dropdownClickHandler={this.props.deps.dropdownClickHandler}
                 tabClosed={this.hasStores() ? this.props.storeState.tabStoreData.isClosed : true}
             />
         );
@@ -164,9 +161,9 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
         return (
             <DetailsViewOverlay
                 deps={deps}
-                previewFeatureFlagsHandler={this.props.previewFeatureFlagsHandler}
-                scopingActionMessageCreator={this.props.scopingActionMessageCreator}
-                inspectActionMessageCreator={this.props.inspectActionMessageCreator}
+                previewFeatureFlagsHandler={this.props.deps.previewFeatureFlagsHandler}
+                scopingActionMessageCreator={this.props.deps.scopingActionMessageCreator}
+                inspectActionMessageCreator={this.props.deps.inspectActionMessageCreator}
                 detailsViewStoreData={storeState.detailsViewStoreData}
                 scopingStoreData={storeState.scopingPanelStateStoreData}
                 featureFlagStoreData={storeState.featureFlagStoreData}
@@ -212,13 +209,15 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
                 detailsViewStoreData={storeState.detailsViewStoreData}
                 visualizationStoreData={storeState.visualizationStoreData}
                 visualizationScanResultData={storeState.visualizationScanResultStoreData}
-                visualizationConfigurationFactory={this.props.visualizationConfigurationFactory}
-                assessmentsProvider={this.props.assessmentsProvider}
-                dropdownClickHandler={this.props.dropdownClickHandler}
-                clickHandlerFactory={this.props.clickHandlerFactory}
-                assessmentInstanceTableHandler={this.props.assessmentInstanceTableHandler}
-                issuesSelection={this.props.issuesSelection}
-                issuesTableHandler={this.props.issuesTableHandler}
+                visualizationConfigurationFactory={
+                    this.props.deps.visualizationConfigurationFactory
+                }
+                assessmentsProvider={this.props.deps.assessmentsProvider}
+                dropdownClickHandler={this.props.deps.dropdownClickHandler}
+                clickHandlerFactory={this.props.deps.clickHandlerFactory}
+                assessmentInstanceTableHandler={this.props.deps.assessmentInstanceTableHandler}
+                issuesSelection={this.props.deps.issuesSelection}
+                issuesTableHandler={this.props.deps.issuesTableHandler}
                 rightPanelConfiguration={selectedDetailsRightPanelConfiguration}
                 switcherNavConfiguration={selectedDetailsViewSwitcherNavConfiguration}
                 userConfigurationStoreData={storeState.userConfigurationStoreData}
