@@ -415,25 +415,24 @@ if (isNaN(tabId) === false) {
                 setFocusVisibility,
                 documentManipulator,
                 customCongratsMessage: null, // uses default message
+                scopingActionMessageCreator,
+                inspectActionMessageCreator,
+                issuesSelection,
+                clickHandlerFactory,
+                issuesTableHandler,
+                assessmentInstanceTableHandler,
+                previewFeatureFlagsHandler,
+                scopingFlagsHandler,
+                Assessments,
             };
 
             const renderer = new DetailsViewRenderer(
                 deps,
                 dom,
                 ReactDOM.render,
-                scopingActionMessageCreator,
-                inspectActionMessageCreator,
-                issuesSelection,
-                clickHandlerFactory,
-                visualizationConfigurationFactory,
-                issuesTableHandler,
-                assessmentInstanceTableHandler,
-                previewFeatureFlagsHandler,
-                scopingFlagsHandler,
-                dropdownClickHandler,
-                Assessments,
                 documentElementSetter,
             );
+
             renderer.render();
 
             const a11ySelfValidator = new A11YSelfValidator(
@@ -451,21 +450,5 @@ if (isNaN(tabId) === false) {
 }
 
 function createNullifiedRenderer(doc, render): DetailsViewRenderer {
-    return new DetailsViewRenderer(
-        null,
-        doc,
-        render,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        documentElementSetter,
-    );
+    return new DetailsViewRenderer(null, doc, render, documentElementSetter);
 }
