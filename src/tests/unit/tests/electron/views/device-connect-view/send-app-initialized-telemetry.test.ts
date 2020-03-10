@@ -30,6 +30,9 @@ describe('sendAppInitializedTelemetry', () => {
             },
         };
 
-        telemetryEventHandlerMock.verify(handler => handler.publishTelemetry(APP_INITIALIZED, It.isValue(expectedTelemetry)), Times.once());
+        telemetryEventHandlerMock.verify(
+            handler => handler.publishTelemetry(APP_INITIALIZED, It.isValue(expectedTelemetry)),
+            Times.once(),
+        );
     });
 });

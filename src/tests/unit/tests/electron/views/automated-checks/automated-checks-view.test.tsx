@@ -1,14 +1,28 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CardSelectionViewData, getCardSelectionViewData } from 'common/get-card-selection-view-data';
+import {
+    CardSelectionViewData,
+    getCardSelectionViewData,
+} from 'common/get-card-selection-view-data';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
-import { CardRuleResult, CardRuleResultsByStatus, CardsViewModel } from 'common/types/store-data/card-view-model';
-import { UnifiedResult, UnifiedRule, UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
+import {
+    CardRuleResult,
+    CardRuleResultsByStatus,
+    CardsViewModel,
+} from 'common/types/store-data/card-view-model';
+import {
+    UnifiedResult,
+    UnifiedRule,
+    UnifiedScanResultStoreData,
+} from 'common/types/store-data/unified-data-interface';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { ScanStatus } from 'electron/flux/types/scan-status';
-import { AutomatedChecksView, AutomatedChecksViewProps } from 'electron/views/automated-checks/automated-checks-view';
+import {
+    AutomatedChecksView,
+    AutomatedChecksViewProps,
+} from 'electron/views/automated-checks/automated-checks-view';
 import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
 import { ScreenshotViewModel } from 'electron/views/screenshot/screenshot-view-model';
 import { screenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
@@ -37,7 +51,11 @@ describe('AutomatedChecksView', () => {
             } as AutomatedChecksViewProps;
         });
 
-        const scanStatuses = [undefined, ScanStatus[ScanStatus.Scanning], ScanStatus[ScanStatus.Failed]];
+        const scanStatuses = [
+            undefined,
+            ScanStatus[ScanStatus.Scanning],
+            ScanStatus[ScanStatus.Failed],
+        ];
 
         it.each(scanStatuses)('when status scan <%s>', scanStatusName => {
             bareMinimumProps.scanStoreData.status = ScanStatus[scanStatusName];
@@ -81,11 +99,18 @@ describe('AutomatedChecksView', () => {
                 .verifiable(Times.once());
 
             const screenshotViewModelStub = {
-                screenshotData: { base64PngData: 'this should appear in snapshotted ScreenshotView props' },
+                screenshotData: {
+                    base64PngData: 'this should appear in snapshotted ScreenshotView props',
+                },
             } as ScreenshotViewModel;
             const screenshotViewModelProviderMock = Mock.ofInstance(screenshotViewModelProvider);
             screenshotViewModelProviderMock
-                .setup(provider => provider(unifiedScanResultStoreData, cardSelectionViewDataStub.highlightedResultUids))
+                .setup(provider =>
+                    provider(
+                        unifiedScanResultStoreData,
+                        cardSelectionViewDataStub.highlightedResultUids,
+                    ),
+                )
                 .returns(() => screenshotViewModelStub)
                 .verifiable(Times.once());
 
@@ -197,7 +222,10 @@ describe('AutomatedChecksView', () => {
 
             wrapped.find(DeviceDisconnectedPopup).prop('onConnectNewDevice')();
 
-            windowStateActionCreatorMock.verify(creator => creator.setRoute(It.isValue({ routeId: 'deviceConnectView' })), Times.once());
+            windowStateActionCreatorMock.verify(
+                creator => creator.setRoute(It.isValue({ routeId: 'deviceConnectView' })),
+                Times.once(),
+            );
         });
     });
 });

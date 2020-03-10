@@ -26,7 +26,9 @@ describe('ScanActionCreator', () => {
         deviceActionsMock = Mock.ofType<DeviceActions>();
         resetConnectionMock = Mock.ofType<Action<void>>();
 
-        deviceActionsMock.setup(actions => actions.resetConnection).returns(() => resetConnectionMock.object);
+        deviceActionsMock
+            .setup(actions => actions.resetConnection)
+            .returns(() => resetConnectionMock.object);
 
         testSubject = new ScanActionCreator(scanActionsMock.object, deviceActionsMock.object);
     });
@@ -34,7 +36,10 @@ describe('ScanActionCreator', () => {
     it('scans', () => {
         testSubject.scan(port);
 
-        scanStartedMock.verify(scanStarted => scanStarted.invoke(It.isValue({ port })), Times.once());
+        scanStartedMock.verify(
+            scanStarted => scanStarted.invoke(It.isValue({ port })),
+            Times.once(),
+        );
         resetConnectionMock.verify(resetConnection => resetConnection.invoke(), Times.once());
     });
 });
