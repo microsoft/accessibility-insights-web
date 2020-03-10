@@ -6,9 +6,6 @@ exports[`TelemetryPermissionDialogTest render dialog 1`] = `
     Object {
       "showCloseButton": false,
       "title": "We need your help",
-      "titleProps": Object {
-        "id": "telemetry-permission-title",
-      },
       "type": 0,
     }
   }
