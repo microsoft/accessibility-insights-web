@@ -146,7 +146,6 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
                     visualizationStoreData ? visualizationStoreData.selectedDetailsViewPivot : null
                 }
                 featureFlagStoreData={this.hasStores() ? storeState.featureFlagStoreData : null}
-                dropdownClickHandler={this.props.deps.dropdownClickHandler}
                 tabClosed={this.hasStores() ? this.props.storeState.tabStoreData.isClosed : true}
             />
         );
