@@ -10,7 +10,7 @@ export class ScanActionCreator {
     ) {}
 
     public scan(port: number): void {
-        this.deviceActions.resetConnection.invoke(null);
+        this.deviceActions.resetConnection.invoke();
         this.scanActions.scanStarted.invoke({ port });
     }
 }

@@ -35,6 +35,6 @@ describe('ScanActionCreator', () => {
         testSubject.scan(port);
 
         scanStartedMock.verify(scanStarted => scanStarted.invoke(It.isValue({ port })), Times.once());
-        resetConnectionMock.verify(resetConnection => resetConnection.invoke(null), Times.once());
+        resetConnectionMock.verify(resetConnection => resetConnection.invoke(), Times.once());
     });
 });
