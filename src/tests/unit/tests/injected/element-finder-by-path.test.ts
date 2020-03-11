@@ -3,7 +3,10 @@
 import { IMock, It, Mock } from 'typemoq';
 
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
-import { ElementFinderByPath, ElementFinderByPathMessage } from '../../../../injected/element-finder-by-path';
+import {
+    ElementFinderByPath,
+    ElementFinderByPathMessage,
+} from '../../../../injected/element-finder-by-path';
 import { ErrorMessageContent } from '../../../../injected/frameCommunicators/error-message-content';
 import { FrameCommunicator } from '../../../../injected/frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from '../../../../injected/frameCommunicators/window-message-handler';
@@ -33,11 +36,16 @@ describe('ElementFinderByPositionTest', () => {
             querySelector: querySelectorMock.object,
         } as HTMLElementUtils;
 
-        testSubject = new TestablePathElementFinder(htmlElementUtilsStub, frameCommunicatorMock.object);
+        testSubject = new TestablePathElementFinder(
+            htmlElementUtilsStub,
+            frameCommunicatorMock.object,
+        );
     });
 
     test('initialize', () => {
-        const responderMock = Mock.ofInstance((result: any, error: ErrorMessageContent, messageSourceWindow: Window) => {});
+        const responderMock = Mock.ofInstance(
+            (result: any, error: ErrorMessageContent, messageSourceWindow: Window) => {},
+        );
         const processRequestPromiseHandlerMock = Mock.ofInstance((successCb, errorCb) => {});
         const processRequestMock = Mock.ofInstance(message => {
             return null;
@@ -54,7 +62,11 @@ describe('ElementFinderByPositionTest', () => {
             then: processRequestPromiseHandlerMock.object,
         } as Promise<string>;
 
-        frameCommunicatorMock.setup(fcm => fcm.subscribe(ElementFinderByPath.findElementByPathCommand, subscribeCallback)).verifiable();
+        frameCommunicatorMock
+            .setup(fcm =>
+                fcm.subscribe(ElementFinderByPath.findElementByPathCommand, subscribeCallback),
+            )
+            .verifiable();
 
         processRequestMock
             .setup(prm => prm(messageStub))
@@ -149,7 +161,10 @@ describe('ElementFinderByPositionTest', () => {
         expect(response).toEqual(snippet);
     });
 
-    function setupQuerySelectorMock(messageStub: ElementFinderByPathMessage, element: HTMLElement): void {
+    function setupQuerySelectorMock(
+        messageStub: ElementFinderByPathMessage,
+        element: HTMLElement,
+    ): void {
         querySelectorMock.setup(em => em(messageStub.path[0])).returns(() => element);
     }
 

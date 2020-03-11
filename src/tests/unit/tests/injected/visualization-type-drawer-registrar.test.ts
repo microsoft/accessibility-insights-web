@@ -6,7 +6,10 @@ import { IMock, Mock } from 'typemoq';
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { VisualizationType } from '../../../../common/types/visualization-type';
-import { RegisterDrawer, VisualizationTypeDrawerRegistrar } from '../../../../injected/visualization-type-drawer-registrar';
+import {
+    RegisterDrawer,
+    VisualizationTypeDrawerRegistrar,
+} from '../../../../injected/visualization-type-drawer-registrar';
 import { Drawer } from '../../../../injected/visualization/drawer';
 import { DrawerProvider } from '../../../../injected/visualization/drawer-provider';
 
@@ -40,10 +43,14 @@ describe('VisualizationTypeDrawerRegistrar', () => {
     });
 
     test('registerDrawer: non-assessment type', () => {
-        visualizationConfigFactoryMock.setup(mock => mock.getConfiguration(typeStub)).returns(() => configMock.object);
+        visualizationConfigFactoryMock
+            .setup(mock => mock.getConfiguration(typeStub))
+            .returns(() => configMock.object);
         assessmentProviderMock.setup(mock => mock.isValidType(typeStub)).returns(() => false);
         configMock.setup(mock => mock.getIdentifier()).returns(() => identifierStub);
-        configMock.setup(mock => mock.getDrawer(drawerProviderMock.object)).returns(() => drawerStub);
+        configMock
+            .setup(mock => mock.getDrawer(drawerProviderMock.object))
+            .returns(() => drawerStub);
         registerDrawerMock.setup(mock => mock(identifierStub, drawerStub)).verifiable();
 
         testSubject.registerType(typeStub);
@@ -64,13 +71,23 @@ describe('VisualizationTypeDrawerRegistrar', () => {
         };
         const secondIdentifierStub = 'some other id';
 
-        visualizationConfigFactoryMock.setup(mock => mock.getConfiguration(typeStub)).returns(() => configMock.object);
+        visualizationConfigFactoryMock
+            .setup(mock => mock.getConfiguration(typeStub))
+            .returns(() => configMock.object);
         assessmentProviderMock.setup(mock => mock.isValidType(typeStub)).returns(() => true);
         assessmentProviderMock.setup(mock => mock.getStepMap(typeStub)).returns(() => stepMapStub);
-        configMock.setup(mock => mock.getIdentifier(requirementStub.key)).returns(() => identifierStub);
-        configMock.setup(mock => mock.getIdentifier(requirementStubTwo.key)).returns(() => secondIdentifierStub);
-        configMock.setup(mock => mock.getDrawer(drawerProviderMock.object, identifierStub)).returns(() => drawerStub);
-        configMock.setup(mock => mock.getDrawer(drawerProviderMock.object, secondIdentifierStub)).returns(() => drawerStub);
+        configMock
+            .setup(mock => mock.getIdentifier(requirementStub.key))
+            .returns(() => identifierStub);
+        configMock
+            .setup(mock => mock.getIdentifier(requirementStubTwo.key))
+            .returns(() => secondIdentifierStub);
+        configMock
+            .setup(mock => mock.getDrawer(drawerProviderMock.object, identifierStub))
+            .returns(() => drawerStub);
+        configMock
+            .setup(mock => mock.getDrawer(drawerProviderMock.object, secondIdentifierStub))
+            .returns(() => drawerStub);
         registerDrawerMock.setup(mock => mock(identifierStub, drawerStub)).verifiable();
         registerDrawerMock.setup(mock => mock(secondIdentifierStub, drawerStub)).verifiable();
 

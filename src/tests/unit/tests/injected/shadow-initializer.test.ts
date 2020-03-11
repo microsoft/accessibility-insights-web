@@ -48,7 +48,11 @@ describe('ShadowInitializerTests', () => {
             .returns(() => generatedBundleInjectedCssPathFileUrl);
 
         const loggerMock = Mock.ofType<Logger>();
-        testSubject = new ShadowInitializer(browserAdapter.object, htmlElementUtilsMock.object, loggerMock.object);
+        testSubject = new ShadowInitializer(
+            browserAdapter.object,
+            htmlElementUtilsMock.object,
+            loggerMock.object,
+        );
     });
 
     afterEach(() => {
@@ -68,7 +72,9 @@ describe('ShadowInitializerTests', () => {
     });
 
     test('add style data to shadow container', async () => {
-        expect(shadowRoot.querySelectorAll('div#insights-shadow-container style').length).toEqual(0);
+        expect(shadowRoot.querySelectorAll('div#insights-shadow-container style').length).toEqual(
+            0,
+        );
 
         await testSubject.initialize();
 

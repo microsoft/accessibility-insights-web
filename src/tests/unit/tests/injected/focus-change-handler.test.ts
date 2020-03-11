@@ -4,7 +4,10 @@ import { IMock, It, Mock, Times } from 'typemoq';
 
 import { TargetPageStoreData } from '../../../../injected/client-store-listener';
 import { FocusChangeHandler } from '../../../../injected/focus-change-handler';
-import { ScrollingController, ScrollingWindowMessage } from '../../../../injected/frameCommunicators/scrolling-controller';
+import {
+    ScrollingController,
+    ScrollingWindowMessage,
+} from '../../../../injected/frameCommunicators/scrolling-controller';
 import { TargetPageActionMessageCreator } from '../../../../injected/target-page-action-message-creator';
 
 describe('FocusChangeHandler', () => {
@@ -24,7 +27,10 @@ describe('FocusChangeHandler', () => {
         };
         sampleUid = 'some uid';
 
-        testSubject = new FocusChangeHandler(targetPageActionMessageCreatorMock.object, scrollingControllerMock.object);
+        testSubject = new FocusChangeHandler(
+            targetPageActionMessageCreatorMock.object,
+            scrollingControllerMock.object,
+        );
     });
 
     test('onStoreChange: no target in visualizationStoreData OR cardSelectionStoreData', () => {
@@ -40,8 +46,12 @@ describe('FocusChangeHandler', () => {
             },
         } as TargetPageStoreData;
 
-        targetPageActionMessageCreatorMock.setup(acm => acm.scrollRequested()).verifiable(Times.never());
-        scrollingControllerMock.setup(scm => scm.processRequest(It.isAny())).verifiable(Times.never());
+        targetPageActionMessageCreatorMock
+            .setup(acm => acm.scrollRequested())
+            .verifiable(Times.never());
+        scrollingControllerMock
+            .setup(scm => scm.processRequest(It.isAny()))
+            .verifiable(Times.never());
 
         testSubject.handleFocusChangeWithStoreData(storeData);
 
@@ -59,8 +69,12 @@ describe('FocusChangeHandler', () => {
             },
         } as TargetPageStoreData;
 
-        targetPageActionMessageCreatorMock.setup(acm => acm.scrollRequested()).verifiable(Times.once());
-        scrollingControllerMock.setup(scm => scm.processRequest(sampleMessage)).verifiable(Times.once());
+        targetPageActionMessageCreatorMock
+            .setup(acm => acm.scrollRequested())
+            .verifiable(Times.once());
+        scrollingControllerMock
+            .setup(scm => scm.processRequest(sampleMessage))
+            .verifiable(Times.once());
 
         testSubject.handleFocusChangeWithStoreData(storeData);
 
@@ -88,8 +102,12 @@ describe('FocusChangeHandler', () => {
             },
         } as TargetPageStoreData;
 
-        targetPageActionMessageCreatorMock.setup(acm => acm.scrollRequested()).verifiable(Times.once());
-        scrollingControllerMock.setup(scm => scm.processRequest(sampleMessage)).verifiable(Times.once());
+        targetPageActionMessageCreatorMock
+            .setup(acm => acm.scrollRequested())
+            .verifiable(Times.once());
+        scrollingControllerMock
+            .setup(scm => scm.processRequest(sampleMessage))
+            .verifiable(Times.once());
 
         testSubject.handleFocusChangeWithStoreData(storeData);
 
@@ -114,7 +132,9 @@ describe('FocusChangeHandler', () => {
             },
         } as TargetPageStoreData;
 
-        expect(() => testSubject.handleFocusChangeWithStoreData(storeData)).toThrowError('focused result was not found');
+        expect(() => testSubject.handleFocusChangeWithStoreData(storeData)).toThrowError(
+            'focused result was not found',
+        );
     });
 
     test('onStoreChange: new target and old target are same', () => {
@@ -127,8 +147,12 @@ describe('FocusChangeHandler', () => {
             },
         } as TargetPageStoreData;
 
-        targetPageActionMessageCreatorMock.setup(acm => acm.scrollRequested()).verifiable(Times.once());
-        scrollingControllerMock.setup(scm => scm.processRequest(sampleMessage)).verifiable(Times.once());
+        targetPageActionMessageCreatorMock
+            .setup(acm => acm.scrollRequested())
+            .verifiable(Times.once());
+        scrollingControllerMock
+            .setup(scm => scm.processRequest(sampleMessage))
+            .verifiable(Times.once());
 
         testSubject.handleFocusChangeWithStoreData(storeData);
 
@@ -138,8 +162,12 @@ describe('FocusChangeHandler', () => {
         targetPageActionMessageCreatorMock.reset();
         scrollingControllerMock.reset();
 
-        targetPageActionMessageCreatorMock.setup(acm => acm.scrollRequested()).verifiable(Times.never());
-        scrollingControllerMock.setup(scm => scm.processRequest(It.isAny())).verifiable(Times.never());
+        targetPageActionMessageCreatorMock
+            .setup(acm => acm.scrollRequested())
+            .verifiable(Times.never());
+        scrollingControllerMock
+            .setup(scm => scm.processRequest(It.isAny()))
+            .verifiable(Times.never());
 
         testSubject.handleFocusChangeWithStoreData(storeData);
 

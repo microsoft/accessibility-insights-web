@@ -120,7 +120,10 @@ describe('WindowMessageHandlerTests', () => {
             data: 'responseMessage',
         } as MessageEvent;
 
-        const responseMessage: WindowMessage = { messageId: 'anotherid', message: '' } as WindowMessage;
+        const responseMessage: WindowMessage = {
+            messageId: 'anotherid',
+            message: '',
+        } as WindowMessage;
         mockMessageMarshaller.setup(x => x.parseMessage(responseEvent.data)).returns(() => responseMessage);
         messageCallback(responseEvent);
 
