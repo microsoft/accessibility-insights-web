@@ -11,7 +11,12 @@ module.exports = {
             files: [
                 'src/content/**/*',
                 'src/tests/unit/tests/DetailsView/**/*',
-                'src/tests/unit/tests/injected/**/*',
+                'src/tests/unit/tests/injected/adapters/**/*',
+                'src/tests/unit/tests/injected/analyzers/**/*',
+                'src/tests/unit/tests/injected/components/**/*',
+                'src/tests/unit/tests/injected/frameCommunucators/**/*',
+                'src/tests/unit/tests/injected/styles/**/*',
+                'src/tests/unit/tests/injected/visualization/**/*',
             ],
             options: {
                 printWidth: 140,

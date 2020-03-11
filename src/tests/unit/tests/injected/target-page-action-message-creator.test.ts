@@ -4,7 +4,10 @@ import { BaseActionPayload } from 'background/actions/action-payloads';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { Mock, Times } from 'typemoq';
 import * as TelemetryEvents from '../../../../common/extension-telemetry-events';
-import { SettingsOpenTelemetryData, TelemetryEventSource } from '../../../../common/extension-telemetry-events';
+import {
+    SettingsOpenTelemetryData,
+    TelemetryEventSource,
+} from '../../../../common/extension-telemetry-events';
 import { Message } from '../../../../common/message';
 import { Messages } from '../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
@@ -18,7 +21,10 @@ describe('TargetPageActionMessageCreator', () => {
 
     beforeEach(() => {
         dispatcherMock.reset();
-        testSubject = new TargetPageActionMessageCreator(new TelemetryDataFactory(), dispatcherMock.object);
+        testSubject = new TargetPageActionMessageCreator(
+            new TelemetryDataFactory(),
+            dispatcherMock.object,
+        );
     });
 
     it('dispatches message for scrollRequested', () => {
@@ -28,7 +34,10 @@ describe('TargetPageActionMessageCreator', () => {
 
         testSubject.scrollRequested();
 
-        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
     });
 
     it('sends telemetry for openIssuesDialog', () => {
@@ -40,7 +49,10 @@ describe('TargetPageActionMessageCreator', () => {
 
         testSubject.openIssuesDialog();
 
-        dispatcherMock.verify(dispatcher => dispatcher.sendTelemetry(eventName, eventData), Times.once());
+        dispatcherMock.verify(
+            dispatcher => dispatcher.sendTelemetry(eventName, eventData),
+            Times.once(),
+        );
     });
 
     it('dispatches message for setHoveredOverSelector', () => {
@@ -53,7 +65,10 @@ describe('TargetPageActionMessageCreator', () => {
 
         testSubject.setHoveredOverSelector(selector);
 
-        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
     });
 
     it('sends telemetry for copyIssueDetailsClicked', () => {
@@ -66,7 +81,10 @@ describe('TargetPageActionMessageCreator', () => {
 
         testSubject.copyIssueDetailsClicked(event);
 
-        dispatcherMock.verify(dispatcher => dispatcher.sendTelemetry(eventName, eventData), Times.once());
+        dispatcherMock.verify(
+            dispatcher => dispatcher.sendTelemetry(eventName, eventData),
+            Times.once(),
+        );
     });
 
     it('dispatches message for openSettingsPanel', () => {
@@ -87,6 +105,9 @@ describe('TargetPageActionMessageCreator', () => {
 
         testSubject.openSettingsPanel(event);
 
-        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
     });
 });

@@ -14,8 +14,14 @@ describe('FrameUrlSearchInitiatorTest', () => {
 
     test('listenToStore: state implies to initiate the search for frame url', () => {
         const devToolStoreMock = new StoreMock<DevToolStoreData>();
-        const frameUrlFinderMock = Mock.ofInstance({ processRequest: (message: TargetMessage) => {} }, MockBehavior.Strict);
-        const testSubject = new FrameUrlSearchInitiator(devToolStoreMock.getObject(), frameUrlFinderMock.object as FrameUrlFinder);
+        const frameUrlFinderMock = Mock.ofInstance(
+            { processRequest: (message: TargetMessage) => {} },
+            MockBehavior.Strict,
+        );
+        const testSubject = new FrameUrlSearchInitiator(
+            devToolStoreMock.getObject(),
+            frameUrlFinderMock.object as FrameUrlFinder,
+        );
         const stateStub: DevToolStoreData = {
             isOpen: null,
             inspectElement: ['abc', 'def'],
@@ -25,7 +31,9 @@ describe('FrameUrlSearchInitiatorTest', () => {
         devToolStoreMock.setupAddChangedListener(1);
         devToolStoreMock.setupGetState(stateStub, 1);
 
-        frameUrlFinderMock.setup(icm => icm.processRequest(It.isValue({ target: stateStub.inspectElement }))).verifiable();
+        frameUrlFinderMock
+            .setup(icm => icm.processRequest(It.isValue({ target: stateStub.inspectElement })))
+            .verifiable();
 
         testSubject.listenToStore();
         devToolStoreMock.invokeChangeListener();
@@ -36,8 +44,14 @@ describe('FrameUrlSearchInitiatorTest', () => {
 
     test('listenToStore: frame url is already set; no need to find frame url', () => {
         const devToolStoreMock = new StoreMock<DevToolStoreData>();
-        const frameUrlFinderMock = Mock.ofInstance({ processRequest: (message: TargetMessage) => {} }, MockBehavior.Strict);
-        const testSubject = new FrameUrlSearchInitiator(devToolStoreMock.getObject(), frameUrlFinderMock.object as FrameUrlFinder);
+        const frameUrlFinderMock = Mock.ofInstance(
+            { processRequest: (message: TargetMessage) => {} },
+            MockBehavior.Strict,
+        );
+        const testSubject = new FrameUrlSearchInitiator(
+            devToolStoreMock.getObject(),
+            frameUrlFinderMock.object as FrameUrlFinder,
+        );
         const stateStub: DevToolStoreData = {
             isOpen: null,
             inspectElement: ['abc', 'def'],
@@ -48,7 +62,9 @@ describe('FrameUrlSearchInitiatorTest', () => {
         devToolStoreMock.setupAddChangedListener(1);
         devToolStoreMock.setupGetState(stateStub, 1);
 
-        frameUrlFinderMock.setup(icm => icm.processRequest(It.isValue({ target: stateStub.inspectElement }))).verifiable(Times.never());
+        frameUrlFinderMock
+            .setup(icm => icm.processRequest(It.isValue({ target: stateStub.inspectElement })))
+            .verifiable(Times.never());
 
         testSubject.listenToStore();
         devToolStoreMock.invokeChangeListener();
@@ -59,8 +75,14 @@ describe('FrameUrlSearchInitiatorTest', () => {
 
     test('listenToStore: element is at root; no need for finding frame url', () => {
         const devToolStoreMock = new StoreMock<DevToolStoreData>();
-        const frameUrlFinderMock = Mock.ofInstance({ processRequest: (message: TargetMessage) => {} }, MockBehavior.Strict);
-        const testSubject = new FrameUrlSearchInitiator(devToolStoreMock.getObject(), frameUrlFinderMock.object as FrameUrlFinder);
+        const frameUrlFinderMock = Mock.ofInstance(
+            { processRequest: (message: TargetMessage) => {} },
+            MockBehavior.Strict,
+        );
+        const testSubject = new FrameUrlSearchInitiator(
+            devToolStoreMock.getObject(),
+            frameUrlFinderMock.object as FrameUrlFinder,
+        );
         const stateStub: DevToolStoreData = {
             isOpen: null,
             inspectElement: ['abc'],
@@ -70,7 +92,9 @@ describe('FrameUrlSearchInitiatorTest', () => {
         devToolStoreMock.setupAddChangedListener(1);
         devToolStoreMock.setupGetState(stateStub, 1);
 
-        frameUrlFinderMock.setup(icm => icm.processRequest(It.isValue({ target: stateStub.inspectElement }))).verifiable(Times.never());
+        frameUrlFinderMock
+            .setup(icm => icm.processRequest(It.isValue({ target: stateStub.inspectElement })))
+            .verifiable(Times.never());
 
         testSubject.listenToStore();
         devToolStoreMock.invokeChangeListener();

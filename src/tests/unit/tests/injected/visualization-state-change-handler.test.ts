@@ -21,13 +21,21 @@ describe('VisualizationStateChangeHandler', () => {
         visualizationUpdaterMock = Mock.ofType<UpdateVisualization>();
         storeDataStub = {} as TargetPageStoreData;
         visualizations = [-1, -2];
-        testSubject = new VisualizationStateChangeHandler(visualizations, visualizationUpdaterMock.object, assessmentProviderMock.object);
+        testSubject = new VisualizationStateChangeHandler(
+            visualizations,
+            visualizationUpdaterMock.object,
+            assessmentProviderMock.object,
+        );
     });
 
     test('non-assessment visualizations', () => {
         visualizations.forEach(visualizationType => {
-            assessmentProviderMock.setup(apm => apm.isValidType(visualizationType)).returns(() => false);
-            visualizationUpdaterMock.setup(vum => vum(visualizationType, null, storeDataStub)).verifiable();
+            assessmentProviderMock
+                .setup(apm => apm.isValidType(visualizationType))
+                .returns(() => false);
+            visualizationUpdaterMock
+                .setup(vum => vum(visualizationType, null, storeDataStub))
+                .verifiable();
         });
         testSubject.updateVisualizationsWithStoreData(storeDataStub);
 
@@ -47,10 +55,16 @@ describe('VisualizationStateChangeHandler', () => {
         };
 
         visualizations.forEach(visualizationType => {
-            assessmentProviderMock.setup(apm => apm.isValidType(visualizationType)).returns(() => true);
-            assessmentProviderMock.setup(apm => apm.getStepMap(visualizationType)).returns(() => stepMapStub);
+            assessmentProviderMock
+                .setup(apm => apm.isValidType(visualizationType))
+                .returns(() => true);
+            assessmentProviderMock
+                .setup(apm => apm.getStepMap(visualizationType))
+                .returns(() => stepMapStub);
             forOwn(stepMapStub, step => {
-                visualizationUpdaterMock.setup(vum => vum(visualizationType, step.key, storeDataStub)).verifiable();
+                visualizationUpdaterMock
+                    .setup(vum => vum(visualizationType, step.key, storeDataStub))
+                    .verifiable();
             });
         });
 
