@@ -6,7 +6,10 @@ import { BrowserWindow } from 'electron';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { PlatformBodyClassModifier } from 'electron/views/root-container/components/platform-body-class-modifier';
 import { RootContainer } from 'electron/views/root-container/components/root-container';
-import { RootContainerRenderer, RootContainerRendererDeps } from 'electron/views/root-container/root-container-renderer';
+import {
+    RootContainerRenderer,
+    RootContainerRendererDeps,
+} from 'electron/views/root-container/root-container-renderer';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { IMock, It, Mock, Times } from 'typemoq';
@@ -42,7 +45,9 @@ describe('RootContainerRendererTest', () => {
         );
 
         renderMock.setup(r => r(It.isValue(expectedComponent), containerDiv)).verifiable();
-        windowStateActionCreatorMock.setup(w => w.setRoute({ routeId: 'deviceConnectView' })).verifiable(Times.once());
+        windowStateActionCreatorMock
+            .setup(w => w.setRoute({ routeId: 'deviceConnectView' }))
+            .verifiable(Times.once());
 
         const renderer = new RootContainerRenderer(renderMock.object, dom, deps);
 

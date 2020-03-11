@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ScreenshotData } from 'common/types/store-data/unified-data-interface';
-import { ScreenshotContainer, ScreenshotContainerProps } from 'electron/views/screenshot/screenshot-container';
+import {
+    ScreenshotContainer,
+    ScreenshotContainerProps,
+} from 'electron/views/screenshot/screenshot-container';
 import { HighlightBoxViewModel } from 'electron/views/screenshot/screenshot-view-model';
 import { shallow } from 'enzyme';
 import * as React from 'react';
@@ -22,8 +25,20 @@ describe('ScreenshotContainer', () => {
 
     it('renders per snapshot with highlight boxes', () => {
         const highlightBoxViewModels: HighlightBoxViewModel[] = [
-            { resultUid: 'result-1', top: 'top-1', left: 'left-1', width: 'width-1', height: 'height-1' },
-            { resultUid: 'result-2', top: 'top-2', left: 'left-2', width: 'width-2', height: 'height-2' },
+            {
+                resultUid: 'result-1',
+                top: 'top-1',
+                left: 'left-1',
+                width: 'width-1',
+                height: 'height-1',
+            },
+            {
+                resultUid: 'result-2',
+                top: 'top-2',
+                left: 'left-2',
+                width: 'width-2',
+                height: 'height-2',
+            },
         ];
 
         const props: ScreenshotContainerProps = {
