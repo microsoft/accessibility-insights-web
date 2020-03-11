@@ -1,11 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
-
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import * as styles from 'DetailsView/components/assessment-view.scss';
+import * as React from 'react';
 import { ContentLink, ContentLinkDeps } from 'views/content/content-link';
 import { ContentPageComponent } from 'views/content/content-page';
+
 import { AssessmentTestResult } from '../../common/assessment/assessment-test-result';
 import { CollapsibleComponent } from '../../common/components/collapsible-component';
 import { reactExtensionPoint } from '../../common/extensibility/react-extension-point';
@@ -72,7 +73,7 @@ export class AssessmentView extends React.Component<AssessmentViewProps> {
         const extPointProps = { extensions, assessmentTestResult };
 
         return (
-            <div className="assessment-content">
+            <div className={styles.assessmentContent}>
                 {this.renderTargetChangeDialog()}
                 {this.renderTitle(
                     assessmentTestResult.definition.title,
@@ -162,8 +163,8 @@ export class AssessmentView extends React.Component<AssessmentViewProps> {
 
     private renderTitle(title: string, content?: ContentPageComponent): JSX.Element {
         return (
-            <div className="assessment-title">
-                <h1 className="assessment-header">
+            <div className={styles.assessmentTitle}>
+                <h1 className={styles.assessmentHeader}>
                     {title} <ContentLink deps={this.deps} reference={content} iconName="info" />
                 </h1>
             </div>
@@ -173,18 +174,19 @@ export class AssessmentView extends React.Component<AssessmentViewProps> {
     private renderGettingStarted(gettingStarted: JSX.Element): JSX.Element {
         return (
             <CollapsibleComponent
-                header={<h2 className="assessment-getting-started-title">Getting Started</h2>}
+                header={<h2>Getting Started</h2>}
                 content={gettingStarted}
-                contentClassName={'assessment-getting-started'}
-                containerClassName={'assessment-getting-started-container'}
+                containerClassName={styles.assessmentGettingStartedContainer}
             />
         );
     }
 
     private renderRequirements(): JSX.Element {
         return (
-            <div className="assessment-requirements-title">
-                <h2 className="assessment-requirements">{AssessmentView.requirementsTitle}</h2>
+            <div className={styles.assessmentRequirementsTitle}>
+                <h2 className={styles.assessmentRequirements}>
+                    {AssessmentView.requirementsTitle}
+                </h2>
             </div>
         );
     }
@@ -196,8 +198,8 @@ export class AssessmentView extends React.Component<AssessmentViewProps> {
         const isStepScanned = selectedRequirement.data.isStepScanned;
 
         return (
-            <div className="details-view-assessment-content">
-                <div className="test-steps-nav-container">
+            <div className={styles.detailsViewAssessmentContent}>
+                <div className={styles.testStepsNavContainer}>
                     <TestStepsNav
                         deps={this.props.deps}
                         ariaLabel={AssessmentView.requirementsTitle}
@@ -206,7 +208,7 @@ export class AssessmentView extends React.Component<AssessmentViewProps> {
                         stepStatus={this.props.assessmentData.testStepStatus}
                     />
                 </div>
-                <div className="test-step-view-container">
+                <div className={styles.testStepViewContainer}>
                     <TestStepView
                         deps={this.deps}
                         isScanning={this.props.isScanning}
