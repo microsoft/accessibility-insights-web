@@ -218,7 +218,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             windowStateActions,
             windowFrameActionCreator,
         );
-        const scanActionCreator = new ScanActionCreator(scanActions);
+        const scanActionCreator = new ScanActionCreator(scanActions, deviceActions);
 
         const cardSelectionActionCreator = new CardSelectionActionCreator(
             interpreter,

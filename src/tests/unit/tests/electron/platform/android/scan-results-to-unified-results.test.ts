@@ -9,7 +9,12 @@ import { RuleInformation } from 'electron/platform/android/rule-information';
 import { RuleInformationProviderType } from 'electron/platform/android/rule-information-provider-type';
 import { RuleResultsData, ScanResults } from 'electron/platform/android/scan-results';
 import { convertScanResultsToUnifiedResults } from 'electron/platform/android/scan-results-to-unified-results';
-import { buildRuleInformation, buildRuleResultObject, buildScanResultsObject, buildViewElement } from './scan-results-helpers';
+import {
+    buildRuleInformation,
+    buildRuleResultObject,
+    buildScanResultsObject,
+    buildViewElement,
+} from './scan-results-helpers';
 
 describe('ScanResultsToUnifiedResults', () => {
     let generateGuidMock: IMock<() => string>;
@@ -31,10 +36,18 @@ describe('ScanResultsToUnifiedResults', () => {
         const ruleInformation4: RuleInformation = buildRuleInformation(ruleId4, false);
 
         ruleInformationProviderMock = Mock.ofType<RuleInformationProviderType>();
-        ruleInformationProviderMock.setup(x => x.getRuleInformation(ruleId1)).returns(() => ruleInformation1);
-        ruleInformationProviderMock.setup(x => x.getRuleInformation(ruleId2)).returns(() => ruleInformation2);
-        ruleInformationProviderMock.setup(x => x.getRuleInformation(ruleId3)).returns(() => ruleInformation3);
-        ruleInformationProviderMock.setup(x => x.getRuleInformation(ruleId4)).returns(() => ruleInformation4);
+        ruleInformationProviderMock
+            .setup(x => x.getRuleInformation(ruleId1))
+            .returns(() => ruleInformation1);
+        ruleInformationProviderMock
+            .setup(x => x.getRuleInformation(ruleId2))
+            .returns(() => ruleInformation2);
+        ruleInformationProviderMock
+            .setup(x => x.getRuleInformation(ruleId3))
+            .returns(() => ruleInformation3);
+        ruleInformationProviderMock
+            .setup(x => x.getRuleInformation(ruleId4))
+            .returns(() => ruleInformation4);
     });
 
     function verifyMockCounts(
@@ -44,24 +57,52 @@ describe('ScanResultsToUnifiedResults', () => {
         expectedRule4Count: number,
         expectedOtherCount: number,
     ): void {
-        const totalCalls: number = expectedRule1Count + expectedRule2Count + expectedRule3Count + expectedRule4Count + expectedOtherCount;
+        const totalCalls: number =
+            expectedRule1Count +
+            expectedRule2Count +
+            expectedRule3Count +
+            expectedRule4Count +
+            expectedOtherCount;
 
-        ruleInformationProviderMock.verify(x => x.getRuleInformation(ruleId1), Times.exactly(expectedRule1Count));
-        ruleInformationProviderMock.verify(x => x.getRuleInformation(ruleId2), Times.exactly(expectedRule2Count));
-        ruleInformationProviderMock.verify(x => x.getRuleInformation(ruleId3), Times.exactly(expectedRule3Count));
-        ruleInformationProviderMock.verify(x => x.getRuleInformation(ruleId4), Times.exactly(expectedRule4Count));
-        ruleInformationProviderMock.verify(x => x.getRuleInformation(It.isAnyString()), Times.exactly(totalCalls));
+        ruleInformationProviderMock.verify(
+            x => x.getRuleInformation(ruleId1),
+            Times.exactly(expectedRule1Count),
+        );
+        ruleInformationProviderMock.verify(
+            x => x.getRuleInformation(ruleId2),
+            Times.exactly(expectedRule2Count),
+        );
+        ruleInformationProviderMock.verify(
+            x => x.getRuleInformation(ruleId3),
+            Times.exactly(expectedRule3Count),
+        );
+        ruleInformationProviderMock.verify(
+            x => x.getRuleInformation(ruleId4),
+            Times.exactly(expectedRule4Count),
+        );
+        ruleInformationProviderMock.verify(
+            x => x.getRuleInformation(It.isAnyString()),
+            Times.exactly(totalCalls),
+        );
     }
 
     test('Null ScanResults input returns empty output', () => {
-        const results: UnifiedResult[] = convertScanResultsToUnifiedResults(null, ruleInformationProviderMock.object, null);
+        const results: UnifiedResult[] = convertScanResultsToUnifiedResults(
+            null,
+            ruleInformationProviderMock.object,
+            null,
+        );
         expect(results).toMatchSnapshot();
         verifyMockCounts(0, 0, 0, 0, 0);
     });
 
     test('ScanResults with no RuleResults returns empty output', () => {
         const scanResults: ScanResults = buildScanResultsObject();
-        const results: UnifiedResult[] = convertScanResultsToUnifiedResults(scanResults, ruleInformationProviderMock.object, null);
+        const results: UnifiedResult[] = convertScanResultsToUnifiedResults(
+            scanResults,
+            ruleInformationProviderMock.object,
+            null,
+        );
         expect(results).toMatchSnapshot();
         verifyMockCounts(0, 0, 0, 0, 0);
     });
@@ -89,14 +130,31 @@ describe('ScanResultsToUnifiedResults', () => {
             'myDescription1',
             'myText1',
             [
-                buildViewElement(id2, { top: 10, left: 20, right: 35, bottom: 50 }, 'myClass2', null, null, [
-                    buildViewElement(id3, null, 'myClass3', null, null, null),
-                ]),
-                buildViewElement(id4, { top: 50, left: 10, right: 500, bottom: 300 }, 'myClass4', 'myDescription4', 'myText4', null),
+                buildViewElement(
+                    id2,
+                    { top: 10, left: 20, right: 35, bottom: 50 },
+                    'myClass2',
+                    null,
+                    null,
+                    [buildViewElement(id3, null, 'myClass3', null, null, null)],
+                ),
+                buildViewElement(
+                    id4,
+                    { top: 50, left: 10, right: 500, bottom: 300 },
+                    'myClass4',
+                    'myDescription4',
+                    'myText4',
+                    null,
+                ),
             ],
         );
 
-        const scanResults: ScanResults = buildScanResultsObject('Some device', 'Some app', ruleResults, viewElementTree);
+        const scanResults: ScanResults = buildScanResultsObject(
+            'Some device',
+            'Some app',
+            ruleResults,
+            viewElementTree,
+        );
         const results: UnifiedResult[] = convertScanResultsToUnifiedResults(
             scanResults,
             ruleInformationProviderMock.object,

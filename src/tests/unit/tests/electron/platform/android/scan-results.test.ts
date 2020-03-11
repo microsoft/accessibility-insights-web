@@ -1,6 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DeviceInfo, RuleResultsData, ScanResults, ViewElementData } from 'electron/platform/android/scan-results';
+import {
+    DeviceInfo,
+    RuleResultsData,
+    ScanResults,
+    ViewElementData,
+} from 'electron/platform/android/scan-results';
 import { set } from 'lodash';
 import { buildRuleResultObject, buildViewElement } from './scan-results-helpers';
 
@@ -58,9 +63,16 @@ describe('ScanResults', () => {
     }
 
     function getTestViewElementData(): ViewElementData {
-        return buildViewElement('id1', { top: 0, left: 10, bottom: 800, right: 600 }, 'myClass1', 'myDescription1', 'myText1', [
-            buildViewElement('id2', null, null, null, null, null),
-            buildViewElement('id3', null, null, null, null, null),
-        ]);
+        return buildViewElement(
+            'id1',
+            { top: 0, left: 10, bottom: 800, right: 600 },
+            'myClass1',
+            'myDescription1',
+            'myText1',
+            [
+                buildViewElement('id2', null, null, null, null, null),
+                buildViewElement('id3', null, null, null, null, null),
+            ],
+        );
     }
 });

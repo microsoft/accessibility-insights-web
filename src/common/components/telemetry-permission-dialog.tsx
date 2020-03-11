@@ -51,9 +51,6 @@ export class TelemetryPermissionDialog extends React.Component<
                     type: DialogType.normal,
                     showCloseButton: false,
                     title: telemetryPopupTitle,
-                    titleProps: {
-                        id: 'telemetry-permission-title',
-                    },
                 }}
                 modalProps={{
                     className: 'telemetry-permission-dialog-modal',
