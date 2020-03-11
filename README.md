@@ -30,11 +30,9 @@ You can install Accessibility Insights for Android from one of the following lin
 -   Windows ([Canary](https://aka.ms/accessibility-insights-for-android/downloads/CanaryWindows), [Insider](https://aka.ms/accessibility-insights-for-android/downloads/InsiderWindows), [Production](https://aka.ms/accessibility-insights-for-android/downloads/Windows))
 -   Linux ([Canary](https://aka.ms/accessibility-insights-for-android/downloads/CanaryLinux), [Insider](https://aka.ms/accessibility-insights-for-android/downloads/InsiderLinux), [Production](https://aka.ms/accessibility-insights-for-android/downloads/Linux))
 
-| Platform |                                                                                     |                                                                                       |                                                                                   |
-| -------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| MacOS    | [Canary](https://aka.ms/accessibility-insights-for-android/downloads/CanaryMacOS)   | [Insider](https://aka.ms/accessibility-insights-for-android/downloads/InsiderMacOS)   | [Production](https://aka.ms/accessibility-insights-for-android/downloads/MacOS)   |
-| Windows  | [Canary](https://aka.ms/accessibility-insights-for-android/downloads/CanaryWindows) | [Insider](https://aka.ms/accessibility-insights-for-android/downloads/InsiderWindows) | [Production](https://aka.ms/accessibility-insights-for-android/downloads/Windows) |
-| Linux    | [Canary](https://aka.ms/accessibility-insights-for-android/downloads/CanaryLinux)   | [Insider](https://aka.ms/accessibility-insights-for-android/downloads/InsiderLinux)   | [Production](https://aka.ms/accessibility-insights-for-android/downloads/Linux)   |
+| MacOS | [Canary](https://aka.ms/accessibility-insights-for-android/downloads/CanaryMacOS) | [Insider](https://aka.ms/accessibility-insights-for-android/downloads/InsiderMacOS) | [Production](https://aka.ms/accessibility-insights-for-android/downloads/MacOS) |
+| Windows | [Canary](https://aka.ms/accessibility-insights-for-android/downloads/CanaryWindows) | [Insider](https://aka.ms/accessibility-insights-for-android/downloads/InsiderWindows) | [Production](https://aka.ms/accessibility-insights-for-android/downloads/Windows) |
+| Linux | [Canary](https://aka.ms/accessibility-insights-for-android/downloads/CanaryLinux) | [Insider](https://aka.ms/accessibility-insights-for-android/downloads/InsiderLinux) | [Production](https://aka.ms/accessibility-insights-for-android/downloads/Linux) |
 
 ### Building the code
 
