@@ -12,9 +12,12 @@ Licensed under the MIT License.
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/pbjjkligggfmakdaogkfomddhfmpjeni.svg)](https://chrome.google.com/webstore/detail/accessibility-insights-fo/pbjjkligggfmakdaogkfomddhfmpjeni/reviews)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=microsoft/accessibility-insights-web)](https://dependabot.com)
 
-Accessibility Insights for Web is a browser extension for Google Chrome and the new Microsoft Edge, used for assessing the accessibility of web sites and web applications. Accessibility Insights for Android is a cross-platform desktop tool used for testing accessibility of Android applications. Both products are built from this repository.
+Two projects are built from this repository:
 
-### Running the extension
+-   Accessibility Insights for Web is a browser extension for Google Chrome and the new Microsoft Edge, used for assessing the accessibility of web sites and web applications.
+-   Accessibility Insights for Android is a cross-platform desktop tool used for testing accessibility of Android applications. Both products are built from this repository.
+
+### Running Accessibility Insights for Web
 
 You can install the extension from one of the following links
 
