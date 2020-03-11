@@ -14,7 +14,7 @@ module.exports = {
                 'src/tests/unit/tests/injected/adapters/**/*',
                 'src/tests/unit/tests/injected/analyzers/**/*',
                 'src/tests/unit/tests/injected/components/**/*',
-                'src/tests/unit/tests/injected/frameCommunucators/**/*',
+                'src/tests/unit/tests/injected/frameCommunicators/**/*',
                 'src/tests/unit/tests/injected/styles/**/*',
                 'src/tests/unit/tests/injected/visualization/**/*',
             ],
