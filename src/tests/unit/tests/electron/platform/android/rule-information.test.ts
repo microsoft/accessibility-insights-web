@@ -41,14 +41,27 @@ describe('RuleInformation', () => {
         };
 
         for (const howToFixString of testInputs) {
-            const expectedUnifiedFormattableResolution: UnifiedFormattableResolution = { howToFixSummary: howToFixString };
+            const expectedUnifiedFormattableResolution: UnifiedFormattableResolution = {
+                howToFixSummary: howToFixString,
+            };
 
-            const getUnifiedFormattableResolutionDelegateMock = Mock.ofType<GetUnifiedFormattableResolutionDelegate>();
-            getUnifiedFormattableResolutionDelegateMock.setup(func => func(testData)).returns(() => expectedUnifiedFormattableResolution);
+            const getUnifiedFormattableResolutionDelegateMock = Mock.ofType<
+                GetUnifiedFormattableResolutionDelegate
+            >();
+            getUnifiedFormattableResolutionDelegateMock
+                .setup(func => func(testData))
+                .returns(() => expectedUnifiedFormattableResolution);
 
-            const ruleInformation = new RuleInformation(null, null, getUnifiedFormattableResolutionDelegateMock.object, failIfCalled);
+            const ruleInformation = new RuleInformation(
+                null,
+                null,
+                getUnifiedFormattableResolutionDelegateMock.object,
+                failIfCalled,
+            );
 
-            const actualUnifiedResolution = ruleInformation.getUnifiedFormattableResolution(testData);
+            const actualUnifiedResolution = ruleInformation.getUnifiedFormattableResolution(
+                testData,
+            );
 
             expect(actualUnifiedResolution).toBe(expectedUnifiedFormattableResolution);
         }
@@ -68,7 +81,12 @@ describe('RuleInformation', () => {
             const includeThisResultMock = Mock.ofType<IncludeThisResultDelegate>();
             includeThisResultMock.setup(func => func(testData)).returns(() => expectedResult);
 
-            const ruleInformation = new RuleInformation(null, null, null, includeThisResultMock.object);
+            const ruleInformation = new RuleInformation(
+                null,
+                null,
+                null,
+                includeThisResultMock.object,
+            );
 
             const actualResult = ruleInformation.includeThisResult(testData);
 

@@ -41,11 +41,15 @@ describe('DeviceConnectActionCreator', () => {
         const deviceName = 'test device';
         const appIdentifier = 'test app';
 
-        fetchDeviceConfigMock.setup(fetch => fetch(port)).returns(() => Promise.resolve({ deviceName, appIdentifier } as DeviceConfig));
+        fetchDeviceConfigMock
+            .setup(fetch => fetch(port))
+            .returns(() => Promise.resolve({ deviceName, appIdentifier } as DeviceConfig));
 
         const connectionSucceedMock = Mock.ofType<Action<ConnectedDevicePayload>>();
 
-        deviceActionsMock.setup(actions => actions.connectionSucceeded).returns(() => connectionSucceedMock.object);
+        deviceActionsMock
+            .setup(actions => actions.connectionSucceeded)
+            .returns(() => connectionSucceedMock.object);
 
         testSubject.validatePort(port);
 
@@ -58,18 +62,28 @@ describe('DeviceConnectActionCreator', () => {
             },
         };
 
-        telemetryEventHandlerMock.verify(handler => handler.publishTelemetry(VALIDATE_PORT, It.isValue(expectedTelemetry)), Times.once());
+        telemetryEventHandlerMock.verify(
+            handler => handler.publishTelemetry(VALIDATE_PORT, It.isValue(expectedTelemetry)),
+            Times.once(),
+        );
 
         connectingMock.verify(connecting => connecting.invoke({ port }), Times.once());
-        connectionSucceedMock.verify(succeed => succeed.invoke({ connectedDevice: `${deviceName} - ${appIdentifier}` }), Times.once());
+        connectionSucceedMock.verify(
+            succeed => succeed.invoke({ connectedDevice: `${deviceName} - ${appIdentifier}` }),
+            Times.once(),
+        );
     });
 
     it('validates port, connection fails', async () => {
-        fetchDeviceConfigMock.setup(fetch => fetch(port)).returns(() => Promise.reject('dummy reason'));
+        fetchDeviceConfigMock
+            .setup(fetch => fetch(port))
+            .returns(() => Promise.reject('dummy reason'));
 
         const connectionFailedMock = Mock.ofType<Action<void>>();
 
-        deviceActionsMock.setup(actions => actions.connectionFailed).returns(() => connectionFailedMock.object);
+        deviceActionsMock
+            .setup(actions => actions.connectionFailed)
+            .returns(() => connectionFailedMock.object);
 
         testSubject.validatePort(port);
 
@@ -82,7 +96,10 @@ describe('DeviceConnectActionCreator', () => {
             },
         };
 
-        telemetryEventHandlerMock.verify(handler => handler.publishTelemetry(VALIDATE_PORT, It.isValue(expectedTelemetry)), Times.once());
+        telemetryEventHandlerMock.verify(
+            handler => handler.publishTelemetry(VALIDATE_PORT, It.isValue(expectedTelemetry)),
+            Times.once(),
+        );
 
         connectingMock.verify(connecting => connecting.invoke({ port }), Times.once());
         connectionFailedMock.verify(succeed => succeed.invoke(), Times.once());
@@ -91,7 +108,9 @@ describe('DeviceConnectActionCreator', () => {
     it('resets to default', () => {
         const resetConnectionMock = Mock.ofType<Action<void>>();
 
-        deviceActionsMock.setup(actions => actions.resetConnection).returns(() => resetConnectionMock.object);
+        deviceActionsMock
+            .setup(actions => actions.resetConnection)
+            .returns(() => resetConnectionMock.object);
 
         testSubject.resetConnection();
 

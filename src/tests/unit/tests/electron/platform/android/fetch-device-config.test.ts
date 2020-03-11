@@ -2,7 +2,10 @@
 // Licensed under the MIT License.
 import { AxiosResponse } from 'axios';
 import { DeviceConfig } from 'electron/platform/android/device-config';
-import { createDeviceConfigFetcher, DeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
+import {
+    createDeviceConfigFetcher,
+    DeviceConfigFetcher,
+} from 'electron/platform/android/device-config-fetcher';
 import { HttpGet } from 'electron/platform/android/fetch-scan-results';
 import { IMock, Mock } from 'typemoq';
 
@@ -37,7 +40,9 @@ describe('fetchDeviceConfig', () => {
     it('propagates errors properly', async () => {
         const reason = 'test exception reason';
 
-        httpGetMock.setup(getter => getter(`http://localhost:${port}/AccessibilityInsights/config`)).returns(() => Promise.reject(reason));
+        httpGetMock
+            .setup(getter => getter(`http://localhost:${port}/AccessibilityInsights/config`))
+            .returns(() => Promise.reject(reason));
 
         await expect(testSubject(port)).rejects.toMatch(reason);
     });
