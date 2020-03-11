@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AxiosResponse } from 'axios';
+import { DeviceConfig } from 'electron/platform/android/device-config';
 import {
     createDeviceConfigFetcher,
-    DeviceConfig,
     DeviceConfigFetcher,
 } from 'electron/platform/android/device-config-fetcher';
 import { HttpGet } from 'electron/platform/android/fetch-scan-results';
