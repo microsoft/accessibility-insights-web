@@ -44,6 +44,11 @@ module.exports = function(grunt) {
                 },
             },
             onError: e => grunt.fail.fatal(e.errorMsg),
+            onExtensionPublished: info => {
+                if (!info.success) {
+                    grunt.fail.fatal(JSON.stringify(info));
+                }
+            },
         },
     });
 
