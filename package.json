@@ -59,7 +59,7 @@
         "@types/chrome": "0.0.99",
         "@types/enzyme": "^3.10.5",
         "@types/enzyme-adapter-react-16": "^1.0.6",
-        "@types/jest": "^25.1.3",
+        "@types/jest": "^25.1.4",
         "@types/jsdom": "^16.1.0",
         "@types/lodash": "^4.14.149",
         "@types/make-dir": "^2.1.0",
@@ -78,7 +78,7 @@
         "case-sensitive-paths-webpack-plugin": "^2.3.0",
         "codecov": "^3.6.5",
         "core-js-bundle": "^3.6.4",
-        "cross-env": "^7.0.1",
+        "cross-env": "^7.0.2",
         "css-loader": "^3.4.2",
         "electron": "7.0.1",
         "electron-builder": "^22.4.0",
@@ -151,6 +151,6 @@
         "ua-parser-js": "^0.7.21",
         "unzipper": "^0.10.10",
         "uuid": "^7.0.2",
-        "webextension-polyfill-ts": "^0.12.0"
+        "webextension-polyfill-ts": "^0.13.0"
     }
 }

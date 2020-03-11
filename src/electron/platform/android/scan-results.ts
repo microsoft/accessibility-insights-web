@@ -37,61 +37,32 @@ export class ScanResults {
     constructor(readonly rawData: any) {}
 
     public get deviceInfo(): DeviceInfo {
-        try {
-            return this.rawData.axeContext.axeDevice;
-        } catch {
-            return null;
-        }
+        return this.rawData?.axeContext?.axeDevice || null;
     }
 
     public get deviceName(): string {
-        try {
-            return this.rawData.axeContext.axeDevice.name;
-        } catch {
-            return null;
-        }
+        return this.rawData?.axeContext?.axeDevice?.name || null;
     }
 
     public get appIdentifier(): string {
-        try {
-            return this.rawData.axeContext.axeMetaData.appIdentifier;
-        } catch {
-            return null;
-        }
+        return this.rawData?.axeContext?.axeMetaData?.appIdentifier || null;
     }
 
     public get viewElementTree(): ViewElementData {
-        try {
-            return this.rawData.axeContext.axeView;
-        } catch {
-            return null;
-        }
+        return this.rawData?.axeContext?.axeView || null;
     }
 
     public get ruleResults(): RuleResultsData[] {
-        try {
-            const results = this.rawData.axeRuleResults;
-            return results || [];
-        } catch {
-            return [];
-        }
+        return this.rawData?.axeRuleResults || [];
     }
 
     public get axeVersion(): string {
-        try {
-            return this.rawData.axeContext.axeMetaData.axeVersion;
-        } catch {
-            return 'no-version';
-        }
+        return this.rawData?.axeContext?.axeMetaData?.axeVersion || 'no-version';
     }
 
     public get screenshot(): ScreenshotData {
-        try {
-            return {
-                base64PngData: this.rawData.axeContext.screenshot,
-            };
-        } catch {
-            return null;
-        }
+        const screenshot = this.rawData?.axeContext?.screenshot;
+
+        return screenshot ? { base64PngData: screenshot } : null;
     }
 }

@@ -4,7 +4,11 @@ import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { EnumHelper } from 'common/enum-helper';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { ScanStatus } from 'electron/flux/types/scan-status';
-import { CommandBar, CommandBarProps, commandButtonRefreshId } from 'electron/views/automated-checks/components/command-bar';
+import {
+    CommandBar,
+    CommandBarProps,
+    commandButtonRefreshId,
+} from 'electron/views/automated-checks/components/command-bar';
 import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
@@ -50,7 +54,10 @@ describe('CommandBar', () => {
         it('handles start over click', () => {
             const port = 111;
 
-            const scanActionCreatorMock = Mock.ofType<ScanActionCreator>(undefined, MockBehavior.Strict);
+            const scanActionCreatorMock = Mock.ofType<ScanActionCreator>(
+                undefined,
+                MockBehavior.Strict,
+            );
             scanActionCreatorMock.setup(creator => creator.scan(port)).verifiable(Times.once());
 
             const props = {
@@ -92,7 +99,10 @@ describe('CommandBar', () => {
 
             button.simulate('click', eventStub);
 
-            dropdownClickHandlerMock.verify(handler => handler.openSettingsPanelHandler(It.isAny()), Times.once());
+            dropdownClickHandlerMock.verify(
+                handler => handler.openSettingsPanelHandler(It.isAny()),
+                Times.once(),
+            );
         });
     });
 });

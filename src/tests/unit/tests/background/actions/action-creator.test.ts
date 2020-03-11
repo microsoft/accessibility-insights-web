@@ -1026,21 +1026,14 @@ class ActionCreatorValidator {
     private actionHubMock: ActionHub = {
         visualizationActions: this.visualizationActionsContainerMock.object,
         visualizationScanResultActions: this.visualizationScanResultActionsContainerMock.object,
-        tabActions: null,
-        featureFlagActions: null,
         devToolActions: this.devToolActionsContainerMock.object,
         previewFeaturesActions: this.previewFeaturesActionsContainerMock.object,
         scopingActions: this.scopingActionsContainerMock.object,
         assessmentActions: this.assessmentActionsContainerMock.object,
         inspectActions: this.inspectActionsContainerMock.object,
-        contentActions: null,
         detailsViewActions: this.detailsViewActionsContainerMock.object,
-        pathSnippetActions: null,
-        scanResultActions: null,
         cardSelectionActions: this.cardSelectionActionsContainerMock.object,
-        injectionActions: null,
-        sidePanelActions: null,
-    };
+    } as ActionHub;
 
     private telemetryEventHandlerStrictMock = Mock.ofType<TelemetryEventHandler>(
         null,
