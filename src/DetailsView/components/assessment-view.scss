@@ -16,7 +16,7 @@
         align-items: center;
         .assessment-header {
             font-size: 21px;
-            margin-left: 24px;
+            margin-left: 24px !important; // necessary due to broad css styles in detailsview.scss
             padding-top: 8px;
             i {
                 font-size: 16px;
