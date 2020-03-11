@@ -4,6 +4,8 @@ import { css } from '@uifabric/utilities';
 import { TooltipHost } from 'office-ui-fabric-react';
 import * as React from 'react';
 
+import * as styles from './assessment-instance-details-column.scss';
+
 export interface AssessmentInstanceDetailsColumnProps {
     labelText?: string;
     headerText?: string;
@@ -13,6 +15,7 @@ export interface AssessmentInstanceDetailsColumnProps {
     customClassName?: string;
 }
 
+export const instanceTableTextContentAutomationId = 'instance-table-text-content';
 export class AssessmentInstanceDetailsColumn extends React.Component<
     AssessmentInstanceDetailsColumnProps
 > {
@@ -21,7 +24,7 @@ export class AssessmentInstanceDetailsColumn extends React.Component<
         const showHeader = !!this.props.headerText;
         const textContent = this.props.textContent;
 
-        const classNames = css('assessment-instance-label', this.props.customClassName);
+        const classNames = css(styles.assessmentInstanceLabel, this.props.customClassName);
 
         return (
             <div>
@@ -32,13 +35,18 @@ export class AssessmentInstanceDetailsColumn extends React.Component<
                 ) : null}
                 <div>
                     <TooltipHost content={textContent} calloutProps={{ gapSpace: 0 }}>
-                        <div className="all-content">
+                        <div className={styles.allContent}>
                             {showHeader ? (
-                                <strong className="instance-header">
+                                <strong className={styles.instanceHeader}>
                                     {this.props.headerText}{' '}
                                 </strong>
                             ) : null}
-                            <div className="assessment-instance-textContent">{textContent}</div>
+                            <div
+                                className={styles.assessmentInstanceTextContent}
+                                data-automation-id={instanceTableTextContentAutomationId}
+                            >
+                                {textContent}
+                            </div>
                         </div>
                     </TooltipHost>
                 </div>
