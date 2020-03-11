@@ -45,8 +45,6 @@ import { VisualizationStoreDataBuilder } from '../../common/visualization-store-
 import { DetailsViewContainerPropsBuilder } from './details-view-container-props-builder';
 import { StoreMocks } from './store-mocks';
 
-//
-
 describe('DetailsViewContainer', () => {
     let detailsViewActionMessageCreator: IMock<DetailsViewActionMessageCreator>;
     let deps: DetailsViewContainerDeps;
