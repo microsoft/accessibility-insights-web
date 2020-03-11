@@ -12,12 +12,14 @@ import { IMock, It, Mock, Times } from 'typemoq';
 describe('GearMenuButton', () => {
     describe('renders', () => {
         const props: GearMenuButtonProps = {
-            dropdownClickHandler: Mock.ofType(DropdownClickHandler).object,
-            featureFlags: {},
+            deps: {
+                dropdownClickHandler: Mock.ofType(DropdownClickHandler).object,
+            },
+            featureFlagData: {},
         };
 
         it.each([true, false])('proper button with scoping enabled = %s', isScopingEnabled => {
-            props.featureFlags = { [FeatureFlags[FeatureFlags.scoping]]: isScopingEnabled };
+            props.featureFlagData = { [FeatureFlags[FeatureFlags.scoping]]: isScopingEnabled };
 
             const testSubject = shallow(<GearMenuButton {...props} />);
             expect(testSubject.getElement()).toMatchSnapshot();
@@ -43,8 +45,10 @@ describe('GearMenuButton', () => {
             dropdownClickHandlerMock = Mock.ofType(DropdownClickHandler);
 
             props = {
-                dropdownClickHandler: dropdownClickHandlerMock.object,
-                featureFlags: { [FeatureFlags[FeatureFlags.scoping]]: true },
+                deps: {
+                    dropdownClickHandler: dropdownClickHandlerMock.object,
+                },
+                featureFlagData: { [FeatureFlags[FeatureFlags.scoping]]: true },
             };
 
             const testSubject = shallow(<GearMenuButton {...props} />);

@@ -467,7 +467,6 @@ describe('DetailsViewContainer', () => {
                     deps={props.deps}
                     selectedPivot={DetailsViewPivotType.fastPass}
                     featureFlagStoreData={storeMocks.featureFlagStoreData}
-                    dropdownClickHandler={dropdownClickHandler.object}
                     tabClosed={storeMocks.tabStoreData.isClosed}
                 />
                 {buildDetailsViewBody(
