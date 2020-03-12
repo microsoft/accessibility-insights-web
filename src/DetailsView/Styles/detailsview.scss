@@ -294,11 +294,6 @@ div.insights-file-issue-details-dialog-container {
                     padding-top: 0px;
                     display: inline-block;
                 }
-                .test-guidance-links-group {
-                    align-items: flex-end;
-                    display: flex;
-                    flex-direction: column;
-                }
             }
             .visual-helper {
                 display: flex;
@@ -321,28 +316,6 @@ div.insights-file-issue-details-dialog-container {
             .test-step-instructions-header {
                 font-size: 14px;
                 font-weight: $normalTitleFontWeight;
-            }
-            .test-step-instructions {
-                font-family: $fontFamily;
-                p,
-                ol,
-                li {
-                    margin: 5px 0px;
-                }
-                ol {
-                    -webkit-padding-start: 16px;
-                }
-                ol ol {
-                    list-style-type: lower-alpha;
-                }
-                ol ol ol {
-                    list-style-type: lower-roman;
-                }
-            }
-            .test-step-instances-header {
-                font-size: 15px;
-                font-weight: normal;
-                padding-top: 15px;
             }
             .no-matching-elements {
                 font-weight: bold;

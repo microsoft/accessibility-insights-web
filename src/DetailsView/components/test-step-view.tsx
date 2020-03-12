@@ -1,26 +1,27 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Spinner, SpinnerSize } from 'office-ui-fabric-react';
-import * as React from 'react';
-
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Requirement, VisualHelperToggleConfig } from 'assessments/types/requirement';
-import { ContentPanelButton, ContentPanelButtonDeps } from 'views/content/content-panel-button';
-import { CollapsibleComponent } from '../../common/components/collapsible-component';
-import { GuidanceTags, GuidanceTagsDeps } from '../../common/components/guidance-tags';
+import { CollapsibleComponent } from 'common/components/collapsible-component';
+import { GuidanceTags, GuidanceTagsDeps } from 'common/components/guidance-tags';
 import {
     AssessmentNavState,
     GeneratedAssessmentInstance,
     ManualTestStepResult,
-} from '../../common/types/store-data/assessment-result-data';
-import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
-import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet-store-data';
-import { DictionaryStringTo } from '../../types/common-types';
+} from 'common/types/store-data/assessment-result-data';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { PathSnippetStoreData } from 'common/types/store-data/path-snippet-store-data';
+import { Spinner, SpinnerSize } from 'office-ui-fabric-react';
+import * as React from 'react';
+import { DictionaryStringTo } from 'types/common-types';
+import { ContentPanelButton, ContentPanelButtonDeps } from 'views/content/content-panel-button';
+
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 import { AssessmentInstanceTable } from './assessment-instance-table';
 import { ManualTestStepView } from './manual-test-step-view';
+import * as styles from './test-step-view.scss';
 
 export type TestStepViewDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
@@ -66,9 +67,9 @@ export class TestStepView extends React.Component<TestStepViewProps> {
                 </div>
                 {this.renderVisualHelperToggle()}
                 <CollapsibleComponent
-                    header={<h4 className="test-step-instructions-header">How to test</h4>}
+                    header={<h4 className={styles.testStepInstructionsHeader}>How to test</h4>}
                     content={this.props.testStep.howToTest}
-                    contentClassName={'test-step-instructions'}
+                    contentClassName={styles.testStepInstructions}
                 />
                 {this.renderTable()}
             </div>
