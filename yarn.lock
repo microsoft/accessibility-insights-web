@@ -3224,13 +3224,13 @@ electron-publish@22.4.1:
     lazy-val "^1.0.4"
     mime "^2.4.4"
 
-electron-updater@^4.2.4:
-  version "4.2.4"
-  resolved "https://registry.yarnpkg.com/electron-updater/-/electron-updater-4.2.4.tgz#9015bb8f85b24d6f8a620a90dd0fe128335c902b"
-  integrity sha512-iqN0uoP2+Nkiljp/o4DzZVeSpOOCMtP8+pqL5/qDI+1/ARW99T2TFcpRrPwX4dntowNV7X5T19aKFLK3+9AdkA==
+electron-updater@^4.2.5:
+  version "4.2.5"
+  resolved "https://registry.yarnpkg.com/electron-updater/-/electron-updater-4.2.5.tgz#dbced8da6f8c6fc2dc662f2776131f5a49ce018d"
+  integrity sha512-ir8SI3capF5pN4LTQY79bP7oqiBKjgtdDW378xVId5VcGUZ+Toei2j+fgx1mq3y4Qg19z4HqLxEZ9FqMD0T0RA==
   dependencies:
     "@types/semver" "^7.1.0"
-    builder-util-runtime "8.6.1"
+    builder-util-runtime "8.6.2"
     fs-extra "^8.1.0"
     js-yaml "^3.13.1"
     lazy-val "^1.0.4"
