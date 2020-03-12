@@ -17,17 +17,15 @@ Two projects are built from this repository:
 -   Accessibility Insights for Web is a browser extension for Google Chrome and the new Microsoft Edge, used for assessing the accessibility of web sites and web applications.
 -   Accessibility Insights for Android is a cross-platform desktop tool used for testing accessibility of Android applications.
 
-### Running Accessibility Insights for Web
-
-You can install the extension from one of the following links
+### Install Accessibility Insights for Web
 
 -   ![Canary Logo](./src/icons/brand/red/brand-red-16px.png) [Canary](https://chrome.google.com/webstore/detail/hbcplehnakffdldhldncjlnbpfgogbem) (released continuously)
 -   ![Insider Logo](./src/icons/brand/violet/brand-violet-16px.png) [Insider](https://chrome.google.com/webstore/detail/nnmjfbmebeckhpejobgjjjnchlljiagp) (on feature completion)
 -   ![Production Logo](./src/icons/brand/blue/brand-blue-16px.png) [Production](https://chrome.google.com/webstore/detail/pbjjkligggfmakdaogkfomddhfmpjeni) (after validation in Insider)
 
-### Running Accessibility Insights for Android
+### Install Accessibility Insights for Android
 
-You can install Accessibility Insights for Android from one of the following links. The application requires an APK which you can download [here](https://accessibilityinsights.io/en/downloads).
+The application also requires an APK which you can download [here](https://accessibilityinsights.io/en/downloads).
 
 -   MacOS ([Canary](https://aka.ms/accessibility-insights-for-android/downloads/CanaryMacOS), [Insider](https://aka.ms/accessibility-insights-for-android/downloads/InsiderMacOS), [Production](https://aka.ms/accessibility-insights-for-android/downloads/MacOS))
 -   Windows ([Canary](https://aka.ms/accessibility-insights-for-android/downloads/CanaryWindows), [Insider](https://aka.ms/accessibility-insights-for-android/downloads/InsiderWindows), [Production](https://aka.ms/accessibility-insights-for-android/downloads/Windows))
