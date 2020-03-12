@@ -25,12 +25,18 @@ describe('BaseAnalyzerTest', () => {
             key: 'sample key',
             testType: typeStub,
         };
-        testSubject = new BaseAnalyzer(configStub, sendMessageMock.object, scanIncompleteWarningDetectorMock.object);
+        testSubject = new BaseAnalyzer(
+            configStub,
+            sendMessageMock.object,
+            scanIncompleteWarningDetectorMock.object,
+        );
     });
 
     test('analyze', async done => {
         const resultsStub = {};
-        const scanIncompleteWarnings: ScanIncompleteWarningId[] = ['missing-required-cross-origin-permissions'];
+        const scanIncompleteWarnings: ScanIncompleteWarningId[] = [
+            'missing-required-cross-origin-permissions',
+        ];
         const expectedMessage: Message = {
             messageType: configStub.analyzerMessageType,
             payload: {
@@ -42,7 +48,9 @@ describe('BaseAnalyzerTest', () => {
             },
         };
 
-        scanIncompleteWarningDetectorMock.setup(idm => idm.detectScanIncompleteWarnings()).returns(() => scanIncompleteWarnings);
+        scanIncompleteWarningDetectorMock
+            .setup(idm => idm.detectScanIncompleteWarnings())
+            .returns(() => scanIncompleteWarnings);
 
         sendMessageMock
             .setup(smm => smm(It.isValue(expectedMessage)))

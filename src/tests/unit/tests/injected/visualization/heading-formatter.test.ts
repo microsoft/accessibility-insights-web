@@ -22,7 +22,10 @@ describe('HeadingFormatterTests', () => {
         sandbox = document.createElement('div');
         document.body.appendChild(sandbox);
         failedInstanceResult = { isFailure: true } as AssessmentVisualizationInstance;
-        failedInstanceNotSelected = { isFailure: true, isVisualizationEnabled: false } as AssessmentVisualizationInstance;
+        failedInstanceNotSelected = {
+            isFailure: true,
+            isVisualizationEnabled: false,
+        } as AssessmentVisualizationInstance;
     });
 
     afterEach(() => {
