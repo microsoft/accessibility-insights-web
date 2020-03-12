@@ -9,14 +9,14 @@ import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-vie
 import { detailsViewCommandButtons } from 'DetailsView/components/details-view-command-bar.scss';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { StartOverDeps } from 'DetailsView/components/start-over-dropdown';
-import { Link } from 'office-ui-fabric-react';
-import { ITooltipHostStyles, TooltipHost } from 'office-ui-fabric-react';
+import { ITooltipHostStyles, Link, TooltipHost } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
+import * as styles from './details-view-command-bar.scss';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
 import { ReportExportComponentDeps } from './report-export-component';
 
@@ -54,7 +54,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
         }
 
         return (
-            <div className="details-view-command-bar">
+            <div className={styles.detailsViewCommandBar}>
                 {this.renderTargetPageInfo()}
                 {this.renderCommandButtons()}
             </div>
@@ -66,7 +66,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
         const tooltipContent = `Switch to target page: ${targetPageTitle}`;
         const hostStyles: Partial<ITooltipHostStyles> = { root: { display: 'inline-block' } };
         return (
-            <div className="details-view-target-page" aria-labelledby="switch-to-target">
+            <div className={styles.detailsViewTargetPage} aria-labelledby="switch-to-target">
                 <span id="switch-to-target">Target page:&nbsp;</span>
                 <TooltipHost content={tooltipContent} styles={hostStyles}>
                     <Link

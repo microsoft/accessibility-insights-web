@@ -225,32 +225,6 @@ div.insights-file-issue-details-dialog-container {
             }
         }
     }
-    .details-view-command-bar {
-        height: $detailsViewCommandBarHeight;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        min-height: fit-content;
-        align-items: center;
-        background-color: $neutral-0;
-        font-size: 14px;
-        font-weight: normal;
-        border-bottom: $detailsViewCommandBarBorderHeight solid $neutral-alpha-8;
-
-        .details-view-target-page {
-            margin-left: 12px;
-            padding: 8px 8px;
-            display: inherit;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            color: $primary-text;
-            width: 50%;
-            .ms-Link {
-                color: $communication-primary;
-            }
-        }
-    }
     .details-view-body-nav-content-layout {
         padding-left: 0px;
         padding-right: 0px;
@@ -656,34 +630,6 @@ div.insights-file-issue-details-dialog-container {
                     }
                     &.form-landmark {
                         background-color: $landmark-form;
-                    }
-                }
-                .details-view-command-bar {
-                    margin-bottom: 12px;
-                    margin-top: 12px;
-                    height: $detailsViewCommandBarHeight;
-                    background-color: $neutral-4;
-                    display: -webkit-inline-box;
-                    .automated-checks-details-view-toggle {
-                        margin-bottom: unset;
-
-                        .ms-Toggle-label {
-                            float: left;
-                            margin: 5px 8px 5px 8px;
-                            color: $neutral-100;
-                        }
-                        .ms-Toggle-innerContainer {
-                            margin: 10px 0px 10px 0px;
-                        }
-                    }
-                    .ms-Button--command {
-                        margin-left: 20px;
-                        i {
-                            padding-top: 1px;
-                        }
-                        .ms-Button-label {
-                            padding-bottom: 1px;
-                        }
                     }
                 }
                 .details-view-toggle {
