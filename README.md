@@ -3,7 +3,7 @@ Copyright (c) Microsoft Corporation. All rights reserved.
 Licensed under the MIT License.
 -->
 
-## ![Product Logo](./src/icons/brand/blue/brand-blue-48px.png) Accessibility Insights for Web
+## ![Product Logo](./src/icons/brand/blue/brand-blue-48px.png) Accessibility Insights for Web & Android
 
 [![Build Status](https://dev.azure.com/ms/accessibility-insights-web/_apis/build/status/AccessibilityInsights-Web-CI?branchName=master)](https://dev.azure.com/ms/accessibility-insights-web/_build/latest?definitionId=63&branchName=master)
 [![codecov](https://codecov.io/gh/microsoft/accessibility-insights-web/branch/master/graph/badge.svg)](https://codecov.io/gh/microsoft/accessibility-insights-web)
@@ -12,15 +12,24 @@ Licensed under the MIT License.
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/pbjjkligggfmakdaogkfomddhfmpjeni.svg)](https://chrome.google.com/webstore/detail/accessibility-insights-fo/pbjjkligggfmakdaogkfomddhfmpjeni/reviews)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=microsoft/accessibility-insights-web)](https://dependabot.com)
 
-Accessibility Insights for Web is a browser extension for Google Chrome and the new Microsoft Edge, used for assessing the accessibility of web sites and web applications.
+Two projects are built from this repository:
 
-### Running the extension
+-   **Accessibility Insights for Web** is a browser extension for Google Chrome and the new Microsoft Edge, used for assessing the accessibility of web sites and web applications.
+-   **Accessibility Insights for Android** is a cross-platform desktop tool used for testing accessibility of Android applications.
 
-You can install the extension from one of the following links
+### Install Accessibility Insights for Web
 
 -   ![Canary Logo](./src/icons/brand/red/brand-red-16px.png) [Canary](https://chrome.google.com/webstore/detail/hbcplehnakffdldhldncjlnbpfgogbem) (released continuously)
 -   ![Insider Logo](./src/icons/brand/violet/brand-violet-16px.png) [Insider](https://chrome.google.com/webstore/detail/nnmjfbmebeckhpejobgjjjnchlljiagp) (on feature completion)
 -   ![Production Logo](./src/icons/brand/blue/brand-blue-16px.png) [Production](https://chrome.google.com/webstore/detail/pbjjkligggfmakdaogkfomddhfmpjeni) (after validation in Insider)
+
+### Install Accessibility Insights for Android
+
+The application also requires an APK which you can download [here](https://accessibilityinsights.io/en/downloads).
+
+-   MacOS ([Canary](https://aka.ms/accessibility-insights-for-android/downloads/CanaryMacOS), [Insider](https://aka.ms/accessibility-insights-for-android/downloads/InsiderMacOS), [Production](https://aka.ms/accessibility-insights-for-android/downloads/MacOS))
+-   Windows ([Canary](https://aka.ms/accessibility-insights-for-android/downloads/CanaryWindows), [Insider](https://aka.ms/accessibility-insights-for-android/downloads/InsiderWindows), [Production](https://aka.ms/accessibility-insights-for-android/downloads/Windows))
+-   Linux ([Canary](https://aka.ms/accessibility-insights-for-android/downloads/CanaryLinux), [Insider](https://aka.ms/accessibility-insights-for-android/downloads/InsiderLinux), [Production](https://aka.ms/accessibility-insights-for-android/downloads/Linux))
 
 ### Building the code
 
