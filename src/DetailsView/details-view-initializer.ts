@@ -455,7 +455,11 @@ if (isNaN(tabId) === false) {
     );
 }
 
-function createNullifiedRenderer(doc, render): NoContentAvailableViewRenderer {
+function createNullifiedRenderer(
+    doc: Document,
+    render: typeof ReactDOM.render,
+): NoContentAvailableViewRenderer {
+    // using an instance of an actual store (instead of a StoreProxy) so we can get the default state.
     const store = new UserConfigurationStore(null, new UserConfigurationActions(), null);
     const storesHub = new BaseClientStoresHub<ThemeInnerState>([store]);
 
