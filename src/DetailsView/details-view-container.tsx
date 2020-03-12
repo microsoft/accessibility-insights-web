@@ -36,7 +36,7 @@ import {
 import { GetDetailsSwitcherNavConfiguration } from './components/details-view-switcher-nav';
 import { InteractiveHeader, InteractiveHeaderDeps } from './components/interactive-header';
 import { IssuesTableHandler } from './components/issues-table-handler';
-import { NoContentAvailable } from './components/no-content-available';
+import { NoContentAvailable } from './components/no-content-available/no-content-available';
 import { TargetChangeDialogDeps } from './components/target-change-dialog';
 import { DetailsViewBody, DetailsViewBodyDeps } from './details-view-body';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
