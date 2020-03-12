@@ -587,51 +587,6 @@ div.insights-file-issue-details-dialog-container {
                 b {
                     font-weight: 600;
                 }
-                .why-vis {
-                    padding-top: 4px;
-                    font-size: 14px;
-                    .ms-Link {
-                        color: $communication-primary;
-                    }
-                }
-                .tab-stops-accessibility-problems-list {
-                    background: $neutral-6;
-                    list-style-type: disc;
-                }
-                .landmarks-legend {
-                    color: $neutral-100;
-                    font-size: 14px;
-                    display: table-cell;
-                    width: 110px;
-                    text-align: center;
-                    font-weight: 400;
-                    padding: 4px;
-                    vertical-align: middle;
-                    &.contentinfo-landmark {
-                        background-color: $landmark-contentinfo;
-                    }
-                    &.main-landmark {
-                        background-color: $landmark-main;
-                    }
-                    &.complementary-landmark {
-                        background-color: $landmark-complementary;
-                    }
-                    &.banner-landmark {
-                        background-color: $landmark-banner;
-                    }
-                    &.region-landmark {
-                        background-color: $landmark-region;
-                    }
-                    &.navigation-landmark {
-                        background-color: $landmark-navigation;
-                    }
-                    &.search-landmark {
-                        background-color: $landmark-search;
-                    }
-                    &.form-landmark {
-                        background-color: $landmark-form;
-                    }
-                }
                 .details-view-toggle {
                     margin-bottom: 0;
                     margin-top: 12px;
@@ -645,12 +600,6 @@ div.insights-file-issue-details-dialog-container {
                     .ms-Toggle-innerContainer {
                         margin: 10px 0px 10px 0px;
                     }
-                }
-                .details-icon-error {
-                    color: $negative-outcome;
-                    padding-right: 0.3em;
-                    padding-bottom: 0.1em;
-                    vertical-align: text-bottom;
                 }
                 .overview {
                     display: flex;
