@@ -13,9 +13,9 @@ export const FooterText = NamedFC<FooterTextProps>(
     ({ environmentInfo: { axeCoreVersion, browserSpec, extensionVersion } }) => (
         <>
             This automated checks result was generated using{' '}
-            {`${toolName} ${extensionVersion} (Axe ${axeCoreVersion})`}, a tool that helps debug and
-            find accessibility issues earlier on {browserSpec}. Get more information & download this
-            tool at <ToolLink />.
+            {`${toolName} ${extensionVersion} (axe-core ${axeCoreVersion})`}, a tool that helps
+            debug and find accessibility issues earlier on {browserSpec}. Get more information &
+            download this tool at <ToolLink />.
         </>
     ),
 );
