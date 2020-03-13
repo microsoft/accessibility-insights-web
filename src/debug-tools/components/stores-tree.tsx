@@ -16,6 +16,7 @@ import {
     SelectionMode,
     SelectionZone,
     Spinner,
+    IGroup,
 } from 'office-ui-fabric-react';
 import * as React from 'react';
 
@@ -62,7 +63,7 @@ export const StoresTree = NamedFC<StoresTreeProps>('StoresTree', ({ deps, state 
     const selection = new Selection();
     const selectionMode = SelectionMode.none;
 
-    const groups = [];
+    const groups: IGroup[] = [];
     let items = [];
 
     let instanceCount: number = 0;
@@ -70,7 +71,7 @@ export const StoresTree = NamedFC<StoresTreeProps>('StoresTree', ({ deps, state 
     forEach(state, (storeState, storeKey) => {
         const stateKeys = Object.keys(storeState);
 
-        const currentGroup = {
+        const currentGroup: IGroup = {
             key: storeKey,
             name: storeKey,
             startIndex: instanceCount,
