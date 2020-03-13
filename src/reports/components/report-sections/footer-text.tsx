@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
-
 import { EnvironmentInfo } from 'common/environment-info-provider';
 import { NamedFC } from 'common/react/named-fc';
 import { toolName } from 'content/strings/application';
+import * as React from 'react';
 import { ToolLink } from 'reports/components/report-sections/tool-link';
 
 export type FooterTextProps = { environmentInfo: EnvironmentInfo };
