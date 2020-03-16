@@ -3,14 +3,20 @@
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
+import { UserConfigurationActions } from 'background/actions/user-configuration-actions';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
+import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
+import { ThemeInnerState } from 'common/components/theme';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { textContent } from 'content/strings/text-content';
+import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-available/no-content-available-view';
 import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
+import { NoContentAvailableViewRenderer } from 'DetailsView/no-content-available-view-renderer';
+import { NullStoreActionMessageCreator } from 'electron/adapters/null-store-action-message-creator';
 import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
@@ -449,6 +455,19 @@ if (isNaN(tabId) === false) {
     );
 }
 
-function createNullifiedRenderer(doc, render): DetailsViewRenderer {
-    return new DetailsViewRenderer(null, doc, render, documentElementSetter);
+function createNullifiedRenderer(
+    doc: Document,
+    render: typeof ReactDOM.render,
+): NoContentAvailableViewRenderer {
+    // using an instance of an actual store (instead of a StoreProxy) so we can get the default state.
+    const store = new UserConfigurationStore(null, new UserConfigurationActions(), null);
+    const storesHub = new BaseClientStoresHub<ThemeInnerState>([store]);
+
+    const deps: NoContentAvailableViewDeps = {
+        textContent,
+        storesHub,
+        storeActionMessageCreator: new NullStoreActionMessageCreator(),
+    };
+
+    return new NoContentAvailableViewRenderer(deps, doc, render, documentElementSetter);
 }
