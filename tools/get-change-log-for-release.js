@@ -3,19 +3,20 @@
 const gitP = require('simple-git/promise');
 const fs = require('fs');
 const path = require('path');
+const commander = require('commander');
 
 const main = async () => {
-    const from = 'v2.14.1';
-    const to = 'web@2.15.0';
-    const outputPath = './temp.csv';
+    const params = parseCommandLineArguments();
 
-    const gitLogs = await getGitLogs(from, to);
+    validateCommandLineArguments(params);
 
-    const outputContent = generateOutputContent(gitLogs);
+    const gitLogs = await getGitLogs(params.from, params.to);
 
-    ensureOutputFileExist(outputPath);
+    const outputContent = generateOutputContent(gitLogs, params.to);
 
-    fs.writeFileSync(outputPath, outputContent);
+    ensureOutputFileExist(params.output);
+
+    fs.writeFileSync(params.output, outputContent);
 };
 
 const getGitLogs = async (from, to) => {
@@ -58,7 +59,7 @@ const generateOutputContent = (gitLogs, version) => {
             };
         })
         .map(log => {
-            // the order here is important, it needs to match the headers order
+            // the order here is important, it needs to match the headers order down below
             return `,,"${log.dev}","${log.commit}","${log.change}","${log.group}","${log.version}","${log.date}"`;
         });
 
@@ -66,6 +67,39 @@ const generateOutputContent = (gitLogs, version) => {
 
     const headersContent = headers.join(',');
     return `${headersContent}\n`.concat(csvLogs.join('\n'));
+};
+
+const parseCommandLineArguments = () => {
+    const program = new commander.Command();
+
+    program
+        .requiredOption('-f, --from <commit_hash>', 'starting point to get the logs')
+        .requiredOption('-t, --to <commit_hash>', 'ending point to get the logs')
+        .option('-o, --output <output_path>', 'path to the output file')
+        .parse(process.argv);
+
+    return program;
+};
+
+const validateCommandLineArguments = program => {
+    const errors = [];
+
+    if (!program.from) {
+        errors.push('Missing param: from');
+    }
+
+    if (!program.to) {
+        errors.push('Missing param: to');
+    }
+
+    if (!program.output) {
+        program.output = `change-log.${program.from}-${program.to}.csv`;
+    }
+
+    if (errors.length != 0) {
+        errors.forEach(error => console.error(error));
+        process.exit(1);
+    }
 };
 
 main().catch(console.error);
