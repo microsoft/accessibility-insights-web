@@ -4,7 +4,6 @@ trigger: # trigger only affects CI builds
     branches:
         include:
             - master
-            - fix-builds
 
 pr: # pr does not trigger CI builds
     branches:
