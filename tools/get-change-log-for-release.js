@@ -73,9 +73,15 @@ const parseCommandLineArguments = () => {
     const program = new commander.Command();
 
     program
-        .requiredOption('-f, --from <commit_hash>', 'starting point to get the logs')
-        .requiredOption('-t, --to <commit_hash>', 'ending point to get the logs')
-        .option('-o, --output <output_path>', 'path to the output file')
+        .requiredOption(
+            '-f, --from <commit_hash or tag>',
+            'Starting point to get the logs. Required.',
+        )
+        .requiredOption('-t, --to <commit_hash or tag>', 'Ending point to get the logs. Required.')
+        .option(
+            '-o, --output <output_path>',
+            'Path to the output file. Default: change-log.<from>-<to>.csv',
+        )
         .parse(process.argv);
 
     return program;
