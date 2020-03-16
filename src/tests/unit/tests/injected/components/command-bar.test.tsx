@@ -8,7 +8,11 @@ import { BaseButton, Button } from '../../../../../../node_modules/office-ui-fab
 import { CopyIssueDetailsButton } from '../../../../../common/components/copy-issue-details-button';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
-import { CommandBar, CommandBarDeps, CommandBarProps } from '../../../../../injected/components/command-bar';
+import {
+    CommandBar,
+    CommandBarDeps,
+    CommandBarProps,
+} from '../../../../../injected/components/command-bar';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { AxeResultToIssueFilingDataConverter } from '../../../../../issue-filing/rule-result-to-issue-filing-data';
 import { EventStubFactory } from '../../../common/event-stub-factory';
@@ -41,7 +45,10 @@ describe('CommandBar', () => {
         onClickInspectButton: undefined,
         onClickCopyIssueDetailsButton: undefined,
         shouldShowInspectButtonMessage: () => false,
-        userConfigurationStoreData: { isFirstTime: false, bugService: 'None' } as UserConfigurationStoreData,
+        userConfigurationStoreData: {
+            isFirstTime: false,
+            bugService: 'None',
+        } as UserConfigurationStoreData,
         devToolsShortcut: 'dev-tools-shortcut',
         currentRuleIndex: 0,
         failedRules: {
@@ -78,7 +85,16 @@ describe('CommandBar', () => {
 
         test('for inspect button', () => {
             const onClickMock = Mock.ofInstance(
-                (event: React.MouseEvent<Button | BaseButton | HTMLDivElement | HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => {},
+                (
+                    event: React.MouseEvent<
+                        | Button
+                        | BaseButton
+                        | HTMLDivElement
+                        | HTMLAnchorElement
+                        | HTMLButtonElement,
+                        MouseEvent
+                    >,
+                ) => {},
             );
 
             const props = {

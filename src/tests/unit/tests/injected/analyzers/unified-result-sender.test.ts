@@ -4,7 +4,11 @@ import { UnifiedScanCompletedPayload } from 'background/actions/action-payloads'
 import { EnvironmentInfoProvider } from 'common/environment-info-provider';
 import { Message } from 'common/message';
 import { Messages } from 'common/messages';
-import { ToolData, UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
+import {
+    ToolData,
+    UnifiedResult,
+    UnifiedRule,
+} from 'common/types/store-data/unified-data-interface';
 import { ConvertScanResultsToUnifiedResultsDelegate } from 'injected/adapters/scan-results-to-unified-results';
 import { ConvertScanResultsToUnifiedRulesDelegate } from 'injected/adapters/scan-results-to-unified-rules';
 import { MessageDelegate } from 'injected/analyzers/rule-analyzer';
@@ -42,47 +46,56 @@ describe('sendConvertedResults', () => {
         warnings                         | telemetry
         ${[testScanIncompleteWarningId]} | ${{ scanIncompleteWarnings: [testScanIncompleteWarningId] }}
         ${[]}                            | ${null}
-    `('it send results with warnings: $warnings and telemetry: $telemetry', ({ warnings, telemetry }) => {
-        convertToUnifiedMock.setup(m => m(axeInputResults, uuidGeneratorStub)).returns(val => unifiedResults);
-        convertToUnifiedRulesMock.setup(m => m(axeInputResults)).returns(val => unifiedRules);
-        environmentInfoProviderMock.setup(provider => provider.getToolData()).returns(() => toolInfo);
-        scanIncompleteWarningDetectorMock.setup(m => m.detectScanIncompleteWarnings()).returns(() => warnings);
+    `(
+        'it send results with warnings: $warnings and telemetry: $telemetry',
+        ({ warnings, telemetry }) => {
+            convertToUnifiedMock
+                .setup(m => m(axeInputResults, uuidGeneratorStub))
+                .returns(val => unifiedResults);
+            convertToUnifiedRulesMock.setup(m => m(axeInputResults)).returns(val => unifiedRules);
+            environmentInfoProviderMock
+                .setup(provider => provider.getToolData())
+                .returns(() => toolInfo);
+            scanIncompleteWarningDetectorMock
+                .setup(m => m.detectScanIncompleteWarnings())
+                .returns(() => warnings);
 
-        const testSubject = new UnifiedResultSender(
-            sendDelegate.object,
-            convertToUnifiedMock.object,
-            convertToUnifiedRulesMock.object,
-            environmentInfoProviderMock.object,
-            uuidGeneratorStub,
-            scanIncompleteWarningDetectorMock.object,
-        );
+            const testSubject = new UnifiedResultSender(
+                sendDelegate.object,
+                convertToUnifiedMock.object,
+                convertToUnifiedRulesMock.object,
+                environmentInfoProviderMock.object,
+                uuidGeneratorStub,
+                scanIncompleteWarningDetectorMock.object,
+            );
 
-        testSubject.sendResults({
-            results: null,
-            originalResult: axeInputResults,
-        });
+            testSubject.sendResults({
+                results: null,
+                originalResult: axeInputResults,
+            });
 
-        convertToUnifiedMock.verifyAll();
-        convertToUnifiedRulesMock.verifyAll();
-        environmentInfoProviderMock.verifyAll();
+            convertToUnifiedMock.verifyAll();
+            convertToUnifiedRulesMock.verifyAll();
+            environmentInfoProviderMock.verifyAll();
 
-        const expectedPayload: UnifiedScanCompletedPayload = {
-            scanResult: unifiedResults,
-            rules: unifiedRules,
-            toolInfo: toolInfo,
-            targetAppInfo: {
-                name: 'title',
-                url: 'url',
-            },
-            scanIncompleteWarnings: warnings,
-            telemetry,
-        };
+            const expectedPayload: UnifiedScanCompletedPayload = {
+                scanResult: unifiedResults,
+                rules: unifiedRules,
+                toolInfo: toolInfo,
+                targetAppInfo: {
+                    name: 'title',
+                    url: 'url',
+                },
+                scanIncompleteWarnings: warnings,
+                telemetry,
+            };
 
-        const expectedMessage: Message = {
-            messageType: Messages.UnifiedScan.ScanCompleted,
-            payload: expectedPayload,
-        };
+            const expectedMessage: Message = {
+                messageType: Messages.UnifiedScan.ScanCompleted,
+                payload: expectedPayload,
+            };
 
-        sendDelegate.verify(m => m(expectedMessage), Times.once());
-    });
+            sendDelegate.verify(m => m(expectedMessage), Times.once());
+        },
+    );
 });

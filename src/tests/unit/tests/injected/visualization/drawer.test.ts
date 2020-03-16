@@ -1284,8 +1284,16 @@ describe('Drawer', () => {
         }
     }
 
-    function findCurrentDrawerOverlays(): { container: HTMLDivElement; label: HTMLDivElement; failureLabel: HTMLDivElement }[] {
-        const overlays: { container: HTMLDivElement; label: HTMLDivElement; failureLabel: HTMLDivElement }[] = [];
+    function findCurrentDrawerOverlays(): {
+        container: HTMLDivElement;
+        label: HTMLDivElement;
+        failureLabel: HTMLDivElement;
+    }[] {
+        const overlays: {
+            container: HTMLDivElement;
+            label: HTMLDivElement;
+            failureLabel: HTMLDivElement;
+        }[] = [];
         const containers = shadowContainer.querySelectorAll(
             `.insights-container.insights-highlight-container.${containerClass} .insights-highlight-box`,
         );

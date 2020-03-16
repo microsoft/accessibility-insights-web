@@ -4,7 +4,10 @@ import { IMock, Mock } from 'typemoq';
 
 import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 import { WindowMessage } from '../../../../../injected/frameCommunicators/window-message';
-import { MESSAGE_STABLE_SIGNATURE, WindowMessageMarshaller } from '../../../../../injected/frameCommunicators/window-message-marshaller';
+import {
+    MESSAGE_STABLE_SIGNATURE,
+    WindowMessageMarshaller,
+} from '../../../../../injected/frameCommunicators/window-message-marshaller';
 
 describe('WindowMessageMarshallerTests', () => {
     let testSubject: WindowMessageMarshaller;
@@ -202,6 +205,8 @@ describe('WindowMessageMarshallerTests', () => {
         // Using strings instead of strongly typed names to avoid accidentally tool-refactoring the names/values
         // such that this test still passes but our partners break; those partners depend on this *exact* format
         // to distinguish our messages from unknown/assumed-malicious messages.
-        expect(actualMessage['messageStableSignature']).toBe('e467510c-ca1f-47df-ace1-a39f7f0678c9');
+        expect(actualMessage['messageStableSignature']).toBe(
+            'e467510c-ca1f-47df-ace1-a39f7f0678c9',
+        );
     });
 });
