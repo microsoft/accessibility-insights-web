@@ -12,11 +12,11 @@ import {
     FocusZone,
     GroupedList,
     IColumn,
+    IGroup,
     Selection,
     SelectionMode,
     SelectionZone,
     Spinner,
-    IGroup,
 } from 'office-ui-fabric-react';
 import * as React from 'react';
 
