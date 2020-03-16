@@ -1,27 +1,27 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { NewTabLink } from 'common/components/new-tab-link';
+import { DropdownClickHandler } from 'common/dropdown-click-handler';
+import { StoreActionMessageCreatorImpl } from 'common/message-creators/store-action-message-creator-impl';
+import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
+import { LaunchPanelStoreData } from 'common/types/store-data/launch-panel-store-data';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { shallow } from 'enzyme';
-import * as React from 'react';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
-import { NewTabLink } from '../../../../../common/components/new-tab-link';
-import { DropdownClickHandler } from '../../../../../common/dropdown-click-handler';
-import { StoreActionMessageCreatorImpl } from '../../../../../common/message-creators/store-action-message-creator-impl';
-import { BaseClientStoresHub } from '../../../../../common/stores/base-client-stores-hub';
-import { LaunchPanelStoreData } from '../../../../../common/types/store-data/launch-panel-store-data';
-import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
-import { PopupActionMessageCreator } from '../../../../../popup/actions/popup-action-message-creator';
-import { LaunchPanelHeader } from '../../../../../popup/components/launch-panel-header';
+import { PopupActionMessageCreator } from 'popup/actions/popup-action-message-creator';
+import { LaunchPanelHeader } from 'popup/components/launch-panel-header';
 import {
     LaunchPanelType,
     PopupView,
     PopupViewControllerDeps,
     PopupViewControllerState,
     PopupViewProps,
-} from '../../../../../popup/components/popup-view';
-import { DiagnosticViewClickHandler } from '../../../../../popup/handlers/diagnostic-view-toggle-click-handler';
-import { PopupViewControllerHandler } from '../../../../../popup/handlers/popup-view-controller-handler';
-import { LaunchPadRowConfigurationFactory } from '../../../../../popup/launch-pad-row-configuration-factory';
+} from 'popup/components/popup-view';
+import { DiagnosticViewClickHandler } from 'popup/handlers/diagnostic-view-toggle-click-handler';
+import { PopupViewControllerHandler } from 'popup/handlers/popup-view-controller-handler';
+import { LaunchPadRowConfigurationFactory } from 'popup/launch-pad-row-configuration-factory';
+import * as React from 'react';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { BaseDataBuilder } from '../../../common/base-data-builder';
 import { IsSameObject } from '../../../common/typemoq-helper';
 
