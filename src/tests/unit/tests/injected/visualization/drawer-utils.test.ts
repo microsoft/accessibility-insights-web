@@ -31,7 +31,10 @@ describe('getBoundingClientRectIncludingChildren', () => {
     });
 
     it('works if two children overflowing in all four parent dimensions', () => {
-        const elementStub = getElementStub(5, 5, 10, 10, [getElementStub(0, 0, 7, 7), getElementStub(7, 7, 15, 15)]);
+        const elementStub = getElementStub(5, 5, 10, 10, [
+            getElementStub(0, 0, 7, 7),
+            getElementStub(7, 7, 15, 15),
+        ]);
         const result = DrawerUtils.getBoundingClientRectIncludingChildren(elementStub);
         expect(result.top).toBe(0);
         expect(result.left).toBe(0);
@@ -40,7 +43,10 @@ describe('getBoundingClientRectIncludingChildren', () => {
     });
 
     it('ignores children with empty bounding rectangles', () => {
-        const elementStub = getElementStub(5, 5, 10, 10, [getElementStub(0, 0, 0, 0), getElementStub(7, 7, 15, 15)]);
+        const elementStub = getElementStub(5, 5, 10, 10, [
+            getElementStub(0, 0, 0, 0),
+            getElementStub(7, 7, 15, 15),
+        ]);
         const result = DrawerUtils.getBoundingClientRectIncludingChildren(elementStub);
         expect(result.top).toBe(5);
         expect(result.left).toBe(5);
@@ -48,7 +54,13 @@ describe('getBoundingClientRectIncludingChildren', () => {
         expect(result.right).toBe(15);
     });
 
-    function getElementStub(top: number, left: number, bottom: number, right: number, children?: any[]): Element {
+    function getElementStub(
+        top: number,
+        left: number,
+        bottom: number,
+        right: number,
+        children?: any[],
+    ): Element {
         return {
             children: children || [],
             getBoundingClientRect: () => {
