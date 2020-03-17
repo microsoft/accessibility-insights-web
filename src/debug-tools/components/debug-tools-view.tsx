@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { HeaderDeps, Header } from 'common/components/header';
+import { Header, HeaderDeps } from 'common/components/header';
 import {
     withStoreSubscription,
     WithStoreSubscriptionDeps,
