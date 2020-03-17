@@ -155,5 +155,9 @@
         "unzipper": "^0.10.10",
         "uuid": "^7.0.2",
         "webextension-polyfill-ts": "^0.13.0"
+    },
+    "resolutions": {
+        "minimist": "^1.2.2",
+        "acorn": "^7.1.1"
     }
 }
