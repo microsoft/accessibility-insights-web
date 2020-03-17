@@ -114,6 +114,12 @@ module.exports = function(grunt) {
                         dest: path.join(extensionPath, 'common/styles/'),
                         expand: true,
                     },
+                    {
+                        cwd: './dist/src/debug-tools',
+                        src: '*.css',
+                        dest: path.join(extensionPath, 'debug-tools'),
+                        expand: true,
+                    },
                 ],
             },
             'package-report': {

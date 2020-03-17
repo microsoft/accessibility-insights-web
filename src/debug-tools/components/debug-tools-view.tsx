@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Header, HeaderDeps } from 'common/components/header';
 import {
     withStoreSubscription,
     WithStoreSubscriptionDeps,
@@ -10,7 +11,7 @@ import * as React from 'react';
 
 export type DebugToolsViewState = StoresTreeState;
 
-export type DebugToolsViewDeps = WithStoreSubscriptionDeps<DebugToolsViewState>;
+export type DebugToolsViewDeps = WithStoreSubscriptionDeps<DebugToolsViewState> & HeaderDeps;
 
 export interface DebugToolsViewProps {
     deps: DebugToolsViewDeps;
@@ -18,7 +19,12 @@ export interface DebugToolsViewProps {
 }
 
 export const DebugTools = NamedFC<DebugToolsViewProps>('DebugToolsView', ({ deps, storeState }) => {
-    return <StoresTree deps={deps} state={storeState} />;
+    return (
+        <>
+            <Header deps={deps} />
+            <StoresTree deps={deps} state={storeState} />
+        </>
+    );
 });
 
 export const DebugToolsView = withStoreSubscription<DebugToolsViewProps, DebugToolsViewState>(

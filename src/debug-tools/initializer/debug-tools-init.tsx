@@ -14,6 +14,7 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { PermissionsStateStoreData } from 'common/types/store-data/permissions-state-store-data';
 import { ScopingStoreData } from 'common/types/store-data/scoping-store-data';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { textContent } from 'content/strings/text-content';
 import {
     DebugToolsView,
     DebugToolsViewDeps,
@@ -34,6 +35,7 @@ export const initializeDebugTools = () => {
     const props: DebugToolsViewDeps = {
         storesHub,
         storeActionMessageCreator,
+        textContent,
     };
 
     render(props);
