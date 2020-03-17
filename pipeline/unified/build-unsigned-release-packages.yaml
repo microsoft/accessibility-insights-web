@@ -31,6 +31,9 @@ steps:
           ELECTRON_MIRROR: $(ELECTRON_MIRROR_VAR)
           ELECTRON_CUSTOM_DIR: $(ELECTRON_CUSTOM_DIR_VAR)
 
+    - script: node ./pipeline/scripts/print-file-hash-info.js $(System.DefaultWorkingDirectory)/drop/electron/unified-canary/packed
+      displayName: print out canary file hashes
+
     - template: publish-packed-build-output.yaml
       parameters:
           packedOutputPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-canary/packed'
