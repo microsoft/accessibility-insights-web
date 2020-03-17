@@ -208,6 +208,8 @@ export class PopupView extends React.Component<PopupViewProps> {
             [],
         );
 
+        // the reduce function above adds an extra <br> element
+        // calling pop to remove it before returning
         result.pop();
 
         return result;
