@@ -1,18 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DebugToolsView renders 1`] = `
-<StoresTree
-  deps={
-    Object {
-      "storesHub": null,
+<React.Fragment>
+  <Header
+    deps={
+      Object {
+        "storesHub": null,
+      }
     }
-  }
-  state={
-    Object {
-      "userConfigurationStoreData": Object {
-        "isFirstTime": true,
-      },
+  />
+  <StoresTree
+    deps={
+      Object {
+        "storesHub": null,
+      }
     }
-  }
-/>
+    state={
+      Object {
+        "userConfigurationStoreData": Object {
+          "isFirstTime": true,
+        },
+      }
+    }
+  />
+</React.Fragment>
 `;
