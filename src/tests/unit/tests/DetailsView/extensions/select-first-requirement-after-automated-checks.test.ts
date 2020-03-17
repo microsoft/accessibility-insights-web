@@ -9,7 +9,10 @@ describe('selectFirstRequirementAfterAutomatedChecks', () => {
     const second = 'second';
     const assessmentType = -2112;
 
-    const getRequirementResults = () => [{ definition: { key: first } }, { definition: { key: second } }];
+    const getRequirementResults = () => [
+        { definition: { key: first } },
+        { definition: { key: second } },
+    ];
 
     const detailsViewActionMessageCreator = {
         selectRequirement: jest.fn(),
@@ -17,7 +20,9 @@ describe('selectFirstRequirementAfterAutomatedChecks', () => {
 
     const scanningProps = ({
         deps: {
-            detailsViewActionMessageCreator: detailsViewActionMessageCreator as Partial<DetailsViewActionMessageCreator>,
+            detailsViewActionMessageCreator: detailsViewActionMessageCreator as Partial<
+                DetailsViewActionMessageCreator
+            >,
         },
         assessmentTestResult: {
             getOutcomeStats: () => ({ pass: 0, incomplete: 1, fail: 0 }),
@@ -28,7 +33,9 @@ describe('selectFirstRequirementAfterAutomatedChecks', () => {
 
     const notScanningProps = ({
         deps: {
-            detailsViewActionMessageCreator: detailsViewActionMessageCreator as Partial<DetailsViewActionMessageCreator>,
+            detailsViewActionMessageCreator: detailsViewActionMessageCreator as Partial<
+                DetailsViewActionMessageCreator
+            >,
         },
         assessmentTestResult: {
             getOutcomeStats: () => ({ pass: 1, incomplete: 0, fail: 0 }),
@@ -46,7 +53,11 @@ describe('selectFirstRequirementAfterAutomatedChecks', () => {
     it('selects the first test step when transitioning from scanning to not scanning', () => {
         testObject(scanningProps, notScanningProps);
 
-        expect(detailsViewActionMessageCreator.selectRequirement).toBeCalledWith(null, first, assessmentType);
+        expect(detailsViewActionMessageCreator.selectRequirement).toBeCalledWith(
+            null,
+            first,
+            assessmentType,
+        );
     });
 
     it('does not select the first test step when remaining scanning', () => {

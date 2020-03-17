@@ -14,14 +14,18 @@ describe('DetailsViewRendererTest', () => {
     test('render', () => {
         const deps = Mock.ofType<DetailsViewContainerDeps>().object;
 
-        const fakeDocument = TestDocumentCreator.createTestDocument('<div id="details-container"></div>');
+        const fakeDocument = TestDocumentCreator.createTestDocument(
+            '<div id="details-container"></div>',
+        );
 
         const renderMock: IMock<typeof ReactDOM.render> = Mock.ofInstance(() => null);
 
         const expectedIcon16 = 'icon128.png';
         configMutator.setOption('icon128', expectedIcon16);
         const documentManipulatorMock = Mock.ofType(DocumentManipulator);
-        documentManipulatorMock.setup(des => des.setShortcutIcon('../' + expectedIcon16)).verifiable();
+        documentManipulatorMock
+            .setup(des => des.setShortcutIcon('../' + expectedIcon16))
+            .verifiable();
 
         renderMock
             .setup(r =>
@@ -37,7 +41,12 @@ describe('DetailsViewRendererTest', () => {
             )
             .verifiable();
 
-        const renderer = new DetailsViewRenderer(deps, fakeDocument, renderMock.object, documentManipulatorMock.object);
+        const renderer = new DetailsViewRenderer(
+            deps,
+            fakeDocument,
+            renderMock.object,
+            documentManipulatorMock.object,
+        );
 
         renderer.render();
 
