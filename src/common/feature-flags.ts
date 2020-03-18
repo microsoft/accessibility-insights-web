@@ -104,8 +104,8 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
         {
             id: FeatureFlags.exportReport,
             defaultValue: false,
-            displayableName: 'Enable more export report options',
-            displayableDescription: 'Enabling exporting reports directly to code pen',
+            displayableName: 'More export options',
+            displayableDescription: 'Enables exporting reports to external services',
             isPreviewFeature: true,
             forceDefault: false,
         },
