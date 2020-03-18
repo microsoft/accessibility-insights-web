@@ -43,6 +43,7 @@ describe('AssessmentReportHtmlGenerator', () => {
         const modelBuilderMock = Mock.ofType(AssessmentReportModelBuilder, MockBehavior.Strict);
         const model: ReportModel = { stub: 'model' } as any;
 
+        // tslint:disable: react-no-dangerous-html
         const expectedComponent = (
             <React.Fragment>
                 <head>

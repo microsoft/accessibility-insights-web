@@ -81,6 +81,7 @@
         "react-a11y-role": true,
         "react-a11y-role-has-required-aria-props": true,
         "react-a11y-role-supports-aria-props": true,
+        "react-no-dangerous-html": true,
         "semicolon": [true, "always", "ignore-bound-class-methods"],
         "switch-default": true,
         "trailing-comma": [
