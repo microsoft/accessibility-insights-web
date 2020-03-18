@@ -202,17 +202,17 @@ export class PopupView extends React.Component<PopupViewProps> {
 
     private getUrlNotScannableMessage = () => {
         let keyIndex = 0;
-        const result = DisplayableStrings.urlNotScannable.reduce(
-            (r, current) =>
-                r.concat(<span key={keyIndex++}>{current}</span>, <br key={keyIndex++}></br>),
-            [],
-        );
+        const messages = [...DisplayableStrings.urlNotScannable];
+        const totalMessages = messages.length;
 
-        // the reduce function above adds an extra <br> element
-        // calling pop to remove it before returning
-        result.pop();
+        return messages.reduce((result, currentMessage, currentIndex) => {
+            const spanMessage = <span key={keyIndex++}>{currentMessage}</span>;
 
-        return result;
+            const needsBrElement = currentIndex < totalMessages - 1;
+            const brElement = needsBrElement ? <br key={keyIndex++}></br> : undefined;
+
+            return result.concat(spanMessage, brElement);
+        }, []);
     };
 
     private renderUnsupportedMsgPanelForFileUrl(): JSX.Element {
