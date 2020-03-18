@@ -15,7 +15,10 @@ import {
     AssessmentStoreData,
     PersistedTabInfo,
 } from '../../../../common/types/store-data/assessment-result-data';
-import { ScanData, TestsEnabledState } from '../../../../common/types/store-data/visualization-store-data';
+import {
+    ScanData,
+    TestsEnabledState,
+} from '../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../DetailsView/actions/details-view-action-message-creator';
 import { DetailsRightPanelConfiguration } from '../../../../DetailsView/components/details-view-right-panel';
@@ -44,9 +47,15 @@ describe('DetailsViewBody', () => {
     describe('render', () => {
         beforeEach(() => {
             selectedTest = -1;
-            const RightPanelStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<DetailsViewBodyProps>('test', _ => null);
-            const CommandBarStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<DetailsViewBodyProps>('test', _ => null);
-            const LeftNavStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<DetailsViewBodyProps>('test', _ => null);
+            const RightPanelStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<
+                DetailsViewBodyProps
+            >('test', _ => null);
+            const CommandBarStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<
+                DetailsViewBodyProps
+            >('test', _ => null);
+            const LeftNavStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<
+                DetailsViewBodyProps
+            >('test', _ => null);
             rightPanelConfig = {
                 RightPanel: RightPanelStub,
             } as DetailsRightPanelConfiguration;
@@ -57,7 +66,10 @@ describe('DetailsViewBody', () => {
                 LeftNav: LeftNavStub,
             } as DetailsViewSwitcherNavConfiguration;
             configFactoryMock = Mock.ofType(VisualizationConfigurationFactory, MockBehavior.Strict);
-            clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory, MockBehavior.Strict);
+            clickHandlerFactoryMock = Mock.ofType(
+                DetailsViewToggleClickHandlerFactory,
+                MockBehavior.Strict,
+            );
             getStoreDataMock = Mock.ofInstance(() => null, MockBehavior.Strict);
 
             configStub = {
@@ -94,7 +106,8 @@ describe('DetailsViewBody', () => {
 
             props = {
                 deps: {
-                    detailsViewActionMessageCreator: Mock.ofType(DetailsViewActionMessageCreator).object,
+                    detailsViewActionMessageCreator: Mock.ofType(DetailsViewActionMessageCreator)
+                        .object,
                 } as DetailsViewCommandBarDeps,
                 tabStoreData: new TabStoreDataBuilder().build(),
                 visualizationStoreData: new VisualizationStoreDataBuilder().build(),
@@ -109,13 +122,27 @@ describe('DetailsViewBody', () => {
                 },
                 rightPanelConfiguration: rightPanelConfig,
                 switcherNavConfiguration: switcherNavConfig,
-                cardsViewData: { cards: exampleUnifiedStatusResults, visualHelperEnabled: true, allCardsCollapsed: true },
+                cardsViewData: {
+                    cards: exampleUnifiedStatusResults,
+                    visualHelperEnabled: true,
+                    allCardsCollapsed: true,
+                },
             } as DetailsViewBodyProps;
         });
 
         test('a non-assessment or non-issues view', () => {
-            setupClickHandlerFactoryMock(clickHandlerFactoryMock, selectedTest, !scanDataStub.enabled);
-            setupConfigFactoryMock(configFactoryMock, getStoreDataMock, configStub, scanDataStub, props);
+            setupClickHandlerFactoryMock(
+                clickHandlerFactoryMock,
+                selectedTest,
+                !scanDataStub.enabled,
+            );
+            setupConfigFactoryMock(
+                configFactoryMock,
+                getStoreDataMock,
+                configStub,
+                scanDataStub,
+                props,
+            );
 
             const expected = (
                 <div className="details-view-body">
@@ -145,9 +172,13 @@ describe('DetailsViewBody', () => {
         scanData: ScanData,
         givenProps: DetailsViewBodyProps,
     ): void {
-        factoryMock.setup(cfm => cfm.getConfiguration(givenProps.selectedTest)).returns(() => config);
+        factoryMock
+            .setup(cfm => cfm.getConfiguration(givenProps.selectedTest))
+            .returns(() => config);
 
-        givenGetStoreDataMock.setup(gsdm => gsdm(givenProps.visualizationStoreData.tests)).returns(() => scanData);
+        givenGetStoreDataMock
+            .setup(gsdm => gsdm(givenProps.visualizationStoreData.tests))
+            .returns(() => scanData);
     }
 
     function setupClickHandlerFactoryMock(
@@ -155,7 +186,9 @@ describe('DetailsViewBody', () => {
         setupType: VisualizationType,
         setupNewValue: boolean,
     ): void {
-        factoryMock.setup(chfm => chfm.createClickHandler(setupType, setupNewValue)).returns(() => clickHandlerStub);
+        factoryMock
+            .setup(chfm => chfm.createClickHandler(setupType, setupNewValue))
+            .returns(() => clickHandlerStub);
     }
 
     function buildLeftNav(givenProps: DetailsViewBodyProps): JSX.Element {

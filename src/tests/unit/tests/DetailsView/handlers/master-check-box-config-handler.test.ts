@@ -16,9 +16,17 @@ describe('MasterCheckBoxConfigProviderTest', () => {
         };
         const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
         detailsViewActionMessageCreatorMock
-            .setup(acm => acm.changeAssessmentVisualizationStateForAll(false, navState.selectedTestType, navState.selectedTestStep))
+            .setup(acm =>
+                acm.changeAssessmentVisualizationStateForAll(
+                    false,
+                    navState.selectedTestType,
+                    navState.selectedTestStep,
+                ),
+            )
             .verifiable(Times.once());
-        const provider = new MasterCheckBoxConfigProvider(detailsViewActionMessageCreatorMock.object);
+        const provider = new MasterCheckBoxConfigProvider(
+            detailsViewActionMessageCreatorMock.object,
+        );
 
         const config = provider.getMasterCheckBoxProperty(navState, allEnabled);
         config.onColumnClick(null, null);

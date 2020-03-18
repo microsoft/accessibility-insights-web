@@ -11,7 +11,10 @@ import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
-import { DetailsViewContainerDeps, DetailsViewContainerProps } from 'DetailsView/details-view-container';
+import {
+    DetailsViewContainerDeps,
+    DetailsViewContainerProps,
+} from 'DetailsView/details-view-container';
 import { DictionaryStringTo } from 'types/common-types';
 import { StoreMocks } from './store-mocks';
 
@@ -28,17 +31,23 @@ export class DetailsViewContainerPropsBuilder {
     private storesHub: BaseClientStoresHub<any>;
     constructor(private deps: DetailsViewContainerDeps) {}
 
-    public setDetailsViewStoreActionMessageCreator(creator: StoreActionMessageCreator): DetailsViewContainerPropsBuilder {
+    public setDetailsViewStoreActionMessageCreator(
+        creator: StoreActionMessageCreator,
+    ): DetailsViewContainerPropsBuilder {
         this.storeActionCreator = creator;
         return this;
     }
 
-    public setStoreActionMessageCreator(creator: StoreActionMessageCreator): DetailsViewContainerPropsBuilder {
+    public setStoreActionMessageCreator(
+        creator: StoreActionMessageCreator,
+    ): DetailsViewContainerPropsBuilder {
         this.storeActionCreator = creator;
         return this;
     }
 
-    public setDropdownClickHandler(creator: DropdownClickHandler): DetailsViewContainerPropsBuilder {
+    public setDropdownClickHandler(
+        creator: DropdownClickHandler,
+    ): DetailsViewContainerPropsBuilder {
         if (this.deps == null) {
             this.deps = {} as DetailsViewContainerDeps;
         }

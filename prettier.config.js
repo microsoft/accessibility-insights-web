@@ -8,7 +8,7 @@ module.exports = {
     trailingComma: 'all',
     overrides: [
         {
-            files: ['src/content/**/*', 'src/tests/unit/tests/DetailsView/**/*'],
+            files: ['src/content/**/*', 'src/tests/unit/tests/DetailsView/components/**/*'],
             options: {
                 printWidth: 140,
             },
