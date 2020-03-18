@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { PrimaryButton } from 'office-ui-fabric-react';
-import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react';
-import { TextField } from 'office-ui-fabric-react';
+import { FlaggedComponent } from 'common/components/flagged-component';
+import { FeatureFlags } from 'common/feature-flags';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { Dialog, DialogFooter, DialogType, PrimaryButton, TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
 import { ExportFormat } from 'report-export/types/report-export-service';
@@ -21,6 +22,7 @@ export interface ExportDialogProps {
     onDescriptionChange: (value: string) => void;
     exportResultsType: ExportResultType;
     onExportClick: () => void;
+    featureFlagStoreData: FeatureFlagStoreData;
 }
 
 export interface ExportDialogDeps {
@@ -60,30 +62,23 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
     const exportService = props.deps.reportExportServiceProvider.forKey(format);
     const ExportForm = exportService ? exportService.exportForm : null;
 
-    return (
-        <Dialog
-            hidden={!props.isOpen}
-            onDismiss={onDismiss}
-            dialogContentProps={{
-                type: DialogType.normal,
-                title: 'Provide result description',
-                subText: 'Optional: please describe the result (it will be saved in the report).',
-            }}
-            modalProps={{
-                isBlocking: false,
-                containerClassName: 'insights-dialog-main-override',
-            }}
-        >
-            <TextField
-                multiline
-                autoFocus
-                rows={8}
-                resizable={false}
-                onChange={onDescriptionChange}
-                value={props.description}
-                ariaLabel="Provide result description"
-            />
-            <DialogFooter>
+    const getSingleExportToHtmlButton = () => {
+        return (
+            <PrimaryButton
+                onClick={event =>
+                    onExportLinkClick(event as React.MouseEvent<HTMLAnchorElement>, 'download')
+                }
+                download={props.fileName}
+                href={fileURL}
+            >
+                Export
+            </PrimaryButton>
+        );
+    };
+
+    const getMultiOptionExportButton = () => {
+        return (
+            <>
                 <PrimaryButton
                     text="Export"
                     split
@@ -114,6 +109,40 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
                         }}
                     />
                 )}
+            </>
+        );
+    };
+
+    return (
+        <Dialog
+            hidden={!props.isOpen}
+            onDismiss={onDismiss}
+            dialogContentProps={{
+                type: DialogType.normal,
+                title: 'Provide result description',
+                subText: 'Optional: please describe the result (it will be saved in the report).',
+            }}
+            modalProps={{
+                isBlocking: false,
+                containerClassName: 'insights-dialog-main-override',
+            }}
+        >
+            <TextField
+                multiline
+                autoFocus
+                rows={8}
+                resizable={false}
+                onChange={onDescriptionChange}
+                value={props.description}
+                ariaLabel="Provide result description"
+            />
+            <DialogFooter>
+                <FlaggedComponent
+                    featureFlag={FeatureFlags.exportReport}
+                    featureFlagStoreData={props.featureFlagStoreData}
+                    enableJSXElement={getMultiOptionExportButton()}
+                    disableJSXElement={getSingleExportToHtmlButton()}
+                />
             </DialogFooter>
         </Dialog>
     );

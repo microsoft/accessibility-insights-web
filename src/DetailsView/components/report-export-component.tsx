@@ -7,6 +7,7 @@ import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { ExportResultType } from '../../common/extension-telemetry-events';
 import { ExportDialog, ExportDialogDeps } from './export-dialog';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 
 export type ReportExportComponentDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
@@ -21,6 +22,7 @@ export interface ReportExportComponentProps {
     htmlGenerator: (descriptionPlaceholder: string) => string;
     updatePersistedDescription: (value: string) => void;
     getExportDescription: () => string;
+    featureFlagStoreData: FeatureFlagStoreData;
 }
 
 export interface ReportExportComponentState {
@@ -85,6 +87,7 @@ export class ReportExportComponent extends React.Component<
                     onDescriptionChange={this.onExportDescriptionChange}
                     exportResultsType={exportResultsType}
                     onExportClick={this.generateHtml}
+                    featureFlagStoreData={this.props.featureFlagStoreData}
                 />
             </>
         );

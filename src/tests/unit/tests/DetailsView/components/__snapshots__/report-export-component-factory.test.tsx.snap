@@ -5,7 +5,7 @@ exports[`ReportExportComponentPropsFactory getReportExportComponentForAssessment
   <CustomizedActionButton iconProps={{...}} onClick={[Function]}>
     Export result
   </CustomizedActionButton>
-  <ExportDialog deps={{...}} isOpen={false} fileName=\\"\\" description=\\"\\" html=\\"\\" onClose={[Function]} onDescriptionChange={[Function]} exportResultsType=\\"Assessment\\" onExportClick={[Function]} />
+  <ExportDialog deps={{...}} isOpen={false} fileName=\\"\\" description=\\"\\" html=\\"\\" onClose={[Function]} onDescriptionChange={[Function]} exportResultsType=\\"Assessment\\" onExportClick={[Function]} featureFlagStoreData={{...}} />
 </Fragment>"
 `;
 
@@ -14,6 +14,6 @@ exports[`ReportExportComponentPropsFactory getReportExportComponentForFastPass, 
   <CustomizedActionButton iconProps={{...}} onClick={[Function]}>
     Export result
   </CustomizedActionButton>
-  <ExportDialog deps={{...}} isOpen={false} fileName=\\"\\" description=\\"\\" html=\\"\\" onClose={[Function]} onDescriptionChange={[Function]} exportResultsType=\\"AutomatedChecks\\" onExportClick={[Function]} />
+  <ExportDialog deps={{...}} isOpen={false} fileName=\\"\\" description=\\"\\" html=\\"\\" onClose={[Function]} onDescriptionChange={[Function]} exportResultsType=\\"AutomatedChecks\\" onExportClick={[Function]} featureFlagStoreData={{...}} />
 </Fragment>"
 `;

@@ -14,6 +14,8 @@ import {
     ExportDialog,
     ExportDialogProps,
 } from '../../../../../DetailsView/components/export-dialog';
+import { FeatureFlags } from 'common/feature-flags';
+import { FlaggedComponent } from 'common/components/flagged-component';
 
 describe('ExportDialog', () => {
     const onCloseMock = Mock.ofInstance(() => {});
@@ -52,6 +54,7 @@ describe('ExportDialog', () => {
             onDescriptionChange: onDescriptionChangeMock.object,
             exportResultsType: 'Assessment',
             onExportClick: onExportClickMock.object,
+            featureFlagStoreData: {}, // TODO change this
         };
     });
 
@@ -75,6 +78,7 @@ describe('ExportDialog', () => {
             fileProviderMock.verifyAll();
         });
     });
+
     describe('user interaction', () => {
         it('closes the dialog onDismiss', () => {
             onCloseMock.setup(oc => oc()).verifiable(Times.once());
@@ -123,7 +127,12 @@ describe('ExportDialog', () => {
 
             const wrapper = shallow(<ExportDialog {...props} />);
 
-            wrapper.find(PrimaryButton).simulate('click', eventStub);
+            const flaggedComponent = wrapper.find(FlaggedComponent);
+
+            flaggedComponent
+                .dive()
+                .find(PrimaryButton)
+                .simulate('click', eventStub);
 
             reportExportServiceProvider.verifyAll();
             fileProviderMock.verifyAll();
@@ -135,7 +144,9 @@ describe('ExportDialog', () => {
 
         it('handles click on export to CodePen button', () => {
             const unchangedDescription = 'description';
-            onDescriptionChangeMock.setup(dc => dc(It.isValue(unchangedDescription))).verifiable(Times.once());
+            onDescriptionChangeMock
+                .setup(dc => dc(It.isValue(unchangedDescription)))
+                .verifiable(Times.once());
 
             onCloseMock.setup(oc => oc()).verifiable(Times.once());
             fileProviderMock
