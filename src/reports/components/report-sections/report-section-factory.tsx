@@ -26,6 +26,7 @@ export type SectionProps = {
     environmentInfo: EnvironmentInfo;
     toUtcString: (date: Date) => string;
     getCollapsibleScript: () => string;
+    getLinkScript: () => string;
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;
     cardsViewData: CardsViewModel;
     userConfigurationStoreData: UserConfigurationStoreData;

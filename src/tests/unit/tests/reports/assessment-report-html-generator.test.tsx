@@ -27,6 +27,7 @@ describe('AssessmentReportHtmlGenerator', () => {
         const dateGetterMock = Mock.ofInstance<() => Date>(() => {
             return null;
         }, MockBehavior.Strict);
+        const getScriptMock = Mock.ofInstance(() => '');
 
         const assessmentsProvider = CreateTestAssessmentProviderWithFeatureFlag();
         const assessmentStoreData: AssessmentStoreData = { stub: 'assessmentStoreData' } as any;
@@ -59,6 +60,7 @@ describe('AssessmentReportHtmlGenerator', () => {
                         extensionVersion="ProductVersion"
                         axeVersion="axeVersion"
                         chromeVersion="chromeVersion"
+                        getLinkScript={getScriptMock.object}
                     />
                 </body>
             </React.Fragment>
@@ -98,6 +100,7 @@ describe('AssessmentReportHtmlGenerator', () => {
             'axeVersion',
             'chromeVersion',
             assessmentDefaultMessageGenerator,
+            getScriptMock.object,
         );
 
         const actualHtml = testSubject.generateHtml(

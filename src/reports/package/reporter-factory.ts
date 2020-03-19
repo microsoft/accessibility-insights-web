@@ -6,6 +6,7 @@ import { convertScanResultsToUnifiedResults } from 'injected/adapters/scan-resul
 import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results-to-unified-rules';
 import { AutomatedChecksReportSectionFactory } from 'reports/components/report-sections/automated-checks-report-section-factory';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
+import { getDefaultAddListenerForLink } from 'reports/components/report-sections/link-script-provider';
 import { AxeResultsReport, AxeResultsReportDeps } from 'reports/package/axe-results-report';
 import { FooterTextForService } from 'reports/package/footer-text-for-service';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
@@ -58,6 +59,7 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
         reactStaticRenderer,
         environmentInfoProvider.getEnvironmentInfo(),
         getDefaultAddListenerForCollapsibleSection,
+        getDefaultAddListenerForLink,
         DateProvider.getUTCStringFromDate,
         GetGuidanceTagsFromGuidanceLinks,
         fixInstructionProcessor,

@@ -88,6 +88,7 @@ describe('ReportHtmlGenerator', () => {
             rendererMock.object,
             environmentInfo,
             getScriptMock.object,
+            getScriptMock.object,
             getUTCStringFromDateStub,
             getGuidanceTagsStub,
             fixInstructionProcessorMock.object,

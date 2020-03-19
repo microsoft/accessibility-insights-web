@@ -23,6 +23,7 @@ import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-ge
 import { AssessmentReportModelBuilderFactory } from 'reports/assessment-report-model-builder-factory';
 import { AutomatedChecksReportSectionFactory } from 'reports/components/report-sections/automated-checks-report-section-factory';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
+import { getDefaultAddListenerForLink } from 'reports/components/report-sections/link-script-provider';
 import {
     outcomeStatsFromManualTestStatus,
     outcomeTypeFromTestStatus,
@@ -298,6 +299,7 @@ if (isNaN(tabId) === false) {
                 reactStaticRenderer,
                 environmentInfoProvider.getEnvironmentInfo(),
                 getDefaultAddListenerForCollapsibleSection,
+                getDefaultAddListenerForLink,
                 DateProvider.getUTCStringFromDate,
                 GetGuidanceTagsFromGuidanceLinks,
                 fixInstructionProcessor,
@@ -317,6 +319,7 @@ if (isNaN(tabId) === false) {
                 axeVersion,
                 browserSpec,
                 assessmentDefaultMessageGenerator,
+                getDefaultAddListenerForLink,
             );
 
             const actionInitiators = {

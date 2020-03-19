@@ -24,6 +24,7 @@ export class ReportHtmlGenerator {
         private readonly reactStaticRenderer: ReactStaticRenderer,
         private readonly environmentInfo: EnvironmentInfo,
         private readonly getCollapsibleScript: () => string,
+        private readonly getLinkScript: () => string,
         private readonly utcDateConverter: (scanDate: Date) => string,
         private readonly getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
         private readonly fixInstructionProcessor: FixInstructionProcessor,
@@ -57,6 +58,7 @@ export class ReportHtmlGenerator {
             environmentInfo: this.environmentInfo,
             toUtcString: this.utcDateConverter,
             getCollapsibleScript: this.getCollapsibleScript,
+            getLinkScript: this.getLinkScript,
             getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,
             fixInstructionProcessor: this.fixInstructionProcessor,
         } as SectionProps;
