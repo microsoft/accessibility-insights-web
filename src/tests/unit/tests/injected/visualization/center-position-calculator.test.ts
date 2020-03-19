@@ -315,7 +315,7 @@ describe('CenterPositionCalculatorTest', () => {
     });
 
     function setupDefaultQuerySelectorMock(): void {
-        querySelectorMock.setup(q => q('body')).returns(selector => bodyStub);
+        querySelectorMock.setup(q => q('html')).returns(selector => bodyStub);
     }
 
     function setupDefaultWindowUtilsMock(): void {

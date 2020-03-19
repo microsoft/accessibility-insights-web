@@ -27,7 +27,7 @@ describe('HighlightVisualization', () => {
     let deps: HighlightVisualizationDeps;
     let props: HighlightVisualizationProps;
     let elementResults: AxeResultsWithFrameLevel[];
-    let bodyStub: HTMLBodyElement;
+    let bodyStub: HTMLHtmlElement;
     let bodyStyleStub: CSSStyleDeclaration;
     let docStyleStub: CSSStyleDeclaration;
     let documentElementStub: HTMLElement;
@@ -47,12 +47,12 @@ describe('HighlightVisualization', () => {
             width: '1',
         } as CSSStyleDeclaration;
         documentElementStub = {} as HTMLElement;
-        bodyStub = {} as HTMLBodyElement;
+        bodyStub = {} as HTMLHtmlElement;
 
         drawerUtilsMock
             .setup(drawerUtils => drawerUtils.getDocumentElement())
             .returns(() => documentMock.object);
-        documentMock.setup(document => document.querySelector('body')).returns(() => bodyStub);
+        documentMock.setup(document => document.querySelector('html')).returns(() => bodyStub);
         windowUtilsMock
             .setup(windowUtils => windowUtils.getComputedStyle(bodyStub))
             .returns(() => bodyStyleStub);

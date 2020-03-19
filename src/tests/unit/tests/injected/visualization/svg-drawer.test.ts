@@ -55,7 +55,6 @@ describe('SVGDrawer', () => {
 
     test('initialize', () => {
         fakeDocument.body.innerHTML = "<div id='id1'></div>";
-
         const element = fakeDocument.querySelector('#id1');
         const expectedTabbedElements: TabbedItem[] = [
             {

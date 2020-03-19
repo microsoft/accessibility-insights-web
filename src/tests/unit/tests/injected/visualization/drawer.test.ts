@@ -117,7 +117,7 @@ describe('Drawer', () => {
 
         shadowContainer = shadowContainerMock.object;
 
-        const bodyStub: HTMLBodyElement = {
+        const bodyStub = {
             scrollHeight: 1000,
             scrollWidth: 1000,
         } as any;
@@ -152,7 +152,7 @@ describe('Drawer', () => {
             .verifiable(Times.exactly(3));
 
         domMock
-            .setup(it => it.querySelector('body'))
+            .setup(it => it.querySelector('html'))
             .returns(stuff => {
                 return bodyStub;
             });
@@ -248,7 +248,7 @@ describe('Drawer', () => {
 
         shadowContainer = shadowContainerMock.object;
 
-        const bodyStub: HTMLBodyElement = {
+        const bodyStub = {
             scrollHeight: 1000,
             scrollWidth: 1000,
         } as any;
@@ -310,7 +310,7 @@ describe('Drawer', () => {
             .verifiable(Times.exactly(3));
 
         domMock
-            .setup(it => it.querySelector('body'))
+            .setup(it => it.querySelector('html'))
             .returns(stuff => {
                 return bodyStub;
             });
@@ -404,7 +404,7 @@ describe('Drawer', () => {
 
         shadowContainer = shadowContainerMock.object;
 
-        const bodyStub: HTMLBodyElement = {
+        const bodyStub = {
             scrollHeight: 5,
             scrollWidth: 5,
         } as any;
@@ -441,7 +441,7 @@ describe('Drawer', () => {
             .verifiable();
 
         domMock
-            .setup(it => it.querySelector('body'))
+            .setup(it => it.querySelector('html'))
             .returns(stuff => {
                 return bodyStub;
             });
@@ -518,7 +518,7 @@ describe('Drawer', () => {
 
         shadowContainer = shadowContainerMock.object;
 
-        const bodyStub: HTMLBodyElement = {
+        const bodyStub = {
             scrollHeight: 1000,
             scrollWidth: 1000,
         } as any;
@@ -555,7 +555,7 @@ describe('Drawer', () => {
             .verifiable(Times.exactly(3));
 
         domMock
-            .setup(it => it.querySelector('body'))
+            .setup(it => it.querySelector('html'))
             .returns(stuff => {
                 return bodyStub;
             });
@@ -647,7 +647,7 @@ describe('Drawer', () => {
 
         shadowContainer = shadowContainerMock.object;
 
-        const bodyStub: HTMLBodyElement = {
+        const bodyStub = {
             scrollHeight: 1000,
             scrollWidth: 1000,
         } as any;
@@ -683,7 +683,7 @@ describe('Drawer', () => {
             .verifiable(Times.exactly(3));
 
         domMock
-            .setup(it => it.querySelector('body'))
+            .setup(it => it.querySelector('html'))
             .returns(stuff => {
                 return bodyStub;
             });

@@ -506,7 +506,7 @@ describe('DetailsDialogHandlerTest', () => {
             .verifiable(Times.once());
 
         htmlElementUtilsMock
-            .setup(x => x.querySelector('body'))
+            .setup(x => x.querySelector('html'))
             .returns(() => body)
             .verifiable(Times.once());
 
@@ -618,7 +618,7 @@ describe('DetailsDialogHandlerTest', () => {
             .verifiable(Times.once());
 
         htmlElementUtilsMock
-            .setup(x => x.querySelector('body'))
+            .setup(x => x.querySelector('html'))
             .returns(() => body)
             .verifiable(Times.once());
 

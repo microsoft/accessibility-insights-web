@@ -218,7 +218,7 @@ export class DetailsDialogHandler {
         if (dialogContainer) {
             dialogContainer.parentNode.removeChild(dialogContainer);
         }
-        const body = this.htmlElementUtils.querySelector('body');
+        const body = this.htmlElementUtils.querySelector('html');
         body.classList.remove(...['insights-modal']);
     }
 }
