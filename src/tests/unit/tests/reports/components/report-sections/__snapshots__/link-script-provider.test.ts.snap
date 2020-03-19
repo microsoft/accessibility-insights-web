@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LinkScriptProvider getAddListenerForLink matches content 1`] = `"(this is test code)(document)"`;
