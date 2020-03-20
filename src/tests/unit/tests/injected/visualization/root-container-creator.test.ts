@@ -13,8 +13,8 @@ describe(RootContainerCreator, () => {
     beforeEach(() => {
         htmlElementUtilsMock = Mock.ofType(HTMLElementUtils);
 
-        bodyStub = document.createElement('body');
-        htmlElementUtilsMock.setup(h => h.querySelector('body')).returns(() => bodyStub);
+        bodyStub = document.createElement('html');
+        htmlElementUtilsMock.setup(h => h.querySelector('html')).returns(() => bodyStub);
     });
 
     it('should create root container', () => {
