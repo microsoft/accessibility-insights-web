@@ -4,7 +4,7 @@ import { PrimaryButton } from 'office-ui-fabric-react';
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react';
 import { TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
+import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
 import { ExportFormat } from 'report-export/types/report-export-service';
 import { ExportResultType } from '../../common/extension-telemetry-events';
 import { FileURLProvider } from '../../common/file-url-provider';
@@ -26,6 +26,7 @@ export interface ExportDialogProps {
 export interface ExportDialogDeps {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     fileURLProvider: FileURLProvider;
+    reportExportServiceProvider: ReportExportServiceProvider;
 }
 
 export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => {
@@ -56,7 +57,7 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
     };
 
     const fileURL = props.deps.fileURLProvider.provideURL([props.html], 'text/html');
-    const exportService = ReportExportServiceProviderImpl.forKey(format);
+    const exportService = props.deps.reportExportServiceProvider.forKey(format);
     const ExportForm = exportService ? exportService.exportForm : null;
 
     return (
@@ -89,7 +90,7 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
                     splitButtonAriaLabel="Export HTML to any of these format options"
                     aria-roledescription="split button"
                     menuProps={{
-                        items: ReportExportServiceProviderImpl.all().map(service => ({
+                        items: props.deps.reportExportServiceProvider.all().map(service => ({
                             key: service.key,
                             text: service.displayName,
                             onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
