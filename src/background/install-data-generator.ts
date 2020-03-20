@@ -19,6 +19,15 @@ export class InstallDataGenerator {
     public getInstallationId(): string {
         const currentDate = this.dateGetter();
 
+        this.storageAdapter
+            .setUserData({
+                usageData: {
+                    lastUsageDateTime: currentDate.toISOString(),
+                    magic: 'ADA_IS_A_COOL_CAT',
+                },
+            })
+            .catch(console.error);
+
         if (this.installationData == null || this.isInstallationDataStale(currentDate)) {
             return this.generateInstallationData(currentDate);
         } else {
@@ -46,6 +55,7 @@ export class InstallDataGenerator {
         this.storageAdapter
             .setUserData({ [LocalStorageDataKeys.installationData]: this.installationData })
             .catch(console.error);
+
         return this.installationData.id;
     }
 }
