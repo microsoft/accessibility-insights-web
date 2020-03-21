@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ReactFCWithDisplayName } from 'common/react/named-fc';
 
 export type ExportFormat = 'download' | 'codepen';
 
@@ -15,5 +14,5 @@ export interface ExportProps {
 export interface ReportExportService {
     key: ExportFormat;
     displayName: string;
-    exportForm: ReactFCWithDisplayName<ExportFormProps> | null;
+    exportForm: React.ComponentType<ExportFormProps> | null;
 }
