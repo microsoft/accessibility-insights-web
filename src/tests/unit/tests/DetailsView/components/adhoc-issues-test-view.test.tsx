@@ -9,9 +9,16 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
 import { DisplayableVisualizationTypeData } from '../../../../../common/configs/visualization-configuration-factory';
 import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
-import { ScanData, TestsEnabledState, VisualizationStoreData } from '../../../../../common/types/store-data/visualization-store-data';
+import {
+    ScanData,
+    TestsEnabledState,
+    VisualizationStoreData,
+} from '../../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { AdhocIssuesTestView, AdhocIssuesTestViewProps } from '../../../../../DetailsView/components/adhoc-issues-test-view';
+import {
+    AdhocIssuesTestView,
+    AdhocIssuesTestViewProps,
+} from '../../../../../DetailsView/components/adhoc-issues-test-view';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 
 describe('AdhocIssuesTestView', () => {
@@ -54,7 +61,9 @@ describe('AdhocIssuesTestView', () => {
 
     beforeEach(() => {
         warningConfigurationStub = {} as WarningConfiguration;
-        switcherNavConfigurationStub = { warningConfiguration: warningConfigurationStub } as DetailsViewSwitcherNavConfiguration;
+        switcherNavConfigurationStub = {
+            warningConfiguration: warningConfigurationStub,
+        } as DetailsViewSwitcherNavConfiguration;
 
         props = { ...props, switcherNavConfiguration: switcherNavConfigurationStub };
         getStoreDataMock.reset();

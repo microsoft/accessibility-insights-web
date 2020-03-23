@@ -12,7 +12,9 @@ import {
 
 describe('AssessmentInstanceDetailsColumn', () => {
     test('constructor', () => {
-        expect(new AssessmentInstanceDetailsColumn({} as AssessmentInstanceDetailsColumnProps)).toBeDefined();
+        expect(
+            new AssessmentInstanceDetailsColumn({} as AssessmentInstanceDetailsColumnProps),
+        ).toBeDefined();
     });
 
     test('render: heading instance', () => {
@@ -77,13 +79,18 @@ describe('AssessmentInstanceDetailsColumn', () => {
         expect(label.hasClass(props.customClassName)).toEqual(true);
     });
 
-    function verifyBaseRender(wrapper: Enzyme.ShallowWrapper, props: AssessmentInstanceDetailsColumnProps): void {
+    function verifyBaseRender(
+        wrapper: Enzyme.ShallowWrapper,
+        props: AssessmentInstanceDetailsColumnProps,
+    ): void {
         const hasLabel = wrapper.find(`.${styles.assessmentInstanceLabel}`).exists();
         !!props.labelText ? expect(hasLabel).toEqual(true) : expect(hasLabel).toEqual(false);
         expect(wrapper.find(TooltipHost).exists()).toBe(true);
         expect(wrapper.find(TooltipHost).props().content).toEqual(props.textContent);
         expect(wrapper.find(TooltipHost).props().id).toEqual(props.tooltipId);
         expect(wrapper.find(`.${styles.assessmentInstanceTextContent}`).exists()).toEqual(true);
-        expect(wrapper.find(`.${styles.assessmentInstanceTextContent}`).getElement().props.children).toEqual(props.textContent);
+        expect(
+            wrapper.find(`.${styles.assessmentInstanceTextContent}`).getElement().props.children,
+        ).toEqual(props.textContent);
     }
 });

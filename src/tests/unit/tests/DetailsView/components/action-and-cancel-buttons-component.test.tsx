@@ -10,7 +10,9 @@ import {
 
 describe('ActionAndCancelButtonsComponent', () => {
     test('constructor', () => {
-        expect(new ActionAndCancelButtonsComponent({} as ActionAndCancelButtonsComponentProps)).toBeDefined();
+        expect(
+            new ActionAndCancelButtonsComponent({} as ActionAndCancelButtonsComponentProps),
+        ).toBeDefined();
     });
 
     test.each(['sample href', null])('render with primary button href == %s', href => {

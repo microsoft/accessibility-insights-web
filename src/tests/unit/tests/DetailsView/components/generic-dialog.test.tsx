@@ -5,7 +5,10 @@ import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react';
 import Dialog from 'office-ui-fabric-react';
 import * as React from 'react';
 
-import { GenericDialog, GenericDialogProps } from '../../../../../DetailsView/components/generic-dialog';
+import {
+    GenericDialog,
+    GenericDialogProps,
+} from '../../../../../DetailsView/components/generic-dialog';
 
 describe('GenericDialogTest', () => {
     it('should render', () => {

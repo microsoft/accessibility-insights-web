@@ -8,12 +8,18 @@ import * as React from 'react';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 import { FileURLProvider } from '../../../../../common/file-url-provider';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import { ExportDialog, ExportDialogProps } from '../../../../../DetailsView/components/export-dialog';
+import {
+    ExportDialog,
+    ExportDialogProps,
+} from '../../../../../DetailsView/components/export-dialog';
 
 describe('ExportDialog', () => {
     const onCloseMock = Mock.ofInstance(() => {});
     const onDescriptionChangeMock = Mock.ofInstance((value: string) => {});
-    const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator, MockBehavior.Strict);
+    const detailsViewActionMessageCreatorMock = Mock.ofType(
+        DetailsViewActionMessageCreator,
+        MockBehavior.Strict,
+    );
     const fileProviderMock = Mock.ofType<FileURLProvider>();
     const eventStub = 'event stub' as any;
     const onExportClickMock = Mock.ofInstance(() => {});
@@ -80,7 +86,9 @@ describe('ExportDialog', () => {
 
         it('handles click on export button', () => {
             const unchangedDescription = 'description';
-            onDescriptionChangeMock.setup(dc => dc(It.isValue(unchangedDescription))).verifiable(Times.once());
+            onDescriptionChangeMock
+                .setup(dc => dc(It.isValue(unchangedDescription)))
+                .verifiable(Times.once());
 
             onCloseMock.setup(oc => oc()).verifiable(Times.once());
             fileProviderMock
@@ -111,7 +119,9 @@ describe('ExportDialog', () => {
                 .returns(() => 'fake-url')
                 .verifiable(Times.once());
             const changedDescription = 'changed-description';
-            onDescriptionChangeMock.setup(handler => handler(It.isValue(changedDescription))).verifiable(Times.once());
+            onDescriptionChangeMock
+                .setup(handler => handler(It.isValue(changedDescription)))
+                .verifiable(Times.once());
 
             const wrapper = shallow(<ExportDialog {...props} />);
 
