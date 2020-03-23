@@ -11,7 +11,7 @@ describe('IndexedDBUtil test cases', () => {
     let store;
     beforeAll(() => {
         const request = fakeIndexedDB.open(defaultDBName, 3);
-        request.onupgradeneeded = function(): void {
+        request.onupgradeneeded = function (): void {
             const db = request.result;
             store = db.createObjectStore(defaultStoreName);
         };

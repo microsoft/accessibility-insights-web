@@ -39,10 +39,7 @@ describe('AssessmentVisualizationEnabledToggle', () => {
 
         const toggle = wrapper.find(VisualizationToggle);
 
-        const expectedToggleProps = getDefaultVisualizationTogglePropsBuilder()
-            .with('checked', false)
-            .with('disabled', true)
-            .build();
+        const expectedToggleProps = getDefaultVisualizationTogglePropsBuilder().with('checked', false).with('disabled', true).build();
 
         assertVisualizationToggle(expectedToggleProps, toggle);
     });
@@ -69,10 +66,7 @@ describe('AssessmentVisualizationEnabledToggle', () => {
         expect(wrapper.find('strong').exists()).toBeFalsy();
         const toggle = wrapper.find(VisualizationToggle);
 
-        const expectedToggleProps = getDefaultVisualizationTogglePropsBuilder()
-            .with('checked', false)
-            .with('disabled', false)
-            .build();
+        const expectedToggleProps = getDefaultVisualizationTogglePropsBuilder().with('checked', false).with('disabled', false).build();
 
         assertVisualizationToggle(expectedToggleProps, toggle);
     });
@@ -100,10 +94,7 @@ describe('AssessmentVisualizationEnabledToggle', () => {
 
         const toggle = wrapper.find(VisualizationToggle);
 
-        const expectedToggleProps = getDefaultVisualizationTogglePropsBuilder()
-            .with('checked', true)
-            .with('disabled', false)
-            .build();
+        const expectedToggleProps = getDefaultVisualizationTogglePropsBuilder().with('checked', true).with('disabled', false).build();
 
         assertVisualizationToggle(expectedToggleProps, toggle);
     });
@@ -130,10 +121,7 @@ describe('AssessmentVisualizationEnabledToggle', () => {
         expect(wrapper.find('strong').exists()).toBeFalsy();
         const toggle = wrapper.find(VisualizationToggle);
 
-        const expectedToggleProps = getDefaultVisualizationTogglePropsBuilder()
-            .with('checked', false)
-            .with('disabled', false)
-            .build();
+        const expectedToggleProps = getDefaultVisualizationTogglePropsBuilder().with('checked', false).with('disabled', false).build();
 
         assertVisualizationToggle(expectedToggleProps, toggle);
     });

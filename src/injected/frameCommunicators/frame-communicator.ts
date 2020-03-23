@@ -150,10 +150,7 @@ export class FrameCommunicator {
     private doesFrameSupportScripting(frame: HTMLIFrameElement): boolean {
         return (
             !frame.hasAttribute('sandbox') ||
-            frame
-                .getAttribute('sandbox')
-                .toLocaleLowerCase()
-                .lastIndexOf('allow-scripts') >= 0
+            frame.getAttribute('sandbox').toLocaleLowerCase().lastIndexOf('allow-scripts') >= 0
         );
     }
 
