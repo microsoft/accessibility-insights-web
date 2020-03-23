@@ -5,20 +5,25 @@ import { StoreProxy } from '../common/store-proxy';
 import { StoreNames } from '../common/stores/store-names';
 import { DevToolStoreData } from '../common/types/store-data/dev-tool-store-data';
 import { InspectHandler } from './inspect-handler';
+import { TargetPageInspector } from 'Devtools/target-page-inspector';
 
 export class DevToolInitializer {
-    protected devToolsChromeAdapter: DevToolsChromeAdapter;
-
-    constructor(devToolsChromeAdapter: DevToolsChromeAdapter) {
-        this.devToolsChromeAdapter = devToolsChromeAdapter;
-    }
+    constructor(
+        private readonly devToolsChromeAdapter: DevToolsChromeAdapter,
+        private readonly targetPageInspector: TargetPageInspector,
+    ) {}
 
     public initialize(): void {
         const devtoolsStore = new StoreProxy<DevToolStoreData>(
             StoreNames[StoreNames.DevToolsStore],
             this.devToolsChromeAdapter,
         );
-        const inspectHandler = new InspectHandler(devtoolsStore, this.devToolsChromeAdapter);
+
+        const inspectHandler = new InspectHandler(
+            devtoolsStore,
+            this.devToolsChromeAdapter,
+            this.targetPageInspector,
+        );
 
         inspectHandler.initialize();
     }
