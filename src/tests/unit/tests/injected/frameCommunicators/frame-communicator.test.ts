@@ -135,9 +135,9 @@ describe('FrameCommunicatorTests', () => {
     test('verifyDisposeInIframe', () => {
         let disposeCallback: Function;
         const frameRequests: MessageRequest<any>[] = [];
-        const frameRequestCompleteDeferred: Q.Deferred<Q.PromiseState<
-            FrameMessageResponseCallback
-        >[]> = Q.defer<Q.PromiseState<FrameMessageResponseCallback>[]>();
+        const frameRequestCompleteDeferred: Q.Deferred<
+            Q.PromiseState<FrameMessageResponseCallback>[]
+        > = Q.defer<Q.PromiseState<FrameMessageResponseCallback>[]>();
 
         mockWindowMessageHandler
             .setup(x => x.addSubscriber(FrameCommunicator.DisposeCommand, It.isAny()))

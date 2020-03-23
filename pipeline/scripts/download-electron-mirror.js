@@ -10,7 +10,7 @@ download(
         version: pkg.devDependencies.electron,
         cache: 'drop/zips',
     },
-    function(err, zipPath) {
+    function (err, zipPath) {
         // zipPath will be the path of the zip that it downloaded.
         // If the zip was already cached it will skip
         // downloading and call the cb with the cached zip path.
