@@ -8,7 +8,10 @@ import {
     ScanIncompleteWarningDeps,
     ScanIncompleteWarningProps,
 } from 'DetailsView/components/scan-incomplete-warning';
-import { ScanIncompleteWarningMessageBarProps, WarningConfiguration } from 'DetailsView/components/warning-configuration';
+import {
+    ScanIncompleteWarningMessageBarProps,
+    WarningConfiguration,
+} from 'DetailsView/components/warning-configuration';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
@@ -42,7 +45,10 @@ describe('ScanIncompleteWarning', () => {
 
     test(`rendered: where warnings were provided`, () => {
         const componentProps: ScanIncompleteWarningProps = {
-            warnings: ['missing-required-cross-origin-permissions', 'missing-required-cross-origin-permissions'],
+            warnings: [
+                'missing-required-cross-origin-permissions',
+                'missing-required-cross-origin-permissions',
+            ],
             warningConfiguration,
             test: testStub,
             deps: {} as ScanIncompleteWarningDeps,
@@ -54,7 +60,10 @@ describe('ScanIncompleteWarning', () => {
 
     test(`rendered: where warnings were provided, with one warning not supported`, () => {
         const componentProps: ScanIncompleteWarningProps = {
-            warnings: ['missing-required-cross-origin-permissions', 'not a real warning' as ScanIncompleteWarningId],
+            warnings: [
+                'missing-required-cross-origin-permissions',
+                'not a real warning' as ScanIncompleteWarningId,
+            ],
             warningConfiguration,
             test: testStub,
             deps: {} as ScanIncompleteWarningDeps,

@@ -12,7 +12,10 @@ import * as React from 'react';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
-import { AssessmentResultType, GeneratedAssessmentInstance } from '../../../../../common/types/store-data/assessment-result-data';
+import {
+    AssessmentResultType,
+    GeneratedAssessmentInstance,
+} from '../../../../../common/types/store-data/assessment-result-data';
 import {
     AssessmentInstanceRowData,
     AssessmentInstanceTable,
@@ -106,12 +109,24 @@ describe('AssessmentInstanceTable', () => {
             ];
 
             assessmentInstanceTableHandlerMock
-                .setup(a => a.createAssessmentInstanceTableItems(props.instancesMap, props.assessmentNavState, props.hasVisualHelper))
+                .setup(a =>
+                    a.createAssessmentInstanceTableItems(
+                        props.instancesMap,
+                        props.assessmentNavState,
+                        props.hasVisualHelper,
+                    ),
+                )
                 .returns(() => items)
                 .verifiable(Times.once());
 
             assessmentInstanceTableHandlerMock
-                .setup(a => a.getColumnConfigs(props.instancesMap, props.assessmentNavState, props.hasVisualHelper))
+                .setup(a =>
+                    a.getColumnConfigs(
+                        props.instancesMap,
+                        props.assessmentNavState,
+                        props.hasVisualHelper,
+                    ),
+                )
                 .returns(() => cols)
                 .verifiable(Times.once());
         });
@@ -122,7 +137,9 @@ describe('AssessmentInstanceTable', () => {
         });
 
         it('renders per snapshot with null header', () => {
-            const testSubject = shallow(<AssessmentInstanceTable {...props} renderInstanceTableHeader={() => null} />);
+            const testSubject = shallow(
+                <AssessmentInstanceTable {...props} renderInstanceTableHeader={() => null} />,
+            );
             expect(testSubject.getElement()).toMatchSnapshot();
         });
 
@@ -140,7 +157,9 @@ describe('AssessmentInstanceTable', () => {
 
         it("delegates the underlying list's onItemInvoked to the handler's updateFocusedTarget", () => {
             const fakeItem = { instance: { target: ['fake-instance-target-0'] } };
-            assessmentInstanceTableHandlerMock.setup(a => a.updateFocusedTarget(fakeItem.instance.target)).verifiable(Times.once());
+            assessmentInstanceTableHandlerMock
+                .setup(a => a.updateFocusedTarget(fakeItem.instance.target))
+                .verifiable(Times.once());
 
             const testSubject = mount(<AssessmentInstanceTable {...props} />);
             testSubject.find(DetailsList).prop('onItemInvoked')(fakeItem);
@@ -149,12 +168,16 @@ describe('AssessmentInstanceTable', () => {
         });
 
         describe('"Pass all unmarked instances" button', () => {
-            const passUnmarkedInstancesButtonSelector = `button${getAutomationIdSelector(passUnmarkedInstancesButtonAutomationId)}`;
+            const passUnmarkedInstancesButtonSelector = `button${getAutomationIdSelector(
+                passUnmarkedInstancesButtonAutomationId,
+            )}`;
             it('is enabled if there is an instance with unknown status', () => {
                 testStepResults[selectedTestStep] = { status: ManualTestStatus.UNKNOWN };
 
                 const testSubject = mount(<AssessmentInstanceTable {...props} />);
-                expect(testSubject.find(passUnmarkedInstancesButtonSelector).prop('disabled')).toBeUndefined();
+                expect(
+                    testSubject.find(passUnmarkedInstancesButtonSelector).prop('disabled'),
+                ).toBeUndefined();
             });
 
             it.each([ManualTestStatus.FAIL, ManualTestStatus.PASS])(
@@ -163,14 +186,19 @@ describe('AssessmentInstanceTable', () => {
                     testStepResults[selectedTestStep] = { status: testStatus };
 
                     const testSubject = mount(<AssessmentInstanceTable {...props} />);
-                    expect(testSubject.find(passUnmarkedInstancesButtonSelector).prop('disabled')).toBe(true);
+                    expect(
+                        testSubject.find(passUnmarkedInstancesButtonSelector).prop('disabled'),
+                    ).toBe(true);
                 },
             );
 
             it("delegates the button action to the handler's passUnmarkedInstances", () => {
                 assessmentInstanceTableHandlerMock
                     .setup(a =>
-                        a.passUnmarkedInstances(props.assessmentNavState.selectedTestType, props.assessmentNavState.selectedTestStep),
+                        a.passUnmarkedInstances(
+                            props.assessmentNavState.selectedTestType,
+                            props.assessmentNavState.selectedTestStep,
+                        ),
                     )
                     .verifiable(Times.once());
 
@@ -198,8 +226,10 @@ describe('AssessmentInstanceTable', () => {
             assessmentInstanceTableHandler: assessmentInstanceTableHandler,
             getDefaultMessage: defaultMessageMock,
             assessmentDefaultMessageGenerator: defaultMessageGeneratorMock,
-            renderInstanceTableHeader: (table: AssessmentInstanceTable, items: AssessmentInstanceRowData[]) =>
-                table.renderDefaultInstanceTableHeader(items),
+            renderInstanceTableHeader: (
+                table: AssessmentInstanceTable,
+                items: AssessmentInstanceRowData[],
+            ) => table.renderDefaultInstanceTableHeader(items),
             hasVisualHelper: true,
         };
     }

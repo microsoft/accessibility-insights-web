@@ -3,7 +3,11 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { HelpLinks, HelpLinksDeps, HelpLinksProps } from '../../../../../../DetailsView/components/overview-content/help-links';
+import {
+    HelpLinks,
+    HelpLinksDeps,
+    HelpLinksProps,
+} from '../../../../../../DetailsView/components/overview-content/help-links';
 
 describe('HelpLinks', () => {
     const deps = {} as HelpLinksDeps;

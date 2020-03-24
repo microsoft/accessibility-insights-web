@@ -6,13 +6,19 @@ import { It, Mock, MockBehavior } from 'typemoq';
 
 import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
-import { TestViewContainer, TestViewContainerProps } from '../../../../../DetailsView/components/test-view-container';
+import {
+    TestViewContainer,
+    TestViewContainerProps,
+} from '../../../../../DetailsView/components/test-view-container';
 import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
 
 describe('TestViewContainerTest', () => {
     it('should not return the target page closed view', () => {
         const expectedTestView = <div />;
-        const configFactoryMock = Mock.ofType<VisualizationConfigurationFactory>(null, MockBehavior.Strict);
+        const configFactoryMock = Mock.ofType<VisualizationConfigurationFactory>(
+            null,
+            MockBehavior.Strict,
+        );
         const getTestViewMock = Mock.ofInstance(_ => {}, MockBehavior.Strict);
 
         const configStub = {
@@ -25,16 +31,24 @@ describe('TestViewContainerTest', () => {
             },
             selectedTest: -1,
             visualizationConfigurationFactory: configFactoryMock.object,
-            cardsViewData: { cards: exampleUnifiedStatusResults, visualHelperEnabled: true, allCardsCollapsed: true },
+            cardsViewData: {
+                cards: exampleUnifiedStatusResults,
+                visualHelperEnabled: true,
+                allCardsCollapsed: true,
+            },
         } as TestViewContainerProps;
 
         const expectedProps = {
             configuration: configStub,
             ...props,
         };
-        configFactoryMock.setup(cfm => cfm.getConfiguration(props.selectedTest)).returns(() => configStub);
+        configFactoryMock
+            .setup(cfm => cfm.getConfiguration(props.selectedTest))
+            .returns(() => configStub);
 
-        getTestViewMock.setup(gtvm => gtvm(It.isValue(expectedProps))).returns(() => expectedTestView);
+        getTestViewMock
+            .setup(gtvm => gtvm(It.isValue(expectedProps)))
+            .returns(() => expectedTestView);
 
         const rendered = shallow(<TestViewContainer {...props} />);
         expect(rendered.getElement()).toMatchObject(expectedTestView);
