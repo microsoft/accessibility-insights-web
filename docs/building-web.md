@@ -94,8 +94,8 @@ We expect most features to have at least one major scenario covered by an end to
 
 We use [Puppeteer](https://github.com/GoogleChrome/puppeteer) for browser automation in our end-to-end UI tests. There are some known limitations:
 
-* You must use a **non**-admin prompt to avoid [this issue](https://stackoverflow.com/questions/36835130).
-* Headless Chromium does not support browser extensions, so our E2E tests require the ability to run a *non-headless* Chromium process. Because of this, they are incompatible with non-graphical development environments (notably, a default WSL environment on Windows). For an example of emulating a graphical environment using `xvfb`, see [./Dockerfile](./Dockerfile). For details, see [issue #853](https://github.com/microsoft/accessibility-insights-web/issues/853).
+-   You must use a **non**-admin prompt to avoid [this issue](https://stackoverflow.com/questions/36835130).
+-   Headless Chromium does not support browser extensions, so our E2E tests require the ability to run a _non-headless_ Chromium process. Because of this, they are incompatible with non-graphical development environments (notably, a default WSL environment on Windows). For an example of emulating a graphical environment using `xvfb`, see [./Dockerfile](./Dockerfile). For details, see [issue #853](https://github.com/microsoft/accessibility-insights-web/issues/853).
 
 To run the E2E tests locally:
 

@@ -31,7 +31,6 @@ The application also requires an APK which you can download [here](https://acces
 -   Windows ([Canary](https://aka.ms/accessibility-insights-for-android/downloads/CanaryWindows), [Insider](https://aka.ms/accessibility-insights-for-android/downloads/InsiderWindows), [Production](https://aka.ms/accessibility-insights-for-android/downloads/Windows))
 -   Linux ([Canary](https://aka.ms/accessibility-insights-for-android/downloads/CanaryLinux), [Insider](https://aka.ms/accessibility-insights-for-android/downloads/InsiderLinux), [Production](https://aka.ms/accessibility-insights-for-android/downloads/Linux))
 
-
 ## Data/Telemetry
 
 By opting into telemetry, you [help the community](https://go.microsoft.com/fwlink/?linkid=2077765) develop inclusive software. We collect anonymized data to identify the top accessibility issues found by the users. This will help focus the accessibility tools and standards community to improve guidelines, rules engines, and features.
@@ -50,9 +49,9 @@ Please visit our [FAQ](https://accessibilityinsights.io/docs/en/web/reference/fa
 
 All contributions are welcome! To get started, please read through our [CONTRIBUTING](./CONTRIBUTING.md) guidelines for this project. After that, see:
 
-* [Git branch setup](./docs/git-branch-setup.md)
-* [Building Accessibility Insights for Web](./docs/building-web.md)
-* [Building Accessibility Insights for Android (Unified)](./docs/building-unified.md)
+-   [Git branch setup](./docs/git-branch-setup.md)
+-   [Building Accessibility Insights for Web](./docs/building-web.md)
+-   [Building Accessibility Insights for Android (Unified)](./docs/building-unified.md)
 
 ## Code of Conduct
 

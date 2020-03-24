@@ -19,7 +19,7 @@ All the [prerequisites](./building-web.md#Prerequisites) for building Web are al
 
 Most of the functionality of Unified relies on connecting to a device running the Accessibility Insights for Android Service. However, most Unified development and testing does not require an actual Android device/VM; this repository comes with a `mock-service-for-android` that can be used to fake having one for most purposes.
 
-If you *do* need to work with an actual Android device/VM, you'll want to install [Android Studio](https://developer.android.com/studio/) and use it to connect to a device and/or start an emulator. You'll need to install the [Accessibility Insights for Android Service](https://github.com/microsoft/accessibility-insights-for-android-service) beforehand.
+If you _do_ need to work with an actual Android device/VM, you'll want to install [Android Studio](https://developer.android.com/studio/) and use it to connect to a device and/or start an emulator. You'll need to install the [Accessibility Insights for Android Service](https://github.com/microsoft/accessibility-insights-for-android-service) beforehand.
 
 ### Building
 
