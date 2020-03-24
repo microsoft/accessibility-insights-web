@@ -21,10 +21,9 @@ Please read through our [Code of Conduct](./CODE_OF_CONDUCT.md) to this project.
 
 ## Pull Requests
 
-Please title Pull Requests with a tag indicating the type of change. This helps us in maintaining a good commit history as well as better documentation
-when creating Release notes.
+Pull Requests should have a title that starts with a tag indicating the type of change. This helps us in maintaining a good commit history as well as better documentation when creating Release notes.
 
-The convention that we follow is inspired from [SemVer](https://semver.org/) convention and is following:
+The convention that we follow is inspired from [SemVer](https://semver.org/) convention:
 
 | Tag      | What it conveys                                                                                                                             |
 | -------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -35,8 +34,8 @@ The convention that we follow is inspired from [SemVer](https://semver.org/) con
 
 Some examples of good PR titles are `refactor: rename FooWidget to BarWidget` or `feat(android-settings): add High Contrast toggle to unified settings panel`.
 
-## How-To
+## Further Guidance
 
 * [Git branch setup](./docs/git-branch-setup.md)
 * [Building Accessibility Insights for Web](./docs/building-web.md)
-* [Building Accessibility Insights for Android ("unified")](./docs/building-unified.md)
+* [Building Accessibility Insights for Android (Unified)](./docs/building-unified.md)

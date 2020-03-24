@@ -5,7 +5,7 @@ Licensed under the MIT License.
 
 ## Building Accessibility Insights for Web
 
-This document describes how to build and test the Accessibility Insights for Web (the browser extension). Much of the information/code is shared between it and Accessibility Insights for Android (the "unified" Electron app); for guidance specific to unified, see [Building Accessibility Insights for Android](./building-unified.md).
+This document describes how to build and test the Accessibility Insights for Web (the browser extension). Much of the information/code is shared between it and Accessibility Insights for Android (the "unified" Electron app); for guidance specific to Unified, see [Building Accessibility Insights for Android (Unified)](./building-unified.md).
 
 ### Prerequisites
 
@@ -29,7 +29,6 @@ yarn install
 ```
 
 ### Building
-
 
 ```sh
 # One-time build
@@ -61,8 +60,6 @@ yarn watch:build:web
 ### Testing
 
 We use [Jest](https://github.com/facebook/jest) as our test framework, along with [typemoq](https://github.com/florinn/typemoq) and [enzyme](https://github.com/enzymejs/enzyme). We make liberal use of [Snapshot Testing](https://jestjs.io/docs/en/snapshot-testing) for unit tests of React components.
-
-
 
 #### Unit Tests
 
