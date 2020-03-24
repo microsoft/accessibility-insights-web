@@ -31,7 +31,7 @@ describe('TargetPageInspector', () => {
         document.querySelector = originalQuerySelector;
     });
 
-    const safeSelectors = [
+    const selectors = [
         '#id-selector',
         '.class-selector',
         'article > p',
@@ -50,11 +50,13 @@ describe('TargetPageInspector', () => {
         'div:not(.awesome)',
         'div::after',
         '#result;button',
+        `body"); throw new Error("should not throw this error`,
+        `body'); throw new Error('should not throw this error`,
     ];
 
-    it.each(safeSelectors)(
+    it.each(selectors)(
         'calls eval through the inspected window, with safe selector = %s',
-        safeSelector => {
+        actualSelector => {
             // we need to define a inspect function so we can actually evaluate the script
             function inspect(): void {
                 // no op on purpose
@@ -62,10 +64,10 @@ describe('TargetPageInspector', () => {
 
             querySelectorMock
                 .setup(handler => handler(It.isAnyString()))
-                .callback(selector => {
+                .callback(theSelector => {
                     // using explicit expect yields better error messaging
                     // than just use setup with the safeSelector value
-                    expect(selector).toEqual(safeSelector);
+                    expect(theSelector).toEqual(actualSelector);
                 });
 
             let actualScript: string;
@@ -78,7 +80,7 @@ describe('TargetPageInspector', () => {
                     actualScript = script;
                 });
 
-            testSubject.inspectElement(safeSelector, testFrameUrl);
+            testSubject.inspectElement(actualSelector, testFrameUrl);
 
             // we use eval to actually run the script
             // the mocks/fakes on this test will ensure the script will be evaluated properly
@@ -102,19 +104,5 @@ describe('TargetPageInspector', () => {
         );
 
         expect(act).toThrow('selector is not a string');
-    });
-
-    it('properly handles quotes', () => {
-        const unsafeSelector = `body'); alert('xss`; // this is an attempt to run arbitrary js code
-
-        const expectedScript =
-            'inspect(document.querySelector(' + JSON.stringify(unsafeSelector) + '))';
-
-        testSubject.inspectElement(unsafeSelector, testFrameUrl);
-
-        inspectedWindowMock.verify(
-            inspected => inspected.eval(expectedScript, { frameURL: testFrameUrl } as any),
-            Times.once(),
-        );
     });
 });
