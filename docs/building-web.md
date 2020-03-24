@@ -70,6 +70,9 @@ We expect almost all code to be covered by unit tests (the main exception to thi
 # Run this regularly during feature development
 yarn test --changedSince master
 
+# Test only files matching a particular name pattern
+yarn test -- -- SomeFile.test.tsx
+
 # This runs unit tests continuously as they are updated
 yarn watch:test
 
@@ -81,12 +84,7 @@ yarn test --changedSince master -u
 yarn test -u
 ```
 
-Extra command line arguments and flags are passed along to Jest. For example:
-
--   To run a single or small number of unit test files, run `yarn test -- -- {FILE_NAME_REGEX}`
--   `yarn watch:test` will start an interactive watch session.
-
-See more about Jest options [here](https://jestjs.io/docs/en/cli.html).
+Extra command line arguments and flags are passed along to Jest. See more about Jest options [here](https://jestjs.io/docs/en/cli.html).
 
 To debug using an external tool, run `node --inspect-brk ./node_modules/jest/bin/jest.js --projects src/tests/unit --runInBand -- {RELATIVE_FILE_PATH}`. In Chrome, for example, navigate to `chrome://inspect` and click `Open dedicated DevTools for Node`.
 
