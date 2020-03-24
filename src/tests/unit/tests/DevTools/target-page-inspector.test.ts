@@ -50,8 +50,10 @@ describe('TargetPageInspector', () => {
         'div:not(.awesome)',
         'div::after',
         '#result;button',
-        `body")); throw new Error("should not throw this error"); (("" === "`,
-        `body')); throw new Error('should not throw this error'); (('' === '`,
+        `body")); throw new Error("should not throw this error") //`,
+        `body')); throw new Error('should not throw this error') //`,
+        'body`)); throw new Error(`should not throw this error`) //',
+        `body\\')); throw new Error("should not throw this error") //`,
     ];
 
     it.each(selectors)(
