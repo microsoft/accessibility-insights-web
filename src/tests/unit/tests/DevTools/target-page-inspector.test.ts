@@ -50,12 +50,12 @@ describe('TargetPageInspector', () => {
         'div:not(.awesome)',
         'div::after',
         '#result;button',
-        `body"); throw new Error("should not throw this error`,
-        `body'); throw new Error('should not throw this error`,
+        `body")); throw new Error("should not throw this error"); (("" === "`,
+        `body')); throw new Error('should not throw this error'); (('' === '`,
     ];
 
     it.each(selectors)(
-        'calls eval through the inspected window, with safe selector = %s',
+        'calls eval through the inspected window, with selector = %s',
         actualSelector => {
             // we need to define a inspect function so we can actually evaluate the script
             function inspect(): void {
@@ -94,9 +94,9 @@ describe('TargetPageInspector', () => {
     );
 
     it('throws for a non string selector value', () => {
-        const unsafeSelector = { description: 'this is not a string' } as any;
+        const notAnStringSelector = { description: 'this is not a string' } as any;
 
-        const act = () => testSubject.inspectElement(unsafeSelector, testFrameUrl);
+        const act = () => testSubject.inspectElement(notAnStringSelector, testFrameUrl);
 
         inspectedWindowMock.verify(
             inspected => inspected.eval(It.isAny(), It.isAny()),
