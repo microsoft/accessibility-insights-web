@@ -15,12 +15,6 @@ Throughout most of the code and build commands, Accessibility Insights for Andro
 
 All the [prerequisites](./building-web.md#Prerequisites) for building Web are also required for Unified.
 
-#### Setting up the Android Service
-
-Most of the functionality of Unified relies on connecting to a device running the Accessibility Insights for Android Service. However, most Unified development and testing does not require an actual Android device/VM; this repository comes with a `mock-service-for-android` that can be used to fake having one for most purposes.
-
-If you _do_ need to work with an actual Android device/VM, you'll want to install [Android Studio](https://developer.android.com/studio/) and use it to connect to a device and/or start an emulator. You'll need to install the [Accessibility Insights for Android Service](https://github.com/microsoft/accessibility-insights-for-android-service) beforehand.
-
 ### Building
 
 ```sh
@@ -36,18 +30,25 @@ yarn build:unified:all
 
 ### Running Locally
 
-Usually, we run using a `mock-service-for-android` that runs a fake Accessibility Insights for Android Service on port 9051 for testing purposes:
+Most of the functionality of Unified relies on connecting to a device running the Accessibility Insights for Android Service. However, most Unified development and testing does not require an actual Android device/VM; this repository comes with a `mock-service-for-android` that can be used to fake having one for most purposes.
 
 ```sh
 # This is the command you'll want to use most of the time
+# In the app, use port 9051 for the mock service
 yarn with:mock-service-for-android start:unified:dev
 
+# You can leave off the :dev if you don't want the "inspect" window
+yarn with:mock-service-for-android start:unified
+```
+
+#### Connecting to a real device/emulator
+
+If you _do_ need to work with an actual Android device/VM, you'll want to install [Android Studio](https://developer.android.com/studio/) and use it to connect to a device and/or start an emulator. You'll need to install the [Accessibility Insights for Android Service](https://github.com/microsoft/accessibility-insights-for-android-service) beforehand; see [Getting Started with Accessiblity Insights for Android](https://accessibilityinsights.io/docs/en/android/getstarted/setup#getting-started-with-accessibility-insights-for-android) for instructions on how to prepare a device/emulator with the Accessibility Insights for Android Service (follow its steps up until "Install the Accessibility Insights for Android app").
+
+```sh
 # You can leave off the with:mock-service-for-android if
 # you only want to test against real devices/emulators
 yarn start:unified:dev
-
-# You can leave off the :dev if you don't want the "inspect" window
-yarn start:unified
 ```
 
 ### Testing
