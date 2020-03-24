@@ -55,7 +55,7 @@ yarn watch:build:web
 
     > IMPORTANT: Ensure that you are testing locally before pushing a change.
 
--   Look for the ![Dev Logo](./src/icons/brand/gray/brand-gray-16px.png) extension icon to the right of the address bar
+-   Look for the ![Dev Logo](../src/icons/brand/gray/brand-gray-16px.png) extension icon to the right of the address bar
 
 ### Testing
 
