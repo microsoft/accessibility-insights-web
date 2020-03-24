@@ -65,17 +65,6 @@ export class DevToolsChromeAdapterMock {
         return this;
     }
 
-    public setupExecuteScriptInInspectedWindow(
-        script: string,
-        frameUrl: string,
-    ): DevToolsChromeAdapterMock {
-        this.underlyingMock
-            .setup(x => x.executeScriptInInspectedWindow(It.isValue(script), frameUrl))
-            .verifiable(Times.once());
-
-        return this;
-    }
-
     public verifyAll(): void {
         this.underlyingMock.verifyAll();
     }
