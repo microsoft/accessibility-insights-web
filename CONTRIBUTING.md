@@ -32,7 +32,10 @@ The convention that we follow is inspired from [SemVer](https://semver.org/) con
 | chore    | a commit of the type chore updates something in codebase without impacting any production code. eg: updating a grunt task etc.              |
 | refactor | a commit of type refactor specifies a code change that neither fixes a bug nor adds a feature but just refactors a portion of existing code |
 
-Some examples of good PR titles are `refactor: rename FooWidget to BarWidget` or `feat(android-settings): add High Contrast toggle to unified settings panel`.
+Some examples of good PR titles are:
+
+* `refactor: rename FooWidget to BarWidget`
+* `feat(android-settings): add High Contrast toggle to unified settings panel`.
 
 ## Further Guidance
 
