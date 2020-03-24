@@ -52,7 +52,7 @@ All contributions are welcome! To get started, please read through our [CONTRIBU
 
 * [Git branch setup](./docs/git-branch-setup.md)
 * [Building Accessibility Insights for Web](./docs/building-web.md)
-* [Building Accessibility Insights for Android ("unified")](./docs/building-unified.md)
+* [Building Accessibility Insights for Android (Unified)](./docs/building-unified.md)
 
 ## Code of Conduct
 
