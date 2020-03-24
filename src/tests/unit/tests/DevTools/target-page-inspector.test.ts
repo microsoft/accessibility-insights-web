@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { TargetPageInspector } from 'Devtools/target-page-inspector';
-import { IMock, It, Mock, Times } from 'typemoq';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('TargetPageInspector', () => {
     type InspectedWindow = typeof chrome.devtools.inspectedWindow;
@@ -9,11 +9,26 @@ describe('TargetPageInspector', () => {
     let inspectedWindowMock: IMock<InspectedWindow>;
     let testSubject: TargetPageInspector;
 
+    type QuerySelector = typeof Document.prototype.querySelector;
+
+    let querySelectorMock: IMock<QuerySelector>;
+    let originalQuerySelector: QuerySelector;
+
     const testFrameUrl = 'test-frame-url';
 
     beforeEach(() => {
+        originalQuerySelector = document.querySelector;
+
+        querySelectorMock = Mock.ofType<QuerySelector>(undefined, MockBehavior.Strict);
+
+        document.querySelector = querySelectorMock.object;
+
         inspectedWindowMock = Mock.ofType<InspectedWindow>();
         testSubject = new TargetPageInspector(inspectedWindowMock.object);
+    });
+
+    afterEach(() => {
+        document.querySelector = originalQuerySelector;
     });
 
     const safeSelectors = [
@@ -37,17 +52,44 @@ describe('TargetPageInspector', () => {
         '#result;button',
     ];
 
-    it.each(safeSelectors)('calls eval on the target page with selector = %s', safeSelector => {
-        const expectedScript =
-            'inspect(document.querySelector(' + JSON.stringify(safeSelector) + '))';
+    it.each(safeSelectors)(
+        'calls eval through the inspected window, with safe selector = %s',
+        safeSelector => {
+            // we need to define a inspect function so we can actually evaluate the script
+            function inspect(): void {
+                // no op on purpose
+            }
 
-        testSubject.inspectElement(safeSelector, testFrameUrl);
+            querySelectorMock
+                .setup(handler => handler(It.isAnyString()))
+                .callback(selector => {
+                    // using explicit expect yields better error messaging
+                    // than just use setup with the safeSelector value
+                    expect(selector).toEqual(safeSelector);
+                });
 
-        inspectedWindowMock.verify(
-            inspected => inspected.eval(expectedScript, { frameURL: testFrameUrl } as any),
-            Times.once(),
-        );
-    });
+            let actualScript: string;
+
+            inspectedWindowMock
+                .setup(inspected =>
+                    inspected.eval(It.isAnyString(), It.isValue({ frameURL: testFrameUrl })),
+                )
+                .callback(script => {
+                    actualScript = script;
+                });
+
+            testSubject.inspectElement(safeSelector, testFrameUrl);
+
+            // we use eval to actually run the script
+            // the mocks/fakes on this test will ensure the script will be evaluated properly
+            const evaluator = () => {
+                // tslint:disable-next-line: no-eval
+                eval(actualScript);
+            };
+
+            expect(evaluator).not.toThrow();
+        },
+    );
 
     it('throws for a non string selector value', () => {
         const unsafeSelector = { description: 'this is not a string' } as any;
