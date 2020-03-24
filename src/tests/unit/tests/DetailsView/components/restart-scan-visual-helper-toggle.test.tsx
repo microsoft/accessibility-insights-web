@@ -39,10 +39,7 @@ describe('RestartScanVisualHelperToggleTest', () => {
 
         const toggle = wrapper.find(VisualizationToggle);
 
-        const expectedToggleProps = getDefaultVisualizationTogglePropsBuilder()
-            .with('checked', true)
-            .with('disabled', false)
-            .build();
+        const expectedToggleProps = getDefaultVisualizationTogglePropsBuilder().with('checked', true).with('disabled', false).build();
 
         assertVisualizationToggle(expectedToggleProps, toggle);
         assertSnapshotMatch(wrapper);

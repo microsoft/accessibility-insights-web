@@ -6,17 +6,27 @@ exports[`WindowTitleTest renders with actionable icons 1`] = `
 <header
   className="windowTitle"
 >
+  <HelmetWrapper
+    defer={true}
+    encodeSpecialCharacters={true}
+  >
+    <title>
+      Accessibility Insights for Android
+       - 
+      page title 1
+    </title>
+  </HelmetWrapper>
   <div
     className="titleContainer"
   >
     <span>
       logo
     </span>
-    <h1
+    <span
       className="headerText"
     >
-      title 1
-    </h1>
+      Accessibility Insights
+    </span>
   </div>
   <div
     className="actionableIconsContainer"
@@ -35,17 +45,66 @@ exports[`WindowTitleTest renders with custom class name 1`] = `
 <header
   className="windowTitle custom-class-name"
 >
+  <HelmetWrapper
+    defer={true}
+    encodeSpecialCharacters={true}
+  >
+    <title>
+      Accessibility Insights for Android
+       - 
+      page title 1
+    </title>
+  </HelmetWrapper>
   <div
     className="titleContainer"
   >
     <span>
       logo
     </span>
-    <h1
+    <span
       className="headerText"
     >
-      title 1
-    </h1>
+      Accessibility Insights
+    </span>
+  </div>
+  <div
+    className="actionableIconsContainer"
+  >
+    <div>
+      icon1
+    </div>
+    <div>
+      icon2
+    </div>
+  </div>
+</header>
+`;
+
+exports[`WindowTitleTest renders with custom header text class name 1`] = `
+<header
+  className="windowTitle"
+>
+  <HelmetWrapper
+    defer={true}
+    encodeSpecialCharacters={true}
+  >
+    <title>
+      Accessibility Insights for Android
+       - 
+      page title 1
+    </title>
+  </HelmetWrapper>
+  <div
+    className="titleContainer"
+  >
+    <span>
+      logo
+    </span>
+    <span
+      className="headerText custom-class-name"
+    >
+      Accessibility Insights
+    </span>
   </div>
   <div
     className="actionableIconsContainer"
@@ -64,17 +123,27 @@ exports[`WindowTitleTest renders without actionable buttons for mac 1`] = `
 <header
   className="windowTitle"
 >
+  <HelmetWrapper
+    defer={true}
+    encodeSpecialCharacters={true}
+  >
+    <title>
+      Accessibility Insights for Android
+       - 
+      page title 1
+    </title>
+  </HelmetWrapper>
   <div
     className="titleContainer"
   >
     <span>
       logo
     </span>
-    <h1
+    <span
       className="headerText"
     >
-      title 1
-    </h1>
+      Accessibility Insights
+    </span>
   </div>
 </header>
 `;
@@ -83,17 +152,27 @@ exports[`WindowTitleTest renders without actionable icons 1`] = `
 <header
   className="windowTitle"
 >
+  <HelmetWrapper
+    defer={true}
+    encodeSpecialCharacters={true}
+  >
+    <title>
+      Accessibility Insights for Android
+       - 
+      page title 1
+    </title>
+  </HelmetWrapper>
   <div
     className="titleContainer"
   >
     <span>
       logo
     </span>
-    <h1
+    <span
       className="headerText"
     >
-      title 1
-    </h1>
+      Accessibility Insights
+    </span>
   </div>
 </header>
 `;
@@ -102,14 +181,24 @@ exports[`WindowTitleTest renders without children & actionable icon 1`] = `
 <header
   className="windowTitle"
 >
+  <HelmetWrapper
+    defer={true}
+    encodeSpecialCharacters={true}
+  >
+    <title>
+      Accessibility Insights for Android
+       - 
+      page title 1
+    </title>
+  </HelmetWrapper>
   <div
     className="titleContainer"
   >
-    <h1
+    <span
       className="headerText"
     >
-      title 1
-    </h1>
+      Accessibility Insights
+    </span>
   </div>
 </header>
 `;

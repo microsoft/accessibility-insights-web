@@ -4,9 +4,15 @@ import { Mock } from 'typemoq';
 
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
-import { AssessmentTestProviderDeps, AssessmentTestResult } from '../../../../../common/assessment/assessment-test-result';
+import {
+    AssessmentTestProviderDeps,
+    AssessmentTestResult,
+} from '../../../../../common/assessment/assessment-test-result';
 import { RequirementResult } from '../../../../../common/assessment/requirement';
-import { ManualTestStatus, ManualTestStatusData } from '../../../../../common/types/manual-test-status';
+import {
+    ManualTestStatus,
+    ManualTestStatusData,
+} from '../../../../../common/types/manual-test-status';
 import { AssessmentData } from '../../../../../common/types/store-data/assessment-result-data';
 
 describe('AssessmentTestResult', () => {
@@ -42,10 +48,19 @@ describe('AssessmentTestResult', () => {
     const outcomeStats = { pass: 1, fail: 2, incomplete: 3 };
 
     const depsMock = Mock.ofType<AssessmentTestProviderDeps>();
-    depsMock.setup(d => d.getRequirementsResults(assessmentProvider, assessmentType, testStepStatus)).returns(() => requirementsResults);
-    depsMock.setup(d => d.outcomeStatsFromManualTestStatus(testStepStatus)).returns(() => outcomeStats);
+    depsMock
+        .setup(d => d.getRequirementsResults(assessmentProvider, assessmentType, testStepStatus))
+        .returns(() => requirementsResults);
+    depsMock
+        .setup(d => d.outcomeStatsFromManualTestStatus(testStepStatus))
+        .returns(() => outcomeStats);
 
-    const testObject = new AssessmentTestResult(assessmentProvider, assessmentType, assessmentData, depsMock.object);
+    const testObject = new AssessmentTestResult(
+        assessmentProvider,
+        assessmentType,
+        assessmentData,
+        depsMock.object,
+    );
 
     it('provides definition', () => {
         expect(testObject.definition.key).toEqual(key);

@@ -6,7 +6,11 @@ import {
     noCardInteractionsSupported,
     onlyUserConfigAgnosticCardInteractionsSupported,
 } from 'common/components/cards/card-interaction-support';
-import { CardKebabMenuButton, CardKebabMenuButtonDeps, CardKebabMenuButtonProps } from 'common/components/cards/card-kebab-menu-button';
+import {
+    CardKebabMenuButton,
+    CardKebabMenuButtonDeps,
+    CardKebabMenuButtonProps,
+} from 'common/components/cards/card-kebab-menu-button';
 import { Toast } from 'common/components/toast';
 import { IssueFilingActionMessageCreator } from 'common/message-creators/issue-filing-action-message-creator';
 import { NavigatorUtils } from 'common/navigator-utils';
@@ -92,6 +96,7 @@ describe('CardKebabMenuButtonTest', () => {
                 [testKey]: {},
             },
             enableHighContrast: false,
+            lastSelectedHighContrast: false,
             enableTelemetry: true,
             isFirstTime: true,
         };
@@ -125,7 +130,10 @@ describe('CardKebabMenuButtonTest', () => {
 
     it('renders as null with noCardInteractionsSupported', () => {
         const rendered = shallow(
-            <CardKebabMenuButton {...defaultProps} deps={{ ...defaultDeps, cardInteractionSupport: noCardInteractionsSupported }} />,
+            <CardKebabMenuButton
+                {...defaultProps}
+                deps={{ ...defaultDeps, cardInteractionSupport: noCardInteractionsSupported }}
+            />,
         );
 
         expect(rendered.getElement()).toBeNull();
@@ -133,7 +141,10 @@ describe('CardKebabMenuButtonTest', () => {
 
     it('renders per snapshot with allCardInteractionsSupported', () => {
         const rendered = shallow(
-            <CardKebabMenuButton {...defaultProps} deps={{ ...defaultDeps, cardInteractionSupport: allCardInteractionsSupported }} />,
+            <CardKebabMenuButton
+                {...defaultProps}
+                deps={{ ...defaultDeps, cardInteractionSupport: allCardInteractionsSupported }}
+            />,
         );
 
         expect(rendered.debug()).toMatchSnapshot();
@@ -148,11 +159,16 @@ describe('CardKebabMenuButtonTest', () => {
                 kebabMenuAriaLabel: ariaLabel,
             };
             const rendered = shallow(
-                <CardKebabMenuButton {...newProps} deps={{ ...defaultDeps, cardInteractionSupport: allCardInteractionsSupported }} />,
+                <CardKebabMenuButton
+                    {...newProps}
+                    deps={{ ...defaultDeps, cardInteractionSupport: allCardInteractionsSupported }}
+                />,
             );
 
             expect(rendered.debug()).toMatchSnapshot('component-snapshot');
-            expect(rendered.find(ActionButton).prop('menuProps')).toMatchSnapshot('action button menu props');
+            expect(rendered.find(ActionButton).prop('menuProps')).toMatchSnapshot(
+                'action button menu props',
+            );
         },
     );
 
@@ -160,7 +176,10 @@ describe('CardKebabMenuButtonTest', () => {
         const rendered = shallow(
             <CardKebabMenuButton
                 {...defaultProps}
-                deps={{ ...defaultDeps, cardInteractionSupport: onlyUserConfigAgnosticCardInteractionsSupported }}
+                deps={{
+                    ...defaultDeps,
+                    cardInteractionSupport: onlyUserConfigAgnosticCardInteractionsSupported,
+                }}
             />,
         );
 
@@ -169,7 +188,9 @@ describe('CardKebabMenuButtonTest', () => {
     });
 
     it('copies failure details and show the toast', async () => {
-        detailsViewActionCreatorMock.setup(creator => creator.copyIssueDetailsClicked(event)).verifiable(Times.once());
+        detailsViewActionCreatorMock
+            .setup(creator => creator.copyIssueDetailsClicked(event))
+            .verifiable(Times.once());
 
         navigatorUtilsMock
             .setup(navigatorUtils => navigatorUtils.copyToClipboard(issueDetailsText))
@@ -192,11 +213,18 @@ describe('CardKebabMenuButtonTest', () => {
         expect(toast.state().toastVisible).toBe(true);
         expect(toast.state().content).toBe('Failure details copied.');
 
-        verifyMocks([detailsViewActionCreatorMock, navigatorUtilsMock, textGeneratorMock, windowUtilsMock]);
+        verifyMocks([
+            detailsViewActionCreatorMock,
+            navigatorUtilsMock,
+            textGeneratorMock,
+            windowUtilsMock,
+        ]);
     });
 
     it('shows failure message if copy failed', async () => {
-        detailsViewActionCreatorMock.setup(creator => creator.copyIssueDetailsClicked(event)).verifiable(Times.once());
+        detailsViewActionCreatorMock
+            .setup(creator => creator.copyIssueDetailsClicked(event))
+            .verifiable(Times.once());
 
         navigatorUtilsMock
             .setup(navigatorUtils => navigatorUtils.copyToClipboard(issueDetailsText))
@@ -218,7 +246,12 @@ describe('CardKebabMenuButtonTest', () => {
         expect(toast.state().toastVisible).toBe(true);
         expect(toast.state().content).toBe('Failed to copy failure details. Please try again.');
 
-        verifyMocks([detailsViewActionCreatorMock, navigatorUtilsMock, textGeneratorMock, windowUtilsMock]);
+        verifyMocks([
+            detailsViewActionCreatorMock,
+            navigatorUtilsMock,
+            textGeneratorMock,
+            windowUtilsMock,
+        ]);
     });
 
     it('should file issue, valid settings', async () => {
@@ -260,7 +293,10 @@ describe('CardKebabMenuButtonTest', () => {
         verifyMocks([issueFilingActionMessageCreatorMock, issueFilingServiceProviderMock]);
     });
 
-    function getMenuItemWithKey(rendered: ReactWrapper | ShallowWrapper, itemKey: string): IContextualMenuItem {
+    function getMenuItemWithKey(
+        rendered: ReactWrapper | ShallowWrapper,
+        itemKey: string,
+    ): IContextualMenuItem {
         return rendered
             .find(ActionButton)
             .prop('menuProps')

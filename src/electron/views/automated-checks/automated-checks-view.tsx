@@ -5,9 +5,14 @@ import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
+import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { CardsView, CardsViewDeps } from 'DetailsView/components/cards-view';
+import {
+    SettingsPanel,
+    SettingsPanelDeps,
+} from 'DetailsView/components/details-view-overlay/settings-panel/settings-panel';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { DeviceStoreData } from 'electron/flux/types/device-store-data';
@@ -19,7 +24,6 @@ import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popu
 import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
 import { ScreenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
 import * as React from 'react';
-
 import * as styles from './automated-checks-view.scss';
 import { CommandBar, CommandBarDeps } from './components/command-bar';
 import { HeaderSection } from './components/header-section';
@@ -28,7 +32,8 @@ export const automatedChecksViewAutomationId = 'automated-checks-view';
 
 export type AutomatedChecksViewDeps = CommandBarDeps &
     TitleBarDeps &
-    CardsViewDeps & {
+    CardsViewDeps &
+    SettingsPanelDeps & {
         scanActionCreator: ScanActionCreator;
         windowStateActionCreator: WindowStateActionCreator;
         getCardsViewData: GetCardViewData;
@@ -44,6 +49,7 @@ export type AutomatedChecksViewProps = {
     userConfigurationStoreData: UserConfigurationStoreData;
     unifiedScanResultStoreData: UnifiedScanResultStoreData;
     cardSelectionStoreData: CardSelectionStoreData;
+    detailsViewStoreData: DetailsViewStoreData;
 };
 
 export class AutomatedChecksView extends React.Component<AutomatedChecksViewProps> {
@@ -85,6 +91,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
             >
                 <TitleBar
                     deps={this.props.deps}
+                    pageTitle={'Automated checks'}
                     windowStateStoreData={this.props.windowStateStoreData}
                 ></TitleBar>
                 <div className={styles.automatedChecksPanelLayout}>
@@ -101,6 +108,13 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                     </div>
                     {optionalSidePanel}
                 </div>
+                <SettingsPanel
+                    layerClassName={styles.settingsPanelLayerHost}
+                    deps={this.props.deps}
+                    isOpen={this.props.detailsViewStoreData.currentPanel.isSettingsOpen}
+                    featureFlagData={{}}
+                    userConfigStoreState={this.props.userConfigurationStoreData}
+                />
             </div>
         );
     }

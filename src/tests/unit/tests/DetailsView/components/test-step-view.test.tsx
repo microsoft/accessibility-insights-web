@@ -1,20 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Enzyme from 'enzyme';
-import * as React from 'react';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { Requirement } from 'assessments/types/requirement';
-import { CollapsibleComponent } from '../../../../../common/components/collapsible-component';
-import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
-import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { AssessmentInstanceTable } from '../../../../../DetailsView/components/assessment-instance-table';
-import { AssessmentVisualizationEnabledToggle } from '../../../../../DetailsView/components/assessment-visualization-enabled-toggle';
-import { ManualTestStepView } from '../../../../../DetailsView/components/manual-test-step-view';
-import { TestStepView, TestStepViewProps } from '../../../../../DetailsView/components/test-step-view';
-import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
-import { BaseDataBuilder } from '../../../common/base-data-builder';
+import { CollapsibleComponent } from 'common/components/collapsible-component';
+import { ManualTestStatus } from 'common/types/manual-test-status';
+import { VisualizationType } from 'common/types/visualization-type';
+import { AssessmentInstanceTable } from 'DetailsView/components/assessment-instance-table';
+import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
+import { ManualTestStepView } from 'DetailsView/components/manual-test-step-view';
+import { TestStepView, TestStepViewProps } from 'DetailsView/components/test-step-view';
+import * as styles from 'DetailsView/components/test-step-view.scss';
+import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
+import * as Enzyme from 'enzyme';
+import * as React from 'react';
+import { BaseDataBuilder } from 'tests/unit/common/base-data-builder';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 let getVisualHelperToggleMock: IMock<(provider, props) => {}>;
 
@@ -48,14 +48,12 @@ describe('TestStepViewTest', () => {
 
         expect(testInstructions.exists()).toBeTruthy();
         expect(props.testStep.howToTest).toEqual(testInstructions.prop('content'));
-        expect(testInstructions.prop('contentClassName')).toBe('test-step-instructions');
-        expect(testInstructions.prop('header')).toEqual(<h4 className="test-step-instructions-header">How to test</h4>);
+        expect(testInstructions.prop('contentClassName')).toBe(styles.testStepInstructions);
+        expect(testInstructions.prop('header')).toEqual(<h4 className={styles.testStepInstructionsHeader}>How to test</h4>);
     });
 
     test('render spinner for non-manual tests', () => {
-        const props = TestStepViewPropsBuilder.defaultProps(getVisualHelperToggleMock.object)
-            .withScanning(true)
-            .build();
+        const props = TestStepViewPropsBuilder.defaultProps(getVisualHelperToggleMock.object).withScanning(true).build();
 
         const wrapper = Enzyme.shallow(<TestStepView {...props} />);
         const spinner = wrapper.find('.details-view-spinner');
@@ -64,19 +62,14 @@ describe('TestStepViewTest', () => {
     });
 
     test('render manual test step view even when scanning manual tests', () => {
-        const props = TestStepViewPropsBuilder.defaultProps(getVisualHelperToggleMock.object)
-            .withScanning(true)
-            .withIsManual(true)
-            .build();
+        const props = TestStepViewPropsBuilder.defaultProps(getVisualHelperToggleMock.object).withScanning(true).withIsManual(true).build();
 
         const wrapper = Enzyme.shallow(<TestStepView {...props} />);
         validateManualTestStepView(wrapper, props);
     });
 
     test('render, variable part for assisted test', () => {
-        const props = TestStepViewPropsBuilder.defaultProps(getVisualHelperToggleMock.object)
-            .withIsManual(false)
-            .build();
+        const props = TestStepViewPropsBuilder.defaultProps(getVisualHelperToggleMock.object).withIsManual(false).build();
 
         const wrapper = Enzyme.shallow(<TestStepView {...props} />);
 
@@ -96,18 +89,14 @@ describe('TestStepViewTest', () => {
     });
 
     test('render, variable part for manual test', () => {
-        const props = TestStepViewPropsBuilder.defaultProps(getVisualHelperToggleMock.object)
-            .withIsManual(true)
-            .build();
+        const props = TestStepViewPropsBuilder.defaultProps(getVisualHelperToggleMock.object).withIsManual(true).build();
 
         const wrapper = Enzyme.shallow(<TestStepView {...props} />);
         validateManualTestStepView(wrapper, props);
     });
 
     test('render, with no visual helper toggle', () => {
-        const props = TestStepViewPropsBuilder.defaultProps(getVisualHelperToggleMock.object)
-            .withNoGetToggleConfig()
-            .build();
+        const props = TestStepViewPropsBuilder.defaultProps(getVisualHelperToggleMock.object).withNoGetToggleConfig().build();
 
         getVisualHelperToggleMock.setup(g => g(It.isAny(), It.isAny())).verifiable(Times.never());
 

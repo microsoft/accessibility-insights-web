@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CardSelectionActions } from 'background/actions/card-selection-actions';
 import { TestMode } from 'common/configs/test-mode';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import * as TelemetryEvents from 'common/extension-telemetry-events';
-import { createDefaultLogger } from 'common/logging/default-logger';
 import { Logger } from 'common/logging/logger';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { NotificationCreator } from 'common/notification-creator';
@@ -11,10 +11,9 @@ import { StoreNames } from 'common/stores/store-names';
 import { VisualizationType } from 'common/types/visualization-type';
 import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
 import { DictionaryNumberTo } from 'types/common-types';
-
 import { VisualizationActions } from '../actions/visualization-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
-import { DetailsViewController } from '../details-view-controller';
+import { ExtensionDetailsViewController } from '../extension-details-view-controller';
 import { Interpreter } from '../interpreter';
 import { TargetTabController } from '../target-tab-controller';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
@@ -45,21 +44,23 @@ export class ActionCreator {
         [VisualizationType.TabStops]: TelemetryEvents.TABSTOPS_TOGGLE,
     };
     private inspectActions: InspectActions;
+    private cardSelectionActions: CardSelectionActions;
 
     constructor(
         private readonly interpreter: Interpreter,
         readonly actionHub: ActionHub,
-        private readonly detailsViewController: DetailsViewController,
+        private readonly detailsViewController: ExtensionDetailsViewController,
         private readonly telemetryEventHandler: TelemetryEventHandler,
         private readonly notificationCreator: NotificationCreator,
         private readonly visualizationConfigurationFactory: VisualizationConfigurationFactory,
         private readonly targetTabController: TargetTabController,
-        private readonly logger: Logger = createDefaultLogger(),
+        private readonly logger: Logger,
     ) {
         this.visualizationActions = actionHub.visualizationActions;
         this.previewFeaturesActions = actionHub.previewFeaturesActions;
         this.visualizationScanResultActions = actionHub.visualizationScanResultActions;
         this.inspectActions = actionHub.inspectActions;
+        this.cardSelectionActions = actionHub.cardSelectionActions;
     }
 
     public registerCallbacks(): void {
@@ -299,8 +300,9 @@ export class ActionCreator {
         await this.targetTabController.showTargetTab(tabId, payload.testType, payload.key);
     };
 
-    private onScrollRequested = (payload: BaseActionPayload): void => {
+    private onScrollRequested = (): void => {
         this.visualizationActions.scrollRequested.invoke(null);
+        this.cardSelectionActions.resetFocusedIdentifier.invoke(null);
     };
 
     private onDetailsViewOpen = async (

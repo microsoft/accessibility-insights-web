@@ -17,7 +17,7 @@ describe('AutomatedChecksView', () => {
     let automatedChecksView: AutomatedChecksViewController;
 
     beforeEach(async () => {
-        app = await createApplication();
+        app = await createApplication({ suppressFirstTimeDialog: true });
         automatedChecksView = await app.openAutomatedChecksView();
         await automatedChecksView.waitForScreenshotViewVisible();
     });
@@ -27,6 +27,10 @@ describe('AutomatedChecksView', () => {
         if (app != null) {
             await app.stop();
         }
+    });
+
+    it('should use the expected window title', async () => {
+        expect(await app.getTitle()).toBe('Accessibility Insights for Android - Automated checks');
     });
 
     it('displays automated checks results collapsed by default', async () => {
@@ -69,10 +73,16 @@ describe('AutomatedChecksView', () => {
         await assertExpandedRuleGroup(3, 'TouchSizeWcag', 1);
     });
 
-    it('should not contain any accessibility issues', async () => {
-        const violations = await scanForAccessibilityIssues(automatedChecksView);
-        expect(violations).toStrictEqual([]);
-    });
+    it.each([true, false])(
+        'should pass accessibility validation with highContrastMode=%s',
+        async highContrastMode => {
+            await app.setHighContrastMode(highContrastMode);
+            await app.waitForHighContrastMode(highContrastMode);
+
+            const violations = await scanForAccessibilityIssues(automatedChecksView);
+            expect(violations).toStrictEqual([]);
+        },
+    );
 
     async function assertExpandedRuleGroup(
         position: number,
@@ -108,7 +118,7 @@ describe('AutomatedChecksView', () => {
     it('ScreenshotView renders screenshot image from specified source', async () => {
         const resultExamplePath = path.join(
             testResourceServerConfig.absolutePath,
-            'axe/result.json',
+            'AccessibilityInsights/result.json',
         );
         const axeRuleResultExample = JSON.parse(
             fs.readFileSync(resultExamplePath, { encoding: 'utf-8' }),

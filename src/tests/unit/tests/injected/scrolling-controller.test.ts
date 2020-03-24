@@ -3,8 +3,14 @@
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
-import { FrameCommunicator, MessageRequest } from '../../../../injected/frameCommunicators/frame-communicator';
-import { ScrollingController, ScrollingWindowMessage } from '../../../../injected/frameCommunicators/scrolling-controller';
+import {
+    FrameCommunicator,
+    MessageRequest,
+} from '../../../../injected/frameCommunicators/frame-communicator';
+import {
+    ScrollingController,
+    ScrollingWindowMessage,
+} from '../../../../injected/frameCommunicators/scrolling-controller';
 
 describe('ScrollingControllerTest', () => {
     let frameCommunicatorMock: IMock<FrameCommunicator>;
@@ -19,7 +25,9 @@ describe('ScrollingControllerTest', () => {
         let subscribeCallback: (result: any, error: any, responder?: any) => void;
 
         frameCommunicatorMock
-            .setup(fcm => fcm.subscribe(It.isValue(ScrollingController.triggerScrollingCommand), It.isAny()))
+            .setup(fcm =>
+                fcm.subscribe(It.isValue(ScrollingController.triggerScrollingCommand), It.isAny()),
+            )
             .returns((cmd, func) => {
                 subscribeCallback = func;
             })
@@ -37,9 +45,14 @@ describe('ScrollingControllerTest', () => {
             })
             .verifiable(Times.once());
 
-        HTMLElementUtilsMock.setup(h => h.scrollInToView(It.isValue(targetElementStub as any))).verifiable(Times.once());
+        HTMLElementUtilsMock.setup(h =>
+            h.scrollInToView(It.isValue(targetElementStub as any)),
+        ).verifiable(Times.once());
 
-        const testObject = new ScrollingController(frameCommunicatorMock.object, HTMLElementUtilsMock.object);
+        const testObject = new ScrollingController(
+            frameCommunicatorMock.object,
+            HTMLElementUtilsMock.object,
+        );
 
         testObject.initialize();
         subscribeCallback(message, null);
@@ -52,7 +65,9 @@ describe('ScrollingControllerTest', () => {
         let subscribeCallback: (result: any, error: any, responder?: any) => void;
 
         frameCommunicatorMock
-            .setup(fcm => fcm.subscribe(It.isValue(ScrollingController.triggerScrollingCommand), It.isAny()))
+            .setup(fcm =>
+                fcm.subscribe(It.isValue(ScrollingController.triggerScrollingCommand), It.isAny()),
+            )
             .returns((cmd, func) => {
                 subscribeCallback = func;
             })
@@ -78,9 +93,14 @@ describe('ScrollingControllerTest', () => {
             },
         } as MessageRequest<ScrollingWindowMessage>;
 
-        frameCommunicatorMock.setup(fcm => fcm.sendMessage(It.isValue(messageToSend))).verifiable(Times.once());
+        frameCommunicatorMock
+            .setup(fcm => fcm.sendMessage(It.isValue(messageToSend)))
+            .verifiable(Times.once());
 
-        const testObject = new ScrollingController(frameCommunicatorMock.object, HTMLElementUtilsMock.object);
+        const testObject = new ScrollingController(
+            frameCommunicatorMock.object,
+            HTMLElementUtilsMock.object,
+        );
 
         testObject.initialize();
         subscribeCallback(messageToProcess, null);

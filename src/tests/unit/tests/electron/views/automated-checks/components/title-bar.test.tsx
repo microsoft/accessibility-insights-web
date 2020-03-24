@@ -1,6 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { ThemeInnerState } from 'common/components/theme';
+import { StoreActionMessageCreatorImpl } from 'common/message-creators/store-action-message-creator-impl';
+import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
+import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { MaximizeRestoreButtonProps } from 'electron/views/automated-checks/components/maximize-restore-button';
@@ -19,13 +23,20 @@ describe('TitleBar', () => {
     let props: TitleBarProps;
 
     beforeEach(() => {
-        windowFrameActionCreator = Mock.ofType<WindowFrameActionCreator>(undefined, MockBehavior.Strict);
+        windowFrameActionCreator = Mock.ofType<WindowFrameActionCreator>(
+            undefined,
+            MockBehavior.Strict,
+        );
         windowStateStoreData = { routeId: 'resultsView', currentWindowState: 'maximized' };
         props = {
             deps: {
                 windowFrameActionCreator: windowFrameActionCreator.object,
                 platformInfo: Mock.ofType(PlatformInfo).object,
+                storeActionMessageCreator: Mock.ofType(StoreActionMessageCreatorImpl).object,
+                storesHub: Mock.ofType<ClientStoresHub<ThemeInnerState>>(BaseClientStoresHub)
+                    .object,
             },
+            pageTitle: 'test page title',
             windowStateStoreData,
         };
     });
@@ -84,9 +95,21 @@ describe('TitleBar', () => {
     });
 
     const maximizeButtonTestCases = [
-        { label: 'maximize when on custom size', setupMock: setupVerifiableWindowMaximizeAction, isMaximized: false }, // maximize validation
-        { label: 'restore when on full screen', setupMock: setupVerifiableWindowRestoreActionFromFullScreen, isMaximized: true }, // restore validation from full screen
-        { label: 'restore when on maximized state', setupMock: setupVerifiableWindowRestoreActionFromMaximized, isMaximized: true }, // restore validation from maximized state
+        {
+            label: 'maximize when on custom size',
+            setupMock: setupVerifiableWindowMaximizeAction,
+            isMaximized: false,
+        }, // maximize validation
+        {
+            label: 'restore when on full screen',
+            setupMock: setupVerifiableWindowRestoreActionFromFullScreen,
+            isMaximized: true,
+        }, // restore validation from full screen
+        {
+            label: 'restore when on maximized state',
+            setupMock: setupVerifiableWindowRestoreActionFromMaximized,
+            isMaximized: true,
+        }, // restore validation from maximized state
     ];
 
     maximizeButtonTestCases.forEach(testCase => {

@@ -21,7 +21,8 @@ const icons = {
 
 const commonExtensionOptions = {
     fullName: 'Accessibility Insights for Web',
-    extensionDescription: 'Accessibility Insights for Web helps developers quickly find and fix accessibility issues.',
+    extensionDescription:
+        'Accessibility Insights for Web helps developers quickly find and fix accessibility issues.',
     bundled: true,
     productCategory: 'extension',
 };

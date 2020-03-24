@@ -3,16 +3,23 @@
 import { BaseActionPayload } from 'background/actions/action-payloads';
 import { ContentActionCreator } from 'background/actions/content-action-creator';
 import { ContentActions, ContentPayload } from 'background/actions/content-actions';
-import { DetailsViewController } from 'background/details-view-controller';
+import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { Interpreter } from 'background/interpreter';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
-import { CONTENT_PANEL_CLOSED, CONTENT_PANEL_OPENED, TelemetryEventSource } from 'common/extension-telemetry-events';
+import {
+    CONTENT_PANEL_CLOSED,
+    CONTENT_PANEL_OPENED,
+    TelemetryEventSource,
+} from 'common/extension-telemetry-events';
 import { Action } from 'common/flux/action';
 import { Logger } from 'common/logging/logger';
 import { Messages } from 'common/messages';
 import { tick } from 'tests/unit/common/tick';
 import { IMock, Mock, Times } from 'typemoq';
-import { createActionMock, createInterpreterMock } from '../global-action-creators/action-creator-test-helpers';
+import {
+    createActionMock,
+    createInterpreterMock,
+} from '../global-action-creators/action-creator-test-helpers';
 
 describe('ContentActionMessageCreator', () => {
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
@@ -36,14 +43,18 @@ describe('ContentActionMessageCreator', () => {
         const tabId = -2;
 
         let openContentPanelMock: IMock<Action<ContentPayload>>;
-        let detailsViewControllerMock: IMock<DetailsViewController>;
+        let detailsViewControllerMock: IMock<ExtensionDetailsViewController>;
         let loggerMock: IMock<Logger>;
 
         beforeEach(() => {
             openContentPanelMock = createActionMock(payload);
             actionsMock = createActionsMock('openContentPanel', openContentPanelMock.object);
-            interpreterMock = createInterpreterMock(Messages.ContentPanel.OpenPanel, payload, tabId);
-            detailsViewControllerMock = Mock.ofType<DetailsViewController>();
+            interpreterMock = createInterpreterMock(
+                Messages.ContentPanel.OpenPanel,
+                payload,
+                tabId,
+            );
+            detailsViewControllerMock = Mock.ofType<ExtensionDetailsViewController>();
             loggerMock = Mock.ofType<Logger>();
             testSubject = new ContentActionCreator(
                 interpreterMock.object,
@@ -67,7 +78,10 @@ describe('ContentActionMessageCreator', () => {
 
             openContentPanelMock.verifyAll();
             detailsViewControllerMock.verifyAll();
-            telemetryEventHandlerMock.verify(handler => handler.publishTelemetry(CONTENT_PANEL_OPENED, payload), Times.once());
+            telemetryEventHandlerMock.verify(
+                handler => handler.publishTelemetry(CONTENT_PANEL_OPENED, payload),
+                Times.once(),
+            );
             loggerMock.verify(logger => logger.error(errorMessage), Times.once());
         });
 
@@ -83,7 +97,10 @@ describe('ContentActionMessageCreator', () => {
 
             openContentPanelMock.verifyAll();
             detailsViewControllerMock.verifyAll();
-            telemetryEventHandlerMock.verify(handler => handler.publishTelemetry(CONTENT_PANEL_OPENED, payload), Times.once());
+            telemetryEventHandlerMock.verify(
+                handler => handler.publishTelemetry(CONTENT_PANEL_OPENED, payload),
+                Times.once(),
+            );
         });
     });
 
@@ -99,12 +116,20 @@ describe('ContentActionMessageCreator', () => {
         actionsMock = createActionsMock('closeContentPanel', closeContentPanelMock.object);
         interpreterMock = createInterpreterMock(Messages.ContentPanel.ClosePanel, payload);
 
-        testSubject = new ContentActionCreator(interpreterMock.object, actionsMock.object, telemetryEventHandlerMock.object, null);
+        testSubject = new ContentActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+            null,
+        );
 
         testSubject.registerCallbacks();
 
         closeContentPanelMock.verifyAll();
-        telemetryEventHandlerMock.verify(handler => handler.publishTelemetry(CONTENT_PANEL_CLOSED, payload), Times.once());
+        telemetryEventHandlerMock.verify(
+            handler => handler.publishTelemetry(CONTENT_PANEL_CLOSED, payload),
+            Times.once(),
+        );
     });
 
     function createActionsMock<ActionName extends keyof ContentActions>(

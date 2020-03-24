@@ -4,11 +4,22 @@
 @import '../../../../common/styles/fonts.scss';
 
 .device-connect-connected-device {
+    .label {
+        font-weight: $fontWeightSemiBold;
+
+        margin-top: 24px;
+        margin-bottom: 8px;
+    }
+
     .device-connect-spinner {
         font-family: $fontFamily;
-        font-size: 12px;
         line-height: 16px;
         float: left;
+
+        :global(.ms-Spinner-label) {
+            font-size: 14px;
+            color: $spinner-text;
+        }
     }
 
     .scanned-text {

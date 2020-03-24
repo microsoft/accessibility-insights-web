@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DebugToolsView renders 1`] = `
+<React.Fragment>
+  <Header
+    deps={
+      Object {
+        "storesHub": null,
+      }
+    }
+  />
+  <StoresTree
+    deps={
+      Object {
+        "storesHub": null,
+      }
+    }
+    state={
+      Object {
+        "userConfigurationStoreData": Object {
+          "isFirstTime": true,
+        },
+      }
+    }
+  />
+</React.Fragment>
+`;

@@ -1,5 +1,15 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
+trigger: # trigger only affects CI builds
+    branches:
+        include:
+            - master
+
+pr: # pr does not trigger CI builds
+    branches:
+        include:
+            - '*' # must quote since "*" is a YAML reserved character; we want a string
+
 jobs:
     - job: 'unit_tests_and_lints'
 
@@ -41,6 +51,9 @@ jobs:
                 # Consider re-enabling this once https://github.com/Microsoft/azure-pipelines-tasks/issues/4945 is resolved.
                 # reportDirectory: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/lcov-report
             displayName: publish code coverage
+
+          - script: yarn publish-code-coverage -t $(CODECOV_TOKEN)
+            displayName: Publish code coverage to codecov
 
           # CI build only
           - task: ComponentGovernanceComponentDetection@0

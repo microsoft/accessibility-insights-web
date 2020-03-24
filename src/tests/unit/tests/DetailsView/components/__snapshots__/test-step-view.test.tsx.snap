@@ -11,7 +11,7 @@ exports[`TestStepViewTest render snapshot matches with manual false and scanning
       Info &amp; examples
     </ContentPanelButton>
   </div>
-  <CollapsibleComponent header={{...}} content={{...}} contentClassName=\\"test-step-instructions\\" />
+  <CollapsibleComponent header={{...}} content={{...}} contentClassName=\\"testStepInstructions\\" />
   <div role=\\"alert\\" aria-live=\\"polite\\" aria-label=\\"Scan Complete\\" />
   <h3 className=\\"test-step-instances-header\\">
     Instances
@@ -31,7 +31,7 @@ exports[`TestStepViewTest render, variable part for assisted test 1`] = `
       Info &amp; examples
     </ContentPanelButton>
   </div>
-  <CollapsibleComponent header={{...}} content={{...}} contentClassName=\\"test-step-instructions\\" />
+  <CollapsibleComponent header={{...}} content={{...}} contentClassName=\\"testStepInstructions\\" />
   <h3 className=\\"test-step-instances-header\\">
     Instances
   </h3>

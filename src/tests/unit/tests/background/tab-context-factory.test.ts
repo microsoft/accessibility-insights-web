@@ -1,9 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
-import { DetailsViewController } from 'background/details-view-controller';
+import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { Interpreter } from 'background/interpreter';
-import { AssessmentStore } from 'background/stores/assessment-store';
 import { CardSelectionStore } from 'background/stores/card-selection-store';
 import { DetailsViewStore } from 'background/stores/details-view-store';
 import { DevToolStore } from 'background/stores/dev-tools-store';
@@ -26,31 +24,29 @@ import { PromiseFactory } from '../../../../common/promises/promise-factory';
 import { StoreNames } from '../../../../common/stores/store-names';
 import { StoreUpdateMessage } from '../../../../common/types/store-update-message';
 import { VisualizationType } from '../../../../common/types/visualization-type';
-import { WindowUtils } from '../../../../common/window-utils';
 
 function getConfigs(visualizationType: VisualizationType): VisualizationConfiguration {
     return new VisualizationConfigurationFactory().getConfiguration(visualizationType);
 }
 
 describe('TabContextFactoryTest', () => {
-    let mockDetailsViewController: IMock<DetailsViewController>;
+    let mockDetailsViewController: IMock<ExtensionDetailsViewController>;
     let mockBrowserAdapter: IMock<BrowserAdapter>;
     let mockLogger: IMock<Logger>;
 
     beforeEach(() => {
         mockBrowserAdapter = Mock.ofType<BrowserAdapter>();
         mockLogger = Mock.ofType<Logger>();
-        mockDetailsViewController = Mock.ofType<DetailsViewController>();
+        mockDetailsViewController = Mock.ofType<ExtensionDetailsViewController>();
     });
 
     it('createInterpreter', () => {
-        const tabId = -1;
-        const windowUtilsStub = Mock.ofType(WindowUtils);
-        const broadcastMock = Mock.ofType<(message: Object) => Promise<void>>(null, MockBehavior.Strict);
+        const broadcastMock = Mock.ofType<(message: Object) => Promise<void>>(
+            null,
+            MockBehavior.Strict,
+        );
         const telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler);
         const targetTabControllerMock = Mock.ofType(TargetTabController);
-        const assessmentStore = Mock.ofType(AssessmentStore);
-        const assessmentProvider = Mock.ofType(AssessmentsProviderImpl);
 
         const storeNames: StoreNames[] = [
             StoreNames.VisualizationScanResultStore,
@@ -66,7 +62,13 @@ describe('TabContextFactoryTest', () => {
 
         storeNames.forEach(storeName => {
             broadcastMock
-                .setup(bm => bm(It.isObjectWith({ storeId: StoreNames[storeName] } as StoreUpdateMessage<any>)))
+                .setup(bm =>
+                    bm(
+                        It.isObjectWith({ storeId: StoreNames[storeName] } as StoreUpdateMessage<
+                            any
+                        >),
+                    ),
+                )
                 .returns(() => Promise.resolve())
                 .verifiable(Times.once());
         });
@@ -74,17 +76,18 @@ describe('TabContextFactoryTest', () => {
         mockBrowserAdapter.setup(ba => ba.addListenerToTabsOnRemoved(It.isAny())).verifiable();
         mockBrowserAdapter.setup(ba => ba.addListenerToTabsOnUpdated(It.isAny())).verifiable();
 
-        const visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
-        visualizationConfigurationFactoryMock.setup(vcfm => vcfm.getConfiguration(It.isAny())).returns(theType => getConfigs(theType));
+        const visualizationConfigurationFactoryMock = Mock.ofType(
+            VisualizationConfigurationFactory,
+        );
+        visualizationConfigurationFactoryMock
+            .setup(vcfm => vcfm.getConfiguration(It.isAny()))
+            .returns(theType => getConfigs(theType));
 
         const promiseFactoryMock = Mock.ofType<PromiseFactory>();
         const testObject = new TabContextFactory(
             visualizationConfigurationFactoryMock.object,
             telemetryEventHandlerMock.object,
-            windowUtilsStub.object,
             targetTabControllerMock.object,
-            assessmentStore.object,
-            assessmentProvider.object,
             promiseFactoryMock.object,
             mockLogger.object,
         );
@@ -93,14 +96,19 @@ describe('TabContextFactoryTest', () => {
             broadcastMock.object,
             mockBrowserAdapter.object,
             mockDetailsViewController.object,
-            tabId,
         );
 
         broadcastMock.verifyAll();
         broadcastMock.reset();
 
         broadcastMock
-            .setup(bm => bm(It.isObjectWith({ storeId: StoreNames[StoreNames.VisualizationScanResultStore] } as StoreUpdateMessage<any>)))
+            .setup(bm =>
+                bm(
+                    It.isObjectWith({
+                        storeId: StoreNames[StoreNames.VisualizationScanResultStore],
+                    } as StoreUpdateMessage<any>),
+                ),
+            )
             .returns(() => Promise.resolve())
             .verifiable(Times.once());
 
@@ -114,7 +122,9 @@ describe('TabContextFactoryTest', () => {
         expect(tabContext.interpreter).toBeInstanceOf(Interpreter);
         expect(tabContext.stores.visualizationStore).toBeInstanceOf(VisualizationStore);
         expect(tabContext.stores.tabStore).toBeInstanceOf(TabStore);
-        expect(tabContext.stores.visualizationScanResultStore).toBeInstanceOf(VisualizationScanResultStore);
+        expect(tabContext.stores.visualizationScanResultStore).toBeInstanceOf(
+            VisualizationScanResultStore,
+        );
         expect(tabContext.stores.devToolStore).toBeInstanceOf(DevToolStore);
         expect(tabContext.stores.detailsViewStore).toBeInstanceOf(DetailsViewStore);
         expect(tabContext.stores.inspectStore).toBeInstanceOf(InspectStore);

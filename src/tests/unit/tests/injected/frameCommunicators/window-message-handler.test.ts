@@ -5,7 +5,10 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { ErrorMessageContent } from '../../../../../injected/frameCommunicators/error-message-content';
 import { WindowMessage } from '../../../../../injected/frameCommunicators/window-message';
-import { FrameMessageResponseCallback, WindowMessageHandler } from '../../../../../injected/frameCommunicators/window-message-handler';
+import {
+    FrameMessageResponseCallback,
+    WindowMessageHandler,
+} from '../../../../../injected/frameCommunicators/window-message-handler';
 import { WindowMessageMarshaller } from '../../../../../injected/frameCommunicators/window-message-marshaller';
 
 describe('WindowMessageHandlerTests', () => {
@@ -32,7 +35,10 @@ describe('WindowMessageHandlerTests', () => {
             })
             .verifiable(Times.once());
 
-        testSubject = new WindowMessageHandler(mockWindowUtils.object, mockMessageMarshaller.object);
+        testSubject = new WindowMessageHandler(
+            mockWindowUtils.object,
+            mockMessageMarshaller.object,
+        );
     });
 
     afterEach(() => {
@@ -41,7 +47,9 @@ describe('WindowMessageHandlerTests', () => {
     });
 
     test('shouldNotInitializeMoreThanOnce', () => {
-        mockWindowUtils.setup(x => x.addEventListener(window, 'message', It.isAny(), false)).verifiable(Times.once());
+        mockWindowUtils
+            .setup(x => x.addEventListener(window, 'message', It.isAny(), false))
+            .verifiable(Times.once());
 
         testSubject.initialize();
         testSubject.initialize();
@@ -53,7 +61,9 @@ describe('WindowMessageHandlerTests', () => {
         mockWindowUtils.verifyAll();
         mockWindowUtils.reset();
 
-        mockWindowUtils.setup(x => x.removeEventListener(window, 'message', messageCallback, false)).verifiable(Times.once());
+        mockWindowUtils
+            .setup(x => x.removeEventListener(window, 'message', messageCallback, false))
+            .verifiable(Times.once());
 
         testSubject.dispose();
 
@@ -65,22 +75,38 @@ describe('WindowMessageHandlerTests', () => {
         const targetWindow = {} as Window;
         const sampleMessage = getSampleMessageWithResponseId();
 
-        const createFrameResponderCallbackMock = Mock.ofInstance(testSubject.createFrameResponderCallback);
+        const createFrameResponderCallbackMock = Mock.ofInstance(
+            testSubject.createFrameResponderCallback,
+        );
         (testSubject.createFrameResponderCallback as any) = createFrameResponderCallbackMock.object;
 
         mockMessageMarshaller
-            .setup(x => x.createMessage(sampleMessage.command, sampleMessage.message, sampleMessage.messageId))
+            .setup(x =>
+                x.createMessage(
+                    sampleMessage.command,
+                    sampleMessage.message,
+                    sampleMessage.messageId,
+                ),
+            )
             .returns(() => sampleMessage)
             .verifiable();
 
-        mockWindowUtils.setup(x => x.postMessage(targetWindow, sampleMessage, '*')).verifiable(Times.once());
+        mockWindowUtils
+            .setup(x => x.postMessage(targetWindow, sampleMessage, '*'))
+            .verifiable(Times.once());
 
         createFrameResponderCallbackMock
             .setup(x => x(targetWindow, sampleMessage.command, sampleMessage.messageId))
             .returns(() => () => {});
 
         // sending message to iframe
-        testSubject.post(targetWindow, sampleMessage.command, sampleMessage.message, null, sampleMessage.messageId);
+        testSubject.post(
+            targetWindow,
+            sampleMessage.command,
+            sampleMessage.message,
+            null,
+            sampleMessage.messageId,
+        );
 
         mockWindowUtils.verifyAll();
         mockMessageMarshaller.verifyAll();
@@ -103,14 +129,28 @@ describe('WindowMessageHandlerTests', () => {
         };
 
         mockMessageMarshaller
-            .setup(x => x.createMessage(sampleMessage.command, sampleMessage.message, sampleMessage.messageId))
+            .setup(x =>
+                x.createMessage(
+                    sampleMessage.command,
+                    sampleMessage.message,
+                    sampleMessage.messageId,
+                ),
+            )
             .returns(() => sampleMessage)
             .verifiable();
 
-        mockWindowUtils.setup(x => x.postMessage(targetWindow, sampleMessage, '*')).verifiable(Times.once());
+        mockWindowUtils
+            .setup(x => x.postMessage(targetWindow, sampleMessage, '*'))
+            .verifiable(Times.once());
 
         // sending message to iframe
-        testSubject.post(targetWindow, sampleMessage.command, sampleMessage.message, callback, sampleMessage.messageId);
+        testSubject.post(
+            targetWindow,
+            sampleMessage.command,
+            sampleMessage.message,
+            callback,
+            sampleMessage.messageId,
+        );
 
         mockWindowUtils.verifyAll();
         mockMessageMarshaller.verifyAll();
@@ -120,8 +160,13 @@ describe('WindowMessageHandlerTests', () => {
             data: 'responseMessage',
         } as MessageEvent;
 
-        const responseMessage: WindowMessage = { messageId: 'anotherid', message: '' } as WindowMessage;
-        mockMessageMarshaller.setup(x => x.parseMessage(responseEvent.data)).returns(() => responseMessage);
+        const responseMessage: WindowMessage = {
+            messageId: 'anotherid',
+            message: '',
+        } as WindowMessage;
+        mockMessageMarshaller
+            .setup(x => x.parseMessage(responseEvent.data))
+            .returns(() => responseMessage);
         messageCallback(responseEvent);
 
         expect(isResponseCallbackInvoked).toBe(false);
@@ -148,13 +193,27 @@ describe('WindowMessageHandlerTests', () => {
         };
 
         mockMessageMarshaller
-            .setup(x => x.createMessage(sampleMessage.command, sampleMessage.message, sampleMessage.messageId))
+            .setup(x =>
+                x.createMessage(
+                    sampleMessage.command,
+                    sampleMessage.message,
+                    sampleMessage.messageId,
+                ),
+            )
             .returns(() => sampleMessage);
 
-        mockWindowUtils.setup(x => x.postMessage(targetWindow, sampleMessage, '*')).verifiable(Times.once());
+        mockWindowUtils
+            .setup(x => x.postMessage(targetWindow, sampleMessage, '*'))
+            .verifiable(Times.once());
 
         // sending message to iframe
-        testSubject.post(targetWindow, sampleMessage.command, sampleMessage.message, callback, sampleMessage.messageId);
+        testSubject.post(
+            targetWindow,
+            sampleMessage.command,
+            sampleMessage.message,
+            callback,
+            sampleMessage.messageId,
+        );
 
         mockWindowUtils.verifyAll();
         mockMessageMarshaller.verifyAll();
@@ -164,7 +223,9 @@ describe('WindowMessageHandlerTests', () => {
             data: 'responseMessage',
         } as MessageEvent;
 
-        mockMessageMarshaller.setup(x => x.parseMessage(responseEvent.data)).returns(() => responseMessage);
+        mockMessageMarshaller
+            .setup(x => x.parseMessage(responseEvent.data))
+            .returns(() => responseMessage);
         messageCallback(responseEvent);
 
         expect(isResponseCallbackInvoked).toBe(true);
@@ -189,13 +250,27 @@ describe('WindowMessageHandlerTests', () => {
         };
 
         mockMessageMarshaller
-            .setup(x => x.createMessage(sampleMessage.command, sampleMessage.message, sampleMessage.messageId))
+            .setup(x =>
+                x.createMessage(
+                    sampleMessage.command,
+                    sampleMessage.message,
+                    sampleMessage.messageId,
+                ),
+            )
             .returns(() => sampleMessage);
 
-        mockWindowUtils.setup(x => x.postMessage(targetWindow, sampleMessage, '*')).verifiable(Times.once());
+        mockWindowUtils
+            .setup(x => x.postMessage(targetWindow, sampleMessage, '*'))
+            .verifiable(Times.once());
 
         // sending message to iframe (to register callback)
-        testSubject.post(targetWindow, sampleMessage.command, sampleMessage.message, callback, sampleMessage.messageId);
+        testSubject.post(
+            targetWindow,
+            sampleMessage.command,
+            sampleMessage.message,
+            callback,
+            sampleMessage.messageId,
+        );
 
         mockWindowUtils.verifyAll();
         mockMessageMarshaller.verifyAll();
@@ -208,7 +283,9 @@ describe('WindowMessageHandlerTests', () => {
         // adding subscriber after callback is registered
         testSubject.addSubscriber(sampleMessage.command, callback);
 
-        mockMessageMarshaller.setup(x => x.parseMessage(responseEvent.data)).returns(() => responseMessage);
+        mockMessageMarshaller
+            .setup(x => x.parseMessage(responseEvent.data))
+            .returns(() => responseMessage);
         messageCallback(responseEvent);
 
         expect(isResponseCallbackInvoked).toBe(true);
@@ -239,7 +316,9 @@ describe('WindowMessageHandlerTests', () => {
         });
 
         const responseEvent: MessageEvent = { data: 'responseMessage' } as MessageEvent;
-        mockMessageMarshaller.setup(x => x.parseMessage(responseEvent.data)).returns(() => responseMessage);
+        mockMessageMarshaller
+            .setup(x => x.parseMessage(responseEvent.data))
+            .returns(() => responseMessage);
         messageCallback(responseEvent);
 
         expect(isResponseCallbackInvoked).toBe(true);
@@ -273,10 +352,14 @@ describe('WindowMessageHandlerTests', () => {
             .returns(() => responseMessage)
             .verifiable();
         mockMessageMarshaller
-            .setup(x => x.createMessage(responseMessage.command, sampleError, responseMessage.messageId))
+            .setup(x =>
+                x.createMessage(responseMessage.command, sampleError, responseMessage.messageId),
+            )
             .returns(() => responseMessage)
             .verifiable();
-        mockWindowUtils.setup(x => x.postMessage(responseEvent.source as Window, responseMessage, '*')).verifiable(Times.once());
+        mockWindowUtils
+            .setup(x => x.postMessage(responseEvent.source as Window, responseMessage, '*'))
+            .verifiable(Times.once());
 
         messageCallback(responseEvent);
 
@@ -306,7 +389,9 @@ describe('WindowMessageHandlerTests', () => {
         const responseEvent: MessageEvent = {
             data: 'responseMessage',
         } as MessageEvent;
-        mockMessageMarshaller.setup(x => x.parseMessage(responseEvent.data)).returns(() => responseMessage);
+        mockMessageMarshaller
+            .setup(x => x.parseMessage(responseEvent.data))
+            .returns(() => responseMessage);
 
         messageCallback(responseEvent);
 
@@ -319,13 +404,25 @@ describe('WindowMessageHandlerTests', () => {
         const sampleMessage = getSampleMessageWithResponseId();
         const targetWindow = {} as Window;
 
-        const frameCallback = testSubject.createFrameResponderCallback(targetWindow, sampleMessage.command, sampleMessage.messageId);
+        const frameCallback = testSubject.createFrameResponderCallback(
+            targetWindow,
+            sampleMessage.command,
+            sampleMessage.messageId,
+        );
 
         mockMessageMarshaller
-            .setup(x => x.createMessage(sampleMessage.command, sampleMessage.message, sampleMessage.messageId))
+            .setup(x =>
+                x.createMessage(
+                    sampleMessage.command,
+                    sampleMessage.message,
+                    sampleMessage.messageId,
+                ),
+            )
             .returns(() => sampleMessage)
             .verifiable(Times.once());
-        mockWindowUtils.setup(x => x.postMessage(targetWindow, sampleMessage, '*')).verifiable(Times.once());
+        mockWindowUtils
+            .setup(x => x.postMessage(targetWindow, sampleMessage, '*'))
+            .verifiable(Times.once());
 
         frameCallback(sampleMessage.message, sampleMessage.error, null);
 

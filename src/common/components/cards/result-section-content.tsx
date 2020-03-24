@@ -1,22 +1,24 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CardsVisualizationModifierButtonsProps } from 'common/components/cards/cards-visualization-modifier-buttons';
+import { CardsVisualizationModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
-import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
+import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
 import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
 import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
-import { NoFailedInstancesCongrats } from '../../../reports/components/report-sections/no-failed-instances-congrats';
+import {
+    NoFailedInstancesCongrats,
+    NoFailedInstancesCongratsDeps,
+} from '../../../reports/components/report-sections/no-failed-instances-congrats';
 import { CardRuleResult } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { RulesWithInstances, RulesWithInstancesDeps } from './rules-with-instances';
 
-export type ResultSectionContentDeps = RulesWithInstancesDeps & {
-    cardsVisualizationModifierButtons: ReactFCWithDisplayName<
-        CardsVisualizationModifierButtonsProps
-    >;
-};
+export type ResultSectionContentDeps = RulesWithInstancesDeps &
+    NoFailedInstancesCongratsDeps & {
+        cardsVisualizationModifierButtons: CardsVisualizationModifierButtons;
+    };
 
 export type ResultSectionContentProps = {
     deps: ResultSectionContentDeps;
@@ -41,7 +43,7 @@ export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
             targetAppInfo,
         } = props;
         if (results.length === 0) {
-            return <NoFailedInstancesCongrats />;
+            return <NoFailedInstancesCongrats deps={props.deps} />;
         }
 
         return (

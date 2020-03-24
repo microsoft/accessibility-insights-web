@@ -80,6 +80,7 @@
     --menu-item-background-hover: var(--neutral-alpha-4);
     --menu-item-background-active: var(--neutral-alpha-8);
     --link: var(--communication-primary);
+    --unified-link: var(black);
     --link-hover: var(--communication-shade-20);
     --switcher-border: var(--ada-brand-variant);
     --switcher-focus-border: var(--neutral-0);
@@ -94,6 +95,7 @@
     --screenshot-image-outline: #8b8b8b;
     --card-border: transparent;
     --card-footer-border: var(--neutral-10);
+    --button-hover: var(--communication-primary);
 
     // Landmark colors
     --landmark-contentinfo: #00a88c;
@@ -148,6 +150,7 @@
         --group-selected-background: var(--grey);
         --row-hover-background: var(--communication-tint-40);
         --link: var(--communication-shade-10);
+        --unified-link: var(--communication-tint-40);
         --link-hover: var(--communication-shade-10);
         --switcher-border: var(--brand-blue);
         --switcher-focus-border: var(--black);
@@ -164,6 +167,7 @@
         --screenshot-image-outline: var(--white);
         --card-border: var(--white);
         --card-footer-border: var(--white);
+        --button-hover: #0078d4; // this is the same color office fabric uses on hover
     }
 }
 
@@ -202,7 +206,6 @@ $neutral-55: var(--neutral-55);
 $neutral-60: var(--neutral-60);
 $neutral-70: var(--neutral-70);
 $neutral-80: var(--neutral-80);
-$neutral-90: var(--neutral-90);
 $neutral-alpha-2: var(--neutral-alpha-2);
 $neutral-alpha-4: var(--neutral-alpha-4);
 $neutral-alpha-6: var(--neutral-alpha-6);
@@ -246,6 +249,7 @@ $row-selected-background: var(--row-selected-background);
 $group-selected-background: var(--group-selected-background);
 $row-hover-background: var(--row-hover-background);
 $link: var(--link);
+$unified-link: var(--unified-link);
 $link-hover: var(--link-hover);
 $switcher-border: var(--switcher-border);
 $switcher-focus-border: var(--switcher-focus-border);
@@ -262,6 +266,7 @@ $menu-background: var(--menu-background);
 $screenshot-image-outline: var(--screenshot-image-outline);
 $card-border: var(--card-border);
 $card-footer-border: var(--card-footer-border);
+$button-hover: var(--button-hover);
 
 // consistent colors
 $always-white: #ffffff;

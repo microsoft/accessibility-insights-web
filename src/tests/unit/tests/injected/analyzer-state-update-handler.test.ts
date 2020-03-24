@@ -19,7 +19,9 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
         visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
         startScanMock = Mock.ofInstance(id => {});
         teardownMock = Mock.ofInstance(id => {});
-        testObject = new TestableAnalyzerStateUpdateHandler(visualizationConfigurationFactoryMock.object);
+        testObject = new TestableAnalyzerStateUpdateHandler(
+            visualizationConfigurationFactoryMock.object,
+        );
         testObject.setupHandlers(startScanMock.object, teardownMock.object);
     });
 
@@ -83,7 +85,9 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
             .with('scanning', HeadingsTestStep.headingFunction)
             .withHeadingsAssessment(true, enabledStep)
             .build();
-        startScanMock.setup(start => start(HeadingsTestStep.headingFunction)).verifiable(Times.once());
+        startScanMock
+            .setup(start => start(HeadingsTestStep.headingFunction))
+            .verifiable(Times.once());
         setupDefaultVisualizationConfigFactory();
 
         testObject.handleUpdate(state);
@@ -140,8 +144,12 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
 
     test('teardown when a test is turned form enabled to disabled', () => {
         const enabledStep = HeadingsTestStep.headingFunction;
-        const prevState = new VisualizationStoreDataBuilder().withHeadingsAssessment(true, enabledStep).build();
-        const currState = new VisualizationStoreDataBuilder().withHeadingsAssessment(false, enabledStep).build();
+        const prevState = new VisualizationStoreDataBuilder()
+            .withHeadingsAssessment(true, enabledStep)
+            .build();
+        const currState = new VisualizationStoreDataBuilder()
+            .withHeadingsAssessment(false, enabledStep)
+            .build();
         testObject.setPrevState(prevState);
         teardownMock.setup(teardown => teardown(enabledStep)).verifiable(Times.once());
         setupDefaultVisualizationConfigFactory();
@@ -154,7 +162,9 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
     test('teardown when enabled step is changed', () => {
         const prevEnabledStep = HeadingsTestStep.headingFunction;
         const currEnabledStep = HeadingsTestStep.headingLevel;
-        const prevState = new VisualizationStoreDataBuilder().withHeadingsAssessment(true, prevEnabledStep).build();
+        const prevState = new VisualizationStoreDataBuilder()
+            .withHeadingsAssessment(true, prevEnabledStep)
+            .build();
         const currState = new VisualizationStoreDataBuilder()
             .withHeadingsAssessment(false, prevEnabledStep)
             .withHeadingsAssessment(true, currEnabledStep)
@@ -171,7 +181,9 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
     test('both test and step get changed', () => {
         const prevEnabledStep = LandmarkTestStep.landmarkRoles;
         const currEnabledStep = HeadingsTestStep.headingLevel;
-        const prevState = new VisualizationStoreDataBuilder().withLandmarksAssessment(true, prevEnabledStep).build();
+        const prevState = new VisualizationStoreDataBuilder()
+            .withLandmarksAssessment(true, prevEnabledStep)
+            .build();
         const currState = new VisualizationStoreDataBuilder()
             .with('scanning', currEnabledStep)
             .withLandmarksAssessment(false, prevEnabledStep)

@@ -18,7 +18,12 @@ describe('FailedInstancesSection', () => {
         inapplicable: [],
         unknown: [],
     };
-    const nonEmptyResults: CardRuleResultsByStatus = { fail: [], pass: [], inapplicable: [], unknown: [] };
+    const nonEmptyResults: CardRuleResultsByStatus = {
+        fail: [],
+        pass: [],
+        inapplicable: [],
+        unknown: [],
+    };
 
     describe('renders', () => {
         it.each`

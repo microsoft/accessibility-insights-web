@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { SidePanelActions } from 'background/actions/side-panel-actions';
+import { SidePanel, SidePanelToStoreKey } from 'background/stores/side-panel';
 import { StoreNames } from 'common/stores/store-names';
 import { CurrentPanel } from 'common/types/store-data/current-panel';
 import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
@@ -16,6 +18,7 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
         private scopingActions: ScopingActions,
         private contentActions: ContentActions,
         private detailsViewActions: DetailsViewActions,
+        private sidePanelActions: SidePanelActions,
     ) {
         super(StoreNames.DetailsViewStore);
     }
@@ -46,7 +49,6 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
         this.scopingActions.openScopingPanel.addListener(() => this.onOpen('isScopingOpen'));
         this.scopingActions.closeScopingPanel.addListener(() => this.onClose('isScopingOpen'));
 
-        this.detailsViewActions.openSettingsPanel.addListener(() => this.onOpen('isSettingsOpen'));
         this.detailsViewActions.closeSettingsPanel.addListener(() =>
             this.onClose('isSettingsOpen'),
         );
@@ -62,7 +64,19 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
             this.onSetSelectedDetailsViewRightContentPanel,
         );
         this.detailsViewActions.getCurrentState.addListener(this.onGetCurrentState);
+
+        this.sidePanelActions.openSidePanel.addListener(this.onOpenSidePanel);
     }
+
+    private sidePanelToStateKey: SidePanelToStoreKey = {
+        Settings: 'isSettingsOpen',
+    };
+
+    private onOpenSidePanel = (sidePanel: SidePanel) => {
+        const stateKey = this.sidePanelToStateKey[sidePanel];
+
+        this.onOpen(stateKey);
+    };
 
     private onOpen = (
         flagName: keyof CurrentPanel,

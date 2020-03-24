@@ -11,6 +11,7 @@ declare var axe;
 
 export async function scanForAccessibilityIssues(
     view: ViewController,
+    selector?: string,
 ): Promise<PrintableAxeResult[]> {
     await injectAxeIfUndefined(view);
 
@@ -21,14 +22,21 @@ export async function scanForAccessibilityIssues(
         },
     };
 
-    const executeOutput = await view.client.executeAsync((options, done) => {
-        axe.run(document, options, function(err: Error, results: any): void {
-            if (err) {
-                throw err;
-            }
-            done(results);
-        });
-    }, axeRunOptions);
+    const executeOutput = await view.client.executeAsync(
+        (options, selectorInEvaluate, done) => {
+            const elementContext =
+                selectorInEvaluate === null ? document : { include: [selectorInEvaluate] };
+
+            axe.run(elementContext, options, function (err: Error, results: any): void {
+                if (err) {
+                    throw err;
+                }
+                done(results);
+            });
+        },
+        axeRunOptions,
+        selector,
+    );
 
     // This is how webdriverio indicates success
     expect(executeOutput).toHaveProperty('status', 0);

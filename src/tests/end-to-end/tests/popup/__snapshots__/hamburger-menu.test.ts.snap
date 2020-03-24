@@ -132,7 +132,10 @@ exports[`Popup -> Hamburger menu should have content matching snapshot 1`] = `
               <i
                 aria-hidden="true"
                 class="ms-ContextualMenu-icon icon-000"
-              />
+                data-icon-name="KeyboardClassic"
+              >
+                
+              </i>
               <span
                 class="ms-ContextualMenu-itemText label-000"
               >

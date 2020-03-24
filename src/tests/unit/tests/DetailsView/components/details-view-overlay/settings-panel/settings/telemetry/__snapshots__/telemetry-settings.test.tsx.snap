@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TelemetrySettings renders with enabled = false 1`] = `
+<GenericToggle
+  description={
+    <EnableTelemetrySettingDescription
+      deps={
+        Object {
+          "LinkComponent": [Function],
+        }
+      }
+    />
+  }
+  enabled={false}
+  id="enable-telemetry"
+  name="Help improve test-product-name"
+  onClick={[Function]}
+/>
+`;
+
+exports[`TelemetrySettings renders with enabled = true 1`] = `
+<GenericToggle
+  description={
+    <EnableTelemetrySettingDescription
+      deps={
+        Object {
+          "LinkComponent": [Function],
+        }
+      }
+    />
+  }
+  enabled={true}
+  id="enable-telemetry"
+  name="Help improve test-product-name"
+  onClick={[Function]}
+/>
+`;

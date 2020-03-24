@@ -126,8 +126,6 @@ export class AssessmentBuilder {
         const { key, requirements } = assessment;
 
         assessment.requirementOrder = assessment.requirementOrder || RequirementComparer.byOrdinal;
-        assessment.executeAssessmentScanPolicy =
-            assessment.executeAssessmentScanPolicy || AssessmentBuilder.nullScanPolicy;
         assessment.initialDataCreator =
             assessment.initialDataCreator || createInitialAssessmentTestData;
 
@@ -256,9 +254,6 @@ export class AssessmentBuilder {
             return requirementConfig.getNotificationMessage(selectorMap);
         };
 
-        assessment.executeAssessmentScanPolicy =
-            assessment.executeAssessmentScanPolicy || AssessmentBuilder.nullScanPolicy;
-
         const visualizationConfiguration: AssessmentVisualizationConfiguration = {
             getTestView: props => <AssessmentTestView {...props} />,
             getAssessmentData: data => data.assessments[key],
@@ -380,6 +375,4 @@ export class AssessmentBuilder {
 
         return children;
     }
-
-    private static nullScanPolicy(scan, data): void {}
 }

@@ -12,12 +12,14 @@ import { IMock, It, Mock, Times } from 'typemoq';
 describe('GearMenuButton', () => {
     describe('renders', () => {
         const props: GearMenuButtonProps = {
-            dropdownClickHandler: Mock.ofType(DropdownClickHandler).object,
-            featureFlags: {},
+            deps: {
+                dropdownClickHandler: Mock.ofType(DropdownClickHandler).object,
+            },
+            featureFlagData: {},
         };
 
         it.each([true, false])('proper button with scoping enabled = %s', isScopingEnabled => {
-            props.featureFlags = { [FeatureFlags[FeatureFlags.scoping]]: isScopingEnabled };
+            props.featureFlagData = { [FeatureFlags[FeatureFlags.scoping]]: isScopingEnabled };
 
             const testSubject = shallow(<GearMenuButton {...props} />);
             expect(testSubject.getElement()).toMatchSnapshot();
@@ -43,8 +45,10 @@ describe('GearMenuButton', () => {
             dropdownClickHandlerMock = Mock.ofType(DropdownClickHandler);
 
             props = {
-                dropdownClickHandler: dropdownClickHandlerMock.object,
-                featureFlags: { [FeatureFlags[FeatureFlags.scoping]]: true },
+                deps: {
+                    dropdownClickHandler: dropdownClickHandlerMock.object,
+                },
+                featureFlagData: { [FeatureFlags[FeatureFlags.scoping]]: true },
             };
 
             const testSubject = shallow(<GearMenuButton {...props} />);
@@ -52,23 +56,42 @@ describe('GearMenuButton', () => {
         });
 
         it('handle settings menu item click', () => {
-            dropdownClickHandlerMock.verify(handler => handler.openSettingsPanelHandler(It.isAny()), Times.never());
+            dropdownClickHandlerMock.verify(
+                handler => handler.openSettingsPanelHandler(It.isAny()),
+                Times.never(),
+            );
             findMenuItemByKey('settings').onClick(eventStub);
-            dropdownClickHandlerMock.verify(handler => handler.openSettingsPanelHandler(eventStub), Times.once());
+            dropdownClickHandlerMock.verify(
+                handler => handler.openSettingsPanelHandler(eventStub),
+                Times.once(),
+            );
         });
 
         it('handle preview features menu item click', () => {
-            dropdownClickHandlerMock.verify(handler => handler.openPreviewFeaturesPanelHandler(It.isAny()), Times.never());
+            dropdownClickHandlerMock.verify(
+                handler => handler.openPreviewFeaturesPanelHandler(It.isAny()),
+                Times.never(),
+            );
             findMenuItemByKey('preview-features').onClick(eventStub);
-            dropdownClickHandlerMock.verify(handler => handler.openPreviewFeaturesPanelHandler(eventStub), Times.once());
+            dropdownClickHandlerMock.verify(
+                handler => handler.openPreviewFeaturesPanelHandler(eventStub),
+                Times.once(),
+            );
         });
 
         it('handle scoping menu item click', () => {
-            dropdownClickHandlerMock.verify(handler => handler.openScopingPanelHandler(It.isAny()), Times.never());
+            dropdownClickHandlerMock.verify(
+                handler => handler.openScopingPanelHandler(It.isAny()),
+                Times.never(),
+            );
             findMenuItemByKey('scoping-feature').onClick(eventStub);
-            dropdownClickHandlerMock.verify(handler => handler.openScopingPanelHandler(eventStub), Times.once());
+            dropdownClickHandlerMock.verify(
+                handler => handler.openScopingPanelHandler(eventStub),
+                Times.once(),
+            );
         });
 
-        const findMenuItemByKey = (key: string) => buttonProps.menuProps.items.find(item => item.key === key);
+        const findMenuItemByKey = (key: string) =>
+            buttonProps.menuProps.items.find(item => item.key === key);
     });
 });

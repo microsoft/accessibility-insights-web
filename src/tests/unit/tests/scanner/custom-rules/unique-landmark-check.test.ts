@@ -11,7 +11,7 @@ describe('axe.Check: unique-landmark', () => {
     let fixture;
     const checkContext = {
         _data: null,
-        data: function(d: any): void {
+        data: function (d: any): void {
             // tslint:disable-next-line:no-invalid-this
             this._data = d;
         },

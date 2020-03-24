@@ -4,8 +4,8 @@
 
 .title-bar {
     background: $ada-brand-color;
+}
 
-    h1 {
-        color: $always-white !important;
-    }
+.header-text {
+    color: $header-bar-title-color !important;
 }

@@ -21,8 +21,14 @@ exports[`LaunchPanelHeaderTest renders 1`] = `
       featureFlagStoreData={Object {}}
     />
     <GearOptionsButtonComponent
-      dropdownClickHandler={Object {}}
-      featureFlags={Object {}}
+      deps={
+        Object {
+          "dropdownClickHandler": Object {},
+          "launchPanelHeaderClickHandler": Object {},
+          "popupActionMessageCreator": Object {},
+        }
+      }
+      featureFlagData={Object {}}
     />
     <HamburgerMenuButton
       deps={
@@ -120,8 +126,14 @@ exports[`LaunchPanelHeaderTest renders 1`] = `
                     featureFlagStoreData={Object {}}
                   />
                   <GearOptionsButtonComponent
-                    dropdownClickHandler={Object {}}
-                    featureFlags={Object {}}
+                    deps={
+                      Object {
+                        "dropdownClickHandler": Object {},
+                        "launchPanelHeaderClickHandler": Object {},
+                        "popupActionMessageCreator": Object {},
+                      }
+                    }
+                    featureFlagData={Object {}}
                   />
                   <HamburgerMenuButton
                     deps={

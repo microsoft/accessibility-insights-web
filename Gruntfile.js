@@ -6,12 +6,16 @@ const targets = require('./targets.config');
 const merge = require('lodash/merge');
 const yaml = require('js-yaml');
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
     const extensionPath = 'extension';
 
     const packageReportPath = path.join('package', 'report');
     const packageReportBundlePath = path.join(packageReportPath, 'bundle');
     const packageReportDropPath = path.join(packageReportPath, 'drop');
+
+    const packageUIPath = path.join('package', 'ui');
+    const packageUIBundlePath = path.join(packageUIPath, 'bundle');
+    const packageUIDropPath = path.join(packageUIPath, 'drop');
 
     function mustExist(file, reason) {
         const normalizedFile = path.normalize(file);
@@ -86,7 +90,10 @@ module.exports = function(grunt) {
                     {
                         cwd: './dist/src/electron/views/device-connect-view',
                         src: '*.css',
-                        dest: path.join(extensionPath, 'electron/views/device-connect-view/styles/default'),
+                        dest: path.join(
+                            extensionPath,
+                            'electron/views/device-connect-view/styles/default',
+                        ),
                         expand: true,
                     },
                     {
@@ -105,6 +112,12 @@ module.exports = function(grunt) {
                         cwd: './node_modules/office-ui-fabric-react/dist/css',
                         src: 'fabric.min.css',
                         dest: path.join(extensionPath, 'common/styles/'),
+                        expand: true,
+                    },
+                    {
+                        cwd: './dist/src/debug-tools',
+                        src: '*.css',
+                        dest: path.join(extensionPath, 'debug-tools'),
                         expand: true,
                     },
                 ],
@@ -129,12 +142,39 @@ module.exports = function(grunt) {
                     },
                 ],
             },
+            'package-ui': {
+                files: [
+                    {
+                        cwd: '.',
+                        src: path.join(packageUIBundlePath, 'ui.bundle.js'),
+                        dest: path.join(packageUIDropPath, 'index.js'),
+                    },
+                    {
+                        cwd: '.',
+                        src: path.join(packageUIBundlePath, 'ui.css'),
+                        dest: path.join(packageUIDropPath, 'ui.css'),
+                    },
+                    {
+                        cwd: './src/packages/accessibility-insights-ui/root',
+                        src: '*',
+                        dest: packageUIDropPath,
+                        expand: true,
+                    },
+                ],
+            },
         },
         exec: {
             'webpack-dev': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name dev`,
             'webpack-prod': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name prod`,
-            'webpack-unified': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name unified`,
-            'webpack-package-report': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name package-report`,
+            'webpack-unified': `"${path.resolve(
+                './node_modules/.bin/webpack',
+            )}" --config-name unified`,
+            'webpack-package-report': `"${path.resolve(
+                './node_modules/.bin/webpack',
+            )}" --config-name package-report`,
+            'webpack-package-ui': `"${path.resolve(
+                './node_modules/.bin/webpack',
+            )}" --config-name package-ui`,
             'generate-scss-typings': `"${path.resolve('./node_modules/.bin/tsm')}" src`,
         },
         sass: {
@@ -189,8 +229,12 @@ module.exports = function(grunt) {
 
     const targetNames = Object.keys(targets);
     const releaseTargets = Object.keys(targets).filter(t => targets[t].release);
-    const extensionReleaseTargets = releaseTargets.filter(t => targets[t].config.options.productCategory === 'extension');
-    const unifiedReleaseTargets = releaseTargets.filter(t => targets[t].config.options.productCategory === 'electron');
+    const extensionReleaseTargets = releaseTargets.filter(
+        t => targets[t].config.options.productCategory === 'extension',
+    );
+    const unifiedReleaseTargets = releaseTargets.filter(
+        t => targets[t].config.options.productCategory === 'electron',
+    );
 
     unifiedReleaseTargets.forEach(targetName => {
         const { config, appId, publishUrl } = targets[targetName];
@@ -215,6 +259,11 @@ module.exports = function(grunt) {
             'unified-release-drop': {
                 [targetName]: {
                     // empty on purpose
+                },
+            },
+            'zip-mac-folder': {
+                [targetName]: {
+                    dropPath: dropPath,
                 },
             },
         });
@@ -252,6 +301,7 @@ module.exports = function(grunt) {
             clean: {
                 [targetName]: dropPath,
                 'package-report': packageReportDropPath,
+                'package-ui': packageUIDropPath,
                 scss: path.join('src', '**/*.scss.d.ts'),
             },
             'embed-styles': {
@@ -304,7 +354,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-exec');
     grunt.loadNpmTasks('grunt-sass');
 
-    grunt.registerMultiTask('embed-styles', function() {
+    grunt.registerMultiTask('embed-styles', function () {
         const { cssPath } = this.data;
         this.files.forEach(file => {
             const {
@@ -326,7 +376,7 @@ module.exports = function(grunt) {
         });
     });
 
-    grunt.registerMultiTask('configure', function() {
+    grunt.registerMultiTask('configure', function () {
         const { config, configJSONPath, configJSPath, telemetryKeyIdentifier } = this.data;
         // We pass this as an option from a build variable not because it is a secret
         // (it can be found easily enough from released builds), but to make it harder
@@ -337,12 +387,13 @@ module.exports = function(grunt) {
 
         const configJSON = JSON.stringify(config, undefined, 4);
         grunt.file.write(configJSONPath, configJSON);
-        const copyrightHeader = '// Copyright (c) Microsoft Corporation. All rights reserved.\n// Licensed under the MIT License.\n';
+        const copyrightHeader =
+            '// Copyright (c) Microsoft Corporation. All rights reserved.\n// Licensed under the MIT License.\n';
         const configJS = `${copyrightHeader}window.insights = ${configJSON}`;
         grunt.file.write(configJSPath, configJS);
     });
 
-    grunt.registerMultiTask('manifest', function() {
+    grunt.registerMultiTask('manifest', function () {
         const { config, manifestSrc, manifestDest } = this.data;
         const manifestJSON = grunt.file.readJSON(manifestSrc);
         merge(manifestJSON, {
@@ -363,7 +414,7 @@ module.exports = function(grunt) {
         grunt.file.write(manifestDest, JSON.stringify(manifestJSON, undefined, 2));
     });
 
-    grunt.registerMultiTask('drop', function() {
+    grunt.registerMultiTask('drop', function () {
         const targetName = this.target;
         const { bundleFolder, mustExistFile, config } = targets[targetName];
 
@@ -384,12 +435,17 @@ module.exports = function(grunt) {
         console.log(`${targetName} extension is in ${dropExtensionPath}`);
     });
 
-    grunt.registerMultiTask('configure-electron-builder', function() {
+    grunt.registerMultiTask('configure-electron-builder', function () {
         grunt.task.requires('drop:' + this.target);
         const { dropPath, electronIconBaseName, fullName, appId, publishUrl } = this.data;
 
         const outElectronBuilderConfigFile = path.join(dropPath, 'electron-builder.yml');
-        const srcElectronBuilderConfigFile = path.join('src', 'electron', 'electron-builder', `electron-builder.template.yaml`);
+        const srcElectronBuilderConfigFile = path.join(
+            'src',
+            'electron',
+            'electron-builder',
+            `electron-builder.template.yaml`,
+        );
 
         const version = grunt.option('unified-version') || '0.0.0';
 
@@ -413,7 +469,7 @@ module.exports = function(grunt) {
         grunt.log.writeln(`generated ${outElectronBuilderConfigFile} from target config`);
     });
 
-    grunt.registerMultiTask('electron-builder-pack', function() {
+    grunt.registerMultiTask('electron-builder-pack', function () {
         grunt.task.requires('drop:' + this.target);
         grunt.task.requires('configure-electron-builder:' + this.target);
 
@@ -425,11 +481,20 @@ module.exports = function(grunt) {
         grunt.util.spawn(
             {
                 cmd: 'node',
-                args: ['node_modules/electron-builder/out/cli/cli.js', '-p', 'never', '-c', configFile],
+                args: [
+                    'node_modules/electron-builder/out/cli/cli.js',
+                    '-p',
+                    'never',
+                    '-c',
+                    configFile,
+                ],
             },
             (error, result, code) => {
                 if (error) {
-                    grunt.fail.fatal(`electron-builder exited with error code ${code}:\n\n${result.stdout}`, code);
+                    grunt.fail.fatal(
+                        `electron-builder exited with error code ${code}:\n\n${result.stdout}`,
+                        code,
+                    );
                 }
 
                 taskDoneCallback();
@@ -437,13 +502,52 @@ module.exports = function(grunt) {
         );
     });
 
-    grunt.registerMultiTask('unified-release-drop', function() {
+    grunt.registerMultiTask('zip-mac-folder', function () {
+        grunt.task.requires('drop:' + this.target);
+        grunt.task.requires('configure-electron-builder:' + this.target);
+        grunt.task.requires('electron-builder-pack:' + this.target);
+
+        // We found that the mac update fails unless we produce the
+        // zip file ourselves; electron-builder requires a zip file, but
+        // the zip file it produces leads to 'couldn't find pkzip signatures'
+        // during the eventual update.
+
+        if (process.platform !== 'darwin') {
+            grunt.log.writeln(`task not required for this platform (${process.platform})`);
+            return true;
+        }
+
+        const { dropPath } = this.data;
+        const packedPath = `${dropPath}/packed`;
+
+        const taskDoneCallback = this.async();
+
+        grunt.util.spawn(
+            {
+                cmd: 'node',
+                args: ['pipeline/scripts/zip-mac-folder.js', packedPath],
+            },
+            (error, result, code) => {
+                if (error) {
+                    grunt.fail.fatal(
+                        `zipping mac folder exited with error code ${code}:\n\n${result.stdout}`,
+                        code,
+                    );
+                }
+
+                taskDoneCallback();
+            },
+        );
+    });
+
+    grunt.registerMultiTask('unified-release-drop', function () {
         grunt.task.run(`drop:${this.target}`);
         grunt.task.run(`configure-electron-builder:${this.target}`);
         grunt.task.run(`electron-builder-pack:${this.target}`);
+        grunt.task.run(`zip-mac-folder:${this.target}`);
     });
 
-    grunt.registerTask('package-report', function() {
+    grunt.registerTask('package-report', function () {
         const mustExistPath = path.join(packageReportBundlePath, 'report.bundle.js');
 
         mustExist(mustExistPath, 'Have you run webpack?');
@@ -454,22 +558,49 @@ module.exports = function(grunt) {
         console.log(`package is in ${packageReportDropPath}`);
     });
 
-    grunt.registerTask('extension-release-drops', function() {
+    grunt.registerTask('package-ui', function () {
+        const mustExistPath = path.join(packageUIBundlePath, 'ui.bundle.js');
+
+        mustExist(mustExistPath, 'Have you run webpack?');
+
+        grunt.task.run('clean:package-ui');
+        grunt.task.run('copy:package-ui');
+        console.log(`package is in ${packageUIDropPath}`);
+    });
+
+    grunt.registerTask('extension-release-drops', function () {
         extensionReleaseTargets.forEach(targetName => {
             grunt.task.run('drop:' + targetName);
         });
     });
 
-    grunt.registerTask('unified-release-drops', function() {
+    grunt.registerTask('unified-release-drops', function () {
         unifiedReleaseTargets.forEach(targetName => {
             grunt.task.run('unified-release-drop:' + targetName);
         });
     });
 
+    grunt.registerTask('ada-cat', function () {
+        if (process.env.SHOW_ADA !== 'false') {
+            console.log(
+                'Image of Ada sleeping follows. Set environment variable SHOW_ADA to false to hide.',
+            );
+            const adaFile = 'docs/art/ada-cat.ansi256.txt';
+            const adaArt = grunt.file.read(adaFile);
+            console.log(adaArt);
+        }
+    });
+
     grunt.registerTask('build-assets', ['sass', 'copy:code', 'copy:styles', 'copy:images']);
 
     // Main entry points for npm scripts:
-    grunt.registerTask('build-dev', ['clean:intermediates', 'exec:generate-scss-typings', 'exec:webpack-dev', 'build-assets', 'drop:dev']);
+    grunt.registerTask('build-dev', [
+        'clean:intermediates',
+        'exec:generate-scss-typings',
+        'exec:webpack-dev',
+        'build-assets',
+        'drop:dev',
+    ]);
     grunt.registerTask('build-prod', [
         'clean:intermediates',
         'exec:generate-scss-typings',
@@ -499,6 +630,13 @@ module.exports = function(grunt) {
         'exec:webpack-package-report',
         'build-assets',
         'package-report',
+    ]);
+    grunt.registerTask('build-package-ui', [
+        'clean:intermediates',
+        'exec:generate-scss-typings',
+        'exec:webpack-package-ui',
+        'build-assets',
+        'package-ui',
     ]);
     grunt.registerTask('build-all', [
         'clean:intermediates',

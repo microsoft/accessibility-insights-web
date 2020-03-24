@@ -3,11 +3,28 @@
 import * as React from 'react';
 
 import { shallow } from 'enzyme';
-import { NoFailedInstancesCongrats } from 'reports/components/report-sections/no-failed-instances-congrats';
+import {
+    NoFailedInstancesCongrats,
+    NoFailedInstancesCongratsDeps,
+} from 'reports/components/report-sections/no-failed-instances-congrats';
 
-describe('NoFailedInstancesCongrats', () => {
+describe('NoFailedInstancesCongrats with default message', () => {
     it('renders', () => {
-        const wrapper = shallow(<NoFailedInstancesCongrats />);
+        const deps: NoFailedInstancesCongratsDeps = {
+            customCongratsMessage: null,
+        };
+        const wrapper = shallow(<NoFailedInstancesCongrats deps={deps} />);
+
+        expect(wrapper.getElement()).toMatchSnapshot();
+    });
+});
+
+describe('NoFailedInstancesCongrats with custom message', () => {
+    it('renders', () => {
+        const deps: NoFailedInstancesCongratsDeps = {
+            customCongratsMessage: 'Look, ma! No bugs!',
+        };
+        const wrapper = shallow(<NoFailedInstancesCongrats deps={deps} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });

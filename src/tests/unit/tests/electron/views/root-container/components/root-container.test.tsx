@@ -5,7 +5,6 @@ import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ViewRoutes } from 'electron/flux/types/window-state-store-data';
 import {
-    RootContainer,
     RootContainerDeps,
     RootContainerInternal,
     RootContainerProps,
@@ -15,7 +14,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
 
-describe(RootContainer, () => {
+describe('RootContainer', () => {
     let deps: RootContainerDeps;
     let storeHubMock: IMock<ClientStoresHub<RootContainerState>>;
     let props: RootContainerProps;
@@ -27,7 +26,10 @@ describe(RootContainer, () => {
         props = {
             deps,
             storeState: {
-                windowStateStoreData: { routeId: 'deviceConnectView', currentWindowState: 'customSize' },
+                windowStateStoreData: {
+                    routeId: 'deviceConnectView',
+                    currentWindowState: 'customSize',
+                },
                 userConfigurationStoreData: {
                     isFirstTime: false,
                 },

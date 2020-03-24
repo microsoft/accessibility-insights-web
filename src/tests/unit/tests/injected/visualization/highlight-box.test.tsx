@@ -3,8 +3,15 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { BoxConfig, SimpleHighlightDrawerConfiguration } from '../../../../../injected/visualization/formatter';
-import { HighlightBox, HighlightBoxDeps, HighlightBoxProps } from '../../../../../injected/visualization/highlight-box';
+import {
+    BoxConfig,
+    SimpleHighlightDrawerConfiguration,
+} from '../../../../../injected/visualization/formatter';
+import {
+    HighlightBox,
+    HighlightBoxDeps,
+    HighlightBoxProps,
+} from '../../../../../injected/visualization/highlight-box';
 
 describe('HighlightBox', () => {
     let deps: HighlightBoxDeps;

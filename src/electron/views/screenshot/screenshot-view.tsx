@@ -32,15 +32,7 @@ export const ScreenshotView = NamedFC<ScreenshotViewProps>(
 );
 
 function renderHeader(): JSX.Element {
-    // The tabIndex=0 is because the view is independently scrollable, which means there must always be at least one focusable element
-    // inside it to enable keyboard users to scroll it. See https://dequeuniversity.com/rules/axe/3.3/scrollable-region-focusable
-    //
-    // Once we add the "enable visualizations" toggle, we should remove it.
-    return (
-        <h2 className={styles.header} tabIndex={0}>
-            Target app screenshot
-        </h2>
-    );
+    return <h2 className={styles.header}>Target app screenshot</h2>;
 }
 
 function renderUnavailableMessage(): JSX.Element {

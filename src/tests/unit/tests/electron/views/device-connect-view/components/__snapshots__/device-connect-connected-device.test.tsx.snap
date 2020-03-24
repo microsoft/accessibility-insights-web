@@ -1,12 +1,69 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DeviceConnectConnectedDeviceTest render connection failure: connection failure 1`] = `
+exports[`DeviceConnectConnectedDeviceTest renders for deviceConnectState = Connected 1`] = `
 <div
   className="deviceConnectConnectedDevice"
 >
-  <h3>
+  <div
+    className="label"
+  >
     Connected device
-  </h3>
+  </div>
+  <div
+    aria-live="assertive"
+    role="alert"
+  />
+</div>
+`;
+
+exports[`DeviceConnectConnectedDeviceTest renders for deviceConnectState = Connecting 1`] = `
+<div
+  className="deviceConnectConnectedDevice"
+>
+  <div
+    className="label"
+  >
+    Connected device
+  </div>
+  <div
+    aria-live="assertive"
+    role="alert"
+  >
+    <StyledSpinnerBase
+      className="deviceConnectSpinner"
+      label="Connecting to mobile device"
+      labelPosition="right"
+      size={0}
+    />
+  </div>
+</div>
+`;
+
+exports[`DeviceConnectConnectedDeviceTest renders for deviceConnectState = Default 1`] = `
+<div
+  className="deviceConnectConnectedDevice"
+>
+  <div
+    className="label"
+  >
+    Connected device
+  </div>
+  <div
+    aria-live="assertive"
+    role="alert"
+  />
+</div>
+`;
+
+exports[`DeviceConnectConnectedDeviceTest renders for deviceConnectState = Error 1`] = `
+<div
+  className="deviceConnectConnectedDevice"
+>
+  <div
+    className="label"
+  >
+    Connected device
+  </div>
   <div
     aria-live="assertive"
     role="alert"
@@ -27,13 +84,15 @@ exports[`DeviceConnectConnectedDeviceTest render connection failure: connection 
 </div>
 `;
 
-exports[`DeviceConnectConnectedDeviceTest render connection success: connection success 1`] = `
+exports[`DeviceConnectConnectedDeviceTest renders the device name when state is connected 1`] = `
 <div
   className="deviceConnectConnectedDevice"
 >
-  <h3>
+  <div
+    className="label"
+  >
     Connected device
-  </h3>
+  </div>
   <div
     aria-live="assertive"
     role="alert"
@@ -41,57 +100,8 @@ exports[`DeviceConnectConnectedDeviceTest render connection success: connection 
     <span
       className="scannedText"
     >
-      A Test Device!
+      test-device
     </span>
   </div>
-</div>
-`;
-
-exports[`DeviceConnectConnectedDeviceTest render no content: no content 1`] = `
-<div
-  className="deviceConnectConnectedDevice"
->
-  <h3>
-    Connected device
-  </h3>
-  <div
-    aria-live="assertive"
-    role="alert"
-  />
-</div>
-`;
-
-exports[`DeviceConnectConnectedDeviceTest render scanning spinner: scanning spinner 1`] = `
-<div
-  className="deviceConnectConnectedDevice"
->
-  <h3>
-    Connected device
-  </h3>
-  <div
-    aria-live="assertive"
-    role="alert"
-  >
-    <StyledSpinnerBase
-      className="deviceConnectSpinner"
-      label="Connecting to mobile device"
-      labelPosition="right"
-      size={0}
-    />
-  </div>
-</div>
-`;
-
-exports[`DeviceConnectConnectedDeviceTest render user change the port number: user change the port number 1`] = `
-<div
-  className="deviceConnectConnectedDevice"
->
-  <h3>
-    Connected device
-  </h3>
-  <div
-    aria-live="assertive"
-    role="alert"
-  />
 </div>
 `;

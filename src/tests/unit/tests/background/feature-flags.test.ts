@@ -1,6 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FeatureFlags, getAllFeatureFlagDetails, getDefaultFeatureFlagValues } from 'common/feature-flags';
+import {
+    FeatureFlags,
+    getAllFeatureFlagDetails,
+    getDefaultFeatureFlagValues,
+} from 'common/feature-flags';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { findIndex, forEach, indexOf, keys } from 'lodash';
 

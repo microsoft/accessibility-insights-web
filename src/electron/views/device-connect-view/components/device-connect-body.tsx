@@ -8,7 +8,7 @@ import { DeviceConnectState } from '../../../flux/types/device-connect-state';
 import * as styles from './device-connect-body.scss';
 import { DeviceConnectConnectedDevice } from './device-connect-connected-device';
 import { DeviceConnectFooter, DeviceConnectFooterDeps } from './device-connect-footer';
-import { DeviceConnectHeader } from './device-connect-header';
+import { DeviceConnectHeader, DeviceConnectHeaderDeps } from './device-connect-header';
 import {
     DeviceConnectPortEntry,
     DeviceConnectPortEntryDeps,
@@ -24,7 +24,8 @@ export type DeviceConnectBodyState = DeviceConnectPortEntryViewState & {
 export type DeviceConnectBodyDeps = {
     currentWindow: BrowserWindow;
 } & DeviceConnectPortEntryDeps &
-    DeviceConnectFooterDeps;
+    DeviceConnectFooterDeps &
+    DeviceConnectHeaderDeps;
 
 export interface DeviceConnectBodyProps {
     deps: DeviceConnectBodyDeps;
@@ -36,7 +37,7 @@ export const DeviceConnectBody = NamedFC<DeviceConnectBodyProps>('DeviceConnectB
 
     return (
         <div className={styles.deviceConnectBody}>
-            <DeviceConnectHeader />
+            <DeviceConnectHeader deps={props.deps} />
             <DeviceConnectPortEntry
                 deps={props.deps}
                 viewState={{ deviceConnectState: props.viewState.deviceConnectState }}

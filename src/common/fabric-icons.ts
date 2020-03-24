@@ -45,6 +45,7 @@ export function initializeFabricIcons(): void {
             home: '\uE80F',
             incidentTriangle: '\uE814',
             info: '\uE946',
+            keyboardClassic: '\uE765',
             ladybugSolid: '\uF44A',
             mail: '\uE715',
             medical: '\uEAD4',

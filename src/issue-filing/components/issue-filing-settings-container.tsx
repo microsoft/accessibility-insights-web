@@ -8,7 +8,7 @@ import * as React from 'react';
 
 import { NamedFC } from '../../common/react/named-fc';
 import { IssueFilingServiceProperties } from '../../common/types/store-data/user-configuration-store';
-import { SettingsDeps } from '../../DetailsView/components/settings-panel/settings/settings-props';
+import { SettingsDeps } from '../../DetailsView/components/details-view-overlay/settings-panel/settings/settings-props';
 import { IssueFilingServiceProvider } from '../issue-filing-service-provider';
 import { IssueFilingService } from '../types/issue-filing-service';
 import { IssueFilingChoiceGroup } from './issue-filing-choice-group';

@@ -5,6 +5,7 @@ import {
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
+    SetNativeHighContrastModePayload,
 } from 'background/actions/action-payloads';
 import { UserConfigurationActions } from 'background/actions/user-configuration-actions';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
@@ -31,6 +32,7 @@ describe('UserConfigurationStoreTest', () => {
             enableTelemetry: true,
             isFirstTime: false,
             enableHighContrast: false,
+            lastSelectedHighContrast: false,
             bugService: 'none',
             bugServicePropertiesMap: {},
         };
@@ -38,6 +40,7 @@ describe('UserConfigurationStoreTest', () => {
             enableTelemetry: false,
             isFirstTime: true,
             enableHighContrast: false,
+            lastSelectedHighContrast: false,
             bugService: 'none',
             bugServicePropertiesMap: {},
         };
@@ -45,13 +48,21 @@ describe('UserConfigurationStoreTest', () => {
     });
 
     test('verify state before initialize', () => {
-        const testSubject = new UserConfigurationStore(initialStoreData, new UserConfigurationActions(), indexDbStrictMock.object);
+        const testSubject = new UserConfigurationStore(
+            initialStoreData,
+            new UserConfigurationActions(),
+            indexDbStrictMock.object,
+        );
 
         expect(testSubject.getState()).toBeUndefined();
     });
 
-    test('verify initial state when null', () => {
-        const testSubject = new UserConfigurationStore(null, new UserConfigurationActions(), indexDbStrictMock.object);
+    test('verify initial state when persisted state is null', () => {
+        const testSubject = new UserConfigurationStore(
+            null,
+            new UserConfigurationActions(),
+            indexDbStrictMock.object,
+        );
 
         testSubject.initialize();
 
@@ -79,6 +90,7 @@ describe('UserConfigurationStoreTest', () => {
         const expected: UserConfigurationStoreData = {
             bugService: 'none',
             bugServicePropertiesMap: {},
+            lastSelectedHighContrast: false,
             ...persisted,
         } as UserConfigurationStoreData;
         const testSubject = new UserConfigurationStore(
@@ -90,6 +102,21 @@ describe('UserConfigurationStoreTest', () => {
         testSubject.initialize();
 
         expect(testSubject.getState()).toEqual(expected);
+    });
+
+    test('get state returns clone data', () => {
+        const testSubject = new UserConfigurationStore(
+            null,
+            new UserConfigurationActions(),
+            indexDbStrictMock.object,
+        );
+        testSubject.initialize();
+
+        const firstResult = testSubject.getState();
+        const secondResult = testSubject.getState();
+
+        expect(firstResult).toEqual(secondResult);
+        expect(firstResult).not.toBe(secondResult);
     });
 
     test('getDefaultState returns cloned data when initial state is not null', () => {
@@ -108,7 +135,11 @@ describe('UserConfigurationStoreTest', () => {
     });
 
     test('getDefaultState returns cloned data when initial state is null', () => {
-        const testSubject = new UserConfigurationStore(null, new UserConfigurationActions(), indexDbStrictMock.object);
+        const testSubject = new UserConfigurationStore(
+            null,
+            new UserConfigurationActions(),
+            indexDbStrictMock.object,
+        );
 
         const firstCallDefaultState = testSubject.getDefaultState();
         expect(firstCallDefaultState).toEqual(defaultStoreData);
@@ -119,7 +150,11 @@ describe('UserConfigurationStoreTest', () => {
     });
 
     test('verify store id', () => {
-        const testSubject = new UserConfigurationStore(initialStoreData, new UserConfigurationActions(), indexDbStrictMock.object);
+        const testSubject = new UserConfigurationStore(
+            initialStoreData,
+            new UserConfigurationActions(),
+            indexDbStrictMock.object,
+        );
 
         expect(testSubject.getId()).toBe(StoreNames[StoreNames.UserConfigurationStore]);
     });
@@ -130,73 +165,145 @@ describe('UserConfigurationStoreTest', () => {
         storeTester.testListenerToBeCalledOnce(initialStoreData, cloneDeep(initialStoreData));
     });
 
-    type SetUserConfigTestCase = {
-        isFirstTime: boolean;
-        enableTelemetry: boolean;
-        enableHighContrastMode: boolean;
-    };
-    test.each([
-        { enableTelemetry: true, isFirstTime: true, enableHighContrastMode: false } as SetUserConfigTestCase,
-        { enableTelemetry: true, isFirstTime: false, enableHighContrastMode: false } as SetUserConfigTestCase,
-        { enableTelemetry: false, isFirstTime: false, enableHighContrastMode: false } as SetUserConfigTestCase,
-        { enableTelemetry: false, isFirstTime: true, enableHighContrastMode: false } as SetUserConfigTestCase,
-    ])('setTelemetryConfig action: %p', (testCase: SetUserConfigTestCase) => {
-        const storeTester = createStoreToTestAction('setTelemetryState');
-        initialStoreData = {
-            enableTelemetry: testCase.enableTelemetry,
-            isFirstTime: testCase.isFirstTime,
-            enableHighContrast: false,
-            bugService: 'none',
-            bugServicePropertiesMap: {},
-        };
+    describe('setTelemetryConfig action', () => {
+        it.each`
+            isFirstTime | enableTelemetry
+            ${true}     | ${true}
+            ${true}     | ${false}
+            ${false}    | ${true}
+            ${false}    | ${false}
+        `(
+            'sets enableTelemetry per payload and isFirstTime to false for initial state isFirstTime=$isFirstTime enableTelemetry=$enableTelemetry',
+            ({ isFirstTime, enableTelemetry }) => {
+                const storeTester = createStoreToTestAction('setTelemetryState');
+                initialStoreData = {
+                    enableTelemetry: enableTelemetry,
+                    isFirstTime: isFirstTime,
+                    enableHighContrast: false,
+                    lastSelectedHighContrast: false,
+                    bugService: 'none',
+                    bugServicePropertiesMap: {},
+                };
 
-        const expectedState: UserConfigurationStoreData = {
-            enableTelemetry: testCase.enableTelemetry,
-            isFirstTime: false,
-            enableHighContrast: false,
-            bugService: 'none',
-            bugServicePropertiesMap: {},
-        };
+                const expectedState: UserConfigurationStoreData = {
+                    enableTelemetry: enableTelemetry,
+                    isFirstTime: false,
+                    enableHighContrast: false,
+                    lastSelectedHighContrast: false,
+                    bugService: 'none',
+                    bugServicePropertiesMap: {},
+                };
 
-        indexDbStrictMock.setup(i => i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState))).verifiable(Times.once());
+                indexDbStrictMock
+                    .setup(i =>
+                        i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)),
+                    )
+                    .verifiable(Times.once());
 
-        storeTester
-            .withActionParam(testCase.enableTelemetry)
-            .withPostListenerMock(indexDbStrictMock)
-            .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
+                storeTester
+                    .withActionParam(enableTelemetry)
+                    .withPostListenerMock(indexDbStrictMock)
+                    .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
+            },
+        );
     });
 
-    test.each([
-        { enableTelemetry: false, isFirstTime: false, enableHighContrastMode: true } as SetUserConfigTestCase,
-        { enableTelemetry: false, isFirstTime: false, enableHighContrastMode: false } as SetUserConfigTestCase,
-    ])('setHighContrast action: %p', (testCase: SetUserConfigTestCase) => {
-        const storeTester = createStoreToTestAction('setHighContrastMode');
-        initialStoreData = {
-            enableTelemetry: false,
-            isFirstTime: false,
-            enableHighContrast: testCase.enableHighContrastMode,
-            bugService: 'none',
-            bugServicePropertiesMap: {},
-        };
+    describe('setHighContrastMode action', () => {
+        it.each`
+            payload  | initialEnabled | initialLastSelected
+            ${true}  | ${true}        | ${true}
+            ${true}  | ${true}        | ${false}
+            ${true}  | ${false}       | ${false}
+            ${false} | ${true}        | ${true}
+            ${false} | ${true}        | ${false}
+            ${false} | ${false}       | ${false}
+        `(
+            'sets both enableHighContrast and lastSelectedHighContrast per payload $payload from initialState $initialState',
+            ({ payload, initialEnabled, initialLastSelected }) => {
+                const storeTester = createStoreToTestAction('setHighContrastMode');
+                initialStoreData = {
+                    enableTelemetry: false,
+                    isFirstTime: false,
+                    enableHighContrast: initialEnabled,
+                    lastSelectedHighContrast: initialLastSelected,
+                    bugService: 'none',
+                    bugServicePropertiesMap: {},
+                };
 
-        const setHighContrastData: SetHighContrastModePayload = {
-            enableHighContrast: testCase.enableHighContrastMode,
-        };
+                const setHighContrastData: SetHighContrastModePayload = {
+                    enableHighContrast: payload,
+                };
 
-        const expectedState: UserConfigurationStoreData = {
-            enableTelemetry: false,
-            isFirstTime: false,
-            enableHighContrast: testCase.enableHighContrastMode,
-            bugService: 'none',
-            bugServicePropertiesMap: {},
-        };
+                const expectedState: UserConfigurationStoreData = {
+                    enableTelemetry: false,
+                    isFirstTime: false,
+                    enableHighContrast: payload,
+                    lastSelectedHighContrast: payload,
+                    bugService: 'none',
+                    bugServicePropertiesMap: {},
+                };
 
-        indexDbStrictMock.setup(i => i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState))).verifiable(Times.once());
+                indexDbStrictMock
+                    .setup(i =>
+                        i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)),
+                    )
+                    .verifiable(Times.once());
 
-        storeTester
-            .withActionParam(setHighContrastData)
-            .withPostListenerMock(indexDbStrictMock)
-            .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
+                storeTester
+                    .withActionParam(setHighContrastData)
+                    .withPostListenerMock(indexDbStrictMock)
+                    .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
+            },
+        );
+    });
+
+    describe('setNativeHighContrastMode action', () => {
+        it.each`
+            payload  | initialEnabled | initialLastSelected | expectedEnabled
+            ${true}  | ${true}        | ${true}             | ${true}
+            ${true}  | ${true}        | ${false}            | ${true}
+            ${true}  | ${false}       | ${false}            | ${true}
+            ${false} | ${true}        | ${true}             | ${true}
+            ${false} | ${true}        | ${false}            | ${false}
+            ${false} | ${false}       | ${false}            | ${false}
+        `(
+            'sets enableHighContrast by merging initialLastSelected=$initialLastSelected, initialEanbled=$initialEnabled, payload=$payload into $expectedEnabled',
+            ({ payload, initialEnabled, initialLastSelected, expectedEnabled }) => {
+                const storeTester = createStoreToTestAction('setNativeHighContrastMode');
+                initialStoreData = {
+                    enableTelemetry: false,
+                    isFirstTime: false,
+                    enableHighContrast: initialEnabled,
+                    lastSelectedHighContrast: initialLastSelected,
+                    bugService: 'none',
+                    bugServicePropertiesMap: {},
+                };
+
+                const setNativeHighContrastData: SetNativeHighContrastModePayload = {
+                    enableHighContrast: payload,
+                };
+
+                const expectedState: UserConfigurationStoreData = {
+                    enableTelemetry: false,
+                    isFirstTime: false,
+                    enableHighContrast: expectedEnabled,
+                    lastSelectedHighContrast: initialLastSelected,
+                    bugService: 'none',
+                    bugServicePropertiesMap: {},
+                };
+
+                indexDbStrictMock
+                    .setup(i =>
+                        i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)),
+                    )
+                    .verifiable(Times.once());
+
+                storeTester
+                    .withActionParam(setNativeHighContrastData)
+                    .withPostListenerMock(indexDbStrictMock)
+                    .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
+            },
+        );
     });
 
     test.each(['none', 'userConfigurationStoreTestIssueFilingService'])(
@@ -207,6 +314,7 @@ describe('UserConfigurationStoreTest', () => {
                 isFirstTime: false,
                 enableTelemetry: false,
                 enableHighContrast: false,
+                lastSelectedHighContrast: false,
                 bugService: 'none',
                 bugServicePropertiesMap: {},
             };
@@ -221,7 +329,9 @@ describe('UserConfigurationStoreTest', () => {
             };
 
             indexDbStrictMock
-                .setup(i => i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)))
+                .setup(i =>
+                    i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)),
+                )
                 .verifiable(Times.once());
 
             storeTester
@@ -231,7 +341,13 @@ describe('UserConfigurationStoreTest', () => {
         },
     );
 
-    test.each([undefined, null, {}, { 'test-service': {} }, { 'test-service': { 'test-name': 'test-value' } }])(
+    test.each([
+        undefined,
+        null,
+        {},
+        { 'test-service': {} },
+        { 'test-service': { 'test-name': 'test-value' } },
+    ])(
         'setIssueFilingServiceProperty with initial map state %p',
         (initialMapState: IssueFilingServicePropertiesMap) => {
             const storeTester = createStoreToTestAction('setIssueFilingServiceProperty');
@@ -239,6 +355,7 @@ describe('UserConfigurationStoreTest', () => {
                 isFirstTime: false,
                 enableTelemetry: false,
                 enableHighContrast: false,
+                lastSelectedHighContrast: false,
                 bugService: 'none',
                 bugServicePropertiesMap: initialMapState,
             };
@@ -255,7 +372,9 @@ describe('UserConfigurationStoreTest', () => {
             };
 
             indexDbStrictMock
-                .setup(indexDb => indexDb.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)))
+                .setup(indexDb =>
+                    indexDb.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)),
+                )
                 .verifiable(Times.once());
 
             storeTester
@@ -282,7 +401,9 @@ describe('UserConfigurationStoreTest', () => {
         };
 
         indexDbStrictMock
-            .setup(indexDb => indexDb.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)))
+            .setup(indexDb =>
+                indexDb.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)),
+            )
             .verifiable(Times.once());
 
         storeTester

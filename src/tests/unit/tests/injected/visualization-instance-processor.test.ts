@@ -1,13 +1,21 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
-import { PartialTabOrderPropertyBag, TabOrderPropertyBag } from '../../../../injected/tab-order-property-bag';
-import { VisualizationInstanceProcessor, VisualizationPropertyBag } from '../../../../injected/visualization-instance-processor';
+import {
+    PartialTabOrderPropertyBag,
+    TabOrderPropertyBag,
+} from '../../../../injected/tab-order-property-bag';
+import {
+    VisualizationInstanceProcessor,
+    VisualizationPropertyBag,
+} from '../../../../injected/visualization-instance-processor';
 
 describe('VisualizationInstanceProcessorTest', () => {
     test('nullProcessor', () => {
         const instancesStub = [{} as AssessmentVisualizationInstance];
-        expect(VisualizationInstanceProcessor.nullProcessor(instancesStub)).toMatchObject(instancesStub);
+        expect(VisualizationInstanceProcessor.nullProcessor(instancesStub)).toMatchObject(
+            instancesStub,
+        );
     });
 
     test('addOrder', () => {

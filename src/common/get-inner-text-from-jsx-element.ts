@@ -1,9 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 export function getInnerTextFromJsxElement(element: JSX.Element): string {
-    return getInnerTextFromJsxElementRecursive(element)
-        .replace(/\s+/g, ' ')
-        .trim();
+    return getInnerTextFromJsxElementRecursive(element).replace(/\s+/g, ' ').trim();
 }
 
 function getInnerTextFromJsxElementRecursive(element: JSX.Element): string {

@@ -60,9 +60,24 @@ $fontSizeXXXXL: 72px !default;
 $codeFontFamily: Menlo, Consolas, Courier New, monospace !default;
 $semiBoldFontFamily: make-font-family($semiBoldFonts) !default;
 
+@mixin text-style-title-m {
+    font-family: $semiBoldFontFamily;
+    font-weight: $fontWeightSemiBold;
+    font-size: $fontSizeLML;
+    line-height: 32px;
+    letter-spacing: -0.02em;
+}
+
 @mixin text-style-title-s {
     font-family: $semiBoldFontFamily;
     font-weight: $fontWeightSemiBold;
     font-size: 17px;
     line-height: 24px;
+}
+
+@mixin text-style-body-m {
+    font-family: $fontFamily;
+    font-weight: $fontWeightNormal;
+    font-size: $fontSizeM;
+    line-height: 20px;
 }

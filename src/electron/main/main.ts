@@ -1,19 +1,30 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { FileSystemConfiguration } from 'common/configuration/file-system-configuration';
-import { app, BrowserWindow } from 'electron';
+import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
+import { app, BrowserWindow, ipcMain, nativeTheme } from 'electron';
 import log from 'electron-log';
 import { autoUpdater } from 'electron-updater';
 import { AutoUpdaterClient } from 'electron/auto-update/auto-updater-client';
 import { getElectronIconPath } from 'electron/common/get-electron-icon-path';
+import { IPC_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME } from 'electron/ipc/ipc-channel-names';
+import { IpcMessageDispatcher, IpcMessageSink } from 'electron/ipc/ipc-message-dispatcher';
 import { OSType, PlatformInfo } from 'electron/window-management/platform-info';
 import * as path from 'path';
 import { mainWindowConfig } from './main-window-config';
+import { NativeHighContrastModeListener } from './native-high-contrast-mode-listener';
 
 let mainWindow: BrowserWindow;
 const platformInfo = new PlatformInfo(process);
 const os = platformInfo.getOs();
 const config = new FileSystemConfiguration();
+
+const ipcMessageDispatcher = new IpcMessageDispatcher();
+const userConfigMessageCreator = new UserConfigMessageCreator(ipcMessageDispatcher);
+const nativeHighContrastModeListener = new NativeHighContrastModeListener(
+    nativeTheme,
+    userConfigMessageCreator,
+);
 
 log.transports.file.level = 'info';
 autoUpdater.logger = log;
@@ -38,6 +49,13 @@ const createWindow = () => {
         mainWindow.setSheetOffset(22);
     }
 
+    const mainWindowMessageSink: IpcMessageSink = (id, msg) => mainWindow.webContents.send(id, msg);
+
+    ipcMain.on(IPC_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME, () => {
+        ipcMessageDispatcher.registerMessageSink(mainWindowMessageSink);
+        nativeHighContrastModeListener.startListening();
+    });
+
     mainWindow
         .loadFile(path.resolve(__dirname, '../electron/views/index.html'))
         .then(() => console.log('url loaded'))
@@ -50,7 +68,8 @@ const createWindow = () => {
     });
 
     mainWindow.on('closed', () => {
-        // Dereference the window object, to force garbage collection
+        // Drop all references to the window object, to force garbage collection
+        ipcMessageDispatcher.unregisterMessageSink(mainWindowMessageSink);
         mainWindow = null;
     });
 
@@ -80,6 +99,7 @@ const setupRecurringUpdateCheck = () => {
 app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
+    nativeHighContrastModeListener.stopListening();
     clearInterval(recurringUpdateCheck);
     app.quit();
 });

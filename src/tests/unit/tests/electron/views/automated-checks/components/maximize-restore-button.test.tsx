@@ -5,7 +5,10 @@ import { Button } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { Mock, Times } from 'typemoq';
 
-import { MaximizeRestoreButton, MaximizeRestoreButtonProps } from 'electron/views/automated-checks/components/maximize-restore-button';
+import {
+    MaximizeRestoreButton,
+    MaximizeRestoreButtonProps,
+} from 'electron/views/automated-checks/components/maximize-restore-button';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 
 describe('MaximizeRestoreButton', () => {
@@ -27,9 +30,14 @@ describe('MaximizeRestoreButton', () => {
     });
 
     it('handles click', () => {
-        const eventStub = new EventStubFactory().createMouseClickEvent() as React.MouseEvent<Button>;
+        const eventStub = new EventStubFactory().createMouseClickEvent() as React.MouseEvent<
+            Button
+        >;
         const onClickMock = Mock.ofInstance(() => {});
-        const props: MaximizeRestoreButtonProps = { isMaximized: false, onClick: onClickMock.object };
+        const props: MaximizeRestoreButtonProps = {
+            isMaximized: false,
+            onClick: onClickMock.object,
+        };
 
         const rendered = shallow(<MaximizeRestoreButton {...props} />);
         rendered.simulate('click', eventStub);

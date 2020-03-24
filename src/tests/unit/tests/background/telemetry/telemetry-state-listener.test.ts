@@ -28,7 +28,10 @@ describe('TelemetryStateListenerTest', () => {
 
         userConfigStoreMock.setup(f => f.getState()).returns(() => userConfigState);
 
-        testSubject = new TelemetryStateListener(userConfigStoreMock.object, telemetryEventHandlerStrictMock.object);
+        testSubject = new TelemetryStateListener(
+            userConfigStoreMock.object,
+            telemetryEventHandlerStrictMock.object,
+        );
     });
 
     it('do nothing if not initialized', () => {

@@ -5,6 +5,7 @@ import {
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
+    SetNativeHighContrastModePayload,
     SetTelemetryStatePayload,
 } from 'background/actions/action-payloads';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
@@ -36,7 +37,10 @@ describe('UserConfigMessageCreator', () => {
 
         testSubject.setTelemetryState(enableTelemetry);
 
-        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
     });
 
     it('dispatches message for setHighContrastModeConfig', () => {
@@ -51,7 +55,28 @@ describe('UserConfigMessageCreator', () => {
 
         testSubject.setHighContrastMode(enableHighContrast);
 
-        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
+    });
+
+    it('dispatches message for setNativeHighContrastModeConfig', () => {
+        const enableHighContrast = true;
+        const payload: SetNativeHighContrastModePayload = {
+            enableHighContrast,
+        };
+        const expectedMessage: Message = {
+            messageType: Messages.UserConfig.SetNativeHighContrastConfig,
+            payload,
+        };
+
+        testSubject.setNativeHighContrastMode(enableHighContrast);
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
     });
 
     it('dispatches message for setIssueFilingService', () => {
@@ -66,7 +91,10 @@ describe('UserConfigMessageCreator', () => {
 
         testSubject.setIssueFilingService(payload);
 
-        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
     });
 
     it('dispatches message for setIssueFilingServiceProperty', () => {
@@ -82,7 +110,10 @@ describe('UserConfigMessageCreator', () => {
 
         testSubject.setIssueFilingServiceProperty(payload);
 
-        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
     });
 
     it('dispatches message for saveIssueFilingSettings', () => {
@@ -99,6 +130,9 @@ describe('UserConfigMessageCreator', () => {
 
         testSubject.saveIssueFilingSettings(payload);
 
-        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
     });
 });

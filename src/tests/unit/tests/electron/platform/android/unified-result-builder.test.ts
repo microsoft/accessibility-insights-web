@@ -21,7 +21,13 @@ describe('buildUnifiedScanCompletedPayload', () => {
 
         const getUnifiedResultsMock = Mock.ofType<ConvertScanResultsToUnifiedResultsDelegate>();
         getUnifiedResultsMock
-            .setup(converter => converter(exampleScanResults, ruleInformationProviderMock.object, generateUIDMock.object))
+            .setup(converter =>
+                converter(
+                    exampleScanResults,
+                    ruleInformationProviderMock.object,
+                    generateUIDMock.object,
+                ),
+            )
             .returns(() => {
                 return [
                     {
@@ -35,9 +41,18 @@ describe('buildUnifiedScanCompletedPayload', () => {
                 ];
             });
 
-        const getUnifiedRulesMock = Mock.ofType<ConvertScanResultsToUnifiedRulesDelegate>(undefined, MockBehavior.Strict);
+        const getUnifiedRulesMock = Mock.ofType<ConvertScanResultsToUnifiedRulesDelegate>(
+            undefined,
+            MockBehavior.Strict,
+        );
         getUnifiedRulesMock
-            .setup(converter => converter(exampleScanResults, ruleInformationProviderMock.object, generateUIDMock.object))
+            .setup(converter =>
+                converter(
+                    exampleScanResults,
+                    ruleInformationProviderMock.object,
+                    generateUIDMock.object,
+                ),
+            )
             .returns(() => {
                 return [
                     {
@@ -49,7 +64,10 @@ describe('buildUnifiedScanCompletedPayload', () => {
                 ];
             });
 
-        const getPlatformDataMock = Mock.ofType<ConvertScanResultsToPlatformDataDelegate>(undefined, MockBehavior.Strict);
+        const getPlatformDataMock = Mock.ofType<ConvertScanResultsToPlatformDataDelegate>(
+            undefined,
+            MockBehavior.Strict,
+        );
         getPlatformDataMock
             .setup(converter => converter(exampleScanResults))
             .returns(() => ({

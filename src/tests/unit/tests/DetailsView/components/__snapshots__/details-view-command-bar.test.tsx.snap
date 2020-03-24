@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DetailsViewCommandBar renders with export button, with start over 1`] = `
-"<div className=\\"details-view-command-bar\\">
-  <div className=\\"details-view-target-page\\" aria-labelledby=\\"switch-to-target\\">
+"<div className=\\"detailsViewCommandBar\\">
+  <div className=\\"detailsViewTargetPage\\" aria-labelledby=\\"switch-to-target\\">
     <span id=\\"switch-to-target\\">
       Target page: 
     </span>
@@ -24,8 +24,8 @@ exports[`DetailsViewCommandBar renders with export button, with start over 1`] =
 `;
 
 exports[`DetailsViewCommandBar renders with export button, without start over 1`] = `
-"<div className=\\"details-view-command-bar\\">
-  <div className=\\"details-view-target-page\\" aria-labelledby=\\"switch-to-target\\">
+"<div className=\\"detailsViewCommandBar\\">
+  <div className=\\"detailsViewTargetPage\\" aria-labelledby=\\"switch-to-target\\">
     <span id=\\"switch-to-target\\">
       Target page: 
     </span>
@@ -44,8 +44,8 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
 `;
 
 exports[`DetailsViewCommandBar renders without export button, with start over 1`] = `
-"<div className=\\"details-view-command-bar\\">
-  <div className=\\"details-view-target-page\\" aria-labelledby=\\"switch-to-target\\">
+"<div className=\\"detailsViewCommandBar\\">
+  <div className=\\"detailsViewTargetPage\\" aria-labelledby=\\"switch-to-target\\">
     <span id=\\"switch-to-target\\">
       Target page: 
     </span>
@@ -64,8 +64,8 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
 `;
 
 exports[`DetailsViewCommandBar renders without export button, without start over 1`] = `
-"<div className=\\"details-view-command-bar\\">
-  <div className=\\"details-view-target-page\\" aria-labelledby=\\"switch-to-target\\">
+"<div className=\\"detailsViewCommandBar\\">
+  <div className=\\"detailsViewTargetPage\\" aria-labelledby=\\"switch-to-target\\">
     <span id=\\"switch-to-target\\">
       Target page: 
     </span>

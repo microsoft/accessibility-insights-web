@@ -66,7 +66,11 @@ describe('InstallDataGeneratorTest', () => {
             .verifiable();
 
         storageAdapterMock
-            .setup(bam => bam.setUserData(It.isValue({ [LocalStorageDataKeys.installationData]: installationDataStub })))
+            .setup(bam =>
+                bam.setUserData(
+                    It.isValue({ [LocalStorageDataKeys.installationData]: installationDataStub }),
+                ),
+            )
             .returns(() => Promise.resolve());
 
         expect(testSubject.getInstallationId()).toEqual(guidStub);
@@ -112,7 +116,11 @@ describe('InstallDataGeneratorTest', () => {
             .verifiable();
 
         storageAdapterMock
-            .setup(bam => bam.setUserData(It.isValue({ [LocalStorageDataKeys.installationData]: installationDataStub })))
+            .setup(bam =>
+                bam.setUserData(
+                    It.isValue({ [LocalStorageDataKeys.installationData]: installationDataStub }),
+                ),
+            )
             .returns(() => Promise.resolve());
 
         expect(testSubject.getInstallationId()).toEqual(guidStub);
@@ -158,7 +166,11 @@ describe('InstallDataGeneratorTest', () => {
             .verifiable();
 
         storageAdapterMock
-            .setup(bam => bam.setUserData(It.isValue({ [LocalStorageDataKeys.installationData]: installationDataStub })))
+            .setup(bam =>
+                bam.setUserData(
+                    It.isValue({ [LocalStorageDataKeys.installationData]: installationDataStub }),
+                ),
+            )
             .returns(() => Promise.resolve());
 
         expect(testSubject.getInstallationId()).toEqual(guidStub);
@@ -209,6 +221,11 @@ describe('InstallDataGeneratorTest', () => {
     }
 
     function createTestObject(initialInstallationData: InstallationData): InstallDataGenerator {
-        return new InstallDataGenerator(initialInstallationData, generateGuidMock.object, dateGetterMock.object, storageAdapterMock.object);
+        return new InstallDataGenerator(
+            initialInstallationData,
+            generateGuidMock.object,
+            dateGetterMock.object,
+            storageAdapterMock.object,
+        );
     }
 });
