@@ -5,7 +5,7 @@ Licensed under the MIT License.
 
 ## Building Accessibility Insights for Android (Unified)
 
-This document describes how to build and test the Accessibility Insights for Android (the Electron app). Much of the information/code is shared between it and Accessibility Insights for Web (the browser extension); see [Building Accessibility Insights for Web](./building-web.md) for the shared and web-specific guidance.
+This document describes how to build and test Accessibility Insights for Android (the Electron app). Much of the information/code is shared between it and Accessibility Insights for Web (the browser extension); see [Building Accessibility Insights for Web](./building-web.md) for the shared and web-specific guidance.
 
 ### "Unified"?
 
