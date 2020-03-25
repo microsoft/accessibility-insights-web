@@ -5,4 +5,5 @@ import { ColumnValueBag } from './column-value-bag';
 export interface MeaningfulImagePropertyBag extends ColumnValueBag {
     imageType: string;
     accessibleName: string;
+    role: string;
 }
