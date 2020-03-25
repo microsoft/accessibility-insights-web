@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FlaggedComponent } from 'common/components/flagged-component';
 import { shallow } from 'enzyme';
-import { PrimaryButton } from 'office-ui-fabric-react';
-import { Dialog } from 'office-ui-fabric-react';
-import { TextField } from 'office-ui-fabric-react';
+import { Dialog, PrimaryButton, TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
 import { CodePenReportExportService } from 'report-export/services/codepen-report-export-service';
@@ -15,7 +14,6 @@ import {
     ExportDialogProps,
 } from '../../../../../DetailsView/components/export-dialog';
 import { FeatureFlags } from 'common/feature-flags';
-import { FlaggedComponent } from 'common/components/flagged-component';
 
 describe('ExportDialog', () => {
     const onCloseMock = Mock.ofInstance(() => {});
@@ -54,7 +52,7 @@ describe('ExportDialog', () => {
             onDescriptionChange: onDescriptionChangeMock.object,
             exportResultsType: 'Assessment',
             onExportClick: onExportClickMock.object,
-            featureFlagStoreData: {}, // TODO change this
+            featureFlagStoreData: {},
         };
     });
 
@@ -142,7 +140,7 @@ describe('ExportDialog', () => {
             onExportClickMock.verifyAll();
         });
 
-        it('handles click on export to CodePen button', () => {
+        it.only('handles click on export to CodePen button', () => {
             const unchangedDescription = 'description';
             onDescriptionChangeMock
                 .setup(dc => dc(It.isValue(unchangedDescription)))
@@ -164,10 +162,15 @@ describe('ExportDialog', () => {
                 .returns(() => [CodePenReportExportService])
                 .verifiable(Times.exactly(2));
 
+            props.featureFlagStoreData[FeatureFlags.exportReport] = true;
+
             const wrapper = shallow(<ExportDialog {...props} />);
 
-            const button = wrapper.find(PrimaryButton);
-            button
+            const flaggedComponent = wrapper.find(FlaggedComponent);
+
+            flaggedComponent
+                .dive()
+                .find(PrimaryButton)
                 .props()
                 .menuProps.items.find(({ key }) => key === CodePenReportExportService.key)
                 .onClick(eventStub);
