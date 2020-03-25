@@ -224,7 +224,7 @@ describe('imageRule', () => {
             const expectedData = {
                 imageType: 'icon fonts (empty <i> elements)',
                 accessibleName: '',
-                codedAs: null,
+                codedAs: 'Decorative',
                 role: null,
             };
             dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
@@ -241,7 +241,7 @@ describe('imageRule', () => {
             const expectedData = {
                 imageType: 'CSS background-image',
                 accessibleName: '',
-                codedAs: null,
+                codedAs: 'Decorative',
                 role: null,
             };
             dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
