@@ -453,7 +453,9 @@ describe('SVGDrawer', () => {
                 target: ['#id1'],
             },
         ];
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub).setupGetDocSize(100).build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub)
+            .setupGetDocSize(100)
+            .build();
 
         setupFilterFactoryDefault(fakeDocument);
         setupWindowUtilsMockDefault(styleStub);
@@ -514,7 +516,9 @@ describe('SVGDrawer', () => {
             },
         ];
 
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub).setupGetDocSize(100).build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub)
+            .setupGetDocSize(100)
+            .build();
         setupWindowUtilsMockDefault(styleStub);
         setupFilterFactoryDefault(fakeDocument);
         setupCenterPositionCalculatorDefault();
@@ -575,7 +579,9 @@ describe('SVGDrawer', () => {
             },
         ];
 
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub).setupGetDocSize(100).build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub)
+            .setupGetDocSize(100)
+            .build();
         setupWindowUtilsMockDefault(styleStub);
         setupFilterFactoryDefault(fakeDocument);
         setupCenterPositionCalculatorDefault();
@@ -638,7 +644,9 @@ describe('SVGDrawer', () => {
             },
         ];
 
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub).setupGetDocSize(100).build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub)
+            .setupGetDocSize(100)
+            .build();
         setupWindowUtilsMockDefault(styleStub);
         setupFilterFactoryDefault(fakeDocument);
         setupCenterPositionCalculatorDefault();
@@ -701,7 +709,9 @@ describe('SVGDrawer', () => {
             },
         ];
 
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub).setupGetDocSize(100).build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub)
+            .setupGetDocSize(100)
+            .build();
         setupWindowUtilsMockDefault(styleStub);
         setupFilterFactoryDefault(fakeDocument);
         setupCenterPositionCalculatorDefault();
@@ -766,7 +776,9 @@ describe('SVGDrawer', () => {
             },
         ];
 
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub).setupGetDocSize(100).build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub)
+            .setupGetDocSize(100)
+            .build();
         setupWindowUtilsMockDefault(styleStub);
         setupFilterFactoryDefault(fakeDocument);
         setupCenterPositionCalculatorDefault();
@@ -828,7 +840,9 @@ describe('SVGDrawer', () => {
             },
         ];
 
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub).setupGetDocSize(100).build();
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub)
+            .setupGetDocSize(100)
+            .build();
         setupWindowUtilsMockDefault(styleStub);
         setupFilterFactoryDefault(fakeDocument);
         setupCenterPositionCalculatorDefault();
@@ -870,7 +884,10 @@ describe('SVGDrawer', () => {
         expect(labels.length).toBe(0);
     });
 
-    function createTestDrawingConfig(showSolidFocusLine = true, showTabIndexedLabel = true): SVGDrawerConfiguration {
+    function createTestDrawingConfig(
+        showSolidFocusLine = true,
+        showTabIndexedLabel = true,
+    ): SVGDrawerConfiguration {
         const drawerConfig: SVGDrawerConfiguration = {
             circle: {
                 stroke: '#777777',

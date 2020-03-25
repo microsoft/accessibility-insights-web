@@ -5,7 +5,9 @@ import { excludePassingInstancesFromAssessmentReport } from '../../../../../Deta
 
 describe('excludePassingInstancesFromAssessmentReport', () => {
     function makeModel(showPassingInstances): RequirementReportModel {
-        return ({ showPassingInstances } as Partial<RequirementReportModel>) as RequirementReportModel;
+        return ({ showPassingInstances } as Partial<
+            RequirementReportModel
+        >) as RequirementReportModel;
     }
 
     it('changes showPassingInstances from true to false', () => {

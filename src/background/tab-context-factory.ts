@@ -75,6 +75,7 @@ export class TabContextFactory {
         const detailsViewActionCreator = new DetailsViewActionCreator(
             interpreter,
             actionsHub.detailsViewActions,
+            actionsHub.sidePanelActions,
             detailsViewController,
             this.telemetryEventHandler,
         );

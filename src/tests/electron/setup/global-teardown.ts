@@ -3,6 +3,6 @@
 import * as testResourceServer from '../../miscellaneous/test-resource-server/resource-server';
 
 // tslint:disable-next-line:no-default-export
-export default function(): void {
+export default function (): void {
     testResourceServer.stopAllServers();
 }

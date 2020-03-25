@@ -296,12 +296,7 @@ export class SVGDrawer extends BaseDrawer {
 
         const result = chain(this.tabbedElements)
             .filter((element: TabbedItem) => element.shouldRedraw)
-            .map(tabbed =>
-                chain(tabbed.focusIndicator)
-                    .values()
-                    .compact()
-                    .value(),
-            )
+            .map(tabbed => chain(tabbed.focusIndicator).values().compact().value())
             .flatten()
             .value();
 

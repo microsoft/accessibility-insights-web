@@ -1,0 +1,20 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
+@import '../../common/styles/common.scss';
+
+.static-content-in-details-view {
+    margin-top: $fastPassRightPanelMarginTop;
+    margin-right: $fastPassRightPanelMarginRight;
+    margin-left: $fastPassRightPanelMarginLeft;
+    margin-bottom: auto;
+    ol {
+        -webkit-padding-start: 16px;
+        li ul li {
+            list-style-type: disc;
+        }
+    }
+    i {
+        font-size: 16px;
+    }
+}

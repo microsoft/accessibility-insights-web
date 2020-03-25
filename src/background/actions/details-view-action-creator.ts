@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { SidePanelActions } from 'background/actions/side-panel-actions';
 import { DetailsViewController } from 'background/details-view-controller';
 import { SETTINGS_PANEL_CLOSE, SETTINGS_PANEL_OPEN } from 'common/extension-telemetry-events';
 import { createDefaultLogger } from 'common/logging/default-logger';
@@ -16,6 +17,7 @@ export class DetailsViewActionCreator {
     constructor(
         private readonly interpreter: Interpreter,
         private readonly detailsViewActions: DetailsViewActions,
+        private readonly sidePanelActions: SidePanelActions,
         private readonly detailsViewController: DetailsViewController,
         private readonly telemetryEventHandler: TelemetryEventHandler,
         private readonly logger: Logger = createDefaultLogger(),
@@ -44,7 +46,7 @@ export class DetailsViewActionCreator {
         payload: BaseActionPayload,
         tabId: number,
     ): Promise<void> => {
-        this.detailsViewActions.openSettingsPanel.invoke(null);
+        this.sidePanelActions.openSidePanel.invoke('Settings');
         await this.detailsViewController.showDetailsView(tabId).catch(this.logger.error);
         this.telemetryEventHandler.publishTelemetry(SETTINGS_PANEL_OPEN, payload);
     };

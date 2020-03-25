@@ -21,7 +21,9 @@ describe('AssessmentReportModelBuilderTest', () => {
     const assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(AssessmentsProviderImpl);
     const getDefaultMessageStub: IGetMessageGenerator = generator => (map, step) => null;
     const getDefaultMessageMock = Mock.ofInstance(getDefaultMessageStub);
-    const assessments = AssessmentReportBuilderTestHelper.getAssessmentProviderAll(getDefaultMessageMock.object);
+    const assessments = AssessmentReportBuilderTestHelper.getAssessmentProviderAll(
+        getDefaultMessageMock.object,
+    );
     const assessmentDefaultMessageGeneratorMock = Mock.ofType<AssessmentDefaultMessageGenerator>(
         AssessmentDefaultMessageGenerator,
         MockBehavior.Strict,
@@ -83,7 +85,10 @@ function setupGeneratorMockWithAssessmentData(
     assessmentDefaultMessageGeneratorMock: IMock<AssessmentDefaultMessageGenerator>,
 ): void {
     forOwn(assessmentStoreData.assessments, (assessmentData, assessmentKey) => {
-        AssessmentReportBuilderTestHelper.getStepKeysForAssessment(assessmentKey, assessments).forEach(stepKey => {
+        AssessmentReportBuilderTestHelper.getStepKeysForAssessment(
+            assessmentKey,
+            assessments,
+        ).forEach(stepKey => {
             getDefaultMessageMock
                 .setup(gdm => gdm(assessmentDefaultMessageGeneratorMock.object))
                 .returns(() => messageGenerator.object)

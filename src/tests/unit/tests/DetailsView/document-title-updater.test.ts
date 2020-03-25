@@ -22,18 +22,27 @@ import { StoreMocks } from './store-mocks';
 describe('DocumentTitleUpdater', () => {
     let storeMocks: StoreMocks;
     let testObject: DocumentTitleUpdater;
-    let getPanelConfigMock: IMock<(props: GetDetailsRightPanelConfigurationProps) => DetailsRightPanelConfiguration>;
+    let getPanelConfigMock: IMock<(
+        props: GetDetailsRightPanelConfigurationProps,
+    ) => DetailsRightPanelConfiguration>;
     let getSwitcherNavConfigMock: IMock<GetDetailsSwitcherNavConfiguration>;
     let visualizationConfigFactoryMock: IMock<VisualizationConfigurationFactory>;
     let doc;
     let onStoreChange: () => void;
     let switcherNavConfigStub: DetailsViewSwitcherNavConfiguration;
-    let getSelectedDetailsViewMock: IMock<(props: GetSelectedDetailsViewProps) => VisualizationType>;
+    let getSelectedDetailsViewMock: IMock<(
+        props: GetSelectedDetailsViewProps,
+    ) => VisualizationType>;
 
     beforeEach(() => {
         storeMocks = new StoreMocks();
-        getPanelConfigMock = Mock.ofInstance((props: GetDetailsRightPanelConfigurationProps) => null);
-        getSelectedDetailsViewMock = Mock.ofInstance((props: GetSelectedDetailsViewProps) => null, MockBehavior.Strict);
+        getPanelConfigMock = Mock.ofInstance(
+            (props: GetDetailsRightPanelConfigurationProps) => null,
+        );
+        getSelectedDetailsViewMock = Mock.ofInstance(
+            (props: GetSelectedDetailsViewProps) => null,
+            MockBehavior.Strict,
+        );
         getSwitcherNavConfigMock = Mock.ofInstance(_ => null, MockBehavior.Strict);
         visualizationConfigFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
 
@@ -108,7 +117,12 @@ describe('DocumentTitleUpdater', () => {
             .verifiable();
 
         getSwitcherNavConfigMock
-            .setup(mock => mock({ selectedDetailsViewPivot: storeMocks.visualizationStoreData.selectedDetailsViewPivot }))
+            .setup(mock =>
+                mock({
+                    selectedDetailsViewPivot:
+                        storeMocks.visualizationStoreData.selectedDetailsViewPivot,
+                }),
+            )
             .returns(() => switcherNavConfigStub);
 
         getSelectedDetailsViewMock
@@ -156,9 +170,17 @@ describe('DocumentTitleUpdater', () => {
     }
 
     function setupStoreGetState(): void {
-        storeMocks.tabStoreMock.setup(store => store.getState()).returns(() => storeMocks.tabStoreData);
-        storeMocks.detailsViewStoreMock.setup(store => store.getState()).returns(() => storeMocks.detailsViewStoreData);
-        storeMocks.visualizationStoreMock.setup(store => store.getState()).returns(() => storeMocks.visualizationStoreData);
-        storeMocks.assessmentStoreMock.setup(store => store.getState()).returns(() => storeMocks.assessmentStoreData);
+        storeMocks.tabStoreMock
+            .setup(store => store.getState())
+            .returns(() => storeMocks.tabStoreData);
+        storeMocks.detailsViewStoreMock
+            .setup(store => store.getState())
+            .returns(() => storeMocks.detailsViewStoreData);
+        storeMocks.visualizationStoreMock
+            .setup(store => store.getState())
+            .returns(() => storeMocks.visualizationStoreData);
+        storeMocks.assessmentStoreMock
+            .setup(store => store.getState())
+            .returns(() => storeMocks.assessmentStoreData);
     }
 });

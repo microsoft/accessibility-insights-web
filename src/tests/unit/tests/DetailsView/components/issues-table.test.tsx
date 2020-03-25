@@ -2,7 +2,11 @@
 // Licensed under the MIT License.
 import { DateProvider } from 'common/date-provider';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
-import { IssuesTable, IssuesTableDeps, IssuesTableProps } from 'DetailsView/components/issues-table';
+import {
+    IssuesTable,
+    IssuesTableDeps,
+    IssuesTableProps,
+} from 'DetailsView/components/issues-table';
 import { DetailsRowData, IssuesTableHandler } from 'DetailsView/components/issues-table-handler';
 import { shallow } from 'enzyme';
 import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
@@ -224,7 +228,11 @@ class TestPropsBuilder {
                 targetPageTitle: '',
             },
             targetAppInfo: { name: 'app' },
-            cardsViewData: { cards: exampleUnifiedStatusResults, visualHelperEnabled: true, allCardsCollapsed: true },
+            cardsViewData: {
+                cards: exampleUnifiedStatusResults,
+                visualHelperEnabled: true,
+                allCardsCollapsed: true,
+            },
             userConfigurationStoreData: {
                 bugService: 'gitHub',
             } as UserConfigurationStoreData,

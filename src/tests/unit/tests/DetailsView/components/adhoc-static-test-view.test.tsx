@@ -6,7 +6,11 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { ContentReference } from 'views/content/content-page';
 import { DisplayableVisualizationTypeData } from '../../../../../common/configs/visualization-configuration-factory';
-import { ScanData, TestsEnabledState, VisualizationStoreData } from '../../../../../common/types/store-data/visualization-store-data';
+import {
+    ScanData,
+    TestsEnabledState,
+    VisualizationStoreData,
+} from '../../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import {
     AdhocStaticTestView,
@@ -27,7 +31,10 @@ describe('AdhocStaticTestView', () => {
 
     beforeEach(() => {
         getStoreDataMock = Mock.ofInstance(() => null, MockBehavior.Strict);
-        clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory, MockBehavior.Strict);
+        clickHandlerFactoryMock = Mock.ofType(
+            DetailsViewToggleClickHandlerFactory,
+            MockBehavior.Strict,
+        );
         displayableDataStub = {
             title: 'test title',
             toggleLabel: 'test toggle label',

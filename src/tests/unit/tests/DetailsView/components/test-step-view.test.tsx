@@ -31,7 +31,9 @@ describe('TestStepViewTest', () => {
     });
 
     test('render, check fixed parts', () => {
-        const props = TestStepViewPropsBuilder.defaultProps(getVisualHelperToggleMock.object).build();
+        const props = TestStepViewPropsBuilder.defaultProps(
+            getVisualHelperToggleMock.object,
+        ).build();
 
         const wrapper = Enzyme.shallow(<TestStepView {...props} />);
 
@@ -49,7 +51,9 @@ describe('TestStepViewTest', () => {
         expect(testInstructions.exists()).toBeTruthy();
         expect(props.testStep.howToTest).toEqual(testInstructions.prop('content'));
         expect(testInstructions.prop('contentClassName')).toBe(styles.testStepInstructions);
-        expect(testInstructions.prop('header')).toEqual(<h4 className={styles.testStepInstructionsHeader}>How to test</h4>);
+        expect(testInstructions.prop('header')).toEqual(
+            <h4 className={styles.testStepInstructionsHeader}>How to test</h4>,
+        );
     });
 
     test('render spinner for non-manual tests', () => {
@@ -89,7 +93,9 @@ describe('TestStepViewTest', () => {
 
         expect(instanceTable.exists()).toBeTruthy();
         expect(instanceTable.prop('instancesMap')).toEqual(props.instancesMap);
-        expect(instanceTable.prop('assessmentInstanceTableHandler')).toEqual(props.assessmentInstanceTableHandler);
+        expect(instanceTable.prop('assessmentInstanceTableHandler')).toEqual(
+            props.assessmentInstanceTableHandler,
+        );
         expect(props.assessmentNavState).toEqual(instanceTable.prop('assessmentNavState'));
 
         expect(wrapper.debug()).toMatchSnapshot();
@@ -129,19 +135,26 @@ describe('TestStepViewTest', () => {
         expect(wrapper.debug()).toMatchSnapshot();
     });
 
-    function validateManualTestStepView(wrapper: Enzyme.ShallowWrapper, props: TestStepViewProps): void {
+    function validateManualTestStepView(
+        wrapper: Enzyme.ShallowWrapper,
+        props: TestStepViewProps,
+    ): void {
         const view = wrapper.find(ManualTestStepView);
         expect(view.exists()).toBe(true);
         expect(props.assessmentNavState.selectedTestStep).toEqual(view.prop('step'));
         expect(props.assessmentNavState.selectedTestType).toEqual(view.prop('test'));
         expect(props.manualTestStepResultMap).toEqual(view.prop('manualTestStepResultMap'));
-        expect(props.assessmentInstanceTableHandler).toEqual(view.prop('assessmentInstanceTableHandler'));
+        expect(props.assessmentInstanceTableHandler).toEqual(
+            view.prop('assessmentInstanceTableHandler'),
+        );
         expect(props.assessmentsProvider).toEqual(view.prop('assessmentsProvider'));
     }
 });
 
 class TestStepViewPropsBuilder extends BaseDataBuilder<TestStepViewProps> {
-    public static defaultProps(getVisualHelperToggle: (provider, props) => {}): TestStepViewPropsBuilder {
+    public static defaultProps(
+        getVisualHelperToggle: (provider, props) => {},
+    ): TestStepViewPropsBuilder {
         const assessmentsProviderMock = Mock.ofType(AssessmentsProviderImpl, MockBehavior.Strict);
         assessmentsProviderMock
             .setup(p => p.getStep(It.isAny(), It.isAny()))
@@ -182,7 +195,10 @@ class TestStepViewPropsBuilder extends BaseDataBuilder<TestStepViewProps> {
                     },
                 },
             })
-            .with('assessmentInstanceTableHandler', Mock.ofType(AssessmentInstanceTableHandler).object)
+            .with(
+                'assessmentInstanceTableHandler',
+                Mock.ofType(AssessmentInstanceTableHandler).object,
+            )
             .with('manualTestStepResultMap', {
                 headingFunction: {
                     status: ManualTestStatus.PASS,

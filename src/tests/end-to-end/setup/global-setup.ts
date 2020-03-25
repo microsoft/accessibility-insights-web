@@ -4,6 +4,6 @@ import * as testResourceServer from '../../miscellaneous/test-resource-server/re
 import { testResourceServerConfig } from './test-resource-server-config';
 
 // tslint:disable-next-line:no-default-export
-export default function(): void {
+export default function (): void {
     testResourceServer.startServer(testResourceServerConfig);
 }

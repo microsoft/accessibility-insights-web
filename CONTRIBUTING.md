@@ -18,3 +18,27 @@ provided by the bot. You will only need to do this once across all repos using o
 ## Code of Conduct
 
 Please read through our [Code of Conduct](./CODE_OF_CONDUCT.md) to this project.
+
+## Pull Requests
+
+Pull Requests should have a title that starts with a tag indicating the type of change. This helps us in maintaining a good commit history as well as better documentation when creating Release notes.
+
+The convention that we follow is inspired from [SemVer](https://semver.org/) convention:
+
+| Tag      | What it conveys                                                                                                                             |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| feat     | a commit of the type feat introduces a new feature in master or means completion of task towards a feature                                  |
+| fix      | a commit of the type fix patches a bug or fixes a small known problem                                                                       |
+| chore    | a commit of the type chore updates something in codebase without impacting any production code. eg: updating a grunt task etc.              |
+| refactor | a commit of type refactor specifies a code change that neither fixes a bug nor adds a feature but just refactors a portion of existing code |
+
+Some examples of good PR titles are:
+
+-   `refactor: rename FooWidget to BarWidget`
+-   `feat(android-settings): add High Contrast toggle to unified settings panel`
+
+## Further Guidance
+
+-   [Git branch setup](./docs/git-branch-setup.md)
+-   [Building Accessibility Insights for Web](./docs/building-web.md)
+-   [Building Accessibility Insights for Android (Unified)](./docs/building-unified.md)

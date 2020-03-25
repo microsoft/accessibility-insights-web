@@ -9,7 +9,11 @@ import { VisualizationConfiguration } from '../../../../../common/configs/visual
 import { DisplayableVisualizationTypeData } from '../../../../../common/configs/visualization-configuration-factory';
 import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
 import { VisualizationScanResultData } from '../../../../../common/types/store-data/visualization-scan-result-data';
-import { ScanData, TestsEnabledState, VisualizationStoreData } from '../../../../../common/types/store-data/visualization-store-data';
+import {
+    ScanData,
+    TestsEnabledState,
+    VisualizationStoreData,
+} from '../../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import {
@@ -38,7 +42,10 @@ describe('DetailsListIssuesView', () => {
 
     beforeEach(() => {
         getStoreDataMock = Mock.ofInstance(() => null, MockBehavior.Strict);
-        clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory, MockBehavior.Strict);
+        clickHandlerFactoryMock = Mock.ofType(
+            DetailsViewToggleClickHandlerFactory,
+            MockBehavior.Strict,
+        );
         visualizationScanResultStoreDataStub = new VisualizationScanResultStoreDataBuilder().build();
         displayableDataStub = {
             title: 'test title',
@@ -72,7 +79,11 @@ describe('DetailsListIssuesView', () => {
             issuesSelection: issuesSelectionStub,
             issuesTableHandler: issuesTableHandlerStub,
             visualizationScanResultData: visualizationScanResultStoreDataStub,
-            cardsViewData: { cards: exampleUnifiedStatusResults, visualHelperEnabled: true, allCardsCollapsed: true },
+            cardsViewData: {
+                cards: exampleUnifiedStatusResults,
+                visualHelperEnabled: true,
+                allCardsCollapsed: true,
+            },
         } as DetailsListIssuesViewProps;
 
         getStoreDataMock

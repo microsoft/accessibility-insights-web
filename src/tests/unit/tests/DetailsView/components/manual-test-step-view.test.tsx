@@ -12,7 +12,10 @@ import {
     CapturedInstanceActionType,
     FailureInstancePanelControl,
 } from '../../../../../DetailsView/components/failure-instance-panel-control';
-import { ManualTestStepView, ManualTestStepViewProps } from '../../../../../DetailsView/components/manual-test-step-view';
+import {
+    ManualTestStepView,
+    ManualTestStepViewProps,
+} from '../../../../../DetailsView/components/manual-test-step-view';
 import { TestStatusChoiceGroup } from '../../../../../DetailsView/components/test-status-choice-group';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
 import { CreateTestAssessmentProvider } from '../../../common/test-assessment-provider';
@@ -45,8 +48,12 @@ describe('ManualTestStepView', () => {
                         step={props.step}
                         status={ManualTestStatus.UNKNOWN}
                         originalStatus={ManualTestStatus.UNKNOWN}
-                        onGroupChoiceChange={props.assessmentInstanceTableHandler.changeRequirementStatus}
-                        onUndoClicked={props.assessmentInstanceTableHandler.undoRequirementStatusChange}
+                        onGroupChoiceChange={
+                            props.assessmentInstanceTableHandler.changeRequirementStatus
+                        }
+                        onUndoClicked={
+                            props.assessmentInstanceTableHandler.undoRequirementStatusChange
+                        }
                         isLabelVisible={true}
                     />
                 </div>
@@ -89,9 +96,19 @@ describe('ManualTestStepView', () => {
             featureFlagStoreData,
             pathSnippetStoreData,
         };
-        assessmentInstanceTableHandlerMock.setup(a => a.getColumnConfigsForCapturedInstance()).returns(() => cols);
         assessmentInstanceTableHandlerMock
-            .setup(a => a.createCapturedInstanceTableItems(instances, props.test, props.step, featureFlagStoreData, pathSnippetStoreData))
+            .setup(a => a.getColumnConfigsForCapturedInstance())
+            .returns(() => cols);
+        assessmentInstanceTableHandlerMock
+            .setup(a =>
+                a.createCapturedInstanceTableItems(
+                    instances,
+                    props.test,
+                    props.step,
+                    featureFlagStoreData,
+                    pathSnippetStoreData,
+                ),
+            )
             .returns(() => items);
         const testObject = new ManualTestStepView(props);
 
@@ -103,8 +120,12 @@ describe('ManualTestStepView', () => {
                         step={props.step}
                         status={ManualTestStatus.FAIL}
                         originalStatus={ManualTestStatus.UNKNOWN}
-                        onGroupChoiceChange={props.assessmentInstanceTableHandler.changeRequirementStatus}
-                        onUndoClicked={props.assessmentInstanceTableHandler.undoRequirementStatusChange}
+                        onGroupChoiceChange={
+                            props.assessmentInstanceTableHandler.changeRequirementStatus
+                        }
+                        onUndoClicked={
+                            props.assessmentInstanceTableHandler.undoRequirementStatusChange
+                        }
                         isLabelVisible={true}
                     />
                 </div>
@@ -115,9 +136,15 @@ describe('ManualTestStepView', () => {
                             step={props.step}
                             test={props.test}
                             actionType={CapturedInstanceActionType.CREATE}
-                            addFailureInstance={props.assessmentInstanceTableHandler.addFailureInstance}
-                            addPathForValidation={props.assessmentInstanceTableHandler.addPathForValidation}
-                            clearPathSnippetData={props.assessmentInstanceTableHandler.clearPathSnippetData}
+                            addFailureInstance={
+                                props.assessmentInstanceTableHandler.addFailureInstance
+                            }
+                            addPathForValidation={
+                                props.assessmentInstanceTableHandler.addPathForValidation
+                            }
+                            clearPathSnippetData={
+                                props.assessmentInstanceTableHandler.clearPathSnippetData
+                            }
                             assessmentsProvider={props.assessmentsProvider}
                             featureFlagStoreData={featureFlagStoreData}
                             failureInstance={failureInstance}

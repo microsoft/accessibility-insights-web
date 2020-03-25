@@ -192,16 +192,28 @@ export class PopupView extends React.Component<PopupViewProps> {
             <div className="ms-Fabric unsupported-url-info-panel">
                 {this.renderDefaultHeader()}
                 <div className="ms-Grid main-section">
-                    <div
-                        className="launch-panel-general-container"
-                        dangerouslySetInnerHTML={{
-                            __html: DisplayableStrings.urlNotScannable.join('</br>'),
-                        }}
-                    />
+                    <div className="launch-panel-general-container">
+                        <>{this.getUrlNotScannableMessage()}</>
+                    </div>
                 </div>
             </div>
         );
     }
+
+    private getUrlNotScannableMessage = () => {
+        let keyIndex = 0;
+        const messages = [...DisplayableStrings.urlNotScannable];
+        const totalMessages = messages.length;
+
+        return messages.reduce((result, currentMessage, currentIndex) => {
+            const spanMessage = <span key={keyIndex++}>{currentMessage}</span>;
+
+            const needsBrElement = currentIndex < totalMessages - 1;
+            const brElement = needsBrElement ? <br key={keyIndex++}></br> : undefined;
+
+            return result.concat(spanMessage, brElement);
+        }, []);
+    };
 
     private renderUnsupportedMsgPanelForFileUrl(): JSX.Element {
         const props: FileUrlUnsupportedMessagePanelProps = {

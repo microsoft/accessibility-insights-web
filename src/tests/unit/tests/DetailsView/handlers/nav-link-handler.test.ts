@@ -15,7 +15,10 @@ describe('NavLinkHandler', () => {
     let link: BaseLeftNavLink;
 
     beforeEach(() => {
-        detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator, MockBehavior.Strict);
+        detailsViewActionMessageCreatorMock = Mock.ofType(
+            DetailsViewActionMessageCreator,
+            MockBehavior.Strict,
+        );
         testSubject = new NavLinkHandler(detailsViewActionMessageCreatorMock.object);
         eventStub = {} as React.MouseEvent<HTMLElement>;
         link = {
@@ -25,7 +28,9 @@ describe('NavLinkHandler', () => {
 
     describe('onOverviewClick', () => {
         it('should call changeRightContentPanel with appropriate params', () => {
-            detailsViewActionMessageCreatorMock.setup(amc => amc.changeRightContentPanel('Overview')).verifiable();
+            detailsViewActionMessageCreatorMock
+                .setup(amc => amc.changeRightContentPanel('Overview'))
+                .verifiable();
 
             testSubject.onOverviewClick();
             detailsViewActionMessageCreatorMock.verifyAll();
@@ -35,7 +40,13 @@ describe('NavLinkHandler', () => {
     describe('onFastPassTestClick', () => {
         it('should call selectDetailsView with appropriate params', () => {
             detailsViewActionMessageCreatorMock
-                .setup(amc => amc.selectDetailsView(eventStub, VisualizationType[link.key], DetailsViewPivotType.fastPass))
+                .setup(amc =>
+                    amc.selectDetailsView(
+                        eventStub,
+                        VisualizationType[link.key],
+                        DetailsViewPivotType.fastPass,
+                    ),
+                )
                 .verifiable();
 
             testSubject.onFastPassTestClick(eventStub, link);
@@ -46,10 +57,18 @@ describe('NavLinkHandler', () => {
     describe('onAssessmentTestClick', () => {
         it('should call selectDetailsView and changeRightContentPanel with appropriate params', () => {
             detailsViewActionMessageCreatorMock
-                .setup(amc => amc.selectDetailsView(eventStub, VisualizationType[link.key], DetailsViewPivotType.assessment))
+                .setup(amc =>
+                    amc.selectDetailsView(
+                        eventStub,
+                        VisualizationType[link.key],
+                        DetailsViewPivotType.assessment,
+                    ),
+                )
                 .verifiable();
 
-            detailsViewActionMessageCreatorMock.setup(amc => amc.changeRightContentPanel('TestView')).verifiable();
+            detailsViewActionMessageCreatorMock
+                .setup(amc => amc.changeRightContentPanel('TestView'))
+                .verifiable();
 
             testSubject.onAssessmentTestClick(eventStub, link);
             detailsViewActionMessageCreatorMock.verifyAll();

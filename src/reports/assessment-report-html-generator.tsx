@@ -50,6 +50,7 @@ export class AssessmentReportHtmlGenerator {
 
         const model = modelBuilder.getReportModelData();
 
+        // tslint:disable: react-no-dangerous-html
         const reportElement = (
             <React.Fragment>
                 <head>

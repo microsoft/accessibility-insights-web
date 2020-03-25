@@ -11,10 +11,19 @@ import { OutcomeTypeSemantic } from 'reports/components/outcome-type';
 import { RequirementOutcomeStats } from 'reports/components/requirement-outcome-type';
 import { GetAssessmentSummaryModelFromProviderAndStatusData } from 'reports/get-assessment-summary-model';
 import { VisualizationConfiguration } from '../../../../../../common/configs/visualization-configuration';
-import { ManualTestStatus, ManualTestStatusData } from '../../../../../../common/types/manual-test-status';
+import {
+    ManualTestStatus,
+    ManualTestStatusData,
+} from '../../../../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
-import { BaseLeftNavLink, onBaseLeftNavItemClick } from '../../../../../../DetailsView/components/base-left-nav';
-import { LeftNavLinkBuilder, LeftNavLinkBuilderDeps } from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';
+import {
+    BaseLeftNavLink,
+    onBaseLeftNavItemClick,
+} from '../../../../../../DetailsView/components/base-left-nav';
+import {
+    LeftNavLinkBuilder,
+    LeftNavLinkBuilderDeps,
+} from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';
 import { DictionaryStringTo } from '../../../../../../types/common-types';
 
 describe('LeftNavBuilder', () => {
@@ -27,7 +36,9 @@ describe('LeftNavBuilder', () => {
     let renderIconStub: (link: BaseLeftNavLink) => JSX.Element;
     let getStatusForTestMock: IMock<(stats: RequirementOutcomeStats) => ManualTestStatus>;
     let outcomeTypeFromTestStatusMock: IMock<(testStatus: ManualTestStatus) => OutcomeTypeSemantic>;
-    let outcomeStatsFromManualTestStatusMock: IMock<(testStepStatus: ManualTestStatusData) => RequirementOutcomeStats>;
+    let outcomeStatsFromManualTestStatusMock: IMock<(
+        testStepStatus: ManualTestStatusData,
+    ) => RequirementOutcomeStats>;
 
     beforeEach(() => {
         onLinkClickMock = Mock.ofInstance((e, item) => null, MockBehavior.Strict);
@@ -35,7 +46,10 @@ describe('LeftNavBuilder', () => {
         outcomeTypeFromTestStatusMock = Mock.ofInstance(_ => null, MockBehavior.Strict);
         outcomeStatsFromManualTestStatusMock = Mock.ofInstance(_ => null, MockBehavior.Strict);
         assessmentProviderMock = Mock.ofType(AssessmentsProviderImpl, MockBehavior.Strict);
-        getAssessmentSummaryModelFromProviderAndStatusDataMock = Mock.ofInstance((provider, statusData) => null, MockBehavior.Strict);
+        getAssessmentSummaryModelFromProviderAndStatusDataMock = Mock.ofInstance(
+            (provider, statusData) => null,
+            MockBehavior.Strict,
+        );
         assessmentsDataStub = {};
         renderIconStub = _ => null;
 
@@ -43,7 +57,8 @@ describe('LeftNavBuilder', () => {
             getStatusForTest: getStatusForTestMock.object,
             outcomeStatsFromManualTestStatus: outcomeStatsFromManualTestStatusMock.object,
             outcomeTypeSemanticsFromTestStatus: outcomeTypeFromTestStatusMock.object,
-            getAssessmentSummaryModelFromProviderAndStatusData: getAssessmentSummaryModelFromProviderAndStatusDataMock.object,
+            getAssessmentSummaryModelFromProviderAndStatusData:
+                getAssessmentSummaryModelFromProviderAndStatusDataMock.object,
         } as LeftNavLinkBuilderDeps;
 
         testSubject = new LeftNavLinkBuilder();
@@ -147,11 +162,17 @@ describe('LeftNavBuilder', () => {
 
             assessmentProviderMock.setup(apm => apm.all()).returns(() => assessmentsStub);
 
-            outcomeStatsFromManualTestStatusMock.setup(mock => mock(stepStatusStub)).returns(() => outcomeStatsStub);
+            outcomeStatsFromManualTestStatusMock
+                .setup(mock => mock(stepStatusStub))
+                .returns(() => outcomeStatsStub);
 
-            getStatusForTestMock.setup(mock => mock(outcomeStatsStub)).returns(() => testStatusStub);
+            getStatusForTestMock
+                .setup(mock => mock(outcomeStatsStub))
+                .returns(() => testStatusStub);
 
-            outcomeTypeFromTestStatusMock.setup(mock => mock(testStatusStub)).returns(() => narratorStatusStub);
+            outcomeTypeFromTestStatusMock
+                .setup(mock => mock(testStatusStub))
+                .returns(() => narratorStatusStub);
 
             const links = testSubject.buildAssessmentTestLinks(
                 deps,
@@ -173,7 +194,9 @@ describe('LeftNavBuilder', () => {
                     },
                     onClickNavLink: onLinkClickMock.object,
                     status: testStatusStub,
-                    title: `${startingIndexStub + linkIndex}: ${assessmentStub.title} (${narratorStatusStub.pastTense})`,
+                    title: `${startingIndexStub + linkIndex}: ${assessmentStub.title} (${
+                        narratorStatusStub.pastTense
+                    })`,
                 };
                 expect(isMatch(actual, expected)).toBeTruthy();
                 expect(actual.onRenderNavLink(actual, renderIconStub)).toMatchSnapshot();
