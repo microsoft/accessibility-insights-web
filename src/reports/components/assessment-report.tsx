@@ -16,7 +16,6 @@ export interface AssessmentReportProps {
     extensionVersion: string;
     axeVersion: string;
     chromeVersion: string;
-    getLinkScript: () => string;
 }
 
 export class AssessmentReport extends React.Component<AssessmentReportProps> {
@@ -26,7 +25,6 @@ export class AssessmentReport extends React.Component<AssessmentReportProps> {
                 <HeaderSection
                     pageTitle={this.props.data.scanDetails.targetPage}
                     pageUrl={this.props.data.scanDetails.url}
-                    getLinkScript={this.props.getLinkScript}
                 />
                 <AssessmentReportBody
                     deps={this.props.deps}

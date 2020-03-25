@@ -26,7 +26,6 @@ export class AssessmentReportHtmlGenerator {
         private axeVersion: string,
         private chromeVersion: string,
         private assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator,
-        private getLinkScript: () => string,
     ) {}
 
     public generateHtml(
@@ -67,7 +66,6 @@ export class AssessmentReportHtmlGenerator {
                         extensionVersion={this.extensionVersion}
                         axeVersion={this.axeVersion}
                         chromeVersion={this.chromeVersion}
-                        getLinkScript={this.getLinkScript}
                     />
                 </body>
             </React.Fragment>
