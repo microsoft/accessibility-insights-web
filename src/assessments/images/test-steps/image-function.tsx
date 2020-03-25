@@ -30,10 +30,9 @@ const howToTest: JSX.Element = (
         <br />
         <Markup.Emphasis>
             Notes: (1) If an image has no code to identify it as meaningful or decorative, it will
-            not be shown here; instead it will fail an automated check. (2) Assistive technologies
-            will ignore any image coded as decorative, even if it has an accessible name. (3) If no
-            matching/failing instances are found, this requirement will automatically be marked as
-            Pass.
+            fail an automated check. (2) Assistive technologies will ignore any image coded as
+            decorative, even if it has an accessible name. (3) If no matching/failing instances are
+            found, this requirement will automatically be marked as Pass.
         </Markup.Emphasis>
         <ol>
             <li>
