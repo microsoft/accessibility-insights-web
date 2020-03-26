@@ -23,13 +23,15 @@ export abstract class BaseVisualHelperToggle extends React.Component<VisualHelpe
         return (
             <div className="visual-helper">
                 <div className="visual-helper-text">{visualHelperText}</div>
-                <VisualizationToggle
-                    checked={isChecked}
-                    disabled={isDisabled}
-                    onClick={onClick}
-                    className="visual-helper-toggle"
-                    visualizationName={visualHelperText}
-                />
+                <div aria-hidden={isDisabled} /* disabledMessage supersedes it; see #682 */>
+                    <VisualizationToggle
+                        checked={isChecked}
+                        disabled={isDisabled}
+                        onClick={onClick}
+                        className="visual-helper-toggle"
+                        visualizationName={visualHelperText}
+                    />
+                </div>
                 {disabledMessage}
             </div>
         );
