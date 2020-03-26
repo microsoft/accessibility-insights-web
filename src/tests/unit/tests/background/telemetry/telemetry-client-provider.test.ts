@@ -39,6 +39,7 @@ describe('TelemetryClientProvider', () => {
         );
 
         expect(result).toBeInstanceOf(MultiplexingTelemetryClient);
+        expect(result).toHaveProperty('wrappedClients.length', 2);
     });
 
     it('builds a telemetry client when there is no instrumentation key', () => {
@@ -54,5 +55,6 @@ describe('TelemetryClientProvider', () => {
         );
 
         expect(result).toBeInstanceOf(MultiplexingTelemetryClient);
+        expect(result).toHaveProperty('wrappedClients.length', 1);
     });
 });
