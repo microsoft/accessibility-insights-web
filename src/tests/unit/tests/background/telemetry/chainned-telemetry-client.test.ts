@@ -3,7 +3,6 @@
 import { ChainnedTelemetryClient } from 'background/telemetry/chainned-telemetry-client';
 import { TelemetryClient } from 'background/telemetry/telemetry-client';
 import { IMock, Mock, Times } from 'typemoq';
-import { create } from 'content/common';
 
 describe('ChainnedTelemetryClient', () => {
     let firstTelemetryClientMock: IMock<TelemetryClient>;
