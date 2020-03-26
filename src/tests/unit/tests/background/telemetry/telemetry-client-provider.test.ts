@@ -3,7 +3,7 @@
 import { InstallationData } from 'background/installation-data';
 import { AppInsightsTelemetryClient } from 'background/telemetry/app-insights-telemetry-client';
 import { ChainnedTelemetryClient } from 'background/telemetry/chainned-telemetry-client';
-import { ConsoleTelemetryClient } from 'background/telemetry/null-telemetry-client';
+import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
 import { getTelemetryClient } from 'background/telemetry/telemetry-client-provider';
 import { TelemetryLogger } from 'background/telemetry/telemetry-logger';
 import { AppDataAdapter } from 'common/browser-adapters/app-data-adapter';

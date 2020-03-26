@@ -11,7 +11,7 @@ import { InstallDataGenerator } from '../install-data-generator';
 import { InstallationData } from '../installation-data';
 import { AppInsightsTelemetryClient } from './app-insights-telemetry-client';
 import { ApplicationTelemetryDataFactory } from './application-telemetry-data-factory';
-import { ConsoleTelemetryClient } from './null-telemetry-client';
+import { ConsoleTelemetryClient } from './console-telemetry-client';
 import { TelemetryClient } from './telemetry-client';
 import { TelemetryLogger } from './telemetry-logger';
 
