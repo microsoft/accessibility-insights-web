@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { InstallationData } from 'background/installation-data';
+import { AppInsightsTelemetryClient } from 'background/telemetry/app-insights-telemetry-client';
 import { ChainnedTelemetryClient } from 'background/telemetry/chainned-telemetry-client';
-import { NullTelemetryClient } from 'background/telemetry/null-telemetry-client';
+import { ConsoleTelemetryClient } from 'background/telemetry/null-telemetry-client';
 import { getTelemetryClient } from 'background/telemetry/telemetry-client-provider';
 import { TelemetryLogger } from 'background/telemetry/telemetry-logger';
 import { AppDataAdapter } from 'common/browser-adapters/app-data-adapter';
 import { StorageAdapter } from 'common/browser-adapters/storage-adapter';
 import { configMutator } from 'common/configuration';
-import { GlobalMock, GlobalScope, IGlobalMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { AppInsightsTelemetryClient } from 'background/telemetry/app-insights-telemetry-client';
+import { GlobalMock, GlobalScope, IGlobalMock, It, Mock, Times } from 'typemoq';
 
 describe('TelemetryClientProvider', () => {
     const installationData: InstallationData = {
@@ -58,7 +58,7 @@ describe('TelemetryClientProvider', () => {
         fromArrayMock.verify(
             fromArray =>
                 fromArray(
-                    It.is(client => client instanceof NullTelemetryClient),
+                    It.is(client => client instanceof ConsoleTelemetryClient),
                     It.is(client => client instanceof AppInsightsTelemetryClient),
                 ),
             Times.once(),
@@ -84,7 +84,7 @@ describe('TelemetryClientProvider', () => {
         fromArrayMock.verify(
             fromArray =>
                 fromArray(
-                    It.is(client => client instanceof NullTelemetryClient),
+                    It.is(client => client instanceof ConsoleTelemetryClient),
                     undefined,
                 ),
             Times.once(),

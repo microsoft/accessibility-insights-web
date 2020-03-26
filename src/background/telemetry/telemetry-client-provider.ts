@@ -11,7 +11,7 @@ import { InstallDataGenerator } from '../install-data-generator';
 import { InstallationData } from '../installation-data';
 import { AppInsightsTelemetryClient } from './app-insights-telemetry-client';
 import { ApplicationTelemetryDataFactory } from './application-telemetry-data-factory';
-import { NullTelemetryClient } from './null-telemetry-client';
+import { ConsoleTelemetryClient } from './null-telemetry-client';
 import { TelemetryClient } from './telemetry-client';
 import { TelemetryLogger } from './telemetry-logger';
 
@@ -37,7 +37,7 @@ export const getTelemetryClient = (
         installDataGenerator,
     );
 
-    const nullTelemetryClient = new NullTelemetryClient(coreTelemetryDataFactory, logger);
+    const nullTelemetryClient = new ConsoleTelemetryClient(coreTelemetryDataFactory, logger);
     let appInsightsTelemetryClient: AppInsightsTelemetryClient;
 
     const appInsightsInstrumentationKey = config.getOption('appInsightsInstrumentationKey');

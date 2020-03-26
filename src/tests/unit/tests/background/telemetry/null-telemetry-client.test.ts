@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { NullTelemetryClient } from 'background/telemetry/null-telemetry-client';
+import { ConsoleTelemetryClient } from 'background/telemetry/null-telemetry-client';
 import { TelemetryBaseData } from 'background/telemetry/telemetry-base-data';
 import { TelemetryLogger } from 'background/telemetry/telemetry-logger';
 import { IMock, Mock, Times } from 'typemoq';
@@ -10,7 +10,7 @@ import {
     ApplicationTelemetryDataFactory,
 } from '../../../../../background/telemetry/application-telemetry-data-factory';
 
-describe('Null telemetry client', () => {
+describe('ConsoleTelemetryClient', () => {
     let loggerMock: IMock<TelemetryLogger>;
     let telemetryDataFactoryMock: IMock<ApplicationTelemetryDataFactory>;
 
@@ -64,7 +64,7 @@ describe('Null telemetry client', () => {
         });
     });
 
-    function createDefaultTestObject(): NullTelemetryClient {
-        return new NullTelemetryClient(telemetryDataFactoryMock.object, loggerMock.object);
+    function createDefaultTestObject(): ConsoleTelemetryClient {
+        return new ConsoleTelemetryClient(telemetryDataFactoryMock.object, loggerMock.object);
     }
 });
