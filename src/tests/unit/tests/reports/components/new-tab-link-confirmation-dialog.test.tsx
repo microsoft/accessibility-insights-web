@@ -97,13 +97,9 @@ describe('NewTabLinkWithConfirmationDialog', () => {
             const eventMock = Mock.ofType<Event>();
             eventMock.setup(event => event.preventDefault());
 
-            const expectedConfirmationMessage =
-                'Are you sure you want to navigate away from the Accessibility Insights report?\n' +
-                'This link will open the target page in a new tab.\n\nPress OK to continue or ' +
-                'Cancel to stay on the current page.';
-
             confirmMock
-                .setup(handler => handler(expectedConfirmationMessage))
+                .setup(handler => handler(It.isAnyString()))
+                .callback(message => expect(message).toMatchSnapshot())
                 .verifiable(Times.once());
 
             let clickListener: Function;
