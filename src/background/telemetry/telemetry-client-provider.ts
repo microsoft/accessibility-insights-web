@@ -37,7 +37,7 @@ export const getTelemetryClient = (
         installDataGenerator,
     );
 
-    const nullTelemetryClient = new ConsoleTelemetryClient(coreTelemetryDataFactory, logger);
+    const consoleTelemetryClient = new ConsoleTelemetryClient(coreTelemetryDataFactory, logger);
     let appInsightsTelemetryClient: AppInsightsTelemetryClient;
 
     const appInsightsInstrumentationKey = config.getOption('appInsightsInstrumentationKey');
@@ -49,5 +49,5 @@ export const getTelemetryClient = (
         );
     }
 
-    return ChainnedTelemetryClient.fromArray(nullTelemetryClient, appInsightsTelemetryClient);
+    return ChainnedTelemetryClient.fromArray(consoleTelemetryClient, appInsightsTelemetryClient);
 };
