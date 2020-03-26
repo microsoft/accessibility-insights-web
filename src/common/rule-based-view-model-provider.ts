@@ -53,11 +53,7 @@ export const getCardViewData: GetCardViewData = (
         const isSelected = isFailedInstance
             ? includes(cardSelectionViewData.selectedResultUids, result.uid)
             : false;
-        const highlightStatus = getHighlightStatus(
-            isFailedInstance,
-            cardSelectionViewData.highlightedResultUids,
-            result.uid,
-        );
+        const highlightStatus = cardSelectionViewData.resultHighlightStatus[result.uid];
 
         ruleResult.nodes.push(createCardResult(result, isSelected, highlightStatus));
 

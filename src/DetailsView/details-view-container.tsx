@@ -190,7 +190,10 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
         const cardsViewData = this.props.deps.getCardViewData(
             this.props.storeState.unifiedScanResultStoreData.rules,
             this.props.storeState.unifiedScanResultStoreData.results,
-            this.props.deps.getCardSelectionViewData(this.props.storeState.cardSelectionStoreData),
+            this.props.deps.getCardSelectionViewData(
+                this.props.storeState.cardSelectionStoreData,
+                this.props.storeState.unifiedScanResultStoreData,
+            ),
         );
 
         return (

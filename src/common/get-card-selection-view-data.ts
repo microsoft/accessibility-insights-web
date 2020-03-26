@@ -1,6 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { HighlightState } from 'common/components/cards/instance-details-footer';
+import {
+    PlatformData,
+    UnifiedResult,
+    UnifiedScanResultStoreData,
+    ViewPortProperties,
+} from 'common/types/store-data/unified-data-interface';
+import { BoundingRectangle } from 'electron/platform/android/scan-results';
 import { flatMap, forOwn, keys } from 'lodash';
+
 import {
     CardSelectionStoreData,
     RuleExpandCollapseData,
@@ -12,54 +21,116 @@ export interface CardSelectionViewData {
     selectedResultUids: string[]; // indicates selected cards
     expandedRuleIds: string[];
     visualHelperEnabled: boolean;
+    resultHighlightStatus: { [resultUid: string]: HighlightState };
 }
 
-export type GetCardSelectionViewData = (storeData: CardSelectionStoreData) => CardSelectionViewData;
-
-export const getCardSelectionViewData: GetCardSelectionViewData = (
+export type GetCardSelectionViewData = (
     storeData: CardSelectionStoreData,
+    unifiedScanResultStoreData: UnifiedScanResultStoreData,
+) => CardSelectionViewData;
+
+export const getCardSelectionViewData = (
+    cardSelectionStoreData: CardSelectionStoreData,
+    unifiedScanResultStoreData: UnifiedScanResultStoreData,
 ): CardSelectionViewData => {
     const viewData = getEmptyViewData();
 
-    if (!storeData) {
+    if (!cardSelectionStoreData) {
         return viewData;
     }
 
-    viewData.visualHelperEnabled = storeData.visualHelperEnabled || false;
+    viewData.visualHelperEnabled = cardSelectionStoreData.visualHelperEnabled || false;
+    viewData.expandedRuleIds = getRuleIdsOfExpandedRules(cardSelectionStoreData.rules);
+    viewData.selectedResultUids = getOnlyResultUidsFromSelectedCards(
+        cardSelectionStoreData.rules,
+        viewData.expandedRuleIds,
+    );
 
-    viewData.expandedRuleIds = getRuleIdsOfExpandedRules(storeData.rules);
+    unifiedScanResultStoreData.results
+        .filter(result => result.status === 'fail')
+        .forEach(result => {
+            viewData.resultHighlightStatus[result.uid] = getUnavailableHighlightStatus(
+                result,
+                unifiedScanResultStoreData.platformInfo,
+            );
+        });
 
-    if (!storeData.visualHelperEnabled) {
+    if (!cardSelectionStoreData.visualHelperEnabled) {
         // no selected cards; no highlighted instances
         return viewData;
     }
 
     if (viewData.expandedRuleIds.length === 0) {
-        viewData.highlightedResultUids = getAllResultUids(storeData.rules);
+        forOwn(viewData.resultHighlightStatus, (status, resultUid) => {
+            viewData.resultHighlightStatus[resultUid] = status || 'visible';
+        });
         return viewData;
     }
 
-    viewData.selectedResultUids = getOnlyResultUidsFromSelectedCards(
-        storeData.rules,
+    const allResultUids = getAllResultUids(cardSelectionStoreData.rules);
+
+    if (viewData.selectedResultUids.length) {
+        viewData.selectedResultUids.forEach(resultUid => {
+            viewData.resultHighlightStatus[resultUid] =
+                viewData.resultHighlightStatus[resultUid] || 'visible';
+        });
+        allResultUids.forEach(resultUid => {
+            viewData.resultHighlightStatus[resultUid] =
+                viewData.resultHighlightStatus[resultUid] || 'hidden';
+        });
+        return viewData;
+    }
+
+    const wouldBeHighlightedResults = getAllResultUidsFromRuleIdArray(
+        cardSelectionStoreData.rules,
         viewData.expandedRuleIds,
     );
 
-    viewData.highlightedResultUids = viewData.selectedResultUids.length
-        ? viewData.selectedResultUids
-        : getAllResultUidsFromRuleIdArray(storeData.rules, viewData.expandedRuleIds);
+    wouldBeHighlightedResults.forEach(resultUid => {
+        viewData.resultHighlightStatus[resultUid] =
+            viewData.resultHighlightStatus[resultUid] || 'visible';
+    });
+    allResultUids.forEach(resultUid => {
+        viewData.resultHighlightStatus[resultUid] =
+            viewData.resultHighlightStatus[resultUid] || 'hidden';
+    });
 
     return viewData;
 };
 
 function getEmptyViewData(): CardSelectionViewData {
-    const viewData: CardSelectionViewData = {
+    const viewData = {
         highlightedResultUids: [],
         selectedResultUids: [],
         expandedRuleIds: [],
         visualHelperEnabled: false,
+        resultHighlightStatus: {},
     };
 
     return viewData;
+}
+
+const getUnavailableHighlightStatus: (
+    result: UnifiedResult,
+    platformInfo: PlatformData,
+) => HighlightState = (result, platformInfo) => {
+    if (
+        !hasValidBoundingRectangle(result.descriptors.boundingRectangle, platformInfo.viewPortInfo)
+    ) {
+        return 'unavailable';
+    }
+
+    return null;
+};
+
+function hasValidBoundingRectangle(
+    boundingRectangle: BoundingRectangle,
+    viewPort: ViewPortProperties,
+): boolean {
+    return (
+        boundingRectangle != null &&
+        !(boundingRectangle.left > viewPort.width || boundingRectangle.top > viewPort.height)
+    );
 }
 
 function getRuleIdsOfExpandedRules(ruleDictionary: RuleExpandCollapseDataDictionary): string[] {

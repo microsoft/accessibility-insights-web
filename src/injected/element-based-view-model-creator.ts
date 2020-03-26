@@ -1,8 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CardSelectionViewData } from 'common/get-card-selection-view-data';
+import {
+    CardSelectionViewData,
+    GetCardSelectionViewData,
+} from 'common/get-card-selection-view-data';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
-import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
+import {
+    UnifiedResult,
+    UnifiedRule,
+    UnifiedScanResultStoreData,
+} from 'common/types/store-data/unified-data-interface';
 import { AssessmentVisualizationInstance } from 'injected/frameCommunicators/html-element-axe-results-helper';
 import { GetDecoratedAxeNodeCallback } from 'injected/get-decorated-axe-node';
 import { find, includes } from 'lodash';
@@ -16,8 +23,7 @@ export interface CheckData {
 }
 
 export type GetElementBasedViewModelCallback = (
-    rules: UnifiedRule[],
-    results: UnifiedResult[],
+    unifiedScanResultStoreData: UnifiedScanResultStoreData,
     cardSelectionData: CardSelectionStoreData,
 ) => DictionaryStringTo<AssessmentVisualizationInstance>;
 
@@ -28,14 +34,14 @@ export type GetHighlightedResultInstanceIdsCallback = (
 export class ElementBasedViewModelCreator {
     constructor(
         private getDecoratedAxeNode: GetDecoratedAxeNodeCallback,
-        private getHighlightedResultInstanceIds: GetHighlightedResultInstanceIdsCallback,
+        private getHighlightedResultInstanceIds: GetCardSelectionViewData,
     ) {}
 
     public getElementBasedViewModel: GetElementBasedViewModelCallback = (
-        rules: UnifiedRule[],
-        results: UnifiedResult[],
-        cardSelectionData: CardSelectionStoreData,
+        unifiedScanResultStoreData,
+        cardSelectionData,
     ) => {
+        const { rules, results } = unifiedScanResultStoreData;
         if (rules == null || results == null || cardSelectionData == null) {
             return;
         }
@@ -43,6 +49,7 @@ export class ElementBasedViewModelCreator {
         const resultDictionary: DictionaryStringTo<AssessmentVisualizationInstance> = {};
         const highlightedResultInstanceUids = this.getHighlightedResultInstanceIds(
             cardSelectionData,
+            unifiedScanResultStoreData,
         ).highlightedResultUids;
 
         results.forEach(unifiedResult => {
