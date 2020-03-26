@@ -44,7 +44,6 @@ describe('ReportBody', () => {
             },
             toUtcString: () => '',
             getCollapsibleScript: getScriptStub,
-            getLinkScript: getScriptStub,
             getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
             cardsViewData: {
                 cards: exampleUnifiedStatusResults,

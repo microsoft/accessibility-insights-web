@@ -3,7 +3,6 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { AssessmentReport, AssessmentReportDeps } from 'reports/components/assessment-report';
-import { Mock } from 'typemoq';
 import { AssessmentReportBuilderTestHelper } from '../../DetailsView/assessment-report-builder-test-helper';
 
 describe('AssessmentReport', () => {
@@ -13,8 +12,6 @@ describe('AssessmentReport', () => {
                 stub: 'outcomeTypeSemanticsFromTestStatus',
             } as any,
         } as AssessmentReportDeps;
-
-        const getScriptMock = Mock.ofInstance(() => '');
 
         const data = AssessmentReportBuilderTestHelper.getAssessmentReportModel();
 
@@ -26,7 +23,6 @@ describe('AssessmentReport', () => {
                 extensionVersion="ProductVersion"
                 axeVersion="axeVersion"
                 chromeVersion="chromeVersion"
-                getLinkScript={getScriptMock.object}
             />,
         );
         expect(wrapper.getElement()).toMatchSnapshot();
