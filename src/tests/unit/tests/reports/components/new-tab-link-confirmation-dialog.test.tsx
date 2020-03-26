@@ -84,10 +84,7 @@ describe('NewTabLinkWithConfirmationDialog', () => {
                 .returns(() => targetPageLinkMock.object)
                 .verifiable(Times.once());
 
-            const generatedScript = testSubject
-                .find('script')
-                .render()
-                .html();
+            const generatedScript = testSubject.find('script').render().html();
 
             // tslint:disable-next-line: no-eval
             eval(generatedScript);
@@ -116,10 +113,7 @@ describe('NewTabLinkWithConfirmationDialog', () => {
 
             const testSubject = shallow(<NewTabLinkWithConfirmationDialog />);
 
-            const generatedScript = testSubject
-                .find('script')
-                .render()
-                .html();
+            const generatedScript = testSubject.find('script').render().html();
 
             // tslint:disable-next-line: no-eval
             eval(generatedScript);
@@ -142,10 +136,7 @@ describe('NewTabLinkWithConfirmationDialog', () => {
 
             const testSubject = shallow(<NewTabLinkWithConfirmationDialog />);
 
-            const generatedScript = testSubject
-                .find('script')
-                .render()
-                .html();
+            const generatedScript = testSubject.find('script').render().html();
 
             // tslint:disable-next-line: no-eval
             eval(generatedScript);
@@ -168,10 +159,7 @@ describe('NewTabLinkWithConfirmationDialog', () => {
 
             const testSubject = shallow(<NewTabLinkWithConfirmationDialog />);
 
-            const generatedScript = testSubject
-                .find('script')
-                .render()
-                .html();
+            const generatedScript = testSubject.find('script').render().html();
 
             // tslint:disable-next-line: no-eval
             eval(generatedScript);
