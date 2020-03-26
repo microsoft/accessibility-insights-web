@@ -17,6 +17,7 @@ module.exports = {
         '<rootDir>/src/**/*.{ts,tsx}',
         '!<rootDir>/src/tests/**/*',
         '!<rootDir>/src/**/*.d.ts',
+        // excluding the following file to omit code cov in generated script for running eval in corresponding test
         '!<rootDir>/src/reports/components/new-tab-link-confirmation-dialog.tsx',
     ],
     coverageReporters: ['json', 'lcov', 'text', 'cobertura'],
