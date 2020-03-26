@@ -1,13 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { css } from '@uifabric/utilities';
-import * as React from 'react';
-
-import { NewTabLink } from 'common/components/new-tab-link';
 import { CommentIcon } from 'common/icons/comment-icon';
 import { DateIcon } from 'common/icons/date-icon';
 import { UrlIcon } from 'common/icons/url-icon';
 import { NamedFC } from 'common/react/named-fc';
+import * as React from 'react';
+import { NewTabLinkWithConfirmationDialog } from 'reports/components/new-tab-link-confirmation-dialog';
 import { SectionProps } from './report-section-factory';
 
 export type DetailsSectionProps = Pick<
@@ -43,9 +42,9 @@ export const DetailsSection = NamedFC<DetailsSectionProps>('DetailsSection', pro
                 {createListItem(
                     <UrlIcon />,
                     'target page url:',
-                    <NewTabLink href={pageUrl} title={pageTitle}>
+                    <NewTabLinkWithConfirmationDialog href={pageUrl} title={pageTitle}>
                         {pageUrl}
-                    </NewTabLink>,
+                    </NewTabLinkWithConfirmationDialog>,
                 )}
                 {createListItem(<DateIcon />, 'scan date:', scanDateUTC)}
                 {showCommentRow &&
