@@ -46,7 +46,6 @@ export const getTelemetryClient = (
         appInsightsTelemetryClient = new AppInsightsTelemetryClient(
             appInsights,
             coreTelemetryDataFactory,
-            logger,
         );
     }
 
