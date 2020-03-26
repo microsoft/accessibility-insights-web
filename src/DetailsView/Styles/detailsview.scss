@@ -502,10 +502,8 @@ div.insights-file-issue-details-dialog-container {
                 min-width: 600px;
                 height: auto;
             }
-            .ms-MessageBar {
-                padding-left: 24px;
-            }
             .ms-MessageBar-icon i {
+                margin-left: 12px;
                 color: $secondary-text;
             }
             .view {
