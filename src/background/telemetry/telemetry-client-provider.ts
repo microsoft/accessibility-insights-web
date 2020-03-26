@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ChainnedTelemetryClient } from 'background/telemetry/chainned-telemetry-client';
 import { AppDataAdapter } from '../../common/browser-adapters/app-data-adapter';
 import { StorageAdapter } from '../../common/browser-adapters/storage-adapter';
 import { config } from '../../common/configuration';
@@ -36,11 +37,18 @@ export const getTelemetryClient = (
         installDataGenerator,
     );
 
+    const nullTelemetryClient = new NullTelemetryClient(coreTelemetryDataFactory, logger);
+    let appInsightsTelemetryClient: AppInsightsTelemetryClient;
+
     const appInsightsInstrumentationKey = config.getOption('appInsightsInstrumentationKey');
 
-    if (appInsightsInstrumentationKey == null) {
-        return new NullTelemetryClient(coreTelemetryDataFactory, logger);
+    if (appInsightsInstrumentationKey != null) {
+        appInsightsTelemetryClient = new AppInsightsTelemetryClient(
+            appInsights,
+            coreTelemetryDataFactory,
+            logger,
+        );
     }
 
-    return new AppInsightsTelemetryClient(appInsights, coreTelemetryDataFactory, logger);
+    return ChainnedTelemetryClient.fromArray(nullTelemetryClient, appInsightsTelemetryClient);
 };

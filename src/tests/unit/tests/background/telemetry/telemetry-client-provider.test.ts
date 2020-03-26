@@ -1,14 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AppInsightsTelemetryClient } from 'background/telemetry/app-insights-telemetry-client';
+import { InstallationData } from 'background/installation-data';
+import { ChainnedTelemetryClient } from 'background/telemetry/chainned-telemetry-client';
 import { NullTelemetryClient } from 'background/telemetry/null-telemetry-client';
 import { getTelemetryClient } from 'background/telemetry/telemetry-client-provider';
 import { TelemetryLogger } from 'background/telemetry/telemetry-logger';
-import { Mock } from 'typemoq';
-import { InstallationData } from '../../../../../background/installation-data';
-import { AppDataAdapter } from '../../../../../common/browser-adapters/app-data-adapter';
-import { StorageAdapter } from '../../../../../common/browser-adapters/storage-adapter';
-import { configMutator } from '../../../../../common/configuration';
+import { AppDataAdapter } from 'common/browser-adapters/app-data-adapter';
+import { StorageAdapter } from 'common/browser-adapters/storage-adapter';
+import { configMutator } from 'common/configuration';
+import { GlobalMock, GlobalScope, IGlobalMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { AppInsightsTelemetryClient } from 'background/telemetry/app-insights-telemetry-client';
 
 describe('TelemetryClientProvider', () => {
     const installationData: InstallationData = {
@@ -19,7 +20,19 @@ describe('TelemetryClientProvider', () => {
 
     const applicationName = 'test application name';
 
-    beforeEach(() => configMutator.reset());
+    type FromArray = typeof ChainnedTelemetryClient.fromArray;
+    let fromArrayMock: IGlobalMock<FromArray>;
+
+    beforeEach(() => {
+        fromArrayMock = GlobalMock.ofInstance(
+            ChainnedTelemetryClient.fromArray,
+            'fromArray',
+            ChainnedTelemetryClient,
+        );
+        fromArrayMock.callBase = true;
+        configMutator.reset();
+    });
+
     afterAll(() => configMutator.reset());
 
     it('builds a telemetry client using the instrumentation key', () => {
@@ -29,30 +42,52 @@ describe('TelemetryClientProvider', () => {
 
         appAdapterMock.setup(adapter => adapter.getVersion()).returns(() => 'test');
 
-        const result = getTelemetryClient(
-            applicationName,
-            installationData,
-            appAdapterMock.object,
-            Mock.ofType<TelemetryLogger>().object,
-            Mock.ofType<Microsoft.ApplicationInsights.IAppInsights>().object,
-            Mock.ofType<StorageAdapter>().object,
-        );
+        GlobalScope.using(fromArrayMock).with(() => {
+            const result = getTelemetryClient(
+                applicationName,
+                installationData,
+                appAdapterMock.object,
+                Mock.ofType<TelemetryLogger>().object,
+                Mock.ofType<Microsoft.ApplicationInsights.IAppInsights>().object,
+                Mock.ofType<StorageAdapter>().object,
+            );
 
-        expect(result).toBeInstanceOf(AppInsightsTelemetryClient);
+            expect(result).toBeInstanceOf(ChainnedTelemetryClient);
+        });
+
+        fromArrayMock.verify(
+            fromArray =>
+                fromArray(
+                    It.is(client => client instanceof NullTelemetryClient),
+                    It.is(client => client instanceof AppInsightsTelemetryClient),
+                ),
+            Times.once(),
+        );
     });
 
     it('builds a telemetry client when there is no instrumentation key', () => {
         configMutator.setOption('appInsightsInstrumentationKey', null);
 
-        const result = getTelemetryClient(
-            applicationName,
-            installationData,
-            Mock.ofType<AppDataAdapter>().object,
-            Mock.ofType<TelemetryLogger>().object,
-            Mock.ofType<Microsoft.ApplicationInsights.IAppInsights>().object,
-            Mock.ofType<StorageAdapter>().object,
-        );
+        GlobalScope.using(fromArrayMock).with(() => {
+            const result = getTelemetryClient(
+                applicationName,
+                installationData,
+                Mock.ofType<AppDataAdapter>().object,
+                Mock.ofType<TelemetryLogger>().object,
+                Mock.ofType<Microsoft.ApplicationInsights.IAppInsights>().object,
+                Mock.ofType<StorageAdapter>().object,
+            );
 
-        expect(result).toBeInstanceOf(NullTelemetryClient);
+            expect(result).toBeInstanceOf(ChainnedTelemetryClient);
+        });
+
+        fromArrayMock.verify(
+            fromArray =>
+                fromArray(
+                    It.is(client => client instanceof NullTelemetryClient),
+                    undefined,
+                ),
+            Times.once(),
+        );
     });
 });
