@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { MultiplexingTelemetryClient } from 'background/telemetry/chainned-telemetry-client';
+import { MultiplexingTelemetryClient } from 'background/telemetry/multiplexing-telemetry-client';
 import { AppDataAdapter } from '../../common/browser-adapters/app-data-adapter';
 import { StorageAdapter } from '../../common/browser-adapters/storage-adapter';
 import { config } from '../../common/configuration';

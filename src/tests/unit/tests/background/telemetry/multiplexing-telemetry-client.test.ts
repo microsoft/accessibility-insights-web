@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { MultiplexingTelemetryClient } from 'background/telemetry/chainned-telemetry-client';
+import { MultiplexingTelemetryClient } from 'background/telemetry/multiplexing-telemetry-client';
 import { TelemetryClient } from 'background/telemetry/telemetry-client';
 import { IMock, Mock, Times } from 'typemoq';
 
