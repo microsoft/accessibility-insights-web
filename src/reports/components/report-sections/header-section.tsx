@@ -1,20 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NewTabLink } from 'common/components/new-tab-link';
 import { NamedFC } from 'common/react/named-fc';
 import { productName } from 'content/strings/application';
 import { BrandWhite } from 'icons/brand/white/brand-white';
 import * as React from 'react';
+import { NewTabLinkWithConfirmationDialog } from 'reports/components/new-tab-link-confirmation-dialog';
 
 export interface HeaderSectionProps {
     pageTitle: string;
     pageUrl: string;
-    getLinkScript: () => string;
 }
 
 export const HeaderSection = NamedFC<HeaderSectionProps>(
     'HeaderSection',
-    ({ pageTitle, pageUrl, getLinkScript }) => {
+    ({ pageTitle, pageUrl }) => {
         return (
             <header>
                 <div className="report-header-bar">
@@ -26,10 +25,9 @@ export const HeaderSection = NamedFC<HeaderSectionProps>(
                 <div className="report-header-command-bar">
                     <div className="target-page">
                         Target page:&nbsp;
-                        <NewTabLink href={pageUrl} title={pageTitle} id="target-page-link">
+                        <NewTabLinkWithConfirmationDialog href={pageUrl} title={pageTitle}>
                             {pageTitle}
-                            <script dangerouslySetInnerHTML={{ __html: getLinkScript() }} />
-                        </NewTabLink>
+                        </NewTabLinkWithConfirmationDialog>
                     </div>
                 </div>
             </header>

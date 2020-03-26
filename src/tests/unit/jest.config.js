@@ -17,6 +17,7 @@ module.exports = {
         '<rootDir>/src/**/*.{ts,tsx}',
         '!<rootDir>/src/tests/**/*',
         '!<rootDir>/src/**/*.d.ts',
+        '!<rootDir>/src/reports/components/new-tab-link-confirmation-dialog.tsx',
     ],
     coverageReporters: ['json', 'lcov', 'text', 'cobertura'],
     testEnvironment: 'jsdom',
