@@ -56,10 +56,6 @@ describe('NewTabLinkWithConfirmationDialog', () => {
             getElementByIdMock = Mock.ofType<GetElementById>(undefined, MockBehavior.Strict);
             confirmMock = Mock.ofType<ConfirmType>(undefined, MockBehavior.Strict);
 
-            getElementByIdMock
-                .setup(handler => handler(It.isAnyString()))
-                .returns(() => targetPageLinkMock.object);
-
             document.getElementById = getElementByIdMock.object;
             window.confirm = confirmMock.object;
         });
@@ -70,8 +66,6 @@ describe('NewTabLinkWithConfirmationDialog', () => {
         });
 
         it('is added to the link', () => {
-            getElementByIdMock.reset();
-
             targetPageLinkMock
                 .setup(link => link.addEventListener('click', It.is(isFunction)))
                 .verifiable(Times.once());
@@ -96,6 +90,10 @@ describe('NewTabLinkWithConfirmationDialog', () => {
         it('calls confirm function with expected text', () => {
             const eventMock = Mock.ofType<Event>();
             eventMock.setup(event => event.preventDefault());
+
+            getElementByIdMock
+                .setup(handler => handler(It.isAnyString()))
+                .returns(() => targetPageLinkMock.object);
 
             confirmMock
                 .setup(handler => handler(It.isAnyString()))
@@ -123,6 +121,10 @@ describe('NewTabLinkWithConfirmationDialog', () => {
             const eventMock = Mock.ofType<Event>();
             eventMock.setup(event => event.preventDefault()).verifiable(Times.never());
 
+            getElementByIdMock
+                .setup(handler => handler(It.isAnyString()))
+                .returns(() => targetPageLinkMock.object);
+
             confirmMock.setup(handler => handler(It.isAnyString())).returns(() => true);
 
             let clickListener: Function;
@@ -145,6 +147,10 @@ describe('NewTabLinkWithConfirmationDialog', () => {
         it('prevents link from being followed when Cancel is selected on confirmation dialog', () => {
             const eventMock = Mock.ofType<Event>();
             eventMock.setup(event => event.preventDefault()).verifiable(Times.once());
+
+            getElementByIdMock
+                .setup(handler => handler(It.isAnyString()))
+                .returns(() => targetPageLinkMock.object);
 
             confirmMock.setup(handler => handler(It.isAnyString())).returns(() => false);
 
