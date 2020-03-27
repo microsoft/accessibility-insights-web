@@ -31,6 +31,5 @@ export const addEventListenerForCollapsibleSection = (doc: Document) => {
 export const getAddListenerForCollapsibleSection = (code: string | Function): string =>
     `(${String(code)})(document)`;
 
-// untested line, having issues with snapshot testing and text representation.
 export const getDefaultAddListenerForCollapsibleSection = (): string =>
     getAddListenerForCollapsibleSection(addEventListenerForCollapsibleSection);
