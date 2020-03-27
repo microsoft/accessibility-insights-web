@@ -101,7 +101,7 @@
         "http-server": "^0.12.1",
         "identity-obj-proxy": "^3.0.0",
         "jest": "^25.2.3",
-        "jest-circus": "^25.2.2",
+        "jest-circus": "^25.2.3",
         "jest-junit": "^10.0.0",
         "js-yaml": "^3.13.1",
         "license-check-and-add": "^3.0.4",
