@@ -33,9 +33,9 @@ describe('NewTabLinkWithConfirmationDialog', () => {
 
         const testSubjectNewTabLink = testSubject.find(NewTabLink);
 
-        expect(testSubjectNewTabLink.prop('href')).toEqual(props.href);
-        expect(testSubjectNewTabLink.prop('title')).toEqual(props.title);
-        expect(testSubjectNewTabLink.contains(child)).toBe(true);
+        const { id, ...testableProps } = testSubjectNewTabLink.props();
+
+        expect(testableProps).toMatchSnapshot();
     });
 
     describe('onClickHandler', () => {
