@@ -27,6 +27,9 @@ export const NewTabLinkWithConfirmationDialog = NamedFC<ILinkProps>(
 
 export type ConfirmType = (message?: string) => boolean;
 
+// the following comment is to exclude the function from code coverage and prevent code cov from
+// injecting functions that interfere with eval in the unit tests
+/* istanbul ignore next */
 const addConfirmOnClickHandler = (linkId: string, doc: Document, confirmCallback: ConfirmType) => {
     const targetPageLink = doc.getElementById(linkId);
     targetPageLink.addEventListener('click', event => {
