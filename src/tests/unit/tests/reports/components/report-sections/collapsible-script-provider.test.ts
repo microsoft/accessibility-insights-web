@@ -6,6 +6,7 @@ import { It, Mock, MockBehavior, Times } from 'typemoq';
 import {
     addEventListenerForCollapsibleSection,
     getAddListenerForCollapsibleSection,
+    getDefaultAddListenerForCollapsibleSection,
 } from 'reports/components/report-sections/collapsible-script-provider';
 
 describe('CollapsibleScriptProvider', () => {
@@ -84,6 +85,10 @@ describe('CollapsibleScriptProvider', () => {
         } else {
             classListMock.verify(clm => clm.remove('collapsed'), Times.once());
         }
+    });
+
+    it('getDefaultAddListenerForCollapsibleSection matches snapshot', () => {
+        expect(getDefaultAddListenerForCollapsibleSection()).toMatchSnapshot();
     });
 
     const createHTMLCollectionOf = (elements: Element[]) => {
