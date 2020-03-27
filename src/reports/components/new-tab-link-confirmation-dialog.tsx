@@ -11,10 +11,10 @@ export const NewTabLinkWithConfirmationDialog = NamedFC<ILinkProps>(
     props => {
         const id = getId('new-tab-link-with-confirmation-dialog__'); // generates something like new-tab-link-with-confirmation-dialog__123
 
-        // tslint:disable: react-no-dangerous-html
         return (
             <>
                 <NewTabLink {...props} id={id} />
+                {/* tslint:disable-next-line: react-no-dangerous-html */}
                 <script
                     dangerouslySetInnerHTML={{
                         __html: generateScriptToAddConfirmOnClickHandler(id),
