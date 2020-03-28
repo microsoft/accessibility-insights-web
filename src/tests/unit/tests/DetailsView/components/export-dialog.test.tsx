@@ -140,7 +140,7 @@ describe('ExportDialog', () => {
             onExportClickMock.verifyAll();
         });
 
-        it.only('handles click on export to CodePen button', () => {
+        it('handles click on export to CodePen button', () => {
             const unchangedDescription = 'description';
             onDescriptionChangeMock
                 .setup(dc => dc(It.isValue(unchangedDescription)))
