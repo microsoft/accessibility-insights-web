@@ -75,6 +75,19 @@ describe('ExportDialog', () => {
             reportExportServiceProvider.verifyAll();
             fileProviderMock.verifyAll();
         });
+
+        it('with CodePen export form', () => {
+            const formProps = {
+                html: props.html,
+                fileName: props.fileName,
+                description: props.description,
+                onSubmit: jest.fn(),
+            };
+
+            const wrapped = shallow(<CodePenReportExportService.exportForm {...formProps} />);
+
+            expect(wrapped.getElement()).toMatchSnapshot();
+        });
     });
 
     describe('user interaction', () => {
