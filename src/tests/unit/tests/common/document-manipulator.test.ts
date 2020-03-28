@@ -16,7 +16,10 @@ describe('DocumentManipulator', () => {
 
             setter.setShortcutIcon(expectedHref);
 
-            const actualHref = document.querySelector('link').getAttribute('href').valueOf();
+            const actualHref = document
+                .querySelector('link')
+                .getAttribute('href')
+                .valueOf();
             expect(actualHref).toEqual(expectedHref);
         });
 

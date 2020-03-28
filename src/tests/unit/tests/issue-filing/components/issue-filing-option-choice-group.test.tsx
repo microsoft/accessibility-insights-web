@@ -56,7 +56,10 @@ describe('IssueFilingChoiceGroupTest', () => {
         onServiceChangeMock.setup(u => u(payload)).verifiable(Times.once());
 
         const wrapper = shallow(<IssueFilingChoiceGroup {...props} />);
-        wrapper.find(ChoiceGroup).props().onChange(null, testOption);
+        wrapper
+            .find(ChoiceGroup)
+            .props()
+            .onChange(null, testOption);
         onServiceChangeMock.verifyAll();
     });
 });

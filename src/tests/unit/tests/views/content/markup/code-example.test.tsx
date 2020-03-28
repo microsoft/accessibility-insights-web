@@ -73,6 +73,11 @@ describe('<CodeExample>', () => {
 
     it('br has the correct key', () => {
         const wrapper = shallow(<CodeExample>{`Line 1\nLine 2`}</CodeExample>);
-        expect(wrapper.find('br').at(0).key()).toEqual(`line-breaker-1`);
+        expect(
+            wrapper
+                .find('br')
+                .at(0)
+                .key(),
+        ).toEqual(`line-breaker-1`);
     });
 });

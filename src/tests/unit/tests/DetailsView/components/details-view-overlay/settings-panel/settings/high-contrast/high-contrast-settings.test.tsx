@@ -51,7 +51,10 @@ describe('HighContrastSettings', () => {
                 .setup(creator => creator.setHighContrastMode(!enabled))
                 .verifiable(Times.once());
 
-            wrapper.dive().find(Toggle).simulate('click');
+            wrapper
+                .dive()
+                .find(Toggle)
+                .simulate('click');
 
             userConfigMessageCreatorMock.verifyAll();
         });

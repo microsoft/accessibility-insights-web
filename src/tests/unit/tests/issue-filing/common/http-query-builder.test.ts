@@ -75,7 +75,10 @@ describe('HTTPQueryBuilder', () => {
         ];
 
         it.each(testCases)('of length %s', (name, actual, expected) => {
-            const result = testSubject.withBaseUrl('').withParam('a', actual).build();
+            const result = testSubject
+                .withBaseUrl('')
+                .withParam('a', actual)
+                .build();
 
             expect(result).toEqual('?a=' + expected);
         });

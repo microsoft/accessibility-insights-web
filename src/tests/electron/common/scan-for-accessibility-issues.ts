@@ -27,7 +27,7 @@ export async function scanForAccessibilityIssues(
             const elementContext =
                 selectorInEvaluate === null ? document : { include: [selectorInEvaluate] };
 
-            axe.run(elementContext, options, function (err: Error, results: any): void {
+            axe.run(elementContext, options, function(err: Error, results: any): void {
                 if (err) {
                     throw err;
                 }

@@ -64,7 +64,10 @@ describe('TelemetrySettings', () => {
                 .setup(creator => creator.setTelemetryState(!enabled))
                 .verifiable(Times.once());
 
-            wrapper.dive().find(Toggle).simulate('click');
+            wrapper
+                .dive()
+                .find(Toggle)
+                .simulate('click');
 
             userConfigMessageCreatorMock.verifyAll();
         });

@@ -27,7 +27,10 @@ export class ReportNameGenerator {
     }
 
     private getTitleSegment(pageTitle: string): string {
-        return Array.from(pageTitle).filter(this.isValidCharForTitle).slice(0, 20).join('');
+        return Array.from(pageTitle)
+            .filter(this.isValidCharForTitle)
+            .slice(0, 20)
+            .join('');
     }
 
     private isValidCharForTitle(character: string): boolean {

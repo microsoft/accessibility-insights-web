@@ -6,7 +6,7 @@ const targets = require('./targets.config');
 const merge = require('lodash/merge');
 const yaml = require('js-yaml');
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
     const extensionPath = 'extension';
 
     const packageReportPath = path.join('package', 'report');
@@ -351,7 +351,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-exec');
     grunt.loadNpmTasks('grunt-sass');
 
-    grunt.registerMultiTask('embed-styles', function () {
+    grunt.registerMultiTask('embed-styles', function() {
         const { cssPath } = this.data;
         this.files.forEach(file => {
             const {
@@ -373,7 +373,7 @@ module.exports = function (grunt) {
         });
     });
 
-    grunt.registerMultiTask('configure', function () {
+    grunt.registerMultiTask('configure', function() {
         const { config, configJSONPath, configJSPath, telemetryKeyIdentifier } = this.data;
         // We pass this as an option from a build variable not because it is a secret
         // (it can be found easily enough from released builds), but to make it harder
@@ -390,7 +390,7 @@ module.exports = function (grunt) {
         grunt.file.write(configJSPath, configJS);
     });
 
-    grunt.registerMultiTask('manifest', function () {
+    grunt.registerMultiTask('manifest', function() {
         const { config, manifestSrc, manifestDest } = this.data;
         const manifestJSON = grunt.file.readJSON(manifestSrc);
         merge(manifestJSON, {
@@ -411,7 +411,7 @@ module.exports = function (grunt) {
         grunt.file.write(manifestDest, JSON.stringify(manifestJSON, undefined, 2));
     });
 
-    grunt.registerMultiTask('drop', function () {
+    grunt.registerMultiTask('drop', function() {
         const targetName = this.target;
         const { bundleFolder, mustExistFile, config } = targets[targetName];
 
@@ -432,7 +432,7 @@ module.exports = function (grunt) {
         console.log(`${targetName} extension is in ${dropExtensionPath}`);
     });
 
-    grunt.registerMultiTask('configure-electron-builder', function () {
+    grunt.registerMultiTask('configure-electron-builder', function() {
         grunt.task.requires('drop:' + this.target);
         const { dropPath, electronIconBaseName, fullName, appId, publishUrl } = this.data;
 
@@ -466,7 +466,7 @@ module.exports = function (grunt) {
         grunt.log.writeln(`generated ${outElectronBuilderConfigFile} from target config`);
     });
 
-    grunt.registerMultiTask('electron-builder-pack', function () {
+    grunt.registerMultiTask('electron-builder-pack', function() {
         grunt.task.requires('drop:' + this.target);
         grunt.task.requires('configure-electron-builder:' + this.target);
 
@@ -499,7 +499,7 @@ module.exports = function (grunt) {
         );
     });
 
-    grunt.registerMultiTask('zip-mac-folder', function () {
+    grunt.registerMultiTask('zip-mac-folder', function() {
         grunt.task.requires('drop:' + this.target);
         grunt.task.requires('configure-electron-builder:' + this.target);
         grunt.task.requires('electron-builder-pack:' + this.target);
@@ -537,14 +537,14 @@ module.exports = function (grunt) {
         );
     });
 
-    grunt.registerMultiTask('unified-release-drop', function () {
+    grunt.registerMultiTask('unified-release-drop', function() {
         grunt.task.run(`drop:${this.target}`);
         grunt.task.run(`configure-electron-builder:${this.target}`);
         grunt.task.run(`electron-builder-pack:${this.target}`);
         grunt.task.run(`zip-mac-folder:${this.target}`);
     });
 
-    grunt.registerTask('package-report', function () {
+    grunt.registerTask('package-report', function() {
         const mustExistPath = path.join(packageReportBundlePath, 'report.bundle.js');
 
         mustExist(mustExistPath, 'Have you run webpack?');
@@ -555,7 +555,7 @@ module.exports = function (grunt) {
         console.log(`package is in ${packageReportDropPath}`);
     });
 
-    grunt.registerTask('package-ui', function () {
+    grunt.registerTask('package-ui', function() {
         const mustExistPath = path.join(packageUIBundlePath, 'ui.bundle.js');
 
         mustExist(mustExistPath, 'Have you run webpack?');
@@ -565,19 +565,19 @@ module.exports = function (grunt) {
         console.log(`package is in ${packageUIDropPath}`);
     });
 
-    grunt.registerTask('extension-release-drops', function () {
+    grunt.registerTask('extension-release-drops', function() {
         extensionReleaseTargets.forEach(targetName => {
             grunt.task.run('drop:' + targetName);
         });
     });
 
-    grunt.registerTask('unified-release-drops', function () {
+    grunt.registerTask('unified-release-drops', function() {
         unifiedReleaseTargets.forEach(targetName => {
             grunt.task.run('unified-release-drop:' + targetName);
         });
     });
 
-    grunt.registerTask('ada-cat', function () {
+    grunt.registerTask('ada-cat', function() {
         if (process.env.SHOW_ADA !== 'false') {
             console.log(
                 'Image of Ada sleeping follows. Set environment variable SHOW_ADA to false to hide.',

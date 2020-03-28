@@ -102,7 +102,10 @@ describe('GithubIssueFilingServiceTest', () => {
             onPropertyUpdateCallbackMock
                 .setup(updateCallback => updateCallback(It.isValue(payload)))
                 .verifiable(Times.once());
-            wrapper.find(TextField).props().onChange(null, newRepositoryValue);
+            wrapper
+                .find(TextField)
+                .props()
+                .onChange(null, newRepositoryValue);
             onPropertyUpdateCallbackMock.verifyAll();
         });
     });
