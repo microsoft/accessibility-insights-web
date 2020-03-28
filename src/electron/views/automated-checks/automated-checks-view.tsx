@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { ScanningSpinner } from 'common/components/scanning-spinner/scanning-spinner';
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
+import { GetUnavailableHighlightStatus } from 'common/get-unavailable-highlight-status';
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
@@ -24,6 +25,7 @@ import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popu
 import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
 import { ScreenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
 import * as React from 'react';
+
 import * as styles from './automated-checks-view.scss';
 import { CommandBar, CommandBarDeps } from './components/command-bar';
 import { HeaderSection } from './components/header-section';
@@ -39,6 +41,7 @@ export type AutomatedChecksViewDeps = CommandBarDeps &
         getCardsViewData: GetCardViewData;
         getCardSelectionViewData: GetCardSelectionViewData;
         screenshotViewModelProvider: ScreenshotViewModelProvider;
+        getUnavailableHighlightStatus: GetUnavailableHighlightStatus;
     };
 
 export type AutomatedChecksViewProps = {
@@ -67,11 +70,12 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
             const cardSelectionViewData = deps.getCardSelectionViewData(
                 cardSelectionStoreData,
                 unifiedScanResultStoreData,
+                deps.getUnavailableHighlightStatus,
             );
             const cardsViewData = deps.getCardsViewData(rules, results, cardSelectionViewData);
             const highlightedResultUids = Object.keys(
-                cardSelectionViewData.resultHighlightStatus,
-            ).filter(uid => cardSelectionViewData.resultHighlightStatus[uid] === 'visible');
+                cardSelectionViewData.resultsHighlightStatus,
+            ).filter(uid => cardSelectionViewData.resultsHighlightStatus[uid] === 'visible');
             const screenshotViewModel = deps.screenshotViewModelProvider(
                 unifiedScanResultStoreData,
                 highlightedResultUids,

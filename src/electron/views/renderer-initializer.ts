@@ -29,6 +29,7 @@ import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
+import { getUnavailableHighlightStatusUnified } from 'common/get-unavailable-highlight-status';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { DropdownActionMessageCreator } from 'common/message-creators/dropdown-action-message-creator';
@@ -338,6 +339,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             settingsProvider: UnifiedSettingsProvider,
             loadTheme,
             documentManipulator,
+            getUnavailableHighlightStatus: getUnavailableHighlightStatusUnified,
         };
 
         window.insightsUserConfiguration = new UserConfigurationController(interpreter);

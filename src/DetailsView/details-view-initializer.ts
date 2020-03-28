@@ -9,6 +9,7 @@ import { UserConfigurationStore } from 'background/stores/global/user-configurat
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { ThemeInnerState } from 'common/components/theme';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
+import { getUnavailableHighlightStatusWeb } from 'common/get-unavailable-highlight-status';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
@@ -36,6 +37,7 @@ import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ReportNameGenerator } from 'reports/report-name-generator';
+
 import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AutoChecker } from '../common/auto-checker';
 import { AxeInfo } from '../common/axe-info';
@@ -418,6 +420,7 @@ if (isNaN(tabId) === false) {
                     browserAdapter,
                     detailsViewActionMessageCreator,
                 ),
+                getUnavailableHighlightStatus: getUnavailableHighlightStatusWeb,
                 setFocusVisibility,
                 documentManipulator,
                 customCongratsMessage: null, // uses default message

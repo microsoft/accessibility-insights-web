@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { HighlightState } from 'common/components/cards/instance-details-footer';
+import { GetUnavailableHighlightStatus } from 'common/get-unavailable-highlight-status';
 import {
     PlatformData,
     UnifiedResult,
@@ -8,7 +9,7 @@ import {
     ViewPortProperties,
 } from 'common/types/store-data/unified-data-interface';
 import { BoundingRectangle } from 'electron/platform/android/scan-results';
-import { flatMap, forOwn, keys } from 'lodash';
+import { flatMap, forOwn, keys, isEmpty } from 'lodash';
 
 import {
     CardSelectionStoreData,
@@ -21,116 +22,130 @@ export interface CardSelectionViewData {
     selectedResultUids: string[]; // indicates selected cards
     expandedRuleIds: string[];
     visualHelperEnabled: boolean;
-    resultHighlightStatus: { [resultUid: string]: HighlightState };
+    resultsHighlightStatus: ResultsHighlightStatus;
 }
+
+export type ResultsHighlightStatus = { [resultUid: string]: HighlightState };
 
 export type GetCardSelectionViewData = (
     storeData: CardSelectionStoreData,
     unifiedScanResultStoreData: UnifiedScanResultStoreData,
+    getUnavailableHighlightStatus: GetUnavailableHighlightStatus,
 ) => CardSelectionViewData;
 
-export const getCardSelectionViewData = (
+export const getCardSelectionViewData: GetCardSelectionViewData = (
     cardSelectionStoreData: CardSelectionStoreData,
     unifiedScanResultStoreData: UnifiedScanResultStoreData,
+    getUnavailableHighlightStatus: GetUnavailableHighlightStatus,
 ): CardSelectionViewData => {
     const viewData = getEmptyViewData();
 
-    if (!cardSelectionStoreData) {
+    if (isEmpty(cardSelectionStoreData) || isEmpty(unifiedScanResultStoreData)) {
         return viewData;
     }
 
     viewData.visualHelperEnabled = cardSelectionStoreData.visualHelperEnabled || false;
     viewData.expandedRuleIds = getRuleIdsOfExpandedRules(cardSelectionStoreData.rules);
+
+    const allResultUids = getAllResultUids(cardSelectionStoreData.rules);
+    const resultsWithUnavailableHighlightStatus = getResultsWithUnavailableHighlightStatus(
+        unifiedScanResultStoreData,
+        getUnavailableHighlightStatus,
+    );
+
+    allResultUids.forEach(resultUid => {
+        viewData.resultsHighlightStatus[resultUid] = 'hidden';
+    });
+
+    if (!cardSelectionStoreData.visualHelperEnabled) {
+        // no selected cards; no highlighted instances and unavailable instances shown as such.
+        viewData.resultsHighlightStatus = {
+            ...viewData.resultsHighlightStatus,
+            ...resultsWithUnavailableHighlightStatus,
+        };
+        return viewData;
+    }
+
+    // if no rules are expanded, highlight all results except for those unavailable.
+    if (viewData.expandedRuleIds.length === 0) {
+        forOwn(viewData.resultsHighlightStatus, (_, resultUid) => {
+            viewData.resultsHighlightStatus[resultUid] = 'visible';
+        });
+        viewData.resultsHighlightStatus = {
+            ...viewData.resultsHighlightStatus,
+            ...resultsWithUnavailableHighlightStatus,
+        };
+        return viewData;
+    }
+
+    // if there are any cards selected, make sure they are highlighted if not unavailable.
     viewData.selectedResultUids = getOnlyResultUidsFromSelectedCards(
         cardSelectionStoreData.rules,
         viewData.expandedRuleIds,
     );
 
-    unifiedScanResultStoreData.results
-        .filter(result => result.status === 'fail')
-        .forEach(result => {
-            viewData.resultHighlightStatus[result.uid] = getUnavailableHighlightStatus(
-                result,
-                unifiedScanResultStoreData.platformInfo,
-            );
-        });
-
-    if (!cardSelectionStoreData.visualHelperEnabled) {
-        // no selected cards; no highlighted instances
-        return viewData;
-    }
-
-    if (viewData.expandedRuleIds.length === 0) {
-        forOwn(viewData.resultHighlightStatus, (status, resultUid) => {
-            viewData.resultHighlightStatus[resultUid] = status || 'visible';
-        });
-        return viewData;
-    }
-
-    const allResultUids = getAllResultUids(cardSelectionStoreData.rules);
-
     if (viewData.selectedResultUids.length) {
         viewData.selectedResultUids.forEach(resultUid => {
-            viewData.resultHighlightStatus[resultUid] =
-                viewData.resultHighlightStatus[resultUid] || 'visible';
+            viewData.resultsHighlightStatus[resultUid] = 'visible';
         });
-        allResultUids.forEach(resultUid => {
-            viewData.resultHighlightStatus[resultUid] =
-                viewData.resultHighlightStatus[resultUid] || 'hidden';
-        });
+        viewData.resultsHighlightStatus = {
+            ...viewData.resultsHighlightStatus,
+            ...resultsWithUnavailableHighlightStatus,
+        };
         return viewData;
     }
 
+    // highlight all cards under expanded rules if no cards are selected if not unavailable.
     const wouldBeHighlightedResults = getAllResultUidsFromRuleIdArray(
         cardSelectionStoreData.rules,
         viewData.expandedRuleIds,
     );
 
     wouldBeHighlightedResults.forEach(resultUid => {
-        viewData.resultHighlightStatus[resultUid] =
-            viewData.resultHighlightStatus[resultUid] || 'visible';
-    });
-    allResultUids.forEach(resultUid => {
-        viewData.resultHighlightStatus[resultUid] =
-            viewData.resultHighlightStatus[resultUid] || 'hidden';
+        viewData.resultsHighlightStatus[resultUid] = 'visible';
     });
 
+    viewData.resultsHighlightStatus = {
+        ...viewData.resultsHighlightStatus,
+        ...resultsWithUnavailableHighlightStatus,
+    };
     return viewData;
 };
 
 function getEmptyViewData(): CardSelectionViewData {
-    const viewData = {
+    return {
         highlightedResultUids: [],
         selectedResultUids: [],
         expandedRuleIds: [],
         visualHelperEnabled: false,
-        resultHighlightStatus: {},
+        resultsHighlightStatus: {},
     };
-
-    return viewData;
 }
 
-const getUnavailableHighlightStatus: (
-    result: UnifiedResult,
-    platformInfo: PlatformData,
-) => HighlightState = (result, platformInfo) => {
-    if (
-        !hasValidBoundingRectangle(result.descriptors.boundingRectangle, platformInfo.viewPortInfo)
-    ) {
-        return 'unavailable';
-    }
+function getResultsWithUnavailableHighlightStatus(
+    unifiedScanResultStoreData: UnifiedScanResultStoreData,
+    getUnavailableHighlightStatus: GetUnavailableHighlightStatus,
+): ResultsHighlightStatus {
+    const resultsWithUnavailableHighlightStatus = {};
 
-    return null;
-};
+    unifiedScanResultStoreData.results.forEach(result => {
+        if (result.status !== 'fail') {
+            return;
+        }
 
-function hasValidBoundingRectangle(
-    boundingRectangle: BoundingRectangle,
-    viewPort: ViewPortProperties,
-): boolean {
-    return (
-        boundingRectangle != null &&
-        !(boundingRectangle.left > viewPort.width || boundingRectangle.top > viewPort.height)
-    );
+        const unavailableHighlightStatus = getUnavailableHighlightStatus(
+            result,
+            unifiedScanResultStoreData.platformInfo,
+        );
+
+        if (unavailableHighlightStatus == null) {
+            return;
+        }
+
+        resultsWithUnavailableHighlightStatus[result.uid] = unavailableHighlightStatus;
+    });
+
+    return resultsWithUnavailableHighlightStatus;
 }
 
 function getRuleIdsOfExpandedRules(ruleDictionary: RuleExpandCollapseDataDictionary): string[] {

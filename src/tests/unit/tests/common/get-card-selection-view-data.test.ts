@@ -1,14 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { GetUnavailableHighlightStatus } from 'common/get-unavailable-highlight-status';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
+import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { cloneDeep } from 'lodash';
+import { IMock, Mock } from 'typemoq';
+
 import { getCardSelectionViewData } from '../../../../common/get-card-selection-view-data';
 
 describe('getCardSelectionStoreviewData', () => {
-    let initialState: CardSelectionStoreData;
+    let initialCardSelectionState: CardSelectionStoreData;
+    let initialUnifiedScanResultState: UnifiedScanResultStoreData;
+    let getUnavailableHighlightStatus: IMock<GetUnavailableHighlightStatus>;
 
     beforeEach(() => {
-        const defaultState: CardSelectionStoreData = {
+        const defaultCardSelectionState: CardSelectionStoreData = {
             rules: {
                 sampleRuleId1: {
                     isExpanded: false,
@@ -29,107 +35,215 @@ describe('getCardSelectionStoreviewData', () => {
             focusedResultUid: null,
         };
 
-        initialState = cloneDeep(defaultState);
+        initialUnifiedScanResultState = {
+            platformInfo: {
+                viewPortInfo: {},
+            },
+            results: [
+                {
+                    uid: 'sampleUid1',
+                    status: 'fail',
+                },
+                {
+                    uid: 'sampleUid2',
+                    status: 'fail',
+                },
+                {
+                    uid: 'sampleUid3',
+                    status: 'fail',
+                },
+                {
+                    uid: 'sampleUid4',
+                    status: 'fail',
+                },
+                {
+                    uid: 'sampleUid5',
+                    status: 'pass',
+                },
+            ],
+        } as UnifiedScanResultStoreData;
+
+        getUnavailableHighlightStatus = Mock.ofType<GetUnavailableHighlightStatus>();
+        initialCardSelectionState = cloneDeep(defaultCardSelectionState);
     });
 
     test('all rules collapsed, visual helper enabled, expect all highlights', () => {
-        const viewData = getCardSelectionViewData(initialState);
+        const viewData = getCardSelectionViewData(
+            initialCardSelectionState,
+            initialUnifiedScanResultState,
+            getUnavailableHighlightStatus.object,
+        );
 
-        expect(viewData.highlightedResultUids).toEqual([
-            'sampleUid1',
-            'sampleUid2',
-            'sampleUid3',
-            'sampleUid4',
-        ]);
+        expect(viewData.resultsHighlightStatus).toEqual({
+            sampleUid1: 'visible',
+            sampleUid2: 'visible',
+            sampleUid3: 'visible',
+            sampleUid4: 'visible',
+        });
+        expect(viewData.expandedRuleIds).toEqual([]);
+        expect(viewData.selectedResultUids).toEqual([]);
+        expect(viewData.visualHelperEnabled).toEqual(true);
+    });
+
+    test('all rules collapsed, visual helper enabled, some results unavailable', () => {
+        getUnavailableHighlightStatus
+            .setup(mock =>
+                mock(
+                    initialUnifiedScanResultState.results[0],
+                    initialUnifiedScanResultState.platformInfo,
+                ),
+            )
+            .returns(() => 'unavailable');
+
+        getUnavailableHighlightStatus
+            .setup(mock =>
+                mock(
+                    initialUnifiedScanResultState.results[1],
+                    initialUnifiedScanResultState.platformInfo,
+                ),
+            )
+            .returns(() => 'unavailable');
+
+        const viewData = getCardSelectionViewData(
+            initialCardSelectionState,
+            initialUnifiedScanResultState,
+            getUnavailableHighlightStatus.object,
+        );
+
+        expect(viewData.resultsHighlightStatus).toEqual({
+            sampleUid1: 'unavailable',
+            sampleUid2: 'unavailable',
+            sampleUid3: 'visible',
+            sampleUid4: 'visible',
+        });
         expect(viewData.expandedRuleIds).toEqual([]);
         expect(viewData.selectedResultUids).toEqual([]);
         expect(viewData.visualHelperEnabled).toEqual(true);
     });
 
     test('all rules expanded, visual helper enabled, expect all highlights', () => {
-        initialState.rules['sampleRuleId1'].isExpanded = true;
-        initialState.rules['sampleRuleId2'].isExpanded = true;
+        initialCardSelectionState.rules['sampleRuleId1'].isExpanded = true;
+        initialCardSelectionState.rules['sampleRuleId2'].isExpanded = true;
 
-        const viewData = getCardSelectionViewData(initialState);
+        const viewData = getCardSelectionViewData(
+            initialCardSelectionState,
+            initialUnifiedScanResultState,
+            getUnavailableHighlightStatus.object,
+        );
 
-        expect(viewData.highlightedResultUids).toEqual([
-            'sampleUid1',
-            'sampleUid2',
-            'sampleUid3',
-            'sampleUid4',
-        ]);
+        expect(viewData.resultsHighlightStatus).toEqual({
+            sampleUid1: 'visible',
+            sampleUid2: 'visible',
+            sampleUid3: 'visible',
+            sampleUid4: 'visible',
+        });
         expect(viewData.expandedRuleIds).toEqual(['sampleRuleId1', 'sampleRuleId2']);
         expect(viewData.selectedResultUids).toEqual([]);
         expect(viewData.visualHelperEnabled).toEqual(true);
     });
 
     test('one rule expanded, visual helper enabled, expect some highlights', () => {
-        initialState.rules['sampleRuleId1'].isExpanded = true;
+        initialCardSelectionState.rules['sampleRuleId1'].isExpanded = true;
 
-        const viewData = getCardSelectionViewData(initialState);
+        const viewData = getCardSelectionViewData(
+            initialCardSelectionState,
+            initialUnifiedScanResultState,
+            getUnavailableHighlightStatus.object,
+        );
 
-        expect(viewData.highlightedResultUids).toEqual(['sampleUid1', 'sampleUid2']);
+        expect(viewData.resultsHighlightStatus).toEqual({
+            sampleUid1: 'visible',
+            sampleUid2: 'visible',
+            sampleUid3: 'hidden',
+            sampleUid4: 'hidden',
+        });
         expect(viewData.expandedRuleIds).toEqual(['sampleRuleId1']);
         expect(viewData.selectedResultUids).toEqual([]);
         expect(viewData.visualHelperEnabled).toEqual(true);
     });
 
     test('all rules expanded, visual helper enabled, one card selected, expect one highlight', () => {
-        initialState.rules['sampleRuleId1'].isExpanded = true;
-        initialState.rules['sampleRuleId2'].isExpanded = true;
-        initialState.rules['sampleRuleId2'].cards['sampleUid3'] = true;
+        initialCardSelectionState.rules['sampleRuleId1'].isExpanded = true;
+        initialCardSelectionState.rules['sampleRuleId2'].isExpanded = true;
+        initialCardSelectionState.rules['sampleRuleId2'].cards['sampleUid3'] = true;
 
-        const viewData = getCardSelectionViewData(initialState);
+        const viewData = getCardSelectionViewData(
+            initialCardSelectionState,
+            initialUnifiedScanResultState,
+            getUnavailableHighlightStatus.object,
+        );
 
-        expect(viewData.highlightedResultUids).toEqual(['sampleUid3']);
+        expect(viewData.resultsHighlightStatus).toEqual({
+            sampleUid1: 'hidden',
+            sampleUid2: 'hidden',
+            sampleUid3: 'visible',
+            sampleUid4: 'hidden',
+        });
         expect(viewData.expandedRuleIds).toEqual(['sampleRuleId1', 'sampleRuleId2']);
         expect(viewData.selectedResultUids).toEqual(['sampleUid3']);
         expect(viewData.visualHelperEnabled).toEqual(true);
     });
 
     test('all rules collapsed, visual helper enabled , one card selected, expect all highlights', () => {
-        initialState.rules['sampleRuleId2'].cards['sampleUid3'] = true;
+        initialCardSelectionState.rules['sampleRuleId2'].cards['sampleUid3'] = true;
 
-        const viewData = getCardSelectionViewData(initialState);
+        const viewData = getCardSelectionViewData(
+            initialCardSelectionState,
+            initialUnifiedScanResultState,
+            getUnavailableHighlightStatus.object,
+        );
 
-        expect(viewData.highlightedResultUids).toEqual([
-            'sampleUid1',
-            'sampleUid2',
-            'sampleUid3',
-            'sampleUid4',
-        ]);
+        expect(viewData.resultsHighlightStatus).toEqual({
+            sampleUid1: 'visible',
+            sampleUid2: 'visible',
+            sampleUid3: 'visible',
+            sampleUid4: 'visible',
+        });
         expect(viewData.expandedRuleIds).toEqual([]);
         expect(viewData.selectedResultUids).toEqual([]);
         expect(viewData.visualHelperEnabled).toEqual(true);
     });
 
     test('all rules expanded, visual helper disabled, one card selected, expect no highlights or selected cards but rules still expanded', () => {
-        initialState.rules['sampleRuleId1'].isExpanded = true;
-        initialState.rules['sampleRuleId2'].isExpanded = true;
-        initialState.rules['sampleRuleId2'].cards['sampleUid3'] = true;
-        initialState.visualHelperEnabled = false;
+        initialCardSelectionState.rules['sampleRuleId1'].isExpanded = true;
+        initialCardSelectionState.rules['sampleRuleId2'].isExpanded = true;
+        initialCardSelectionState.rules['sampleRuleId2'].cards['sampleUid3'] = true;
+        initialCardSelectionState.visualHelperEnabled = false;
 
-        const viewData = getCardSelectionViewData(initialState);
+        const viewData = getCardSelectionViewData(
+            initialCardSelectionState,
+            initialUnifiedScanResultState,
+            getUnavailableHighlightStatus.object,
+        );
 
-        expect(viewData.highlightedResultUids).toEqual([]);
+        expect(viewData.resultsHighlightStatus).toEqual({
+            sampleUid1: 'hidden',
+            sampleUid2: 'hidden',
+            sampleUid3: 'hidden',
+            sampleUid4: 'hidden',
+        });
         expect(viewData.expandedRuleIds).toEqual(['sampleRuleId1', 'sampleRuleId2']);
         expect(viewData.selectedResultUids).toEqual([]);
         expect(viewData.visualHelperEnabled).toEqual(false);
     });
 
     test('null store data, expect no results', () => {
-        const viewData = getCardSelectionViewData(null);
+        const viewData = getCardSelectionViewData(null, null, null);
 
-        expect(viewData.highlightedResultUids).toEqual([]);
+        expect(viewData.resultsHighlightStatus).toEqual({});
         expect(viewData.expandedRuleIds).toEqual([]);
         expect(viewData.selectedResultUids).toEqual([]);
         expect(viewData.visualHelperEnabled).toEqual(false);
     });
 
     test('invalid store data, expect no results', () => {
-        const viewData = getCardSelectionViewData({} as CardSelectionStoreData);
+        const viewData = getCardSelectionViewData(
+            {} as CardSelectionStoreData,
+            {} as UnifiedScanResultStoreData,
+            null,
+        );
 
-        expect(viewData.highlightedResultUids).toEqual([]);
+        expect(viewData.resultsHighlightStatus).toEqual({});
         expect(viewData.expandedRuleIds).toEqual([]);
         expect(viewData.selectedResultUids).toEqual([]);
         expect(viewData.visualHelperEnabled).toEqual(false);

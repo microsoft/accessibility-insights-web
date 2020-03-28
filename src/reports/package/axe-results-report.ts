@@ -41,7 +41,7 @@ export class AxeResultsReport implements AccessibilityInsightsReport.Report {
             selectedResultUids: [],
             expandedRuleIds: [],
             visualHelperEnabled: false,
-            resultHighlightStatus: {},
+            resultsHighlightStatus: {},
         };
 
         const cardsViewModel = getCards(unifiedRules, unifiedResults, cardSelectionViewData);
