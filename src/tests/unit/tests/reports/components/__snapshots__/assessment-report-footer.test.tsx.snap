@@ -9,7 +9,7 @@ exports[`AssessmentReportFooter renders 1`] = `
    
   test-extension-version
    
-  (Axe 
+  (axe-core 
   axeVersion
   ), a tool that helps debug and find accessibility issues earlier on 
   chromeVersion
