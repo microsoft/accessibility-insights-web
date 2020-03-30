@@ -31,6 +31,13 @@ const description: JSX.Element = (
 const howToTest: JSX.Element = (
     <div>
         <p>
+            <Markup.Emphasis>
+                Note: Contrast requirements for text within a UI component or graphic are covered in{' '}
+                <Markup.Term>Automated checks</Markup.Term> and{' '}
+                <Markup.Term>Text legibility.</Markup.Term>
+            </Markup.Emphasis>
+        </p>
+        <p>
             The visual helper for this requirement highlights links, native widgets, and custom
             widgets in the target page.
         </p>
