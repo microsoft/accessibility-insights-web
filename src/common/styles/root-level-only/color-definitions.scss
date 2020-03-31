@@ -116,10 +116,11 @@
         --neutral-4: var(--light-black);
         --neutral-6: var(--light-black);
         --neutral-6-5: var(--light-black);
-        --neutral-8: var(--light-black);
+        // 8 being "lighter" than 10 in high-contrast is intended based on current usage
+        --neutral-8: var(--white);
         --neutral-10: var(--light-black);
-        --neutral-20: var(--light-black);
-        --neutral-30: var(--light-black);
+        --neutral-20: var(--white);
+        --neutral-30: var(--white);
         --neutral-55: var(--white);
         --neutral-60: var(--white);
         --neutral-70: var(--white);
