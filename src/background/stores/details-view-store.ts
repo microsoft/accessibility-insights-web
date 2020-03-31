@@ -43,9 +43,6 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
     }
 
     protected addActionListeners(): void {
-        this.previewFeaturesActions.openPreviewFeatures.addListener(() =>
-            this.onOpen('isPreviewFeaturesOpen'),
-        );
         this.previewFeaturesActions.closePreviewFeatures.addListener(() =>
             this.onClose('isPreviewFeaturesOpen'),
         );

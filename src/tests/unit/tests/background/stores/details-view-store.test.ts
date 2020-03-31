@@ -40,10 +40,9 @@ describe('DetailsViewStoreTest', () => {
             .withPreviewFeaturesOpen(true)
             .build();
 
-        createStoreTesterForPreviewFeatureActions('openPreviewFeatures').testListenerToBeCalledOnce(
-            initialState,
-            expectedState,
-        );
+        createStoreTesterForSidePanelActions('openSidePanel')
+            .withActionParam('PreviewFeatures')
+            .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     test('onClosePreviewFeatures', () => {
