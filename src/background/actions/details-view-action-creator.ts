@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { SidePanelActions } from 'background/actions/side-panel-actions';
 import { DetailsViewController } from 'background/details-view-controller';
+import { SidePanel } from 'background/stores/side-panel';
 import { SETTINGS_PANEL_CLOSE, SETTINGS_PANEL_OPEN } from 'common/extension-telemetry-events';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { Logger } from 'common/logging/logger';
@@ -12,6 +13,10 @@ import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import { BaseActionPayload } from './action-payloads';
 import { DetailsViewActions } from './details-view-actions';
+
+type SidePanelToOpenPanelTelemetryEventName = {
+    [P in SidePanel]: string;
+};
 
 export class DetailsViewActionCreator {
     constructor(
@@ -26,7 +31,7 @@ export class DetailsViewActionCreator {
     public registerCallback(): void {
         this.interpreter.registerTypeToPayloadCallback(
             Messages.SettingsPanel.OpenPanel,
-            this.onOpenSettingsPanel,
+            this.onOpenSidePanel.bind(this, 'Settings'),
         );
         this.interpreter.registerTypeToPayloadCallback(
             Messages.SettingsPanel.ClosePanel,
@@ -42,13 +47,20 @@ export class DetailsViewActionCreator {
         );
     }
 
-    private onOpenSettingsPanel = async (
+    private sidePanelToOpenPanelTelemetryEventName: SidePanelToOpenPanelTelemetryEventName = {
+        Settings: SETTINGS_PANEL_OPEN,
+    };
+
+    private onOpenSidePanel = async (
+        panel: SidePanel,
         payload: BaseActionPayload,
         tabId: number,
     ): Promise<void> => {
-        this.sidePanelActions.openSidePanel.invoke('Settings');
+        this.sidePanelActions.openSidePanel.invoke(panel);
         await this.detailsViewController.showDetailsView(tabId).catch(this.logger.error);
-        this.telemetryEventHandler.publishTelemetry(SETTINGS_PANEL_OPEN, payload);
+
+        const eventName = this.sidePanelToOpenPanelTelemetryEventName[panel];
+        this.telemetryEventHandler.publishTelemetry(eventName, payload);
     };
 
     private onCloseSettingsPanel = (payload: BaseActionPayload): void => {
