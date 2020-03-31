@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { SidePanelActions } from 'background/actions/side-panel-actions';
-import { SidePanel, SidePanelToStoreKey } from 'background/stores/side-panel';
+import { SidePanel } from 'background/stores/side-panel';
 import { StoreNames } from 'common/stores/store-names';
 import { CurrentPanel } from 'common/types/store-data/current-panel';
 import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
@@ -11,6 +11,10 @@ import { DetailsViewActions } from '../actions/details-view-actions';
 import { ScopingActions } from '../actions/scoping-actions';
 import { PreviewFeaturesActions } from './../actions/preview-features-actions';
 import { BaseStoreImpl } from './base-store-impl';
+
+type SidePanelToStoreKey = {
+    [P in SidePanel]: keyof DetailsViewStoreData['currentPanel'];
+};
 
 export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
     constructor(
