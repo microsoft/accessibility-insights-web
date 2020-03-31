@@ -74,6 +74,7 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
 
     private sidePanelToStateKey: SidePanelToStoreKey = {
         Settings: 'isSettingsOpen',
+        PreviewFeatures: 'isPreviewFeaturesOpen',
     };
 
     private onOpenSidePanel = (sidePanel: SidePanel) => {
