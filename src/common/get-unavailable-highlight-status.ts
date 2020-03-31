@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 
 import {
-    UnifiedResult,
     PlatformData,
+    UnifiedResult,
     ViewPortProperties,
 } from 'common/types/store-data/unified-data-interface';
 
@@ -21,6 +21,8 @@ export const getUnavailableHighlightStatusUnified: GetUnavailableHighlightStatus
     platformInfo,
 ) => {
     if (
+        platformInfo == null ||
+        result.descriptors.boundingRectangle == null ||
         !hasValidBoundingRectangle(result.descriptors.boundingRectangle, platformInfo.viewPortInfo)
     ) {
         return 'unavailable';
@@ -33,10 +35,7 @@ function hasValidBoundingRectangle(
     boundingRectangle: BoundingRectangle,
     viewPort: ViewPortProperties,
 ): boolean {
-    return (
-        boundingRectangle != null &&
-        !(boundingRectangle.left > viewPort.width || boundingRectangle.top > viewPort.height)
-    );
+    return !(boundingRectangle.left > viewPort.width || boundingRectangle.top > viewPort.height);
 }
 
 export const getUnavailableHighlightStatusWeb: GetUnavailableHighlightStatus = () => null;

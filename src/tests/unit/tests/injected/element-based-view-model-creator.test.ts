@@ -176,7 +176,6 @@ describe('ElementBasedViewModelCreator', () => {
             .setup(mock => mock(unifiedResultTwo, ruleStubTwo, identifierStub))
             .returns(() => decoratedResultStubTwo);
 
-        const unifiedResults = [unifiedResultOne, unifiedResultTwo];
         const expectedResult = {
             [identifierStub]: {
                 isFailure: true,
