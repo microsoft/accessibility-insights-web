@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+@import '../../common/styles/root-level-only/color-definitions.scss';
+@import '../../common/styles/root-level-only/global-styles.scss';
 @import '../../common/styles/common.scss';
 @import '../../views/content/content.scss';
 @import '../../reports/components/outcome.scss';
@@ -7,7 +9,7 @@
 @import '../../reports/components/assessment-report-summary.scss';
 @import '../../reports/components/assessment-summary-details.scss';
 @import '../../common/components/toast.scss';
-@import '../../common/components//guidance-tags.scss';
+@import '../../common/components/guidance-tags.scss';
 
 body {
     margin: 0;
@@ -502,10 +504,8 @@ div.insights-file-issue-details-dialog-container {
                 min-width: 600px;
                 height: auto;
             }
-            .ms-MessageBar {
-                padding-left: 24px;
-            }
             .ms-MessageBar-icon i {
+                margin-left: 12px;
                 color: $secondary-text;
             }
             .view {

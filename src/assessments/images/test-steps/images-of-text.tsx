@@ -48,6 +48,11 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<MeaningfulImageProperty
         displayName: 'Image type',
     },
     {
+        propertyName: 'ariaRole',
+        displayName: 'ARIA role',
+        defaultValue: NoValue,
+    },
+    {
         propertyName: 'accessibleName',
         displayName: 'Accessible name',
         defaultValue: NoValue,

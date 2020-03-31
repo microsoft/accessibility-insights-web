@@ -10,7 +10,10 @@ import { VisualizationType } from '../../../../../common/types/visualization-typ
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { DetailsRightPanelConfiguration } from '../../../../../DetailsView/components/details-view-right-panel';
 import { GenericDialog } from '../../../../../DetailsView/components/generic-dialog';
-import { StartOverDropdown, StartOverProps } from '../../../../../DetailsView/components/start-over-dropdown';
+import {
+    StartOverDropdown,
+    StartOverProps,
+} from '../../../../../DetailsView/components/start-over-dropdown';
 
 describe('StartOverDropdownTest', () => {
     let defaultProps: StartOverProps;
@@ -82,7 +85,9 @@ describe('StartOverDropdownTest', () => {
 
     it('should dismiss the start test over dialog', () => {
         detailsViewActionMessageCreatorMock
-            .setup(creator => creator.cancelStartOver(event, defaultProps.test, defaultProps.requirementKey))
+            .setup(creator =>
+                creator.cancelStartOver(event, defaultProps.test, defaultProps.requirementKey),
+            )
             .verifiable(Times.once());
 
         const rendered = shallow<StartOverDropdown>(<StartOverDropdown {...defaultProps} />);
@@ -99,7 +104,9 @@ describe('StartOverDropdownTest', () => {
     });
 
     it('should dismiss the start assessment over dialog', () => {
-        detailsViewActionMessageCreatorMock.setup(creator => creator.cancelStartOverAllAssessments(event)).verifiable(Times.once());
+        detailsViewActionMessageCreatorMock
+            .setup(creator => creator.cancelStartOverAllAssessments(event))
+            .verifiable(Times.once());
 
         const rendered = shallow<StartOverDropdown>(<StartOverDropdown {...defaultProps} />);
         rendered.find(ActionButton).simulate('click', event);
@@ -115,7 +122,9 @@ describe('StartOverDropdownTest', () => {
     });
 
     it('should start over a test', () => {
-        detailsViewActionMessageCreatorMock.setup(creator => creator.startOverTest(event, defaultProps.test)).verifiable(Times.once());
+        detailsViewActionMessageCreatorMock
+            .setup(creator => creator.startOverTest(event, defaultProps.test))
+            .verifiable(Times.once());
 
         const rendered = shallow<StartOverDropdown>(<StartOverDropdown {...defaultProps} />);
         rendered.find(ActionButton).simulate('click', event);
@@ -131,7 +140,9 @@ describe('StartOverDropdownTest', () => {
     });
 
     it('should start over the whole assessment', () => {
-        detailsViewActionMessageCreatorMock.setup(creator => creator.startOverAllAssessments(event)).verifiable(Times.once());
+        detailsViewActionMessageCreatorMock
+            .setup(creator => creator.startOverAllAssessments(event))
+            .verifiable(Times.once());
 
         const rendered = shallow<StartOverDropdown>(<StartOverDropdown {...defaultProps} />);
         rendered.find(ActionButton).simulate('click', event);

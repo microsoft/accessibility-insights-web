@@ -32,10 +32,15 @@ describe('TelemetrySettings', () => {
             };
 
             const wrapper = shallow(<TelemetrySettings {...props} />);
-            const enableTelemetrySettingDescription = wrapper.find(GenericToggle).dive().find(EnableTelemetrySettingDescription);
+            const enableTelemetrySettingDescription = wrapper
+                .find(GenericToggle)
+                .dive()
+                .find(EnableTelemetrySettingDescription);
 
             expect(wrapper.getElement()).toMatchSnapshot();
-            expect(enableTelemetrySettingDescription.prop('deps').LinkComponent).toBe(props.deps.LinkComponent);
+            expect(enableTelemetrySettingDescription.prop('deps').LinkComponent).toBe(
+                props.deps.LinkComponent,
+            );
         });
     });
 
@@ -55,7 +60,9 @@ describe('TelemetrySettings', () => {
 
             const wrapper = shallow(<TelemetrySettings {...props} />);
 
-            userConfigMessageCreatorMock.setup(creator => creator.setTelemetryState(!enabled)).verifiable(Times.once());
+            userConfigMessageCreatorMock
+                .setup(creator => creator.setTelemetryState(!enabled))
+                .verifiable(Times.once());
 
             wrapper.dive().find(Toggle).simulate('click');
 

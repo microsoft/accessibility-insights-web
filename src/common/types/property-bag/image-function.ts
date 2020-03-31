@@ -6,4 +6,5 @@ export interface ImageFunctionPropertyBag extends ColumnValueBag {
     imageType: string;
     accessibleName: string;
     codedAs: string;
+    role: string;
 }

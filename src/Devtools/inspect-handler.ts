@@ -1,22 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DevToolsChromeAdapter } from 'background/dev-tools-chrome-adapter';
+import { TargetPageInspector } from 'Devtools/target-page-inspector';
 import { BaseStore } from '../common/base-store';
 import { ConnectionNames } from '../common/constants/connection-names';
 import { DevToolsOpenMessage } from '../common/types/dev-tools-open-message';
 import { DevToolStoreData } from '../common/types/store-data/dev-tool-store-data';
 
 export class InspectHandler {
-    private devToolsStore: BaseStore<DevToolStoreData>;
-    private devToolsChromeAdapter: DevToolsChromeAdapter;
-
     constructor(
-        devToolsStore: BaseStore<DevToolStoreData>,
-        devToolsChromeAdapter: DevToolsChromeAdapter,
-    ) {
-        this.devToolsStore = devToolsStore;
-        this.devToolsChromeAdapter = devToolsChromeAdapter;
-    }
+        private readonly devToolsStore: BaseStore<DevToolStoreData>,
+        private readonly devToolsChromeAdapter: DevToolsChromeAdapter,
+        private readonly targetPageInspector: TargetPageInspector,
+    ) {}
 
     public initialize(): void {
         this.devToolsStore.addChangedListener(() => {
@@ -27,12 +23,8 @@ export class InspectHandler {
                 state.inspectElement &&
                 (state.inspectElement.length === 1 || state.frameUrl)
             ) {
-                this.devToolsChromeAdapter.executeScriptInInspectedWindow(
-                    "inspect(document.querySelector('" +
-                        state.inspectElement[state.inspectElement.length - 1] +
-                        "'))",
-                    state.frameUrl,
-                );
+                const selector = state.inspectElement[state.inspectElement.length - 1];
+                this.targetPageInspector.inspectElement(selector, state.frameUrl);
             }
         });
 

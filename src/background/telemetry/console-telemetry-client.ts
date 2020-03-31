@@ -5,7 +5,7 @@ import { TelemetryBaseData } from './telemetry-base-data';
 import { TelemetryClient } from './telemetry-client';
 import { TelemetryLogger } from './telemetry-logger';
 
-export class NullTelemetryClient implements TelemetryClient {
+export class ConsoleTelemetryClient implements TelemetryClient {
     constructor(
         private readonly telemetryDataFactory: ApplicationTelemetryDataFactory,
         private readonly logger: TelemetryLogger,

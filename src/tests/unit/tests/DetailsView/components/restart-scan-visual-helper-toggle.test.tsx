@@ -4,7 +4,10 @@ import { shallow, ShallowWrapper } from 'enzyme';
 import { forEach } from 'lodash';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
-import { VisualizationToggle, VisualizationToggleProps } from '../../../../../common/components/visualization-toggle';
+import {
+    VisualizationToggle,
+    VisualizationToggleProps,
+} from '../../../../../common/components/visualization-toggle';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { visualHelperText } from '../../../../../DetailsView/components/base-visual-helper-toggle';
 import { RestartScanVisualHelperToggle } from '../../../../../DetailsView/components/restart-scan-visual-helper-toggle';
@@ -39,7 +42,10 @@ describe('RestartScanVisualHelperToggleTest', () => {
 
         const toggle = wrapper.find(VisualizationToggle);
 
-        const expectedToggleProps = getDefaultVisualizationTogglePropsBuilder().with('checked', true).with('disabled', false).build();
+        const expectedToggleProps = getDefaultVisualizationTogglePropsBuilder()
+            .with('checked', true)
+            .with('disabled', false)
+            .build();
 
         assertVisualizationToggle(expectedToggleProps, toggle);
         assertSnapshotMatch(wrapper);
@@ -56,7 +62,10 @@ describe('RestartScanVisualHelperToggleTest', () => {
         detailsViewActionMessageCreatorMock
             .setup(acm => {
                 return stepIsEnabled
-                    ? acm.disableVisualHelper(props.assessmentNavState.selectedTestType, props.assessmentNavState.selectedTestStep)
+                    ? acm.disableVisualHelper(
+                          props.assessmentNavState.selectedTestType,
+                          props.assessmentNavState.selectedTestStep,
+                      )
                     : acm.enableVisualHelper(props.assessmentNavState.selectedTestType, stepKey);
             })
             .verifiable(Times.once());
@@ -85,6 +94,8 @@ describe('RestartScanVisualHelperToggleTest', () => {
     }
 
     function getDefaultVisualizationTogglePropsBuilder(): VisualizationTogglePropsBuilder {
-        return new VisualizationTogglePropsBuilder().with('visualizationName', visualHelperText).with('className', 'visual-helper-toggle');
+        return new VisualizationTogglePropsBuilder()
+            .with('visualizationName', visualHelperText)
+            .with('className', 'visual-helper-toggle');
     }
 });

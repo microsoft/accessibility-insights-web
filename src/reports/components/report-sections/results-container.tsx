@@ -9,10 +9,10 @@ export type ResultsContainerProps = Pick<SectionProps, 'getCollapsibleScript'>;
 export const ResultsContainer = NamedFC<ResultsContainerProps>(
     'ResultsContainer',
     ({ children, getCollapsibleScript }) => {
-        // tslint:disable: react-no-dangerous-html
         return (
             <>
                 <div className="results-container">{children}</div>
+                {/* tslint:disable-next-line: react-no-dangerous-html */}
                 <script dangerouslySetInnerHTML={{ __html: getCollapsibleScript() }} />
             </>
         );

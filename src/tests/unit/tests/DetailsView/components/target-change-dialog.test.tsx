@@ -5,7 +5,10 @@ import { Tab } from 'common/itab';
 import { PersistedTabInfo } from 'common/types/store-data/assessment-result-data';
 import { UrlParser } from 'common/url-parser';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
-import { TargetChangeDialog, TargetChangeDialogProps } from 'DetailsView/components/target-change-dialog';
+import {
+    TargetChangeDialog,
+    TargetChangeDialogProps,
+} from 'DetailsView/components/target-change-dialog';
 import * as Enzyme from 'enzyme';
 import Dialog, { TooltipHost } from 'office-ui-fabric-react';
 import * as React from 'react';
@@ -14,34 +17,39 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 describe('TargetChangeDialog test set for prev tab null', () => {
     const urlParserMock = Mock.ofType(UrlParser, MockBehavior.Strict);
 
-    test.each([null, undefined, {} as PersistedTabInfo])('should render null when prevTab does not exists', prevTab => {
-        const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+    test.each([null, undefined, {} as PersistedTabInfo])(
+        'should render null when prevTab does not exists',
+        prevTab => {
+            const detailsViewActionMessageCreatorMock = Mock.ofType(
+                DetailsViewActionMessageCreator,
+            );
 
-        const newTab = {
-            id: 111,
-            url: 'https://www.def.com',
-            title: 'test title',
-        };
+            const newTab = {
+                id: 111,
+                url: 'https://www.def.com',
+                title: 'test title',
+            };
 
-        urlParserMock
-            .setup(urlParserObject => urlParserObject.areURLsEqual(It.isAny(), newTab.url))
-            .returns(() => true)
-            .verifiable(Times.never());
+            urlParserMock
+                .setup(urlParserObject => urlParserObject.areURLsEqual(It.isAny(), newTab.url))
+                .returns(() => true)
+                .verifiable(Times.never());
 
-        const targetChangeProps: TargetChangeDialogProps = {
-            deps: {
-                urlParser: urlParserMock.object,
-                detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
-            },
-            prevTab: prevTab,
-            newTab: newTab,
-        };
+            const targetChangeProps: TargetChangeDialogProps = {
+                deps: {
+                    urlParser: urlParserMock.object,
+                    detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
+                },
+                prevTab: prevTab,
+                newTab: newTab,
+            };
 
-        const wrapper = Enzyme.shallow(<TargetChangeDialog {...targetChangeProps} />);
+            const wrapper = Enzyme.shallow(<TargetChangeDialog {...targetChangeProps} />);
 
-        expect(wrapper.find(Dialog).exists()).toBe(false);
-        urlParserMock.verifyAll();
-    });
+            expect(wrapper.find(Dialog).exists()).toBe(false);
+            urlParserMock.verifyAll();
+        },
+    );
 });
 
 describe('TargetChangeDialog test sets for same prev tab and newTab values', () => {
@@ -99,7 +107,9 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
         };
 
         urlParserMock
-            .setup(urlParserObject => urlParserObject.areURLsEqual(It.isValue(prevTab.url), It.isValue(newTab.url)))
+            .setup(urlParserObject =>
+                urlParserObject.areURLsEqual(It.isValue(prevTab.url), It.isValue(newTab.url)),
+            )
             .returns(() => true)
             .verifiable();
 

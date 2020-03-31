@@ -25,12 +25,12 @@ exports[`DetailsSection renders with description:  1`] = `
       <span
         className="text"
       >
-        <NewTabLink
+        <NewTabLinkWithConfirmationDialog
           href="https://page-url/"
           title="page-title"
         >
           https://page-url/
-        </NewTabLink>
+        </NewTabLinkWithConfirmationDialog>
       </span>
     </li>
     <li>
@@ -80,12 +80,12 @@ exports[`DetailsSection renders with description: description-text 1`] = `
       <span
         className="text"
       >
-        <NewTabLink
+        <NewTabLinkWithConfirmationDialog
           href="https://page-url/"
           title="page-title"
         >
           https://page-url/
-        </NewTabLink>
+        </NewTabLinkWithConfirmationDialog>
       </span>
     </li>
     <li>
@@ -153,12 +153,12 @@ exports[`DetailsSection renders with description: null 1`] = `
       <span
         className="text"
       >
-        <NewTabLink
+        <NewTabLinkWithConfirmationDialog
           href="https://page-url/"
           title="page-title"
         >
           https://page-url/
-        </NewTabLink>
+        </NewTabLinkWithConfirmationDialog>
       </span>
     </li>
     <li>
@@ -208,12 +208,12 @@ exports[`DetailsSection renders with description: undefined 1`] = `
       <span
         className="text"
       >
-        <NewTabLink
+        <NewTabLinkWithConfirmationDialog
           href="https://page-url/"
           title="page-title"
         >
           https://page-url/
-        </NewTabLink>
+        </NewTabLinkWithConfirmationDialog>
       </span>
     </li>
     <li>

@@ -68,7 +68,13 @@ export function hasCustomWidgetMarkup(node: HTMLElement): boolean {
 export function getImageCodedAs(node: HTMLElement): ImageCodedAs {
     const role = node.getAttribute('role');
     const alt = node.getAttribute('alt');
+
     if (role === 'none' || role === 'presentation' || alt === '') {
+        return 'Decorative';
+    }
+
+    if (node.tagName.toLowerCase() !== 'img' && role !== 'img') {
+        // This covers implicitly decorative <svg>, <i>, and CSS background image cases
         return 'Decorative';
     }
 

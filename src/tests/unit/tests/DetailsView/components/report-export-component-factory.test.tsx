@@ -9,7 +9,10 @@ import { VisualizationScanResultData } from 'common/types/store-data/visualizati
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
-import { DetailsViewCommandBarDeps, DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
+import {
+    DetailsViewCommandBarDeps,
+    DetailsViewCommandBarProps,
+} from 'DetailsView/components/details-view-command-bar';
 import {
     getReportExportComponentForAssessment,
     getReportExportComponentForFastPass,
@@ -40,7 +43,10 @@ describe('ReportExportComponentPropsFactory', () => {
 
     beforeEach(() => {
         featureFlagStoreData = {};
-        detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator, MockBehavior.Strict);
+        detailsViewActionMessageCreatorMock = Mock.ofType(
+            DetailsViewActionMessageCreator,
+            MockBehavior.Strict,
+        );
         tabStoreData = {
             title: thePageTitle,
             url: thePageUrl,

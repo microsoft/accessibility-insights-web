@@ -2,7 +2,11 @@
 // Licensed under the MIT License.
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
-import { InteractiveHeader, InteractiveHeaderDeps, InteractiveHeaderProps } from 'DetailsView/components/interactive-header';
+import {
+    InteractiveHeader,
+    InteractiveHeaderDeps,
+    InteractiveHeaderProps,
+} from 'DetailsView/components/interactive-header';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';

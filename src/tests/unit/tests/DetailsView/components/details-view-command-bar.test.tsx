@@ -9,7 +9,10 @@ import { ActionButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
-import { DetailsViewCommandBar, DetailsViewCommandBarProps } from '../../../../../DetailsView/components/details-view-command-bar';
+import {
+    DetailsViewCommandBar,
+    DetailsViewCommandBarProps,
+} from '../../../../../DetailsView/components/details-view-command-bar';
 
 describe('DetailsViewCommandBar', () => {
     const thePageTitle = 'command-bar-test-tab-title';
@@ -20,7 +23,10 @@ describe('DetailsViewCommandBar', () => {
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
 
     beforeEach(() => {
-        detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator, MockBehavior.Loose);
+        detailsViewActionMessageCreatorMock = Mock.ofType(
+            DetailsViewActionMessageCreator,
+            MockBehavior.Loose,
+        );
         tabStoreData = {
             title: thePageTitle,
             isClosed: false,
@@ -30,8 +36,12 @@ describe('DetailsViewCommandBar', () => {
     });
 
     function getProps(): DetailsViewCommandBarProps {
-        const CommandBarStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<DetailsViewBodyProps>('test', _ => null);
-        const LeftNavStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<DetailsViewBodyProps>('test', _ => null);
+        const CommandBarStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<
+            DetailsViewBodyProps
+        >('test', _ => null);
+        const LeftNavStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<
+            DetailsViewBodyProps
+        >('test', _ => null);
         const switcherNavConfiguration: DetailsViewSwitcherNavConfiguration = {
             CommandBar: CommandBarStub,
             ReportExportComponentFactory: p => reportExportComponent,

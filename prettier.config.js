@@ -11,7 +11,7 @@ module.exports = {
     arrowParens: 'avoid',
     overrides: [
         {
-            files: ['src/content/**/*', 'src/tests/unit/tests/DetailsView/components/**/*'],
+            files: ['src/content/**/*'],
             options: {
                 printWidth: 140,
             },
