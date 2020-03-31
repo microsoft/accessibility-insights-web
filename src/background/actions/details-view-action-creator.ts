@@ -3,7 +3,11 @@
 import { SidePanelActions } from 'background/actions/side-panel-actions';
 import { DetailsViewController } from 'background/details-view-controller';
 import { SidePanel } from 'background/stores/side-panel';
-import { SETTINGS_PANEL_CLOSE, SETTINGS_PANEL_OPEN } from 'common/extension-telemetry-events';
+import {
+    PREVIEW_FEATURES_OPEN,
+    SETTINGS_PANEL_CLOSE,
+    SETTINGS_PANEL_OPEN,
+} from 'common/extension-telemetry-events';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { Logger } from 'common/logging/logger';
 import { getStoreStateMessage, Messages } from 'common/messages';
@@ -34,6 +38,10 @@ export class DetailsViewActionCreator {
             this.onOpenSidePanel.bind(this, 'Settings'),
         );
         this.interpreter.registerTypeToPayloadCallback(
+            Messages.PreviewFeatures.OpenPanel,
+            this.onOpenSidePanel.bind(this, 'PreviewFeatures'),
+        );
+        this.interpreter.registerTypeToPayloadCallback(
             Messages.SettingsPanel.ClosePanel,
             this.onCloseSettingsPanel,
         );
@@ -49,6 +57,7 @@ export class DetailsViewActionCreator {
 
     private sidePanelToOpenPanelTelemetryEventName: SidePanelToOpenPanelTelemetryEventName = {
         Settings: SETTINGS_PANEL_OPEN,
+        PreviewFeatures: PREVIEW_FEATURES_OPEN,
     };
 
     private onOpenSidePanel = async (
