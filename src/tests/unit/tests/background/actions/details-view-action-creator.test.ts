@@ -14,6 +14,7 @@ import {
     SETTINGS_PANEL_OPEN,
     TelemetryEventSource,
     TriggeredBy,
+    SCOPING_OPEN,
 } from 'common/extension-telemetry-events';
 import { Action } from 'common/flux/action';
 import { Logger } from 'common/logging/logger';
@@ -60,6 +61,7 @@ describe('DetailsViewActionCreatorTest', () => {
             messageFriendlyName                     | actualMessage                         | sidePanel            | telemetryEventName
             ${'Messages.SettingsPanel.OpenPanel'}   | ${Messages.SettingsPanel.OpenPanel}   | ${'Settings'}        | ${SETTINGS_PANEL_OPEN}
             ${'Messages.PreviewFeatures.OpenPanel'} | ${Messages.PreviewFeatures.OpenPanel} | ${'PreviewFeatures'} | ${PREVIEW_FEATURES_OPEN}
+            ${'Messages.Scoping.OpenPanel'}         | ${Messages.Scoping.OpenPanel}         | ${'Scoping'}         | ${SCOPING_OPEN}
         `('$messageFriendlyName', ({ actualMessage, sidePanel, telemetryEventName }) => {
             beforeEach(() => {
                 openSidePanelMock = createActionMock<SidePanel>(sidePanel);

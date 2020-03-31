@@ -64,10 +64,9 @@ describe('DetailsViewStoreTest', () => {
 
         const expectedState = new DetailsViewStoreDataBuilder().withScopingOpen(true).build();
 
-        createStoreTesterForScopingActions('openScopingPanel').testListenerToBeCalledOnce(
-            initialState,
-            expectedState,
-        );
+        createStoreTesterForSidePanelActions('openSidePanel')
+            .withActionParam('Scoping')
+            .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     test('onCloseScoping', () => {
