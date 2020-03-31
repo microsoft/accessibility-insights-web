@@ -38,6 +38,10 @@ export class DetailsViewActionCreator {
             this.onOpenSidePanel.bind(this, 'Settings'),
         );
         this.interpreter.registerTypeToPayloadCallback(
+            Messages.PreviewFeatures.OpenPanel,
+            this.onOpenSidePanel.bind(this, 'PreviewFeatures'),
+        );
+        this.interpreter.registerTypeToPayloadCallback(
             Messages.SettingsPanel.ClosePanel,
             this.onCloseSettingsPanel,
         );
