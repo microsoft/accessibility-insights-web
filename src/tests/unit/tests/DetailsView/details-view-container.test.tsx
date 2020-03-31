@@ -5,6 +5,7 @@ import {
     CardSelectionViewData,
     GetCardSelectionViewData,
 } from 'common/get-card-selection-view-data';
+import { GetUnavailableHighlightStatus } from 'common/get-unavailable-highlight-status';
 import { StoreActionMessageCreator } from 'common/message-creators/store-action-message-creator';
 import { StoreActionMessageCreatorImpl } from 'common/message-creators/store-action-message-creator-impl';
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
@@ -47,6 +48,7 @@ import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/detai
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { DetailsViewStoreDataBuilder } from '../../common/details-view-store-data-builder';
 import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
@@ -61,6 +63,7 @@ describe('DetailsViewContainer', () => {
     let getCardViewDataMock: IMock<GetCardViewData>;
     let getCardSelectionViewDataMock: IMock<GetCardSelectionViewData>;
     let targetAppInfo: TargetAppData;
+    let getUnavailableHighlightStatusStub: GetUnavailableHighlightStatus;
 
     beforeEach(() => {
         detailsViewActionMessageCreator = Mock.ofType<DetailsViewActionMessageCreator>();
@@ -85,12 +88,14 @@ describe('DetailsViewContainer', () => {
             MockBehavior.Strict,
         );
         targetAppInfo = { name: 'app' };
+        getUnavailableHighlightStatusStub = () => null;
         deps = {
             detailsViewActionMessageCreator: detailsViewActionMessageCreator.object,
             getDetailsRightPanelConfiguration: getDetailsRightPanelConfiguration.object,
             getDetailsSwitcherNavConfiguration: getDetailsSwitcherNavConfiguration.object,
             getCardViewData: getCardViewDataMock.object,
             getCardSelectionViewData: getCardSelectionViewDataMock.object,
+            getUnavailableHighlightStatus: getUnavailableHighlightStatusStub,
         } as DetailsViewContainerDeps;
     });
 
@@ -258,7 +263,13 @@ describe('DetailsViewContainer', () => {
             } as CardsViewModel;
             const cardSelectionViewData: CardSelectionViewData = {} as CardSelectionViewData;
             getCardSelectionViewDataMock
-                .setup(g => g(state.cardSelectionStoreData))
+                .setup(g =>
+                    g(
+                        state.cardSelectionStoreData,
+                        state.unifiedScanResultStoreData,
+                        getUnavailableHighlightStatusStub,
+                    ),
+                )
                 .returns(() => cardSelectionViewData);
             getCardViewDataMock
                 .setup(m =>
@@ -555,7 +566,13 @@ describe('DetailsViewContainer', () => {
 
         const cardSelectionViewData: CardSelectionViewData = {} as CardSelectionViewData;
         getCardSelectionViewDataMock
-            .setup(g => g(state.cardSelectionStoreData))
+            .setup(g =>
+                g(
+                    state.cardSelectionStoreData,
+                    state.unifiedScanResultStoreData,
+                    getUnavailableHighlightStatusStub,
+                ),
+            )
             .returns(() => cardSelectionViewData)
             .verifiable(Times.once());
 

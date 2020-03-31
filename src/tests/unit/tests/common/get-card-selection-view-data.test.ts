@@ -6,7 +6,10 @@ import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data
 import { cloneDeep } from 'lodash';
 import { IMock, Mock } from 'typemoq';
 
-import { getCardSelectionViewData } from '../../../../common/get-card-selection-view-data';
+import {
+    CardSelectionViewData,
+    getCardSelectionViewData,
+} from '../../../../common/get-card-selection-view-data';
 
 describe('getCardSelectionStoreviewData', () => {
     let initialCardSelectionState: CardSelectionStoreData;
@@ -230,22 +233,33 @@ describe('getCardSelectionStoreviewData', () => {
     test('null store data, expect no results', () => {
         const viewData = getCardSelectionViewData(null, null, null);
 
-        expect(viewData.resultsHighlightStatus).toEqual({});
-        expect(viewData.expandedRuleIds).toEqual([]);
-        expect(viewData.selectedResultUids).toEqual([]);
-        expect(viewData.visualHelperEnabled).toEqual(false);
+        validateEmptyViewData(viewData);
     });
 
-    test('invalid store data, expect no results', () => {
+    test('empty store data, expect no results', () => {
         const viewData = getCardSelectionViewData(
             {} as CardSelectionStoreData,
             {} as UnifiedScanResultStoreData,
             null,
         );
 
+        validateEmptyViewData(viewData);
+    });
+
+    test('invalid store data, expect no results', () => {
+        const viewData = getCardSelectionViewData(
+            {} as CardSelectionStoreData,
+            { results: null } as UnifiedScanResultStoreData,
+            null,
+        );
+
+        validateEmptyViewData(viewData);
+    });
+
+    function validateEmptyViewData(viewData: CardSelectionViewData): void {
         expect(viewData.resultsHighlightStatus).toEqual({});
         expect(viewData.expandedRuleIds).toEqual([]);
         expect(viewData.selectedResultUids).toEqual([]);
         expect(viewData.visualHelperEnabled).toEqual(false);
-    });
+    }
 });

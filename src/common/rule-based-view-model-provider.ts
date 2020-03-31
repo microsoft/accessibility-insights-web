@@ -3,6 +3,7 @@
 import { HighlightState } from 'common/components/cards/instance-details-footer';
 import { CardSelectionViewData } from 'common/get-card-selection-view-data';
 import { includes } from 'lodash';
+
 import {
     AllRuleResultStatuses,
     CardResult,
@@ -90,22 +91,6 @@ const getEmptyStatusResults = (): CardRuleResultsByStatus => {
     });
 
     return statusResults as CardRuleResultsByStatus;
-};
-
-const getHighlightStatus = (
-    isFailedInstance: boolean,
-    highlightedResultUids: string[],
-    resultUid: string,
-) => {
-    if (!isFailedInstance) {
-        return 'unavailable';
-    }
-
-    if (includes(highlightedResultUids, resultUid)) {
-        return 'visible';
-    }
-
-    return 'hidden';
 };
 
 const createCardRuleResult = (

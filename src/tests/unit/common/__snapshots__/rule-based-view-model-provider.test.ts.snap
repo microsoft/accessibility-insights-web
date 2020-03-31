@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isHighlighted": false, "isSelected": false, "visualHelperEnabled": false} 1`] = `
+exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isSelected": false, "visualHelperEnabled": false} 1`] = `
 Object {
   "allCardsCollapsed": true,
   "cards": Object {
@@ -18,7 +18,7 @@ Object {
         "nodes": Array [
           Object {
             "descriptors": null,
-            "highlightStatus": "hidden",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -61,7 +61,7 @@ Object {
         "nodes": Array [
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -88,7 +88,7 @@ Object {
         "nodes": Array [
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -98,7 +98,7 @@ Object {
           },
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -116,7 +116,7 @@ Object {
 }
 `;
 
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isHighlighted": false, "isSelected": false, "visualHelperEnabled": true} 1`] = `
+exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isSelected": false, "visualHelperEnabled": false} 2`] = `
 Object {
   "allCardsCollapsed": true,
   "cards": Object {
@@ -134,7 +134,7 @@ Object {
         "nodes": Array [
           Object {
             "descriptors": null,
-            "highlightStatus": "hidden",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -177,7 +177,7 @@ Object {
         "nodes": Array [
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -204,7 +204,7 @@ Object {
         "nodes": Array [
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -214,7 +214,123 @@ Object {
           },
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
+            "identifiers": null,
+            "isSelected": false,
+            "resolution": null,
+            "ruleId": "rule2",
+            "status": "unknown",
+            "uid": "stub_uid",
+          },
+        ],
+        "status": "unknown",
+        "url": "stub_url_rule2",
+      },
+    ],
+  },
+  "visualHelperEnabled": false,
+}
+`;
+
+exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isSelected": false, "visualHelperEnabled": true} 1`] = `
+Object {
+  "allCardsCollapsed": true,
+  "cards": Object {
+    "fail": Array [
+      Object {
+        "description": "stub_description_rule1",
+        "guidance": Array [
+          Object {
+            "href": "stub_guidance_href_rule1",
+            "text": "stub_guidance_text_rule1",
+          },
+        ],
+        "id": "rule1",
+        "isExpanded": false,
+        "nodes": Array [
+          Object {
+            "descriptors": null,
+            "highlightStatus": "visible",
+            "identifiers": null,
+            "isSelected": false,
+            "resolution": null,
+            "ruleId": "rule1",
+            "status": "fail",
+            "uid": "stub_uid",
+          },
+        ],
+        "status": "fail",
+        "url": "stub_url_rule1",
+      },
+    ],
+    "inapplicable": Array [
+      Object {
+        "description": "stub_description_rule3",
+        "guidance": Array [
+          Object {
+            "href": "stub_guidance_href_rule3",
+            "text": "stub_guidance_text_rule3",
+          },
+        ],
+        "id": "rule3",
+        "isExpanded": false,
+        "nodes": Array [],
+        "status": "inapplicable",
+        "url": "stub_url_rule3",
+      },
+    ],
+    "pass": Array [
+      Object {
+        "description": "stub_description_rule1",
+        "guidance": Array [
+          Object {
+            "href": "stub_guidance_href_rule1",
+            "text": "stub_guidance_text_rule1",
+          },
+        ],
+        "id": "rule1",
+        "isExpanded": false,
+        "nodes": Array [
+          Object {
+            "descriptors": null,
+            "highlightStatus": "visible",
+            "identifiers": null,
+            "isSelected": false,
+            "resolution": null,
+            "ruleId": "rule1",
+            "status": "pass",
+            "uid": "stub_uid",
+          },
+        ],
+        "status": "pass",
+        "url": "stub_url_rule1",
+      },
+    ],
+    "unknown": Array [
+      Object {
+        "description": "stub_description_rule2",
+        "guidance": Array [
+          Object {
+            "href": "stub_guidance_href_rule2",
+            "text": "stub_guidance_text_rule2",
+          },
+        ],
+        "id": "rule2",
+        "isExpanded": false,
+        "nodes": Array [
+          Object {
+            "descriptors": null,
+            "highlightStatus": "visible",
+            "identifiers": null,
+            "isSelected": false,
+            "resolution": null,
+            "ruleId": "rule2",
+            "status": "unknown",
+            "uid": "stub_uid",
+          },
+          Object {
+            "descriptors": null,
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -232,239 +348,7 @@ Object {
 }
 `;
 
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isHighlighted": false, "isSelected": true, "visualHelperEnabled": false} 1`] = `
-Object {
-  "allCardsCollapsed": true,
-  "cards": Object {
-    "fail": Array [
-      Object {
-        "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
-            "href": "stub_guidance_href_rule1",
-            "text": "stub_guidance_text_rule1",
-          },
-        ],
-        "id": "rule1",
-        "isExpanded": false,
-        "nodes": Array [
-          Object {
-            "descriptors": null,
-            "highlightStatus": "hidden",
-            "identifiers": null,
-            "isSelected": true,
-            "resolution": null,
-            "ruleId": "rule1",
-            "status": "fail",
-            "uid": "stub_uid",
-          },
-        ],
-        "status": "fail",
-        "url": "stub_url_rule1",
-      },
-    ],
-    "inapplicable": Array [
-      Object {
-        "description": "stub_description_rule3",
-        "guidance": Array [
-          Object {
-            "href": "stub_guidance_href_rule3",
-            "text": "stub_guidance_text_rule3",
-          },
-        ],
-        "id": "rule3",
-        "isExpanded": false,
-        "nodes": Array [],
-        "status": "inapplicable",
-        "url": "stub_url_rule3",
-      },
-    ],
-    "pass": Array [
-      Object {
-        "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
-            "href": "stub_guidance_href_rule1",
-            "text": "stub_guidance_text_rule1",
-          },
-        ],
-        "id": "rule1",
-        "isExpanded": false,
-        "nodes": Array [
-          Object {
-            "descriptors": null,
-            "highlightStatus": "unavailable",
-            "identifiers": null,
-            "isSelected": false,
-            "resolution": null,
-            "ruleId": "rule1",
-            "status": "pass",
-            "uid": "stub_uid",
-          },
-        ],
-        "status": "pass",
-        "url": "stub_url_rule1",
-      },
-    ],
-    "unknown": Array [
-      Object {
-        "description": "stub_description_rule2",
-        "guidance": Array [
-          Object {
-            "href": "stub_guidance_href_rule2",
-            "text": "stub_guidance_text_rule2",
-          },
-        ],
-        "id": "rule2",
-        "isExpanded": false,
-        "nodes": Array [
-          Object {
-            "descriptors": null,
-            "highlightStatus": "unavailable",
-            "identifiers": null,
-            "isSelected": false,
-            "resolution": null,
-            "ruleId": "rule2",
-            "status": "unknown",
-            "uid": "stub_uid",
-          },
-          Object {
-            "descriptors": null,
-            "highlightStatus": "unavailable",
-            "identifiers": null,
-            "isSelected": false,
-            "resolution": null,
-            "ruleId": "rule2",
-            "status": "unknown",
-            "uid": "stub_uid",
-          },
-        ],
-        "status": "unknown",
-        "url": "stub_url_rule2",
-      },
-    ],
-  },
-  "visualHelperEnabled": false,
-}
-`;
-
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isHighlighted": false, "isSelected": true, "visualHelperEnabled": true} 1`] = `
-Object {
-  "allCardsCollapsed": true,
-  "cards": Object {
-    "fail": Array [
-      Object {
-        "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
-            "href": "stub_guidance_href_rule1",
-            "text": "stub_guidance_text_rule1",
-          },
-        ],
-        "id": "rule1",
-        "isExpanded": false,
-        "nodes": Array [
-          Object {
-            "descriptors": null,
-            "highlightStatus": "hidden",
-            "identifiers": null,
-            "isSelected": true,
-            "resolution": null,
-            "ruleId": "rule1",
-            "status": "fail",
-            "uid": "stub_uid",
-          },
-        ],
-        "status": "fail",
-        "url": "stub_url_rule1",
-      },
-    ],
-    "inapplicable": Array [
-      Object {
-        "description": "stub_description_rule3",
-        "guidance": Array [
-          Object {
-            "href": "stub_guidance_href_rule3",
-            "text": "stub_guidance_text_rule3",
-          },
-        ],
-        "id": "rule3",
-        "isExpanded": false,
-        "nodes": Array [],
-        "status": "inapplicable",
-        "url": "stub_url_rule3",
-      },
-    ],
-    "pass": Array [
-      Object {
-        "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
-            "href": "stub_guidance_href_rule1",
-            "text": "stub_guidance_text_rule1",
-          },
-        ],
-        "id": "rule1",
-        "isExpanded": false,
-        "nodes": Array [
-          Object {
-            "descriptors": null,
-            "highlightStatus": "unavailable",
-            "identifiers": null,
-            "isSelected": false,
-            "resolution": null,
-            "ruleId": "rule1",
-            "status": "pass",
-            "uid": "stub_uid",
-          },
-        ],
-        "status": "pass",
-        "url": "stub_url_rule1",
-      },
-    ],
-    "unknown": Array [
-      Object {
-        "description": "stub_description_rule2",
-        "guidance": Array [
-          Object {
-            "href": "stub_guidance_href_rule2",
-            "text": "stub_guidance_text_rule2",
-          },
-        ],
-        "id": "rule2",
-        "isExpanded": false,
-        "nodes": Array [
-          Object {
-            "descriptors": null,
-            "highlightStatus": "unavailable",
-            "identifiers": null,
-            "isSelected": false,
-            "resolution": null,
-            "ruleId": "rule2",
-            "status": "unknown",
-            "uid": "stub_uid",
-          },
-          Object {
-            "descriptors": null,
-            "highlightStatus": "unavailable",
-            "identifiers": null,
-            "isSelected": false,
-            "resolution": null,
-            "ruleId": "rule2",
-            "status": "unknown",
-            "uid": "stub_uid",
-          },
-        ],
-        "status": "unknown",
-        "url": "stub_url_rule2",
-      },
-    ],
-  },
-  "visualHelperEnabled": true,
-}
-`;
-
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isHighlighted": true, "isSelected": false, "visualHelperEnabled": false} 1`] = `
+exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isSelected": false, "visualHelperEnabled": true} 2`] = `
 Object {
   "allCardsCollapsed": true,
   "cards": Object {
@@ -525,7 +409,7 @@ Object {
         "nodes": Array [
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -548,52 +432,6 @@ Object {
           },
         ],
         "id": "rule2",
-        "isExpanded": false,
-        "nodes": Array [
-          Object {
-            "descriptors": null,
-            "highlightStatus": "unavailable",
-            "identifiers": null,
-            "isSelected": false,
-            "resolution": null,
-            "ruleId": "rule2",
-            "status": "unknown",
-            "uid": "stub_uid",
-          },
-          Object {
-            "descriptors": null,
-            "highlightStatus": "unavailable",
-            "identifiers": null,
-            "isSelected": false,
-            "resolution": null,
-            "ruleId": "rule2",
-            "status": "unknown",
-            "uid": "stub_uid",
-          },
-        ],
-        "status": "unknown",
-        "url": "stub_url_rule2",
-      },
-    ],
-  },
-  "visualHelperEnabled": false,
-}
-`;
-
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isHighlighted": true, "isSelected": false, "visualHelperEnabled": true} 1`] = `
-Object {
-  "allCardsCollapsed": true,
-  "cards": Object {
-    "fail": Array [
-      Object {
-        "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
-            "href": "stub_guidance_href_rule1",
-            "text": "stub_guidance_text_rule1",
-          },
-        ],
-        "id": "rule1",
         "isExpanded": false,
         "nodes": Array [
           Object {
@@ -602,83 +440,13 @@ Object {
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
-            "ruleId": "rule1",
-            "status": "fail",
-            "uid": "stub_uid",
-          },
-        ],
-        "status": "fail",
-        "url": "stub_url_rule1",
-      },
-    ],
-    "inapplicable": Array [
-      Object {
-        "description": "stub_description_rule3",
-        "guidance": Array [
-          Object {
-            "href": "stub_guidance_href_rule3",
-            "text": "stub_guidance_text_rule3",
-          },
-        ],
-        "id": "rule3",
-        "isExpanded": false,
-        "nodes": Array [],
-        "status": "inapplicable",
-        "url": "stub_url_rule3",
-      },
-    ],
-    "pass": Array [
-      Object {
-        "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
-            "href": "stub_guidance_href_rule1",
-            "text": "stub_guidance_text_rule1",
-          },
-        ],
-        "id": "rule1",
-        "isExpanded": false,
-        "nodes": Array [
-          Object {
-            "descriptors": null,
-            "highlightStatus": "unavailable",
-            "identifiers": null,
-            "isSelected": false,
-            "resolution": null,
-            "ruleId": "rule1",
-            "status": "pass",
-            "uid": "stub_uid",
-          },
-        ],
-        "status": "pass",
-        "url": "stub_url_rule1",
-      },
-    ],
-    "unknown": Array [
-      Object {
-        "description": "stub_description_rule2",
-        "guidance": Array [
-          Object {
-            "href": "stub_guidance_href_rule2",
-            "text": "stub_guidance_text_rule2",
-          },
-        ],
-        "id": "rule2",
-        "isExpanded": false,
-        "nodes": Array [
-          Object {
-            "descriptors": null,
-            "highlightStatus": "unavailable",
-            "identifiers": null,
-            "isSelected": false,
-            "resolution": null,
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
           },
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -696,7 +464,7 @@ Object {
 }
 `;
 
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isHighlighted": true, "isSelected": true, "visualHelperEnabled": false} 1`] = `
+exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isSelected": true, "visualHelperEnabled": false} 1`] = `
 Object {
   "allCardsCollapsed": true,
   "cards": Object {
@@ -757,7 +525,7 @@ Object {
         "nodes": Array [
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -784,7 +552,7 @@ Object {
         "nodes": Array [
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -794,7 +562,7 @@ Object {
           },
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -812,7 +580,7 @@ Object {
 }
 `;
 
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isHighlighted": true, "isSelected": true, "visualHelperEnabled": true} 1`] = `
+exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isSelected": true, "visualHelperEnabled": false} 2`] = `
 Object {
   "allCardsCollapsed": true,
   "cards": Object {
@@ -873,7 +641,7 @@ Object {
         "nodes": Array [
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -900,7 +668,7 @@ Object {
         "nodes": Array [
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -910,123 +678,7 @@ Object {
           },
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
-            "identifiers": null,
-            "isSelected": false,
-            "resolution": null,
-            "ruleId": "rule2",
-            "status": "unknown",
-            "uid": "stub_uid",
-          },
-        ],
-        "status": "unknown",
-        "url": "stub_url_rule2",
-      },
-    ],
-  },
-  "visualHelperEnabled": true,
-}
-`;
-
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isHighlighted": false, "isSelected": false, "visualHelperEnabled": false} 1`] = `
-Object {
-  "allCardsCollapsed": false,
-  "cards": Object {
-    "fail": Array [
-      Object {
-        "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
-            "href": "stub_guidance_href_rule1",
-            "text": "stub_guidance_text_rule1",
-          },
-        ],
-        "id": "rule1",
-        "isExpanded": true,
-        "nodes": Array [
-          Object {
-            "descriptors": null,
-            "highlightStatus": "hidden",
-            "identifiers": null,
-            "isSelected": false,
-            "resolution": null,
-            "ruleId": "rule1",
-            "status": "fail",
-            "uid": "stub_uid",
-          },
-        ],
-        "status": "fail",
-        "url": "stub_url_rule1",
-      },
-    ],
-    "inapplicable": Array [
-      Object {
-        "description": "stub_description_rule3",
-        "guidance": Array [
-          Object {
-            "href": "stub_guidance_href_rule3",
-            "text": "stub_guidance_text_rule3",
-          },
-        ],
-        "id": "rule3",
-        "isExpanded": false,
-        "nodes": Array [],
-        "status": "inapplicable",
-        "url": "stub_url_rule3",
-      },
-    ],
-    "pass": Array [
-      Object {
-        "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
-            "href": "stub_guidance_href_rule1",
-            "text": "stub_guidance_text_rule1",
-          },
-        ],
-        "id": "rule1",
-        "isExpanded": false,
-        "nodes": Array [
-          Object {
-            "descriptors": null,
-            "highlightStatus": "unavailable",
-            "identifiers": null,
-            "isSelected": false,
-            "resolution": null,
-            "ruleId": "rule1",
-            "status": "pass",
-            "uid": "stub_uid",
-          },
-        ],
-        "status": "pass",
-        "url": "stub_url_rule1",
-      },
-    ],
-    "unknown": Array [
-      Object {
-        "description": "stub_description_rule2",
-        "guidance": Array [
-          Object {
-            "href": "stub_guidance_href_rule2",
-            "text": "stub_guidance_text_rule2",
-          },
-        ],
-        "id": "rule2",
-        "isExpanded": false,
-        "nodes": Array [
-          Object {
-            "descriptors": null,
-            "highlightStatus": "unavailable",
-            "identifiers": null,
-            "isSelected": false,
-            "resolution": null,
-            "ruleId": "rule2",
-            "status": "unknown",
-            "uid": "stub_uid",
-          },
-          Object {
-            "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -1044,9 +696,9 @@ Object {
 }
 `;
 
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isHighlighted": false, "isSelected": false, "visualHelperEnabled": true} 1`] = `
+exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isSelected": true, "visualHelperEnabled": true} 1`] = `
 Object {
-  "allCardsCollapsed": false,
+  "allCardsCollapsed": true,
   "cards": Object {
     "fail": Array [
       Object {
@@ -1058,127 +710,11 @@ Object {
           },
         ],
         "id": "rule1",
-        "isExpanded": true,
-        "nodes": Array [
-          Object {
-            "descriptors": null,
-            "highlightStatus": "hidden",
-            "identifiers": null,
-            "isSelected": false,
-            "resolution": null,
-            "ruleId": "rule1",
-            "status": "fail",
-            "uid": "stub_uid",
-          },
-        ],
-        "status": "fail",
-        "url": "stub_url_rule1",
-      },
-    ],
-    "inapplicable": Array [
-      Object {
-        "description": "stub_description_rule3",
-        "guidance": Array [
-          Object {
-            "href": "stub_guidance_href_rule3",
-            "text": "stub_guidance_text_rule3",
-          },
-        ],
-        "id": "rule3",
-        "isExpanded": false,
-        "nodes": Array [],
-        "status": "inapplicable",
-        "url": "stub_url_rule3",
-      },
-    ],
-    "pass": Array [
-      Object {
-        "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
-            "href": "stub_guidance_href_rule1",
-            "text": "stub_guidance_text_rule1",
-          },
-        ],
-        "id": "rule1",
         "isExpanded": false,
         "nodes": Array [
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
-            "identifiers": null,
-            "isSelected": false,
-            "resolution": null,
-            "ruleId": "rule1",
-            "status": "pass",
-            "uid": "stub_uid",
-          },
-        ],
-        "status": "pass",
-        "url": "stub_url_rule1",
-      },
-    ],
-    "unknown": Array [
-      Object {
-        "description": "stub_description_rule2",
-        "guidance": Array [
-          Object {
-            "href": "stub_guidance_href_rule2",
-            "text": "stub_guidance_text_rule2",
-          },
-        ],
-        "id": "rule2",
-        "isExpanded": false,
-        "nodes": Array [
-          Object {
-            "descriptors": null,
-            "highlightStatus": "unavailable",
-            "identifiers": null,
-            "isSelected": false,
-            "resolution": null,
-            "ruleId": "rule2",
-            "status": "unknown",
-            "uid": "stub_uid",
-          },
-          Object {
-            "descriptors": null,
-            "highlightStatus": "unavailable",
-            "identifiers": null,
-            "isSelected": false,
-            "resolution": null,
-            "ruleId": "rule2",
-            "status": "unknown",
-            "uid": "stub_uid",
-          },
-        ],
-        "status": "unknown",
-        "url": "stub_url_rule2",
-      },
-    ],
-  },
-  "visualHelperEnabled": true,
-}
-`;
-
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isHighlighted": false, "isSelected": true, "visualHelperEnabled": false} 1`] = `
-Object {
-  "allCardsCollapsed": false,
-  "cards": Object {
-    "fail": Array [
-      Object {
-        "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
-            "href": "stub_guidance_href_rule1",
-            "text": "stub_guidance_text_rule1",
-          },
-        ],
-        "id": "rule1",
-        "isExpanded": true,
-        "nodes": Array [
-          Object {
-            "descriptors": null,
-            "highlightStatus": "hidden",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": true,
             "resolution": null,
@@ -1221,7 +757,7 @@ Object {
         "nodes": Array [
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -1248,7 +784,7 @@ Object {
         "nodes": Array [
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -1258,7 +794,7 @@ Object {
           },
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -1272,13 +808,13 @@ Object {
       },
     ],
   },
-  "visualHelperEnabled": false,
+  "visualHelperEnabled": true,
 }
 `;
 
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isHighlighted": false, "isSelected": true, "visualHelperEnabled": true} 1`] = `
+exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isSelected": true, "visualHelperEnabled": true} 2`] = `
 Object {
-  "allCardsCollapsed": false,
+  "allCardsCollapsed": true,
   "cards": Object {
     "fail": Array [
       Object {
@@ -1290,11 +826,11 @@ Object {
           },
         ],
         "id": "rule1",
-        "isExpanded": true,
+        "isExpanded": false,
         "nodes": Array [
           Object {
             "descriptors": null,
-            "highlightStatus": "hidden",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": true,
             "resolution": null,
@@ -1337,7 +873,7 @@ Object {
         "nodes": Array [
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -1364,7 +900,7 @@ Object {
         "nodes": Array [
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -1374,7 +910,7 @@ Object {
           },
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -1392,7 +928,7 @@ Object {
 }
 `;
 
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isHighlighted": true, "isSelected": false, "visualHelperEnabled": false} 1`] = `
+exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isSelected": false, "visualHelperEnabled": false} 1`] = `
 Object {
   "allCardsCollapsed": false,
   "cards": Object {
@@ -1453,7 +989,7 @@ Object {
         "nodes": Array [
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -1480,7 +1016,7 @@ Object {
         "nodes": Array [
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -1490,7 +1026,7 @@ Object {
           },
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -1508,7 +1044,7 @@ Object {
 }
 `;
 
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isHighlighted": true, "isSelected": false, "visualHelperEnabled": true} 1`] = `
+exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isSelected": false, "visualHelperEnabled": false} 2`] = `
 Object {
   "allCardsCollapsed": false,
   "cards": Object {
@@ -1569,7 +1105,7 @@ Object {
         "nodes": Array [
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -1596,7 +1132,7 @@ Object {
         "nodes": Array [
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -1606,7 +1142,123 @@ Object {
           },
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
+            "identifiers": null,
+            "isSelected": false,
+            "resolution": null,
+            "ruleId": "rule2",
+            "status": "unknown",
+            "uid": "stub_uid",
+          },
+        ],
+        "status": "unknown",
+        "url": "stub_url_rule2",
+      },
+    ],
+  },
+  "visualHelperEnabled": false,
+}
+`;
+
+exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isSelected": false, "visualHelperEnabled": true} 1`] = `
+Object {
+  "allCardsCollapsed": false,
+  "cards": Object {
+    "fail": Array [
+      Object {
+        "description": "stub_description_rule1",
+        "guidance": Array [
+          Object {
+            "href": "stub_guidance_href_rule1",
+            "text": "stub_guidance_text_rule1",
+          },
+        ],
+        "id": "rule1",
+        "isExpanded": true,
+        "nodes": Array [
+          Object {
+            "descriptors": null,
+            "highlightStatus": "visible",
+            "identifiers": null,
+            "isSelected": false,
+            "resolution": null,
+            "ruleId": "rule1",
+            "status": "fail",
+            "uid": "stub_uid",
+          },
+        ],
+        "status": "fail",
+        "url": "stub_url_rule1",
+      },
+    ],
+    "inapplicable": Array [
+      Object {
+        "description": "stub_description_rule3",
+        "guidance": Array [
+          Object {
+            "href": "stub_guidance_href_rule3",
+            "text": "stub_guidance_text_rule3",
+          },
+        ],
+        "id": "rule3",
+        "isExpanded": false,
+        "nodes": Array [],
+        "status": "inapplicable",
+        "url": "stub_url_rule3",
+      },
+    ],
+    "pass": Array [
+      Object {
+        "description": "stub_description_rule1",
+        "guidance": Array [
+          Object {
+            "href": "stub_guidance_href_rule1",
+            "text": "stub_guidance_text_rule1",
+          },
+        ],
+        "id": "rule1",
+        "isExpanded": false,
+        "nodes": Array [
+          Object {
+            "descriptors": null,
+            "highlightStatus": "visible",
+            "identifiers": null,
+            "isSelected": false,
+            "resolution": null,
+            "ruleId": "rule1",
+            "status": "pass",
+            "uid": "stub_uid",
+          },
+        ],
+        "status": "pass",
+        "url": "stub_url_rule1",
+      },
+    ],
+    "unknown": Array [
+      Object {
+        "description": "stub_description_rule2",
+        "guidance": Array [
+          Object {
+            "href": "stub_guidance_href_rule2",
+            "text": "stub_guidance_text_rule2",
+          },
+        ],
+        "id": "rule2",
+        "isExpanded": false,
+        "nodes": Array [
+          Object {
+            "descriptors": null,
+            "highlightStatus": "visible",
+            "identifiers": null,
+            "isSelected": false,
+            "resolution": null,
+            "ruleId": "rule2",
+            "status": "unknown",
+            "uid": "stub_uid",
+          },
+          Object {
+            "descriptors": null,
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -1624,7 +1276,123 @@ Object {
 }
 `;
 
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isHighlighted": true, "isSelected": true, "visualHelperEnabled": false} 1`] = `
+exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isSelected": false, "visualHelperEnabled": true} 2`] = `
+Object {
+  "allCardsCollapsed": false,
+  "cards": Object {
+    "fail": Array [
+      Object {
+        "description": "stub_description_rule1",
+        "guidance": Array [
+          Object {
+            "href": "stub_guidance_href_rule1",
+            "text": "stub_guidance_text_rule1",
+          },
+        ],
+        "id": "rule1",
+        "isExpanded": true,
+        "nodes": Array [
+          Object {
+            "descriptors": null,
+            "highlightStatus": "visible",
+            "identifiers": null,
+            "isSelected": false,
+            "resolution": null,
+            "ruleId": "rule1",
+            "status": "fail",
+            "uid": "stub_uid",
+          },
+        ],
+        "status": "fail",
+        "url": "stub_url_rule1",
+      },
+    ],
+    "inapplicable": Array [
+      Object {
+        "description": "stub_description_rule3",
+        "guidance": Array [
+          Object {
+            "href": "stub_guidance_href_rule3",
+            "text": "stub_guidance_text_rule3",
+          },
+        ],
+        "id": "rule3",
+        "isExpanded": false,
+        "nodes": Array [],
+        "status": "inapplicable",
+        "url": "stub_url_rule3",
+      },
+    ],
+    "pass": Array [
+      Object {
+        "description": "stub_description_rule1",
+        "guidance": Array [
+          Object {
+            "href": "stub_guidance_href_rule1",
+            "text": "stub_guidance_text_rule1",
+          },
+        ],
+        "id": "rule1",
+        "isExpanded": false,
+        "nodes": Array [
+          Object {
+            "descriptors": null,
+            "highlightStatus": "visible",
+            "identifiers": null,
+            "isSelected": false,
+            "resolution": null,
+            "ruleId": "rule1",
+            "status": "pass",
+            "uid": "stub_uid",
+          },
+        ],
+        "status": "pass",
+        "url": "stub_url_rule1",
+      },
+    ],
+    "unknown": Array [
+      Object {
+        "description": "stub_description_rule2",
+        "guidance": Array [
+          Object {
+            "href": "stub_guidance_href_rule2",
+            "text": "stub_guidance_text_rule2",
+          },
+        ],
+        "id": "rule2",
+        "isExpanded": false,
+        "nodes": Array [
+          Object {
+            "descriptors": null,
+            "highlightStatus": "visible",
+            "identifiers": null,
+            "isSelected": false,
+            "resolution": null,
+            "ruleId": "rule2",
+            "status": "unknown",
+            "uid": "stub_uid",
+          },
+          Object {
+            "descriptors": null,
+            "highlightStatus": "visible",
+            "identifiers": null,
+            "isSelected": false,
+            "resolution": null,
+            "ruleId": "rule2",
+            "status": "unknown",
+            "uid": "stub_uid",
+          },
+        ],
+        "status": "unknown",
+        "url": "stub_url_rule2",
+      },
+    ],
+  },
+  "visualHelperEnabled": true,
+}
+`;
+
+exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isSelected": true, "visualHelperEnabled": false} 1`] = `
 Object {
   "allCardsCollapsed": false,
   "cards": Object {
@@ -1685,7 +1453,7 @@ Object {
         "nodes": Array [
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -1712,7 +1480,7 @@ Object {
         "nodes": Array [
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -1722,7 +1490,7 @@ Object {
           },
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -1740,7 +1508,7 @@ Object {
 }
 `;
 
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isHighlighted": true, "isSelected": true, "visualHelperEnabled": true} 1`] = `
+exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isSelected": true, "visualHelperEnabled": false} 2`] = `
 Object {
   "allCardsCollapsed": false,
   "cards": Object {
@@ -1801,7 +1569,7 @@ Object {
         "nodes": Array [
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -1828,7 +1596,7 @@ Object {
         "nodes": Array [
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
@@ -1838,7 +1606,239 @@ Object {
           },
           Object {
             "descriptors": null,
-            "highlightStatus": "unavailable",
+            "highlightStatus": "visible",
+            "identifiers": null,
+            "isSelected": false,
+            "resolution": null,
+            "ruleId": "rule2",
+            "status": "unknown",
+            "uid": "stub_uid",
+          },
+        ],
+        "status": "unknown",
+        "url": "stub_url_rule2",
+      },
+    ],
+  },
+  "visualHelperEnabled": false,
+}
+`;
+
+exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isSelected": true, "visualHelperEnabled": true} 1`] = `
+Object {
+  "allCardsCollapsed": false,
+  "cards": Object {
+    "fail": Array [
+      Object {
+        "description": "stub_description_rule1",
+        "guidance": Array [
+          Object {
+            "href": "stub_guidance_href_rule1",
+            "text": "stub_guidance_text_rule1",
+          },
+        ],
+        "id": "rule1",
+        "isExpanded": true,
+        "nodes": Array [
+          Object {
+            "descriptors": null,
+            "highlightStatus": "visible",
+            "identifiers": null,
+            "isSelected": true,
+            "resolution": null,
+            "ruleId": "rule1",
+            "status": "fail",
+            "uid": "stub_uid",
+          },
+        ],
+        "status": "fail",
+        "url": "stub_url_rule1",
+      },
+    ],
+    "inapplicable": Array [
+      Object {
+        "description": "stub_description_rule3",
+        "guidance": Array [
+          Object {
+            "href": "stub_guidance_href_rule3",
+            "text": "stub_guidance_text_rule3",
+          },
+        ],
+        "id": "rule3",
+        "isExpanded": false,
+        "nodes": Array [],
+        "status": "inapplicable",
+        "url": "stub_url_rule3",
+      },
+    ],
+    "pass": Array [
+      Object {
+        "description": "stub_description_rule1",
+        "guidance": Array [
+          Object {
+            "href": "stub_guidance_href_rule1",
+            "text": "stub_guidance_text_rule1",
+          },
+        ],
+        "id": "rule1",
+        "isExpanded": false,
+        "nodes": Array [
+          Object {
+            "descriptors": null,
+            "highlightStatus": "visible",
+            "identifiers": null,
+            "isSelected": false,
+            "resolution": null,
+            "ruleId": "rule1",
+            "status": "pass",
+            "uid": "stub_uid",
+          },
+        ],
+        "status": "pass",
+        "url": "stub_url_rule1",
+      },
+    ],
+    "unknown": Array [
+      Object {
+        "description": "stub_description_rule2",
+        "guidance": Array [
+          Object {
+            "href": "stub_guidance_href_rule2",
+            "text": "stub_guidance_text_rule2",
+          },
+        ],
+        "id": "rule2",
+        "isExpanded": false,
+        "nodes": Array [
+          Object {
+            "descriptors": null,
+            "highlightStatus": "visible",
+            "identifiers": null,
+            "isSelected": false,
+            "resolution": null,
+            "ruleId": "rule2",
+            "status": "unknown",
+            "uid": "stub_uid",
+          },
+          Object {
+            "descriptors": null,
+            "highlightStatus": "visible",
+            "identifiers": null,
+            "isSelected": false,
+            "resolution": null,
+            "ruleId": "rule2",
+            "status": "unknown",
+            "uid": "stub_uid",
+          },
+        ],
+        "status": "unknown",
+        "url": "stub_url_rule2",
+      },
+    ],
+  },
+  "visualHelperEnabled": true,
+}
+`;
+
+exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isSelected": true, "visualHelperEnabled": true} 2`] = `
+Object {
+  "allCardsCollapsed": false,
+  "cards": Object {
+    "fail": Array [
+      Object {
+        "description": "stub_description_rule1",
+        "guidance": Array [
+          Object {
+            "href": "stub_guidance_href_rule1",
+            "text": "stub_guidance_text_rule1",
+          },
+        ],
+        "id": "rule1",
+        "isExpanded": true,
+        "nodes": Array [
+          Object {
+            "descriptors": null,
+            "highlightStatus": "visible",
+            "identifiers": null,
+            "isSelected": true,
+            "resolution": null,
+            "ruleId": "rule1",
+            "status": "fail",
+            "uid": "stub_uid",
+          },
+        ],
+        "status": "fail",
+        "url": "stub_url_rule1",
+      },
+    ],
+    "inapplicable": Array [
+      Object {
+        "description": "stub_description_rule3",
+        "guidance": Array [
+          Object {
+            "href": "stub_guidance_href_rule3",
+            "text": "stub_guidance_text_rule3",
+          },
+        ],
+        "id": "rule3",
+        "isExpanded": false,
+        "nodes": Array [],
+        "status": "inapplicable",
+        "url": "stub_url_rule3",
+      },
+    ],
+    "pass": Array [
+      Object {
+        "description": "stub_description_rule1",
+        "guidance": Array [
+          Object {
+            "href": "stub_guidance_href_rule1",
+            "text": "stub_guidance_text_rule1",
+          },
+        ],
+        "id": "rule1",
+        "isExpanded": false,
+        "nodes": Array [
+          Object {
+            "descriptors": null,
+            "highlightStatus": "visible",
+            "identifiers": null,
+            "isSelected": false,
+            "resolution": null,
+            "ruleId": "rule1",
+            "status": "pass",
+            "uid": "stub_uid",
+          },
+        ],
+        "status": "pass",
+        "url": "stub_url_rule1",
+      },
+    ],
+    "unknown": Array [
+      Object {
+        "description": "stub_description_rule2",
+        "guidance": Array [
+          Object {
+            "href": "stub_guidance_href_rule2",
+            "text": "stub_guidance_text_rule2",
+          },
+        ],
+        "id": "rule2",
+        "isExpanded": false,
+        "nodes": Array [
+          Object {
+            "descriptors": null,
+            "highlightStatus": "visible",
+            "identifiers": null,
+            "isSelected": false,
+            "resolution": null,
+            "ruleId": "rule2",
+            "status": "unknown",
+            "uid": "stub_uid",
+          },
+          Object {
+            "descriptors": null,
+            "highlightStatus": "visible",
             "identifiers": null,
             "isSelected": false,
             "resolution": null,

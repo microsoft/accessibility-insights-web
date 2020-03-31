@@ -2,14 +2,8 @@
 // Licensed under the MIT License.
 import { HighlightState } from 'common/components/cards/instance-details-footer';
 import { GetUnavailableHighlightStatus } from 'common/get-unavailable-highlight-status';
-import {
-    PlatformData,
-    UnifiedResult,
-    UnifiedScanResultStoreData,
-    ViewPortProperties,
-} from 'common/types/store-data/unified-data-interface';
-import { BoundingRectangle } from 'electron/platform/android/scan-results';
-import { flatMap, forOwn, keys, isEmpty } from 'lodash';
+import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
+import { flatMap, forOwn, isEmpty, keys } from 'lodash';
 
 import {
     CardSelectionStoreData,
@@ -18,7 +12,6 @@ import {
 } from './types/store-data/card-selection-store-data';
 
 export interface CardSelectionViewData {
-    highlightedResultUids: string[]; // page elements to highlight
     selectedResultUids: string[]; // indicates selected cards
     expandedRuleIds: string[];
     visualHelperEnabled: boolean;
@@ -40,7 +33,11 @@ export const getCardSelectionViewData: GetCardSelectionViewData = (
 ): CardSelectionViewData => {
     const viewData = getEmptyViewData();
 
-    if (isEmpty(cardSelectionStoreData) || isEmpty(unifiedScanResultStoreData)) {
+    if (
+        isEmpty(cardSelectionStoreData) ||
+        isEmpty(unifiedScanResultStoreData) ||
+        unifiedScanResultStoreData.results == null
+    ) {
         return viewData;
     }
 
@@ -114,7 +111,6 @@ export const getCardSelectionViewData: GetCardSelectionViewData = (
 
 function getEmptyViewData(): CardSelectionViewData {
     return {
-        highlightedResultUids: [],
         selectedResultUids: [],
         expandedRuleIds: [],
         visualHelperEnabled: false,

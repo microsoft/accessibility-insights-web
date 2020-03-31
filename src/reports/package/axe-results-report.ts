@@ -6,6 +6,7 @@ import { UUIDGenerator } from 'common/uid-generator';
 import { convertScanResultsToUnifiedResults } from 'injected/adapters/scan-results-to-unified-results';
 import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results-to-unified-rules';
 import { ResultDecorator } from 'scanner/result-decorator';
+
 import { ReportHtmlGenerator } from '../report-html-generator';
 import AccessibilityInsightsReport from './accessibilityInsightsReport';
 
@@ -37,7 +38,6 @@ export class AxeResultsReport implements AccessibilityInsightsReport.Report {
         const unifiedResults = getUnifiedResults(scanResults, getUUID);
 
         const cardSelectionViewData: CardSelectionViewData = {
-            highlightedResultUids: [],
             selectedResultUids: [],
             expandedRuleIds: [],
             visualHelperEnabled: false,

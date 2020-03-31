@@ -10,6 +10,7 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
       Object {
         "getCardSelectionViewData": [Function],
         "getCardsViewData": [Function],
+        "getUnavailableHighlightStatus": [Function],
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "deviceActions": undefined,
@@ -31,6 +32,7 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
           Object {
             "getCardSelectionViewData": [Function],
             "getCardsViewData": [Function],
+            "getUnavailableHighlightStatus": [Function],
             "scanActionCreator": proxy {
               "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
               "deviceActions": undefined,
@@ -64,6 +66,7 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
             Object {
               "getCardSelectionViewData": [Function],
               "getCardsViewData": [Function],
+              "getUnavailableHighlightStatus": [Function],
               "scanActionCreator": proxy {
                 "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                 "deviceActions": undefined,
@@ -100,6 +103,7 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
       Object {
         "getCardSelectionViewData": [Function],
         "getCardsViewData": [Function],
+        "getUnavailableHighlightStatus": [Function],
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "deviceActions": undefined,
@@ -127,6 +131,7 @@ exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
   <TitleBar
     deps={
       Object {
+        "getUnavailableHighlightStatus": [Function],
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "deviceActions": undefined,
@@ -151,6 +156,7 @@ exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
       <CommandBar
         deps={
           Object {
+            "getUnavailableHighlightStatus": [Function],
             "scanActionCreator": proxy {
               "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
               "deviceActions": undefined,
@@ -187,6 +193,7 @@ exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
   <SettingsPanel
     deps={
       Object {
+        "getUnavailableHighlightStatus": [Function],
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "deviceActions": undefined,
@@ -214,6 +221,7 @@ exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
   <TitleBar
     deps={
       Object {
+        "getUnavailableHighlightStatus": [Function],
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "deviceActions": undefined,
@@ -238,6 +246,7 @@ exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
       <CommandBar
         deps={
           Object {
+            "getUnavailableHighlightStatus": [Function],
             "scanActionCreator": proxy {
               "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
               "deviceActions": undefined,
@@ -274,6 +283,7 @@ exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
   <SettingsPanel
     deps={
       Object {
+        "getUnavailableHighlightStatus": [Function],
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "deviceActions": undefined,
@@ -301,6 +311,7 @@ exports[`AutomatedChecksView renders when status scan <undefined> 1`] = `
   <TitleBar
     deps={
       Object {
+        "getUnavailableHighlightStatus": [Function],
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "deviceActions": undefined,
@@ -325,6 +336,7 @@ exports[`AutomatedChecksView renders when status scan <undefined> 1`] = `
       <CommandBar
         deps={
           Object {
+            "getUnavailableHighlightStatus": [Function],
             "scanActionCreator": proxy {
               "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
               "deviceActions": undefined,
@@ -361,6 +373,7 @@ exports[`AutomatedChecksView renders when status scan <undefined> 1`] = `
   <SettingsPanel
     deps={
       Object {
+        "getUnavailableHighlightStatus": [Function],
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "deviceActions": undefined,

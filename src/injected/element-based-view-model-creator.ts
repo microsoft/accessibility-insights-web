@@ -1,18 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import {
-    CardSelectionViewData,
-    GetCardSelectionViewData,
-} from 'common/get-card-selection-view-data';
+import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
+import { GetUnavailableHighlightStatus } from 'common/get-unavailable-highlight-status';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import {
     UnifiedResult,
-    UnifiedRule,
     UnifiedScanResultStoreData,
 } from 'common/types/store-data/unified-data-interface';
 import { AssessmentVisualizationInstance } from 'injected/frameCommunicators/html-element-axe-results-helper';
 import { GetDecoratedAxeNodeCallback } from 'injected/get-decorated-axe-node';
-import { find, includes } from 'lodash';
+import { find } from 'lodash';
 import { DictionaryStringTo } from 'types/common-types';
 
 export interface CheckData {
@@ -27,14 +24,11 @@ export type GetElementBasedViewModelCallback = (
     cardSelectionData: CardSelectionStoreData,
 ) => DictionaryStringTo<AssessmentVisualizationInstance>;
 
-export type GetHighlightedResultInstanceIdsCallback = (
-    cardSelectionData: CardSelectionStoreData,
-) => Pick<CardSelectionViewData, 'highlightedResultUids'>;
-
 export class ElementBasedViewModelCreator {
     constructor(
         private getDecoratedAxeNode: GetDecoratedAxeNodeCallback,
         private getHighlightedResultInstanceIds: GetCardSelectionViewData,
+        private getUnavailableHighlightStatus: GetUnavailableHighlightStatus,
     ) {}
 
     public getElementBasedViewModel: GetElementBasedViewModelCallback = (
@@ -47,16 +41,14 @@ export class ElementBasedViewModelCreator {
         }
 
         const resultDictionary: DictionaryStringTo<AssessmentVisualizationInstance> = {};
-        const highlightedResultInstanceUids = this.getHighlightedResultInstanceIds(
+        const resultsHighlightStatus = this.getHighlightedResultInstanceIds(
             cardSelectionData,
             unifiedScanResultStoreData,
-        ).highlightedResultUids;
+            this.getUnavailableHighlightStatus,
+        ).resultsHighlightStatus;
 
         results.forEach(unifiedResult => {
-            if (
-                unifiedResult.status !== 'fail' ||
-                !includes(highlightedResultInstanceUids, unifiedResult.uid)
-            ) {
+            if (resultsHighlightStatus[unifiedResult.uid] !== 'visible') {
                 return;
             }
 

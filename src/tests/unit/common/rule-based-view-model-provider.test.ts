@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CardSelectionViewData } from 'common/get-card-selection-view-data';
+import { CardSelectionViewData, ResultsHighlightStatus } from 'common/get-card-selection-view-data';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import {
@@ -12,7 +12,6 @@ import {
 type TestScenario = {
     isExpanded: boolean;
     isSelected: boolean;
-    isHighlighted: boolean;
     visualHelperEnabled: boolean;
 };
 
@@ -54,10 +53,13 @@ describe('RuleBasedViewModelProvider', () => {
         const resultStub4 = createUnifiedResultStub('unknown', 'rule2');
 
         const results: UnifiedResult[] = [resultStub1, resultStub2, resultStub3, resultStub4];
+        const resultHighlightStatusObject: ResultsHighlightStatus = {
+            stub_uid: 'visible',
+        };
 
         const cardSelectionViewData: CardSelectionViewData = {
             expandedRuleIds: testScenario.isExpanded ? ['rule1'] : [],
-            highlightedResultUids: testScenario.isHighlighted ? ['stub_uid'] : [],
+            resultsHighlightStatus: resultHighlightStatusObject,
             selectedResultUids: testScenario.isSelected ? ['stub_uid'] : [],
             visualHelperEnabled: testScenario.visualHelperEnabled,
         };
@@ -115,7 +117,6 @@ describe('RuleBasedViewModelProvider', () => {
         for (let i = 0; i < 16; ++i) {
             const scenario: TestScenario = {
                 isExpanded: matchesBit(i, 0),
-                isHighlighted: matchesBit(i, 1),
                 isSelected: matchesBit(i, 2),
                 visualHelperEnabled: matchesBit(i, 3),
             };
