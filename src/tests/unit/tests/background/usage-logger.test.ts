@@ -1,7 +1,7 @@
 import { USAGE_KEY, UsageLogger } from 'background/usage-logger';
 import { StorageAdapter } from 'common/browser-adapters/storage-adapter';
 import { Logger } from 'common/logging/logger';
-import { It, Mock, MockBehavior, Times, IMock } from 'typemoq';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
@@ -24,7 +24,7 @@ describe('UsageLoggerTest', () => {
         dateGetterMock = Mock.ofInstance(() => dateStub, MockBehavior.Strict);
         dateGetterMock.setup(m => m()).returns(_ => dateStub);
     });
-    /*
+
     it('sets current time', () => {
         const usageLogger = new UsageLogger(
             storageAdapterMock.object,
@@ -61,5 +61,5 @@ describe('UsageLoggerTest', () => {
 
         storageAdapterMock.verifyAll();
         loggerMock.verifyAll();
-    });*/
+    });
 });

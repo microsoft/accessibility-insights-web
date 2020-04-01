@@ -78,7 +78,7 @@ async function initialize(): Promise<void> {
         browserAdapter,
     );
 
-    const usageLogger = new UsageLogger(browserAdapter, DateProvider.getUTCDate, logger);
+    const usageLogger = new UsageLogger(browserAdapter, DateProvider.getCurrentDate, logger);
     usageLogger.record();
 
     const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);

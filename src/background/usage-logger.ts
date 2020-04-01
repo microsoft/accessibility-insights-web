@@ -9,7 +9,7 @@ export const USAGE_KEY: string = 'ADA_IS_A_COOL_CAT';
 export class UsageLogger {
     constructor(
         private storageAdapter: StorageAdapter,
-        private utcDateGetter: () => Date,
+        private dateGetter: () => Date,
         private logger: Logger,
     ) {}
 
@@ -17,7 +17,7 @@ export class UsageLogger {
         this.storageAdapter
             .setUserData({
                 usageData: {
-                    lastUsageDateTime: this.utcDateGetter().toISOString(),
+                    lastUsageDateTime: this.dateGetter().toISOString(),
                     magic: USAGE_KEY,
                 },
             })
