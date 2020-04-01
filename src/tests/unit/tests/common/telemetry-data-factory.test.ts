@@ -310,7 +310,11 @@ describe('TelemetryDataFactoryTest', () => {
             selectedRequirement: 'requirement',
         };
 
-        const actual: RequirementSelectTelemetryData = testObject.forSelectRequirement(event, VisualizationType.Headings, 'requirement');
+        const actual: RequirementSelectTelemetryData = testObject.forSelectRequirement(
+            event,
+            VisualizationType.Headings,
+            'requirement',
+        );
 
         expect(actual).toEqual(expected);
     });
@@ -324,7 +328,11 @@ describe('TelemetryDataFactoryTest', () => {
             selectedRequirement: 'requirement',
         };
 
-        const actual: RequirementSelectTelemetryData = testObject.forSelectRequirement(event, VisualizationType.Headings, 'requirement');
+        const actual: RequirementSelectTelemetryData = testObject.forSelectRequirement(
+            event,
+            VisualizationType.Headings,
+            'requirement',
+        );
 
         expect(actual).toEqual(expected);
     });
@@ -336,7 +344,9 @@ describe('TelemetryDataFactoryTest', () => {
             selectedTest: VisualizationType[VisualizationType.Headings],
         };
 
-        const actual: AssessmentTelemetryData = testObject.forAssessmentActionFromDetailsViewNoTriggeredBy(VisualizationType.Headings);
+        const actual: AssessmentTelemetryData = testObject.forAssessmentActionFromDetailsViewNoTriggeredBy(
+            VisualizationType.Headings,
+        );
 
         expect(actual).toEqual(expected);
     });
@@ -349,7 +359,10 @@ describe('TelemetryDataFactoryTest', () => {
             selectedTest: VisualizationType[VisualizationType.Headings],
         };
 
-        const actual: AssessmentTelemetryData = testObject.forAssessmentActionFromDetailsView(VisualizationType.Headings, event);
+        const actual: AssessmentTelemetryData = testObject.forAssessmentActionFromDetailsView(
+            VisualizationType.Headings,
+            event,
+        );
 
         expect(actual).toEqual(expected);
     });
@@ -362,7 +375,10 @@ describe('TelemetryDataFactoryTest', () => {
             selectedTest: VisualizationType[-1],
         };
 
-        const actual: RequirementActionTelemetryData = testObject.forRequirementFromDetailsView(-1, 'requirement');
+        const actual: RequirementActionTelemetryData = testObject.forRequirementFromDetailsView(
+            -1,
+            'requirement',
+        );
 
         expect(actual).toEqual(expected);
     });
@@ -403,7 +419,12 @@ describe('TelemetryDataFactoryTest', () => {
             featureFlagId: 'id',
         };
 
-        const actual: FeatureFlagToggleTelemetryData = testObject.forFeatureFlagToggle(event, true, TelemetryEventSource.DetailsView, 'id');
+        const actual: FeatureFlagToggleTelemetryData = testObject.forFeatureFlagToggle(
+            event,
+            true,
+            TelemetryEventSource.DetailsView,
+            'id',
+        );
 
         expect(actual).toEqual(expected);
     });
@@ -417,7 +438,13 @@ describe('TelemetryDataFactoryTest', () => {
         } as AxeAnalyzerResult;
         const elapsedTime = 50;
         const elementsScanned = 2;
-        const actual = testObject.forAssessmentRequirementScan(analyzerResultStub, elapsedTime, elementsScanned, testName, requirementName);
+        const actual = testObject.forAssessmentRequirementScan(
+            analyzerResultStub,
+            elapsedTime,
+            elementsScanned,
+            testName,
+            requirementName,
+        );
         const expected: RuleAnalyzerScanTelemetryData = {
             scanDuration: elapsedTime,
             NumberOfElementsScanned: elementsScanned,
@@ -438,7 +465,12 @@ describe('TelemetryDataFactoryTest', () => {
         } as AxeAnalyzerResult;
         const elapsedTime = 50;
         const elementsScanned = 2;
-        const actual = testObject.forTestScan(analyzerResultStub, elapsedTime, elementsScanned, testName);
+        const actual = testObject.forTestScan(
+            analyzerResultStub,
+            elapsedTime,
+            elementsScanned,
+            testName,
+        );
         const expected: RuleAnalyzerScanTelemetryData = {
             scanDuration: elapsedTime,
             NumberOfElementsScanned: elementsScanned,
@@ -476,7 +508,12 @@ describe('TelemetryDataFactoryTest', () => {
         } as AxeAnalyzerResult;
         const elapsedTime = 50;
         const elementsScanned = 2;
-        const actual = testObject.forIssuesAnalyzerScan(analyzerResultStub, elapsedTime, elementsScanned, testName);
+        const actual = testObject.forIssuesAnalyzerScan(
+            analyzerResultStub,
+            elapsedTime,
+            elementsScanned,
+            testName,
+        );
         const passedRuleResultsStub = {
             test: 2,
         };
@@ -493,7 +530,12 @@ describe('TelemetryDataFactoryTest', () => {
         const event = keypressEvent;
         const exportResultsType = 'Assessment';
 
-        const result = testObject.forExportedHtml(exportResultsType, exportedHtml, event, testSource);
+        const result = testObject.forExportedHtml(
+            exportResultsType,
+            exportedHtml,
+            event,
+            testSource,
+        );
 
         const expected: ExportResultsTelemetryData = {
             exportResultsType: exportResultsType,
@@ -510,7 +552,12 @@ describe('TelemetryDataFactoryTest', () => {
         const event = mouseClickEvent;
         const exportResultsType = 'AutomatedChecks';
 
-        const result = testObject.forExportedHtml(exportResultsType, exportedHtml, event, testSource);
+        const result = testObject.forExportedHtml(
+            exportResultsType,
+            exportedHtml,
+            event,
+            testSource,
+        );
 
         const expected: ExportResultsTelemetryData = {
             exportResultsType: exportResultsType,
@@ -539,7 +586,11 @@ describe('TelemetryDataFactoryTest', () => {
     test('forSetAllUrlPermissionState', () => {
         const permissionState = true;
 
-        const result = testObject.forSetAllUrlPermissionState(mouseClickEvent, testSource, permissionState);
+        const result = testObject.forSetAllUrlPermissionState(
+            mouseClickEvent,
+            testSource,
+            permissionState,
+        );
 
         const expected: SetAllUrlsPermissionTelemetryData = {
             permissionState,

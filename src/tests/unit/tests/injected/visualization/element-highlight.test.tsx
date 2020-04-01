@@ -9,8 +9,16 @@ import { ClientRectOffset, ClientUtils } from '../../../../../injected/client-ut
 import { RenderDialog } from '../../../../../injected/dialog-renderer';
 import { HtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
-import { ElementHighlight, ElementHighlightDeps, ElementHighlightProps } from '../../../../../injected/visualization/element-highlight';
-import { BoxConfig, DrawerConfiguration, GetBoundingRect } from '../../../../../injected/visualization/formatter';
+import {
+    ElementHighlight,
+    ElementHighlightDeps,
+    ElementHighlightProps,
+} from '../../../../../injected/visualization/element-highlight';
+import {
+    BoxConfig,
+    DrawerConfiguration,
+    GetBoundingRect,
+} from '../../../../../injected/visualization/formatter';
 
 describe('ElementHighlight', () => {
     let deps: ElementHighlightDeps;
@@ -92,10 +100,19 @@ describe('ElementHighlight', () => {
     });
 
     test('renders null when element is outside of document', () => {
-        getBoundingRect.setup(mock => mock(elementStub)).returns(() => elementBoundingClientRectStub);
+        getBoundingRect
+            .setup(mock => mock(elementStub))
+            .returns(() => elementBoundingClientRectStub);
         drawerUtilsMock.setup(mock => mock.getDocumentElement()).returns(() => documentMock.object);
         drawerUtilsMock
-            .setup(mock => mock.isOutsideOfDocument(elementBoundingClientRectStub, documentMock.object, bodyStyleStub, docStyleStub))
+            .setup(mock =>
+                mock.isOutsideOfDocument(
+                    elementBoundingClientRectStub,
+                    documentMock.object,
+                    bodyStyleStub,
+                    docStyleStub,
+                ),
+            )
             .returns(() => true);
         const testObject = shallow(<ElementHighlight {...props} />);
         expect(testObject.getElement()).toMatchSnapshot();
@@ -107,33 +124,62 @@ describe('ElementHighlight', () => {
         const minWidthStub = 333;
         const minHeightStub = 444;
 
-        getBoundingRect.setup(mock => mock(elementStub)).returns(() => elementBoundingClientRectStub);
+        getBoundingRect
+            .setup(mock => mock(elementStub))
+            .returns(() => elementBoundingClientRectStub);
         drawerUtilsMock.setup(mock => mock.getDocumentElement()).returns(() => documentMock.object);
 
         drawerUtilsMock
-            .setup(mock => mock.isOutsideOfDocument(elementBoundingClientRectStub, documentMock.object, bodyStyleStub, docStyleStub))
+            .setup(mock =>
+                mock.isOutsideOfDocument(
+                    elementBoundingClientRectStub,
+                    documentMock.object,
+                    bodyStyleStub,
+                    docStyleStub,
+                ),
+            )
             .returns(() => false);
 
         clientUtilsMock.setup(mock => mock.getOffset(elementStub)).returns(() => offsetStub);
-        drawerUtilsMock.setup(mock => mock.getContainerTopOffset(offsetStub)).returns(() => styleTopStub);
-        drawerUtilsMock.setup(mock => mock.getContainerLeftOffset(offsetStub)).returns(() => styleLeftStub);
+        drawerUtilsMock
+            .setup(mock => mock.getContainerTopOffset(offsetStub))
+            .returns(() => styleTopStub);
+        drawerUtilsMock
+            .setup(mock => mock.getContainerLeftOffset(offsetStub))
+            .returns(() => styleLeftStub);
 
         drawerUtilsMock
             .setup(mock =>
-                mock.getContainerWidth(offsetStub, documentMock.object, elementBoundingClientRectStub.width, bodyStyleStub, docStyleStub),
+                mock.getContainerWidth(
+                    offsetStub,
+                    documentMock.object,
+                    elementBoundingClientRectStub.width,
+                    bodyStyleStub,
+                    docStyleStub,
+                ),
             )
             .returns(() => minWidthStub);
 
         drawerUtilsMock
             .setup(mock =>
-                mock.getContainerHeight(offsetStub, documentMock.object, elementBoundingClientRectStub.height, bodyStyleStub, docStyleStub),
+                mock.getContainerHeight(
+                    offsetStub,
+                    documentMock.object,
+                    elementBoundingClientRectStub.height,
+                    bodyStyleStub,
+                    docStyleStub,
+                ),
             )
             .returns(() => minHeightStub);
 
-        dialogRenderMock.setup(mock => mock(elementResultStub, featureFlagStoreDataStub)).verifiable();
+        dialogRenderMock
+            .setup(mock => mock(elementResultStub, featureFlagStoreDataStub))
+            .verifiable();
 
         const testObject = shallow(<ElementHighlight {...props} />);
-        const failureHighlightBox = testObject.findWhere(node => node.prop('onClickHandler') != null);
+        const failureHighlightBox = testObject.findWhere(
+            node => node.prop('onClickHandler') != null,
+        );
         failureHighlightBox.prop('onClickHandler')();
 
         expect(testObject.getElement()).toMatchSnapshot();

@@ -26,7 +26,10 @@ export class PortDisconnectStub implements chrome.runtime.PortDisconnectEvent {
         throw new Error('Method not implemented.');
     }
 
-    public addRules(rules: chrome.events.Rule[], callback?: (rules: chrome.events.Rule[]) => void): void {
+    public addRules(
+        rules: chrome.events.Rule[],
+        callback?: (rules: chrome.events.Rule[]) => void,
+    ): void {
         throw new Error('Method not implemented.');
     }
 
@@ -68,7 +71,10 @@ export class PortOnMessageStub implements chrome.runtime.PortMessageEvent {
         throw new Error('Method not implemented.');
     }
 
-    public addRules(rules: chrome.events.Rule[], callback?: (rules: chrome.events.Rule[]) => void): void {
+    public addRules(
+        rules: chrome.events.Rule[],
+        callback?: (rules: chrome.events.Rule[]) => void,
+    ): void {
         throw new Error('Method not implemented.');
     }
 

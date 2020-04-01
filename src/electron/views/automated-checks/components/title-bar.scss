@@ -4,8 +4,8 @@
 
 .title-bar {
     background: $ada-brand-color;
+}
 
-    :global(.header-text) {
-        color: $always-white;
-    }
+.header-text {
+    color: $header-bar-title-color !important;
 }

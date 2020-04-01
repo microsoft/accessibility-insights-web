@@ -4,7 +4,7 @@ import { CONTENT_PANEL_CLOSED, CONTENT_PANEL_OPENED } from 'common/extension-tel
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { Logger } from 'common/logging/logger';
 import { Messages } from 'common/messages';
-import { DetailsViewController } from '../details-view-controller';
+import { ExtensionDetailsViewController } from '../extension-details-view-controller';
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import { BaseActionPayload } from './action-payloads';
@@ -15,7 +15,7 @@ export class ContentActionCreator {
         private readonly interpreter: Interpreter,
         private readonly contentActions: ContentActions,
         private readonly telemetryEventHandler: TelemetryEventHandler,
-        private readonly detailsViewController: DetailsViewController,
+        private readonly detailsViewController: ExtensionDetailsViewController,
         private readonly logger: Logger = createDefaultLogger(),
     ) {}
 

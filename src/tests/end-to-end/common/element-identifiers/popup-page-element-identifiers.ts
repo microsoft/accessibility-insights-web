@@ -8,6 +8,5 @@ export const popupPageElementIdentifiers = {
     adhocPanel: '.ad-hoc-tools-panel',
     gotoAdhocToolsButton: '#ad-hoc-tools',
     backToLaunchPadLink: '#back-to-launchpad-link',
-    hamburgerMenuButton: '#feedback-collapse-menu-button',
-    hamburgerMenu: '.popup-menu',
+    hamburgerMenuButton: 'button[aria-label="help menu"]',
 };

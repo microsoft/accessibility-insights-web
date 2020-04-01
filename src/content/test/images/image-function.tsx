@@ -40,8 +40,12 @@ export const infoAndExamples = create(({ Markup }) => (
                         <Markup.Code>alt</Markup.Code> attributes.)
                     </li>
                     <li>
-                        If it's an icon font, <Markup.Code>{'<svg>'}</Markup.Code> image, or CSS background image, add{' '}
+                        If it's an icon font, <Markup.Code>{'<svg>'}</Markup.Code> image, or CSS background image, also add{' '}
                         <Markup.Code>role="img"</Markup.Code>.
+                    </li>
+                    <li>
+                        If it's a CSS background image, also add a text element that conveys the image's information and is visible when CSS
+                        is turned off.
                     </li>
                 </ul>
             </li>

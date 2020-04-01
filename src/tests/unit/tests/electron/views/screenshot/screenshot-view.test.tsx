@@ -20,15 +20,18 @@ describe('ScreenshotView', () => {
         });
 
         const emptyScreenshotDataCases: ScreenshotData[] = [null, undefined, {} as ScreenshotData];
-        it.each(emptyScreenshotDataCases)('matches snapshot when passed empty screenshotData %p', (screenshotDataCase: ScreenshotData) => {
-            const viewModel: ScreenshotViewModel = {
-                screenshotData: screenshotDataCase,
-                highlightBoxViewModels: [],
-                deviceName: null,
-            };
-            const wrapper = shallow(<ScreenshotView viewModel={viewModel} />);
+        it.each(emptyScreenshotDataCases)(
+            'matches snapshot when passed empty screenshotData %p',
+            (screenshotDataCase: ScreenshotData) => {
+                const viewModel: ScreenshotViewModel = {
+                    screenshotData: screenshotDataCase,
+                    highlightBoxViewModels: [],
+                    deviceName: null,
+                };
+                const wrapper = shallow(<ScreenshotView viewModel={viewModel} />);
 
-            expect(wrapper.getElement()).toMatchSnapshot();
-        });
+                expect(wrapper.getElement()).toMatchSnapshot();
+            },
+        );
     });
 });

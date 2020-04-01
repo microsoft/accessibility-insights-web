@@ -5,6 +5,6 @@ import { ResourceServerConfig } from 'tests/miscellaneous/test-resource-server/r
 
 export const testResourceServerConfig: ResourceServerConfig = {
     port: 9052,
-    absolutePath: path.join(__dirname, '../../miscellaneous/mock-axe-android'),
+    absolutePath: path.join(__dirname, '../../miscellaneous/mock-service-for-android'),
     extensions: ['json'],
 };

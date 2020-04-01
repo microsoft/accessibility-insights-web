@@ -4,7 +4,11 @@ import { CardRuleResult } from 'common/types/store-data/card-view-model';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { allInstanceOutcomeTypes } from 'reports/components/instance-outcome-type';
-import { FullRuleHeader, FullRuleHeaderDeps, FullRuleHeaderProps } from 'reports/components/report-sections/full-rule-header';
+import {
+    FullRuleHeader,
+    FullRuleHeaderDeps,
+    FullRuleHeaderProps,
+} from 'reports/components/report-sections/full-rule-header';
 
 describe('FullRuleHeader', () => {
     const depsStub = {} as FullRuleHeaderDeps;

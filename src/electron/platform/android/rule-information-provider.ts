@@ -91,7 +91,7 @@ export class RuleInformationProvider {
         const logicalHeight = this.floorTo3Decimal(physicalHeight / dpi);
 
         return this.buildUnifiedFormattableResolution(
-            `The element has an insufficient target size (width: ${logicalWidth}dp, height: ${logicalHeight}dp). Set the element's minWidth and minHeight attributes to at least 48dp.`,
+            `The element has an insufficient target size (width: ${logicalWidth}dp, height: ${logicalHeight}dp). Set the element's minWidth and minHeight attributes to at least 44dp.`,
             ['minWidth', 'minHeight'],
         );
     };

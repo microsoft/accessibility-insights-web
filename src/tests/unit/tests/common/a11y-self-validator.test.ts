@@ -26,7 +26,11 @@ describe('A11YAutoCheckTest', () => {
         htmlElementUtilsMock = Mock.ofType(HTMLElementUtils, MockBehavior.Strict);
         loggerMock = Mock.ofType<Logger>();
 
-        testObject = new A11YSelfValidator(scannerUtilsMock.object, htmlElementUtilsMock.object, loggerMock.object);
+        testObject = new A11YSelfValidator(
+            scannerUtilsMock.object,
+            htmlElementUtilsMock.object,
+            loggerMock.object,
+        );
     });
 
     test('scan', () => {
@@ -51,7 +55,9 @@ describe('A11YAutoCheckTest', () => {
                 .verifiable(Times.once());
         });
 
-        loggerMock.setup(logger => logger.log(It.isValue(getLoggedViolationScanResult()))).verifiable(Times.once());
+        loggerMock
+            .setup(logger => logger.log(It.isValue(getLoggedViolationScanResult())))
+            .verifiable(Times.once());
 
         testObject.validate();
 

@@ -28,7 +28,11 @@ describe('OutcomeSummaryBar', () => {
     });
 
     it('render inverted badges', () => {
-        const props: OutcomeSummaryBarProps = { outcomeStats, allOutcomeTypes, iconStyleInverted: true };
+        const props: OutcomeSummaryBarProps = {
+            outcomeStats,
+            allOutcomeTypes,
+            iconStyleInverted: true,
+        };
         const wrapper = shallow(<OutcomeSummaryBar {...props} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();

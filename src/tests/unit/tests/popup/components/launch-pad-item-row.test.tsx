@@ -8,7 +8,10 @@ import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';
 
 import { kebabCase } from 'lodash';
-import { LaunchPadItemRow, LaunchPadItemRowProps } from '../../../../../popup/components/launch-pad-item-row';
+import {
+    LaunchPadItemRow,
+    LaunchPadItemRowProps,
+} from '../../../../../popup/components/launch-pad-item-row';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('LaunchPadItemRow', () => {
@@ -49,7 +52,10 @@ describe('LaunchPadItemRow', () => {
         const expected = (
             <div className="ms-Grid">
                 <div className="ms-Grid-row">
-                    <div className="ms-Grid-col ms-sm3 popup-start-dialog-icon-circle" aria-hidden="true">
+                    <div
+                        className="ms-Grid-col ms-sm3 popup-start-dialog-icon-circle"
+                        aria-hidden="true"
+                    >
                         <Icon iconName={props.iconName} className="popup-start-dialog-icon" />
                     </div>
                     <div className="ms-Grid-col ms-sm9">

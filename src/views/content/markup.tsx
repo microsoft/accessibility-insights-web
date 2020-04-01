@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Helmet } from 'react-helmet';
 
 import { Code, Emphasis, Tag, Term } from 'assessments/markup';
-import { productName } from 'content/strings/application';
+import { TextContent } from 'content/strings/text-content';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { CheckIcon } from '../../common/icons/check-icon';
 import { CrossIcon } from '../../common/icons/cross-icon';
@@ -43,21 +43,23 @@ export type Markup = {
     Include: React.FC<{ content: ContentPageComponent }>;
 };
 
-export type MarkupDeps = { contentActionMessageCreator: ContentActionMessageCreator };
+export type MarkupDeps = {
+    textContent: Pick<TextContent, 'applicationTitle'>;
+    contentActionMessageCreator: Pick<ContentActionMessageCreator, 'openContentHyperLink'>;
+};
 
 export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
-    const { openContentHyperLink } = deps.contentActionMessageCreator;
-
     function Include(props: { content: ContentPageComponent }): JSX.Element {
         const Content = props.content;
         return <Content deps={deps} options={options} />;
     }
 
     function Title(props: { children: string }): JSX.Element {
+        const { applicationTitle } = deps.textContent;
         const helmet = (
             <Helmet>
                 <title>
-                    {props.children} - {productName}
+                    {props.children} - {applicationTitle}
                 </title>
             </Helmet>
         );
@@ -72,6 +74,7 @@ export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
 
     function HyperLink(props: { href: string; children: React.ReactNode }): JSX.Element {
         const { href } = props;
+        const { openContentHyperLink } = deps.contentActionMessageCreator;
 
         return (
             <NewTabLink href={href} onClick={e => openContentHyperLink(e, href)}>

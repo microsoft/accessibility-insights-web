@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PlatformInfo Renders per snapshot for mac 1`] = `
+<BodyClassModifier
+  classNames={
+    Array [
+      "is-mac-os",
+    ]
+  }
+  deps={
+    Object {
+      "documentManipulator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "document": undefined,
+      },
+      "platformInfo": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "currentProcess": undefined,
+      },
+    }
+  }
+/>
+`;

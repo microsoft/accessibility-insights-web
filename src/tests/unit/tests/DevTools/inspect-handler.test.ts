@@ -1,36 +1,47 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock } from 'typemoq';
-
-import { ConnectionNames } from '../../../../common/constants/connection-names';
-import { DevToolStoreData } from '../../../../common/types/store-data/dev-tool-store-data';
-import { InspectHandler } from '../../../../Devtools/inspect-handler';
+import { ConnectionNames } from 'common/constants/connection-names';
+import { DevToolStoreData } from 'common/types/store-data/dev-tool-store-data';
+import { InspectHandler } from 'Devtools/inspect-handler';
+import { TargetPageInspector } from 'Devtools/target-page-inspector';
+import { IMock, It, Mock, Times } from 'typemoq';
 import { DevToolsChromeAdapterMock } from '../../mock-helpers/dev-tools-chrome-adapter-mock';
 import { StoreMock } from '../../mock-helpers/store-mock';
 import { PortStub } from '../../stubs/port-stub';
 
-describe('InspectHandlerTests', () => {
-    let testObjec: InspectHandler;
+describe('InspectHandler', () => {
+    let testSubject: InspectHandler;
     let devToolsChromeAdapterMock: DevToolsChromeAdapterMock;
     let devtoolsStoreProxyMock: StoreMock<DevToolStoreData>;
     let backgrountConnectionMock: IMock<chrome.runtime.Port>;
+    let targetPageInspectorMock: IMock<TargetPageInspector>;
     const inspectedWindowId = 12;
 
     beforeEach(() => {
         devToolsChromeAdapterMock = new DevToolsChromeAdapterMock();
         devtoolsStoreProxyMock = new StoreMock<DevToolStoreData>();
+        targetPageInspectorMock = Mock.ofType<TargetPageInspector>();
         backgrountConnectionMock = Mock.ofType(PortStub);
-        testObjec = new InspectHandler(devtoolsStoreProxyMock.getObject(), devToolsChromeAdapterMock.getObject());
+        testSubject = new InspectHandler(
+            devtoolsStoreProxyMock.getObject(),
+            devToolsChromeAdapterMock.getObject(),
+            targetPageInspectorMock.object,
+        );
 
-        devToolsChromeAdapterMock.setUpConnect(ConnectionNames.devTools, backgrountConnectionMock.object);
+        devToolsChromeAdapterMock.setUpConnect(
+            ConnectionNames.devTools,
+            backgrountConnectionMock.object,
+        );
     });
 
     test('initialize - send about dev tools open message to background ', () => {
         devtoolsStoreProxyMock.setupAddChangedListener();
-        backgrountConnectionMock.setup(x => x.postMessage(It.isObjectWith({ tabId: inspectedWindowId }))).verifiable();
+        backgrountConnectionMock
+            .setup(x => x.postMessage(It.isObjectWith({ tabId: inspectedWindowId })))
+            .verifiable();
         devToolsChromeAdapterMock.setupGetInspectedWindowTabId(inspectedWindowId);
 
-        testObjec.initialize();
+        testSubject.initialize();
 
         devtoolsStoreProxyMock.verifyAll();
         devToolsChromeAdapterMock.verifyAll();
@@ -41,7 +52,7 @@ describe('InspectHandlerTests', () => {
         devtoolsStoreProxyMock.setupAddChangedListener();
         devtoolsStoreProxyMock.setupGetState(null);
         devToolsChromeAdapterMock.setupGetInspectedWindowTabId(inspectedWindowId);
-        testObjec.initialize();
+        testSubject.initialize();
 
         devtoolsStoreProxyMock.invokeChangeListener();
 
@@ -57,7 +68,7 @@ describe('InspectHandlerTests', () => {
         devtoolsStoreProxyMock.setupAddChangedListener();
         devtoolsStoreProxyMock.setupGetState(state);
         devToolsChromeAdapterMock.setupGetInspectedWindowTabId(inspectedWindowId);
-        testObjec.initialize();
+        testSubject.initialize();
 
         devtoolsStoreProxyMock.invokeChangeListener();
 
@@ -74,13 +85,16 @@ describe('InspectHandlerTests', () => {
         devtoolsStoreProxyMock.setupGetState(state);
         devToolsChromeAdapterMock.setupGetInspectedWindowTabId(inspectedWindowId);
 
-        devToolsChromeAdapterMock.setupExecuteScriptInInspectedWindow("inspect(document.querySelector('#testElement'))", null);
-        testObjec.initialize();
+        targetPageInspectorMock
+            .setup(inspector => inspector.inspectElement('#testElement', null))
+            .verifiable(Times.once());
+
+        testSubject.initialize();
 
         devtoolsStoreProxyMock.invokeChangeListener();
 
         devtoolsStoreProxyMock.verifyAll();
-        devToolsChromeAdapterMock.verifyAll();
+        targetPageInspectorMock.verifyAll();
     });
 
     test('initialize - inspect on state change: target not at parent level with frame url provided', () => {
@@ -92,13 +106,16 @@ describe('InspectHandlerTests', () => {
         devtoolsStoreProxyMock.setupGetState(state);
         devToolsChromeAdapterMock.setupGetInspectedWindowTabId(inspectedWindowId);
 
-        devToolsChromeAdapterMock.setupExecuteScriptInInspectedWindow("inspect(document.querySelector('test'))", 'testUrl');
-        testObjec.initialize();
+        targetPageInspectorMock
+            .setup(inspector => inspector.inspectElement('test', 'testUrl'))
+            .verifiable(Times.once());
+
+        testSubject.initialize();
 
         devtoolsStoreProxyMock.invokeChangeListener();
 
         devtoolsStoreProxyMock.verifyAll();
-        devToolsChromeAdapterMock.verifyAll();
+        targetPageInspectorMock.verifyAll();
     });
 
     test("initialize - don't inspect if inspect element length > 1 and frame Url not set", () => {
@@ -110,7 +127,7 @@ describe('InspectHandlerTests', () => {
         devtoolsStoreProxyMock.setupGetState(state);
         devToolsChromeAdapterMock.setupGetInspectedWindowTabId(inspectedWindowId);
 
-        testObjec.initialize();
+        testSubject.initialize();
         devtoolsStoreProxyMock.invokeChangeListener();
 
         devtoolsStoreProxyMock.verifyAll();

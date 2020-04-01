@@ -28,15 +28,30 @@ describe('Popup -> Hamburger menu', () => {
     });
 
     it('should have content matching snapshot', async () => {
-        const hamburgerMenu = await formatPageElementForSnapshot(popupPage, popupPageElementIdentifiers.hamburgerMenu);
+        const button = await popupPage.getSelectorElement(
+            popupPageElementIdentifiers.hamburgerMenuButton,
+        );
+        const menuCalloutId = await button.evaluate(element => element.getAttribute('aria-owns'));
+
+        const hamburgerMenu = await formatPageElementForSnapshot(popupPage, `#${menuCalloutId}`);
         expect(hamburgerMenu).toMatchSnapshot();
     });
 
-    it.each([true, false])('should pass accessibility validation with highContrastMode=%s', async highContrastMode => {
-        await browser.setHighContrastMode(highContrastMode);
-        await popupPage.waitForHighContrastMode(highContrastMode);
+    it.each([true, false])(
+        'should pass accessibility validation with highContrastMode=%s',
+        async highContrastMode => {
+            await browser.setHighContrastMode(highContrastMode);
+            await popupPage.waitForHighContrastMode(highContrastMode);
 
-        const results = await scanForAccessibilityIssues(popupPage, popupPageElementIdentifiers.hamburgerMenu);
-        expect(results).toHaveLength(0);
-    });
+            const button = await popupPage.getSelectorElement(
+                popupPageElementIdentifiers.hamburgerMenuButton,
+            );
+            const menuCalloutId = await button.evaluate(element =>
+                element.getAttribute('aria-owns'),
+            );
+
+            const results = await scanForAccessibilityIssues(popupPage, `#${menuCalloutId}`);
+            expect(results).toHaveLength(0);
+        },
+    );
 });

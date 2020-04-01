@@ -1,13 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
-import { BaseTelemetryData, TriggeredByNotApplicable } from 'common/extension-telemetry-events';
 import { Logger } from 'common/logging/logger';
 import { Message } from 'common/message';
 import { Messages } from 'common/messages';
 import { PageVisibilityChangeTabPayload } from './actions/action-payloads';
 import { BrowserMessageBroadcasterFactory } from './browser-message-broadcaster-factory';
-import { DetailsViewController } from './details-view-controller';
+import { ExtensionDetailsViewController } from './extension-details-view-controller';
 import { TabToContextMap } from './tab-context';
 import { TabContextFactory } from './tab-context-factory';
 
@@ -16,7 +15,7 @@ export class TargetPageController {
         private readonly targetPageTabIdToContextMap: TabToContextMap,
         private readonly broadcasterFactory: BrowserMessageBroadcasterFactory,
         private readonly browserAdapter: BrowserAdapter,
-        private readonly detailsViewController: DetailsViewController,
+        private readonly detailsViewController: ExtensionDetailsViewController,
         private readonly tabContextFactory: TabContextFactory,
         private readonly logger: Logger,
     ) {}
@@ -52,11 +51,7 @@ export class TargetPageController {
 
     private onTabUpdated = (tabId: number, changeInfo: chrome.tabs.TabChangeInfo): void => {
         if (changeInfo.url) {
-            const telemetry: BaseTelemetryData = {
-                source: null,
-                triggeredBy: TriggeredByNotApplicable,
-            };
-            this.handleTabUrlUpdate(tabId, telemetry);
+            this.handleTabUrlUpdate(tabId);
         }
     };
 
@@ -95,12 +90,12 @@ export class TargetPageController {
         });
     };
 
-    private handleTabUrlUpdate = (tabId: number, telemetry?: BaseTelemetryData): void => {
+    private handleTabUrlUpdate = (tabId: number): void => {
         if (!this.hasTabContext(tabId)) {
             this.addTabContext(tabId);
         }
 
-        this.sendTabUrlUpdatedAction(tabId, telemetry);
+        this.sendTabUrlUpdatedAction(tabId);
     };
 
     private hasTabContext(tabId: number): boolean {
@@ -112,11 +107,10 @@ export class TargetPageController {
             this.broadcasterFactory.createTabSpecificBroadcaster(tabId),
             this.browserAdapter,
             this.detailsViewController,
-            tabId,
         );
     }
 
-    private sendTabUrlUpdatedAction(tabId: number, telemetry?: BaseTelemetryData): void {
+    private sendTabUrlUpdatedAction(tabId: number): void {
         this.browserAdapter.getTab(
             tabId,
             (tab: chrome.tabs.Tab) => {
@@ -125,7 +119,7 @@ export class TargetPageController {
                     const interpreter = tabContext.interpreter;
                     interpreter.interpret({
                         messageType: Messages.Tab.ExistingTabUpdated,
-                        payload: { ...tab, telemetry },
+                        payload: tab,
                         tabId: tabId,
                     });
                 }

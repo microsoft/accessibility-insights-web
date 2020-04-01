@@ -81,7 +81,9 @@ describe(WindowFrameUpdater, () => {
             browserWindowMock
                 .setup(b => b.setSize(sizePayload.width, sizePayload.height))
                 .verifiable(Times.once(), ExpectedCallType.InSequence);
-            browserWindowMock.setup(b => b.center()).verifiable(Times.once(), ExpectedCallType.InSequence);
+            browserWindowMock
+                .setup(b => b.center())
+                .verifiable(Times.once(), ExpectedCallType.InSequence);
 
             windowFrameActions.setWindowSize.invoke(sizePayload);
         });

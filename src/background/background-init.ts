@@ -15,12 +15,11 @@ import { NotificationCreator } from '../common/notification-creator';
 import { createDefaultPromiseFactory } from '../common/promises/promise-factory';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { UrlValidator } from '../common/url-validator';
-import { WindowUtils } from '../common/window-utils';
 import { title } from '../content/strings/application';
 import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-service-provider-impl';
 import { BrowserMessageBroadcasterFactory } from './browser-message-broadcaster-factory';
-import { DetailsViewController } from './details-view-controller';
 import { DevToolsListener } from './dev-tools-listener';
+import { ExtensionDetailsViewController } from './extension-details-view-controller';
 import { getPersistedData } from './get-persisted-data';
 import { GlobalContextFactory } from './global-context-factory';
 import { IndexedDBDataKeys } from './IndexedDBDataKeys';
@@ -62,7 +61,6 @@ async function initialize(): Promise<void> {
     const userData = await userDataPromise;
 
     const assessmentsProvider = Assessments;
-    const windowUtils = new WindowUtils();
     const telemetryDataFactory = new TelemetryDataFactory();
 
     const logger = createDefaultLogger();
@@ -110,7 +108,7 @@ async function initialize(): Promise<void> {
     telemetryStateListener.initialize();
 
     const messageBroadcasterFactory = new BrowserMessageBroadcasterFactory(browserAdapter, logger);
-    const detailsViewController = new DetailsViewController(browserAdapter);
+    const detailsViewController = new ExtensionDetailsViewController(browserAdapter);
 
     const tabToContextMap: TabToContextMap = {};
 
@@ -152,10 +150,7 @@ async function initialize(): Promise<void> {
     const tabContextFactory = new TabContextFactory(
         visualizationConfigurationFactory,
         telemetryEventHandler,
-        windowUtils,
         targetTabController,
-        globalContext.stores.assessmentStore,
-        assessmentsProvider,
         promiseFactory,
         logger,
     );

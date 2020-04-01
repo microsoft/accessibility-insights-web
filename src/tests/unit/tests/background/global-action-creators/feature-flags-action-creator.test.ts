@@ -23,7 +23,11 @@ describe('FeatureFlagsActionCreator', () => {
         telemetryHandlerMock = Mock.ofType<TelemetryEventHandler>();
         featureFlagActionsMock = Mock.ofType<FeatureFlagActions>();
 
-        testSubject = new FeatureFlagsActionCreator(interpreterMock.object, featureFlagActionsMock.object, telemetryHandlerMock.object);
+        testSubject = new FeatureFlagsActionCreator(
+            interpreterMock.object,
+            featureFlagActionsMock.object,
+            telemetryHandlerMock.object,
+        );
     });
 
     it('handles GetFeatureFlags message', () => {
@@ -75,7 +79,9 @@ describe('FeatureFlagsActionCreator', () => {
 
     const setupInterpreterMock = <Payload>(expectedMessage: string, payload?: Payload): void => {
         interpreterMock
-            .setup(interpreter => interpreter.registerTypeToPayloadCallback(expectedMessage, It.is(isFunction)))
+            .setup(interpreter =>
+                interpreter.registerTypeToPayloadCallback(expectedMessage, It.is(isFunction)),
+            )
             .callback((message, handler) => {
                 if (payload) {
                     handler(payload);

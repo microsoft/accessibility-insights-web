@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DocumentManipulator } from 'common/document-manipulator';
 import { Logger } from 'common/logging/logger';
+import { textContent } from 'content/strings/text-content';
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
@@ -47,7 +49,10 @@ export const rendererDependencies: (
     );
     const storeActionMessageCreator = storeActionMessageCreatorFactory.fromStores(storesHub.stores);
 
+    const documentManipulator = new DocumentManipulator(document);
+
     return {
+        textContent,
         dom: document,
         render: ReactDOM.render,
         initializeFabricIcons,
@@ -56,5 +61,6 @@ export const rendererDependencies: (
         contentActionMessageCreator,
         storesHub,
         storeActionMessageCreator,
+        documentManipulator,
     };
 };

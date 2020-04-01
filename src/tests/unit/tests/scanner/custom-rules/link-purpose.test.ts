@@ -24,7 +24,12 @@ describe('link purpose', () => {
 
     describe('verify evaluate', () => {
         let dataSetterMock: IMock<(data) => void>;
-        const getAccessibleTextMock = GlobalMock.ofInstance(AxeUtils.getAccessibleText, 'getAccessibleText', AxeUtils, MockBehavior.Strict);
+        const getAccessibleTextMock = GlobalMock.ofInstance(
+            AxeUtils.getAccessibleText,
+            'getAccessibleText',
+            AxeUtils,
+            MockBehavior.Strict,
+        );
         const getAccessibleDescriptionMock = GlobalMock.ofInstance(
             AxeUtils.getAccessibleDescription,
             'getAccessibleDescription',
@@ -35,7 +40,9 @@ describe('link purpose', () => {
         beforeEach(() => {
             dataSetterMock = Mock.ofInstance(data => {});
             getAccessibleTextMock.setup(m => m(It.isAny(), false)).returns(_ => 'accessible-text');
-            getAccessibleDescriptionMock.setup(m => m(It.isAny())).returns(_ => 'accessible-description');
+            getAccessibleDescriptionMock
+                .setup(m => m(It.isAny()))
+                .returns(_ => 'accessible-description');
         });
 
         it('get the right data', () => {
@@ -55,7 +62,10 @@ describe('link purpose', () => {
 
             let result;
             GlobalScope.using(getAccessibleTextMock, getAccessibleDescriptionMock).with(() => {
-                result = linkPurposeConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, nodeStub);
+                result = linkPurposeConfiguration.checks[0].evaluate.call(
+                    { data: dataSetterMock.object },
+                    nodeStub,
+                );
             });
             expect(result).toBe(true);
             dataSetterMock.verifyAll();

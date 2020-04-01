@@ -1,0 +1,84 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../../../common/styles/colors.scss';
+@import '../../../../common/styles/fonts.scss';
+@import './window-title-const.scss';
+
+:global(.is-mac-os) .window-title {
+    height: $mac-title-height;
+
+    .title-container {
+        padding-left: 60px;
+    }
+
+    .header-text {
+        line-height: 18px;
+        font-size: 12px;
+    }
+
+    .header-icon {
+        height: 12px;
+    }
+}
+
+.window-title {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+
+    width: 100%;
+    height: $default-title-height;
+    display: flex;
+    align-items: center;
+    -webkit-app-region: drag;
+    -webkit-user-select: none;
+
+    .title-container {
+        display: flex;
+        align-items: center;
+
+        > * {
+            padding-left: 10px;
+        }
+    }
+
+    .actionable-icons-container {
+        margin-left: auto;
+        display: flex;
+        -webkit-app-region: no-drag;
+
+        > * {
+            padding: 6px 10px;
+        }
+    }
+
+    .header-text {
+        color: $ada-brand-color;
+        font-family: $fontFamily;
+        font-size: 14.51px;
+        font-weight: $fontWeightSemiBold;
+        line-height: 19.3px;
+        margin: 0px;
+    }
+
+    :global(.header-icon) {
+        height: 17px;
+    }
+
+    button {
+        padding: 10px;
+
+        i {
+            color: $neutral-0;
+            font-size: 12px;
+        }
+        svg {
+            width: 12px;
+            height: 12px;
+
+            path {
+                fill: $neutral-0;
+            }
+        }
+    }
+}

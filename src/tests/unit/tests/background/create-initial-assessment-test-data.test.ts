@@ -7,13 +7,18 @@ import {
     createInitialAssessmentTestData,
 } from 'background/create-initial-assessment-test-data';
 import { ManualTestStatus, TestStepData } from '../../../../common/types/manual-test-status';
-import { GeneratedAssessmentInstance, ManualTestStepResult } from '../../../../common/types/store-data/assessment-result-data';
+import {
+    GeneratedAssessmentInstance,
+    ManualTestStepResult,
+} from '../../../../common/types/store-data/assessment-result-data';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
 
 describe('createInitialAssessmentTestData', () => {
     const assessmentsProvider = CreateTestAssessmentProvider();
     const knownTestIds = assessmentsProvider.all().map(test => test.key);
-    const knownRequirementIds = flatMap(assessmentsProvider.all(), test => test.requirements.map(step => step.key));
+    const knownRequirementIds = flatMap(assessmentsProvider.all(), test =>
+        test.requirements.map(step => step.key),
+    );
     const knownRequirement1 = knownRequirementIds[0];
     const knownRequirement2 = knownRequirementIds[1];
     const knownRequirement3 = knownRequirementIds[2];
@@ -28,33 +33,54 @@ describe('createInitialAssessmentTestData', () => {
             id1: createGeneratedAssessmentInstance('id1', [knownRequirement1]),
         };
 
-        const actual = createInitialAssessmentTestData(assessmentsProvider.forKey(knownTestIds[0]), {
-            fullAxeResultsMap: null,
-            generatedAssessmentInstancesMap: persistedMap,
-            manualTestStepResultMap: {},
-            testStepStatus: {},
-        });
+        const actual = createInitialAssessmentTestData(
+            assessmentsProvider.forKey(knownTestIds[0]),
+            {
+                fullAxeResultsMap: null,
+                generatedAssessmentInstancesMap: persistedMap,
+                manualTestStepResultMap: {},
+                testStepStatus: {},
+            },
+        );
 
         expect(actual.generatedAssessmentInstancesMap).toEqual(expectedMap);
     });
 
     it('outputs manualTestStepResultMap entries for only known assessments, propagating results for the persisted ones', () => {
         const persistedMap = {
-            [knownRequirement1]: createManualRequirementResult(knownRequirement1, ManualTestStatus.FAIL),
-            [unknownRequirement]: createManualRequirementResult(unknownRequirement, ManualTestStatus.FAIL),
+            [knownRequirement1]: createManualRequirementResult(
+                knownRequirement1,
+                ManualTestStatus.FAIL,
+            ),
+            [unknownRequirement]: createManualRequirementResult(
+                unknownRequirement,
+                ManualTestStatus.FAIL,
+            ),
         };
         const expectedMap = {
-            [knownRequirement1]: createManualRequirementResult(knownRequirement1, ManualTestStatus.FAIL),
-            [knownRequirement2]: createManualRequirementResult(knownRequirement2, ManualTestStatus.UNKNOWN),
-            [knownRequirement3]: createManualRequirementResult(knownRequirement3, ManualTestStatus.UNKNOWN),
+            [knownRequirement1]: createManualRequirementResult(
+                knownRequirement1,
+                ManualTestStatus.FAIL,
+            ),
+            [knownRequirement2]: createManualRequirementResult(
+                knownRequirement2,
+                ManualTestStatus.UNKNOWN,
+            ),
+            [knownRequirement3]: createManualRequirementResult(
+                knownRequirement3,
+                ManualTestStatus.UNKNOWN,
+            ),
         };
 
-        const actual = createInitialAssessmentTestData(assessmentsProvider.forKey(knownTestIds[0]), {
-            fullAxeResultsMap: null,
-            generatedAssessmentInstancesMap: {},
-            manualTestStepResultMap: persistedMap,
-            testStepStatus: {},
-        });
+        const actual = createInitialAssessmentTestData(
+            assessmentsProvider.forKey(knownTestIds[0]),
+            {
+                fullAxeResultsMap: null,
+                generatedAssessmentInstancesMap: {},
+                manualTestStepResultMap: persistedMap,
+                testStepStatus: {},
+            },
+        );
 
         expect(actual.manualTestStepResultMap).toEqual(expectedMap);
     });
@@ -70,12 +96,15 @@ describe('createInitialAssessmentTestData', () => {
             [knownRequirement3]: createDefaultRequirementResult(),
         };
 
-        const actual = createInitialAssessmentTestData(assessmentsProvider.forKey(knownTestIds[0]), {
-            fullAxeResultsMap: null,
-            generatedAssessmentInstancesMap: {},
-            manualTestStepResultMap: {},
-            testStepStatus: persistedTestStepStatus,
-        });
+        const actual = createInitialAssessmentTestData(
+            assessmentsProvider.forKey(knownTestIds[0]),
+            {
+                fullAxeResultsMap: null,
+                generatedAssessmentInstancesMap: {},
+                manualTestStepResultMap: {},
+                testStepStatus: persistedTestStepStatus,
+            },
+        );
 
         expect(actual.testStepStatus).toEqual(expectedTestStepStatus);
     });
@@ -84,7 +113,9 @@ describe('createInitialAssessmentTestData', () => {
 describe('createAutomatedChecksInitialAssessmentTestData', () => {
     const assessmentsProvider = CreateTestAssessmentProvider();
     const knownTestIds = assessmentsProvider.all().map(test => test.key);
-    const knownRequirementIds = flatMap(assessmentsProvider.all(), test => test.requirements.map(step => step.key));
+    const knownRequirementIds = flatMap(assessmentsProvider.all(), test =>
+        test.requirements.map(step => step.key),
+    );
     const knownRequirement1 = knownRequirementIds[0];
     const knownRequirement2 = knownRequirementIds[1];
     const knownRequirement3 = knownRequirementIds[2];
@@ -98,16 +129,28 @@ describe('createAutomatedChecksInitialAssessmentTestData', () => {
             [knownRequirement3]: createDefaultRequirementResult(),
         };
         const expectedManual = {
-            [knownRequirement1]: createManualRequirementResult(knownRequirement1, ManualTestStatus.UNKNOWN),
-            [knownRequirement2]: createManualRequirementResult(knownRequirement2, ManualTestStatus.UNKNOWN),
-            [knownRequirement3]: createManualRequirementResult(knownRequirement3, ManualTestStatus.UNKNOWN),
+            [knownRequirement1]: createManualRequirementResult(
+                knownRequirement1,
+                ManualTestStatus.UNKNOWN,
+            ),
+            [knownRequirement2]: createManualRequirementResult(
+                knownRequirement2,
+                ManualTestStatus.UNKNOWN,
+            ),
+            [knownRequirement3]: createManualRequirementResult(
+                knownRequirement3,
+                ManualTestStatus.UNKNOWN,
+            ),
         };
-        const actual = createAutomatedChecksInitialAssessmentTestData(assessmentsProvider.forKey(knownTestIds[0]), {
-            fullAxeResultsMap: null,
-            generatedAssessmentInstancesMap: persistedMap,
-            manualTestStepResultMap: {},
-            testStepStatus: {},
-        });
+        const actual = createAutomatedChecksInitialAssessmentTestData(
+            assessmentsProvider.forKey(knownTestIds[0]),
+            {
+                fullAxeResultsMap: null,
+                generatedAssessmentInstancesMap: persistedMap,
+                manualTestStepResultMap: {},
+                testStepStatus: {},
+            },
+        );
 
         expect(actual.generatedAssessmentInstancesMap).toEqual(null);
         expect(actual.manualTestStepResultMap).toEqual(expectedManual);
@@ -126,12 +169,24 @@ describe('createAutomatedChecksInitialAssessmentTestData', () => {
             [knownRequirement3]: createRequirementResult(true, ManualTestStatus.PASS),
         };
         const persistedManual = {
-            [knownRequirement1]: createManualRequirementResult(knownRequirement1, ManualTestStatus.FAIL),
+            [knownRequirement1]: createManualRequirementResult(
+                knownRequirement1,
+                ManualTestStatus.FAIL,
+            ),
         };
         const expectedManual = {
-            [knownRequirement1]: createManualRequirementResult(knownRequirement1, ManualTestStatus.FAIL),
-            [knownRequirement2]: createManualRequirementResult(knownRequirement2, ManualTestStatus.UNKNOWN),
-            [knownRequirement3]: createManualRequirementResult(knownRequirement3, ManualTestStatus.UNKNOWN),
+            [knownRequirement1]: createManualRequirementResult(
+                knownRequirement1,
+                ManualTestStatus.FAIL,
+            ),
+            [knownRequirement2]: createManualRequirementResult(
+                knownRequirement2,
+                ManualTestStatus.UNKNOWN,
+            ),
+            [knownRequirement3]: createManualRequirementResult(
+                knownRequirement3,
+                ManualTestStatus.UNKNOWN,
+            ),
         };
         const persistedGenerated = {
             id1: createGeneratedAssessmentInstance('id1', [knownRequirement1, unknownRequirement]),
@@ -140,12 +195,15 @@ describe('createAutomatedChecksInitialAssessmentTestData', () => {
             id1: createGeneratedAssessmentInstance('id1', [knownRequirement1]),
         };
 
-        const actual = createAutomatedChecksInitialAssessmentTestData(assessmentsProvider.forKey(knownTestIds[0]), {
-            fullAxeResultsMap: null,
-            generatedAssessmentInstancesMap: persistedGenerated,
-            manualTestStepResultMap: persistedManual,
-            testStepStatus: persistedTestStepStatus,
-        });
+        const actual = createAutomatedChecksInitialAssessmentTestData(
+            assessmentsProvider.forKey(knownTestIds[0]),
+            {
+                fullAxeResultsMap: null,
+                generatedAssessmentInstancesMap: persistedGenerated,
+                manualTestStepResultMap: persistedManual,
+                testStepStatus: persistedTestStepStatus,
+            },
+        );
 
         expect(actual.manualTestStepResultMap).toEqual(expectedManual);
         expect(actual.generatedAssessmentInstancesMap).toEqual(expectedGenerated);
@@ -164,24 +222,39 @@ describe('createAutomatedChecksInitialAssessmentTestData', () => {
             [knownRequirement3]: createDefaultRequirementResult(),
         };
         const persistedManual = {
-            [knownRequirement1]: createManualRequirementResult(knownRequirement1, ManualTestStatus.FAIL),
+            [knownRequirement1]: createManualRequirementResult(
+                knownRequirement1,
+                ManualTestStatus.FAIL,
+            ),
         };
         const expectedManual = {
-            [knownRequirement1]: createManualRequirementResult(knownRequirement1, ManualTestStatus.UNKNOWN),
-            [knownRequirement2]: createManualRequirementResult(knownRequirement2, ManualTestStatus.UNKNOWN),
-            [knownRequirement3]: createManualRequirementResult(knownRequirement3, ManualTestStatus.UNKNOWN),
+            [knownRequirement1]: createManualRequirementResult(
+                knownRequirement1,
+                ManualTestStatus.UNKNOWN,
+            ),
+            [knownRequirement2]: createManualRequirementResult(
+                knownRequirement2,
+                ManualTestStatus.UNKNOWN,
+            ),
+            [knownRequirement3]: createManualRequirementResult(
+                knownRequirement3,
+                ManualTestStatus.UNKNOWN,
+            ),
         };
         const persistedGenerated = {
             id1: createGeneratedAssessmentInstance('id1', [knownRequirement1, unknownRequirement]),
         };
         const expectedGenerated = null;
 
-        const actual = createAutomatedChecksInitialAssessmentTestData(assessmentsProvider.forKey(knownTestIds[0]), {
-            fullAxeResultsMap: null,
-            generatedAssessmentInstancesMap: persistedGenerated,
-            manualTestStepResultMap: persistedManual,
-            testStepStatus: persistedTestStepStatus,
-        });
+        const actual = createAutomatedChecksInitialAssessmentTestData(
+            assessmentsProvider.forKey(knownTestIds[0]),
+            {
+                fullAxeResultsMap: null,
+                generatedAssessmentInstancesMap: persistedGenerated,
+                manualTestStepResultMap: persistedManual,
+                testStepStatus: persistedTestStepStatus,
+            },
+        );
 
         expect(actual.manualTestStepResultMap).toEqual(expectedManual);
         expect(actual.generatedAssessmentInstancesMap).toEqual(expectedGenerated);
@@ -200,7 +273,10 @@ function createDefaultRequirementResult(): TestStepData {
     return createRequirementResult(false, ManualTestStatus.UNKNOWN);
 }
 
-function createManualRequirementResult(requirementId: string, status: number): ManualTestStepResult {
+function createManualRequirementResult(
+    requirementId: string,
+    status: number,
+): ManualTestStepResult {
     return {
         id: requirementId,
         instances: [],
@@ -208,7 +284,10 @@ function createManualRequirementResult(requirementId: string, status: number): M
     };
 }
 
-function createGeneratedAssessmentInstance(instanceId: string, requirementIds: string[]): GeneratedAssessmentInstance {
+function createGeneratedAssessmentInstance(
+    instanceId: string,
+    requirementIds: string[],
+): GeneratedAssessmentInstance {
     const instanceData = {
         target: [],
         html: 'html',

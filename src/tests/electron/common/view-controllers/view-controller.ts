@@ -13,12 +13,31 @@ export interface ElementController {
 export abstract class ViewController {
     constructor(public client: WebDriverIO.Client<void>) {}
 
-    public async waitForSelector(selector: string, timeout: number = DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS): Promise<void> {
+    public async waitForSelector(
+        selector: string,
+        timeout: number = DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS,
+    ): Promise<void> {
         // Note: we're intentionally not using waitForVisible here because it has different
         // semantics than Puppeteer; in particular, it requires the element be in the viewport
         // but doesn't scroll the page to the element, so it's easy for it to fail in ways that
         // are dependent on the test environment.
         await this.screenshotOnError(async () => this.client.waitForExist(selector, timeout));
+    }
+
+    public async waitForSelectorToDisappear(
+        selector: string,
+        timeout: number = DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS,
+    ): Promise<void> {
+        await this.screenshotOnError(async () =>
+            this.client.waitUntil(
+                async () => {
+                    const selected = await this.client.$(selector);
+                    return selected.value === null;
+                },
+                timeout,
+                `was expecting element by selector ${selector} to disappear`,
+            ),
+        );
     }
 
     public async click(selector: string): Promise<void> {
@@ -35,7 +54,10 @@ export abstract class ViewController {
 
     private async screenshotOnError<T>(wrappedFunction: () => Promise<T>): Promise<T> {
         return await screenshotOnError(
-            path => this.client.browserWindow.capturePage().then(buffer => fs.writeFileSync(path, buffer)),
+            path =>
+                this.client.browserWindow
+                    .capturePage()
+                    .then(buffer => fs.writeFileSync(path, buffer)),
             wrappedFunction,
         );
     }

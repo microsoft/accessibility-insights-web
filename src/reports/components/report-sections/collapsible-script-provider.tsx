@@ -1,5 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+
+// the following comment is to exclude the function from code coverage and prevent code cov from
+// injecting functions that affect snapshot tests
+/* istanbul ignore next */
 export const addEventListenerForCollapsibleSection = (doc: Document) => {
     const collapsibles = doc.getElementsByClassName('collapsible-container');
 
@@ -27,6 +31,5 @@ export const addEventListenerForCollapsibleSection = (doc: Document) => {
 export const getAddListenerForCollapsibleSection = (code: string | Function): string =>
     `(${String(code)})(document)`;
 
-// untested line, having issues with snapshot testing and text representation.
 export const getDefaultAddListenerForCollapsibleSection = (): string =>
     getAddListenerForCollapsibleSection(addEventListenerForCollapsibleSection);

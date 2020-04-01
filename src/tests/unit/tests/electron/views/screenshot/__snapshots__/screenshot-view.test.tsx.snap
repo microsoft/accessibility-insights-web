@@ -8,7 +8,6 @@ exports[`ScreenshotView render matches snapshot when passed empty screenshotData
 >
   <h2
     className="header"
-    tabIndex={0}
   >
     Target app screenshot
   </h2>
@@ -26,7 +25,6 @@ exports[`ScreenshotView render matches snapshot when passed empty screenshotData
 >
   <h2
     className="header"
-    tabIndex={0}
   >
     Target app screenshot
   </h2>
@@ -44,7 +42,6 @@ exports[`ScreenshotView render matches snapshot when passed empty screenshotData
 >
   <h2
     className="header"
-    tabIndex={0}
   >
     Target app screenshot
   </h2>
@@ -62,7 +59,6 @@ exports[`ScreenshotView render matches snapshot when screenshot data is availabl
 >
   <h2
     className="header"
-    tabIndex={0}
   >
     Target app screenshot
   </h2>

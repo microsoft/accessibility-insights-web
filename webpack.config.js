@@ -28,12 +28,16 @@ const commonPlugins = [
 ];
 
 const commonEntryFiles = {
-    injected: [path.resolve(__dirname, 'src/injected/stylesheet-init.ts'), path.resolve(__dirname, 'src/injected/client-init.ts')],
-    popup: path.resolve(__dirname, 'src/popup/popup-init.ts'),
+    injected: [
+        path.resolve(__dirname, 'src/injected/stylesheet-init.ts'),
+        path.resolve(__dirname, 'src/injected/client-init.ts'),
+    ],
+    popup: [path.resolve(__dirname, 'src/popup/popup-init.ts')],
     insights: [path.resolve(__dirname, 'src/views/insights/initializer.ts')],
     detailsView: [path.resolve(__dirname, 'src/DetailsView/details-view-initializer.ts')],
     devtools: [path.resolve(__dirname, 'src/Devtools/dev-tool-init.ts')],
     background: [path.resolve(__dirname, 'src/background/background-init.ts')],
+    debugTools: path.resolve(__dirname, 'src/debug-tools/initializer/debug-tools-init.tsx'),
 };
 
 const electronEntryFiles = {
@@ -41,40 +45,41 @@ const electronEntryFiles = {
     main: [path.resolve(__dirname, 'src/electron/main/main.ts')],
 };
 
+const tsRule = {
+    test: /\.tsx?$/,
+    use: [
+        {
+            loader: 'ts-loader',
+            options: {
+                transpileOnly: true,
+                experimentalWatchApi: true,
+            },
+        },
+    ],
+    exclude: ['/node_modules/'],
+};
+
+const scssRule = (useHash = true) => ({
+    test: /\.scss$/,
+    use: [
+        MiniCssExtractPlugin.loader,
+        {
+            loader: 'css-loader',
+            options: {
+                modules: {
+                    localIdentName: '[local]' + (useHash ? '--[hash:base64:5]' : ''),
+                },
+                localsConvention: 'camelCaseOnly',
+            },
+        },
+        'sass-loader',
+    ],
+});
+
 const commonConfig = {
     entry: commonEntryFiles,
     module: {
-        rules: [
-            {
-                test: /\.tsx?$/,
-                use: [
-                    {
-                        loader: 'ts-loader',
-                        options: {
-                            transpileOnly: true,
-                            experimentalWatchApi: true,
-                        },
-                    },
-                ],
-                exclude: ['/node_modules/'],
-            },
-            {
-                test: /\.scss$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            modules: {
-                                localIdentName: '[local]--[hash:base64:5]',
-                            },
-                            localsConvention: 'camelCaseOnly',
-                        },
-                    },
-                    'sass-loader',
-                ],
-            },
-        ],
+        rules: [tsRule, scssRule(true)],
     },
     resolve: {
         modules: [path.resolve(__dirname, './src'), path.resolve(__dirname, 'node_modules')],
@@ -91,14 +96,14 @@ const commonConfig = {
     },
 };
 
-const electronConfig = {
+const unifiedConfig = {
     ...commonConfig,
     entry: electronEntryFiles,
-    name: 'electron',
+    name: 'unified',
     mode: 'development',
     devtool: 'source-map',
     output: {
-        path: path.join(__dirname, 'extension/electronBundle'),
+        path: path.join(__dirname, 'extension/unifiedBundle'),
         filename: '[name].bundle.js',
     },
     node: {
@@ -114,6 +119,11 @@ const electronConfig = {
 
 const devConfig = {
     ...commonConfig,
+    entry: {
+        ...commonEntryFiles,
+        detailsView: ['react-devtools', ...commonEntryFiles.detailsView],
+        popup: ['react-devtools', ...commonEntryFiles.popup],
+    },
     name: 'dev',
     mode: 'development',
     devtool: 'eval-source-map',
@@ -176,5 +186,26 @@ const packageReportConfig = {
     target: 'node',
 };
 
+const packageUIConfig = {
+    entry: {
+        ui: [path.resolve(__dirname, 'src/packages/accessibility-insights-ui/index.ts')],
+    },
+    module: { rules: [tsRule, scssRule(false)] },
+    externals: [nodeExternals()],
+    plugins: commonPlugins,
+    resolve: commonConfig.resolve,
+    name: 'package-ui',
+    mode: 'development',
+    devtool: false,
+    output: {
+        path: path.join(__dirname, 'package/ui/bundle'),
+        filename: '[name].bundle.js',
+        pathinfo: false,
+        library: '[name]',
+        libraryTarget: 'umd',
+    },
+    target: 'node',
+};
+
 // For just one config, use "webpack --config-name dev", "webpack --config-name prod", etc
-module.exports = [devConfig, prodConfig, electronConfig, packageReportConfig];
+module.exports = [devConfig, prodConfig, unifiedConfig, packageReportConfig, packageUIConfig];

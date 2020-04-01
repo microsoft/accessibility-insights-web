@@ -10,7 +10,10 @@ import * as React from 'react';
 import { ReportHead } from 'reports/components/report-head';
 import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
 import { ReportCollapsibleContainerControl } from 'reports/components/report-sections/report-collapsible-container';
-import { ReportSectionFactory, SectionDeps } from 'reports/components/report-sections/report-section-factory';
+import {
+    ReportSectionFactory,
+    SectionDeps,
+} from 'reports/components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
@@ -60,7 +63,11 @@ describe('ReportHtmlGenerator', () => {
             toUtcString: getUTCStringFromDateStub,
             getCollapsibleScript: getScriptMock.object,
             getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
-            cardsViewData: { cards: exampleUnifiedStatusResults, visualHelperEnabled: true, allCardsCollapsed: true },
+            cardsViewData: {
+                cards: exampleUnifiedStatusResults,
+                visualHelperEnabled: true,
+                allCardsCollapsed: true,
+            },
         } as ReportBodyProps;
 
         const headElement: JSX.Element = <ReportHead />;

@@ -27,7 +27,9 @@ describe('MainWindowContextTest', () => {
         expect(testSubject.getDevToolStore()).toEqual(devToolStore);
         expect(testSubject.getUserConfigStore()).toEqual(userConfigStore);
         expect(testSubject.getDevToolActionMessageCreator()).toEqual(devToolActionMessageCreator);
-        expect(testSubject.getTargetPageActionMessageCreator()).toEqual(targetPageActionMessageCreator);
+        expect(testSubject.getTargetPageActionMessageCreator()).toEqual(
+            targetPageActionMessageCreator,
+        );
     });
 
     test('save and retrieve from window', () => {
@@ -43,12 +45,24 @@ describe('MainWindowContextTest', () => {
         );
 
         expect(MainWindowContext.getMainWindowContext().getDevToolStore()).toEqual(devToolStore);
-        expect(MainWindowContext.getMainWindowContext().getUserConfigStore()).toEqual(userConfigStore);
-        expect(MainWindowContext.getMainWindowContext().getDevToolActionMessageCreator()).toEqual(devToolActionMessageCreator);
-        expect(MainWindowContext.getMainWindowContext().getTargetPageActionMessageCreator()).toEqual(targetPageActionMessageCreator);
-        expect(MainWindowContext.getMainWindowContext().getUserConfigMessageCreator()).toEqual(userConfigMessageCreator);
-        expect(MainWindowContext.getMainWindowContext().getEnvironmentInfoProvider()).toEqual(environmentInfoProvider);
-        expect(MainWindowContext.getMainWindowContext().getIssueFilingServiceProvider()).toEqual(issueFilingServiceProvider);
+        expect(MainWindowContext.getMainWindowContext().getUserConfigStore()).toEqual(
+            userConfigStore,
+        );
+        expect(MainWindowContext.getMainWindowContext().getDevToolActionMessageCreator()).toEqual(
+            devToolActionMessageCreator,
+        );
+        expect(
+            MainWindowContext.getMainWindowContext().getTargetPageActionMessageCreator(),
+        ).toEqual(targetPageActionMessageCreator);
+        expect(MainWindowContext.getMainWindowContext().getUserConfigMessageCreator()).toEqual(
+            userConfigMessageCreator,
+        );
+        expect(MainWindowContext.getMainWindowContext().getEnvironmentInfoProvider()).toEqual(
+            environmentInfoProvider,
+        );
+        expect(MainWindowContext.getMainWindowContext().getIssueFilingServiceProvider()).toEqual(
+            issueFilingServiceProvider,
+        );
     });
 
     test('getIfNotGiven', () => {
@@ -84,19 +98,39 @@ describe('MainWindowContextTest', () => {
         const mainWindowContextGiven = MainWindowContext.getIfNotGiven(mainWindowContextLocal);
         expect(mainWindowContextGiven.getDevToolStore()).toEqual(devToolStoreLocal);
         expect(mainWindowContextGiven.getUserConfigStore()).toEqual(userConfigStoreLocal);
-        expect(mainWindowContextGiven.getDevToolActionMessageCreator()).toEqual(devToolActionMessageCreatorLocal);
-        expect(mainWindowContextGiven.getTargetPageActionMessageCreator()).toEqual(targetPageActionMessageCreator);
-        expect(mainWindowContextGiven.getUserConfigMessageCreator()).toEqual(userConfigMessageCreatorLocal);
-        expect(mainWindowContextGiven.getEnvironmentInfoProvider()).toEqual(environmentInfoProviderLocal);
-        expect(mainWindowContextGiven.getIssueFilingServiceProvider()).toEqual(issueFilingServiceProviderLocal);
+        expect(mainWindowContextGiven.getDevToolActionMessageCreator()).toEqual(
+            devToolActionMessageCreatorLocal,
+        );
+        expect(mainWindowContextGiven.getTargetPageActionMessageCreator()).toEqual(
+            targetPageActionMessageCreator,
+        );
+        expect(mainWindowContextGiven.getUserConfigMessageCreator()).toEqual(
+            userConfigMessageCreatorLocal,
+        );
+        expect(mainWindowContextGiven.getEnvironmentInfoProvider()).toEqual(
+            environmentInfoProviderLocal,
+        );
+        expect(mainWindowContextGiven.getIssueFilingServiceProvider()).toEqual(
+            issueFilingServiceProviderLocal,
+        );
 
         const mainWindowContextNotGiven = MainWindowContext.getIfNotGiven(null);
         expect(mainWindowContextNotGiven.getDevToolStore()).toEqual(devToolStore);
         expect(mainWindowContextNotGiven.getUserConfigStore()).toEqual(userConfigStore);
-        expect(mainWindowContextNotGiven.getDevToolActionMessageCreator()).toEqual(devToolActionMessageCreator);
-        expect(mainWindowContextNotGiven.getTargetPageActionMessageCreator()).toEqual(targetPageActionMessageCreator);
-        expect(mainWindowContextNotGiven.getUserConfigMessageCreator()).toEqual(userConfigMessageCreator);
-        expect(mainWindowContextNotGiven.getEnvironmentInfoProvider()).toEqual(environmentInfoProvider);
-        expect(mainWindowContextNotGiven.getIssueFilingServiceProvider()).toEqual(issueFilingServiceProvider);
+        expect(mainWindowContextNotGiven.getDevToolActionMessageCreator()).toEqual(
+            devToolActionMessageCreator,
+        );
+        expect(mainWindowContextNotGiven.getTargetPageActionMessageCreator()).toEqual(
+            targetPageActionMessageCreator,
+        );
+        expect(mainWindowContextNotGiven.getUserConfigMessageCreator()).toEqual(
+            userConfigMessageCreator,
+        );
+        expect(mainWindowContextNotGiven.getEnvironmentInfoProvider()).toEqual(
+            environmentInfoProvider,
+        );
+        expect(mainWindowContextNotGiven.getIssueFilingServiceProvider()).toEqual(
+            issueFilingServiceProvider,
+        );
     });
 });

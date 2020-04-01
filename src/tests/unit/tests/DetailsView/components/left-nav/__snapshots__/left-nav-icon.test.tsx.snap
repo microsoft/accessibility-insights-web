@@ -1,19 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LeftNavIndexIcon render 1`] = `
-<div
+<span
   className="index-circle"
 >
   1
-</div>
+</span>
 `;
 
 exports[`LeftNavStatusIcon render 1`] = `
-<div>
-  <StatusIcon
-    className="dark-gray"
-    level="test"
-    status={0}
-  />
-</div>
+<StatusIcon
+  className="dark-gray"
+  level="test"
+  status={0}
+/>
 `;

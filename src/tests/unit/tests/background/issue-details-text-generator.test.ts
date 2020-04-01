@@ -38,10 +38,19 @@ describe('Issue details text builder', () => {
             snippet: 'RR-snippet   space',
         } as any;
 
-        issueUrlCreationUtilsMock = Mock.ofType<IssueUrlCreationUtils>(undefined, MockBehavior.Strict);
-        issueUrlCreationUtilsMock.setup(utils => utils.getSelectorLastPart(selector)).returns(() => selector);
-        issueUrlCreationUtilsMock.setup(utils => utils.getTitle(sampleIssueDetailsData)).returns(() => title);
-        issueUrlCreationUtilsMock.setup(utils => utils.standardizeTags(sampleIssueDetailsData)).returns(() => wcagTags);
+        issueUrlCreationUtilsMock = Mock.ofType<IssueUrlCreationUtils>(
+            undefined,
+            MockBehavior.Strict,
+        );
+        issueUrlCreationUtilsMock
+            .setup(utils => utils.getSelectorLastPart(selector))
+            .returns(() => selector);
+        issueUrlCreationUtilsMock
+            .setup(utils => utils.getTitle(sampleIssueDetailsData))
+            .returns(() => title);
+        issueUrlCreationUtilsMock
+            .setup(utils => utils.standardizeTags(sampleIssueDetailsData))
+            .returns(() => wcagTags);
 
         const envInfo = {
             axeCoreVersion: 'AXE.CORE.VER',
@@ -52,7 +61,9 @@ describe('Issue details text builder', () => {
         envInfoProviderMock.setup(provider => provider.getEnvironmentInfo()).returns(() => envInfo);
 
         issueDetailsBuilderMock = Mock.ofType<IssueDetailsBuilder>(undefined, MockBehavior.Strict);
-        issueDetailsBuilderMock.setup(builder => builder(envInfo, sampleIssueDetailsData)).returns(() => 'test-issue-details-builder');
+        issueDetailsBuilderMock
+            .setup(builder => builder(envInfo, sampleIssueDetailsData))
+            .returns(() => 'test-issue-details-builder');
 
         testSubject = new IssueDetailsTextGenerator(
             issueUrlCreationUtilsMock.object,

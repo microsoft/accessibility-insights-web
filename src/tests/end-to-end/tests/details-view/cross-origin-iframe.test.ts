@@ -6,7 +6,10 @@ import * as testResourceServer from '../../../miscellaneous/test-resource-server
 import { ResourceServerConfig } from '../../../miscellaneous/test-resource-server/resource-server-config';
 import { Browser } from '../../common/browser';
 import { ExtraPermissions, launchBrowser } from '../../common/browser-factory';
-import { detailsViewSelectors, fastPassAutomatedChecksSelectors } from '../../common/element-identifiers/details-view-selectors';
+import {
+    detailsViewSelectors,
+    fastPassAutomatedChecksSelectors,
+} from '../../common/element-identifiers/details-view-selectors';
 import { DetailsViewPage } from '../../common/page-controllers/details-view-page';
 import { TargetPage } from '../../common/page-controllers/target-page';
 import { DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS } from '../../common/timeouts';
@@ -43,7 +46,9 @@ describe('scanning', () => {
         });
 
         it('does not get results from inside cross-origin iframes', async () => {
-            const ruleDetails = await fastPassAutomatedChecks.getSelectorElements(fastPassAutomatedChecksSelectors.ruleDetail);
+            const ruleDetails = await fastPassAutomatedChecks.getSelectorElements(
+                fastPassAutomatedChecksSelectors.ruleDetail,
+            );
 
             expect(ruleDetails).toHaveLength(2);
 
@@ -56,7 +61,9 @@ describe('scanning', () => {
         });
 
         it('does show iframe detected warning', async () => {
-            const iframeWarning = await fastPassAutomatedChecks.getSelectorElement(fastPassAutomatedChecksSelectors.iframeWarning);
+            const iframeWarning = await fastPassAutomatedChecks.getSelectorElement(
+                fastPassAutomatedChecksSelectors.iframeWarning,
+            );
 
             expect(iframeWarning).not.toBeNull();
         });
@@ -75,7 +82,9 @@ describe('scanning', () => {
         });
 
         it('does find results from inside cross-origin iframes', async () => {
-            const ruleDetails = await fastPassAutomatedChecks.getSelectorElements(fastPassAutomatedChecksSelectors.ruleDetail);
+            const ruleDetails = await fastPassAutomatedChecks.getSelectorElements(
+                fastPassAutomatedChecksSelectors.ruleDetail,
+            );
 
             expect(ruleDetails).toHaveLength(5);
 
@@ -91,15 +100,24 @@ describe('scanning', () => {
         });
 
         it('does not show iframe detected warning', async () => {
-            const iframeWarning = await fastPassAutomatedChecks.getSelectorElement(fastPassAutomatedChecksSelectors.iframeWarning);
+            const iframeWarning = await fastPassAutomatedChecks.getSelectorElement(
+                fastPassAutomatedChecksSelectors.iframeWarning,
+            );
 
             expect(iframeWarning).toBeNull();
         });
     });
 
-    async function launchFastPassWithExtraPermissions(extraPermissions: ExtraPermissions): Promise<void> {
-        browser = await launchBrowser({ suppressFirstTimeDialog: true, addExtraPermissionsToManifest: extraPermissions });
-        targetPage = await browser.newTargetPage({ testResourcePath: 'all-cross-origin-iframe.html' });
+    async function launchFastPassWithExtraPermissions(
+        extraPermissions: ExtraPermissions,
+    ): Promise<void> {
+        browser = await launchBrowser({
+            suppressFirstTimeDialog: true,
+            addExtraPermissionsToManifest: extraPermissions,
+        });
+        targetPage = await browser.newTargetPage({
+            testResourcePath: 'all-cross-origin-iframe.html',
+        });
         await browser.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
 
         fastPassAutomatedChecks = await openAutomatedChecks();
@@ -123,15 +141,23 @@ describe('scanning', () => {
         expectedCounts: { [ruleName: string]: number },
     ): Promise<void> {
         for (const ruleDetail of actualRuleDetails) {
-            const ruleNameElement = await ruleDetail.$(fastPassAutomatedChecksSelectors.cardsRuleId);
-            const ruleName = await fastPassAutomatedChecks.evaluate(element => element.innerHTML, ruleNameElement);
+            const ruleNameElement = await ruleDetail.$(
+                fastPassAutomatedChecksSelectors.cardsRuleId,
+            );
+            const ruleName = await fastPassAutomatedChecks.evaluate(
+                element => element.innerHTML,
+                ruleNameElement,
+            );
 
             const expectedCount = expectedCounts[ruleName];
 
             expect(expectedCount).not.toBeNull();
 
             const countElement = await ruleDetail.$(fastPassAutomatedChecksSelectors.failureCount);
-            const count = await fastPassAutomatedChecks.evaluate(element => parseInt(element.innerHTML, 10), countElement);
+            const count = await fastPassAutomatedChecks.evaluate(
+                element => parseInt(element.innerHTML, 10),
+                countElement,
+            );
 
             expect(count).toBe(expectedCount);
         }

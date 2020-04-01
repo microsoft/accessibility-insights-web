@@ -4,7 +4,7 @@ import { title } from 'content/strings/application';
 import { BaseStore } from '../common/base-store';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
-import { DetailsViewData } from '../common/types/store-data/details-view-data';
+import { DetailsViewStoreData } from '../common/types/store-data/details-view-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
 import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { GetDetailsRightPanelConfiguration } from './components/details-view-right-panel';
@@ -13,7 +13,7 @@ import { GetDetailsSwitcherNavConfiguration } from './components/details-view-sw
 export class DocumentTitleUpdater {
     constructor(
         private readonly tabStore: BaseStore<TabStoreData>,
-        private readonly detailsViewStore: BaseStore<DetailsViewData>,
+        private readonly detailsViewStore: BaseStore<DetailsViewStoreData>,
         private readonly visualizationStore: BaseStore<VisualizationStoreData>,
         private readonly assessmentStore: BaseStore<AssessmentStoreData>,
         private readonly getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration,

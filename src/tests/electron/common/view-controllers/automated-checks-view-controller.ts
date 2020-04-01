@@ -1,7 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { settingsPanelSelectors } from 'tests/end-to-end/common/element-identifiers/details-view-selectors';
 import * as WebDriverIO from 'webdriverio';
-import { AutomatedChecksViewSelectors, ScreenshotViewSelectors } from '../element-identifiers/automated-checks-view-selectors';
+import {
+    AutomatedChecksViewSelectors,
+    ScreenshotViewSelectors,
+} from '../element-identifiers/automated-checks-view-selectors';
 import { ViewController } from './view-controller';
 
 export class AutomatedChecksViewController extends ViewController {
@@ -29,5 +33,29 @@ export class AutomatedChecksViewController extends ViewController {
 
     public async waitForScreenshotViewVisible(): Promise<void> {
         await this.waitForSelector(ScreenshotViewSelectors.screenshotView);
+    }
+
+    public async openSettingsPanel(): Promise<void> {
+        await this.waitForSelector(AutomatedChecksViewSelectors.settingsButton);
+        await this.click(AutomatedChecksViewSelectors.settingsButton);
+        await this.waitForSelector(settingsPanelSelectors.settingsPanel);
+    }
+
+    public async setToggleState(toggleSelector: string, newState: boolean): Promise<void> {
+        await this.waitForSelector(toggleSelector);
+        const oldState = await this.client.$(toggleSelector).getAttribute('aria-checked');
+
+        if (oldState !== newState) {
+            await this.click(toggleSelector);
+            await this.expectToggleState(toggleSelector, newState);
+        }
+    }
+
+    public async expectToggleState(toggleSelector: string, expectedState: boolean): Promise<void> {
+        const toggleInStateSelector = expectedState
+            ? settingsPanelSelectors.enabledToggle(toggleSelector)
+            : settingsPanelSelectors.disabledToggle(toggleSelector);
+
+        await this.waitForSelector(toggleInStateSelector);
     }
 }

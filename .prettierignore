@@ -4,7 +4,9 @@
 **/*.dockerignore
 **/*.gitattributes
 **/*.gitignore
+**/*.icns
 **/*.ico
+**/*.nsh
 **/*.png
 **/*.snap
 **/Dockerfile
@@ -17,6 +19,7 @@
 AppXManifest.xml
 copyright-header.txt
 dist/
+docs/art/ada-cat.ansi256.txt
 docs/LICENSE.txt
 src/electron/resources/license_en.txt
 src/electron/resources/license.txt

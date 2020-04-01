@@ -95,6 +95,7 @@ export class Messages {
     public static readonly UserConfig = {
         SetTelemetryConfig: `${messagePrefix}/userConfig/setTelemetryConfig`,
         SetHighContrastConfig: `${messagePrefix}/userConfig/setHighContrastConfig`,
+        SetNativeHighContrastConfig: `${messagePrefix}/userConfig/setNativeHighContrastConfig`,
         SetIssueFilingService: `${messagePrefix}/userConfig/setIssueFilingService`,
         SetIssueFilingServiceProperty: `${messagePrefix}/userConfig/setIssueFilingServiceProperty`,
         SaveIssueFilingSettings: `${messagePrefix}/userConfig/saveIssueFilingSettings`,
@@ -204,5 +205,9 @@ export class Messages {
 
     public static readonly PermissionsState = {
         SetPermissionsState: `${messagePrefix}/permissionsState/setPermissionsState`,
+    };
+
+    public static readonly DebugTools = {
+        Open: `${messagePrefix}/debugTools/open`,
     };
 }

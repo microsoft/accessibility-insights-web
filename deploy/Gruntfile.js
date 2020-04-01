@@ -1,9 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-const path = require('path');
-const YAML = require('js-yaml');
-
-module.exports = function(grunt) {
+module.exports = function (grunt) {
     const webStoreAccount = {
         client_id: grunt.option('webstore-client-id'),
         client_secret: grunt.option('webstore-client-secret'),
@@ -46,6 +43,12 @@ module.exports = function(grunt) {
                     zip: 'extension.zip',
                 },
             },
+            onError: e => grunt.fail.fatal(e.errorMsg),
+            onExtensionPublished: info => {
+                if (!info.success) {
+                    grunt.fail.fatal(JSON.stringify(info));
+                }
+            },
         },
     });
 
@@ -54,15 +57,14 @@ module.exports = function(grunt) {
 
     const versionFromDate = () => makeVersionFromDateString('.');
 
-    const versionFromDateElectron = () => makeVersionFromDateString('');
-
     const makeVersionFromDateString = lastSeperator => {
         const now = new Date();
-        return `${now.getUTCFullYear()}.${now.getUTCMonth() + 1}.${now.getUTCDate()}${lastSeperator}${now.getUTCHours() * 100 +
-            now.getUTCMinutes()}`;
+        return `${now.getUTCFullYear()}.${
+            now.getUTCMonth() + 1
+        }.${now.getUTCDate()}${lastSeperator}${now.getUTCHours() * 100 + now.getUTCMinutes()}`;
     };
 
-    grunt.registerTask('update-config', function() {
+    grunt.registerTask('update-config', function () {
         const configJSONPath = 'product/insights.config.json';
         const config = grunt.file.readJSON(configJSONPath);
 
@@ -72,29 +74,13 @@ module.exports = function(grunt) {
         const configJSON = JSON.stringify(config, undefined, 4);
         grunt.file.write(configJSONPath, configJSON);
 
-        const copyrightHeader = '// Copyright (c) Microsoft Corporation. All rights reserved.\n// Licensed under the MIT License.\n';
+        const copyrightHeader =
+            '// Copyright (c) Microsoft Corporation. All rights reserved.\n// Licensed under the MIT License.\n';
         const configJS = `${copyrightHeader}window.insights = ${configJSON}`;
         grunt.file.write(configJSPath, configJS);
     });
 
-    grunt.registerTask('update-electron-config', function() {
-        const electronBuilderYAMLPath = '../../../electron-builder.yml';
-        const config = grunt.file.readYAML(electronBuilderYAMLPath);
-        let version = options.extensionVersion;
-
-        if (version == 'auto') {
-            version = versionFromDateElectron();
-        }
-
-        config.extraMetadata.version = version;
-        config.publish.url = options.electronUpdateURL;
-
-        const configYAML = YAML.safeDump(config);
-        grunt.file.write(electronBuilderYAMLPath, configYAML);
-        grunt.log.writeln(`embedded version ${version} in electron-builder.yml`);
-    });
-
-    grunt.registerTask('update-manifest', function() {
+    grunt.registerTask('update-manifest', function () {
         const manifestPath = 'product/manifest.json';
         const manifest = grunt.file.readJSON(manifestPath);
         let version = options.extensionVersion;
@@ -102,6 +88,7 @@ module.exports = function(grunt) {
             version = versionFromDate();
         }
         manifest.version = version;
+        grunt.log.writeln(`publishing ai-web version ${version}`);
         grunt.file.write(manifestPath, JSON.stringify(manifest, undefined, 4));
     });
     grunt.registerTask('zip', ['update-config', 'update-manifest', 'compress:extension']);

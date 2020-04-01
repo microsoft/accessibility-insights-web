@@ -3,7 +3,7 @@
 @import '../../../common/styles/colors.scss';
 
 .report-congrats-message {
-    word-break: break-all;
+    word-break: break-word;
     overflow-wrap: break-word;
 }
 
@@ -18,4 +18,8 @@
     font-size: 14px;
     color: $secondary-text;
     padding: 10px 0 10px 0;
+}
+
+.sleeping-ada {
+    height: 100px;
 }

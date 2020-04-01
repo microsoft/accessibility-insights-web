@@ -1,5 +1,15 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
+trigger: # trigger only affects CI builds
+    branches:
+        include:
+            - master
+
+pr: # pr does not trigger CI builds
+    branches:
+        include:
+            - '*' # must quote since "*" is a YAML reserved character; we want a string
+
 jobs:
     - job: 'unit_tests_and_lints'
 
@@ -42,6 +52,9 @@ jobs:
                 # reportDirectory: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/lcov-report
             displayName: publish code coverage
 
+          - script: yarn publish-code-coverage -t $(CODECOV_TOKEN)
+            displayName: Publish code coverage to codecov
+
           # CI build only
           - task: ComponentGovernanceComponentDetection@0
             displayName: 'Component Detection'
@@ -64,28 +77,28 @@ jobs:
                 artifactName: 'drop'
             displayName: publish drop
 
-    - job: 'e2e_mac_web_electron'
+    - job: 'e2e_mac_web_unified'
       pool:
           vmImage: macOS-10.14
       steps:
           - template: pipeline/install-node-prerequisites.yaml
           - template: pipeline/e2e-test-from-agent.yaml
           - template: pipeline/e2e-test-publish-results.yaml
-          - template: pipeline/electron/electron-e2e-test-interactive.yaml
-          - template: pipeline/electron/electron-e2e-publish-results.yaml
+          - template: pipeline/unified/unified-e2e-test-interactive.yaml
+          - template: pipeline/unified/unified-e2e-publish-results.yaml
 
-    - job: 'e2e_linux_electron'
+    - job: 'e2e_linux_unified'
       pool:
           vmImage: ubuntu-16.04
       steps:
           - template: pipeline/install-node-prerequisites.yaml
-          - template: pipeline/electron/electron-e2e-test-linux.yaml
-          - template: pipeline/electron/electron-e2e-publish-results.yaml
+          - template: pipeline/unified/unified-e2e-test-linux.yaml
+          - template: pipeline/unified/unified-e2e-publish-results.yaml
 
-    - job: 'e2e_windows_electron'
+    - job: 'e2e_windows_unified'
       pool:
           vmImage: windows-latest
       steps:
           - template: pipeline/install-node-prerequisites.yaml
-          - template: pipeline/electron/electron-e2e-test-interactive.yaml
-          - template: pipeline/electron/electron-e2e-publish-results.yaml
+          - template: pipeline/unified/unified-e2e-test-interactive.yaml
+          - template: pipeline/unified/unified-e2e-publish-results.yaml

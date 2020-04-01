@@ -2,14 +2,18 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { AssessmentSummaryDetails, AssessmentSummaryDetailsProps } from 'reports/components/assessment-summary-details';
+import {
+    AssessmentSummaryDetails,
+    AssessmentSummaryDetailsProps,
+} from 'reports/components/assessment-summary-details';
 import { AssessmentReportBuilderTestHelper } from '../../DetailsView/assessment-report-builder-test-helper';
 
 describe('AssessmentSummaryDetails', () => {
     describe('render', () => {
         test('Correct composition', () => {
             const props: AssessmentSummaryDetailsProps = {
-                testSummaries: AssessmentReportBuilderTestHelper.getAssessmentsSummaryReportModel().reportSummaryDetailsData,
+                testSummaries: AssessmentReportBuilderTestHelper.getAssessmentsSummaryReportModel()
+                    .reportSummaryDetailsData,
             };
 
             const wrapper = shallow(<AssessmentSummaryDetails {...props} />);

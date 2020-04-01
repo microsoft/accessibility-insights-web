@@ -14,7 +14,10 @@ import { TelemetryDataFactory } from '../../../../../common/telemetry-data-facto
 import { ScopingStoreData } from '../../../../../common/types/store-data/scoping-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
-import { BatchedRuleAnalyzer, IResultRuleFilter } from '../../../../../injected/analyzers/batched-rule-analyzer';
+import {
+    BatchedRuleAnalyzer,
+    IResultRuleFilter,
+} from '../../../../../injected/analyzers/batched-rule-analyzer';
 import { HtmlElementAxeResults, ScannerUtils } from '../../../../../injected/scanner-utils';
 import { RuleResult, ScanResults } from '../../../../../scanner/iruleresults';
 import { ScanOptions } from '../../../../../scanner/scan-options';
@@ -73,7 +76,9 @@ describe('BatchedRuleAnalyzer', () => {
                 } as VisualizationConfiguration;
             })
             .verifiable();
-        scanIncompleteWarningDetectorMock.setup(idm => idm.detectScanIncompleteWarnings()).returns(() => []);
+        scanIncompleteWarningDetectorMock
+            .setup(idm => idm.detectScanIncompleteWarnings())
+            .returns(() => []);
     });
 
     test('analyze', async done => {
@@ -92,7 +97,9 @@ describe('BatchedRuleAnalyzer', () => {
         const resultOne: RuleResult = {
             id: ruleOne,
         } as RuleResult;
-        const resultProcessorMockOne: IMock<(results: ScanResults) => DictionaryStringTo<HtmlElementAxeResults>> = Mock.ofInstance(
+        const resultProcessorMockOne: IMock<(
+            results: ScanResults,
+        ) => DictionaryStringTo<HtmlElementAxeResults>> = Mock.ofInstance(
             results => null,
             MockBehavior.Strict,
         );
@@ -105,7 +112,9 @@ describe('BatchedRuleAnalyzer', () => {
             resultProcessor: scanner => resultProcessorMockOne.object,
         };
         const ruleTwo = 'the second rule';
-        const resultProcessorMockTwo: IMock<(results: ScanResults) => DictionaryStringTo<HtmlElementAxeResults>> = Mock.ofInstance(
+        const resultProcessorMockTwo: IMock<(
+            results: ScanResults,
+        ) => DictionaryStringTo<HtmlElementAxeResults>> = Mock.ofInstance(
             results => null,
             MockBehavior.Strict,
         );
@@ -126,11 +135,29 @@ describe('BatchedRuleAnalyzer', () => {
         const completeRuleResults = createTestRuleResultsWithResult([resultOne, resultTwo]);
         const scanResultsOne = createTestRuleResultsWithResult([resultOne]);
         const scanResultsTwo = createTestRuleResultsWithResult([resultTwo]);
-        const firstExpectedMessage = getExpectedMessage(configOne, scanResultsOne, expectedTelemetryStub);
-        const secondExpectedMessage = getExpectedMessage(configTwo, scanResultsTwo, expectedTelemetryStub);
+        const firstExpectedMessage = getExpectedMessage(
+            configOne,
+            scanResultsOne,
+            expectedTelemetryStub,
+        );
+        const secondExpectedMessage = getExpectedMessage(
+            configTwo,
+            scanResultsTwo,
+            expectedTelemetryStub,
+        );
 
-        setupProcessingMocks(resultProcessorMockOne, configOne, completeRuleResults, scanResultsOne);
-        setupProcessingMocks(resultProcessorMockTwo, configTwo, completeRuleResults, scanResultsTwo);
+        setupProcessingMocks(
+            resultProcessorMockOne,
+            configOne,
+            completeRuleResults,
+            scanResultsOne,
+        );
+        setupProcessingMocks(
+            resultProcessorMockTwo,
+            configTwo,
+            completeRuleResults,
+            scanResultsTwo,
+        );
 
         const testSubjects = [testSubjectOne, testSubjectTwo];
 
@@ -167,19 +194,31 @@ describe('BatchedRuleAnalyzer', () => {
     }
 
     function setupProcessingMocks(
-        resultProcessorMock: IMock<(results: ScanResults) => DictionaryStringTo<HtmlElementAxeResults>>,
+        resultProcessorMock: IMock<
+            (results: ScanResults) => DictionaryStringTo<HtmlElementAxeResults>
+        >,
         config: RuleAnalyzerConfiguration,
         completeResults: ScanResults,
         filteredResults: ScanResults,
     ): void {
-        resultProcessorMock.setup(processor => processor(It.isValue(completeResults))).returns(() => null);
+        resultProcessorMock
+            .setup(processor => processor(It.isValue(completeResults)))
+            .returns(() => null);
 
-        resultProcessorMock.setup(processor => processor(It.isValue(filteredResults))).returns(() => allInstancesMocks);
+        resultProcessorMock
+            .setup(processor => processor(It.isValue(filteredResults)))
+            .returns(() => allInstancesMocks);
 
-        resultConfigFilterMock.setup(rcfm => rcfm(It.isValue(completeResults), config.rules)).returns(() => filteredResults);
+        resultConfigFilterMock
+            .setup(rcfm => rcfm(It.isValue(completeResults), config.rules))
+            .returns(() => filteredResults);
     }
 
-    function createTelemetryStub(elapsedTime: number, testName: string, requirementName: string): RuleAnalyzerScanTelemetryData {
+    function createTelemetryStub(
+        elapsedTime: number,
+        testName: string,
+        requirementName: string,
+    ): RuleAnalyzerScanTelemetryData {
         const telemetryStub: RuleAnalyzerScanTelemetryData = {
             scanDuration: elapsedTime,
             NumberOfElementsScanned: 2,
@@ -203,14 +242,20 @@ describe('BatchedRuleAnalyzer', () => {
         };
 
         scannerUtilsMock
-            .setup((scanner: ScannerUtils) => scanner.scan(It.isValue(scanOptions), It.is(isFunction)))
+            .setup((scanner: ScannerUtils) =>
+                scanner.scan(It.isValue(scanOptions), It.is(isFunction)),
+            )
             .callback((_: string[], callback: (results: ScanResults) => void) => {
                 scanCallbacks.push(callback);
             })
             .verifiable(times);
     }
 
-    function getExpectedMessage(config: RuleAnalyzerConfiguration, results: ScanResults, expectedTelemetryStub): Message {
+    function getExpectedMessage(
+        config: RuleAnalyzerConfiguration,
+        results: ScanResults,
+        expectedTelemetryStub,
+    ): Message {
         return {
             messageType: config.analyzerMessageType,
             payload: {

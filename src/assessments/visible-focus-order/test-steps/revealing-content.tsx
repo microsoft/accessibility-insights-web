@@ -19,8 +19,8 @@ const howToTest: JSX.Element = (
     <div>
         <ol>
             <li>
-                Examine the target page to identify any "trigger" components that reveal hidden
-                content, such as menus, dialogs, expandable tree views, etc.
+                Examine the target page to identify any "trigger" components (typically buttons or
+                links) that reveal hidden menus or dialogs.
             </li>
             <li>Use the keyboard to activate each trigger component.</li>
             <li>

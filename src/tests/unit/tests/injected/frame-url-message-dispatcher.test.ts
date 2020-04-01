@@ -12,26 +12,44 @@ describe('FrameUrlMessageDispatcherTest', () => {
     });
 
     test('setTargetFrameUrl', () => {
-        const devToolActionMessageCreatorMock = Mock.ofType(DevToolActionMessageCreator, MockBehavior.Strict);
+        const devToolActionMessageCreatorMock = Mock.ofType(
+            DevToolActionMessageCreator,
+            MockBehavior.Strict,
+        );
         const targetFrameUrlMessage: FrameUrlMessage = {
             frameUrl: 'testUrl',
         };
 
-        devToolActionMessageCreatorMock.setup(acm => acm.setInspectFrameUrl('testUrl')).verifiable();
+        devToolActionMessageCreatorMock
+            .setup(acm => acm.setInspectFrameUrl('testUrl'))
+            .verifiable();
 
-        const testSubject = new FrameUrlMessageDispatcher(devToolActionMessageCreatorMock.object, null);
+        const testSubject = new FrameUrlMessageDispatcher(
+            devToolActionMessageCreatorMock.object,
+            null,
+        );
         testSubject.setTargetFrameUrl(targetFrameUrlMessage);
 
         devToolActionMessageCreatorMock.verifyAll();
     });
 
     test('initialize', () => {
-        const devToolActionMessageCreatorMock = Mock.ofType(DevToolActionMessageCreator, MockBehavior.Strict);
+        const devToolActionMessageCreatorMock = Mock.ofType(
+            DevToolActionMessageCreator,
+            MockBehavior.Strict,
+        );
         const frameCommunicatorMock = Mock.ofType(FrameCommunicator, MockBehavior.Strict);
 
-        const testSubject = new FrameUrlMessageDispatcher(devToolActionMessageCreatorMock.object, frameCommunicatorMock.object);
+        const testSubject = new FrameUrlMessageDispatcher(
+            devToolActionMessageCreatorMock.object,
+            frameCommunicatorMock.object,
+        );
 
-        frameCommunicatorMock.setup(fcm => fcm.subscribe(FrameUrlFinder.SetFrameUrlCommand, testSubject.setTargetFrameUrl)).verifiable();
+        frameCommunicatorMock
+            .setup(fcm =>
+                fcm.subscribe(FrameUrlFinder.SetFrameUrlCommand, testSubject.setTargetFrameUrl),
+            )
+            .verifiable();
 
         testSubject.initialize();
 

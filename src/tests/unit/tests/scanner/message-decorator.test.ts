@@ -30,14 +30,20 @@ describe('MessageDecorator', () => {
             configuration[0].rule.decorateNode = node => (node.snippet = 'test snippet');
             const expectedResult = generateAxeResultStubWithStatus(configuration[0]);
             expectedResult.nodes[0].snippet = 'test snippet';
-            const testSubject = new MessageDecorator(configuration, checkMessageTransformerMock.object);
+            const testSubject = new MessageDecorator(
+                configuration,
+                checkMessageTransformerMock.object,
+            );
             testBasicDecorateMessage(expectedResult, testSubject);
         });
 
         it('should add messages to all checks via check message creator (no decorateNode in config)', () => {
             configuration[0].rule.decorateNode = null;
             const expectedResult = generateAxeResultStubWithStatus(configuration[0]);
-            const testSubject = new MessageDecorator(configuration, checkMessageTransformerMock.object);
+            const testSubject = new MessageDecorator(
+                configuration,
+                checkMessageTransformerMock.object,
+            );
             testBasicDecorateMessage(expectedResult, testSubject);
         });
 
@@ -50,17 +56,26 @@ describe('MessageDecorator', () => {
         });
     });
 
-    function testBasicDecorateMessage(expectedResult: AxeRule, testSubject: MessageDecorator): void {
+    function testBasicDecorateMessage(
+        expectedResult: AxeRule,
+        testSubject: MessageDecorator,
+    ): void {
         checkMessageTransformerMock
-            .setup(cmcm => cmcm.addMessagesToChecks(axeResultStub.nodes[0].any, configuration[0].checks))
+            .setup(cmcm =>
+                cmcm.addMessagesToChecks(axeResultStub.nodes[0].any, configuration[0].checks),
+            )
             .verifiable(Times.once());
 
         checkMessageTransformerMock
-            .setup(cmcm => cmcm.addMessagesToChecks(axeResultStub.nodes[0].none, configuration[0].checks))
+            .setup(cmcm =>
+                cmcm.addMessagesToChecks(axeResultStub.nodes[0].none, configuration[0].checks),
+            )
             .verifiable(Times.once());
 
         checkMessageTransformerMock
-            .setup(cmcm => cmcm.addMessagesToChecks(axeResultStub.nodes[0].all, configuration[0].checks))
+            .setup(cmcm =>
+                cmcm.addMessagesToChecks(axeResultStub.nodes[0].all, configuration[0].checks),
+            )
             .verifiable(Times.once());
 
         expectedResult.description = configuration[0].rule.description;

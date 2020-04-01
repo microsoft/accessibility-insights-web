@@ -5,7 +5,10 @@ import * as React from 'react';
 import { Mock, MockBehavior } from 'typemoq';
 
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { AssessmentStoreData, PersistedTabInfo } from '../../../../../../common/types/store-data/assessment-result-data';
+import {
+    AssessmentStoreData,
+    PersistedTabInfo,
+} from '../../../../../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../../../../../common/types/store-data/tab-store-data';
 import { UrlParser } from '../../../../../../common/url-parser';
 import { DetailsViewActionMessageCreator } from '../../../../../../DetailsView/actions/details-view-action-message-creator';
@@ -38,7 +41,10 @@ describe('OverviewContainer', () => {
 
     const filteredProvider = {} as AssessmentsProvider;
     const detailsViewActionMessageCreator = {} as DetailsViewActionMessageCreator;
-    const assessmentsProviderWithFeaturesEnabledMock = Mock.ofInstance((provider, featureFlagData) => null, MockBehavior.Strict);
+    const assessmentsProviderWithFeaturesEnabledMock = Mock.ofInstance(
+        (provider, featureFlagData) => null,
+        MockBehavior.Strict,
+    );
     const getAssessmentSummaryModelFromProviderAndStoreData = jest.fn();
 
     const deps: OverviewContainerDeps = {

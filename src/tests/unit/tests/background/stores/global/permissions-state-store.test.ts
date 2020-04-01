@@ -31,7 +31,10 @@ describe('PermissionsStateStoreTest', () => {
         const initialState = createPermissionsState();
         const finalState = createPermissionsState();
 
-        createStoreTesterForPermissionsStateActions('getCurrentState').testListenerToBeCalledOnce(initialState, finalState);
+        createStoreTesterForPermissionsStateActions('getCurrentState').testListenerToBeCalledOnce(
+            initialState,
+            finalState,
+        );
     });
 
     describe('on setPermissionsState', () => {
@@ -49,17 +52,20 @@ describe('PermissionsStateStoreTest', () => {
                 .testListenerToBeCalledOnce(initialState, finalState);
         });
 
-        test.each([true, false])('does not update state when there is no change', hasPermissionsValue => {
-            const initialState = { hasAllUrlAndFilePermissions: hasPermissionsValue };
-            const finalState = { hasAllUrlAndFilePermissions: hasPermissionsValue };
-            const payload: SetAllUrlsPermissionStatePayload = {
-                hasAllUrlAndFilePermissions: hasPermissionsValue,
-            };
+        test.each([true, false])(
+            'does not update state when there is no change',
+            hasPermissionsValue => {
+                const initialState = { hasAllUrlAndFilePermissions: hasPermissionsValue };
+                const finalState = { hasAllUrlAndFilePermissions: hasPermissionsValue };
+                const payload: SetAllUrlsPermissionStatePayload = {
+                    hasAllUrlAndFilePermissions: hasPermissionsValue,
+                };
 
-            createStoreTesterForPermissionsStateActions('setPermissionsState')
-                .withActionParam(payload)
-                .testListenerToNeverBeCalled(initialState, finalState);
-        });
+                createStoreTesterForPermissionsStateActions('setPermissionsState')
+                    .withActionParam(payload)
+                    .testListenerToNeverBeCalled(initialState, finalState);
+            },
+        );
     });
 
     function createStoreTesterForPermissionsStateActions(

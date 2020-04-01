@@ -14,7 +14,13 @@ describe('PageTitleInstanceDetailsColumnRendererTest', () => {
                 propertyBag: null,
             },
         } as AssessmentInstanceRowData<HeadingsAssessmentProperties>;
-        const expected = <AssessmentInstanceDetailsColumn background={null} textContent={null} tooltipId={null} />;
+        const expected = (
+            <AssessmentInstanceDetailsColumn
+                background={null}
+                textContent={null}
+                tooltipId={null}
+            />
+        );
         expect(expected).toEqual(pageTitleInstanceDetailsColumnRenderer(item));
     });
 
@@ -27,7 +33,13 @@ describe('PageTitleInstanceDetailsColumnRendererTest', () => {
                 },
             },
         } as AssessmentInstanceRowData<any>;
-        const expected = <AssessmentInstanceDetailsColumn background={null} textContent={pageTitle} tooltipId={null} />;
+        const expected = (
+            <AssessmentInstanceDetailsColumn
+                background={null}
+                textContent={pageTitle}
+                tooltipId={null}
+            />
+        );
         expect(expected).toEqual(pageTitleInstanceDetailsColumnRenderer(item));
     });
 });

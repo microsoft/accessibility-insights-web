@@ -50,7 +50,9 @@ describe('FailureInstancePanelControlTest', () => {
             featureFlagStoreData: null,
             failureInstance: { failureDescription: 'original text' },
         };
-        const rendered = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
+        const rendered = shallow<FailureInstancePanelControl>(
+            <FailureInstancePanelControl {...props} />,
+        );
         expect(rendered.getElement()).toMatchSnapshot();
         expect(rendered.state().currentInstance.path).toBeNull();
     });
@@ -65,11 +67,10 @@ describe('FailureInstancePanelControlTest', () => {
         const description = 'abc';
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
 
-        const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
-        wrapper
-            .find(TextField)
-            .props()
-            .onChange(null, description);
+        const wrapper = shallow<FailureInstancePanelControl>(
+            <FailureInstancePanelControl {...props} />,
+        );
+        wrapper.find(TextField).props().onChange(null, description);
 
         expect(wrapper.state().currentInstance.failureDescription).toEqual(description);
     });
@@ -79,7 +80,9 @@ describe('FailureInstancePanelControlTest', () => {
         const eventStub = null;
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
 
-        const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
+        const wrapper = shallow<FailureInstancePanelControl>(
+            <FailureInstancePanelControl {...props} />,
+        );
         const flaggedComponent = wrapper.find(FlaggedComponent);
         const flaggedComponentProps = flaggedComponent.props();
         const failureInstancePanelDetails = flaggedComponentProps.enableJSXElement;
@@ -101,9 +104,13 @@ describe('FailureInstancePanelControlTest', () => {
 
         props.failureInstance = failureInstance;
 
-        addPathForValidationMock.setup(handler => handler(failureInstance.path)).verifiable(Times.once());
+        addPathForValidationMock
+            .setup(handler => handler(failureInstance.path))
+            .verifiable(Times.once());
 
-        const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
+        const wrapper = shallow<FailureInstancePanelControl>(
+            <FailureInstancePanelControl {...props} />,
+        );
         const flaggedComponent = wrapper.find(FlaggedComponent);
         const flaggedComponentProps = flaggedComponent.props();
         const failureInstancePanelDetails = flaggedComponentProps.enableJSXElement;
@@ -122,18 +129,16 @@ describe('FailureInstancePanelControlTest', () => {
             snippet: 'new snippet',
         };
         props.failureInstance = failureInstance;
-        const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
-        wrapper
-            .find(TextField)
-            .props()
-            .onChange(eventStub, 'a previously entered description');
-        wrapper
-            .find(ActionButton)
-            .props()
-            .onClick(eventStub);
+        const wrapper = shallow<FailureInstancePanelControl>(
+            <FailureInstancePanelControl {...props} />,
+        );
+        wrapper.find(TextField).props().onChange(eventStub, 'a previously entered description');
+        wrapper.find(ActionButton).props().onClick(eventStub);
 
         expect(wrapper.state().isPanelOpen).toBe(true);
-        expect(wrapper.state().currentInstance.failureDescription).toEqual(props.failureInstance.failureDescription);
+        expect(wrapper.state().currentInstance.failureDescription).toEqual(
+            props.failureInstance.failureDescription,
+        );
         expect(wrapper.state().currentInstance.path).toEqual(props.failureInstance.path);
         expect(wrapper.state().currentInstance.snippet).toEqual(props.failureInstance.snippet);
     });
@@ -141,17 +146,13 @@ describe('FailureInstancePanelControlTest', () => {
     test('closeFailureInstancePanel', () => {
         const description = 'description';
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
-        const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
+        const wrapper = shallow<FailureInstancePanelControl>(
+            <FailureInstancePanelControl {...props} />,
+        );
 
-        wrapper
-            .find(TextField)
-            .props()
-            .onChange(null, description);
+        wrapper.find(TextField).props().onChange(null, description);
 
-        wrapper
-            .find(GenericPanel)
-            .props()
-            .onDismiss();
+        wrapper.find(GenericPanel).props().onDismiss();
 
         expect(wrapper.state().isPanelOpen).toBe(false);
 
@@ -173,19 +174,17 @@ describe('FailureInstancePanelControlTest', () => {
             snippet: null,
         };
 
-        editInstanceMock.setup(handler => handler(instanceData, props.test, props.step, props.instanceId)).verifiable(Times.once());
+        editInstanceMock
+            .setup(handler => handler(instanceData, props.test, props.step, props.instanceId))
+            .verifiable(Times.once());
 
-        const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
+        const wrapper = shallow<FailureInstancePanelControl>(
+            <FailureInstancePanelControl {...props} />,
+        );
 
-        wrapper
-            .find(TextField)
-            .props()
-            .onChange(null, description);
+        wrapper.find(TextField).props().onChange(null, description);
 
-        wrapper
-            .find(ActionAndCancelButtonsComponent)
-            .props()
-            .primaryButtonOnClick(null);
+        wrapper.find(ActionAndCancelButtonsComponent).props().primaryButtonOnClick(null);
 
         expect(wrapper.state().isPanelOpen).toBe(false);
 
@@ -206,18 +205,16 @@ describe('FailureInstancePanelControlTest', () => {
             snippet: null,
         };
 
-        addInstanceMock.setup(handler => handler(instanceData, props.test, props.step)).verifiable(Times.once());
+        addInstanceMock
+            .setup(handler => handler(instanceData, props.test, props.step))
+            .verifiable(Times.once());
 
-        const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
-        wrapper
-            .find(TextField)
-            .props()
-            .onChange(null, description);
+        const wrapper = shallow<FailureInstancePanelControl>(
+            <FailureInstancePanelControl {...props} />,
+        );
+        wrapper.find(TextField).props().onChange(null, description);
 
-        wrapper
-            .find(ActionAndCancelButtonsComponent)
-            .props()
-            .primaryButtonOnClick(null);
+        wrapper.find(ActionAndCancelButtonsComponent).props().primaryButtonOnClick(null);
 
         expect(wrapper.state().isPanelOpen).toBe(false);
 
@@ -253,20 +250,26 @@ describe('FailureInstancePanelControlTest', () => {
         };
         newProps.failureInstance = newFailureInstance;
 
-        const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...newProps} />);
+        const wrapper = shallow<FailureInstancePanelControl>(
+            <FailureInstancePanelControl {...newProps} />,
+        );
         (wrapper.instance() as FailureInstancePanelControl).setState({
             currentInstance: prevProps.failureInstance,
         });
 
-        const firstStateCurrentInstance = (wrapper.instance() as FailureInstancePanelControl).state.currentInstance;
+        const firstStateCurrentInstance = (wrapper.instance() as FailureInstancePanelControl).state
+            .currentInstance;
         (wrapper.instance() as FailureInstancePanelControl).componentDidUpdate(prevProps);
-        const secondStateCurrentInstance = (wrapper.instance() as FailureInstancePanelControl).state.currentInstance;
+        const secondStateCurrentInstance = (wrapper.instance() as FailureInstancePanelControl).state
+            .currentInstance;
 
         expect(firstStateCurrentInstance).toEqual(prevProps.failureInstance);
         expect(secondStateCurrentInstance).toEqual(newProps.failureInstance);
     });
 
-    function createPropsWithType(actionType: CapturedInstanceActionType): FailureInstancePanelControlProps {
+    function createPropsWithType(
+        actionType: CapturedInstanceActionType,
+    ): FailureInstancePanelControlProps {
         const featureData = {} as FeatureFlagStoreData;
         const emptyFailureInstance = {
             failureDescription: null,

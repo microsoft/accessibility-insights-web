@@ -1,8 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ElectronExternalLinkTest render 1`] = `
+exports[`ElectronExternalLink render 1`] = `
 <StyledLinkBase
   onClick={[Function]}
+  role="link"
 >
   test-text
 </StyledLinkBase>

@@ -2,38 +2,18 @@
 // Licensed under the MIT License.
 module.exports = {
     endOfLine: 'lf',
-    printWidth: 140,
+    printWidth: 100,
     singleQuote: true,
     tabWidth: 4,
     trailingComma: 'all',
+    // We'd like to remove this arrowParens setting and use the new Prettier 2.0 default
+    // But since it has a lot of conflict potential, defering that until a quiet weekend
+    arrowParens: 'avoid',
     overrides: [
         {
-            files: [
-                'src/ad-hoc-visualizations/**/*',
-                'src/assessments/**/*',
-                'src/background/**/*',
-                'src/common/action/**/*',
-                'src/common/assessment/**/*',
-                'src/common/browser-adapters/**/*',
-                'src/common/configs/**/*',
-                'src/common/configuration/**/*',
-                'src/common/constants/**/*',
-                'src/common/extensibility/**/*',
-                'src/common/flux/**/*',
-                'src/common/icons/**/*',
-                'src/DetailsView/**/*',
-                'src/Devtools/**/*',
-                'src/electron/**/*',
-                'src/injected/**/*',
-                'src/issue-filing/**/*',
-                'src/popup/**/*',
-                'src/reports/**/*',
-                'src/scanner/**/*',
-                'src/types/**/*',
-                'src/views/**/*',
-            ],
+            files: ['src/content/**/*'],
             options: {
-                printWidth: 100,
+                printWidth: 140,
             },
         },
     ],

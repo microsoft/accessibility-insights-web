@@ -26,7 +26,7 @@ exports[`IframeWarning render 1`] = `
   </StyledLinkBase>
   ; this will trigger a rescan of the test.
   <NewTabLink
-    href="https://accessibilityinsights.io/docs/en/faq"
+    href="https://accessibilityinsights.io/docs/en/web/reference/faq#why-does-accessibility-insights-for-web-ask-for-additional-permissions-when-it-detects-iframes"
   >
     Learn more here.
   </NewTabLink>

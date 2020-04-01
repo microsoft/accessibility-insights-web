@@ -6,6 +6,7 @@
         "./.github",
         "./.vscode",
         "./dist",
+        "./docs/art/ada-cat.ansi256.txt",
         "./docs/LICENSE.txt",
         "./src/electron/resources/license_en.txt",
         "./src/electron/resources/license.txt",
@@ -20,6 +21,7 @@
         ".gitattributes",
         ".ignoredRevs",
         "**/.DS_Store",
+        "**/*.icns",
         "**/*.scss.d.ts",
         "**/*.snap",
         "**/*.svg",
@@ -27,7 +29,7 @@
         "yarn.lock"
     ],
     "licenseFormats": {
-        "yaml|npmrc|yml|ps1|gitignore|dockerignore|prettierignore|yarnrc": {
+        "yaml|npmrc|yml|ps1|gitignore|dockerignore|prettierignore|yarnrc|nsh": {
             "eachLine": {
                 "prepend": "# "
             }

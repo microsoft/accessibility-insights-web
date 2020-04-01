@@ -55,7 +55,11 @@ describe('Switcher', () => {
     describe('user interaction', () => {
         it('triggers action message and state change when the user changes selection', () => {
             detailsViewActionMessageCreatorMock
-                .setup(creator => creator.sendPivotItemClicked(DetailsViewPivotType[DetailsViewPivotType.assessment]))
+                .setup(creator =>
+                    creator.sendPivotItemClicked(
+                        DetailsViewPivotType[DetailsViewPivotType.assessment],
+                    ),
+                )
                 .verifiable(Times.once());
             const wrapper = shallow<Switcher>(<Switcher {...defaultProps} />);
             const dropdown = wrapper.find(Dropdown);

@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CollapsibleComponentCardsProps } from 'common/components/cards/collapsible-component-cards';
-import { RulesWithInstances, RulesWithInstancesDeps } from 'common/components/cards/rules-with-instances';
+import {
+    RulesWithInstances,
+    RulesWithInstancesDeps,
+} from 'common/components/cards/rules-with-instances';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { shallow } from 'enzyme';
 import * as React from 'react';
@@ -21,7 +24,9 @@ describe('RulesWithInstances', () => {
         const rules = [exampleUnifiedRuleResult];
         const CollapsibleControlStub = getCollapsibleControlStub();
         const depsStub = {
-            collapsibleControl: (props: CollapsibleComponentCardsProps) => <CollapsibleControlStub {...props} />,
+            collapsibleControl: (props: CollapsibleComponentCardsProps) => (
+                <CollapsibleControlStub {...props} />
+            ),
         } as RulesWithInstancesDeps;
 
         const wrapped = shallow(

@@ -3,8 +3,8 @@
 import { Application } from 'spectron';
 import { DeviceConnectionDialogController } from 'tests/electron/common/view-controllers/device-connection-dialog-controller';
 import { testResourceServerConfig } from 'tests/electron/setup/test-resource-server-config';
+import { DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS } from 'tests/electron/setup/timeouts';
 import * as WebDriverIO from 'webdriverio';
-import { dismissTelemetryOptInDialog } from '../dismiss-telemetry-opt-in-dialog';
 import { AutomatedChecksViewController } from './automated-checks-view-controller';
 
 export class AppController {
@@ -27,8 +27,6 @@ export class AppController {
     }
 
     public async openDeviceConnectionDialog(): Promise<DeviceConnectionDialogController> {
-        await dismissTelemetryOptInDialog(this.app);
-
         const deviceConnectionDialog = new DeviceConnectionDialogController(this.client);
         await deviceConnectionDialog.waitForDialogVisible();
 
@@ -43,5 +41,49 @@ export class AppController {
         await automatedChecksView.waitForViewVisible();
 
         return automatedChecksView;
+    }
+
+    public async setHighContrastMode(enableHighContrast: boolean): Promise<void> {
+        await this.app.webContents.executeJavaScript(
+            `window.insightsUserConfiguration.setHighContrastMode(${enableHighContrast})`,
+        );
+    }
+
+    public async waitForHighContrastMode(expectedHighContrastMode: boolean): Promise<void> {
+        const highContrastThemeClass = 'high-contrast-theme';
+
+        await this.client.waitUntil(
+            async () => {
+                const classes = await this.client.$('body').getAttribute('class');
+
+                if (expectedHighContrastMode) {
+                    return classes.includes(highContrastThemeClass);
+                } else {
+                    return !classes.includes(highContrastThemeClass);
+                }
+            },
+            DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS,
+            `was expecting body element ${
+                expectedHighContrastMode ? 'with' : 'without'
+            } class high-contrast-theme`,
+        );
+    }
+
+    public async setTelemetryState(enableTelemetry: boolean): Promise<void> {
+        await this.client.waitUntil(
+            async () => {
+                const executeOutput = await this.client.executeAsync(done => {
+                    done((window as any).insightsUserConfiguration != null);
+                });
+
+                return executeOutput.status === 0 && executeOutput.value === true;
+            },
+            DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS,
+            'was expecting window.insightsUserConfiguration to be defined',
+        );
+
+        await this.app.webContents.executeJavaScript(
+            `window.insightsUserConfiguration.setTelemetryState(${enableTelemetry})`,
+        );
     }
 }

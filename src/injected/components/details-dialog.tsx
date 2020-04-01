@@ -276,9 +276,9 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
                                 aria-label="Close"
                                 data-is-focusable="true"
                             >
-                                <div className="ms-button-flex-container">
+                                <span className="ms-button-flex-container">
                                     <CancelIcon />
-                                </div>
+                                </span>
                             </button>
                         </div>
                     </div>

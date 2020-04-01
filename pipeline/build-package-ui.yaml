@@ -1,0 +1,6 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+jobs:
+    - template: build-package.template.yaml
+      parameters:
+          suffix: ui

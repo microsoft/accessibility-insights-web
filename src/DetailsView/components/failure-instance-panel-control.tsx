@@ -124,7 +124,7 @@ export class FailureInstancePanelControl extends React.Component<
             isOpen: this.state.isPanelOpen,
             className: styles.failureInstancePanel,
             onDismiss: this.closeFailureInstancePanel,
-            title:
+            headerText:
                 this.props.actionType === CapturedInstanceActionType.CREATE
                     ? FailureInstancePanelControl.addFailureInstanceLabel
                     : 'Edit failure instance',

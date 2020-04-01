@@ -21,7 +21,10 @@ describe('DevToolsStoreTest', () => {
         const initialState = getDefaultState();
         const expectedState = getDefaultState();
 
-        createStoreTesterForDevToolsActions('getCurrentState').testListenerToBeCalledOnce(initialState, expectedState);
+        createStoreTesterForDevToolsActions('getCurrentState').testListenerToBeCalledOnce(
+            initialState,
+            expectedState,
+        );
     });
 
     test('on setDevToolState, isOpen value change', () => {
@@ -81,7 +84,9 @@ describe('DevToolsStoreTest', () => {
         return new DevToolStore(null).getDefaultState();
     }
 
-    function createStoreTesterForDevToolsActions(actionName: keyof DevToolActions): StoreTester<DevToolStoreData, DevToolActions> {
+    function createStoreTesterForDevToolsActions(
+        actionName: keyof DevToolActions,
+    ): StoreTester<DevToolStoreData, DevToolActions> {
         const factory = (actions: DevToolActions) => new DevToolStore(actions);
 
         return new StoreTester(DevToolActions, actionName, factory);

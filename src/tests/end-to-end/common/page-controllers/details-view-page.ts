@@ -2,7 +2,10 @@
 // Licensed under the MIT License.
 import * as Puppeteer from 'puppeteer';
 import { CommonSelectors } from '../element-identifiers/common-selectors';
-import { detailsViewSelectors, settingsPanelSelectors } from '../element-identifiers/details-view-selectors';
+import {
+    detailsViewSelectors,
+    settingsPanelSelectors,
+} from '../element-identifiers/details-view-selectors';
 import { Page, PageOptions } from './page';
 
 export class DetailsViewPage extends Page {
@@ -31,7 +34,7 @@ export class DetailsViewPage extends Page {
     public async openSettingsPanel(): Promise<void> {
         await this.ensureNoModals();
 
-        await this.clickSelector(detailsViewSelectors.gearButton);
+        await this.clickSelector(CommonSelectors.settingsGearButton);
         await this.clickSelector(detailsViewSelectors.settingsButton);
         await this.waitForSelector(settingsPanelSelectors.settingsPanel);
     }

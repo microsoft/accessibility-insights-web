@@ -14,7 +14,11 @@ describe('ContentInclude', () => {
         },
     };
 
+    const applicationTitle = 'THE_APPLICATION_TITLE';
     const deps = {
+        textContent: {
+            applicationTitle,
+        },
         contentProvider: ContentPage.provider(content),
         contentActionMessageCreator: ({} as any) as ContentActionMessageCreator,
     };

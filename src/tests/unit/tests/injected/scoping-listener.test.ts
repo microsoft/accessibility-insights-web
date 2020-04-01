@@ -34,7 +34,10 @@ describe('ScopingListenerTest', () => {
     let onClickProcessRequestPromiseCallback: (path: SingleElementSelector) => void;
     let onClick: (event: MouseEvent) => void;
     let addEventListenerMock: IMock<(event: string, callback: (event: MouseEvent) => void) => void>;
-    let removeEventListenerMock: IMock<(event: string, callback: (event: MouseEvent) => void) => void>;
+    let removeEventListenerMock: IMock<(
+        event: string,
+        callback: (event: MouseEvent) => void,
+    ) => void>;
     let createElementMock: IMock<(tagName: string) => HTMLElement>;
     let dom: Document;
     let elementStub: HTMLElement;
@@ -99,7 +102,12 @@ describe('ScopingListenerTest', () => {
         onInspectClickMock = Mock.ofInstance((eventName, selector) => {});
         onInspectHoverMock = Mock.ofInstance(selector => {});
 
-        testSubject = new TestableScopingListener(elementFinderMock.object, windowUtilsMock.object, shadowUtilsMock.object, dom);
+        testSubject = new TestableScopingListener(
+            elementFinderMock.object,
+            windowUtilsMock.object,
+            shadowUtilsMock.object,
+            dom,
+        );
     });
 
     test("start scope layout container doesn't exist and timeout doesn't exist", () => {
@@ -151,7 +159,10 @@ describe('ScopingListenerTest', () => {
 
     test('stop, scoping container exists', () => {
         const shadowContainerElementStub = {} as HTMLElement;
-        setupShadowContainerMockQuerySelector(`#${ScopingListener.scopeLayoutContainerId}`, shadowContainerElementStub);
+        setupShadowContainerMockQuerySelector(
+            `#${ScopingListener.scopeLayoutContainerId}`,
+            shadowContainerElementStub,
+        );
         shadowContainerMock.setup(scm => scm.removeChild(shadowContainerElementStub)).verifiable();
 
         removeEventListenerMock.setup(re => re('click', testSubject.getOnClick())).verifiable();

@@ -36,7 +36,7 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
 
     private onRenderOption = (option: IDropdownOption): JSX.Element => {
         return (
-            <span className={styles.switcherDropdownOption} aria-hidden="true">
+            <span className={styles.switcherDropdownOption}>
                 {option.data && option.data.icon && <Icon iconName={option.data.icon} />}
                 <span>{option.text}</span>
             </span>
@@ -69,7 +69,7 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
                 key: DetailsViewPivotType.assessment,
                 text: 'Assessment',
                 data: {
-                    icon: 'testBeaker',
+                    icon: 'testBeakerSolid',
                 },
             },
         ];

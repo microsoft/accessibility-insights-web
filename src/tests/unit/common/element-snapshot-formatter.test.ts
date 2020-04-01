@@ -38,11 +38,14 @@ describe('element-snapshot-formatter', () => {
             ${'ms-Panel-234'}                             | ${'ms-Panel-000'}
             ${'Panel765-word'}                            | ${'Panel000-word'}
             ${`my-class--${CSS_MODULE_HASH_REPLACEMENT}`} | ${`my-class--${CSS_MODULE_HASH_REPLACEMENT}`}
-        `('from "$actualClassName" to "$expectedClassName"', ({ actualClassName, expectedClassName }) => {
-            const result = normalizeOfficeFabricClassName(actualClassName);
+        `(
+            'from "$actualClassName" to "$expectedClassName"',
+            ({ actualClassName, expectedClassName }) => {
+                const result = normalizeOfficeFabricClassName(actualClassName);
 
-            expect(result).toEqual(expectedClassName);
-        });
+                expect(result).toEqual(expectedClassName);
+            },
+        );
     });
 
     describe('normalize css module class names', () => {
@@ -52,11 +55,14 @@ describe('element-snapshot-formatter', () => {
             ${'first'}           | ${'first'}
             ${'my-class--Fs0Df'} | ${`my-class--${CSS_MODULE_HASH_REPLACEMENT}`}
             ${'my-class-Fs0Df'}  | ${'my-class-Fs0Df'}
-        `('from "$actualClassName" to "$expectedClassName"', ({ actualClassName, expectedClassName }) => {
-            const result = normalizeCssModuleClassName(actualClassName);
+        `(
+            'from "$actualClassName" to "$expectedClassName"',
+            ({ actualClassName, expectedClassName }) => {
+                const result = normalizeCssModuleClassName(actualClassName);
 
-            expect(result).toEqual(expectedClassName);
-        });
+                expect(result).toEqual(expectedClassName);
+            },
+        );
     });
 
     describe('normalize class names', () => {
@@ -66,15 +72,18 @@ describe('element-snapshot-formatter', () => {
             ${'first Panel765-word css-module--Fs0Df last'}     | ${`first Panel000-word css-module--${CSS_MODULE_HASH_REPLACEMENT} last`}
             ${'first css-module--Fs0Df last'}                   | ${`first css-module--${CSS_MODULE_HASH_REPLACEMENT} last`}
             ${'first css-module--Fs0Df css-module--Ax9Ea last'} | ${`first css-module--${CSS_MODULE_HASH_REPLACEMENT} css-module--${CSS_MODULE_HASH_REPLACEMENT} last`}
-        `('from "$actualClassName" to "$expectedClassName"', ({ actualClassName, expectedClassName }) => {
-            const actualHtml = buildSimpleHtmlFragment('class', actualClassName);
+        `(
+            'from "$actualClassName" to "$expectedClassName"',
+            ({ actualClassName, expectedClassName }) => {
+                const actualHtml = buildSimpleHtmlFragment('class', actualClassName);
 
-            const result = normalizeClassName(actualHtml);
+                const result = normalizeClassName(actualHtml);
 
-            const expected = buildSimpleHtmlFragment('class', expectedClassName);
+                const expected = buildSimpleHtmlFragment('class', expectedClassName);
 
-            expect(result).toEqual(expected);
-        });
+                expect(result).toEqual(expected);
+            },
+        );
     });
 
     describe('format html for snapshot', () => {
@@ -82,16 +91,19 @@ describe('element-snapshot-formatter', () => {
             actualClassName                                                                                                      | actualId
             ${'test-class-one test-class-two'}                                                                                   | ${'custom-id'}
             ${'ms-Panel is-open ms-Panel--hasCloseButton ms-Panel--custom generic-panel--4CjX1 preview-features-panel root-127'} | ${'custom-id123'}
-        `('normalizing class = "$actualClassName" and id = "$actualId"', ({ actualClassName, actualId }) => {
-            const htmlFragmentWithClass = buildSimpleHtmlFragment('class', actualClassName);
-            const htmlFragmentWithId = buildSimpleHtmlFragment('id', actualId);
+        `(
+            'normalizing class = "$actualClassName" and id = "$actualId"',
+            ({ actualClassName, actualId }) => {
+                const htmlFragmentWithClass = buildSimpleHtmlFragment('class', actualClassName);
+                const htmlFragmentWithId = buildSimpleHtmlFragment('id', actualId);
 
-            const actualHtml = `<div>${htmlFragmentWithClass}${htmlFragmentWithId}</div>`;
+                const actualHtml = `<div>${htmlFragmentWithClass}${htmlFragmentWithId}</div>`;
 
-            const result = formatHtmlForSnapshot(actualHtml);
+                const result = formatHtmlForSnapshot(actualHtml);
 
-            expect(result).toMatchSnapshot();
-        });
+                expect(result).toMatchSnapshot();
+            },
+        );
     });
 
     const buildSimpleHtmlFragment = (propertyName: string, propertyValue: string) => {

@@ -1,0 +1,50 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+
+# Note: this will become the version of the released packages!
+# must be parseable by node-semver, so month leading zero is omitted
+name: $(Year:yyyy).$(Date:Mdd).$(Rev:r)
+
+trigger: none
+
+strategy:
+    matrix:
+        windows: { vmImage: 'windows-latest', platform: 'windows' }
+        mac: { vmImage: 'macOS-10.14', platform: 'mac' }
+        linux: { vmImage: 'ubuntu-16.04', platform: 'linux' }
+
+pool:
+    vmImage: $(vmImage)
+
+steps:
+    - template: ../install-node-prerequisites.yaml
+
+    - template: ./download-electron-mirror.yaml
+
+    - template: ./unified-e2e-test-interactive.yaml
+
+    - template: ./unified-e2e-publish-results.yaml
+
+    - script: yarn build:unified:all --unified-version=$(Build.BuildNumber) --unified-canary-instrumentation-key=$(UnifiedCanaryInstrumentationKey) --unified-insider-instrumentation-key=$(UnifiedInsiderInstrumentationKey) --unified-prod-instrumentation-key=$(UnifiedProdInstrumentationKey)
+      displayName: yarn build:unified:all
+      env:
+          ELECTRON_MIRROR: $(ELECTRON_MIRROR_VAR)
+          ELECTRON_CUSTOM_DIR: $(ELECTRON_CUSTOM_DIR_VAR)
+
+    - script: node ./pipeline/scripts/print-file-hash-info.js $(System.DefaultWorkingDirectory)/drop/electron/unified-canary/packed
+      displayName: print out canary file hashes
+
+    - template: publish-packed-build-output.yaml
+      parameters:
+          packedOutputPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-canary/packed'
+          artifactName: unified-$(platform)-canary-unsigned
+
+    - template: publish-packed-build-output.yaml
+      parameters:
+          packedOutputPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-insider/packed'
+          artifactName: unified-$(platform)-insider-unsigned
+
+    - template: publish-packed-build-output.yaml
+      parameters:
+          packedOutputPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-production/packed'
+          artifactName: unified-$(platform)-production-unsigned

@@ -1,27 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AssessmentViewTest render 1`] = `
-"<div className=\\"assessment-content\\">
+"<div className=\\"assessmentContent\\">
   <TargetChangeDialog deps={{...}} prevTab={{...}} newTab={{...}} />
-  <div className=\\"assessment-title\\">
-    <h1 className=\\"assessment-header\\">
+  <div className=\\"assessmentTitle\\">
+    <h1 className=\\"assessmentHeader\\">
       assessment 1
        
       <ContentLink deps={{...}} reference={[Function]} iconName=\\"info\\" />
     </h1>
   </div>
-  <CollapsibleComponent header={{...}} content={{...}} contentClassName=\\"assessment-getting-started\\" containerClassName=\\"assessment-getting-started-container\\" />
+  <CollapsibleComponent header={{...}} content={{...}} containerClassName=\\"assessmentGettingStartedContainer\\" />
   <AssessmentViewMainContentExtensionPoint extensions={[undefined]} assessmentTestResult={{...}}>
-    <div className=\\"assessment-requirements-title\\">
-      <h2 className=\\"assessment-requirements\\">
+    <div className=\\"assessmentRequirementsTitle\\">
+      <h2 className=\\"assessmentRequirements\\">
         Requirements
       </h2>
     </div>
-    <div className=\\"details-view-assessment-content\\">
-      <div className=\\"test-steps-nav-container\\">
+    <div className=\\"detailsViewAssessmentContent\\">
+      <div className=\\"testStepsNavContainer\\">
         <TestStepsNav deps={{...}} ariaLabel=\\"Requirements\\" selectedTest={-1} selectedTestStep=\\"assessment-1-step-1\\" stepStatus={{...}} />
       </div>
-      <div className=\\"test-step-view-container\\">
+      <div className=\\"testStepViewContainer\\">
         <TestStepView deps={{...}} isScanning={false} testStep={{...}} renderStaticContent={[undefined]} instancesMap={{...}} assessmentNavState={{...}} assessmentInstanceTableHandler={{...}} manualTestStepResultMap={{...}} assessmentsProvider={{...}} isStepEnabled={false} isStepScanned={false} assessmentDefaultMessageGenerator={{...}} featureFlagStoreData={{...}} pathSnippetStoreData={{...}} />
       </div>
     </div>

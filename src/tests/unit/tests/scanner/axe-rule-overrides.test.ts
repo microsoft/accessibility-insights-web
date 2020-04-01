@@ -10,7 +10,9 @@ describe('AriaAllowedAttrOverride', () => {
         it('should call configure with the configuration', () => {
             const axeMock = Mock.ofInstance({ configure: config => null }, MockBehavior.Strict);
 
-            axeMock.setup(am => am.configure(AxeRuleOverrides.overrideConfiguration)).verifiable(Times.once());
+            axeMock
+                .setup(am => am.configure(AxeRuleOverrides.overrideConfiguration))
+                .verifiable(Times.once());
 
             AxeRuleOverrides.override(axeMock.object as typeof Axe);
             axeMock.verifyAll();

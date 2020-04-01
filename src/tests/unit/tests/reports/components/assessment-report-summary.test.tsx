@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentReportSummary, AssessmentReportSummaryProps } from 'reports/components/assessment-report-summary';
+import {
+    AssessmentReportSummary,
+    AssessmentReportSummaryProps,
+} from 'reports/components/assessment-report-summary';
 
 describe('AssessmentReportSummary', () => {
     describe('render', () => {

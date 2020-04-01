@@ -4,7 +4,10 @@ import * as Enzyme from 'enzyme';
 import { forEach } from 'lodash';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
-import { VisualizationToggle, VisualizationToggleProps } from '../../../../../common/components/visualization-toggle';
+import {
+    VisualizationToggle,
+    VisualizationToggleProps,
+} from '../../../../../common/components/visualization-toggle';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { AssessmentVisualizationEnabledToggle } from '../../../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { visualHelperText } from '../../../../../DetailsView/components/base-visual-helper-toggle';
@@ -12,7 +15,9 @@ import { VisualHelperToggleConfigBuilder } from '../../../common/visual-helper-t
 import { VisualizationTogglePropsBuilder } from '../../../common/visualization-toggle-props-builder';
 
 describe('AssessmentVisualizationEnabledToggle', () => {
-    const actionMessageCreatorMock: IMock<DetailsViewActionMessageCreator> = Mock.ofType(DetailsViewActionMessageCreator);
+    const actionMessageCreatorMock: IMock<DetailsViewActionMessageCreator> = Mock.ofType(
+        DetailsViewActionMessageCreator,
+    );
 
     it('render with disabled message', () => {
         const props = new VisualHelperToggleConfigBuilder()
@@ -201,6 +206,8 @@ describe('AssessmentVisualizationEnabledToggle', () => {
     }
 
     function getDefaultVisualizationTogglePropsBuilder(): VisualizationTogglePropsBuilder {
-        return new VisualizationTogglePropsBuilder().with('visualizationName', visualHelperText).with('className', 'visual-helper-toggle');
+        return new VisualizationTogglePropsBuilder()
+            .with('visualizationName', visualHelperText)
+            .with('className', 'visual-helper-toggle');
     }
 });

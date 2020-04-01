@@ -26,4 +26,7 @@ export const DefaultThemePalette: IPartialTheme = {
         black: '#1d1d1d',
         white: '#ffffff',
     },
+    semanticColors: {
+        primaryButtonBackground: '#106ebe',
+    },
 };

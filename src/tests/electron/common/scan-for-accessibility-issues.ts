@@ -1,12 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { source as axeCoreSource } from 'axe-core';
-import { prettyPrintAxeViolations, PrintableAxeResult } from 'tests/end-to-end/common/pretty-print-axe-violations';
+import {
+    prettyPrintAxeViolations,
+    PrintableAxeResult,
+} from 'tests/end-to-end/common/pretty-print-axe-violations';
 import { ViewController } from './view-controllers/view-controller';
 
 declare var axe;
 
-export async function scanForAccessibilityIssues(view: ViewController): Promise<PrintableAxeResult[]> {
+export async function scanForAccessibilityIssues(
+    view: ViewController,
+    selector?: string,
+): Promise<PrintableAxeResult[]> {
     await injectAxeIfUndefined(view);
 
     const axeRunOptions = {
@@ -16,14 +22,21 @@ export async function scanForAccessibilityIssues(view: ViewController): Promise<
         },
     };
 
-    const executeOutput = await view.client.executeAsync((options, done) => {
-        axe.run(document, options, function(err: Error, results: any): void {
-            if (err) {
-                throw err;
-            }
-            done(results);
-        });
-    }, axeRunOptions);
+    const executeOutput = await view.client.executeAsync(
+        (options, selectorInEvaluate, done) => {
+            const elementContext =
+                selectorInEvaluate === null ? document : { include: [selectorInEvaluate] };
+
+            axe.run(elementContext, options, function (err: Error, results: any): void {
+                if (err) {
+                    throw err;
+                }
+                done(results);
+            });
+        },
+        axeRunOptions,
+        selector,
+    );
 
     // This is how webdriverio indicates success
     expect(executeOutput).toHaveProperty('status', 0);

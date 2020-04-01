@@ -2,7 +2,8 @@
 // Licensed under the MIT License.
 import { BrowserPermissionsTracker } from 'background/browser-permissions-tracker';
 import { Logger } from 'common/logging/logger';
-
+import { DebugToolsActionCreator } from 'debug-tools/action-creators/debug-tools-action-creator';
+import { DebugToolsController } from 'debug-tools/controllers/debug-tools-controller';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { CommandsAdapter } from '../common/browser-adapters/commands-adapter';
 import { StorageAdapter } from '../common/browser-adapters/storage-adapter';
@@ -110,6 +111,10 @@ export class GlobalContextFactory {
             globalActionsHub.permissionsStateActions,
             telemetryEventHandler,
         );
+        const debugToolsActionCreator = new DebugToolsActionCreator(
+            interpreter,
+            new DebugToolsController(browserAdapter),
+        );
 
         issueFilingActionCreator.registerCallbacks();
         actionCreator.registerCallbacks();
@@ -118,6 +123,7 @@ export class GlobalContextFactory {
         scopingActionCreator.registerCallback();
         featureFlagsActionCreator.registerCallbacks();
         permissionsStateActionCreator.registerCallbacks();
+        debugToolsActionCreator.registerCallback();
 
         const messageBroadcasterFactory = new BrowserMessageBroadcasterFactory(
             browserAdapter,

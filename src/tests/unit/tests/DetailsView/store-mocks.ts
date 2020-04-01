@@ -23,7 +23,7 @@ import { UnifiedScanResultStore } from '../../../../background/stores/unified-sc
 import { FeatureFlags } from '../../../../common/feature-flags';
 import { AssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
 import { CommandStoreData } from '../../../../common/types/store-data/command-store-data';
-import { DetailsViewData } from '../../../../common/types/store-data/details-view-data';
+import { DetailsViewStoreData } from '../../../../common/types/store-data/details-view-store-data';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import { LaunchPanelStoreData } from '../../../../common/types/store-data/launch-panel-store-data';
 import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
@@ -39,7 +39,10 @@ import { VisualizationStoreDataBuilder } from '../../common/visualization-store-
 
 export class StoreMocks {
     public visualizationStoreMock = Mock.ofType(VisualizationStore, MockBehavior.Strict);
-    public visualizationScanResultStoreMock = Mock.ofType(VisualizationScanResultStore, MockBehavior.Strict);
+    public visualizationScanResultStoreMock = Mock.ofType(
+        VisualizationScanResultStore,
+        MockBehavior.Strict,
+    );
     public detailsViewStoreMock = Mock.ofType(DetailsViewStore, MockBehavior.Strict);
     public tabStoreMock = Mock.ofType(TabStore, MockBehavior.Strict);
     public featureFlagStoreMock = Mock.ofType(FeatureFlagStore, MockBehavior.Strict);
@@ -65,7 +68,11 @@ export class StoreMocks {
         isPageHidden: false,
     };
     public commandStoreData = new CommandStore(null, null).getDefaultState();
-    public userConfigurationStoreData = new UserConfigurationStore(null, null, null).getDefaultState();
+    public userConfigurationStoreData = new UserConfigurationStore(
+        null,
+        null,
+        null,
+    ).getDefaultState();
     public scopingStoreData = new ScopingStore(null).getDefaultState();
     public inspectStoreData = new InspectStore(null, null).getDefaultState();
     public pathSnippetStoreData = new PathSnippetStore(null).getDefaultState();
@@ -82,7 +89,9 @@ export class StoreMocks {
         this.assessmentsProviderMock.setup(ap => ap.all()).returns(() => []);
 
         const assessmentDataConverterMock = Mock.ofType(AssessmentDataConverter);
-        assessmentDataConverterMock.setup(acdm => acdm.getNewManualTestStepResult(It.isAny())).returns(() => null);
+        assessmentDataConverterMock
+            .setup(acdm => acdm.getNewManualTestStepResult(It.isAny()))
+            .returns(() => null);
 
         this.assessmentStoreData = new AssessmentsStoreDataBuilder(
             this.assessmentsProviderMock.object,
@@ -127,7 +136,7 @@ export class StoreMocks {
         return this;
     }
 
-    public setDetailsViewStoreData(data: DetailsViewData): StoreMocks {
+    public setDetailsViewStoreData(data: DetailsViewStoreData): StoreMocks {
         this.detailsViewStoreData = data;
         return this;
     }

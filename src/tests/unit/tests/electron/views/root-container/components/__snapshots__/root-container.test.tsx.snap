@@ -1,10 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RootContainer renders device connect view container when route is deviceConnectView 1`] = `
+exports[`RootContainer renders with routeId = deviceConnectView 1`] = `
 <DeviceConnectViewContainer
+  cardSelectionStoreData={
+    Object {
+      "rules": Object {},
+    }
+  }
   deps={
     Object {
-      "storeHub": proxy {
+      "storesHub": proxy {
         "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
         "stores": undefined,
       },
@@ -12,12 +17,22 @@ exports[`RootContainer renders device connect view container when route is devic
   }
   deviceStoreData={
     Object {
-      "deviceConnectState": 2,
+      "port": 111,
+    }
+  }
+  scanStoreData={
+    Object {
+      "status": 2,
+    }
+  }
+  unifiedScanResultStoreData={
+    Object {
+      "rules": Array [],
     }
   }
   userConfigurationStoreData={
     Object {
-      "isFirstTime": true,
+      "isFirstTime": false,
     }
   }
   windowStateStoreData={
@@ -29,11 +44,16 @@ exports[`RootContainer renders device connect view container when route is devic
 />
 `;
 
-exports[`RootContainer renders results view container when route is resultsView 1`] = `
+exports[`RootContainer renders with routeId = resultsView 1`] = `
 <AutomatedChecksView
+  cardSelectionStoreData={
+    Object {
+      "rules": Object {},
+    }
+  }
   deps={
     Object {
-      "storeHub": proxy {
+      "storesHub": proxy {
         "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
         "stores": undefined,
       },
@@ -41,18 +61,22 @@ exports[`RootContainer renders results view container when route is resultsView 
   }
   deviceStoreData={
     Object {
-      "deviceConnectState": 2,
-      "port": 11111,
+      "port": 111,
     }
   }
   scanStoreData={
     Object {
-      "status": 0,
+      "status": 2,
+    }
+  }
+  unifiedScanResultStoreData={
+    Object {
+      "rules": Array [],
     }
   }
   userConfigurationStoreData={
     Object {
-      "isFirstTime": true,
+      "isFirstTime": false,
     }
   }
   windowStateStoreData={
@@ -62,34 +86,4 @@ exports[`RootContainer renders results view container when route is resultsView 
     }
   }
 />
-`;
-
-exports[`RootContainer store listening uses the store to update the state: initial state 1`] = `
-Object {
-  "deviceStoreData": Object {
-    "deviceConnectState": 2,
-  },
-  "userConfigurationStoreData": Object {
-    "isFirstTime": true,
-  },
-  "windowStateStoreData": Object {
-    "currentWindowState": "customSize",
-    "routeId": "deviceConnectView",
-  },
-}
-`;
-
-exports[`RootContainer store listening uses the store to update the state: updated state 1`] = `
-Object {
-  "deviceStoreData": Object {
-    "deviceConnectState": 2,
-  },
-  "userConfigurationStoreData": Object {
-    "isFirstTime": true,
-  },
-  "windowStateStoreData": Object {
-    "currentWindowState": "customSize",
-    "routeId": "resultsView",
-  },
-}
 `;

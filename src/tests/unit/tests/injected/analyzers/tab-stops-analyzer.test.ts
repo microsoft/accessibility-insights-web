@@ -6,7 +6,10 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { Message } from '../../../../../common/message';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { WindowUtils } from '../../../../../common/window-utils';
-import { FocusAnalyzerConfiguration, ScanBasePayload } from '../../../../../injected/analyzers/analyzer';
+import {
+    FocusAnalyzerConfiguration,
+    ScanBasePayload,
+} from '../../../../../injected/analyzers/analyzer';
 import { TabStopsAnalyzer } from '../../../../../injected/analyzers/tab-stops-analyzer';
 import { TabStopEvent, TabStopsListener } from '../../../../../injected/tab-stops-listener';
 import { itIsFunction } from '../../../common/it-is-function';
@@ -37,7 +40,9 @@ describe('TabStopsAnalyzerTests', () => {
         setTimeOutCallBack = null;
         tabStopsListenerMock = Mock.ofType(TabStopsListener);
 
-        scanIncompleteWarningDetectorMock.setup(idm => idm.detectScanIncompleteWarnings()).returns(() => []);
+        scanIncompleteWarningDetectorMock
+            .setup(idm => idm.detectScanIncompleteWarnings())
+            .returns(() => []);
 
         testSubject = new TabStopsAnalyzer(
             configStub,

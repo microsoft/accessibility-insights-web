@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { FeatureFlags } from 'common/feature-flags';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { GetElementBasedViewModelCallback } from 'injected/element-based-view-model-creator';
 import { AssessmentVisualizationInstance } from 'injected/frameCommunicators/html-element-axe-results-helper';
@@ -17,7 +15,10 @@ import {
     TestStepResult,
 } from '../../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
-import { SelectorMapHelper, VisualizationRelatedStoreData } from '../../../../injected/selector-map-helper';
+import {
+    SelectorMapHelper,
+    VisualizationRelatedStoreData,
+} from '../../../../injected/selector-map-helper';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 
@@ -26,11 +27,18 @@ describe('SelectorMapHelperTest', () => {
     let testSubject: SelectorMapHelper;
     let getElementBasedViewModelMock: IMock<GetElementBasedViewModelCallback>;
 
-    const adHocVisualizationTypes = [VisualizationType.Headings, VisualizationType.Landmarks, VisualizationType.Color];
+    const adHocVisualizationTypes = [
+        VisualizationType.Headings,
+        VisualizationType.Landmarks,
+        VisualizationType.Color,
+    ];
     beforeEach(() => {
         assessmentsProvider = CreateTestAssessmentProvider();
         getElementBasedViewModelMock = Mock.ofType<GetElementBasedViewModelCallback>();
-        testSubject = new SelectorMapHelper(assessmentsProvider, getElementBasedViewModelMock.object);
+        testSubject = new SelectorMapHelper(
+            assessmentsProvider,
+            getElementBasedViewModelMock.object,
+        );
     });
 
     test('constructor', () => {
@@ -40,29 +48,19 @@ describe('SelectorMapHelperTest', () => {
     adHocVisualizationTypes.forEach(visualizationType => {
         test(`getSelectorMap: ${VisualizationType[visualizationType]}`, () => {
             const selectorMap = { key1: { target: ['element1'] } };
-            const state = new VisualizationScanResultStoreDataBuilder().withSelectorMap(visualizationType, selectorMap).build();
+            const state = new VisualizationScanResultStoreDataBuilder()
+                .withSelectorMap(visualizationType, selectorMap)
+                .build();
             const storeData: VisualizationRelatedStoreData = {
                 visualizationScanResultStoreData: state,
             } as VisualizationRelatedStoreData;
-            expect(testSubject.getSelectorMap(visualizationType, null, storeData)).toEqual(selectorMap);
+            expect(testSubject.getSelectorMap(visualizationType, null, storeData)).toEqual(
+                selectorMap,
+            );
         });
     });
 
-    test('getState: issues with universalCardsUI feature flag disabled', () => {
-        const selectorMap = { key1: { target: ['element1'] } };
-        const state = new VisualizationScanResultStoreDataBuilder().withIssuesSelectedTargets(selectorMap as any).build();
-        const featureFlagData: FeatureFlagStoreData = {
-            [FeatureFlags.universalCardsUI]: false,
-        };
-        const storeData: VisualizationRelatedStoreData = {
-            visualizationScanResultStoreData: state,
-            featureFlagStoreData: featureFlagData,
-        } as VisualizationRelatedStoreData;
-
-        expect(testSubject.getSelectorMap(VisualizationType.Issues, null, storeData)).toEqual(selectorMap);
-    });
-
-    test('getState: issues with universalCardsUI feature flag enabled', () => {
+    test('getState: issues', () => {
         const selectorMap = { key1: { target: ['element1'] } as AssessmentVisualizationInstance };
         const rulesStub: UnifiedRule[] = [{ id: 'some rule' } as UnifiedRule];
         const resultsStub: UnifiedResult[] = [exampleUnifiedResult];
@@ -70,12 +68,8 @@ describe('SelectorMapHelperTest', () => {
             rules: rulesStub,
             results: resultsStub,
         };
-        const featureFlagData: FeatureFlagStoreData = {
-            [FeatureFlags.universalCardsUI]: true,
-        };
         const storeData: VisualizationRelatedStoreData = {
             unifiedScanResultStoreData: unifiedScanData,
-            featureFlagStoreData: featureFlagData,
             cardSelectionStoreData: {},
         } as VisualizationRelatedStoreData;
 
@@ -83,7 +77,9 @@ describe('SelectorMapHelperTest', () => {
             .setup(gebvm => gebvm(rulesStub, resultsStub, storeData.cardSelectionStoreData))
             .returns(() => selectorMap);
 
-        expect(testSubject.getSelectorMap(VisualizationType.Issues, null, storeData)).toEqual(selectorMap);
+        expect(testSubject.getSelectorMap(VisualizationType.Issues, null, storeData)).toEqual(
+            selectorMap,
+        );
     });
 
     test('getState: tabStops', () => {

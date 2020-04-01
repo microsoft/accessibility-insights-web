@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
-import { FeatureFlags } from 'common/feature-flags';
 import { VisualizationType } from 'common/types/visualization-type';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import {
@@ -42,10 +40,6 @@ export function getReportExportComponentForAssessment(props: CommandBarProps): J
 }
 
 export function getReportExportComponentForFastPass(props: CommandBarProps): JSX.Element {
-    if (!props.featureFlagStoreData[FeatureFlags.universalCardsUI]) {
-        return null;
-    }
-
     const scanResult = props.visualizationScanResultData.issues.scanResult;
 
     if (!scanResult) {

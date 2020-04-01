@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
-
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
-import { ManualTestStatus } from '../../../../common/types/manual-test-status';
-import { GeneratedAssessmentInstance } from '../../../../common/types/store-data/assessment-result-data';
-import { DictionaryStringTo } from '../../../../types/common-types';
+import * as styles from 'assessments/assessment-default-message-generator.scss';
+import { ManualTestStatus } from 'common/types/manual-test-status';
+import { GeneratedAssessmentInstance } from 'common/types/store-data/assessment-result-data';
+import * as React from 'react';
+import { DictionaryStringTo } from 'types/common-types';
 
 describe('AssessmentDefaultMessageGenerator', () => {
     const testSubject = new AssessmentDefaultMessageGenerator();
@@ -41,7 +41,7 @@ describe('AssessmentDefaultMessageGenerator', () => {
 
         expect(testSubject.getNoFailingInstanceMessage(instancesMap, 'step1')).not.toBeNull();
         const expected = {
-            message: <div className="no-failure-view">No matching instances</div>,
+            message: <div className={styles.noFailureView}>No matching instances</div>,
             instanceCount: 0,
         };
         expect(testSubject.getNoFailingInstanceMessage(instancesMap, 'step1')).toEqual(expected);
@@ -85,7 +85,7 @@ describe('AssessmentDefaultMessageGenerator', () => {
         expect(testSubject.getNoFailingInstanceMessage(instancesMap, 'step1')).not.toBeNull();
 
         const expected = {
-            message: <div className="no-failure-view">No matching instances</div>,
+            message: <div className={styles.noFailureView}>No matching instances</div>,
             instanceCount: 0,
         };
 
@@ -95,7 +95,7 @@ describe('AssessmentDefaultMessageGenerator', () => {
     test('no matching instance for empty instance map', () => {
         const instancesMap: DictionaryStringTo<GeneratedAssessmentInstance> = {};
         const expected = {
-            message: <div className="no-failure-view">No matching instances</div>,
+            message: <div className={styles.noFailureView}>No matching instances</div>,
             instanceCount: 0,
         };
         expect(testSubject.getNoMatchingInstanceMessage(instancesMap, 'step1')).not.toBeNull();
@@ -131,7 +131,7 @@ describe('AssessmentDefaultMessageGenerator', () => {
         };
 
         const expected = {
-            message: <div className="no-failure-view">No failing instances</div>,
+            message: <div className={styles.noFailureView}>No failing instances</div>,
             instanceCount: 1,
         };
 

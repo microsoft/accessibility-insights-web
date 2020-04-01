@@ -12,7 +12,9 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe('DeviceConnectBodyTest', () => {
-    const deviceConnectStates = EnumHelper.getNumericValues<DeviceConnectState>(DeviceConnectState).map(state => DeviceConnectState[state]);
+    const deviceConnectStates = EnumHelper.getNumericValues<DeviceConnectState>(
+        DeviceConnectState,
+    ).map(state => DeviceConnectState[state]);
 
     it.each(deviceConnectStates)(`renders, with device connect state = %s`, stateName => {
         const props: DeviceConnectBodyProps = {

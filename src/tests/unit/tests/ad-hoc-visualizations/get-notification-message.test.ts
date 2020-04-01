@@ -6,7 +6,9 @@ import { DictionaryStringTo } from 'types/common-types';
 
 describe('Issues -> getNotificationMessage', () => {
     const testSubject = getNotificationMessage;
-    const testScanIncompleteWarnings: ScanIncompleteWarningId[] = ['missing-required-cross-origin-permissions'];
+    const testScanIncompleteWarnings: ScanIncompleteWarningId[] = [
+        'missing-required-cross-origin-permissions',
+    ];
 
     type TestCase = {
         selectorMap: DictionaryStringTo<any>;
@@ -32,7 +34,9 @@ describe('Issues -> getNotificationMessage', () => {
         it.each(testCases)('returns proper message (with %p)', ({ selectorMap, warnings }) => {
             const message = testSubject(selectorMap, warnings);
 
-            expect(message).toBe('Congratulations!\n\nAutomated checks found no issues on this page.');
+            expect(message).toBe(
+                'Congratulations!\n\nAutomated checks found no issues on this page.',
+            );
         });
     });
 

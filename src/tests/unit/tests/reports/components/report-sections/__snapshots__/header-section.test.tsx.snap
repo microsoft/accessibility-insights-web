@@ -19,12 +19,12 @@ exports[`HeaderSection renders 1`] = `
       className="target-page"
     >
       Target page: 
-      <NewTabLink
+      <NewTabLinkWithConfirmationDialog
         href="url://page"
         title="page-title"
       >
         page-title
-      </NewTabLink>
+      </NewTabLinkWithConfirmationDialog>
     </div>
   </div>
 </header>

@@ -23,8 +23,9 @@
     }
 
     .collapsible-control {
-        font-family: 'Segoe UI Web (West European)', 'Segoe UI', '-apple-system', BlinkMacSystemFont, Roboto, 'Helvetica Neue', Helvetica,
-            Ubuntu, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+        font-family: 'Segoe UI Web (West European)', 'Segoe UI', '-apple-system', BlinkMacSystemFont,
+            Roboto, 'Helvetica Neue', Helvetica, Ubuntu, Arial, sans-serif, 'Apple Color Emoji',
+            'Segoe UI Emoji', 'Segoe UI Symbol';
         background-color: transparent;
         cursor: pointer;
         border: none;
@@ -37,7 +38,7 @@
 
         &:hover {
             background-color: $neutral-alpha-4;
-            color: unset;
+            color: $primary-text;
         }
     }
 

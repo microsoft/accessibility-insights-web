@@ -3,14 +3,21 @@
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
+import { UserConfigurationActions } from 'background/actions/user-configuration-actions';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
-import { CardsVisualizationModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
+import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
+import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
+import { ThemeInnerState } from 'common/components/theme';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
+import { textContent } from 'content/strings/text-content';
+import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-available/no-content-available-view';
 import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
-import { loadTheme } from 'office-ui-fabric-react';
+import { NoContentAvailableViewRenderer } from 'DetailsView/no-content-available-view-renderer';
+import { NullStoreActionMessageCreator } from 'electron/adapters/null-store-action-message-creator';
+import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
 import { AssessmentReportModelBuilderFactory } from 'reports/assessment-report-model-builder-factory';
@@ -68,7 +75,7 @@ import { BaseClientStoresHub } from '../common/stores/base-client-stores-hub';
 import { StoreNames } from '../common/stores/store-names';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
-import { DetailsViewData } from '../common/types/store-data/details-view-data';
+import { DetailsViewStoreData } from '../common/types/store-data/details-view-store-data';
 import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
@@ -91,13 +98,13 @@ import { UnifiedResultToIssueFilingDataConverter } from './../issue-filing/unifi
 import { DetailsViewActionMessageCreator } from './actions/details-view-action-message-creator';
 import { IssuesSelectionFactory } from './actions/issues-selection-factory';
 import { AssessmentTableColumnConfigHandler } from './components/assessment-table-column-config-handler';
+import { ExtensionSettingsProvider } from './components/details-view-overlay/settings-panel/settings/extension-settings-provider';
 import { GetDetailsRightPanelConfiguration } from './components/details-view-right-panel';
 import { GetDetailsSwitcherNavConfiguration } from './components/details-view-switcher-nav';
 import { IssuesTableHandler } from './components/issues-table-handler';
 import { getStatusForTest } from './components/left-nav/get-status-for-test';
 import { LeftNavLinkBuilder } from './components/left-nav/left-nav-link-builder';
 import { NavLinkHandler } from './components/left-nav/nav-link-handler';
-import { SettingsProviderImpl } from './components/settings-panel/settings/settings-provider-impl';
 import { DetailsViewContainerDeps, DetailsViewContainerState } from './details-view-container';
 import { DetailsViewRenderer } from './details-view-renderer';
 import { DocumentTitleUpdater } from './document-title-updater';
@@ -147,7 +154,7 @@ if (isNaN(tabId) === false) {
                 browserAdapter,
                 tab.id,
             );
-            const detailsViewStore = new StoreProxy<DetailsViewData>(
+            const detailsViewStore = new StoreProxy<DetailsViewStoreData>(
                 StoreNames[StoreNames.DetailsViewStore],
                 browserAdapter,
                 tab.id,
@@ -355,7 +362,10 @@ if (isNaN(tabId) === false) {
 
             const unifiedResultToIssueFilingDataConverter = new UnifiedResultToIssueFilingDataConverter();
 
+            const documentManipulator = new DocumentManipulator(document);
+
             const deps: DetailsViewContainerDeps = {
+                textContent,
                 fixInstructionProcessor,
                 axeResultToIssueFilingDataConverter,
                 unifiedResultToIssueFilingDataConverter,
@@ -390,7 +400,7 @@ if (isNaN(tabId) === false) {
                 urlParser,
                 getDateFromTimestamp: DateProvider.getDateFromTimestamp,
                 getCurrentDate: DateProvider.getCurrentDate,
-                settingsProvider: SettingsProviderImpl,
+                settingsProvider: ExtensionSettingsProvider,
                 LinkComponent: NewTabLink,
                 environmentInfoProvider,
                 issueFilingServiceProvider: IssueFilingServiceProviderImpl,
@@ -403,30 +413,32 @@ if (isNaN(tabId) === false) {
                 navigatorUtils: navigatorUtils,
                 cardSelectionMessageCreator,
                 getCardSelectionViewData: getCardSelectionViewData,
-                cardsVisualizationModifierButtons: CardsVisualizationModifierButtons,
+                cardsVisualizationModifierButtons: ExpandCollapseVisualHelperModifierButtons,
                 allUrlsPermissionHandler: new AllUrlsPermissionHandler(
                     browserAdapter,
                     detailsViewActionMessageCreator,
                 ),
+                setFocusVisibility,
+                documentManipulator,
+                customCongratsMessage: null, // uses default message
+                scopingActionMessageCreator,
+                inspectActionMessageCreator,
+                issuesSelection,
+                clickHandlerFactory,
+                issuesTableHandler,
+                assessmentInstanceTableHandler,
+                previewFeatureFlagsHandler,
+                scopingFlagsHandler,
+                Assessments,
             };
 
             const renderer = new DetailsViewRenderer(
                 deps,
                 dom,
                 ReactDOM.render,
-                scopingActionMessageCreator,
-                inspectActionMessageCreator,
-                issuesSelection,
-                clickHandlerFactory,
-                visualizationConfigurationFactory,
-                issuesTableHandler,
-                assessmentInstanceTableHandler,
-                previewFeatureFlagsHandler,
-                scopingFlagsHandler,
-                dropdownClickHandler,
-                Assessments,
                 documentElementSetter,
             );
+
             renderer.render();
 
             const a11ySelfValidator = new A11YSelfValidator(
@@ -443,22 +455,19 @@ if (isNaN(tabId) === false) {
     );
 }
 
-function createNullifiedRenderer(doc, render): DetailsViewRenderer {
-    return new DetailsViewRenderer(
-        null,
-        doc,
-        render,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        documentElementSetter,
-    );
+function createNullifiedRenderer(
+    doc: Document,
+    render: typeof ReactDOM.render,
+): NoContentAvailableViewRenderer {
+    // using an instance of an actual store (instead of a StoreProxy) so we can get the default state.
+    const store = new UserConfigurationStore(null, new UserConfigurationActions(), null);
+    const storesHub = new BaseClientStoresHub<ThemeInnerState>([store]);
+
+    const deps: NoContentAvailableViewDeps = {
+        textContent,
+        storesHub,
+        storeActionMessageCreator: new NullStoreActionMessageCreator(),
+    };
+
+    return new NoContentAvailableViewRenderer(deps, doc, render, documentElementSetter);
 }

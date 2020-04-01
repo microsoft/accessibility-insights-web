@@ -1,0 +1,147 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StoresTree renders each row properly 1`] = `
+<StyledDetailsRowBase
+  columns={
+    Array [
+      Object {
+        "fieldName": "key",
+        "key": "key",
+        "minWidth": 300,
+        "name": "property",
+      },
+      Object {
+        "fieldName": "value",
+        "key": "value",
+        "minWidth": 300,
+        "name": "value",
+        "onRender": [Function],
+      },
+    ]
+  }
+  compact={true}
+  groupNestingDepth={0}
+  item={
+    Object {
+      "key": "value",
+    }
+  }
+  itemIndex={1}
+  selection={
+    Selection {
+      "_anchoredIndex": 0,
+      "_canSelectItem": [Function],
+      "_changeEventSuppressionCount": 0,
+      "_exemptedCount": 0,
+      "_exemptedIndices": Object {},
+      "_getKey": [Function],
+      "_isModal": false,
+      "_items": Array [],
+      "_keyToIndexMap": Object {},
+      "_onSelectionChanged": undefined,
+      "_selectedItems": null,
+      "_unselectableCount": 0,
+      "_unselectableIndices": Object {},
+      "count": 0,
+      "mode": 2,
+    }
+  }
+  selectionMode={0}
+/>
+`;
+
+exports[`StoresTree renders the value column properly 1`] = `"{\\"first\\":1,\\"second\\":\\"2\\",\\"third\\":true,\\"fourth\\":[4],\\"fifth\\":{\\"sixth\\":\\"6\\"}}"`;
+
+exports[`StoresTree renders with no data from the state 1`] = `
+<StyledSpinnerBase
+  label="loading..."
+/>
+`;
+
+exports[`StoresTree renders with proper data from the stores 1`] = `
+<FocusZone
+  direction={2}
+  isCircularNavigation={false}
+>
+  <SelectionZone
+    isSelectedOnFocus={true}
+    selection={
+      Selection {
+        "_anchoredIndex": 0,
+        "_canSelectItem": [Function],
+        "_changeEventSuppressionCount": 0,
+        "_exemptedCount": 0,
+        "_exemptedIndices": Object {},
+        "_getKey": [Function],
+        "_isModal": false,
+        "_items": Array [],
+        "_keyToIndexMap": Object {},
+        "_onSelectionChanged": undefined,
+        "_selectedItems": null,
+        "_unselectableCount": 0,
+        "_unselectableIndices": Object {},
+        "count": 0,
+        "mode": 2,
+      }
+    }
+    selectionMode={0}
+  >
+    <StyledGroupedListBase
+      compact={true}
+      groups={
+        Array [
+          Object {
+            "count": 2,
+            "key": "userConfigurationStoreData",
+            "name": "userConfigurationStoreData",
+            "startIndex": 0,
+          },
+          Object {
+            "count": 1,
+            "key": "permissionsStateStoreData",
+            "name": "permissionsStateStoreData",
+            "startIndex": 2,
+          },
+        ]
+      }
+      items={
+        Array [
+          Object {
+            "key": "enableTelemetry",
+            "value": true,
+          },
+          Object {
+            "key": "isFirstTime",
+            "value": false,
+          },
+          Object {
+            "key": "hasAllUrlAndFilePermissions",
+            "value": true,
+          },
+        ]
+      }
+      onRenderCell={[Function]}
+      selection={
+        Selection {
+          "_anchoredIndex": 0,
+          "_canSelectItem": [Function],
+          "_changeEventSuppressionCount": 0,
+          "_exemptedCount": 0,
+          "_exemptedIndices": Object {},
+          "_getKey": [Function],
+          "_isModal": false,
+          "_items": Array [],
+          "_keyToIndexMap": Object {},
+          "_onSelectionChanged": undefined,
+          "_selectedItems": null,
+          "_unselectableCount": 0,
+          "_unselectableIndices": Object {},
+          "count": 0,
+          "mode": 2,
+        }
+      }
+      selectionMode={0}
+    />
+  </SelectionZone>
+</FocusZone>
+`;

@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VisualHelperToggle renders per snapshot with visualHelperEnabled false 1`] = `
+<StyledToggleBase
+  checked={false}
+  className="visualHelperToggle"
+  label="Visual helper"
+  onClick={[Function]}
+/>
+`;
+
+exports[`VisualHelperToggle renders per snapshot with visualHelperEnabled true 1`] = `
+<StyledToggleBase
+  checked={true}
+  className="visualHelperToggle"
+  label="Visual helper"
+  onClick={[Function]}
+/>
+`;

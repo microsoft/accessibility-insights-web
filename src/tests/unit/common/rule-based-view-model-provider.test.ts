@@ -3,7 +3,11 @@
 import { CardSelectionViewData } from 'common/get-card-selection-view-data';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
-import { InstanceResultStatus, UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
+import {
+    InstanceResultStatus,
+    UnifiedResult,
+    UnifiedRule,
+} from 'common/types/store-data/unified-data-interface';
 
 type TestScenario = {
     isExpanded: boolean;
@@ -58,7 +62,11 @@ describe('RuleBasedViewModelProvider', () => {
             visualHelperEnabled: testScenario.visualHelperEnabled,
         };
 
-        const actualResults: CardsViewModel = getCardViewData(rules, results, cardSelectionViewData);
+        const actualResults: CardsViewModel = getCardViewData(
+            rules,
+            results,
+            cardSelectionViewData,
+        );
 
         expect(actualResults).toMatchSnapshot();
     });

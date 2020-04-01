@@ -44,32 +44,54 @@ describe('Settings Dropdown', () => {
         expect(popupDropdownElement).toMatchSnapshot();
     });
 
-    it.each([true, false])('should pass accessibility validation in popup with highContrastMode=%s', async highContrastMode => {
-        await browser.setHighContrastMode(highContrastMode);
-        const popupPage = await browser.newPopupPage(targetPage);
-        await popupPage.waitForHighContrastMode(highContrastMode);
+    it.each([true, false])(
+        'should pass accessibility validation in popup with highContrastMode=%s',
+        async highContrastMode => {
+            await browser.setHighContrastMode(highContrastMode);
+            const popupPage = await browser.newPopupPage(targetPage);
+            await popupPage.waitForHighContrastMode(highContrastMode);
 
-        await popupPage.clickSelector(CommonSelectors.settingsGearButton);
+            await popupPage.clickSelector(CommonSelectors.settingsGearButton);
 
-        const results = await scanForAccessibilityIssues(popupPage, CommonSelectors.settingsDropdownMenu);
-        expect(results).toHaveLength(0);
-    });
+            const button = await popupPage.getSelectorElement(CommonSelectors.settingsGearButton);
+            const menuCalloutId = await button.evaluate(element =>
+                element.getAttribute('aria-owns'),
+            );
 
-    it.each([true, false])('should pass accessibility validation in details view with highContrastMode=%s', async highContrastMode => {
-        await browser.setHighContrastMode(highContrastMode);
-        await browser.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
+            const results = await scanForAccessibilityIssues(popupPage, `#${menuCalloutId}`);
+            expect(results).toHaveLength(0);
+        },
+    );
 
-        const detailsViewPage = await browser.newDetailsViewPage(targetPage);
-        await detailsViewPage.waitForHighContrastMode(highContrastMode);
+    it.each([true, false])(
+        'should pass accessibility validation in details view with highContrastMode=%s',
+        async highContrastMode => {
+            await browser.setHighContrastMode(highContrastMode);
+            await browser.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
 
-        await detailsViewPage.clickSelector(CommonSelectors.settingsGearButton);
+            const detailsViewPage = await browser.newDetailsViewPage(targetPage);
+            await detailsViewPage.waitForHighContrastMode(highContrastMode);
 
-        const results = await scanForAccessibilityIssues(detailsViewPage, CommonSelectors.settingsDropdownMenu);
-        expect(results).toHaveLength(0);
-    });
+            await detailsViewPage.clickSelector(CommonSelectors.settingsGearButton);
+
+            const button = await detailsViewPage.getSelectorElement(
+                CommonSelectors.settingsGearButton,
+            );
+            const menuCalloutId = await button.evaluate(element =>
+                element.getAttribute('aria-owns'),
+            );
+
+            const results = await scanForAccessibilityIssues(detailsViewPage, `#${menuCalloutId}`);
+            expect(results).toHaveLength(0);
+        },
+    );
 
     async function getDropdownPanelElement(page: Page): Promise<Node> {
         await page.clickSelector(CommonSelectors.settingsGearButton);
-        return await formatPageElementForSnapshot(page, CommonSelectors.settingsDropdownMenu);
+
+        const button = await page.getSelectorElement(CommonSelectors.settingsGearButton);
+        const menuCalloutId = await button.evaluate(element => element.getAttribute('aria-owns'));
+
+        return await formatPageElementForSnapshot(page, `#${menuCalloutId}`);
     }
 });

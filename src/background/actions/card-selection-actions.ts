@@ -10,4 +10,5 @@ export class CardSelectionActions {
     public readonly collapseAllRules = new Action();
     public readonly expandAllRules = new Action();
     public readonly toggleVisualHelper = new Action();
+    public readonly resetFocusedIdentifier = new Action();
 }

@@ -14,53 +14,55 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
       >
         Accessibility Insights for Web
       </h1>
-      <div>
-        <div
-          class="feedback-collapseMenuButton-col--{{CSS_MODULE_HASH}}"
+      <div
+        class="children--{{CSS_MODULE_HASH}}"
+      >
+        <button
+          aria-expanded="false"
+          aria-haspopup="true"
+          aria-label="manage settings"
+          class="ms-Button ms-Button--icon ms-Button--hasMenu gear-menu-button--{{CSS_MODULE_HASH}} root-000"
+          data-is-focusable="true"
+          type="button"
         >
-          <div
-            class="gear-options-button-component--{{CSS_MODULE_HASH}}"
+          <span
+            class="ms-Button-flexContainer flexContainer-000"
+            data-automationid="splitbuttonprimary"
           >
-            <div
-              class="details-view-dropdown"
+            <i
+              aria-hidden="true"
+              class="ms-Icon root-000 css-000 ms-Button-icon icon-000"
+              data-icon-name="Gear"
+              role="presentation"
+              style="font-family: FabricMDL2Icons;"
             >
-              <button
-                class="ms-Link gear-button root-000"
-                type="button"
-              >
-                <i
-                  aria-label="Manage Settings"
-                  class="gear-options-icon root-000"
-                  data-icon-name="Gear"
-                >
-                  
-                </i>
-              </button>
-            </div>
-          </div>
-          <button
-            aria-label="help menu"
-            class="ms-Button ms-Button--icon root-000"
-            data-is-focusable="true"
-            id="feedback-collapse-menu-button"
-            type="button"
+              
+            </i>
+          </span>
+        </button>
+        <button
+          aria-expanded="false"
+          aria-haspopup="true"
+          aria-label="help menu"
+          class="ms-Button ms-Button--icon ms-Button--hasMenu hamburger-menu-button--{{CSS_MODULE_HASH}} root-000"
+          data-is-focusable="true"
+          type="button"
+        >
+          <span
+            class="ms-Button-flexContainer flexContainer-000"
+            data-automationid="splitbuttonprimary"
           >
-            <span
-              class="ms-Button-flexContainer flexContainer-000"
-              data-automationid="splitbuttonprimary"
+            <i
+              aria-hidden="true"
+              class="ms-Icon root-000 css-000 ms-Button-icon icon-000"
+              data-icon-name="GlobalNavButton"
+              role="presentation"
+              style="font-family: FabricMDL2Icons;"
             >
-              <i
-                aria-hidden="true"
-                class="ms-Icon root-000 css-000 ms-Button-icon icon-000"
-                data-icon-name="GlobalNavButton"
-                role="presentation"
-                style="font-family: FabricMDL2Icons;"
-              >
-                
-              </i>
-            </span>
-          </button>
-        </div>
+              
+            </i>
+          </span>
+        </button>
       </div>
       <div
         class="subtitle--{{CSS_MODULE_HASH}}"
@@ -254,7 +256,7 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
           >
             axe-core
           </a>
-           3.3.2
+           3.5.1
         </div>
       </div>
     </div>

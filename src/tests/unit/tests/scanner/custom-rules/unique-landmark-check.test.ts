@@ -11,7 +11,7 @@ describe('axe.Check: unique-landmark', () => {
     let fixture;
     const checkContext = {
         _data: null,
-        data: function(d: any): void {
+        data: function (d: any): void {
             // tslint:disable-next-line:no-invalid-this
             this._data = d;
         },
@@ -83,7 +83,9 @@ describe('axe.Check: unique-landmark', () => {
         const expectedNode: Element = fixture.querySelector('#landmark1');
 
         labelFunctionMock.setup(lfm => lfm(node)).returns(() => null);
-        labelFunctionMock.setup(lfm => lfm(It.isObjectWith(expectedNode))).returns(() => 'header landmark');
+        labelFunctionMock
+            .setup(lfm => lfm(It.isObjectWith(expectedNode)))
+            .returns(() => 'header landmark');
 
         expectCheckTrue(node);
     });
@@ -105,9 +107,15 @@ describe('axe.Check: unique-landmark', () => {
             duplicateLandmark2 = fixture.querySelector('#landmark2');
             uniqueLandmark = fixture.querySelector('#landmark3');
 
-            labelFunctionMock.setup(lfm => lfm(duplicateLandmark1)).returns(() => duplicateLandmarkLabel);
-            labelFunctionMock.setup(lfm => lfm(duplicateLandmark2)).returns(() => duplicateLandmarkLabel);
-            labelFunctionMock.setup(lfm => lfm(uniqueLandmark)).returns(() => 'some other landmark');
+            labelFunctionMock
+                .setup(lfm => lfm(duplicateLandmark1))
+                .returns(() => duplicateLandmarkLabel);
+            labelFunctionMock
+                .setup(lfm => lfm(duplicateLandmark2))
+                .returns(() => duplicateLandmarkLabel);
+            labelFunctionMock
+                .setup(lfm => lfm(uniqueLandmark))
+                .returns(() => 'some other landmark');
         });
 
         it('false for duplicate landmark', () => {

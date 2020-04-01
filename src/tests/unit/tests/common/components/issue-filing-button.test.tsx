@@ -1,6 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IssueFilingButton, IssueFilingButtonDeps, IssueFilingButtonProps } from 'common/components/issue-filing-button';
+import {
+    IssueFilingButton,
+    IssueFilingButtonDeps,
+    IssueFilingButtonProps,
+} from 'common/components/issue-filing-button';
 import { EnvironmentInfoProvider } from 'common/environment-info-provider';
 import { IssueFilingActionMessageCreator } from 'common/message-creators/issue-filing-action-message-creator';
 import { NamedFC } from 'common/react/named-fc';
@@ -108,7 +112,9 @@ describe('IssueFilingButtonTest', () => {
     test('onclick: invalid settings, %s', () => {
         testIssueFilingServiceStub.isSettingsValid = () => false;
         issueFilingActionMessageCreatorMock
-            .setup(messageCreator => messageCreator.trackFileIssueClick(eventStub as any, testKey as any))
+            .setup(messageCreator =>
+                messageCreator.trackFileIssueClick(eventStub as any, testKey as any),
+            )
             .verifiable(Times.never());
         const props: IssueFilingButtonProps = {
             deps: {
