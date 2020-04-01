@@ -1,0 +1,32 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+steps:
+    - script: yarn build:unified
+      displayName: build:unified
+      timeoutInMinutes: 5
+
+    # e2e tests require different job for linux
+    - script: yarn test:unified --ci
+      displayName: run unified e2e tests (non-linux)
+      condition: and(succeeded(), ne(variables.platform, 'linux'))
+      timeoutInMinutes: 10
+
+    - script: xvfb-run --server-args="-screen 0 1024x768x24" yarn test:unified --ci
+      displayName: run unified e2e tests (linux)
+      condition: and(succeeded(), eq(variables.platform, 'linux'))
+      timeoutInMinutes: 10
+
+    - task: PublishTestResults@2
+      inputs:
+          testResultsFiles: test-results/electron/junit-electron.xml
+          testRunTitle: $(Agent.JobName)
+      condition: succeededOrFailed()
+      displayName: publish electron e2e test results
+      timeoutInMinutes: 3
+
+    - publish: '$(System.DefaultWorkingDirectory)/test-results/e2e'
+      artifact: '$(Agent.JobName)-screenshots-and-extended-logs'
+      condition: failed() # because the detailed chrome logs are ~150MB and uploading them takes ~30s
+      continueOnError: true
+      displayName: publish electron e2e screenshots and extended logs
+      timeoutInMinutes: 5
