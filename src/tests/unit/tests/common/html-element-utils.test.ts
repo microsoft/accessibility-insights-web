@@ -50,6 +50,20 @@ describe('HTMLElementUtilsTest', () => {
         expect(result).toEqual(expectedElement);
     });
 
+    test('getBody', () => {
+        const expectedBody = 'body stub' as any;
+
+        const dom = {
+            body: expectedBody,
+        } as any;
+
+        const testObject = new HTMLElementUtils(dom);
+
+        const result = testObject.getBody();
+
+        expect(result).toEqual(expectedBody);
+    });
+
     test('querySelector', () => {
         const selector = 'selector';
 
