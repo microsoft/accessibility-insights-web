@@ -141,7 +141,7 @@
         "classnames": "^2.2.6",
         "electron-download": "^4.1.1",
         "electron-log": "^4.1.1",
-        "electron-updater": "^4.2.5",
+        "electron-updater": "^4.3.0",
         "idb-keyval": "^3.2.0",
         "lodash": "^4.17.15",
         "moment": "^2.24.0",
