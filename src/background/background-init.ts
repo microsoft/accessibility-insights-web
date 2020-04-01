@@ -35,6 +35,8 @@ import { TelemetryEventHandler } from './telemetry/telemetry-event-handler';
 import { TelemetryLogger } from './telemetry/telemetry-logger';
 import { TelemetryStateListener } from './telemetry/telemetry-state-listener';
 import { cleanKeysFromStorage } from './user-stored-data-cleaner';
+import { UsageLogger } from 'background/usage-logger';
+import { DateProvider } from 'common/date-provider';
 
 declare var window: Window & InsightsWindowExtensions;
 
@@ -75,6 +77,9 @@ async function initialize(): Promise<void> {
         AppInsights,
         browserAdapter,
     );
+
+    const usageLogger = new UsageLogger(browserAdapter, DateProvider.getUTCDate, logger);
+    usageLogger.record();
 
     const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
 

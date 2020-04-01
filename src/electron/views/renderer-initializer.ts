@@ -91,6 +91,7 @@ import {
     RootContainerRendererDeps,
 } from './root-container/root-container-renderer';
 import { screenshotViewModelProvider } from './screenshot/screenshot-view-model-provider';
+import { UsageLogger } from 'background/usage-logger';
 
 declare var window: Window & {
     insightsUserConfiguration: UserConfigurationController;
@@ -139,6 +140,10 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             AppInsights,
             storageAdapter,
         );
+
+        const usageLogger = new UsageLogger(storageAdapter, DateProvider.getUTCDate, logger);
+        usageLogger.record();
+
         const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
         const platformInfo = new PlatformInfo(process);
 
