@@ -141,7 +141,7 @@ export class DetailsDialogHandler {
 
         const modal = shadowRoot.querySelector('.insights-dialog-main-override-shadow');
         if (modal != null) {
-            document.body.classList.add('insights-modal');
+            this.htmlElementUtils.getBody();
             modal.addEventListener('click', ev => {
                 if (modal === ev.target) {
                     this.closeWindow(shadowRoot);
