@@ -76,7 +76,7 @@
         "@types/serve-static": "^1.13.3",
         "@types/ua-parser-js": "^0.7.33",
         "@types/uuid": "^7.0.2",
-        "app-builder-lib": "^22.4.1",
+        "app-builder-lib": "^22.5.0",
         "case-sensitive-paths-webpack-plugin": "^2.3.0",
         "codecov": "^3.6.5",
         "commander": "^5.0.0",
