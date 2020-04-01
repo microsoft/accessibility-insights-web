@@ -2,4 +2,4 @@
 // Licensed under the MIT License.
 
 // There will be more SidePanel types as we keep refactoring.
-export type SidePanel = 'Settings' | 'PreviewFeatures';
+export type SidePanel = 'Settings' | 'PreviewFeatures' | 'Scoping';

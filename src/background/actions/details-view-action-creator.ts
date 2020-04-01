@@ -5,6 +5,7 @@ import { DetailsViewController } from 'background/details-view-controller';
 import { SidePanel } from 'background/stores/side-panel';
 import {
     PREVIEW_FEATURES_OPEN,
+    SCOPING_OPEN,
     SETTINGS_PANEL_CLOSE,
     SETTINGS_PANEL_OPEN,
 } from 'common/extension-telemetry-events';
@@ -42,6 +43,10 @@ export class DetailsViewActionCreator {
             this.onOpenSidePanel.bind(this, 'PreviewFeatures'),
         );
         this.interpreter.registerTypeToPayloadCallback(
+            Messages.Scoping.OpenPanel,
+            this.onOpenSidePanel.bind(this, 'Scoping'),
+        );
+        this.interpreter.registerTypeToPayloadCallback(
             Messages.SettingsPanel.ClosePanel,
             this.onCloseSettingsPanel,
         );
@@ -58,6 +63,7 @@ export class DetailsViewActionCreator {
     private sidePanelToOpenPanelTelemetryEventName: SidePanelToOpenPanelTelemetryEventName = {
         Settings: SETTINGS_PANEL_OPEN,
         PreviewFeatures: PREVIEW_FEATURES_OPEN,
+        Scoping: SCOPING_OPEN,
     };
 
     private onOpenSidePanel = async (
