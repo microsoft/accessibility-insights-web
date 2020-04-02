@@ -4,6 +4,7 @@ import { PopupInitializedPayload } from 'background/actions/action-payloads';
 import { PopupActionCreator } from 'background/actions/popup-action-creator';
 import { TabActions } from 'background/actions/tab-actions';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import { UsageLogger } from 'background/usage-logger';
 import {
     POPUP_INITIALIZED,
     TelemetryEventSource,
@@ -35,10 +36,13 @@ describe('PopupActionCreator', () => {
         const actionsMock = createTabActionsMock('newTabCreated', actionMock.object);
         const interpreterMock = createInterpreterMock(Messages.Popup.Initialized, payload);
         const telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();
+        const usageLoggerMock = Mock.ofType<UsageLogger>();
+
         const testSubject = new PopupActionCreator(
             interpreterMock.object,
             actionsMock.object,
             telemetryEventHandlerMock.object,
+            usageLoggerMock.object,
         );
 
         testSubject.registerCallbacks();
@@ -48,6 +52,7 @@ describe('PopupActionCreator', () => {
             tp => tp.publishTelemetry(POPUP_INITIALIZED, payload),
             Times.once(),
         );
+        usageLoggerMock.verify(m => m.record(), Times.once());
     });
 
     function createTabActionsMock<ActionName extends keyof TabActions>(

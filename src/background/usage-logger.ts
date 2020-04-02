@@ -1,5 +1,5 @@
-import { StorageAdapter } from 'common/browser-adapters/storage-adapter';
-import { Logger } from 'common/logging/logger';
+import { StorageAdapter } from '../common/browser-adapters/storage-adapter';
+import { Logger } from '../common/logging/logger';
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.

@@ -6,6 +6,7 @@ import { UserConfigurationStore } from 'background/stores/global/user-configurat
 import { TabContextStoreHub } from 'background/stores/tab-context-store-hub';
 import { VisualizationStore } from 'background/stores/visualization-store';
 import { TabContext, TabToContextMap } from 'background/tab-context';
+import { UsageLogger } from 'background/usage-logger';
 import { BaseStore } from 'common/base-store';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { CommandsAdapter } from 'common/browser-adapters/commands-adapter';
@@ -34,6 +35,7 @@ describe('KeyboardShortcutHandler', () => {
     let visualizationStoreMock: IMock<BaseStore<VisualizationStoreData>>;
     let interpreterMock: IMock<Interpreter>;
     let loggerMock: IMock<Logger>;
+    let usageLoggerMock: IMock<UsageLogger>;
 
     let commandCallback: (commandId: string) => Promise<void>;
     let existingTabId: number;
@@ -102,7 +104,7 @@ describe('KeyboardShortcutHandler', () => {
             });
 
         loggerMock = Mock.ofType<Logger>();
-
+        usageLoggerMock = Mock.ofType<UsageLogger>();
         testSubject = new KeyboardShortcutHandler(
             tabToContextMap,
             browserAdapterMock.object,
@@ -113,6 +115,7 @@ describe('KeyboardShortcutHandler', () => {
             userConfigurationStoreMock.object,
             commandsAdapterMock.object,
             loggerMock.object,
+            usageLoggerMock.object,
         );
 
         testSubject.initialize();
@@ -178,6 +181,7 @@ describe('KeyboardShortcutHandler', () => {
                 },
             });
 
+            usageLoggerMock.verify(m => m.record(), Times.once());
             interpreterMock.verifyAll();
         },
     );
@@ -215,6 +219,7 @@ describe('KeyboardShortcutHandler', () => {
                 },
             });
 
+            usageLoggerMock.verify(m => m.record(), Times.once());
             interpreterMock.verifyAll();
         },
     );
@@ -234,6 +239,7 @@ describe('KeyboardShortcutHandler', () => {
 
             await commandCallback(configuration.chromeCommand);
 
+            usageLoggerMock.verify(m => m.record(), Times.once());
             notificationCreatorMock.verifyAll();
         },
     );
@@ -252,6 +258,7 @@ describe('KeyboardShortcutHandler', () => {
 
             await commandCallback(configuration.chromeCommand);
 
+            usageLoggerMock.verify(m => m.record(), Times.once());
             notificationCreatorMock.verifyAll();
         },
     );
@@ -261,6 +268,7 @@ describe('KeyboardShortcutHandler', () => {
 
         await commandCallback('unknown-command');
 
+        usageLoggerMock.verify(m => m.record(), Times.once());
         interpreterMock.verifyAll();
     });
 
@@ -271,6 +279,7 @@ describe('KeyboardShortcutHandler', () => {
 
         await commandCallback(getArbitraryValidChromeCommand());
 
+        usageLoggerMock.verify(m => m.record(), Times.never());
         interpreterMock.verifyAll();
     });
 
@@ -282,6 +291,7 @@ describe('KeyboardShortcutHandler', () => {
 
         await commandCallback(getArbitraryValidChromeCommand());
 
+        usageLoggerMock.verify(m => m.record(), Times.once());
         interpreterMock.verifyAll();
     });
 
@@ -299,6 +309,7 @@ describe('KeyboardShortcutHandler', () => {
 
         await commandCallback(configuration.chromeCommand);
 
+        usageLoggerMock.verify(m => m.record(), Times.once());
         interpreterMock.verifyAll();
     });
 
@@ -309,6 +320,7 @@ describe('KeyboardShortcutHandler', () => {
 
         await commandCallback(getArbitraryValidChromeCommand());
 
+        usageLoggerMock.verify(m => m.record(), Times.once());
         interpreterMock.verifyAll();
     });
 
@@ -328,6 +340,7 @@ describe('KeyboardShortcutHandler', () => {
 
             await commandCallback(getArbitraryValidChromeCommand());
 
+            usageLoggerMock.verify(m => m.record(), Times.once());
             notificationCreatorMock.verifyAll();
         },
     );
