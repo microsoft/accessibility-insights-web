@@ -8,7 +8,6 @@ import {
     getApplicationTelemetryDataFactory,
     getTelemetryClient,
 } from 'background/telemetry/telemetry-client-provider';
-import { TelemetryLogger } from 'background/telemetry/telemetry-logger';
 import { AppDataAdapter } from 'common/browser-adapters/app-data-adapter';
 import { StorageAdapter } from 'common/browser-adapters/storage-adapter';
 import { configMutator } from 'common/configuration';

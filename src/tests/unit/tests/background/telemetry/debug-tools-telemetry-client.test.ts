@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
-    ApplicationTelemetryDataFactory,
     ApplicationTelemetryData,
+    ApplicationTelemetryDataFactory,
 } from 'background/telemetry/application-telemetry-data-factory';
 import { DebugToolsTelemetryClient } from 'background/telemetry/debug-tools-telemetry-client';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
