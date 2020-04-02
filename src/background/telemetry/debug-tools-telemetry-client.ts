@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ApplicationTelemetryDataFactory } from 'background/telemetry/application-telemetry-data-factory';
 import { TelemetryClient } from 'background/telemetry/telemetry-client';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { ConnectionNames } from 'common/constants/connection-names';
@@ -7,7 +8,10 @@ import { ConnectionNames } from 'common/constants/connection-names';
 export class DebugToolsTelemetryClient implements TelemetryClient {
     private connections: chrome.runtime.Port[] = [];
 
-    constructor(private readonly browserAdapter: BrowserAdapter) {}
+    constructor(
+        private readonly browserAdapter: BrowserAdapter,
+        private readonly telemetryDataFactory: ApplicationTelemetryDataFactory,
+    ) {}
 
     public initialize(): void {
         this.browserAdapter.addListenerOnConnect((connection: chrome.runtime.Port) => {
@@ -36,10 +40,15 @@ export class DebugToolsTelemetryClient implements TelemetryClient {
             return;
         }
 
+        const finalProperties = {
+            ...properties,
+            ...this.telemetryDataFactory.getData(),
+        };
+
         this.connections.forEach(connection =>
             connection.postMessage({
                 name,
-                properties,
+                properties: finalProperties,
             }),
         );
     }

@@ -1,5 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import {
+    ApplicationTelemetryDataFactory,
+    ApplicationTelemetryData,
+} from 'background/telemetry/application-telemetry-data-factory';
 import { DebugToolsTelemetryClient } from 'background/telemetry/debug-tools-telemetry-client';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { ConnectionNames } from 'common/constants/connection-names';
@@ -9,20 +13,24 @@ import { IMock, It, Mock, Times } from 'typemoq';
 describe('DebugToolsTelemetryClient', () => {
     type Port = chrome.runtime.Port;
     type OnDisconnect = Port['onDisconnect'];
-    type AddListener = OnDisconnect['addListener'];
 
     const connectionsCountProperty = 'connections.length';
 
     let browserAdapterMock: IMock<BrowserAdapter>;
     let portMock: IMock<Port>;
+    let telemetryDataFactoryMock: IMock<ApplicationTelemetryDataFactory>;
 
     let testSubject: DebugToolsTelemetryClient;
 
     beforeEach(() => {
         browserAdapterMock = Mock.ofType<BrowserAdapter>();
         portMock = Mock.ofType<Port>();
+        telemetryDataFactoryMock = Mock.ofType<ApplicationTelemetryDataFactory>();
 
-        testSubject = new DebugToolsTelemetryClient(browserAdapterMock.object);
+        testSubject = new DebugToolsTelemetryClient(
+            browserAdapterMock.object,
+            telemetryDataFactoryMock.object,
+        );
     });
 
     describe('initialize', () => {
@@ -73,7 +81,7 @@ describe('DebugToolsTelemetryClient', () => {
 
     describe('enableTelemetry', () => {
         beforeEach(() => {
-            testSubject = new DebugToolsTelemetryClient(null);
+            testSubject = new DebugToolsTelemetryClient(null, null);
         });
 
         it('no op, no side effects', () => {
@@ -85,7 +93,7 @@ describe('DebugToolsTelemetryClient', () => {
 
     describe('disableTelemetry', () => {
         beforeEach(() => {
-            testSubject = new DebugToolsTelemetryClient(null);
+            testSubject = new DebugToolsTelemetryClient(null, null);
         });
 
         it('no op, no side effects', () => {
@@ -100,7 +108,7 @@ describe('DebugToolsTelemetryClient', () => {
         const eventProperties = { testProperty: 'testValue' };
 
         it('is no op when there are no connections', () => {
-            testSubject = new DebugToolsTelemetryClient(null);
+            testSubject = new DebugToolsTelemetryClient(null, null);
 
             const action = () => testSubject.trackEvent(eventName, eventProperties);
 
@@ -110,6 +118,15 @@ describe('DebugToolsTelemetryClient', () => {
         it('post a message to every tracked connection', () => {
             const connectionsCount = 3;
             let onConnectListener: Function;
+
+            const appData: ApplicationTelemetryData = {
+                applicationBuild: 'test-application-build',
+                applicationName: 'test-application-name',
+                applicationVersion: 'test-application-version',
+                installationId: 'test-installation-id',
+            };
+
+            telemetryDataFactoryMock.setup(factory => factory.getData()).returns(() => appData);
 
             browserAdapterMock
                 .setup(adapter => adapter.addListenerOnConnect(It.is(isFunction)))
@@ -141,7 +158,10 @@ describe('DebugToolsTelemetryClient', () => {
                         port.postMessage(
                             It.isValue({
                                 name: eventName,
-                                properties: eventProperties,
+                                properties: {
+                                    ...eventProperties,
+                                    ...appData,
+                                },
                             }),
                         ),
                     Times.once(),
