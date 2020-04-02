@@ -20,6 +20,7 @@ import {
     DebugToolsViewDeps,
     DebugToolsViewState,
 } from 'debug-tools/components/debug-tools-view';
+import { TelemetryListener } from 'debug-tools/controllers/telemetry-listener';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
@@ -31,6 +32,9 @@ export const initializeDebugTools = () => {
     const storeActionMessageCreator = getStoreActionMessageCreator(browserAdapter, stores);
 
     const storesHub = new BaseClientStoresHub<DebugToolsViewState>(stores);
+
+    const telemetryListener = new TelemetryListener(browserAdapter, createDefaultLogger());
+    telemetryListener.initialize();
 
     const props: DebugToolsViewDeps = {
         storesHub,

@@ -21,6 +21,7 @@ import { CardSelectionStore } from 'background/stores/card-selection-store';
 import { DetailsViewStore } from 'background/stores/details-view-store';
 import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { UnifiedScanResultStore } from 'background/stores/unified-scan-result-store';
+import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
 import { UserConfigurationController } from 'background/user-configuration-controller';
 import { onlyHighlightingSupported } from 'common/components/cards/card-interaction-support';
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
@@ -74,7 +75,10 @@ import { getPersistedData, PersistedData } from '../../background/get-persisted-
 import { IndexedDBDataKeys } from '../../background/IndexedDBDataKeys';
 import { InstallationData } from '../../background/installation-data';
 import { UserConfigurationStore } from '../../background/stores/global/user-configuration-store';
-import { getTelemetryClient } from '../../background/telemetry/telemetry-client-provider';
+import {
+    getApplicationTelemetryDataFactory,
+    getTelemetryClient,
+} from '../../background/telemetry/telemetry-client-provider';
 import { TelemetryEventHandler } from '../../background/telemetry/telemetry-event-handler';
 import { TelemetryLogger } from '../../background/telemetry/telemetry-logger';
 import { TelemetryStateListener } from '../../background/telemetry/telemetry-state-listener';
@@ -134,6 +138,14 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const installationData: InstallationData = persistedData.installationData;
 
         const logger = createDefaultLogger();
+
+        const applicationTelemetryDataFactory = getApplicationTelemetryDataFactory(
+            installationData,
+            storageAdapter,
+            appDataAdapter,
+            androidAppTitle,
+        );
+
         const platformInfo = new PlatformInfo(process);
 
         const userConfigurationStore = new UserConfigurationStore(
@@ -209,14 +221,14 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const telemetryLogger = new TelemetryLogger(logger);
         telemetryLogger.initialize(featureFlagsController);
 
-        const telemetryClient = getTelemetryClient(
-            androidAppTitle,
-            installationData,
-            appDataAdapter,
+        const consoleTelemetryClient = new ConsoleTelemetryClient(
+            applicationTelemetryDataFactory,
             telemetryLogger,
-            AppInsights,
-            storageAdapter,
         );
+
+        const telemetryClient = getTelemetryClient(applicationTelemetryDataFactory, AppInsights, [
+            consoleTelemetryClient,
+        ]);
         const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
 
         registerUserConfigurationMessageCallback(interpreter, userConfigurationActionCreator);

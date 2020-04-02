@@ -2,6 +2,8 @@
 // Licensed under the MIT License.
 import { AppInsights } from 'applicationinsights-js';
 import { Assessments } from 'assessments/assessments';
+import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
+import { DebugToolsTelemetryClient } from 'background/telemetry/debug-tools-telemetry-client';
 import { AxeInfo } from '../common/axe-info';
 import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -30,7 +32,10 @@ import { TabToContextMap } from './tab-context';
 import { TabContextFactory } from './tab-context-factory';
 import { TargetPageController } from './target-page-controller';
 import { TargetTabController } from './target-tab-controller';
-import { getTelemetryClient } from './telemetry/telemetry-client-provider';
+import {
+    getApplicationTelemetryDataFactory,
+    getTelemetryClient,
+} from './telemetry/telemetry-client-provider';
 import { TelemetryEventHandler } from './telemetry/telemetry-event-handler';
 import { TelemetryLogger } from './telemetry/telemetry-logger';
 import { TelemetryStateListener } from './telemetry/telemetry-state-listener';
@@ -67,14 +72,29 @@ async function initialize(): Promise<void> {
     const telemetryLogger = new TelemetryLogger(logger);
 
     const { installationData } = userData;
-    const telemetryClient = getTelemetryClient(
-        title,
+
+    const applicationTelemetryDataFactory = getApplicationTelemetryDataFactory(
         installationData,
         browserAdapter,
-        telemetryLogger,
-        AppInsights,
         browserAdapter,
+        title,
     );
+
+    const consoleTelemetryClient = new ConsoleTelemetryClient(
+        applicationTelemetryDataFactory,
+        telemetryLogger,
+    );
+
+    const debugToolsTelemetryClient = new DebugToolsTelemetryClient(
+        browserAdapter,
+        applicationTelemetryDataFactory,
+    );
+    debugToolsTelemetryClient.initialize();
+
+    const telemetryClient = getTelemetryClient(applicationTelemetryDataFactory, AppInsights, [
+        consoleTelemetryClient,
+        debugToolsTelemetryClient,
+    ]);
 
     const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
 
