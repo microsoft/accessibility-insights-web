@@ -52,7 +52,7 @@ describe('HighlightVisualization', () => {
         drawerUtilsMock
             .setup(drawerUtils => drawerUtils.getDocumentElement())
             .returns(() => documentMock.object);
-        documentMock.setup(document => document.querySelector('body')).returns(() => bodyStub);
+        documentMock.setup(document => document.body).returns(() => bodyStub);
         windowUtilsMock
             .setup(windowUtils => windowUtils.getComputedStyle(bodyStub))
             .returns(() => bodyStyleStub);

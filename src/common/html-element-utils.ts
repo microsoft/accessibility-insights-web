@@ -18,6 +18,10 @@ export class HTMLElementUtils {
         return this.dom.getElementsByTagName(tagName);
     }
 
+    public getBody(): HTMLElement {
+        return this.dom.body;
+    }
+
     public querySelector(selector: string): Element {
         return this.dom.querySelector(selector);
     }
