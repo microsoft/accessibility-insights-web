@@ -31,6 +31,7 @@ import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 import { exampleUnifiedStatusResults } from '../common/components/cards/sample-view-model-data';
+import { getDefaultFeatureFlagValues } from 'common/feature-flags';
 
 describe('DetailsViewBody', () => {
     let selectedTest: VisualizationType;
@@ -81,7 +82,7 @@ describe('DetailsViewBody', () => {
                 enabled: false,
             } as ScanData;
 
-            clickHandlerStub = () => {};
+            clickHandlerStub = () => { };
 
             const assessmentStoreData = {
                 assessmentNavState: {
@@ -112,7 +113,7 @@ describe('DetailsViewBody', () => {
                 tabStoreData: new TabStoreDataBuilder().build(),
                 visualizationStoreData: new VisualizationStoreDataBuilder().build(),
                 visualizationScanResultData: new VisualizationScanResultStoreDataBuilder().build(),
-                featureFlagStoreData: new FeatureFlagStore(null, null, null).getDefaultState(),
+                featureFlagStoreData: getDefaultFeatureFlagValues(),
                 selectedTest: selectedTest,
                 visualizationConfigurationFactory: configFactoryMock.object,
                 clickHandlerFactory: clickHandlerFactoryMock.object,

@@ -40,9 +40,9 @@ export function getDefaultFeatureFlagValuesUnified(): FeatureFlagStoreData {
     return values;
 }
 
-export function getForceDefaultFlagsUnified(): UnifiedFeatureFlags[] {
+export function getForceDefaultFlagsUnified(): string[] {
     const details: FeatureFlagDetail[] = getAllFeatureFlagDetailsUnified();
-    const forceDefaultFlags: UnifiedFeatureFlags[] = [];
+    const forceDefaultFlags: string[] = [];
     forEach(details, detail => {
         if (detail.forceDefault) {
             forceDefaultFlags.push(detail.id);

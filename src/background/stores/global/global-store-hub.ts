@@ -22,6 +22,7 @@ import { FeatureFlagStore } from './feature-flag-store';
 import { LaunchPanelStore } from './launch-panel-store';
 import { ScopingStore } from './scoping-store';
 import { UserConfigurationStore } from './user-configuration-store';
+import { FeatureFlags, getForceDefaultFlags, getDefaultFeatureFlagValues } from 'common/feature-flags';
 
 export class GlobalStoreHub implements StoreHub {
     public commandStore: CommandStore;
@@ -47,6 +48,9 @@ export class GlobalStoreHub implements StoreHub {
             globalActionHub.featureFlagActions,
             storageAdapter,
             userData,
+            getForceDefaultFlags,
+            getDefaultFeatureFlagValues,
+
         );
         this.launchPanelStore = new LaunchPanelStore(
             globalActionHub.launchPanelStateActions,

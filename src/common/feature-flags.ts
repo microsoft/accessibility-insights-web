@@ -111,9 +111,9 @@ export function getDefaultFeatureFlagValues(): FeatureFlagStoreData {
     return values;
 }
 
-export function getForceDefaultFlags(): FeatureFlags[] {
+export function getForceDefaultFlags(): string[] {
     const details: FeatureFlagDetail[] = getAllFeatureFlagDetails();
-    const forceDefaultFlags: FeatureFlags[] = [];
+    const forceDefaultFlags: string[] = [];
     forEach(details, detail => {
         if (detail.forceDefault) {
             forceDefaultFlags.push(detail.id);
