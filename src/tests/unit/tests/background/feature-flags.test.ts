@@ -1,18 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import {
-    FeatureFlags,
-    getAllFeatureFlagDetails,
-    getDefaultFeatureFlagValues,
-} from 'common/feature-flags';
+import { FeatureFlagDefaultsHelper } from 'common/feature-flag-defaults-helper';
+import { FeatureFlags, getAllFeatureFlagDetails } from 'common/feature-flags';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { findIndex, forEach, indexOf, keys } from 'lodash';
 
 describe('FeatureFlagsTest', () => {
     let featureFlagValues: FeatureFlagStoreData;
+    let featureFlagDefaultsHelper: FeatureFlagDefaultsHelper;
 
     beforeEach(() => {
-        featureFlagValues = getDefaultFeatureFlagValues();
+        featureFlagDefaultsHelper = new FeatureFlagDefaultsHelper(getAllFeatureFlagDetails);
+        featureFlagValues = featureFlagDefaultsHelper.getDefaultFeatureFlagValues();
     });
 
     test('default values', () => {

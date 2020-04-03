@@ -5,6 +5,7 @@ import { LocalStorageDataKeys } from 'background/local-storage-data-keys';
 import { LocalStorageData } from 'background/storage-data';
 import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { StorageAdapter } from 'common/browser-adapters/storage-adapter';
+import { FeatureFlagDefaultsHelper } from 'common/feature-flag-defaults-helper';
 import { StoreNames } from 'common/stores/store-names';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { IMock, It, Mock } from 'typemoq';
@@ -17,7 +18,7 @@ describe('FeatureFlagStoreTest', () => {
     let fakeFeatureFlagTestValue: FeatureFlagStoreData;
     const testFeature = 'fakeFeature';
     let getForceDefaultFeatures: string[];
-    const getForceDefaultFlagsStub = () => getForceDefaultFeatures;
+    let featureFlagDefaultsHelperMock: IMock<FeatureFlagDefaultsHelper>;
 
     beforeEach(() => {
         getForceDefaultFeatures = ['defaultFeature'];
@@ -28,6 +29,14 @@ describe('FeatureFlagStoreTest', () => {
         fakeFeatureFlagTestValue[testFeature] = false;
 
         storageAdapterMock = Mock.ofType<StorageAdapter>();
+
+        featureFlagDefaultsHelperMock = Mock.ofType<FeatureFlagDefaultsHelper>();
+        featureFlagDefaultsHelperMock
+            .setup(f => f.getDefaultFeatureFlagValues())
+            .returns(() => createFakeDefaultFeatureFlagValues());
+        featureFlagDefaultsHelperMock
+            .setup(f => f.getForceDefaultFlags())
+            .returns(() => getForceDefaultFeatures);
     });
 
     test('constructor, no side effects', () => {
@@ -134,8 +143,7 @@ describe('FeatureFlagStoreTest', () => {
             new FeatureFlagActions(),
             storageAdapterMock.object,
             userDataStub,
-            getForceDefaultFlagsStub,
-            createFakeDefaultFeatureFlagValues,
+            featureFlagDefaultsHelperMock.object,
         );
     }
 
@@ -148,8 +156,7 @@ describe('FeatureFlagStoreTest', () => {
                 actions,
                 storageAdapterMock.object,
                 userData,
-                getForceDefaultFlagsStub,
-                createFakeDefaultFeatureFlagValues,
+                featureFlagDefaultsHelperMock.object,
             );
         return new StoreTester(FeatureFlagActions, actionName, factory);
     }

@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { PermissionsStateStore } from 'background/stores/global/permissions-state-store';
-import { getDefaultFeatureFlagValues, getForceDefaultFlags } from 'common/feature-flags';
+import { FeatureFlagDefaultsHelper } from 'common/feature-flag-defaults-helper';
+import { getAllFeatureFlagDetails } from 'common/feature-flags';
 import { BaseStore } from '../../../common/base-store';
 import { BrowserAdapter } from '../../../common/browser-adapters/browser-adapter';
 import { StorageAdapter } from '../../../common/browser-adapters/storage-adapter';
@@ -48,8 +49,7 @@ export class GlobalStoreHub implements StoreHub {
             globalActionHub.featureFlagActions,
             storageAdapter,
             userData,
-            getForceDefaultFlags,
-            getDefaultFeatureFlagValues,
+            new FeatureFlagDefaultsHelper(getAllFeatureFlagDetails),
         );
         this.launchPanelStore = new LaunchPanelStore(
             globalActionHub.launchPanelStateActions,

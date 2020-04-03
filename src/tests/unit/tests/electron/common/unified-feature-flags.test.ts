@@ -1,18 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FeatureFlagDefaultsHelper } from 'common/feature-flag-defaults-helper';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import {
     getAllFeatureFlagDetailsUnified,
-    getDefaultFeatureFlagValuesUnified,
     UnifiedFeatureFlags,
 } from 'electron/common/unified-feature-flags';
 import { findIndex, forEach, indexOf, keys } from 'lodash';
 
 describe('FeatureFlagsTest', () => {
     let featureFlagValues: FeatureFlagStoreData;
+    let featureFlagDefaultsHelper: FeatureFlagDefaultsHelper;
 
     beforeEach(() => {
-        featureFlagValues = getDefaultFeatureFlagValuesUnified();
+        featureFlagDefaultsHelper = new FeatureFlagDefaultsHelper(getAllFeatureFlagDetailsUnified);
+        featureFlagValues = featureFlagDefaultsHelper.getDefaultFeatureFlagValues();
     });
 
     test('default values', () => {
