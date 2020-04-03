@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { PermissionsStateStore } from 'background/stores/global/permissions-state-store';
+import { getDefaultFeatureFlagValues, getForceDefaultFlags } from 'common/feature-flags';
 import { BaseStore } from '../../../common/base-store';
 import { BrowserAdapter } from '../../../common/browser-adapters/browser-adapter';
 import { StorageAdapter } from '../../../common/browser-adapters/storage-adapter';
@@ -22,7 +23,6 @@ import { FeatureFlagStore } from './feature-flag-store';
 import { LaunchPanelStore } from './launch-panel-store';
 import { ScopingStore } from './scoping-store';
 import { UserConfigurationStore } from './user-configuration-store';
-import { FeatureFlags, getForceDefaultFlags, getDefaultFeatureFlagValues } from 'common/feature-flags';
 
 export class GlobalStoreHub implements StoreHub {
     public commandStore: CommandStore;
@@ -50,7 +50,6 @@ export class GlobalStoreHub implements StoreHub {
             userData,
             getForceDefaultFlags,
             getDefaultFeatureFlagValues,
-
         );
         this.launchPanelStore = new LaunchPanelStore(
             globalActionHub.launchPanelStateActions,
