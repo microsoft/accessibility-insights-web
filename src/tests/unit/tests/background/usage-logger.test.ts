@@ -19,8 +19,8 @@ describe('UsageLoggerTest', () => {
     };
 
     beforeEach(() => {
+        loggerMock = Mock.ofType<Logger>();
         storageAdapterMock = Mock.ofType<StorageAdapter>(undefined, MockBehavior.Strict);
-        loggerMock = Mock.ofType<Logger>(undefined, MockBehavior.Strict);
         dateGetterMock = Mock.ofInstance(() => dateStub, MockBehavior.Strict);
         dateGetterMock.setup(m => m()).returns(_ => dateStub);
     });
@@ -36,15 +36,13 @@ describe('UsageLoggerTest', () => {
             .setup(m => m.setUserData(It.isValue(expected)))
             .returns(_ => Promise.resolve());
 
-        loggerMock.setup(l => l.error()).verifiable(Times.never());
-
         usageLogger.record();
 
         storageAdapterMock.verifyAll();
-        loggerMock.verifyAll();
     });
 
     it('routes to logger if promise rejected', () => {
+        const errorMessage = 'errorMessage';
         const usageLogger = new UsageLogger(
             storageAdapterMock.object,
             dateGetterMock.object,
@@ -53,13 +51,11 @@ describe('UsageLoggerTest', () => {
 
         storageAdapterMock
             .setup(m => m.setUserData(It.isValue(expected)))
-            .returns(_ => Promise.reject());
-
-        loggerMock.setup(l => l.error()).verifiable(Times.once());
+            .returns(_ => Promise.reject({ message: errorMessage }));
 
         usageLogger.record();
 
         storageAdapterMock.verifyAll();
-        loggerMock.verifyAll();
+        loggerMock.verify(l => l.error(errorMessage), Times.once());
     });
 });
