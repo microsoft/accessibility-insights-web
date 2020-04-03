@@ -139,7 +139,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             AppInsights,
             storageAdapter,
         );
-
         const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
         const platformInfo = new PlatformInfo(process);
 
