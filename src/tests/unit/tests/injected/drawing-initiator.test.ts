@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { getDefaultFeatureFlagValues } from '../../../../common/feature-flags';
+import { getDefaultFeatureFlagsWeb } from '../../../../common/feature-flags';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import {
     DrawingController,
@@ -73,7 +73,7 @@ describe('DrawingInitiatorTest', () => {
                     ruleResults: null,
                 },
             ],
-            featureFlagStoreData: getDefaultFeatureFlagValues(),
+            featureFlagStoreData: getDefaultFeatureFlagsWeb(),
             configId: configId,
         };
         setupProcessorMock();
@@ -86,7 +86,7 @@ describe('DrawingInitiatorTest', () => {
 
         testObject.enableVisualization(
             visualizationType,
-            getDefaultFeatureFlagValues(),
+            getDefaultFeatureFlagsWeb(),
             selectorMap,
             configId,
             processorMock.object,
@@ -101,7 +101,7 @@ describe('DrawingInitiatorTest', () => {
         const expectedvisualizationMessage: VisualizationWindowMessage = {
             visualizationType: visualizationType,
             isEnabled: false,
-            featureFlagStoreData: getDefaultFeatureFlagValues(),
+            featureFlagStoreData: getDefaultFeatureFlagsWeb(),
             configId: configId,
         };
 
@@ -112,7 +112,7 @@ describe('DrawingInitiatorTest', () => {
             })
             .verifiable();
 
-        testObject.disableVisualization(visualizationType, getDefaultFeatureFlagValues(), configId);
+        testObject.disableVisualization(visualizationType, getDefaultFeatureFlagsWeb(), configId);
 
         verifyAll();
     });
@@ -143,7 +143,7 @@ describe('DrawingInitiatorTest', () => {
             visualizationType: visualizationType,
             isEnabled: true,
             elementResults: [],
-            featureFlagStoreData: getDefaultFeatureFlagValues(),
+            featureFlagStoreData: getDefaultFeatureFlagsWeb(),
             configId: configId,
         };
         setupProcessorMock();
@@ -156,7 +156,7 @@ describe('DrawingInitiatorTest', () => {
 
         testObject.enableVisualization(
             visualizationType,
-            getDefaultFeatureFlagValues(),
+            getDefaultFeatureFlagsWeb(),
             {},
             configId,
             processorMock.object,
