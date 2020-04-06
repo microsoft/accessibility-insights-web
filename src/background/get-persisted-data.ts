@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { IndexedDBAPI } from '../common/indexedDB/indexedDB';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
@@ -10,12 +11,14 @@ export interface PersistedData {
     assessmentStoreData: AssessmentStoreData;
     userConfigurationData: UserConfigurationStoreData;
     installationData: InstallationData;
+    featureFlags: FeatureFlagStoreData;
 }
 
 const keyToPersistedDataMapping = {
     [IndexedDBDataKeys.assessmentStore]: 'assessmentStoreData',
     [IndexedDBDataKeys.userConfiguration]: 'userConfigurationData',
     [IndexedDBDataKeys.installation]: 'installationData',
+    [IndexedDBDataKeys.unifiedFeatureFlags]: 'featureFlags',
 };
 
 export function getPersistedData(
