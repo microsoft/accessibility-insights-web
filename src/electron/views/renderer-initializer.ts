@@ -13,6 +13,7 @@ import { ScopingActions } from 'background/actions/scoping-actions';
 import { SidePanelActions } from 'background/actions/side-panel-actions';
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { FeatureFlagsController } from 'background/feature-flags-controller';
+import { FeatureFlagsActionCreator } from 'background/global-action-creators/feature-flags-action-creator';
 import { registerUserConfigurationMessageCallback } from 'background/global-action-creators/registrar/register-user-configuration-message-callbacks';
 import { UserConfigurationActionCreator } from 'background/global-action-creators/user-configuration-action-creator';
 import { Interpreter } from 'background/interpreter';
@@ -84,7 +85,6 @@ import { BaseClientStoresHub } from '../../common/stores/base-client-stores-hub'
 import { androidAppTitle } from '../../content/strings/application';
 import { ElectronAppDataAdapter } from '../adapters/electron-app-data-adapter';
 import { ElectronStorageAdapter } from '../adapters/electron-storage-adapter';
-import { RiggedFeatureFlagChecker } from '../common/rigged-feature-flag-checker';
 import { DeviceConnectActionCreator } from '../flux/action-creator/device-connect-action-creator';
 import { DeviceActions } from '../flux/action/device-actions';
 import { DeviceStore } from '../flux/store/device-store';
@@ -95,7 +95,6 @@ import {
     RootContainerRendererDeps,
 } from './root-container/root-container-renderer';
 import { screenshotViewModelProvider } from './screenshot/screenshot-view-model-provider';
-import { FeatureFlagsActionCreator } from 'background/global-action-creators/feature-flags-action-creator';
 
 declare var window: Window & {
     insightsUserConfiguration: UserConfigurationController;
