@@ -70,10 +70,7 @@ describe('FailureInstancePanelControlTest', () => {
         const wrapper = shallow<FailureInstancePanelControl>(
             <FailureInstancePanelControl {...props} />,
         );
-        wrapper
-            .find(TextField)
-            .props()
-            .onChange(null, description);
+        wrapper.find(TextField).props().onChange(null, description);
 
         expect(wrapper.state().currentInstance.failureDescription).toEqual(description);
     });
@@ -135,14 +132,8 @@ describe('FailureInstancePanelControlTest', () => {
         const wrapper = shallow<FailureInstancePanelControl>(
             <FailureInstancePanelControl {...props} />,
         );
-        wrapper
-            .find(TextField)
-            .props()
-            .onChange(eventStub, 'a previously entered description');
-        wrapper
-            .find(ActionButton)
-            .props()
-            .onClick(eventStub);
+        wrapper.find(TextField).props().onChange(eventStub, 'a previously entered description');
+        wrapper.find(ActionButton).props().onClick(eventStub);
 
         expect(wrapper.state().isPanelOpen).toBe(true);
         expect(wrapper.state().currentInstance.failureDescription).toEqual(
@@ -159,15 +150,9 @@ describe('FailureInstancePanelControlTest', () => {
             <FailureInstancePanelControl {...props} />,
         );
 
-        wrapper
-            .find(TextField)
-            .props()
-            .onChange(null, description);
+        wrapper.find(TextField).props().onChange(null, description);
 
-        wrapper
-            .find(GenericPanel)
-            .props()
-            .onDismiss();
+        wrapper.find(GenericPanel).props().onDismiss();
 
         expect(wrapper.state().isPanelOpen).toBe(false);
 
@@ -197,15 +182,9 @@ describe('FailureInstancePanelControlTest', () => {
             <FailureInstancePanelControl {...props} />,
         );
 
-        wrapper
-            .find(TextField)
-            .props()
-            .onChange(null, description);
+        wrapper.find(TextField).props().onChange(null, description);
 
-        wrapper
-            .find(ActionAndCancelButtonsComponent)
-            .props()
-            .primaryButtonOnClick(null);
+        wrapper.find(ActionAndCancelButtonsComponent).props().primaryButtonOnClick(null);
 
         expect(wrapper.state().isPanelOpen).toBe(false);
 
@@ -233,15 +212,9 @@ describe('FailureInstancePanelControlTest', () => {
         const wrapper = shallow<FailureInstancePanelControl>(
             <FailureInstancePanelControl {...props} />,
         );
-        wrapper
-            .find(TextField)
-            .props()
-            .onChange(null, description);
+        wrapper.find(TextField).props().onChange(null, description);
 
-        wrapper
-            .find(ActionAndCancelButtonsComponent)
-            .props()
-            .primaryButtonOnClick(null);
+        wrapper.find(ActionAndCancelButtonsComponent).props().primaryButtonOnClick(null);
 
         expect(wrapper.state().isPanelOpen).toBe(false);
 

@@ -26,7 +26,7 @@ module.exports = wallaby => {
             '**/*.+(ts|tsx)': wallaby.compilers.typeScript({ module: 'commonjs' }),
         },
         testFramework: 'jest',
-        setup: function(wallaby) {
+        setup: function (wallaby) {
             const jestConfig = require('./src/tests/unit/jest.config.js');
 
             // Wallaby uses its own typescript transformer and recommends disabling jest's to avoid double-compiling.

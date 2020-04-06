@@ -140,10 +140,7 @@ describe('ExportDialog', () => {
 
             const flaggedComponent = wrapper.find(FlaggedComponent);
 
-            flaggedComponent
-                .dive()
-                .find(PrimaryButton)
-                .simulate('click', eventStub);
+            flaggedComponent.dive().find(PrimaryButton).simulate('click', eventStub);
 
             reportExportServiceProvider.verifyAll();
             fileProviderMock.verifyAll();
