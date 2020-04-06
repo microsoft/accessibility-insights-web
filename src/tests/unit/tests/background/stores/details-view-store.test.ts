@@ -87,10 +87,9 @@ describe('DetailsViewStoreTest', () => {
             .withSettingPanelState(false)
             .build();
 
-        createStoreTesterForDetailsViewActions('closeSettingsPanel').testListenerToBeCalledOnce(
-            initialState,
-            expectedState,
-        );
+        createStoreTesterForSidePanelActions('closeSidePanel')
+            .withActionParam('Settings')
+            .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     test('onOpenContent', () => {

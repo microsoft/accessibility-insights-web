@@ -19,7 +19,7 @@ import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import { BaseActionPayload } from './action-payloads';
 import { DetailsViewActions } from './details-view-actions';
 
-type SidePanelToOpenPanelTelemetryEventName = {
+type SidePanelToTelemetryEventName = {
     [P in SidePanel]: string;
 };
 
@@ -48,7 +48,7 @@ export class DetailsViewActionCreator {
         );
         this.interpreter.registerTypeToPayloadCallback(
             Messages.SettingsPanel.ClosePanel,
-            this.onCloseSettingsPanel,
+            this.onCloseSidePanel.bind(this, 'Settings'),
         );
         this.interpreter.registerTypeToPayloadCallback(
             getStoreStateMessage(StoreNames.DetailsViewStore),
@@ -60,7 +60,7 @@ export class DetailsViewActionCreator {
         );
     }
 
-    private sidePanelToOpenPanelTelemetryEventName: SidePanelToOpenPanelTelemetryEventName = {
+    private sidePanelToOpenPanelTelemetryEventName: SidePanelToTelemetryEventName = {
         Settings: SETTINGS_PANEL_OPEN,
         PreviewFeatures: PREVIEW_FEATURES_OPEN,
         Scoping: SCOPING_OPEN,
@@ -78,9 +78,17 @@ export class DetailsViewActionCreator {
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
     };
 
-    private onCloseSettingsPanel = (payload: BaseActionPayload): void => {
-        this.detailsViewActions.closeSettingsPanel.invoke(null);
-        this.telemetryEventHandler.publishTelemetry(SETTINGS_PANEL_CLOSE, payload);
+    private sidePanelToClosePanelTelemetryEventName: SidePanelToTelemetryEventName = {
+        Settings: SETTINGS_PANEL_CLOSE,
+        PreviewFeatures: null, // not supported here yet,
+        Scoping: null, // not supported here yet
+    };
+
+    private onCloseSidePanel = (panel: SidePanel, payload: BaseActionPayload): void => {
+        this.sidePanelActions.closeSidePanel.invoke(panel);
+
+        const eventName = this.sidePanelToClosePanelTelemetryEventName[panel];
+        this.telemetryEventHandler.publishTelemetry(eventName, payload);
     };
 
     private onSetDetailsViewRightContentPanel = (

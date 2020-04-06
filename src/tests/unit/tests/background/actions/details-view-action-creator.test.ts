@@ -133,11 +133,12 @@ describe('DetailsViewActionCreatorTest', () => {
     });
 
     it('handles SettingsPanel.ClosePanel message', () => {
-        const closeSettingsPanelMock = createActionMock<void>(null);
-        const detailsViewActionsMock = createDetailsViewActionsMock(
-            'closeSettingsPanel',
-            closeSettingsPanelMock.object,
+        const closeSidePanelMock = createActionMock<SidePanel>('Settings');
+        const sidePanelActionsMock = createSidePanelActionsMock(
+            'closeSidePanel',
+            closeSidePanelMock.object,
         );
+
         const interpreterMock = createInterpreterMock(
             Messages.SettingsPanel.ClosePanel,
             defaultBasePayload,
@@ -145,15 +146,15 @@ describe('DetailsViewActionCreatorTest', () => {
 
         const testObject = new DetailsViewActionCreator(
             interpreterMock.object,
-            detailsViewActionsMock.object,
             null,
+            sidePanelActionsMock.object,
             detailsViewControllerMock.object,
             telemetryEventHandlerMock.object,
         );
 
         testObject.registerCallback();
 
-        closeSettingsPanelMock.verifyAll();
+        closeSidePanelMock.verifyAll();
         telemetryEventHandlerMock.verify(
             handler => handler.publishTelemetry(SETTINGS_PANEL_CLOSE, defaultBasePayload),
             Times.once(),
