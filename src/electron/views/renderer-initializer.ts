@@ -134,20 +134,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
     (persistedData: Partial<PersistedData>) => {
         const installationData: InstallationData = persistedData.installationData;
 
-        const telemetryDataFactory = new TelemetryDataFactory();
         const logger = createDefaultLogger();
-        const telemetryLogger = new TelemetryLogger(logger);
-        telemetryLogger.initialize(new RiggedFeatureFlagChecker());
-
-        const telemetryClient = getTelemetryClient(
-            androidAppTitle,
-            installationData,
-            appDataAdapter,
-            telemetryLogger,
-            AppInsights,
-            storageAdapter,
-        );
-        const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
         const platformInfo = new PlatformInfo(process);
 
         const userConfigurationStore = new UserConfigurationStore(
@@ -206,23 +193,40 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             detailsViewStore,
         ]);
 
-        const telemetryStateListener = new TelemetryStateListener(
-            userConfigurationStore,
-            telemetryEventHandler,
-        );
-        telemetryStateListener.initialize();
-
         const fetchScanResults = createScanResultsFetcher(axios.get);
         const fetchDeviceConfig = createDeviceConfigFetcher(axios.get);
 
         const interpreter = new Interpreter();
+
+        const featureFlagsController = new FeatureFlagsController(featureFlagStore, interpreter);
+
         const dispatcher = new DirectActionMessageDispatcher(interpreter);
         const userConfigMessageCreator = new UserConfigMessageCreator(dispatcher);
         const userConfigurationActionCreator = new UserConfigurationActionCreator(
             userConfigActions,
         );
 
+        const telemetryDataFactory = new TelemetryDataFactory();
+        const telemetryLogger = new TelemetryLogger(logger);
+        telemetryLogger.initialize(featureFlagsController);
+
+        const telemetryClient = getTelemetryClient(
+            androidAppTitle,
+            installationData,
+            appDataAdapter,
+            telemetryLogger,
+            AppInsights,
+            storageAdapter,
+        );
+        const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
+
         registerUserConfigurationMessageCallback(interpreter, userConfigurationActionCreator);
+
+        const telemetryStateListener = new TelemetryStateListener(
+            userConfigurationStore,
+            telemetryEventHandler,
+        );
+        telemetryStateListener.initialize();
 
         const ipcMessageReceiver = new IpcMessageReceiver(interpreter, ipcRenderer, logger);
         ipcMessageReceiver.initialize();
@@ -364,7 +368,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         };
 
         window.insightsUserConfiguration = new UserConfigurationController(interpreter);
-        window.featureFlagsController = new FeatureFlagsController(featureFlagStore, interpreter);
+        window.featureFlagsController = featureFlagsController;
 
         const renderer = new RootContainerRenderer(ReactDOM.render, document, deps);
         renderer.render();
