@@ -1,28 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ExportDialog renders renders CodePen export form 1`] = `
-<form
-  action="https://codepen.io/pen/define"
-  method="POST"
-  rel="noopener"
-  style={
-    Object {
-      "visibility": "hidden",
-    }
-  }
-  target="_blank"
->
-  <input
-    name="data"
-    type="hidden"
-    value="{\\"title\\":\\"THE REPORT FILE NAME\\",\\"description\\":\\"description\\",\\"html\\":\\"fake html\\",\\"editors\\":\\"100\\"}"
-  />
-  <button
-    type="submit"
-  />
-</form>
-`;
-
 exports[`ExportDialog renders with CodePen export form 1`] = `
 <form
   action="https://codepen.io/pen/define"
