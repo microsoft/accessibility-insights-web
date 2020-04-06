@@ -10,6 +10,7 @@ import { SidePanel } from 'background/stores/side-panel';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import {
     PREVIEW_FEATURES_OPEN,
+    SCOPING_OPEN,
     SETTINGS_PANEL_CLOSE,
     SETTINGS_PANEL_OPEN,
     TelemetryEventSource,
@@ -60,6 +61,7 @@ describe('DetailsViewActionCreatorTest', () => {
             messageFriendlyName                     | actualMessage                         | sidePanel            | telemetryEventName
             ${'Messages.SettingsPanel.OpenPanel'}   | ${Messages.SettingsPanel.OpenPanel}   | ${'Settings'}        | ${SETTINGS_PANEL_OPEN}
             ${'Messages.PreviewFeatures.OpenPanel'} | ${Messages.PreviewFeatures.OpenPanel} | ${'PreviewFeatures'} | ${PREVIEW_FEATURES_OPEN}
+            ${'Messages.Scoping.OpenPanel'}         | ${Messages.Scoping.OpenPanel}         | ${'Scoping'}         | ${SCOPING_OPEN}
         `('$messageFriendlyName', ({ actualMessage, sidePanel, telemetryEventName }) => {
             beforeEach(() => {
                 openSidePanelMock = createActionMock<SidePanel>(sidePanel);

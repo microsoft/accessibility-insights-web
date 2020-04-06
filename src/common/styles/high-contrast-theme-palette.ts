@@ -5,7 +5,7 @@ import { IPartialTheme } from '@uifabric/styling';
 export const HighContrastThemePalette: IPartialTheme = {
     // basic palette from https://developer.microsoft.com/en-us/fabric#/styles/themegenerator with white text and #161616 background
     palette: {
-        themePrimary: '#0078d4',
+        themePrimary: '#2b88d8',
         themeLighterAlt: '#eff6fc',
         themeLighter: '#deecf9',
         themeLight: '#c7e0f4',

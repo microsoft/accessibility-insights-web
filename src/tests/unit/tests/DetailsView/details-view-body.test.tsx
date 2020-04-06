@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
-import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
+import { getDefaultFeatureFlagsWeb } from 'common/feature-flags';
 import { DetailsViewCommandBarDeps } from 'DetailsView/components/details-view-command-bar';
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
@@ -112,7 +112,7 @@ describe('DetailsViewBody', () => {
                 tabStoreData: new TabStoreDataBuilder().build(),
                 visualizationStoreData: new VisualizationStoreDataBuilder().build(),
                 visualizationScanResultData: new VisualizationScanResultStoreDataBuilder().build(),
-                featureFlagStoreData: new FeatureFlagStore(null, null, null).getDefaultState(),
+                featureFlagStoreData: getDefaultFeatureFlagsWeb(),
                 selectedTest: selectedTest,
                 visualizationConfigurationFactory: configFactoryMock.object,
                 clickHandlerFactory: clickHandlerFactoryMock.object,

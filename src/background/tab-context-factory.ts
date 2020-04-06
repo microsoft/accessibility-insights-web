@@ -117,7 +117,6 @@ export class TabContextFactory {
             interpreter,
             actionsHub.scopingActions,
             this.telemetryEventHandler,
-            detailsViewController,
         );
         const contentActionCreator = new ContentActionCreator(
             interpreter,

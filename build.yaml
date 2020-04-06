@@ -21,18 +21,23 @@ jobs:
 
           - script: yarn lint:check
             displayName: check lint errors
+            timeoutInMinutes: 5
 
           - script: yarn format:check
             displayName: check formatting errors
+            timeoutInMinutes: 5
 
           - script: yarn copyright:check
             displayName: check copyrightheaders
+            timeoutInMinutes: 1
 
           - script: yarn scss:build
             displayName: generate typings for scss files
+            timeoutInMinutes: 3
 
           - script: yarn test --ci
             displayName: run unit tests
+            timeoutInMinutes: 10
 
           - task: PublishTestResults@2
             inputs:
@@ -40,6 +45,7 @@ jobs:
                 testRunTitle: $(Agent.JobName)
             condition: always()
             displayName: publish test results
+            timeoutInMinutes: 3
 
           - task: PublishCodeCoverageResults@1
             inputs:
@@ -51,9 +57,11 @@ jobs:
                 # Consider re-enabling this once https://github.com/Microsoft/azure-pipelines-tasks/issues/4945 is resolved.
                 # reportDirectory: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/lcov-report
             displayName: publish code coverage
+            timeoutInMinutes: 5
 
           - script: yarn publish-code-coverage -t $(CODECOV_TOKEN)
             displayName: Publish code coverage to codecov
+            timeoutInMinutes: 3
 
           # CI build only
           - task: ComponentGovernanceComponentDetection@0
@@ -61,6 +69,7 @@ jobs:
             condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
             inputs:
                 verbosity: Normal
+            timeoutInMinutes: 5
 
     - job: 'publish_build_drops'
       pool:
@@ -70,12 +79,14 @@ jobs:
 
           - script: yarn build:all
             displayName: build:all
+            timeoutInMinutes: 10
 
           - task: PublishBuildArtifacts@1
             inputs:
                 pathtoPublish: '$(System.DefaultWorkingDirectory)/drop'
                 artifactName: 'drop'
             displayName: publish drop
+            timeoutInMinutes: 5
 
     - job: 'e2e_mac_web_unified'
       pool:

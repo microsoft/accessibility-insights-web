@@ -47,7 +47,6 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
             this.onClose('isPreviewFeaturesOpen'),
         );
 
-        this.scopingActions.openScopingPanel.addListener(() => this.onOpen('isScopingOpen'));
         this.scopingActions.closeScopingPanel.addListener(() => this.onClose('isScopingOpen'));
 
         this.detailsViewActions.closeSettingsPanel.addListener(() =>
@@ -72,6 +71,7 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
     private sidePanelToStateKey: SidePanelToStoreKey = {
         Settings: 'isSettingsOpen',
         PreviewFeatures: 'isPreviewFeaturesOpen',
+        Scoping: 'isScopingOpen',
     };
 
     private onOpenSidePanel = (sidePanel: SidePanel) => {
