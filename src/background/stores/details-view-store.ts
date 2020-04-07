@@ -49,10 +49,6 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
 
         this.scopingActions.closeScopingPanel.addListener(() => this.onClose('isScopingOpen'));
 
-        this.detailsViewActions.closeSettingsPanel.addListener(() =>
-            this.onClose('isSettingsOpen'),
-        );
-
         this.contentActions.openContentPanel.addListener(contentPayload =>
             this.onOpen('isContentOpen', state => (state.contentPath = contentPayload.contentPath)),
         );
@@ -66,6 +62,7 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
         this.detailsViewActions.getCurrentState.addListener(this.onGetCurrentState);
 
         this.sidePanelActions.openSidePanel.addListener(this.onOpenSidePanel);
+        this.sidePanelActions.closeSidePanel.addListener(this.onCloseSidePanel);
     }
 
     private sidePanelToStateKey: SidePanelToStoreKey = {
@@ -95,6 +92,12 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
         }
 
         this.emitChanged();
+    };
+
+    private onCloseSidePanel = (sidePanel: SidePanel) => {
+        const stateKey = this.sidePanelToStateKey[sidePanel];
+
+        this.onClose(stateKey);
     };
 
     private onClose = (
