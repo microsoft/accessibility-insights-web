@@ -70,10 +70,11 @@ describe('ReportHtmlGenerator', () => {
             },
         } as ReportBodyProps;
 
-        const headElement: JSX.Element = <ReportHead />;
+        const headElement: JSX.Element = <NullComponent />;
         const bodyElement: JSX.Element = <ReportBody {...sectionProps} />;
 
         const rendererMock = Mock.ofType(ReactStaticRenderer, MockBehavior.Strict);
+        sectionFactoryMock.setup(mock => mock.HeadSection).returns(() => NullComponent);
         rendererMock
             .setup(r => r.renderToStaticMarkup(It.isObjectWith(headElement)))
             .returns(() => '<head-markup />')

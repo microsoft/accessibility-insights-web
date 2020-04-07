@@ -37,8 +37,8 @@ export class ReportHtmlGenerator {
         description: string,
         cardsViewData: CardsViewModel,
     ): string {
-        const headElement: JSX.Element = <ReportHead />;
-        const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(headElement);
+        const HeadSection = this.sectionFactory.HeadSection;
+        const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(<HeadSection />);
 
         const detailsProps: SectionProps = {
             pageTitle,
