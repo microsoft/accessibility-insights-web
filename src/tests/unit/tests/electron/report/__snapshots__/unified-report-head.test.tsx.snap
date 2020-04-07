@@ -6,8 +6,8 @@ exports[`UnifiedReportHead renders 1`] = `
     charSet="UTF-8"
   />
   <title>
-    Accessibility Insights for Web
-     automated checks result
+    Accessibility Insights for Android
+     - Report
   </title>
   <style
     dangerouslySetInnerHTML={
