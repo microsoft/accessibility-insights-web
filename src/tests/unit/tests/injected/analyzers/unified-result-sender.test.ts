@@ -17,10 +17,11 @@ import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-
 import { IMock, Mock, Times } from 'typemoq';
 
 describe('sendConvertedResults', () => {
+    const timestamp: Date = new Date('2020, 0, 1, 2, 3');
     const axeInputResults = {
         targetPageTitle: 'title',
         targetPageUrl: 'url',
-        timestamp: 'timestamp',
+        timestamp: `${timestamp.getDate()}`,
     } as any;
     const unifiedResults: UnifiedResult[] = [];
     const unifiedRules: UnifiedRule[] = [];
@@ -87,7 +88,7 @@ describe('sendConvertedResults', () => {
                     name: 'title',
                     url: 'url',
                 },
-                timestamp: 'timestamp',
+                timestamp: timestamp,
                 scanIncompleteWarnings: warnings,
                 telemetry,
             };

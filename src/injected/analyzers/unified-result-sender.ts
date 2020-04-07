@@ -33,6 +33,10 @@ export class UnifiedResultSender {
             };
         }
 
+        const timestamp = axeResults.originalResult.timestamp
+            ? new Date(Number(axeResults.originalResult.timestamp))
+            : null;
+
         const payload: UnifiedScanCompletedPayload = {
             scanResult: this.convertScanResultsToUnifiedResults(
                 axeResults.originalResult,
@@ -40,7 +44,7 @@ export class UnifiedResultSender {
             ),
             rules: this.convertScanResultsToUnifiedRules(axeResults.originalResult),
             toolInfo: this.environmentInfoProvider.getToolData(),
-            timestamp: axeResults.originalResult.timestamp,
+            timestamp: timestamp,
             targetAppInfo: {
                 name: axeResults.originalResult.targetPageTitle,
                 url: axeResults.originalResult.targetPageUrl,

@@ -40,7 +40,6 @@ export class UnifiedScanResultStore extends BaseStoreImpl<UnifiedScanResultStore
         this.state.scanIncompleteWarnings = payload.scanIncompleteWarnings;
         this.state.screenshotData = payload.screenshotData;
         this.state.platformInfo = payload.platformInfo;
-        console.log(payload);
         this.emitChanged();
     };
 }

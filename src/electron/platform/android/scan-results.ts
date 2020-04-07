@@ -61,7 +61,6 @@ export class ScanResults {
     }
 
     public get analysisTimestamp(): string {
-        // TODO: convert to date
         return this.rawData?.axeContext?.axeMetaData?.analysisTimestamp || null;
     }
 

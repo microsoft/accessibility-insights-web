@@ -61,7 +61,7 @@ describe('UnifiedScanResultStore Test', () => {
                     name: 'test-scan-engine-name',
                 },
             },
-            timestamp: 'timestamp',
+            timestamp: new Date('2020, 0, 1, 2, 3'),
             scanIncompleteWarnings: ['some-incomplete-warning-id' as ScanIncompleteWarningId],
             screenshotData: {
                 base64PngData: 'testScreenshotText',

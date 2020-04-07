@@ -149,7 +149,7 @@ describe('ScanController', () => {
                     version: 'test-scan-engine-version',
                 },
             },
-            timestamp: 'timestamp',
+            timestamp: new Date('2020. 0, 1, 2, 3'),
             scanIncompleteWarnings: ['test-scan-incomplete-warning' as ScanIncompleteWarningId],
         };
 

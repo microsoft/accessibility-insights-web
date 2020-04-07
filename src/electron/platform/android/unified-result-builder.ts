@@ -31,12 +31,15 @@ export const createBuilder = (
     uuidGenerator: UUIDGenerator,
     getToolData: ToolDataDelegate,
 ) => (scanResults: ScanResults): UnifiedScanCompletedPayload => {
+    const timestamp = scanResults.analysisTimestamp
+        ? new Date(Number(scanResults.analysisTimestamp))
+        : null;
     const payload: UnifiedScanCompletedPayload = {
         scanResult: getUnifiedResults(scanResults, ruleInformationProvider, uuidGenerator),
         rules: getUnifiedRules(scanResults, ruleInformationProvider, uuidGenerator),
         platformInfo: getPlatformData(scanResults),
         toolInfo: getToolData(scanResults),
-        timestamp: scanResults.analysisTimestamp,
+        timestamp: timestamp,
         targetAppInfo: {
             name: scanResults.appIdentifier,
         },
