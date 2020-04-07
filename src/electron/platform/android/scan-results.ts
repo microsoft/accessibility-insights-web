@@ -60,6 +60,11 @@ export class ScanResults {
         return this.rawData?.axeContext?.axeMetaData?.axeVersion || 'no-version';
     }
 
+    public get analysisTimestamp(): string {
+        // TODO: convert to date
+        return this.rawData?.axeContext?.axeMetaData?.analysisTimestamp;
+    }
+
     public get screenshot(): ScreenshotData {
         const screenshot = this.rawData?.axeContext?.screenshot;
 
