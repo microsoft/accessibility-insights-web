@@ -72,7 +72,6 @@ describe('ReportBody', () => {
             });
         };
 
-        const HeadSection = createBasicComponent('head-section');
         const BodySection = createBasicComponent('body-section');
         const ContentContainer = createBasicComponent('content-container');
         const Header = createBasicComponent('header-section');
@@ -86,8 +85,7 @@ describe('ReportBody', () => {
         const Footer = createBasicComponent('footer-section');
         const FooterText = createBasicComponent('footer-text');
 
-        const sectionFactoryStub: ReportSectionFactory = {
-            HeadSection: HeadSection,
+        const sectionFactoryStub = {
             BodySection: BodySection,
             ContentContainer: ContentContainer,
             HeaderSection: Header,

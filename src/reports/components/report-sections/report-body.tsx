@@ -6,7 +6,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { ReportSectionFactory, SectionProps } from './report-section-factory';
 
 export type ReportBodyProps = {
-    sectionFactory: ReportSectionFactory;
+    sectionFactory: Omit<ReportSectionFactory, 'HeadSection'>;
 } & SectionProps;
 
 export const ReportBody = NamedFC<ReportBodyProps>('ReportBody', props => {
