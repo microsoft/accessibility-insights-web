@@ -35,6 +35,7 @@ describe('UnifiedScanResultActionCreator', () => {
             rules: [],
             toolInfo: {} as ToolData,
             targetAppInfo: { name: 'app name' },
+            timestamp: 'timestamp',
             scanIncompleteWarnings,
             telemetry,
         };
