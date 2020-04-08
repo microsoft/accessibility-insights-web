@@ -14,7 +14,7 @@ export class EnvironmentInfoProvider {
         private extensionVersion: string,
         private browserSpec: string,
         private axeVersion: string,
-    ) { }
+    ) {}
     public getEnvironmentInfo(): EnvironmentInfo {
         return {
             extensionVersion: this.extensionVersion,

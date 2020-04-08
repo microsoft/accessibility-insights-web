@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { FailedInstancesSectionDeps } from 'common/components/cards/failed-instances-section';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
-import { EnvironmentInfo, EnvironmentInfoProvider } from 'common/environment-info-provider';
+import { EnvironmentInfoProvider } from 'common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { ReactFCWithDisplayName } from 'common/react/named-fc';
 

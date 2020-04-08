@@ -28,7 +28,7 @@ export class ReportHtmlGenerator {
         private readonly getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
         private readonly fixInstructionProcessor: FixInstructionProcessor,
         private readonly getPropertyConfiguration: (id: string) => Readonly<PropertyConfiguration>,
-    ) { }
+    ) {}
 
     public generateHtml(
         scanDate: Date,

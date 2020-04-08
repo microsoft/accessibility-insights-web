@@ -57,10 +57,11 @@ exports[`ReportBody renders 1`] = `
     deps={Object {}}
     description="test description"
     environmentInfoProvider={
-      EnvironmentInfoProvider {
-        "axeVersion": "axe-core-version",
-        "browserSpec": "browser-spec",
-        "extensionVersion": "extension-version",
+      proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "axeVersion": undefined,
+        "browserSpec": undefined,
+        "extensionVersion": undefined,
       }
     }
     fixInstructionProcessor={
@@ -156,10 +157,11 @@ exports[`ReportBody renders 1`] = `
       deps={Object {}}
       description="test description"
       environmentInfoProvider={
-        EnvironmentInfoProvider {
-          "axeVersion": "axe-core-version",
-          "browserSpec": "browser-spec",
-          "extensionVersion": "extension-version",
+        proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "axeVersion": undefined,
+          "browserSpec": undefined,
+          "extensionVersion": undefined,
         }
       }
       fixInstructionProcessor={
@@ -253,10 +255,11 @@ exports[`ReportBody renders 1`] = `
       deps={Object {}}
       description="test description"
       environmentInfoProvider={
-        EnvironmentInfoProvider {
-          "axeVersion": "axe-core-version",
-          "browserSpec": "browser-spec",
-          "extensionVersion": "extension-version",
+        proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "axeVersion": undefined,
+          "browserSpec": undefined,
+          "extensionVersion": undefined,
         }
       }
       fixInstructionProcessor={
@@ -350,10 +353,11 @@ exports[`ReportBody renders 1`] = `
       deps={Object {}}
       description="test description"
       environmentInfoProvider={
-        EnvironmentInfoProvider {
-          "axeVersion": "axe-core-version",
-          "browserSpec": "browser-spec",
-          "extensionVersion": "extension-version",
+        proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "axeVersion": undefined,
+          "browserSpec": undefined,
+          "extensionVersion": undefined,
         }
       }
       fixInstructionProcessor={
@@ -447,10 +451,11 @@ exports[`ReportBody renders 1`] = `
         deps={Object {}}
         description="test description"
         environmentInfoProvider={
-          EnvironmentInfoProvider {
-            "axeVersion": "axe-core-version",
-            "browserSpec": "browser-spec",
-            "extensionVersion": "extension-version",
+          proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "axeVersion": undefined,
+            "browserSpec": undefined,
+            "extensionVersion": undefined,
           }
         }
         fixInstructionProcessor={
@@ -544,10 +549,11 @@ exports[`ReportBody renders 1`] = `
         deps={Object {}}
         description="test description"
         environmentInfoProvider={
-          EnvironmentInfoProvider {
-            "axeVersion": "axe-core-version",
-            "browserSpec": "browser-spec",
-            "extensionVersion": "extension-version",
+          proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "axeVersion": undefined,
+            "browserSpec": undefined,
+            "extensionVersion": undefined,
           }
         }
         fixInstructionProcessor={
@@ -641,10 +647,11 @@ exports[`ReportBody renders 1`] = `
         deps={Object {}}
         description="test description"
         environmentInfoProvider={
-          EnvironmentInfoProvider {
-            "axeVersion": "axe-core-version",
-            "browserSpec": "browser-spec",
-            "extensionVersion": "extension-version",
+          proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "axeVersion": undefined,
+            "browserSpec": undefined,
+            "extensionVersion": undefined,
           }
         }
         fixInstructionProcessor={
@@ -741,10 +748,11 @@ exports[`ReportBody renders 1`] = `
       deps={Object {}}
       description="test description"
       environmentInfoProvider={
-        EnvironmentInfoProvider {
-          "axeVersion": "axe-core-version",
-          "browserSpec": "browser-spec",
-          "extensionVersion": "extension-version",
+        proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "axeVersion": undefined,
+          "browserSpec": undefined,
+          "extensionVersion": undefined,
         }
       }
       fixInstructionProcessor={

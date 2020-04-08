@@ -40,11 +40,16 @@ describe('ReportHtmlGenerator', () => {
         const getGuidanceTagsStub: GetGuidanceTagsFromGuidanceLinks = () => [];
 
         const sectionFactoryMock = Mock.ofType<ReportSectionFactory>();
-        const environmentInfoProvider: EnvironmentInfoProvider = new EnvironmentInfoProvider(
-            extensionVersion,
-            browserSpec,
-            axeCoreVersion,
-        );
+        const environmentInfoProviderMock = Mock.ofType(EnvironmentInfoProvider);
+        const environmentInfo: EnvironmentInfo = {
+            extensionVersion: extensionVersion,
+            browserSpec: browserSpec,
+            axeCoreVersion: axeCoreVersion,
+        };
+        environmentInfoProviderMock
+            .setup(eipm => eipm.getEnvironmentInfo())
+            .returns(() => environmentInfo)
+            .verifiable(Times.never());
 
         const getScriptMock = Mock.ofInstance(() => '');
 
@@ -63,7 +68,7 @@ describe('ReportHtmlGenerator', () => {
             pageUrl,
             description,
             scanDate,
-            environmentInfoProvider,
+            environmentInfoProvider: environmentInfoProviderMock.object,
             toUtcString: getUTCStringFromDateStub,
             getCollapsibleScript: getScriptMock.object,
             getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
@@ -91,7 +96,7 @@ describe('ReportHtmlGenerator', () => {
         const testObject = new ReportHtmlGenerator(
             sectionFactoryMock.object,
             rendererMock.object,
-            environmentInfoProvider,
+            environmentInfoProviderMock.object,
             getScriptMock.object,
             getUTCStringFromDateStub,
             getGuidanceTagsStub,
@@ -106,5 +111,7 @@ describe('ReportHtmlGenerator', () => {
         });
 
         expect(actual).toMatchSnapshot();
+
+        environmentInfoProviderMock.verifyAll();
     });
 });

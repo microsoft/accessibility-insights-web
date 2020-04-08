@@ -7,10 +7,10 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
 import { SectionProps } from 'reports/components/report-sections/report-section-factory';
-import { Mock } from 'typemoq';
+import { Mock, Times } from 'typemoq';
 
+import { EnvironmentInfo, EnvironmentInfoProvider } from 'common/environment-info-provider';
 import { exampleUnifiedStatusResults } from '../../../common/components/cards/sample-view-model-data';
-import { EnvironmentInfoProvider } from 'common/environment-info-provider';
 
 describe('ReportBody', () => {
     it('renders', () => {
@@ -19,6 +19,16 @@ describe('ReportBody', () => {
         const getScriptStub = () => '';
         const getGuidanceTagsStub = () => [];
         const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
+        const environmentInfoProviderMock = Mock.ofType(EnvironmentInfoProvider);
+        const environmentInfo: EnvironmentInfo = {
+            extensionVersion: 'extension-version',
+            browserSpec: 'browser-spec',
+            axeCoreVersion: 'axe-core-version',
+        };
+        environmentInfoProviderMock
+            .setup(eipm => eipm.getEnvironmentInfo())
+            .returns(() => environmentInfo)
+            .verifiable(Times.never());
 
         const detailsProps: SectionProps = {
             deps: {} as FailedInstancesSectionDeps,
@@ -27,11 +37,7 @@ describe('ReportBody', () => {
             pageUrl,
             description: 'test description',
             scanDate: new Date('2019-05-29T19:12:16.804Z'),
-            environmentInfoProvider: new EnvironmentInfoProvider(
-                'extension-version',
-                'browser-spec',
-                'axe-core-version',
-            ),
+            environmentInfoProvider: environmentInfoProviderMock.object,
             scanResult: {
                 passes: [],
                 violations: [],
@@ -62,6 +68,8 @@ describe('ReportBody', () => {
         const wrapper = shallow(<ReportBody {...props} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();
+
+        environmentInfoProviderMock.verifyAll();
     });
 
     const createSectionFactoryStub = () => {
