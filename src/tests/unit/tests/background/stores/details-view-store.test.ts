@@ -13,7 +13,7 @@ import { StoreTester } from '../../../common/store-tester';
 
 describe('DetailsViewStoreTest', () => {
     test('getId', () => {
-        const testObject = new DetailsViewStore(null, null, null, null, null);
+        const testObject = new DetailsViewStore(null, null, null, null);
         expect(testObject.getId()).toBe(StoreNames[StoreNames.DetailsViewStore]);
     });
 
@@ -132,27 +132,11 @@ describe('DetailsViewStoreTest', () => {
         const factory = (actions: PreviewFeaturesActions) =>
             new DetailsViewStore(
                 actions,
-                new ScopingActions(),
                 new ContentActions(),
                 new DetailsViewActions(),
                 new SidePanelActions(),
             );
         return new StoreTester(PreviewFeaturesActions, actionName, factory);
-    }
-
-    function createStoreTesterForScopingActions(
-        actionName: keyof ScopingActions,
-    ): StoreTester<DetailsViewStoreData, ScopingActions> {
-        const factory = (actions: ScopingActions) =>
-            new DetailsViewStore(
-                new PreviewFeaturesActions(),
-                actions,
-                new ContentActions(),
-                new DetailsViewActions(),
-                new SidePanelActions(),
-            );
-
-        return new StoreTester(ScopingActions, actionName, factory);
     }
 
     function createStoreTesterForContentActions(
@@ -161,7 +145,6 @@ describe('DetailsViewStoreTest', () => {
         const factory = (actions: ContentActions) =>
             new DetailsViewStore(
                 new PreviewFeaturesActions(),
-                new ScopingActions(),
                 actions,
                 new DetailsViewActions(),
                 new SidePanelActions(),
@@ -176,7 +159,6 @@ describe('DetailsViewStoreTest', () => {
         const factory = (actions: DetailsViewActions) =>
             new DetailsViewStore(
                 new PreviewFeaturesActions(),
-                new ScopingActions(),
                 new ContentActions(),
                 actions,
                 new SidePanelActions(),
@@ -191,7 +173,6 @@ describe('DetailsViewStoreTest', () => {
         const factory = (actions: SidePanelActions) =>
             new DetailsViewStore(
                 new PreviewFeaturesActions(),
-                new ScopingActions(),
                 new ContentActions(),
                 new DetailsViewActions(),
                 actions,

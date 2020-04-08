@@ -175,7 +175,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         const detailsViewStore = new DetailsViewStore(
             previewFeaturesActions,
-            scopingActions,
             contentActions,
             detailsViewActions,
             sidePanelActions,

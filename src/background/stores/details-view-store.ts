@@ -19,7 +19,6 @@ type SidePanelToStoreKey = {
 export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
     constructor(
         private previewFeaturesActions: PreviewFeaturesActions,
-        private scopingActions: ScopingActions,
         private contentActions: ContentActions,
         private detailsViewActions: DetailsViewActions,
         private sidePanelActions: SidePanelActions,
