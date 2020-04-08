@@ -32,7 +32,7 @@ export const createBuilder = (
     getToolData: ToolDataDelegate,
 ) => (scanResults: ScanResults): UnifiedScanCompletedPayload => {
     const timestamp = scanResults.analysisTimestamp
-        ? new Date(Number(scanResults.analysisTimestamp))
+        ? new Date(Number(scanResults.analysisTimestamp)).toUTCString()
         : null;
     const payload: UnifiedScanCompletedPayload = {
         scanResult: getUnifiedResults(scanResults, ruleInformationProvider, uuidGenerator),

@@ -5,6 +5,7 @@ import { AssessmentStoreData } from 'common/types/store-data/assessment-result-d
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
+import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
@@ -38,6 +39,7 @@ describe('ReportExportComponentPropsFactory', () => {
     let reportGeneratorMock: IMock<ReportGenerator>;
     let visualizationScanResultData: VisualizationScanResultData;
     let visualizationStoreData: VisualizationStoreData;
+    let unifiedScanResultStoreData: UnifiedScanResultStoreData;
     let cardsViewData: CardsViewModel;
     let scanResult: ScanResults;
 
@@ -54,6 +56,9 @@ describe('ReportExportComponentPropsFactory', () => {
         assessmentStoreData = {
             resultDescription: theDescription,
         } as AssessmentStoreData;
+        unifiedScanResultStoreData = {
+            timestamp: theTimestamp,
+        } as UnifiedScanResultStoreData;
         assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(undefined, MockBehavior.Loose);
         reportGeneratorMock = Mock.ofType<ReportGenerator>(undefined, MockBehavior.Loose);
         cardsViewData = null;
@@ -84,6 +89,7 @@ describe('ReportExportComponentPropsFactory', () => {
             visualizationScanResultData,
             visualizationStoreData,
             cardsViewData,
+            unifiedScanResultStoreData,
         } as DetailsViewCommandBarProps;
     }
 
@@ -122,9 +128,7 @@ describe('ReportExportComponentPropsFactory', () => {
     }
 
     function setScanResults(): void {
-        scanResult = {
-            timestamp: theTimestamp,
-        } as ScanResults;
+        scanResult = {} as ScanResults;
     }
 
     test('getReportExportComponentForAssessment expected properties are set', () => {

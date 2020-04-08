@@ -3,7 +3,10 @@
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
-import { TargetAppData } from 'common/types/store-data/unified-data-interface';
+import {
+    TargetAppData,
+    UnifiedScanResultStoreData,
+} from 'common/types/store-data/unified-data-interface';
 import { DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { ISelection } from 'office-ui-fabric-react';
 import * as React from 'react';
@@ -61,6 +64,7 @@ export interface DetailsViewBodyProps {
     targetAppInfo: TargetAppData;
     cardsViewData: CardsViewModel;
     scanIncompleteWarnings: ScanIncompleteWarningId[];
+    unifiedScanResultStoreData: UnifiedScanResultStoreData;
 }
 
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {

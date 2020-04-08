@@ -389,6 +389,7 @@ describe('DetailsViewContainer', () => {
                 scanIncompleteWarnings={
                     storeMocks.unifiedScanResultStoreData.scanIncompleteWarnings
                 }
+                unifiedScanResultStoreData={storeMocks.unifiedScanResultStoreData}
             />
         );
     }
