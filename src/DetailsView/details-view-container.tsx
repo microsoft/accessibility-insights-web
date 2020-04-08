@@ -222,6 +222,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
                 scanIncompleteWarnings={
                     storeState.unifiedScanResultStoreData.scanIncompleteWarnings
                 }
+                unifiedScanResultStoreData={storeState.unifiedScanResultStoreData}
             />
         );
     }
