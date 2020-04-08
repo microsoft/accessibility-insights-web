@@ -56,7 +56,7 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
     const reportHtmlGenerator = new ReportHtmlGenerator(
         sectionFactory,
         reactStaticRenderer,
-        environmentInfoProvider.getEnvironmentInfo(),
+        environmentInfoProvider,
         getDefaultAddListenerForCollapsibleSection,
         DateProvider.getUTCStringFromDate,
         GetGuidanceTagsFromGuidanceLinks,

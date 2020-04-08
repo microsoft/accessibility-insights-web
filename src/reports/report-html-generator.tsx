@@ -4,7 +4,7 @@ import { noCardInteractionsSupported } from 'common/components/cards/card-intera
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { NullComponent } from 'common/components/null-component';
 import { PropertyConfiguration } from 'common/configs/unified-result-property-configurations';
-import { EnvironmentInfo } from 'common/environment-info-provider';
+import { EnvironmentInfoProvider } from 'common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import * as React from 'react';
@@ -22,13 +22,13 @@ export class ReportHtmlGenerator {
     constructor(
         private readonly sectionFactory: ReportSectionFactory,
         private readonly reactStaticRenderer: ReactStaticRenderer,
-        private readonly environmentInfo: EnvironmentInfo,
+        private readonly environmentInfoProvider: EnvironmentInfoProvider,
         private readonly getCollapsibleScript: () => string,
         private readonly utcDateConverter: (scanDate: Date) => string,
         private readonly getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
         private readonly fixInstructionProcessor: FixInstructionProcessor,
         private readonly getPropertyConfiguration: (id: string) => Readonly<PropertyConfiguration>,
-    ) {}
+    ) { }
 
     public generateHtml(
         scanDate: Date,
@@ -54,7 +54,7 @@ export class ReportHtmlGenerator {
                 cardsVisualizationModifierButtons: NullComponent,
             } as SectionDeps,
             cardsViewData: cardsViewData,
-            environmentInfo: this.environmentInfo,
+            environmentInfoProvider: this.environmentInfoProvider,
             toUtcString: this.utcDateConverter,
             getCollapsibleScript: this.getCollapsibleScript,
             getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,

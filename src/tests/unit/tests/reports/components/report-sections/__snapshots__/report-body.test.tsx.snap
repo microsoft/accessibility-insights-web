@@ -56,9 +56,9 @@ exports[`ReportBody renders 1`] = `
     }
     deps={Object {}}
     description="test description"
-    environmentInfo={
-      Object {
-        "axeCoreVersion": "axe-core-version",
+    environmentInfoProvider={
+      EnvironmentInfoProvider {
+        "axeVersion": "axe-core-version",
         "browserSpec": "browser-spec",
         "extensionVersion": "extension-version",
       }
@@ -155,9 +155,9 @@ exports[`ReportBody renders 1`] = `
       }
       deps={Object {}}
       description="test description"
-      environmentInfo={
-        Object {
-          "axeCoreVersion": "axe-core-version",
+      environmentInfoProvider={
+        EnvironmentInfoProvider {
+          "axeVersion": "axe-core-version",
           "browserSpec": "browser-spec",
           "extensionVersion": "extension-version",
         }
@@ -252,9 +252,9 @@ exports[`ReportBody renders 1`] = `
       }
       deps={Object {}}
       description="test description"
-      environmentInfo={
-        Object {
-          "axeCoreVersion": "axe-core-version",
+      environmentInfoProvider={
+        EnvironmentInfoProvider {
+          "axeVersion": "axe-core-version",
           "browserSpec": "browser-spec",
           "extensionVersion": "extension-version",
         }
@@ -349,9 +349,9 @@ exports[`ReportBody renders 1`] = `
       }
       deps={Object {}}
       description="test description"
-      environmentInfo={
-        Object {
-          "axeCoreVersion": "axe-core-version",
+      environmentInfoProvider={
+        EnvironmentInfoProvider {
+          "axeVersion": "axe-core-version",
           "browserSpec": "browser-spec",
           "extensionVersion": "extension-version",
         }
@@ -446,9 +446,9 @@ exports[`ReportBody renders 1`] = `
         }
         deps={Object {}}
         description="test description"
-        environmentInfo={
-          Object {
-            "axeCoreVersion": "axe-core-version",
+        environmentInfoProvider={
+          EnvironmentInfoProvider {
+            "axeVersion": "axe-core-version",
             "browserSpec": "browser-spec",
             "extensionVersion": "extension-version",
           }
@@ -543,9 +543,9 @@ exports[`ReportBody renders 1`] = `
         }
         deps={Object {}}
         description="test description"
-        environmentInfo={
-          Object {
-            "axeCoreVersion": "axe-core-version",
+        environmentInfoProvider={
+          EnvironmentInfoProvider {
+            "axeVersion": "axe-core-version",
             "browserSpec": "browser-spec",
             "extensionVersion": "extension-version",
           }
@@ -640,9 +640,9 @@ exports[`ReportBody renders 1`] = `
         }
         deps={Object {}}
         description="test description"
-        environmentInfo={
-          Object {
-            "axeCoreVersion": "axe-core-version",
+        environmentInfoProvider={
+          EnvironmentInfoProvider {
+            "axeVersion": "axe-core-version",
             "browserSpec": "browser-spec",
             "extensionVersion": "extension-version",
           }
@@ -740,9 +740,9 @@ exports[`ReportBody renders 1`] = `
       }
       deps={Object {}}
       description="test description"
-      environmentInfo={
-        Object {
-          "axeCoreVersion": "axe-core-version",
+      environmentInfoProvider={
+        EnvironmentInfoProvider {
+          "axeVersion": "axe-core-version",
           "browserSpec": "browser-spec",
           "extensionVersion": "extension-version",
         }

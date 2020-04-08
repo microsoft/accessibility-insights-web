@@ -10,6 +10,7 @@ import { SectionProps } from 'reports/components/report-sections/report-section-
 import { Mock } from 'typemoq';
 
 import { exampleUnifiedStatusResults } from '../../../common/components/cards/sample-view-model-data';
+import { EnvironmentInfoProvider } from 'common/environment-info-provider';
 
 describe('ReportBody', () => {
     it('renders', () => {
@@ -26,11 +27,11 @@ describe('ReportBody', () => {
             pageUrl,
             description: 'test description',
             scanDate: new Date('2019-05-29T19:12:16.804Z'),
-            environmentInfo: {
-                axeCoreVersion: 'axe-core-version',
-                browserSpec: 'browser-spec',
-                extensionVersion: 'extension-version',
-            },
+            environmentInfoProvider: new EnvironmentInfoProvider(
+                'extension-version',
+                'browser-spec',
+                'axe-core-version',
+            ),
             scanResult: {
                 passes: [],
                 violations: [],

@@ -4,7 +4,7 @@ import { noCardInteractionsSupported } from 'common/components/cards/card-intera
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { NullComponent } from 'common/components/null-component';
 import { DateProvider } from 'common/date-provider';
-import { EnvironmentInfo } from 'common/environment-info-provider';
+import { EnvironmentInfo, EnvironmentInfoProvider } from 'common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import * as React from 'react';
 import {
@@ -40,11 +40,11 @@ describe('ReportHtmlGenerator', () => {
         const getGuidanceTagsStub: GetGuidanceTagsFromGuidanceLinks = () => [];
 
         const sectionFactoryMock = Mock.ofType<ReportSectionFactory>();
-        const environmentInfo: EnvironmentInfo = {
-            axeCoreVersion,
-            browserSpec,
+        const environmentInfoProvider: EnvironmentInfoProvider = new EnvironmentInfoProvider(
             extensionVersion,
-        };
+            browserSpec,
+            axeCoreVersion,
+        );
 
         const getScriptMock = Mock.ofInstance(() => '');
 
@@ -63,7 +63,7 @@ describe('ReportHtmlGenerator', () => {
             pageUrl,
             description,
             scanDate,
-            environmentInfo,
+            environmentInfoProvider,
             toUtcString: getUTCStringFromDateStub,
             getCollapsibleScript: getScriptMock.object,
             getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
@@ -91,7 +91,7 @@ describe('ReportHtmlGenerator', () => {
         const testObject = new ReportHtmlGenerator(
             sectionFactoryMock.object,
             rendererMock.object,
-            environmentInfo,
+            environmentInfoProvider,
             getScriptMock.object,
             getUTCStringFromDateStub,
             getGuidanceTagsStub,

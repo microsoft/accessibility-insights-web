@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { FailedInstancesSectionDeps } from 'common/components/cards/failed-instances-section';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
-import { EnvironmentInfo } from 'common/environment-info-provider';
+import { EnvironmentInfo, EnvironmentInfoProvider } from 'common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { ReactFCWithDisplayName } from 'common/react/named-fc';
 
@@ -23,7 +23,7 @@ export type SectionProps = {
     pageUrl: string;
     description: string;
     scanDate: Date;
-    environmentInfo: EnvironmentInfo;
+    environmentInfoProvider: EnvironmentInfoProvider;
     toUtcString: (date: Date) => string;
     getCollapsibleScript: () => string;
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;
@@ -46,5 +46,5 @@ export type ReportSectionFactory = {
     PassedChecksSection: ReactFCWithDisplayName<SectionProps>;
     NotApplicableChecksSection: ReactFCWithDisplayName<SectionProps>;
     FooterSection: ReactFCWithDisplayName;
-    FooterText: ReactFCWithDisplayName<Pick<SectionProps, 'environmentInfo'>>;
+    FooterText: ReactFCWithDisplayName<Pick<SectionProps, 'environmentInfoProvider'>>;
 };
