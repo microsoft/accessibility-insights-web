@@ -8,7 +8,6 @@ import { DetailsViewStoreData } from 'common/types/store-data/details-view-store
 import { DetailsViewRightContentPanelType } from 'DetailsView/components/left-nav/details-view-right-content-panel-type';
 import { ContentActions } from '../actions/content-actions';
 import { DetailsViewActions } from '../actions/details-view-actions';
-import { ScopingActions } from '../actions/scoping-actions';
 import { PreviewFeaturesActions } from './../actions/preview-features-actions';
 import { BaseStoreImpl } from './base-store-impl';
 

@@ -3,7 +3,6 @@
 import { ContentActions } from 'background/actions/content-actions';
 import { DetailsViewActions } from 'background/actions/details-view-actions';
 import { PreviewFeaturesActions } from 'background/actions/preview-features-actions';
-import { ScopingActions } from 'background/actions/scoping-actions';
 import { SidePanelActions } from 'background/actions/side-panel-actions';
 import { DetailsViewStore } from 'background/stores/details-view-store';
 import { StoreNames } from 'common/stores/store-names';
