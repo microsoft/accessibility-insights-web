@@ -18,7 +18,7 @@ import { UserConfigurationStore } from 'background/stores/global/user-configurat
 import { NavigatorUtils } from 'common/navigator-utils';
 import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { EnvironmentInfoProvider } from '../../../../common/environment-info-provider';
-import { FeatureFlags, getDefaultFeatureFlagValues } from '../../../../common/feature-flags';
+import { FeatureFlags, getDefaultFeatureFlagsWeb } from '../../../../common/feature-flags';
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
 import { DevToolActionMessageCreator } from '../../../../common/message-creators/dev-tool-action-message-creator';
 import { IssueFilingActionMessageCreator } from '../../../../common/message-creators/issue-filing-action-message-creator';
@@ -197,7 +197,7 @@ describe('DialogRendererTests', () => {
         const testObject = createDialogRenderer();
 
         GlobalScope.using(getMainWindoContextMock).with(() => {
-            expect(testObject.render(testData, getDefaultFeatureFlagValues())).toBeUndefined();
+            expect(testObject.render(testData, getDefaultFeatureFlagsWeb())).toBeUndefined();
         });
 
         setupDomMockVerify();
@@ -278,7 +278,7 @@ describe('DialogRendererTests', () => {
         const testObject = createDialogRenderer();
 
         GlobalScope.using(getMainWindoContextMock).with(() => {
-            testObject.render(testData, getDefaultFeatureFlagValues());
+            testObject.render(testData, getDefaultFeatureFlagsWeb());
         });
 
         setupDomMockVerify();
@@ -325,7 +325,7 @@ describe('DialogRendererTests', () => {
         const windowMessageRequest: MessageRequest<DetailsDialogWindowMessage> = {
             win: 'this is main window' as any,
             command: 'insights.detailsDialog',
-            message: { data: testData, featureFlagStoreData: getDefaultFeatureFlagValues() },
+            message: { data: testData, featureFlagStoreData: getDefaultFeatureFlagsWeb() },
         };
 
         setupWindowUtilsMockAndFrameCommunicatorInIframe(windowMessageRequest);
@@ -334,7 +334,7 @@ describe('DialogRendererTests', () => {
         const testObject = createDialogRenderer();
 
         GlobalScope.using(getMainWindoContextMock).with(() => {
-            testObject.render(testData, getDefaultFeatureFlagValues());
+            testObject.render(testData, getDefaultFeatureFlagsWeb());
         });
 
         setupDomMockVerify();
@@ -379,7 +379,7 @@ describe('DialogRendererTests', () => {
         };
         const message: DetailsDialogWindowMessage = {
             data: testData,
-            featureFlagStoreData: getDefaultFeatureFlagValues(),
+            featureFlagStoreData: getDefaultFeatureFlagsWeb(),
         };
 
         setupDomMockForMainWindow(false);

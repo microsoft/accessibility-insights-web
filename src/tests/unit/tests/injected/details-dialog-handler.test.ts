@@ -18,7 +18,7 @@ describe('DetailsDialogHandlerTest', () => {
     let container: Element;
     let detailsDialog: Element;
     let containerParent: Element;
-    let body: Element;
+    let body: HTMLElement;
     let featureFlagStoreData: DictionaryStringTo<boolean>;
     let detailsDialogMock: IMock<DetailsDialog>;
 
@@ -506,7 +506,7 @@ describe('DetailsDialogHandlerTest', () => {
             .verifiable(Times.once());
 
         htmlElementUtilsMock
-            .setup(x => x.querySelector('body'))
+            .setup(x => x.getBody())
             .returns(() => body)
             .verifiable(Times.once());
 
@@ -618,7 +618,7 @@ describe('DetailsDialogHandlerTest', () => {
             .verifiable(Times.once());
 
         htmlElementUtilsMock
-            .setup(x => x.querySelector('body'))
+            .setup(x => x.getBody())
             .returns(() => body)
             .verifiable(Times.once());
 

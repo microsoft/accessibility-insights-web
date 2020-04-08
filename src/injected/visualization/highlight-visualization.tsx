@@ -33,7 +33,7 @@ export const HighlightVisualization = NamedFC<HighlightVisualizationProps>(
 
         const highlightElements: JSX.Element[] = [];
         const currentDom = drawerUtils.getDocumentElement();
-        const body = currentDom.querySelector('body');
+        const body = currentDom.body;
         const bodyStyle = windowUtils.getComputedStyle(body);
         const docStyle = windowUtils.getComputedStyle(currentDom.documentElement);
 
