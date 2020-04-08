@@ -6,8 +6,10 @@ import * as React from 'react';
 import { ReportSectionFactory, SectionProps } from './report-section-factory';
 
 export type ReportBodyProps = {
-    sectionFactory: Omit<ReportSectionFactory, 'HeadSection'>;
+    sectionFactory: ReportBodySectionFactory;
 } & SectionProps;
+
+export type ReportBodySectionFactory = Omit<ReportSectionFactory, 'HeadSection'>;
 
 export const ReportBody = NamedFC<ReportBodyProps>('ReportBody', props => {
     const { sectionFactory, ...sectionProps } = props;

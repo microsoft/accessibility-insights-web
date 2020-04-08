@@ -7,12 +7,9 @@ import { DateProvider } from 'common/date-provider';
 import { EnvironmentInfo } from 'common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import * as React from 'react';
-import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
+import { ReportBody, ReportBodyProps, ReportBodySectionFactory } from 'reports/components/report-sections/report-body';
 import { ReportCollapsibleContainerControl } from 'reports/components/report-sections/report-collapsible-container';
-import {
-    ReportSectionFactory,
-    SectionDeps,
-} from 'reports/components/report-sections/report-section-factory';
+import { ReportSectionFactory, SectionDeps } from 'reports/components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
@@ -54,7 +51,7 @@ describe('ReportHtmlGenerator', () => {
                 cardsVisualizationModifierButtons: NullComponent,
             } as SectionDeps,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
-            sectionFactory: sectionFactoryMock.object,
+            sectionFactory: sectionFactoryMock.object as ReportBodySectionFactory,
             pageTitle,
             pageUrl,
             description,
