@@ -9,7 +9,6 @@ import { DetailsViewActionCreator } from 'background/actions/details-view-action
 import { DetailsViewActions } from 'background/actions/details-view-actions';
 import { FeatureFlagActions } from 'background/actions/feature-flag-actions';
 import { PreviewFeaturesActions } from 'background/actions/preview-features-actions';
-import { ScopingActions } from 'background/actions/scoping-actions';
 import { SidePanelActions } from 'background/actions/side-panel-actions';
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { FeatureFlagsController } from 'background/feature-flags-controller';
@@ -119,7 +118,6 @@ const cardSelectionActions = new CardSelectionActions();
 const detailsViewActions = new DetailsViewActions();
 const sidePanelActions = new SidePanelActions();
 const previewFeaturesActions = new PreviewFeaturesActions(); // not really used but needed by DetailsViewStore
-const scopingActions = new ScopingActions(); // not really used but needed by DetailsViewStore
 const contentActions = new ContentActions(); // not really used but needed by DetailsViewStore
 const featureFlagActions = new FeatureFlagActions();
 
@@ -175,7 +173,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         const detailsViewStore = new DetailsViewStore(
             previewFeaturesActions,
-            scopingActions,
             contentActions,
             detailsViewActions,
             sidePanelActions,
