@@ -4,7 +4,11 @@ import { utc } from 'moment';
 
 export class DateProvider {
     public static getDateFromTimestamp(timestamp: string): Date {
-        return new Date(timestamp);
+        const dateNumber = Number(timestamp);
+        if (isNaN(dateNumber)) {
+            return new Date(timestamp);
+        }
+        return new Date(dateNumber);
     }
 
     public static getCurrentDate(): Date {

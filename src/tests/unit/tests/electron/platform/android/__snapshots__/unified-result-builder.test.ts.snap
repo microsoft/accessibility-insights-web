@@ -39,7 +39,7 @@ Object {
   "targetAppInfo": Object {
     "name": "com.test.scan-result",
   },
-  "timestamp": "Tue, 22 Oct 2019 19:55:04 GMT",
+  "timestamp": "1571774104070",
   "toolInfo": Object {
     "applicationProperties": Object {
       "name": "test-app-name",

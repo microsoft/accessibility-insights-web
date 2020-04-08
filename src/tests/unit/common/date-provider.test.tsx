@@ -3,9 +3,18 @@
 import { DateProvider } from '../../../common/date-provider';
 
 describe('DateProviderTest', () => {
-    test('getDateFromTimestamp', () => {
+    describe('getDateFromTimestamp', () => {
         const timestamp = 'Thu May 30 2019 16:57:54 GMT-0700 (Pacific Daylight Time)';
-        expect(DateProvider.getDateFromTimestamp(timestamp)).toEqual(new Date(timestamp));
+        const expectedDate = new Date(timestamp);
+
+        test('with date string', () => {
+            expect(DateProvider.getDateFromTimestamp(timestamp)).toEqual(expectedDate);
+        });
+
+        test('with milliseconds', () => {
+            const timestampMillis = expectedDate.getTime();
+            expect(DateProvider.getDateFromTimestamp(`${timestampMillis}`)).toEqual(expectedDate);
+        });
     });
 
     test('getCurrentDate', () => {
