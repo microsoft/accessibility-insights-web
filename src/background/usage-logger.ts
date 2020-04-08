@@ -1,8 +1,7 @@
-import { StorageAdapter } from '../common/browser-adapters/storage-adapter';
-import { Logger } from '../common/logging/logger';
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { StorageAdapter } from '../common/browser-adapters/storage-adapter';
+import { Logger } from '../common/logging/logger';
 
 export const USAGE_KEY: string = 'ADA_IS_A_COOL_CAT';
 
@@ -18,7 +17,7 @@ export class UsageLogger {
             .setUserData({
                 usageData: {
                     lastUsageDateTime: this.dateGetter().toISOString(),
-                    magic: USAGE_KEY,
+                    usageKey: USAGE_KEY,
                 },
             })
             .catch(this.logger.error);

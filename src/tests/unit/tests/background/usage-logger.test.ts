@@ -14,7 +14,7 @@ describe('UsageLoggerTest', () => {
     const expected = {
         usageData: {
             lastUsageDateTime: 'time',
-            magic: USAGE_KEY,
+            usageKey: USAGE_KEY,
         },
     };
 
