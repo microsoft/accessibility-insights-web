@@ -7,8 +7,11 @@ import { DateProvider } from 'common/date-provider';
 import { EnvironmentInfo } from 'common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import * as React from 'react';
-import { ReportHead } from 'reports/components/report-head';
-import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
+import {
+    ReportBody,
+    ReportBodyProps,
+    ReportBodySectionFactory,
+} from 'reports/components/report-sections/report-body';
 import { ReportCollapsibleContainerControl } from 'reports/components/report-sections/report-collapsible-container';
 import {
     ReportSectionFactory,
@@ -17,6 +20,7 @@ import {
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { exampleUnifiedStatusResults } from '../common/components/cards/sample-view-model-data';
 
 describe('ReportHtmlGenerator', () => {
@@ -54,7 +58,7 @@ describe('ReportHtmlGenerator', () => {
                 cardsVisualizationModifierButtons: NullComponent,
             } as SectionDeps,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
-            sectionFactory: sectionFactoryMock.object,
+            sectionFactory: sectionFactoryMock.object as ReportBodySectionFactory,
             pageTitle,
             pageUrl,
             description,
@@ -70,10 +74,11 @@ describe('ReportHtmlGenerator', () => {
             },
         } as ReportBodyProps;
 
-        const headElement: JSX.Element = <ReportHead />;
+        const headElement: JSX.Element = <NullComponent />;
         const bodyElement: JSX.Element = <ReportBody {...sectionProps} />;
 
         const rendererMock = Mock.ofType(ReactStaticRenderer, MockBehavior.Strict);
+        sectionFactoryMock.setup(mock => mock.HeadSection).returns(() => NullComponent);
         rendererMock
             .setup(r => r.renderToStaticMarkup(It.isObjectWith(headElement)))
             .returns(() => '<head-markup />')
