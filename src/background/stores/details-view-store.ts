@@ -47,8 +47,6 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
             this.onClose('isPreviewFeaturesOpen'),
         );
 
-        this.scopingActions.closeScopingPanel.addListener(() => this.onClose('isScopingOpen'));
-
         this.contentActions.openContentPanel.addListener(contentPayload =>
             this.onOpen('isContentOpen', state => (state.contentPath = contentPayload.contentPath)),
         );
