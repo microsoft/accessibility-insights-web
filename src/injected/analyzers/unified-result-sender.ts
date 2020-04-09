@@ -20,7 +20,7 @@ export class UnifiedResultSender {
         private readonly toolData: ToolData,
         private readonly generateUID: UUIDGenerator,
         private readonly scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
-    ) { }
+    ) {}
 
     public sendResults: PostResolveCallback = (axeResults: AxeAnalyzerResult) => {
         const scanIncompleteWarnings = this.scanIncompleteWarningDetector.detectScanIncompleteWarnings();
