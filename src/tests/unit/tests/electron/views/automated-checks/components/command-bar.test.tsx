@@ -2,6 +2,8 @@
 // Licensed under the MIT License.
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { EnumHelper } from 'common/enum-helper';
+import { FileURLProvider } from 'common/file-url-provider';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import {
@@ -13,16 +15,33 @@ import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
-import { It, Mock, MockBehavior, Times } from 'typemoq';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('CommandBar', () => {
+    let fileURLProviderMock: IMock<FileURLProvider>;
+    let reportHTMLStub: string;
+    let fileURLStub: string;
+    let featureFlagStoreDataStub: FeatureFlagStoreData;
+
+    beforeEach(() => {
+        fileURLProviderMock = Mock.ofType(FileURLProvider);
+        reportHTMLStub = ' some report html ';
+        fileURLStub = ' some url ';
+        featureFlagStoreDataStub = {
+            somefeatureflag: true,
+        };
+        prepareFileURLProviderMock();
+    });
+
     describe('renders', () => {
         it('while status is <Scanning>', () => {
             const props = {
-                deps: { scanActionCreator: null },
+                deps: { scanActionCreator: null, fileURLProvider: fileURLProviderMock.object },
                 scanStoreData: {
                     status: ScanStatus.Scanning,
                 },
+                reportHTML: reportHTMLStub,
+                featureFlagStoreData: featureFlagStoreDataStub,
             } as CommandBarProps;
 
             const rendered = shallow(<CommandBar {...props} />);
@@ -36,10 +55,12 @@ describe('CommandBar', () => {
 
         it.each(notScanningStatuses)('while status is <%s>', status => {
             const props = {
-                deps: { scanActionCreator: null },
+                deps: { scanActionCreator: null, fileURLProvider: fileURLProviderMock.object },
                 scanStoreData: {
                     status: ScanStatus[status],
                 },
+                reportHTML: reportHTMLStub,
+                featureFlagStoreData: featureFlagStoreDataStub,
             } as CommandBarProps;
 
             const rendered = shallow(<CommandBar {...props} />);
@@ -63,6 +84,7 @@ describe('CommandBar', () => {
             const props = {
                 deps: {
                     scanActionCreator: scanActionCreatorMock.object,
+                    fileURLProvider: fileURLProviderMock.object,
                 },
                 deviceStoreData: {
                     port,
@@ -70,6 +92,8 @@ describe('CommandBar', () => {
                 scanStoreData: {
                     status: ScanStatus.Default,
                 },
+                reportHTML: reportHTMLStub,
+                featureFlagStoreData: featureFlagStoreDataStub,
             } as CommandBarProps;
 
             const rendered = mount(<CommandBar {...props} />);
@@ -88,10 +112,13 @@ describe('CommandBar', () => {
             const props = {
                 deps: {
                     dropdownClickHandler: dropdownClickHandlerMock.object,
+                    fileURLProvider: fileURLProviderMock.object,
                 },
                 scanStoreData: {
                     status: ScanStatus.Default,
                 },
+                reportHTML: reportHTMLStub,
+                featureFlagStoreData: featureFlagStoreDataStub,
             } as CommandBarProps;
 
             const rendered = mount(<CommandBar {...props} />);
@@ -105,4 +132,10 @@ describe('CommandBar', () => {
             );
         });
     });
+
+    function prepareFileURLProviderMock(): void {
+        fileURLProviderMock
+            .setup(provider => provider.provideURL([reportHTMLStub], 'text/html'))
+            .returns(() => fileURLStub);
+    }
 });

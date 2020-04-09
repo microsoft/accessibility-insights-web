@@ -10,6 +10,13 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
       Object {
         "getCardSelectionViewData": [Function],
         "getCardsViewData": [Function],
+        "getCurrentDate": [Function],
+        "reportGenerator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "assessmentReportHtmlGenerator": undefined,
+          "reportHtmlGenerator": undefined,
+          "reportNameGenerator": undefined,
+        },
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "deviceActions": undefined,
@@ -31,6 +38,13 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
           Object {
             "getCardSelectionViewData": [Function],
             "getCardsViewData": [Function],
+            "getCurrentDate": [Function],
+            "reportGenerator": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "assessmentReportHtmlGenerator": undefined,
+              "reportHtmlGenerator": undefined,
+              "reportNameGenerator": undefined,
+            },
             "scanActionCreator": proxy {
               "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
               "deviceActions": undefined,
@@ -40,6 +54,7 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
           }
         }
         deviceStoreData={Object {}}
+        reportHTML="some report html"
         scanStoreData={
           Object {
             "status": 2,
@@ -64,6 +79,13 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
             Object {
               "getCardSelectionViewData": [Function],
               "getCardsViewData": [Function],
+              "getCurrentDate": [Function],
+              "reportGenerator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "assessmentReportHtmlGenerator": undefined,
+                "reportHtmlGenerator": undefined,
+                "reportNameGenerator": undefined,
+              },
               "scanActionCreator": proxy {
                 "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                 "deviceActions": undefined,
@@ -100,6 +122,13 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
       Object {
         "getCardSelectionViewData": [Function],
         "getCardsViewData": [Function],
+        "getCurrentDate": [Function],
+        "reportGenerator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "assessmentReportHtmlGenerator": undefined,
+          "reportHtmlGenerator": undefined,
+          "reportNameGenerator": undefined,
+        },
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "deviceActions": undefined,
@@ -168,6 +197,7 @@ exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
             "connectedDevice": "TEST DEVICE",
           }
         }
+        reportHTML=""
         scanStoreData={
           Object {
             "status": 3,
@@ -255,6 +285,7 @@ exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
             "connectedDevice": "TEST DEVICE",
           }
         }
+        reportHTML=""
         scanStoreData={
           Object {
             "status": 1,
@@ -342,6 +373,7 @@ exports[`AutomatedChecksView renders when status scan <undefined> 1`] = `
             "connectedDevice": "TEST DEVICE",
           }
         }
+        reportHTML=""
         scanStoreData={
           Object {
             "status": undefined,

@@ -22,6 +22,7 @@ import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { UnifiedScanResultStore } from 'background/stores/unified-scan-result-store';
 import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
 import { UserConfigurationController } from 'background/user-configuration-controller';
+import { provideBlob } from 'common/blob-provider';
 import { onlyHighlightingSupported } from 'common/components/cards/card-interaction-support';
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { CardsCollapsibleControl } from 'common/components/cards/collapsible-component-cards';
@@ -32,6 +33,7 @@ import { DocumentManipulator } from 'common/document-manipulator';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { FeatureFlagDefaultsHelper } from 'common/feature-flag-defaults-helper';
+import { FileURLProvider } from 'common/file-url-provider';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { createDefaultLogger } from 'common/logging/default-logger';
@@ -40,6 +42,7 @@ import { DropdownActionMessageCreator } from 'common/message-creators/dropdown-a
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
+import { WindowUtils } from 'common/window-utils';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { CardsViewDeps } from 'DetailsView/components/cards-view';
 import { ipcRenderer, remote } from 'electron';
@@ -63,12 +66,19 @@ import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-r
 import { ScanController } from 'electron/platform/android/scan-controller';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
 import { UnifiedSettingsProvider } from 'electron/settings/unified-settings-provider';
+import { UnifiedReportSectionFactory } from 'electron/views/report/unified-report-section-factory';
 import { RootContainerState } from 'electron/views/root-container/components/root-container';
 import { PlatformInfo } from 'electron/window-management/platform-info';
 import { WindowFrameListener } from 'electron/window-management/window-frame-listener';
 import { WindowFrameUpdater } from 'electron/window-management/window-frame-updater';
 import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
+import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
+import { ReactStaticRenderer } from 'reports/react-static-renderer';
+import { ReportGenerator } from 'reports/report-generator';
+import { ReportHtmlGenerator } from 'reports/report-html-generator';
+import { ReportNameGenerator } from 'reports/report-name-generator';
+
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
 import { IndexedDBDataKeys } from '../../background/IndexedDBDataKeys';
@@ -199,6 +209,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             unifiedScanResultStore,
             cardSelectionStore,
             detailsViewStore,
+            featureFlagStore,
         ]);
 
         const fetchScanResults = createScanResultsFetcher(axios.get);
@@ -351,6 +362,23 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         const documentManipulator = new DocumentManipulator(document);
 
+        const reportHtmlGenerator = new ReportHtmlGenerator(
+            UnifiedReportSectionFactory,
+            new ReactStaticRenderer(),
+            { extensionVersion: '1.1', browserSpec: "doesn't exist", axeCoreVersion: '0.16' },
+            getDefaultAddListenerForCollapsibleSection,
+            DateProvider.getUTCStringFromDate,
+            GetGuidanceTagsFromGuidanceLinks,
+            fixInstructionProcessor,
+            getPropertyConfiguration,
+        );
+
+        const reportGenerator = new ReportGenerator(
+            new ReportNameGenerator(),
+            reportHtmlGenerator,
+            null,
+        );
+
         const deps: RootContainerRendererDeps = {
             currentWindow,
             userConfigurationStore,
@@ -373,6 +401,9 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             settingsProvider: UnifiedSettingsProvider,
             loadTheme,
             documentManipulator,
+            reportGenerator: reportGenerator,
+            fileURLProvider: new FileURLProvider(new WindowUtils(), provideBlob),
+            getCurrentDate: DateProvider.getCurrentDate,
         };
 
         window.insightsUserConfiguration = new UserConfigurationController(interpreter);

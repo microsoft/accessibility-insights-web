@@ -25,6 +25,27 @@ exports[`CommandBar renders while status is <Completed> 1`] = `
   <div
     className="farItems"
   >
+    <FlaggedComponent
+      enableJSXElement={
+        <CustomizedActionButton
+          download="atestfile.html"
+          href=" some url "
+          iconProps={
+            Object {
+              "iconName": "Export",
+            }
+          }
+        >
+          Export result
+        </CustomizedActionButton>
+      }
+      featureFlag="exportReport"
+      featureFlagStoreData={
+        Object {
+          "somefeatureflag": true,
+        }
+      }
+    />
     <CustomizedActionButton
       ariaLabel="settings"
       className="menuItemButton"
@@ -66,6 +87,27 @@ exports[`CommandBar renders while status is <Default> 1`] = `
   <div
     className="farItems"
   >
+    <FlaggedComponent
+      enableJSXElement={
+        <CustomizedActionButton
+          download="atestfile.html"
+          href=" some url "
+          iconProps={
+            Object {
+              "iconName": "Export",
+            }
+          }
+        >
+          Export result
+        </CustomizedActionButton>
+      }
+      featureFlag="exportReport"
+      featureFlagStoreData={
+        Object {
+          "somefeatureflag": true,
+        }
+      }
+    />
     <CustomizedActionButton
       ariaLabel="settings"
       className="menuItemButton"
@@ -107,6 +149,27 @@ exports[`CommandBar renders while status is <Failed> 1`] = `
   <div
     className="farItems"
   >
+    <FlaggedComponent
+      enableJSXElement={
+        <CustomizedActionButton
+          download="atestfile.html"
+          href=" some url "
+          iconProps={
+            Object {
+              "iconName": "Export",
+            }
+          }
+        >
+          Export result
+        </CustomizedActionButton>
+      }
+      featureFlag="exportReport"
+      featureFlagStoreData={
+        Object {
+          "somefeatureflag": true,
+        }
+      }
+    />
     <CustomizedActionButton
       ariaLabel="settings"
       className="menuItemButton"
@@ -148,6 +211,27 @@ exports[`CommandBar renders while status is <Scanning> 1`] = `
   <div
     className="farItems"
   >
+    <FlaggedComponent
+      enableJSXElement={
+        <CustomizedActionButton
+          download="atestfile.html"
+          href=" some url "
+          iconProps={
+            Object {
+              "iconName": "Export",
+            }
+          }
+        >
+          Export result
+        </CustomizedActionButton>
+      }
+      featureFlag="exportReport"
+      featureFlagStoreData={
+        Object {
+          "somefeatureflag": true,
+        }
+      }
+    />
     <CustomizedActionButton
       ariaLabel="settings"
       className="menuItemButton"
