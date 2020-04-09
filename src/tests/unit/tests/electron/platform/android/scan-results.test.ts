@@ -5,7 +5,7 @@ import {
     RuleResultsData,
     AndroidScanResults,
     ViewElementData,
-} from 'electron/platform/android/scan-results';
+} from 'electron/platform/android/android-scan-results';
 import { set } from 'lodash';
 import { buildRuleResultObject, buildViewElement } from './scan-results-helpers';
 

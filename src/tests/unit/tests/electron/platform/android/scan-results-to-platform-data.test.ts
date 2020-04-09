@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { PlatformData } from 'common/types/store-data/unified-data-interface';
-import { AndroidScanResults } from 'electron/platform/android/scan-results';
+import { AndroidScanResults } from 'electron/platform/android/android-scan-results';
 import { convertScanResultsToPlatformData } from 'electron/platform/android/scan-results-to-platform-data';
 import { axeRuleResultExample } from 'tests/unit/tests/electron/flux/action-creator/scan-result-example';
 

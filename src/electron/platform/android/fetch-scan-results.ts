@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import axios from 'axios';
-import { AndroidScanResults } from './scan-results';
+import { AndroidScanResults } from './android-scan-results';
 
 export type ScanResultsFetcher = (port: number) => Promise<AndroidScanResults>;
 

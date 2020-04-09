@@ -6,7 +6,7 @@ import {
     HttpGet,
     ScanResultsFetcher,
 } from 'electron/platform/android/fetch-scan-results';
-import { AndroidScanResults } from 'electron/platform/android/scan-results';
+import { AndroidScanResults } from 'electron/platform/android/android-scan-results';
 import { IMock, Mock } from 'typemoq';
 
 describe('fetchScanResults', () => {

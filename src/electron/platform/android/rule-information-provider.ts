@@ -4,7 +4,7 @@ import { UnifiedFormattableResolution } from 'common/types/store-data/unified-da
 import { DictionaryStringTo } from 'types/common-types';
 
 import { RuleInformation } from './rule-information';
-import { RuleResultsData } from './scan-results';
+import { RuleResultsData } from './android-scan-results';
 
 export class RuleInformationProvider {
     private supportedRules: DictionaryStringTo<RuleInformation>;

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { AppDataAdapter } from 'common/browser-adapters/app-data-adapter';
 import { createGetToolDataDelegate } from 'electron/common/application-properties-provider';
-import { AndroidScanResults } from 'electron/platform/android/scan-results';
+import { AndroidScanResults } from 'electron/platform/android/android-scan-results';
 import { Mock } from 'typemoq';
 
 describe('ToolDataDelegate', () => {

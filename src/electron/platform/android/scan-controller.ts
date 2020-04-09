@@ -12,7 +12,10 @@ import {
 import { PortPayload } from 'electron/flux/action/device-action-payloads';
 import { ScanActions } from 'electron/flux/action/scan-actions';
 import { ScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
-import { RuleResultsData, AndroidScanResults } from 'electron/platform/android/scan-results';
+import {
+    RuleResultsData,
+    AndroidScanResults,
+} from 'electron/platform/android/android-scan-results';
 import { UnifiedScanCompletedPayloadBuilder } from 'electron/platform/android/unified-result-builder';
 
 export class ScanController {

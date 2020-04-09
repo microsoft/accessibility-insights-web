@@ -7,7 +7,7 @@ import {
     RuleResultsData,
     AndroidScanResults,
     ViewElementData,
-} from 'electron/platform/android/scan-results';
+} from 'electron/platform/android/android-scan-results';
 
 export function buildScanResultsObject(
     deviceName: string = null,

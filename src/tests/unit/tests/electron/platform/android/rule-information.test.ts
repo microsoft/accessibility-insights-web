@@ -7,7 +7,7 @@ import {
     IncludeThisResultDelegate,
     RuleInformation,
 } from 'electron/platform/android/rule-information';
-import { RuleResultsData } from 'electron/platform/android/scan-results';
+import { RuleResultsData } from 'electron/platform/android/android-scan-results';
 import { Mock } from 'typemoq';
 
 describe('RuleInformation', () => {

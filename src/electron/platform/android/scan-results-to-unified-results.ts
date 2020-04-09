@@ -10,7 +10,7 @@ import { UUIDGenerator } from 'common/uid-generator';
 import { DictionaryStringTo } from 'types/common-types';
 import { RuleInformation } from './rule-information';
 import { RuleInformationProviderType } from './rule-information-provider-type';
-import { RuleResultsData, AndroidScanResults, ViewElementData } from './scan-results';
+import { RuleResultsData, AndroidScanResults, ViewElementData } from './android-scan-results';
 
 export type ConvertScanResultsToUnifiedResultsDelegate = (
     scanResults: AndroidScanResults,

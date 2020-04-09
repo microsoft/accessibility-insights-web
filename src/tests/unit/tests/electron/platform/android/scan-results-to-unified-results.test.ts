@@ -7,7 +7,10 @@ import { UnifiedResult } from 'common/types/store-data/unified-data-interface';
 import { generateUID } from 'common/uid-generator';
 import { RuleInformation } from 'electron/platform/android/rule-information';
 import { RuleInformationProviderType } from 'electron/platform/android/rule-information-provider-type';
-import { RuleResultsData, AndroidScanResults } from 'electron/platform/android/scan-results';
+import {
+    RuleResultsData,
+    AndroidScanResults,
+} from 'electron/platform/android/android-scan-results';
 import { convertScanResultsToUnifiedResults } from 'electron/platform/android/scan-results-to-unified-results';
 import {
     buildRuleInformation,

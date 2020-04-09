@@ -4,7 +4,7 @@ import {
     ScreenshotData,
     UnifiedScanResultStoreData,
 } from 'common/types/store-data/unified-data-interface';
-import { BoundingRectangle } from 'electron/platform/android/scan-results';
+import { BoundingRectangle } from 'electron/platform/android/android-scan-results';
 import { HighlightBoxViewModel } from 'electron/views/screenshot/screenshot-view-model';
 import { screenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
 import { exampleUnifiedResult } from 'tests/unit/tests/common/components/cards/sample-view-model-data';
