@@ -5,7 +5,6 @@ import { Assessments } from 'assessments/assessments';
 import { AxeInfo } from '../common/axe-info';
 import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
-import { EnvironmentInfoProvider } from '../common/environment-info-provider';
 import { getIndexedDBStore } from '../common/indexedDB/get-indexeddb-store';
 import { IndexedDBAPI, IndexedDBUtil } from '../common/indexedDB/indexedDB';
 import { InsightsWindowExtensions } from '../common/insights-window-extensions';
@@ -14,8 +13,9 @@ import { NavigatorUtils } from '../common/navigator-utils';
 import { NotificationCreator } from '../common/notification-creator';
 import { createDefaultPromiseFactory } from '../common/promises/promise-factory';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
+import { createToolData } from '../common/tool-data-creator';
 import { UrlValidator } from '../common/url-validator';
-import { title } from '../content/strings/application';
+import { title, toolName } from '../content/strings/application';
 import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-service-provider-impl';
 import { BrowserMessageBroadcasterFactory } from './browser-message-broadcaster-factory';
 import { DevToolsListener } from './dev-tools-listener';
@@ -79,10 +79,13 @@ async function initialize(): Promise<void> {
     const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
 
     const browserSpec = new NavigatorUtils(window.navigator, logger).getBrowserSpec();
-    const environmentInfoProvider = new EnvironmentInfoProvider(
+
+    const toolData = createToolData(
         browserAdapter.getVersion(),
-        browserSpec,
         AxeInfo.Default.version,
+        'axe-core',
+        toolName,
+        browserSpec,
     );
 
     const globalContext = await GlobalContextFactory.createContext(
@@ -94,7 +97,7 @@ async function initialize(): Promise<void> {
         indexedDBInstance,
         persistedData,
         IssueFilingServiceProviderImpl,
-        environmentInfoProvider.getEnvironmentInfo(),
+        toolData,
         browserAdapter,
         browserAdapter,
         logger,

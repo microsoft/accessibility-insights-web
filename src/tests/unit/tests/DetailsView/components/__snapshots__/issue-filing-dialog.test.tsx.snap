@@ -23,12 +23,6 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
   <IssueFilingSettingsContainer
     deps={
       Object {
-        "environmentInfoProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "axeVersion": undefined,
-          "browserSpec": undefined,
-          "extensionVersion": undefined,
-        },
         "issueFilingActionMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "dispatcher": undefined,
@@ -38,6 +32,17 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
         "issueFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "services": undefined,
+        },
+        "toolData": Object {
+          "applicationProperties": Object {
+            "environmentName": "environmentName",
+            "name": "app-name",
+            "version": "app-version",
+          },
+          "scanEngineProperties": Object {
+            "name": "engine-name",
+            "version": "engine-version",
+          },
         },
         "userConfigMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -98,12 +103,6 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
   <IssueFilingSettingsContainer
     deps={
       Object {
-        "environmentInfoProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "axeVersion": undefined,
-          "browserSpec": undefined,
-          "extensionVersion": undefined,
-        },
         "issueFilingActionMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "dispatcher": undefined,
@@ -113,6 +112,17 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
         "issueFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "services": undefined,
+        },
+        "toolData": Object {
+          "applicationProperties": Object {
+            "environmentName": "environmentName",
+            "name": "app-name",
+            "version": "app-version",
+          },
+          "scanEngineProperties": Object {
+            "name": "engine-name",
+            "version": "engine-version",
+          },
         },
         "userConfigMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -173,12 +183,6 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
   <IssueFilingSettingsContainer
     deps={
       Object {
-        "environmentInfoProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "axeVersion": undefined,
-          "browserSpec": undefined,
-          "extensionVersion": undefined,
-        },
         "issueFilingActionMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "dispatcher": undefined,
@@ -188,6 +192,17 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
         "issueFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "services": undefined,
+        },
+        "toolData": Object {
+          "applicationProperties": Object {
+            "environmentName": "environmentName",
+            "name": "app-name",
+            "version": "app-version",
+          },
+          "scanEngineProperties": Object {
+            "name": "engine-name",
+            "version": "engine-version",
+          },
         },
         "userConfigMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -248,12 +263,6 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
   <IssueFilingSettingsContainer
     deps={
       Object {
-        "environmentInfoProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "axeVersion": undefined,
-          "browserSpec": undefined,
-          "extensionVersion": undefined,
-        },
         "issueFilingActionMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "dispatcher": undefined,
@@ -263,6 +272,17 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
         "issueFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "services": undefined,
+        },
+        "toolData": Object {
+          "applicationProperties": Object {
+            "environmentName": "environmentName",
+            "name": "app-name",
+            "version": "app-version",
+          },
+          "scanEngineProperties": Object {
+            "name": "engine-name",
+            "version": "engine-version",
+          },
         },
         "userConfigMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -323,12 +343,6 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
   <IssueFilingSettingsContainer
     deps={
       Object {
-        "environmentInfoProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "axeVersion": undefined,
-          "browserSpec": undefined,
-          "extensionVersion": undefined,
-        },
         "issueFilingActionMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "dispatcher": undefined,
@@ -338,6 +352,17 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
         "issueFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "services": undefined,
+        },
+        "toolData": Object {
+          "applicationProperties": Object {
+            "environmentName": "environmentName",
+            "name": "app-name",
+            "version": "app-version",
+          },
+          "scanEngineProperties": Object {
+            "name": "engine-name",
+            "version": "engine-version",
+          },
         },
         "userConfigMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -398,12 +423,6 @@ exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
   <IssueFilingSettingsContainer
     deps={
       Object {
-        "environmentInfoProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "axeVersion": undefined,
-          "browserSpec": undefined,
-          "extensionVersion": undefined,
-        },
         "issueFilingActionMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "dispatcher": undefined,
@@ -413,6 +432,17 @@ exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
         "issueFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "services": undefined,
+        },
+        "toolData": Object {
+          "applicationProperties": Object {
+            "environmentName": "environmentName",
+            "name": "app-name",
+            "version": "app-version",
+          },
+          "scanEngineProperties": Object {
+            "name": "engine-name",
+            "version": "engine-version",
+          },
         },
         "userConfigMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -473,12 +503,6 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
   <IssueFilingSettingsContainer
     deps={
       Object {
-        "environmentInfoProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "axeVersion": undefined,
-          "browserSpec": undefined,
-          "extensionVersion": undefined,
-        },
         "issueFilingActionMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "dispatcher": undefined,
@@ -488,6 +512,17 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
         "issueFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "services": undefined,
+        },
+        "toolData": Object {
+          "applicationProperties": Object {
+            "environmentName": "environmentName",
+            "name": "app-name",
+            "version": "app-version",
+          },
+          "scanEngineProperties": Object {
+            "name": "engine-name",
+            "version": "engine-version",
+          },
         },
         "userConfigMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -549,12 +584,6 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
   <IssueFilingSettingsContainer
     deps={
       Object {
-        "environmentInfoProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "axeVersion": undefined,
-          "browserSpec": undefined,
-          "extensionVersion": undefined,
-        },
         "issueFilingActionMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "dispatcher": undefined,
@@ -564,6 +593,17 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
         "issueFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "services": undefined,
+        },
+        "toolData": Object {
+          "applicationProperties": Object {
+            "environmentName": "environmentName",
+            "name": "app-name",
+            "version": "app-version",
+          },
+          "scanEngineProperties": Object {
+            "name": "engine-name",
+            "version": "engine-version",
+          },
         },
         "userConfigMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -624,12 +664,6 @@ exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) s
   <IssueFilingSettingsContainer
     deps={
       Object {
-        "environmentInfoProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "axeVersion": undefined,
-          "browserSpec": undefined,
-          "extensionVersion": undefined,
-        },
         "issueFilingActionMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "dispatcher": undefined,
@@ -639,6 +673,17 @@ exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) s
         "issueFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "services": undefined,
+        },
+        "toolData": Object {
+          "applicationProperties": Object {
+            "environmentName": "environmentName",
+            "name": "app-name",
+            "version": "app-version",
+          },
+          "scanEngineProperties": Object {
+            "name": "engine-name",
+            "version": "engine-version",
+          },
         },
         "userConfigMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",

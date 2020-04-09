@@ -1,12 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+
+import * as React from 'react';
+
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { shallow } from 'enzyme';
-import * as React from 'react';
+import { FooterTextForUnified } from 'reports/components/report-sections/footer-text-for-unified';
 import { FooterTextProps } from 'reports/components/report-sections/footer-text-props';
-import { FooterTextForService } from 'reports/package/footer-text-for-service';
 
-describe('FooterTextForService', () => {
+describe('FooterTextForUnified', () => {
     it('renders', () => {
         const toolData: ToolData = {
             scanEngineProperties: {
@@ -20,11 +22,10 @@ describe('FooterTextForService', () => {
             },
         };
 
-        const footerTextForServiceProps: FooterTextProps = {
+        const footerTextProps: FooterTextProps = {
             toolData: toolData,
         };
-
-        const footerWrapper = shallow(<FooterTextForService {...footerTextForServiceProps} />);
-        expect(footerWrapper.getElement()).toMatchSnapshot('footer');
+        const footerWrapper = shallow(<FooterTextForUnified {...footerTextProps} />);
+        expect(footerWrapper.getElement()).toMatchSnapshot();
     });
 });

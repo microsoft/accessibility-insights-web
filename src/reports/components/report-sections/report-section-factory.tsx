@@ -2,12 +2,11 @@
 // Licensed under the MIT License.
 import { FailedInstancesSectionDeps } from 'common/components/cards/failed-instances-section';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
-import { EnvironmentInfoProvider } from 'common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { ReactFCWithDisplayName } from 'common/react/named-fc';
 
 import { CardsViewModel } from '../../../common/types/store-data/card-view-model';
-import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
+import { TargetAppData, ToolData } from '../../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import { NotApplicableChecksSectionDeps } from './not-applicable-checks-section';
 import { PassedChecksSectionDeps } from './passed-checks-section';
@@ -23,7 +22,7 @@ export type SectionProps = {
     pageUrl: string;
     description: string;
     scanDate: Date;
-    environmentInfoProvider: EnvironmentInfoProvider;
+    toolData: ToolData;
     toUtcString: (date: Date) => string;
     getCollapsibleScript: () => string;
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;
@@ -46,5 +45,5 @@ export type ReportSectionFactory = {
     PassedChecksSection: ReactFCWithDisplayName<SectionProps>;
     NotApplicableChecksSection: ReactFCWithDisplayName<SectionProps>;
     FooterSection: ReactFCWithDisplayName;
-    FooterText: ReactFCWithDisplayName<Pick<SectionProps, 'environmentInfoProvider'>>;
+    FooterText: ReactFCWithDisplayName<Pick<SectionProps, 'toolData'>>;
 };

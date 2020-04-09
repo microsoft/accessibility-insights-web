@@ -5,10 +5,12 @@ import { EnumHelper } from 'common/enum-helper';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
+import { createToolData } from 'common/tool-data-creator';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { PermissionsStateStoreData } from 'common/types/store-data/permissions-state-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { VisualizationType } from 'common/types/visualization-type';
+import { toolName } from 'content/strings/application';
 import { ClientStoreListener, TargetPageStoreData } from 'injected/client-store-listener';
 import { ElementBasedViewModelCreator } from 'injected/element-based-view-model-creator';
 import { FocusChangeHandler } from 'injected/focus-change-handler';
@@ -22,7 +24,6 @@ import { VisualizationStateChangeHandler } from 'injected/visualization-state-ch
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
-import { EnvironmentInfoProvider } from '../common/environment-info-provider';
 import { TelemetryEventSource } from '../common/extension-telemetry-events';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
@@ -197,10 +198,12 @@ export class MainWindowInitializer extends WindowInitializer {
 
         const browserSpec = new NavigatorUtils(window.navigator, logger).getBrowserSpec();
 
-        const environmentInfoProvider = new EnvironmentInfoProvider(
+        const toolData = createToolData(
             this.appDataAdapter.getVersion(),
-            browserSpec,
             AxeInfo.Default.version,
+            'axe-core',
+            toolName,
+            browserSpec,
         );
 
         MainWindowContext.initialize(
@@ -210,7 +213,7 @@ export class MainWindowInitializer extends WindowInitializer {
             targetPageActionMessageCreator,
             issueFilingActionMessageCreator,
             userConfigMessageCreator,
-            environmentInfoProvider,
+            toolData,
             IssueFilingServiceProviderImpl,
         );
 
@@ -286,7 +289,7 @@ export class MainWindowInitializer extends WindowInitializer {
             this.browserAdapter.sendMessageToFrames,
             convertScanResultsToUnifiedResults,
             convertScanResultsToUnifiedRules,
-            environmentInfoProvider,
+            toolData,
             generateUID,
             scanIncompleteWarningDetector,
         );

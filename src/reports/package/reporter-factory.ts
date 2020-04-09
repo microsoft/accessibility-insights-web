@@ -20,9 +20,9 @@ import { ruleToLinkConfiguration } from 'scanner/rule-to-links-mappings';
 import { FixInstructionProcessor } from '../../common/components/fix-instruction-processor';
 import { getPropertyConfiguration } from '../../common/configs/unified-result-property-configurations';
 import { DateProvider } from '../../common/date-provider';
-import { EnvironmentInfoProvider } from '../../common/environment-info-provider';
 import { initializeFabricIcons } from '../../common/fabric-icons';
 import { GetGuidanceTagsFromGuidanceLinks } from '../../common/get-guidance-tags-from-guidance-links';
+import { createToolData } from '../../common/tool-data-creator';
 import { AxeReportParameters, ReporterFactory } from './accessibilityInsightsReport';
 import { Reporter } from './reporter';
 
@@ -42,21 +42,26 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
         serviceName,
     } = parameters;
 
-    const environmentInfoProvider = new EnvironmentInfoProvider('', userAgent, axeVersion);
+    const toolData = createToolData(
+        '',
+        axeVersion,
+        'axe-core',
+        serviceName,
+        userAgent,
+    );
+
     const reactStaticRenderer = new ReactStaticRenderer();
     const fixInstructionProcessor = new FixInstructionProcessor();
 
-    const FooterText = FooterTextForService(serviceName);
-
     const sectionFactory = {
         ...AutomatedChecksReportSectionFactory,
-        FooterText,
+        FooterTextForService,
     };
 
     const reportHtmlGenerator = new ReportHtmlGenerator(
         sectionFactory,
         reactStaticRenderer,
-        environmentInfoProvider,
+        toolData,
         getDefaultAddListenerForCollapsibleSection,
         DateProvider.getUTCStringFromDate,
         GetGuidanceTagsFromGuidanceLinks,

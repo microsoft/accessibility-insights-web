@@ -3,13 +3,12 @@
 import { FailedInstancesSectionDeps } from 'common/components/cards/failed-instances-section';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { NamedFC } from 'common/react/named-fc';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
 import { SectionProps } from 'reports/components/report-sections/report-section-factory';
-import { Mock, Times } from 'typemoq';
-
-import { EnvironmentInfo, EnvironmentInfoProvider } from 'common/environment-info-provider';
+import { Mock } from 'typemoq';
 import { exampleUnifiedStatusResults } from '../../../common/components/cards/sample-view-model-data';
 
 describe('ReportBody', () => {
@@ -19,16 +18,17 @@ describe('ReportBody', () => {
         const getScriptStub = () => '';
         const getGuidanceTagsStub = () => [];
         const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
-        const environmentInfoProviderMock = Mock.ofType(EnvironmentInfoProvider);
-        const environmentInfo: EnvironmentInfo = {
-            extensionVersion: 'extension-version',
-            browserSpec: 'browser-spec',
-            axeCoreVersion: 'axe-core-version',
+        const toolData: ToolData = {
+            scanEngineProperties: {
+                name: 'engine-name',
+                version: 'engine-version',
+            },
+            applicationProperties: {
+                name: 'app-name',
+                version: 'app-version',
+                environmentName: 'environmentName',
+            },
         };
-        environmentInfoProviderMock
-            .setup(eipm => eipm.getEnvironmentInfo())
-            .returns(() => environmentInfo)
-            .verifiable(Times.never());
 
         const detailsProps: SectionProps = {
             deps: {} as FailedInstancesSectionDeps,
@@ -37,7 +37,7 @@ describe('ReportBody', () => {
             pageUrl,
             description: 'test description',
             scanDate: new Date('2019-05-29T19:12:16.804Z'),
-            environmentInfoProvider: environmentInfoProviderMock.object,
+            toolData: toolData,
             scanResult: {
                 passes: [],
                 violations: [],
@@ -68,8 +68,6 @@ describe('ReportBody', () => {
         const wrapper = shallow(<ReportBody {...props} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();
-
-        environmentInfoProviderMock.verifyAll();
     });
 
     const createSectionFactoryStub = () => {

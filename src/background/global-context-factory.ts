@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import { BrowserPermissionsTracker } from 'background/browser-permissions-tracker';
 import { Logger } from 'common/logging/logger';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { DebugToolsActionCreator } from 'debug-tools/action-creators/debug-tools-action-creator';
 import { DebugToolsController } from 'debug-tools/controllers/debug-tools-controller';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { CommandsAdapter } from '../common/browser-adapters/commands-adapter';
 import { StorageAdapter } from '../common/browser-adapters/storage-adapter';
-import { EnvironmentInfo } from '../common/environment-info-provider';
 import { IndexedDBAPI } from '../common/indexedDB/indexedDB';
 import { StateDispatcher } from '../common/state-dispatcher';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
@@ -44,7 +44,7 @@ export class GlobalContextFactory {
         indexedDBInstance: IndexedDBAPI,
         persistedData: PersistedData,
         issueFilingServiceProvider: IssueFilingServiceProvider,
-        environmentInfo: EnvironmentInfo,
+        toolData: ToolData,
         storageAdapter: StorageAdapter,
         commandsAdapter: CommandsAdapter,
         logger: Logger,
@@ -74,7 +74,7 @@ export class GlobalContextFactory {
         const issueFilingController = new IssueFilingControllerImpl(
             issueFilingServiceProvider,
             browserAdapter,
-            environmentInfo,
+            toolData,
             globalStoreHub.userConfigurationStore,
         );
 

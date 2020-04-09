@@ -3,10 +3,10 @@
 import { DefaultButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { IssueFilingDialogDeps } from '../../DetailsView/components/issue-filing-dialog';
 import { IssueFilingServiceProvider } from '../../issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from '../../issue-filing/types/issue-filing-service';
-import { EnvironmentInfoProvider } from '../environment-info-provider';
 import { LadyBugSolidIcon } from '../icons/lady-bug-solid-icon';
 import { IssueFilingActionMessageCreator } from '../message-creators/issue-filing-action-message-creator';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
@@ -21,7 +21,7 @@ import {
 
 export type IssueFilingButtonDeps = {
     issueFilingActionMessageCreator: IssueFilingActionMessageCreator;
-    environmentInfoProvider: EnvironmentInfoProvider;
+    toolData: ToolData;
     issueFilingServiceProvider: IssueFilingServiceProvider;
 } & IssueFilingDialogDeps;
 

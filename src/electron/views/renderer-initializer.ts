@@ -281,6 +281,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         windowFrameListener.initialize();
 
         const getToolData = createGetToolDataDelegate(appDataAdapter);
+
         const unifiedResultsBuilder = createDefaultBuilder(getToolData);
         const scanController = new ScanController(
             scanActions,
@@ -327,7 +328,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             detailsViewActionMessageCreator,
             issueFilingActionMessageCreator: null, // we don't support issue filing right now
 
-            environmentInfoProvider: null,
+            toolData: null,
             getPropertyConfigById: getPropertyConfiguration, // this seems to be axe-core specific
 
             issueDetailsTextGenerator: null,

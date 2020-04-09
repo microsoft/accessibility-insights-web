@@ -4,11 +4,11 @@ import { noCardInteractionsSupported } from 'common/components/cards/card-intera
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { NullComponent } from 'common/components/null-component';
 import { PropertyConfiguration } from 'common/configs/unified-result-property-configurations';
-import { EnvironmentInfoProvider } from 'common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import * as React from 'react';
 
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { ReportBody, ReportBodyProps } from './components/report-sections/report-body';
 import { ReportCollapsibleContainerControl } from './components/report-sections/report-collapsible-container';
 import {
@@ -22,7 +22,7 @@ export class ReportHtmlGenerator {
     constructor(
         private readonly sectionFactory: ReportSectionFactory,
         private readonly reactStaticRenderer: ReactStaticRenderer,
-        private readonly environmentInfoProvider: EnvironmentInfoProvider,
+        private readonly toolData: ToolData,
         private readonly getCollapsibleScript: () => string,
         private readonly utcDateConverter: (scanDate: Date) => string,
         private readonly getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
@@ -54,7 +54,7 @@ export class ReportHtmlGenerator {
                 cardsVisualizationModifierButtons: NullComponent,
             } as SectionDeps,
             cardsViewData: cardsViewData,
-            environmentInfoProvider: this.environmentInfoProvider,
+            toolData: this.toolData,
             toUtcString: this.utcDateConverter,
             getCollapsibleScript: this.getCollapsibleScript,
             getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,

@@ -1,13 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FooterText renders 1`] = `
+exports[`FooterTextForUnified renders 1`] = `
 <React.Fragment>
   This automated checks result was generated using
    
   app-name app-version (engine-name engine-version)
-  , a tool that helps debug and find accessibility issues earlier on 
-  environmentName
-  . Get more information & download this tool at 
+  , a tool that helps debug and find accessibility issues earlier. Get more information & download this tool at 
   <ToolLink />
   .
 </React.Fragment>

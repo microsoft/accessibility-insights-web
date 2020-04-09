@@ -83,7 +83,7 @@ export class DialogRenderer {
 
             const issueDetailsTextGenerator = new IssueDetailsTextGenerator(
                 IssueFilingUrlStringUtils,
-                mainWindowContext.getEnvironmentInfoProvider(),
+                mainWindowContext.getToolData(),
                 createIssueDetailsBuilder(PlainTextFormatter),
             );
 
@@ -103,7 +103,7 @@ export class DialogRenderer {
                 issueFilingActionMessageCreator: mainWindowContext.getIssueFilingActionMessageCreator(),
                 browserAdapter: this.browserAdapter,
                 getRTL: this.getRTLFunc,
-                environmentInfoProvider: mainWindowContext.getEnvironmentInfoProvider(),
+                toolData: mainWindowContext.getToolData(),
                 issueFilingServiceProvider: mainWindowContext.getIssueFilingServiceProvider(),
                 userConfigMessageCreator: mainWindowContext.getUserConfigMessageCreator(),
                 LinkComponent: NewTabLink,

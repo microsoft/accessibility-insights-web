@@ -11,7 +11,9 @@ import { ThemeInnerState } from 'common/components/theme';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
+import { createToolData } from 'common/tool-data-creator';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
+import { toolName } from 'content/strings/application';
 import { textContent } from 'content/strings/text-content';
 import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-available/no-content-available-view';
 import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
@@ -50,7 +52,6 @@ import { VisualizationConfigurationFactory } from '../common/configs/visualizati
 import { DateProvider } from '../common/date-provider';
 import { DocumentManipulator } from '../common/document-manipulator';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
-import { EnvironmentInfoProvider } from '../common/environment-info-provider';
 import { TelemetryEventSource } from '../common/extension-telemetry-events';
 import { initializeFabricIcons } from '../common/fabric-icons';
 import { getAllFeatureFlagDetails } from '../common/feature-flags';
@@ -282,10 +283,12 @@ if (isNaN(tabId) === false) {
             const axeVersion = getVersion();
             const browserSpec = navigatorUtils.getBrowserSpec();
 
-            const environmentInfoProvider = new EnvironmentInfoProvider(
+            const toolData = createToolData(
                 browserAdapter.getVersion(),
-                browserSpec,
                 AxeInfo.Default.version,
+                'axe-core',
+                toolName,
+                browserSpec,
             );
 
             const reactStaticRenderer = new ReactStaticRenderer();
@@ -296,7 +299,7 @@ if (isNaN(tabId) === false) {
             const reportHtmlGenerator = new ReportHtmlGenerator(
                 AutomatedChecksReportSectionFactory,
                 reactStaticRenderer,
-                environmentInfoProvider,
+                toolData,
                 getDefaultAddListenerForCollapsibleSection,
                 DateProvider.getUTCStringFromDate,
                 GetGuidanceTagsFromGuidanceLinks,
@@ -337,7 +340,7 @@ if (isNaN(tabId) === false) {
 
             const issueDetailsTextGenerator = new IssueDetailsTextGenerator(
                 IssueFilingUrlStringUtils,
-                environmentInfoProvider,
+                toolData,
                 createIssueDetailsBuilder(PlainTextFormatter),
             );
 
@@ -402,7 +405,7 @@ if (isNaN(tabId) === false) {
                 getCurrentDate: DateProvider.getCurrentDate,
                 settingsProvider: ExtensionSettingsProvider,
                 LinkComponent: NewTabLink,
-                environmentInfoProvider,
+                toolData,
                 issueFilingServiceProvider: IssueFilingServiceProviderImpl,
                 getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
                 reportGenerator,

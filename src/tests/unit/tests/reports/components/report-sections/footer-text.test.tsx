@@ -3,38 +3,29 @@
 
 import * as React from 'react';
 
-import { EnvironmentInfo, EnvironmentInfoProvider } from 'common/environment-info-provider';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { shallow } from 'enzyme';
-import { FooterText, FooterTextProps } from 'reports/components/report-sections/footer-text';
-import { IMock, Mock, Times } from 'typemoq';
+import { FooterText } from 'reports/components/report-sections/footer-text';
+import { FooterTextProps } from 'reports/components/report-sections/footer-text-props';
 
 describe('FooterText', () => {
-    let environmentInfoProviderMock: IMock<EnvironmentInfoProvider>;
-
-    const environmentInfo: EnvironmentInfo = {
-        extensionVersion: '1.2.3',
-        browserSpec: 'dummy browser version 1.0.1',
-        axeCoreVersion: '4.5.6',
-    };
-
-    beforeEach(() => {
-        environmentInfoProviderMock = Mock.ofType(EnvironmentInfoProvider);
-
-        environmentInfoProviderMock
-            .setup(eipm => eipm.getEnvironmentInfo())
-            .returns(() => environmentInfo)
-            .verifiable(Times.once());
-    });
-
     it('renders', () => {
+        const toolData: ToolData = {
+            scanEngineProperties: {
+                name: 'engine-name',
+                version: 'engine-version',
+            },
+            applicationProperties: {
+                name: 'app-name',
+                version: 'app-version',
+                environmentName: 'environmentName',
+            },
+        };
+
         const footerTextProps: FooterTextProps = {
-            environmentInfoProvider: environmentInfoProviderMock.object,
+            toolData: toolData,
         };
         const footerWrapper = shallow(<FooterText {...footerTextProps} />);
         expect(footerWrapper.getElement()).toMatchSnapshot();
-    });
-
-    afterEach(() => {
-        environmentInfoProviderMock.verifyAll();
     });
 });

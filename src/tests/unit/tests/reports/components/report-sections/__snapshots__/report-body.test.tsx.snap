@@ -56,14 +56,6 @@ exports[`ReportBody renders 1`] = `
     }
     deps={Object {}}
     description="test description"
-    environmentInfoProvider={
-      proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "axeVersion": undefined,
-        "browserSpec": undefined,
-        "extensionVersion": undefined,
-      }
-    }
     fixInstructionProcessor={
       proxy {
         "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -98,6 +90,19 @@ exports[`ReportBody renders 1`] = `
       }
     }
     toUtcString={[Function]}
+    toolData={
+      Object {
+        "applicationProperties": Object {
+          "environmentName": "environmentName",
+          "name": "app-name",
+          "version": "app-version",
+        },
+        "scanEngineProperties": Object {
+          "name": "engine-name",
+          "version": "engine-version",
+        },
+      }
+    }
     userConfigurationStoreData={null}
   />
   <content-container>
@@ -156,14 +161,6 @@ exports[`ReportBody renders 1`] = `
       }
       deps={Object {}}
       description="test description"
-      environmentInfoProvider={
-        proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "axeVersion": undefined,
-          "browserSpec": undefined,
-          "extensionVersion": undefined,
-        }
-      }
       fixInstructionProcessor={
         proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -198,6 +195,19 @@ exports[`ReportBody renders 1`] = `
         }
       }
       toUtcString={[Function]}
+      toolData={
+        Object {
+          "applicationProperties": Object {
+            "environmentName": "environmentName",
+            "name": "app-name",
+            "version": "app-version",
+          },
+          "scanEngineProperties": Object {
+            "name": "engine-name",
+            "version": "engine-version",
+          },
+        }
+      }
       userConfigurationStoreData={null}
     />
     <details-section
@@ -254,14 +264,6 @@ exports[`ReportBody renders 1`] = `
       }
       deps={Object {}}
       description="test description"
-      environmentInfoProvider={
-        proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "axeVersion": undefined,
-          "browserSpec": undefined,
-          "extensionVersion": undefined,
-        }
-      }
       fixInstructionProcessor={
         proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -296,6 +298,19 @@ exports[`ReportBody renders 1`] = `
         }
       }
       toUtcString={[Function]}
+      toolData={
+        Object {
+          "applicationProperties": Object {
+            "environmentName": "environmentName",
+            "name": "app-name",
+            "version": "app-version",
+          },
+          "scanEngineProperties": Object {
+            "name": "engine-name",
+            "version": "engine-version",
+          },
+        }
+      }
       userConfigurationStoreData={null}
     />
     <result-section
@@ -352,14 +367,6 @@ exports[`ReportBody renders 1`] = `
       }
       deps={Object {}}
       description="test description"
-      environmentInfoProvider={
-        proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "axeVersion": undefined,
-          "browserSpec": undefined,
-          "extensionVersion": undefined,
-        }
-      }
       fixInstructionProcessor={
         proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -394,6 +401,19 @@ exports[`ReportBody renders 1`] = `
         }
       }
       toUtcString={[Function]}
+      toolData={
+        Object {
+          "applicationProperties": Object {
+            "environmentName": "environmentName",
+            "name": "app-name",
+            "version": "app-version",
+          },
+          "scanEngineProperties": Object {
+            "name": "engine-name",
+            "version": "engine-version",
+          },
+        }
+      }
       userConfigurationStoreData={null}
     >
       <failed-instances-section
@@ -450,14 +470,6 @@ exports[`ReportBody renders 1`] = `
         }
         deps={Object {}}
         description="test description"
-        environmentInfoProvider={
-          proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "axeVersion": undefined,
-            "browserSpec": undefined,
-            "extensionVersion": undefined,
-          }
-        }
         fixInstructionProcessor={
           proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -492,6 +504,19 @@ exports[`ReportBody renders 1`] = `
           }
         }
         toUtcString={[Function]}
+        toolData={
+          Object {
+            "applicationProperties": Object {
+              "environmentName": "environmentName",
+              "name": "app-name",
+              "version": "app-version",
+            },
+            "scanEngineProperties": Object {
+              "name": "engine-name",
+              "version": "engine-version",
+            },
+          }
+        }
         userConfigurationStoreData={null}
       />
       <passed-checks-section
@@ -548,14 +573,6 @@ exports[`ReportBody renders 1`] = `
         }
         deps={Object {}}
         description="test description"
-        environmentInfoProvider={
-          proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "axeVersion": undefined,
-            "browserSpec": undefined,
-            "extensionVersion": undefined,
-          }
-        }
         fixInstructionProcessor={
           proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -590,6 +607,19 @@ exports[`ReportBody renders 1`] = `
           }
         }
         toUtcString={[Function]}
+        toolData={
+          Object {
+            "applicationProperties": Object {
+              "environmentName": "environmentName",
+              "name": "app-name",
+              "version": "app-version",
+            },
+            "scanEngineProperties": Object {
+              "name": "engine-name",
+              "version": "engine-version",
+            },
+          }
+        }
         userConfigurationStoreData={null}
       />
       <not-applicable-checks-section
@@ -646,14 +676,6 @@ exports[`ReportBody renders 1`] = `
         }
         deps={Object {}}
         description="test description"
-        environmentInfoProvider={
-          proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "axeVersion": undefined,
-            "browserSpec": undefined,
-            "extensionVersion": undefined,
-          }
-        }
         fixInstructionProcessor={
           proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -688,6 +710,19 @@ exports[`ReportBody renders 1`] = `
           }
         }
         toUtcString={[Function]}
+        toolData={
+          Object {
+            "applicationProperties": Object {
+              "environmentName": "environmentName",
+              "name": "app-name",
+              "version": "app-version",
+            },
+            "scanEngineProperties": Object {
+              "name": "engine-name",
+              "version": "engine-version",
+            },
+          }
+        }
         userConfigurationStoreData={null}
       />
     </result-section>
@@ -747,14 +782,6 @@ exports[`ReportBody renders 1`] = `
       }
       deps={Object {}}
       description="test description"
-      environmentInfoProvider={
-        proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "axeVersion": undefined,
-          "browserSpec": undefined,
-          "extensionVersion": undefined,
-        }
-      }
       fixInstructionProcessor={
         proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -789,6 +816,19 @@ exports[`ReportBody renders 1`] = `
         }
       }
       toUtcString={[Function]}
+      toolData={
+        Object {
+          "applicationProperties": Object {
+            "environmentName": "environmentName",
+            "name": "app-name",
+            "version": "app-version",
+          },
+          "scanEngineProperties": Object {
+            "name": "engine-name",
+            "version": "engine-version",
+          },
+        }
+      }
       userConfigurationStoreData={null}
     />
   </footer-section>
