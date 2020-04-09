@@ -9,7 +9,6 @@ export interface ScopingPayload extends BaseActionPayload {
 }
 
 export class ScopingActions {
-    public readonly closeScopingPanel = new Action<void>();
     public readonly addSelector = new Action<ScopingPayload>();
     public readonly deleteSelector = new Action<ScopingPayload>();
     public readonly getCurrentState = new Action<void>();
