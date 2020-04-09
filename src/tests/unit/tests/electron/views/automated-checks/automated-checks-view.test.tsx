@@ -89,8 +89,6 @@ describe('AutomatedChecksView', () => {
                     base64PngData: 'this should appear in snapshotted ScreenshotView props',
                 },
             } as ScreenshotViewModel;
-            const reportHTMLStub = 'some report html';
-            const dateStub = {} as Date;
             const screenshotViewModelProviderMock = Mock.ofInstance(screenshotViewModelProvider);
             const getCardSelectionViewDataMock = Mock.ofInstance(getCardSelectionViewData);
             const getUnifiedRuleResultsMock = Mock.ofInstance(getCardViewData);
