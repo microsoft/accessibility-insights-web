@@ -36,7 +36,7 @@ describe('ReportBody', () => {
                     version: 'app-version',
                     environmentName: 'environmentName',
                 },
-            };
+            },
             scanResult: {
                 passes: [],
                 violations: [],
