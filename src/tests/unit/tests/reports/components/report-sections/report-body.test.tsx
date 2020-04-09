@@ -26,10 +26,16 @@ describe('ReportBody', () => {
             pageUrl,
             description: 'test description',
             scanDate: new Date('2019-05-29T19:12:16.804Z'),
-            environmentInfo: {
-                axeCoreVersion: 'axe-core-version',
-                browserSpec: 'browser-spec',
-                extensionVersion: 'extension-version',
+            toolData: {
+                scanEngineProperties: {
+                    name: 'engine-name',
+                    version: 'engine-version',
+                },
+                applicationProperties: {
+                    name: 'app-name',
+                    version: 'app-version',
+                    environmentName: 'environmentName',
+                },
             },
             scanResult: {
                 passes: [],
