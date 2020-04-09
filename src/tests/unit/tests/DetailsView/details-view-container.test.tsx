@@ -61,6 +61,7 @@ describe('DetailsViewContainer', () => {
     let getCardViewDataMock: IMock<GetCardViewData>;
     let getCardSelectionViewDataMock: IMock<GetCardSelectionViewData>;
     let targetAppInfo: TargetAppData;
+    const timestamp = 'timestamp';
 
     beforeEach(() => {
         detailsViewActionMessageCreator = Mock.ofType<DetailsViewActionMessageCreator>();
@@ -389,7 +390,7 @@ describe('DetailsViewContainer', () => {
                 scanIncompleteWarnings={
                     storeMocks.unifiedScanResultStoreData.scanIncompleteWarnings
                 }
-                unifiedScanResultStoreData={storeMocks.unifiedScanResultStoreData}
+                scanMetaData={{ timestamp: timestamp }}
             />
         );
     }
@@ -521,6 +522,7 @@ describe('DetailsViewContainer', () => {
             results: [],
             rules: [],
             targetAppInfo: targetAppInfo,
+            timestamp: timestamp,
         };
 
         const storeMocks = new StoreMocks()
