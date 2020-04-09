@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { FooterTextProps } from 'reports/components/report-sections/footer-text-props';
 import { NamedFC } from 'common/react/named-fc';
+import { FooterTextProps } from 'reports/components/report-sections/footer-text-props';
 import { ToolLink } from 'reports/components/report-sections/tool-link';
 
 export const FooterTextForService = (serviceName: string) => {
