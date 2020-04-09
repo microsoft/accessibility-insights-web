@@ -5,6 +5,7 @@ import { DetailsViewController } from 'background/details-view-controller';
 import { SidePanel } from 'background/stores/side-panel';
 import {
     PREVIEW_FEATURES_OPEN,
+    SCOPING_CLOSE,
     SCOPING_OPEN,
     SETTINGS_PANEL_CLOSE,
     SETTINGS_PANEL_OPEN,
@@ -51,6 +52,10 @@ export class DetailsViewActionCreator {
             this.onCloseSidePanel.bind(this, 'Settings'),
         );
         this.interpreter.registerTypeToPayloadCallback(
+            Messages.Scoping.ClosePanel,
+            this.onCloseSidePanel.bind(this, 'Scoping'),
+        );
+        this.interpreter.registerTypeToPayloadCallback(
             getStoreStateMessage(StoreNames.DetailsViewStore),
             this.onGetDetailsViewCurrentState,
         );
@@ -81,7 +86,7 @@ export class DetailsViewActionCreator {
     private sidePanelToClosePanelTelemetryEventName: SidePanelToTelemetryEventName = {
         Settings: SETTINGS_PANEL_CLOSE,
         PreviewFeatures: null, // not supported here yet,
-        Scoping: null, // not supported here yet
+        Scoping: SCOPING_CLOSE,
     };
 
     private onCloseSidePanel = (panel: SidePanel, payload: BaseActionPayload): void => {

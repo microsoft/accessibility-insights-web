@@ -20,7 +20,7 @@ export class UnifiedResultSender {
         private readonly toolData: ToolData,
         private readonly generateUID: UUIDGenerator,
         private readonly scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
-    ) {}
+    ) { }
 
     public sendResults: PostResolveCallback = (axeResults: AxeAnalyzerResult) => {
         const scanIncompleteWarnings = this.scanIncompleteWarningDetector.detectScanIncompleteWarnings();
@@ -40,6 +40,7 @@ export class UnifiedResultSender {
             ),
             rules: this.convertScanResultsToUnifiedRules(axeResults.originalResult),
             toolInfo: this.toolData,
+            timestamp: axeResults.originalResult.timestamp,
             targetAppInfo: {
                 name: axeResults.originalResult.targetPageTitle,
                 url: axeResults.originalResult.targetPageUrl,
