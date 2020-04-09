@@ -4,7 +4,6 @@ import { noCardInteractionsSupported } from 'common/components/cards/card-intera
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { NullComponent } from 'common/components/null-component';
 import { DateProvider } from 'common/date-provider';
-import { EnvironmentInfo } from 'common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import * as React from 'react';
 import {
@@ -21,13 +20,11 @@ import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { exampleUnifiedStatusResults } from '../common/components/cards/sample-view-model-data';
 
 describe('ReportHtmlGenerator', () => {
     test('generateHtml', () => {
-        const browserSpec: string = 'browser-spect';
-        const extensionVersion: string = 'extension-version';
-        const axeCoreVersion: string = 'axe-version';
         const scanDate: Date = new Date(2018, 2, 12, 16, 24);
         const pageTitle: string = 'page-title';
         const pageUrl: string = 'https://page-url/';
@@ -40,10 +37,17 @@ describe('ReportHtmlGenerator', () => {
         const getGuidanceTagsStub: GetGuidanceTagsFromGuidanceLinks = () => [];
 
         const sectionFactoryMock = Mock.ofType<ReportSectionFactory>();
-        const environmentInfo: EnvironmentInfo = {
-            axeCoreVersion,
-            browserSpec,
-            extensionVersion,
+
+        const toolData: ToolData = {
+            scanEngineProperties: {
+                name: 'engine-name',
+                version: 'engine-version',
+            },
+            applicationProperties: {
+                name: 'app-name',
+                version: 'app-version',
+                environmentName: 'environmentName',
+            },
         };
 
         const getScriptMock = Mock.ofInstance(() => '');
@@ -63,7 +67,7 @@ describe('ReportHtmlGenerator', () => {
             pageUrl,
             description,
             scanDate,
-            environmentInfo,
+            toolData,
             toUtcString: getUTCStringFromDateStub,
             getCollapsibleScript: getScriptMock.object,
             getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
@@ -91,7 +95,7 @@ describe('ReportHtmlGenerator', () => {
         const testObject = new ReportHtmlGenerator(
             sectionFactoryMock.object,
             rendererMock.object,
-            environmentInfo,
+            toolData,
             getScriptMock.object,
             getUTCStringFromDateStub,
             getGuidanceTagsStub,

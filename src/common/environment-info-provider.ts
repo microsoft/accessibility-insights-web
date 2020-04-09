@@ -32,6 +32,7 @@ export class EnvironmentInfoProvider {
             applicationProperties: {
                 name: toolName,
                 version: this.extensionVersion,
+                environmentName: this.browserSpec,
             },
         };
     }
