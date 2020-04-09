@@ -25,7 +25,6 @@ import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popu
 import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
 import { ScreenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
 import * as React from 'react';
-import { ReportGenerator } from 'reports/report-generator';
 
 import * as styles from './automated-checks-view.scss';
 import { CommandBar, CommandBarDeps } from './components/command-bar';
@@ -42,8 +41,6 @@ export type AutomatedChecksViewDeps = CommandBarDeps &
         getCardsViewData: GetCardViewData;
         getCardSelectionViewData: GetCardSelectionViewData;
         screenshotViewModelProvider: ScreenshotViewModelProvider;
-        getCurrentDate: () => Date;
-        reportGenerator: ReportGenerator;
     };
 
 export type AutomatedChecksViewProps = {
@@ -65,10 +62,8 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
 
     public render(): JSX.Element {
         const { status } = this.props.scanStoreData;
-        let reportHTML = '';
-
         if (status === ScanStatus.Failed) {
-            return this.renderLayout(reportHTML, this.renderDeviceDisconnected());
+            return this.renderLayout(null, null, this.renderDeviceDisconnected());
         } else if (status === ScanStatus.Completed) {
             const { unifiedScanResultStoreData, cardSelectionStoreData, deps } = this.props;
             const { rules, results } = unifiedScanResultStoreData;
@@ -78,26 +73,21 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                 unifiedScanResultStoreData,
                 cardSelectionViewData.highlightedResultUids,
             );
-            reportHTML = deps.reportGenerator.generateFastPassAutomatedChecksReport(
-                deps.getCurrentDate(),
-                unifiedScanResultStoreData.targetAppInfo.name,
-                null,
-                cardsViewData,
-                null,
-            );
 
             return this.renderLayout(
-                reportHTML,
+                cardsViewData,
+                unifiedScanResultStoreData.targetAppInfo.name,
                 this.renderResults(cardsViewData),
                 <ScreenshotView viewModel={screenshotViewModel} />,
             );
         } else {
-            return this.renderLayout(reportHTML, this.renderScanningSpinner());
+            return this.renderLayout(null, null, this.renderScanningSpinner());
         }
     }
 
     private renderLayout(
-        reportHTML: string,
+        cardsViewData: CardsViewModel,
+        targetAppName: string,
         primaryContent: JSX.Element,
         optionalSidePanel?: JSX.Element,
     ): JSX.Element {
@@ -117,8 +107,9 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                             deps={this.props.deps}
                             deviceStoreData={this.props.deviceStoreData}
                             scanStoreData={this.props.scanStoreData}
-                            reportHTML={reportHTML}
                             featureFlagStoreData={this.props.featureFlagStoreData}
+                            cardsViewData={cardsViewData}
+                            targetAppName={targetAppName}
                         />
                         <main>
                             <HeaderSection />

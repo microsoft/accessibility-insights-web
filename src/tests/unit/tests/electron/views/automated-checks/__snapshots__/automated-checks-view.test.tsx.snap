@@ -10,13 +10,6 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
       Object {
         "getCardSelectionViewData": [Function],
         "getCardsViewData": [Function],
-        "getCurrentDate": [Function],
-        "reportGenerator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "assessmentReportHtmlGenerator": undefined,
-          "reportHtmlGenerator": undefined,
-          "reportNameGenerator": undefined,
-        },
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "deviceActions": undefined,
@@ -34,17 +27,21 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
       className="mainContentWrapper"
     >
       <CommandBar
+        cardsViewData={
+          Object {
+            "cards": Object {
+              "fail": Array [
+                Object {
+                  "id": "test-fail-id",
+                },
+              ],
+            },
+          }
+        }
         deps={
           Object {
             "getCardSelectionViewData": [Function],
             "getCardsViewData": [Function],
-            "getCurrentDate": [Function],
-            "reportGenerator": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "assessmentReportHtmlGenerator": undefined,
-              "reportHtmlGenerator": undefined,
-              "reportNameGenerator": undefined,
-            },
             "scanActionCreator": proxy {
               "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
               "deviceActions": undefined,
@@ -54,12 +51,12 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
           }
         }
         deviceStoreData={Object {}}
-        reportHTML="some report html"
         scanStoreData={
           Object {
             "status": 2,
           }
         }
+        targetAppName="test-target-app-name"
       />
       <main>
         <HeaderSection />
@@ -79,13 +76,6 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
             Object {
               "getCardSelectionViewData": [Function],
               "getCardsViewData": [Function],
-              "getCurrentDate": [Function],
-              "reportGenerator": proxy {
-                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                "assessmentReportHtmlGenerator": undefined,
-                "reportHtmlGenerator": undefined,
-                "reportNameGenerator": undefined,
-              },
               "scanActionCreator": proxy {
                 "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                 "deviceActions": undefined,
@@ -122,13 +112,6 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
       Object {
         "getCardSelectionViewData": [Function],
         "getCardsViewData": [Function],
-        "getCurrentDate": [Function],
-        "reportGenerator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "assessmentReportHtmlGenerator": undefined,
-          "reportHtmlGenerator": undefined,
-          "reportNameGenerator": undefined,
-        },
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "deviceActions": undefined,
@@ -178,6 +161,7 @@ exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
       className="mainContentWrapper"
     >
       <CommandBar
+        cardsViewData={null}
         deps={
           Object {
             "scanActionCreator": proxy {
@@ -197,12 +181,12 @@ exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
             "connectedDevice": "TEST DEVICE",
           }
         }
-        reportHTML=""
         scanStoreData={
           Object {
             "status": 3,
           }
         }
+        targetAppName={null}
       />
       <main>
         <HeaderSection />
@@ -266,6 +250,7 @@ exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
       className="mainContentWrapper"
     >
       <CommandBar
+        cardsViewData={null}
         deps={
           Object {
             "scanActionCreator": proxy {
@@ -285,12 +270,12 @@ exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
             "connectedDevice": "TEST DEVICE",
           }
         }
-        reportHTML=""
         scanStoreData={
           Object {
             "status": 1,
           }
         }
+        targetAppName={null}
       />
       <main>
         <HeaderSection />
@@ -354,6 +339,7 @@ exports[`AutomatedChecksView renders when status scan <undefined> 1`] = `
       className="mainContentWrapper"
     >
       <CommandBar
+        cardsViewData={null}
         deps={
           Object {
             "scanActionCreator": proxy {
@@ -373,12 +359,12 @@ exports[`AutomatedChecksView renders when status scan <undefined> 1`] = `
             "connectedDevice": "TEST DEVICE",
           }
         }
-        reportHTML=""
         scanStoreData={
           Object {
             "status": undefined,
           }
         }
+        targetAppName={null}
       />
       <main>
         <HeaderSection />

@@ -2,44 +2,65 @@
 // Licensed under the MIT License.
 import { FlaggedComponent } from 'common/components/flagged-component';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
-import { FileURLProvider } from 'common/file-url-provider';
 import { NamedFC } from 'common/react/named-fc';
+import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import {
+    ReportExportComponent,
+    ReportExportComponentDeps,
+} from 'DetailsView/components/report-export-component';
 import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { DeviceStoreData } from 'electron/flux/types/device-store-data';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
-import { ActionButton, CommandButton } from 'office-ui-fabric-react';
+import { CommandButton } from 'office-ui-fabric-react';
 import * as React from 'react';
+import { ReportGenerator } from 'reports/report-generator';
 
 import * as styles from './command-bar.scss';
 
 export type CommandBarDeps = {
     scanActionCreator: ScanActionCreator;
     dropdownClickHandler: DropdownClickHandler;
-    fileURLProvider: FileURLProvider;
-};
+    getCurrentDate: () => Date;
+    reportGenerator: ReportGenerator;
+} & ReportExportComponentDeps;
 
 export interface CommandBarProps {
     deps: CommandBarDeps;
     deviceStoreData: DeviceStoreData;
     scanStoreData: ScanStoreData;
-    reportHTML: string;
     featureFlagStoreData: FeatureFlagStoreData;
+    cardsViewData: CardsViewModel;
+    targetAppName: string;
 }
 
 export const commandButtonRefreshId = 'command-button-refresh';
 export const commandButtonSettingsId = 'command-button-settings';
 
 export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
-    const { deps, deviceStoreData, featureFlagStoreData, reportHTML } = props;
+    const { deps, deviceStoreData, featureFlagStoreData, targetAppName, cardsViewData } = props;
 
-    const fileURL = props.deps.fileURLProvider.provideURL([reportHTML], 'text/html');
+    const currentDate = deps.getCurrentDate();
     const exportReport = (
-        <ActionButton iconProps={{ iconName: 'Export' }} download={'atestfile.html'} href={fileURL}>
-            Export result
-        </ActionButton>
+        <ReportExportComponent
+            deps={deps}
+            exportResultsType={'AutomatedChecks'}
+            pageTitle={targetAppName}
+            scanDate={currentDate}
+            htmlGenerator={description =>
+                deps.reportGenerator.generateFastPassAutomatedChecksReport(
+                    currentDate,
+                    targetAppName,
+                    null,
+                    cardsViewData,
+                    description,
+                )
+            }
+            updatePersistedDescription={() => null}
+            getExportDescription={() => ''}
+        />
     );
 
     return (

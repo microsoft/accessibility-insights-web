@@ -28,7 +28,6 @@ import { ScreenshotViewModel } from 'electron/views/screenshot/screenshot-view-m
 import { screenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { ReportGenerator } from 'reports/report-generator';
 import { It, Mock, Times } from 'typemoq';
 
 describe('AutomatedChecksView', () => {
@@ -95,8 +94,6 @@ describe('AutomatedChecksView', () => {
             const screenshotViewModelProviderMock = Mock.ofInstance(screenshotViewModelProvider);
             const getCardSelectionViewDataMock = Mock.ofInstance(getCardSelectionViewData);
             const getUnifiedRuleResultsMock = Mock.ofInstance(getCardViewData);
-            const reportGeneratorMock = Mock.ofType(ReportGenerator);
-            const getCurrentDateMock = Mock.ofInstance(() => null as Date);
 
             const props: AutomatedChecksViewProps = {
                 deps: {
@@ -104,8 +101,6 @@ describe('AutomatedChecksView', () => {
                     getCardsViewData: getUnifiedRuleResultsMock.object,
                     getCardSelectionViewData: getCardSelectionViewDataMock.object,
                     screenshotViewModelProvider: screenshotViewModelProviderMock.object,
-                    reportGenerator: reportGeneratorMock.object,
-                    getCurrentDate: getCurrentDateMock.object,
                 },
                 cardSelectionStoreData,
                 deviceStoreData: {},
@@ -140,20 +135,6 @@ describe('AutomatedChecksView', () => {
                 )
                 .returns(() => screenshotViewModelStub)
                 .verifiable(Times.once());
-
-            getCurrentDateMock.setup(mock => mock()).returns(() => dateStub);
-
-            reportGeneratorMock
-                .setup(generator =>
-                    generator.generateFastPassAutomatedChecksReport(
-                        dateStub,
-                        unifiedScanResultStoreData.targetAppInfo.name,
-                        null,
-                        cardsViewData,
-                        null,
-                    ),
-                )
-                .returns(() => reportHTMLStub);
 
             const wrapped = shallow(<AutomatedChecksView {...props} />);
 

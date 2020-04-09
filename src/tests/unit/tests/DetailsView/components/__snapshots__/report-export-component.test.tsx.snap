@@ -13,7 +13,16 @@ exports[`ReportExportComponentTest render 1`] = `
     Export result
   </CustomizedActionButton>
   <ExportDialog
-    deps={Object {}}
+    deps={
+      Object {
+        "reportGenerator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "assessmentReportHtmlGenerator": undefined,
+          "reportHtmlGenerator": undefined,
+          "reportNameGenerator": undefined,
+        },
+      }
+    }
     description=""
     exportResultsType="Assessment"
     fileName=""
@@ -39,7 +48,16 @@ exports[`ReportExportComponentTest user interactions click export button: dialog
     Export result
   </CustomizedActionButton>
   <ExportDialog
-    deps={Object {}}
+    deps={
+      Object {
+        "reportGenerator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "assessmentReportHtmlGenerator": undefined,
+          "reportHtmlGenerator": undefined,
+          "reportNameGenerator": undefined,
+        },
+      }
+    }
     description="persisted description"
     exportResultsType="Assessment"
     html=""
@@ -64,7 +82,16 @@ exports[`ReportExportComponentTest user interactions dismiss dialog: dialog shou
     Export result
   </CustomizedActionButton>
   <ExportDialog
-    deps={Object {}}
+    deps={
+      Object {
+        "reportGenerator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "assessmentReportHtmlGenerator": undefined,
+          "reportHtmlGenerator": undefined,
+          "reportNameGenerator": undefined,
+        },
+      }
+    }
     description=""
     exportResultsType="Assessment"
     html=""
@@ -89,7 +116,16 @@ exports[`ReportExportComponentTest user interactions edit text field: user input
     Export result
   </CustomizedActionButton>
   <ExportDialog
-    deps={Object {}}
+    deps={
+      Object {
+        "reportGenerator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "assessmentReportHtmlGenerator": undefined,
+          "reportHtmlGenerator": undefined,
+          "reportNameGenerator": undefined,
+        },
+      }
+    }
     description="new description"
     exportResultsType="Assessment"
     fileName=""
