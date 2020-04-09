@@ -53,7 +53,7 @@ export function getReportExportComponentForFastPass(props: CommandBarProps): JSX
     }
 
     const { deps, tabStoreData } = props;
-    const scanDate = deps.getDateFromTimestamp(scanResult.timestamp);
+    const scanDate = deps.getDateFromTimestamp(props.unifiedScanResultStoreData.timestamp);
     const reportGenerator = deps.reportGenerator;
 
     const reportExportComponentProps: ReportExportComponentProps = {

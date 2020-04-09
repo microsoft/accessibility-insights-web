@@ -17,6 +17,7 @@ export class UnifiedScanResultStore extends BaseStoreImpl<UnifiedScanResultStore
             rules: null,
             toolInfo: null,
             targetAppInfo: null,
+            timestamp: null,
             scanIncompleteWarnings: null,
             screenshotData: null,
             platformInfo: null,
@@ -35,6 +36,7 @@ export class UnifiedScanResultStore extends BaseStoreImpl<UnifiedScanResultStore
         this.state.rules = payload.rules;
         this.state.toolInfo = payload.toolInfo;
         this.state.targetAppInfo = payload.targetAppInfo;
+        this.state.timestamp = payload.timestamp;
         this.state.scanIncompleteWarnings = payload.scanIncompleteWarnings;
         this.state.screenshotData = payload.screenshotData;
         this.state.platformInfo = payload.platformInfo;

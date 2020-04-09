@@ -56,6 +56,7 @@ export interface UnifiedScanResultStoreData {
     platformInfo?: PlatformData;
     toolInfo?: ToolData;
     targetAppInfo?: TargetAppData;
+    timestamp?: string;
     scanIncompleteWarnings?: ScanIncompleteWarningId[];
     screenshotData?: ScreenshotData;
 }

@@ -36,6 +36,7 @@ export const createBuilder = (
         rules: getUnifiedRules(scanResults, ruleInformationProvider, uuidGenerator),
         platformInfo: getPlatformData(scanResults),
         toolInfo: getToolData(scanResults),
+        timestamp: scanResults.analysisTimestamp,
         targetAppInfo: {
             name: scanResults.appIdentifier,
         },

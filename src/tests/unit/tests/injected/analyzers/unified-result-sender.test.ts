@@ -20,6 +20,7 @@ describe('sendConvertedResults', () => {
     const axeInputResults = {
         targetPageTitle: 'title',
         targetPageUrl: 'url',
+        timestamp: 'timestamp',
     } as any;
     const unifiedResults: UnifiedResult[] = [];
     const unifiedRules: UnifiedRule[] = [];
@@ -86,6 +87,7 @@ describe('sendConvertedResults', () => {
                     name: 'title',
                     url: 'url',
                 },
+                timestamp: 'timestamp',
                 scanIncompleteWarnings: warnings,
                 telemetry,
             };
