@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
+    AndroidScanResults,
     DeviceInfo,
     RuleResultsData,
-    AndroidScanResults,
     ViewElementData,
 } from 'electron/platform/android/android-scan-results';
 import { set } from 'lodash';

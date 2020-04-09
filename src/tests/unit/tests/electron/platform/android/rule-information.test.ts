@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 
 import { UnifiedFormattableResolution } from 'common/types/store-data/unified-data-interface';
+import { RuleResultsData } from 'electron/platform/android/android-scan-results';
 import {
     GetUnifiedFormattableResolutionDelegate,
     IncludeThisResultDelegate,
     RuleInformation,
 } from 'electron/platform/android/rule-information';
-import { RuleResultsData } from 'electron/platform/android/android-scan-results';
 import { Mock } from 'typemoq';
 
 describe('RuleInformation', () => {

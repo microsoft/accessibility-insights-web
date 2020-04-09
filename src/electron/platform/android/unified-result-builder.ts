@@ -3,9 +3,9 @@
 import { UnifiedScanCompletedPayload } from 'background/actions/action-payloads';
 import { generateUID, UUIDGenerator } from 'common/uid-generator';
 import { ToolDataDelegate } from 'electron/common/application-properties-provider';
+import { AndroidScanResults } from 'electron/platform/android/android-scan-results';
 import { RuleInformationProvider } from 'electron/platform/android/rule-information-provider';
 import { RuleInformationProviderType } from 'electron/platform/android/rule-information-provider-type';
-import { AndroidScanResults } from 'electron/platform/android/android-scan-results';
 import {
     convertScanResultsToPlatformData,
     ConvertScanResultsToPlatformDataDelegate,

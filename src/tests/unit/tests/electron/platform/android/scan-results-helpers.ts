@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { UnifiedResolution } from 'common/types/store-data/unified-data-interface';
-import { RuleInformation } from 'electron/platform/android/rule-information';
 import {
+    AndroidScanResults,
     DeviceInfo,
     RuleResultsData,
-    AndroidScanResults,
     ViewElementData,
 } from 'electron/platform/android/android-scan-results';
+import { RuleInformation } from 'electron/platform/android/rule-information';
 
 export function buildScanResultsObject(
     deviceName: string = null,

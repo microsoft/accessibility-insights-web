@@ -3,9 +3,9 @@
 
 import { UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { UUIDGenerator } from 'common/uid-generator';
+import { AndroidScanResults } from './android-scan-results';
 import { RuleInformation } from './rule-information';
 import { RuleInformationProviderType } from './rule-information-provider-type';
-import { AndroidScanResults } from './android-scan-results';
 
 export type ConvertScanResultsToUnifiedRulesDelegate = (
     scanResults: AndroidScanResults,

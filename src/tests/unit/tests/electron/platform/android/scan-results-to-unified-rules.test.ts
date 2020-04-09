@@ -5,12 +5,12 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { generateUID } from 'common/uid-generator';
+import {
+    AndroidScanResults,
+    RuleResultsData,
+} from 'electron/platform/android/android-scan-results';
 import { RuleInformation } from 'electron/platform/android/rule-information';
 import { RuleInformationProviderType } from 'electron/platform/android/rule-information-provider-type';
-import {
-    RuleResultsData,
-    AndroidScanResults,
-} from 'electron/platform/android/android-scan-results';
 import { convertScanResultsToUnifiedRules } from 'electron/platform/android/scan-results-to-unified-rules';
 import {
     buildRuleInformation,

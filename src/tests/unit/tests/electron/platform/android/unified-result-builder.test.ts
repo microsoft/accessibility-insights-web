@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { UUIDGenerator } from 'common/uid-generator';
 import { ToolDataDelegate } from 'electron/common/application-properties-provider';
-import { RuleInformationProviderType } from 'electron/platform/android/rule-information-provider-type';
 import { AndroidScanResults } from 'electron/platform/android/android-scan-results';
+import { RuleInformationProviderType } from 'electron/platform/android/rule-information-provider-type';
 import { ConvertScanResultsToPlatformDataDelegate } from 'electron/platform/android/scan-results-to-platform-data';
 import { ConvertScanResultsToUnifiedResultsDelegate } from 'electron/platform/android/scan-results-to-unified-results';
 import { ConvertScanResultsToUnifiedRulesDelegate } from 'electron/platform/android/scan-results-to-unified-rules';

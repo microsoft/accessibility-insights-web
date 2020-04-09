@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AxiosResponse } from 'axios';
+import { AndroidScanResults } from 'electron/platform/android/android-scan-results';
 import {
     createScanResultsFetcher,
     HttpGet,
     ScanResultsFetcher,
 } from 'electron/platform/android/fetch-scan-results';
-import { AndroidScanResults } from 'electron/platform/android/android-scan-results';
 import { IMock, Mock } from 'typemoq';
 
 describe('fetchScanResults', () => {

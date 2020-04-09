@@ -11,11 +11,11 @@ import {
 } from 'electron/common/electron-telemetry-events';
 import { PortPayload } from 'electron/flux/action/device-action-payloads';
 import { ScanActions } from 'electron/flux/action/scan-actions';
-import { ScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import {
-    RuleResultsData,
     AndroidScanResults,
+    RuleResultsData,
 } from 'electron/platform/android/android-scan-results';
+import { ScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { UnifiedScanCompletedPayloadBuilder } from 'electron/platform/android/unified-result-builder';
 
 export class ScanController {

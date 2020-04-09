@@ -14,9 +14,9 @@ import {
 } from 'electron/common/electron-telemetry-events';
 import { PortPayload } from 'electron/flux/action/device-action-payloads';
 import { ScanActions } from 'electron/flux/action/scan-actions';
+import { AndroidScanResults } from 'electron/platform/android/android-scan-results';
 import { ScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { ScanController } from 'electron/platform/android/scan-controller';
-import { AndroidScanResults } from 'electron/platform/android/android-scan-results';
 import { UnifiedScanCompletedPayloadBuilder } from 'electron/platform/android/unified-result-builder';
 import { isFunction } from 'lodash';
 import { tick } from 'tests/unit/common/tick';

@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 import { UnifiedFormattableResolution } from 'common/types/store-data/unified-data-interface';
+import { RuleResultsData } from 'electron/platform/android/android-scan-results';
 import { RuleInformation } from 'electron/platform/android/rule-information';
 import { RuleInformationProvider } from 'electron/platform/android/rule-information-provider';
-import { RuleResultsData } from 'electron/platform/android/android-scan-results';
 import { buildRuleResultObject } from './scan-results-helpers';
 
 describe('RuleInformationProvider', () => {

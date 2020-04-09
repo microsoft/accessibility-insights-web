@@ -8,9 +8,9 @@ import {
 } from 'common/types/store-data/unified-data-interface';
 import { UUIDGenerator } from 'common/uid-generator';
 import { DictionaryStringTo } from 'types/common-types';
+import { AndroidScanResults, RuleResultsData, ViewElementData } from './android-scan-results';
 import { RuleInformation } from './rule-information';
 import { RuleInformationProviderType } from './rule-information-provider-type';
-import { RuleResultsData, AndroidScanResults, ViewElementData } from './android-scan-results';
 
 export type ConvertScanResultsToUnifiedResultsDelegate = (
     scanResults: AndroidScanResults,
