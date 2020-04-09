@@ -5,16 +5,16 @@ import { UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { UUIDGenerator } from 'common/uid-generator';
 import { RuleInformation } from './rule-information';
 import { RuleInformationProviderType } from './rule-information-provider-type';
-import { ScanResults } from './scan-results';
+import { AndroidScanResults } from './scan-results';
 
 export type ConvertScanResultsToUnifiedRulesDelegate = (
-    scanResults: ScanResults,
+    scanResults: AndroidScanResults,
     ruleInformationProvider: RuleInformationProviderType,
     uuidGenerator: UUIDGenerator,
 ) => UnifiedRule[];
 
 export function convertScanResultsToUnifiedRules(
-    scanResults: ScanResults,
+    scanResults: AndroidScanResults,
     ruleInformationProvider: RuleInformationProviderType,
     uuidGenerator: UUIDGenerator,
 ): UnifiedRule[] {

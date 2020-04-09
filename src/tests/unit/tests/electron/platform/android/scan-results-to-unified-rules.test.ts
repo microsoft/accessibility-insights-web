@@ -7,7 +7,7 @@ import { UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { generateUID } from 'common/uid-generator';
 import { RuleInformation } from 'electron/platform/android/rule-information';
 import { RuleInformationProviderType } from 'electron/platform/android/rule-information-provider-type';
-import { RuleResultsData, ScanResults } from 'electron/platform/android/scan-results';
+import { RuleResultsData, AndroidScanResults } from 'electron/platform/android/scan-results';
 import { convertScanResultsToUnifiedRules } from 'electron/platform/android/scan-results-to-unified-rules';
 import {
     buildRuleInformation,
@@ -99,7 +99,7 @@ describe('ScanResultsToUnifiedRules', () => {
     });
 
     test('ScanResults with no RuleResults returns empty output', () => {
-        const scanResults: ScanResults = buildScanResultsObject(deviceName, appIdentifier);
+        const scanResults: AndroidScanResults = buildScanResultsObject(deviceName, appIdentifier);
         const results: UnifiedRule[] = convertScanResultsToUnifiedRules(
             scanResults,
             ruleInformationProviderMock.object,
@@ -116,7 +116,7 @@ describe('ScanResultsToUnifiedRules', () => {
             buildRuleResultObject('unsupported 3', 'PASS'),
         ];
 
-        const scanResults: ScanResults = buildScanResultsObject(
+        const scanResults: AndroidScanResults = buildScanResultsObject(
             deviceName,
             appIdentifier,
             ruleResults,
@@ -133,7 +133,7 @@ describe('ScanResultsToUnifiedRules', () => {
     test('ScanResults with 1 supported rule', () => {
         const ruleResults: RuleResultsData[] = [buildRuleResultObject(ruleId1, 'PASS')];
 
-        const scanResults: ScanResults = buildScanResultsObject(
+        const scanResults: AndroidScanResults = buildScanResultsObject(
             deviceName,
             appIdentifier,
             ruleResults,
@@ -154,7 +154,7 @@ describe('ScanResultsToUnifiedRules', () => {
             buildRuleResultObject(ruleId1, 'FAIL'),
         ];
 
-        const scanResults: ScanResults = buildScanResultsObject(
+        const scanResults: AndroidScanResults = buildScanResultsObject(
             deviceName,
             appIdentifier,
             ruleResults,
@@ -184,7 +184,7 @@ describe('ScanResultsToUnifiedRules', () => {
             buildRuleResultObject('thanks for playing', 'FAIL'),
         ];
 
-        const scanResults: ScanResults = buildScanResultsObject(
+        const scanResults: AndroidScanResults = buildScanResultsObject(
             deviceName,
             appIdentifier,
             ruleResults,

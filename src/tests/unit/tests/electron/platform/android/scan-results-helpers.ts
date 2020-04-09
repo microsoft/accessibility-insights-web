@@ -5,7 +5,7 @@ import { RuleInformation } from 'electron/platform/android/rule-information';
 import {
     DeviceInfo,
     RuleResultsData,
-    ScanResults,
+    AndroidScanResults,
     ViewElementData,
 } from 'electron/platform/android/scan-results';
 
@@ -17,7 +17,7 @@ export function buildScanResultsObject(
     axeVersion: string = null,
     screenshotData: string = null,
     deviceInfo: DeviceInfo = null,
-): ScanResults {
+): AndroidScanResults {
     const scanResults = {};
     const axeContext = {};
     let addContext = false;
@@ -67,7 +67,7 @@ export function buildScanResultsObject(
         scanResults['axeContext'] = axeContext;
     }
 
-    return new ScanResults(scanResults);
+    return new AndroidScanResults(scanResults);
 }
 
 export function buildRuleResultObject(

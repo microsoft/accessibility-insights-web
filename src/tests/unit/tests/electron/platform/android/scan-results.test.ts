@@ -3,7 +3,7 @@
 import {
     DeviceInfo,
     RuleResultsData,
-    ScanResults,
+    AndroidScanResults,
     ViewElementData,
 } from 'electron/platform/android/scan-results';
 import { set } from 'lodash';
@@ -46,7 +46,7 @@ describe('ScanResults', () => {
             const dataContainer = {};
             set(dataContainer, rawDataPath, rawDataValue);
 
-            const testObject = new ScanResults(dataContainer['rawData']);
+            const testObject = new AndroidScanResults(dataContainer['rawData']);
 
             expect(testObject[scanResultProp]).toEqual(expectedValue);
         },

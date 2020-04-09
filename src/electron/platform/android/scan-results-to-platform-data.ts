@@ -1,11 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { PlatformData } from 'common/types/store-data/unified-data-interface';
-import { ScanResults } from './scan-results';
+import { AndroidScanResults } from './scan-results';
 
-export type ConvertScanResultsToPlatformDataDelegate = (scanResults: ScanResults) => PlatformData;
+export type ConvertScanResultsToPlatformDataDelegate = (
+    scanResults: AndroidScanResults,
+) => PlatformData;
 
-export function convertScanResultsToPlatformData(scanResults: ScanResults): PlatformData {
+export function convertScanResultsToPlatformData(scanResults: AndroidScanResults): PlatformData {
     if (scanResults == null || scanResults.deviceInfo == null) {
         return null;
     }
