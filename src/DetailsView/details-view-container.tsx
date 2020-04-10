@@ -193,6 +193,10 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
             this.props.deps.getCardSelectionViewData(this.props.storeState.cardSelectionStoreData),
         );
 
+        const scanMetaData = {
+            timestamp: this.props.storeState.unifiedScanResultStoreData.timestamp,
+        };
+
         return (
             <DetailsViewBody
                 deps={deps}
@@ -222,7 +226,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
                 scanIncompleteWarnings={
                     storeState.unifiedScanResultStoreData.scanIncompleteWarnings
                 }
-                unifiedScanResultStoreData={storeState.unifiedScanResultStoreData}
+                scanMetaData={scanMetaData}
             />
         );
     }

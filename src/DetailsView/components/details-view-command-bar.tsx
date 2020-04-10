@@ -13,7 +13,7 @@ import { ITooltipHostStyles, Link, TooltipHost } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 
-import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
+import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
@@ -46,7 +46,7 @@ export interface DetailsViewCommandBarProps {
     visualizationScanResultData: VisualizationScanResultData;
     cardsViewData: CardsViewModel;
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
-    unifiedScanResultStoreData: UnifiedScanResultStoreData;
+    scanMetaData: ScanMetaData;
 }
 
 export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBarProps> {
