@@ -5,7 +5,7 @@ import { UnifiedReportHead } from 'electron/views/report/unified-report-head';
 import { BodySection } from 'reports/components/report-sections/body-section';
 import { ContentContainer } from 'reports/components/report-sections/content-container';
 import { DetailsSection } from 'reports/components/report-sections/details-section';
-import { FooterText } from 'reports/components/report-sections/footer-text';
+import { FooterTextForUnified } from 'reports/components/report-sections/footer-text-for-unified';
 import { HeaderSection } from 'reports/components/report-sections/header-section';
 import { NotApplicableChecksSection } from 'reports/components/report-sections/not-applicable-checks-section';
 import { PassedChecksSection } from 'reports/components/report-sections/passed-checks-section';
@@ -28,5 +28,5 @@ export const UnifiedReportSectionFactory: ReportSectionFactory = {
     PassedChecksSection,
     NotApplicableChecksSection,
     FooterSection: ReportFooter,
-    FooterText,
+    FooterText: FooterTextForUnified,
 };

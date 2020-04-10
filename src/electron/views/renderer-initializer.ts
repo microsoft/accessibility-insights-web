@@ -365,7 +365,10 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const reportHtmlGenerator = new ReportHtmlGenerator(
             UnifiedReportSectionFactory,
             new ReactStaticRenderer(),
-            { extensionVersion: '1.1', browserSpec: "doesn't exist", axeCoreVersion: '0.16' },
+            {
+                applicationProperties: { name: 'Android app', version: '0.0.1' },
+                scanEngineProperties: { name: 'axe-android', version: '0.0.1' },
+            }, // stubbed values for the moment
             getDefaultAddListenerForCollapsibleSection,
             DateProvider.getUTCStringFromDate,
             GetGuidanceTagsFromGuidanceLinks,
