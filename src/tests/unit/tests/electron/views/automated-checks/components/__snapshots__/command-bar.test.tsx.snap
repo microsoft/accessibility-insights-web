@@ -25,6 +25,35 @@ exports[`CommandBar renders while status is <Completed> 1`] = `
   <div
     className="farItems"
   >
+    <FlaggedComponent
+      enableJSXElement={
+        <ReportExportComponent
+          deps={
+            Object {
+              "getCurrentDate": [Function],
+              "reportGenerator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "assessmentReportHtmlGenerator": undefined,
+                "reportHtmlGenerator": undefined,
+                "reportNameGenerator": undefined,
+              },
+              "scanActionCreator": null,
+            }
+          }
+          exportResultsType="AutomatedChecks"
+          getExportDescription={[Function]}
+          htmlGenerator={[Function]}
+          pageTitle="some target"
+          updatePersistedDescription={[Function]}
+        />
+      }
+      featureFlag="exportReport"
+      featureFlagStoreData={
+        Object {
+          "somefeatureflag": true,
+        }
+      }
+    />
     <CustomizedActionButton
       ariaLabel="settings"
       className="menuItemButton"
@@ -66,6 +95,35 @@ exports[`CommandBar renders while status is <Default> 1`] = `
   <div
     className="farItems"
   >
+    <FlaggedComponent
+      enableJSXElement={
+        <ReportExportComponent
+          deps={
+            Object {
+              "getCurrentDate": [Function],
+              "reportGenerator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "assessmentReportHtmlGenerator": undefined,
+                "reportHtmlGenerator": undefined,
+                "reportNameGenerator": undefined,
+              },
+              "scanActionCreator": null,
+            }
+          }
+          exportResultsType="AutomatedChecks"
+          getExportDescription={[Function]}
+          htmlGenerator={[Function]}
+          pageTitle="some target"
+          updatePersistedDescription={[Function]}
+        />
+      }
+      featureFlag="exportReport"
+      featureFlagStoreData={
+        Object {
+          "somefeatureflag": true,
+        }
+      }
+    />
     <CustomizedActionButton
       ariaLabel="settings"
       className="menuItemButton"
@@ -107,6 +165,35 @@ exports[`CommandBar renders while status is <Failed> 1`] = `
   <div
     className="farItems"
   >
+    <FlaggedComponent
+      enableJSXElement={
+        <ReportExportComponent
+          deps={
+            Object {
+              "getCurrentDate": [Function],
+              "reportGenerator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "assessmentReportHtmlGenerator": undefined,
+                "reportHtmlGenerator": undefined,
+                "reportNameGenerator": undefined,
+              },
+              "scanActionCreator": null,
+            }
+          }
+          exportResultsType="AutomatedChecks"
+          getExportDescription={[Function]}
+          htmlGenerator={[Function]}
+          pageTitle="some target"
+          updatePersistedDescription={[Function]}
+        />
+      }
+      featureFlag="exportReport"
+      featureFlagStoreData={
+        Object {
+          "somefeatureflag": true,
+        }
+      }
+    />
     <CustomizedActionButton
       ariaLabel="settings"
       className="menuItemButton"
@@ -148,6 +235,35 @@ exports[`CommandBar renders while status is <Scanning> 1`] = `
   <div
     className="farItems"
   >
+    <FlaggedComponent
+      enableJSXElement={
+        <ReportExportComponent
+          deps={
+            Object {
+              "getCurrentDate": [Function],
+              "reportGenerator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "assessmentReportHtmlGenerator": undefined,
+                "reportHtmlGenerator": undefined,
+                "reportNameGenerator": undefined,
+              },
+              "scanActionCreator": null,
+            }
+          }
+          exportResultsType="AutomatedChecks"
+          getExportDescription={[Function]}
+          htmlGenerator={[Function]}
+          pageTitle="some target"
+          updatePersistedDescription={[Function]}
+        />
+      }
+      featureFlag="exportReport"
+      featureFlagStoreData={
+        Object {
+          "somefeatureflag": true,
+        }
+      }
+    />
     <CustomizedActionButton
       ariaLabel="settings"
       className="menuItemButton"
