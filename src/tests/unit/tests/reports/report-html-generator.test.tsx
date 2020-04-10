@@ -5,6 +5,7 @@ import { FixInstructionProcessor } from 'common/components/fix-instruction-proce
 import { NullComponent } from 'common/components/null-component';
 import { DateProvider } from 'common/date-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 import {
     ReportBody,
@@ -20,7 +21,6 @@ import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { exampleUnifiedStatusResults } from '../common/components/cards/sample-view-model-data';
 
 describe('ReportHtmlGenerator', () => {
@@ -95,7 +95,6 @@ describe('ReportHtmlGenerator', () => {
         const testObject = new ReportHtmlGenerator(
             sectionFactoryMock.object,
             rendererMock.object,
-            toolData,
             getScriptMock.object,
             getUTCStringFromDateStub,
             getGuidanceTagsStub,
@@ -103,11 +102,18 @@ describe('ReportHtmlGenerator', () => {
             getPropertyConfigurationStub,
         );
 
-        const actual = testObject.generateHtml(scanDate, pageTitle, pageUrl, description, {
-            cards: exampleUnifiedStatusResults,
-            visualHelperEnabled: true,
-            allCardsCollapsed: true,
-        });
+        const actual = testObject.generateHtml(
+            scanDate,
+            pageTitle,
+            pageUrl,
+            description,
+            {
+                cards: exampleUnifiedStatusResults,
+                visualHelperEnabled: true,
+                allCardsCollapsed: true,
+            },
+            toolData,
+        );
 
         expect(actual).toMatchSnapshot();
     });

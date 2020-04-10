@@ -6,6 +6,7 @@ import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
@@ -26,6 +27,7 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 describe('ReportExportComponentPropsFactory', () => {
     const theDate = new Date(2019, 2, 12, 9, 0);
     const theTimestamp = 'test timestamp';
+    const theToolData: ToolData = { applicationProperties: { name: 'some app' } } as ToolData;
     const thePageTitle = 'command-bar-test-tab-title';
     const theDescription = 'test description';
     const theGeneratorOutput = 'generator output';
@@ -58,7 +60,8 @@ describe('ReportExportComponentPropsFactory', () => {
         } as AssessmentStoreData;
         scanMetaData = {
             timestamp: theTimestamp,
-        };
+            toolData: theToolData,
+        } as ScanMetaData;
         assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(undefined, MockBehavior.Loose);
         reportGeneratorMock = Mock.ofType<ReportGenerator>(undefined, MockBehavior.Loose);
         cardsViewData = null;
@@ -116,6 +119,7 @@ describe('ReportExportComponentPropsFactory', () => {
                     tabStoreData.url,
                     cardsViewData,
                     theDescription,
+                    scanMetaData.toolData,
                 ),
             )
             .returns(() => theGeneratorOutput);

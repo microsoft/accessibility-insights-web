@@ -2,8 +2,10 @@
 // Licensed under the MIT License.
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
+import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
 import { ISelection, Spinner, SpinnerSize } from 'office-ui-fabric-react';
 import * as React from 'react';
+
 import { ThemeDeps } from '../common/components/theme';
 import {
     withStoreSubscription,
@@ -193,8 +195,9 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
             this.props.deps.getCardSelectionViewData(this.props.storeState.cardSelectionStoreData),
         );
 
-        const scanMetaData = {
+        const scanMetaData: ScanMetaData = {
             timestamp: this.props.storeState.unifiedScanResultStoreData.timestamp,
+            toolData: this.props.storeState.unifiedScanResultStoreData.toolInfo,
         };
 
         return (

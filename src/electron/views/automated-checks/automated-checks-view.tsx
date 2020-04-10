@@ -7,6 +7,7 @@ import { CardSelectionStoreData } from 'common/types/store-data/card-selection-s
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { CardsView, CardsViewDeps } from 'DetailsView/components/cards-view';
@@ -63,7 +64,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
     public render(): JSX.Element {
         const { status } = this.props.scanStoreData;
         if (status === ScanStatus.Failed) {
-            return this.renderLayout(null, null, this.renderDeviceDisconnected());
+            return this.renderLayout(null, null, null, this.renderDeviceDisconnected());
         } else if (status === ScanStatus.Completed) {
             const { unifiedScanResultStoreData, cardSelectionStoreData, deps } = this.props;
             const { rules, results } = unifiedScanResultStoreData;
@@ -73,21 +74,27 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                 unifiedScanResultStoreData,
                 cardSelectionViewData.highlightedResultUids,
             );
+            const scanMetadata: ScanMetaData = {
+                timestamp: unifiedScanResultStoreData.timestamp,
+                toolData: unifiedScanResultStoreData.toolInfo,
+            };
 
             return this.renderLayout(
                 cardsViewData,
                 unifiedScanResultStoreData.targetAppInfo.name,
+                scanMetadata,
                 this.renderResults(cardsViewData),
                 <ScreenshotView viewModel={screenshotViewModel} />,
             );
         } else {
-            return this.renderLayout(null, null, this.renderScanningSpinner());
+            return this.renderLayout(null, null, null, this.renderScanningSpinner());
         }
     }
 
     private renderLayout(
         cardsViewData: CardsViewModel,
         targetAppName: string,
+        scanMetaData: ScanMetaData,
         primaryContent: JSX.Element,
         optionalSidePanel?: JSX.Element,
     ): JSX.Element {
@@ -110,6 +117,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                             featureFlagStoreData={this.props.featureFlagStoreData}
                             cardsViewData={cardsViewData}
                             targetAppName={targetAppName}
+                            scanMetaData={scanMetaData}
                         />
                         <main>
                             <HeaderSection />

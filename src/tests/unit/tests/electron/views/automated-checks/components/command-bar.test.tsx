@@ -4,6 +4,8 @@ import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { EnumHelper } from 'common/enum-helper';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import {
@@ -21,17 +23,28 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('CommandBar', () => {
     let featureFlagStoreDataStub: FeatureFlagStoreData;
-    let getCurrentDateMock: IMock<() => Date>;
+    let getDateFromTimestampMock: IMock<(timestamp: string) => Date>;
     let cardsViewDataStub: CardsViewModel;
     let reportGeneratorMock: IMock<ReportGenerator>;
+    let scanMetaDataStub: ScanMetaData;
+    let scanDateStub: Date;
 
     beforeEach(() => {
         featureFlagStoreDataStub = {
             somefeatureflag: true,
         };
-        getCurrentDateMock = Mock.ofInstance(() => null as Date);
+        getDateFromTimestampMock = Mock.ofInstance((_: string) => null as Date);
         cardsViewDataStub = {} as CardsViewModel;
+        scanMetaDataStub = {
+            timestamp: '1234',
+            toolData: {} as ToolData,
+        };
+        scanDateStub = new Date(0);
         reportGeneratorMock = Mock.ofType(ReportGenerator);
+
+        getDateFromTimestampMock
+            .setup(mock => mock(scanMetaDataStub.timestamp))
+            .returns(() => scanDateStub);
     });
 
     describe('renders', () => {
@@ -39,7 +52,7 @@ describe('CommandBar', () => {
             const props = {
                 deps: {
                     scanActionCreator: null,
-                    getCurrentDate: getCurrentDateMock.object,
+                    getDateFromTimestamp: getDateFromTimestampMock.object,
                     reportGenerator: reportGeneratorMock.object,
                 } as CommandBarDeps,
                 scanStoreData: {
@@ -48,8 +61,29 @@ describe('CommandBar', () => {
                 cardsViewData: cardsViewDataStub,
                 targetAppName: 'some target',
                 featureFlagStoreData: featureFlagStoreDataStub,
+                scanMetaData: scanMetaDataStub,
             } as CommandBarProps;
 
+            const rendered = shallow(<CommandBar {...props} />);
+
+            expect(rendered.getElement()).toMatchSnapshot();
+        });
+
+        it('does not create report export when scan metadata is null', () => {
+            const props = {
+                deps: {
+                    scanActionCreator: null,
+                    getDateFromTimestamp: getDateFromTimestampMock.object,
+                    reportGenerator: reportGeneratorMock.object,
+                } as CommandBarDeps,
+                scanStoreData: {
+                    status: ScanStatus.Scanning,
+                },
+                cardsViewData: cardsViewDataStub,
+                targetAppName: 'some target',
+                featureFlagStoreData: featureFlagStoreDataStub,
+                scanMetaData: null,
+            } as CommandBarProps;
             const rendered = shallow(<CommandBar {...props} />);
 
             expect(rendered.getElement()).toMatchSnapshot();
@@ -63,7 +97,7 @@ describe('CommandBar', () => {
             const props = {
                 deps: {
                     scanActionCreator: null,
-                    getCurrentDate: getCurrentDateMock.object,
+                    getDateFromTimestamp: getDateFromTimestampMock.object,
                     reportGenerator: reportGeneratorMock.object,
                 },
                 scanStoreData: {
@@ -72,6 +106,7 @@ describe('CommandBar', () => {
                 cardsViewData: cardsViewDataStub,
                 targetAppName: 'some target',
                 featureFlagStoreData: featureFlagStoreDataStub,
+                scanMetaData: scanMetaDataStub,
             } as CommandBarProps;
 
             const rendered = shallow(<CommandBar {...props} />);
@@ -95,7 +130,7 @@ describe('CommandBar', () => {
             const props = {
                 deps: {
                     scanActionCreator: scanActionCreatorMock.object,
-                    getCurrentDate: getCurrentDateMock.object,
+                    getDateFromTimestamp: getDateFromTimestampMock.object,
                     reportGenerator: reportGeneratorMock.object,
                 },
                 deviceStoreData: {
@@ -107,6 +142,7 @@ describe('CommandBar', () => {
                 cardsViewData: cardsViewDataStub,
                 targetAppName: 'some target',
                 featureFlagStoreData: featureFlagStoreDataStub,
+                scanMetaData: scanMetaDataStub,
             } as CommandBarProps;
 
             const rendered = mount(<CommandBar {...props} />);
@@ -125,7 +161,7 @@ describe('CommandBar', () => {
             const props = {
                 deps: {
                     dropdownClickHandler: dropdownClickHandlerMock.object,
-                    getCurrentDate: getCurrentDateMock.object,
+                    getDateFromTimestamp: getDateFromTimestampMock.object,
                     reportGenerator: reportGeneratorMock.object,
                 },
                 scanStoreData: {
@@ -134,6 +170,7 @@ describe('CommandBar', () => {
                 cardsViewData: cardsViewDataStub,
                 targetAppName: 'some target',
                 featureFlagStoreData: featureFlagStoreDataStub,
+                scanMetaData: scanMetaDataStub,
             } as CommandBarProps;
 
             const rendered = mount(<CommandBar {...props} />);
