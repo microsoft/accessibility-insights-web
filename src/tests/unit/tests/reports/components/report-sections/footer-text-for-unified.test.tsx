@@ -3,9 +3,9 @@
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { FooterTextForService } from 'reports/package/footer-text-for-service';
+import { FooterTextForUnified } from 'reports/components/report-sections/footer-text-for-unified';
 
-describe('FooterTextForService', () => {
+describe('FooterText', () => {
     it('renders', () => {
         const toolData: ToolData = {
             scanEngineProperties: {
@@ -19,9 +19,7 @@ describe('FooterTextForService', () => {
             },
         };
 
-        const FooterText = FooterTextForService('ClientService');
-
-        const footerWrapper = shallow(<FooterText {...{ toolData }} />);
-        expect(footerWrapper.getElement()).toMatchSnapshot('footer');
+        const footerWrapper = shallow(<FooterTextForUnified {...{ toolData }} />);
+        expect(footerWrapper.getElement()).toMatchSnapshot();
     });
 });
