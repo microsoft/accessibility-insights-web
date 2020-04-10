@@ -69,6 +69,26 @@ describe('CommandBar', () => {
             expect(rendered.getElement()).toMatchSnapshot();
         });
 
+        it('does not create report export when scan metadata is null', () => {
+            const props = {
+                deps: {
+                    scanActionCreator: null,
+                    getDateFromTimestamp: getDateFromTimestampMock.object,
+                    reportGenerator: reportGeneratorMock.object,
+                } as CommandBarDeps,
+                scanStoreData: {
+                    status: ScanStatus.Scanning,
+                },
+                cardsViewData: cardsViewDataStub,
+                targetAppName: 'some target',
+                featureFlagStoreData: featureFlagStoreDataStub,
+                scanMetaData: null,
+            } as CommandBarProps;
+            const rendered = shallow(<CommandBar {...props} />);
+
+            expect(rendered.getElement()).toMatchSnapshot();
+        });
+
         const notScanningStatuses = EnumHelper.getNumericValues<ScanStatus>(ScanStatus)
             .filter(status => status !== ScanStatus.Scanning)
             .map(status => ScanStatus[status]);

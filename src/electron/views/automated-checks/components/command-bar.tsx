@@ -50,28 +50,30 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
         cardsViewData,
         scanMetaData,
     } = props;
+    let exportReport = null;
 
-    const scanDate = deps.getDateFromTimestamp(scanMetaData.timestamp);
-    const exportReport = (
-        <ReportExportComponent
-            deps={deps}
-            exportResultsType={'AutomatedChecks'}
-            pageTitle={targetAppName}
-            scanDate={scanDate}
-            htmlGenerator={description =>
-                deps.reportGenerator.generateFastPassAutomatedChecksReport(
-                    scanDate,
-                    targetAppName,
-                    null,
-                    cardsViewData,
-                    description,
-                    scanMetaData.toolData,
-                )
-            }
-            updatePersistedDescription={() => null}
-            getExportDescription={() => ''}
-        />
-    );
+    if (scanMetaData != null) {
+        exportReport = (
+            <ReportExportComponent
+                deps={deps}
+                exportResultsType={'AutomatedChecks'}
+                pageTitle={targetAppName}
+                scanDate={deps.getDateFromTimestamp(scanMetaData.timestamp)}
+                htmlGenerator={description =>
+                    deps.reportGenerator.generateFastPassAutomatedChecksReport(
+                        deps.getDateFromTimestamp(scanMetaData.timestamp),
+                        targetAppName,
+                        null,
+                        cardsViewData,
+                        description,
+                        scanMetaData.toolData,
+                    )
+                }
+                updatePersistedDescription={() => null}
+                getExportDescription={() => ''}
+            />
+        );
+    }
 
     return (
         <section className={styles.commandBar} aria-label="command bar">

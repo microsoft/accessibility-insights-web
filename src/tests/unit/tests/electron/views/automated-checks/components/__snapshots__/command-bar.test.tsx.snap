@@ -1,5 +1,55 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`CommandBar renders does not create report export when scan metadata is null 1`] = `
+<section
+  aria-label="command bar"
+  className="commandBar"
+>
+  <div
+    className="items"
+  >
+    <CustomizedActionButton
+      className="menuItemButton"
+      data-automation-id="command-button-refresh"
+      disabled={true}
+      iconProps={
+        Object {
+          "className": "buttonIcon",
+          "iconName": "Refresh",
+        }
+      }
+      onClick={[Function]}
+      text="Start over"
+    />
+  </div>
+  <div
+    className="farItems"
+  >
+    <FlaggedComponent
+      enableJSXElement={null}
+      featureFlag="exportReport"
+      featureFlagStoreData={
+        Object {
+          "somefeatureflag": true,
+        }
+      }
+    />
+    <CustomizedActionButton
+      ariaLabel="settings"
+      className="menuItemButton"
+      data-automation-id="command-button-settings"
+      iconProps={
+        Object {
+          "className": "buttonIcon",
+          "iconName": "Gear",
+        }
+      }
+      onClick={[Function]}
+    />
+  </div>
+</section>
+`;
+
 exports[`CommandBar renders while status is <Completed> 1`] = `
 <section
   aria-label="command bar"
