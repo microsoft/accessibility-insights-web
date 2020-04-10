@@ -12,6 +12,7 @@ import {
     CardsViewModel,
 } from 'common/types/store-data/card-view-model';
 import {
+    ToolData,
     UnifiedResult,
     UnifiedRule,
     UnifiedScanResultStoreData,
@@ -66,6 +67,11 @@ describe('AutomatedChecksView', () => {
 
         it('when status scan <Completed>', () => {
             const cardSelectionStoreData = {} as CardSelectionStoreData;
+            const timeStampStub = 'test timestamp';
+            const toolDataStub: ToolData = {
+                applicationProperties: { name: 'some app' },
+            } as ToolData;
+
             const cardSelectionViewDataStub = {
                 highlightedResultUids: ['highlighted-uid-1'],
             } as CardSelectionViewData;
@@ -77,6 +83,8 @@ describe('AutomatedChecksView', () => {
                 },
                 rules: rulesStub,
                 results: resultsStub,
+                toolInfo: toolDataStub,
+                timestamp: timeStampStub,
             };
             const ruleResultsByStatusStub = {
                 fail: [{ id: 'test-fail-id' } as CardRuleResult],

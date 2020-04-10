@@ -365,10 +365,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const reportHtmlGenerator = new ReportHtmlGenerator(
             UnifiedReportSectionFactory,
             new ReactStaticRenderer(),
-            {
-                applicationProperties: { name: 'Android app', version: '0.0.1' },
-                scanEngineProperties: { name: 'axe-android', version: '0.0.1' },
-            }, // stubbed values for the moment
             getDefaultAddListenerForCollapsibleSection,
             DateProvider.getUTCStringFromDate,
             GetGuidanceTagsFromGuidanceLinks,
@@ -406,7 +402,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             documentManipulator,
             reportGenerator: reportGenerator,
             fileURLProvider: new FileURLProvider(new WindowUtils(), provideBlob),
-            getCurrentDate: DateProvider.getCurrentDate,
+            getDateFromTimestamp: DateProvider.getDateFromTimestamp,
         };
 
         window.insightsUserConfiguration = new UserConfigurationController(interpreter);

@@ -67,6 +67,7 @@ export function getReportExportComponentForFastPass(props: CommandBarProps): JSX
                 tabStoreData.url,
                 props.cardsViewData,
                 description,
+                props.scanMetaData.toolData,
             ),
         updatePersistedDescription: () => null,
         getExportDescription: () => '',

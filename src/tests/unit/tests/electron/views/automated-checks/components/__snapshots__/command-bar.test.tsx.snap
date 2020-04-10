@@ -30,7 +30,7 @@ exports[`CommandBar renders while status is <Completed> 1`] = `
         <ReportExportComponent
           deps={
             Object {
-              "getCurrentDate": [Function],
+              "getDateFromTimestamp": [Function],
               "reportGenerator": proxy {
                 "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                 "assessmentReportHtmlGenerator": undefined,
@@ -44,6 +44,7 @@ exports[`CommandBar renders while status is <Completed> 1`] = `
           getExportDescription={[Function]}
           htmlGenerator={[Function]}
           pageTitle="some target"
+          scanDate={1970-01-01T00:00:00.000Z}
           updatePersistedDescription={[Function]}
         />
       }
@@ -100,7 +101,7 @@ exports[`CommandBar renders while status is <Default> 1`] = `
         <ReportExportComponent
           deps={
             Object {
-              "getCurrentDate": [Function],
+              "getDateFromTimestamp": [Function],
               "reportGenerator": proxy {
                 "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                 "assessmentReportHtmlGenerator": undefined,
@@ -114,6 +115,7 @@ exports[`CommandBar renders while status is <Default> 1`] = `
           getExportDescription={[Function]}
           htmlGenerator={[Function]}
           pageTitle="some target"
+          scanDate={1970-01-01T00:00:00.000Z}
           updatePersistedDescription={[Function]}
         />
       }
@@ -170,7 +172,7 @@ exports[`CommandBar renders while status is <Failed> 1`] = `
         <ReportExportComponent
           deps={
             Object {
-              "getCurrentDate": [Function],
+              "getDateFromTimestamp": [Function],
               "reportGenerator": proxy {
                 "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                 "assessmentReportHtmlGenerator": undefined,
@@ -184,6 +186,7 @@ exports[`CommandBar renders while status is <Failed> 1`] = `
           getExportDescription={[Function]}
           htmlGenerator={[Function]}
           pageTitle="some target"
+          scanDate={1970-01-01T00:00:00.000Z}
           updatePersistedDescription={[Function]}
         />
       }
@@ -240,7 +243,7 @@ exports[`CommandBar renders while status is <Scanning> 1`] = `
         <ReportExportComponent
           deps={
             Object {
-              "getCurrentDate": [Function],
+              "getDateFromTimestamp": [Function],
               "reportGenerator": proxy {
                 "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                 "assessmentReportHtmlGenerator": undefined,
@@ -254,6 +257,7 @@ exports[`CommandBar renders while status is <Scanning> 1`] = `
           getExportDescription={[Function]}
           htmlGenerator={[Function]}
           pageTitle="some target"
+          scanDate={1970-01-01T00:00:00.000Z}
           updatePersistedDescription={[Function]}
         />
       }

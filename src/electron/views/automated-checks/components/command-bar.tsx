@@ -5,6 +5,7 @@ import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { NamedFC } from 'common/react/named-fc';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
 import {
     ReportExportComponent,
     ReportExportComponentDeps,
@@ -23,7 +24,7 @@ import * as styles from './command-bar.scss';
 export type CommandBarDeps = {
     scanActionCreator: ScanActionCreator;
     dropdownClickHandler: DropdownClickHandler;
-    getCurrentDate: () => Date;
+    getDateFromTimestamp: (timestamp: string) => Date;
     reportGenerator: ReportGenerator;
 } & ReportExportComponentDeps;
 
@@ -34,28 +35,37 @@ export interface CommandBarProps {
     featureFlagStoreData: FeatureFlagStoreData;
     cardsViewData: CardsViewModel;
     targetAppName: string;
+    scanMetaData: ScanMetaData;
 }
 
 export const commandButtonRefreshId = 'command-button-refresh';
 export const commandButtonSettingsId = 'command-button-settings';
 
 export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
-    const { deps, deviceStoreData, featureFlagStoreData, targetAppName, cardsViewData } = props;
+    const {
+        deps,
+        deviceStoreData,
+        featureFlagStoreData,
+        targetAppName,
+        cardsViewData,
+        scanMetaData,
+    } = props;
 
-    const currentDate = deps.getCurrentDate();
+    const scanDate = deps.getDateFromTimestamp(scanMetaData.timestamp);
     const exportReport = (
         <ReportExportComponent
             deps={deps}
             exportResultsType={'AutomatedChecks'}
             pageTitle={targetAppName}
-            scanDate={currentDate}
+            scanDate={scanDate}
             htmlGenerator={description =>
                 deps.reportGenerator.generateFastPassAutomatedChecksReport(
-                    currentDate,
+                    scanDate,
                     targetAppName,
                     null,
                     cardsViewData,
                     description,
+                    scanMetaData.toolData,
                 )
             }
             updatePersistedDescription={() => null}
