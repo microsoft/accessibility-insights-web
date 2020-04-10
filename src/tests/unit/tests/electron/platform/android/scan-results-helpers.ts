@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { UnifiedResolution } from 'common/types/store-data/unified-data-interface';
-import { RuleInformation } from 'electron/platform/android/rule-information';
 import {
+    AndroidScanResults,
     DeviceInfo,
     RuleResultsData,
-    ScanResults,
     ViewElementData,
-} from 'electron/platform/android/scan-results';
+} from 'electron/platform/android/android-scan-results';
+import { RuleInformation } from 'electron/platform/android/rule-information';
 
 export function buildScanResultsObject(
     deviceName: string = null,
@@ -17,7 +17,7 @@ export function buildScanResultsObject(
     axeVersion: string = null,
     screenshotData: string = null,
     deviceInfo: DeviceInfo = null,
-): ScanResults {
+): AndroidScanResults {
     const scanResults = {};
     const axeContext = {};
     let addContext = false;
@@ -67,7 +67,7 @@ export function buildScanResultsObject(
         scanResults['axeContext'] = axeContext;
     }
 
-    return new ScanResults(scanResults);
+    return new AndroidScanResults(scanResults);
 }
 
 export function buildRuleResultObject(

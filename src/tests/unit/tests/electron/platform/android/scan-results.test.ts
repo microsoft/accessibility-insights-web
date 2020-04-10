@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
+    AndroidScanResults,
     DeviceInfo,
     RuleResultsData,
-    ScanResults,
     ViewElementData,
-} from 'electron/platform/android/scan-results';
+} from 'electron/platform/android/android-scan-results';
 import { set } from 'lodash';
 import { buildRuleResultObject, buildViewElement } from './scan-results-helpers';
 
@@ -46,7 +46,7 @@ describe('ScanResults', () => {
             const dataContainer = {};
             set(dataContainer, rawDataPath, rawDataValue);
 
-            const testObject = new ScanResults(dataContainer['rawData']);
+            const testObject = new AndroidScanResults(dataContainer['rawData']);
 
             expect(testObject[scanResultProp]).toEqual(expectedValue);
         },

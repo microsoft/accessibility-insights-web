@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BoundingRectangle } from 'electron/platform/android/scan-results';
+import { BoundingRectangle } from 'electron/platform/android/android-scan-results';
 import { GuidanceLink } from '../../../scanner/rule-to-links-mappings';
 import { ScanIncompleteWarningId } from '../scan-incomplete-warnings';
 

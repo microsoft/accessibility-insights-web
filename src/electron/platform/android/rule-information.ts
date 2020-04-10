@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { UnifiedFormattableResolution } from 'common/types/store-data/unified-data-interface';
-import { RuleResultsData } from './scan-results';
+import { RuleResultsData } from './android-scan-results';
 
 export type GetUnifiedFormattableResolutionDelegate = (
     ruleResultsData: RuleResultsData,
