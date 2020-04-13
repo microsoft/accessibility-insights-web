@@ -4,6 +4,8 @@ import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { getDefaultFeatureFlagsWeb } from 'common/feature-flags';
+import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
+import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { DetailsViewCommandBarDeps } from 'DetailsView/components/details-view-command-bar';
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
@@ -31,8 +33,6 @@ import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 import { exampleUnifiedStatusResults } from '../common/components/cards/sample-view-model-data';
-import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
-import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 
 describe('DetailsViewBody', () => {
     let selectedTest: VisualizationType;

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
+import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { DetailsViewBodyProps } from 'DetailsView/details-view-body';
@@ -13,7 +14,6 @@ import {
     DetailsViewCommandBar,
     DetailsViewCommandBarProps,
 } from '../../../../../DetailsView/components/details-view-command-bar';
-import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
 
 describe('DetailsViewCommandBar', () => {
     const thePageTitle = 'command-bar-test-tab-title';

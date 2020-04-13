@@ -3,7 +3,6 @@
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
 import { ReportGenerator } from 'reports/report-generator';
@@ -78,7 +77,6 @@ describe('ReportGenerator', () => {
         const assessmentStoreData: AssessmentStoreData = { stub: 'assessmentStoreData' } as any;
         const assessmentsProvider: AssessmentsProvider = { stub: 'assessmentsProvider' } as any;
         const featureFlagStoreData: FeatureFlagStoreData = { stub: 'featureFlagStoreData' } as any;
-        const tabStoreData: TabStoreData = { stub: 'tabStoreData' } as any;
         const assessmentDescription = 'generateAssessmentHtml-description';
 
         assessmentReportHtmlGeneratorMock

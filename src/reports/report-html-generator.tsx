@@ -8,7 +8,7 @@ import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import * as React from 'react';
 
-import { TargetAppData, ToolData } from 'common/types/store-data/unified-data-interface';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { ReportBody, ReportBodyProps } from './components/report-sections/report-body';
 import { ReportCollapsibleContainerControl } from './components/report-sections/report-collapsible-container';
 import {
@@ -32,7 +32,7 @@ export class ReportHtmlGenerator {
     public generateHtml(
         scanDate: Date,
         pageTitle: string,
-        url: string,
+        pageUrl: string,
         description: string,
         cardsViewData: CardsViewModel,
         toolData: ToolData,
@@ -41,7 +41,7 @@ export class ReportHtmlGenerator {
         const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(<HeadSection />);
         const targetAppInfo = {
             name: pageTitle,
-            url: url,
+            url: pageUrl,
         };
 
         const detailsProps: SectionProps = {

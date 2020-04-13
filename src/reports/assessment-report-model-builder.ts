@@ -12,7 +12,6 @@ import {
     AssessmentStoreData,
     TestStepInstance,
 } from 'common/types/store-data/assessment-result-data';
-import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { find, keys } from 'lodash';
 import { assessmentReportExtensionPoint } from '../DetailsView/extensions/assessment-report-extension-point';
