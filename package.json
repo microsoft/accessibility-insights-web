@@ -150,7 +150,7 @@
         "react-copy-to-clipboard": "^5.0.2",
         "react-devtools": "^4.6.0",
         "react-dom": "^16.13.1",
-        "react-helmet": "^5.2.0",
+        "react-helmet": "^6.0.0",
         "react-router-dom": "^5.1.2",
         "ua-parser-js": "^0.7.21",
         "unzipper": "^0.10.10",
