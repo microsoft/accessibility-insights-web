@@ -25,8 +25,10 @@ describe('DetailsSection', () => {
 
         const props: DetailsSectionProps = {
             scanDate,
-            pageTitle: 'page-title',
-            pageUrl: 'https://page-url/',
+            targetAppInfo: {
+                name: 'page-title',
+                url: 'https://page-url/',
+            },
             description,
             environmentInfo: {
                 browserSpec: 'environment-version',

@@ -55,7 +55,6 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
           Object {
             "scanTargetData": Object {
               "name": "test-target-app-name",
-              "url": undefined,
             },
             "timestamp": "test timestamp",
             "toolData": Object {

@@ -11,11 +11,11 @@ import { SectionProps } from './report-section-factory';
 
 export type DetailsSectionProps = Pick<
     SectionProps,
-    'pageTitle' | 'pageUrl' | 'description' | 'scanDate' | 'toUtcString'
+    'targetAppInfo' | 'description' | 'scanDate' | 'toUtcString'
 >;
 
 export const DetailsSection = NamedFC<DetailsSectionProps>('DetailsSection', props => {
-    const { pageTitle, pageUrl, description, scanDate, toUtcString } = props;
+    const { targetAppInfo, description, scanDate, toUtcString } = props;
 
     const createListItem = (
         icon: JSX.Element,
@@ -42,8 +42,11 @@ export const DetailsSection = NamedFC<DetailsSectionProps>('DetailsSection', pro
                 {createListItem(
                     <UrlIcon />,
                     'target page url:',
-                    <NewTabLinkWithConfirmationDialog href={pageUrl} title={pageTitle}>
-                        {pageUrl}
+                    <NewTabLinkWithConfirmationDialog
+                        href={targetAppInfo.url}
+                        title={targetAppInfo.name}
+                    >
+                        {targetAppInfo.url}
                     </NewTabLinkWithConfirmationDialog>,
                 )}
                 {createListItem(<DateIcon />, 'scan date:', scanDateUTC)}
