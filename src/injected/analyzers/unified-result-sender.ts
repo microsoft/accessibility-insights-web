@@ -40,6 +40,7 @@ export class UnifiedResultSender {
             ),
             rules: this.convertScanResultsToUnifiedRules(axeResults.originalResult),
             toolInfo: this.environmentInfoProvider.getToolData(),
+            timestamp: axeResults.originalResult.timestamp,
             targetAppInfo: {
                 name: axeResults.originalResult.targetPageTitle,
                 url: axeResults.originalResult.targetPageUrl,

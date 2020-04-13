@@ -4,11 +4,11 @@ import { noCardInteractionsSupported } from 'common/components/cards/card-intera
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { NullComponent } from 'common/components/null-component';
 import { PropertyConfiguration } from 'common/configs/unified-result-property-configurations';
-import { EnvironmentInfo } from 'common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import * as React from 'react';
-import { ReportHead } from './components/report-head';
+
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { ReportBody, ReportBodyProps } from './components/report-sections/report-body';
 import { ReportCollapsibleContainerControl } from './components/report-sections/report-collapsible-container';
 import {
@@ -22,7 +22,6 @@ export class ReportHtmlGenerator {
     constructor(
         private readonly sectionFactory: ReportSectionFactory,
         private readonly reactStaticRenderer: ReactStaticRenderer,
-        private readonly environmentInfo: EnvironmentInfo,
         private readonly getCollapsibleScript: () => string,
         private readonly utcDateConverter: (scanDate: Date) => string,
         private readonly getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
@@ -36,9 +35,10 @@ export class ReportHtmlGenerator {
         pageUrl: string,
         description: string,
         cardsViewData: CardsViewModel,
+        toolData: ToolData,
     ): string {
-        const headElement: JSX.Element = <ReportHead />;
-        const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(headElement);
+        const HeadSection = this.sectionFactory.HeadSection;
+        const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(<HeadSection />);
 
         const detailsProps: SectionProps = {
             pageTitle,
@@ -54,7 +54,7 @@ export class ReportHtmlGenerator {
                 cardsVisualizationModifierButtons: NullComponent,
             } as SectionDeps,
             cardsViewData: cardsViewData,
-            environmentInfo: this.environmentInfo,
+            toolData: toolData,
             toUtcString: this.utcDateConverter,
             getCollapsibleScript: this.getCollapsibleScript,
             getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,

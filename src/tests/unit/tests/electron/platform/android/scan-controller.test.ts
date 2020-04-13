@@ -14,9 +14,9 @@ import {
 } from 'electron/common/electron-telemetry-events';
 import { PortPayload } from 'electron/flux/action/device-action-payloads';
 import { ScanActions } from 'electron/flux/action/scan-actions';
+import { AndroidScanResults } from 'electron/platform/android/android-scan-results';
 import { ScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { ScanController } from 'electron/platform/android/scan-controller';
-import { ScanResults } from 'electron/platform/android/scan-results';
 import { UnifiedScanCompletedPayloadBuilder } from 'electron/platform/android/unified-result-builder';
 import { isFunction } from 'lodash';
 import { tick } from 'tests/unit/common/tick';
@@ -95,7 +95,7 @@ describe('ScanController', () => {
     });
 
     it('scans and handle successful response', async () => {
-        const scanResults = new ScanResults(axeRuleResultExample);
+        const scanResults = new AndroidScanResults(axeRuleResultExample);
 
         fetchScanResultsMock
             .setup(fetch => fetch(port))
@@ -149,6 +149,7 @@ describe('ScanController', () => {
                     version: 'test-scan-engine-version',
                 },
             },
+            timestamp: 'timestamp',
             scanIncompleteWarnings: ['test-scan-incomplete-warning' as ScanIncompleteWarningId],
         };
 

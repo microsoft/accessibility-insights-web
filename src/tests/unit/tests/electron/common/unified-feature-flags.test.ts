@@ -21,6 +21,7 @@ describe('FeatureFlagsTest', () => {
         const expectedValues: FeatureFlagStoreData = {
             [UnifiedFeatureFlags.logTelemetryToConsole]: false,
             [UnifiedFeatureFlags.showAllFeatureFlags]: false,
+            [UnifiedFeatureFlags.exportReport]: false,
         };
 
         const featureFlagValueKeys = keys(featureFlagValues);

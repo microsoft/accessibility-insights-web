@@ -5,6 +5,7 @@ import { FeatureFlagDetail } from 'common/feature-flags';
 export class UnifiedFeatureFlags {
     public static readonly logTelemetryToConsole = 'logTelemetryToConsole';
     public static readonly showAllFeatureFlags = 'showAllFeatureFlags';
+    public static readonly exportReport = 'exportReport';
 }
 
 export function getAllFeatureFlagDetailsUnified(): FeatureFlagDetail[] {
@@ -23,6 +24,14 @@ export function getAllFeatureFlagDetailsUnified(): FeatureFlagDetail[] {
             defaultValue: false,
             displayableName: 'Show all feature flags',
             displayableDescription: 'Show all feature flags in the Preview Features panel.',
+            isPreviewFeature: false,
+            forceDefault: false,
+        },
+        {
+            id: UnifiedFeatureFlags.exportReport,
+            defaultValue: false,
+            displayableName: 'Show export report button',
+            displayableDescription: 'Show the export report button on the automated checks window',
             isPreviewFeature: false,
             forceDefault: false,
         },

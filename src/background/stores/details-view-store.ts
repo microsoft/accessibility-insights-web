@@ -8,7 +8,6 @@ import { DetailsViewStoreData } from 'common/types/store-data/details-view-store
 import { DetailsViewRightContentPanelType } from 'DetailsView/components/left-nav/details-view-right-content-panel-type';
 import { ContentActions } from '../actions/content-actions';
 import { DetailsViewActions } from '../actions/details-view-actions';
-import { ScopingActions } from '../actions/scoping-actions';
 import { PreviewFeaturesActions } from './../actions/preview-features-actions';
 import { BaseStoreImpl } from './base-store-impl';
 
@@ -19,7 +18,6 @@ type SidePanelToStoreKey = {
 export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
     constructor(
         private previewFeaturesActions: PreviewFeaturesActions,
-        private scopingActions: ScopingActions,
         private contentActions: ContentActions,
         private detailsViewActions: DetailsViewActions,
         private sidePanelActions: SidePanelActions,
@@ -47,12 +45,6 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
             this.onClose('isPreviewFeaturesOpen'),
         );
 
-        this.scopingActions.closeScopingPanel.addListener(() => this.onClose('isScopingOpen'));
-
-        this.detailsViewActions.closeSettingsPanel.addListener(() =>
-            this.onClose('isSettingsOpen'),
-        );
-
         this.contentActions.openContentPanel.addListener(contentPayload =>
             this.onOpen('isContentOpen', state => (state.contentPath = contentPayload.contentPath)),
         );
@@ -66,6 +58,7 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
         this.detailsViewActions.getCurrentState.addListener(this.onGetCurrentState);
 
         this.sidePanelActions.openSidePanel.addListener(this.onOpenSidePanel);
+        this.sidePanelActions.closeSidePanel.addListener(this.onCloseSidePanel);
     }
 
     private sidePanelToStateKey: SidePanelToStoreKey = {
@@ -95,6 +88,12 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
         }
 
         this.emitChanged();
+    };
+
+    private onCloseSidePanel = (sidePanel: SidePanel) => {
+        const stateKey = this.sidePanelToStateKey[sidePanel];
+
+        this.onClose(stateKey);
     };
 
     private onClose = (

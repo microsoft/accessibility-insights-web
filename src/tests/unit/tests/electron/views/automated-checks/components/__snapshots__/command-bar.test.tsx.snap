@@ -1,5 +1,55 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`CommandBar renders does not create report export when scan metadata is null 1`] = `
+<section
+  aria-label="command bar"
+  className="commandBar"
+>
+  <div
+    className="items"
+  >
+    <CustomizedActionButton
+      className="menuItemButton"
+      data-automation-id="command-button-refresh"
+      disabled={true}
+      iconProps={
+        Object {
+          "className": "buttonIcon",
+          "iconName": "Refresh",
+        }
+      }
+      onClick={[Function]}
+      text="Start over"
+    />
+  </div>
+  <div
+    className="farItems"
+  >
+    <FlaggedComponent
+      enableJSXElement={null}
+      featureFlag="exportReport"
+      featureFlagStoreData={
+        Object {
+          "somefeatureflag": true,
+        }
+      }
+    />
+    <CustomizedActionButton
+      ariaLabel="settings"
+      className="menuItemButton"
+      data-automation-id="command-button-settings"
+      iconProps={
+        Object {
+          "className": "buttonIcon",
+          "iconName": "Gear",
+        }
+      }
+      onClick={[Function]}
+    />
+  </div>
+</section>
+`;
+
 exports[`CommandBar renders while status is <Completed> 1`] = `
 <section
   aria-label="command bar"
@@ -25,6 +75,36 @@ exports[`CommandBar renders while status is <Completed> 1`] = `
   <div
     className="farItems"
   >
+    <FlaggedComponent
+      enableJSXElement={
+        <ReportExportComponent
+          deps={
+            Object {
+              "getDateFromTimestamp": [Function],
+              "reportGenerator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "assessmentReportHtmlGenerator": undefined,
+                "reportHtmlGenerator": undefined,
+                "reportNameGenerator": undefined,
+              },
+              "scanActionCreator": null,
+            }
+          }
+          exportResultsType="AutomatedChecks"
+          getExportDescription={[Function]}
+          htmlGenerator={[Function]}
+          pageTitle="some target"
+          scanDate={1970-01-01T00:00:00.000Z}
+          updatePersistedDescription={[Function]}
+        />
+      }
+      featureFlag="exportReport"
+      featureFlagStoreData={
+        Object {
+          "somefeatureflag": true,
+        }
+      }
+    />
     <CustomizedActionButton
       ariaLabel="settings"
       className="menuItemButton"
@@ -66,6 +146,36 @@ exports[`CommandBar renders while status is <Default> 1`] = `
   <div
     className="farItems"
   >
+    <FlaggedComponent
+      enableJSXElement={
+        <ReportExportComponent
+          deps={
+            Object {
+              "getDateFromTimestamp": [Function],
+              "reportGenerator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "assessmentReportHtmlGenerator": undefined,
+                "reportHtmlGenerator": undefined,
+                "reportNameGenerator": undefined,
+              },
+              "scanActionCreator": null,
+            }
+          }
+          exportResultsType="AutomatedChecks"
+          getExportDescription={[Function]}
+          htmlGenerator={[Function]}
+          pageTitle="some target"
+          scanDate={1970-01-01T00:00:00.000Z}
+          updatePersistedDescription={[Function]}
+        />
+      }
+      featureFlag="exportReport"
+      featureFlagStoreData={
+        Object {
+          "somefeatureflag": true,
+        }
+      }
+    />
     <CustomizedActionButton
       ariaLabel="settings"
       className="menuItemButton"
@@ -107,6 +217,36 @@ exports[`CommandBar renders while status is <Failed> 1`] = `
   <div
     className="farItems"
   >
+    <FlaggedComponent
+      enableJSXElement={
+        <ReportExportComponent
+          deps={
+            Object {
+              "getDateFromTimestamp": [Function],
+              "reportGenerator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "assessmentReportHtmlGenerator": undefined,
+                "reportHtmlGenerator": undefined,
+                "reportNameGenerator": undefined,
+              },
+              "scanActionCreator": null,
+            }
+          }
+          exportResultsType="AutomatedChecks"
+          getExportDescription={[Function]}
+          htmlGenerator={[Function]}
+          pageTitle="some target"
+          scanDate={1970-01-01T00:00:00.000Z}
+          updatePersistedDescription={[Function]}
+        />
+      }
+      featureFlag="exportReport"
+      featureFlagStoreData={
+        Object {
+          "somefeatureflag": true,
+        }
+      }
+    />
     <CustomizedActionButton
       ariaLabel="settings"
       className="menuItemButton"
@@ -148,6 +288,36 @@ exports[`CommandBar renders while status is <Scanning> 1`] = `
   <div
     className="farItems"
   >
+    <FlaggedComponent
+      enableJSXElement={
+        <ReportExportComponent
+          deps={
+            Object {
+              "getDateFromTimestamp": [Function],
+              "reportGenerator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "assessmentReportHtmlGenerator": undefined,
+                "reportHtmlGenerator": undefined,
+                "reportNameGenerator": undefined,
+              },
+              "scanActionCreator": null,
+            }
+          }
+          exportResultsType="AutomatedChecks"
+          getExportDescription={[Function]}
+          htmlGenerator={[Function]}
+          pageTitle="some target"
+          scanDate={1970-01-01T00:00:00.000Z}
+          updatePersistedDescription={[Function]}
+        />
+      }
+      featureFlag="exportReport"
+      featureFlagStoreData={
+        Object {
+          "somefeatureflag": true,
+        }
+      }
+    />
     <CustomizedActionButton
       ariaLabel="settings"
       className="menuItemButton"

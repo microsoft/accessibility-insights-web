@@ -1,22 +1,21 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ExportResultType } from 'common/extension-telemetry-events';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { escape } from 'lodash';
 import { ActionButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
-import { ExportResultType } from '../../common/extension-telemetry-events';
+
 import { ExportDialog, ExportDialogDeps } from './export-dialog';
 
 export type ReportExportComponentDeps = {
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    reportGenerator: ReportGenerator;
 } & ExportDialogDeps;
 
 export interface ReportExportComponentProps {
     deps: ReportExportComponentDeps;
     exportResultsType: ExportResultType;
-    reportGenerator: ReportGenerator;
     pageTitle: string;
     scanDate: Date;
     htmlGenerator: (descriptionPlaceholder: string) => string;
@@ -63,8 +62,12 @@ export class ReportExportComponent extends React.Component<
     };
 
     private onExportButtonClick = () => {
-        const { reportGenerator, exportResultsType, scanDate, pageTitle } = this.props;
-        const exportName = reportGenerator.generateName(exportResultsType, scanDate, pageTitle);
+        const { deps, exportResultsType, scanDate, pageTitle } = this.props;
+        const exportName = deps.reportGenerator.generateName(
+            exportResultsType,
+            scanDate,
+            pageTitle,
+        );
         const exportDescription = this.props.getExportDescription();
         this.setState({ exportDescription, exportName, isOpen: true });
     };

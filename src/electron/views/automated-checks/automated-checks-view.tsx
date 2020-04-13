@@ -6,6 +6,8 @@ import { GetCardViewData } from 'common/rule-based-view-model-provider';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { CardsView, CardsViewDeps } from 'DetailsView/components/cards-view';
@@ -24,6 +26,7 @@ import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popu
 import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
 import { ScreenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
 import * as React from 'react';
+
 import * as styles from './automated-checks-view.scss';
 import { CommandBar, CommandBarDeps } from './components/command-bar';
 import { HeaderSection } from './components/header-section';
@@ -50,6 +53,7 @@ export type AutomatedChecksViewProps = {
     unifiedScanResultStoreData: UnifiedScanResultStoreData;
     cardSelectionStoreData: CardSelectionStoreData;
     detailsViewStoreData: DetailsViewStoreData;
+    featureFlagStoreData: FeatureFlagStoreData;
 };
 
 export class AutomatedChecksView extends React.Component<AutomatedChecksViewProps> {
@@ -60,7 +64,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
     public render(): JSX.Element {
         const { status } = this.props.scanStoreData;
         if (status === ScanStatus.Failed) {
-            return this.renderLayout(this.renderDeviceDisconnected());
+            return this.renderLayout(null, null, null, this.renderDeviceDisconnected());
         } else if (status === ScanStatus.Completed) {
             const { unifiedScanResultStoreData, cardSelectionStoreData, deps } = this.props;
             const { rules, results } = unifiedScanResultStoreData;
@@ -70,17 +74,27 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                 unifiedScanResultStoreData,
                 cardSelectionViewData.highlightedResultUids,
             );
+            const scanMetadata: ScanMetaData = {
+                timestamp: unifiedScanResultStoreData.timestamp,
+                toolData: unifiedScanResultStoreData.toolInfo,
+            };
 
             return this.renderLayout(
+                cardsViewData,
+                unifiedScanResultStoreData.targetAppInfo.name,
+                scanMetadata,
                 this.renderResults(cardsViewData),
                 <ScreenshotView viewModel={screenshotViewModel} />,
             );
         } else {
-            return this.renderLayout(this.renderScanningSpinner());
+            return this.renderLayout(null, null, null, this.renderScanningSpinner());
         }
     }
 
     private renderLayout(
+        cardsViewData: CardsViewModel,
+        targetAppName: string,
+        scanMetaData: ScanMetaData,
         primaryContent: JSX.Element,
         optionalSidePanel?: JSX.Element,
     ): JSX.Element {
@@ -100,6 +114,10 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                             deps={this.props.deps}
                             deviceStoreData={this.props.deviceStoreData}
                             scanStoreData={this.props.scanStoreData}
+                            featureFlagStoreData={this.props.featureFlagStoreData}
+                            cardsViewData={cardsViewData}
+                            targetAppName={targetAppName}
+                            scanMetaData={scanMetaData}
                         />
                         <main>
                             <HeaderSection />

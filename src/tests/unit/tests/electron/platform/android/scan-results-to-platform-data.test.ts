@@ -1,19 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { PlatformData } from 'common/types/store-data/unified-data-interface';
-import { ScanResults } from 'electron/platform/android/scan-results';
+import { AndroidScanResults } from 'electron/platform/android/android-scan-results';
 import { convertScanResultsToPlatformData } from 'electron/platform/android/scan-results-to-platform-data';
 import { axeRuleResultExample } from 'tests/unit/tests/electron/flux/action-creator/scan-result-example';
 
 describe('convertScanResultsToPlatformData', () => {
     it('produces the pinned output for the pinned example input', () => {
         expect(
-            convertScanResultsToPlatformData(new ScanResults(axeRuleResultExample)),
+            convertScanResultsToPlatformData(new AndroidScanResults(axeRuleResultExample)),
         ).toMatchSnapshot();
     });
 
     it('populates output from the ScanResults axeDevice properties', () => {
-        const input = new ScanResults({
+        const input = new AndroidScanResults({
             axeContext: {
                 axeDevice: {
                     dpi: 1.2,
@@ -40,7 +40,7 @@ describe('convertScanResultsToPlatformData', () => {
     });
 
     it('omits individual axeDevice properties not present in scanResults', () => {
-        const input = new ScanResults({ axeContext: { axeDevice: {} } });
+        const input = new AndroidScanResults({ axeContext: { axeDevice: {} } });
         const expectedOutput: PlatformData = {
             osInfo: {
                 name: 'Android',
@@ -51,12 +51,12 @@ describe('convertScanResultsToPlatformData', () => {
     });
 
     it.each([null, undefined, {}])('outputs null if scanResults is %p', emptyObject => {
-        expect(convertScanResultsToPlatformData(new ScanResults(emptyObject))).toBeNull();
+        expect(convertScanResultsToPlatformData(new AndroidScanResults(emptyObject))).toBeNull();
     });
 
     it.each([null, undefined, {}])('outputs null if scanResults.axeContext is %p', emptyObject => {
         expect(
-            convertScanResultsToPlatformData(new ScanResults({ axeContext: emptyObject })),
+            convertScanResultsToPlatformData(new AndroidScanResults({ axeContext: emptyObject })),
         ).toBeNull();
     });
 
@@ -65,7 +65,7 @@ describe('convertScanResultsToPlatformData', () => {
         emptyObject => {
             expect(
                 convertScanResultsToPlatformData(
-                    new ScanResults({ axeContext: { axeDevice: emptyObject } }),
+                    new AndroidScanResults({ axeContext: { axeDevice: emptyObject } }),
                 ),
             ).toBeNull();
         },

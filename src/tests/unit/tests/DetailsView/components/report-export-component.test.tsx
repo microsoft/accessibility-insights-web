@@ -4,18 +4,17 @@ import { shallow } from 'enzyme';
 import { ActionButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import {
-    ExportDialog,
-    ExportDialogDeps,
-} from '../../../../../DetailsView/components/export-dialog';
+import { IMock, It, Mock, Times } from 'typemoq';
+
+import { ExportDialog } from '../../../../../DetailsView/components/export-dialog';
 import {
     ReportExportComponent,
+    ReportExportComponentDeps,
     ReportExportComponentProps,
 } from '../../../../../DetailsView/components/report-export-component';
 
 describe('ReportExportComponentTest', () => {
-    let deps: ExportDialogDeps;
+    let deps: ReportExportComponentDeps;
     let props: ReportExportComponentProps;
     let reportGeneratorMock: IMock<ReportGenerator>;
     let htmlGeneratorMock: IMock<(description: string) => string>;
@@ -23,15 +22,16 @@ describe('ReportExportComponentTest', () => {
     let getDescriptionMock: IMock<() => string>;
 
     beforeEach(() => {
-        deps = {} as ExportDialogDeps;
-        reportGeneratorMock = Mock.ofType<ReportGenerator>(undefined, MockBehavior.Strict);
+        reportGeneratorMock = Mock.ofType(ReportGenerator);
+        deps = {
+            reportGenerator: reportGeneratorMock.object,
+        } as ReportExportComponentDeps;
         htmlGeneratorMock = Mock.ofInstance(description => null);
         updateDescriptionMock = Mock.ofInstance(value => null);
         getDescriptionMock = Mock.ofInstance(() => '');
         props = {
             deps,
             exportResultsType: 'Assessment',
-            reportGenerator: reportGeneratorMock.object,
             pageTitle: 'test title',
             scanDate: new Date(2019, 5, 28),
             htmlGenerator: htmlGeneratorMock.object,

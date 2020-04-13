@@ -33,7 +33,7 @@ export interface DeviceInfo {
     screenWidth: number;
 }
 
-export class ScanResults {
+export class AndroidScanResults {
     constructor(readonly rawData: any) {}
 
     public get deviceInfo(): DeviceInfo {
@@ -58,6 +58,10 @@ export class ScanResults {
 
     public get axeVersion(): string {
         return this.rawData?.axeContext?.axeMetaData?.axeVersion || 'no-version';
+    }
+
+    public get analysisTimestamp(): string {
+        return this.rawData?.axeContext?.axeMetaData?.analysisTimestamp || null;
     }
 
     public get screenshot(): ScreenshotData {
