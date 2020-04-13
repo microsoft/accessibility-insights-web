@@ -80,7 +80,7 @@
         "case-sensitive-paths-webpack-plugin": "^2.3.0",
         "codecov": "^3.6.5",
         "commander": "^5.0.0",
-        "core-js-bundle": "^3.6.4",
+        "core-js-bundle": "^3.6.5",
         "cross-env": "^7.0.2",
         "css-loader": "^3.5.1",
         "electron": "7.0.1",
