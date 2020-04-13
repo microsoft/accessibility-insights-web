@@ -370,6 +370,11 @@ describe('DetailsViewContainer', () => {
         cardsViewData: CardsViewModel,
         targetApp: TargetAppData,
     ): JSX.Element {
+        const scanMetaData = {
+            timestamp: timestamp,
+            toolData: toolData,
+            scanTargetData: targetApp,
+        };
         return (
             <DetailsViewBody
                 deps={deps}
@@ -397,7 +402,7 @@ describe('DetailsViewContainer', () => {
                 scanIncompleteWarnings={
                     storeMocks.unifiedScanResultStoreData.scanIncompleteWarnings
                 }
-                scanMetaData={{ timestamp, toolData }}
+                scanMetaData={scanMetaData}
             />
         );
     }

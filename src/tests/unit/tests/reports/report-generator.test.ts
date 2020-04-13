@@ -26,6 +26,10 @@ describe('ReportGenerator', () => {
     const toolDataStub: ToolData = {
         applicationProperties: { name: 'some app' },
     } as ToolData;
+    const scanTargetData = {
+        name: title,
+        url: url,
+    };
 
     let dataBuilderMock: IMock<ReportHtmlGenerator>;
     let nameBuilderMock: IMock<ReportNameGenerator>;
@@ -61,8 +65,7 @@ describe('ReportGenerator', () => {
         );
         const actual = testObject.generateFastPassAutomatedChecksReport(
             date,
-            title,
-            url,
+            scanTargetData,
             cardsViewDataStub,
             description,
             toolDataStub,
@@ -84,7 +87,7 @@ describe('ReportGenerator', () => {
                     assessmentStoreData,
                     assessmentsProvider,
                     featureFlagStoreData,
-                    tabStoreData,
+                    scanTargetData,
                     assessmentDescription,
                 ),
             )
@@ -100,7 +103,7 @@ describe('ReportGenerator', () => {
             assessmentStoreData,
             assessmentsProvider,
             featureFlagStoreData,
-            tabStoreData,
+            scanTargetData,
             assessmentDescription,
         );
 

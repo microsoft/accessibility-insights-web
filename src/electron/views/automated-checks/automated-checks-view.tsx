@@ -77,6 +77,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
             const scanMetadata: ScanMetaData = {
                 timestamp: unifiedScanResultStoreData.timestamp,
                 toolData: unifiedScanResultStoreData.toolInfo,
+                scanTargetData: unifiedScanResultStoreData.targetAppInfo,
             };
 
             return this.renderLayout(

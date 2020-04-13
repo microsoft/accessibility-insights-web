@@ -3,22 +3,22 @@
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
-import { TabStoreData } from 'common/types/store-data/tab-store-data';
 
+import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { AssessmentReportModelBuilder } from './assessment-report-model-builder';
 
 export class AssessmentReportModelBuilderFactory {
     public create(
         assessmentsProvider: AssessmentsProvider,
         assessmentStoreData: AssessmentStoreData,
-        tabStoreData: TabStoreData,
+        scanTargetData: TargetAppData,
         reportDate: Date,
         assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator,
     ): AssessmentReportModelBuilder {
         return new AssessmentReportModelBuilder(
             assessmentsProvider,
             assessmentStoreData,
-            tabStoreData,
+            scanTargetData,
             reportDate,
             assessmentDefaultMessageGenerator,
         );

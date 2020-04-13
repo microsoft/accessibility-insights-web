@@ -7,6 +7,7 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
+import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
@@ -43,6 +44,7 @@ describe('ReportExportComponentPropsFactory', () => {
     let visualizationStoreData: VisualizationStoreData;
     let cardsViewData: CardsViewModel;
     let scanResult: ScanResults;
+    let scanTargetData: TargetAppData;
     let scanMetaData: ScanMetaData;
 
     beforeEach(() => {
@@ -51,16 +53,18 @@ describe('ReportExportComponentPropsFactory', () => {
             DetailsViewActionMessageCreator,
             MockBehavior.Strict,
         );
-        tabStoreData = {
-            title: thePageTitle,
-            url: thePageUrl,
-        } as TabStoreData;
+        tabStoreData = {} as TabStoreData;
         assessmentStoreData = {
             resultDescription: theDescription,
         } as AssessmentStoreData;
+        scanTargetData = {
+            name: thePageTitle,
+            url: thePageUrl,
+        };
         scanMetaData = {
             timestamp: theTimestamp,
             toolData: theToolData,
+            scanTargetData: scanTargetData,
         } as ScanMetaData;
         assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(undefined, MockBehavior.Loose);
         reportGeneratorMock = Mock.ofType<ReportGenerator>(undefined, MockBehavior.Loose);
@@ -103,7 +107,7 @@ describe('ReportExportComponentPropsFactory', () => {
                     assessmentStoreData,
                     assessmentsProviderMock.object,
                     featureFlagStoreData,
-                    tabStoreData,
+                    scanTargetData,
                     theDescription,
                 ),
             )
@@ -115,8 +119,7 @@ describe('ReportExportComponentPropsFactory', () => {
             .setup(reportGenerator =>
                 reportGenerator.generateFastPassAutomatedChecksReport(
                     theDate,
-                    tabStoreData.title,
-                    tabStoreData.url,
+                    scanTargetData,
                     cardsViewData,
                     theDescription,
                     scanMetaData.toolData,

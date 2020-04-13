@@ -38,6 +38,9 @@ describe('CommandBar', () => {
         scanMetaDataStub = {
             timestamp: '1234',
             toolData: {} as ToolData,
+            scanTargetData: {
+                name: 'scan target name',
+            },
         };
         scanDateStub = new Date(0);
         reportGeneratorMock = Mock.ofType(ReportGenerator);

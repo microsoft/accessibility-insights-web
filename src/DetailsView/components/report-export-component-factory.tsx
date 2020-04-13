@@ -14,20 +14,20 @@ export function getReportExportComponentForAssessment(props: CommandBarProps): J
         assessmentStoreData,
         assessmentsProvider,
         featureFlagStoreData,
-        tabStoreData,
+        scanMetaData,
     } = props;
     const reportGenerator = deps.reportGenerator;
     const reportExportComponentProps: ReportExportComponentProps = {
         deps: deps,
         exportResultsType: 'Assessment',
-        pageTitle: tabStoreData.title,
+        pageTitle: scanMetaData.scanTargetData.name,
         scanDate: deps.getCurrentDate(),
         htmlGenerator: description =>
             reportGenerator.generateAssessmentReport(
                 assessmentStoreData,
                 assessmentsProvider,
                 featureFlagStoreData,
-                tabStoreData,
+                scanMetaData.scanTargetData,
                 description,
             ),
         updatePersistedDescription: value =>
@@ -52,20 +52,19 @@ export function getReportExportComponentForFastPass(props: CommandBarProps): JSX
         return null;
     }
 
-    const { deps, tabStoreData } = props;
+    const { deps } = props;
     const scanDate = deps.getDateFromTimestamp(props.scanMetaData.timestamp);
     const reportGenerator = deps.reportGenerator;
 
     const reportExportComponentProps: ReportExportComponentProps = {
         deps: deps,
         scanDate: scanDate,
-        pageTitle: tabStoreData.title,
+        pageTitle: props.scanMetaData.scanTargetData.name,
         exportResultsType: 'AutomatedChecks',
         htmlGenerator: description =>
             reportGenerator.generateFastPassAutomatedChecksReport(
                 scanDate,
-                tabStoreData.title,
-                tabStoreData.url,
+                props.scanMetaData.scanTargetData,
                 props.cardsViewData,
                 description,
                 props.scanMetaData.toolData,

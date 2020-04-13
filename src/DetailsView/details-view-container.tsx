@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { UnifiedScanResultStore } from 'background/stores/unified-scan-result-store';
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
@@ -195,8 +196,14 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
             this.props.deps.getCardSelectionViewData(this.props.storeState.cardSelectionStoreData),
         );
 
+        const targetAppInfo = {
+            name: this.props.storeState.tabStoreData.title,
+            url: this.props.storeState.tabStoreData.url,
+        };
+
         const scanMetaData: ScanMetaData = {
             timestamp: this.props.storeState.unifiedScanResultStoreData.timestamp,
+            scanTargetData: targetAppInfo,
             toolData: this.props.storeState.unifiedScanResultStoreData.toolInfo,
         };
 

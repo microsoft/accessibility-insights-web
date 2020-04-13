@@ -5,9 +5,9 @@ import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import * as React from 'react';
 
+import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import * as bundledStyles from '../DetailsView/bundled-details-view-styles';
 import { AssessmentReportModelBuilderFactory } from './assessment-report-model-builder-factory';
 import * as reportStyles from './assessment-report.styles';
@@ -32,7 +32,7 @@ export class AssessmentReportHtmlGenerator {
         assessmentStoreData: AssessmentStoreData,
         assessmentsProvider: AssessmentsProvider,
         featureFlagStoreData: FeatureFlagStoreData,
-        tabStoreData: TabStoreData,
+        scanTargetData: TargetAppData,
         description: string,
     ): string {
         const filteredProvider = assessmentsProviderWithFeaturesEnabled(
@@ -43,7 +43,7 @@ export class AssessmentReportHtmlGenerator {
         const modelBuilder = this.assessmentReportModelBuilderFactory.create(
             filteredProvider,
             assessmentStoreData,
-            tabStoreData,
+            scanTargetData,
             this.dateGetter(),
             this.assessmentDefaultMessageGenerator,
         );
