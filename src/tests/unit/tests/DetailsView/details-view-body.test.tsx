@@ -31,6 +31,8 @@ import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 import { exampleUnifiedStatusResults } from '../common/components/cards/sample-view-model-data';
+import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
+import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 
 describe('DetailsViewBody', () => {
     let selectedTest: VisualizationType;
@@ -43,6 +45,7 @@ describe('DetailsViewBody', () => {
     let props: DetailsViewBodyProps;
     let rightPanelConfig: DetailsRightPanelConfiguration;
     let switcherNavConfig: DetailsViewSwitcherNavConfiguration;
+    let targetAppInfoStub: TargetAppData;
 
     describe('render', () => {
         beforeEach(() => {
@@ -80,6 +83,11 @@ describe('DetailsViewBody', () => {
             scanDataStub = {
                 enabled: false,
             } as ScanData;
+
+            targetAppInfoStub = {
+                name: 'name',
+                url: 'url',
+            } as TargetAppData;
 
             clickHandlerStub = () => {};
 
@@ -127,6 +135,9 @@ describe('DetailsViewBody', () => {
                     visualHelperEnabled: true,
                     allCardsCollapsed: true,
                 },
+                scanMetaData: {
+                    scanTargetData: targetAppInfoStub,
+                } as ScanMetaData,
             } as DetailsViewBodyProps;
         });
 
@@ -152,7 +163,7 @@ describe('DetailsViewBody', () => {
                         <div className="details-view-body-content-pane">
                             {buildTargetPageInfoBar(props)}
                             <div className="view" role="main">
-                                <rightPanelConfig.RightPanel {...props} />
+                                {buildRightPanel(props)}
                             </div>
                         </div>
                     </div>
@@ -200,6 +211,14 @@ describe('DetailsViewBody', () => {
     }
 
     function buildCommandBar(givenProps: DetailsViewBodyProps): JSX.Element {
-        return <switcherNavConfig.CommandBar {...props} />;
+        return <switcherNavConfig.CommandBar {...givenProps} />;
+    }
+
+    function buildRightPanel(givenProps: DetailsViewBodyProps): JSX.Element {
+        const rightPanelProps = {
+            targetAppInfo: givenProps.scanMetaData.scanTargetData,
+            ...givenProps,
+        };
+        return <rightPanelConfig.RightPanel {...rightPanelProps} />;
     }
 });

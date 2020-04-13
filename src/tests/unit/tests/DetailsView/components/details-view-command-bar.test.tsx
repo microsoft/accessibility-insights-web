@@ -13,9 +13,11 @@ import {
     DetailsViewCommandBar,
     DetailsViewCommandBarProps,
 } from '../../../../../DetailsView/components/details-view-command-bar';
+import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
 
 describe('DetailsViewCommandBar', () => {
     const thePageTitle = 'command-bar-test-tab-title';
+    const thePageUrl = 'command-bar-test-url';
 
     let tabStoreData: TabStoreData;
     let startOverComponent: JSX.Element;
@@ -48,6 +50,12 @@ describe('DetailsViewCommandBar', () => {
             StartOverComponentFactory: p => startOverComponent,
             LeftNav: LeftNavStub,
         } as DetailsViewSwitcherNavConfiguration;
+        const scanMetaData = {
+            scanTargetData: {
+                name: thePageTitle,
+                url: thePageUrl,
+            },
+        } as ScanMetaData;
 
         return {
             deps: {
@@ -55,6 +63,7 @@ describe('DetailsViewCommandBar', () => {
             },
             tabStoreData,
             switcherNavConfiguration: switcherNavConfiguration,
+            scanMetaData: scanMetaData,
         } as DetailsViewCommandBarProps;
     }
 

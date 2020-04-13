@@ -232,7 +232,6 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
                 userConfigurationStoreData={storeState.userConfigurationStoreData}
                 cardsViewData={cardsViewData}
                 cardSelectionStoreData={storeState.cardSelectionStoreData}
-                targetAppInfo={storeState.unifiedScanResultStoreData.targetAppInfo}
                 scanIncompleteWarnings={
                     storeState.unifiedScanResultStoreData.scanIncompleteWarnings
                 }
