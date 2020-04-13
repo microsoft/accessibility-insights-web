@@ -2705,10 +2705,10 @@ copy-to-clipboard@^3:
   dependencies:
     toggle-selection "^1.0.6"
 
-core-js-bundle@^3.6.4:
-  version "3.6.4"
-  resolved "https://registry.yarnpkg.com/core-js-bundle/-/core-js-bundle-3.6.4.tgz#d4e098323c035f4a1b61f00db0b8def04c243920"
-  integrity sha512-qDHS3GbIEs5dZaBiCVhhtCoF79KU/ek0w+H7zfJf9RuGN0GiKfxHZfAtDy4zFtQ6X00t7Wvvr3wHzMj+/IgbPg==
+core-js-bundle@^3.6.5:
+  version "3.6.5"
+  resolved "https://registry.yarnpkg.com/core-js-bundle/-/core-js-bundle-3.6.5.tgz#3a425ad66ad19aeefea89acfd48cff674ff58590"
+  integrity sha512-awf49McIBT3sDXceSex69w/i7PMXQwxI4ZqknCtaYbW4Q0u0HUZiaQLlPD6pU2nFBofIowgWIS1ANgHjqnQu4Q==
 
 core-js@^2.4.0, core-js@^2.5.3:
   version "2.6.10"
@@ -2849,10 +2849,10 @@ crypto-random-string@^2.0.0:
   resolved "https://registry.yarnpkg.com/crypto-random-string/-/crypto-random-string-2.0.0.tgz#ef2a7a966ec11083388369baa02ebead229b30d5"
   integrity sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==
 
-css-loader@^3.5.1:
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-3.5.1.tgz#db2b2336f4169edb68e6a829ad4fd36552647b77"
-  integrity sha512-0G4CbcZzQ9D1Q6ndOfjFuMDo8uLYMu5vc9Abs5ztyHcKvmil6GJrMiNjzzi3tQvUF+mVRuDg7bE6Oc0Prolgig==
+css-loader@^3.5.2:
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-3.5.2.tgz#6483ae56f48a7f901fbe07dde2fc96b01eafab3c"
+  integrity sha512-hDL0DPopg6zQQSRlZm0hyeaqIRnL0wbWjay9BZxoiJBpbfOW4WHfbaYQhwnDmEa0kZUc1CJ3IFo15ot1yULMIQ==
   dependencies:
     camelcase "^5.3.1"
     cssesc "^3.0.0"

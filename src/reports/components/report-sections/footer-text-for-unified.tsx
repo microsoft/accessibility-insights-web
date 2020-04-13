@@ -11,7 +11,7 @@ export const FooterTextForUnified = NamedFC<FooterTextProps>(
         return (
             <>
                 This automated checks result was generated using{' '}
-                {`${toolData.applicationProperties.name} ${toolData.applicationProperties.version} (axe-core ${toolData.scanEngineProperties.version})`}
+                {`${toolData.applicationProperties.name} ${toolData.applicationProperties.version} (${toolData.scanEngineProperties.name} ${toolData.scanEngineProperties.version})`}
                 , a tool that helps debug and find accessibility issues earlier. Get more
                 information & download this tool at <ToolLink />.
             </>
