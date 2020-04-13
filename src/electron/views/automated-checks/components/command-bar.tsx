@@ -71,6 +71,7 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
                 }
                 updatePersistedDescription={() => null}
                 getExportDescription={() => ''}
+                featureFlagStoreData={featureFlagStoreData}
             />
         );
     }
