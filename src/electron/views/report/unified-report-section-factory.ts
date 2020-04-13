@@ -12,7 +12,7 @@ import { PassedChecksSection } from 'reports/components/report-sections/passed-c
 import { ReportFooter } from 'reports/components/report-sections/report-footer';
 import { ReportSectionFactory } from 'reports/components/report-sections/report-section-factory';
 import { ResultsContainer } from 'reports/components/report-sections/results-container';
-import { SummarySection } from 'reports/components/report-sections/summary-section';
+import { PassFailSummarySection } from 'reports/components/report-sections/summary-section';
 import { TitleSection } from 'reports/components/report-sections/title-section';
 
 export const UnifiedReportSectionFactory: ReportSectionFactory = {
@@ -21,7 +21,7 @@ export const UnifiedReportSectionFactory: ReportSectionFactory = {
     ContentContainer,
     HeaderSection,
     TitleSection,
-    SummarySection,
+    SummarySection: PassFailSummarySection,
     DetailsSection,
     ResultsContainer,
     FailedInstancesSection,
