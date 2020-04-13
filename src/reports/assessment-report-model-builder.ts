@@ -31,7 +31,7 @@ export class AssessmentReportModelBuilder {
     constructor(
         private readonly assessmentsProvider: AssessmentsProvider,
         private readonly assessmentStoreData: AssessmentStoreData,
-        private readonly scanTargetData: TargetAppData,
+        private readonly targetAppInfo: TargetAppData,
         private readonly reportDate: Date,
         private assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator,
     ) {}
@@ -44,8 +44,8 @@ export class AssessmentReportModelBuilder {
         }));
 
         const scanDetails = {
-            targetPage: this.scanTargetData.name,
-            url: this.scanTargetData.url,
+            targetPage: this.targetAppInfo.name,
+            url: this.targetAppInfo.url,
             reportDate: this.reportDate,
         };
 

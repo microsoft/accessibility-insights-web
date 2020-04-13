@@ -12,21 +12,21 @@ describe('AssessmentReportModelBuilderFactory', () => {
 
         const assessmentStoreData: AssessmentStoreData = { stub: 'assessmentStoreData' } as any;
         const assessmentsProvider: AssessmentsProvider = { stub: 'assessmentsProvider' } as any;
-        const scanTargetData: TargetAppData = { stub: 'scanTargetData' } as any;
+        const targetAppInfo: TargetAppData = { stub: 'targetAppInfo' } as any;
         const reportDate = new Date(2018, 9, 19, 10, 53);
         const assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator = new AssessmentDefaultMessageGenerator();
 
         const actual = testSubject.create(
             assessmentsProvider,
             assessmentStoreData,
-            scanTargetData,
+            targetAppInfo,
             reportDate,
             assessmentDefaultMessageGenerator,
         );
 
         expect((actual as any).assessmentStoreData).toBe(assessmentStoreData);
         expect((actual as any).assessmentsProvider).toBe(assessmentsProvider);
-        expect((actual as any).scanTargetData).toBe(scanTargetData);
+        expect((actual as any).targetAppInfo).toBe(targetAppInfo);
         expect((actual as any).reportDate).toBe(reportDate);
     });
 });

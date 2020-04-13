@@ -11,14 +11,14 @@ export class AssessmentReportModelBuilderFactory {
     public create(
         assessmentsProvider: AssessmentsProvider,
         assessmentStoreData: AssessmentStoreData,
-        scanTargetData: TargetAppData,
+        targetAppInfo: TargetAppData,
         reportDate: Date,
         assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator,
     ): AssessmentReportModelBuilder {
         return new AssessmentReportModelBuilder(
             assessmentsProvider,
             assessmentStoreData,
-            scanTargetData,
+            targetAppInfo,
             reportDate,
             assessmentDefaultMessageGenerator,
         );

@@ -44,7 +44,7 @@ describe('ReportExportComponentPropsFactory', () => {
     let visualizationStoreData: VisualizationStoreData;
     let cardsViewData: CardsViewModel;
     let scanResult: ScanResults;
-    let scanTargetData: TargetAppData;
+    let targetAppInfo: TargetAppData;
     let scanMetaData: ScanMetaData;
 
     beforeEach(() => {
@@ -57,14 +57,14 @@ describe('ReportExportComponentPropsFactory', () => {
         assessmentStoreData = {
             resultDescription: theDescription,
         } as AssessmentStoreData;
-        scanTargetData = {
+        targetAppInfo = {
             name: thePageTitle,
             url: thePageUrl,
         };
         scanMetaData = {
             timestamp: theTimestamp,
             toolData: theToolData,
-            scanTargetData: scanTargetData,
+            targetAppInfo: targetAppInfo,
         } as ScanMetaData;
         assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(undefined, MockBehavior.Loose);
         reportGeneratorMock = Mock.ofType<ReportGenerator>(undefined, MockBehavior.Loose);
@@ -107,7 +107,7 @@ describe('ReportExportComponentPropsFactory', () => {
                     assessmentStoreData,
                     assessmentsProviderMock.object,
                     featureFlagStoreData,
-                    scanTargetData,
+                    targetAppInfo,
                     theDescription,
                 ),
             )
@@ -119,7 +119,7 @@ describe('ReportExportComponentPropsFactory', () => {
             .setup(reportGenerator =>
                 reportGenerator.generateFastPassAutomatedChecksReport(
                     theDate,
-                    scanTargetData,
+                    targetAppInfo,
                     cardsViewData,
                     theDescription,
                     scanMetaData.toolData,

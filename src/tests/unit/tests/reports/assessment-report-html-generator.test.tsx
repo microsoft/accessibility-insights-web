@@ -31,7 +31,7 @@ describe('AssessmentReportHtmlGenerator', () => {
         const assessmentsProvider = CreateTestAssessmentProviderWithFeatureFlag();
         const assessmentStoreData: AssessmentStoreData = { stub: 'assessmentStoreData' } as any;
         const featureFlagStoreData: FeatureFlagStoreData = { stub: 'featureFlagStoreData' } as any;
-        const scanTargetData: TargetAppData = { stub: 'scanTargetData' } as any;
+        const targetAppInfo: TargetAppData = { stub: 'targetAppInfo' } as any;
         const description = 'generateHtml-description';
 
         const deps: AssessmentReportHtmlGeneratorDeps = {
@@ -77,7 +77,7 @@ describe('AssessmentReportHtmlGenerator', () => {
                 f.create(
                     It.isAny(),
                     assessmentStoreData,
-                    scanTargetData,
+                    targetAppInfo,
                     testDate,
                     assessmentDefaultMessageGenerator,
                 ),
@@ -105,7 +105,7 @@ describe('AssessmentReportHtmlGenerator', () => {
             assessmentStoreData,
             assessmentsProvider,
             featureFlagStoreData,
-            scanTargetData,
+            targetAppInfo,
             description,
         );
 

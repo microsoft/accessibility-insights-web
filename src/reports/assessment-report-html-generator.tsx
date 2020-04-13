@@ -32,7 +32,7 @@ export class AssessmentReportHtmlGenerator {
         assessmentStoreData: AssessmentStoreData,
         assessmentsProvider: AssessmentsProvider,
         featureFlagStoreData: FeatureFlagStoreData,
-        scanTargetData: TargetAppData,
+        targetAppInfo: TargetAppData,
         description: string,
     ): string {
         const filteredProvider = assessmentsProviderWithFeaturesEnabled(
@@ -43,7 +43,7 @@ export class AssessmentReportHtmlGenerator {
         const modelBuilder = this.assessmentReportModelBuilderFactory.create(
             filteredProvider,
             assessmentStoreData,
-            scanTargetData,
+            targetAppInfo,
             this.dateGetter(),
             this.assessmentDefaultMessageGenerator,
         );

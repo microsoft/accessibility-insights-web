@@ -24,15 +24,15 @@ export class ReportGenerator {
 
     public generateFastPassAutomatedChecksReport(
         scanDate: Date,
-        scanTargetData: TargetAppData,
+        targetAppInfo: TargetAppData,
         cardsViewData: CardsViewModel,
         description: string,
         toolData: ToolData,
     ): string {
         return this.reportHtmlGenerator.generateHtml(
             scanDate,
-            scanTargetData.name,
-            scanTargetData.url,
+            targetAppInfo.name,
+            targetAppInfo.url,
             description,
             cardsViewData,
             toolData,
@@ -43,14 +43,14 @@ export class ReportGenerator {
         assessmentStoreData: AssessmentStoreData,
         assessmentsProvider: AssessmentsProvider,
         featureFlagStoreData: FeatureFlagStoreData,
-        scanTargetData: TargetAppData,
+        targetAppInfo: TargetAppData,
         description: string,
     ): string {
         return this.assessmentReportHtmlGenerator.generateHtml(
             assessmentStoreData,
             assessmentsProvider,
             featureFlagStoreData,
-            scanTargetData,
+            targetAppInfo,
             description,
         );
     }

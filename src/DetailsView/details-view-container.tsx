@@ -203,7 +203,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
 
         const scanMetaData: ScanMetaData = {
             timestamp: this.props.storeState.unifiedScanResultStoreData.timestamp,
-            scanTargetData: targetAppInfo,
+            targetAppInfo: targetAppInfo,
             toolData: this.props.storeState.unifiedScanResultStoreData.toolInfo,
         };
 

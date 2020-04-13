@@ -7,5 +7,5 @@ import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 export type ScanMetaData = {
     timestamp: string;
     toolData: ToolData;
-    scanTargetData: TargetAppData;
+    targetAppInfo: TargetAppData;
 };

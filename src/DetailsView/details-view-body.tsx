@@ -115,7 +115,7 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
 
     private renderRightPanel(): JSX.Element {
         const rightPanelProps: RightPanelProps = {
-            targetAppInfo: this.props.scanMetaData.scanTargetData,
+            targetAppInfo: this.props.scanMetaData.targetAppInfo,
             ...this.props,
         };
 

@@ -53,7 +53,7 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
         deviceStoreData={Object {}}
         scanMetaData={
           Object {
-            "scanTargetData": Object {
+            "targetAppInfo": Object {
               "name": "test-target-app-name",
             },
             "timestamp": "test timestamp",

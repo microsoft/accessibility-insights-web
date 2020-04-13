@@ -44,7 +44,7 @@ describe('AssessmentReportModelBuilderTest', () => {
 
     assessmentsProviderMock.setup(ap => ap.all()).returns(() => assessments);
 
-    const scanTargetData: TargetAppData = {
+    const targetAppInfo: TargetAppData = {
         url: 'url',
         name: 'title',
     };
@@ -56,7 +56,7 @@ describe('AssessmentReportModelBuilderTest', () => {
         return new AssessmentReportModelBuilder(
             assessmentsProviderMock.object,
             assessmentStoreData,
-            scanTargetData,
+            targetAppInfo,
             AssessmentReportBuilderTestHelper.reportDate,
             assessmentDefaultMessageGeneratorMock.object,
         );

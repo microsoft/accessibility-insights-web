@@ -378,7 +378,7 @@ describe('DetailsViewContainer', () => {
         const scanMetaData = {
             timestamp: timestamp,
             toolData: toolData,
-            scanTargetData: targetApp,
+            targetAppInfo: targetApp,
         };
         return (
             <DetailsViewBody

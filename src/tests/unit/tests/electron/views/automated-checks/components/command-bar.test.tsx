@@ -38,7 +38,7 @@ describe('CommandBar', () => {
         scanMetaDataStub = {
             timestamp: '1234',
             toolData: {} as ToolData,
-            scanTargetData: {
+            targetAppInfo: {
                 name: 'scan target name',
             },
         };

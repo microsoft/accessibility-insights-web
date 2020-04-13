@@ -136,7 +136,7 @@ describe('DetailsViewBody', () => {
                     allCardsCollapsed: true,
                 },
                 scanMetaData: {
-                    scanTargetData: targetAppInfoStub,
+                    targetAppInfo: targetAppInfoStub,
                 } as ScanMetaData,
             } as DetailsViewBodyProps;
         });
@@ -216,7 +216,7 @@ describe('DetailsViewBody', () => {
 
     function buildRightPanel(givenProps: DetailsViewBodyProps): JSX.Element {
         const rightPanelProps = {
-            targetAppInfo: givenProps.scanMetaData.scanTargetData,
+            targetAppInfo: givenProps.scanMetaData.targetAppInfo,
             ...givenProps,
         };
         return <rightPanelConfig.RightPanel {...rightPanelProps} />;

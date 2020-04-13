@@ -49,12 +49,12 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
             <ReportExportComponent
                 deps={deps}
                 exportResultsType={'AutomatedChecks'}
-                pageTitle={scanMetaData.scanTargetData.name}
+                pageTitle={scanMetaData.targetAppInfo.name}
                 scanDate={deps.getDateFromTimestamp(scanMetaData.timestamp)}
                 htmlGenerator={description =>
                     deps.reportGenerator.generateFastPassAutomatedChecksReport(
                         deps.getDateFromTimestamp(scanMetaData.timestamp),
-                        scanMetaData.scanTargetData,
+                        scanMetaData.targetAppInfo,
                         cardsViewData,
                         description,
                         scanMetaData.toolData,

@@ -51,7 +51,7 @@ describe('DetailsViewCommandBar', () => {
             LeftNav: LeftNavStub,
         } as DetailsViewSwitcherNavConfiguration;
         const scanMetaData = {
-            scanTargetData: {
+            targetAppInfo: {
                 name: thePageTitle,
                 url: thePageUrl,
             },
