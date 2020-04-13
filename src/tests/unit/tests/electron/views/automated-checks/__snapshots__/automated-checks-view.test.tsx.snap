@@ -55,6 +55,7 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
           Object {
             "scanTargetData": Object {
               "name": "test-target-app-name",
+              "url": undefined,
             },
             "timestamp": "test timestamp",
             "toolData": Object {
@@ -69,7 +70,6 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
             "status": 2,
           }
         }
-        targetAppName="test-target-app-name"
       />
       <main>
         <HeaderSection />
@@ -200,7 +200,6 @@ exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
             "status": 3,
           }
         }
-        targetAppName={null}
       />
       <main>
         <HeaderSection />
@@ -290,7 +289,6 @@ exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
             "status": 1,
           }
         }
-        targetAppName={null}
       />
       <main>
         <HeaderSection />
@@ -380,7 +378,6 @@ exports[`AutomatedChecksView renders when status scan <undefined> 1`] = `
             "status": undefined,
           }
         }
-        targetAppName={null}
       />
       <main>
         <HeaderSection />

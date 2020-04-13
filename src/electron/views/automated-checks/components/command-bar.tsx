@@ -34,7 +34,6 @@ export interface CommandBarProps {
     scanStoreData: ScanStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
     cardsViewData: CardsViewModel;
-    targetAppName: string;
     scanMetaData: ScanMetaData;
 }
 
@@ -42,14 +41,7 @@ export const commandButtonRefreshId = 'command-button-refresh';
 export const commandButtonSettingsId = 'command-button-settings';
 
 export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
-    const {
-        deps,
-        deviceStoreData,
-        featureFlagStoreData,
-        targetAppName,
-        cardsViewData,
-        scanMetaData,
-    } = props;
+    const { deps, deviceStoreData, featureFlagStoreData, cardsViewData, scanMetaData } = props;
     let exportReport = null;
 
     if (scanMetaData != null) {
@@ -57,15 +49,12 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
             <ReportExportComponent
                 deps={deps}
                 exportResultsType={'AutomatedChecks'}
-                pageTitle={targetAppName}
+                pageTitle={scanMetaData.scanTargetData.name}
                 scanDate={deps.getDateFromTimestamp(scanMetaData.timestamp)}
                 htmlGenerator={description =>
                     deps.reportGenerator.generateFastPassAutomatedChecksReport(
                         deps.getDateFromTimestamp(scanMetaData.timestamp),
-                        {
-                            name: targetAppName,
-                            url: null,
-                        },
+                        scanMetaData.scanTargetData,
                         cardsViewData,
                         description,
                         scanMetaData.toolData,

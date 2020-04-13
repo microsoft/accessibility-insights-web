@@ -62,7 +62,6 @@ describe('CommandBar', () => {
                     status: ScanStatus.Scanning,
                 },
                 cardsViewData: cardsViewDataStub,
-                targetAppName: 'some target',
                 featureFlagStoreData: featureFlagStoreDataStub,
                 scanMetaData: scanMetaDataStub,
             } as CommandBarProps;
@@ -83,7 +82,6 @@ describe('CommandBar', () => {
                     status: ScanStatus.Scanning,
                 },
                 cardsViewData: cardsViewDataStub,
-                targetAppName: 'some target',
                 featureFlagStoreData: featureFlagStoreDataStub,
                 scanMetaData: null,
             } as CommandBarProps;
@@ -107,7 +105,6 @@ describe('CommandBar', () => {
                     status: ScanStatus[status],
                 },
                 cardsViewData: cardsViewDataStub,
-                targetAppName: 'some target',
                 featureFlagStoreData: featureFlagStoreDataStub,
                 scanMetaData: scanMetaDataStub,
             } as CommandBarProps;
@@ -143,7 +140,6 @@ describe('CommandBar', () => {
                     status: ScanStatus.Default,
                 },
                 cardsViewData: cardsViewDataStub,
-                targetAppName: 'some target',
                 featureFlagStoreData: featureFlagStoreDataStub,
                 scanMetaData: scanMetaDataStub,
             } as CommandBarProps;
@@ -171,7 +167,6 @@ describe('CommandBar', () => {
                     status: ScanStatus.Default,
                 },
                 cardsViewData: cardsViewDataStub,
-                targetAppName: 'some target',
                 featureFlagStoreData: featureFlagStoreDataStub,
                 scanMetaData: scanMetaDataStub,
             } as CommandBarProps;
