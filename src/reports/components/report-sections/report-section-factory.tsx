@@ -36,7 +36,7 @@ export type ReportSectionFactory = {
     HeadSection: ReactFCWithDisplayName;
     BodySection: ReactFCWithDisplayName;
     ContentContainer: ReactFCWithDisplayName;
-    HeaderSection: ReactFCWithDisplayName<SectionProps> | ReactFCWithDisplayName;
+    HeaderSection: ReactFCWithDisplayName<SectionProps>;
     TitleSection: ReactFCWithDisplayName;
     SummarySection: ReactFCWithDisplayName<SectionProps>;
     DetailsSection: ReactFCWithDisplayName<SectionProps>;
