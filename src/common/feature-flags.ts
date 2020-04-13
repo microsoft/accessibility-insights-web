@@ -106,7 +106,7 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             defaultValue: false,
             displayableName: 'More export options',
             displayableDescription: 'Enables exporting reports to external services',
-            isPreviewFeature: false,
+            isPreviewFeature: true,
             forceDefault: false,
         },
     ];
