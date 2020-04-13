@@ -8,7 +8,6 @@ import { ContentContainer } from 'reports/components/report-sections/content-con
 import { DetailsSection } from 'reports/components/report-sections/details-section';
 import { FooterTextForUnified } from 'reports/components/report-sections/footer-text-for-unified';
 import { HeaderSection } from 'reports/components/report-sections/header-section';
-import { NotApplicableChecksSection } from 'reports/components/report-sections/not-applicable-checks-section';
 import { PassedChecksSection } from 'reports/components/report-sections/passed-checks-section';
 import { ReportFooter } from 'reports/components/report-sections/report-footer';
 import { ReportSectionFactory } from 'reports/components/report-sections/report-section-factory';
