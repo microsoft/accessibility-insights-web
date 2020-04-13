@@ -82,7 +82,7 @@
         "commander": "^5.0.0",
         "core-js-bundle": "^3.6.4",
         "cross-env": "^7.0.2",
-        "css-loader": "^3.5.1",
+        "css-loader": "^3.5.2",
         "electron": "7.0.1",
         "electron-builder": "^22.4.1",
         "enzyme": "^3.11.0",
