@@ -6,9 +6,9 @@ exports[`FooterTextForService renders: footer 1`] = `
   ClientService
    
   that helps find some of the most common accessibility issues. The scan was performed using axe-core 
-  4.5.6
+  engine-version
    and 
-  dummy browser version 1.0.1
+  environmentName
   . For a complete WCAG 2.1 compliance assessment please visit
    
   <ToolLink />

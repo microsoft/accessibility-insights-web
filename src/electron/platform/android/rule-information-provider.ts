@@ -3,8 +3,8 @@
 import { UnifiedFormattableResolution } from 'common/types/store-data/unified-data-interface';
 import { DictionaryStringTo } from 'types/common-types';
 
+import { RuleResultsData } from './android-scan-results';
 import { RuleInformation } from './rule-information';
-import { RuleResultsData } from './scan-results';
 
 export class RuleInformationProvider {
     private supportedRules: DictionaryStringTo<RuleInformation>;

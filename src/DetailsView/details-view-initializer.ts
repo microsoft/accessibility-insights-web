@@ -296,7 +296,6 @@ if (isNaN(tabId) === false) {
             const reportHtmlGenerator = new ReportHtmlGenerator(
                 AutomatedChecksReportSectionFactory,
                 reactStaticRenderer,
-                environmentInfoProvider.getEnvironmentInfo(),
                 getDefaultAddListenerForCollapsibleSection,
                 DateProvider.getUTCStringFromDate,
                 GetGuidanceTagsFromGuidanceLinks,

@@ -58,17 +58,17 @@
     },
     "devDependencies": {
         "@types/applicationinsights-js": "^1.0.7",
-        "@types/chrome": "0.0.103",
+        "@types/chrome": "0.0.104",
         "@types/enzyme": "^3.10.5",
         "@types/enzyme-adapter-react-16": "^1.0.6",
         "@types/jest": "^25.2.1",
-        "@types/jsdom": "^16.2.0",
+        "@types/jsdom": "^16.2.1",
         "@types/lodash": "^4.14.149",
         "@types/make-dir": "^2.1.0",
         "@types/moment": "^2.13.0",
         "@types/puppeteer": "^2.0.1",
         "@types/q": "^1.5.2",
-        "@types/react": "^16.9.33",
+        "@types/react": "^16.9.34",
         "@types/react-copy-to-clipboard": "^4.3.0",
         "@types/react-dom": "^16.9.6",
         "@types/react-helmet": "^5.0.15",
@@ -161,6 +161,6 @@
         "acorn": "^7.1.1",
         "dot-prop": "^5.2.0",
         "kind-of": "^6.0.3",
-        "minimist": "^1.2.2"
+        "minimist": "^1.2.3"
     }
 }

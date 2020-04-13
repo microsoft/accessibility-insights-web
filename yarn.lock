@@ -619,10 +619,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/chrome@0.0.103":
-  version "0.0.103"
-  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.103.tgz#604f3d94ab4465cc8cde302c4916f4955eb7e8b6"
-  integrity sha512-s8So1IG1fIu2dg2MRV3k6W5OjlVaJriNXIxIWDHi+Rdz5dLeuzPKcWzkVlcaVL4gONfn44JKC0RhW+P0UohLfg==
+"@types/chrome@0.0.104":
+  version "0.0.104"
+  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.104.tgz#4dbb61b8e334fdcd23b8418de9f46d26668013c4"
+  integrity sha512-NDq+Vpphs5XT7IXrIHJcy27Rvf09Mes3XNsfpP2yOXUk6YiEU1QRcSLjj/A+y5jyq/kpUwC5shNET2jFeWAqEw==
   dependencies:
     "@types/filesystem" "*"
     "@types/har-format" "*"
@@ -731,10 +731,10 @@
     jest-diff "^25.2.1"
     pretty-format "^25.2.1"
 
-"@types/jsdom@^16.2.0":
-  version "16.2.0"
-  resolved "https://registry.yarnpkg.com/@types/jsdom/-/jsdom-16.2.0.tgz#5a371a2efc1e0feec02c4bd2b3ce689e6ae691a2"
-  integrity sha512-I+qrFCzB97VlGJgvzGEwcUqmajpwqwTalmMvVfgJqFRVsY80lcCEQEGLJuVvge+whQyB1xcqTstAdxJshVVq0g==
+"@types/jsdom@^16.2.1":
+  version "16.2.1"
+  resolved "https://registry.yarnpkg.com/@types/jsdom/-/jsdom-16.2.1.tgz#9e6eee6a578f74eed5997558ab430dbc11aac753"
+  integrity sha512-KCEq427OsWfpX7FRyEMb3i2XIuz8Pt3XPls4nmX0iMTDJWsHD4Kzoa3v4Uv9c9IDf11ALeHUtPcyAjTz/HV03Q==
   dependencies:
     "@types/node" "*"
     "@types/parse5" "*"
@@ -854,10 +854,10 @@
     "@types/history" "*"
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^16.9.33":
-  version "16.9.33"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.33.tgz#a5274520f0d28cbbb73c8652ddd48646fd4bcae5"
-  integrity sha512-ovgoy7p9999HDzwv8Sewhl8GJjn/r0GRsFrM9UMwp1uodh0kQ0pwIHLQ6LNfqGSyjNzJ8II/HIg0BL7Yn/B9yA==
+"@types/react@*", "@types/react@^16.9.34":
+  version "16.9.34"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.34.tgz#f7d5e331c468f53affed17a8a4d488cd44ea9349"
+  integrity sha512-8AJlYMOfPe1KGLKyHpflCg5z46n0b5DbRfqDksxBLBTUpB75ypDBAO9eCUcjNwE6LCUslwTz00yyG/X9gaVtow==
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
@@ -6647,7 +6647,7 @@ minimalistic-crypto-utils@^1.0.0, minimalistic-crypto-utils@^1.0.1:
   dependencies:
     brace-expansion "^1.1.7"
 
-minimist@0.0.8, minimist@^1.1.0, minimist@^1.1.1, minimist@^1.1.3, minimist@^1.2.0, minimist@^1.2.2, minimist@^1.2.5, minimist@~0.0.1:
+minimist@0.0.8, minimist@^1.1.0, minimist@^1.1.1, minimist@^1.1.3, minimist@^1.2.0, minimist@^1.2.3, minimist@^1.2.5, minimist@~0.0.1:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
   integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==

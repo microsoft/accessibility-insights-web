@@ -4,8 +4,8 @@ import { noCardInteractionsSupported } from 'common/components/cards/card-intera
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { NullComponent } from 'common/components/null-component';
 import { DateProvider } from 'common/date-provider';
-import { EnvironmentInfo } from 'common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 import {
     ReportBody,
@@ -25,9 +25,6 @@ import { exampleUnifiedStatusResults } from '../common/components/cards/sample-v
 
 describe('ReportHtmlGenerator', () => {
     test('generateHtml', () => {
-        const browserSpec: string = 'browser-spect';
-        const extensionVersion: string = 'extension-version';
-        const axeCoreVersion: string = 'axe-version';
         const scanDate: Date = new Date(2018, 2, 12, 16, 24);
         const pageTitle: string = 'page-title';
         const pageUrl: string = 'https://page-url/';
@@ -40,10 +37,17 @@ describe('ReportHtmlGenerator', () => {
         const getGuidanceTagsStub: GetGuidanceTagsFromGuidanceLinks = () => [];
 
         const sectionFactoryMock = Mock.ofType<ReportSectionFactory>();
-        const environmentInfo: EnvironmentInfo = {
-            axeCoreVersion,
-            browserSpec,
-            extensionVersion,
+
+        const toolData: ToolData = {
+            scanEngineProperties: {
+                name: 'engine-name',
+                version: 'engine-version',
+            },
+            applicationProperties: {
+                name: 'app-name',
+                version: 'app-version',
+                environmentName: 'environmentName',
+            },
         };
 
         const getScriptMock = Mock.ofInstance(() => '');
@@ -63,7 +67,7 @@ describe('ReportHtmlGenerator', () => {
             pageUrl,
             description,
             scanDate,
-            environmentInfo,
+            toolData,
             toUtcString: getUTCStringFromDateStub,
             getCollapsibleScript: getScriptMock.object,
             getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
@@ -91,7 +95,6 @@ describe('ReportHtmlGenerator', () => {
         const testObject = new ReportHtmlGenerator(
             sectionFactoryMock.object,
             rendererMock.object,
-            environmentInfo,
             getScriptMock.object,
             getUTCStringFromDateStub,
             getGuidanceTagsStub,
@@ -99,11 +102,18 @@ describe('ReportHtmlGenerator', () => {
             getPropertyConfigurationStub,
         );
 
-        const actual = testObject.generateHtml(scanDate, pageTitle, pageUrl, description, {
-            cards: exampleUnifiedStatusResults,
-            visualHelperEnabled: true,
-            allCardsCollapsed: true,
-        });
+        const actual = testObject.generateHtml(
+            scanDate,
+            pageTitle,
+            pageUrl,
+            description,
+            {
+                cards: exampleUnifiedStatusResults,
+                visualHelperEnabled: true,
+                allCardsCollapsed: true,
+            },
+            toolData,
+        );
 
         expect(actual).toMatchSnapshot();
     });

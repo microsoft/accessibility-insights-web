@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AxiosResponse } from 'axios';
+import { AndroidScanResults } from 'electron/platform/android/android-scan-results';
 import {
     createScanResultsFetcher,
     HttpGet,
     ScanResultsFetcher,
 } from 'electron/platform/android/fetch-scan-results';
-import { ScanResults } from 'electron/platform/android/scan-results';
 import { IMock, Mock } from 'typemoq';
 
 describe('fetchScanResults', () => {
@@ -39,7 +39,7 @@ describe('fetchScanResults', () => {
 
         const result = await testSubject(port);
 
-        expect(result).toEqual(new ScanResults(data));
+        expect(result).toEqual(new AndroidScanResults(data));
     });
 
     it('propagates errors properly', async () => {

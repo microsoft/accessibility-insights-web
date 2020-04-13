@@ -17,6 +17,6 @@ export class DirectActionMessageDispatcher implements ActionMessageDispatcher {
     }
     public sendTelemetry(eventName: string, eventData: TelemetryData): void {
         // not needed yet on electron
-        throw new Error('Method not implemented.');
+        console.warn('Method not implemented.');
     }
 }

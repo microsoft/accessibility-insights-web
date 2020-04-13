@@ -11,8 +11,11 @@ import {
 } from 'electron/common/electron-telemetry-events';
 import { PortPayload } from 'electron/flux/action/device-action-payloads';
 import { ScanActions } from 'electron/flux/action/scan-actions';
+import {
+    AndroidScanResults,
+    RuleResultsData,
+} from 'electron/platform/android/android-scan-results';
 import { ScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
-import { RuleResultsData, ScanResults } from 'electron/platform/android/scan-results';
 import { UnifiedScanCompletedPayloadBuilder } from 'electron/platform/android/unified-result-builder';
 
 export class ScanController {
@@ -47,7 +50,7 @@ export class ScanController {
             .catch(this.scanFailed.bind(this, scanStartedTime, port));
     };
 
-    private scanCompleted(scanStartedTime: number, port: number, data: ScanResults): void {
+    private scanCompleted(scanStartedTime: number, port: number, data: AndroidScanResults): void {
         const scanCompletedTime = this.getCurrentDate().getTime();
 
         const scanDuration = scanCompletedTime - scanStartedTime;

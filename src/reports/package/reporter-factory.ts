@@ -56,7 +56,6 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
     const reportHtmlGenerator = new ReportHtmlGenerator(
         sectionFactory,
         reactStaticRenderer,
-        environmentInfoProvider.getEnvironmentInfo(),
         getDefaultAddListenerForCollapsibleSection,
         DateProvider.getUTCStringFromDate,
         GetGuidanceTagsFromGuidanceLinks,
@@ -83,7 +82,7 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
         getUUID: generateUID,
     };
 
-    return new AxeResultsReport(deps, parameters);
+    return new AxeResultsReport(deps, parameters, environmentInfoProvider.getToolData());
 };
 
 export const reporterFactory: ReporterFactory = () => {

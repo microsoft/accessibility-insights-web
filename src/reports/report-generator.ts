@@ -5,6 +5,8 @@ import { AssessmentStoreData } from 'common/types/store-data/assessment-result-d
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
+
 import { AssessmentReportHtmlGenerator } from './assessment-report-html-generator';
 import { ReportHtmlGenerator } from './report-html-generator';
 import { ReportNameGenerator } from './report-name-generator';
@@ -26,6 +28,7 @@ export class ReportGenerator {
         pageUrl: string,
         cardsViewData: CardsViewModel,
         description: string,
+        toolData: ToolData,
     ): string {
         return this.reportHtmlGenerator.generateHtml(
             scanDate,
@@ -33,6 +36,7 @@ export class ReportGenerator {
             pageUrl,
             description,
             cardsViewData,
+            toolData,
         );
     }
 

@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import './root-container.scss';
+
 import {
     withStoreSubscription,
     WithStoreSubscriptionDeps,
@@ -7,6 +9,7 @@ import {
 import { NamedFC } from 'common/react/named-fc';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { DeviceStoreData } from 'electron/flux/types/device-store-data';
@@ -21,7 +24,6 @@ import {
     DeviceConnectViewContainerDeps,
 } from 'electron/views/device-connect-view/components/device-connect-view-container';
 import * as React from 'react';
-import './root-container.scss'; // Used for common <body>/etc styles
 
 export type RootContainerDeps = WithStoreSubscriptionDeps<RootContainerState> &
     DeviceConnectViewContainerDeps &
@@ -40,6 +42,7 @@ export type RootContainerState = {
     unifiedScanResultStoreData: UnifiedScanResultStoreData;
     cardSelectionStoreData: CardSelectionStoreData;
     detailsViewStoreData: DetailsViewStoreData;
+    featureFlagStoreData: FeatureFlagStoreData;
 };
 
 export const RootContainerInternal = NamedFC<RootContainerProps>('RootContainerInternal', props => {

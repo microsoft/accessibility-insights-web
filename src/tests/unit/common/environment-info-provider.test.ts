@@ -42,6 +42,7 @@ describe('EnvironmentInfoProvider', () => {
             applicationProperties: {
                 name: toolName,
                 version: extensionVersion,
+                environmentName: browserSpec,
             },
         };
 

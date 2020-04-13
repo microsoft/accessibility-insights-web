@@ -33,7 +33,7 @@ export interface DeviceInfo {
     screenWidth: number;
 }
 
-export class ScanResults {
+export class AndroidScanResults {
     constructor(readonly rawData: any) {}
 
     public get deviceInfo(): DeviceInfo {

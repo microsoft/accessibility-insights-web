@@ -15,6 +15,7 @@ import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import {
     TargetAppData,
+    ToolData,
     UnifiedResult,
     UnifiedRule,
     UnifiedScanResultStoreData,
@@ -47,6 +48,7 @@ import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/detai
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { DetailsViewStoreDataBuilder } from '../../common/details-view-store-data-builder';
 import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
@@ -61,6 +63,8 @@ describe('DetailsViewContainer', () => {
     let getCardViewDataMock: IMock<GetCardViewData>;
     let getCardSelectionViewDataMock: IMock<GetCardSelectionViewData>;
     let targetAppInfo: TargetAppData;
+    let timestamp: string;
+    let toolData: ToolData;
 
     beforeEach(() => {
         detailsViewActionMessageCreator = Mock.ofType<DetailsViewActionMessageCreator>();
@@ -84,7 +88,11 @@ describe('DetailsViewContainer', () => {
             (storeData: CardSelectionStoreData) => null,
             MockBehavior.Strict,
         );
+        timestamp = 'timestamp';
         targetAppInfo = { name: 'app' };
+        toolData = {
+            applicationProperties: { name: 'some app' },
+        } as ToolData;
         deps = {
             detailsViewActionMessageCreator: detailsViewActionMessageCreator.object,
             getDetailsRightPanelConfiguration: getDetailsRightPanelConfiguration.object,
@@ -389,7 +397,7 @@ describe('DetailsViewContainer', () => {
                 scanIncompleteWarnings={
                     storeMocks.unifiedScanResultStoreData.scanIncompleteWarnings
                 }
-                unifiedScanResultStoreData={storeMocks.unifiedScanResultStoreData}
+                scanMetaData={{ timestamp, toolData }}
             />
         );
     }
@@ -521,6 +529,8 @@ describe('DetailsViewContainer', () => {
             results: [],
             rules: [],
             targetAppInfo: targetAppInfo,
+            timestamp: timestamp,
+            toolInfo: toolData,
         };
 
         const storeMocks = new StoreMocks()
