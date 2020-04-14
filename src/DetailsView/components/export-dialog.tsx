@@ -138,7 +138,7 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
             />
             <DialogFooter>
                 <FlaggedComponent
-                    featureFlag={FeatureFlags.exportReport}
+                    featureFlag={FeatureFlags.exportReportOptions}
                     featureFlagStoreData={props.featureFlagStoreData}
                     enableJSXElement={getMultiOptionExportButton()}
                     disableJSXElement={getSingleExportToHtmlButton()}
