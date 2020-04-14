@@ -5,7 +5,6 @@ import { AssessmentStoreData } from 'common/types/store-data/assessment-result-d
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
-import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
@@ -37,7 +36,6 @@ describe('ReportExportComponentPropsFactory', () => {
     let assessmentsProviderMock: IMock<AssessmentsProvider>;
     let featureFlagStoreData: FeatureFlagStoreData;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
-    let tabStoreData: TabStoreData;
     let assessmentStoreData: AssessmentStoreData;
     let reportGeneratorMock: IMock<ReportGenerator>;
     let visualizationScanResultData: VisualizationScanResultData;
@@ -53,7 +51,6 @@ describe('ReportExportComponentPropsFactory', () => {
             DetailsViewActionMessageCreator,
             MockBehavior.Strict,
         );
-        tabStoreData = {} as TabStoreData;
         assessmentStoreData = {
             resultDescription: theDescription,
         } as AssessmentStoreData;
@@ -90,7 +87,6 @@ describe('ReportExportComponentPropsFactory', () => {
         return {
             deps,
             featureFlagStoreData,
-            tabStoreData,
             assessmentStoreData,
             assessmentsProvider: assessmentsProviderMock.object,
             visualizationScanResultData,
