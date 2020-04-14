@@ -25,6 +25,11 @@ exports[`ReportExportComponentTest render 1`] = `
     }
     description=""
     exportResultsType="Assessment"
+    featureFlagStoreData={
+      Object {
+        "test-feature-flag": true,
+      }
+    }
     fileName=""
     html=""
     isOpen={false}
@@ -60,6 +65,11 @@ exports[`ReportExportComponentTest user interactions click export button: dialog
     }
     description="persisted description"
     exportResultsType="Assessment"
+    featureFlagStoreData={
+      Object {
+        "test-feature-flag": true,
+      }
+    }
     html=""
     isOpen={true}
     onClose={[Function]}
@@ -94,6 +104,11 @@ exports[`ReportExportComponentTest user interactions dismiss dialog: dialog shou
     }
     description=""
     exportResultsType="Assessment"
+    featureFlagStoreData={
+      Object {
+        "test-feature-flag": true,
+      }
+    }
     html=""
     isOpen={false}
     onClose={[Function]}
@@ -128,6 +143,11 @@ exports[`ReportExportComponentTest user interactions edit text field: user input
     }
     description="new description"
     exportResultsType="Assessment"
+    featureFlagStoreData={
+      Object {
+        "test-feature-flag": true,
+      }
+    }
     fileName=""
     html=""
     isOpen={false}

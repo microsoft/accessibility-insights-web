@@ -91,6 +91,11 @@ exports[`CommandBar renders while status is <Completed> 1`] = `
             }
           }
           exportResultsType="AutomatedChecks"
+          featureFlagStoreData={
+            Object {
+              "somefeatureflag": true,
+            }
+          }
           getExportDescription={[Function]}
           htmlGenerator={[Function]}
           pageTitle="some target"
@@ -162,6 +167,11 @@ exports[`CommandBar renders while status is <Default> 1`] = `
             }
           }
           exportResultsType="AutomatedChecks"
+          featureFlagStoreData={
+            Object {
+              "somefeatureflag": true,
+            }
+          }
           getExportDescription={[Function]}
           htmlGenerator={[Function]}
           pageTitle="some target"
@@ -233,6 +243,11 @@ exports[`CommandBar renders while status is <Failed> 1`] = `
             }
           }
           exportResultsType="AutomatedChecks"
+          featureFlagStoreData={
+            Object {
+              "somefeatureflag": true,
+            }
+          }
           getExportDescription={[Function]}
           htmlGenerator={[Function]}
           pageTitle="some target"
@@ -304,6 +319,11 @@ exports[`CommandBar renders while status is <Scanning> 1`] = `
             }
           }
           exportResultsType="AutomatedChecks"
+          featureFlagStoreData={
+            Object {
+              "somefeatureflag": true,
+            }
+          }
           getExportDescription={[Function]}
           htmlGenerator={[Function]}
           pageTitle="some target"

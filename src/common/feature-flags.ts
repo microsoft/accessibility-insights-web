@@ -13,6 +13,8 @@ export class FeatureFlags {
     public static readonly showInstanceVisibility = 'showInstanceVisibility';
     public static readonly manualInstanceDetails = 'manualInstanceDetails';
     public static readonly debugTools = 'debugTools';
+
+    public static readonly exportReport = 'exportReport';
 }
 
 export interface FeatureFlagDetail {
@@ -97,6 +99,14 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             displayableDescription:
                 'Click on the new icon close to the gear to open the debug tools',
             isPreviewFeature: false,
+            forceDefault: false,
+        },
+        {
+            id: FeatureFlags.exportReport,
+            defaultValue: false,
+            displayableName: 'More export options',
+            displayableDescription: 'Enables exporting reports to external services',
+            isPreviewFeature: true,
             forceDefault: false,
         },
     ];

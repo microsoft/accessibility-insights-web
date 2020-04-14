@@ -1,5 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ExportDialog renders with CodePen export form 1`] = `
+<form
+  action="https://codepen.io/pen/define"
+  method="POST"
+  rel="noopener"
+  style={
+    Object {
+      "visibility": "hidden",
+    }
+  }
+  target="_blank"
+>
+  <input
+    name="data"
+    type="hidden"
+    value="{\\"title\\":\\"THE REPORT FILE NAME\\",\\"description\\":\\"description\\",\\"html\\":\\"fake html\\",\\"editors\\":\\"100\\"}"
+  />
+  <button
+    type="submit"
+  />
+</form>
+`;
+
 exports[`ExportDialog renders with open false 1`] = `
 <StyledWithResponsiveMode
   dialogContentProps={
@@ -28,13 +51,43 @@ exports[`ExportDialog renders with open false 1`] = `
     value="description"
   />
   <StyledDialogFooterBase>
-    <CustomizedPrimaryButton
-      download="THE REPORT FILE NAME"
-      href="fake-url"
-      onClick={[Function]}
-    >
-      Export
-    </CustomizedPrimaryButton>
+    <FlaggedComponent
+      disableJSXElement={
+        <CustomizedPrimaryButton
+          download="THE REPORT FILE NAME"
+          href="fake-url"
+          onClick={[Function]}
+        >
+          Export
+        </CustomizedPrimaryButton>
+      }
+      enableJSXElement={
+        <React.Fragment>
+          <CustomizedPrimaryButton
+            aria-roledescription="split button"
+            download="THE REPORT FILE NAME"
+            href="fake-url"
+            menuProps={
+              Object {
+                "items": Array [
+                  Object {
+                    "key": "codepen",
+                    "onClick": [Function],
+                    "text": "CodePen",
+                  },
+                ],
+              }
+            }
+            onClick={[Function]}
+            split={true}
+            splitButtonAriaLabel="Export HTML to any of these format options"
+            text="Export"
+          />
+        </React.Fragment>
+      }
+      featureFlag="exportReport"
+      featureFlagStoreData={Object {}}
+    />
   </StyledDialogFooterBase>
 </StyledWithResponsiveMode>
 `;
@@ -67,13 +120,43 @@ exports[`ExportDialog renders with open true 1`] = `
     value="description"
   />
   <StyledDialogFooterBase>
-    <CustomizedPrimaryButton
-      download="THE REPORT FILE NAME"
-      href="fake-url"
-      onClick={[Function]}
-    >
-      Export
-    </CustomizedPrimaryButton>
+    <FlaggedComponent
+      disableJSXElement={
+        <CustomizedPrimaryButton
+          download="THE REPORT FILE NAME"
+          href="fake-url"
+          onClick={[Function]}
+        >
+          Export
+        </CustomizedPrimaryButton>
+      }
+      enableJSXElement={
+        <React.Fragment>
+          <CustomizedPrimaryButton
+            aria-roledescription="split button"
+            download="THE REPORT FILE NAME"
+            href="fake-url"
+            menuProps={
+              Object {
+                "items": Array [
+                  Object {
+                    "key": "codepen",
+                    "onClick": [Function],
+                    "text": "CodePen",
+                  },
+                ],
+              }
+            }
+            onClick={[Function]}
+            split={true}
+            splitButtonAriaLabel="Export HTML to any of these format options"
+            text="Export"
+          />
+        </React.Fragment>
+      }
+      featureFlag="exportReport"
+      featureFlagStoreData={Object {}}
+    />
   </StyledDialogFooterBase>
 </StyledWithResponsiveMode>
 `;
