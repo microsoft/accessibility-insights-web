@@ -39,10 +39,12 @@ export class ReportHtmlGenerator {
     ): string {
         const HeadSection = this.sectionFactory.HeadSection;
         const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(<HeadSection />);
+        const targetAppInfo = {
+            name: pageTitle,
+            url: pageUrl,
+        };
 
         const detailsProps: SectionProps = {
-            pageTitle,
-            pageUrl,
             description,
             scanDate,
             deps: {
@@ -59,6 +61,7 @@ export class ReportHtmlGenerator {
             getCollapsibleScript: this.getCollapsibleScript,
             getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,
             fixInstructionProcessor: this.fixInstructionProcessor,
+            targetAppInfo: targetAppInfo,
         } as SectionProps;
 
         const props: ReportBodyProps = {

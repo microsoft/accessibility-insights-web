@@ -6,7 +6,11 @@ import { HeaderSection } from 'reports/components/report-sections/header-section
 
 describe('HeaderSection', () => {
     it('renders', () => {
-        const wrapper = shallow(<HeaderSection pageUrl="url://page" pageTitle="page-title" />);
+        const targetAppInfo = {
+            name: 'page-title',
+            url: 'url://page',
+        };
+        const wrapper = shallow(<HeaderSection targetAppInfo={targetAppInfo} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 });

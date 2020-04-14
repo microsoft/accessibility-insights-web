@@ -20,12 +20,14 @@ export interface AssessmentReportProps {
 
 export class AssessmentReport extends React.Component<AssessmentReportProps> {
     public render(): JSX.Element {
+        const targetAppInfo = {
+            name: this.props.data.scanDetails.targetPage,
+            url: this.props.data.scanDetails.url,
+        };
+
         return (
             <React.Fragment>
-                <HeaderSection
-                    pageTitle={this.props.data.scanDetails.targetPage}
-                    pageUrl={this.props.data.scanDetails.url}
-                />
+                <HeaderSection targetAppInfo={targetAppInfo} />
                 <AssessmentReportBody
                     deps={this.props.deps}
                     data={this.props.data}

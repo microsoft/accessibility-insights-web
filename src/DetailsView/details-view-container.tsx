@@ -195,8 +195,14 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
             this.props.deps.getCardSelectionViewData(this.props.storeState.cardSelectionStoreData),
         );
 
+        const targetAppInfo = {
+            name: this.props.storeState.tabStoreData.title,
+            url: this.props.storeState.tabStoreData.url,
+        };
+
         const scanMetaData: ScanMetaData = {
             timestamp: this.props.storeState.unifiedScanResultStoreData.timestamp,
+            targetAppInfo: targetAppInfo,
             toolData: this.props.storeState.unifiedScanResultStoreData.toolInfo,
         };
 
@@ -225,7 +231,6 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
                 userConfigurationStoreData={storeState.userConfigurationStoreData}
                 cardsViewData={cardsViewData}
                 cardSelectionStoreData={storeState.cardSelectionStoreData}
-                targetAppInfo={storeState.unifiedScanResultStoreData.targetAppInfo}
                 scanIncompleteWarnings={
                     storeState.unifiedScanResultStoreData.scanIncompleteWarnings
                 }

@@ -63,8 +63,10 @@ describe('ReportHtmlGenerator', () => {
             } as SectionDeps,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
             sectionFactory: sectionFactoryMock.object as ReportBodySectionFactory,
-            pageTitle,
-            pageUrl,
+            targetAppInfo: {
+                name: pageTitle,
+                url: pageUrl,
+            },
             description,
             scanDate,
             toolData,

@@ -3,8 +3,12 @@
 exports[`AssessmentReport render 1`] = `
 <React.Fragment>
   <HeaderSection
-    pageTitle="title"
-    pageUrl="url"
+    targetAppInfo={
+      Object {
+        "name": "title",
+        "url": "url",
+      }
+    }
   />
   <AssessmentReportBody
     data={

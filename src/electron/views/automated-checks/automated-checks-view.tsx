@@ -64,7 +64,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
     public render(): JSX.Element {
         const { status } = this.props.scanStoreData;
         if (status === ScanStatus.Failed) {
-            return this.renderLayout(null, null, null, this.renderDeviceDisconnected());
+            return this.renderLayout(null, null, this.renderDeviceDisconnected());
         } else if (status === ScanStatus.Completed) {
             const { unifiedScanResultStoreData, cardSelectionStoreData, deps } = this.props;
             const { rules, results } = unifiedScanResultStoreData;
@@ -77,23 +77,22 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
             const scanMetadata: ScanMetaData = {
                 timestamp: unifiedScanResultStoreData.timestamp,
                 toolData: unifiedScanResultStoreData.toolInfo,
+                targetAppInfo: this.props.unifiedScanResultStoreData.targetAppInfo,
             };
 
             return this.renderLayout(
                 cardsViewData,
-                unifiedScanResultStoreData.targetAppInfo.name,
                 scanMetadata,
                 this.renderResults(cardsViewData),
                 <ScreenshotView viewModel={screenshotViewModel} />,
             );
         } else {
-            return this.renderLayout(null, null, null, this.renderScanningSpinner());
+            return this.renderLayout(null, null, this.renderScanningSpinner());
         }
     }
 
     private renderLayout(
         cardsViewData: CardsViewModel,
-        targetAppName: string,
         scanMetaData: ScanMetaData,
         primaryContent: JSX.Element,
         optionalSidePanel?: JSX.Element,
@@ -116,7 +115,6 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                             scanStoreData={this.props.scanStoreData}
                             featureFlagStoreData={this.props.featureFlagStoreData}
                             cardsViewData={cardsViewData}
-                            targetAppName={targetAppName}
                             scanMetaData={scanMetaData}
                         />
                         <main>
