@@ -5,6 +5,7 @@ import { productName } from 'content/strings/application';
 import { BrandWhite } from 'icons/brand/white/brand-white';
 import * as React from 'react';
 import { NewTabLinkWithConfirmationDialog } from 'reports/components/new-tab-link-confirmation-dialog';
+import * as styles from './header-section.scss';
 
 export interface HeaderSectionProps {
     pageTitle: string;
@@ -16,14 +17,12 @@ export const HeaderSection = NamedFC<HeaderSectionProps>(
     ({ pageTitle, pageUrl }) => {
         return (
             <header>
-                <div className="report-header-bar">
+                <div className={styles.reportHeaderBar}>
                     <BrandWhite />
-                    <div className="ms-font-m header-text ms-fontWeight-semibold">
-                        {productName}
-                    </div>
+                    <div className={styles.headerText}>{productName}</div>
                 </div>
-                <div className="report-header-command-bar">
-                    <div className="target-page">
+                <div className={styles.reportHeaderCommandBar}>
+                    <div className={styles.targetPage}>
                         Target page:&nbsp;
                         <NewTabLinkWithConfirmationDialog href={pageUrl} title={pageTitle}>
                             {pageTitle}

@@ -33,6 +33,7 @@ export function getReportExportComponentForAssessment(props: CommandBarProps): J
         updatePersistedDescription: value =>
             props.deps.detailsViewActionMessageCreator.addResultDescription(value),
         getExportDescription: () => props.assessmentStoreData.resultDescription,
+        featureFlagStoreData: props.featureFlagStoreData,
     };
 
     return <ReportExportComponent {...reportExportComponentProps} />;
@@ -71,6 +72,7 @@ export function getReportExportComponentForFastPass(props: CommandBarProps): JSX
             ),
         updatePersistedDescription: () => null,
         getExportDescription: () => '',
+        featureFlagStoreData: props.featureFlagStoreData,
     };
 
     return <ReportExportComponent {...reportExportComponentProps} />;

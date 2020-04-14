@@ -79,6 +79,7 @@ import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ReportNameGenerator } from 'reports/report-name-generator';
 
+import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
 import { IndexedDBDataKeys } from '../../background/IndexedDBDataKeys';
@@ -403,6 +404,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             reportGenerator: reportGenerator,
             fileURLProvider: new FileURLProvider(new WindowUtils(), provideBlob),
             getDateFromTimestamp: DateProvider.getDateFromTimestamp,
+            reportExportServiceProvider: ReportExportServiceProviderImpl,
         };
 
         window.insightsUserConfiguration = new UserConfigurationController(interpreter);

@@ -37,6 +37,9 @@ describe('ReportExportComponentTest', () => {
             htmlGenerator: htmlGeneratorMock.object,
             updatePersistedDescription: updateDescriptionMock.object,
             getExportDescription: getDescriptionMock.object,
+            featureFlagStoreData: {
+                'test-feature-flag': true,
+            },
         };
     });
 
