@@ -50,10 +50,15 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
             "screenshotViewModelProvider": [Function],
           }
         }
-        deviceStoreData={Object {}}
+        deviceStoreData={
+          Object {
+            "connectedDevice": "TEST DEVICE",
+          }
+        }
         scanMetaData={
           Object {
             "targetAppInfo": Object {
+              "device": "TEST DEVICE",
               "name": "test-target-app-name",
             },
             "timestamp": "test timestamp",

@@ -109,7 +109,9 @@ describe('AutomatedChecksView', () => {
                     screenshotViewModelProvider: screenshotViewModelProviderMock.object,
                 },
                 cardSelectionStoreData,
-                deviceStoreData: {},
+                deviceStoreData: {
+                    connectedDevice: 'TEST DEVICE',
+                },
                 scanStoreData: {
                     status: ScanStatus.Completed,
                 },

@@ -74,10 +74,14 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                 unifiedScanResultStoreData,
                 cardSelectionViewData.highlightedResultUids,
             );
+
             const scanMetadata: ScanMetaData = {
                 timestamp: unifiedScanResultStoreData.timestamp,
                 toolData: unifiedScanResultStoreData.toolInfo,
-                targetAppInfo: this.props.unifiedScanResultStoreData.targetAppInfo,
+                targetAppInfo: {
+                    ...this.props.unifiedScanResultStoreData.targetAppInfo,
+                    device: this.props.deviceStoreData.connectedDevice,
+                },
             };
 
             return this.renderLayout(

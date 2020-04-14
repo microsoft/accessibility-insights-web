@@ -37,6 +37,7 @@ export interface PlatformData {
 export interface TargetAppData {
     name: string;
     url?: string;
+    device?: string;
 }
 
 export interface ToolData {
