@@ -48,8 +48,7 @@ describe('ReportGenerator', () => {
             .setup(builder =>
                 builder.generateHtml(
                     date,
-                    title,
-                    url,
+                    targetAppInfo,
                     description,
                     cardsViewDataStub,
                     toolDataStub,

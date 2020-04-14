@@ -31,8 +31,7 @@ export class ReportGenerator {
     ): string {
         return this.reportHtmlGenerator.generateHtml(
             scanDate,
-            targetAppInfo.name,
-            targetAppInfo.url,
+            targetAppInfo,
             description,
             cardsViewData,
             toolData,

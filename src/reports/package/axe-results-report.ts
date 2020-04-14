@@ -48,10 +48,14 @@ export class AxeResultsReport implements AccessibilityInsightsReport.Report {
 
         const cardsViewModel = getCards(unifiedRules, unifiedResults, cardSelectionViewData);
 
+        const targetAppInfo = {
+            name: pageTitle,
+            url: results.url,
+        };
+
         const html = reportHtmlGenerator.generateHtml(
             scanDate,
-            pageTitle,
-            results.url,
+            targetAppInfo,
             description,
             cardsViewModel,
             this.toolInfo,

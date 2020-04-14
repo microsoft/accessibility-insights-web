@@ -63,8 +63,12 @@ describe('AxeResultReport', () => {
 
     const expectedHTML = '<div>The Report!</div>';
     const mockReportHtmlGenerator = Mock.ofType<ReportHtmlGenerator>(null, MockBehavior.Strict);
+    const expectedTargetAppInfo = {
+        name: pageTitle,
+        url: url,
+    };
     mockReportHtmlGenerator
-        .setup(gen => gen.generateHtml(reportDateTime, pageTitle, url, description, mockCardsViewModel.object, toolDataStub))
+        .setup(gen => gen.generateHtml(reportDateTime, expectedTargetAppInfo, description, mockCardsViewModel.object, toolDataStub))
         .returns(() => expectedHTML);
 
     const deps: AxeResultsReportDeps = {

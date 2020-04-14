@@ -52,6 +52,11 @@ describe('ReportHtmlGenerator', () => {
 
         const getScriptMock = Mock.ofInstance(() => '');
 
+        const targetAppInfo = {
+            name: pageTitle,
+            url: pageUrl,
+        };
+
         const sectionProps: ReportBodyProps = {
             deps: {
                 fixInstructionProcessor: fixInstructionProcessorMock.object,
@@ -63,10 +68,7 @@ describe('ReportHtmlGenerator', () => {
             } as SectionDeps,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
             sectionFactory: sectionFactoryMock.object as ReportBodySectionFactory,
-            targetAppInfo: {
-                name: pageTitle,
-                url: pageUrl,
-            },
+            targetAppInfo: targetAppInfo,
             description,
             scanDate,
             toolData,
@@ -106,8 +108,7 @@ describe('ReportHtmlGenerator', () => {
 
         const actual = testObject.generateHtml(
             scanDate,
-            pageTitle,
-            pageUrl,
+            targetAppInfo,
             description,
             {
                 cards: exampleUnifiedStatusResults,
