@@ -16,7 +16,7 @@ exports[`report package integration with issues 1`] = `
   </style>
   <header>
     <div
-      class="report-header-bar"
+      class="reportHeaderBar"
     >
       <svg
         aria-hidden="true"
@@ -213,16 +213,16 @@ exports[`report package integration with issues 1`] = `
         </defs>
       </svg>
       <div
-        class="ms-font-m header-text ms-fontWeight-semibold"
+        class="headerText"
       >
         Accessibility Insights for Web
       </div>
     </div>
     <div
-      class="report-header-command-bar"
+      class="reportHeaderCommandBar"
     >
       <div
-        class="target-page"
+        class="targetPage"
       >
         Target page: 
         <a
@@ -7171,7 +7171,7 @@ exports[`report package integration with no issues 1`] = `
   </style>
   <header>
     <div
-      class="report-header-bar"
+      class="reportHeaderBar"
     >
       <svg
         aria-hidden="true"
@@ -7368,16 +7368,16 @@ exports[`report package integration with no issues 1`] = `
         </defs>
       </svg>
       <div
-        class="ms-font-m header-text ms-fontWeight-semibold"
+        class="headerText"
       >
         Accessibility Insights for Web
       </div>
     </div>
     <div
-      class="report-header-command-bar"
+      class="reportHeaderCommandBar"
     >
       <div
-        class="target-page"
+        class="targetPage"
       >
         Target page: 
         <a

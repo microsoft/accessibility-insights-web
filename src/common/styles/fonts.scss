@@ -79,6 +79,13 @@ $semiBoldFontFamily: make-font-family($semiBoldFonts) !default;
     line-height: 24px;
 }
 
+@mixin text-style-header-s {
+    font-family: $fontFamily;
+    font-weight: $fontWeightNormal;
+    font-size: 17px;
+    line-height: 24px;
+}
+
 @mixin text-style-body-m {
     font-family: $fontFamily;
     font-weight: $fontWeightNormal;
