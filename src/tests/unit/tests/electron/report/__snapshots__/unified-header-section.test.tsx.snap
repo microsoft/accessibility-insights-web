@@ -3,11 +3,11 @@
 exports[`HeaderSection renders 1`] = `
 <header>
   <div
-    className="report-header-bar"
+    className="reportHeaderBar"
   >
     <BrandWhite />
     <div
-      className="ms-font-m header-text ms-fontWeight-semibold"
+      className="headerText"
     >
       Accessibility Insights for Android
     </div>

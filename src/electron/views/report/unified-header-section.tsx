@@ -4,15 +4,14 @@ import { NamedFC } from 'common/react/named-fc';
 import { androidAppTitle } from 'content/strings/application';
 import { BrandWhite } from 'icons/brand/white/brand-white';
 import * as React from 'react';
+import * as styles from 'reports/components/report-sections/header-section.scss';
 
 export const UnifiedHeaderSection = NamedFC('UnifiedHeaderSection', () => {
     return (
         <header>
-            <div className="report-header-bar">
+            <div className={styles.reportHeaderBar}>
                 <BrandWhite />
-                <div className="ms-font-m header-text ms-fontWeight-semibold">
-                    {androidAppTitle}
-                </div>
+                <div className={styles.headerText}>{androidAppTitle}</div>
             </div>
         </header>
     );
