@@ -11,6 +11,8 @@ import { PreviewFeatureFlagsHandler } from '../../../handlers/preview-feature-fl
 import { NoDisplayableFeatureFlagMessage } from '../../no-displayable-preview-features-message';
 import { PreviewFeaturesToggleList } from '../../preview-features-toggle-list';
 
+export const previewFeaturesAutomationId = 'preview-features-container';
+
 export type PreviewFeaturesContainerDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
 };
@@ -29,11 +31,15 @@ export const PreviewFeaturesContainer = NamedFC<PreviewFeaturesContainerProps>(
         );
 
         if (displayableFeatureFlags.length === 0) {
-            return <NoDisplayableFeatureFlagMessage />;
+            return (
+                <div data-automation-id={previewFeaturesAutomationId}>
+                    <NoDisplayableFeatureFlagMessage />
+                </div>
+            );
         }
 
         return (
-            <div>
+            <div data-automation-id={previewFeaturesAutomationId}>
                 <div className="preview-features-description">
                     {DisplayableStrings.previewFeaturesDescription}
                 </div>
