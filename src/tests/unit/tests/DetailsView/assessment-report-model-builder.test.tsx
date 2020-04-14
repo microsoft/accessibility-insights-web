@@ -12,9 +12,9 @@ import {
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
+import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { AssessmentReportModelBuilder } from 'reports/assessment-report-model-builder';
 import { AssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
-import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import { AssessmentReportBuilderTestHelper } from './assessment-report-builder-test-helper';
 
 describe('AssessmentReportModelBuilderTest', () => {
@@ -44,13 +44,9 @@ describe('AssessmentReportModelBuilderTest', () => {
 
     assessmentsProviderMock.setup(ap => ap.all()).returns(() => assessments);
 
-    const tabStoreData: TabStoreData = {
+    const targetAppInfo: TargetAppData = {
         url: 'url',
-        title: 'title',
-        id: -1,
-        isClosed: false,
-        isChanged: false,
-        isPageHidden: false,
+        name: 'title',
     };
 
     AssessmentReportBuilderTestHelper.setMessageComponent(expectedMessage);
@@ -60,7 +56,7 @@ describe('AssessmentReportModelBuilderTest', () => {
         return new AssessmentReportModelBuilder(
             assessmentsProviderMock.object,
             assessmentStoreData,
-            tabStoreData,
+            targetAppInfo,
             AssessmentReportBuilderTestHelper.reportDate,
             assessmentDefaultMessageGeneratorMock.object,
         );

@@ -38,6 +38,9 @@ describe('CommandBar', () => {
         scanMetaDataStub = {
             timestamp: '1234',
             toolData: {} as ToolData,
+            targetAppInfo: {
+                name: 'scan target name',
+            },
         };
         scanDateStub = new Date(0);
         reportGeneratorMock = Mock.ofType(ReportGenerator);
@@ -59,7 +62,6 @@ describe('CommandBar', () => {
                     status: ScanStatus.Scanning,
                 },
                 cardsViewData: cardsViewDataStub,
-                targetAppName: 'some target',
                 featureFlagStoreData: featureFlagStoreDataStub,
                 scanMetaData: scanMetaDataStub,
             } as CommandBarProps;
@@ -80,7 +82,6 @@ describe('CommandBar', () => {
                     status: ScanStatus.Scanning,
                 },
                 cardsViewData: cardsViewDataStub,
-                targetAppName: 'some target',
                 featureFlagStoreData: featureFlagStoreDataStub,
                 scanMetaData: null,
             } as CommandBarProps;
@@ -104,7 +105,6 @@ describe('CommandBar', () => {
                     status: ScanStatus[status],
                 },
                 cardsViewData: cardsViewDataStub,
-                targetAppName: 'some target',
                 featureFlagStoreData: featureFlagStoreDataStub,
                 scanMetaData: scanMetaDataStub,
             } as CommandBarProps;
@@ -140,7 +140,6 @@ describe('CommandBar', () => {
                     status: ScanStatus.Default,
                 },
                 cardsViewData: cardsViewDataStub,
-                targetAppName: 'some target',
                 featureFlagStoreData: featureFlagStoreDataStub,
                 scanMetaData: scanMetaDataStub,
             } as CommandBarProps;
@@ -168,7 +167,6 @@ describe('CommandBar', () => {
                     status: ScanStatus.Default,
                 },
                 cardsViewData: cardsViewDataStub,
-                targetAppName: 'some target',
                 featureFlagStoreData: featureFlagStoreDataStub,
                 scanMetaData: scanMetaDataStub,
             } as CommandBarProps;

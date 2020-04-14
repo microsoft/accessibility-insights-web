@@ -18,8 +18,6 @@ export type SectionDeps = NotApplicableChecksSectionDeps &
 export type SectionProps = {
     deps: SectionDeps;
     fixInstructionProcessor: FixInstructionProcessor;
-    pageTitle: string;
-    pageUrl: string;
     description: string;
     scanDate: Date;
     toolData: ToolData;
