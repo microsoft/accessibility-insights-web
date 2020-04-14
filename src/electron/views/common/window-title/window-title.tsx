@@ -7,7 +7,7 @@ import { WindowStateStoreData } from 'electron/flux/types/window-state-store-dat
 import { PlatformInfo } from 'electron/window-management/platform-info';
 import { isEmpty } from 'lodash';
 import * as React from 'react';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import * as styles from './window-title.scss';
 
 export interface WindowTitleDeps {
