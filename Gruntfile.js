@@ -51,6 +51,16 @@ module.exports = function (grunt) {
                     },
                 ],
             },
+            docs: {
+                files: [
+                    {
+                        cwd: './docs',
+                        src: ['LICENSE.txt', 'NOTICE.txt'],
+                        dest: extensionPath,
+                        expand: true,
+                    },
+                ],
+            },
             images: {
                 files: [
                     {
@@ -333,7 +343,7 @@ module.exports = function (grunt) {
                         },
                         {
                             cwd: extensionPath,
-                            src: ['**/*.html'],
+                            src: ['**/*.{html,txt}'],
                             dest: dropExtensionPath,
                             expand: true,
                         },
@@ -588,7 +598,13 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('build-assets', ['sass', 'copy:code', 'copy:styles', 'copy:images']);
+    grunt.registerTask('build-assets', [
+        'sass',
+        'copy:code',
+        'copy:styles',
+        'copy:images',
+        'copy:docs',
+    ]);
 
     // Main entry points for npm scripts:
     grunt.registerTask('build-dev', [
