@@ -11,7 +11,7 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 describe('UnifiedDetailsSection', () => {
     const scanDate = new Date(Date.UTC(2020, 0, 1, 2, 3));
     const timestampStr = 'timestamp';
-    const device = 'connected device';
+    const deviceName = 'connected device';
     const name = 'app name';
 
     const descriptionValues = ['description-text', '', undefined, null];
@@ -26,11 +26,11 @@ describe('UnifiedDetailsSection', () => {
 
         const targetAppInfo = {
             name: name,
-            device: device,
         } as TargetAppData;
 
         const props: DetailsSectionProps = {
             targetAppInfo,
+            deviceName,
             description,
             scanDate,
             toUtcString: toUtcStringMock.object,

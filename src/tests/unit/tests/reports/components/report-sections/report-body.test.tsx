@@ -57,6 +57,7 @@ describe('ReportBody', () => {
             userConfigurationStoreData: null,
             targetAppInfo: { name: 'app' },
             shouldAlertFailuresCount: false,
+            timestamp: null,
         };
 
         const props: ReportBodyProps = {

@@ -8,6 +8,7 @@ import { convertScanResultsToUnifiedResults } from 'injected/adapters/scan-resul
 import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results-to-unified-rules';
 import { ResultDecorator } from 'scanner/result-decorator';
 
+import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
 import { ReportHtmlGenerator } from '../report-html-generator';
 import AccessibilityInsightsReport from './accessibilityInsightsReport';
 
@@ -53,12 +54,17 @@ export class AxeResultsReport implements AccessibilityInsightsReport.Report {
             url: results.url,
         };
 
+        const scanMetadata: ScanMetaData = {
+            targetAppInfo: targetAppInfo,
+            toolData: this.toolInfo,
+            timestamp: null,
+        };
+
         const html = reportHtmlGenerator.generateHtml(
             scanDate,
-            targetAppInfo,
             description,
             cardsViewModel,
-            this.toolInfo,
+            scanMetadata,
         );
 
         return html;

@@ -89,6 +89,7 @@ exports[`ReportBody renders 1`] = `
         "name": "app",
       }
     }
+    timestamp={null}
     toUtcString={[Function]}
     toolData={
       Object {
@@ -194,6 +195,7 @@ exports[`ReportBody renders 1`] = `
           "name": "app",
         }
       }
+      timestamp={null}
       toUtcString={[Function]}
       toolData={
         Object {
@@ -297,6 +299,7 @@ exports[`ReportBody renders 1`] = `
           "name": "app",
         }
       }
+      timestamp={null}
       toUtcString={[Function]}
       toolData={
         Object {
@@ -400,6 +403,7 @@ exports[`ReportBody renders 1`] = `
           "name": "app",
         }
       }
+      timestamp={null}
       toUtcString={[Function]}
       toolData={
         Object {
@@ -503,6 +507,7 @@ exports[`ReportBody renders 1`] = `
             "name": "app",
           }
         }
+        timestamp={null}
         toUtcString={[Function]}
         toolData={
           Object {
@@ -606,6 +611,7 @@ exports[`ReportBody renders 1`] = `
             "name": "app",
           }
         }
+        timestamp={null}
         toUtcString={[Function]}
         toolData={
           Object {
@@ -709,6 +715,7 @@ exports[`ReportBody renders 1`] = `
             "name": "app",
           }
         }
+        timestamp={null}
         toUtcString={[Function]}
         toolData={
           Object {
@@ -815,6 +822,7 @@ exports[`ReportBody renders 1`] = `
           "name": "app",
         }
       }
+      timestamp={null}
       toUtcString={[Function]}
       toolData={
         Object {

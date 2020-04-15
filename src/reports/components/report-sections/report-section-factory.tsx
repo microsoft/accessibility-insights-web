@@ -5,8 +5,8 @@ import { FixInstructionProcessor } from 'common/components/fix-instruction-proce
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { ReactFCWithDisplayName } from 'common/react/named-fc';
 
+import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
 import { CardsViewModel } from '../../../common/types/store-data/card-view-model';
-import { TargetAppData, ToolData } from '../../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import { NotApplicableChecksSectionDeps } from './not-applicable-checks-section';
 import { PassedChecksSectionDeps } from './passed-checks-section';
@@ -20,15 +20,13 @@ export type SectionProps = {
     fixInstructionProcessor: FixInstructionProcessor;
     description: string;
     scanDate: Date;
-    toolData: ToolData;
     toUtcString: (date: Date) => string;
     getCollapsibleScript: () => string;
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;
     cardsViewData: CardsViewModel;
     userConfigurationStoreData: UserConfigurationStoreData;
-    targetAppInfo: TargetAppData;
     shouldAlertFailuresCount?: boolean;
-};
+} & ScanMetaData;
 
 export type ReportSectionFactory = {
     HeadSection: ReactFCWithDisplayName;

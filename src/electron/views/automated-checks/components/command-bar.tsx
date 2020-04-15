@@ -54,10 +54,9 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
                 htmlGenerator={description =>
                     deps.reportGenerator.generateFastPassAutomatedChecksReport(
                         deps.getDateFromTimestamp(scanMetaData.timestamp),
-                        scanMetaData.targetAppInfo,
                         cardsViewData,
                         description,
-                        scanMetaData.toolData,
+                        scanMetaData,
                     )
                 }
                 updatePersistedDescription={() => null}
