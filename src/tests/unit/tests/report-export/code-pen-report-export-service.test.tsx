@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 import { mount, shallow } from 'enzyme';
 import * as React from 'react';
-import { CodePenReportExportService } from 'report-export/services/codepen-report-export-service';
-import { ExportFormProps } from 'report-export/types/report-export-service';
+import { CodePenReportExportService } from 'report-export/services/code-pen-report-export-service';
+import { ReportExportFormProps } from 'report-export/types/report-export-service';
 import { Mock, Times } from 'typemoq';
 
 describe('CodePenReportExportService', () => {
     describe('exportForm', () => {
-        let props: ExportFormProps;
+        let props: ReportExportFormProps;
         const ExportForm = CodePenReportExportService.exportForm;
 
         beforeEach(() => {
@@ -27,7 +27,7 @@ describe('CodePenReportExportService', () => {
         });
 
         it('submit the form right after the first render', () => {
-            type OnSubmit = ExportFormProps['onSubmit'];
+            type OnSubmit = ReportExportFormProps['onSubmit'];
             const onSubmitMock = Mock.ofType<OnSubmit>();
 
             props.onSubmit = onSubmitMock.object;

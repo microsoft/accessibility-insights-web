@@ -48,7 +48,7 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
         exportReport = (
             <ReportExportComponent
                 deps={deps}
-                exportResultsType={'AutomatedChecks'}
+                reportExportFormat={'AutomatedChecks'}
                 pageTitle={scanMetaData.targetAppInfo.name}
                 scanDate={deps.getDateFromTimestamp(scanMetaData.timestamp)}
                 htmlGenerator={description =>

@@ -22,7 +22,7 @@ import { FeatureFlagPayload } from 'background/actions/feature-flag-actions';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import * as React from 'react';
 
-import { ExportResultType } from '../../common/extension-telemetry-events';
+import { ReportExportFormat } from '../../common/extension-telemetry-events';
 import * as TelemetryEvents from '../../common/extension-telemetry-events';
 import { Message } from '../../common/message';
 import { DevToolActionMessageCreator } from '../../common/message-creators/dev-tool-action-message-creator';
@@ -110,12 +110,12 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
     };
 
     public exportResultsClicked(
-        exportResultsType: ExportResultType,
+        reportExportFormat: ReportExportFormat,
         exportedHtml: string,
         event: React.MouseEvent<HTMLElement>,
     ): void {
         const telemetryData = this.telemetryFactory.forExportedHtml(
-            exportResultsType,
+            reportExportFormat,
             exportedHtml,
             event,
             TelemetryEvents.TelemetryEventSource.DetailsView,
