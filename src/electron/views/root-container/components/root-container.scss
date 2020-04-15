@@ -7,8 +7,11 @@ body {
     margin: 0px;
     height: 100%;
     width: 100%;
-    background-color: $neutral-0;
     font-family: $fontFamily;
+}
+
+#root-container {
+    background-color: $neutral-0;
 }
 
 button {

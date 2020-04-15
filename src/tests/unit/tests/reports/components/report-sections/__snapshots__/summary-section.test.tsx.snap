@@ -193,8 +193,8 @@ exports[`SummarySection PassFailSummarySection renders BaseSummarySection with o
   cardsViewData={Object {}}
   outcomeTypesShown={
     Array [
-      "pass",
       "fail",
+      "pass",
     ]
   }
 />
