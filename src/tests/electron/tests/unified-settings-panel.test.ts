@@ -19,7 +19,6 @@ describe('AutomatedChecksView -> Settings Panel', () => {
     });
 
     afterEach(async () => {
-        automatedChecksView = null;
         if (app != null) {
             await app.stop();
         }

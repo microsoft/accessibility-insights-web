@@ -23,7 +23,6 @@ describe('AutomatedChecksView', () => {
     });
 
     afterEach(async () => {
-        automatedChecksView = null;
         if (app != null) {
             await app.stop();
         }
