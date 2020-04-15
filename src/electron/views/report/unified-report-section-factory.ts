@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import { FailedInstancesSection } from 'common/components/cards/failed-instances-section';
 import { NullComponent } from 'common/components/null-component';
-import { UnifiedDetailsSection } from 'electron/views/report/unified-details-section';
 import { UnifiedReportHead } from 'electron/views/report/unified-report-head';
 import { BodySection } from 'reports/components/report-sections/body-section';
 import { ContentContainer } from 'reports/components/report-sections/content-container';
+import { DetailsSection } from 'reports/components/report-sections/details-section';
 import { FooterTextForUnified } from 'reports/components/report-sections/footer-text-for-unified';
 import { PassedChecksSection } from 'reports/components/report-sections/passed-checks-section';
 import { ReportFooter } from 'reports/components/report-sections/report-footer';
@@ -22,7 +22,7 @@ export const UnifiedReportSectionFactory: ReportSectionFactory = {
     HeaderSection: UnifiedHeaderSection,
     TitleSection,
     SummarySection: PassFailSummarySection,
-    DetailsSection: UnifiedDetailsSection,
+    DetailsSection,
     ResultsContainer,
     FailedInstancesSection,
     PassedChecksSection,

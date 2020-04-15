@@ -5,17 +5,18 @@ import { CommentIcon } from 'common/icons/comment-icon';
 import { DateIcon } from 'common/icons/date-icon';
 import { UrlIcon } from 'common/icons/url-icon';
 import { NamedFC } from 'common/react/named-fc';
+import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 import { NewTabLinkWithConfirmationDialog } from 'reports/components/new-tab-link-confirmation-dialog';
 import { SectionProps } from './report-section-factory';
 
 export type DetailsSectionProps = Pick<
     SectionProps,
-    'targetAppInfo' | 'description' | 'scanDate' | 'toUtcString'
+    'targetAppInfo' | 'deviceName' | 'description' | 'scanDate' | 'toUtcString'
 >;
 
 export const DetailsSection = NamedFC<DetailsSectionProps>('DetailsSection', props => {
-    const { targetAppInfo, description, scanDate, toUtcString } = props;
+    const { targetAppInfo, deviceName, description, scanDate, toUtcString } = props;
 
     const createListItem = (
         icon: JSX.Element,
@@ -32,6 +33,24 @@ export const DetailsSection = NamedFC<DetailsSectionProps>('DetailsSection', pro
         </li>
     );
 
+    const createUrlOrDeviceItem = (appInfo: TargetAppData, device: string) => {
+        let label: string;
+        let content: string | JSX.Element;
+
+        if (deviceName !== undefined) {
+            content = `${device} - ${targetAppInfo.name}`;
+            label = 'connected device name:';
+        } else {
+            label = 'target page url:';
+            content = (
+                <NewTabLinkWithConfirmationDialog href={appInfo.url} title={appInfo.name}>
+                    {appInfo.url}
+                </NewTabLinkWithConfirmationDialog>
+            );
+        }
+        return createListItem(<UrlIcon />, label, content);
+    };
+
     const scanDateUTC: string = toUtcString(scanDate);
     const showCommentRow = !!description && description !== '';
 
@@ -39,16 +58,7 @@ export const DetailsSection = NamedFC<DetailsSectionProps>('DetailsSection', pro
         <div className="scan-details-section">
             <h2>Scan details</h2>
             <ul className="details-section-list">
-                {createListItem(
-                    <UrlIcon />,
-                    'target page url:',
-                    <NewTabLinkWithConfirmationDialog
-                        href={targetAppInfo.url}
-                        title={targetAppInfo.name}
-                    >
-                        {targetAppInfo.url}
-                    </NewTabLinkWithConfirmationDialog>,
-                )}
+                {createUrlOrDeviceItem(targetAppInfo, deviceName)}
                 {createListItem(<DateIcon />, 'scan date:', scanDateUTC)}
                 {showCommentRow &&
                     createListItem(<CommentIcon />, 'comment:', description, 'description-text')}

@@ -27,10 +27,60 @@ exports[`DetailsSection renders with description:  1`] = `
       >
         <NewTabLinkWithConfirmationDialog
           href="https://page-url/"
-          title="page-title"
+          title="app-name"
         >
           https://page-url/
         </NewTabLinkWithConfirmationDialog>
+      </span>
+    </li>
+    <li>
+      <span
+        aria-hidden="true"
+        className="icon"
+      >
+        <DateIcon />
+      </span>
+      <span
+        className="screen-reader-only"
+      >
+        scan date:
+      </span>
+      <span
+        className="text"
+      >
+        2018-03-12 11:24 PM UTC
+      </span>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`DetailsSection renders with description:  2`] = `
+<div
+  className="scan-details-section"
+>
+  <h2>
+    Scan details
+  </h2>
+  <ul
+    className="details-section-list"
+  >
+    <li>
+      <span
+        aria-hidden="true"
+        className="icon"
+      >
+        <UrlIcon />
+      </span>
+      <span
+        className="screen-reader-only"
+      >
+        connected device name:
+      </span>
+      <span
+        className="text"
+      >
+        connected device - app-name
       </span>
     </li>
     <li>
@@ -82,10 +132,78 @@ exports[`DetailsSection renders with description: description-text 1`] = `
       >
         <NewTabLinkWithConfirmationDialog
           href="https://page-url/"
-          title="page-title"
+          title="app-name"
         >
           https://page-url/
         </NewTabLinkWithConfirmationDialog>
+      </span>
+    </li>
+    <li>
+      <span
+        aria-hidden="true"
+        className="icon"
+      >
+        <DateIcon />
+      </span>
+      <span
+        className="screen-reader-only"
+      >
+        scan date:
+      </span>
+      <span
+        className="text"
+      >
+        2018-03-12 11:24 PM UTC
+      </span>
+    </li>
+    <li>
+      <span
+        aria-hidden="true"
+        className="icon"
+      >
+        <CommentIcon />
+      </span>
+      <span
+        className="screen-reader-only"
+      >
+        comment:
+      </span>
+      <span
+        className="text description-text"
+      >
+        description-text
+      </span>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`DetailsSection renders with description: description-text 2`] = `
+<div
+  className="scan-details-section"
+>
+  <h2>
+    Scan details
+  </h2>
+  <ul
+    className="details-section-list"
+  >
+    <li>
+      <span
+        aria-hidden="true"
+        className="icon"
+      >
+        <UrlIcon />
+      </span>
+      <span
+        className="screen-reader-only"
+      >
+        connected device name:
+      </span>
+      <span
+        className="text"
+      >
+        connected device - app-name
       </span>
     </li>
     <li>
@@ -155,10 +273,60 @@ exports[`DetailsSection renders with description: null 1`] = `
       >
         <NewTabLinkWithConfirmationDialog
           href="https://page-url/"
-          title="page-title"
+          title="app-name"
         >
           https://page-url/
         </NewTabLinkWithConfirmationDialog>
+      </span>
+    </li>
+    <li>
+      <span
+        aria-hidden="true"
+        className="icon"
+      >
+        <DateIcon />
+      </span>
+      <span
+        className="screen-reader-only"
+      >
+        scan date:
+      </span>
+      <span
+        className="text"
+      >
+        2018-03-12 11:24 PM UTC
+      </span>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`DetailsSection renders with description: null 2`] = `
+<div
+  className="scan-details-section"
+>
+  <h2>
+    Scan details
+  </h2>
+  <ul
+    className="details-section-list"
+  >
+    <li>
+      <span
+        aria-hidden="true"
+        className="icon"
+      >
+        <UrlIcon />
+      </span>
+      <span
+        className="screen-reader-only"
+      >
+        connected device name:
+      </span>
+      <span
+        className="text"
+      >
+        connected device - app-name
       </span>
     </li>
     <li>
@@ -210,10 +378,60 @@ exports[`DetailsSection renders with description: undefined 1`] = `
       >
         <NewTabLinkWithConfirmationDialog
           href="https://page-url/"
-          title="page-title"
+          title="app-name"
         >
           https://page-url/
         </NewTabLinkWithConfirmationDialog>
+      </span>
+    </li>
+    <li>
+      <span
+        aria-hidden="true"
+        className="icon"
+      >
+        <DateIcon />
+      </span>
+      <span
+        className="screen-reader-only"
+      >
+        scan date:
+      </span>
+      <span
+        className="text"
+      >
+        2018-03-12 11:24 PM UTC
+      </span>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`DetailsSection renders with description: undefined 2`] = `
+<div
+  className="scan-details-section"
+>
+  <h2>
+    Scan details
+  </h2>
+  <ul
+    className="details-section-list"
+  >
+    <li>
+      <span
+        aria-hidden="true"
+        className="icon"
+      >
+        <UrlIcon />
+      </span>
+      <span
+        className="screen-reader-only"
+      >
+        connected device name:
+      </span>
+      <span
+        className="text"
+      >
+        connected device - app-name
       </span>
     </li>
     <li>
