@@ -14,7 +14,7 @@ export class ReportNameGenerator {
         );
     }
 
-    private getDateSegment(scanDate: Date): string {
+    protected getDateSegment(scanDate: Date): string {
         return (
             scanDate.getFullYear() +
             this.padStartWithZero(scanDate.getMonth() + 1, 2) +
@@ -22,15 +22,15 @@ export class ReportNameGenerator {
         );
     }
 
-    private padStartWithZero(num: number, digits: number): string {
+    protected padStartWithZero(num: number, digits: number): string {
         return padStart(num.toString(), digits, '0');
     }
 
-    private getTitleSegment(pageTitle: string): string {
+    protected getTitleSegment(pageTitle: string): string {
         return Array.from(pageTitle).filter(this.isValidCharForTitle).slice(0, 20).join('');
     }
 
-    private isValidCharForTitle(character: string): boolean {
+    protected isValidCharForTitle(character: string): boolean {
         return /[A-Za-z0-9]/.test(character);
     }
 }
