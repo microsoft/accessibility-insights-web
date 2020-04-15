@@ -42,6 +42,36 @@ describe('getUnavailableHighlightStatusUnified', () => {
         );
     });
 
+    test('unavailable: boundingRectangle left value is negative', () => {
+        const unifiedResult: UnifiedResult = {
+            descriptors: {
+                boundingRectangle: {
+                    left: -5,
+                },
+            },
+        } as UnifiedResult;
+        const platformData: PlatformData = {} as PlatformData;
+
+        expect(getUnavailableHighlightStatusUnified(unifiedResult, platformData)).toEqual(
+            'unavailable',
+        );
+    });
+
+    test('unavailable: boundingRectangle top value is negative', () => {
+        const unifiedResult: UnifiedResult = {
+            descriptors: {
+                boundingRectangle: {
+                    top: -5,
+                },
+            },
+        } as UnifiedResult;
+        const platformData: PlatformData = {} as PlatformData;
+
+        expect(getUnavailableHighlightStatusUnified(unifiedResult, platformData)).toEqual(
+            'unavailable',
+        );
+    });
+
     test('unavailable: boundingRectangle top value is greater than platform height', () => {
         const unifiedResult: UnifiedResult = {
             descriptors: {
