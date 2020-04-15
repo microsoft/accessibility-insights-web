@@ -80,7 +80,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                 toolData: unifiedScanResultStoreData.toolInfo,
                 targetAppInfo: {
                     ...this.props.unifiedScanResultStoreData.targetAppInfo,
-                    device: this.props.deviceStoreData.connectedDevice,
+                    device: this.props.unifiedScanResultStoreData.platformInfo.deviceName,
                 },
             };
 

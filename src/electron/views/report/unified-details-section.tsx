@@ -5,6 +5,7 @@ import { CommentIcon } from 'common/icons/comment-icon';
 import { DateIcon } from 'common/icons/date-icon';
 import { UrlIcon } from 'common/icons/url-icon';
 import { NamedFC } from 'common/react/named-fc';
+import { isEmpty } from 'lodash';
 import * as React from 'react';
 import { DetailsSectionProps } from 'reports/components/report-sections/details-section';
 
@@ -27,13 +28,14 @@ export const UnifiedDetailsSection = NamedFC<DetailsSectionProps>('DetailsSectio
     );
 
     const scanDateUTC: string = toUtcString(scanDate);
-    const showCommentRow = !!description && description !== '';
+    const showCommentRow = !isEmpty(description);
+    const connectedDevice = `${targetAppInfo.device} - ${targetAppInfo.name}`;
 
     return (
         <div className="scan-details-section">
             <h2>Scan details</h2>
             <ul className="details-section-list">
-                {createListItem(<UrlIcon />, 'connected device name:', targetAppInfo.device)}
+                {createListItem(<UrlIcon />, 'connected device name:', connectedDevice)}
                 {createListItem(<DateIcon />, 'scan date:', scanDateUTC)}
                 {showCommentRow &&
                     createListItem(<CommentIcon />, 'comment:', description, 'description-text')}

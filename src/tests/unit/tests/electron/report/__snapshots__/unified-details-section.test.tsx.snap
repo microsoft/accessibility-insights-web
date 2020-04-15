@@ -25,7 +25,7 @@ exports[`UnifiedDetailsSection renders with description:  1`] = `
       <span
         className="text"
       >
-        connected device
+        connected device - app name
       </span>
     </li>
     <li>
@@ -75,7 +75,7 @@ exports[`UnifiedDetailsSection renders with description: description-text 1`] = 
       <span
         className="text"
       >
-        connected device
+        connected device - app name
       </span>
     </li>
     <li>
@@ -143,7 +143,7 @@ exports[`UnifiedDetailsSection renders with description: null 1`] = `
       <span
         className="text"
       >
-        connected device
+        connected device - app name
       </span>
     </li>
     <li>
@@ -193,7 +193,7 @@ exports[`UnifiedDetailsSection renders with description: undefined 1`] = `
       <span
         className="text"
       >
-        connected device
+        connected device - app name
       </span>
     </li>
     <li>

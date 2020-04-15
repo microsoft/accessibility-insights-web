@@ -12,6 +12,7 @@ import {
     CardsViewModel,
 } from 'common/types/store-data/card-view-model';
 import {
+    PlatformData,
     ToolData,
     UnifiedResult,
     UnifiedRule,
@@ -85,6 +86,9 @@ describe('AutomatedChecksView', () => {
                 results: resultsStub,
                 toolInfo: toolDataStub,
                 timestamp: timeStampStub,
+                platformInfo: {
+                    deviceName: 'TEST DEVICE',
+                } as PlatformData,
             };
             const ruleResultsByStatusStub = {
                 fail: [{ id: 'test-fail-id' } as CardRuleResult],
@@ -109,9 +113,7 @@ describe('AutomatedChecksView', () => {
                     screenshotViewModelProvider: screenshotViewModelProviderMock.object,
                 },
                 cardSelectionStoreData,
-                deviceStoreData: {
-                    connectedDevice: 'TEST DEVICE',
-                },
+                deviceStoreData: {},
                 scanStoreData: {
                     status: ScanStatus.Completed,
                 },
