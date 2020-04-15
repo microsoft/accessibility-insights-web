@@ -10,7 +10,7 @@ body {
     font-family: $fontFamily;
 }
 
-#root-container {
+:global(#root-container) {
     background-color: $neutral-0;
 }
 
