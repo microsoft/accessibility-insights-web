@@ -81,7 +81,7 @@ export const getCardSelectionViewData: GetCardSelectionViewData = (
         viewData.expandedRuleIds,
     );
 
-    if (viewData.selectedResultUids.length) {
+    if (viewData.selectedResultUids.length > 0) {
         viewData.selectedResultUids.forEach(resultUid => {
             viewData.resultsHighlightStatus[resultUid] = 'visible';
         });
