@@ -104,7 +104,7 @@ exports[`Details View -> Preview Features Panel should match content in snapshot
                           aria-label="More export options"
                           class="ms-Toggle-background pill-000"
                           data-is-focusable="true"
-                          id="exportReport"
+                          id="exportReportOptions"
                           role="switch"
                           type="button"
                         >
@@ -114,8 +114,8 @@ exports[`Details View -> Preview Features Panel should match content in snapshot
                         </button>
                         <label
                           class="ms-Label ms-Toggle-stateText text-000"
-                          for="exportReport"
-                          id="exportReport-stateText"
+                          for="exportReportOptions"
+                          id="exportReportOptions-stateText"
                         >
                           Off
                         </label>
