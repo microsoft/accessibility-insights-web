@@ -94,6 +94,9 @@ describe('FeatureFlagsTest', () => {
             );
             if (matchingWebDetail !== undefined) {
                 expect(unifiedDetail.displayableName).toEqual(matchingWebDetail.displayableName);
+                expect(unifiedDetail.displayableDescription).toEqual(
+                    matchingWebDetail.displayableDescription,
+                );
             }
         });
     });
