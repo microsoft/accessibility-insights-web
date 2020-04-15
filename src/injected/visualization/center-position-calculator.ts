@@ -31,7 +31,7 @@ export class CenterPositionCalculator {
         }
 
         const myDocument = this.drawerUtils.getDocumentElement();
-        const body = myDocument.querySelector('body');
+        const body = myDocument.body;
 
         const bodyStyle = this.windowUtils.getComputedStyle(body);
         const docStyle = this.windowUtils.getComputedStyle(myDocument.documentElement);
@@ -80,7 +80,7 @@ export class CenterPositionCalculator {
         );
 
         const myDocument = this.drawerUtils.getDocumentElement();
-        const body = myDocument.querySelector('body');
+        const body = myDocument.body;
 
         const bodyStyle = this.windowUtils.getComputedStyle(body);
         const docStyle = this.windowUtils.getComputedStyle(myDocument.documentElement);

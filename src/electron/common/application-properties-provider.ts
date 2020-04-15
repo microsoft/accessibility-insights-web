@@ -3,9 +3,9 @@
 import { AppDataAdapter } from 'common/browser-adapters/app-data-adapter';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { androidAppTitle } from 'content/strings/application';
-import { ScanResults } from 'electron/platform/android/scan-results';
+import { AndroidScanResults } from 'electron/platform/android/android-scan-results';
 
-export type ToolDataDelegate = (scanResults: ScanResults) => ToolData;
+export type ToolDataDelegate = (scanResults: AndroidScanResults) => ToolData;
 
 export const createGetToolDataDelegate = (appDataAdapter: AppDataAdapter): ToolDataDelegate => {
     return scanResults => {

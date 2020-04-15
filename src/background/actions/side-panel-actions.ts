@@ -5,4 +5,5 @@ import { Action } from 'common/flux/action';
 
 export class SidePanelActions {
     public readonly openSidePanel = new Action<SidePanel>();
+    public readonly closeSidePanel = new Action<SidePanel>();
 }

@@ -28,6 +28,17 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
       className="mainContentWrapper"
     >
       <CommandBar
+        cardsViewData={
+          Object {
+            "cards": Object {
+              "fail": Array [
+                Object {
+                  "id": "test-fail-id",
+                },
+              ],
+            },
+          }
+        }
         deps={
           Object {
             "getCardSelectionViewData": [Function],
@@ -42,6 +53,19 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
           }
         }
         deviceStoreData={Object {}}
+        scanMetaData={
+          Object {
+            "targetAppInfo": Object {
+              "name": "test-target-app-name",
+            },
+            "timestamp": "test timestamp",
+            "toolData": Object {
+              "applicationProperties": Object {
+                "name": "some app",
+              },
+            },
+          }
+        }
         scanStoreData={
           Object {
             "status": 2,
@@ -154,6 +178,7 @@ exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
       className="mainContentWrapper"
     >
       <CommandBar
+        cardsViewData={null}
         deps={
           Object {
             "getUnavailableHighlightStatus": [Function],
@@ -174,6 +199,7 @@ exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
             "connectedDevice": "TEST DEVICE",
           }
         }
+        scanMetaData={null}
         scanStoreData={
           Object {
             "status": 3,
@@ -244,6 +270,7 @@ exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
       className="mainContentWrapper"
     >
       <CommandBar
+        cardsViewData={null}
         deps={
           Object {
             "getUnavailableHighlightStatus": [Function],
@@ -264,6 +291,7 @@ exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
             "connectedDevice": "TEST DEVICE",
           }
         }
+        scanMetaData={null}
         scanStoreData={
           Object {
             "status": 1,
@@ -334,6 +362,7 @@ exports[`AutomatedChecksView renders when status scan <undefined> 1`] = `
       className="mainContentWrapper"
     >
       <CommandBar
+        cardsViewData={null}
         deps={
           Object {
             "getUnavailableHighlightStatus": [Function],
@@ -354,6 +383,7 @@ exports[`AutomatedChecksView renders when status scan <undefined> 1`] = `
             "connectedDevice": "TEST DEVICE",
           }
         }
+        scanMetaData={null}
         scanStoreData={
           Object {
             "status": undefined,

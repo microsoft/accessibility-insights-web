@@ -3,20 +3,20 @@
 exports[`HeaderSection renders 1`] = `
 <header>
   <div
-    className="report-header-bar"
+    className="reportHeaderBar"
   >
     <BrandWhite />
     <div
-      className="ms-font-m header-text ms-fontWeight-semibold"
+      className="headerText"
     >
       Accessibility Insights for Web
     </div>
   </div>
   <div
-    className="report-header-command-bar"
+    className="reportHeaderCommandBar"
   >
     <div
-      className="target-page"
+      className="targetPage"
     >
       Target page: 
       <NewTabLinkWithConfirmationDialog

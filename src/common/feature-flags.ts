@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { forEach } from 'lodash';
 
-import { FeatureFlagStoreData } from './types/store-data/feature-flag-store-data';
+import { FeatureFlagDefaultsHelper } from 'common/feature-flag-defaults-helper';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 
 export class FeatureFlags {
     public static readonly logTelemetryToConsole = 'logTelemetryToConsole';
@@ -13,6 +13,8 @@ export class FeatureFlags {
     public static readonly showInstanceVisibility = 'showInstanceVisibility';
     public static readonly manualInstanceDetails = 'manualInstanceDetails';
     public static readonly debugTools = 'debugTools';
+
+    public static readonly exportReport = 'exportReport';
 }
 
 export interface FeatureFlagDetail {
@@ -99,25 +101,17 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             isPreviewFeature: false,
             forceDefault: false,
         },
+        {
+            id: FeatureFlags.exportReport,
+            defaultValue: false,
+            displayableName: 'More export options',
+            displayableDescription: 'Enables exporting reports to external services',
+            isPreviewFeature: true,
+            forceDefault: false,
+        },
     ];
 }
 
-export function getDefaultFeatureFlagValues(): FeatureFlagStoreData {
-    const details: FeatureFlagDetail[] = getAllFeatureFlagDetails();
-    const values: FeatureFlagStoreData = {};
-    forEach(details, detail => {
-        values[detail.id] = detail.defaultValue;
-    });
-    return values;
-}
-
-export function getForceDefaultFlags(): FeatureFlags[] {
-    const details: FeatureFlagDetail[] = getAllFeatureFlagDetails();
-    const forceDefaultFlags: FeatureFlags[] = [];
-    forEach(details, detail => {
-        if (detail.forceDefault) {
-            forceDefaultFlags.push(detail.id);
-        }
-    });
-    return forceDefaultFlags;
+export function getDefaultFeatureFlagsWeb(): FeatureFlagStoreData {
+    return new FeatureFlagDefaultsHelper(getAllFeatureFlagDetails).getDefaultFeatureFlagValues();
 }

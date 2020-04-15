@@ -5,9 +5,12 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { UnifiedResult } from 'common/types/store-data/unified-data-interface';
 import { generateUID } from 'common/uid-generator';
+import {
+    AndroidScanResults,
+    RuleResultsData,
+} from 'electron/platform/android/android-scan-results';
 import { RuleInformation } from 'electron/platform/android/rule-information';
 import { RuleInformationProviderType } from 'electron/platform/android/rule-information-provider-type';
-import { RuleResultsData, ScanResults } from 'electron/platform/android/scan-results';
 import { convertScanResultsToUnifiedResults } from 'electron/platform/android/scan-results-to-unified-results';
 import {
     buildRuleInformation,
@@ -97,7 +100,7 @@ describe('ScanResultsToUnifiedResults', () => {
     });
 
     test('ScanResults with no RuleResults returns empty output', () => {
-        const scanResults: ScanResults = buildScanResultsObject();
+        const scanResults: AndroidScanResults = buildScanResultsObject();
         const results: UnifiedResult[] = convertScanResultsToUnifiedResults(
             scanResults,
             ruleInformationProviderMock.object,
@@ -149,7 +152,7 @@ describe('ScanResultsToUnifiedResults', () => {
             ],
         );
 
-        const scanResults: ScanResults = buildScanResultsObject(
+        const scanResults: AndroidScanResults = buildScanResultsObject(
             'Some device',
             'Some app',
             ruleResults,

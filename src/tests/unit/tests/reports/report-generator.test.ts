@@ -3,7 +3,7 @@
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { TabStoreData } from 'common/types/store-data/tab-store-data';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
 import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
@@ -21,6 +21,13 @@ describe('ReportGenerator', () => {
         cards: exampleUnifiedStatusResults,
         visualHelperEnabled: true,
         allCardsCollapsed: true,
+    };
+    const toolDataStub: ToolData = {
+        applicationProperties: { name: 'some app' },
+    } as ToolData;
+    const targetAppInfo = {
+        name: title,
+        url: url,
     };
 
     let dataBuilderMock: IMock<ReportHtmlGenerator>;
@@ -40,11 +47,12 @@ describe('ReportGenerator', () => {
         dataBuilderMock
             .setup(builder =>
                 builder.generateHtml(
-                    It.isValue(date),
-                    It.isValue(title),
-                    It.isValue(url),
-                    It.isValue(description),
-                    It.isValue(cardsViewDataStub),
+                    date,
+                    title,
+                    url,
+                    description,
+                    cardsViewDataStub,
+                    toolDataStub,
                 ),
             )
             .returns(() => 'returned-data');
@@ -56,10 +64,10 @@ describe('ReportGenerator', () => {
         );
         const actual = testObject.generateFastPassAutomatedChecksReport(
             date,
-            title,
-            url,
+            targetAppInfo,
             cardsViewDataStub,
             description,
+            toolDataStub,
         );
 
         expect(actual).toMatchSnapshot();
@@ -69,7 +77,6 @@ describe('ReportGenerator', () => {
         const assessmentStoreData: AssessmentStoreData = { stub: 'assessmentStoreData' } as any;
         const assessmentsProvider: AssessmentsProvider = { stub: 'assessmentsProvider' } as any;
         const featureFlagStoreData: FeatureFlagStoreData = { stub: 'featureFlagStoreData' } as any;
-        const tabStoreData: TabStoreData = { stub: 'tabStoreData' } as any;
         const assessmentDescription = 'generateAssessmentHtml-description';
 
         assessmentReportHtmlGeneratorMock
@@ -78,7 +85,7 @@ describe('ReportGenerator', () => {
                     assessmentStoreData,
                     assessmentsProvider,
                     featureFlagStoreData,
-                    tabStoreData,
+                    targetAppInfo,
                     assessmentDescription,
                 ),
             )
@@ -94,7 +101,7 @@ describe('ReportGenerator', () => {
             assessmentStoreData,
             assessmentsProvider,
             featureFlagStoreData,
-            tabStoreData,
+            targetAppInfo,
             assessmentDescription,
         );
 

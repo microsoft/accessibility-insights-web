@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { getDefaultFeatureFlagValues } from '../../../../../common/feature-flags';
+import { getDefaultFeatureFlagsWeb } from '../../../../../common/feature-flags';
 import { TabbedElementData } from '../../../../../common/types/store-data/visualization-scan-result-data';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { ShadowUtils } from '../../../../../injected/shadow-utils';
@@ -49,7 +49,7 @@ describe('SVGDrawer', () => {
     function createDrawerInfo<T>(elementResults: T[]): DrawerInitData<T> {
         return {
             data: elementResults,
-            featureFlagStoreData: getDefaultFeatureFlagValues(),
+            featureFlagStoreData: getDefaultFeatureFlagsWeb(),
         };
     }
 

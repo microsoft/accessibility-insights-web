@@ -3,7 +3,7 @@
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { TabStoreData } from 'common/types/store-data/tab-store-data';
+import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 import {
     AssessmentReportHtmlGenerator,
@@ -31,7 +31,7 @@ describe('AssessmentReportHtmlGenerator', () => {
         const assessmentsProvider = CreateTestAssessmentProviderWithFeatureFlag();
         const assessmentStoreData: AssessmentStoreData = { stub: 'assessmentStoreData' } as any;
         const featureFlagStoreData: FeatureFlagStoreData = { stub: 'featureFlagStoreData' } as any;
-        const tabStoreData: TabStoreData = { stub: 'tabStoreData' } as any;
+        const targetAppInfo: TargetAppData = { stub: 'targetAppInfo' } as any;
         const description = 'generateHtml-description';
 
         const deps: AssessmentReportHtmlGeneratorDeps = {
@@ -77,7 +77,7 @@ describe('AssessmentReportHtmlGenerator', () => {
                 f.create(
                     It.isAny(),
                     assessmentStoreData,
-                    tabStoreData,
+                    targetAppInfo,
                     testDate,
                     assessmentDefaultMessageGenerator,
                 ),
@@ -105,7 +105,7 @@ describe('AssessmentReportHtmlGenerator', () => {
             assessmentStoreData,
             assessmentsProvider,
             featureFlagStoreData,
-            tabStoreData,
+            targetAppInfo,
             description,
         );
 

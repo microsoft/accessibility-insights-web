@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { StorageAdapter } from 'common/browser-adapters/storage-adapter';
-import {
-    FeatureFlags,
-    getDefaultFeatureFlagValues,
-    getForceDefaultFlags,
-} from 'common/feature-flags';
+import { FeatureFlagDefaultsHelper } from 'common/feature-flag-defaults-helper';
 import { StoreNames } from 'common/stores/store-names';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { FeatureFlagActions, FeatureFlagPayload } from '../../actions/feature-flag-actions';
@@ -18,6 +14,7 @@ export class FeatureFlagStore extends BaseStoreImpl<FeatureFlagStoreData> {
         private readonly featureFlagActions: FeatureFlagActions,
         private readonly storageAdapter: StorageAdapter,
         private readonly userData: LocalStorageData,
+        private readonly featureFlagDefaultsHelper: FeatureFlagDefaultsHelper,
     ) {
         super(StoreNames.FeatureFlagStore);
     }
@@ -28,11 +25,11 @@ export class FeatureFlagStore extends BaseStoreImpl<FeatureFlagStoreData> {
     }
 
     public getDefaultState(): FeatureFlagStoreData {
-        return getDefaultFeatureFlagValues();
+        return this.featureFlagDefaultsHelper.getDefaultFeatureFlagValues();
     }
 
-    public getForceDefaultFlags(): FeatureFlags[] {
-        return getForceDefaultFlags();
+    public getForceDefaultFlags(): string[] {
+        return this.featureFlagDefaultsHelper.getForceDefaultFlags();
     }
 
     protected addActionListeners(): void {

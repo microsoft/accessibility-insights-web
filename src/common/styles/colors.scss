@@ -6,27 +6,22 @@
 
 // Accessibility Insights brand color
 $ada-brand-color: var(--ada-brand-color);
+
 // Text colors
 $primary-text: var(--primary-text);
 $secondary-text: var(--secondary-text);
 $disabled-text: var(--disabled-text);
-$primary-text-invert: var(--primary-text-invert);
-$secondary-text-invert: var(--secondary-text-invert);
-$disabled-text-invert: var(--disabled-text-invert);
-$header-bar-title-color: var(--header-bar-title-color);
+
 // UI colors
 $communication-primary: var(--communication-primary);
 $communication-tint-40: var(--communication-tint-40);
 $communication-tint-30: var(--communication-tint-30);
 $communication-tint-20: var(--communication-tint-20);
 $communication-tint-10: var(--communication-tint-10);
-$communication-shade-10: var(--communication-shade-10);
 $communication-shade-20: var(--communication-shade-20);
-$communication-shade-30: var(--communication-shade-30);
-// Base
-$neutral-0: var(--neutral-0);
-$neutral-100: var(--neutral-100);
+
 // Neutral surfaces
+$neutral-0: var(--neutral-0);
 $neutral-2: var(--neutral-2);
 $neutral-4: var(--neutral-4);
 $neutral-6: var(--neutral-6);
@@ -39,6 +34,7 @@ $neutral-55: var(--neutral-55);
 $neutral-60: var(--neutral-60);
 $neutral-70: var(--neutral-70);
 $neutral-80: var(--neutral-80);
+$neutral-100: var(--neutral-100);
 $neutral-alpha-2: var(--neutral-alpha-2);
 $neutral-alpha-4: var(--neutral-alpha-4);
 $neutral-alpha-6: var(--neutral-alpha-6);
@@ -50,7 +46,6 @@ $neutral-alpha-60: var(--neutral-alpha-60);
 $neutral-alpha-70: var(--neutral-alpha-70);
 $neutral-alpha-80: var(--neutral-alpha-80);
 $neutral-alpha-90: var(--neutral-alpha-90);
-$acrylic-light: var(--acrylic-light);
 $box-shadow-132: var(--box-shadow-132);
 $box-shadow-108: var(--box-shadow-108);
 $box-shadow-27: var(--box-shadow-27);
@@ -59,7 +54,8 @@ $box-shadow-27: var(--box-shadow-27);
 $positive-outcome: var(--positive-outcome);
 $negative-outcome: var(--negative-outcome);
 $neutral-outcome: var(--neutral-outcome);
-$incomplete-color: var(--incomplete-color);
+$incomplete-color: var(--neutral-60);
+
 // Landmark colors
 $landmark-contentinfo: var(--landmark-contentinfo);
 $landmark-main: var(--landmark-main);
@@ -69,40 +65,28 @@ $landmark-region: var(--landmark-region);
 $landmark-navigation: var(--landmark-navigation);
 $landmark-search: var(--landmark-search);
 $landmark-form: var(--landmark-form);
+
 // Additional colors
-$accent2-dark: var(--accent2-dark);
-$ada-brand-variant: var(--ada-brand-variant);
-$communication-alpha-5: var(--communication-alpha-5);
-$overview-percent-selected: var(--overview-percent-selected);
-$index-circle-background: var(--index-circle-background);
-$check-box-border: var(--check-box-border);
-$check-box-tick: var(--check-box-tick);
-$check-box-background: var(--check-box-background);
-$row-selected-background: var(--row-selected-background);
-$group-selected-background: var(--group-selected-background);
-$row-hover-background: var(--row-hover-background);
-$link: var(--link);
-$unified-link: var(--unified-link);
-$link-hover: var(--link-hover);
-$switcher-border: var(--switcher-border);
-$switcher-focus-border: var(--switcher-focus-border);
-$help-links-section-background: var(--help-links-section-background);
-$help-links-section-border: var(--help-links-section-border);
-$highlighted-text: var(--highlighted-text);
-$pill: var(--pill);
-$pill-background: var(--pill-background);
-$spinner-text: var(--spinner-text);
-$menu-item-background-hover: var(--menu-item-background-hover);
-$menu-item-background-active: var(--menu-item-background-active);
-$menu-border: var(--menu-border);
-$menu-background: var(--menu-background);
-$screenshot-image-outline: var(--screenshot-image-outline);
 $card-border: var(--card-border);
 $card-footer-border: var(--card-footer-border);
-$button-hover: var(--button-hover);
+$header-bar-title-color: var(--header-bar-title-color);
+$help-links-section-background: var(--help-links-section-background);
+$help-links-section-border: var(--help-links-section-border);
+$high-contrast-icon-color: var(--black);
+$highlighted-text: var(--black);
+$index-circle-background: var(--index-circle-background);
+$link-hover: var(--link-hover);
+$link: var(--link);
+$menu-background: var(--neutral-3);
+$menu-border: var(--menu-border);
+$menu-item-background-active: var(--menu-item-background-active);
+$menu-item-background-hover: var(--menu-item-background-hover);
+$overview-percent-selected: var(--overview-percent-selected);
+$pill-background: var(--pill-background);
+$pill: var(--pill);
+$screenshot-image-outline: var(--screenshot-image-outline);
+$spinner-text: var(--spinner-text);
 
 // Consistent colors that don't vary with high contrast mode. Use sparingly.
 $always-white: var(--white);
 $always-black: var(--light-black);
-
-$high-contrast-icon-color: var(--high-contrast-icon-color);

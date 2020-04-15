@@ -13,9 +13,23 @@ exports[`ReportExportComponentTest render 1`] = `
     Export result
   </CustomizedActionButton>
   <ExportDialog
-    deps={Object {}}
+    deps={
+      Object {
+        "reportGenerator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "assessmentReportHtmlGenerator": undefined,
+          "reportHtmlGenerator": undefined,
+          "reportNameGenerator": undefined,
+        },
+      }
+    }
     description=""
     exportResultsType="Assessment"
+    featureFlagStoreData={
+      Object {
+        "test-feature-flag": true,
+      }
+    }
     fileName=""
     html=""
     isOpen={false}
@@ -39,9 +53,23 @@ exports[`ReportExportComponentTest user interactions click export button: dialog
     Export result
   </CustomizedActionButton>
   <ExportDialog
-    deps={Object {}}
+    deps={
+      Object {
+        "reportGenerator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "assessmentReportHtmlGenerator": undefined,
+          "reportHtmlGenerator": undefined,
+          "reportNameGenerator": undefined,
+        },
+      }
+    }
     description="persisted description"
     exportResultsType="Assessment"
+    featureFlagStoreData={
+      Object {
+        "test-feature-flag": true,
+      }
+    }
     html=""
     isOpen={true}
     onClose={[Function]}
@@ -64,9 +92,23 @@ exports[`ReportExportComponentTest user interactions dismiss dialog: dialog shou
     Export result
   </CustomizedActionButton>
   <ExportDialog
-    deps={Object {}}
+    deps={
+      Object {
+        "reportGenerator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "assessmentReportHtmlGenerator": undefined,
+          "reportHtmlGenerator": undefined,
+          "reportNameGenerator": undefined,
+        },
+      }
+    }
     description=""
     exportResultsType="Assessment"
+    featureFlagStoreData={
+      Object {
+        "test-feature-flag": true,
+      }
+    }
     html=""
     isOpen={false}
     onClose={[Function]}
@@ -89,9 +131,23 @@ exports[`ReportExportComponentTest user interactions edit text field: user input
     Export result
   </CustomizedActionButton>
   <ExportDialog
-    deps={Object {}}
+    deps={
+      Object {
+        "reportGenerator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "assessmentReportHtmlGenerator": undefined,
+          "reportHtmlGenerator": undefined,
+          "reportNameGenerator": undefined,
+        },
+      }
+    }
     description="new description"
     exportResultsType="Assessment"
+    featureFlagStoreData={
+      Object {
+        "test-feature-flag": true,
+      }
+    }
     fileName=""
     html=""
     isOpen={false}

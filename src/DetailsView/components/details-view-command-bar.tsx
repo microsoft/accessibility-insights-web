@@ -13,6 +13,7 @@ import { ITooltipHostStyles, Link, TooltipHost } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 
+import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
@@ -45,6 +46,7 @@ export interface DetailsViewCommandBarProps {
     visualizationScanResultData: VisualizationScanResultData;
     cardsViewData: CardsViewModel;
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
+    scanMetaData: ScanMetaData;
 }
 
 export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBarProps> {
@@ -62,7 +64,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
     }
 
     private renderTargetPageInfo(): JSX.Element {
-        const targetPageTitle: string = this.props.tabStoreData.title;
+        const targetPageTitle: string = this.props.scanMetaData.targetAppInfo.name;
         const tooltipContent = `Switch to target page: ${targetPageTitle}`;
         const hostStyles: Partial<ITooltipHostStyles> = { root: { display: 'inline-block' } };
         return (

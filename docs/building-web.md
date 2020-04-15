@@ -57,6 +57,8 @@ yarn watch:build:web
 
 -   Look for the ![Dev Logo](../src/icons/brand/gray/brand-gray-16px.png) extension icon to the right of the address bar
 
+-   (Optional) run `yarn react-devtools` to open a standalone React DevTools instance that will automatically connect to any open popup or detailsView pages from a dev build of the extension.
+
 ### Testing
 
 We use [Jest](https://github.com/facebook/jest) as our test framework, along with [typemoq](https://github.com/florinn/typemoq) and [enzyme](https://github.com/enzymejs/enzyme). We make liberal use of [Snapshot Testing](https://jestjs.io/docs/en/snapshot-testing) for unit tests of React components.

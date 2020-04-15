@@ -64,7 +64,7 @@ export class HighlightBoxDrawer extends BaseDrawer {
 
     protected createHighlightElement(element: Element, data: HtmlElementAxeResults): HTMLElement {
         const currentDom = this.drawerUtils.getDocumentElement();
-        const body = currentDom.querySelector('body');
+        const body = currentDom.body;
         const bodyStyle = this.windowUtils.getComputedStyle(body);
 
         let drawerConfig = HighlightBoxDrawer.defaultConfiguration;

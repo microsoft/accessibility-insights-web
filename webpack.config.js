@@ -32,7 +32,7 @@ const commonEntryFiles = {
         path.resolve(__dirname, 'src/injected/stylesheet-init.ts'),
         path.resolve(__dirname, 'src/injected/client-init.ts'),
     ],
-    popup: path.resolve(__dirname, 'src/popup/popup-init.ts'),
+    popup: [path.resolve(__dirname, 'src/popup/popup-init.ts')],
     insights: [path.resolve(__dirname, 'src/views/insights/initializer.ts')],
     detailsView: [path.resolve(__dirname, 'src/DetailsView/details-view-initializer.ts')],
     devtools: [path.resolve(__dirname, 'src/Devtools/dev-tool-init.ts')],
@@ -119,6 +119,11 @@ const unifiedConfig = {
 
 const devConfig = {
     ...commonConfig,
+    entry: {
+        ...commonEntryFiles,
+        detailsView: ['react-devtools', ...commonEntryFiles.detailsView],
+        popup: ['react-devtools', ...commonEntryFiles.popup],
+    },
     name: 'dev',
     mode: 'development',
     devtool: 'eval-source-map',

@@ -16,7 +16,7 @@ exports[`report package integration with issues 1`] = `
   </style>
   <header>
     <div
-      class="report-header-bar"
+      class="reportHeaderBar"
     >
       <svg
         aria-hidden="true"
@@ -213,16 +213,16 @@ exports[`report package integration with issues 1`] = `
         </defs>
       </svg>
       <div
-        class="ms-font-m header-text ms-fontWeight-semibold"
+        class="headerText"
       >
         Accessibility Insights for Web
       </div>
     </div>
     <div
-      class="report-header-command-bar"
+      class="reportHeaderCommandBar"
     >
       <div
-        class="target-page"
+        class="targetPage"
       >
         Target page: 
         <a
@@ -4143,7 +4143,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures aria-hidden='true' is not present on the document body.
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4183,7 +4183,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensure that text spacing set through style attributes can be adjusted with custom stylesheets
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4230,7 +4230,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures related &lt;input type="checkbox"&gt; elements have a group and that the group designation is consistent
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4269,7 +4269,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4309,7 +4309,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures each HTML document contains a non-empty &lt;title&gt; element
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4349,7 +4349,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures every id attribute value of active elements is unique
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4389,7 +4389,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures every id attribute value is unique
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4429,7 +4429,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures form field does not have multiple label elements
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4468,7 +4468,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;img&gt; elements have alternate text or a role of none or presentation
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4508,7 +4508,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensure image alternative is not repeated as text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4547,7 +4547,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures input buttons have discernible text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4587,7 +4587,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures that every form element is not solely labeled using the title or aria-describedby attributes
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4626,7 +4626,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures the document has at most one banner landmark
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4675,7 +4675,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures the document has at most one contentinfo landmark
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4724,7 +4724,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures links have discernible text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4774,7 +4774,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures that lists are structured correctly
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4814,7 +4814,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;li&gt; elements are used semantically
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4854,7 +4854,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensure that tables do not have the same summary and caption
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4893,7 +4893,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensure that each cell in a table using the headers refers to another cell in that table
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4933,7 +4933,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensure that each table header in a data table refers to data cells
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5071,7 +5071,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures every accesskey attribute value is unique
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5110,7 +5110,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;area&gt; elements of image maps have alternate text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5150,7 +5150,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures ARIA attributes are allowed for an element's role
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5200,7 +5200,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures role attribute has an appropriate value for the element
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5239,7 +5239,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures unsupported DPUB roles are only used on elements with implicit fallback roles
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5278,7 +5278,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures aria-hidden elements do not contain focusable elements
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5328,7 +5328,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures every ARIA input field has an accessible name
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5368,7 +5368,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures elements with ARIA roles have all required ARIA attributes
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5418,7 +5418,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures elements with an ARIA role that require child roles contain them
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5458,7 +5458,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures elements with an ARIA role that require parent roles are contained by them
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5498,7 +5498,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures all elements with a role attribute use a valid value
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5558,7 +5558,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures every ARIA toggle field has an accessible name
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5598,7 +5598,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures all ARIA attributes have valid values
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5648,7 +5648,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures attributes that begin with aria- are valid ARIA attributes
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5688,7 +5688,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensure the autocomplete attribute is correct and suitable for the form field
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5735,7 +5735,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;blink&gt; elements are not used
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5775,7 +5775,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures buttons have discernible text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5815,7 +5815,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;dl&gt; elements are structured correctly
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5855,7 +5855,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;dt&gt; and &lt;dd&gt; elements are contained by a &lt;dl&gt;
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5895,7 +5895,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures every id attribute value used in ARIA and in labels is unique
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5935,7 +5935,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures headings have discernible text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5974,7 +5974,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;iframe&gt; and &lt;frame&gt; elements contain the axe-core script
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6013,7 +6013,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;iframe&gt; and &lt;frame&gt; elements contain a unique title attribute
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6052,7 +6052,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;iframe&gt; and &lt;frame&gt; elements contain a non-empty title attribute
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6092,7 +6092,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures the order of headings is semantically correct
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6131,7 +6131,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures the lang attribute of the &lt;html&gt; element has a valid value
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6171,7 +6171,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensure that HTML elements with both valid lang and xml:lang attributes agree on the base language of the page
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6211,7 +6211,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;input type="image"&gt; elements have alternate text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6251,7 +6251,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures the banner landmark is at top level
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6300,7 +6300,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures the complementary landmark or aside is at top level
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6349,7 +6349,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures the contentinfo landmark is at top level
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6398,7 +6398,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures the main landmark is at top level
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6447,7 +6447,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Landmarks must have a unique role or role/label/title (i.e. accessible name) combination
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6486,7 +6486,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures presentational &lt;table&gt; elements do not use &lt;th&gt;, &lt;caption&gt; elements or the summary attribute
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6525,7 +6525,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;marquee&gt; elements are not used
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6565,7 +6565,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;meta http-equiv="refresh"&gt; is not used
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6605,7 +6605,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;meta name="viewport"&gt; can scale a significant amount
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6644,7 +6644,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;meta name="viewport"&gt; does not disable text scaling and zooming
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6683,7 +6683,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;object&gt; elements have alternate text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6723,7 +6723,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures related &lt;input type="radio"&gt; elements have a group and that the group designation is consistent
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6762,7 +6762,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures [role='img'] elements have alternate text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6802,7 +6802,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures the scope attribute is used correctly on tables
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6841,7 +6841,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Elements that have scrollable content should be accessible by keyboard
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6890,7 +6890,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures that server-side image maps are not used
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6930,7 +6930,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensure all skip links have a focusable target
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6969,7 +6969,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures tabindex attribute values are not greater than 0
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -7008,7 +7008,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures lang attributes have valid values
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -7048,7 +7048,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;video&gt; elements have captions
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -7088,7 +7088,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;video&gt; elements have audio descriptions
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -7171,7 +7171,7 @@ exports[`report package integration with no issues 1`] = `
   </style>
   <header>
     <div
-      class="report-header-bar"
+      class="reportHeaderBar"
     >
       <svg
         aria-hidden="true"
@@ -7368,16 +7368,16 @@ exports[`report package integration with no issues 1`] = `
         </defs>
       </svg>
       <div
-        class="ms-font-m header-text ms-fontWeight-semibold"
+        class="headerText"
       >
         Accessibility Insights for Web
       </div>
     </div>
     <div
-      class="report-header-command-bar"
+      class="reportHeaderCommandBar"
     >
       <div
-        class="target-page"
+        class="targetPage"
       >
         Target page: 
         <a
@@ -7873,7 +7873,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures ARIA attributes are allowed for an element's role
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -7923,7 +7923,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures role attribute has an appropriate value for the element
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -7962,7 +7962,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures aria-hidden='true' is not present on the document body.
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8002,7 +8002,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures elements with ARIA roles have all required ARIA attributes
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8052,7 +8052,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures elements with an ARIA role that require child roles contain them
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8092,7 +8092,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures elements with an ARIA role that require parent roles are contained by them
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8132,7 +8132,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures all elements with a role attribute use a valid value
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8192,7 +8192,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures all ARIA attributes have valid values
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8242,7 +8242,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures attributes that begin with aria- are valid ARIA attributes
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8282,7 +8282,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensure that text spacing set through style attributes can be adjusted with custom stylesheets
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8329,7 +8329,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures buttons have discernible text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8369,7 +8369,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures each page has at least one mechanism for a user to bypass navigation and jump straight to the content
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8409,7 +8409,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures related &lt;input type="checkbox"&gt; elements have a group and that the group designation is consistent
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8448,7 +8448,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8488,7 +8488,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures each HTML document contains a non-empty &lt;title&gt; element
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8528,7 +8528,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures every id attribute value of active elements is unique
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8568,7 +8568,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures every id attribute value used in ARIA and in labels is unique
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8608,7 +8608,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures every id attribute value is unique
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8648,7 +8648,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures headings have discernible text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8687,7 +8687,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures form field does not have multiple label elements
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8726,7 +8726,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures the order of headings is semantically correct
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8765,7 +8765,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures every HTML document has a lang attribute
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8805,7 +8805,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures the lang attribute of the &lt;html&gt; element has a valid value
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8845,7 +8845,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;img&gt; elements have alternate text or a role of none or presentation
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8885,7 +8885,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensure image alternative is not repeated as text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8924,7 +8924,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures input buttons have discernible text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8964,7 +8964,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures that every form element is not solely labeled using the title or aria-describedby attributes
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9003,7 +9003,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures every form element has a label
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9053,7 +9053,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures the banner landmark is at top level
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9102,7 +9102,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures the contentinfo landmark is at top level
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9151,7 +9151,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures the main landmark is at top level
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9200,7 +9200,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures the document has at most one banner landmark
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9249,7 +9249,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures the document has at most one contentinfo landmark
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9298,7 +9298,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures the document has only one main landmark and each iframe in the page has at most one main landmark
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9337,7 +9337,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Landmarks must have a unique role or role/label/title (i.e. accessible name) combination
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9376,7 +9376,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures links have discernible text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9426,7 +9426,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures that lists are structured correctly
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9466,7 +9466,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;li&gt; elements are used semantically
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9506,7 +9506,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensure that the page, or at least one of its frames contains a level-one heading
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9545,7 +9545,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures all page content is contained by landmarks
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9584,7 +9584,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures the scope attribute is used correctly on tables
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9623,7 +9623,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensure that tables do not have the same summary and caption
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9662,7 +9662,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensure that each cell in a table using the headers refers to another cell in that table
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9702,7 +9702,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensure that each table header in a data table refers to data cells
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9742,7 +9742,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures lang attributes have valid values
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9880,7 +9880,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures every accesskey attribute value is unique
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9919,7 +9919,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;area&gt; elements of image maps have alternate text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9959,7 +9959,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures unsupported DPUB roles are only used on elements with implicit fallback roles
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9998,7 +9998,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures aria-hidden elements do not contain focusable elements
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10048,7 +10048,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures every ARIA input field has an accessible name
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10088,7 +10088,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures every ARIA toggle field has an accessible name
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10128,7 +10128,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensure the autocomplete attribute is correct and suitable for the form field
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10175,7 +10175,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;blink&gt; elements are not used
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10215,7 +10215,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;dl&gt; elements are structured correctly
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10255,7 +10255,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;dt&gt; and &lt;dd&gt; elements are contained by a &lt;dl&gt;
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10295,7 +10295,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;iframe&gt; and &lt;frame&gt; elements contain the axe-core script
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10334,7 +10334,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;iframe&gt; and &lt;frame&gt; elements contain a unique title attribute
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10373,7 +10373,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;iframe&gt; and &lt;frame&gt; elements contain a non-empty title attribute
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10413,7 +10413,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensure that HTML elements with both valid lang and xml:lang attributes agree on the base language of the page
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10453,7 +10453,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;input type="image"&gt; elements have alternate text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10493,7 +10493,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures the complementary landmark or aside is at top level
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10542,7 +10542,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures presentational &lt;table&gt; elements do not use &lt;th&gt;, &lt;caption&gt; elements or the summary attribute
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10581,7 +10581,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;marquee&gt; elements are not used
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10621,7 +10621,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;meta http-equiv="refresh"&gt; is not used
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10661,7 +10661,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;meta name="viewport"&gt; can scale a significant amount
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10700,7 +10700,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;meta name="viewport"&gt; does not disable text scaling and zooming
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10739,7 +10739,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;object&gt; elements have alternate text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10779,7 +10779,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures related &lt;input type="radio"&gt; elements have a group and that the group designation is consistent
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10818,7 +10818,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures [role='img'] elements have alternate text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10858,7 +10858,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Elements that have scrollable content should be accessible by keyboard
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10907,7 +10907,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures that server-side image maps are not used
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10947,7 +10947,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensure all skip links have a focusable target
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10986,7 +10986,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures tabindex attribute values are not greater than 0
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -11025,7 +11025,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;video&gt; elements have captions
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -11065,7 +11065,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;video&gt; elements have audio descriptions
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >

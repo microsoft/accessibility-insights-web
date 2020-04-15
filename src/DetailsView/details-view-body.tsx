@@ -3,11 +3,11 @@
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
-import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { ISelection } from 'office-ui-fabric-react';
 import * as React from 'react';
 
+import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
@@ -23,6 +23,7 @@ import { DetailsViewCommandBarDeps } from './components/details-view-command-bar
 import {
     DetailsRightPanelConfiguration,
     DetailsViewContentDeps,
+    RightPanelProps,
 } from './components/details-view-right-panel';
 import { DetailsViewSwitcherNavConfiguration } from './components/details-view-switcher-nav';
 import { IssuesTableHandler } from './components/issues-table-handler';
@@ -58,9 +59,9 @@ export interface DetailsViewBodyProps {
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
     userConfigurationStoreData: UserConfigurationStoreData;
-    targetAppInfo: TargetAppData;
     cardsViewData: CardsViewModel;
     scanIncompleteWarnings: ScanIncompleteWarningId[];
+    scanMetaData: ScanMetaData;
 }
 
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
@@ -73,7 +74,7 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
                     <div className="details-view-body-content-pane">
                         {this.getTargetPageHiddenBar()}
                         <div className="view" role="main">
-                            <this.props.rightPanelConfiguration.RightPanel {...this.props} />
+                            {this.renderRightPanel()}
                         </div>
                     </div>
                 </div>
@@ -109,5 +110,14 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
         }
 
         return <TargetPageHiddenBar isTargetPageHidden={tabStoreData.isPageHidden} />;
+    }
+
+    private renderRightPanel(): JSX.Element {
+        const rightPanelProps: RightPanelProps = {
+            targetAppInfo: this.props.scanMetaData.targetAppInfo,
+            ...this.props,
+        };
+
+        return <this.props.rightPanelConfiguration.RightPanel {...rightPanelProps} />;
     }
 }

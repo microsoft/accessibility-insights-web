@@ -9,6 +9,6 @@ export class RootContainerCreator {
         this.htmlElementUtils.deleteAllElements(`#${id}`);
         const root = document.createElement('div');
         root.id = id;
-        this.htmlElementUtils.querySelector('body').appendChild(root);
+        this.htmlElementUtils.getBody().appendChild(root);
     }
 }

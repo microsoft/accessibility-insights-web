@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { getDefaultFeatureFlagValues } from '../../../../common/feature-flags';
+import { getDefaultFeatureFlagsWeb } from '../../../../common/feature-flags';
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import {
@@ -27,7 +27,7 @@ class VisualizationWindowMessageStubBuilder {
 
     public constructor(configId: string) {
         this.configId = configId;
-        this.featureFlagStoreData = getDefaultFeatureFlagValues();
+        this.featureFlagStoreData = getDefaultFeatureFlagsWeb();
     }
 
     public setVisualizationEnabled(): VisualizationWindowMessageStubBuilder {
@@ -131,7 +131,7 @@ describe('DrawingControllerTest', () => {
     });
 
     test('enable visualization test', () => {
-        const featureFlagStoreData = getDefaultFeatureFlagValues();
+        const featureFlagStoreData = getDefaultFeatureFlagsWeb();
 
         const configId = 'id';
         let subscribeCallback: (result: any, error: any, responder?: any) => void;
@@ -256,7 +256,7 @@ describe('DrawingControllerTest', () => {
                         message: {
                             isEnabled: true,
                             elementResults: null,
-                            featureFlagStoreData: getDefaultFeatureFlagValues(),
+                            featureFlagStoreData: getDefaultFeatureFlagsWeb(),
                             configId: configId,
                         },
                     }),
@@ -276,7 +276,7 @@ describe('DrawingControllerTest', () => {
         drawerMock
             .setup(dm =>
                 dm.initialize(
-                    It.isValue({ data: null, featureFlagStoreData: getDefaultFeatureFlagValues() }),
+                    It.isValue({ data: null, featureFlagStoreData: getDefaultFeatureFlagsWeb() }),
                 ),
             )
             .verifiable(Times.once());

@@ -141,7 +141,7 @@ export class DetailsDialogHandler {
 
         const modal = shadowRoot.querySelector('.insights-dialog-main-override-shadow');
         if (modal != null) {
-            document.body.classList.add('insights-modal');
+            this.htmlElementUtils.getBody().classList.add('insights-modal');
             modal.addEventListener('click', ev => {
                 if (modal === ev.target) {
                     this.closeWindow(shadowRoot);
@@ -218,7 +218,7 @@ export class DetailsDialogHandler {
         if (dialogContainer) {
             dialogContainer.parentNode.removeChild(dialogContainer);
         }
-        const body = this.htmlElementUtils.querySelector('body');
+        const body = this.htmlElementUtils.getBody();
         body.classList.remove(...['insights-modal']);
     }
 }

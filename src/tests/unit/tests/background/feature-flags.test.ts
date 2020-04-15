@@ -3,7 +3,7 @@
 import {
     FeatureFlags,
     getAllFeatureFlagDetails,
-    getDefaultFeatureFlagValues,
+    getDefaultFeatureFlagsWeb,
 } from 'common/feature-flags';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { findIndex, forEach, indexOf, keys } from 'lodash';
@@ -12,7 +12,7 @@ describe('FeatureFlagsTest', () => {
     let featureFlagValues: FeatureFlagStoreData;
 
     beforeEach(() => {
-        featureFlagValues = getDefaultFeatureFlagValues();
+        featureFlagValues = getDefaultFeatureFlagsWeb();
     });
 
     test('default values', () => {
@@ -25,6 +25,7 @@ describe('FeatureFlagsTest', () => {
             [FeatureFlags.showInstanceVisibility]: false,
             [FeatureFlags.manualInstanceDetails]: false,
             [FeatureFlags.debugTools]: false,
+            [FeatureFlags.exportReport]: false,
         };
 
         const featureFlagValueKeys = keys(featureFlagValues);

@@ -8,8 +8,11 @@ import { OutcomeSummaryBar } from '../outcome-summary-bar';
 import { SectionProps } from './report-section-factory';
 
 export type SummarySectionProps = Pick<SectionProps, 'cardsViewData'>;
+export type BaseSummarySectionProps = {
+    outcomeTypesShown: InstanceOutcomeType[];
+} & SummarySectionProps;
 
-export const SummarySection = NamedFC<SummarySectionProps>('SummarySection', props => {
+export const BaseSummarySection = NamedFC<BaseSummarySectionProps>('BaseSummarySection', props => {
     const { cards } = props.cardsViewData;
 
     const countSummary: { [type in InstanceOutcomeType]: number } = {
@@ -26,8 +29,22 @@ export const SummarySection = NamedFC<SummarySectionProps>('SummarySection', pro
             <OutcomeSummaryBar
                 outcomeStats={countSummary}
                 iconStyleInverted={true}
-                allOutcomeTypes={allInstanceOutcomeTypes}
+                allOutcomeTypes={props.outcomeTypesShown}
             />
         </div>
     );
 });
+
+export const AllOutcomesSummarySection = NamedFC<SummarySectionProps>(
+    'AllOutcomesSummarySection',
+    props => {
+        return <BaseSummarySection {...props} outcomeTypesShown={allInstanceOutcomeTypes} />;
+    },
+);
+
+export const PassFailSummarySection = NamedFC<SummarySectionProps>(
+    'PassFailSummarySection',
+    props => {
+        return <BaseSummarySection {...props} outcomeTypesShown={['fail', 'pass']} />;
+    },
+);

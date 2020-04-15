@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PreviewFeaturesContainerTest renders all available preview features 1`] = `
-<div>
+<div
+  data-automation-id="preview-features-container"
+>
   <div
     className="preview-features-description"
   >
@@ -58,4 +60,10 @@ exports[`PreviewFeaturesContainerTest renders all available preview features 1`]
 </div>
 `;
 
-exports[`PreviewFeaturesContainerTest renders special message when there is no preview features available 1`] = `<NoDisplayableFeatureFlagMessage />`;
+exports[`PreviewFeaturesContainerTest renders special message when there is no preview features available 1`] = `
+<div
+  data-automation-id="preview-features-container"
+>
+  <NoDisplayableFeatureFlagMessage />
+</div>
+`;

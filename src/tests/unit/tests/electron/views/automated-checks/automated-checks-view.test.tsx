@@ -14,6 +14,7 @@ import {
     CardsViewModel,
 } from 'common/types/store-data/card-view-model';
 import {
+    ToolData,
     UnifiedResult,
     UnifiedRule,
     UnifiedScanResultStoreData,
@@ -66,7 +67,6 @@ describe('AutomatedChecksView', () => {
             bareMinimumProps.scanStoreData.status = ScanStatus[scanStatusName];
 
             const wrapped = shallow(<AutomatedChecksView {...bareMinimumProps} />);
-
             expect(wrapped.getElement()).toMatchSnapshot();
         });
 
@@ -76,6 +76,11 @@ describe('AutomatedChecksView', () => {
                 'highlighted-uid-1': 'visible',
                 'not-highlighted-uid-1': 'hidden',
             } as ResultsHighlightStatus;
+            const timeStampStub = 'test timestamp';
+            const toolDataStub: ToolData = {
+                applicationProperties: { name: 'some app' },
+            } as ToolData;
+
             const cardSelectionViewDataStub = {
                 resultsHighlightStatus: resultsHighlightStatus,
             } as CardSelectionViewData;
@@ -90,19 +95,9 @@ describe('AutomatedChecksView', () => {
                 },
                 rules: rulesStub,
                 results: resultsStub,
+                toolInfo: toolDataStub,
+                timestamp: timeStampStub,
             };
-
-            const getCardSelectionViewDataMock = Mock.ofInstance(getCardSelectionViewData);
-            getCardSelectionViewDataMock
-                .setup(getData =>
-                    getData(
-                        cardSelectionStoreData,
-                        unifiedScanResultStoreData,
-                        getUnavailableHighlightStatusStub,
-                    ),
-                )
-                .returns(() => cardSelectionViewDataStub)
-                .verifiable(Times.once());
 
             const ruleResultsByStatusStub = {
                 fail: [{ id: 'test-fail-id' } as CardRuleResult],
@@ -110,22 +105,14 @@ describe('AutomatedChecksView', () => {
             const cardsViewData = {
                 cards: ruleResultsByStatusStub,
             } as CardsViewModel;
-            const getUnifiedRuleResultsMock = Mock.ofInstance(getCardViewData);
-            getUnifiedRuleResultsMock
-                .setup(getter => getter(rulesStub, resultsStub, cardSelectionViewDataStub))
-                .returns(() => cardsViewData)
-                .verifiable(Times.once());
-
             const screenshotViewModelStub = {
                 screenshotData: {
                     base64PngData: 'this should appear in snapshotted ScreenshotView props',
                 },
             } as ScreenshotViewModel;
             const screenshotViewModelProviderMock = Mock.ofInstance(screenshotViewModelProvider);
-            screenshotViewModelProviderMock
-                .setup(provider => provider(unifiedScanResultStoreData, ['highlighted-uid-1']))
-                .returns(() => screenshotViewModelStub)
-                .verifiable(Times.once());
+            const getCardSelectionViewDataMock = Mock.ofInstance(getCardSelectionViewData);
+            const getUnifiedRuleResultsMock = Mock.ofInstance(getCardViewData);
 
             const props: AutomatedChecksViewProps = {
                 deps: {
@@ -148,6 +135,27 @@ describe('AutomatedChecksView', () => {
                 },
                 unifiedScanResultStoreData,
             } as AutomatedChecksViewProps;
+
+            getCardSelectionViewDataMock
+                .setup(getData =>
+                    getData(
+                        cardSelectionStoreData,
+                        unifiedScanResultStoreData,
+                        getUnavailableHighlightStatusStub,
+                    ),
+                )
+                .returns(() => cardSelectionViewDataStub)
+                .verifiable(Times.once());
+
+            getUnifiedRuleResultsMock
+                .setup(getter => getter(rulesStub, resultsStub, cardSelectionViewDataStub))
+                .returns(() => cardsViewData)
+                .verifiable(Times.once());
+
+            screenshotViewModelProviderMock
+                .setup(provider => provider(unifiedScanResultStoreData, ['highlighted-uid-1']))
+                .returns(() => screenshotViewModelStub)
+                .verifiable(Times.once());
 
             const wrapped = shallow(<AutomatedChecksView {...props} />);
 

@@ -9,6 +9,9 @@ import { Interpreter } from 'background/interpreter';
 import { SidePanel } from 'background/stores/side-panel';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import {
+    PREVIEW_FEATURES_OPEN,
+    SCOPING_CLOSE,
+    SCOPING_OPEN,
     SETTINGS_PANEL_CLOSE,
     SETTINGS_PANEL_OPEN,
     TelemetryEventSource,
@@ -42,7 +45,7 @@ describe('DetailsViewActionCreatorTest', () => {
         telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();
     });
 
-    describe('handles SettingsPanel.OpenPanel message', () => {
+    describe('handles open side panel message', () => {
         const tabId = -1;
 
         const detailsViewActionsMock: IMock<DetailsViewActions> = Mock.ofType<DetailsViewActions>(
@@ -55,104 +58,112 @@ describe('DetailsViewActionCreatorTest', () => {
 
         let interpreterMock: IMock<Interpreter>;
 
-        beforeEach(() => {
-            openSidePanelMock = createActionMock<SidePanel>('Settings');
-            sidePanelActionsMock = createSidePanelActionsMock(
-                'openSidePanel',
-                openSidePanelMock.object,
-            );
-            interpreterMock = createInterpreterMock(
-                Messages.SettingsPanel.OpenPanel,
-                defaultBasePayload,
-                tabId,
-            );
-        });
+        describe.each`
+            messageFriendlyName                     | actualMessage                         | sidePanel            | telemetryEventName
+            ${'Messages.SettingsPanel.OpenPanel'}   | ${Messages.SettingsPanel.OpenPanel}   | ${'Settings'}        | ${SETTINGS_PANEL_OPEN}
+            ${'Messages.PreviewFeatures.OpenPanel'} | ${Messages.PreviewFeatures.OpenPanel} | ${'PreviewFeatures'} | ${PREVIEW_FEATURES_OPEN}
+            ${'Messages.Scoping.OpenPanel'}         | ${Messages.Scoping.OpenPanel}         | ${'Scoping'}         | ${SCOPING_OPEN}
+        `('$messageFriendlyName', ({ actualMessage, sidePanel, telemetryEventName }) => {
+            beforeEach(() => {
+                openSidePanelMock = createActionMock<SidePanel>(sidePanel);
+                sidePanelActionsMock = createSidePanelActionsMock(
+                    'openSidePanel',
+                    openSidePanelMock.object,
+                );
+                interpreterMock = createInterpreterMock(actualMessage, defaultBasePayload, tabId);
+            });
 
-        it('when showDetailsView fails', async () => {
-            const errorMessage = 'error on showDetailsView';
+            it('when showDetailsView succeed', async () => {
+                detailsViewControllerMock
+                    .setup(controller => controller.showDetailsView(tabId))
+                    .returns(() => Promise.resolve())
+                    .verifiable(Times.once());
 
-            detailsViewControllerMock
-                .setup(controller => controller.showDetailsView(tabId))
-                .returns(() => Promise.reject(errorMessage))
-                .verifiable(Times.once());
+                const testObject = new DetailsViewActionCreator(
+                    interpreterMock.object,
+                    detailsViewActionsMock.object,
+                    sidePanelActionsMock.object,
+                    detailsViewControllerMock.object,
+                    telemetryEventHandlerMock.object,
+                );
 
-            const loggerMock = Mock.ofType<Logger>();
+                testObject.registerCallback();
 
-            const testObject = new DetailsViewActionCreator(
-                interpreterMock.object,
-                detailsViewActionsMock.object,
-                sidePanelActionsMock.object,
-                detailsViewControllerMock.object,
-                telemetryEventHandlerMock.object,
-                loggerMock.object,
-            );
+                await tick();
 
-            testObject.registerCallback();
+                openSidePanelMock.verifyAll();
+                detailsViewControllerMock.verifyAll();
+                telemetryEventHandlerMock.verify(
+                    handler => handler.publishTelemetry(telemetryEventName, defaultBasePayload),
+                    Times.once(),
+                );
+            });
 
-            await tick();
+            it('when showDetailsView fails', async () => {
+                const errorMessage = 'error on showDetailsView';
 
-            detailsViewControllerMock.verifyAll();
-            openSidePanelMock.verifyAll();
-            telemetryEventHandlerMock.verify(
-                handler => handler.publishTelemetry(SETTINGS_PANEL_OPEN, defaultBasePayload),
-                Times.once(),
-            );
-            loggerMock.verify(logger => logger.error(errorMessage), Times.once());
-        });
+                detailsViewControllerMock
+                    .setup(controller => controller.showDetailsView(tabId))
+                    .returns(() => Promise.reject(errorMessage))
+                    .verifiable(Times.once());
 
-        it('when showDetailsView succeed', async () => {
-            detailsViewControllerMock
-                .setup(controller => controller.showDetailsView(tabId))
-                .returns(() => Promise.resolve())
-                .verifiable(Times.once());
+                const loggerMock = Mock.ofType<Logger>();
 
-            const testObject = new DetailsViewActionCreator(
-                interpreterMock.object,
-                detailsViewActionsMock.object,
-                sidePanelActionsMock.object,
-                detailsViewControllerMock.object,
-                telemetryEventHandlerMock.object,
-            );
+                const testObject = new DetailsViewActionCreator(
+                    interpreterMock.object,
+                    detailsViewActionsMock.object,
+                    sidePanelActionsMock.object,
+                    detailsViewControllerMock.object,
+                    telemetryEventHandlerMock.object,
+                    loggerMock.object,
+                );
 
-            testObject.registerCallback();
+                testObject.registerCallback();
 
-            await tick();
+                await tick();
 
-            openSidePanelMock.verifyAll();
-            detailsViewControllerMock.verifyAll();
-            telemetryEventHandlerMock.verify(
-                handler => handler.publishTelemetry(SETTINGS_PANEL_OPEN, defaultBasePayload),
-                Times.once(),
-            );
+                detailsViewControllerMock.verifyAll();
+                openSidePanelMock.verifyAll();
+                telemetryEventHandlerMock.verify(
+                    handler => handler.publishTelemetry(telemetryEventName, defaultBasePayload),
+                    Times.once(),
+                );
+                loggerMock.verify(logger => logger.error(errorMessage), Times.once());
+            });
         });
     });
 
-    it('handles SettingsPanel.ClosePanel message', () => {
-        const closeSettingsPanelMock = createActionMock<void>(null);
-        const detailsViewActionsMock = createDetailsViewActionsMock(
-            'closeSettingsPanel',
-            closeSettingsPanelMock.object,
-        );
-        const interpreterMock = createInterpreterMock(
-            Messages.SettingsPanel.ClosePanel,
-            defaultBasePayload,
-        );
+    describe('handles close side panel message', () => {
+        it.each`
+            messageFriendlyName                    | actualMessage                        | sidePanel     | telemetryEventName
+            ${'Messages.SettingsPanel.ClosePanel'} | ${Messages.SettingsPanel.ClosePanel} | ${'Settings'} | ${SETTINGS_PANEL_CLOSE}
+            ${'Messages.Scoping.ClosePanel'}       | ${Messages.Scoping.ClosePanel}       | ${'Scoping'}  | ${SCOPING_CLOSE}
+        `('$messageFriendlyName', ({ actualMessage, sidePanel, telemetryEventName }) => {
+            const closeSidePanelMock = createActionMock<SidePanel>(sidePanel);
 
-        const testObject = new DetailsViewActionCreator(
-            interpreterMock.object,
-            detailsViewActionsMock.object,
-            null,
-            detailsViewControllerMock.object,
-            telemetryEventHandlerMock.object,
-        );
+            const sidePanelActionsMock = createSidePanelActionsMock(
+                'closeSidePanel',
+                closeSidePanelMock.object,
+            );
 
-        testObject.registerCallback();
+            const interpreterMock = createInterpreterMock(actualMessage, defaultBasePayload);
 
-        closeSettingsPanelMock.verifyAll();
-        telemetryEventHandlerMock.verify(
-            handler => handler.publishTelemetry(SETTINGS_PANEL_CLOSE, defaultBasePayload),
-            Times.once(),
-        );
+            const testObject = new DetailsViewActionCreator(
+                interpreterMock.object,
+                null,
+                sidePanelActionsMock.object,
+                detailsViewControllerMock.object,
+                telemetryEventHandlerMock.object,
+            );
+
+            testObject.registerCallback();
+
+            closeSidePanelMock.verifyAll();
+            telemetryEventHandlerMock.verify(
+                handler => handler.publishTelemetry(telemetryEventName, defaultBasePayload),
+                Times.once(),
+            );
+        });
     });
 
     it('handles Visualization.DetailsView.SetDetailsViewRightContentPanel message', () => {

@@ -166,6 +166,7 @@ export interface UnifiedScanCompletedPayload extends BaseActionPayload {
     rules: UnifiedRule[];
     toolInfo: ToolData;
     targetAppInfo: TargetAppData;
+    timestamp: string;
     scanIncompleteWarnings: ScanIncompleteWarningId[];
     screenshotData?: ScreenshotData;
     platformInfo?: PlatformData;

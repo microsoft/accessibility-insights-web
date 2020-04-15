@@ -4,9 +4,10 @@ exports[`FooterText renders 1`] = `
 <React.Fragment>
   This automated checks result was generated using
    
-  Accessibility Insights for Web 1.2.3 (axe-core 4.5.6)
-  , a tool that helps debug and find accessibility issues earlier on 
-  dummy browser version 1.0.1
+  app-name app-version (axe-core engine-version)
+  , a tool that helps debug and find accessibility issues earlier on
+   
+  environmentName
   . Get more information & download this tool at 
   <ToolLink />
   .

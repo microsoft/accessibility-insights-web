@@ -1,10 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FlaggedComponent } from 'common/components/flagged-component';
+import { FeatureFlags } from 'common/feature-flags';
 import { shallow } from 'enzyme';
-import { PrimaryButton } from 'office-ui-fabric-react';
-import { Dialog } from 'office-ui-fabric-react';
-import { TextField } from 'office-ui-fabric-react';
+import { Dialog, PrimaryButton, TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
+import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
+import { CodePenReportExportService } from 'report-export/services/codepen-report-export-service';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 import { FileURLProvider } from '../../../../../common/file-url-provider';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
@@ -21,6 +23,7 @@ describe('ExportDialog', () => {
         MockBehavior.Strict,
     );
     const fileProviderMock = Mock.ofType<FileURLProvider>();
+    const reportExportServiceProvider = Mock.ofType<ReportExportServiceProvider>();
     const eventStub = 'event stub' as any;
     const onExportClickMock = Mock.ofInstance(() => {});
     let props: ExportDialogProps;
@@ -31,10 +34,12 @@ describe('ExportDialog', () => {
         detailsViewActionMessageCreatorMock.reset();
         onExportClickMock.reset();
         fileProviderMock.reset();
+        reportExportServiceProvider.reset();
 
         const deps = {
             detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
             fileURLProvider: fileProviderMock.object,
+            reportExportServiceProvider: reportExportServiceProvider.object,
         };
 
         props = {
@@ -47,6 +52,7 @@ describe('ExportDialog', () => {
             onDescriptionChange: onDescriptionChangeMock.object,
             exportResultsType: 'Assessment',
             onExportClick: onExportClickMock.object,
+            featureFlagStoreData: {},
         };
     });
 
@@ -59,12 +65,31 @@ describe('ExportDialog', () => {
                 .setup(provider => provider.provideURL(It.isAny(), It.isAnyString()))
                 .returns(() => 'fake-url')
                 .verifiable(Times.once());
+            reportExportServiceProvider
+                .setup(a => a.all())
+                .returns(() => [CodePenReportExportService])
+                .verifiable(Times.once());
             const wrapper = shallow(<ExportDialog {...props} />);
             expect(wrapper.getElement()).toMatchSnapshot();
 
+            reportExportServiceProvider.verifyAll();
             fileProviderMock.verifyAll();
         });
+
+        it('with CodePen export form', () => {
+            const formProps = {
+                html: props.html,
+                fileName: props.fileName,
+                description: props.description,
+                onSubmit: jest.fn(),
+            };
+
+            const wrapped = shallow(<CodePenReportExportService.exportForm {...formProps} />);
+
+            expect(wrapped.getElement()).toMatchSnapshot();
+        });
     });
+
     describe('user interaction', () => {
         it('closes the dialog onDismiss', () => {
             onCloseMock.setup(oc => oc()).verifiable(Times.once());
@@ -73,10 +98,15 @@ describe('ExportDialog', () => {
                 .returns(() => 'fake-url')
                 .verifiable(Times.once());
             onExportClickMock.setup(getter => getter()).verifiable(Times.never());
+            reportExportServiceProvider
+                .setup(a => a.all())
+                .returns(() => [CodePenReportExportService])
+                .verifiable(Times.once());
             const wrapper = shallow(<ExportDialog {...props} />);
 
             wrapper.find(Dialog).prop('onDismiss')();
 
+            reportExportServiceProvider.verifyAll();
             fileProviderMock.verifyAll();
             onCloseMock.verifyAll();
             onDescriptionChangeMock.verifyAll();
@@ -94,17 +124,68 @@ describe('ExportDialog', () => {
             fileProviderMock
                 .setup(provider => provider.provideURL(It.isAny(), It.isAnyString()))
                 .returns(() => 'fake-url')
-                .verifiable(Times.once());
+                .verifiable(Times.exactly(2));
             onExportClickMock.setup(getter => getter()).verifiable(Times.once());
 
             detailsViewActionMessageCreatorMock
                 .setup(a => a.exportResultsClicked(props.exportResultsType, props.html, eventStub))
                 .verifiable(Times.once());
 
+            reportExportServiceProvider
+                .setup(a => a.all())
+                .returns(() => [CodePenReportExportService])
+                .verifiable(Times.exactly(2));
+
             const wrapper = shallow(<ExportDialog {...props} />);
 
-            wrapper.find(PrimaryButton).simulate('click', eventStub);
+            const flaggedComponent = wrapper.find(FlaggedComponent);
 
+            flaggedComponent.dive().find(PrimaryButton).simulate('click', eventStub);
+
+            reportExportServiceProvider.verifyAll();
+            fileProviderMock.verifyAll();
+            onCloseMock.verifyAll();
+            onDescriptionChangeMock.verifyAll();
+            detailsViewActionMessageCreatorMock.verifyAll();
+            onExportClickMock.verifyAll();
+        });
+
+        it('handles click on export to CodePen button', () => {
+            const unchangedDescription = 'description';
+            onDescriptionChangeMock
+                .setup(dc => dc(It.isValue(unchangedDescription)))
+                .verifiable(Times.once());
+
+            onCloseMock.setup(oc => oc()).verifiable(Times.once());
+            fileProviderMock
+                .setup(provider => provider.provideURL(It.isAny(), It.isAnyString()))
+                .returns(() => 'fake-url')
+                .verifiable(Times.exactly(2));
+            onExportClickMock.setup(getter => getter()).verifiable(Times.once());
+
+            detailsViewActionMessageCreatorMock
+                .setup(a => a.exportResultsClicked(props.exportResultsType, props.html, eventStub))
+                .verifiable(Times.once());
+
+            reportExportServiceProvider
+                .setup(a => a.all())
+                .returns(() => [CodePenReportExportService])
+                .verifiable(Times.exactly(2));
+
+            props.featureFlagStoreData[FeatureFlags.exportReport] = true;
+
+            const wrapper = shallow(<ExportDialog {...props} />);
+
+            const flaggedComponent = wrapper.find(FlaggedComponent);
+
+            flaggedComponent
+                .dive()
+                .find(PrimaryButton)
+                .props()
+                .menuProps.items.find(({ key }) => key === CodePenReportExportService.key)
+                .onClick(eventStub);
+
+            reportExportServiceProvider.verifyAll();
             fileProviderMock.verifyAll();
             onCloseMock.verifyAll();
             onDescriptionChangeMock.verifyAll();
@@ -122,12 +203,17 @@ describe('ExportDialog', () => {
             onDescriptionChangeMock
                 .setup(handler => handler(It.isValue(changedDescription)))
                 .verifiable(Times.once());
+            reportExportServiceProvider
+                .setup(a => a.all())
+                .returns(() => [CodePenReportExportService])
+                .verifiable(Times.once());
 
             const wrapper = shallow(<ExportDialog {...props} />);
 
             const textField = wrapper.find(TextField);
             textField.simulate('change', eventStub, changedDescription);
 
+            reportExportServiceProvider.verifyAll();
             fileProviderMock.verifyAll();
             onCloseMock.verifyAll();
             onDescriptionChangeMock.verifyAll();

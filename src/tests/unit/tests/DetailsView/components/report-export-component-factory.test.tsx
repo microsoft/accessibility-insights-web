@@ -4,7 +4,9 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { TabStoreData } from 'common/types/store-data/tab-store-data';
+import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
+import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
@@ -25,6 +27,7 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 describe('ReportExportComponentPropsFactory', () => {
     const theDate = new Date(2019, 2, 12, 9, 0);
     const theTimestamp = 'test timestamp';
+    const theToolData: ToolData = { applicationProperties: { name: 'some app' } } as ToolData;
     const thePageTitle = 'command-bar-test-tab-title';
     const theDescription = 'test description';
     const theGeneratorOutput = 'generator output';
@@ -33,13 +36,14 @@ describe('ReportExportComponentPropsFactory', () => {
     let assessmentsProviderMock: IMock<AssessmentsProvider>;
     let featureFlagStoreData: FeatureFlagStoreData;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
-    let tabStoreData: TabStoreData;
     let assessmentStoreData: AssessmentStoreData;
     let reportGeneratorMock: IMock<ReportGenerator>;
     let visualizationScanResultData: VisualizationScanResultData;
     let visualizationStoreData: VisualizationStoreData;
     let cardsViewData: CardsViewModel;
     let scanResult: ScanResults;
+    let targetAppInfo: TargetAppData;
+    let scanMetaData: ScanMetaData;
 
     beforeEach(() => {
         featureFlagStoreData = {};
@@ -47,13 +51,18 @@ describe('ReportExportComponentPropsFactory', () => {
             DetailsViewActionMessageCreator,
             MockBehavior.Strict,
         );
-        tabStoreData = {
-            title: thePageTitle,
-            url: thePageUrl,
-        } as TabStoreData;
         assessmentStoreData = {
             resultDescription: theDescription,
         } as AssessmentStoreData;
+        targetAppInfo = {
+            name: thePageTitle,
+            url: thePageUrl,
+        };
+        scanMetaData = {
+            timestamp: theTimestamp,
+            toolData: theToolData,
+            targetAppInfo: targetAppInfo,
+        } as ScanMetaData;
         assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(undefined, MockBehavior.Loose);
         reportGeneratorMock = Mock.ofType<ReportGenerator>(undefined, MockBehavior.Loose);
         cardsViewData = null;
@@ -78,12 +87,12 @@ describe('ReportExportComponentPropsFactory', () => {
         return {
             deps,
             featureFlagStoreData,
-            tabStoreData,
             assessmentStoreData,
             assessmentsProvider: assessmentsProviderMock.object,
             visualizationScanResultData,
             visualizationStoreData,
             cardsViewData,
+            scanMetaData,
         } as DetailsViewCommandBarProps;
     }
 
@@ -94,7 +103,7 @@ describe('ReportExportComponentPropsFactory', () => {
                     assessmentStoreData,
                     assessmentsProviderMock.object,
                     featureFlagStoreData,
-                    tabStoreData,
+                    targetAppInfo,
                     theDescription,
                 ),
             )
@@ -106,10 +115,10 @@ describe('ReportExportComponentPropsFactory', () => {
             .setup(reportGenerator =>
                 reportGenerator.generateFastPassAutomatedChecksReport(
                     theDate,
-                    tabStoreData.title,
-                    tabStoreData.url,
+                    targetAppInfo,
                     cardsViewData,
                     theDescription,
+                    scanMetaData.toolData,
                 ),
             )
             .returns(() => theGeneratorOutput);
@@ -122,9 +131,7 @@ describe('ReportExportComponentPropsFactory', () => {
     }
 
     function setScanResults(): void {
-        scanResult = {
-            timestamp: theTimestamp,
-        } as ScanResults;
+        scanResult = {} as ScanResults;
     }
 
     test('getReportExportComponentForAssessment expected properties are set', () => {

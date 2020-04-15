@@ -4,7 +4,11 @@ import { utc } from 'moment';
 
 export class DateProvider {
     public static getDateFromTimestamp(timestamp: string): Date {
-        return new Date(timestamp);
+        if (DateProvider.isNumericalTimestamp(timestamp)) {
+            return DateProvider.getDateFromMillis(timestamp);
+        } else {
+            return DateProvider.getDateFromDateString(timestamp);
+        }
     }
 
     public static getCurrentDate(): Date {
@@ -28,5 +32,17 @@ export class DateProvider {
 
     public static getUTCStringFromDate(date: Date): string {
         return utc(date.toISOString()).format('YYYY-MM-DD h:mm A z');
+    }
+
+    private static getDateFromDateString(timestamp: string): Date {
+        return new Date(timestamp);
+    }
+
+    private static getDateFromMillis(timestamp: string): Date {
+        return new Date(Number(timestamp));
+    }
+
+    private static isNumericalTimestamp(timestamp: string): boolean {
+        return !isNaN(Number(timestamp));
     }
 }

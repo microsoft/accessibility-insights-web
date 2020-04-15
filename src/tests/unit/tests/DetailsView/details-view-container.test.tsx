@@ -16,6 +16,7 @@ import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import {
     TargetAppData,
+    ToolData,
     UnifiedResult,
     UnifiedRule,
     UnifiedScanResultStoreData,
@@ -56,6 +57,8 @@ import { DetailsViewContainerPropsBuilder } from './details-view-container-props
 import { StoreMocks } from './store-mocks';
 
 describe('DetailsViewContainer', () => {
+    const pageTitle = 'DetailsViewContainerTest title';
+    const pageUrl = 'http://detailsViewContainerTest/url/';
     let detailsViewActionMessageCreator: IMock<DetailsViewActionMessageCreator>;
     let deps: DetailsViewContainerDeps;
     let getDetailsRightPanelConfiguration: IMock<GetDetailsRightPanelConfiguration>;
@@ -64,6 +67,8 @@ describe('DetailsViewContainer', () => {
     let getCardSelectionViewDataMock: IMock<GetCardSelectionViewData>;
     let targetAppInfo: TargetAppData;
     let getUnavailableHighlightStatusStub: GetUnavailableHighlightStatus;
+    let timestamp: string;
+    let toolData: ToolData;
 
     beforeEach(() => {
         detailsViewActionMessageCreator = Mock.ofType<DetailsViewActionMessageCreator>();
@@ -87,8 +92,15 @@ describe('DetailsViewContainer', () => {
             (storeData: CardSelectionStoreData) => null,
             MockBehavior.Strict,
         );
-        targetAppInfo = { name: 'app' };
         getUnavailableHighlightStatusStub = () => null;
+        timestamp = 'timestamp';
+        targetAppInfo = {
+            name: pageTitle,
+            url: pageUrl,
+        };
+        toolData = {
+            applicationProperties: { name: 'some app' },
+        } as ToolData;
         deps = {
             detailsViewActionMessageCreator: detailsViewActionMessageCreator.object,
             getDetailsRightPanelConfiguration: getDetailsRightPanelConfiguration.object,
@@ -162,8 +174,8 @@ describe('DetailsViewContainer', () => {
             );
 
             const tabStoreData: TabStoreData = {
-                title: 'DetailsViewContainerTest title',
-                url: 'http://detailsViewContainerTest/url/',
+                title: pageTitle,
+                url: pageUrl,
                 id: 1,
                 isClosed: true,
                 isChanged: false,
@@ -373,6 +385,11 @@ describe('DetailsViewContainer', () => {
         cardsViewData: CardsViewModel,
         targetApp: TargetAppData,
     ): JSX.Element {
+        const scanMetaData = {
+            timestamp: timestamp,
+            toolData: toolData,
+            targetAppInfo: targetApp,
+        };
         return (
             <DetailsViewBody
                 deps={deps}
@@ -395,11 +412,11 @@ describe('DetailsViewContainer', () => {
                 switcherNavConfiguration={switcherNavConfiguration}
                 userConfigurationStoreData={storeMocks.userConfigurationStoreData}
                 cardsViewData={cardsViewData}
-                targetAppInfo={targetApp}
                 cardSelectionStoreData={storeMocks.cardSelectionStoreData}
                 scanIncompleteWarnings={
                     storeMocks.unifiedScanResultStoreData.scanIncompleteWarnings
                 }
+                scanMetaData={scanMetaData}
             />
         );
     }
@@ -531,6 +548,8 @@ describe('DetailsViewContainer', () => {
             results: [],
             rules: [],
             targetAppInfo: targetAppInfo,
+            timestamp: timestamp,
+            toolInfo: toolData,
         };
 
         const storeMocks = new StoreMocks()

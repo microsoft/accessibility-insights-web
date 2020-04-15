@@ -3,6 +3,7 @@
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { GetUnavailableHighlightStatus } from 'common/get-unavailable-highlight-status';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
+import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
 import { ISelection, Spinner, SpinnerSize } from 'office-ui-fabric-react';
 import * as React from 'react';
 
@@ -200,6 +201,17 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
             ),
         );
 
+        const targetAppInfo = {
+            name: this.props.storeState.tabStoreData.title,
+            url: this.props.storeState.tabStoreData.url,
+        };
+
+        const scanMetaData: ScanMetaData = {
+            timestamp: this.props.storeState.unifiedScanResultStoreData.timestamp,
+            targetAppInfo: targetAppInfo,
+            toolData: this.props.storeState.unifiedScanResultStoreData.toolInfo,
+        };
+
         return (
             <DetailsViewBody
                 deps={deps}
@@ -225,10 +237,10 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
                 userConfigurationStoreData={storeState.userConfigurationStoreData}
                 cardsViewData={cardsViewData}
                 cardSelectionStoreData={storeState.cardSelectionStoreData}
-                targetAppInfo={storeState.unifiedScanResultStoreData.targetAppInfo}
                 scanIncompleteWarnings={
                     storeState.unifiedScanResultStoreData.scanIncompleteWarnings
                 }
+                scanMetaData={scanMetaData}
             />
         );
     }

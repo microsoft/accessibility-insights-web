@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
 import { IActionN } from 'typemoq/_all';
-import { getDefaultFeatureFlagValues } from '../../../../../common/feature-flags';
+import { getDefaultFeatureFlagsWeb } from '../../../../../common/feature-flags';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { ClientUtils } from '../../../../../injected/client-utils';
 import { DialogRenderer } from '../../../../../injected/dialog-renderer';
@@ -46,7 +46,7 @@ describe('Drawer', () => {
         const testSubject = createDrawerBuilder().build();
 
         (testSubject as any).eraseLayout = eraseLayoutMock.object;
-        testSubject.initialize({ data: [], featureFlagStoreData: getDefaultFeatureFlagValues() });
+        testSubject.initialize({ data: [], featureFlagStoreData: getDefaultFeatureFlagsWeb() });
 
         eraseLayoutMock.verifyAll();
     });
@@ -1229,7 +1229,7 @@ describe('Drawer', () => {
     function createDrawerInfo<T>(elementResults: T[]): DrawerInitData<T> {
         return {
             data: elementResults,
-            featureFlagStoreData: getDefaultFeatureFlagValues(),
+            featureFlagStoreData: getDefaultFeatureFlagsWeb(),
         };
     }
 

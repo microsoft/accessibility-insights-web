@@ -3,7 +3,9 @@
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
-import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
+import { getDefaultFeatureFlagsWeb } from 'common/feature-flags';
+import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
+import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { DetailsViewCommandBarDeps } from 'DetailsView/components/details-view-command-bar';
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
@@ -43,6 +45,7 @@ describe('DetailsViewBody', () => {
     let props: DetailsViewBodyProps;
     let rightPanelConfig: DetailsRightPanelConfiguration;
     let switcherNavConfig: DetailsViewSwitcherNavConfiguration;
+    let targetAppInfoStub: TargetAppData;
 
     describe('render', () => {
         beforeEach(() => {
@@ -81,6 +84,11 @@ describe('DetailsViewBody', () => {
                 enabled: false,
             } as ScanData;
 
+            targetAppInfoStub = {
+                name: 'name',
+                url: 'url',
+            } as TargetAppData;
+
             clickHandlerStub = () => {};
 
             const assessmentStoreData = {
@@ -112,7 +120,7 @@ describe('DetailsViewBody', () => {
                 tabStoreData: new TabStoreDataBuilder().build(),
                 visualizationStoreData: new VisualizationStoreDataBuilder().build(),
                 visualizationScanResultData: new VisualizationScanResultStoreDataBuilder().build(),
-                featureFlagStoreData: new FeatureFlagStore(null, null, null).getDefaultState(),
+                featureFlagStoreData: getDefaultFeatureFlagsWeb(),
                 selectedTest: selectedTest,
                 visualizationConfigurationFactory: configFactoryMock.object,
                 clickHandlerFactory: clickHandlerFactoryMock.object,
@@ -127,6 +135,9 @@ describe('DetailsViewBody', () => {
                     visualHelperEnabled: true,
                     allCardsCollapsed: true,
                 },
+                scanMetaData: {
+                    targetAppInfo: targetAppInfoStub,
+                } as ScanMetaData,
             } as DetailsViewBodyProps;
         });
 
@@ -152,7 +163,7 @@ describe('DetailsViewBody', () => {
                         <div className="details-view-body-content-pane">
                             {buildTargetPageInfoBar(props)}
                             <div className="view" role="main">
-                                <rightPanelConfig.RightPanel {...props} />
+                                {buildRightPanel(props)}
                             </div>
                         </div>
                     </div>
@@ -200,6 +211,14 @@ describe('DetailsViewBody', () => {
     }
 
     function buildCommandBar(givenProps: DetailsViewBodyProps): JSX.Element {
-        return <switcherNavConfig.CommandBar {...props} />;
+        return <switcherNavConfig.CommandBar {...givenProps} />;
+    }
+
+    function buildRightPanel(givenProps: DetailsViewBodyProps): JSX.Element {
+        const rightPanelProps = {
+            targetAppInfo: givenProps.scanMetaData.targetAppInfo,
+            ...givenProps,
+        };
+        return <rightPanelConfig.RightPanel {...rightPanelProps} />;
     }
 });

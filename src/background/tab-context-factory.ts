@@ -16,7 +16,6 @@ import { InjectionActionCreator } from './actions/injection-action-creator';
 import { InspectActionCreator } from './actions/inspect-action-creator';
 import { PathSnippetActionCreator } from './actions/path-snippet-action-creator';
 import { PopupActionCreator } from './actions/popup-action-creator';
-import { ScopingPanelActionCreator } from './actions/scoping-panel-action-creator';
 import { ShortcutsPageActionCreator } from './actions/shortcuts-page-action-creator';
 import { TabActionCreator } from './actions/tab-action-creator';
 import { UnifiedScanResultActionCreator } from './actions/unified-scan-result-action-creator';
@@ -113,12 +112,6 @@ export class TabContextFactory {
             actionsHub.scanResultActions,
             this.telemetryEventHandler,
         );
-        const scopingPanelActionCreator = new ScopingPanelActionCreator(
-            interpreter,
-            actionsHub.scopingActions,
-            this.telemetryEventHandler,
-            detailsViewController,
-        );
         const contentActionCreator = new ContentActionCreator(
             interpreter,
             actionsHub.contentActions,
@@ -151,7 +144,6 @@ export class TabContextFactory {
         pathSnippetActionCreator.registerCallbacks();
         tabActionCreator.registerCallbacks();
         popupActionCreator.registerCallbacks();
-        scopingPanelActionCreator.registerCallbacks();
         contentActionCreator.registerCallbacks();
         scanResultActionCreator.registerCallbacks();
         cardSelectionActionCreator.registerCallbacks();

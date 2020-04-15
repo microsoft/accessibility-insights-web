@@ -130,10 +130,6 @@ export class ActionCreator {
         );
 
         this.interpreter.registerTypeToPayloadCallback(
-            Messages.PreviewFeatures.OpenPanel,
-            this.onOpenPreviewFeaturesPanel,
-        );
-        this.interpreter.registerTypeToPayloadCallback(
             Messages.PreviewFeatures.ClosePanel,
             this.onClosePreviewFeaturesPanel,
         );
@@ -239,17 +235,6 @@ export class ActionCreator {
             payload.scanIncompleteWarnings,
         );
         await this.targetTabController.showTargetTab(tabId, payload.testType, payload.key);
-    };
-
-    private onOpenPreviewFeaturesPanel = async (
-        payload: BaseActionPayload,
-        tabId: number,
-    ): Promise<void> => {
-        this.previewFeaturesActions.openPreviewFeatures.invoke(null);
-        await this.detailsViewController
-            .showDetailsView(tabId)
-            .catch(e => this.logger.error(e.message));
-        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.PREVIEW_FEATURES_OPEN, payload);
     };
 
     private onClosePreviewFeaturesPanel = (payload: BaseActionPayload): void => {

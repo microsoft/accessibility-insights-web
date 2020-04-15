@@ -855,59 +855,6 @@ describe('ActionCreatorTest', () => {
         validator.verifyAll();
     });
 
-    describe('registerCallback for onOpenPreviewFeaturesPanel', () => {
-        const tabId = 1;
-        const actionName = 'openPreviewFeatures';
-        const telemetryData: BaseTelemetryData = {
-            triggeredBy: 'stub triggered by' as TriggeredBy,
-            source: testSource,
-        };
-
-        const telemetryInfo = {
-            telemetryData,
-        };
-
-        it('open preview features panel, shows the details view and send telemetry', async () => {
-            const validator = new ActionCreatorValidator()
-                .setupRegistrationCallback(PreviewFeaturesMessage.OpenPanel, [telemetryInfo, tabId])
-                .setupActionOnPreviewFeaturesActions(actionName)
-                .setupTelemetrySend(TelemetryEvents.PREVIEW_FEATURES_OPEN, telemetryInfo, tabId)
-                .setupShowDetailsView(tabId, Promise.resolve())
-                .setupPreviewFeaturesActionWithInvokeParameter(actionName, null);
-
-            const actionCreator = validator.buildActionCreator();
-
-            actionCreator.registerCallbacks();
-
-            await tick();
-
-            validator.verifyAll();
-        });
-
-        it('propagate errors showing the details view to the logger', async () => {
-            const showDetailsViewErrorMessage = 'error on showDetailsView ';
-
-            const validator = new ActionCreatorValidator()
-                .setupRegistrationCallback(PreviewFeaturesMessage.OpenPanel, [telemetryInfo, tabId])
-                .setupActionOnPreviewFeaturesActions(actionName)
-                .setupTelemetrySend(TelemetryEvents.PREVIEW_FEATURES_OPEN, telemetryInfo, tabId)
-                .setupShowDetailsView(
-                    tabId,
-                    Promise.reject({ message: showDetailsViewErrorMessage }),
-                )
-                .setupLogError(showDetailsViewErrorMessage)
-                .setupPreviewFeaturesActionWithInvokeParameter(actionName, null);
-
-            const actionCreator = validator.buildActionCreator();
-
-            actionCreator.registerCallbacks();
-
-            await tick();
-
-            validator.verifyAll();
-        });
-    });
-
     test('registerCallback for switch focus back to target', () => {
         const pivot = DetailsViewPivotType.fastPass;
         const updatePivotActionName = 'updateSelectedPivot';
