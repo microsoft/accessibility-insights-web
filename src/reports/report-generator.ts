@@ -7,13 +7,14 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 
+import { UnifiedReportNameGenerator } from 'electron/views/report/unified-report-name-generator';
 import { AssessmentReportHtmlGenerator } from './assessment-report-html-generator';
 import { ReportHtmlGenerator } from './report-html-generator';
 import { ReportNameGenerator } from './report-name-generator';
 
 export class ReportGenerator {
     constructor(
-        private reportNameGenerator: ReportNameGenerator,
+        private reportNameGenerator: ReportNameGenerator | UnifiedReportNameGenerator,
         private reportHtmlGenerator: ReportHtmlGenerator,
         private assessmentReportHtmlGenerator: AssessmentReportHtmlGenerator,
     ) {}
