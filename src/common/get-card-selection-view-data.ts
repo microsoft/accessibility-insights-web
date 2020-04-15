@@ -33,11 +33,7 @@ export const getCardSelectionViewData: GetCardSelectionViewData = (
 ): CardSelectionViewData => {
     const viewData = getEmptyViewData();
 
-    if (
-        isEmpty(cardSelectionStoreData) ||
-        isEmpty(unifiedScanResultStoreData) ||
-        unifiedScanResultStoreData.results == null
-    ) {
+    if (isEmpty(cardSelectionStoreData) || unifiedScanResultStoreData?.results == null) {
         return viewData;
     }
 
