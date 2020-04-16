@@ -2,7 +2,11 @@
 // Licensed under the MIT License.
 import { ReportNameGeneratorBuilder } from 'reports/report-name-generator-builder';
 
-export class ReportNameGenerator {
+export interface ReportNameGenerator {
+    generateName(baseName: string, scanDate: Date, pageTitle: string): string;
+}
+
+export class WebReportNameGenerator implements ReportNameGenerator {
     constructor(
         private readonly reportNameGeneratorBuilder: ReportNameGeneratorBuilder = new ReportNameGeneratorBuilder(),
     ) {}
