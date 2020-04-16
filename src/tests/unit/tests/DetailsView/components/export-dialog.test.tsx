@@ -172,7 +172,7 @@ describe('ExportDialog', () => {
                 .returns(() => [CodePenReportExportService])
                 .verifiable(Times.exactly(2));
 
-            props.featureFlagStoreData[FeatureFlags.exportReport] = true;
+            props.featureFlagStoreData[FeatureFlags.exportReportOptions] = true;
 
             const wrapper = shallow(<ExportDialog {...props} />);
 
