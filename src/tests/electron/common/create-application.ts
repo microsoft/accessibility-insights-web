@@ -19,6 +19,9 @@ export async function createApplication(options?: AppOptions): Promise<AppContro
     const app = new Application({
         path: fs.existsSync(electronLocal) ? electronLocal : (Electron as any),
         args: [electronPath],
+        // connectionRetryCount * connectionRetryTimeout should be less than DEFAULT_ELECTRON_TEST_TIMEOUT_MS
+        connectionRetryCount: 3,
+        connectionRetryTimeout: 5000,
     });
 
     await app.start();
