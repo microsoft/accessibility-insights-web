@@ -5,14 +5,14 @@ import { CommentIcon } from 'common/icons/comment-icon';
 import { DateIcon } from 'common/icons/date-icon';
 import { UrlIcon } from 'common/icons/url-icon';
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
-import { TargetAppData } from 'common/types/store-data/unified-data-interface';
+import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
 import { isEmpty } from 'lodash';
 import * as React from 'react';
 import { SectionProps } from './report-section-factory';
 
 export type DetailsSectionProps = Pick<
     SectionProps,
-    'targetAppInfo' | 'deviceName' | 'description' | 'scanDate' | 'toUtcString'
+    'scanMetadata' | 'description' | 'scanDate' | 'toUtcString'
 >;
 
 export type ScanDetailInfo = {
@@ -21,10 +21,10 @@ export type ScanDetailInfo = {
 };
 
 export function makeDetailsSectionFC(
-    getDisplayedScanTargetInfo: (appInfo: TargetAppData, device: string) => ScanDetailInfo,
+    getDisplayedScanTargetInfo: (scanMetaData: ScanMetaData) => ScanDetailInfo,
 ): ReactFCWithDisplayName<DetailsSectionProps> {
     return NamedFC<DetailsSectionProps>('DetailsSection', props => {
-        const { targetAppInfo, deviceName, description, scanDate, toUtcString } = props;
+        const { scanMetadata, description, scanDate, toUtcString } = props;
 
         const createListItem = (
             icon: JSX.Element,
@@ -43,10 +43,7 @@ export function makeDetailsSectionFC(
 
         const scanDateUTC: string = toUtcString(scanDate);
         const showCommentRow = !isEmpty(description);
-        const displayedScanTargetInfo: ScanDetailInfo = getDisplayedScanTargetInfo(
-            targetAppInfo,
-            deviceName,
-        );
+        const displayedScanTargetInfo: ScanDetailInfo = getDisplayedScanTargetInfo(scanMetadata);
 
         return (
             <div className="scan-details-section">

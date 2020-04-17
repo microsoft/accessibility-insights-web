@@ -85,6 +85,7 @@ describe('ReportHtmlGenerator', () => {
                 visualHelperEnabled: true,
                 allCardsCollapsed: true,
             },
+            scanMetadata,
         } as ReportBodyProps;
 
         const headElement: JSX.Element = <NullComponent />;

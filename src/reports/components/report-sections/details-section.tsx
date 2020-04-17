@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { TargetAppData } from 'common/types/store-data/unified-data-interface';
+import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
 import * as React from 'react';
 import { NewTabLinkWithConfirmationDialog } from 'reports/components/new-tab-link-confirmation-dialog';
 import {
@@ -9,12 +9,15 @@ import {
     ScanDetailInfo,
 } from 'reports/components/report-sections/make-details-section-fc';
 
-export function getUrlItemInfo(appInfo: TargetAppData, device: string): ScanDetailInfo {
+export function getUrlItemInfo(scanMetadata: ScanMetaData): ScanDetailInfo {
     return {
         label: 'target page url:',
         content: (
-            <NewTabLinkWithConfirmationDialog href={appInfo.url} title={appInfo.name}>
-                {appInfo.url}
+            <NewTabLinkWithConfirmationDialog
+                href={scanMetadata.targetAppInfo.url}
+                title={scanMetadata.targetAppInfo.name}
+            >
+                {scanMetadata.targetAppInfo.url}
             </NewTabLinkWithConfirmationDialog>
         ),
     };

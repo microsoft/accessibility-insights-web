@@ -50,11 +50,13 @@ export class ReportHtmlGenerator {
                 cardsVisualizationModifierButtons: NullComponent,
             } as SectionDeps,
             cardsViewData: cardsViewData,
+            toolData: scanMetadata.toolData,
             toUtcString: this.utcDateConverter,
             getCollapsibleScript: this.getCollapsibleScript,
             getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,
             fixInstructionProcessor: this.fixInstructionProcessor,
-            ...scanMetadata,
+            targetAppInfo: scanMetadata.targetAppInfo,
+            scanMetadata,
         } as SectionProps;
 
         const props: ReportBodyProps = {
