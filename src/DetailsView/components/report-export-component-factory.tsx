@@ -64,10 +64,9 @@ export function getReportExportComponentForFastPass(props: CommandBarProps): JSX
         htmlGenerator: description =>
             reportGenerator.generateFastPassAutomatedChecksReport(
                 scanDate,
-                props.scanMetaData.targetAppInfo,
                 props.cardsViewData,
                 description,
-                props.scanMetaData.toolData,
+                props.scanMetaData,
             ),
         updatePersistedDescription: () => null,
         getExportDescription: () => '',

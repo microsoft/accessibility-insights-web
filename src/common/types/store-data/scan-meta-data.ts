@@ -8,4 +8,5 @@ export type ScanMetaData = {
     timestamp: string;
     toolData: ToolData;
     targetAppInfo: TargetAppData;
+    deviceName?: string;
 };
