@@ -52,6 +52,15 @@ exports[`HamburgerMenuButton renders proper button and menu item props 1`] = `
           "onClick": [Function],
         },
         Object {
+          "data": "/NOTICE.txt",
+          "iconProps": Object {
+            "iconName": "TextDocument",
+          },
+          "key": "third-party-notices",
+          "name": "Third party notices",
+          "onClick": [Function],
+        },
+        Object {
           "data": "https://go.microsoft.com/fwlink/?linkid=2077937",
           "iconProps": Object {
             "iconName": "Unknown",

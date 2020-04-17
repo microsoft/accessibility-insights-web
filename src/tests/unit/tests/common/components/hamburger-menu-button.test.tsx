@@ -156,6 +156,31 @@ describe('HamburgerMenuButton', () => {
             );
         });
 
+        it('handles third-party-notices', () => {
+            launchPanelHeaderClickHandlerMock.verify(
+                handler => handler.onClickLink(It.isAny(), It.isAny(), It.isAny()),
+                Times.never(),
+            );
+            const noticesItem = findMenuItemByKey('third-party-notices');
+            noticesItem.onClick(event, noticesItem);
+            launchPanelHeaderClickHandlerMock.verify(
+                handler =>
+                    handler.onClickLink(
+                        popupWindowMock.object,
+                        It.isObjectWith(event),
+                        It.isObjectWith({
+                            key: 'third-party-notices',
+                            iconProps: {
+                                iconName: 'TextDocument',
+                            },
+                            data: '/NOTICE.txt',
+                            name: 'Third party notices',
+                        }),
+                    ),
+                Times.once(),
+            );
+        });
+
         const findMenuItemByKey = (key: string) => {
             return buttonProps.menuProps.items.find(item => item.key === key);
         };
