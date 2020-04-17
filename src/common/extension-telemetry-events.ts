@@ -69,7 +69,7 @@ export const ALL_URLS_PERMISSION_UPDATED: string = 'allUrlsPermissionUpdated';
 export const TriggeredByNotApplicable: TriggeredBy = 'N/A';
 export type TriggeredBy = 'mouseclick' | 'keypress' | 'shortcut' | 'N/A';
 
-export type ExportResultType = 'Assessment' | 'AutomatedChecks';
+export type ReportExportFormat = 'Assessment' | 'AutomatedChecks';
 
 export enum TelemetryEventSource {
     LaunchPad,

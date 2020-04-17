@@ -31,7 +31,7 @@ describe('ReportExportComponentTest', () => {
         getDescriptionMock = Mock.ofInstance(() => '');
         props = {
             deps,
-            exportResultsType: 'Assessment',
+            reportExportFormat: 'Assessment',
             pageTitle: 'test title',
             scanDate: new Date(2019, 5, 28),
             htmlGenerator: htmlGeneratorMock.object,
@@ -54,7 +54,7 @@ describe('ReportExportComponentTest', () => {
 
             reportGeneratorMock
                 .setup(rgm =>
-                    rgm.generateName(props.exportResultsType, props.scanDate, props.pageTitle),
+                    rgm.generateName(props.reportExportFormat, props.scanDate, props.pageTitle),
                 )
                 .verifiable(Times.once());
             getDescriptionMock
@@ -87,7 +87,7 @@ describe('ReportExportComponentTest', () => {
             const wrapper = shallow(<ReportExportComponent {...props} />);
             reportGeneratorMock
                 .setup(rgm =>
-                    rgm.generateName(props.exportResultsType, props.scanDate, props.pageTitle),
+                    rgm.generateName(props.reportExportFormat, props.scanDate, props.pageTitle),
                 )
                 .verifiable(Times.once());
             getDescriptionMock
