@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as fs from 'fs';
-import {
-    DEFAULT_CLICK_HOVER_DELAY_MS,
-    DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS,
-} from 'tests/electron/setup/timeouts';
+import { DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS } from 'tests/electron/setup/timeouts';
 import * as WebDriverIO from 'webdriverio';
 import { screenshotOnError } from '../../../end-to-end/common/screenshot-on-error';
 
