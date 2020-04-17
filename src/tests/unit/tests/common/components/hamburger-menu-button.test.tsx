@@ -173,7 +173,7 @@ describe('HamburgerMenuButton', () => {
                             iconProps: {
                                 iconName: 'TextDocument',
                             },
-                            data: '/NOTICE.txt',
+                            data: '/NOTICE.html',
                             name: 'Third party notices',
                         }),
                     ),

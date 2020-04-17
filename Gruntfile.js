@@ -55,7 +55,7 @@ module.exports = function (grunt) {
                 files: [
                     {
                         cwd: './docs',
-                        src: ['LICENSE.txt', 'NOTICE.txt'],
+                        src: ['NOTICE.html'],
                         dest: extensionPath,
                         expand: true,
                     },
@@ -343,7 +343,7 @@ module.exports = function (grunt) {
                         },
                         {
                             cwd: extensionPath,
-                            src: ['**/*.{html,txt}'],
+                            src: ['**/*.html'],
                             dest: dropExtensionPath,
                             expand: true,
                         },

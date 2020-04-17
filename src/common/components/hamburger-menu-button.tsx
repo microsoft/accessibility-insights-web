@@ -84,7 +84,7 @@ export const HamburgerMenuButton = NamedFC<HamburgerMenuButtonProps>(
                 iconProps: {
                     iconName: 'TextDocument',
                 },
-                data: '/NOTICE.txt',
+                data: '/NOTICE.html',
                 onClick: (event, item) =>
                     launchPanelHeaderClickHandler.onClickLink(popupWindow, event as any, item),
                 name: 'Third party notices',
