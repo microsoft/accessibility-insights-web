@@ -120,7 +120,7 @@
         "source-map-loader": "^0.2.4",
         "spectron": "9.0.0",
         "terser-webpack-plugin": "^2.3.5",
-        "ts-jest": "^25.3.1",
+        "ts-jest": "^25.4.0",
         "ts-loader": "^7.0.0",
         "tslint": "^5.20.1",
         "tslint-microsoft-contrib": "6.2.0",
