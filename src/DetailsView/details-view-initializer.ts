@@ -36,7 +36,7 @@ import {
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
-import { ReportNameGenerator } from 'reports/report-name-generator';
+import { WebReportNameGenerator } from 'reports/report-name-generator';
 import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AutoChecker } from '../common/auto-checker';
 import { AxeInfo } from '../common/axe-info';
@@ -290,7 +290,7 @@ if (isNaN(tabId) === false) {
             );
 
             const reactStaticRenderer = new ReactStaticRenderer();
-            const reportNameGenerator = new ReportNameGenerator();
+            const reportNameGenerator = new WebReportNameGenerator();
 
             const fixInstructionProcessor = new FixInstructionProcessor();
 

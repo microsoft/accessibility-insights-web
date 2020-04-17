@@ -3,14 +3,14 @@
 import * as React from 'react';
 
 import {
-    ExportFormat,
-    ExportFormProps,
+    ReportExportFormProps,
     ReportExportService,
+    ReportExportServiceKey,
 } from 'report-export/types/report-export-service';
 
-const CodePenReportExportServiceKey: ExportFormat = 'codepen';
+const codePenReportExportServiceKey: ReportExportServiceKey = 'codepen';
 
-class ExportForm extends React.Component<ExportFormProps> {
+class CodePenExportForm extends React.Component<ReportExportFormProps> {
     private buttonRef: React.RefObject<HTMLButtonElement>;
 
     constructor(props) {
@@ -51,7 +51,7 @@ class ExportForm extends React.Component<ExportFormProps> {
 }
 
 export const CodePenReportExportService: ReportExportService = {
-    key: CodePenReportExportServiceKey,
+    key: codePenReportExportServiceKey,
     displayName: 'CodePen',
-    exportForm: ExportForm,
+    exportForm: CodePenExportForm,
 };

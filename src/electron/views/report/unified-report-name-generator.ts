@@ -1,12 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ReportNameGenerator } from 'reports/report-name-generator';
 import { ReportNameGeneratorBuilder } from 'reports/report-name-generator-builder';
 
-export interface ReportNameGenerator {
-    generateName(baseName: string, scanDate: Date, pageTitle: string): string;
-}
-
-export class WebReportNameGenerator implements ReportNameGenerator {
+export class UnifiedReportNameGenerator implements ReportNameGenerator {
     constructor(
         private readonly reportNameGeneratorBuilder: ReportNameGeneratorBuilder = new ReportNameGeneratorBuilder(),
     ) {}
@@ -16,6 +13,8 @@ export class WebReportNameGenerator implements ReportNameGenerator {
             baseName +
             '_' +
             this.reportNameGeneratorBuilder.getDateSegment(scanDate) +
+            '_' +
+            this.reportNameGeneratorBuilder.getTimeSegment(scanDate) +
             '_' +
             this.reportNameGeneratorBuilder.getTitleSegment(pageTitle) +
             '.html'

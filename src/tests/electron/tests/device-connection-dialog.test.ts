@@ -16,7 +16,6 @@ describe('device connection dialog', () => {
     });
 
     afterEach(async () => {
-        dialog = null;
         if (app != null) {
             await app.stop();
         }

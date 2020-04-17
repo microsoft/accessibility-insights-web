@@ -28,6 +28,7 @@ import { TabContextStoreHub } from './stores/tab-context-store-hub';
 import { TabContext } from './tab-context';
 import { TargetTabController } from './target-tab-controller';
 import { TelemetryEventHandler } from './telemetry/telemetry-event-handler';
+import { UsageLogger } from './usage-logger';
 
 export class TabContextFactory {
     constructor(
@@ -36,6 +37,7 @@ export class TabContextFactory {
         private targetTabController: TargetTabController,
         private readonly promiseFactory: PromiseFactory,
         private readonly logger: Logger,
+        private readonly usageLogger: UsageLogger,
     ) {}
 
     public createTabContext(
@@ -90,6 +92,7 @@ export class TabContextFactory {
             interpreter,
             actionsHub.tabActions,
             this.telemetryEventHandler,
+            this.usageLogger,
         );
         const devToolsActionCreator = new DevToolsActionCreator(
             interpreter,

@@ -1,18 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-export type ExportFormat = 'download' | 'codepen';
+export type ReportExportServiceKey = 'download' | 'codepen';
 
-export type ExportFormProps = ExportProps & { onSubmit: () => void };
+export type ReportExportFormProps = ReportExportProps & { onSubmit: () => void };
 
-export interface ExportProps {
+export type ReportExportProps = {
     html: string;
     fileName: string;
     description: string;
-}
+};
 
-export interface ReportExportService {
-    key: ExportFormat;
+export type ReportExportService = {
+    key: ReportExportServiceKey;
     displayName: string;
-    exportForm: React.ComponentType<ExportFormProps> | null;
-}
+    exportForm: React.ComponentType<ReportExportFormProps>;
+};

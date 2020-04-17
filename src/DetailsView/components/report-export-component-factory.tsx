@@ -19,7 +19,7 @@ export function getReportExportComponentForAssessment(props: CommandBarProps): J
     const reportGenerator = deps.reportGenerator;
     const reportExportComponentProps: ReportExportComponentProps = {
         deps: deps,
-        exportResultsType: 'Assessment',
+        reportExportFormat: 'Assessment',
         pageTitle: scanMetaData.targetAppInfo.name,
         scanDate: deps.getCurrentDate(),
         htmlGenerator: description =>
@@ -60,7 +60,7 @@ export function getReportExportComponentForFastPass(props: CommandBarProps): JSX
         deps: deps,
         scanDate: scanDate,
         pageTitle: props.scanMetaData.targetAppInfo.name,
-        exportResultsType: 'AutomatedChecks',
+        reportExportFormat: 'AutomatedChecks',
         htmlGenerator: description =>
             reportGenerator.generateFastPassAutomatedChecksReport(
                 scanDate,

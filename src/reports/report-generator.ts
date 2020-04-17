@@ -6,7 +6,6 @@ import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { TargetAppData } from 'common/types/store-data/unified-data-interface';
-
 import { AssessmentReportHtmlGenerator } from './assessment-report-html-generator';
 import { ReportHtmlGenerator } from './report-html-generator';
 import { ReportNameGenerator } from './report-name-generator';

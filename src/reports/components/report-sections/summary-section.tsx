@@ -45,6 +45,6 @@ export const AllOutcomesSummarySection = NamedFC<SummarySectionProps>(
 export const PassFailSummarySection = NamedFC<SummarySectionProps>(
     'PassFailSummarySection',
     props => {
-        return <BaseSummarySection {...props} outcomeTypesShown={['pass', 'fail']} />;
+        return <BaseSummarySection {...props} outcomeTypesShown={['fail', 'pass']} />;
     },
 );

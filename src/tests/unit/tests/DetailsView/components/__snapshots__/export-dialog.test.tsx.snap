@@ -85,7 +85,7 @@ exports[`ExportDialog renders with open false 1`] = `
           />
         </React.Fragment>
       }
-      featureFlag="exportReport"
+      featureFlag="exportReportOptions"
       featureFlagStoreData={Object {}}
     />
   </StyledDialogFooterBase>
@@ -154,7 +154,7 @@ exports[`ExportDialog renders with open true 1`] = `
           />
         </React.Fragment>
       }
-      featureFlag="exportReport"
+      featureFlag="exportReportOptions"
       featureFlagStoreData={Object {}}
     />
   </StyledDialogFooterBase>

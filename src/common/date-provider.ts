@@ -15,21 +15,6 @@ export class DateProvider {
         return new Date();
     }
 
-    public static getUTCDate(): Date {
-        const date = new Date();
-        return new Date(
-            Date.UTC(
-                date.getUTCFullYear(),
-                date.getMonth(),
-                date.getDate(),
-                date.getHours(),
-                date.getMinutes(),
-                date.getSeconds(),
-                date.getMilliseconds(),
-            ),
-        );
-    }
-
     public static getUTCStringFromDate(date: Date): string {
         return utc(date.toISOString()).format('YYYY-MM-DD h:mm A z');
     }

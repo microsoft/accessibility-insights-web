@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ExportResultType } from 'common/extension-telemetry-events';
+import { ReportExportFormat } from 'common/extension-telemetry-events';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { escape } from 'lodash';
 import { ActionButton } from 'office-ui-fabric-react';
@@ -15,7 +15,7 @@ export type ReportExportComponentDeps = {
 
 export interface ReportExportComponentProps {
     deps: ReportExportComponentDeps;
-    exportResultsType: ExportResultType;
+    reportExportFormat: ReportExportFormat;
     pageTitle: string;
     scanDate: Date;
     htmlGenerator: (descriptionPlaceholder: string) => string;
@@ -62,9 +62,9 @@ export class ReportExportComponent extends React.Component<
     };
 
     private onExportButtonClick = () => {
-        const { deps, exportResultsType, scanDate, pageTitle } = this.props;
+        const { deps, reportExportFormat, scanDate, pageTitle } = this.props;
         const exportName = deps.reportGenerator.generateName(
-            exportResultsType,
+            reportExportFormat,
             scanDate,
             pageTitle,
         );
@@ -73,7 +73,7 @@ export class ReportExportComponent extends React.Component<
     };
 
     public render(): JSX.Element {
-        const { deps, exportResultsType } = this.props;
+        const { deps, reportExportFormat } = this.props;
         const { isOpen, exportName, exportDescription, exportData } = this.state;
         return (
             <>
@@ -88,7 +88,7 @@ export class ReportExportComponent extends React.Component<
                     html={exportData}
                     onClose={this.onDismissExportDialog}
                     onDescriptionChange={this.onExportDescriptionChange}
-                    exportResultsType={exportResultsType}
+                    reportExportFormat={reportExportFormat}
                     onExportClick={this.generateHtml}
                     featureFlagStoreData={this.props.featureFlagStoreData}
                 />

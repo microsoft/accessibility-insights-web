@@ -6,8 +6,8 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { Dialog, DialogFooter, DialogType, PrimaryButton, TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
-import { ExportFormat } from 'report-export/types/report-export-service';
-import { ExportResultType } from '../../common/extension-telemetry-events';
+import { ReportExportServiceKey } from 'report-export/types/report-export-service';
+import { ReportExportFormat } from '../../common/extension-telemetry-events';
 import { FileURLProvider } from '../../common/file-url-provider';
 import { NamedFC } from '../../common/react/named-fc';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
@@ -20,7 +20,7 @@ export interface ExportDialogProps {
     html: string;
     onClose: () => void;
     onDescriptionChange: (value: string) => void;
-    exportResultsType: ExportResultType;
+    reportExportFormat: ReportExportFormat;
     onExportClick: () => void;
     featureFlagStoreData: FeatureFlagStoreData;
 }
@@ -32,7 +32,7 @@ export interface ExportDialogDeps {
 }
 
 export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => {
-    const [format, setFormat] = React.useState<ExportFormat | null>(null);
+    const [serviceKey, setServiceKey] = React.useState<ReportExportServiceKey | null>(null);
 
     const onDismiss = (): void => {
         props.onClose();
@@ -40,16 +40,16 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
 
     const onExportLinkClick = (
         event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
-        exportFormat: ExportFormat,
+        selectedServiceKey: ReportExportServiceKey,
     ): void => {
         const { detailsViewActionMessageCreator } = props.deps;
         props.onDescriptionChange(props.description);
         detailsViewActionMessageCreator.exportResultsClicked(
-            props.exportResultsType,
+            props.reportExportFormat,
             props.html,
             event,
         );
-        setFormat(exportFormat);
+        setServiceKey(selectedServiceKey);
         props.onExportClick();
         props.onClose();
     };
@@ -59,7 +59,7 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
     };
 
     const fileURL = props.deps.fileURLProvider.provideURL([props.html], 'text/html');
-    const exportService = props.deps.reportExportServiceProvider.forKey(format);
+    const exportService = props.deps.reportExportServiceProvider.forKey(serviceKey);
     const ExportForm = exportService ? exportService.exportForm : null;
 
     const getSingleExportToHtmlButton = () => {
@@ -105,7 +105,7 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
                         description={props.description}
                         html={props.html}
                         onSubmit={() => {
-                            setFormat(null);
+                            setServiceKey(null);
                         }}
                     />
                 )}
@@ -138,7 +138,7 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
             />
             <DialogFooter>
                 <FlaggedComponent
-                    featureFlag={FeatureFlags.exportReport}
+                    featureFlag={FeatureFlags.exportReportOptions}
                     featureFlagStoreData={props.featureFlagStoreData}
                     enableJSXElement={getMultiOptionExportButton()}
                     disableJSXElement={getSingleExportToHtmlButton()}

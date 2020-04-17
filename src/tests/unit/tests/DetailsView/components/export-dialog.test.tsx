@@ -6,7 +6,7 @@ import { shallow } from 'enzyme';
 import { Dialog, PrimaryButton, TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
-import { CodePenReportExportService } from 'report-export/services/codepen-report-export-service';
+import { CodePenReportExportService } from 'report-export/services/code-pen-report-export-service';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 import { FileURLProvider } from '../../../../../common/file-url-provider';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
@@ -50,7 +50,7 @@ describe('ExportDialog', () => {
             description: 'description',
             onClose: onCloseMock.object,
             onDescriptionChange: onDescriptionChangeMock.object,
-            exportResultsType: 'Assessment',
+            reportExportFormat: 'Assessment',
             onExportClick: onExportClickMock.object,
             featureFlagStoreData: {},
         };
@@ -128,7 +128,7 @@ describe('ExportDialog', () => {
             onExportClickMock.setup(getter => getter()).verifiable(Times.once());
 
             detailsViewActionMessageCreatorMock
-                .setup(a => a.exportResultsClicked(props.exportResultsType, props.html, eventStub))
+                .setup(a => a.exportResultsClicked(props.reportExportFormat, props.html, eventStub))
                 .verifiable(Times.once());
 
             reportExportServiceProvider
@@ -164,7 +164,7 @@ describe('ExportDialog', () => {
             onExportClickMock.setup(getter => getter()).verifiable(Times.once());
 
             detailsViewActionMessageCreatorMock
-                .setup(a => a.exportResultsClicked(props.exportResultsType, props.html, eventStub))
+                .setup(a => a.exportResultsClicked(props.reportExportFormat, props.html, eventStub))
                 .verifiable(Times.once());
 
             reportExportServiceProvider
@@ -172,7 +172,7 @@ describe('ExportDialog', () => {
                 .returns(() => [CodePenReportExportService])
                 .verifiable(Times.exactly(2));
 
-            props.featureFlagStoreData[FeatureFlags.exportReport] = true;
+            props.featureFlagStoreData[FeatureFlags.exportReportOptions] = true;
 
             const wrapper = shallow(<ExportDialog {...props} />);
 
