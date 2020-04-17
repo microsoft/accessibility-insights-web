@@ -90,7 +90,6 @@ exports[`CommandBar renders while status is <Completed> 1`] = `
               "scanActionCreator": null,
             }
           }
-          exportResultsType="AutomatedChecks"
           featureFlagStoreData={
             Object {
               "somefeatureflag": true,
@@ -99,6 +98,7 @@ exports[`CommandBar renders while status is <Completed> 1`] = `
           getExportDescription={[Function]}
           htmlGenerator={[Function]}
           pageTitle="scan target name"
+          reportExportFormat="AutomatedChecks"
           scanDate={1970-01-01T00:00:00.000Z}
           updatePersistedDescription={[Function]}
         />
@@ -166,7 +166,6 @@ exports[`CommandBar renders while status is <Default> 1`] = `
               "scanActionCreator": null,
             }
           }
-          exportResultsType="AutomatedChecks"
           featureFlagStoreData={
             Object {
               "somefeatureflag": true,
@@ -175,6 +174,7 @@ exports[`CommandBar renders while status is <Default> 1`] = `
           getExportDescription={[Function]}
           htmlGenerator={[Function]}
           pageTitle="scan target name"
+          reportExportFormat="AutomatedChecks"
           scanDate={1970-01-01T00:00:00.000Z}
           updatePersistedDescription={[Function]}
         />
@@ -242,7 +242,6 @@ exports[`CommandBar renders while status is <Failed> 1`] = `
               "scanActionCreator": null,
             }
           }
-          exportResultsType="AutomatedChecks"
           featureFlagStoreData={
             Object {
               "somefeatureflag": true,
@@ -251,6 +250,7 @@ exports[`CommandBar renders while status is <Failed> 1`] = `
           getExportDescription={[Function]}
           htmlGenerator={[Function]}
           pageTitle="scan target name"
+          reportExportFormat="AutomatedChecks"
           scanDate={1970-01-01T00:00:00.000Z}
           updatePersistedDescription={[Function]}
         />
@@ -318,7 +318,6 @@ exports[`CommandBar renders while status is <Scanning> 1`] = `
               "scanActionCreator": null,
             }
           }
-          exportResultsType="AutomatedChecks"
           featureFlagStoreData={
             Object {
               "somefeatureflag": true,
@@ -327,6 +326,7 @@ exports[`CommandBar renders while status is <Scanning> 1`] = `
           getExportDescription={[Function]}
           htmlGenerator={[Function]}
           pageTitle="scan target name"
+          reportExportFormat="AutomatedChecks"
           scanDate={1970-01-01T00:00:00.000Z}
           updatePersistedDescription={[Function]}
         />
