@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as fs from 'fs';
-import { DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS } from 'tests/electron/setup/timeouts';
+import {
+    DEFAULT_CLICK_HOVER_DELAY_MS,
+    DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS,
+} from 'tests/electron/setup/timeouts';
 import * as WebDriverIO from 'webdriverio';
 import { screenshotOnError } from '../../../end-to-end/common/screenshot-on-error';
 
@@ -38,6 +41,15 @@ export abstract class ViewController {
                 `was expecting element by selector ${selector} to disappear`,
             ),
         );
+    }
+
+    // You should avoid using this in most cases!
+    //
+    // This should only be used for cases where the product's intended functionality involves a
+    // time-based delay (eg, a UI element animates in before becoming active), NOT sprinkled in
+    // randomly in the hopes that it improves reliability.
+    public async waitForMilliseconds(durationInMilliseconds: number): Promise<void> {
+        await this.client.pause(durationInMilliseconds);
     }
 
     public async click(selector: string): Promise<void> {
