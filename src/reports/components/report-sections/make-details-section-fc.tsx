@@ -6,6 +6,7 @@ import { DateIcon } from 'common/icons/date-icon';
 import { UrlIcon } from 'common/icons/url-icon';
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
 import { TargetAppData } from 'common/types/store-data/unified-data-interface';
+import { isEmpty } from 'lodash';
 import * as React from 'react';
 import { SectionProps } from './report-section-factory';
 
@@ -20,7 +21,7 @@ export type ScanDetailInfo = {
 };
 
 export function makeDetailsSectionFC(
-    getUrlOrDeviceItemInfo: (appInfo: TargetAppData, device: string) => ScanDetailInfo,
+    getDisplayedScanTargetInfo: (appInfo: TargetAppData, device: string) => ScanDetailInfo,
 ): ReactFCWithDisplayName<DetailsSectionProps> {
     return NamedFC<DetailsSectionProps>('DetailsSection', props => {
         const { targetAppInfo, deviceName, description, scanDate, toUtcString } = props;
@@ -41,8 +42,8 @@ export function makeDetailsSectionFC(
         );
 
         const scanDateUTC: string = toUtcString(scanDate);
-        const showCommentRow = !!description && description !== '';
-        const urlOrDeviceItemInfo: ScanDetailInfo = getUrlOrDeviceItemInfo(
+        const showCommentRow = !isEmpty(description);
+        const displayedScanTargetInfo: ScanDetailInfo = getDisplayedScanTargetInfo(
             targetAppInfo,
             deviceName,
         );
@@ -53,8 +54,8 @@ export function makeDetailsSectionFC(
                 <ul className="details-section-list">
                     {createListItem(
                         <UrlIcon />,
-                        urlOrDeviceItemInfo.label,
-                        urlOrDeviceItemInfo.content,
+                        displayedScanTargetInfo.label,
+                        displayedScanTargetInfo.content,
                     )}
                     {createListItem(<DateIcon />, 'scan date:', scanDateUTC)}
                     {showCommentRow &&

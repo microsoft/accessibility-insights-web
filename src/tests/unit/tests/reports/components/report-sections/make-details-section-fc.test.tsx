@@ -26,7 +26,7 @@ describe('makeDetailsSection', () => {
         content: 'item content',
     };
     let toUtcStringMock: IMock<(date: Date) => string>;
-    let getUrlOrDeviceItemInfoMock: IMock<(
+    let getDisplayedScanTargetInfoMock: IMock<(
         appInfo: TargetAppData,
         device: string,
     ) => ScanDetailInfo>;
@@ -34,10 +34,10 @@ describe('makeDetailsSection', () => {
     beforeEach(() => {
         toUtcStringMock = Mock.ofInstance(DateProvider.getUTCStringFromDate, MockBehavior.Strict);
         toUtcStringMock.setup(getter => getter(scanDate)).returns(() => '2018-03-12 11:24 PM UTC');
-        getUrlOrDeviceItemInfoMock = Mock.ofType<
+        getDisplayedScanTargetInfoMock = Mock.ofType<
             (appInfo: TargetAppData, device: string) => ScanDetailInfo
         >();
-        getUrlOrDeviceItemInfoMock
+        getDisplayedScanTargetInfoMock
             .setup(g => g(targetAppData, deviceName))
             .returns(() => urlOrDeviceInfo);
     });
@@ -62,7 +62,7 @@ describe('makeDetailsSection', () => {
             deviceName,
         };
 
-        const TestDetailsSection = makeDetailsSectionFC(getUrlOrDeviceItemInfoMock.object);
+        const TestDetailsSection = makeDetailsSectionFC(getDisplayedScanTargetInfoMock.object);
 
         const wrapper = shallow(<TestDetailsSection {...props} />);
 
