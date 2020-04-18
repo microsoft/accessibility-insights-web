@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { ScanningSpinner } from 'common/components/scanning-spinner/scanning-spinner';
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
-import { GetUnavailableHighlightStatus } from 'common/get-unavailable-highlight-status';
+import { IsResultHighlightUnavailable } from 'common/get-unavailable-highlight-status';
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
@@ -43,7 +43,7 @@ export type AutomatedChecksViewDeps = CommandBarDeps &
         getCardsViewData: GetCardViewData;
         getCardSelectionViewData: GetCardSelectionViewData;
         screenshotViewModelProvider: ScreenshotViewModelProvider;
-        getUnavailableHighlightStatus: GetUnavailableHighlightStatus;
+        getUnavailableHighlightStatus: IsResultHighlightUnavailable;
     };
 
 export type AutomatedChecksViewProps = {

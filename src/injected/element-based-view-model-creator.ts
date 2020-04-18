@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
-import { GetUnavailableHighlightStatus } from 'common/get-unavailable-highlight-status';
+import { IsResultHighlightUnavailable } from 'common/get-unavailable-highlight-status';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import {
     UnifiedResult,
@@ -28,7 +28,7 @@ export class ElementBasedViewModelCreator {
     constructor(
         private getDecoratedAxeNode: GetDecoratedAxeNodeCallback,
         private getHighlightedResultInstanceIds: GetCardSelectionViewData,
-        private getUnavailableHighlightStatus: GetUnavailableHighlightStatus,
+        private getUnavailableHighlightStatus: IsResultHighlightUnavailable,
     ) {}
 
     public getElementBasedViewModel: GetElementBasedViewModelCallback = (

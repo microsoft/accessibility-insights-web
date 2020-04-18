@@ -5,7 +5,7 @@ import {
     getCardSelectionViewData,
     ResultsHighlightStatus,
 } from 'common/get-card-selection-view-data';
-import { GetUnavailableHighlightStatus } from 'common/get-unavailable-highlight-status';
+import { IsResultHighlightUnavailable } from 'common/get-unavailable-highlight-status';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import {
@@ -36,7 +36,7 @@ import { It, Mock, Times } from 'typemoq';
 describe('AutomatedChecksView', () => {
     describe('renders', () => {
         let bareMinimumProps: AutomatedChecksViewProps;
-        let getUnavailableHighlightStatusStub: GetUnavailableHighlightStatus;
+        let getUnavailableHighlightStatusStub: IsResultHighlightUnavailable;
 
         beforeEach(() => {
             getUnavailableHighlightStatusStub = () => null;

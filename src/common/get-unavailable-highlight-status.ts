@@ -9,12 +9,12 @@ import {
 } from 'common/types/store-data/unified-data-interface';
 import { BoundingRectangle } from 'electron/platform/android/android-scan-results';
 
-export type GetUnavailableHighlightStatus = (
+export type IsResultHighlightUnavailable = (
     result: UnifiedResult,
     platformInfo: PlatformData,
-) => HighlightState;
+) => boolean;
 
-export const getUnavailableHighlightStatusUnified: GetUnavailableHighlightStatus = (
+export const getUnavailableHighlightStatusUnified: IsResultHighlightUnavailable = (
     result,
     platformInfo,
 ) => {
@@ -23,10 +23,10 @@ export const getUnavailableHighlightStatusUnified: GetUnavailableHighlightStatus
         result.descriptors.boundingRectangle == null ||
         !hasValidBoundingRectangle(result.descriptors.boundingRectangle, platformInfo.viewPortInfo)
     ) {
-        return 'unavailable';
+        return true;
     }
 
-    return null;
+    return false;
 };
 
 function hasValidBoundingRectangle(
@@ -41,4 +41,4 @@ function hasValidBoundingRectangle(
     );
 }
 
-export const getUnavailableHighlightStatusWeb: GetUnavailableHighlightStatus = () => null;
+export const getUnavailableHighlightStatusWeb: IsResultHighlightUnavailable = () => false;

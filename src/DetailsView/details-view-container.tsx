@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
-import { GetUnavailableHighlightStatus } from 'common/get-unavailable-highlight-status';
+import { IsResultHighlightUnavailable } from 'common/get-unavailable-highlight-status';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
 import { ISelection, Spinner, SpinnerSize } from 'office-ui-fabric-react';
@@ -59,7 +59,7 @@ export type DetailsViewContainerDeps = {
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
     previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
     dropdownClickHandler: DropdownClickHandler;
-    getUnavailableHighlightStatus: GetUnavailableHighlightStatus;
+    getUnavailableHighlightStatus: IsResultHighlightUnavailable;
 } & DetailsViewBodyDeps &
     DetailsViewOverlayDeps &
     DetailsViewCommandBarDeps &

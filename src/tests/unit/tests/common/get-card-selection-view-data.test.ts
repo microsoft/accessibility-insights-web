@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GetUnavailableHighlightStatus } from 'common/get-unavailable-highlight-status';
+import { IsResultHighlightUnavailable } from 'common/get-unavailable-highlight-status';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { cloneDeep } from 'lodash';
@@ -14,7 +14,7 @@ import {
 describe('getCardSelectionStoreviewData', () => {
     let initialCardSelectionState: CardSelectionStoreData;
     let initialUnifiedScanResultState: UnifiedScanResultStoreData;
-    let getUnavailableHighlightStatus: IMock<GetUnavailableHighlightStatus>;
+    let getUnavailableHighlightStatus: IMock<IsResultHighlightUnavailable>;
 
     beforeEach(() => {
         const defaultCardSelectionState: CardSelectionStoreData = {
@@ -37,7 +37,6 @@ describe('getCardSelectionStoreviewData', () => {
             visualHelperEnabled: true,
             focusedResultUid: null,
         };
-
         initialUnifiedScanResultState = {
             platformInfo: {
                 viewPortInfo: {},
@@ -66,7 +65,7 @@ describe('getCardSelectionStoreviewData', () => {
             ],
         } as UnifiedScanResultStoreData;
 
-        getUnavailableHighlightStatus = Mock.ofType<GetUnavailableHighlightStatus>();
+        getUnavailableHighlightStatus = Mock.ofType<IsResultHighlightUnavailable>();
         initialCardSelectionState = cloneDeep(defaultCardSelectionState);
     });
 
@@ -96,7 +95,7 @@ describe('getCardSelectionStoreviewData', () => {
                     initialUnifiedScanResultState.platformInfo,
                 ),
             )
-            .returns(() => 'unavailable');
+            .returns(() => true);
 
         getUnavailableHighlightStatus
             .setup(mock =>
@@ -105,7 +104,7 @@ describe('getCardSelectionStoreviewData', () => {
                     initialUnifiedScanResultState.platformInfo,
                 ),
             )
-            .returns(() => 'unavailable');
+            .returns(() => true);
 
         const viewData = getCardSelectionViewData(
             initialCardSelectionState,
@@ -135,7 +134,7 @@ describe('getCardSelectionStoreviewData', () => {
                     initialUnifiedScanResultState.platformInfo,
                 ),
             )
-            .returns(() => 'unavailable');
+            .returns(() => true);
 
         const viewData = getCardSelectionViewData(
             initialCardSelectionState,
@@ -164,7 +163,7 @@ describe('getCardSelectionStoreviewData', () => {
                     initialUnifiedScanResultState.platformInfo,
                 ),
             )
-            .returns(() => 'unavailable');
+            .returns(() => true);
 
         const viewData = getCardSelectionViewData(
             initialCardSelectionState,
@@ -295,7 +294,7 @@ describe('getCardSelectionStoreviewData', () => {
         validateEmptyViewData(viewData);
     });
 
-    test('empty store data, expect no results', () => {
+    test('empty CardSelectionStoreData, expect no results', () => {
         const viewData = getCardSelectionViewData(
             {} as CardSelectionStoreData,
             {} as UnifiedScanResultStoreData,
@@ -305,7 +304,19 @@ describe('getCardSelectionStoreviewData', () => {
         validateEmptyViewData(viewData);
     });
 
-    test('invalid store data, expect no results', () => {
+    test('null UnifiedScanResultStoreData, expect no results', () => {
+        const viewData = getCardSelectionViewData(
+            {
+                rules: {},
+            } as CardSelectionStoreData,
+            null,
+            null,
+        );
+
+        validateEmptyViewData(viewData);
+    });
+
+    test('invalid UnifiedScanResultStoreData, expect no results', () => {
         const viewData = getCardSelectionViewData(
             {} as CardSelectionStoreData,
             { results: null } as UnifiedScanResultStoreData,

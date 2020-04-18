@@ -5,7 +5,7 @@ import {
     CardSelectionViewData,
     GetCardSelectionViewData,
 } from 'common/get-card-selection-view-data';
-import { GetUnavailableHighlightStatus } from 'common/get-unavailable-highlight-status';
+import { IsResultHighlightUnavailable } from 'common/get-unavailable-highlight-status';
 import { StoreActionMessageCreator } from 'common/message-creators/store-action-message-creator';
 import { StoreActionMessageCreatorImpl } from 'common/message-creators/store-action-message-creator-impl';
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
@@ -66,7 +66,7 @@ describe('DetailsViewContainer', () => {
     let getCardViewDataMock: IMock<GetCardViewData>;
     let getCardSelectionViewDataMock: IMock<GetCardSelectionViewData>;
     let targetAppInfo: TargetAppData;
-    let getUnavailableHighlightStatusStub: GetUnavailableHighlightStatus;
+    let getUnavailableHighlightStatusStub: IsResultHighlightUnavailable;
     let timestamp: string;
     let toolData: ToolData;
 

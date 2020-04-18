@@ -4,7 +4,7 @@ import {
     CardSelectionViewData,
     GetCardSelectionViewData,
 } from 'common/get-card-selection-view-data';
-import { GetUnavailableHighlightStatus } from 'common/get-unavailable-highlight-status';
+import { IsResultHighlightUnavailable } from 'common/get-unavailable-highlight-status';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import {
     UnifiedRule,
@@ -22,7 +22,7 @@ describe('ElementBasedViewModelCreator', () => {
     let getHighlightedResultInstanceIdsMock: IMock<GetCardSelectionViewData>;
     let testSubject: ElementBasedViewModelCreator;
     let cardSelectionData: CardSelectionStoreData;
-    let getUnavailableHighlightStatusStub: GetUnavailableHighlightStatus;
+    let getUnavailableHighlightStatusStub: IsResultHighlightUnavailable;
 
     beforeEach(() => {
         getDecoratedAxeNodeCallbackMock = Mock.ofType<GetDecoratedAxeNodeCallback>(
