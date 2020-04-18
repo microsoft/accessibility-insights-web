@@ -44,6 +44,8 @@ export class AppController {
     }
 
     public async setHighContrastMode(enableHighContrast: boolean): Promise<void> {
+        await this.waitForUserConfigurationInitializer();
+
         await this.app.webContents.executeJavaScript(
             `window.insightsUserConfiguration.setHighContrastMode(${enableHighContrast})`,
         );
@@ -70,6 +72,14 @@ export class AppController {
     }
 
     public async setTelemetryState(enableTelemetry: boolean): Promise<void> {
+        await this.waitForUserConfigurationInitializer();
+
+        await this.app.webContents.executeJavaScript(
+            `window.insightsUserConfiguration.setTelemetryState(${enableTelemetry})`,
+        );
+    }
+
+    private async waitForUserConfigurationInitializer(): Promise<void> {
         await this.client.waitUntil(
             async () => {
                 const executeOutput = await this.client.executeAsync(done => {
@@ -80,10 +90,6 @@ export class AppController {
             },
             DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS,
             'was expecting window.insightsUserConfiguration to be defined',
-        );
-
-        await this.app.webContents.executeJavaScript(
-            `window.insightsUserConfiguration.setTelemetryState(${enableTelemetry})`,
         );
     }
 }

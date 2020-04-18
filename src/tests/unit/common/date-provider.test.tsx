@@ -22,11 +22,6 @@ describe('DateProviderTest', () => {
         expect(date.getTime()).toEqual(new Date(date).getTime());
     });
 
-    test('getUTCDate', () => {
-        const UTCDate = DateProvider.getUTCDate();
-        expect(UTCDate.getTime()).toEqual(new Date(UTCDate).getTime());
-    });
-
     const differentTimeZonesDates = [
         'Thu May 30 2019 16:57:54 GMT-0700 (Pacific Daylight Time)',
         'Thu May 30 2019 18:57:54 GMT-0500 (Central Standard Time)',

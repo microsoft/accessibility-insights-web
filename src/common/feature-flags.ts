@@ -14,7 +14,7 @@ export class FeatureFlags {
     public static readonly manualInstanceDetails = 'manualInstanceDetails';
     public static readonly debugTools = 'debugTools';
 
-    public static readonly exportReport = 'exportReport';
+    public static readonly exportReportOptions = 'exportReportOptions';
 }
 
 export interface FeatureFlagDetail {
@@ -102,7 +102,7 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             forceDefault: false,
         },
         {
-            id: FeatureFlags.exportReport,
+            id: FeatureFlags.exportReportOptions,
             defaultValue: false,
             displayableName: 'More export options',
             displayableDescription: 'Enables exporting reports to external services',

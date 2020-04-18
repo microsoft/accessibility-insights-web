@@ -23,6 +23,15 @@ describe('AxeResultReport', () => {
     const toolDataStub: ToolData = {
         applicationProperties: { name: 'some app' },
     } as ToolData;
+    const targetAppInfoStub = {
+        name: pageTitle,
+        url: url,
+    };
+    const scanMetadataStub = {
+        toolData: toolDataStub,
+        targetAppInfo: targetAppInfoStub,
+        timestamp: null,
+    };
 
     const results = {
         timestamp: reportDateTime.toISOString(),
@@ -65,7 +74,7 @@ describe('AxeResultReport', () => {
     const expectedHTML = '<div>The Report!</div>';
     const mockReportHtmlGenerator = Mock.ofType<ReportHtmlGenerator>(null, MockBehavior.Strict);
     mockReportHtmlGenerator
-        .setup(gen => gen.generateHtml(reportDateTime, pageTitle, url, description, mockCardsViewModel.object, toolDataStub))
+        .setup(gen => gen.generateHtml(reportDateTime, description, mockCardsViewModel.object, scanMetadataStub))
         .returns(() => expectedHTML);
 
     const deps: AxeResultsReportDeps = {

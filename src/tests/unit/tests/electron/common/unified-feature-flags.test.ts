@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { FeatureFlagDefaultsHelper } from 'common/feature-flag-defaults-helper';
+import { getAllFeatureFlagDetails } from 'common/feature-flags';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import {
     getAllFeatureFlagDetailsUnified,
@@ -80,6 +81,23 @@ describe('FeatureFlagsTest', () => {
         forEach(details, detail => {
             expect(detail.displayableName.length > 0).toBeTruthy();
             expect(detail.displayableDescription.length > 0).toBeTruthy();
+        });
+    });
+
+    test('web and electron feature flags with matching names should have the same purpose', () => {
+        const unifiedDetails = getAllFeatureFlagDetailsUnified();
+        const webDetails = getAllFeatureFlagDetails();
+
+        unifiedDetails.forEach(unifiedDetail => {
+            const matchingWebDetail = webDetails.find(
+                webDetail => webDetail.id === unifiedDetail.id,
+            );
+            if (matchingWebDetail !== undefined) {
+                expect(unifiedDetail.displayableName).toEqual(matchingWebDetail.displayableName);
+                expect(unifiedDetail.displayableDescription).toEqual(
+                    matchingWebDetail.displayableDescription,
+                );
+            }
         });
     });
 });

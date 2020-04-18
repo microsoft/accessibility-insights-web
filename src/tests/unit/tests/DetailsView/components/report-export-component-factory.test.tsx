@@ -115,10 +115,9 @@ describe('ReportExportComponentPropsFactory', () => {
             .setup(reportGenerator =>
                 reportGenerator.generateFastPassAutomatedChecksReport(
                     theDate,
-                    targetAppInfo,
                     cardsViewData,
                     theDescription,
-                    scanMetaData.toolData,
+                    scanMetaData,
                 ),
             )
             .returns(() => theGeneratorOutput);

@@ -67,6 +67,7 @@ import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-r
 import { ScanController } from 'electron/platform/android/scan-controller';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
 import { UnifiedSettingsProvider } from 'electron/settings/unified-settings-provider';
+import { UnifiedReportNameGenerator } from 'electron/views/report/unified-report-name-generator';
 import { UnifiedReportSectionFactory } from 'electron/views/report/unified-report-section-factory';
 import { RootContainerState } from 'electron/views/root-container/components/root-container';
 import { PlatformInfo } from 'electron/window-management/platform-info';
@@ -74,13 +75,11 @@ import { WindowFrameListener } from 'electron/window-management/window-frame-lis
 import { WindowFrameUpdater } from 'electron/window-management/window-frame-updater';
 import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
+import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
-import { ReportNameGenerator } from 'reports/report-name-generator';
-
-import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
 import { IndexedDBDataKeys } from '../../background/IndexedDBDataKeys';
@@ -375,7 +374,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         );
 
         const reportGenerator = new ReportGenerator(
-            new ReportNameGenerator(),
+            new UnifiedReportNameGenerator(),
             reportHtmlGenerator,
             null,
         );
