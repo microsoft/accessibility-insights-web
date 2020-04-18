@@ -3,7 +3,7 @@
 import { Assessments } from 'assessments/assessments';
 import { EnumHelper } from 'common/enum-helper';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
-import { isResultHighlightUnavailableWeb } from 'common/get-unavailable-highlight-status';
+import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unavailable';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';

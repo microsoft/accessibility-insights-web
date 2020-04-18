@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { HighlightState } from 'common/components/cards/instance-details-footer';
-import { IsResultHighlightUnavailable } from 'common/get-unavailable-highlight-status';
+import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { flatMap, forOwn, isEmpty, keys } from 'lodash';
 

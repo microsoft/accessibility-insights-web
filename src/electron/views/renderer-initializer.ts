@@ -36,7 +36,7 @@ import { FeatureFlagDefaultsHelper } from 'common/feature-flag-defaults-helper';
 import { FileURLProvider } from 'common/file-url-provider';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
-import { isResultHighlightUnavailableUnified } from 'common/get-unavailable-highlight-status';
+import { isResultHighlightUnavailableUnified } from 'common/is-result-highlight-unavailable';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { DropdownActionMessageCreator } from 'common/message-creators/dropdown-action-message-creator';

@@ -5,7 +5,7 @@ import {
     CardSelectionViewData,
     GetCardSelectionViewData,
 } from 'common/get-card-selection-view-data';
-import { IsResultHighlightUnavailable } from 'common/get-unavailable-highlight-status';
+import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { StoreActionMessageCreator } from 'common/message-creators/store-action-message-creator';
 import { StoreActionMessageCreatorImpl } from 'common/message-creators/store-action-message-creator-impl';
 import { GetCardViewData } from 'common/rule-based-view-model-provider';

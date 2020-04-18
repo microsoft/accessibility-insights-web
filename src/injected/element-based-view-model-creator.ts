@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
-import { IsResultHighlightUnavailable } from 'common/get-unavailable-highlight-status';
+import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import {
     UnifiedResult,

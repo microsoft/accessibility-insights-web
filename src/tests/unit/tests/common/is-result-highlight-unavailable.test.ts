@@ -3,7 +3,7 @@
 import {
     isResultHighlightUnavailableUnified,
     isResultHighlightUnavailableWeb,
-} from 'common/get-unavailable-highlight-status';
+} from 'common/is-result-highlight-unavailable';
 import { PlatformData, UnifiedResult } from 'common/types/store-data/unified-data-interface';
 
 describe('isResultHighlightUnavailableUnified', () => {
