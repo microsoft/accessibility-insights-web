@@ -43,7 +43,7 @@ export type AutomatedChecksViewDeps = CommandBarDeps &
         getCardsViewData: GetCardViewData;
         getCardSelectionViewData: GetCardSelectionViewData;
         screenshotViewModelProvider: ScreenshotViewModelProvider;
-        getUnavailableHighlightStatus: IsResultHighlightUnavailable;
+        isResultHighlightUnavailable: IsResultHighlightUnavailable;
     };
 
 export type AutomatedChecksViewProps = {
@@ -73,7 +73,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
             const cardSelectionViewData = deps.getCardSelectionViewData(
                 cardSelectionStoreData,
                 unifiedScanResultStoreData,
-                deps.getUnavailableHighlightStatus,
+                deps.isResultHighlightUnavailable,
             );
             const cardsViewData = deps.getCardsViewData(rules, results, cardSelectionViewData);
             const highlightedResultUids = Object.keys(

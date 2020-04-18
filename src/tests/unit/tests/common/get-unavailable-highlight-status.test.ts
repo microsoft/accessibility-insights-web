@@ -1,18 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
-    getUnavailableHighlightStatusUnified,
-    getUnavailableHighlightStatusWeb,
+    isResultHighlightUnavailableUnified,
+    isResultHighlightUnavailableWeb,
 } from 'common/get-unavailable-highlight-status';
 import { PlatformData, UnifiedResult } from 'common/types/store-data/unified-data-interface';
 
-describe('getUnavailableHighlightStatusUnified', () => {
+describe('isResultHighlightUnavailableUnified', () => {
     test('unavailable: boundingRectangle is null', () => {
         const unifiedResult: UnifiedResult = {
             descriptors: {},
         } as UnifiedResult;
 
-        expect(getUnavailableHighlightStatusUnified(unifiedResult, {} as PlatformData)).toEqual(
+        expect(isResultHighlightUnavailableUnified(unifiedResult, {} as PlatformData)).toEqual(
             true,
         );
     });
@@ -22,7 +22,7 @@ describe('getUnavailableHighlightStatusUnified', () => {
             descriptors: { boundingRectangle: {} },
         } as UnifiedResult;
 
-        expect(getUnavailableHighlightStatusUnified(unifiedResult, null)).toEqual(true);
+        expect(isResultHighlightUnavailableUnified(unifiedResult, null)).toEqual(true);
     });
 
     test('unavailable: boundingRectangle left value is greater than platform width', () => {
@@ -37,7 +37,7 @@ describe('getUnavailableHighlightStatusUnified', () => {
             viewPortInfo: { width: 4 },
         } as PlatformData;
 
-        expect(getUnavailableHighlightStatusUnified(unifiedResult, platformData)).toEqual(true);
+        expect(isResultHighlightUnavailableUnified(unifiedResult, platformData)).toEqual(true);
     });
 
     test('unavailable: boundingRectangle left value is negative', () => {
@@ -50,7 +50,7 @@ describe('getUnavailableHighlightStatusUnified', () => {
         } as UnifiedResult;
         const platformData: PlatformData = {} as PlatformData;
 
-        expect(getUnavailableHighlightStatusUnified(unifiedResult, platformData)).toEqual(true);
+        expect(isResultHighlightUnavailableUnified(unifiedResult, platformData)).toEqual(true);
     });
 
     test('unavailable: boundingRectangle top value is negative', () => {
@@ -63,7 +63,7 @@ describe('getUnavailableHighlightStatusUnified', () => {
         } as UnifiedResult;
         const platformData: PlatformData = {} as PlatformData;
 
-        expect(getUnavailableHighlightStatusUnified(unifiedResult, platformData)).toEqual(true);
+        expect(isResultHighlightUnavailableUnified(unifiedResult, platformData)).toEqual(true);
     });
 
     test('unavailable: boundingRectangle top value is greater than platform height', () => {
@@ -79,7 +79,7 @@ describe('getUnavailableHighlightStatusUnified', () => {
             viewPortInfo: { width: 4, height: 10 },
         } as PlatformData;
 
-        expect(getUnavailableHighlightStatusUnified(unifiedResult, platformData)).toEqual(true);
+        expect(isResultHighlightUnavailableUnified(unifiedResult, platformData)).toEqual(true);
     });
 
     test('available: highlight is at least partially within the viewport', () => {
@@ -95,12 +95,12 @@ describe('getUnavailableHighlightStatusUnified', () => {
             viewPortInfo: { width: 4, height: 10 },
         } as PlatformData;
 
-        expect(getUnavailableHighlightStatusUnified(unifiedResult, platformData)).toEqual(false);
+        expect(isResultHighlightUnavailableUnified(unifiedResult, platformData)).toEqual(false);
     });
 });
 
-describe('getUnavailableHighlightStatusWeb', () => {
+describe('isResultHighlightUnavailableWeb', () => {
     test('should always be available', () => {
-        expect(getUnavailableHighlightStatusWeb(null, null)).toEqual(false);
+        expect(isResultHighlightUnavailableWeb(null, null)).toEqual(false);
     });
 });

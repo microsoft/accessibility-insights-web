@@ -66,7 +66,7 @@ describe('DetailsViewContainer', () => {
     let getCardViewDataMock: IMock<GetCardViewData>;
     let getCardSelectionViewDataMock: IMock<GetCardSelectionViewData>;
     let targetAppInfo: TargetAppData;
-    let getUnavailableHighlightStatusStub: IsResultHighlightUnavailable;
+    let isResultHighlightUnavailableStub: IsResultHighlightUnavailable;
     let timestamp: string;
     let toolData: ToolData;
 
@@ -92,7 +92,7 @@ describe('DetailsViewContainer', () => {
             (storeData: CardSelectionStoreData) => null,
             MockBehavior.Strict,
         );
-        getUnavailableHighlightStatusStub = () => null;
+        isResultHighlightUnavailableStub = () => null;
         timestamp = 'timestamp';
         targetAppInfo = {
             name: pageTitle,
@@ -107,7 +107,7 @@ describe('DetailsViewContainer', () => {
             getDetailsSwitcherNavConfiguration: getDetailsSwitcherNavConfiguration.object,
             getCardViewData: getCardViewDataMock.object,
             getCardSelectionViewData: getCardSelectionViewDataMock.object,
-            getUnavailableHighlightStatus: getUnavailableHighlightStatusStub,
+            isResultHighlightUnavailable: isResultHighlightUnavailableStub,
         } as DetailsViewContainerDeps;
     });
 
@@ -279,7 +279,7 @@ describe('DetailsViewContainer', () => {
                     g(
                         state.cardSelectionStoreData,
                         state.unifiedScanResultStoreData,
-                        getUnavailableHighlightStatusStub,
+                        isResultHighlightUnavailableStub,
                     ),
                 )
                 .returns(() => cardSelectionViewData);
@@ -589,7 +589,7 @@ describe('DetailsViewContainer', () => {
                 g(
                     state.cardSelectionStoreData,
                     state.unifiedScanResultStoreData,
-                    getUnavailableHighlightStatusStub,
+                    isResultHighlightUnavailableStub,
                 ),
             )
             .returns(() => cardSelectionViewData)

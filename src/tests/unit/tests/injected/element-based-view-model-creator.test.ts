@@ -22,7 +22,7 @@ describe('ElementBasedViewModelCreator', () => {
     let getHighlightedResultInstanceIdsMock: IMock<GetCardSelectionViewData>;
     let testSubject: ElementBasedViewModelCreator;
     let cardSelectionData: CardSelectionStoreData;
-    let getUnavailableHighlightStatusStub: IsResultHighlightUnavailable;
+    let isResultHighlightUnavailableStub: IsResultHighlightUnavailable;
 
     beforeEach(() => {
         getDecoratedAxeNodeCallbackMock = Mock.ofType<GetDecoratedAxeNodeCallback>(
@@ -33,11 +33,11 @@ describe('ElementBasedViewModelCreator', () => {
             undefined,
             MockBehavior.Strict,
         );
-        getUnavailableHighlightStatusStub = () => null;
+        isResultHighlightUnavailableStub = () => null;
         testSubject = new ElementBasedViewModelCreator(
             getDecoratedAxeNodeCallbackMock.object,
             getHighlightedResultInstanceIdsMock.object,
-            getUnavailableHighlightStatusStub,
+            isResultHighlightUnavailableStub,
         );
 
         cardSelectionData = {} as CardSelectionStoreData;
@@ -82,7 +82,7 @@ describe('ElementBasedViewModelCreator', () => {
 
         getHighlightedResultInstanceIdsMock
             .setup(mock =>
-                mock(cardSelectionData, scanResultStoreData, getUnavailableHighlightStatusStub),
+                mock(cardSelectionData, scanResultStoreData, isResultHighlightUnavailableStub),
             )
             .returns(() => cardSelectionViewData);
 
@@ -109,7 +109,7 @@ describe('ElementBasedViewModelCreator', () => {
 
         getHighlightedResultInstanceIdsMock
             .setup(mock =>
-                mock(cardSelectionData, scanResultStoreData, getUnavailableHighlightStatusStub),
+                mock(cardSelectionData, scanResultStoreData, isResultHighlightUnavailableStub),
             )
             .returns(() => cardSelectionViewData);
 
@@ -164,7 +164,7 @@ describe('ElementBasedViewModelCreator', () => {
 
         getHighlightedResultInstanceIdsMock
             .setup(mock =>
-                mock(cardSelectionData, scanResultStoreData, getUnavailableHighlightStatusStub),
+                mock(cardSelectionData, scanResultStoreData, isResultHighlightUnavailableStub),
             )
             .returns(() => cardSelectionViewData);
 

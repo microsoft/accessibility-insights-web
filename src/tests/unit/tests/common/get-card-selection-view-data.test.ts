@@ -14,7 +14,7 @@ import {
 describe('getCardSelectionStoreviewData', () => {
     let initialCardSelectionState: CardSelectionStoreData;
     let initialUnifiedScanResultState: UnifiedScanResultStoreData;
-    let getUnavailableHighlightStatus: IMock<IsResultHighlightUnavailable>;
+    let isResultHighlightUnavailable: IMock<IsResultHighlightUnavailable>;
 
     beforeEach(() => {
         const defaultCardSelectionState: CardSelectionStoreData = {
@@ -65,7 +65,7 @@ describe('getCardSelectionStoreviewData', () => {
             ],
         } as UnifiedScanResultStoreData;
 
-        getUnavailableHighlightStatus = Mock.ofType<IsResultHighlightUnavailable>();
+        isResultHighlightUnavailable = Mock.ofType<IsResultHighlightUnavailable>();
         initialCardSelectionState = cloneDeep(defaultCardSelectionState);
     });
 
@@ -73,7 +73,7 @@ describe('getCardSelectionStoreviewData', () => {
         const viewData = getCardSelectionViewData(
             initialCardSelectionState,
             initialUnifiedScanResultState,
-            getUnavailableHighlightStatus.object,
+            isResultHighlightUnavailable.object,
         );
 
         expect(viewData.resultsHighlightStatus).toEqual({
@@ -88,7 +88,7 @@ describe('getCardSelectionStoreviewData', () => {
     });
 
     test('all rules collapsed, visual helper enabled, some results unavailable', () => {
-        getUnavailableHighlightStatus
+        isResultHighlightUnavailable
             .setup(mock =>
                 mock(
                     initialUnifiedScanResultState.results[0],
@@ -97,7 +97,7 @@ describe('getCardSelectionStoreviewData', () => {
             )
             .returns(() => true);
 
-        getUnavailableHighlightStatus
+        isResultHighlightUnavailable
             .setup(mock =>
                 mock(
                     initialUnifiedScanResultState.results[1],
@@ -109,7 +109,7 @@ describe('getCardSelectionStoreviewData', () => {
         const viewData = getCardSelectionViewData(
             initialCardSelectionState,
             initialUnifiedScanResultState,
-            getUnavailableHighlightStatus.object,
+            isResultHighlightUnavailable.object,
         );
 
         expect(viewData.resultsHighlightStatus).toEqual({
@@ -127,7 +127,7 @@ describe('getCardSelectionStoreviewData', () => {
         initialCardSelectionState.rules['sampleRuleId1'].isExpanded = true;
         initialCardSelectionState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
 
-        getUnavailableHighlightStatus
+        isResultHighlightUnavailable
             .setup(mock =>
                 mock(
                     initialUnifiedScanResultState.results[0],
@@ -139,7 +139,7 @@ describe('getCardSelectionStoreviewData', () => {
         const viewData = getCardSelectionViewData(
             initialCardSelectionState,
             initialUnifiedScanResultState,
-            getUnavailableHighlightStatus.object,
+            isResultHighlightUnavailable.object,
         );
 
         expect(viewData.resultsHighlightStatus).toEqual({
@@ -156,7 +156,7 @@ describe('getCardSelectionStoreviewData', () => {
     test('some rules expanded, some highlights unavailable regardless, some visible', () => {
         initialCardSelectionState.rules['sampleRuleId1'].isExpanded = true;
 
-        getUnavailableHighlightStatus
+        isResultHighlightUnavailable
             .setup(mock =>
                 mock(
                     initialUnifiedScanResultState.results[0],
@@ -168,7 +168,7 @@ describe('getCardSelectionStoreviewData', () => {
         const viewData = getCardSelectionViewData(
             initialCardSelectionState,
             initialUnifiedScanResultState,
-            getUnavailableHighlightStatus.object,
+            isResultHighlightUnavailable.object,
         );
 
         expect(viewData.resultsHighlightStatus).toEqual({
@@ -189,7 +189,7 @@ describe('getCardSelectionStoreviewData', () => {
         const viewData = getCardSelectionViewData(
             initialCardSelectionState,
             initialUnifiedScanResultState,
-            getUnavailableHighlightStatus.object,
+            isResultHighlightUnavailable.object,
         );
 
         expect(viewData.resultsHighlightStatus).toEqual({
@@ -209,7 +209,7 @@ describe('getCardSelectionStoreviewData', () => {
         const viewData = getCardSelectionViewData(
             initialCardSelectionState,
             initialUnifiedScanResultState,
-            getUnavailableHighlightStatus.object,
+            isResultHighlightUnavailable.object,
         );
 
         expect(viewData.resultsHighlightStatus).toEqual({
@@ -231,7 +231,7 @@ describe('getCardSelectionStoreviewData', () => {
         const viewData = getCardSelectionViewData(
             initialCardSelectionState,
             initialUnifiedScanResultState,
-            getUnavailableHighlightStatus.object,
+            isResultHighlightUnavailable.object,
         );
 
         expect(viewData.resultsHighlightStatus).toEqual({
@@ -251,7 +251,7 @@ describe('getCardSelectionStoreviewData', () => {
         const viewData = getCardSelectionViewData(
             initialCardSelectionState,
             initialUnifiedScanResultState,
-            getUnavailableHighlightStatus.object,
+            isResultHighlightUnavailable.object,
         );
 
         expect(viewData.resultsHighlightStatus).toEqual({
@@ -274,7 +274,7 @@ describe('getCardSelectionStoreviewData', () => {
         const viewData = getCardSelectionViewData(
             initialCardSelectionState,
             initialUnifiedScanResultState,
-            getUnavailableHighlightStatus.object,
+            isResultHighlightUnavailable.object,
         );
 
         expect(viewData.resultsHighlightStatus).toEqual({

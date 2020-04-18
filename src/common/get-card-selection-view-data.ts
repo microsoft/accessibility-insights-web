@@ -23,13 +23,13 @@ export type ResultsHighlightStatus = { [resultUid: string]: HighlightState };
 export type GetCardSelectionViewData = (
     storeData: CardSelectionStoreData,
     unifiedScanResultStoreData: UnifiedScanResultStoreData,
-    getUnavailableHighlightStatus: IsResultHighlightUnavailable,
+    isResultHighlightUnavailable: IsResultHighlightUnavailable,
 ) => CardSelectionViewData;
 
 export const getCardSelectionViewData: GetCardSelectionViewData = (
     cardSelectionStoreData: CardSelectionStoreData,
     unifiedScanResultStoreData: UnifiedScanResultStoreData,
-    getUnavailableHighlightStatus: IsResultHighlightUnavailable,
+    isResultHighlightUnavailable: IsResultHighlightUnavailable,
 ): CardSelectionViewData => {
     const viewData = getEmptyViewData();
 
@@ -42,7 +42,7 @@ export const getCardSelectionViewData: GetCardSelectionViewData = (
     const allResultUids = getAllResultUids(cardSelectionStoreData.rules);
     const unavailableResultUids = getResultsWithUnavailableHighlightStatus(
         unifiedScanResultStoreData,
-        getUnavailableHighlightStatus,
+        isResultHighlightUnavailable,
     );
     let selectedResultUids = getOnlyResultUidsFromSelectedCards(
         cardSelectionStoreData.rules,
@@ -85,13 +85,13 @@ function getEmptyViewData(): CardSelectionViewData {
 
 function getResultsWithUnavailableHighlightStatus(
     unifiedScanResultStoreData: UnifiedScanResultStoreData,
-    getUnavailableHighlightStatus: IsResultHighlightUnavailable,
+    isResultHighlightUnavailable: IsResultHighlightUnavailable,
 ): string[] {
     return unifiedScanResultStoreData.results
         .filter(
             result =>
                 result.status === 'fail' &&
-                getUnavailableHighlightStatus(result, unifiedScanResultStoreData.platformInfo),
+                isResultHighlightUnavailable(result, unifiedScanResultStoreData.platformInfo),
         )
         .map(result => result.uid);
 }

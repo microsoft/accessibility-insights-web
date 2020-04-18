@@ -59,7 +59,7 @@ export type DetailsViewContainerDeps = {
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
     previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
     dropdownClickHandler: DropdownClickHandler;
-    getUnavailableHighlightStatus: IsResultHighlightUnavailable;
+    isResultHighlightUnavailable: IsResultHighlightUnavailable;
 } & DetailsViewBodyDeps &
     DetailsViewOverlayDeps &
     DetailsViewCommandBarDeps &
@@ -197,7 +197,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
             this.props.deps.getCardSelectionViewData(
                 this.props.storeState.cardSelectionStoreData,
                 this.props.storeState.unifiedScanResultStoreData,
-                this.props.deps.getUnavailableHighlightStatus,
+                this.props.deps.isResultHighlightUnavailable,
             ),
         );
 

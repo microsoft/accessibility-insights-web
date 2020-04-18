@@ -13,7 +13,7 @@ export type IsResultHighlightUnavailable = (
     platformInfo: PlatformData,
 ) => boolean;
 
-export const getUnavailableHighlightStatusUnified: IsResultHighlightUnavailable = (
+export const isResultHighlightUnavailableUnified: IsResultHighlightUnavailable = (
     result,
     platformInfo,
 ) => {
@@ -40,4 +40,4 @@ function hasValidBoundingRectangle(
     );
 }
 
-export const getUnavailableHighlightStatusWeb: IsResultHighlightUnavailable = () => false;
+export const isResultHighlightUnavailableWeb: IsResultHighlightUnavailable = () => false;

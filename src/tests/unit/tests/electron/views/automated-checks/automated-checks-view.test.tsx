@@ -37,15 +37,15 @@ import { It, Mock, Times } from 'typemoq';
 describe('AutomatedChecksView', () => {
     describe('renders', () => {
         let bareMinimumProps: AutomatedChecksViewProps;
-        let getUnavailableHighlightStatusStub: IsResultHighlightUnavailable;
+        let isResultHighlightUnavailableStub: IsResultHighlightUnavailable;
 
         beforeEach(() => {
-            getUnavailableHighlightStatusStub = () => null;
+            isResultHighlightUnavailableStub = () => null;
             bareMinimumProps = {
                 deps: {
                     windowStateActionCreator: Mock.ofType(WindowStateActionCreator).object,
                     scanActionCreator: Mock.ofType(ScanActionCreator).object,
-                    getUnavailableHighlightStatus: getUnavailableHighlightStatusStub,
+                    isResultHighlightUnavailable: isResultHighlightUnavailableStub,
                 },
                 scanStoreData: {},
                 deviceStoreData: {
@@ -124,7 +124,7 @@ describe('AutomatedChecksView', () => {
                     getCardsViewData: getUnifiedRuleResultsMock.object,
                     getCardSelectionViewData: getCardSelectionViewDataMock.object,
                     screenshotViewModelProvider: screenshotViewModelProviderMock.object,
-                    getUnavailableHighlightStatus: getUnavailableHighlightStatusStub,
+                    isResultHighlightUnavailable: isResultHighlightUnavailableStub,
                 },
                 cardSelectionStoreData,
                 deviceStoreData: {},
@@ -145,7 +145,7 @@ describe('AutomatedChecksView', () => {
                     getData(
                         cardSelectionStoreData,
                         unifiedScanResultStoreData,
-                        getUnavailableHighlightStatusStub,
+                        isResultHighlightUnavailableStub,
                     ),
                 )
                 .returns(() => cardSelectionViewDataStub)

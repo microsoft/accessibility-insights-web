@@ -28,7 +28,7 @@ export class ElementBasedViewModelCreator {
     constructor(
         private getDecoratedAxeNode: GetDecoratedAxeNodeCallback,
         private getHighlightedResultInstanceIds: GetCardSelectionViewData,
-        private getUnavailableHighlightStatus: IsResultHighlightUnavailable,
+        private isResultHighlightUnavailable: IsResultHighlightUnavailable,
     ) {}
 
     public getElementBasedViewModel: GetElementBasedViewModelCallback = (
@@ -44,7 +44,7 @@ export class ElementBasedViewModelCreator {
         const resultsHighlightStatus = this.getHighlightedResultInstanceIds(
             cardSelectionData,
             unifiedScanResultStoreData,
-            this.getUnavailableHighlightStatus,
+            this.isResultHighlightUnavailable,
         ).resultsHighlightStatus;
 
         results.forEach(unifiedResult => {
