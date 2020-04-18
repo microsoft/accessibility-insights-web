@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { HighlightState } from 'common/components/cards/instance-details-footer';
 import {
     PlatformData,
     UnifiedResult,
