@@ -3,8 +3,8 @@
 import { NamedFC } from 'common/react/named-fc';
 import {
     onRenderCustomProperties,
-    TelemetryMessagesList,
     onRenderTimestamp,
+    TelemetryMessagesList,
 } from 'debug-tools/components/telemetry-viewer/telemetry-messages-list';
 import { DebugToolsTelemetryMessage } from 'debug-tools/controllers/telemetry-listener';
 import { shallow } from 'enzyme';
