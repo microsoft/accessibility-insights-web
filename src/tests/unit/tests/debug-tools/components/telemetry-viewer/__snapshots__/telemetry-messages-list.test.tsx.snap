@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TelemetryMessagesList custom renderers onRenderCustomProperties when custom properties is present 1`] = `
+<React.Fragment>
+  <span>
+    {"key1":"value1","key2":"value2"}
+  </span>
+</React.Fragment>
+`;
+
+exports[`TelemetryMessagesList custom renderers onRenderCustomProperties when there is not custom properties 1`] = `
+<React.Fragment>
+  <span>
+    -
+  </span>
+</React.Fragment>
+`;
+
+exports[`TelemetryMessagesList custom renderers onRenderTimestamp matches snapshot 1`] = `
+<React.Fragment>
+  <span>
+    1969-Dec-31 16:00:00.0
+  </span>
+</React.Fragment>
+`;
+
+exports[`TelemetryMessagesList renders and matches snapshot 1`] = `
+<StyledWithViewportComponent
+  columns={
+    Array [
+      Object {
+        "fieldName": "timestamp",
+        "isResizable": true,
+        "key": "date",
+        "maxWidth": 130,
+        "minWidth": 100,
+        "name": "date & time",
+        "onRender": [Function],
+      },
+      Object {
+        "fieldName": "name",
+        "isResizable": true,
+        "key": "eventName",
+        "maxWidth": 130,
+        "minWidth": 100,
+        "name": "event name",
+      },
+      Object {
+        "fieldName": "source",
+        "isResizable": true,
+        "key": "source",
+        "maxWidth": 100,
+        "minWidth": 100,
+        "name": "source",
+      },
+      Object {
+        "fieldName": "triggeredBy",
+        "isResizable": true,
+        "key": "triggeredBy",
+        "maxWidth": 100,
+        "minWidth": 100,
+        "name": "triggeredBy",
+      },
+      Object {
+        "fieldName": "customProperties",
+        "isResizable": true,
+        "key": "customProperties",
+        "minWidth": 100,
+        "name": "custom properties",
+        "onRender": [Function],
+      },
+    ]
+  }
+  items={
+    Array [
+      Object {
+        "applicationBuild": "test-app-build",
+        "applicationName": "test-app-name",
+        "applicationVersion": "test-app-version",
+        "customProperties": Object {
+          "key1": "value1",
+          "key2": "value2",
+        },
+        "installationId": "test-installation-id",
+        "name": "test-name",
+        "source": "test-source",
+        "timestamp": 1,
+        "triggeredBy": "test-triggered-by",
+      },
+    ]
+  }
+/>
+`;
