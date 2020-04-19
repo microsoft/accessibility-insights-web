@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TelemetryViewer renders when there are no telemetry messages 1`] = `
+<React.Fragment>
+  <h1>
+    Telemetry Viewer
+  </h1>
+  <span>
+    No telemetry messages yet. Use the extension to see something here.
+  </span>
+</React.Fragment>
+`;
+
+exports[`TelemetryViewer renders when there is at least one telemetry message 1`] = `
+<React.Fragment>
+  <h1>
+    Telemetry Viewer
+  </h1>
+  <TelemetryCommonFields
+    applicationBuild="test-application-build"
+    applicationName="test-application-name"
+    applicationVersion="test-application-version"
+    installationId="test-installation-id"
+  />
+  <TelemetryMessagesList
+    items={
+      Array [
+        Object {
+          "applicationBuild": "test-application-build",
+          "applicationName": "test-application-name",
+          "applicationVersion": "test-application-version",
+          "installationId": "test-installation-id",
+          "key": "value",
+        },
+      ]
+    }
+  />
+</React.Fragment>
+`;
