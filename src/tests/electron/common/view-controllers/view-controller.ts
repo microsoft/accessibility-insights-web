@@ -40,6 +40,15 @@ export abstract class ViewController {
         );
     }
 
+    // You should avoid using this in most cases!
+    //
+    // This should only be used for cases where the product's intended functionality involves a
+    // time-based delay (eg, a UI element animates in before becoming active), NOT sprinkled in
+    // randomly in the hopes that it improves reliability.
+    public async waitForMilliseconds(durationInMilliseconds: number): Promise<void> {
+        await this.client.pause(durationInMilliseconds);
+    }
+
     public async click(selector: string): Promise<void> {
         await this.screenshotOnError(async () => this.client.click(selector));
     }
