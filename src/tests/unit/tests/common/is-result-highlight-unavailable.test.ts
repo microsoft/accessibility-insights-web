@@ -40,11 +40,11 @@ describe('isResultHighlightUnavailableUnified', () => {
         expect(isResultHighlightUnavailableUnified(unifiedResult, platformData)).toEqual(true);
     });
 
-    test('unavailable: boundingRectangle left value is negative', () => {
+    test('unavailable: boundingRectangle right value is negative', () => {
         const unifiedResult: UnifiedResult = {
             descriptors: {
                 boundingRectangle: {
-                    left: -5,
+                    right: -5,
                 },
             },
         } as UnifiedResult;
@@ -53,11 +53,11 @@ describe('isResultHighlightUnavailableUnified', () => {
         expect(isResultHighlightUnavailableUnified(unifiedResult, platformData)).toEqual(true);
     });
 
-    test('unavailable: boundingRectangle top value is negative', () => {
+    test('unavailable: boundingRectangle bottom value is negative', () => {
         const unifiedResult: UnifiedResult = {
             descriptors: {
                 boundingRectangle: {
-                    top: -5,
+                    bottom: -5,
                 },
             },
         } as UnifiedResult;
@@ -70,7 +70,7 @@ describe('isResultHighlightUnavailableUnified', () => {
         const unifiedResult: UnifiedResult = {
             descriptors: {
                 boundingRectangle: {
-                    left: 0,
+                    bottom: 0,
                     top: 50,
                 },
             },
@@ -86,7 +86,7 @@ describe('isResultHighlightUnavailableUnified', () => {
         const unifiedResult: UnifiedResult = {
             descriptors: {
                 boundingRectangle: {
-                    left: 0,
+                    right: 0,
                     top: 0,
                 },
             },

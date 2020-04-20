@@ -33,8 +33,8 @@ function hasValidBoundingRectangle(
     viewPort: ViewPortProperties,
 ): boolean {
     return !(
-        boundingRectangle.left < 0 ||
-        boundingRectangle.top < 0 ||
+        boundingRectangle.right <= 0 ||
+        boundingRectangle.bottom <= 0 ||
         boundingRectangle.left > viewPort.width ||
         boundingRectangle.top > viewPort.height
     );
