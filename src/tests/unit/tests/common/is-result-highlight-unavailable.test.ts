@@ -82,12 +82,86 @@ describe('isResultHighlightUnavailableUnified', () => {
         expect(isResultHighlightUnavailableUnified(unifiedResult, platformData)).toEqual(true);
     });
 
-    test('available: highlight is at least partially within the viewport', () => {
+    test('available: highlight is completely within the viewport', () => {
         const unifiedResult: UnifiedResult = {
             descriptors: {
                 boundingRectangle: {
-                    right: 0,
-                    top: 0,
+                    right: 2,
+                    left: 0,
+                    top: 2,
+                    bottom: 5,
+                },
+            },
+        } as UnifiedResult;
+        const platformData: PlatformData = {
+            viewPortInfo: { width: 4, height: 10 },
+        } as PlatformData;
+
+        expect(isResultHighlightUnavailableUnified(unifiedResult, platformData)).toEqual(false);
+    });
+
+    test('available: highlight is partially out of the viewport from the left', () => {
+        const unifiedResult: UnifiedResult = {
+            descriptors: {
+                boundingRectangle: {
+                    right: 2,
+                    left: -5,
+                    top: 2,
+                    bottom: 5,
+                },
+            },
+        } as UnifiedResult;
+        const platformData: PlatformData = {
+            viewPortInfo: { width: 4, height: 10 },
+        } as PlatformData;
+
+        expect(isResultHighlightUnavailableUnified(unifiedResult, platformData)).toEqual(false);
+    });
+
+    test('available: highlight is partially out of the viewport from the top', () => {
+        const unifiedResult: UnifiedResult = {
+            descriptors: {
+                boundingRectangle: {
+                    right: 2,
+                    left: 0,
+                    top: -2,
+                    bottom: 5,
+                },
+            },
+        } as UnifiedResult;
+        const platformData: PlatformData = {
+            viewPortInfo: { width: 4, height: 10 },
+        } as PlatformData;
+
+        expect(isResultHighlightUnavailableUnified(unifiedResult, platformData)).toEqual(false);
+    });
+
+    test('available: highlight is partially out of the viewport from the right', () => {
+        const unifiedResult: UnifiedResult = {
+            descriptors: {
+                boundingRectangle: {
+                    right: 5,
+                    left: 1,
+                    top: 2,
+                    bottom: 5,
+                },
+            },
+        } as UnifiedResult;
+        const platformData: PlatformData = {
+            viewPortInfo: { width: 4, height: 10 },
+        } as PlatformData;
+
+        expect(isResultHighlightUnavailableUnified(unifiedResult, platformData)).toEqual(false);
+    });
+
+    test('available: highlight is partially out of the viewport from the bottom', () => {
+        const unifiedResult: UnifiedResult = {
+            descriptors: {
+                boundingRectangle: {
+                    right: 2,
+                    left: 1,
+                    top: 2,
+                    bottom: 15,
                 },
             },
         } as UnifiedResult;
