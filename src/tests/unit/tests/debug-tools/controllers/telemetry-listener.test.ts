@@ -2,8 +2,11 @@
 // Licensed under the MIT License.
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { ConnectionNames } from 'common/constants/connection-names';
-import { Logger } from 'common/logging/logger';
-import { TelemetryListener } from 'debug-tools/controllers/telemetry-listener';
+import {
+    DebugToolsTelemetryMessage,
+    DebugToolsTelemetryMessageListener,
+    TelemetryListener,
+} from 'debug-tools/controllers/telemetry-listener';
 import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 
@@ -14,7 +17,7 @@ describe('TelemetryListener', () => {
     let onMessageMock: IMock<OnMessage>;
     let connectionMock: IMock<Port>;
     let browserAdapterMock: IMock<BrowserAdapter>;
-    let loggerMock: IMock<Logger>;
+    let getDateMock: IMock<() => Date>;
 
     let testSubject: TelemetryListener;
 
@@ -38,24 +41,65 @@ describe('TelemetryListener', () => {
             )
             .returns(() => connectionMock.object);
 
-        loggerMock = Mock.ofType<Logger>();
+        getDateMock = Mock.ofType<() => Date>();
 
-        testSubject = new TelemetryListener(browserAdapterMock.object, loggerMock.object);
+        testSubject = new TelemetryListener(browserAdapterMock.object, getDateMock.object);
     });
 
     it('handles incoming messages', () => {
-        let messageListener: Function;
+        let internalListener: Function;
 
         onMessageMock
             .setup(onMessage => onMessage.addListener(It.is(isFunction)))
-            .callback(listener => (messageListener = listener));
+            .callback(listener => (internalListener = listener));
+
+        const millisSinceEpoch = 0;
+        getDateMock.setup(getter => getter()).returns(() => new Date(millisSinceEpoch));
 
         testSubject.initialize();
 
-        const telemetryMessage = { testKey: 'testValue' };
-        messageListener(telemetryMessage);
+        const externalListenerMock = Mock.ofType<DebugToolsTelemetryMessageListener>();
 
-        loggerMock.verify(logger => logger.log('GOT TELEMETRY', telemetryMessage), Times.once());
+        testSubject.addListener(externalListenerMock.object);
+
+        const baseProperties = {
+            applicationBuild: 'test-application-build',
+            applicationName: 'test-application-name',
+            applicationVersion: 'test-application-version',
+            installationId: 'test-installation-id',
+            source: 'test-source',
+            triggeredBy: 'test-triggered-by',
+        };
+
+        const customProperties = {
+            custom1: 'custom1',
+            custom2: '2',
+            custom3: 'false',
+        };
+
+        const name = 'test-event-name';
+
+        const incommingMessage = {
+            name,
+            properties: {
+                ...baseProperties,
+                ...customProperties,
+            },
+        };
+
+        internalListener(incommingMessage);
+
+        const expectedMessage: DebugToolsTelemetryMessage = {
+            name,
+            timestamp: millisSinceEpoch,
+            ...baseProperties,
+            customProperties,
+        };
+
+        externalListenerMock.verify(
+            listener => listener(It.isValue(expectedMessage)),
+            Times.once(),
+        );
     });
 
     it('close the connection', () => {

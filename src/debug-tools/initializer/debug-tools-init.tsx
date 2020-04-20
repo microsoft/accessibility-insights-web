@@ -3,6 +3,7 @@
 import { BaseStore } from 'common/base-store';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { ChromeAdapter } from 'common/browser-adapters/chrome-adapter';
+import { DateProvider } from 'common/date-provider';
 import { initializeFabricIcons } from 'common/fabric-icons';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { RemoteActionMessageDispatcher } from 'common/message-creators/remote-action-message-dispatcher';
@@ -33,13 +34,14 @@ export const initializeDebugTools = () => {
 
     const storesHub = new BaseClientStoresHub<DebugToolsViewState>(stores);
 
-    const telemetryListener = new TelemetryListener(browserAdapter, createDefaultLogger());
+    const telemetryListener = new TelemetryListener(browserAdapter, DateProvider.getCurrentDate);
     telemetryListener.initialize();
 
     const props: DebugToolsViewDeps = {
         storesHub,
         storeActionMessageCreator,
         textContent,
+        telemetryListener,
     };
 
     render(props);
