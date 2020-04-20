@@ -19,11 +19,11 @@ describe('TelemetryViewer', () => {
     let props: TelemetryViewerProps;
 
     beforeEach(() => {
-        telemetryListenerMock = Mock.ofType<TelemetryListener>();
+        telemetryListenerMock = Mock.ofType<TelemetryListener>(TelemetryListener);
 
         deps = {
             telemetryListener: telemetryListenerMock.object,
-        };
+        } as TelemetryViewerDeps;
 
         props = { deps };
     });

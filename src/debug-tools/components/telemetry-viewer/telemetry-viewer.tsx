@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { TelemetryCommonFields } from 'debug-tools/components/telemetry-viewer/telemetry-common-fields';
-import { TelemetryMessagesList } from 'debug-tools/components/telemetry-viewer/telemetry-messages-list';
+import {
+    TelemetryMessagesList,
+    TelemetryMessagesListDeps,
+} from 'debug-tools/components/telemetry-viewer/telemetry-messages-list';
 import {
     DebugToolsTelemetryMessage,
     TelemetryListener,
@@ -10,7 +13,7 @@ import * as React from 'react';
 
 export type TelemetryViewerDeps = {
     telemetryListener: TelemetryListener;
-};
+} & TelemetryMessagesListDeps;
 
 export interface TelemetryViewerProps {
     deps: TelemetryViewerDeps;
@@ -79,7 +82,7 @@ export class TelemetryViewer extends React.Component<TelemetryViewerProps, Telem
     }
 
     private renderTelemetryMessagesList = () => (
-        <TelemetryMessagesList items={this.state.telemetryMessages} />
+        <TelemetryMessagesList deps={this.props.deps} items={this.state.telemetryMessages} />
     );
 
     private onTelemetryMessage = (telemetryMessage: DebugToolsTelemetryMessage) => {

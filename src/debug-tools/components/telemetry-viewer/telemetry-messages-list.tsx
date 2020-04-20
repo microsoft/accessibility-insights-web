@@ -7,15 +7,20 @@ import * as moment from 'moment';
 import { DetailsList, IColumn } from 'office-ui-fabric-react';
 import * as React from 'react';
 
-export type DateFormatter = (timestampe: number) => string;
-export type TelemetryMessagesListProps = {
-    items: DebugToolsTelemetryMessage[];
+export type DateFormatter = (timestamp: number) => string;
+
+export type TelemetryMessagesListDeps = {
     dateFormatter: DateFormatter;
+};
+
+export type TelemetryMessagesListProps = {
+    deps: TelemetryMessagesListDeps;
+    items: DebugToolsTelemetryMessage[];
 };
 
 export const TelemetryMessagesList = NamedFC<TelemetryMessagesListProps>(
     'TelemetryMessagesList',
-    ({ items, dateFormatter }) => {
+    ({ items, deps }) => {
         const columns: IColumn[] = [
             {
                 key: 'date',
@@ -24,7 +29,7 @@ export const TelemetryMessagesList = NamedFC<TelemetryMessagesListProps>(
                 isResizable: true,
                 minWidth: 100,
                 maxWidth: 130,
-                onRender: item => onRenderTimestamp(item, dateFormatter),
+                onRender: item => onRenderTimestamp(item, deps.dateFormatter),
             },
             {
                 key: 'eventName',

@@ -40,7 +40,9 @@ describe('TelemetryMessagesList', () => {
 
         props = {
             items: getItems(),
-            dateFormatter: dateFormatterMock.object,
+            deps: {
+                dateFormatter: dateFormatterMock.object,
+            },
         };
     });
 

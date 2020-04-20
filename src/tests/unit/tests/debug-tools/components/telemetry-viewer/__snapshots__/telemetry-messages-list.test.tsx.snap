@@ -16,7 +16,7 @@ exports[`TelemetryMessagesList custom renderers onRenderCustomProperties when th
 </React.Fragment>
 `;
 
-exports[`TelemetryMessagesList custom renderers onRenderTimestamp matches snapshot 1`] = `
+exports[`TelemetryMessagesList custom renderers onRenderTimestamp (from the column onRender) matches snapshot 1`] = `
 <React.Fragment>
   <span>
     formatted-datetime
