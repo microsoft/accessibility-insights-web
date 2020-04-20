@@ -19,7 +19,7 @@ exports[`TelemetryMessagesList custom renderers onRenderCustomProperties when th
 exports[`TelemetryMessagesList custom renderers onRenderTimestamp matches snapshot 1`] = `
 <React.Fragment>
   <span>
-    1969-Dec-31 16:00:00.0
+    formatted-datetime
   </span>
 </React.Fragment>
 `;

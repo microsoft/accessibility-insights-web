@@ -2,13 +2,17 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import {
+    DateFormatter,
+    defaultDateFormatter,
     onRenderCustomProperties,
     onRenderTimestamp,
     TelemetryMessagesList,
+    TelemetryMessagesListProps,
 } from 'debug-tools/components/telemetry-viewer/telemetry-messages-list';
 import { DebugToolsTelemetryMessage } from 'debug-tools/controllers/telemetry-listener';
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { IMock, Mock, MockBehavior } from 'typemoq';
 
 describe('TelemetryMessagesList', () => {
     const getItems: () => DebugToolsTelemetryMessage[] = () => [
@@ -28,8 +32,20 @@ describe('TelemetryMessagesList', () => {
         },
     ];
 
+    let dateFormatterMock: IMock<DateFormatter>;
+    let props: TelemetryMessagesListProps;
+
+    beforeEach(() => {
+        dateFormatterMock = Mock.ofInstance<DateFormatter>(defaultDateFormatter);
+
+        props = {
+            items: getItems(),
+            dateFormatter: dateFormatterMock.object,
+        };
+    });
+
     it('renders and matches snapshot', () => {
-        const wrapped = shallow(<TelemetryMessagesList items={getItems()} />);
+        const wrapped = shallow(<TelemetryMessagesList {...props} />);
 
         expect(wrapped.getElement()).toMatchSnapshot();
     });
@@ -43,16 +59,6 @@ describe('TelemetryMessagesList', () => {
 
         beforeEach(() => {
             item = getItems().pop();
-        });
-
-        describe('onRenderTimestamp', () => {
-            const testSubject = onRenderTimestamp;
-
-            it('matches snapshot', () => {
-                const wrapped = shallow(<Wrapper renderer={() => testSubject(item)} />);
-
-                expect(wrapped.getElement()).toMatchSnapshot();
-            });
         });
 
         describe('onRenderCustomProperties', () => {
@@ -71,6 +77,23 @@ describe('TelemetryMessagesList', () => {
             it('when custom properties is present', () => {
                 const wrapped = shallow(
                     <Wrapper renderer={() => testSubject('customProperties', item)} />,
+                );
+
+                expect(wrapped.getElement()).toMatchSnapshot();
+            });
+        });
+
+        describe('onRenderTimestamp (from the column onRender)', () => {
+            const testSubject = onRenderTimestamp;
+
+            it('matches snapshot', () => {
+                dateFormatterMock = Mock.ofType<DateFormatter>(undefined, MockBehavior.Strict);
+                dateFormatterMock
+                    .setup(formatter => formatter(item.timestamp))
+                    .returns(() => 'formatted-datetime');
+
+                const wrapped = shallow(
+                    <Wrapper renderer={() => testSubject(item, dateFormatterMock.object)} />,
                 );
 
                 expect(wrapped.getElement()).toMatchSnapshot();

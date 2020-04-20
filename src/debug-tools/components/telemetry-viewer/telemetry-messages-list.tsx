@@ -7,13 +7,15 @@ import * as moment from 'moment';
 import { DetailsList, IColumn } from 'office-ui-fabric-react';
 import * as React from 'react';
 
+export type DateFormatter = (timestampe: number) => string;
 export type TelemetryMessagesListProps = {
     items: DebugToolsTelemetryMessage[];
+    dateFormatter: DateFormatter;
 };
 
 export const TelemetryMessagesList = NamedFC<TelemetryMessagesListProps>(
     'TelemetryMessagesList',
-    ({ items }) => {
+    ({ items, dateFormatter }) => {
         const columns: IColumn[] = [
             {
                 key: 'date',
@@ -22,7 +24,7 @@ export const TelemetryMessagesList = NamedFC<TelemetryMessagesListProps>(
                 isResizable: true,
                 minWidth: 100,
                 maxWidth: 130,
-                onRender: onRenderTimestamp,
+                onRender: item => onRenderTimestamp(item, dateFormatter),
             },
             {
                 key: 'eventName',
@@ -77,7 +79,11 @@ export const onRenderCustomProperties = (
     return <span>{toRender}</span>;
 };
 
-export const onRenderTimestamp = (item: DebugToolsTelemetryMessage): JSX.Element => {
-    const dateString = moment(item.timestamp).format('YYYY-MMM-DD HH:mm:ss.S');
-    return <span>{dateString}</span>;
-};
+export const onRenderTimestamp = (
+    item: DebugToolsTelemetryMessage,
+    dateFormatter: DateFormatter,
+): JSX.Element => <span>{dateFormatter(item.timestamp)}</span>;
+
+export const defaultDateFormatter: DateFormatter = timestamp =>
+    // untested line: moment is sensitive to the host machine time zone
+    moment(timestamp).format('YYYY-MMM-DD HH:mm:ss.S');
