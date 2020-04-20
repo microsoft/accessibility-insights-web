@@ -1,0 +1,11 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+.container {
+    display: grid;
+    grid-template-columns: 7em auto;
+    column-gap: 1em;
+
+    > strong {
+        justify-self: end;
+    }
+}

@@ -4,6 +4,10 @@ import * as Electron from 'electron';
 import * as fs from 'fs';
 import { Application } from 'spectron';
 
+import {
+    DEFAULT_APP_CONNECT_RETRIES,
+    DEFAULT_APP_CONNECT_TIMEOUT_MS,
+} from 'tests/electron/setup/timeouts';
 import { AppController } from './view-controllers/app-controller';
 
 export interface AppOptions {
@@ -19,6 +23,8 @@ export async function createApplication(options?: AppOptions): Promise<AppContro
     const app = new Application({
         path: fs.existsSync(electronLocal) ? electronLocal : (Electron as any),
         args: [electronPath],
+        connectionRetryCount: DEFAULT_APP_CONNECT_RETRIES,
+        connectionRetryTimeout: DEFAULT_APP_CONNECT_TIMEOUT_MS,
     });
 
     await app.start();

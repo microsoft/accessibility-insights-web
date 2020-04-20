@@ -1,45 +1,26 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
 import * as React from 'react';
-
-import { DateProvider } from 'common/date-provider';
-import {
-    DetailsSection,
-    DetailsSectionProps,
-} from 'reports/components/report-sections/details-section';
-import { IMock, Mock, MockBehavior } from 'typemoq';
+import { getUrlItemInfo } from 'reports/components/report-sections/details-section';
 
 describe('DetailsSection', () => {
-    const descriptionValues = ['description-text', '', undefined, null];
+    const appName = 'app-name';
+    const url = 'https://page-url/';
 
-    test.each(descriptionValues)('renders with description: %s', description => {
-        const scanDate = new Date(Date.UTC(2018, 2, 9, 9, 48));
-
-        const toUtcStringMock: IMock<(date: Date) => string> = Mock.ofInstance(
-            DateProvider.getUTCStringFromDate,
-            MockBehavior.Strict,
-        );
-
-        toUtcStringMock.setup(getter => getter(scanDate)).returns(() => '2018-03-12 11:24 PM UTC');
-
-        const props: DetailsSectionProps = {
-            scanDate,
+    it('getUrlItemInfo', () => {
+        const scanMetadata = {
             targetAppInfo: {
-                name: 'page-title',
-                url: 'https://page-url/',
+                name: appName,
+                url: url,
             },
-            description,
-            environmentInfo: {
-                browserSpec: 'environment-version',
-                extensionVersion: 'extension-version',
-                axeCoreVersion: 'axe-version',
-            },
-            toUtcString: toUtcStringMock.object,
-        };
+        } as ScanMetaData;
+        const expectedLabel = 'target page url:';
 
-        const wrapper = shallow(<DetailsSection {...props} />);
+        const urlItemInfo = getUrlItemInfo(scanMetadata);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(urlItemInfo.label).toEqual(expectedLabel);
+        expect(React.isValidElement('hello'));
+        expect(urlItemInfo).toMatchSnapshot();
     });
 });

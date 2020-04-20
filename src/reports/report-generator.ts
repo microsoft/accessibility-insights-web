@@ -4,7 +4,7 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { ToolData } from 'common/types/store-data/unified-data-interface';
+import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
 import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { AssessmentReportHtmlGenerator } from './assessment-report-html-generator';
 import { ReportHtmlGenerator } from './report-html-generator';
@@ -23,18 +23,15 @@ export class ReportGenerator {
 
     public generateFastPassAutomatedChecksReport(
         scanDate: Date,
-        targetAppInfo: TargetAppData,
         cardsViewData: CardsViewModel,
         description: string,
-        toolData: ToolData,
+        scanMetadata: ScanMetaData,
     ): string {
         return this.reportHtmlGenerator.generateHtml(
             scanDate,
-            targetAppInfo.name,
-            targetAppInfo.url,
             description,
             cardsViewData,
-            toolData,
+            scanMetadata,
         );
     }
 

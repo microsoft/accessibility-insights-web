@@ -39,6 +39,7 @@ export class AutomatedChecksViewController extends ViewController {
         await this.waitForSelector(AutomatedChecksViewSelectors.settingsButton);
         await this.click(AutomatedChecksViewSelectors.settingsButton);
         await this.waitForSelector(settingsPanelSelectors.settingsPanel);
+        await this.waitForMilliseconds(750); // Allow for fabric's panel animation to settle
     }
 
     public async setToggleState(toggleSelector: string, newState: boolean): Promise<void> {

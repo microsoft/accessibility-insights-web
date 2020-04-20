@@ -72,6 +72,25 @@ exports[`ReportBody renders 1`] = `
     pageTitle="page-title"
     pageUrl="url:target-page"
     scanDate={2019-05-29T19:12:16.804Z}
+    scanMetadata={
+      Object {
+        "targetAppInfo": Object {
+          "name": "app",
+        },
+        "timestamp": "today",
+        "toolData": Object {
+          "applicationProperties": Object {
+            "environmentName": "environmentName",
+            "name": "app-name",
+            "version": "app-version",
+          },
+          "scanEngineProperties": Object {
+            "name": "engine-name",
+            "version": "engine-version",
+          },
+        },
+      }
+    }
     scanResult={
       Object {
         "inapplicable": Array [],
@@ -177,6 +196,25 @@ exports[`ReportBody renders 1`] = `
       pageTitle="page-title"
       pageUrl="url:target-page"
       scanDate={2019-05-29T19:12:16.804Z}
+      scanMetadata={
+        Object {
+          "targetAppInfo": Object {
+            "name": "app",
+          },
+          "timestamp": "today",
+          "toolData": Object {
+            "applicationProperties": Object {
+              "environmentName": "environmentName",
+              "name": "app-name",
+              "version": "app-version",
+            },
+            "scanEngineProperties": Object {
+              "name": "engine-name",
+              "version": "engine-version",
+            },
+          },
+        }
+      }
       scanResult={
         Object {
           "inapplicable": Array [],
@@ -280,6 +318,25 @@ exports[`ReportBody renders 1`] = `
       pageTitle="page-title"
       pageUrl="url:target-page"
       scanDate={2019-05-29T19:12:16.804Z}
+      scanMetadata={
+        Object {
+          "targetAppInfo": Object {
+            "name": "app",
+          },
+          "timestamp": "today",
+          "toolData": Object {
+            "applicationProperties": Object {
+              "environmentName": "environmentName",
+              "name": "app-name",
+              "version": "app-version",
+            },
+            "scanEngineProperties": Object {
+              "name": "engine-name",
+              "version": "engine-version",
+            },
+          },
+        }
+      }
       scanResult={
         Object {
           "inapplicable": Array [],
@@ -383,6 +440,25 @@ exports[`ReportBody renders 1`] = `
       pageTitle="page-title"
       pageUrl="url:target-page"
       scanDate={2019-05-29T19:12:16.804Z}
+      scanMetadata={
+        Object {
+          "targetAppInfo": Object {
+            "name": "app",
+          },
+          "timestamp": "today",
+          "toolData": Object {
+            "applicationProperties": Object {
+              "environmentName": "environmentName",
+              "name": "app-name",
+              "version": "app-version",
+            },
+            "scanEngineProperties": Object {
+              "name": "engine-name",
+              "version": "engine-version",
+            },
+          },
+        }
+      }
       scanResult={
         Object {
           "inapplicable": Array [],
@@ -486,6 +562,25 @@ exports[`ReportBody renders 1`] = `
         pageTitle="page-title"
         pageUrl="url:target-page"
         scanDate={2019-05-29T19:12:16.804Z}
+        scanMetadata={
+          Object {
+            "targetAppInfo": Object {
+              "name": "app",
+            },
+            "timestamp": "today",
+            "toolData": Object {
+              "applicationProperties": Object {
+                "environmentName": "environmentName",
+                "name": "app-name",
+                "version": "app-version",
+              },
+              "scanEngineProperties": Object {
+                "name": "engine-name",
+                "version": "engine-version",
+              },
+            },
+          }
+        }
         scanResult={
           Object {
             "inapplicable": Array [],
@@ -589,6 +684,25 @@ exports[`ReportBody renders 1`] = `
         pageTitle="page-title"
         pageUrl="url:target-page"
         scanDate={2019-05-29T19:12:16.804Z}
+        scanMetadata={
+          Object {
+            "targetAppInfo": Object {
+              "name": "app",
+            },
+            "timestamp": "today",
+            "toolData": Object {
+              "applicationProperties": Object {
+                "environmentName": "environmentName",
+                "name": "app-name",
+                "version": "app-version",
+              },
+              "scanEngineProperties": Object {
+                "name": "engine-name",
+                "version": "engine-version",
+              },
+            },
+          }
+        }
         scanResult={
           Object {
             "inapplicable": Array [],
@@ -692,6 +806,25 @@ exports[`ReportBody renders 1`] = `
         pageTitle="page-title"
         pageUrl="url:target-page"
         scanDate={2019-05-29T19:12:16.804Z}
+        scanMetadata={
+          Object {
+            "targetAppInfo": Object {
+              "name": "app",
+            },
+            "timestamp": "today",
+            "toolData": Object {
+              "applicationProperties": Object {
+                "environmentName": "environmentName",
+                "name": "app-name",
+                "version": "app-version",
+              },
+              "scanEngineProperties": Object {
+                "name": "engine-name",
+                "version": "engine-version",
+              },
+            },
+          }
+        }
         scanResult={
           Object {
             "inapplicable": Array [],
@@ -798,6 +931,25 @@ exports[`ReportBody renders 1`] = `
       pageTitle="page-title"
       pageUrl="url:target-page"
       scanDate={2019-05-29T19:12:16.804Z}
+      scanMetadata={
+        Object {
+          "targetAppInfo": Object {
+            "name": "app",
+          },
+          "timestamp": "today",
+          "toolData": Object {
+            "applicationProperties": Object {
+              "environmentName": "environmentName",
+              "name": "app-name",
+              "version": "app-version",
+            },
+            "scanEngineProperties": Object {
+              "name": "engine-name",
+              "version": "engine-version",
+            },
+          },
+        }
+      }
       scanResult={
         Object {
           "inapplicable": Array [],

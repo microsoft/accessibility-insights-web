@@ -5,6 +5,7 @@ import { FixInstructionProcessor } from 'common/components/fix-instruction-proce
 import { NullComponent } from 'common/components/null-component';
 import { DateProvider } from 'common/date-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
+import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 import {
@@ -20,7 +21,6 @@ import {
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { exampleUnifiedStatusResults } from '../common/components/cards/sample-view-model-data';
 
 describe('ReportHtmlGenerator', () => {
@@ -52,6 +52,16 @@ describe('ReportHtmlGenerator', () => {
 
         const getScriptMock = Mock.ofInstance(() => '');
 
+        const targetAppInfo = {
+            name: pageTitle,
+            url: pageUrl,
+        };
+
+        const scanMetadata = {
+            toolData: toolData,
+            targetAppInfo: targetAppInfo,
+        } as ScanMetaData;
+
         const sectionProps: ReportBodyProps = {
             deps: {
                 fixInstructionProcessor: fixInstructionProcessorMock.object,
@@ -63,10 +73,7 @@ describe('ReportHtmlGenerator', () => {
             } as SectionDeps,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
             sectionFactory: sectionFactoryMock.object as ReportBodySectionFactory,
-            targetAppInfo: {
-                name: pageTitle,
-                url: pageUrl,
-            },
+            targetAppInfo: targetAppInfo,
             description,
             scanDate,
             toolData,
@@ -78,6 +85,7 @@ describe('ReportHtmlGenerator', () => {
                 visualHelperEnabled: true,
                 allCardsCollapsed: true,
             },
+            scanMetadata,
         } as ReportBodyProps;
 
         const headElement: JSX.Element = <NullComponent />;
@@ -106,15 +114,13 @@ describe('ReportHtmlGenerator', () => {
 
         const actual = testObject.generateHtml(
             scanDate,
-            pageTitle,
-            pageUrl,
             description,
             {
                 cards: exampleUnifiedStatusResults,
                 visualHelperEnabled: true,
                 allCardsCollapsed: true,
             },
-            toolData,
+            scanMetadata,
         );
 
         expect(actual).toMatchSnapshot();

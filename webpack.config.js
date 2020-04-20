@@ -82,7 +82,8 @@ const commonConfig = {
         rules: [tsRule, scssRule(true)],
     },
     resolve: {
-        modules: [path.resolve(__dirname, './src'), path.resolve(__dirname, 'node_modules')],
+        // It is important that src is absolute but node_modules is relative. See #2520
+        modules: [path.resolve(__dirname, './src'), 'node_modules'],
         extensions: ['.tsx', '.ts', '.js'],
     },
     plugins: commonPlugins,
