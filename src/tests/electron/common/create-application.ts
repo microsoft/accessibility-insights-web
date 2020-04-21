@@ -15,14 +15,13 @@ export interface AppOptions {
 }
 
 export async function createApplication(options?: AppOptions): Promise<AppController> {
-    const electronPath = `${
+    const targetApp = `${
         (global as any).rootDir
     }/drop/electron/unified-dev/product/bundle/main.bundle.js`;
-    const electronLocal = `${(global as any).rootDir}/drop/electron-local/electron.exe`;
 
     const app = new Application({
-        path: fs.existsSync(electronLocal) ? electronLocal : (Electron as any),
-        args: [electronPath],
+        path: Electron as any,
+        args: [targetApp],
         connectionRetryCount: DEFAULT_APP_CONNECT_RETRIES,
         connectionRetryTimeout: DEFAULT_APP_CONNECT_TIMEOUT_MS,
     });

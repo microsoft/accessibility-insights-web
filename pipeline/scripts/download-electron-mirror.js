@@ -1,26 +1,35 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 const pkg = require('../../package.json');
-const download = require('electron-download');
+const { download } = require('@electron/get');
 const unzipper = require('unzipper');
 const fs = require('fs');
+const path = require('path');
 
-download(
-    {
-        version: pkg.devDependencies.electron,
-        cache: 'drop/zips',
-    },
-    function (err, zipPath) {
-        // zipPath will be the path of the zip that it downloaded.
-        // If the zip was already cached it will skip
-        // downloading and call the cb with the cached zip path.
-        // If it wasn't cached it will download the zip and save
-        // it in the cache path.
-        if (err) {
-            console.log('Failed to download: ', err);
-        } else {
-            console.log('zipPath= ', zipPath);
-            fs.createReadStream(zipPath).pipe(unzipper.Extract({ path: 'drop/electron-local' }));
-        }
-    },
-);
+if (
+    process.env.ELECTRON_MIRROR_VAR === undefined ||
+    process.env.ELECTRON_CUSTOM_DIR_VAR === undefined
+) {
+    console.error('ELECTRON_MIRROR_VAR and ELECTRON_CUSTOM_DIR_VAR must be defined');
+    process.exit(1);
+}
+
+const destinationPath = 'node_modules/electron/dist';
+
+const downloadElectron = async () => {
+    const zipFilePath = await download(`${pkg.dependencies.electron}`, {
+        mirrorOptions: {
+            mirror: process.env.ELECTRON_MIRROR_VAR,
+            customDir: process.env.ELECTRON_CUSTOM_DIR_VAR,
+        },
+        force: true,
+    });
+    console.log(`zip downloaded to dir ${zipFilePath}`);
+    const a = fs.createReadStream(zipFilePath).pipe(unzipper.Extract({ path: destinationPath }));
+    console.log(`zip extracted to ${path.resolve(destinationPath)}`);
+};
+
+downloadElectron().catch(err => {
+    console.error(err);
+    process.exit(1);
+});

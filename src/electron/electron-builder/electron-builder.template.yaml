@@ -42,3 +42,5 @@ nsis:
     include: src/electron/resources/installer.nsh
 publish:
     provider: generic
+
+electronDist: node_modules/electron/dist
