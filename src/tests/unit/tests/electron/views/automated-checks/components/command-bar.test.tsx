@@ -4,7 +4,7 @@ import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { EnumHelper } from 'common/enum-helper';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
+import { ScanMetadata } from 'common/types/store-data/scan-meta-data';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { ScanStatus } from 'electron/flux/types/scan-status';
@@ -26,7 +26,7 @@ describe('CommandBar', () => {
     let getDateFromTimestampMock: IMock<(timestamp: string) => Date>;
     let cardsViewDataStub: CardsViewModel;
     let reportGeneratorMock: IMock<ReportGenerator>;
-    let scanMetadataStub: ScanMetaData;
+    let scanMetadataStub: ScanMetadata;
     let scanDateStub: Date;
 
     beforeEach(() => {

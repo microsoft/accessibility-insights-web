@@ -8,7 +8,7 @@ import { CardSelectionStoreData } from 'common/types/store-data/card-selection-s
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
+import { ScanMetadata } from 'common/types/store-data/scan-meta-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { CardsView, CardsViewDeps } from 'DetailsView/components/cards-view';
@@ -84,7 +84,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                 highlightedResultUids,
             );
 
-            const scanMetadata: ScanMetaData = {
+            const scanMetadata: ScanMetadata = {
                 timestamp: unifiedScanResultStoreData.timestamp,
                 toolData: unifiedScanResultStoreData.toolInfo,
                 targetAppInfo: this.props.unifiedScanResultStoreData.targetAppInfo,
@@ -104,7 +104,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
 
     private renderLayout(
         cardsViewData: CardsViewModel,
-        scanMetadata: ScanMetaData,
+        scanMetadata: ScanMetadata,
         primaryContent: JSX.Element,
         optionalSidePanel?: JSX.Element,
     ): JSX.Element {

@@ -4,7 +4,7 @@ import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { getDefaultFeatureFlagsWeb } from 'common/feature-flags';
-import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
+import { ScanMetadata } from 'common/types/store-data/scan-meta-data';
 import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { DetailsViewCommandBarDeps } from 'DetailsView/components/details-view-command-bar';
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
@@ -137,7 +137,7 @@ describe('DetailsViewBody', () => {
                 },
                 scanMetadata: {
                     targetAppInfo: targetAppInfoStub,
-                } as ScanMetaData,
+                } as ScanMetadata,
             } as DetailsViewBodyProps;
         });
 

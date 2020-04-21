@@ -5,7 +5,7 @@ import { FixInstructionProcessor } from 'common/components/fix-instruction-proce
 import { NullComponent } from 'common/components/null-component';
 import { DateProvider } from 'common/date-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
-import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
+import { ScanMetadata } from 'common/types/store-data/scan-meta-data';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 import {
@@ -60,7 +60,7 @@ describe('ReportHtmlGenerator', () => {
         const scanMetadata = {
             toolData: toolData,
             targetAppInfo: targetAppInfo,
-        } as ScanMetaData;
+        } as ScanMetadata;
 
         const sectionProps: ReportBodyProps = {
             deps: {

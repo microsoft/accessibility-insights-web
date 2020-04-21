@@ -5,7 +5,7 @@ import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { NamedFC } from 'common/react/named-fc';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
+import { ScanMetadata } from 'common/types/store-data/scan-meta-data';
 import {
     ReportExportComponent,
     ReportExportComponentDeps,
@@ -34,7 +34,7 @@ export interface CommandBarProps {
     scanStoreData: ScanStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
     cardsViewData: CardsViewModel;
-    scanMetadata: ScanMetaData;
+    scanMetadata: ScanMetadata;
 }
 
 export const commandButtonRefreshId = 'command-button-refresh';

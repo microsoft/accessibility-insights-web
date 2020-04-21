@@ -3,7 +3,7 @@
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
-import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
+import { ScanMetadata } from 'common/types/store-data/scan-meta-data';
 import { ISelection, Spinner, SpinnerSize } from 'office-ui-fabric-react';
 import * as React from 'react';
 
@@ -206,7 +206,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
             url: this.props.storeState.tabStoreData.url,
         };
 
-        const scanMetadata: ScanMetaData = {
+        const scanMetadata: ScanMetadata = {
             timestamp: this.props.storeState.unifiedScanResultStoreData.timestamp,
             targetAppInfo: targetAppInfo,
             toolData: this.props.storeState.unifiedScanResultStoreData.toolInfo,

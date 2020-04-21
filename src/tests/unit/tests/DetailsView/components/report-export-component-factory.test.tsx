@@ -4,7 +4,7 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
+import { ScanMetadata } from 'common/types/store-data/scan-meta-data';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
@@ -43,7 +43,7 @@ describe('ReportExportComponentPropsFactory', () => {
     let cardsViewData: CardsViewModel;
     let scanResult: ScanResults;
     let targetAppInfo: TargetAppData;
-    let scanMetadata: ScanMetaData;
+    let scanMetadata: ScanMetadata;
 
     beforeEach(() => {
         featureFlagStoreData = {};
@@ -62,7 +62,7 @@ describe('ReportExportComponentPropsFactory', () => {
             timestamp: theTimestamp,
             toolData: theToolData,
             targetAppInfo: targetAppInfo,
-        } as ScanMetaData;
+        } as ScanMetadata;
         assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(undefined, MockBehavior.Loose);
         reportGeneratorMock = Mock.ofType<ReportGenerator>(undefined, MockBehavior.Loose);
         cardsViewData = null;
