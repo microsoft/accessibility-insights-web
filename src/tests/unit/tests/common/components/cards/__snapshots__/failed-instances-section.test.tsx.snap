@@ -12,12 +12,6 @@ exports[`FailedInstancesSection renders with alerting off 1`] = `
   outcomeType="fail"
   results={Array []}
   shouldAlertFailuresCount={false}
-  targetAppInfo={
-    Object {
-      "name": "target name",
-      "url": "target url",
-    }
-  }
   title="Failed instances"
 />
 `;
@@ -30,12 +24,6 @@ exports[`FailedInstancesSection renders with alerting on 1`] = `
   outcomeType="fail"
   results={Array []}
   shouldAlertFailuresCount={true}
-  targetAppInfo={
-    Object {
-      "name": "target name",
-      "url": "target url",
-    }
-  }
   title="Failed instances"
 />
 `;
@@ -125,29 +113,6 @@ exports[`FailedInstancesSection renders with failures 1`] = `
         "url": "sample-url",
       },
     ]
-  }
-  targetAppInfo={
-    Object {
-      "name": "target name",
-      "url": "target url",
-    }
-  }
-  title="Failed instances"
-/>
-`;
-
-exports[`FailedInstancesSection renders with scanMetadata 1`] = `
-<ResultSection
-  badgeCount={0}
-  containerClassName={null}
-  deps={Object {}}
-  outcomeType="fail"
-  results={Array []}
-  targetAppInfo={
-    Object {
-      "name": "target name",
-      "url": "target url",
-    }
   }
   title="Failed instances"
 />

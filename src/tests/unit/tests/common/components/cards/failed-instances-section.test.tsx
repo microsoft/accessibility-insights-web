@@ -6,8 +6,6 @@ import {
     FailedInstancesSectionProps,
 } from 'common/components/cards/failed-instances-section';
 import { CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
-import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
-import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
@@ -26,30 +24,20 @@ describe('FailedInstancesSection', () => {
         inapplicable: [],
         unknown: [],
     };
-    const testTargetAppInfo: TargetAppData = {
-        name: 'target name',
-        url: 'target url',
-    };
-    const testScanMetadata = {
-        targetAppInfo: testTargetAppInfo,
-    } as ScanMetaData;
 
     describe('renders', () => {
         it.each`
-            results                           | shouldAlertFailuresCount | targetAppInfo        | scanMetadata        | description
-            ${{ cards: resultsWithFailures }} | ${undefined}             | ${testTargetAppInfo} | ${undefined}        | ${'with failures'}
-            ${null}                           | ${undefined}             | ${testTargetAppInfo} | ${undefined}        | ${'null results'}
-            ${{ cards: null }}                | ${undefined}             | ${testTargetAppInfo} | ${undefined}        | ${'null cards property'}
-            ${{ cards: nonEmptyResults }}     | ${true}                  | ${testTargetAppInfo} | ${undefined}        | ${'with alerting on'}
-            ${{ cards: nonEmptyResults }}     | ${false}                 | ${testTargetAppInfo} | ${undefined}        | ${'with alerting off'}
-            ${{ cards: nonEmptyResults }}     | ${undefined}             | ${undefined}         | ${testScanMetadata} | ${'with scanMetadata'}
-        `('$description', ({ results, shouldAlertFailuresCount, targetAppInfo, scanMetadata }) => {
+            results                           | shouldAlertFailuresCount | description
+            ${{ cards: resultsWithFailures }} | ${undefined}             | ${'with failures'}
+            ${null}                           | ${undefined}             | ${'null results'}
+            ${{ cards: null }}                | ${undefined}             | ${'null cards property'}
+            ${{ cards: nonEmptyResults }}     | ${true}                  | ${'with alerting on'}
+            ${{ cards: nonEmptyResults }}     | ${false}                 | ${'with alerting off'}
+        `('$description', ({ results, shouldAlertFailuresCount }) => {
             const props = {
                 deps: {} as FailedInstancesSectionDeps,
                 cardsViewData: results,
                 shouldAlertFailuresCount,
-                targetAppInfo,
-                scanMetadata,
             } as FailedInstancesSectionProps;
 
             const wrapper = shallow(<FailedInstancesSection {...props} />);

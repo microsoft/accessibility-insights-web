@@ -6,6 +6,7 @@ import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-
 import { ReactFCWithDisplayName } from 'common/react/named-fc';
 
 import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
+import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { CardsViewModel } from '../../../common/types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import { NotApplicableChecksSectionDeps } from './not-applicable-checks-section';
@@ -27,6 +28,7 @@ export type SectionProps = {
     userConfigurationStoreData: UserConfigurationStoreData;
     shouldAlertFailuresCount?: boolean;
     scanMetadata: ScanMetaData;
+    targetAppInfo: TargetAppData;
 };
 
 export type ReportSectionFactory = {

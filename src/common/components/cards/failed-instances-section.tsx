@@ -3,9 +3,7 @@
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
-import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
-import { TargetAppData } from 'common/types/store-data/unified-data-interface';
-import { isNil } from 'lodash';
+import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
 import { CardsViewModel } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { ResultSection, ResultSectionDeps } from './result-section';
@@ -15,11 +13,9 @@ export type FailedInstancesSectionProps = {
     deps: FailedInstancesSectionDeps;
     cardsViewData: CardsViewModel;
     userConfigurationStoreData: UserConfigurationStoreData;
+    targetAppInfo: TargetAppData;
     shouldAlertFailuresCount?: boolean;
-    targetAppInfo?: TargetAppData;
-    scanMetadata?: ScanMetaData;
-    // Require at least one of targetAppInfo and scanMetadata
-} & ({ targetAppInfo: TargetAppData } | { scanMetadata: ScanMetaData });
+};
 
 export const FailedInstancesSection = NamedFC<FailedInstancesSectionProps>(
     'FailedInstancesSection',
@@ -28,13 +24,8 @@ export const FailedInstancesSection = NamedFC<FailedInstancesSectionProps>(
         deps,
         userConfigurationStoreData,
         targetAppInfo,
-        scanMetadata,
         shouldAlertFailuresCount,
     }) => {
-        if (isNil(targetAppInfo) && !isNil(scanMetadata)) {
-            targetAppInfo = scanMetadata.targetAppInfo;
-        }
-
         if (cardsViewData == null || cardsViewData.cards == null) {
             return null;
         }
