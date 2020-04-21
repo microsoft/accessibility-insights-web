@@ -27,7 +27,6 @@ export type SectionProps = {
     cardsViewData: CardsViewModel;
     userConfigurationStoreData: UserConfigurationStoreData;
     shouldAlertFailuresCount?: boolean;
-    targetAppInfo: TargetAppData;
     scanMetadata: ScanMetaData;
 };
 

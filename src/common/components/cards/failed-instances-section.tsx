@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
 import { TargetAppData } from 'common/types/store-data/unified-data-interface';
-import { isNull } from 'lodash';
+import { isNil } from 'lodash';
 import { CardsViewModel } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { ResultSection, ResultSectionDeps } from './result-section';
@@ -31,7 +31,7 @@ export const FailedInstancesSection = NamedFC<FailedInstancesSectionProps>(
         scanMetadata,
         shouldAlertFailuresCount,
     }) => {
-        if (isNull(targetAppInfo)) {
+        if (isNil(targetAppInfo) && !isNil(scanMetadata)) {
             targetAppInfo = scanMetadata.targetAppInfo;
         }
 

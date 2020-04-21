@@ -3,14 +3,10 @@
 exports[`AssessmentReport render 1`] = `
 <React.Fragment>
   <HeaderSection
-    scanMetadata={
+    targetAppInfo={
       Object {
-        "targetAppInfo": Object {
-          "name": "title",
-          "url": "url",
-        },
-        "timestamp": null,
-        "toolData": null,
+        "name": "title",
+        "url": "url",
       }
     }
   />

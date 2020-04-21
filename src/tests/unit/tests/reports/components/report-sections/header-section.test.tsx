@@ -6,14 +6,20 @@ import * as React from 'react';
 import { HeaderSection } from 'reports/components/report-sections/header-section';
 
 describe('HeaderSection', () => {
-    it('renders', () => {
+    const targetAppInfo = {
+        name: 'page-title',
+        url: 'url://page',
+    };
+    it('renders with scanMetadata', () => {
         const scanMetadata = {
-            targetAppInfo: {
-                name: 'page-title',
-                url: 'url://page',
-            },
+            targetAppInfo,
         } as ScanMetaData;
         const wrapper = shallow(<HeaderSection scanMetadata={scanMetadata} />);
+        expect(wrapper.getElement()).toMatchSnapshot();
+    });
+
+    it('renders with targetAppInfo', () => {
+        const wrapper = shallow(<HeaderSection targetAppInfo={targetAppInfo} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 });

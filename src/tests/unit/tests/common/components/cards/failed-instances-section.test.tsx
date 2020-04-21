@@ -43,12 +43,13 @@ describe('FailedInstancesSection', () => {
             ${{ cards: nonEmptyResults }}     | ${true}                  | ${testTargetAppInfo} | ${undefined}        | ${'with alerting on'}
             ${{ cards: nonEmptyResults }}     | ${false}                 | ${testTargetAppInfo} | ${undefined}        | ${'with alerting off'}
             ${{ cards: nonEmptyResults }}     | ${undefined}             | ${undefined}         | ${testScanMetadata} | ${'with scanMetadata'}
-        `('$description', ({ results, shouldAlertFailuresCount }) => {
+        `('$description', ({ results, shouldAlertFailuresCount, targetAppInfo, scanMetadata }) => {
             const props = {
                 deps: {} as FailedInstancesSectionDeps,
                 cardsViewData: results,
                 shouldAlertFailuresCount,
-                targetAppInfo: testTargetAppInfo,
+                targetAppInfo,
+                scanMetadata,
             } as FailedInstancesSectionProps;
 
             const wrapper = shallow(<FailedInstancesSection {...props} />);

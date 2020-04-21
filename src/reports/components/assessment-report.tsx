@@ -6,7 +6,6 @@ import { ReportModel } from '../assessment-report-model';
 import { AssessmentReportBody, AssessmentReportBodyDeps } from './assessment-report-body';
 import { AssessmentReportFooter } from './assessment-report-footer';
 import { HeaderSection } from './report-sections/header-section';
-import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
 
 export type AssessmentReportDeps = AssessmentReportBodyDeps;
 
@@ -25,15 +24,10 @@ export class AssessmentReport extends React.Component<AssessmentReportProps> {
             name: this.props.data.scanDetails.targetPage,
             url: this.props.data.scanDetails.url,
         };
-        const scanMetadata: ScanMetaData = {
-            targetAppInfo,
-            toolData: null,
-            timestamp: null,
-        };
 
         return (
             <React.Fragment>
-                <HeaderSection scanMetadata={scanMetadata} />
+                <HeaderSection targetAppInfo={targetAppInfo} />
                 <AssessmentReportBody
                     deps={this.props.deps}
                     data={this.props.data}
