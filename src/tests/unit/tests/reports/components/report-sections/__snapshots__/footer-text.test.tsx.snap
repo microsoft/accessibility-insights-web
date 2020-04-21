@@ -8,7 +8,8 @@ exports[`FooterText renders 1`] = `
   , a tool that helps debug and find accessibility issues earlier on
    
   environmentName
-  . Get more information & download this tool at 
+  . Get more information & download this tool at
+   
   <ToolLink />
   .
 </React.Fragment>
