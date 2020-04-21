@@ -49,7 +49,7 @@
         "watch:build:all": "npm-run-all --parallel --race --print-label watch:scss watch:grunt watch:webpack-dev-browser watch:webpack-unified",
         "watch:build:web": "npm-run-all --parallel --race --print-label watch:scss watch:grunt watch:webpack-dev-browser",
         "watch:build:unified": "npm-run-all --parallel --race --print-label watch:scss watch:grunt watch:webpack-unified",
-        "watch:scss": "tsm src/**/*.scss --watch",
+        "watch:scss": "tsm \"src/**/*.scss\" --watch",
         "watch:grunt": "grunt watch",
         "watch:test": "jest --watch --projects src/tests/unit --coverage false --colors",
         "watch:webpack-dev-browser": "webpack --watch --config-name dev --colors --progress",
