@@ -3,6 +3,3 @@
 steps:
     - script: yarn download:electron-mirror
       displayName: download custom electron build
-      env:
-          ELECTRON_MIRROR_VAR: $(ELECTRON_MIRROR_VAR)
-          ELECTRON_CUSTOM_DIR_VAR: $(ELECTRON_CUSTOM_DIR_VAR)
