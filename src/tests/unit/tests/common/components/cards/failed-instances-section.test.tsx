@@ -6,6 +6,7 @@ import {
     FailedInstancesSectionProps,
 } from 'common/components/cards/failed-instances-section';
 import { CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
+import { ScanMetadata } from 'common/types/store-data/scan-meta-data';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
@@ -24,6 +25,12 @@ describe('FailedInstancesSection', () => {
         inapplicable: [],
         unknown: [],
     };
+    const scanMetadata: ScanMetadata = {
+        targetAppInfo: {
+            name: 'page title',
+            url: 'page url',
+        },
+    } as ScanMetadata;
 
     describe('renders', () => {
         it.each`
@@ -38,6 +45,7 @@ describe('FailedInstancesSection', () => {
                 deps: {} as FailedInstancesSectionDeps,
                 cardsViewData: results,
                 shouldAlertFailuresCount,
+                scanMetadata,
             } as FailedInstancesSectionProps;
 
             const wrapper = shallow(<FailedInstancesSection {...props} />);

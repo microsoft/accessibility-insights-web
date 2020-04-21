@@ -100,9 +100,18 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
               "screenshotViewModelProvider": [Function],
             }
           }
-          targetAppInfo={
+          scanMetadata={
             Object {
-              "name": "test-target-app-name",
+              "deviceName": "TEST DEVICE",
+              "targetAppInfo": Object {
+                "name": "test-target-app-name",
+              },
+              "timestamp": "test timestamp",
+              "toolData": Object {
+                "applicationProperties": Object {
+                  "name": "some app",
+                },
+              },
             }
           }
           userConfigurationStoreData={
