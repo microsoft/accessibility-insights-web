@@ -25,7 +25,7 @@ const downloadElectron = async () => {
         force: true,
     });
     console.log(`zip downloaded to dir ${zipFilePath}`);
-    const a = fs.createReadStream(zipFilePath).pipe(unzipper.Extract({ path: destinationPath }));
+    fs.createReadStream(zipFilePath).pipe(unzipper.Extract({ path: destinationPath }));
     console.log(`zip extracted to ${path.resolve(destinationPath)}`);
 };
 
