@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
+import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
 import { ISelection, Spinner, SpinnerSize } from 'office-ui-fabric-react';
@@ -58,6 +59,7 @@ export type DetailsViewContainerDeps = {
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
     previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
     dropdownClickHandler: DropdownClickHandler;
+    isResultHighlightUnavailable: IsResultHighlightUnavailable;
 } & DetailsViewBodyDeps &
     DetailsViewOverlayDeps &
     DetailsViewCommandBarDeps &
@@ -192,7 +194,11 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
         const cardsViewData = this.props.deps.getCardViewData(
             this.props.storeState.unifiedScanResultStoreData.rules,
             this.props.storeState.unifiedScanResultStoreData.results,
-            this.props.deps.getCardSelectionViewData(this.props.storeState.cardSelectionStoreData),
+            this.props.deps.getCardSelectionViewData(
+                this.props.storeState.cardSelectionStoreData,
+                this.props.storeState.unifiedScanResultStoreData,
+                this.props.deps.isResultHighlightUnavailable,
+            ),
         );
 
         const targetAppInfo = {

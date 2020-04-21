@@ -74,7 +74,9 @@ describe('SelectorMapHelperTest', () => {
         } as VisualizationRelatedStoreData;
 
         getElementBasedViewModelMock
-            .setup(gebvm => gebvm(rulesStub, resultsStub, storeData.cardSelectionStoreData))
+            .setup(gebvm =>
+                gebvm(storeData.unifiedScanResultStoreData, storeData.cardSelectionStoreData),
+            )
             .returns(() => selectorMap);
 
         expect(testSubject.getSelectorMap(VisualizationType.Issues, null, storeData)).toEqual(

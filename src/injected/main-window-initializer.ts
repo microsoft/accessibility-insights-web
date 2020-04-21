@@ -3,6 +3,7 @@
 import { Assessments } from 'assessments/assessments';
 import { EnumHelper } from 'common/enum-helper';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
+import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unavailable';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
@@ -19,6 +20,7 @@ import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-
 import { TargetPageVisualizationUpdater } from 'injected/target-page-visualization-updater';
 import { visualizationNeedsUpdate } from 'injected/visualization-needs-update';
 import { VisualizationStateChangeHandler } from 'injected/visualization-state-change-handler';
+
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
@@ -218,6 +220,7 @@ export class MainWindowInitializer extends WindowInitializer {
         const elementBasedViewModelCreator = new ElementBasedViewModelCreator(
             getDecoratedAxeNode,
             getCardSelectionViewData,
+            isResultHighlightUnavailableWeb,
         );
         const selectorMapHelper = new SelectorMapHelper(
             Assessments,

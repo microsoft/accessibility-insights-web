@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { ScanningSpinner } from 'common/components/scanning-spinner/scanning-spinner';
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
+import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
@@ -42,6 +43,7 @@ export type AutomatedChecksViewDeps = CommandBarDeps &
         getCardsViewData: GetCardViewData;
         getCardSelectionViewData: GetCardSelectionViewData;
         screenshotViewModelProvider: ScreenshotViewModelProvider;
+        isResultHighlightUnavailable: IsResultHighlightUnavailable;
     };
 
 export type AutomatedChecksViewProps = {
@@ -68,11 +70,18 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
         } else if (status === ScanStatus.Completed) {
             const { unifiedScanResultStoreData, cardSelectionStoreData, deps } = this.props;
             const { rules, results } = unifiedScanResultStoreData;
-            const cardSelectionViewData = deps.getCardSelectionViewData(cardSelectionStoreData);
+            const cardSelectionViewData = deps.getCardSelectionViewData(
+                cardSelectionStoreData,
+                unifiedScanResultStoreData,
+                deps.isResultHighlightUnavailable,
+            );
             const cardsViewData = deps.getCardsViewData(rules, results, cardSelectionViewData);
+            const highlightedResultUids = Object.keys(
+                cardSelectionViewData.resultsHighlightStatus,
+            ).filter(uid => cardSelectionViewData.resultsHighlightStatus[uid] === 'visible');
             const screenshotViewModel = deps.screenshotViewModelProvider(
                 unifiedScanResultStoreData,
-                cardSelectionViewData.highlightedResultUids,
+                highlightedResultUids,
             );
 
             const scanMetadata: ScanMetaData = {

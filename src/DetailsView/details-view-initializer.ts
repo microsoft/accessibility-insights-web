@@ -9,6 +9,7 @@ import { UserConfigurationStore } from 'background/stores/global/user-configurat
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { ThemeInnerState } from 'common/components/theme';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
+import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unavailable';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
@@ -419,6 +420,7 @@ if (isNaN(tabId) === false) {
                     browserAdapter,
                     detailsViewActionMessageCreator,
                 ),
+                isResultHighlightUnavailable: isResultHighlightUnavailableWeb,
                 setFocusVisibility,
                 documentManipulator,
                 customCongratsMessage: null, // uses default message

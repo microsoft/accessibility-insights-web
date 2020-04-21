@@ -3,7 +3,9 @@
 import {
     CardSelectionViewData,
     getCardSelectionViewData,
+    ResultsHighlightStatus,
 } from 'common/get-card-selection-view-data';
+import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import {
@@ -35,12 +37,15 @@ import { It, Mock, Times } from 'typemoq';
 describe('AutomatedChecksView', () => {
     describe('renders', () => {
         let bareMinimumProps: AutomatedChecksViewProps;
+        let isResultHighlightUnavailableStub: IsResultHighlightUnavailable;
 
         beforeEach(() => {
+            isResultHighlightUnavailableStub = () => null;
             bareMinimumProps = {
                 deps: {
                     windowStateActionCreator: Mock.ofType(WindowStateActionCreator).object,
                     scanActionCreator: Mock.ofType(ScanActionCreator).object,
+                    isResultHighlightUnavailable: isResultHighlightUnavailableStub,
                 },
                 scanStoreData: {},
                 deviceStoreData: {
@@ -68,16 +73,23 @@ describe('AutomatedChecksView', () => {
 
         it('when status scan <Completed>', () => {
             const cardSelectionStoreData = {} as CardSelectionStoreData;
+            const resultsHighlightStatus = {
+                'highlighted-uid-1': 'visible',
+                'not-highlighted-uid-1': 'hidden',
+            } as ResultsHighlightStatus;
             const timeStampStub = 'test timestamp';
             const toolDataStub: ToolData = {
                 applicationProperties: { name: 'some app' },
             } as ToolData;
 
             const cardSelectionViewDataStub = {
-                highlightedResultUids: ['highlighted-uid-1'],
+                resultsHighlightStatus: resultsHighlightStatus,
             } as CardSelectionViewData;
             const rulesStub = [{ description: 'test-rule-description' } as UnifiedRule];
-            const resultsStub = [{ uid: 'highlighted-uid-1' } as UnifiedResult];
+            const resultsStub = [
+                { uid: 'highlighted-uid-1' },
+                { uid: 'not-highlighted-uid-1' },
+            ] as UnifiedResult[];
             const unifiedScanResultStoreData: UnifiedScanResultStoreData = {
                 targetAppInfo: {
                     name: 'test-target-app-name',
@@ -90,6 +102,7 @@ describe('AutomatedChecksView', () => {
                     deviceName: 'TEST DEVICE',
                 } as PlatformData,
             };
+
             const ruleResultsByStatusStub = {
                 fail: [{ id: 'test-fail-id' } as CardRuleResult],
             } as CardRuleResultsByStatus;
@@ -111,6 +124,7 @@ describe('AutomatedChecksView', () => {
                     getCardsViewData: getUnifiedRuleResultsMock.object,
                     getCardSelectionViewData: getCardSelectionViewDataMock.object,
                     screenshotViewModelProvider: screenshotViewModelProviderMock.object,
+                    isResultHighlightUnavailable: isResultHighlightUnavailableStub,
                 },
                 cardSelectionStoreData,
                 deviceStoreData: {},
@@ -127,7 +141,13 @@ describe('AutomatedChecksView', () => {
             } as AutomatedChecksViewProps;
 
             getCardSelectionViewDataMock
-                .setup(getData => getData(cardSelectionStoreData))
+                .setup(getData =>
+                    getData(
+                        cardSelectionStoreData,
+                        unifiedScanResultStoreData,
+                        isResultHighlightUnavailableStub,
+                    ),
+                )
                 .returns(() => cardSelectionViewDataStub)
                 .verifiable(Times.once());
 
@@ -137,12 +157,7 @@ describe('AutomatedChecksView', () => {
                 .verifiable(Times.once());
 
             screenshotViewModelProviderMock
-                .setup(provider =>
-                    provider(
-                        unifiedScanResultStoreData,
-                        cardSelectionViewDataStub.highlightedResultUids,
-                    ),
-                )
+                .setup(provider => provider(unifiedScanResultStoreData, ['highlighted-uid-1']))
                 .returns(() => screenshotViewModelStub)
                 .verifiable(Times.once());
 
