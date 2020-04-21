@@ -380,11 +380,15 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             source: TelemetryEventSource.DetailsView,
         };
 
-        const expectedMessage = {
+        const expectedMessageToStartOverAllAssessments = {
             messageType: Messages.Assessment.StartOverAllAssessments,
             payload: {
                 telemetry,
             },
+        };
+        const expectedMessageToSetDetailsViewRightContentPanel = {
+            messageType: Messages.Visualizations.DetailsView.SetDetailsViewRightContentPanel,
+            payload: 'Overview',
         };
 
         telemetryFactoryMock.setup(tf => tf.fromDetailsView(event)).returns(() => telemetry);
@@ -392,7 +396,15 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         testSubject.startOverAllAssessments(event);
 
         dispatcherMock.verify(
-            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            dispatcher =>
+                dispatcher.dispatchMessage(It.isValue(expectedMessageToStartOverAllAssessments)),
+            Times.once(),
+        );
+        dispatcherMock.verify(
+            dispatcher =>
+                dispatcher.dispatchMessage(
+                    It.isValue(expectedMessageToSetDetailsViewRightContentPanel),
+                ),
             Times.once(),
         );
     });

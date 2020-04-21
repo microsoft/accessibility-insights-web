@@ -500,12 +500,18 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
 
     public startOverAllAssessments = (event: React.MouseEvent<any>): void => {
         const telemetry = this.telemetryFactory.fromDetailsView(event);
-        const payload: BaseActionPayload = {
+        const setDetailsViewRightContentPanelPayload: DetailsViewRightContentPanelType = 'Overview';
+        const startOverAllAssessmentsActionPayload: BaseActionPayload = {
             telemetry: telemetry,
         };
+
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.Visualizations.DetailsView.SetDetailsViewRightContentPanel,
+            payload: setDetailsViewRightContentPanelPayload,
+        });
         this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.StartOverAllAssessments,
-            payload,
+            payload: startOverAllAssessmentsActionPayload,
         });
     };
 
