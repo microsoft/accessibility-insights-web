@@ -206,7 +206,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
             url: this.props.storeState.tabStoreData.url,
         };
 
-        const scanMetaData: ScanMetaData = {
+        const scanMetadata: ScanMetaData = {
             timestamp: this.props.storeState.unifiedScanResultStoreData.timestamp,
             targetAppInfo: targetAppInfo,
             toolData: this.props.storeState.unifiedScanResultStoreData.toolInfo,
@@ -240,7 +240,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
                 scanIncompleteWarnings={
                     storeState.unifiedScanResultStoreData.scanIncompleteWarnings
                 }
-                scanMetaData={scanMetaData}
+                scanMetadata={scanMetadata}
             />
         );
     }

@@ -104,7 +104,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
 
     private renderLayout(
         cardsViewData: CardsViewModel,
-        scanMetaData: ScanMetaData,
+        scanMetadata: ScanMetaData,
         primaryContent: JSX.Element,
         optionalSidePanel?: JSX.Element,
     ): JSX.Element {
@@ -126,7 +126,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                             scanStoreData={this.props.scanStoreData}
                             featureFlagStoreData={this.props.featureFlagStoreData}
                             cardsViewData={cardsViewData}
-                            scanMetaData={scanMetaData}
+                            scanMetadata={scanMetadata}
                         />
                         <main>
                             <HeaderSection />

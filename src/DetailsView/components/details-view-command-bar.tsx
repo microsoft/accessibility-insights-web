@@ -46,7 +46,7 @@ export interface DetailsViewCommandBarProps {
     visualizationScanResultData: VisualizationScanResultData;
     cardsViewData: CardsViewModel;
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
-    scanMetaData: ScanMetaData;
+    scanMetadata: ScanMetaData;
 }
 
 export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBarProps> {
@@ -64,7 +64,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
     }
 
     private renderTargetPageInfo(): JSX.Element {
-        const targetPageTitle: string = this.props.scanMetaData.targetAppInfo.name;
+        const targetPageTitle: string = this.props.scanMetadata.targetAppInfo.name;
         const tooltipContent = `Switch to target page: ${targetPageTitle}`;
         const hostStyles: Partial<ITooltipHostStyles> = { root: { display: 'inline-block' } };
         return (

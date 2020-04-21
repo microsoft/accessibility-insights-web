@@ -21,7 +21,7 @@ export type ScanDetailInfo = {
 };
 
 export function makeDetailsSectionFC(
-    getDisplayedScanTargetInfo: (scanMetaData: ScanMetaData) => ScanDetailInfo,
+    getDisplayedScanTargetInfo: (scanMetadata: ScanMetaData) => ScanDetailInfo,
 ): ReactFCWithDisplayName<DetailsSectionProps> {
     return NamedFC<DetailsSectionProps>('DetailsSection', props => {
         const { scanMetadata, description, scanDate, toUtcString } = props;

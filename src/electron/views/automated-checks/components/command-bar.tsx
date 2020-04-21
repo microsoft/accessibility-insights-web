@@ -34,29 +34,29 @@ export interface CommandBarProps {
     scanStoreData: ScanStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
     cardsViewData: CardsViewModel;
-    scanMetaData: ScanMetaData;
+    scanMetadata: ScanMetaData;
 }
 
 export const commandButtonRefreshId = 'command-button-refresh';
 export const commandButtonSettingsId = 'command-button-settings';
 
 export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
-    const { deps, deviceStoreData, featureFlagStoreData, cardsViewData, scanMetaData } = props;
+    const { deps, deviceStoreData, featureFlagStoreData, cardsViewData, scanMetadata } = props;
     let exportReport = null;
 
-    if (scanMetaData != null) {
+    if (scanMetadata != null) {
         exportReport = (
             <ReportExportComponent
                 deps={deps}
                 reportExportFormat={'AutomatedChecks'}
-                pageTitle={scanMetaData.targetAppInfo.name}
-                scanDate={deps.getDateFromTimestamp(scanMetaData.timestamp)}
+                pageTitle={scanMetadata.targetAppInfo.name}
+                scanDate={deps.getDateFromTimestamp(scanMetadata.timestamp)}
                 htmlGenerator={description =>
                     deps.reportGenerator.generateFastPassAutomatedChecksReport(
-                        deps.getDateFromTimestamp(scanMetaData.timestamp),
+                        deps.getDateFromTimestamp(scanMetadata.timestamp),
                         cardsViewData,
                         description,
-                        scanMetaData,
+                        scanMetadata,
                     )
                 }
                 updatePersistedDescription={() => null}

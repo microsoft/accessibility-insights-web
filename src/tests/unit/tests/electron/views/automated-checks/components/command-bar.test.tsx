@@ -26,7 +26,7 @@ describe('CommandBar', () => {
     let getDateFromTimestampMock: IMock<(timestamp: string) => Date>;
     let cardsViewDataStub: CardsViewModel;
     let reportGeneratorMock: IMock<ReportGenerator>;
-    let scanMetaDataStub: ScanMetaData;
+    let scanMetadataStub: ScanMetaData;
     let scanDateStub: Date;
 
     beforeEach(() => {
@@ -35,7 +35,7 @@ describe('CommandBar', () => {
         };
         getDateFromTimestampMock = Mock.ofInstance((_: string) => null as Date);
         cardsViewDataStub = {} as CardsViewModel;
-        scanMetaDataStub = {
+        scanMetadataStub = {
             timestamp: '1234',
             toolData: {} as ToolData,
             targetAppInfo: {
@@ -46,7 +46,7 @@ describe('CommandBar', () => {
         reportGeneratorMock = Mock.ofType(ReportGenerator);
 
         getDateFromTimestampMock
-            .setup(mock => mock(scanMetaDataStub.timestamp))
+            .setup(mock => mock(scanMetadataStub.timestamp))
             .returns(() => scanDateStub);
     });
 
@@ -63,7 +63,7 @@ describe('CommandBar', () => {
                 },
                 cardsViewData: cardsViewDataStub,
                 featureFlagStoreData: featureFlagStoreDataStub,
-                scanMetaData: scanMetaDataStub,
+                scanMetadata: scanMetadataStub,
             } as CommandBarProps;
 
             const rendered = shallow(<CommandBar {...props} />);
@@ -83,7 +83,7 @@ describe('CommandBar', () => {
                 },
                 cardsViewData: cardsViewDataStub,
                 featureFlagStoreData: featureFlagStoreDataStub,
-                scanMetaData: null,
+                scanMetadata: null,
             } as CommandBarProps;
             const rendered = shallow(<CommandBar {...props} />);
 
@@ -106,7 +106,7 @@ describe('CommandBar', () => {
                 },
                 cardsViewData: cardsViewDataStub,
                 featureFlagStoreData: featureFlagStoreDataStub,
-                scanMetaData: scanMetaDataStub,
+                scanMetadata: scanMetadataStub,
             } as CommandBarProps;
 
             const rendered = shallow(<CommandBar {...props} />);
@@ -141,7 +141,7 @@ describe('CommandBar', () => {
                 },
                 cardsViewData: cardsViewDataStub,
                 featureFlagStoreData: featureFlagStoreDataStub,
-                scanMetaData: scanMetaDataStub,
+                scanMetadata: scanMetadataStub,
             } as CommandBarProps;
 
             const rendered = mount(<CommandBar {...props} />);
@@ -168,7 +168,7 @@ describe('CommandBar', () => {
                 },
                 cardsViewData: cardsViewDataStub,
                 featureFlagStoreData: featureFlagStoreDataStub,
-                scanMetaData: scanMetaDataStub,
+                scanMetadata: scanMetadataStub,
             } as CommandBarProps;
 
             const rendered = mount(<CommandBar {...props} />);

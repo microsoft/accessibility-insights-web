@@ -7,10 +7,10 @@ import {
     ScanDetailInfo,
 } from 'reports/components/report-sections/make-details-section-fc';
 
-export function createDeviceNameItemInfo(scanMetaData: ScanMetaData): ScanDetailInfo {
+export function createDeviceNameItemInfo(scanMetadata: ScanMetaData): ScanDetailInfo {
     return {
         label: 'connected device name:',
-        content: `${scanMetaData.deviceName} - ${scanMetaData.targetAppInfo.name}`,
+        content: `${scanMetadata.deviceName} - ${scanMetadata.targetAppInfo.name}`,
     };
 }
 

@@ -30,13 +30,13 @@ describe('makeDetailsSection', () => {
         content: 'item content',
     };
     let toUtcStringMock: IMock<(date: Date) => string>;
-    let getDisplayedScanTargetInfoMock: IMock<(scanMetaData: ScanMetaData) => ScanDetailInfo>;
+    let getDisplayedScanTargetInfoMock: IMock<(scanMetadata: ScanMetaData) => ScanDetailInfo>;
 
     beforeEach(() => {
         toUtcStringMock = Mock.ofInstance(DateProvider.getUTCStringFromDate, MockBehavior.Strict);
         toUtcStringMock.setup(getter => getter(scanDate)).returns(() => '2018-03-12 11:24 PM UTC');
         getDisplayedScanTargetInfoMock = Mock.ofType<
-            (scanMetaData: ScanMetaData) => ScanDetailInfo
+            (scanMetadata: ScanMetaData) => ScanDetailInfo
         >();
         getDisplayedScanTargetInfoMock
             .setup(g => g(scanMetadata))

@@ -43,7 +43,7 @@ describe('ReportExportComponentPropsFactory', () => {
     let cardsViewData: CardsViewModel;
     let scanResult: ScanResults;
     let targetAppInfo: TargetAppData;
-    let scanMetaData: ScanMetaData;
+    let scanMetadata: ScanMetaData;
 
     beforeEach(() => {
         featureFlagStoreData = {};
@@ -58,7 +58,7 @@ describe('ReportExportComponentPropsFactory', () => {
             name: thePageTitle,
             url: thePageUrl,
         };
-        scanMetaData = {
+        scanMetadata = {
             timestamp: theTimestamp,
             toolData: theToolData,
             targetAppInfo: targetAppInfo,
@@ -92,7 +92,7 @@ describe('ReportExportComponentPropsFactory', () => {
             visualizationScanResultData,
             visualizationStoreData,
             cardsViewData,
-            scanMetaData,
+            scanMetadata,
         } as DetailsViewCommandBarProps;
     }
 
@@ -117,7 +117,7 @@ describe('ReportExportComponentPropsFactory', () => {
                     theDate,
                     cardsViewData,
                     theDescription,
-                    scanMetaData,
+                    scanMetadata,
                 ),
             )
             .returns(() => theGeneratorOutput);

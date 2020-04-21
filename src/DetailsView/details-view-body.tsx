@@ -61,7 +61,7 @@ export interface DetailsViewBodyProps {
     userConfigurationStoreData: UserConfigurationStoreData;
     cardsViewData: CardsViewModel;
     scanIncompleteWarnings: ScanIncompleteWarningId[];
-    scanMetaData: ScanMetaData;
+    scanMetadata: ScanMetaData;
 }
 
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
@@ -114,7 +114,7 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
 
     private renderRightPanel(): JSX.Element {
         const rightPanelProps: RightPanelProps = {
-            targetAppInfo: this.props.scanMetaData.targetAppInfo,
+            targetAppInfo: this.props.scanMetadata.targetAppInfo,
             ...this.props,
         };
 

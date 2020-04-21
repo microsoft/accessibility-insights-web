@@ -50,7 +50,7 @@ describe('DetailsViewCommandBar', () => {
             StartOverComponentFactory: p => startOverComponent,
             LeftNav: LeftNavStub,
         } as DetailsViewSwitcherNavConfiguration;
-        const scanMetaData = {
+        const scanMetadata = {
             targetAppInfo: {
                 name: thePageTitle,
                 url: thePageUrl,
@@ -63,7 +63,7 @@ describe('DetailsViewCommandBar', () => {
             },
             tabStoreData,
             switcherNavConfiguration: switcherNavConfiguration,
-            scanMetaData: scanMetaData,
+            scanMetadata: scanMetadata,
         } as DetailsViewCommandBarProps;
     }
 
