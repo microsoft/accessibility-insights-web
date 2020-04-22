@@ -13,7 +13,7 @@ export const FooterTextForUnified = NamedFC<FooterTextProps>(
         return (
             <>
                 This automated checks result was generated using{' '}
-                {`${applicationProperties.name} ${applicationProperties.version} (${scanEngineProperties.name} ${scanEngineProperties.version})`}
+                {`${applicationProperties.name} ${applicationProperties.version} (${scanEngineProperties.name})`}
                 , a tool that helps debug and find accessibility issues earlier. Get more
                 information & download this tool at <ToolLink />.
             </>
