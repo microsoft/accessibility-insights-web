@@ -325,6 +325,22 @@
     global-agent "^2.0.2"
     global-tunnel-ng "^2.7.1"
 
+"@electron/get@^1.10.0":
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/@electron/get/-/get-1.10.0.tgz#258fdda22bbd5a247e0b663ba9c525dedc1bdfff"
+  integrity sha512-hlueNXU51c3CwQjBw/i5fwt+VfQgSQVUTdicpCHkhEjNZaa4CXJ5W1GaxSwtLE2dvRmAHjpIjUMHTqJ53uojfg==
+  dependencies:
+    debug "^4.1.1"
+    env-paths "^2.2.0"
+    fs-extra "^8.1.0"
+    got "^9.6.0"
+    progress "^2.0.3"
+    sanitize-filename "^1.6.2"
+    sumchecker "^3.0.1"
+  optionalDependencies:
+    global-agent "^2.0.2"
+    global-tunnel-ng "^2.7.1"
+
 "@fluentui/react-focus@^7.1.0":
   version "7.1.2"
   resolved "https://registry.yarnpkg.com/@fluentui/react-focus/-/react-focus-7.1.2.tgz#f269235f9d5cbf649c4b148a4a772741c4cf57c8"
@@ -7770,7 +7786,7 @@ progress-stream@^1.1.0:
     speedometer "~0.1.2"
     through2 "~0.2.3"
 
-progress@^2.0.1:
+progress@^2.0.1, progress@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
@@ -9374,6 +9390,13 @@ sumchecker@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/sumchecker/-/sumchecker-3.0.0.tgz#da5457b4605184575c76540e5e99cc777cb8ce4c"
   integrity sha512-yreseuC/z4iaodVoq07XULEOO9p4jnQazO7mbrnDSvWAU/y2cbyIKs+gWJptfcGu9R+1l27K8Rkj0bfvqnBpgQ==
+  dependencies:
+    debug "^4.1.0"
+
+sumchecker@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/sumchecker/-/sumchecker-3.0.1.tgz#6377e996795abb0b6d348e9b3e1dfb24345a8e42"
+  integrity sha512-MvjXzkz/BOfyVDkG0oFOtBxHX2u3gKbMHIF/dXblZsgD3BWOFLmHovIpZY7BykJdAjcqRCBi1WYBNdEC9yI7vg==
   dependencies:
     debug "^4.1.0"
 

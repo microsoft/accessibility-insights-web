@@ -1,11 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 const pkg = require('../../package.json');
-const { download } = require('@electron/get');
+const { downloadArtifact } = require('@electron/get');
 const unzipper = require('unzipper');
 const fs = require('fs');
 const path = require('path');
-const os = require('os');
 const fstream = require('fstream');
 
 if (
@@ -16,10 +15,16 @@ if (
     process.exit(1);
 }
 
-const destinationPath = 'node_modules/electron/dist';
+const downloadMirrors = async () => {
+    await downloadElectronArtifact('electron', 'node_modules/electron/dist');
+    await downloadElectronArtifact('chromedriver', 'node_modules/electron-chromedriver/bin');
+};
 
-const downloadElectron = async () => {
-    const zipFilePath = await download(`${pkg.dependencies.electron}`, {
+const downloadElectronArtifact = async (artifactName, destinationPath) => {
+    console.log(`downloading ${artifactName} at ${pkg.dependencies.electron}`);
+    const zipFilePath = await downloadArtifact({
+        version: `${pkg.dependencies.electron}`,
+        artifactName,
         mirrorOptions: {
             mirror: process.env.ELECTRON_MIRROR_VAR,
             customDir: process.env.ELECTRON_CUSTOM_DIR_VAR,
@@ -27,20 +32,16 @@ const downloadElectron = async () => {
         force: true,
     });
     console.log(`zip downloaded to dir ${zipFilePath}`);
-    const renamedZip = path.join(fs.mkdtempSync(`${os.tmpdir()}${path.sep}`), 'electron.zip');
-    fs.renameSync(zipFilePath, renamedZip);
-    console.log(`zip renamed to ${renamedZip}`);
-    const d = await unzipper.Open.file(renamedZip);
-    console.log('got central directory');
-    console.log(`zip extracting to ${path.resolve(destinationPath)}`);
-    await d.extract({
-        path: path.resolve(destinationPath),
-        getWriter: opts => fstream.Writer({ path: opts.path, follow: true }),
-    });
-    console.log(`zip extracted to ${path.resolve(destinationPath)}`);
+    console.log(`extracting to ${path.resolve(destinationPath)}`);
+    fs.createReadStream(zipFilePath).pipe(
+        unzipper.Extract({
+            path: path.resolve(destinationPath),
+            getWriter: opts => fstream.Writer({ path: opts.path, follow: true }),
+        }),
+    );
 };
 
-downloadElectron().catch(err => {
+downloadMirrors().catch(err => {
     console.error(err);
     process.exit(1);
 });

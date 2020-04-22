@@ -57,6 +57,8 @@
         "with:mock-service-for-android": "npm-run-all --race --parallel serve:mock-service-for-android"
     },
     "devDependencies": {
+        "7zip-bin": "^5.0.3",
+        "@electron/get": "^1.10.0",
         "@types/applicationinsights-js": "^1.0.7",
         "@types/chrome": "0.0.104",
         "@types/enzyme": "^3.10.5",
@@ -76,7 +78,6 @@
         "@types/serve-static": "^1.13.3",
         "@types/ua-parser-js": "^0.7.33",
         "@types/uuid": "^7.0.2",
-        "7zip-bin": "^5.0.3",
         "app-builder-lib": "^22.5.1",
         "case-sensitive-paths-webpack-plugin": "^2.3.0",
         "codecov": "^3.6.5",
