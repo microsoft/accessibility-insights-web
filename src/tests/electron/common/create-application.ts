@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Electron from 'electron';
-import * as fs from 'fs';
 import { Application } from 'spectron';
 
 import {
