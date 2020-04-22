@@ -6,6 +6,7 @@ const unzipper = require('unzipper');
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
+const fstream = require('fstream');
 
 if (
     process.env.ELECTRON_MIRROR_VAR === undefined ||
@@ -32,7 +33,10 @@ const downloadElectron = async () => {
     const d = await unzipper.Open.file(renamedZip);
     console.log('got central directory');
     console.log(`zip extracting to ${path.resolve(destinationPath)}`);
-    await d.extract({ path: path.resolve(destinationPath) });
+    await d.extract({
+        path: path.resolve(destinationPath),
+        getWriter: opts => fstream.Writer({ path: opts.path, follow: true }),
+    });
     console.log(`zip extracted to ${path.resolve(destinationPath)}`);
 };
 
