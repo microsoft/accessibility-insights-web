@@ -15,3 +15,7 @@ steps:
       displayName: run unified e2e tests (linux)
       condition: and(succeeded(), eq(variables.platform, 'linux'))
       timeoutInMinutes: 10
+
+    - script: cat test.log
+
+    - script: ls

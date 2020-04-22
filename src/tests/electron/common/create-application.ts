@@ -24,6 +24,7 @@ export async function createApplication(options?: AppOptions): Promise<AppContro
         args: [targetApp],
         connectionRetryCount: DEFAULT_APP_CONNECT_RETRIES,
         connectionRetryTimeout: DEFAULT_APP_CONNECT_TIMEOUT_MS,
+        chromeDriverLogPath: 'test.log',
     });
 
     await app.start();
