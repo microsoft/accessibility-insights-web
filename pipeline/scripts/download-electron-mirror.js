@@ -5,6 +5,7 @@ const { download } = require('@electron/get');
 const unzipper = require('unzipper');
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 
 if (
     process.env.ELECTRON_MIRROR_VAR === undefined ||
@@ -25,7 +26,10 @@ const downloadElectron = async () => {
         force: true,
     });
     console.log(`zip downloaded to dir ${zipFilePath}`);
-    fs.createReadStream(zipFilePath).pipe(unzipper.Extract({ path: destinationPath }));
+    const renamedZip = path.join(fs.mkdtempSync(`${os.tmpdir()}${path.sep}`), 'electron.zip');
+    fs.renameSync(zipFilePath, renamedZip);
+    console.log(`zip renamed to ${renamedZip}`);
+    fs.createReadStream(renamedZip).pipe(unzipper.Extract({ path: destinationPath }));
     console.log(`zip extracted to ${path.resolve(destinationPath)}`);
 };
 
