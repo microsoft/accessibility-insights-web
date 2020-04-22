@@ -4,7 +4,7 @@ import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { getDefaultFeatureFlagsWeb } from 'common/feature-flags';
-import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
+import { ScanMetadata } from 'common/types/store-data/scan-meta-data';
 import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { DetailsViewCommandBarDeps } from 'DetailsView/components/details-view-command-bar';
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
@@ -135,9 +135,9 @@ describe('DetailsViewBody', () => {
                     visualHelperEnabled: true,
                     allCardsCollapsed: true,
                 },
-                scanMetaData: {
+                scanMetadata: {
                     targetAppInfo: targetAppInfoStub,
-                } as ScanMetaData,
+                } as ScanMetadata,
             } as DetailsViewBodyProps;
         });
 
@@ -216,7 +216,7 @@ describe('DetailsViewBody', () => {
 
     function buildRightPanel(givenProps: DetailsViewBodyProps): JSX.Element {
         const rightPanelProps = {
-            targetAppInfo: givenProps.scanMetaData.targetAppInfo,
+            targetAppInfo: givenProps.scanMetadata.targetAppInfo,
             ...givenProps,
         };
         return <rightPanelConfig.RightPanel {...rightPanelProps} />;

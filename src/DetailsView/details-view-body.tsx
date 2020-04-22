@@ -7,7 +7,7 @@ import { DetailsViewCommandBarProps } from 'DetailsView/components/details-view-
 import { ISelection } from 'office-ui-fabric-react';
 import * as React from 'react';
 
-import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
+import { ScanMetadata } from 'common/types/store-data/scan-meta-data';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
@@ -61,7 +61,7 @@ export interface DetailsViewBodyProps {
     userConfigurationStoreData: UserConfigurationStoreData;
     cardsViewData: CardsViewModel;
     scanIncompleteWarnings: ScanIncompleteWarningId[];
-    scanMetaData: ScanMetaData;
+    scanMetadata: ScanMetadata;
 }
 
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
@@ -114,7 +114,7 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
 
     private renderRightPanel(): JSX.Element {
         const rightPanelProps: RightPanelProps = {
-            targetAppInfo: this.props.scanMetaData.targetAppInfo,
+            targetAppInfo: this.props.scanMetadata.targetAppInfo,
             ...this.props,
         };
 

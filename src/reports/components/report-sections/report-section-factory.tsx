@@ -5,7 +5,7 @@ import { FixInstructionProcessor } from 'common/components/fix-instruction-proce
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { ReactFCWithDisplayName } from 'common/react/named-fc';
 
-import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
+import { ScanMetadata } from 'common/types/store-data/scan-meta-data';
 import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { CardsViewModel } from '../../../common/types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
@@ -27,7 +27,7 @@ export type SectionProps = {
     cardsViewData: CardsViewModel;
     userConfigurationStoreData: UserConfigurationStoreData;
     shouldAlertFailuresCount?: boolean;
-    scanMetadata: ScanMetaData;
+    scanMetadata: ScanMetadata;
     targetAppInfo: TargetAppData;
 };
 

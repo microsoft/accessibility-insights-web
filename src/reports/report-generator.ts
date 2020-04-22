@@ -4,7 +4,7 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
+import { ScanMetadata } from 'common/types/store-data/scan-meta-data';
 import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { AssessmentReportHtmlGenerator } from './assessment-report-html-generator';
 import { ReportHtmlGenerator } from './report-html-generator';
@@ -25,7 +25,7 @@ export class ReportGenerator {
         scanDate: Date,
         cardsViewData: CardsViewModel,
         description: string,
-        scanMetadata: ScanMetaData,
+        scanMetadata: ScanMetadata,
     ): string {
         return this.reportHtmlGenerator.generateHtml(
             scanDate,
