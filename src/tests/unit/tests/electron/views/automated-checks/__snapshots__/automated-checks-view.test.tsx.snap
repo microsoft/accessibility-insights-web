@@ -53,7 +53,7 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
           }
         }
         deviceStoreData={Object {}}
-        scanMetaData={
+        scanMetadata={
           Object {
             "deviceName": "TEST DEVICE",
             "targetAppInfo": Object {
@@ -200,7 +200,7 @@ exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
             "connectedDevice": "TEST DEVICE",
           }
         }
-        scanMetaData={null}
+        scanMetadata={null}
         scanStoreData={
           Object {
             "status": 3,
@@ -292,7 +292,7 @@ exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
             "connectedDevice": "TEST DEVICE",
           }
         }
-        scanMetaData={null}
+        scanMetadata={null}
         scanStoreData={
           Object {
             "status": 1,
@@ -384,7 +384,7 @@ exports[`AutomatedChecksView renders when status scan <undefined> 1`] = `
             "connectedDevice": "TEST DEVICE",
           }
         }
-        scanMetaData={null}
+        scanMetadata={null}
         scanStoreData={
           Object {
             "status": undefined,

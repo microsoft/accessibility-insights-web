@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ScanMetadata } from 'common/types/store-data/scan-meta-data';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { shallow } from 'enzyme';
 import * as React from 'react';
@@ -18,10 +19,13 @@ describe('FooterTextForService', () => {
                 environmentName: 'environmentName',
             },
         };
+        const scanMetadata = {
+            toolData,
+        } as ScanMetadata;
 
         const FooterText = FooterTextForService('ClientService');
 
-        const footerWrapper = shallow(<FooterText {...{ toolData }} />);
+        const footerWrapper = shallow(<FooterText {...{ scanMetadata }} />);
         expect(footerWrapper.getElement()).toMatchSnapshot('footer');
     });
 });

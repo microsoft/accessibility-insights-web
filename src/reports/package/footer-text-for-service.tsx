@@ -7,7 +7,8 @@ import { FooterTextProps } from 'reports/components/report-sections/footer-text-
 import { ToolLink } from 'reports/components/report-sections/tool-link';
 
 export const FooterTextForService = (serviceName: string) => {
-    const footerTextForService = NamedFC<FooterTextProps>('FooterTextForService', ({ toolData }) => {
+    const footerTextForService = NamedFC<FooterTextProps>('FooterTextForService', ({ scanMetadata }) => {
+        const toolData = scanMetadata.toolData;
         return (
             <>
                 This automated checks result was generated using the {serviceName}{' '}
