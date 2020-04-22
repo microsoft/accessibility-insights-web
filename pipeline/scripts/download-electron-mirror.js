@@ -29,9 +29,8 @@ const downloadElectron = async () => {
     const renamedZip = path.join(fs.mkdtempSync(`${os.tmpdir()}${path.sep}`), 'electron.zip');
     fs.renameSync(zipFilePath, renamedZip);
     console.log(`zip renamed to ${renamedZip}`);
-    unzipper.Open.file(renamedZip).then(d =>
-        d.extract({ path: path.resolve(destinationPath), concurrency: 5 }),
-    );
+    const d = await unzipper.Open.file(renamedZip);
+    await d.extract({ path: path.resolve(destinationPath), concurrency: 5 });
     console.log(`zip extracted to ${path.resolve(destinationPath)}`);
 };
 
