@@ -23,7 +23,6 @@ import { DetailsViewCommandBarDeps } from './components/details-view-command-bar
 import {
     DetailsRightPanelConfiguration,
     DetailsViewContentDeps,
-    RightPanelProps,
 } from './components/details-view-right-panel';
 import { DetailsViewSwitcherNavConfiguration } from './components/details-view-switcher-nav';
 import { IssuesTableHandler } from './components/issues-table-handler';
@@ -113,10 +112,6 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
     }
 
     private renderRightPanel(): JSX.Element {
-        const rightPanelProps: RightPanelProps = {
-            ...this.props,
-        };
-
-        return <this.props.rightPanelConfiguration.RightPanel {...rightPanelProps} />;
+        return <this.props.rightPanelConfiguration.RightPanel {...this.props} />;
     }
 }
