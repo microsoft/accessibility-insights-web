@@ -30,7 +30,9 @@ const downloadElectron = async () => {
     fs.renameSync(zipFilePath, renamedZip);
     console.log(`zip renamed to ${renamedZip}`);
     const d = await unzipper.Open.file(renamedZip);
-    await d.extract({ path: path.resolve(destinationPath), concurrency: 5 });
+    console.log('got central directory');
+    console.log(`zip extracting to ${path.resolve(destinationPath)}`);
+    await d.extract({ path: path.resolve(destinationPath) });
     console.log(`zip extracted to ${path.resolve(destinationPath)}`);
 };
 
