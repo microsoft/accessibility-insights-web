@@ -94,7 +94,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
             return this.renderLayout(
                 cardsViewData,
                 scanMetadata,
-                this.renderResults(cardsViewData),
+                this.renderResults(cardsViewData, scanMetadata),
                 <ScreenshotView viewModel={screenshotViewModel} />,
             );
         } else {
@@ -172,11 +172,11 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
         );
     }
 
-    private renderResults(cardsViewData: CardsViewModel): JSX.Element {
+    private renderResults(cardsViewData: CardsViewModel, scanMetadata: ScanMetadata): JSX.Element {
         return (
             <CardsView
                 deps={this.props.deps}
-                targetAppInfo={this.props.unifiedScanResultStoreData.targetAppInfo}
+                scanMetadata={scanMetadata}
                 userConfigurationStoreData={this.props.userConfigurationStoreData}
                 cardsViewData={cardsViewData}
             />

@@ -216,7 +216,6 @@ describe('DetailsViewBody', () => {
 
     function buildRightPanel(givenProps: DetailsViewBodyProps): JSX.Element {
         const rightPanelProps = {
-            targetAppInfo: givenProps.scanMetadata.targetAppInfo,
             ...givenProps,
         };
         return <rightPanelConfig.RightPanel {...rightPanelProps} />;
