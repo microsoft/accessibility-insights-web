@@ -57,6 +57,7 @@
         "with:mock-service-for-android": "npm-run-all --race --parallel serve:mock-service-for-android"
     },
     "devDependencies": {
+        "7zip-bin": "^5.0.3",
         "@types/applicationinsights-js": "^1.0.7",
         "@types/chrome": "0.0.104",
         "@types/enzyme": "^3.10.5",
@@ -76,7 +77,6 @@
         "@types/serve-static": "^1.13.3",
         "@types/ua-parser-js": "^0.7.33",
         "@types/uuid": "^7.0.2",
-        "7zip-bin": "^5.0.3",
         "app-builder-lib": "^22.5.1",
         "case-sensitive-paths-webpack-plugin": "^2.3.0",
         "codecov": "^3.6.5",
@@ -120,7 +120,7 @@
         "serve-static": "^1.13.2",
         "simple-git": "^1.132.0",
         "source-map-loader": "^0.2.4",
-        "spectron": "9.0.0",
+        "spectron": "10.0.0",
         "terser-webpack-plugin": "^2.3.5",
         "ts-jest": "^25.4.0",
         "ts-loader": "^7.0.1",
@@ -140,7 +140,7 @@
         "axe-core": "3.5.1",
         "axios": "^0.19.2",
         "classnames": "^2.2.6",
-        "electron": "7.0.1",
+        "electron": "8.2.2",
         "electron-log": "^4.1.1",
         "electron-updater": "^4.3.0",
         "idb-keyval": "^3.2.0",
