@@ -72,6 +72,8 @@ jobs:
           - task: ComponentGovernanceComponentDetection@0
             displayName: 'dependency detection (Component Governance)'
             inputs:
+                detectorsFilter: Yarn
+                ignoreDirectories: 'drop,dist,extension,node_modules'
                 verbosity: Normal
             timeoutInMinutes: 5
 
@@ -81,6 +83,7 @@ jobs:
                 outputfile: '$(System.DefaultWorkingDirectory)/src/NOTICE.html'
                 outputformat: html
             timeoutInMinutes: 5
+            condition: and(succeeded(), eq(variables['GenerateReleaseNoticeFile'], 'true'))
 
           - script: yarn build:all
             displayName: build:all
