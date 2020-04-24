@@ -41,7 +41,7 @@ describe('AutomatedChecksView', () => {
     });
 
     async function countHighlightBoxes(): Promise<number> {
-        const boxes = await automatedChecksView.client.$$(ScreenshotViewSelectors.highlightBox);
+        const boxes = await automatedChecksView.findElements(ScreenshotViewSelectors.highlightBox);
         return boxes.length;
     }
 
@@ -88,12 +88,12 @@ describe('AutomatedChecksView', () => {
         expectedTitle: string,
         expectedFailures: number,
     ): Promise<void> {
-        const title = await automatedChecksView.client
-            .$(AutomatedChecksViewSelectors.nthRuleGroupTitle(position))
-            .getText();
+        const title = await automatedChecksView
+            .findElement(AutomatedChecksViewSelectors.nthRuleGroupTitle(position))
+            .then(c => c.getText());
         expect(title).toEqual(expectedTitle);
 
-        const failures = await automatedChecksView.client.$$(
+        const failures = await automatedChecksView.findElements(
             AutomatedChecksViewSelectors.nthRuleGroupInstances(position),
         );
         expect(failures).toHaveLength(expectedFailures);
@@ -103,12 +103,12 @@ describe('AutomatedChecksView', () => {
         position: number,
         expectedTitle: string,
     ): Promise<void> {
-        const title = await automatedChecksView.client
-            .$(AutomatedChecksViewSelectors.nthRuleGroupTitle(position))
-            .getText();
+        const title = await automatedChecksView
+            .findElement(AutomatedChecksViewSelectors.nthRuleGroupTitle(position))
+            .then(c => c.getText());
         expect(title).toEqual(expectedTitle);
 
-        const failures = await automatedChecksView.client.$$(
+        const failures = await automatedChecksView.findElements(
             AutomatedChecksViewSelectors.nthRuleGroupInstances(position),
         );
         expect(failures).toHaveLength(0);
@@ -128,7 +128,7 @@ describe('AutomatedChecksView', () => {
 
         const actualScreenshotImage = await automatedChecksView
             .findElement(ScreenshotViewSelectors.screenshotImage)
-            .getAttribute('src');
+            .then(c => c.getAttribute('src'));
 
         expect(actualScreenshotImage).toEqual(expectedScreenshotImage);
     });
@@ -136,7 +136,7 @@ describe('AutomatedChecksView', () => {
     it('ScreenshotView renders expected number/size of highlight boxes in expected positions', async () => {
         await automatedChecksView.waitForScreenshotViewVisible();
 
-        const highlightBoxes = await automatedChecksView.client.$$(
+        const highlightBoxes = await automatedChecksView.findElements(
             ScreenshotViewSelectors.highlightBox,
         );
 
@@ -144,7 +144,7 @@ describe('AutomatedChecksView', () => {
         for (let i = 1; i <= highlightBoxes.length; i++) {
             const style = await automatedChecksView
                 .findElement(ScreenshotViewSelectors.getHighlightBoxByIndex(i))
-                .getAttribute('style');
+                .then(e => e.getAttribute('src'));
             actualHighlightBoxStyles.push(extractPositionStyles(style));
         }
 

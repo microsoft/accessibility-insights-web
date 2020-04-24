@@ -1,14 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Application } from 'spectron';
+import { Application, SpectronClient } from 'spectron';
 import { DeviceConnectionDialogController } from 'tests/electron/common/view-controllers/device-connection-dialog-controller';
 import { testResourceServerConfig } from 'tests/electron/setup/test-resource-server-config';
 import { DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS } from 'tests/electron/setup/timeouts';
-import * as WebDriverIO from 'webdriverio';
 import { AutomatedChecksViewController } from './automated-checks-view-controller';
 
 export class AppController {
-    public client: WebDriverIO.Client<void>;
+    private client: SpectronClient;
 
     constructor(public app: Application) {
         this.client = app.client;
@@ -56,7 +55,7 @@ export class AppController {
 
         await this.client.waitUntil(
             async () => {
-                const classes = await this.client.$('body').getAttribute('class');
+                const classes = await this.client.$('body').then(c => c.getAttribute('class'));
 
                 if (expectedHighContrastMode) {
                     return classes.includes(highContrastThemeClass);

@@ -120,7 +120,7 @@
         "serve-static": "^1.13.2",
         "simple-git": "^1.132.0",
         "source-map-loader": "^0.2.4",
-        "spectron": "10.0.0",
+        "spectron": "^10.0.1",
         "terser-webpack-plugin": "^2.3.5",
         "ts-jest": "^25.4.0",
         "ts-loader": "^7.0.1",

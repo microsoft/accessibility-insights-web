@@ -1,17 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as fs from 'fs';
+import { SpectronClient } from 'spectron';
 import { DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS } from 'tests/electron/setup/timeouts';
 import * as WebDriverIO from 'webdriverio';
 import { screenshotOnError } from '../../../end-to-end/common/screenshot-on-error';
 
-export interface ElementController {
-    keys(keys: string): Promise<void>;
-    getAttribute(attributeName: string): Promise<string>;
-}
-
 export abstract class ViewController {
-    constructor(public client: WebDriverIO.Client<void>) {}
+    constructor(protected client: SpectronClient) {}
 
     public async waitForSelector(
         selector: string,
@@ -57,8 +53,12 @@ export abstract class ViewController {
         return await this.screenshotOnError(async () => this.client.isEnabled(selector));
     }
 
-    public findElement(selector: string): ElementController {
-        return this.client.element(selector);
+    public async findElement(selector: string): Promise<WebDriverIO.ElementController> {
+        return await this.client.$(selector);
+    }
+
+    public async findElements(selector: string): Promise<WebDriverIO.ElementController[]> {
+        return await this.client.$$(selector);
     }
 
     private async screenshotOnError<T>(wrappedFunction: () => Promise<T>): Promise<T> {
@@ -69,5 +69,19 @@ export abstract class ViewController {
                     .then(buffer => fs.writeFileSync(path, buffer)),
             wrappedFunction,
         );
+    }
+
+    public async executeAsync(
+        script: string | ((...args: any[]) => void),
+        ...args: any[]
+    ): Promise<any> {
+        return this.client.executeAsync(script, args);
+    }
+
+    public async execute(
+        script: string | ((...args: any[]) => void),
+        ...args: any[]
+    ): Promise<any> {
+        return this.client.execute(script, args);
     }
 }
