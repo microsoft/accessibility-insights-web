@@ -55,7 +55,6 @@ export class ReportHtmlGenerator {
             getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,
             fixInstructionProcessor: this.fixInstructionProcessor,
             scanMetadata,
-            targetAppInfo: scanMetadata.targetAppInfo,
         } as SectionProps;
 
         const props: ReportBodyProps = {
