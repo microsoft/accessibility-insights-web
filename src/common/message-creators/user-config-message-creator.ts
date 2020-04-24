@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import {
     SaveIssueFilingSettingsPayload,
+    SaveLastWindowSizePayload,
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
@@ -9,7 +10,6 @@ import {
     SetTelemetryStatePayload,
 } from 'background/actions/action-payloads';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
-
 import { Messages } from '../messages';
 
 export class UserConfigMessageCreator {
@@ -64,6 +64,13 @@ export class UserConfigMessageCreator {
     public saveIssueFilingSettings = (payload: SaveIssueFilingSettingsPayload) => {
         this.dispatcher.dispatchMessage({
             messageType: Messages.UserConfig.SaveIssueFilingSettings,
+            payload,
+        });
+    };
+
+    public saveLastWindowSize = (payload: SaveLastWindowSizePayload) => {
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.UserConfig.SaveLastWindowSize,
             payload,
         });
     };

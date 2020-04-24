@@ -38,4 +38,8 @@ export const registerUserConfigurationMessageCallback = (
         Messages.UserConfig.SaveIssueFilingSettings,
         userConfigurationActionCreator.saveIssueFilingSettings,
     );
+    interpreter.registerTypeToPayloadCallback(
+        Messages.UserConfig.SaveLastWindowSize,
+        userConfigurationActionCreator.saveLastWindowSize,
+    );
 };

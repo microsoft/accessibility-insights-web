@@ -260,6 +260,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const windowStateActionCreator = new WindowStateActionCreator(
             windowStateActions,
             windowFrameActionCreator,
+            userConfigurationStore,
         );
         const scanActionCreator = new ScanActionCreator(scanActions, deviceActions);
 
@@ -298,6 +299,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const windowFrameListener = new WindowFrameListener(
             windowStateActionCreator,
             currentWindow,
+            userConfigMessageCreator,
         );
         windowFrameListener.initialize();
 

@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import {
     SaveIssueFilingSettingsPayload,
+    SaveLastWindowSizePayload,
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
@@ -31,4 +32,8 @@ export class UserConfigurationActionCreator {
 
     public saveIssueFilingSettings = (payload: SaveIssueFilingSettingsPayload) =>
         this.userConfigActions.saveIssueFilingSettings.invoke(payload);
+
+    public saveLastWindowSize = (payload: SaveLastWindowSizePayload) => {
+        this.userConfigActions.saveLastWindowSize.invoke(payload);
+    };
 }

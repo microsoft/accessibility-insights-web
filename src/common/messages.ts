@@ -99,6 +99,7 @@ export class Messages {
         SetIssueFilingService: `${messagePrefix}/userConfig/setIssueFilingService`,
         SetIssueFilingServiceProperty: `${messagePrefix}/userConfig/setIssueFilingServiceProperty`,
         SaveIssueFilingSettings: `${messagePrefix}/userConfig/saveIssueFilingSettings`,
+        SaveLastWindowSize: `${messagePrefix}/userConfig/saveLastWindowSize`,
     };
 
     public static readonly Popup = {

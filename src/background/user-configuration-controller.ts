@@ -2,7 +2,12 @@
 // Licensed under the MIT License.
 import { Message } from 'common/message';
 import { Messages } from 'common/messages';
-import { SetHighContrastModePayload, SetTelemetryStatePayload } from './actions/action-payloads';
+import { WindowSize } from 'common/types/store-data/user-configuration-store';
+import {
+    SaveLastWindowSizePayload,
+    SetHighContrastModePayload,
+    SetTelemetryStatePayload,
+} from './actions/action-payloads';
 import { Interpreter } from './interpreter';
 
 export class UserConfigurationController {
@@ -28,6 +33,15 @@ export class UserConfigurationController {
             messageType: Messages.UserConfig.SetTelemetryConfig,
             payload: payload,
             tabId: null,
+        };
+        this.interpreter.interpret(message);
+    }
+
+    public saveLastWindowSize(size: WindowSize): void {
+        const payload: SaveLastWindowSizePayload = size;
+        const message: Message = {
+            messageType: Messages.UserConfig.SaveLastWindowSize,
+            payload: payload,
         };
         this.interpreter.interpret(message);
     }

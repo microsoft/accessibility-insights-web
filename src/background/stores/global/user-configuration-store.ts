@@ -6,6 +6,7 @@ import { StoreNames } from '../../../common/stores/store-names';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import {
     SaveIssueFilingSettingsPayload,
+    SaveLastWindowSizePayload,
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
@@ -23,6 +24,7 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         lastSelectedHighContrast: false,
         bugService: 'none',
         bugServicePropertiesMap: {},
+        lastWindowSize: null,
     };
 
     constructor(
@@ -61,6 +63,7 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
             this.onSetIssueFilingServiceProperty,
         );
         this.userConfigActions.saveIssueFilingSettings.addListener(this.onSaveIssueSettings);
+        this.userConfigActions.saveLastWindowSize.addListener(this.onSaveLastWindowSize);
     }
 
     private onSetTelemetryState = (enableTelemetry: boolean): void => {
@@ -107,6 +110,11 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         const bugService = payload.issueFilingServiceName;
         this.state.bugService = bugService;
         this.state.bugServicePropertiesMap[bugService] = payload.issueFilingSettings;
+        this.saveAndEmitChanged();
+    };
+
+    private onSaveLastWindowSize = (payload: SaveLastWindowSizePayload): void => {
+        this.state.lastWindowSize = payload;
         this.saveAndEmitChanged();
     };
 

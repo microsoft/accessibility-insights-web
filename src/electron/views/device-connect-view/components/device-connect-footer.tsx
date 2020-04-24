@@ -39,7 +39,6 @@ export const DeviceConnectFooter = NamedFC<DeviceConnectFooterProps>(
                     className={styles.footerButtonStart}
                     onClick={() => {
                         props.deps.windowStateActionCreator.setRoute({ routeId: 'resultsView' });
-                        props.deps.windowFrameActionCreator.maximize();
                     }}
                     disabled={!props.canStartTesting}
                     text="Start testing"

@@ -190,3 +190,8 @@ export interface SetAllUrlsPermissionStatePayload extends BaseActionPayload {
 }
 
 export type ExistingTabUpdatedPayload = BaseActionPayload & Tab;
+
+export interface SaveLastWindowSizePayload extends BaseActionPayload {
+    width: number;
+    height: number;
+}

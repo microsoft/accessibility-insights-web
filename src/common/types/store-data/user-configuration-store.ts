@@ -11,6 +11,8 @@ export interface UserConfigurationStoreData {
 
     bugService: string;
     bugServicePropertiesMap: IssueFilingServicePropertiesMap;
+
+    lastWindowSize?: WindowSize;
 }
 
 export interface IssueFilingServicePropertiesMap {
@@ -18,3 +20,8 @@ export interface IssueFilingServicePropertiesMap {
 }
 
 export type IssueFilingServiceProperties = Object;
+
+export interface WindowSize {
+    width: number;
+    height: number;
+}
