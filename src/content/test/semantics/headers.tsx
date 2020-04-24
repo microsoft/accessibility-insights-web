@@ -21,8 +21,8 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             Add programmatically identified headers to every data table:
             <ol>
                 <li>
-                    If the table has only one row or one column of headers, use <Markup.Code>{`<th>`}</Markup.Code> elements for header
-                    cells and <Markup.Code>{`<td>`}</Markup.Code> elements for data cells.
+                    If the table has only one row or one column of headers, use <Markup.Term>{`<th>`}</Markup.Term> elements for header
+                    cells and <Markup.Term>{`<td>`}</Markup.Term> elements for data cells.
                 </li>
                 <li>
                     If the table has both row and column headers, add <Markup.Term>scope="row"</Markup.Term> or{' '}
@@ -76,7 +76,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             </table>`}
             passText={
                 <p>
-                    Using <Markup.Code>{`<th>`}</Markup.Code> elements for headers identifies them correctly to assistive technologies. All
+                    Using <Markup.Term>{`<th>`}</Markup.Term> elements for headers identifies them correctly to assistive technologies. All
                     users can distinguish between column headers and data cells.
                 </p>
             }
