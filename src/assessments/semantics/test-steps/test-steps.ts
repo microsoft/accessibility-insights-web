@@ -7,4 +7,5 @@ export const enum SemanticsTestStep {
     emphasis = 'emphasis',
     quotes = 'quotes',
     letterSpacing = 'letterSpacing',
+    headers = 'headers',
 }
