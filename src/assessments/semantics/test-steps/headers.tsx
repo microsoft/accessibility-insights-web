@@ -48,7 +48,7 @@ const headersHowToTest: JSX.Element = (
             <li>
                 Verify that coded headers are used correctly:
                 <ol>Cells that function as headers must be coded as headers, and</ol>
-                <ol>Cells that do not function as headers must not coded as headers.</ol>
+                <ol>Cells that do not function as headers must not be coded as headers.</ol>
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
