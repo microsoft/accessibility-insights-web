@@ -29,7 +29,8 @@
         "background/*",
         "common/*",
         "DetailsView/*",
-        "bundle/*"
+        "bundle/*",
+        "NOTICE.html"
     ],
     "permissions": ["storage", "webNavigation", "tabs", "notifications", "activeTab"],
     "optional_permissions": ["*://*/*"],
