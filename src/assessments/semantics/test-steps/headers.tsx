@@ -32,7 +32,7 @@ const headersHowToTest: JSX.Element = (
                         show relationships within a set of data.
                     </li>
                     <li>
-                        A <Markup.Emphasis>layout</Markup.Emphasis> table uses rows and column to
+                        A <Markup.Emphasis>layout</Markup.Emphasis> table uses rows and columns to
                         visually position content without implying any relationships.
                     </li>
                 </ol>
