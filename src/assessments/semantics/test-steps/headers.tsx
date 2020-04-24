@@ -63,8 +63,8 @@ export const Headers: Requirement = {
     description: headersDescription,
     howToTest: headersHowToTest,
     isManual: true,
-    ...content,
     guidanceLinks: [link.WCAG_1_3_1],
+    ...content,
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
