@@ -3,8 +3,7 @@
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { ScanMetadata } from 'common/types/store-data/scan-meta-data';
-import { ToolData } from 'common/types/store-data/unified-data-interface';
+import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
 import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
 import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';

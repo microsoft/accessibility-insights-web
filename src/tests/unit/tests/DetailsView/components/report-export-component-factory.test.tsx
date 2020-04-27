@@ -4,9 +4,11 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { ScanMetadata } from 'common/types/store-data/scan-meta-data';
-import { ToolData } from 'common/types/store-data/unified-data-interface';
-import { TargetAppData } from 'common/types/store-data/unified-data-interface';
+import {
+    ScanMetadata,
+    TargetAppData,
+    ToolData,
+} from 'common/types/store-data/unified-data-interface';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';

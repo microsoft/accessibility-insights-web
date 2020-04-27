@@ -7,7 +7,7 @@ import {
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
-import { ScanMetadata } from 'common/types/store-data/scan-meta-data';
+import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { CardsViewModel } from '../../common/types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 
