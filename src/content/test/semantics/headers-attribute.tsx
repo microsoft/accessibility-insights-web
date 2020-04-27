@@ -13,8 +13,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <h2>Why it matters</h2>
         <p>
             When assistive technologies describe data tables, they mention both the data cells and their programmatically-related header
-            cells. When incorrect header cells are reported, users are likely to find the table confusing. Proper use of the headers
-            attribute can be tedious .
+            cells. When incorrect header cells are reported, users are likely to find the table confusing.
         </p>
 
         <h2>How to fix</h2>
@@ -33,9 +32,9 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <Markup.PassFail
             failText={
                 <p>
-                    This complex data table has two levels of headers. Three of the data cells' <Markup.Term>headers</Markup.Term> attributes
-                    should refer to both levels, but incorrectly refer to only the top-level header. Assistive technologies will announce
-                    only "Staff" as the header for those data cells. Some users will find it difficult to understand the table.
+                    This complex data table has two levels of headers. Three of the data cells' <Markup.Term>headers</Markup.Term>{' '}
+                    attributes should refer to both levels, but incorrectly refer to only the top-level header. Assistive technologies will
+                    announce only "Staff" as the header for those data cells. Some users will find it difficult to understand the table.
                 </p>
             }
             failExample={`<table border="1">

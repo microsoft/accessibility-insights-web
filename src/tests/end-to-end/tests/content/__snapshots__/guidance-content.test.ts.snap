@@ -26738,7 +26738,7 @@ exports[`Guidance Content pages test/semantics/headersAttribute/infoAndExamples 
         Why it matters
       </h2>
       <p>
-        When assistive technologies describe data tables, they mention both the data cells and their programmatically-related header cells. When incorrect header cells are reported, users are likely to find the table confusing. Proper use of the headers attribute can be tedious .
+        When assistive technologies describe data tables, they mention both the data cells and their programmatically-related header cells. When incorrect header cells are reported, users are likely to find the table confusing.
       </p>
       <h2>
         How to fix
@@ -26812,7 +26812,7 @@ exports[`Guidance Content pages test/semantics/headersAttribute/infoAndExamples 
             </h3>
           </div>
           <p>
-            This complex data table has two levels of headers. Three of data cells' 
+            This complex data table has two levels of headers. Three of the data cells' 
             <strong>
               headers
             </strong>
