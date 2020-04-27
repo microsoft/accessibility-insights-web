@@ -66,7 +66,7 @@ export abstract class ViewController {
     public async findElements(
         selector: string,
     ): Promise<WebdriverIO.RawResult<WebdriverIO.Element>[]> {
-        return await this.client.$$(selector);
+        return this.client.$$(selector);
     }
 
     private async screenshotOnError<T>(wrappedFunction: () => Promise<T>): Promise<T> {
