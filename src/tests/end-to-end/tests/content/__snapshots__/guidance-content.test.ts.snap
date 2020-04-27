@@ -26705,6 +26705,375 @@ exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches t
 </DocumentFragment>
 `;
 
+exports[`Guidance Content pages test/semantics/headersAttribute/infoAndExamples matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Headers attribute
+      </h1>
+      <p>
+        The 
+        <strong>
+          headers
+        </strong>
+         attribute of a 
+        <strong>
+          &lt;td&gt;
+        </strong>
+         element must reference the correct 
+        <strong>
+          &lt;th&gt;
+        </strong>
+         element.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        When assistive technologies describe data tables, they mention both the data cells and their programmatically-related header cells. When incorrect header cells are reported, users are likely to find the table confusing. Proper use of the headers attribute can be tedious .
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <ul>
+        <li>
+          Good: Modify the 
+          <strong>
+            headers
+          </strong>
+           attribute of the 
+          <strong>
+            &lt;td&gt;
+          </strong>
+           element to match the 
+          <strong>
+            id
+          </strong>
+           attribute of the correct 
+          <strong>
+            &lt;th&gt;
+          </strong>
+           element, or
+        </li>
+        <li>
+          Better: Eliminate multi-level headings and define headers using 
+          <strong>
+            scope
+          </strong>
+           attributes.
+        </li>
+      </ul>
+      <p />
+      <h2>
+        Example
+      </h2>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="white"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            This complex data table has two levels of headers. Three of data cells' 
+            <strong>
+              headers
+            </strong>
+             attributes should refer to both levels, but incorrectly refer to only the top-level header. Assistive technologies will announce only "Staff" as the header for those data cells. Some users will find it difficult to understand the table.
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;table border="1"&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;th rowspan="2" id="s"&gt;Students&lt;/th&gt;
+                <br />
+                            &lt;th colspan="3" id="f"&gt;Staff&lt;/th&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;th id="f000" headers="f"&gt;Teachers&lt;/th&gt;
+                <br />
+                            &lt;th id="f000" headers="f"&gt;Assistants&lt;/th&gt;
+                <br />
+                            &lt;th id="f000" headers="f"&gt;Observers&lt;/th&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;td headers="s"&gt;275&lt;/td&gt;
+                <br />
+                            &lt;td 
+                <span
+                  class="highlight"
+                >
+                  headers="f"
+                </span>
+                &gt;10&lt;/td&gt;
+                <br />
+                            &lt;td 
+                <span
+                  class="highlight"
+                >
+                  headers="f"
+                </span>
+                &gt;16&lt;/td&gt;
+                <br />
+                            &lt;td 
+                <span
+                  class="highlight"
+                >
+                  headers="f"
+                </span>
+                &gt;5&lt;/td&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;/table&gt; 
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="white"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            All data cells refer to the correct headers. Assistive technologies will announce both header levels where appropriate: "Staff Teachers," "Staff Assistants," and "Staff Administration". Everyone can interpret the table correctly.
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;table border="1"&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;th rowspan="2" id="s"&gt;Students&lt;/th&gt;
+                <br />
+                            &lt;th colspan="3" id="f"&gt;Faculty&lt;/th&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;th id="f000" headers="f"&gt;Teachers&lt;/th&gt;
+                <br />
+                            &lt;th id="f000" headers="f"&gt;Assistants&lt;/th&gt;
+                <br />
+                            &lt;th id="f000" headers="f"&gt;Observers&lt;/th&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;td headers="s"&gt;275&lt;/td&gt;
+                <br />
+                            &lt;td 
+                <span
+                  class="highlight"
+                >
+                  headers="f f1"
+                </span>
+                &gt;10&lt;/td&gt;
+                <br />
+                            &lt;td 
+                <span
+                  class="highlight"
+                >
+                  headers="f f2"
+                </span>
+                &gt;16&lt;/td&gt;
+                <br />
+                            &lt;td 
+                <span
+                  class="highlight"
+                >
+                  headers="f f3"
+                </span>
+                &gt;5&lt;/td&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;/table&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H51"
+          target="_blank"
+        >
+          Using table markup to present tabular information
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H63"
+          target="_blank"
+        >
+          Using the scope attribute to associate header cells and data cells in data tables
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H43"
+          target="_blank"
+        >
+          Using id and headers attributes to associate data cells with header cells in data tables
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/TR/2016/NOTE-WCAG20-TECHS-20161007/F90"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.1 for incorrectly associating table headers and content via the headers and id attributes
+        </a>
+      </div>
+      <h3>
+        Additional guidance
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/tutorials/tables/"
+          target="_blank"
+        >
+          Tables Concepts – Tables – WAI Web Accessibility Tutorials
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
 exports[`Guidance Content pages test/semantics/letterSpacing/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
   <div

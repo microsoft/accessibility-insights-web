@@ -13,6 +13,7 @@ import { Headers } from './test-steps/headers';
 import { SemanticsLetterSpacing } from './test-steps/letter-spacing';
 import { SemanticsLists } from './test-steps/lists';
 import { SemanticsQuotes } from './test-steps/quotes';
+import { HeadersAttribute } from 'assessments/semantics/test-steps/headers-attribute';
 
 const key = 'semanticsAssessment';
 const title = 'Semantics';
@@ -46,6 +47,7 @@ export const SemanticsAssessment = AssessmentBuilder.Assisted({
         CssContent,
         DataTables,
         Headers,
+        HeadersAttribute,
         SemanticsLists,
         SemanticsEmphasis,
         SemanticsQuotes,
