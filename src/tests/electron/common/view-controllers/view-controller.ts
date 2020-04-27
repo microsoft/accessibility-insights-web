@@ -7,6 +7,10 @@ import * as WebdriverIO from 'webdriverio';
 import { screenshotOnError } from '../../../end-to-end/common/screenshot-on-error';
 
 export abstract class ViewController {
+    // SpectronClient is intentionally protected to limit accidental
+    // async/sync confusion by e2e test writers. However, this means
+    // this ViewController contains several utility methods that
+    // wrap the client
     constructor(protected client: SpectronClient) {}
 
     public async waitForSelector(
