@@ -83,14 +83,14 @@ export abstract class ViewController {
         script: string | ((...args: any[]) => void),
         ...args: any[]
     ): Promise<any> {
-        return this.client.executeAsync(script, args);
+        return this.client.executeAsync(script, ...args);
     }
 
     public async execute(
         script: string | ((...args: any[]) => void),
         ...args: any[]
     ): Promise<any> {
-        return this.client.execute(script, args);
+        return this.client.execute(script, ...args);
     }
 
     public async getText(selector?: string): Promise<string> {

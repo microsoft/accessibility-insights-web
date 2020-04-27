@@ -142,10 +142,11 @@ describe('AutomatedChecksView', () => {
 
         const actualHighlightBoxStyles: PositionStyles[] = [];
         for (let i = 1; i <= highlightBoxes.length; i++) {
-            const style = await automatedChecksView.getAttribute(
+            const client = automatedChecksView.findElement(
                 ScreenshotViewSelectors.getHighlightBoxByIndex(i),
-                'src',
-            );
+            ) as any;
+            const style = await client.getAttribute('src');
+
             actualHighlightBoxStyles.push(extractPositionStyles(style));
         }
 
