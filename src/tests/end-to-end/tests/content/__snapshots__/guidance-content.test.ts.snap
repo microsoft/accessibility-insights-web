@@ -26291,6 +26291,420 @@ exports[`Guidance Content pages test/semantics/guidance matches the snapshot 1`]
 </DocumentFragment>
 `;
 
+exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Headers
+      </h1>
+      <p>
+        Coded headers must be used correctly.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        When assistive technologies encounter a 
+        <em>
+          data
+        </em>
+         table, they report the data cells and their coded headers in a way that shows they are related. When a 
+        <em>
+          data
+        </em>
+         table has no coded headers, assistive technologies can't report these relationships. When a 
+        <em>
+          layout
+        </em>
+         table has coded headers, assistive technologies report relationships between cells that don't actually exist. Some users are likely to find the table's content confusing.
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Add programmatically identified headers to every data table:
+      </p>
+      <ol>
+        <li>
+          If the table has only one row or one column of headers, use 
+          <strong>
+            &lt;th&gt;
+          </strong>
+           elements for header cells and 
+          <strong>
+            &lt;td&gt;
+          </strong>
+           elements for data cells.
+        </li>
+        <li>
+          If the table has both row and column headers, add 
+          <strong>
+            scope="row"
+          </strong>
+           or 
+          <strong>
+            scope="column"
+          </strong>
+           to each header cell.
+        </li>
+        <li>
+          If the table has headers that span multiple rows or columns, add 
+          <strong>
+            colgroup
+          </strong>
+           or 
+          <strong>
+            rowgroup
+          </strong>
+           and 
+          <strong>
+            span
+          </strong>
+           attributes to each header cell.
+        </li>
+        <li>
+          If the table has multi-level headers (not recommended):
+          <ol>
+            <li>
+              Provide an 
+              <strong>
+                id
+              </strong>
+               for each header cell.
+            </li>
+            <li>
+              For each data cell, provide a 
+              <strong>
+                headers
+              </strong>
+               attribute that references the correct header cell(s). 
+            </li>
+          </ol>
+        </li>
+      </ol>
+      <p />
+      <h2>
+        Example
+      </h2>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="white"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            Because this data table has no programmatically-identified headers, assistive technologies will report the headers as data cells. Some users will find the table difficult to understand.
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;table&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;td&gt;
+                </span>
+                Park name
+                <span
+                  class="highlight"
+                >
+                  &lt;/th&gt;
+                </span>
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;td&gt;
+                </span>
+                Location
+                <span
+                  class="highlight"
+                >
+                  &lt;/th&gt;
+                </span>
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;td&gt;Bridle Trails State Park&lt;/td&gt;
+                <br />
+                            &lt;td&gt;Kirkland, WA&lt;/td&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;td&gt;Lake Sammamish State Park&lt;/td&gt;
+                <br />
+                            &lt;td&gt;Issaquah, WA&lt;/td&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;td&gt;Saltwater State Park&lt;/td&gt;
+                <br />
+                            &lt;td&gt;Des Moines, WA&lt;td&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;/table&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="white"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            Using 
+            <strong>
+              &lt;th&gt;
+            </strong>
+             elements for headers identifies them correctly to assistive technologies. All users can distinguish between column headers and data cells.
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;table&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;th&gt;
+                </span>
+                Park name
+                <span
+                  class="highlight"
+                >
+                  &lt;/th&gt;
+                </span>
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;th&gt;
+                </span>
+                Location
+                <span
+                  class="highlight"
+                >
+                  &lt;/th&gt;
+                </span>
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;td&gt;Bridle Trails State Park&lt;/td&gt;
+                <br />
+                            &lt;td&gt;Kirkland, WA&lt;/td&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;td&gt;Lake Sammamish State Park&lt;/td&gt;
+                <br />
+                            &lt;td&gt;Issaquah, WA&lt;/td&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;td&gt;Saltwater State Park&lt;/td&gt;
+                <br />
+                            &lt;td&gt;Des Moines, WA&lt;td&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;/table&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H51"
+          target="_blank"
+        >
+          Using table markup to present tabular information
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H63"
+          target="_blank"
+        >
+          Using the scope attribute to associate header cells and data cells in data tables
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H43"
+          target="_blank"
+        >
+          Using id and headers attributes to associate data cells with header cells in data tables
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F91"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.1 for not correctly marking up table headers 
+        </a>
+      </div>
+      <h3>
+        Additional guidance
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/tutorials/tables/"
+          target="_blank"
+        >
+          Tables Concepts – Tables – WAI Web Accessibility Tutorials
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
 exports[`Guidance Content pages test/semantics/letterSpacing/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
   <div
