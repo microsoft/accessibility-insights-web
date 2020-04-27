@@ -33,7 +33,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <Markup.PassFail
             failText={
                 <p>
-                    This complex data table has two levels of headers. Three of data cells' <Markup.Term>headers</Markup.Term> attributes
+                    This complex data table has two levels of headers. Three of the data cells' <Markup.Term>headers</Markup.Term> attributes
                     should refer to both levels, but incorrectly refer to only the top-level header. Assistive technologies will announce
                     only "Staff" as the header for those data cells. Some users will find it difficult to understand the table.
                 </p>
