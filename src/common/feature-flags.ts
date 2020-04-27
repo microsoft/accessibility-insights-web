@@ -13,8 +13,8 @@ export class FeatureFlags {
     public static readonly showInstanceVisibility = 'showInstanceVisibility';
     public static readonly manualInstanceDetails = 'manualInstanceDetails';
     public static readonly debugTools = 'debugTools';
+
     public static readonly exportReportOptions = 'exportReportOptions';
-    public static readonly tableRequirements = 'tableRequirements';
 }
 
 export interface FeatureFlagDetail {
@@ -107,14 +107,6 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             displayableName: 'More export options',
             displayableDescription: 'Enables exporting reports to external services',
             isPreviewFeature: true,
-            forceDefault: false,
-        },
-        {
-            id: FeatureFlags.tableRequirements,
-            defaultValue: false,
-            displayableName: 'Table requirements',
-            displayableDescription: 'Enables upcoming changes to table requirements',
-            isPreviewFeature: false,
             forceDefault: false,
         },
     ];
