@@ -32,12 +32,12 @@ const howToTest: JSX.Element = (
                 <Markup.Emphasis>layout</Markup.Emphasis> table:
                 <ol>
                     <li>
-                        A <Markup.Emphasis>layout</Markup.Emphasis> table is used to visually
-                        position content without implying any relationships.
+                        A <Markup.Emphasis>data</Markup.Emphasis> table uses rows and columns to
+                        show relationships within a set of data.
                     </li>
                     <li>
-                        A <Markup.Emphasis>data</Markup.Emphasis> table organizes content into rows
-                        and columns to show relationships.
+                        A <Markup.Emphasis>layout</Markup.Emphasis> table uses rows and columns to
+                        visually position content without implying any relationships.
                     </li>
                 </ol>
             </li>
