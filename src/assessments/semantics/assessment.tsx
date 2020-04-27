@@ -4,6 +4,7 @@ import { VisualizationType } from 'common/types/visualization-type';
 import { test as content } from 'content/test';
 import * as React from 'react';
 
+import { HeadersAttribute } from 'assessments/semantics/test-steps/headers-attribute';
 import { AssessmentBuilder } from '../assessment-builder';
 import * as Markup from '../markup';
 import { CssContent } from './test-steps/css-content';
@@ -13,7 +14,6 @@ import { Headers } from './test-steps/headers';
 import { SemanticsLetterSpacing } from './test-steps/letter-spacing';
 import { SemanticsLists } from './test-steps/lists';
 import { SemanticsQuotes } from './test-steps/quotes';
-import { HeadersAttribute } from 'assessments/semantics/test-steps/headers-attribute';
 
 const key = 'semanticsAssessment';
 const title = 'Semantics';
