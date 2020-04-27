@@ -55,7 +55,7 @@ export class AppController {
 
         await this.client.waitUntil(
             async () => {
-                const classes = await this.client.$('body').then(c => c.getAttribute('class'));
+                const classes = await this.client.getAttribute('body', 'class');
 
                 if (expectedHighContrastMode) {
                     return classes.includes(highContrastThemeClass);

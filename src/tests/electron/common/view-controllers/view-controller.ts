@@ -3,7 +3,7 @@
 import * as fs from 'fs';
 import { SpectronClient } from 'spectron';
 import { DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS } from 'tests/electron/setup/timeouts';
-import * as WebDriverIO from 'webdriverio';
+import * as WebdriverIO from 'webdriverio';
 import { screenshotOnError } from '../../../end-to-end/common/screenshot-on-error';
 
 export abstract class ViewController {
@@ -49,15 +49,23 @@ export abstract class ViewController {
         await this.screenshotOnError(async () => this.client.click(selector));
     }
 
+    public async keys(keys: string): Promise<void> {
+        await this.client.keys(keys);
+    }
+
     public async isEnabled(selector: string): Promise<boolean> {
         return await this.screenshotOnError(async () => this.client.isEnabled(selector));
     }
 
-    public async findElement(selector: string): Promise<WebDriverIO.ElementController> {
-        return await this.client.$(selector);
+    public async findElement(
+        selector: string,
+    ): Promise<WebdriverIO.RawResult<WebdriverIO.Element>> {
+        return this.client.$(selector);
     }
 
-    public async findElements(selector: string): Promise<WebDriverIO.ElementController[]> {
+    public async findElements(
+        selector: string,
+    ): Promise<WebdriverIO.RawResult<WebdriverIO.Element>[]> {
         return await this.client.$$(selector);
     }
 
@@ -83,5 +91,13 @@ export abstract class ViewController {
         ...args: any[]
     ): Promise<any> {
         return this.client.execute(script, args);
+    }
+
+    public async getText(selector?: string): Promise<string> {
+        return this.client.getText(selector);
+    }
+
+    public async getAttribute(selector: string, attribute: string): Promise<string> {
+        return this.client.getAttribute(selector, attribute);
     }
 }

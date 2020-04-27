@@ -44,9 +44,7 @@ export class AutomatedChecksViewController extends ViewController {
 
     public async setToggleState(toggleSelector: string, newState: boolean): Promise<void> {
         await this.waitForSelector(toggleSelector);
-        const oldState = await this.client
-            .$(toggleSelector)
-            .then(c => c.getAttribute('aria-checked'));
+        const oldState = await this.client.getAttribute(toggleSelector, 'aria-checked');
 
         const oldStateBool = oldState.toLowerCase() === 'true';
         if (oldStateBool !== newState) {
