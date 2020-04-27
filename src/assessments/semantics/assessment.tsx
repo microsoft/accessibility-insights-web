@@ -7,12 +7,12 @@ import * as React from 'react';
 import { AssessmentBuilder } from '../assessment-builder';
 import * as Markup from '../markup';
 import { CssContent } from './test-steps/css-content';
-import { DataTables } from './test-steps/data-tables';
 import { SemanticsEmphasis } from './test-steps/emphasis';
 import { Headers } from './test-steps/headers';
 import { SemanticsLetterSpacing } from './test-steps/letter-spacing';
 import { SemanticsLists } from './test-steps/lists';
 import { SemanticsQuotes } from './test-steps/quotes';
+import { TableSemantics } from './test-steps/table-semantics';
 
 const key = 'semanticsAssessment';
 const title = 'Semantics';
@@ -44,7 +44,7 @@ export const SemanticsAssessment = AssessmentBuilder.Assisted({
     visualizationType: VisualizationType.SemanticsAssessment,
     requirements: [
         CssContent,
-        DataTables,
+        TableSemantics,
         Headers,
         SemanticsLists,
         SemanticsEmphasis,

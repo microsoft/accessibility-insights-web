@@ -5,23 +5,31 @@ import { create, React } from '../../common';
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
         <h1>Data tables</h1>
-        <p>Semantic elements in a data table must not be coded as presentational.</p>
+        <p>
+            A <Markup.Code>{'<table>'}</Markup.Code> element must be coded correctly as a data table or layout table.
+        </p>
 
         <h2>Why it matters</h2>
         <p>
-            The semantic elements in a data table communicate relationships between cells and row or column headers. When{' '}
-            <Markup.Code>role="presentation"</Markup.Code> is applied to a data table element, its semantics are suppressed, and critical
-            relationships are consequently hidden from people who use assistive technologies. Moreover, they can't use the standard
-            navigational shortcuts for data tables.
+            The semantic elements in a data table communicate relationships between cells and row or column headers. Applying{' '}
+            <Markup.Code>role="presentation"</Markup.Code> or <Markup.Code>role="none"</Markup.Code> suppresses those semantics.
         </p>
         <p>
-            (Applying <Markup.Code>role="presentation"</Markup.Code> is appropriate for layout tables, because their table semantics do not
-            communicate any meaningful relationships.)
+            When the semantics in a data table are suppressed, critical relationships are hidden from people who use assistive technologies.
+            Moreover, they can't use the standard navigational shortcuts for data tables.
+        </p>
+        <p>
+            When the semantics in a layout table are not suppressed, assistive technologies communicate relationships that don't actually
+            exist.
         </p>
 
         <h2>How to fix</h2>
         <p>
-            Do not use <Markup.Code>role="presentation"</Markup.Code> on any of the semantic elements in a data table:
+            Do use <Markup.Code>role="presentation"</Markup.Code> on layout tables.
+        </p>
+        <p>
+            Do not use <Markup.Code>role="presentation"</Markup.Code> or <Markup.Code>role="none"</Markup.Code> on any of these semantic
+            elements in a data table:
             <ul>
                 <li>
                     <Markup.Code>{'<table>'}</Markup.Code>
@@ -59,7 +67,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             failText={
                 <p>
                     This data table is incorrectly coded as presentational. Assistive technologies are unaware of the table's semantic
-                    elements.
+                    elements. Some users will have difficulty navigating and understanding its contents.
                 </p>
             }
             failExample={`[<table role="presentation">]

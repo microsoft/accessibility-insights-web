@@ -2,17 +2,18 @@
 // Licensed under the MIT License.
 import { NewTabLink } from 'common/components/new-tab-link';
 import { link } from 'content/link';
-import * as content from 'content/test/semantics/data-tables';
+import * as content from 'content/test/semantics/table-semantics';
 import * as React from 'react';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { SemanticsTestStep } from './test-steps';
-const dataTablesDescription: JSX.Element = (
+
+const tableSemanticsDescription: JSX.Element = (
     <span>Semantic elements in a data table must not be coded as decorative.</span>
 );
 
-const dataTablesHowToTest: JSX.Element = (
+const tableSemanticsHowToTest: JSX.Element = (
     <div>
         <p>
             This procedure uses the{' '}
@@ -42,20 +43,36 @@ const dataTablesHowToTest: JSX.Element = (
                 </ol>
             </li>
             <li>
-                Use the Web Developer browser extension (
-                <Markup.Term>Information > Display ARIA Roles</Markup.Term>) to verify that none of
-                its elements is coded with <Markup.Term>role="presentation"</Markup.Term>.
+                Use the Web Developer browser extension to reveal elements with ARIA roles (
+                <Markup.Term>Information > Display ARIA Roles</Markup.Term>).
+            </li>
+            <li>
+                Verify that each table is coded correctly for its type:
+                <ol>
+                    <li>
+                        A <Markup.Code>&lt;table&gt;</Markup.Code>element that serves as
+                        a data table must not be marked with
+                        <Markup.Code>role="presentation"</Markup.Code>
+                        or <Markup.Code>role="none"</Markup.Code>.
+                    </li>
+                    <li>
+                        A <Markup.Code>&lt;table&gt;</Markup.Code> element that serves as
+                        a layout table must be marked with
+                        <Markup.Code>role="presentation"</Markup.Code> or
+                        <Markup.Code>role="none"</Markup.Code>.
+                    </li>
+                </ol>
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
     </div>
 );
 
-export const DataTables: Requirement = {
-    key: SemanticsTestStep.dataTables,
-    name: 'Data tables',
-    description: dataTablesDescription,
-    howToTest: dataTablesHowToTest,
+export const TableSemantics: Requirement = {
+    key: SemanticsTestStep.tableSemantics,
+    name: 'Table semantics',
+    description: tableSemanticsDescription,
+    howToTest: tableSemanticsHowToTest,
     isManual: true,
     ...content,
     guidanceLinks: [link.WCAG_1_3_1],
