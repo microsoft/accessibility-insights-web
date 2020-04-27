@@ -25,41 +25,45 @@ export const infoAndExamples = create(({ Markup, Link }) => (
 
         <h2>How to fix</h2>
         <p>
-            Do use <Markup.Code>role="presentation"</Markup.Code> on layout tables.
-        </p>
-        <p>
-            Do not use <Markup.Code>role="presentation"</Markup.Code> or <Markup.Code>role="none"</Markup.Code> on any of these semantic
-            elements in a data table:
             <ul>
                 <li>
-                    <Markup.Code>{'<table>'}</Markup.Code>
+                    Do use <Markup.Code>role="presentation"</Markup.Code> on layout tables.
                 </li>
                 <li>
-                    <Markup.Code>{'<tr>'}</Markup.Code>
-                </li>
-                <li>
-                    <Markup.Code> {'<th>'}</Markup.Code>
-                </li>
-                <li>
-                    <Markup.Code> {'<td>'}</Markup.Code>
-                </li>
-                <li>
-                    <Markup.Code> {'<caption>'}</Markup.Code>
-                </li>
-                <li>
-                    <Markup.Code> {'<col>'}</Markup.Code>
-                </li>
-                <li>
-                    <Markup.Code> {'<colgroup>'}</Markup.Code>
-                </li>
-                <li>
-                    <Markup.Code> {'<thead>'}</Markup.Code>
-                </li>
-                <li>
-                    <Markup.Code> {'<tfoot>'}</Markup.Code>
-                </li>
-                <li>
-                    <Markup.Code> {'<tbody>'}</Markup.Code>
+                    Do not use <Markup.Code>role="presentation"</Markup.Code> or <Markup.Code>role="none"</Markup.Code> on any of these
+                    semantic elements in a data table:
+                    <ul>
+                        <li>
+                            <Markup.Code>{'<table>'}</Markup.Code>
+                        </li>
+                        <li>
+                            <Markup.Code>{'<tr>'}</Markup.Code>
+                        </li>
+                        <li>
+                            <Markup.Code> {'<th>'}</Markup.Code>
+                        </li>
+                        <li>
+                            <Markup.Code> {'<td>'}</Markup.Code>
+                        </li>
+                        <li>
+                            <Markup.Code> {'<caption>'}</Markup.Code>
+                        </li>
+                        <li>
+                            <Markup.Code> {'<col>'}</Markup.Code>
+                        </li>
+                        <li>
+                            <Markup.Code> {'<colgroup>'}</Markup.Code>
+                        </li>
+                        <li>
+                            <Markup.Code> {'<thead>'}</Markup.Code>
+                        </li>
+                        <li>
+                            <Markup.Code> {'<tfoot>'}</Markup.Code>
+                        </li>
+                        <li>
+                            <Markup.Code> {'<tbody>'}</Markup.Code>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </p>
