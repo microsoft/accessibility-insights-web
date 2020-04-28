@@ -21,25 +21,25 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             Add programmatically identified headers to every data table:
             <ol>
                 <li>
-                    If the table has only one row or one column of headers, use <Markup.Term>{`<th>`}</Markup.Term> elements for header
-                    cells and <Markup.Term>{`<td>`}</Markup.Term> elements for data cells.
+                    If the table has only one row or one column of headers, use <Markup.Code>{`<th>`}</Markup.Code> elements for header
+                    cells and <Markup.Code>{`<td>`}</Markup.Code> elements for data cells.
                 </li>
                 <li>
-                    If the table has both row and column headers, add <Markup.Term>scope="row"</Markup.Term> or{' '}
-                    <Markup.Term>scope="column"</Markup.Term> to each header cell.
+                    If the table has both row and column headers, add <Markup.Code>scope="row"</Markup.Code> or{' '}
+                    <Markup.Code>scope="column"</Markup.Code> to each header cell.
                 </li>
                 <li>
-                    If the table has headers that span multiple rows or columns, add <Markup.Term>colgroup</Markup.Term> or{' '}
-                    <Markup.Term>rowgroup</Markup.Term> and <Markup.Term>span</Markup.Term> attributes to each header cell.
+                    If the table has headers that span multiple rows or columns, add <Markup.Code>colgroup</Markup.Code> or{' '}
+                    <Markup.Code>rowgroup</Markup.Code> and <Markup.Code>span</Markup.Code> attributes to each header cell.
                 </li>
                 <li>
                     If the table has multi-level headers (not recommended):
                     <ol>
                         <li>
-                            Provide an <Markup.Term>id</Markup.Term> for each header cell.
+                            Provide an <Markup.Code>id</Markup.Code> for each header cell.
                         </li>
                         <li>
-                            For each data cell, provide a <Markup.Term>headers</Markup.Term> attribute that references the correct header
+                            For each data cell, provide a <Markup.Code>headers</Markup.Code> attribute that references the correct header
                             cell(s).{' '}
                         </li>
                     </ol>
