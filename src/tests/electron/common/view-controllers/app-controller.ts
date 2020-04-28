@@ -55,13 +55,8 @@ export class AppController {
 
         await this.client.waitUntil(
             async () => {
-                const classes = await this.client.getAttribute('body', 'class');
-
-                if (expectedHighContrastMode) {
-                    return classes.includes(highContrastThemeClass);
-                } else {
-                    return !classes.includes(highContrastThemeClass);
-                }
+                const classes = await this.client.getAttribute<string>('body', 'class');
+                return expectedHighContrastMode === classes.includes(highContrastThemeClass);
             },
             DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS,
             `was expecting body element ${

@@ -3,7 +3,7 @@
 import * as fs from 'fs';
 import { SpectronClient } from 'spectron';
 import { DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS } from 'tests/electron/setup/timeouts';
-import * as WebdriverIO from 'webdriverio';
+import * as WebDriverIO from 'webdriverio';
 import { screenshotOnError } from '../../../end-to-end/common/screenshot-on-error';
 
 export abstract class ViewController {
@@ -63,13 +63,13 @@ export abstract class ViewController {
 
     public async findElement(
         selector: string,
-    ): Promise<WebdriverIO.RawResult<WebdriverIO.Element>> {
+    ): Promise<WebDriverIO.RawResult<WebDriverIO.Element>> {
         return this.client.$(selector);
     }
 
     public async findElements(
         selector: string,
-    ): Promise<WebdriverIO.RawResult<WebdriverIO.Element>[]> {
+    ): Promise<WebDriverIO.RawResult<WebDriverIO.Element>[]> {
         return this.client.$$(selector);
     }
 
