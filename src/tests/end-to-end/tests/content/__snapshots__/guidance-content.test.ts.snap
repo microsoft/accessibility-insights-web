@@ -1379,9 +1379,6 @@ exports[`Guidance Content pages test/audioVideoOnly/audioOnlyEquivalent/infoAndE
     <div
       class="content"
     >
-      <h1>
-        Audio-only equivalent
-      </h1>
       <p>
         Pre-recorded audio-only content must be accompanied by an equivalent text alternative.
       </p>
@@ -1687,9 +1684,6 @@ exports[`Guidance Content pages test/audioVideoOnly/videoOnlyEquivalent/infoAndE
     <div
       class="content"
     >
-      <h1>
-        Video-only equivalent
-      </h1>
       <p>
         Pre-recorded video-only content must be accompanied by an equivalent text or audio alternative.
       </p>
@@ -1897,9 +1891,6 @@ exports[`Guidance Content pages test/contrast/graphics/infoAndExamples matches t
     <div
       class="content"
     >
-      <h1>
-        Graphics
-      </h1>
       <p>
         Meaningful graphics must have sufficient contrast.
       </p>
@@ -2392,9 +2383,6 @@ exports[`Guidance Content pages test/contrast/uiComponents/infoAndExamples match
     <div
       class="content"
     >
-      <h1>
-        UI Components
-      </h1>
       <p>
         Visual information used to indicate states and boundaries of active UI Components must have sufficient contrast.
       </p>
@@ -2587,9 +2575,6 @@ exports[`Guidance Content pages test/customWidgets/cues/infoAndExamples matches 
     <div
       class="content"
     >
-      <h1>
-        Cues
-      </h1>
       <p>
         If a custom widget adopts certain interactive states, it must provide appropriate cues.
       </p>
@@ -2888,9 +2873,6 @@ exports[`Guidance Content pages test/customWidgets/designPattern/infoAndExamples
     <div
       class="content"
     >
-      <h1>
-        Design pattern
-      </h1>
       <p>
         A custom widget must have the appropriate ARIA widget role for its design pattern.
       </p>
@@ -3177,9 +3159,6 @@ exports[`Guidance Content pages test/customWidgets/expectedInput/infoAndExamples
     <div
       class="content"
     >
-      <h1>
-        Expected input
-      </h1>
       <p>
         A custom widget must have a label and/or instructions that identify the expected input.
       </p>
@@ -4223,9 +4202,6 @@ exports[`Guidance Content pages test/customWidgets/instructions/infoAndExamples 
     <div
       class="content"
     >
-      <h1>
-        Instructions
-      </h1>
       <p>
         If a custom widget has visible label or instructions, they must be programmatically related to it.
       </p>
@@ -4510,9 +4486,6 @@ exports[`Guidance Content pages test/customWidgets/keyboardInteraction/infoAndEx
     <div
       class="content"
     >
-      <h1>
-        Keyboard interaction
-      </h1>
       <p>
         A custom widget must support the keyboard interaction specified by its design pattern.
       </p>
@@ -4756,9 +4729,6 @@ exports[`Guidance Content pages test/customWidgets/roleStateProperty/infoAndExam
     <div
       class="content"
     >
-      <h1>
-        Role, state, property
-      </h1>
       <p>
         A custom widget must support the ARIA roles, states, and properties specified by its design pattern.
       </p>
@@ -5102,9 +5072,6 @@ exports[`Guidance Content pages test/errors/errorIdentification/infoAndExamples 
     <div
       class="content"
     >
-      <h1>
-        Error identification
-      </h1>
       <p>
         If an input error is automatically detected, the item in error must be identified, and the error described, in text.
       </p>
@@ -5381,9 +5348,6 @@ exports[`Guidance Content pages test/errors/errorPrevention/infoAndExamples matc
     <div
       class="content"
     >
-      <h1>
-        Error prevention
-      </h1>
       <p>
         If submitting data might have serious consequences, users must be able to correct the data input before finalizing a submission.
       </p>
@@ -5644,9 +5608,6 @@ exports[`Guidance Content pages test/errors/errorSuggestion/infoAndExamples matc
     <div
       class="content"
     >
-      <h1>
-        Error suggestion
-      </h1>
       <p>
         If an input error is automatically detected, guidance for correcting the error must be provided.
       </p>
@@ -6650,9 +6611,6 @@ exports[`Guidance Content pages test/errors/statusMessages/infoAndExamples match
     <div
       class="content"
     >
-      <h1>
-        Status messages
-      </h1>
       <p>
         Status messages must be programmatically determinable without receiving focus.
       </p>
@@ -7098,9 +7056,6 @@ exports[`Guidance Content pages test/focus/closingContent/infoAndExamples matche
     <div
       class="content"
     >
-      <h1>
-        Closing content
-      </h1>
       <p>
         Closing revealed content must move input focus to the component that revealed it.
       </p>
@@ -7306,9 +7261,6 @@ exports[`Guidance Content pages test/focus/focusOrder/infoAndExamples matches th
     <div
       class="content"
     >
-      <h1>
-        Focus order
-      </h1>
       <p>
         Components must receive focus in an order that preserves meaning and operability.
       </p>
@@ -7949,9 +7901,6 @@ exports[`Guidance Content pages test/focus/modalDialogs/infoAndExamples matches 
     <div
       class="content"
     >
-      <h1>
-        Modal dialogs
-      </h1>
       <p>
         Users must not be able to Tab away from a modal dialog without explicitly dismissing it.
       </p>
@@ -8147,9 +8096,6 @@ exports[`Guidance Content pages test/focus/revealingContent/infoAndExamples matc
     <div
       class="content"
     >
-      <h1>
-        Revealing content
-      </h1>
       <p>
         Activating a component that reveals hidden content must move input focus into the revealed content.
       </p>
@@ -8360,9 +8306,6 @@ exports[`Guidance Content pages test/focus/visibleFocus/infoAndExamples matches 
     <div
       class="content"
     >
-      <h1>
-        Visible focus
-      </h1>
       <p>
         Components must provide a visible indication when they have the input focus.
       </p>
@@ -9090,9 +9033,6 @@ exports[`Guidance Content pages test/headings/headingFunction/infoAndExamples ma
     <div
       class="content"
     >
-      <h1>
-        Heading function
-      </h1>
       <p>
         An element 
         <em>
@@ -9342,9 +9282,6 @@ exports[`Guidance Content pages test/headings/headingLevel/infoAndExamples match
     <div
       class="content"
     >
-      <h1>
-        Heading level
-      </h1>
       <p>
         A heading's programmatic level must match the level that's presented visually.
       </p>
@@ -9572,9 +9509,6 @@ exports[`Guidance Content pages test/headings/noMissingHeadings/infoAndExamples 
     <div
       class="content"
     >
-      <h1>
-        No missing headings
-      </h1>
       <p>
         Text that looks like a heading must be coded as a heading.
       </p>
@@ -9815,9 +9749,6 @@ exports[`Guidance Content pages test/images/captchas/infoAndExamples matches the
     <div
       class="content"
     >
-      <h1>
-        CAPTCHAs
-      </h1>
       <p>
         If a non-text CAPTCHA is used, alternative methods must be provided for both users without vision and users without hearing.
       </p>
@@ -10763,9 +10694,6 @@ exports[`Guidance Content pages test/images/imageFunction/infoAndExamples matche
     <div
       class="content"
     >
-      <h1>
-        Image function
-      </h1>
       <p>
         Every image must be correctly coded as either meaningful or decorative.
       </p>
@@ -11265,9 +11193,6 @@ exports[`Guidance Content pages test/images/imagesOfText/infoAndExamples matches
     <div
       class="content"
     >
-      <h1>
-        Images of text
-      </h1>
       <p>
         Images of text are allowed only where a specific appearance is required (e.g., logotypes).
       </p>
@@ -11604,9 +11529,6 @@ exports[`Guidance Content pages test/images/textAlternative/infoAndExamples matc
     <div
       class="content"
     >
-      <h1>
-        Text alternative
-      </h1>
       <p>
         A meaningful image must have a text alternative that serves the equivalent purpose.
       </p>
@@ -12000,9 +11922,6 @@ exports[`Guidance Content pages test/keyboard/characterKeyShortcuts/infoAndExamp
     <div
       class="content"
     >
-      <h1>
-        Character key shortcuts
-      </h1>
       <p>
         Users must be able to turn off or remap single-key key shortcuts.
       </p>
@@ -12795,9 +12714,6 @@ exports[`Guidance Content pages test/keyboard/keyboardNavigation/infoAndExamples
     <div
       class="content"
     >
-      <h1>
-        Keyboard navigation
-      </h1>
       <p>
         Users must be able to navigate to all interactive interface components using a keyboard.
       </p>
@@ -13161,9 +13077,6 @@ exports[`Guidance Content pages test/keyboard/noKeyboardTraps/infoAndExamples ma
     <div
       class="content"
     >
-      <h1>
-        No keyboard traps
-      </h1>
       <p>
         Users must be able to 
         <em>
@@ -13442,9 +13355,6 @@ exports[`Guidance Content pages test/keyboard/noKeystrokeTimings/infoAndExamples
     <div
       class="content"
     >
-      <h1>
-        No keystroke timings
-      </h1>
       <p>
         Components must not require specific timings for individual keystrokes.
       </p>
@@ -13579,9 +13489,6 @@ exports[`Guidance Content pages test/keyboard/onFocus/infoAndExamples matches th
     <div
       class="content"
     >
-      <h1>
-        On focus
-      </h1>
       <p>
         Navigating to a component must not trigger any unexpected change of context.
       </p>
@@ -13776,9 +13683,6 @@ exports[`Guidance Content pages test/keyboard/onInput/infoAndExamples matches th
     <div
       class="content"
     >
-      <h1>
-        On input
-      </h1>
       <p>
         Changing a component's settings must not trigger any unexpected change of context.
       </p>
@@ -14635,9 +14539,6 @@ exports[`Guidance Content pages test/landmarks/landmarkRoles/infoAndExamples mat
     <div
       class="content"
     >
-      <h1>
-        Landmark roles
-      </h1>
       <p>
         A landmark region must have the role that best describes its content.
       </p>
@@ -14883,9 +14784,6 @@ exports[`Guidance Content pages test/landmarks/noRepeatingContent/infoAndExample
     <div
       class="content"
     >
-      <h1>
-        No repeating content
-      </h1>
       <p>
         The main landmark must not contain any blocks of content that repeat across pages.
       </p>
@@ -15148,9 +15046,6 @@ exports[`Guidance Content pages test/landmarks/primaryContent/infoAndExamples ma
     <div
       class="content"
     >
-      <h1>
-        Primary content
-      </h1>
       <p>
         The main landmark must contain all of the page's primary content.
       </p>
@@ -15704,9 +15599,6 @@ exports[`Guidance Content pages test/language/languageOfPage/infoAndExamples mat
     <div
       class="content"
     >
-      <h1>
-        Language of page
-      </h1>
       <p>
         A page must have the correct default language.
       </p>
@@ -15935,9 +15827,6 @@ exports[`Guidance Content pages test/language/languageOfParts/infoAndExamples ma
     <div
       class="content"
     >
-      <h1>
-        Language of parts
-      </h1>
       <p>
         If the language of a passage differs from the default language of the page, the passage must have its own language attribute.
       </p>
@@ -16174,9 +16063,6 @@ exports[`Guidance Content pages test/language/textDirection/infoAndExamples matc
     <div
       class="content"
     >
-      <h1>
-        Text direction
-      </h1>
       <p>
         If a page or a passage uses a script that is read right-to-left, it must have the correct text direction.
       </p>
@@ -16781,9 +16667,6 @@ exports[`Guidance Content pages test/links/linkFunction/infoAndExamples matches 
     <div
       class="content"
     >
-      <h1>
-        Link function
-      </h1>
       <p>
         If an anchor element functions as a custom widget, it must have the appropriate ARIA widget role.
       </p>
@@ -17051,9 +16934,6 @@ exports[`Guidance Content pages test/links/linkPurpose/infoAndExamples matches t
     <div
       class="content"
     >
-      <h1>
-        Link purpose
-      </h1>
       <p>
         A link's purpose must be described to users.
       </p>
@@ -17414,9 +17294,6 @@ exports[`Guidance Content pages test/liveMultimedia/captions/infoAndExamples mat
     <div
       class="content"
     >
-      <h1>
-        Captions
-      </h1>
       <p>
         Captions must be provided for live (streaming) video with audio
       </p>
@@ -17718,9 +17595,6 @@ exports[`Guidance Content pages test/multimedia/audioDescription/infoAndExamples
     <div
       class="content"
     >
-      <h1>
-        Audio description
-      </h1>
       <p>
         Pre-recorded video with audio must have an audio description.
       </p>
@@ -17956,9 +17830,6 @@ exports[`Guidance Content pages test/multimedia/captions/infoAndExamples matches
     <div
       class="content"
     >
-      <h1>
-        Captions
-      </h1>
       <p>
         Pre-recorded multimedia content must have captions.
       </p>
@@ -18515,9 +18386,6 @@ exports[`Guidance Content pages test/multimedia/noConflict/infoAndExamples match
     <div
       class="content"
     >
-      <h1>
-        No conflict
-      </h1>
       <p>
         An audio description must not conflict with audible information in the sound track.
       </p>
@@ -18722,9 +18590,6 @@ exports[`Guidance Content pages test/multimedia/noObstruction/infoAndExamples ma
     <div
       class="content"
     >
-      <h1>
-        No obstruction
-      </h1>
       <p>
         Captions must not obscure or obstruct relevant information in the video.
       </p>
@@ -18894,9 +18759,6 @@ exports[`Guidance Content pages test/multimedia/synchronization/infoAndExamples 
     <div
       class="content"
     >
-      <h1>
-        Synchronization
-      </h1>
       <p>
         An audio description must be synchronized with the video content.
       </p>
@@ -19113,9 +18975,6 @@ exports[`Guidance Content pages test/nativeWidgets/autocomplete/infoAndExamples 
     <div
       class="content"
     >
-      <h1>
-        Autocomplete
-      </h1>
       <p>
         Form fields that serve certain purposes must have the correct HTML5 autocomplete attribute.
       </p>
@@ -19376,9 +19235,6 @@ exports[`Guidance Content pages test/nativeWidgets/cues/infoAndExamples matches 
     <div
       class="content"
     >
-      <h1>
-        Cues
-      </h1>
       <p>
         If a native widget adopts certain interactive states, it must provide appropriate cues.
       </p>
@@ -19666,9 +19522,6 @@ exports[`Guidance Content pages test/nativeWidgets/expectedInput/infoAndExamples
     <div
       class="content"
     >
-      <h1>
-        Expected input
-      </h1>
       <p>
         A native widget must have a label and/or instructions that identify the expected input.
       </p>
@@ -20542,9 +20395,6 @@ exports[`Guidance Content pages test/nativeWidgets/instructions/infoAndExamples 
     <div
       class="content"
     >
-      <h1>
-        Instructions
-      </h1>
       <p>
         If a native widget has visible label or instructions, they must be programmatically related to it.
       </p>
@@ -20846,9 +20696,6 @@ exports[`Guidance Content pages test/nativeWidgets/widgetFunction/infoAndExample
     <div
       class="content"
     >
-      <h1>
-        Widget function
-      </h1>
       <p>
         If a native widget functions as a custom widget, it must have the appropriate ARIA widget role.
       </p>
@@ -21089,9 +20936,6 @@ exports[`Guidance Content pages test/page/frameTitles/infoAndExamples matches th
     <div
       class="content"
     >
-      <h1>
-        Frame title
-      </h1>
       <p>
         A frame or iframe must have an accessible name that describes its content.
       </p>
@@ -21342,9 +21186,6 @@ exports[`Guidance Content pages test/page/generalNavigation/infoAndExamples matc
     <div
       class="content"
     >
-      <h1>
-        Multiple ways
-      </h1>
       <p>
         Users must have multiple ways to locate and navigate to a page.
       </p>
@@ -21791,9 +21632,6 @@ exports[`Guidance Content pages test/page/pageTitle/infoAndExamples matches the 
     <div
       class="content"
     >
-      <h1>
-        Page title
-      </h1>
       <p>
         A web page must have a title that describes its topic or purpose.
       </p>
@@ -22573,9 +22411,6 @@ exports[`Guidance Content pages test/parsing/parsingContent/infoAndExamples matc
     <div
       class="content"
     >
-      <h1>
-        Parsing
-      </h1>
       <p>
         Elements must have complete start and end tags, must not contain duplicate attributes, and must be nested according to their specifications.
       </p>
@@ -23076,9 +22911,6 @@ exports[`Guidance Content pages test/pointerMotion/motionOperation/infoAndExampl
     <div
       class="content"
     >
-      <h1>
-        Motion operation
-      </h1>
       <p>
         If any function can be operated through motion, it must also be operable through user interface components.
       </p>
@@ -23221,9 +23053,6 @@ exports[`Guidance Content pages test/pointerMotion/pointerCancellation/infoAndEx
     <div
       class="content"
     >
-      <h1>
-        Pointer cancellation
-      </h1>
       <p>
         Users must be able to cancel functions that can be operated using a single pointer.
       </p>
@@ -23369,9 +23198,6 @@ exports[`Guidance Content pages test/pointerMotion/pointerGestures/infoAndExampl
     <div
       class="content"
     >
-      <h1>
-        Pointer gestures
-      </h1>
       <p>
         Functions must be operable without requiring multipoint or path-based gestures.
       </p>
@@ -23514,9 +23340,6 @@ exports[`Guidance Content pages test/repetitiveContent/bypassBlocks/infoAndExamp
     <div
       class="content"
     >
-      <h1>
-        Bypass blocks
-      </h1>
       <p>
         A page must provide a keyboard-accessible method to bypass repetitive content.
       </p>
@@ -23907,9 +23730,6 @@ exports[`Guidance Content pages test/repetitiveContent/consistentIdentification/
     <div
       class="content"
     >
-      <h1>
-        Consistent identification
-      </h1>
       <p>
         Functional components that appear on multiple pages must be identified consistently.
       </p>
@@ -24140,9 +23960,6 @@ exports[`Guidance Content pages test/repetitiveContent/consistentNavigation/info
     <div
       class="content"
     >
-      <h1>
-        Consistent navigation
-      </h1>
       <p>
         Navigational mechanisms that appear on multiple pages must be presented in the same relative order.
       </p>
@@ -24739,9 +24556,6 @@ exports[`Guidance Content pages test/semantics/cssContent/infoAndExamples matche
     <div
       class="content"
     >
-      <h1>
-        CSS content
-      </h1>
       <p>
         Meaningful content must not be implemented using only CSS 
         <span
@@ -24995,9 +24809,6 @@ exports[`Guidance Content pages test/semantics/emphasis/infoAndExamples matches 
     <div
       class="content"
     >
-      <h1>
-        Emphasis
-      </h1>
       <p>
         Words and phrases that are visually emphasized must be contained within semantically correct elements.
       </p>
@@ -26671,9 +26482,6 @@ exports[`Guidance Content pages test/semantics/letterSpacing/infoAndExamples mat
     <div
       class="content"
     >
-      <h1>
-        Letter spacing
-      </h1>
       <p>
         Spacing characters must not be used to increase the space between letters in a word.
       </p>
@@ -26916,9 +26724,6 @@ exports[`Guidance Content pages test/semantics/lists/infoAndExamples matches the
     <div
       class="content"
     >
-      <h1>
-        Lists
-      </h1>
       <p>
         Lists must be coded with semantically correct elements.
       </p>
@@ -27304,9 +27109,6 @@ exports[`Guidance Content pages test/semantics/quotes/infoAndExamples matches th
       <h1>
         Quotes
       </h1>
-      <h1>
-        Quotes
-      </h1>
       <p>
         The 
         <span
@@ -27570,9 +27372,6 @@ exports[`Guidance Content pages test/semantics/tableSemantics/infoAndExamples ma
     <div
       class="content"
     >
-      <h1>
-        Data tables
-      </h1>
       <p>
         A 
         <span
@@ -28011,9 +27810,6 @@ exports[`Guidance Content pages test/sensory/auditoryCues/infoAndExamples matche
     <div
       class="content"
     >
-      <h1>
-        Auditory cues
-      </h1>
       <p>
         Auditory cues must be accompanied by visual cues.
       </p>
@@ -28148,9 +27944,6 @@ exports[`Guidance Content pages test/sensory/flashing/infoAndExamples matches th
     <div
       class="content"
     >
-      <h1>
-        Flashing
-      </h1>
       <p>
         Web pages must not have content that flashes more than three times per second.
       </p>
@@ -28738,9 +28531,6 @@ exports[`Guidance Content pages test/sensory/instructions/infoAndExamples matche
     <div
       class="content"
     >
-      <h1>
-        Instructions
-      </h1>
       <p>
         Instructions must not rely 
         <em>
@@ -29011,9 +28801,6 @@ exports[`Guidance Content pages test/sensory/useOfColor/infoAndExamples matches 
     <div
       class="content"
     >
-      <h1>
-        Color as meaning
-      </h1>
       <p>
         Color must not be used as the only visual means for conveying meaning.
       </p>
@@ -29329,9 +29116,6 @@ exports[`Guidance Content pages test/sequence/columns/infoAndExamples matches th
     <div
       class="content"
     >
-      <h1>
-        Columns
-      </h1>
       <p>
         White space characters must not be used to create the appearance of columns.
       </p>
@@ -29640,9 +29424,6 @@ exports[`Guidance Content pages test/sequence/cssPositioning/infoAndExamples mat
     <div
       class="content"
     >
-      <h1>
-        CSS positioning
-      </h1>
       <p>
         Meaningful content positioned on the page using CSS must retain its meaning when CSS is disabled.
       </p>
@@ -30221,9 +30002,6 @@ exports[`Guidance Content pages test/sequence/layoutTables/infoAndExamples match
     <div
       class="content"
     >
-      <h1>
-        Layout tables
-      </h1>
       <p>
         The content in an HTML layout table must make sense when presented in DOM order.
       </p>
@@ -30474,9 +30252,6 @@ exports[`Guidance Content pages test/textLegibility/contrast/infoAndExamples mat
     <div
       class="content"
     >
-      <h1>
-        Contrast
-      </h1>
       <p>
         Text elements must have sufficient contrast.
       </p>
@@ -31494,9 +31269,6 @@ exports[`Guidance Content pages test/textLegibility/hoverFocusContent/infoAndExa
     <div
       class="content"
     >
-      <h1>
-        Hover / focus content
-      </h1>
       <p>
         Content that appears on focus or hover must be dismissible, hoverable, and persistent.
       </p>
@@ -31688,9 +31460,6 @@ exports[`Guidance Content pages test/textLegibility/orientation/infoAndExamples 
     <div
       class="content"
     >
-      <h1>
-        Orientation
-      </h1>
       <p>
         Web content must not be locked to a particular screen orientation.
       </p>
@@ -31853,9 +31622,6 @@ exports[`Guidance Content pages test/textLegibility/reflow/infoAndExamples match
     <div
       class="content"
     >
-      <h1>
-        Reflow
-      </h1>
       <p>
         Text content must be visible without having to scroll both vertically and horizontally.
       </p>
@@ -32073,9 +31839,6 @@ exports[`Guidance Content pages test/textLegibility/resizeText/infoAndExamples m
     <div
       class="content"
     >
-      <h1>
-        Resize text
-      </h1>
       <p>
         Users must be able to resize text, without using assistive technology, up to 200% with no loss of content or functionality.
       </p>
@@ -32465,9 +32228,6 @@ exports[`Guidance Content pages test/textLegibility/textSpacing/infoAndExamples 
     <div
       class="content"
     >
-      <h1>
-        Text spacing
-      </h1>
       <p>
         Users must be able to adjust text spacing with no loss of content or functionality.
       </p>
@@ -32774,9 +32534,6 @@ exports[`Guidance Content pages test/timedEvents/audioControl/infoAndExamples ma
     <div
       class="content"
     >
-      <h1>
-        Audio control
-      </h1>
       <p>
         If audio content plays automatically for longer than 3 seconds, users must be able to pause or mute it.
       </p>
@@ -32992,9 +32749,6 @@ exports[`Guidance Content pages test/timedEvents/autoUpdatingContent/infoAndExam
     <div
       class="content"
     >
-      <h1>
-        Auto-updating content
-      </h1>
       <p>
         If content updates automatically, users must be able to pause, stop, hide, or control the frequency of updates.
       </p>
@@ -33621,9 +33375,6 @@ exports[`Guidance Content pages test/timedEvents/movingContent/infoAndExamples m
     <div
       class="content"
     >
-      <h1>
-        Moving content
-      </h1>
       <p>
         If content moves, blinks, or scrolls automatically for more than five seconds, users must be able to pause, stop, or hide it.
       </p>
@@ -33882,9 +33633,6 @@ exports[`Guidance Content pages test/timedEvents/timeLimits/infoAndExamples matc
     <div
       class="content"
     >
-      <h1>
-        Time limits
-      </h1>
       <p>
         If a time limit is set by the content, the user must be able to turn off, adjust, or extend the time limit.
       </p>
