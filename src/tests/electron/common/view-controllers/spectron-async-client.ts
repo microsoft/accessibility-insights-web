@@ -26,6 +26,7 @@ export interface SpectronAsyncClient {
     keys(keys: string): Promise<void>;
     pause(milliseconds: number): Promise<void>;
     waitForEnabled(selector: string, milliseconds?: number, reverse?: boolean): Promise<boolean>;
+    waitForExist(selector: string, milliseconds?: number, reverse?: boolean): Promise<boolean>;
     waitUntil(
         condition: () =>
             | boolean
@@ -35,5 +36,4 @@ export interface SpectronAsyncClient {
         timeoutMsg?: string,
         interval?: number,
     ): Promise<boolean>;
-    waitForExist(selector: string, milliseconds?: number, reverse?: boolean): Promise<boolean>;
 }
