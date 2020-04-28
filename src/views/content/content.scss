@@ -73,7 +73,6 @@
 
     ol {
         -webkit-padding-start: 16px;
-
         li ul li {
             list-style-type: disc;
         }
@@ -83,19 +82,16 @@
         .content-inline {
             line-height: 20px;
             margin-bottom: 6px;
-
             .insights-link {
                 display: inline;
             }
         }
-
         .insights-link {
             line-height: 20px;
             margin-bottom: 6px;
             display: block;
         }
     }
-
     .code-example {
         .code-example-code {
             font-family: $codeFontFamily;
@@ -123,7 +119,7 @@
         max-width: 520px;
     }
 
-    .column+.column {
+    .column +.column {
         margin-left: 80px;
     }
 
