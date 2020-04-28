@@ -17,7 +17,7 @@ declare module 'webdriverio' {
         click(selector?: string): Promise<void>;
         executeAsync(script: string | ((...args: any[]) => void), ...args: any[]): Promise<any>;
         execute(script: string | ((...args: any[]) => void), ...args: any[]): Promise<any>;
-        getAttribute(selector: string, attributeName: string): Promise<string>;
+        getAttribute<P>(selector: string, attributeName: string): Promise<P>;
         getText(selector?: string): Promise<string>;
         keys(keys: string): Promise<void>;
         pause(milliseconds: number): Promise<void>;

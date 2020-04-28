@@ -101,7 +101,7 @@ export abstract class ViewController {
         return this.client.getText(selector);
     }
 
-    public async getAttribute(selector: string, attribute: string): Promise<string> {
-        return this.client.getAttribute(selector, attribute);
+    public async getAttribute<P>(selector: string, attribute: string): Promise<P> {
+        return this.client.getAttribute<P>(selector, attribute);
     }
 }

@@ -126,7 +126,7 @@ describe('AutomatedChecksView', () => {
         const expectedScreenshotImage =
             'data:image/png;base64,' + axeRuleResultExample.axeContext.screenshot;
 
-        const actualScreenshotImage = await automatedChecksView.getAttribute(
+        const actualScreenshotImage = await automatedChecksView.getAttribute<string>(
             ScreenshotViewSelectors.screenshotImage,
             'src',
         );
@@ -136,19 +136,12 @@ describe('AutomatedChecksView', () => {
     it('ScreenshotView renders expected number/size of highlight boxes in expected positions', async () => {
         await automatedChecksView.waitForScreenshotViewVisible();
 
-        const highlightBoxes = await automatedChecksView.findElements(
+        const styles = await automatedChecksView.getAttribute<string[]>(
             ScreenshotViewSelectors.highlightBox,
+            'style',
         );
 
-        const actualHighlightBoxStyles: PositionStyles[] = [];
-        for (let i = 1; i <= highlightBoxes.length; i++) {
-            const style = await automatedChecksView.getAttribute(
-                ScreenshotViewSelectors.getHighlightBoxByIndex(i),
-                'src',
-            );
-            actualHighlightBoxStyles.push(extractPositionStyles(style));
-        }
-
+        const actualHighlightBoxStyles = styles.map(extractPositionStyles);
         verifyHighlightBoxStyles(actualHighlightBoxStyles, [
             { width: 10.7407, height: 6.04167, top: 3.28125, left: 89.2593 },
             { width: 10.7407, height: 6.04167, top: 3.28125, left: 89.2593 },
