@@ -1,0 +1,9 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
+.export-dialog {
+    max-width: 640px;
+    width: 50%;
+    min-width: 320px !important;
+    user-select: text;
+}
