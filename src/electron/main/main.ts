@@ -9,12 +9,14 @@ import { AutoUpdaterClient } from 'electron/auto-update/auto-updater-client';
 import { getElectronIconPath } from 'electron/common/get-electron-icon-path';
 import { IPC_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME } from 'electron/ipc/ipc-channel-names';
 import { IpcMessageDispatcher, IpcMessageSink } from 'electron/ipc/ipc-message-dispatcher';
+import { MainWindowRendererMessageHandlers } from 'electron/main/main-window-renderer-message-handlers';
 import { OSType, PlatformInfo } from 'electron/window-management/platform-info';
 import * as path from 'path';
 import { mainWindowConfig } from './main-window-config';
 import { NativeHighContrastModeListener } from './native-high-contrast-mode-listener';
 
 let mainWindow: BrowserWindow;
+let mainWindowRendererMessageHandlers: MainWindowRendererMessageHandlers;
 const platformInfo = new PlatformInfo(process);
 const os = platformInfo.getOs();
 const config = new FileSystemConfiguration();
@@ -55,6 +57,13 @@ const createWindow = () => {
         ipcMessageDispatcher.registerMessageSink(mainWindowMessageSink);
         nativeHighContrastModeListener.startListening();
     });
+
+    mainWindowRendererMessageHandlers = new MainWindowRendererMessageHandlers(
+        app,
+        mainWindow,
+        ipcMain,
+    );
+    mainWindowRendererMessageHandlers.startListening();
 
     mainWindow
         .loadFile(path.resolve(__dirname, '../electron/views/index.html'))
@@ -100,6 +109,7 @@ app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
     nativeHighContrastModeListener.stopListening();
+    mainWindowRendererMessageHandlers.stopListening();
     clearInterval(recurringUpdateCheck);
     app.quit();
 });

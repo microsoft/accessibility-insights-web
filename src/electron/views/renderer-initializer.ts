@@ -46,7 +46,7 @@ import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { WindowUtils } from 'common/window-utils';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { CardsViewDeps } from 'DetailsView/components/cards-view';
-import { ipcRenderer, remote } from 'electron';
+import { ipcRenderer } from 'electron';
 import { DirectActionMessageDispatcher } from 'electron/adapters/direct-action-message-dispatcher';
 import { NullDetailsViewController } from 'electron/adapters/null-details-view-controller';
 import { NullStoreActionMessageCreator } from 'electron/adapters/null-store-action-message-creator';
@@ -60,8 +60,8 @@ import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
 import { WindowStateActions } from 'electron/flux/action/window-state-actions';
 import { ScanStore } from 'electron/flux/store/scan-store';
 import { WindowStateStore } from 'electron/flux/store/window-state-store';
-import { IPC_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME } from 'electron/ipc/ipc-channel-names';
 import { IpcMessageReceiver } from 'electron/ipc/ipc-message-receiver';
+import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import { createDeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
 import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { ScanController } from 'electron/platform/android/scan-controller';
@@ -131,9 +131,10 @@ const sidePanelActions = new SidePanelActions();
 const previewFeaturesActions = new PreviewFeaturesActions(); // not really used but needed by DetailsViewStore
 const contentActions = new ContentActions(); // not really used but needed by DetailsViewStore
 const featureFlagActions = new FeatureFlagActions();
+const ipcRendererShim = new IpcRendererShim(ipcRenderer);
 
 const storageAdapter = new ElectronStorageAdapter(indexedDBInstance);
-const appDataAdapter = new ElectronAppDataAdapter();
+const appDataAdapter = new ElectronAppDataAdapter(ipcRendererShim);
 
 const indexedDBDataKeysToFetch = [
     IndexedDBDataKeys.userConfiguration,
@@ -198,8 +199,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         );
         featureFlagStore.initialize();
 
-        const currentWindow = remote.getCurrentWindow();
-        const windowFrameUpdater = new WindowFrameUpdater(windowFrameActions, currentWindow);
+        const windowFrameUpdater = new WindowFrameUpdater(windowFrameActions, ipcRendererShim);
         windowFrameUpdater.initialize();
 
         const storesHub = new BaseClientStoresHub<RootContainerState>([
@@ -297,7 +297,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         const windowFrameListener = new WindowFrameListener(
             windowStateActionCreator,
-            currentWindow,
+            ipcRendererShim,
         );
         windowFrameListener.initialize();
 
@@ -380,7 +380,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         );
 
         const deps: RootContainerRendererDeps = {
-            currentWindow,
+            ipcRendererShim: ipcRendererShim,
             userConfigurationStore,
             deviceStore,
             userConfigMessageCreator,
@@ -416,6 +416,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         sendAppInitializedTelemetryEvent(telemetryEventHandler, platformInfo);
 
-        ipcRenderer.send(IPC_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME);
+        ipcRendererShim.initializeWindow();
     },
 );
