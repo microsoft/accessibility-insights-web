@@ -26816,7 +26816,7 @@ exports[`Guidance Content pages test/semantics/headersAttribute/infoAndExamples 
             <strong>
               headers
             </strong>
-             attributes should refer to both levels, but incorrectly refer to only the top-level header. Assistive technologies will announce only "Staff" as the header for those data cells. Some users will find it difficult to understand the table.
+             attributes should refer to both levels, but incorrectly refer to only the top-level header. Assistive technologies will announce only "Faculty" as the header for those data cells. Some users will find it difficult to understand the table.
           </p>
         </div>
         <div
@@ -26837,7 +26837,7 @@ exports[`Guidance Content pages test/semantics/headersAttribute/infoAndExamples 
                 <br />
                             &lt;th rowspan="2" id="s"&gt;Students&lt;/th&gt;
                 <br />
-                            &lt;th colspan="3" id="f"&gt;Staff&lt;/th&gt;
+                            &lt;th colspan="3" id="f"&gt;Faculty&lt;/th&gt;
                 <br />
                             &lt;/tr&gt;
                 <br />
@@ -26922,7 +26922,7 @@ exports[`Guidance Content pages test/semantics/headersAttribute/infoAndExamples 
             </h3>
           </div>
           <p>
-            All data cells refer to the correct headers. Assistive technologies will announce both header levels where appropriate: "Staff Teachers," "Staff Assistants," and "Staff Administration". Everyone can interpret the table correctly.
+            All data cells refer to the correct headers. Assistive technologies will announce both header levels where appropriate: "Faculty Teachers," "Faculty Assistants," and "Faculty Observers". Everyone can interpret the table correctly.
           </p>
         </div>
         <div
@@ -26943,7 +26943,7 @@ exports[`Guidance Content pages test/semantics/headersAttribute/infoAndExamples 
                 <br />
                             &lt;th rowspan="2" id="s"&gt;Students&lt;/th&gt;
                 <br />
-                            &lt;th colspan="3" id="f"&gt;Staff&lt;/th&gt;
+                            &lt;th colspan="3" id="f"&gt;Faculty&lt;/th&gt;
                 <br />
                             &lt;/tr&gt;
                 <br />

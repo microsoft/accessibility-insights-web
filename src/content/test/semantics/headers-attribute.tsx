@@ -34,13 +34,13 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 <p>
                     This complex data table has two levels of headers. Three of the data cells' <Markup.Term>headers</Markup.Term>{' '}
                     attributes should refer to both levels, but incorrectly refer to only the top-level header. Assistive technologies will
-                    announce only "Staff" as the header for those data cells. Some users will find it difficult to understand the table.
+                    announce only "Faculty" as the header for those data cells. Some users will find it difficult to understand the table.
                 </p>
             }
             failExample={`<table border="1">
             <tr>
             <th rowspan="2" id="s">Students</th>
-            <th colspan="3" id="f">Staff</th>
+            <th colspan="3" id="f">Faculty</th>
             </tr>
             <tr>
             <th id="f1" headers="f">Teachers</th>
@@ -57,13 +57,13 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             passText={
                 <p>
                     All data cells refer to the correct headers. Assistive technologies will announce both header levels where appropriate:
-                    "Staff Teachers," "Staff Assistants," and "Staff Administration". Everyone can interpret the table correctly.
+                    "Faculty Teachers," "Faculty Assistants," and "Faculty Observers". Everyone can interpret the table correctly.
                 </p>
             }
             passExample={`<table border="1">
             <tr>
             <th rowspan="2" id="s">Students</th>
-            <th colspan="3" id="f">Staff</th>
+            <th colspan="3" id="f">Faculty</th>
             </tr>
             <tr>
             <th id="f1" headers="f">Teachers</th>
