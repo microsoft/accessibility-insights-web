@@ -56,8 +56,7 @@ const tableSemanticsHowToTest: JSX.Element = (
                         or <Markup.CodeTerm>role="none"</Markup.CodeTerm>.
                     </li>
                     <li>
-                        A
-                        <Markup.Tag tagName="table" /> element that serves as a layout table{' '}
+                        A <Markup.Tag tagName="table" /> element that serves as a layout table{' '}
                         <Markup.Emphasis>must be</Markup.Emphasis> marked with{' '}
                         <Markup.CodeTerm>role="presentation"</Markup.CodeTerm> or
                         <Markup.CodeTerm>role="none"</Markup.CodeTerm>.
