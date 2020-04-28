@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 import { FailedInstancesSection } from 'common/components/cards/failed-instances-section';
 import { ReportHead } from 'reports/components/report-head';
+import { AutomatedChecksHeaderSection } from 'reports/components/report-sections/automated-checks-header-section';
 import { BodySection } from './body-section';
 import { ContentContainer } from './content-container';
 import { DetailsSection } from './details-section';
 import { FooterText } from './footer-text';
-import { HeaderSection } from './header-section';
 import { NotApplicableChecksSection } from './not-applicable-checks-section';
 import { PassedChecksSection } from './passed-checks-section';
 import { ReportFooter } from './report-footer';
@@ -19,7 +19,7 @@ export const AutomatedChecksReportSectionFactory: ReportSectionFactory = {
     HeadSection: ReportHead,
     BodySection,
     ContentContainer,
-    HeaderSection,
+    HeaderSection: AutomatedChecksHeaderSection,
     TitleSection,
     SummarySection: AllOutcomesSummarySection,
     DetailsSection,

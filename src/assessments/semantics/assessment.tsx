@@ -1,14 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
-
 import { VisualizationType } from 'common/types/visualization-type';
 import { test as content } from 'content/test';
+import * as React from 'react';
+
 import { AssessmentBuilder } from '../assessment-builder';
 import * as Markup from '../markup';
 import { CssContent } from './test-steps/css-content';
 import { DataTables } from './test-steps/data-tables';
 import { SemanticsEmphasis } from './test-steps/emphasis';
+import { Headers } from './test-steps/headers';
 import { SemanticsLetterSpacing } from './test-steps/letter-spacing';
 import { SemanticsLists } from './test-steps/lists';
 import { SemanticsQuotes } from './test-steps/quotes';
@@ -44,6 +45,7 @@ export const SemanticsAssessment = AssessmentBuilder.Assisted({
     requirements: [
         CssContent,
         DataTables,
+        Headers,
         SemanticsLists,
         SemanticsEmphasis,
         SemanticsQuotes,

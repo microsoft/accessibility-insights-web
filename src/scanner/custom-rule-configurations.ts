@@ -7,6 +7,7 @@ import { cssPositioningConfiguration } from './custom-rules/css-positioning-rule
 import { cuesConfiguration } from './custom-rules/cues-rule';
 import { customWidgetConfiguration } from './custom-rules/custom-widget';
 import { frameTitleConfiguration } from './custom-rules/frame-title';
+import { headerRuleConfiguration } from './custom-rules/header-rule';
 import { headingConfiguration } from './custom-rules/heading-rule';
 import { imageConfiguration } from './custom-rules/image-rule';
 import { landmarkConfiguration } from './custom-rules/landmark-rule';
@@ -39,4 +40,5 @@ export const configuration: RuleConfiguration[] = [
     cssPositioningConfiguration,
     cssContentConfiguration,
     autocompleteRuleConfiguration,
+    headerRuleConfiguration,
 ];
