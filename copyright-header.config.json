@@ -10,7 +10,6 @@
         "./docs/LICENSE.txt",
         "./src/electron/resources/license_en.txt",
         "./src/electron/resources/license.txt",
-        "./docs/NOTICE.txt",
         "./drop",
         "./extension",
         "./node_modules",
