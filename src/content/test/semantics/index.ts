@@ -4,6 +4,7 @@ import * as cssContent from './css-content';
 import * as emphasis from './emphasis';
 import { guidance } from './guidance';
 import * as headers from './headers';
+import * as headersAttribute from './headers-attribute';
 import * as letterSpacing from './letter-spacing';
 import * as lists from './lists';
 import * as quotes from './quotes';
@@ -18,4 +19,5 @@ export const semantics = {
     quotes,
     letterSpacing,
     headers,
+    headersAttribute,
 };

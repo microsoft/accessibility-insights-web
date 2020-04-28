@@ -4,6 +4,7 @@ import { VisualizationType } from 'common/types/visualization-type';
 import { test as content } from 'content/test';
 import * as React from 'react';
 
+import { HeadersAttribute } from 'assessments/semantics/test-steps/headers-attribute';
 import { AssessmentBuilder } from '../assessment-builder';
 import * as Markup from '../markup';
 import { CssContent } from './test-steps/css-content';
@@ -46,6 +47,7 @@ export const SemanticsAssessment = AssessmentBuilder.Assisted({
         CssContent,
         TableSemantics,
         Headers,
+        HeadersAttribute,
         SemanticsLists,
         SemanticsEmphasis,
         SemanticsQuotes,
