@@ -20,7 +20,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <ul>
             <li>
                 Good: Modify the <Markup.Term>headers</Markup.Term> attribute of the <Markup.Term>{`<td>`}</Markup.Term> element to match
-                the <Markup.Term>id</Markup.Term> attribute of the correct <Markup.Term>{`<th>`}</Markup.Term> element, or
+                the <Markup.Term>id</Markup.Term> attribute of the correct <Markup.Term>{`<th>`}</Markup.Term> element(s), or
             </li>
             <li>
                 Better: Eliminate multi-level headings and define headers using <Markup.Term>scope</Markup.Term> attributes.

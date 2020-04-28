@@ -48,8 +48,8 @@ const headersAttributeHowToTest: JSX.Element = (
                         all cells that function as headers for that data cell.
                     </li>
                 </ol>
-                Note: If a <Markup.Term>headers</Markup.Term> attribute references an element(s)
-                that is missing or invalid, it will fail an automated check.
+                Note: If a <Markup.Term>headers</Markup.Term> attribute references an element that
+                is missing or invalid, it will fail an automated check.
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>

@@ -26761,7 +26761,7 @@ exports[`Guidance Content pages test/semantics/headersAttribute/infoAndExamples 
           <strong>
             &lt;th&gt;
           </strong>
-           element, or
+           element(s), or
         </li>
         <li>
           Better: Eliminate multi-level headings and define headers using 
