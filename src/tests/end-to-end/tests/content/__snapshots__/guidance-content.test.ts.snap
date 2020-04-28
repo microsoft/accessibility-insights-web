@@ -26732,7 +26732,7 @@ exports[`Guidance Content pages test/semantics/headersAttribute/infoAndExamples 
         <strong>
           &lt;th&gt;
         </strong>
-         element.
+         element(s).
       </p>
       <h2>
         Why it matters
@@ -26753,7 +26753,7 @@ exports[`Guidance Content pages test/semantics/headersAttribute/infoAndExamples 
           <strong>
             &lt;td&gt;
           </strong>
-           element to match the 
+           element(s) to match the 
           <strong>
             id
           </strong>

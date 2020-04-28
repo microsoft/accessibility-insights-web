@@ -7,7 +7,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <h1>Headers attribute</h1>
         <p>
             The <Markup.Term>headers</Markup.Term> attribute of a <Markup.Term>{`<td>`}</Markup.Term> element must reference the correct{' '}
-            <Markup.Term>{`<th>`}</Markup.Term> element.
+            <Markup.Term>{`<th>`}</Markup.Term> element(s).
         </p>
 
         <h2>Why it matters</h2>
@@ -19,7 +19,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <h2>How to fix</h2>
         <ul>
             <li>
-                Good: Modify the <Markup.Term>headers</Markup.Term> attribute of the <Markup.Term>{`<td>`}</Markup.Term> element to match
+                Good: Modify the <Markup.Term>headers</Markup.Term> attribute of the <Markup.Term>{`<td>`}</Markup.Term> element(s) to match
                 the <Markup.Term>id</Markup.Term> attribute of the correct <Markup.Term>{`<th>`}</Markup.Term> element(s), or
             </li>
             <li>
