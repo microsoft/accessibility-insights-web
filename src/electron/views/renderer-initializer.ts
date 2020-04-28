@@ -300,6 +300,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             windowStateActionCreator,
             currentWindow,
             userConfigMessageCreator,
+            windowStateStore,
         );
         windowFrameListener.initialize();
 
