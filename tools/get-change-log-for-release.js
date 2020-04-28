@@ -46,24 +46,49 @@ const ensureOutputFileExist = outputPath => {
     });
 };
 
+const csvEscape = original => {
+    return original.replace(/"/g, '""');
+};
+
+// Best-effort; returns empty string if PR number wasn't detected at end of message
+const extractPrNumber = original => {
+    // Handles messages of format "some text (#123)", extracting 123 as "prNumber"
+    const matches = /\(#(?<prNumber>\d+)\)$/.exec(original);
+    return matches == null ? '' : matches.groups.prNumber;
+};
+
+const makePrLink = pr => {
+    if (pr == '') {
+        return pr;
+    }
+
+    return `=HYPERLINK("https://github.com/microsoft/accessibility-insights-web/pull/${pr}", "#${pr}")`;
+};
+
+const makeCommitLink = commit => {
+    return `=HYPERLINK("https://github.com/microsoft/accessibility-insights-web/commit/${commit}", "${commit}")`;
+};
+
 const generateOutputContent = (gitLogs, version) => {
     const csvLogs = gitLogs.all
         .map(log => {
             return {
-                dev: log.author_name,
-                commit: log.hash.substr(0, 7),
-                change: log.message,
-                group: getCommitType(log.message),
+                dev: csvEscape(log.author_name),
+                commit: csvEscape(makeCommitLink(log.hash.substr(0, 7))),
+                pr: csvEscape(makePrLink(extractPrNumber(log.message))),
+                change: csvEscape(log.message),
+                group: csvEscape(getCommitType(log.message)),
                 version,
                 date: log.date,
             };
         })
         .map(log => {
             // the order here is important, it needs to match the headers order down below
-            return `,,"${log.dev}","${log.commit}","${log.change}","${log.group}","${log.version}","${log.date}"`;
+            return `,,"${log.dev}","${log.commit}","${log.pr}","${log.change}","${log.group}","${log.version}","${log.date}"`;
         });
 
-    const headers = ['tester', 'verified', 'dev', 'commit', 'change', 'group', 'version', 'date'];
+    // prettier-ignore
+    const headers = ['tester', 'verified', 'dev', 'commit', 'pr', 'change', 'group', 'version', 'date'];
 
     const headersContent = headers.join(',');
     return `${headersContent}\n`.concat(csvLogs.join('\n'));
