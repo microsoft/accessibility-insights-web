@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { SpectronClient } from 'spectron';
-import * as WebDriverIO from 'webdriverio';
 import { CommonSelectors } from '../element-identifiers/common-selectors';
 import { DeviceConnectionDialogSelectors } from '../element-identifiers/device-connection-dialog-selectors';
 import { ViewController } from './view-controller';

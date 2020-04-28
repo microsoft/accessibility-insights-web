@@ -85,6 +85,7 @@ export abstract class ViewController {
 
     public async executeAsync(
         script: string | ((...args: any[]) => void),
+        // tslint:disable-next-line: trailing-comma
         ...args: any[]
     ): Promise<any> {
         return this.client.executeAsync(script, ...args);
@@ -92,6 +93,7 @@ export abstract class ViewController {
 
     public async execute(
         script: string | ((...args: any[]) => void),
+        // tslint:disable-next-line: trailing-comma
         ...args: any[]
     ): Promise<any> {
         return this.client.execute(script, ...args);
