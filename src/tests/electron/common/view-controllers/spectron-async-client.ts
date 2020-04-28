@@ -4,8 +4,13 @@
 import { SpectronWindow } from 'spectron';
 import * as WebDriverIO from 'webdriverio';
 
-// SpectronClient is intentionally protected to limit accidental
-// async/sync confusion by e2e test writers
+// spectron 10.0.1 includes @types/webdriverio, whose absence
+// we worked around when initially consuming spectron.
+// @types/webdriver lacks promises, so this file adds
+// promise-based signatures that our e2e code can rely on.
+// @types/webdriver has been superceded by improved types
+// in webdriverio 5 directly, but Spectron has not consumed them
+
 export interface SpectronAsyncClient {
     // https://github.com/electron-userland/spectron/blob/cd733c4bc6b28eb5a1041ed79eef5563e75432ae/lib/api.js#L311
     browserWindow: SpectronWindow;
