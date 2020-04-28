@@ -5,7 +5,7 @@ import { CommentIcon } from 'common/icons/comment-icon';
 import { DateIcon } from 'common/icons/date-icon';
 import { UrlIcon } from 'common/icons/url-icon';
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
-import { ScanMetadata } from 'common/types/store-data/scan-meta-data';
+import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { isEmpty } from 'lodash';
 import * as React from 'react';
 import { SectionProps } from './report-section-factory';

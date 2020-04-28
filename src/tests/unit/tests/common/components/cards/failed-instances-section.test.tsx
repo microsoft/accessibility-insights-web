@@ -6,7 +6,7 @@ import {
     FailedInstancesSectionProps,
 } from 'common/components/cards/failed-instances-section';
 import { CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
-import { ScanMetadata } from 'common/types/store-data/scan-meta-data';
+import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 

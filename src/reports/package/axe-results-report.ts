@@ -2,13 +2,12 @@
 // Licensed under the MIT License.
 import { CardSelectionViewData } from 'common/get-card-selection-view-data';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
-import { ToolData } from 'common/types/store-data/unified-data-interface';
+import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
 import { UUIDGenerator } from 'common/uid-generator';
 import { convertScanResultsToUnifiedResults } from 'injected/adapters/scan-results-to-unified-results';
 import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results-to-unified-rules';
 import { ResultDecorator } from 'scanner/result-decorator';
 
-import { ScanMetadata } from 'common/types/store-data/scan-meta-data';
 import { ReportHtmlGenerator } from '../report-html-generator';
 import AccessibilityInsightsReport from './accessibilityInsightsReport';
 

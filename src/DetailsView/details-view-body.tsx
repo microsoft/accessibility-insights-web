@@ -7,7 +7,7 @@ import { DetailsViewCommandBarProps } from 'DetailsView/components/details-view-
 import { ISelection } from 'office-ui-fabric-react';
 import * as React from 'react';
 
-import { ScanMetadata } from 'common/types/store-data/scan-meta-data';
+import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';

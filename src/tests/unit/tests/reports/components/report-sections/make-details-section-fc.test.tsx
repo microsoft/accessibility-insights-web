@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { DateProvider } from 'common/date-provider';
-import { ScanMetadata } from 'common/types/store-data/scan-meta-data';
+import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import {
     DetailsSectionProps,
     makeDetailsSectionFC,

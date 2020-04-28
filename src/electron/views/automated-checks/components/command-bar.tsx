@@ -5,7 +5,7 @@ import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { NamedFC } from 'common/react/named-fc';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { ScanMetadata } from 'common/types/store-data/scan-meta-data';
+import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import {
     ReportExportComponent,
     ReportExportComponentDeps,

@@ -5,7 +5,7 @@ import { FixInstructionProcessor } from 'common/components/fix-instruction-proce
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { ReactFCWithDisplayName } from 'common/react/named-fc';
 
-import { ScanMetadata } from 'common/types/store-data/scan-meta-data';
+import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { CardsViewModel } from '../../../common/types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import { NotApplicableChecksSectionDeps } from './not-applicable-checks-section';

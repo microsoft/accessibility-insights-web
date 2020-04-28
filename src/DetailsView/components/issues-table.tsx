@@ -4,7 +4,7 @@ import * as Markup from 'assessments/markup';
 import { ScanningSpinner } from 'common/components/scanning-spinner/scanning-spinner';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { ScanMetadata } from 'common/types/store-data/scan-meta-data';
+import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import * as styles from 'DetailsView/components/issues-table.scss';
 import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
