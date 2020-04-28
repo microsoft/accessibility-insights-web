@@ -26943,7 +26943,7 @@ exports[`Guidance Content pages test/semantics/headersAttribute/infoAndExamples 
                 <br />
                             &lt;th rowspan="2" id="s"&gt;Students&lt;/th&gt;
                 <br />
-                            &lt;th colspan="3" id="f"&gt;Faculty&lt;/th&gt;
+                            &lt;th colspan="3" id="f"&gt;Staff&lt;/th&gt;
                 <br />
                             &lt;/tr&gt;
                 <br />

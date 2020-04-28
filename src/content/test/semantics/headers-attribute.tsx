@@ -63,7 +63,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             passExample={`<table border="1">
             <tr>
             <th rowspan="2" id="s">Students</th>
-            <th colspan="3" id="f">Faculty</th>
+            <th colspan="3" id="f">Staff</th>
             </tr>
             <tr>
             <th id="f1" headers="f">Teachers</th>

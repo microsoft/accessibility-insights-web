@@ -13,7 +13,7 @@ import { SemanticsTestStep } from './test-steps';
 const headersAttributeDescription: JSX.Element = (
     <span>
         A <Markup.Term>headers</Markup.Term> attribute must reference the correct{' '}
-        <Markup.CodeTerm>{`<th>`}</Markup.CodeTerm> element.{' '}
+        <Markup.CodeTerm>{`<th>`}</Markup.CodeTerm> element(s).{' '}
     </span>
 );
 
@@ -40,16 +40,16 @@ const headersAttributeHowToTest: JSX.Element = (
                 verify that they are coded correctly:
                 <ol>
                     <li>
-                        Each header cell (<Markup.CodeTerm>{`<th>`}</Markup.CodeTerm> element) must
-                        have an <Markup.Term>id</Markup.Term> attribute.
+                        Each header cell (<Markup.CodeTerm>{`<th>`}</Markup.CodeTerm> element(s))
+                        must have an <Markup.Term>id</Markup.Term> attribute.
                     </li>
                     <li>
                         Each data cell's <Markup.Term>headers</Markup.Term> attribute must reference
                         all cells that function as headers for that data cell.
                     </li>
                 </ol>
-                Note: If a <Markup.Term>headers</Markup.Term> attribute references an element that
-                is missing or invalid, it will fail an automated check.
+                Note: If a <Markup.Term>headers</Markup.Term> attribute references an element(s)
+                that is missing or invalid, it will fail an automated check.
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
