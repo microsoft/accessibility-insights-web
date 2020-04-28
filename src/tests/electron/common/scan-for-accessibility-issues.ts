@@ -22,7 +22,7 @@ export async function scanForAccessibilityIssues(
         },
     };
 
-    const executeOutput = await view.executeAsync(
+    const executeOutput = await view.client.executeAsync(
         (options, selectorInEvaluate, done) => {
             const elementContext =
                 selectorInEvaluate === null ? document : { include: [selectorInEvaluate] };
@@ -47,11 +47,11 @@ export async function scanForAccessibilityIssues(
 }
 
 async function injectAxeIfUndefined(view: ViewController): Promise<void> {
-    const axeIsUndefined = await view.execute(() => {
+    const axeIsUndefined = await view.client.execute(() => {
         return (window as any).axe === undefined;
     });
 
     if (axeIsUndefined) {
-        await view.execute(axeCoreSource);
+        await view.client.execute(axeCoreSource);
     }
 }

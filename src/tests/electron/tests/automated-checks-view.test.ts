@@ -41,7 +41,7 @@ describe('AutomatedChecksView', () => {
     });
 
     async function countHighlightBoxes(): Promise<number> {
-        const boxes = await automatedChecksView.findElements(ScreenshotViewSelectors.highlightBox);
+        const boxes = await automatedChecksView.client.$$(ScreenshotViewSelectors.highlightBox);
         return boxes.length;
     }
 
@@ -88,12 +88,12 @@ describe('AutomatedChecksView', () => {
         expectedTitle: string,
         expectedFailures: number,
     ): Promise<void> {
-        const title = await automatedChecksView.getText(
+        const title = await automatedChecksView.client.getText(
             AutomatedChecksViewSelectors.nthRuleGroupTitle(position),
         );
         expect(title).toEqual(expectedTitle);
 
-        const failures = await automatedChecksView.findElements(
+        const failures = await automatedChecksView.client.$$(
             AutomatedChecksViewSelectors.nthRuleGroupInstances(position),
         );
         expect(failures).toHaveLength(expectedFailures);
@@ -103,12 +103,12 @@ describe('AutomatedChecksView', () => {
         position: number,
         expectedTitle: string,
     ): Promise<void> {
-        const title = await automatedChecksView.getText(
+        const title = await automatedChecksView.client.getText(
             AutomatedChecksViewSelectors.nthRuleGroupTitle(position),
         );
         expect(title).toEqual(expectedTitle);
 
-        const failures = await automatedChecksView.findElements(
+        const failures = await automatedChecksView.client.$$(
             AutomatedChecksViewSelectors.nthRuleGroupInstances(position),
         );
         expect(failures).toHaveLength(0);
@@ -126,7 +126,7 @@ describe('AutomatedChecksView', () => {
         const expectedScreenshotImage =
             'data:image/png;base64,' + axeRuleResultExample.axeContext.screenshot;
 
-        const actualScreenshotImage = await automatedChecksView.getAttribute<string>(
+        const actualScreenshotImage = await automatedChecksView.client.getAttribute<string>(
             ScreenshotViewSelectors.screenshotImage,
             'src',
         );
@@ -136,7 +136,7 @@ describe('AutomatedChecksView', () => {
     it('ScreenshotView renders expected number/size of highlight boxes in expected positions', async () => {
         await automatedChecksView.waitForScreenshotViewVisible();
 
-        const styles = await automatedChecksView.getAttribute<string[]>(
+        const styles = await automatedChecksView.client.getAttribute<string[]>(
             ScreenshotViewSelectors.highlightBox,
             'style',
         );

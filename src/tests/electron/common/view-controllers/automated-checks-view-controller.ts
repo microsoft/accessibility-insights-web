@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { SpectronClient } from 'spectron';
+import { SpectronAsyncClient } from 'tests/electron/common/view-controllers/spectron-async-client';
 import { settingsPanelSelectors } from 'tests/end-to-end/common/element-identifiers/details-view-selectors';
 import {
     AutomatedChecksViewSelectors,
@@ -9,7 +9,7 @@ import {
 import { ViewController } from './view-controller';
 
 export class AutomatedChecksViewController extends ViewController {
-    constructor(client: SpectronClient) {
+    constructor(client: SpectronAsyncClient) {
         super(client);
     }
 

@@ -1,17 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as fs from 'fs';
-import { SpectronClient } from 'spectron';
+import { SpectronAsyncClient } from 'tests/electron/common/view-controllers/spectron-async-client';
 import { DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS } from 'tests/electron/setup/timeouts';
-import * as WebDriverIO from 'webdriverio';
 import { screenshotOnError } from '../../../end-to-end/common/screenshot-on-error';
 
 export abstract class ViewController {
-    // SpectronClient is intentionally protected to limit accidental
-    // async/sync confusion by e2e test writers. However, this means
-    // this ViewController contains several utility methods that
-    // wrap the client
-    constructor(protected client: SpectronClient) {}
+    constructor(public client: SpectronAsyncClient) {}
 
     public async waitForSelector(
         selector: string,
@@ -21,6 +16,7 @@ export abstract class ViewController {
         // semantics than Puppeteer; in particular, it requires the element be in the viewport
         // but doesn't scroll the page to the element, so it's easy for it to fail in ways that
         // are dependent on the test environment.
+
         await this.screenshotOnError(async () => this.client.waitForExist(selector, timeout));
     }
 
@@ -53,24 +49,8 @@ export abstract class ViewController {
         await this.screenshotOnError(async () => this.client.click(selector));
     }
 
-    public async keys(keys: string): Promise<void> {
-        await this.client.keys(keys);
-    }
-
     public async isEnabled(selector: string): Promise<boolean> {
         return await this.screenshotOnError(async () => this.client.isEnabled(selector));
-    }
-
-    public async findElement(
-        selector: string,
-    ): Promise<WebDriverIO.RawResult<WebDriverIO.Element>> {
-        return this.client.$(selector);
-    }
-
-    public async findElements(
-        selector: string,
-    ): Promise<WebDriverIO.RawResult<WebDriverIO.Element>[]> {
-        return this.client.$$(selector);
     }
 
     private async screenshotOnError<T>(wrappedFunction: () => Promise<T>): Promise<T> {
@@ -81,29 +61,5 @@ export abstract class ViewController {
                     .then(buffer => fs.writeFileSync(path, buffer)),
             wrappedFunction,
         );
-    }
-
-    public async executeAsync(
-        script: string | ((...args: any[]) => void),
-        // tslint:disable-next-line: trailing-comma
-        ...args: any[]
-    ): Promise<any> {
-        return this.client.executeAsync(script, ...args);
-    }
-
-    public async execute(
-        script: string | ((...args: any[]) => void),
-        // tslint:disable-next-line: trailing-comma
-        ...args: any[]
-    ): Promise<any> {
-        return this.client.execute(script, ...args);
-    }
-
-    public async getText(selector?: string): Promise<string> {
-        return this.client.getText(selector);
-    }
-
-    public async getAttribute<P>(selector: string, attribute: string): Promise<P> {
-        return this.client.getAttribute<P>(selector, attribute);
     }
 }

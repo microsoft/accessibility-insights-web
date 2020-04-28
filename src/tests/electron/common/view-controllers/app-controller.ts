@@ -1,16 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Application, SpectronClient } from 'spectron';
+import { Application } from 'spectron';
 import { DeviceConnectionDialogController } from 'tests/electron/common/view-controllers/device-connection-dialog-controller';
+import { SpectronAsyncClient } from 'tests/electron/common/view-controllers/spectron-async-client';
 import { testResourceServerConfig } from 'tests/electron/setup/test-resource-server-config';
 import { DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS } from 'tests/electron/setup/timeouts';
 import { AutomatedChecksViewController } from './automated-checks-view-controller';
 
 export class AppController {
-    private client: SpectronClient;
+    private client: SpectronAsyncClient;
 
     constructor(public app: Application) {
-        this.client = app.client;
+        this.client = app.client as any;
     }
 
     public async stop(): Promise<void> {
