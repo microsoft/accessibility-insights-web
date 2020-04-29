@@ -72,6 +72,13 @@ $semiBoldFontFamily: make-font-family($semiBoldFonts) !default;
     letter-spacing: -0.02em;
 }
 
+@mixin text-style-title-l {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 40px;
+}
+
 @mixin text-style-title-s {
     font-family: $semiBoldFontFamily;
     font-weight: $fontWeightSemiBold;
