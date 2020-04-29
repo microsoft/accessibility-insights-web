@@ -62,11 +62,10 @@ describe('DeviceConnectFooterTest', () => {
         onClickMock.verify(onClick => onClick(), Times.once());
     });
 
-    test('start testing changes route & maximizes window', () => {
+    test('start testing changes route', () => {
         windowStateActionCreatorMock
             .setup(w => w.setRoute({ routeId: 'resultsView' }))
             .verifiable(Times.once());
-        windowFrameActionCreatorMock.setup(w => w.maximize()).verifiable(Times.once());
         const props: DeviceConnectFooterProps = {
             cancelClick: onClickMock.object,
             canStartTesting: true,
@@ -78,6 +77,5 @@ describe('DeviceConnectFooterTest', () => {
         button.simulate('click', eventStub);
 
         windowStateActionCreatorMock.verifyAll();
-        windowFrameActionCreatorMock.verifyAll();
     });
 });
