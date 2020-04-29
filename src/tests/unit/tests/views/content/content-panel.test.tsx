@@ -3,14 +3,19 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { ContentPage } from 'views/content/content-page';
+import { ContentCreatorWithTitle, ContentPage } from 'views/content/content-page';
 import { ContentPanel } from 'views/content/content-panel';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
 
 describe('ContentPanel', () => {
     const content = {
         for: {
-            testing: ContentPage.create(() => 'CONTENT FOR TESTING' as any),
+            testing: ContentCreatorWithTitle(ContentPage.create)(
+                {
+                    pageTitle: 'Test title',
+                },
+                () => 'CONTENT FOR TESTING' as any,
+            ),
         },
     };
 
