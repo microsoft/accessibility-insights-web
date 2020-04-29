@@ -32,7 +32,7 @@ describe(IpcRendererShim, () => {
     it('do nothing at construction', () => {});
 
     describe('tests after initialization', () => {
-        const initialzationMessages = [
+        const initializationMessages = [
             IPC_BROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
             IPC_BROWSERWINDOW_MAXIMIZE_CHANNEL_NAME,
             IPC_BROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
@@ -49,7 +49,7 @@ describe(IpcRendererShim, () => {
 
         beforeEach(() => {
             ipcHandlers = {};
-            initialzationMessages.forEach(setupToAddOneIpcChannel);
+            initializationMessages.forEach(setupToAddOneIpcChannel);
             testSubject.initialize();
         });
 
