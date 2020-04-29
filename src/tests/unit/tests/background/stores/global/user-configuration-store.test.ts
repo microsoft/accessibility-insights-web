@@ -35,6 +35,7 @@ describe('UserConfigurationStoreTest', () => {
             lastSelectedHighContrast: false,
             bugService: 'none',
             bugServicePropertiesMap: {},
+            lastWindowSize: null,
         };
         defaultStoreData = {
             enableTelemetry: false,
@@ -43,6 +44,7 @@ describe('UserConfigurationStoreTest', () => {
             lastSelectedHighContrast: false,
             bugService: 'none',
             bugServicePropertiesMap: {},
+            lastWindowSize: null,
         };
         indexDbStrictMock = Mock.ofType<IndexedDBAPI>();
     });
@@ -91,6 +93,7 @@ describe('UserConfigurationStoreTest', () => {
             bugService: 'none',
             bugServicePropertiesMap: {},
             lastSelectedHighContrast: false,
+            lastWindowSize: null,
             ...persisted,
         } as UserConfigurationStoreData;
         const testSubject = new UserConfigurationStore(
@@ -183,6 +186,7 @@ describe('UserConfigurationStoreTest', () => {
                     lastSelectedHighContrast: false,
                     bugService: 'none',
                     bugServicePropertiesMap: {},
+                    lastWindowSize: null,
                 };
 
                 const expectedState: UserConfigurationStoreData = {
@@ -192,6 +196,7 @@ describe('UserConfigurationStoreTest', () => {
                     lastSelectedHighContrast: false,
                     bugService: 'none',
                     bugServicePropertiesMap: {},
+                    lastWindowSize: null,
                 };
 
                 indexDbStrictMock
@@ -228,6 +233,7 @@ describe('UserConfigurationStoreTest', () => {
                     lastSelectedHighContrast: initialLastSelected,
                     bugService: 'none',
                     bugServicePropertiesMap: {},
+                    lastWindowSize: null,
                 };
 
                 const setHighContrastData: SetHighContrastModePayload = {
@@ -241,6 +247,7 @@ describe('UserConfigurationStoreTest', () => {
                     lastSelectedHighContrast: payload,
                     bugService: 'none',
                     bugServicePropertiesMap: {},
+                    lastWindowSize: null,
                 };
 
                 indexDbStrictMock
@@ -277,6 +284,7 @@ describe('UserConfigurationStoreTest', () => {
                     lastSelectedHighContrast: initialLastSelected,
                     bugService: 'none',
                     bugServicePropertiesMap: {},
+                    lastWindowSize: null,
                 };
 
                 const setNativeHighContrastData: SetNativeHighContrastModePayload = {
@@ -290,6 +298,7 @@ describe('UserConfigurationStoreTest', () => {
                     lastSelectedHighContrast: initialLastSelected,
                     bugService: 'none',
                     bugServicePropertiesMap: {},
+                    lastWindowSize: null,
                 };
 
                 indexDbStrictMock
@@ -317,6 +326,7 @@ describe('UserConfigurationStoreTest', () => {
                 lastSelectedHighContrast: false,
                 bugService: 'none',
                 bugServicePropertiesMap: {},
+                lastWindowSize: null,
             };
 
             const setIssueFilingServiceData: SetIssueFilingServicePayload = {
@@ -358,6 +368,7 @@ describe('UserConfigurationStoreTest', () => {
                 lastSelectedHighContrast: false,
                 bugService: 'none',
                 bugServicePropertiesMap: initialMapState,
+                lastWindowSize: null,
             };
 
             const setIssueFilingServicePropertyData: SetIssueFilingServicePropertyPayload = {

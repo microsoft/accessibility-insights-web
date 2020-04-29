@@ -32,6 +32,7 @@ describe('GetPersistedDataTest', () => {
             lastSelectedHighContrast: false,
             bugService: 'none',
             bugServicePropertiesMap: {},
+            lastWindowSize: null,
         };
         installationData = {
             id: 'test-id',

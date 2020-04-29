@@ -542,6 +542,7 @@ describe('DetailsViewContainer', () => {
             lastSelectedHighContrast: false,
             bugService: 'gitHub',
             bugServicePropertiesMap: { gitHub: { repository: 'gitHub-repository' } },
+            lastWindowSize: null,
         };
 
         const unifiedScanResultStoreData: UnifiedScanResultStoreData = {

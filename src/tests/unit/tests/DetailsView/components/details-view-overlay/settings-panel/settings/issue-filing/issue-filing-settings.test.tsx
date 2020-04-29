@@ -31,6 +31,7 @@ describe('IssueFilingSettings', () => {
             lastSelectedHighContrast: true,
             bugService: 'gitHub',
             bugServicePropertiesMap: { gitHub: { repository: 'test-repository' } },
+            lastWindowSize: null,
         };
         testIssueFilingServiceStub = {
             key: testKey,
