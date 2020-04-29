@@ -33,12 +33,12 @@ const tableSemanticsHowToTest: JSX.Element = (
                 tables:
                 <ol>
                     <li>
-                        A <Markup.Emphasis>data</Markup.Emphasis> table organizes content into rows
-                        and columns to show relationships.
+                        A <Markup.Emphasis>data</Markup.Emphasis> table uses rows and columns to
+                        show relationships within a set of data.
                     </li>
                     <li>
-                        A <Markup.Emphasis>layout</Markup.Emphasis> table is used to visually
-                        position content without implying any relationships.
+                        A <Markup.Emphasis>layout</Markup.Emphasis> table uses rows and columns to
+                        visually position content without implying any relationships.
                     </li>
                 </ol>
             </li>
@@ -50,16 +50,16 @@ const tableSemanticsHowToTest: JSX.Element = (
                 Verify that each table is coded correctly for its type:
                 <ol>
                     <li>
-                        A <Markup.Code>&lt;table&gt;</Markup.Code>element that serves as
-                        a data table must not be marked with
-                        <Markup.Code>role="presentation"</Markup.Code>
-                        or <Markup.Code>role="none"</Markup.Code>.
+                        A <Markup.Tag tagName="table" /> element that serves as a data table{' '}
+                        <Markup.Emphasis>must not be</Markup.Emphasis> marked with{' '}
+                        <Markup.CodeTerm>role="presentation"</Markup.CodeTerm>
+                        or <Markup.CodeTerm>role="none"</Markup.CodeTerm>.
                     </li>
                     <li>
-                        A <Markup.Code>&lt;table&gt;</Markup.Code> element that serves as
-                        a layout table must be marked with
-                        <Markup.Code>role="presentation"</Markup.Code> or
-                        <Markup.Code>role="none"</Markup.Code>.
+                        A <Markup.Tag tagName="table" /> element that serves as a layout table{' '}
+                        <Markup.Emphasis>must be</Markup.Emphasis> marked with{' '}
+                        <Markup.CodeTerm>role="presentation"</Markup.CodeTerm> or
+                        <Markup.CodeTerm>role="none"</Markup.CodeTerm>.
                     </li>
                 </ol>
             </li>

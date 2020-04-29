@@ -25732,39 +25732,53 @@ exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches t
       <ol>
         <li>
           If the table has only one row or one column of headers, use 
-          <strong>
+          <span
+            class="insights-code"
+          >
             &lt;th&gt;
-          </strong>
+          </span>
            elements for header cells and 
-          <strong>
+          <span
+            class="insights-code"
+          >
             &lt;td&gt;
-          </strong>
+          </span>
            elements for data cells.
         </li>
         <li>
           If the table has both row and column headers, add 
-          <strong>
+          <span
+            class="insights-code"
+          >
             scope="row"
-          </strong>
+          </span>
            or 
-          <strong>
+          <span
+            class="insights-code"
+          >
             scope="column"
-          </strong>
+          </span>
            to each header cell.
         </li>
         <li>
           If the table has headers that span multiple rows or columns, add 
-          <strong>
+          <span
+            class="insights-code"
+          >
             colgroup
-          </strong>
+          </span>
            or 
-          <strong>
+          <span
+            class="insights-code"
+          >
             rowgroup
-          </strong>
+          </span>
            and 
-          <strong>
+          <span
+            class="insights-code"
+          >
             span
-          </strong>
+          </span>
            attributes to each header cell.
         </li>
         <li>
@@ -25772,16 +25786,20 @@ exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches t
           <ol>
             <li>
               Provide an 
-              <strong>
+              <span
+                class="insights-code"
+              >
                 id
-              </strong>
+              </span>
                for each header cell.
             </li>
             <li>
               For each data cell, provide a 
-              <strong>
+              <span
+                class="insights-code"
+              >
                 headers
-              </strong>
+              </span>
                attribute that references the correct header cell(s). 
             </li>
           </ol>
@@ -26118,17 +26136,23 @@ exports[`Guidance Content pages test/semantics/headersAttribute/infoAndExamples 
       </h1>
       <p>
         The 
-        <strong>
+        <span
+          class="insights-code"
+        >
           headers
-        </strong>
+        </span>
          attribute of a 
-        <strong>
+        <span
+          class="insights-code"
+        >
           &lt;td&gt;
-        </strong>
+        </span>
          element must reference the correct 
-        <strong>
+        <span
+          class="insights-code"
+        >
           &lt;th&gt;
-        </strong>
+        </span>
          element(s).
       </p>
       <h2>
@@ -26143,28 +26167,38 @@ exports[`Guidance Content pages test/semantics/headersAttribute/infoAndExamples 
       <ul>
         <li>
           Good: Modify the 
-          <strong>
+          <span
+            class="insights-code"
+          >
             headers
-          </strong>
+          </span>
            attribute of the 
-          <strong>
+          <span
+            class="insights-code"
+          >
             &lt;td&gt;
-          </strong>
+          </span>
            element(s) to match the 
-          <strong>
+          <span
+            class="insights-code"
+          >
             id
-          </strong>
+          </span>
            attribute of the correct 
-          <strong>
+          <span
+            class="insights-code"
+          >
             &lt;th&gt;
-          </strong>
+          </span>
            element(s), or
         </li>
         <li>
           Better: Eliminate multi-level headings and define headers using 
-          <strong>
+          <span
+            class="insights-code"
+          >
             scope
-          </strong>
+          </span>
            attributes.
         </li>
       </ul>
@@ -26210,9 +26244,11 @@ exports[`Guidance Content pages test/semantics/headersAttribute/infoAndExamples 
           </div>
           <p>
             This complex data table has two levels of headers. Three of the data cells' 
-            <strong>
+            <span
+              class="insights-code"
+            >
               headers
-            </strong>
+            </span>
              attributes should refer to both levels, but incorrectly refer to only the top-level header. Assistive technologies will announce only "Faculty" as the header for those data cells. Some users will find it difficult to understand the table.
           </p>
         </div>

@@ -6,8 +6,8 @@ export const infoAndExamples = create(({ Markup, Link }) => (
     <>
         <h1>Headers attribute</h1>
         <p>
-            The <Markup.Term>headers</Markup.Term> attribute of a <Markup.Term>{`<td>`}</Markup.Term> element must reference the correct{' '}
-            <Markup.Term>{`<th>`}</Markup.Term> element(s).
+            The <Markup.Code>headers</Markup.Code> attribute of a <Markup.Code>{`<td>`}</Markup.Code> element must reference the correct{' '}
+            <Markup.Code>{`<th>`}</Markup.Code> element(s).
         </p>
 
         <h2>Why it matters</h2>
@@ -19,11 +19,11 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <h2>How to fix</h2>
         <ul>
             <li>
-                Good: Modify the <Markup.Term>headers</Markup.Term> attribute of the <Markup.Term>{`<td>`}</Markup.Term> element(s) to match
-                the <Markup.Term>id</Markup.Term> attribute of the correct <Markup.Term>{`<th>`}</Markup.Term> element(s), or
+                Good: Modify the <Markup.Code>headers</Markup.Code> attribute of the <Markup.Code>{`<td>`}</Markup.Code> element(s) to match
+                the <Markup.Code>id</Markup.Code> attribute of the correct <Markup.Code>{`<th>`}</Markup.Code> element(s), or
             </li>
             <li>
-                Better: Eliminate multi-level headings and define headers using <Markup.Term>scope</Markup.Term> attributes.
+                Better: Eliminate multi-level headings and define headers using <Markup.Code>scope</Markup.Code> attributes.
             </li>
         </ul>
         <p />
@@ -32,7 +32,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <Markup.PassFail
             failText={
                 <p>
-                    This complex data table has two levels of headers. Three of the data cells' <Markup.Term>headers</Markup.Term>{' '}
+                    This complex data table has two levels of headers. Three of the data cells' <Markup.Code>headers</Markup.Code>{' '}
                     attributes should refer to both levels, but incorrectly refer to only the top-level header. Assistive technologies will
                     announce only "Faculty" as the header for those data cells. Some users will find it difficult to understand the table.
                 </p>
