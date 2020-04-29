@@ -17852,18 +17852,18 @@ exports[`Guidance Content pages test/multimedia/captions/infoAndExamples matches
       </h2>
       <ul>
         <li>
-           If captions are missing, add them.
+          If captions are missing, add them.
           <ul>
             <li>
-              Use closed captions (visible on demand) if possible. 
+              Use closed captions (visible on demand) if possible.
             </li>
             <li>
-               Use open captions (always visible) if your media player or hosting provider doesn't support closed captions. 
+              Use open captions (always visible) if your media player or hosting provider doesn't support closed captions.
             </li>
           </ul>
         </li>
         <li>
-           Make sure the captions provide an accurate and complete description of the audio content:
+          Make sure the captions provide an accurate and complete description of the audio content:
           <ul>
             <li>
               Include all speech.
@@ -23070,13 +23070,13 @@ exports[`Guidance Content pages test/pointerMotion/pointerCancellation/infoAndEx
       </p>
       <ul>
         <li>
-           The down event doesn't trigger any part of the function, or
+          The down event doesn't trigger any part of the function, or
         </li>
         <li>
-           The down event initiates the function, which is completed only on the up event, and users can abort or undo the function, or
+          The down event initiates the function, which is completed only on the up event, and users can abort or undo the function, or
         </li>
         <li>
-           The down event completes the function, and the up event reverses the outcome of the preceding down event.
+          The down event completes the function, and the up event reverses the outcome of the preceding down event.
         </li>
       </ul>
       <h2>

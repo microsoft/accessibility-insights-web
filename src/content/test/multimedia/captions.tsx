@@ -28,18 +28,15 @@ export const infoAndExamples = createWithTitle(
             <h2>How to fix</h2>
             <ul>
                 <li>
-                    {' '}
                     If captions are missing, add them.
                     <ul>
-                        <li>Use closed captions (visible on demand) if possible. </li>
+                        <li>Use closed captions (visible on demand) if possible.</li>
                         <li>
-                            {' '}
-                            Use open captions (always visible) if your media player or hosting provider doesn't support closed captions.{' '}
+                            Use open captions (always visible) if your media player or hosting provider doesn't support closed captions.
                         </li>
                     </ul>
                 </li>
                 <li>
-                    {' '}
                     Make sure the captions provide an accurate and complete description of the audio content:
                     <ul>
                         <li>Include all speech.</li>
