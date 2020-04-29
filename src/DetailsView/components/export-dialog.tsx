@@ -11,6 +11,7 @@ import { ReportExportFormat } from '../../common/extension-telemetry-events';
 import { FileURLProvider } from '../../common/file-url-provider';
 import { NamedFC } from '../../common/react/named-fc';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
+import * as styles from './export-dialog.scss';
 
 export interface ExportDialogProps {
     deps: ExportDialogDeps;
@@ -124,7 +125,7 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
             }}
             modalProps={{
                 isBlocking: false,
-                containerClassName: 'insights-dialog-main-override',
+                containerClassName: styles.exportDialog,
             }}
         >
             <TextField

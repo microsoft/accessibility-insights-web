@@ -4,7 +4,7 @@ import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { ISelection } from 'office-ui-fabric-react';
 
-import { ScanMetadata } from 'common/types/store-data/scan-meta-data';
+import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { NamedFC } from '../../common/react/named-fc';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';

@@ -3,7 +3,7 @@
 import { ISelection } from 'office-ui-fabric-react';
 import * as React from 'react';
 
-import { ScanMetadata } from 'common/types/store-data/scan-meta-data';
+import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { NamedFC } from '../../common/react/named-fc';

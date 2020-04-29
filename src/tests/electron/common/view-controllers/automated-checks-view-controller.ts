@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { SpectronAsyncClient } from 'tests/electron/common/view-controllers/spectron-async-client';
 import { settingsPanelSelectors } from 'tests/end-to-end/common/element-identifiers/details-view-selectors';
-import * as WebDriverIO from 'webdriverio';
 import {
     AutomatedChecksViewSelectors,
     ScreenshotViewSelectors,
@@ -9,7 +9,7 @@ import {
 import { ViewController } from './view-controller';
 
 export class AutomatedChecksViewController extends ViewController {
-    constructor(client: WebDriverIO.Client<void>) {
+    constructor(client: SpectronAsyncClient) {
         super(client);
     }
 
@@ -44,9 +44,10 @@ export class AutomatedChecksViewController extends ViewController {
 
     public async setToggleState(toggleSelector: string, newState: boolean): Promise<void> {
         await this.waitForSelector(toggleSelector);
-        const oldState = await this.client.$(toggleSelector).getAttribute('aria-checked');
+        const oldState = await this.client.getAttribute<string>(toggleSelector, 'aria-checked');
 
-        if (oldState !== newState) {
+        const oldStateBool = oldState.toLowerCase() === 'true';
+        if (oldStateBool !== newState) {
             await this.click(toggleSelector);
             await this.expectToggleState(toggleSelector, newState);
         }

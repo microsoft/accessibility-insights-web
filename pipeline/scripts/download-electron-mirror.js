@@ -7,7 +7,7 @@ const fs = require('fs');
 
 download(
     {
-        version: pkg.devDependencies.electron,
+        version: pkg.dependencies.electron,
         cache: 'drop/zips',
     },
     function (err, zipPath) {

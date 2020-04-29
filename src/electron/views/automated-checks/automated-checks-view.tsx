@@ -8,8 +8,10 @@ import { CardSelectionStoreData } from 'common/types/store-data/card-selection-s
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { ScanMetadata } from 'common/types/store-data/scan-meta-data';
-import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
+import {
+    ScanMetadata,
+    UnifiedScanResultStoreData,
+} from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { CardsView, CardsViewDeps } from 'DetailsView/components/cards-view';
 import {

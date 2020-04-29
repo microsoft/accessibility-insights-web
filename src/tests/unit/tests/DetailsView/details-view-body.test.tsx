@@ -4,8 +4,7 @@ import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { getDefaultFeatureFlagsWeb } from 'common/feature-flags';
-import { ScanMetadata } from 'common/types/store-data/scan-meta-data';
-import { TargetAppData } from 'common/types/store-data/unified-data-interface';
+import { ScanMetadata, TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { DetailsViewCommandBarDeps } from 'DetailsView/components/details-view-command-bar';
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
