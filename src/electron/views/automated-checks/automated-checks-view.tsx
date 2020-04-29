@@ -8,8 +8,10 @@ import { CardSelectionStoreData } from 'common/types/store-data/card-selection-s
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
-import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
+import {
+    ScanMetadata,
+    UnifiedScanResultStoreData,
+} from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { CardsView, CardsViewDeps } from 'DetailsView/components/cards-view';
 import {
@@ -84,7 +86,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                 highlightedResultUids,
             );
 
-            const scanMetadata: ScanMetaData = {
+            const scanMetadata: ScanMetadata = {
                 timestamp: unifiedScanResultStoreData.timestamp,
                 toolData: unifiedScanResultStoreData.toolInfo,
                 targetAppInfo: this.props.unifiedScanResultStoreData.targetAppInfo,
@@ -94,7 +96,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
             return this.renderLayout(
                 cardsViewData,
                 scanMetadata,
-                this.renderResults(cardsViewData),
+                this.renderResults(cardsViewData, scanMetadata),
                 <ScreenshotView viewModel={screenshotViewModel} />,
             );
         } else {
@@ -104,7 +106,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
 
     private renderLayout(
         cardsViewData: CardsViewModel,
-        scanMetaData: ScanMetaData,
+        scanMetadata: ScanMetadata,
         primaryContent: JSX.Element,
         optionalSidePanel?: JSX.Element,
     ): JSX.Element {
@@ -126,7 +128,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                             scanStoreData={this.props.scanStoreData}
                             featureFlagStoreData={this.props.featureFlagStoreData}
                             cardsViewData={cardsViewData}
-                            scanMetaData={scanMetaData}
+                            scanMetadata={scanMetadata}
                         />
                         <main>
                             <HeaderSection />
@@ -172,11 +174,11 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
         );
     }
 
-    private renderResults(cardsViewData: CardsViewModel): JSX.Element {
+    private renderResults(cardsViewData: CardsViewModel, scanMetadata: ScanMetadata): JSX.Element {
         return (
             <CardsView
                 deps={this.props.deps}
-                targetAppInfo={this.props.unifiedScanResultStoreData.targetAppInfo}
+                scanMetadata={scanMetadata}
                 userConfigurationStoreData={this.props.userConfigurationStoreData}
                 cardsViewData={cardsViewData}
             />

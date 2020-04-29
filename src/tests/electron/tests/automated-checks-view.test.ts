@@ -88,9 +88,9 @@ describe('AutomatedChecksView', () => {
         expectedTitle: string,
         expectedFailures: number,
     ): Promise<void> {
-        const title = await automatedChecksView.client
-            .$(AutomatedChecksViewSelectors.nthRuleGroupTitle(position))
-            .getText();
+        const title = await automatedChecksView.client.getText(
+            AutomatedChecksViewSelectors.nthRuleGroupTitle(position),
+        );
         expect(title).toEqual(expectedTitle);
 
         const failures = await automatedChecksView.client.$$(
@@ -103,9 +103,9 @@ describe('AutomatedChecksView', () => {
         position: number,
         expectedTitle: string,
     ): Promise<void> {
-        const title = await automatedChecksView.client
-            .$(AutomatedChecksViewSelectors.nthRuleGroupTitle(position))
-            .getText();
+        const title = await automatedChecksView.client.getText(
+            AutomatedChecksViewSelectors.nthRuleGroupTitle(position),
+        );
         expect(title).toEqual(expectedTitle);
 
         const failures = await automatedChecksView.client.$$(
@@ -126,28 +126,22 @@ describe('AutomatedChecksView', () => {
         const expectedScreenshotImage =
             'data:image/png;base64,' + axeRuleResultExample.axeContext.screenshot;
 
-        const actualScreenshotImage = await automatedChecksView
-            .findElement(ScreenshotViewSelectors.screenshotImage)
-            .getAttribute('src');
-
+        const actualScreenshotImage = await automatedChecksView.client.getAttribute<string>(
+            ScreenshotViewSelectors.screenshotImage,
+            'src',
+        );
         expect(actualScreenshotImage).toEqual(expectedScreenshotImage);
     });
 
     it('ScreenshotView renders expected number/size of highlight boxes in expected positions', async () => {
         await automatedChecksView.waitForScreenshotViewVisible();
 
-        const highlightBoxes = await automatedChecksView.client.$$(
+        const styles = await automatedChecksView.client.getAttribute<string[]>(
             ScreenshotViewSelectors.highlightBox,
+            'style',
         );
 
-        const actualHighlightBoxStyles: PositionStyles[] = [];
-        for (let i = 1; i <= highlightBoxes.length; i++) {
-            const style = await automatedChecksView
-                .findElement(ScreenshotViewSelectors.getHighlightBoxByIndex(i))
-                .getAttribute('style');
-            actualHighlightBoxStyles.push(extractPositionStyles(style));
-        }
-
+        const actualHighlightBoxStyles = styles.map(extractPositionStyles);
         verifyHighlightBoxStyles(actualHighlightBoxStyles, [
             { width: 10.7407, height: 6.04167, top: 3.28125, left: 89.2593 },
             { width: 10.7407, height: 6.04167, top: 3.28125, left: 89.2593 },

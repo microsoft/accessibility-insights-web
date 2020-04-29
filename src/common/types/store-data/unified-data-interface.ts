@@ -44,6 +44,13 @@ export interface ToolData {
     applicationProperties: ApplicationProperties;
 }
 
+export type ScanMetadata = {
+    timestamp: string;
+    toolData: ToolData;
+    targetAppInfo: TargetAppData;
+    deviceName?: string;
+};
+
 export interface UnifiedRule {
     id: string;
     description: string;

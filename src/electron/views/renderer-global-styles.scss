@@ -10,9 +10,3 @@
 .ms-Fabric {
     color: $primary-text;
 }
-
-//  Required as GenericDialog is not using css-modules. Once that is done, this can be removed.
-.insights-dialog-main-override {
-    max-width: 25%;
-    width: 25%;
-}

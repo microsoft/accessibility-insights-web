@@ -3,7 +3,6 @@
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
-import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
 import { ISelection, Spinner, SpinnerSize } from 'office-ui-fabric-react';
 import * as React from 'react';
 
@@ -22,7 +21,10 @@ import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-st
 import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
-import { UnifiedScanResultStoreData } from '../common/types/store-data/unified-data-interface';
+import {
+    ScanMetadata,
+    UnifiedScanResultStoreData,
+} from '../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
@@ -206,7 +208,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
             url: this.props.storeState.tabStoreData.url,
         };
 
-        const scanMetaData: ScanMetaData = {
+        const scanMetadata: ScanMetadata = {
             timestamp: this.props.storeState.unifiedScanResultStoreData.timestamp,
             targetAppInfo: targetAppInfo,
             toolData: this.props.storeState.unifiedScanResultStoreData.toolInfo,
@@ -240,7 +242,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
                 scanIncompleteWarnings={
                     storeState.unifiedScanResultStoreData.scanIncompleteWarnings
                 }
-                scanMetaData={scanMetaData}
+                scanMetadata={scanMetadata}
             />
         );
     }

@@ -7,8 +7,8 @@ import {
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
+import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { CardsViewModel } from '../../common/types/store-data/card-view-model';
-import { TargetAppData } from '../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 
 export type CardsViewDeps = FailedInstancesSectionDeps;
@@ -16,7 +16,7 @@ export type CardsViewDeps = FailedInstancesSectionDeps;
 export interface CardsViewProps {
     deps: CardsViewDeps;
     userConfigurationStoreData: UserConfigurationStoreData;
-    targetAppInfo: TargetAppData;
+    scanMetadata: ScanMetadata;
     cardsViewData: CardsViewModel;
 }
 
@@ -26,7 +26,7 @@ export const CardsView = NamedFC<CardsViewProps>('CardsView', props => {
             <FailedInstancesSection
                 deps={props.deps}
                 userConfigurationStoreData={props.userConfigurationStoreData}
-                targetAppInfo={props.targetAppInfo}
+                scanMetadata={props.scanMetadata}
                 shouldAlertFailuresCount={true}
                 cardsViewData={props.cardsViewData}
             />

@@ -8,7 +8,7 @@ import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import * as React from 'react';
 
-import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
+import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { ReportBody, ReportBodyProps } from './components/report-sections/report-body';
 import { ReportCollapsibleContainerControl } from './components/report-sections/report-collapsible-container';
 import {
@@ -33,7 +33,7 @@ export class ReportHtmlGenerator {
         scanDate: Date,
         description: string,
         cardsViewData: CardsViewModel,
-        scanMetadata: ScanMetaData,
+        scanMetadata: ScanMetadata,
     ): string {
         const HeadSection = this.sectionFactory.HeadSection;
         const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(<HeadSection />);
@@ -55,7 +55,6 @@ export class ReportHtmlGenerator {
             getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,
             fixInstructionProcessor: this.fixInstructionProcessor,
             scanMetadata,
-            targetAppInfo: scanMetadata.targetAppInfo,
         } as SectionProps;
 
         const props: ReportBodyProps = {

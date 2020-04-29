@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { DateProvider } from 'common/date-provider';
-import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
+import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import {
     DetailsSectionProps,
     makeDetailsSectionFC,
@@ -24,19 +24,19 @@ describe('makeDetailsSection', () => {
     const scanMetadata = {
         targetAppInfo,
         deviceName,
-    } as ScanMetaData;
+    } as ScanMetadata;
     const displayedScanTargetInfo: ScanDetailInfo = {
         label: 'item label',
         content: 'item content',
     };
     let toUtcStringMock: IMock<(date: Date) => string>;
-    let getDisplayedScanTargetInfoMock: IMock<(scanMetaData: ScanMetaData) => ScanDetailInfo>;
+    let getDisplayedScanTargetInfoMock: IMock<(scanMetadata: ScanMetadata) => ScanDetailInfo>;
 
     beforeEach(() => {
         toUtcStringMock = Mock.ofInstance(DateProvider.getUTCStringFromDate, MockBehavior.Strict);
         toUtcStringMock.setup(getter => getter(scanDate)).returns(() => '2018-03-12 11:24 PM UTC');
         getDisplayedScanTargetInfoMock = Mock.ofType<
-            (scanMetaData: ScanMetaData) => ScanDetailInfo
+            (scanMetadata: ScanMetadata) => ScanDetailInfo
         >();
         getDisplayedScanTargetInfoMock
             .setup(g => g(scanMetadata))

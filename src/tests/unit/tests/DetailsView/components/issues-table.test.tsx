@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DateProvider } from 'common/date-provider';
+import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import {
     IssuesTable,
@@ -227,7 +228,9 @@ class TestPropsBuilder {
                 targetPageUrl: '',
                 targetPageTitle: '',
             },
-            targetAppInfo: { name: 'app' },
+            scanMetadata: {
+                targetAppInfo: { name: 'app' },
+            } as ScanMetadata,
             cardsViewData: {
                 cards: exampleUnifiedStatusResults,
                 visualHelperEnabled: true,
