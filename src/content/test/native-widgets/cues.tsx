@@ -25,9 +25,7 @@ export const infoAndExamples = createWithTitle(
                 </li>
                 <li>
                     The <Markup.Term>readonly</Markup.Term> attribute is supported by <Markup.Code>{`<textarea>`}</Markup.Code> elements and
-                    by
-                    {' ' + ''}
-                    <Markup.Code>{`<input>`}</Markup.Code> elements that accept text input. A read-only widget is non-editable, but it is
+                    by <Markup.Code>{`<input>`}</Markup.Code> elements that accept text input. A read-only widget is non-editable, but it is
                     focusable, and users can select its text.
                 </li>
                 <li>
