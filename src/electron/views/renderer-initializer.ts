@@ -132,6 +132,7 @@ const previewFeaturesActions = new PreviewFeaturesActions(); // not really used 
 const contentActions = new ContentActions(); // not really used but needed by DetailsViewStore
 const featureFlagActions = new FeatureFlagActions();
 const ipcRendererShim = new IpcRendererShim(ipcRenderer);
+ipcRendererShim.initialize();
 
 const storageAdapter = new ElectronStorageAdapter(indexedDBInstance);
 const appDataAdapter = new ElectronAppDataAdapter(ipcRendererShim);
