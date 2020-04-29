@@ -173,6 +173,7 @@ exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
         },
         "windowStateActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "userConfigurationStore": undefined,
           "windowFrameActionCreator": undefined,
           "windowStateActions": undefined,
         },
@@ -199,6 +200,7 @@ exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
             },
             "windowStateActionCreator": proxy {
               "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "userConfigurationStore": undefined,
               "windowFrameActionCreator": undefined,
               "windowStateActions": undefined,
             },
@@ -237,6 +239,7 @@ exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
         },
         "windowStateActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "userConfigurationStore": undefined,
           "windowFrameActionCreator": undefined,
           "windowStateActions": undefined,
         },
@@ -265,6 +268,7 @@ exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
         },
         "windowStateActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "userConfigurationStore": undefined,
           "windowFrameActionCreator": undefined,
           "windowStateActions": undefined,
         },
@@ -291,6 +295,7 @@ exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
             },
             "windowStateActionCreator": proxy {
               "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "userConfigurationStore": undefined,
               "windowFrameActionCreator": undefined,
               "windowStateActions": undefined,
             },
@@ -329,6 +334,7 @@ exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
         },
         "windowStateActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "userConfigurationStore": undefined,
           "windowFrameActionCreator": undefined,
           "windowStateActions": undefined,
         },
@@ -357,6 +363,7 @@ exports[`AutomatedChecksView renders when status scan <undefined> 1`] = `
         },
         "windowStateActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "userConfigurationStore": undefined,
           "windowFrameActionCreator": undefined,
           "windowStateActions": undefined,
         },
@@ -383,6 +390,7 @@ exports[`AutomatedChecksView renders when status scan <undefined> 1`] = `
             },
             "windowStateActionCreator": proxy {
               "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "userConfigurationStore": undefined,
               "windowFrameActionCreator": undefined,
               "windowStateActions": undefined,
             },
@@ -421,6 +429,7 @@ exports[`AutomatedChecksView renders when status scan <undefined> 1`] = `
         },
         "windowStateActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "userConfigurationStore": undefined,
           "windowFrameActionCreator": undefined,
           "windowStateActions": undefined,
         },
