@@ -13,7 +13,7 @@ export class Action<TPayload> {
     private scope: string = 'DEFAULT_SCOPE';
 
     public invoke(payload: TPayload, scope: string = null): void {
-        const activeScope = scope ? scope : this.scope;
+        const activeScope = scope ?? this.scope;
         if (Action.executingScopes[activeScope]) {
             throw new Error(
                 `Cannot invoke an action with scope ${activeScope} from inside another action with the same scope`,
