@@ -18,6 +18,8 @@ import {
 export class IpcRendererShim {
     public constructor(private readonly ipcRenderer: IpcRenderer) {}
 
+    private readonly invokeScope: string = 'IpcRendererShim';
+
     public initialize(): void {
         this.ipcRenderer.on(IPC_BROWSERWINDOW_MAXIMIZE_CHANNEL_NAME, this.onMaximize);
         this.ipcRenderer.on(IPC_BROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME, this.onUnmaximize);
@@ -25,15 +27,15 @@ export class IpcRendererShim {
     }
 
     private onMaximize = (): void => {
-        this.maximizeEvent.invoke();
+        this.maximizeEvent.invoke(null, this.invokeScope);
     };
 
     private onEnterFullScreen = (): void => {
-        this.enterFullScreenEvent.invoke();
+        this.enterFullScreenEvent.invoke(null, this.invokeScope);
     };
 
     private onUnmaximize = (): void => {
-        this.unmaximizeEvent.invoke();
+        this.unmaximizeEvent.invoke(null, this.invokeScope);
     };
 
     // Listen to these events to receive data sent TO renderer process
