@@ -77,7 +77,7 @@
         "@types/ua-parser-js": "^0.7.33",
         "@types/uuid": "^7.0.3",
         "7zip-bin": "^5.0.3",
-        "app-builder-lib": "^22.5.1",
+        "app-builder-lib": "^22.6.0",
         "case-sensitive-paths-webpack-plugin": "^2.3.0",
         "codecov": "^3.6.5",
         "commander": "^5.1.0",
