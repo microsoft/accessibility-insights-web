@@ -10,7 +10,7 @@ describe('WindowVariableConfiguration', () => {
 
     const defaultTelemetryBuildName = 'unknownBuild';
     const defaultName = 'Accessibility Insights for Web';
-    const defaultUnifiedAppVersion = 'dev';
+    const defaultUnifiedAppVersion = '0.0.0';
     const newName = 'New Extension Name';
 
     it('reflects the expected default values if none have been set (fullName)', () => {
