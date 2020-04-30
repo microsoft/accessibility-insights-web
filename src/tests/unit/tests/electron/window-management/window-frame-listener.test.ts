@@ -1,108 +1,91 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { BrowserWindow } from 'electron';
+import { Action } from 'common/flux/action';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
+import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import { WindowFrameListener } from 'electron/window-management/window-frame-listener';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe(WindowFrameListener, () => {
     let windowStateActionsCreatorMock: IMock<WindowStateActionCreator>;
     let testSubject: WindowFrameListener;
-    let browserWindowMock: IMock<BrowserWindow>;
+    let ipcRendererShimMock: IMock<IpcRendererShim>;
+    let maximizeEvent;
+    let unmaximizeEvent;
+    let enterFullScreenEvent;
 
     beforeEach(() => {
-        windowStateActionsCreatorMock = Mock.ofType(WindowStateActionCreator);
-        browserWindowMock = Mock.ofType(BrowserWindow, MockBehavior.Strict);
+        windowStateActionsCreatorMock = Mock.ofType<WindowStateActionCreator>(
+            undefined,
+            MockBehavior.Strict,
+        );
+        ipcRendererShimMock = Mock.ofType<IpcRendererShim>(undefined, MockBehavior.Strict);
+
+        maximizeEvent = new Action<void>();
+        unmaximizeEvent = new Action<void>();
+        enterFullScreenEvent = new Action<void>();
 
         testSubject = new WindowFrameListener(
             windowStateActionsCreatorMock.object,
-            browserWindowMock.object,
+            ipcRendererShimMock.object,
         );
     });
 
     afterEach(() => {
-        browserWindowMock.verifyAll();
         windowStateActionsCreatorMock.verifyAll();
+        ipcRendererShimMock.verifyAll();
     });
+
+    function setupForListenerInitialization(): void {
+        ipcRendererShimMock
+            .setup(b => b.fromBrowserWindowMaximize)
+            .returns(() => maximizeEvent)
+            .verifiable(Times.once());
+        ipcRendererShimMock
+            .setup(b => b.fromBrowserWindowUnmaximize)
+            .returns(() => unmaximizeEvent)
+            .verifiable(Times.once());
+        ipcRendererShimMock
+            .setup(b => b.fromBrowserWindowEnterFullScreen)
+            .returns(() => enterFullScreenEvent)
+            .verifiable(Times.once());
+    }
 
     it('do nothing on action invocation before initialize', () => {
-        browserWindowMock.setup(b => b.on(It.isAny(), It.isAny())).verifiable(Times.never());
+        maximizeEvent.invoke();
     });
 
-    describe('validate window listeners', () => {
-        let maximizeCallback: Function;
-        let unmaximizeCallback: Function;
-        let enterFullScreenCallback: Function;
-        let leaveFullScreenCallback: Function;
+    it('register listeners during initialize', () => {
+        setupForListenerInitialization();
+        testSubject.initialize();
+    });
+
+    describe('validate states in response to events', () => {
+        let actualState;
 
         beforeEach(() => {
-            setupVerifiableWindowEventCallback('maximize', cb => (maximizeCallback = cb));
-            setupVerifiableWindowEventCallback('unmaximize', cb => (unmaximizeCallback = cb));
-            setupVerifiableWindowEventCallback(
-                'enter-full-screen',
-                cb => (enterFullScreenCallback = cb),
-            );
-            setupVerifiableWindowEventCallback(
-                'leave-full-screen',
-                cb => (leaveFullScreenCallback = cb),
-            );
-
+            setupForListenerInitialization();
+            windowStateActionsCreatorMock
+                .setup(x => x.setWindowState(It.isAny()))
+                .callback(state => (actualState = state))
+                .verifiable(Times.once());
             testSubject.initialize();
         });
 
-        it('validate window state on maximize', () => {
-            windowStateActionsCreatorMock
-                .setup(b => b.setWindowState({ currentWindowState: 'maximized' }))
-                .verifiable(Times.once());
-
-            maximizeCallback();
+        it('set state to maximized on maximize event', () => {
+            maximizeEvent.invoke();
+            expect(actualState.currentWindowState).toBe('maximized');
         });
 
-        it('validate window state on unmaximize', () => {
-            windowStateActionsCreatorMock
-                .setup(b => b.setWindowState({ currentWindowState: 'customSize' }))
-                .verifiable(Times.once());
-
-            unmaximizeCallback();
+        it('set state to customSize on unmaximize event', () => {
+            unmaximizeEvent.invoke();
+            expect(actualState.currentWindowState).toBe('customSize');
         });
 
-        it('validate window state on fullscreen', () => {
-            windowStateActionsCreatorMock
-                .setup(b => b.setWindowState({ currentWindowState: 'fullScreen' }))
-                .verifiable(Times.once());
-
-            enterFullScreenCallback();
+        it('set state to fullscreen on fullscreeen event', () => {
+            enterFullScreenEvent.invoke();
+            expect(actualState.currentWindowState).toBe('fullScreen');
         });
-
-        it('validate window state on leaving full screen to maximized state', () => {
-            browserWindowMock.setup(b => b.isMaximized()).returns(() => true);
-            windowStateActionsCreatorMock
-                .setup(b => b.setWindowState({ currentWindowState: 'maximized' }))
-                .verifiable(Times.once());
-
-            leaveFullScreenCallback();
-        });
-
-        it('validate window state on leaving full screen to custom size', () => {
-            browserWindowMock.setup(b => b.isMaximized()).returns(() => false);
-            windowStateActionsCreatorMock
-                .setup(b => b.setWindowState({ currentWindowState: 'customSize' }))
-                .verifiable(Times.once());
-
-            leaveFullScreenCallback();
-        });
-
-        function setupVerifiableWindowEventCallback(
-            eventName: string,
-            callback: (eventCallback: Function) => void,
-        ): void {
-            browserWindowMock
-                .setup(b => b.on(eventName as any, It.isAny()))
-                .callback((event, cb) => {
-                    callback(cb);
-                })
-                .verifiable(Times.once());
-        }
     });
 });

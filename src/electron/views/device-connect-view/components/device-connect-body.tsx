@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
-import { BrowserWindow } from 'electron';
+import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import * as React from 'react';
 
 import { DeviceConnectState } from '../../../flux/types/device-connect-state';
@@ -22,7 +22,7 @@ export type DeviceConnectBodyState = DeviceConnectPortEntryViewState & {
 };
 
 export type DeviceConnectBodyDeps = {
-    currentWindow: BrowserWindow;
+    ipcRendererShim: IpcRendererShim;
 } & DeviceConnectPortEntryDeps &
     DeviceConnectFooterDeps &
     DeviceConnectHeaderDeps;
@@ -48,7 +48,7 @@ export const DeviceConnectBody = NamedFC<DeviceConnectBodyProps>('DeviceConnectB
             />
             <DeviceConnectFooter
                 deps={props.deps}
-                cancelClick={props.deps.currentWindow.close}
+                cancelClick={props.deps.ipcRendererShim.closeWindow}
                 canStartTesting={canStartTesting}
             ></DeviceConnectFooter>
         </div>

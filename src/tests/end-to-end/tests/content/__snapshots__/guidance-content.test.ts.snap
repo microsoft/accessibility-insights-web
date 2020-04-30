@@ -25474,7 +25474,7 @@ exports[`Guidance Content pages test/semantics/guidance matches the snapshot 1`]
       >
         <a
           class="ms-Link insights-link root-000"
-          href="https://www.w3.org/TR/wai-aria-practices-1.1/"
+          href="https://www.w3.org/TR/wai-aria-practices-1.1/#presentation_role"
           target="_blank"
         >
           Intentionally Hiding Semantics with the Presentation Role
@@ -25699,9 +25699,6 @@ exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches t
     <div
       class="content"
     >
-      <h1>
-        Headers
-      </h1>
       <p>
         Coded headers must be used correctly.
       </p>
@@ -25959,9 +25956,11 @@ exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches t
           </div>
           <p>
             Using 
-            <strong>
+            <span
+              class="insights-code"
+            >
               &lt;th&gt;
-            </strong>
+            </span>
              elements for headers identifies them correctly to assistive technologies. All users can distinguish between column headers and data cells.
           </p>
         </div>
@@ -26131,9 +26130,6 @@ exports[`Guidance Content pages test/semantics/headersAttribute/infoAndExamples 
     <div
       class="content"
     >
-      <h1>
-        Headers attribute
-      </h1>
       <p>
         The 
         <span
@@ -27821,7 +27817,7 @@ exports[`Guidance Content pages test/semantics/tableSemantics/infoAndExamples ma
       >
         <a
           class="ms-Link insights-link root-000"
-          href="https://www.w3.org/TR/wai-aria-practices-1.1/"
+          href="https://www.w3.org/TR/wai-aria-practices-1.1/#presentation_role"
           target="_blank"
         >
           Intentionally Hiding Semantics with the Presentation Role
