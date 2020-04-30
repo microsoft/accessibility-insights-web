@@ -41,7 +41,7 @@ const headersAttributeHowToTest: JSX.Element = (
                 <ol>
                     <li>
                         Each header cell (<Markup.Tag tagName="th" /> element(s)) must have an{' '}
-                        <Markup.Code>id</Markup.Code> attribute.
+                        <Markup.CodeTerm>id</Markup.CodeTerm> attribute.
                     </li>
                     <li>
                         Each data cell's <Markup.CodeTerm>headers</Markup.CodeTerm> attribute must
