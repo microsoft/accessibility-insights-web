@@ -382,6 +382,10 @@ module.exports = function (grunt) {
             config.options.appInsightsInstrumentationKey = grunt.option(telemetryKeyIdentifier);
         }
 
+        // Add unifiedAppVersion value for electron-based products
+        if (config.options.productCategory === 'electron') {
+            config.options.unifiedAppVersion = grunt.option('unified-version') || '0.0.0';
+        }
         const configJSON = JSON.stringify(config, undefined, 4);
         grunt.file.write(configJSONPath, configJSON);
         const copyrightHeader =
