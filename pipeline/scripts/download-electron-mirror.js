@@ -34,7 +34,7 @@ const downloadElectronArtifact = async (artifactName, destinationPath) => {
     console.log(`zip downloaded to dir ${zipFilePath}`);
     console.log(`extracting to ${destinationPath}`);
 
-    fs.rmDirSync(destinationPath, { recursive: true });
+    fs.rmdirSync(destinationPath, { recursive: true });
 
     await extract(zipPath, { dir: destinationPath });
 };
