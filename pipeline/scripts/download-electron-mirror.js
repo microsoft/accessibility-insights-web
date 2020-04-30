@@ -17,7 +17,7 @@ if (
 
 const downloadMirrors = async () => {
     await downloadElectronArtifact('electron', 'node_modules/electron/dist');
-    await downloadElectronArtifact('chromedriver', 'node_modules/electron-chromedriver/bin');
+    // await downloadElectronArtifact('chromedriver', 'node_modules/electron-chromedriver/bin');
 };
 
 const downloadElectronArtifact = async (artifactName, destinationPath) => {
