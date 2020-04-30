@@ -25699,9 +25699,6 @@ exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches t
     <div
       class="content"
     >
-      <h1>
-        Headers
-      </h1>
       <p>
         Coded headers must be used correctly.
       </p>
@@ -26133,9 +26130,6 @@ exports[`Guidance Content pages test/semantics/headersAttribute/infoAndExamples 
     <div
       class="content"
     >
-      <h1>
-        Headers attribute
-      </h1>
       <p>
         The 
         <span
