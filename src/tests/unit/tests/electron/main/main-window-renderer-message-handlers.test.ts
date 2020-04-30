@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { App, BrowserWindow, IpcMain, IpcMainEvent, WebContents } from 'electron';
+import { BrowserWindow, IpcMain, IpcMainEvent, WebContents } from 'electron';
 import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
 import {
     IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
