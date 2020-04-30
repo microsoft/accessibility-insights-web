@@ -30,15 +30,11 @@ export class WindowStateActionCreator {
     }
 
     private setWindowSizeBasedOnLastWindowSize(): void {
-        const lastWindowSize: WindowSize = this.getLastWindowSizeFromStore();
+        const lastWindowSize: WindowSize = this.userConfigurationStore.getState().lastWindowSize;
         if (lastWindowSize !== null) {
             this.windowFrameActionCreator.setWindowSize(lastWindowSize);
         } else {
             this.windowFrameActionCreator.maximize();
         }
-    }
-
-    private getLastWindowSizeFromStore(): WindowSize {
-        return this.userConfigurationStore.getState().lastWindowSize;
     }
 }
