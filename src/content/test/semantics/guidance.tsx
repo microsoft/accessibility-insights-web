@@ -158,7 +158,7 @@ export const guidance = create(({ Markup, Link }) => (
         </Markup.Links>
         <h4>Additional guidance</h4>
         <Markup.Links>
-            <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-practices-1.1/">
+            <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-practices-1.1/#presentation_role">
                 Intentionally Hiding Semantics with the Presentation Role
             </Markup.HyperLink>
         </Markup.Links>

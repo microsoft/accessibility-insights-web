@@ -18,9 +18,10 @@ const headersHowToTest: JSX.Element = (
     <div>
         <p>
             The visual helper for this requirement highlights elements that are coded as table
-            headers. Coded headers include <Markup.CodeTerm>{`<th>`}</Markup.CodeTerm> elements and
-            any element with a <Markup.CodeTerm>role</Markup.CodeTerm> attribute set to{' '}
-            <Markup.Term>"columnheader"</Markup.Term> or <Markup.Term>"rowheader"</Markup.Term>.
+            headers. Coded headers include <Markup.Tag tagName="th" /> elements and any element with
+            a <Markup.CodeTerm>role</Markup.CodeTerm> attribute set to "
+            <Markup.CodeTerm>columnheader</Markup.CodeTerm>" or "
+            <Markup.CodeTerm>rowheader</Markup.CodeTerm>".
         </p>
         <ol>
             <li>
@@ -40,15 +41,25 @@ const headersHowToTest: JSX.Element = (
             <li>
                 Examine each data table to identify cells that function as headers:
                 <ol>
-                    A cell functions as a header if it provides a label for one or more rows or
-                    columns of data.
+                    <li>
+                        A cell functions as a header if it provides a label for one or more rows or
+                        columns of data.
+                    </li>
+                    <li>A cell does not function as a header if it serves any other purpose.</li>
                 </ol>
-                <ol>A cell does not function as a header if it serves any other purpose.</ol>
             </li>
             <li>
                 Verify that coded headers are used correctly:
-                <ol>Cells that function as headers must be coded as headers, and</ol>
-                <ol>Cells that do not function as headers must not be coded as headers.</ol>
+                <ol>
+                    <li>
+                        Cells that function as headers <Markup.Emphasis>must be</Markup.Emphasis>{' '}
+                        coded as headers, and
+                    </li>
+                    <li>
+                        Cells that do not function as headers{' '}
+                        <Markup.Emphasis>must not be</Markup.Emphasis> coded as headers.
+                    </li>
+                </ol>
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>

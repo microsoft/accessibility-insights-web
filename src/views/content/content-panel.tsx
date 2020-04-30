@@ -36,6 +36,9 @@ export const ContentPanel = NamedFC<ContentPanelProps>(
                 type={PanelType.medium}
                 isLightDismiss={true}
                 closeButtonAriaLabel="Close panel"
+                headerText={ContentPage.pageTitle}
+                headerTextProps={{ role: 'heading', 'aria-level': 1 }}
+                headerClassName={'content-header'}
             >
                 <div className="content">
                     <ContentPage deps={deps} />
