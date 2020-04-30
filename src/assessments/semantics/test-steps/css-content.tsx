@@ -16,7 +16,7 @@ const cssContentHowToTest: JSX.Element = (
     <div>
         <p>
             The visual helper for this requirement highlights content inserted in the page using CSS{' '}
-            <Markup.Term>:before</Markup.Term> or <Markup.Term>:after</Markup.Term>. This procedure
+            <Markup.Code>:before</Markup.Code> or <Markup.Code>:after</Markup.Code>. This procedure
             uses the{' '}
             <NewTabLink href="https://chrome.google.com/webstore/detail/web-developer/bfbameneiokkgbdmiekhjnmfkcnldhhm">
                 Web Developer
@@ -88,8 +88,8 @@ const cssContentHowToTest: JSX.Element = (
 
 const cssContentDescription: JSX.Element = (
     <span>
-        Meaningful content must not be implemented using only CSS <Markup.Term>:before</Markup.Term>{' '}
-        or <Markup.Term>:after</Markup.Term>.
+        Meaningful content must not be implemented using only CSS <Markup.Code>:before</Markup.Code>{' '}
+        or <Markup.Code>:after</Markup.Code>.
     </span>
 );
 
