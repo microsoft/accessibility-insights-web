@@ -31,7 +31,6 @@ describe(MainWindowRendererMessageHandlers, () => {
 
     const windowEventNames = [maximize, unmaximize, enterFullScreen, leaveFullScreen];
 
-    let appMock: IMock<App>;
     let mainWindowMock: IMock<BrowserWindow>;
     let ipcMainMock: IMock<IpcMain>;
     let testSubject: MainWindowRendererMessageHandlers;
@@ -96,12 +95,10 @@ describe(MainWindowRendererMessageHandlers, () => {
         expectedIpcChannels = 0;
         expectedWindowEvents = 0;
 
-        appMock = Mock.ofType<App>(undefined, MockBehavior.Strict);
         mainWindowMock = Mock.ofType<BrowserWindow>(undefined, MockBehavior.Loose);
         ipcMainMock = Mock.ofType<IpcMain>(undefined, MockBehavior.Strict);
 
         testSubject = new MainWindowRendererMessageHandlers(
-            appMock.object,
             mainWindowMock.object,
             ipcMainMock.object,
         );
@@ -112,7 +109,6 @@ describe(MainWindowRendererMessageHandlers, () => {
     });
 
     afterEach(() => {
-        appMock.verifyAll();
         mainWindowMock.verifyAll();
         ipcMainMock.verifyAll();
         expect(Object.keys(ipcHandlers).length).toBe(expectedIpcChannels);
