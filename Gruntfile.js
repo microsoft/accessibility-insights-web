@@ -24,6 +24,10 @@ module.exports = function (grunt) {
         }
     }
 
+    function getUnifiedVersion() {
+        return grunt.option('unified-version') || '0.0.0';
+    }
+
     grunt.initConfig({
         bom: {
             cwd: path.resolve('./src/**/*.{ts,tsx,js,snap,html,scss,css}'),
@@ -384,7 +388,7 @@ module.exports = function (grunt) {
 
         // Add unifiedAppVersion value for electron-based products
         if (config.options.productCategory === 'electron') {
-            config.options.unifiedAppVersion = grunt.option('unified-version') || '0.0.0';
+            config.options.unifiedAppVersion = getUnifiedVersion();
         }
         const configJSON = JSON.stringify(config, undefined, 4);
         grunt.file.write(configJSONPath, configJSON);
@@ -448,7 +452,7 @@ module.exports = function (grunt) {
             `electron-builder.template.yaml`,
         );
 
-        const version = grunt.option('unified-version') || '0.0.0';
+        const version = getUnifiedVersion();
 
         const config = grunt.file.readYAML(srcElectronBuilderConfigFile);
         config.appId = appId;
