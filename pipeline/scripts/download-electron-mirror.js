@@ -2,10 +2,9 @@
 // Licensed under the MIT License.
 const pkg = require('../../package.json');
 const { downloadArtifact } = require('@electron/get');
-const unzipper = require('unzipper');
+const extract = require('extract-zip');
 const fs = require('fs');
 const path = require('path');
-const fstream = require('fstream');
 
 if (
     process.env.ELECTRON_MIRROR_VAR === undefined ||
@@ -17,10 +16,11 @@ if (
 
 const downloadMirrors = async () => {
     await downloadElectronArtifact('electron', 'node_modules/electron/dist');
-    // await downloadElectronArtifact('chromedriver', 'node_modules/electron-chromedriver/bin');
+    await downloadElectronArtifact('chromedriver', 'node_modules/electron-chromedriver/bin');
 };
 
 const downloadElectronArtifact = async (artifactName, destinationPath) => {
+    destinationPath = path.resolve(destinationPath);
     console.log(`downloading ${artifactName} at ${pkg.dependencies.electron}`);
     const zipFilePath = await downloadArtifact({
         version: `${pkg.dependencies.electron}`,
@@ -32,13 +32,11 @@ const downloadElectronArtifact = async (artifactName, destinationPath) => {
         force: true,
     });
     console.log(`zip downloaded to dir ${zipFilePath}`);
-    console.log(`extracting to ${path.resolve(destinationPath)}`);
-    fs.createReadStream(zipFilePath).pipe(
-        unzipper.Extract({
-            path: path.resolve(destinationPath),
-            getWriter: opts => fstream.Writer({ path: opts.path, follow: true }),
-        }),
-    );
+    console.log(`extracting to ${destinationPath}`);
+
+    fs.rmDirSync(destinationPath, { recursive: true });
+
+    await extract(zipPath, { dir: destinationPath });
 };
 
 downloadMirrors().catch(err => {
