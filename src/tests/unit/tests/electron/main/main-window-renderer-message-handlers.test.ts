@@ -7,7 +7,6 @@ import {
     IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
     IPC_FROMRENDERER_CLOSE_BROWSERWINDOW_CHANNEL_NAME,
-    IPC_FROMRENDERER_GET_APP_VERSION_CHANNEL_NAME,
     IPC_FROMRENDERER_MAXIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_RESTORE_BROWSER_WINDOW_CHANNEL_NAME,
@@ -23,7 +22,6 @@ describe(MainWindowRendererMessageHandlers, () => {
     const leaveFullScreen = 'leave-full-screen';
 
     const ipcChannelNames = [
-        IPC_FROMRENDERER_GET_APP_VERSION_CHANNEL_NAME,
         IPC_FROMRENDERER_MAXIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
         IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
         IPC_FROMRENDERER_RESTORE_BROWSER_WINDOW_CHANNEL_NAME,
@@ -124,17 +122,6 @@ describe(MainWindowRendererMessageHandlers, () => {
     it('verify startListening', () => {});
 
     describe('verify listeners on ipcMain', () => {
-        it('getVersion gets Version from browser window', () => {
-            const expectedVersion = 'super ultra massively cool';
-
-            appMock.setup(b => b.getVersion()).returns(() => expectedVersion);
-
-            const event = {} as IpcMainEvent;
-            ipcHandlers[IPC_FROMRENDERER_GET_APP_VERSION_CHANNEL_NAME](event);
-
-            expect(event.returnValue).toBe(expectedVersion);
-        });
-
         it('maximize maximizes browserWindow', () => {
             mainWindowMock.setup(b => b.maximize).verifiable(Times.once());
             const event = {} as IpcMainEvent;

@@ -8,7 +8,6 @@ import {
     IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
     IPC_FROMRENDERER_CLOSE_BROWSERWINDOW_CHANNEL_NAME,
-    IPC_FROMRENDERER_GET_APP_VERSION_CHANNEL_NAME,
     IPC_FROMRENDERER_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME,
     IPC_FROMRENDERER_MAXIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
@@ -50,10 +49,6 @@ export class IpcRendererShim {
     // Call these methods to send data FROM renderer process
     public initializeWindow = (): void => {
         this.ipcRenderer.send(IPC_FROMRENDERER_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME);
-    };
-
-    public getVersion = (): string => {
-        return this.ipcRenderer.sendSync(IPC_FROMRENDERER_GET_APP_VERSION_CHANNEL_NAME);
     };
 
     public maximizeWindow = (): void => {

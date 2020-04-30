@@ -10,5 +10,6 @@ export const defaults = {
         icon128: `icons/brand/blue/brand-blue-128px.png`,
         electronIconBaseName: `icons/brand/blue/electron-icons/icon`,
         telemetryBuildName: 'unknownBuild',
+        unifiedAppVersion: 'dev',
     },
 };
