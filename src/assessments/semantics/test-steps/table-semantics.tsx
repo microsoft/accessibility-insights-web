@@ -52,13 +52,13 @@ const tableSemanticsHowToTest: JSX.Element = (
                     <li>
                         A <Markup.Tag tagName="table" /> element that serves as a data table{' '}
                         <Markup.Emphasis>must not be</Markup.Emphasis> marked with{' '}
-                        <Markup.CodeTerm>role="presentation"</Markup.CodeTerm>
-                        or <Markup.CodeTerm>role="none"</Markup.CodeTerm>.
+                        <Markup.CodeTerm>role="presentation"</Markup.CodeTerm> or{' '}
+                        <Markup.CodeTerm>role="none"</Markup.CodeTerm>.
                     </li>
                     <li>
                         A <Markup.Tag tagName="table" /> element that serves as a layout table{' '}
                         <Markup.Emphasis>must be</Markup.Emphasis> marked with{' '}
-                        <Markup.CodeTerm>role="presentation"</Markup.CodeTerm> or
+                        <Markup.CodeTerm>role="presentation"</Markup.CodeTerm> or{' '}
                         <Markup.CodeTerm>role="none"</Markup.CodeTerm>.
                     </li>
                 </ol>
