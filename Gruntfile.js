@@ -25,7 +25,7 @@ module.exports = function (grunt) {
     }
 
     function getUnifiedVersion() {
-        return grunt.option('unified-version') || '0.0.0';
+        return grunt.option('unified-version');
     }
 
     grunt.initConfig({
@@ -388,7 +388,10 @@ module.exports = function (grunt) {
 
         // Add unifiedAppVersion value for electron-based products
         if (config.options.productCategory === 'electron') {
-            config.options.unifiedAppVersion = getUnifiedVersion();
+            const unifiedAppVersion = getUnifiedVersion();
+            if (unifiedAppVersion) {
+                config.options.unifiedAppVersion = unifiedAppVersion;
+            }
         }
         const configJSON = JSON.stringify(config, undefined, 4);
         grunt.file.write(configJSONPath, configJSON);
