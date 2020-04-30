@@ -79,7 +79,7 @@ export const infoAndExamples = createWithTitle(
             </table>`}
                 passText={
                     <p>
-                        Using <Markup.Term>{`<th>`}</Markup.Term> elements for headers identifies them correctly to assistive technologies.
+                        Using <Markup.Code>{`<th>`}</Markup.Code> elements for headers identifies them correctly to assistive technologies.
                         All users can distinguish between column headers and data cells.
                     </p>
                 }
