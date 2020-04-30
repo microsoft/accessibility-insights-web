@@ -6,6 +6,12 @@ const extract = require('extract-zip');
 const fs = require('fs');
 const path = require('path');
 
+/*
+This script replaces existing electron & chromedriver modules
+with mirror dependencies specified by ELECTRON_MIRROR_VAR
+and ELECTRON_CUSTOM_DIR_VAR (see @electron/get).
+*/
+
 if (
     process.env.ELECTRON_MIRROR_VAR === undefined ||
     process.env.ELECTRON_CUSTOM_DIR_VAR === undefined
