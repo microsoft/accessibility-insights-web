@@ -12,21 +12,22 @@ export class Action<TPayload> {
     private listeners: ((payload: TPayload) => void)[] = [];
     private scope: string = 'DEFAULT_SCOPE';
 
-    public invoke(payload: TPayload): void {
-        if (Action.executingScopes[this.scope]) {
+    public invoke(payload: TPayload, scope: string = null): void {
+        const activeScope = scope ?? this.scope;
+        if (Action.executingScopes[activeScope]) {
             throw new Error(
-                `Cannot invoke an action with scope ${this.scope} from inside another action with the same scope`,
+                `Cannot invoke an action with scope ${activeScope} from inside another action with the same scope`,
             );
         }
 
-        Action.executingScopes[this.scope] = true;
+        Action.executingScopes[activeScope] = true;
 
         try {
             this.listeners.forEach((listener: (payload: TPayload) => void) => {
                 listener(payload);
             });
         } finally {
-            delete Action.executingScopes[this.scope];
+            delete Action.executingScopes[activeScope];
         }
     }
 

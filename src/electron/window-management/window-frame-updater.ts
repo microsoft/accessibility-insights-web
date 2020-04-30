@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BrowserWindow } from 'electron';
 import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
 import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
+import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 
 export class WindowFrameUpdater {
     constructor(
         private readonly windowFrameActions: WindowFrameActions,
-        private readonly browserWindow: BrowserWindow,
+        private readonly ipcRendererShim: IpcRendererShim,
     ) {}
 
     public initialize(): void {
@@ -19,27 +19,22 @@ export class WindowFrameUpdater {
     }
 
     private onMaximize = (): void => {
-        this.browserWindow.maximize();
+        this.ipcRendererShim.maximizeWindow();
     };
 
     private onMinimize = (): void => {
-        this.browserWindow.minimize();
+        this.ipcRendererShim.minimizeWindow();
     };
 
     private onRestore = (): void => {
-        if (this.browserWindow.isFullScreen()) {
-            this.browserWindow.setFullScreen(false);
-        } else {
-            this.browserWindow.unmaximize();
-        }
+        this.ipcRendererShim.restoreWindow();
     };
 
     private onClose = (): void => {
-        this.browserWindow.close();
+        this.ipcRendererShim.closeWindow();
     };
 
     private onSetSize = (sizePayload: SetSizePayload): void => {
-        this.browserWindow.setSize(sizePayload.width, sizePayload.height);
-        this.browserWindow.center();
+        this.ipcRendererShim.setSizeAndCenterWindow(sizePayload);
     };
 }
