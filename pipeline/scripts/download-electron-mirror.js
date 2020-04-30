@@ -36,7 +36,7 @@ const downloadElectronArtifact = async (artifactName, destinationPath) => {
 
     fs.rmdirSync(destinationPath, { recursive: true });
 
-    await extract(zipPath, { dir: destinationPath });
+    await extract(zipFilePath, { dir: destinationPath });
 };
 
 downloadMirrors().catch(err => {
