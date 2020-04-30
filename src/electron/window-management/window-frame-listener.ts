@@ -10,9 +10,9 @@ export class WindowFrameListener {
     ) {}
 
     public initialize(): void {
-        this.ipcRendererShim.enterFullScreenEvent.addListener(this.onEnterFullScreen);
-        this.ipcRendererShim.maximizeEvent.addListener(this.onMaximize);
-        this.ipcRendererShim.unmaximizeEvent.addListener(this.onUnMaximize);
+        this.ipcRendererShim.fromBrowserWindowEnterFullScreen.addListener(this.onEnterFullScreen);
+        this.ipcRendererShim.fromBrowserWindowMaximize.addListener(this.onMaximize);
+        this.ipcRendererShim.fromBrowserWindowUnmaximize.addListener(this.onUnMaximize);
     }
 
     private onMaximize = (): void => {

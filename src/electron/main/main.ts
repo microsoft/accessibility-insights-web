@@ -7,7 +7,7 @@ import log from 'electron-log';
 import { autoUpdater } from 'electron-updater';
 import { AutoUpdaterClient } from 'electron/auto-update/auto-updater-client';
 import { getElectronIconPath } from 'electron/common/get-electron-icon-path';
-import { IPC_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME } from 'electron/ipc/ipc-channel-names';
+import { IPC_FROMRENDERER_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME } from 'electron/ipc/ipc-channel-names';
 import { IpcMessageDispatcher, IpcMessageSink } from 'electron/ipc/ipc-message-dispatcher';
 import { MainWindowRendererMessageHandlers } from 'electron/main/main-window-renderer-message-handlers';
 import { OSType, PlatformInfo } from 'electron/window-management/platform-info';
@@ -53,7 +53,7 @@ const createWindow = () => {
 
     const mainWindowMessageSink: IpcMessageSink = (id, msg) => mainWindow.webContents.send(id, msg);
 
-    ipcMain.on(IPC_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME, () => {
+    ipcMain.on(IPC_FROMRENDERER_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME, () => {
         ipcMessageDispatcher.registerMessageSink(mainWindowMessageSink);
         nativeHighContrastModeListener.startListening();
     });

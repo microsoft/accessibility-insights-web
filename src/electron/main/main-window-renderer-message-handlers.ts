@@ -3,107 +3,136 @@
 import { App, BrowserWindow, IpcMain, IpcMainEvent } from 'electron';
 import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
 import {
-    IPC_APP_VERSION_CHANNEL_NAME,
-    IPC_BROWSERWINDOW_CLOSE_CHANNEL_NAME,
-    IPC_BROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
-    IPC_BROWSERWINDOW_MAXIMIZE_CHANNEL_NAME,
-    IPC_BROWSERWINDOW_MINIMIZE_CHANNEL_NAME,
-    IPC_BROWSERWINDOW_RESTORE_CHANNEL_NAME,
-    IPC_BROWSERWINDOW_SETSIZEANDCENTER_CHANNEL_NAME,
-    IPC_BROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
+    IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
+    IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME,
+    IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
+    IPC_FROMRENDERER_CLOSE_BROWSERWINDOW_CHANNEL_NAME,
+    IPC_FROMRENDERER_GET_APP_VERSION_CHANNEL_NAME,
+    IPC_FROMRENDERER_MAXIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
+    IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
+    IPC_FROMRENDERER_RESTORE_BROWSER_WINDOW_CHANNEL_NAME,
+    IPC_FROMRENDERER_SETSIZEANDCENTER_BROWSER_WINDOW_CHANNEL_NAME,
 } from 'electron/ipc/ipc-channel-names';
 
+type EventCallback = {
+    eventName: string;
+    eventHandler: (event: IpcMainEvent, ...args: any[]) => void;
+};
+
 export class MainWindowRendererMessageHandlers {
+    private ipcMainCallbacks: EventCallback[];
+    private browserWindowCallbacks: EventCallback[];
+
     public constructor(
         private readonly app: App,
-        private readonly mainWindow: BrowserWindow,
+        private readonly browserWindow: BrowserWindow,
         private readonly ipcMain: IpcMain,
     ) {}
 
+    private populateCallbacks(): void {
+        this.ipcMainCallbacks = [
+            {
+                eventName: IPC_FROMRENDERER_GET_APP_VERSION_CHANNEL_NAME,
+                eventHandler: this.onGetVersionFromRenderer,
+            },
+            {
+                eventName: IPC_FROMRENDERER_MAXIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
+                eventHandler: this.onMaximizeFromRenderer,
+            },
+            {
+                eventName: IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
+                eventHandler: this.onMinimizeFromRenderer,
+            },
+            {
+                eventName: IPC_FROMRENDERER_RESTORE_BROWSER_WINDOW_CHANNEL_NAME,
+                eventHandler: this.onRestoreFromRenderer,
+            },
+            {
+                eventName: IPC_FROMRENDERER_CLOSE_BROWSERWINDOW_CHANNEL_NAME,
+                eventHandler: this.onCloseMessageFromRenderer,
+            },
+            {
+                eventName: IPC_FROMRENDERER_SETSIZEANDCENTER_BROWSER_WINDOW_CHANNEL_NAME,
+                eventHandler: this.onSetSizeAndCenterFromRenderer,
+            },
+        ];
+
+        this.browserWindowCallbacks = [
+            { eventName: 'maximize', eventHandler: this.onMaximizeFromMainWindow },
+            { eventName: 'unmaximize', eventHandler: this.onUnmaximizeFromMainWindow },
+            { eventName: 'enter-full-screen', eventHandler: this.onEnterFullScreenFromMainWindow },
+            { eventName: 'leave-full-screen', eventHandler: this.onLeaveFullScreenFromMainWindow },
+        ];
+    }
+
     public startListening(): void {
-        this.ipcMain.on(IPC_APP_VERSION_CHANNEL_NAME, this.onGetVersionMessage);
-        this.ipcMain.on(IPC_BROWSERWINDOW_MAXIMIZE_CHANNEL_NAME, this.onMaximizeMessage);
-        this.ipcMain.on(IPC_BROWSERWINDOW_MINIMIZE_CHANNEL_NAME, this.onMinimizeMessage);
-        this.ipcMain.on(IPC_BROWSERWINDOW_RESTORE_CHANNEL_NAME, this.onRestoreMessage);
-        this.ipcMain.on(IPC_BROWSERWINDOW_CLOSE_CHANNEL_NAME, this.onCloseMessage);
-        this.ipcMain.on(
-            IPC_BROWSERWINDOW_SETSIZEANDCENTER_CHANNEL_NAME,
-            this.onSetSizeAndCenterMessage,
-        );
-        this.mainWindow.on('maximize', this.onMaximizeEvent);
-        this.mainWindow.on('unmaximize', this.onUnmaximizeEvent);
-        this.mainWindow.on('enter-full-screen', this.onEnterFullScreenEvent);
-        this.mainWindow.on('leave-full-screen', this.onLeaveFullScreenEvent);
+        this.populateCallbacks();
+
+        this.ipcMainCallbacks.forEach(callback => {
+            this.ipcMain.on(callback.eventName, callback.eventHandler);
+        });
+
+        this.browserWindowCallbacks.forEach(callback => {
+            this.browserWindow.on(callback.eventName as any, callback.eventHandler);
+        });
     }
 
     public stopListening(): void {
-        this.ipcMain.removeListener(IPC_APP_VERSION_CHANNEL_NAME, this.onGetVersionMessage);
-        this.ipcMain.removeListener(
-            IPC_BROWSERWINDOW_MAXIMIZE_CHANNEL_NAME,
-            this.onMaximizeMessage,
-        );
-        this.ipcMain.removeListener(
-            IPC_BROWSERWINDOW_MINIMIZE_CHANNEL_NAME,
-            this.onMinimizeMessage,
-        );
-        this.ipcMain.removeListener(IPC_BROWSERWINDOW_RESTORE_CHANNEL_NAME, this.onRestoreMessage);
-        this.ipcMain.removeListener(IPC_BROWSERWINDOW_CLOSE_CHANNEL_NAME, this.onCloseMessage);
-        this.ipcMain.removeListener(
-            IPC_BROWSERWINDOW_SETSIZEANDCENTER_CHANNEL_NAME,
-            this.onSetSizeAndCenterMessage,
-        );
-        this.mainWindow.removeListener('maximize', this.onMaximizeEvent);
-        this.mainWindow.removeListener('unmaximize', this.onUnmaximizeEvent);
-        this.mainWindow.removeListener('enter-full-screen', this.onEnterFullScreenEvent);
-        this.mainWindow.removeListener('leave-full-screen', this.onLeaveFullScreenEvent);
+        this.ipcMainCallbacks.forEach(callback => {
+            this.ipcMain.removeListener(callback.eventName, callback.eventHandler);
+        });
+
+        this.browserWindowCallbacks.forEach(callback => {
+            this.browserWindow.removeListener(callback.eventName as any, callback.eventHandler);
+        });
     }
 
-    private onGetVersionMessage = (event: IpcMainEvent): void => {
+    private onGetVersionFromRenderer = (event: IpcMainEvent): void => {
         event.returnValue = this.app.getVersion();
     };
 
-    private onMaximizeMessage = (): void => {
-        this.mainWindow.maximize();
+    private onMaximizeFromRenderer = (): void => {
+        this.browserWindow.maximize();
     };
 
-    private onMinimizeMessage = (): void => {
-        this.mainWindow.minimize();
+    private onMinimizeFromRenderer = (): void => {
+        this.browserWindow.minimize();
     };
 
-    private onRestoreMessage = (): void => {
-        if (this.mainWindow.isFullScreen()) {
-            this.mainWindow.setFullScreen(false);
+    private onRestoreFromRenderer = (): void => {
+        if (this.browserWindow.isFullScreen()) {
+            this.browserWindow.setFullScreen(false);
         } else {
-            this.mainWindow.unmaximize();
+            this.browserWindow.unmaximize();
         }
     };
 
-    private onCloseMessage = (): void => {
-        this.mainWindow.close();
+    private onCloseMessageFromRenderer = (): void => {
+        this.browserWindow.close();
     };
 
-    private onSetSizeAndCenterMessage = (event: IpcMainEvent, args: SetSizePayload): void => {
-        this.mainWindow.setSize(args.width, args.height);
-        this.mainWindow.center();
+    private onSetSizeAndCenterFromRenderer = (event: IpcMainEvent, args: SetSizePayload): void => {
+        this.browserWindow.setSize(args.width, args.height);
+        this.browserWindow.center();
     };
 
-    private onMaximizeEvent = (): void => {
-        this.mainWindow.webContents.send(IPC_BROWSERWINDOW_MAXIMIZE_CHANNEL_NAME);
+    private onMaximizeFromMainWindow = (): void => {
+        this.browserWindow.webContents.send(IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME);
     };
 
-    private onUnmaximizeEvent = (): void => {
-        this.mainWindow.webContents.send(IPC_BROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME);
+    private onUnmaximizeFromMainWindow = (): void => {
+        this.browserWindow.webContents.send(IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME);
     };
 
-    private onEnterFullScreenEvent = (): void => {
-        this.mainWindow.webContents.send(IPC_BROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME);
+    private onEnterFullScreenFromMainWindow = (): void => {
+        this.browserWindow.webContents.send(IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME);
     };
 
-    private onLeaveFullScreenEvent = (): void => {
-        if (this.mainWindow.isMaximized()) {
-            this.onMaximizeEvent();
+    private onLeaveFullScreenFromMainWindow = (): void => {
+        if (this.browserWindow.isMaximized()) {
+            this.onMaximizeFromMainWindow();
         } else {
-            this.onUnmaximizeEvent();
+            this.onUnmaximizeFromMainWindow();
         }
     };
 }

@@ -39,15 +39,15 @@ describe(WindowFrameListener, () => {
 
     function setupForListenerInitialization(): void {
         ipcRendererShimMock
-            .setup(b => b.maximizeEvent)
+            .setup(b => b.fromBrowserWindowMaximize)
             .returns(() => maximizeEvent)
             .verifiable(Times.once());
         ipcRendererShimMock
-            .setup(b => b.unmaximizeEvent)
+            .setup(b => b.fromBrowserWindowUnmaximize)
             .returns(() => unmaximizeEvent)
             .verifiable(Times.once());
         ipcRendererShimMock
-            .setup(b => b.enterFullScreenEvent)
+            .setup(b => b.fromBrowserWindowEnterFullScreen)
             .returns(() => enterFullScreenEvent)
             .verifiable(Times.once());
     }

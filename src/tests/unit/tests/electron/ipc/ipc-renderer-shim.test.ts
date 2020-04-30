@@ -3,15 +3,16 @@
 import { IpcRenderer } from 'electron';
 import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
 import {
-    IPC_APP_VERSION_CHANNEL_NAME,
-    IPC_BROWSERWINDOW_CLOSE_CHANNEL_NAME,
-    IPC_BROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
-    IPC_BROWSERWINDOW_MAXIMIZE_CHANNEL_NAME,
-    IPC_BROWSERWINDOW_MINIMIZE_CHANNEL_NAME,
-    IPC_BROWSERWINDOW_RESTORE_CHANNEL_NAME,
-    IPC_BROWSERWINDOW_SETSIZEANDCENTER_CHANNEL_NAME,
-    IPC_BROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
-    IPC_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME,
+    IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
+    IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME,
+    IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
+    IPC_FROMRENDERER_CLOSE_BROWSERWINDOW_CHANNEL_NAME,
+    IPC_FROMRENDERER_GET_APP_VERSION_CHANNEL_NAME,
+    IPC_FROMRENDERER_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME,
+    IPC_FROMRENDERER_MAXIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
+    IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
+    IPC_FROMRENDERER_RESTORE_BROWSER_WINDOW_CHANNEL_NAME,
+    IPC_FROMRENDERER_SETSIZEANDCENTER_BROWSER_WINDOW_CHANNEL_NAME,
 } from 'electron/ipc/ipc-channel-names';
 import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
@@ -33,9 +34,9 @@ describe(IpcRendererShim, () => {
 
     describe('tests after initialization', () => {
         const initializationMessages = [
-            IPC_BROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
-            IPC_BROWSERWINDOW_MAXIMIZE_CHANNEL_NAME,
-            IPC_BROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
+            IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
+            IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME,
+            IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
         ];
 
         let ipcHandlers;
@@ -55,58 +56,58 @@ describe(IpcRendererShim, () => {
 
         it('Set up handlers on initialization', () => {});
 
-        it('invoke enterFullScreen action on enterFullScreen ipc message', () => {
+        it('invoke fromBrowserWindowEnterFullScreen on enterFullScreen message from browser', () => {
             let callCount = 0;
-            testSubject.enterFullScreenEvent.addListener(() => callCount++);
-            ipcHandlers[IPC_BROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME]();
+            testSubject.fromBrowserWindowEnterFullScreen.addListener(() => callCount++);
+            ipcHandlers[IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME]();
             expect(callCount).toBe(1);
         });
 
-        it('invoke maximize action on maximize ipc message', () => {
+        it('invoke fromBrowserWindowMaximize action  maximize message from browser', () => {
             let callCount = 0;
-            testSubject.maximizeEvent.addListener(() => callCount++);
-            ipcHandlers[IPC_BROWSERWINDOW_MAXIMIZE_CHANNEL_NAME]();
+            testSubject.fromBrowserWindowMaximize.addListener(() => callCount++);
+            ipcHandlers[IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME]();
             expect(callCount).toBe(1);
         });
 
-        it('invoke unmaximize action on unmaximize ipc message', () => {
+        it('invoke fromBrowserWindowUnmaximize  on unmaximize message from browser', () => {
             let callCount = 0;
-            testSubject.unmaximizeEvent.addListener(() => callCount++);
-            ipcHandlers[IPC_BROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME]();
+            testSubject.fromBrowserWindowUnmaximize.addListener(() => callCount++);
+            ipcHandlers[IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME]();
             expect(callCount).toBe(1);
         });
 
         it('initializeWindow sends correct ipc message', () => {
             ipcRendererMock
-                .setup(b => b.send(IPC_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME))
+                .setup(b => b.send(IPC_FROMRENDERER_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME))
                 .verifiable(Times.once());
             testSubject.initializeWindow();
         });
 
         it('maximizeWindow sends correct ipc message', () => {
             ipcRendererMock
-                .setup(b => b.send(IPC_BROWSERWINDOW_MAXIMIZE_CHANNEL_NAME))
+                .setup(b => b.send(IPC_FROMRENDERER_MAXIMIZE_BROWSER_WINDOW_CHANNEL_NAME))
                 .verifiable(Times.once());
             testSubject.maximizeWindow();
         });
 
         it('minimizeWindow sends correct ipc message', () => {
             ipcRendererMock
-                .setup(b => b.send(IPC_BROWSERWINDOW_MINIMIZE_CHANNEL_NAME))
+                .setup(b => b.send(IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME))
                 .verifiable(Times.once());
             testSubject.minimizeWindow();
         });
 
         it('restoreWindow sends correct ipc message', () => {
             ipcRendererMock
-                .setup(b => b.send(IPC_BROWSERWINDOW_RESTORE_CHANNEL_NAME))
+                .setup(b => b.send(IPC_FROMRENDERER_RESTORE_BROWSER_WINDOW_CHANNEL_NAME))
                 .verifiable(Times.once());
             testSubject.restoreWindow();
         });
 
         it('closeWindow sends correct ipc message', () => {
             ipcRendererMock
-                .setup(b => b.send(IPC_BROWSERWINDOW_CLOSE_CHANNEL_NAME))
+                .setup(b => b.send(IPC_FROMRENDERER_CLOSE_BROWSERWINDOW_CHANNEL_NAME))
                 .verifiable(Times.once());
             testSubject.closeWindow();
         });
@@ -118,7 +119,12 @@ describe(IpcRendererShim, () => {
             let actualWidth: number;
 
             ipcRendererMock
-                .setup(b => b.send(IPC_BROWSERWINDOW_SETSIZEANDCENTER_CHANNEL_NAME, It.isAny()))
+                .setup(b =>
+                    b.send(
+                        IPC_FROMRENDERER_SETSIZEANDCENTER_BROWSER_WINDOW_CHANNEL_NAME,
+                        It.isAny(),
+                    ),
+                )
                 .callback((event: string, args: SetSizePayload) => {
                     actualHeight = args.height;
                     actualWidth = args.width;
@@ -133,7 +139,7 @@ describe(IpcRendererShim, () => {
             const expectedVersion = 'Version of the day';
 
             ipcRendererMock
-                .setup(b => b.sendSync(IPC_APP_VERSION_CHANNEL_NAME))
+                .setup(b => b.sendSync(IPC_FROMRENDERER_GET_APP_VERSION_CHANNEL_NAME))
                 .returns(() => expectedVersion)
                 .verifiable(Times.once());
             expect(testSubject.getVersion()).toBe(expectedVersion);
