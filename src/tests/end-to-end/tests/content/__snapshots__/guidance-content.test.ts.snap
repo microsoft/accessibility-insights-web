@@ -25959,9 +25959,11 @@ exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches t
           </div>
           <p>
             Using 
-            <strong>
+            <span
+              class="insights-code"
+            >
               &lt;th&gt;
-            </strong>
+            </span>
              elements for headers identifies them correctly to assistive technologies. All users can distinguish between column headers and data cells.
           </p>
         </div>
