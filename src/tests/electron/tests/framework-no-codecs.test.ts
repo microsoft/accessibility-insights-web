@@ -14,7 +14,7 @@ it's likely node_modules/electron/dist was not replaced
 with the appropriate electron mirror.
 */
 
-const releaseTests = process.env['Build.DefinitionName'] === 'build-unsigned-release-packages';
+const releaseTests = process.env.RUN_RELEASE_TESTS === 'true';
 (releaseTests ? describe : describe.skip)(
     'electron bundled with minimal audio-video codecs',
     () => {
