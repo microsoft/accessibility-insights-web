@@ -4,7 +4,7 @@ import { createWithTitle, React } from '../../common';
 
 export const infoAndExamples = createWithTitle(
     {
-        pageTitle: 'Headers',
+        pageTitle: 'Table headers',
     },
     ({ Markup }) => (
         <>
