@@ -18,20 +18,22 @@ export async function createApplication(options?: AppOptions): Promise<AppContro
         (global as any).rootDir
     }/drop/electron/unified-dev/product/bundle/main.bundle.js`;
 
-    const app = new Application({
-        path: Electron as any,
-        args: [targetApp],
-        connectionRetryCount: DEFAULT_APP_CONNECT_RETRIES,
-        connectionRetryTimeout: DEFAULT_APP_CONNECT_TIMEOUT_MS,
-    });
-
-    await app.start();
-
-    const appController = new AppController(app);
+    const appController = await createAppController(targetApp);
 
     if (options?.suppressFirstTimeDialog === true) {
         await appController.setTelemetryState(false);
     }
 
     return appController;
+}
+
+export async function createAppController(targetApp: string): Promise<AppController> {
+    const app = new Application({
+        path: Electron as any,
+        args: [targetApp],
+        connectionRetryCount: DEFAULT_APP_CONNECT_RETRIES,
+        connectionRetryTimeout: DEFAULT_APP_CONNECT_TIMEOUT_MS,
+    });
+    await app.start();
+    return new AppController(app);
 }
