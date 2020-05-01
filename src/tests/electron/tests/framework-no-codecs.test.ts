@@ -6,7 +6,7 @@ import { AppController } from 'tests/electron/common/view-controllers/app-contro
 import { CodecTestViewController } from 'tests/electron/common/view-controllers/codecs-test-view-controller';
 
 /*
-We bundle a mirrored version of electron with minimal
+We bundle a mirrored version of electron with no
 audio/video codecs to avoid shipping proprietary codecs
 we don't need in the release build. This e2e test checks
 to ensure we have the right codecs. If this test fails,
@@ -16,7 +16,7 @@ with the appropriate electron mirror.
 
 const releaseTests = process.env.RUN_RELEASE_TESTS === 'true';
 (releaseTests ? describe : describe.skip)(
-    'electron bundled with minimal audio-video codecs',
+    'electron bundled without proprietary audio-video codecs',
     () => {
         let appController: AppController;
         let viewContoller: CodecTestViewController;
