@@ -25,7 +25,8 @@ const tableSemanticsHowToTest: JSX.Element = (
         <ol>
             <li>
                 Use the Web Developer browser extension (
-                <Markup.Term>Outline > Outline tables</Markup.Term>) to outline <Markup.Tag tagName="table" /> elements on the page.
+                <Markup.Term>Outline > Outline tables</Markup.Term>) to outline{' '}
+                <Markup.Tag tagName="table" /> elements on the page.
             </li>
             <li>
                 Examine each outlined table to determine its type:
