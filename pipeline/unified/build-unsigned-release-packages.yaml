@@ -16,6 +16,9 @@ strategy:
 pool:
     vmImage: $(vmImage)
 
+variables:
+    RUN_RELEASE_TESTS: true
+
 steps:
     - template: ../install-node-prerequisites.yaml
 
