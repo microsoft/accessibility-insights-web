@@ -6,6 +6,7 @@ import { IMock, Mock } from 'typemoq';
 
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
 import {
     outcomeTypeFromTestStatus,
     outcomeTypeSemanticsFromTestStatus,
@@ -30,6 +31,7 @@ import { contentProvider } from '../../../common/test-assessment-provider';
 export class AssessmentViewPropsBuilder {
     public detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     public assessmentInstanceTableHandlerMock: IMock<AssessmentInstanceTableHandler>;
+    public updateHandlerMock: IMock<AssessmentViewUpdateHandler>;
     private assessmentGeneratorInstance: AssessmentDefaultMessageGenerator;
     private content: JSX.Element = (<div>AssessmentViewTest content</div>);
     private isEnabled: boolean = false;
@@ -38,6 +40,7 @@ export class AssessmentViewPropsBuilder {
     constructor(provider: AssessmentsProvider, assessmentGeneratorInstanceMock) {
         this.detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
         this.assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
+        this.updateHandlerMock = Mock.ofType<AssessmentViewUpdateHandler>();
         this.assessmentGeneratorInstance = assessmentGeneratorInstanceMock;
         this.provider = provider;
     }
@@ -64,6 +67,7 @@ export class AssessmentViewPropsBuilder {
             urlParser: Mock.ofType(UrlParser).object,
             getGuidanceTagsFromGuidanceLinks: Mock.ofType<GetGuidanceTagsFromGuidanceLinks>()
                 .object,
+            assessmentViewUpdateHandler: this.updateHandlerMock.object,
         };
         const assessment = this.provider.all()[0];
         const firstStep = assessment.requirements[0];
@@ -122,5 +126,7 @@ export class AssessmentViewPropsBuilder {
 
     public verifyAll(): void {
         this.detailsViewActionMessageCreatorMock.verifyAll();
+        this.assessmentInstanceTableHandlerMock.verifyAll();
+        this.updateHandlerMock.verifyAll();
     }
 }

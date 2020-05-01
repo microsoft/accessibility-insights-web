@@ -114,6 +114,7 @@ import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-t
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { MasterCheckBoxConfigProvider } from './handlers/master-checkbox-config-provider';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
+import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
 
 declare const window: AutoChecker & Window;
 
@@ -365,6 +366,8 @@ if (isNaN(tabId) === false) {
 
             const documentManipulator = new DocumentManipulator(document);
 
+            const assessmentViewUpdateHandler = new AssessmentViewUpdateHandler();
+
             const deps: DetailsViewContainerDeps = {
                 textContent,
                 fixInstructionProcessor,
@@ -433,6 +436,7 @@ if (isNaN(tabId) === false) {
                 previewFeatureFlagsHandler,
                 scopingFlagsHandler,
                 Assessments,
+                assessmentViewUpdateHandler,
             };
 
             const renderer = new DetailsViewRenderer(
