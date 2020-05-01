@@ -455,7 +455,7 @@ module.exports = function (grunt) {
             `electron-builder.template.yaml`,
         );
 
-        const version = getUnifiedVersion();
+        const version = getUnifiedVersion() || '0.0.0';
 
         const config = grunt.file.readYAML(srcElectronBuilderConfigFile);
         config.appId = appId;
