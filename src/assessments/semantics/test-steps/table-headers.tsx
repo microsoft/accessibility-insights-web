@@ -68,7 +68,7 @@ const headersHowToTest: JSX.Element = (
 
 const key = SemanticsTestStep.headers;
 
-export const Headers: Requirement = {
+export const TableHeaders: Requirement = {
     key,
     name: 'Table headers',
     description: headersDescription,
