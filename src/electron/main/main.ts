@@ -55,15 +55,11 @@ const createWindow = () => {
 
     ipcMain.on(IPC_FROMRENDERER_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME, () => {
         ipcMessageDispatcher.registerMessageSink(mainWindowMessageSink);
+        mainWindowRendererMessageHandlers.startListening();
         nativeHighContrastModeListener.startListening();
     });
 
-    mainWindowRendererMessageHandlers = new MainWindowRendererMessageHandlers(
-        app,
-        mainWindow,
-        ipcMain,
-    );
-    mainWindowRendererMessageHandlers.startListening();
+    mainWindowRendererMessageHandlers = new MainWindowRendererMessageHandlers(mainWindow, ipcMain);
 
     mainWindow
         .loadFile(path.resolve(__dirname, '../electron/views/index.html'))

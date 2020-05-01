@@ -1,13 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { App, BrowserWindow, IpcMain, IpcMainEvent, WebContents } from 'electron';
+import { BrowserWindow, IpcMain, IpcMainEvent, WebContents } from 'electron';
 import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
 import {
     IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
     IPC_FROMRENDERER_CLOSE_BROWSERWINDOW_CHANNEL_NAME,
-    IPC_FROMRENDERER_GET_APP_VERSION_CHANNEL_NAME,
     IPC_FROMRENDERER_MAXIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_RESTORE_BROWSER_WINDOW_CHANNEL_NAME,
@@ -23,7 +22,6 @@ describe(MainWindowRendererMessageHandlers, () => {
     const leaveFullScreen = 'leave-full-screen';
 
     const ipcChannelNames = [
-        IPC_FROMRENDERER_GET_APP_VERSION_CHANNEL_NAME,
         IPC_FROMRENDERER_MAXIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
         IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
         IPC_FROMRENDERER_RESTORE_BROWSER_WINDOW_CHANNEL_NAME,
@@ -33,7 +31,6 @@ describe(MainWindowRendererMessageHandlers, () => {
 
     const windowEventNames = [maximize, unmaximize, enterFullScreen, leaveFullScreen];
 
-    let appMock: IMock<App>;
     let mainWindowMock: IMock<BrowserWindow>;
     let ipcMainMock: IMock<IpcMain>;
     let testSubject: MainWindowRendererMessageHandlers;
@@ -98,12 +95,10 @@ describe(MainWindowRendererMessageHandlers, () => {
         expectedIpcChannels = 0;
         expectedWindowEvents = 0;
 
-        appMock = Mock.ofType<App>(undefined, MockBehavior.Strict);
         mainWindowMock = Mock.ofType<BrowserWindow>(undefined, MockBehavior.Loose);
         ipcMainMock = Mock.ofType<IpcMain>(undefined, MockBehavior.Strict);
 
         testSubject = new MainWindowRendererMessageHandlers(
-            appMock.object,
             mainWindowMock.object,
             ipcMainMock.object,
         );
@@ -114,7 +109,6 @@ describe(MainWindowRendererMessageHandlers, () => {
     });
 
     afterEach(() => {
-        appMock.verifyAll();
         mainWindowMock.verifyAll();
         ipcMainMock.verifyAll();
         expect(Object.keys(ipcHandlers).length).toBe(expectedIpcChannels);
@@ -124,17 +118,6 @@ describe(MainWindowRendererMessageHandlers, () => {
     it('verify startListening', () => {});
 
     describe('verify listeners on ipcMain', () => {
-        it('getVersion gets Version from browser window', () => {
-            const expectedVersion = 'super ultra massively cool';
-
-            appMock.setup(b => b.getVersion()).returns(() => expectedVersion);
-
-            const event = {} as IpcMainEvent;
-            ipcHandlers[IPC_FROMRENDERER_GET_APP_VERSION_CHANNEL_NAME](event);
-
-            expect(event.returnValue).toBe(expectedVersion);
-        });
-
         it('maximize maximizes browserWindow', () => {
             mainWindowMock.setup(b => b.maximize).verifiable(Times.once());
             const event = {} as IpcMainEvent;

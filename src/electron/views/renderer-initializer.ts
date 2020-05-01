@@ -28,6 +28,7 @@ import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/car
 import { CardsCollapsibleControl } from 'common/components/cards/collapsible-component-cards';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { getPropertyConfiguration } from 'common/configs/unified-result-property-configurations';
+import { config } from 'common/configuration';
 import { DateProvider } from 'common/date-provider';
 import { DocumentManipulator } from 'common/document-manipulator';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
@@ -135,7 +136,7 @@ const ipcRendererShim = new IpcRendererShim(ipcRenderer);
 ipcRendererShim.initialize();
 
 const storageAdapter = new ElectronStorageAdapter(indexedDBInstance);
-const appDataAdapter = new ElectronAppDataAdapter(ipcRendererShim);
+const appDataAdapter = new ElectronAppDataAdapter(config);
 
 const indexedDBDataKeysToFetch = [
     IndexedDBDataKeys.userConfiguration,

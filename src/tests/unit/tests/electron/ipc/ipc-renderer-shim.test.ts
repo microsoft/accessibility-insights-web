@@ -7,7 +7,6 @@ import {
     IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
     IPC_FROMRENDERER_CLOSE_BROWSERWINDOW_CHANNEL_NAME,
-    IPC_FROMRENDERER_GET_APP_VERSION_CHANNEL_NAME,
     IPC_FROMRENDERER_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME,
     IPC_FROMRENDERER_MAXIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
@@ -133,16 +132,6 @@ describe(IpcRendererShim, () => {
             testSubject.setSizeAndCenterWindow({ height: expectedHeight, width: expectedWidth });
             expect(actualHeight).toBe(expectedHeight);
             expect(actualWidth).toBe(expectedWidth);
-        });
-
-        it('getVersion sends correct synchronous ipc message and returns result', () => {
-            const expectedVersion = 'Version of the day';
-
-            ipcRendererMock
-                .setup(b => b.sendSync(IPC_FROMRENDERER_GET_APP_VERSION_CHANNEL_NAME))
-                .returns(() => expectedVersion)
-                .verifiable(Times.once());
-            expect(testSubject.getVersion()).toBe(expectedVersion);
         });
     });
 });

@@ -1,13 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { App, BrowserWindow, IpcMain, IpcMainEvent } from 'electron';
+import { BrowserWindow, IpcMain, IpcMainEvent } from 'electron';
 import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
 import {
     IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
     IPC_FROMRENDERER_CLOSE_BROWSERWINDOW_CHANNEL_NAME,
-    IPC_FROMRENDERER_GET_APP_VERSION_CHANNEL_NAME,
     IPC_FROMRENDERER_MAXIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_RESTORE_BROWSER_WINDOW_CHANNEL_NAME,
@@ -24,17 +23,12 @@ export class MainWindowRendererMessageHandlers {
     private browserWindowCallbacks: EventCallback[];
 
     public constructor(
-        private readonly app: App,
         private readonly browserWindow: BrowserWindow,
         private readonly ipcMain: IpcMain,
     ) {}
 
     private populateCallbacks(): void {
         this.ipcMainCallbacks = [
-            {
-                eventName: IPC_FROMRENDERER_GET_APP_VERSION_CHANNEL_NAME,
-                eventHandler: this.onGetVersionFromRenderer,
-            },
             {
                 eventName: IPC_FROMRENDERER_MAXIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
                 eventHandler: this.onMaximizeFromRenderer,
@@ -86,10 +80,6 @@ export class MainWindowRendererMessageHandlers {
             this.browserWindow.removeListener(callback.eventName as any, callback.eventHandler);
         });
     }
-
-    private onGetVersionFromRenderer = (event: IpcMainEvent): void => {
-        event.returnValue = this.app.getVersion();
-    };
 
     private onMaximizeFromRenderer = (): void => {
         this.browserWindow.maximize();
