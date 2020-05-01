@@ -111,6 +111,7 @@ header {
     font-family: $fontFamily;
     vertical-align: top;
     word-break: break-all;
+    white-space: pre-line;
 }
 
 .instance-key {
