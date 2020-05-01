@@ -69,7 +69,7 @@ export const infoAndExamples = createWithTitle(
                         </ul>
                     </li>
                 </ul>
-                Note: An element contained within a <Markup.Code>{'<th>'}</Markup.Code> or <Markup.Code>{'<td>'}</Markup.Code> can be coded
+                Note: An element contained <Markup.Emphasis>within</Markup.Emphasis> a <Markup.Code>{'<th>'}</Markup.Code> or <Markup.Code>{'<td>'}</Markup.Code> element may be coded
                 as decorative when appropriate.
             </p>
 

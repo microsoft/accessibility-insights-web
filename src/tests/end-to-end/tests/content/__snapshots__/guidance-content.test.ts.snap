@@ -27539,7 +27539,11 @@ exports[`Guidance Content pages test/semantics/tableSemantics/infoAndExamples ma
           </ul>
         </li>
       </ul>
-      Note: An element contained within a 
+      Note: An element contained 
+      <em>
+        within
+      </em>
+       a 
       <span
         class="insights-code"
       >
@@ -27551,7 +27555,7 @@ exports[`Guidance Content pages test/semantics/tableSemantics/infoAndExamples ma
       >
         &lt;td&gt;
       </span>
-       can be coded as decorative when appropriate.
+       element may be coded as decorative when appropriate.
       <p />
       <h2>
         Example
