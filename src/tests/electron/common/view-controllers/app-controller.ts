@@ -8,7 +8,7 @@ import { DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS } from 'tests/electro
 import { AutomatedChecksViewController } from './automated-checks-view-controller';
 
 export class AppController {
-    private client: SpectronAsyncClient;
+    public client: SpectronAsyncClient;
 
     constructor(public app: Application) {
         this.client = app.client as any;

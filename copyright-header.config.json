@@ -24,6 +24,7 @@
         "**/*.scss.d.ts",
         "**/*.snap",
         "**/*.svg",
+        "**/*.mp3",
         "Dockerfile",
         "yarn.lock"
     ],
