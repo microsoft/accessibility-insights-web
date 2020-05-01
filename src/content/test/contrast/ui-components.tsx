@@ -4,7 +4,7 @@ import { createWithTitle, React } from '../../common';
 
 export const infoAndExamples = createWithTitle(
     {
-        pageTitle: 'UI Components',
+        pageTitle: 'UI components',
     },
     ({ Markup, Link }) => (
         <>
