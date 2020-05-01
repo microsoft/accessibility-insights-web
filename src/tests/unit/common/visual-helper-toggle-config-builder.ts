@@ -22,7 +22,7 @@ export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<VisualHelpe
                 detailsViewActionMessageCreator: null,
             },
             assessmentNavState: {
-                selectedTestStep: this.stepKey,
+                selectedTestSubview: this.stepKey,
                 selectedTestType: -1 as VisualizationType,
             },
             instancesMap: {

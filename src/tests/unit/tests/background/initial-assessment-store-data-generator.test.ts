@@ -133,7 +133,7 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
         ({ selectedTestStep, selectedTestType }) => {
             const generatedState = generator.generateInitialState({
                 assessmentNavState: {
-                    selectedTestStep,
+                    selectedTestSubview: selectedTestStep,
                     selectedTestType,
                 },
             } as AssessmentStoreData);

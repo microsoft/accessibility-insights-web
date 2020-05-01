@@ -17,7 +17,7 @@ export class AutomatedChecksVisualizationToggle extends AssessmentVisualizationE
     protected isDisabled(
         passingOrFailingInstances: GeneratedAssessmentInstance<{}, {}>[],
     ): boolean {
-        const selectedTestStep = this.props.assessmentNavState.selectedTestStep;
+        const selectedTestStep = this.props.assessmentNavState.selectedTestSubview;
         if (isEmpty(passingOrFailingInstances)) {
             return true;
         }

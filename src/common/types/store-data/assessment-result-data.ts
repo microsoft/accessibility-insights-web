@@ -65,7 +65,7 @@ export interface TestStepResult {
 }
 
 export interface AssessmentNavState {
-    selectedTestStep: RequirementName | GettingStarted;
+    selectedTestSubview: RequirementName | GettingStarted;
     selectedTestType: VisualizationType;
 }
 

@@ -92,7 +92,7 @@ describe('DetailsViewBody', () => {
 
             const assessmentStoreData = {
                 assessmentNavState: {
-                    selectedTestStep: 'sample test step',
+                    selectedTestSubview: 'sample test step',
                 } as AssessmentNavState,
                 assessments: {
                     assessment: {

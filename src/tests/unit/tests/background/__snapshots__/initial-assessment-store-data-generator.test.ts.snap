@@ -3,7 +3,7 @@
 exports[`InitialAssessmentStoreDataGenerator.generateInitialState generates the pinned default state from assessmentsProvider data when no persistedData is provided 1`] = `
 Object {
   "assessmentNavState": Object {
-    "selectedTestStep": "assessment-1-step-1",
+    "selectedTestSubview": "assessment-1-step-1",
     "selectedTestType": -1,
   },
   "assessments": Object {

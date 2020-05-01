@@ -37,7 +37,7 @@ export class InitialAssessmentStoreDataGenerator {
             persistedTabInfo: targetTab,
             assessmentNavState: {
                 selectedTestType: selectedTestType,
-                selectedTestStep: selectedTestStep,
+                selectedTestSubview: selectedTestStep,
             },
             assessments: this.constructInitialDataForAssessment(persistedTests),
             resultDescription: resultDescription,

@@ -76,7 +76,7 @@ describe('StartOverComponentFactory', () => {
         assessmentStoreData = {
             assessmentNavState: {
                 selectedTestType,
-                selectedTestStep: theTestStep,
+                selectedTestSubview: theTestStep,
             } as AssessmentNavState,
         } as AssessmentStoreData;
 

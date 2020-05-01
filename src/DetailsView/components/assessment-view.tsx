@@ -109,7 +109,7 @@ export class AssessmentView extends React.Component<AssessmentViewProps> {
 
     private enableSelectedStepVisualHelper(sendTelemetry = true): void {
         const test = this.props.assessmentNavState.selectedTestType;
-        const step = this.props.assessmentNavState.selectedTestStep;
+        const step = this.props.assessmentNavState.selectedTestSubview;
         if (this.visualHelperDisabledByDefault(test, step) || this.isTargetChanged()) {
             return;
         }
@@ -134,8 +134,8 @@ export class AssessmentView extends React.Component<AssessmentViewProps> {
 
     private isStepSwitched(prevProps: AssessmentViewProps): boolean {
         return (
-            prevProps.assessmentNavState.selectedTestStep !==
-            this.props.assessmentNavState.selectedTestStep
+            prevProps.assessmentNavState.selectedTestSubview !==
+            this.props.assessmentNavState.selectedTestSubview
         );
     }
 
@@ -193,7 +193,7 @@ export class AssessmentView extends React.Component<AssessmentViewProps> {
 
     private renderMainContent(assessmentTestResult: AssessmentTestResult): JSX.Element {
         const selectedRequirement = assessmentTestResult.getRequirementResult(
-            this.props.assessmentNavState.selectedTestStep,
+            this.props.assessmentNavState.selectedTestSubview,
         );
         const isStepScanned = selectedRequirement.data.isStepScanned;
 

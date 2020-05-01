@@ -167,7 +167,7 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
             payload.detailsViewType != null
         ) {
             this.state.assessmentNavState.selectedTestType = payload.detailsViewType;
-            this.state.assessmentNavState.selectedTestStep = this.getDefaultTestStepForTest(
+            this.state.assessmentNavState.selectedTestSubview = this.getDefaultTestStepForTest(
                 payload.detailsViewType,
             );
             this.emitChanged();
@@ -365,7 +365,7 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
 
     private onSelectTestStep = (payload: SelectRequirementPayload): void => {
         this.state.assessmentNavState.selectedTestType = payload.selectedTest;
-        this.state.assessmentNavState.selectedTestStep = payload.selectedRequirement;
+        this.state.assessmentNavState.selectedTestSubview = payload.selectedRequirement;
         this.emitChanged();
     };
 
@@ -414,7 +414,7 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
             this.generateDefaultState(),
         );
         this.state.assessments[test.key] = defaultTestStatus;
-        this.state.assessmentNavState.selectedTestStep = test.requirements[0].key;
+        this.state.assessmentNavState.selectedTestSubview = test.requirements[0].key;
         this.emitChanged();
     };
 

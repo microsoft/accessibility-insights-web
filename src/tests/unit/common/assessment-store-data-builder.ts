@@ -42,7 +42,7 @@ export class AssessmentsStoreDataBuilder extends BaseDataBuilder<AssessmentStore
         const stubData: AssessmentStoreData = {
             persistedTabInfo: null,
             assessments: {},
-            assessmentNavState: { selectedTestType: null, selectedTestStep: null },
+            assessmentNavState: { selectedTestType: null, selectedTestSubview: null },
             resultDescription: '',
         };
 
@@ -67,7 +67,7 @@ export class AssessmentsStoreDataBuilder extends BaseDataBuilder<AssessmentStore
     }
 
     public withSelectedTestStep(step: string): AssessmentsStoreDataBuilder {
-        this.data.assessmentNavState.selectedTestStep = step;
+        this.data.assessmentNavState.selectedTestSubview = step;
         return this;
     }
 

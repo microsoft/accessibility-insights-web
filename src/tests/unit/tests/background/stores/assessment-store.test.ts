@@ -169,7 +169,7 @@ describe('AssessmentStoreTest', () => {
             },
             assessmentNavState: {
                 selectedTestType: expectedTestType,
-                selectedTestStep: expectedTestStep,
+                selectedTestSubview: expectedTestStep,
             },
             resultDescription: '',
         };
@@ -185,7 +185,7 @@ describe('AssessmentStoreTest', () => {
             assessments: {},
             assessmentNavState: {
                 selectedTestType: expectedTestType,
-                selectedTestStep: expectedTestStep,
+                selectedTestSubview: expectedTestStep,
             },
             resultDescription: '',
         };

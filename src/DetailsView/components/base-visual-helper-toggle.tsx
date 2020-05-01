@@ -47,7 +47,7 @@ export abstract class BaseVisualHelperToggle extends React.Component<VisualHelpe
         assessmentNavState,
         instancesMap: DictionaryStringTo<GeneratedAssessmentInstance>,
     ): GeneratedAssessmentInstance<{}, {}>[] {
-        const selectedTestStep = assessmentNavState.selectedTestStep;
+        const selectedTestStep = assessmentNavState.selectedTestSubview;
 
         return filter(instancesMap, instance => {
             if (instance == null) {
