@@ -23,7 +23,6 @@ steps:
     - template: ../install-node-prerequisites.yaml
 
     - template: ./download-electron-mirror.yaml
-      condition: False
 
     - template: ./unified-e2e-test-interactive.yaml
 

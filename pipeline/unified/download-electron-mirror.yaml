@@ -2,6 +2,7 @@
 # Licensed under the MIT License.
 steps:
     - script: yarn download:electron-mirror
+      condition: False
       displayName: download custom electron build
       env:
           ELECTRON_MIRROR: $(ELECTRON_822_MIRROR_VAR)
