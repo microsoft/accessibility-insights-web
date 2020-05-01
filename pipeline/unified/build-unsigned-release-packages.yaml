@@ -22,8 +22,7 @@ steps:
     - template: ./download-electron-mirror.yaml
 
     - template: ./unified-e2e-test-interactive.yaml
-      env:
-          RUN_RELEASE_TESTS: true
+      env: { RUN_RELEASE_TESTS: true }
 
     - template: ./unified-e2e-publish-results.yaml
 
