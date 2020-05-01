@@ -53,6 +53,12 @@ exports[`ContentPage .provider finds forest/thePage 1`] = `
 </React.Fragment>
 `;
 
+exports[`ContentPage ContentCreator links ...WithTitle sets title 1`] = `
+Object {
+  "pageTitle": "Test title",
+}
+`;
+
 exports[`ContentPage ContentCreator links renders 1`] = `
 <NewTabLink
   href="href"

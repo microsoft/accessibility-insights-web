@@ -26,6 +26,7 @@ export interface ContentPageOptions {
 export type ContentPageProps = { deps: ContentPageDeps; options?: ContentPageOptions };
 export type ContentPageComponent = React.FC<ContentPageProps> & {
     displayName: 'ContentPageComponent';
+    pageTitle?: string;
 };
 export type ContentReference = string | ContentPageComponent;
 type CreateProps<M extends HyperlinkDefinitionMap> = {
@@ -59,6 +60,21 @@ export function ContentCreator<M extends HyperlinkDefinitionMap>(
 
     return create;
 }
+
+interface ContentPageConfiguration {
+    pageTitle: string;
+}
+export const ContentCreatorWithTitle = (
+    create: (
+        fn: (props: CreateProps<HyperlinkDefinitionMap>) => JSX.Element,
+    ) => ContentPageComponent,
+) => {
+    return (config: ContentPageConfiguration, props) => {
+        const component = create(props);
+        component.pageTitle = config.pageTitle;
+        return component;
+    };
+};
 
 export interface ContentProvider {
     getPage(path: string): ContentPageComponent;

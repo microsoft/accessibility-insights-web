@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { Theme } from 'common/components/theme';
 import { DocumentManipulator } from 'common/document-manipulator';
-import { BrowserWindow } from 'electron';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
+import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import { PlatformBodyClassModifier } from 'electron/views/root-container/components/platform-body-class-modifier';
 import { RootContainer } from 'electron/views/root-container/components/root-container';
 import {
@@ -21,17 +21,17 @@ describe('RootContainerRendererTest', () => {
         const documentManipulatorMock = Mock.ofType<DocumentManipulator>();
         const renderMock: IMock<typeof ReactDOM.render> = Mock.ofInstance(() => null);
         const windowStateActionCreatorMock = Mock.ofType(WindowStateActionCreator);
-        const browserWindow: BrowserWindow = {
-            close: () => {
+        const ipcRendererShim: IpcRendererShim = {
+            closeWindow: () => {
                 return;
             },
-        } as BrowserWindow;
+        } as IpcRendererShim;
 
         containerDiv.setAttribute('id', 'root-container');
         dom.appendChild(containerDiv);
 
         const deps = {
-            currentWindow: browserWindow,
+            ipcRendererShim: ipcRendererShim,
             windowStateActionCreator: windowStateActionCreatorMock.object,
             documentManipulator: documentManipulatorMock.object,
         } as RootContainerRendererDeps;

@@ -12,8 +12,8 @@ import { SemanticsTestStep } from './test-steps';
 
 const headersAttributeDescription: JSX.Element = (
     <span>
-        A <Markup.Term>headers</Markup.Term> attribute must reference the correct{' '}
-        <Markup.CodeTerm>{`<th>`}</Markup.CodeTerm> element(s).{' '}
+        A <Markup.CodeTerm>headers</Markup.CodeTerm> attribute of a <Markup.Tag tagName="td" />{' '}
+        element must reference the correct <Markup.Tag tagName="th" /> element(s).
     </span>
 );
 
@@ -30,26 +30,26 @@ const headersAttributeHowToTest: JSX.Element = (
             <li>
                 Use the Web Developer browser extension (
                 <Markup.Term>Information > Display table information</Markup.Term>) to reveal any{' '}
-                <Markup.Term>headers</Markup.Term> attributes on the page. Note: The{' '}
-                <Markup.Term>headers</Markup.Term> attributes are displayed on the data cells, and
-                not on the <Markup.CodeTerm>{`<th>`}</Markup.CodeTerm> cells they reference.
+                <Markup.CodeTerm>headers</Markup.CodeTerm> attributes on the page. Note: The{' '}
+                <Markup.CodeTerm>headers</Markup.CodeTerm> attributes are displayed on the data
+                cells, and not on the <Markup.Tag tagName="th" /> cells they reference.
             </li>
 
             <li>
-                If a table has <Markup.Term>headers</Markup.Term> attributes, inspect the HTML to
-                verify that they are coded correctly:
+                If a table has <Markup.CodeTerm>headers</Markup.CodeTerm> attributes, inspect the
+                HTML to verify that they are coded correctly:
                 <ol>
                     <li>
-                        Each header cell (<Markup.CodeTerm>{`<th>`}</Markup.CodeTerm> element(s))
-                        must have an <Markup.Term>id</Markup.Term> attribute.
+                        Each header cell (<Markup.Tag tagName="th" /> element(s)) must have an{' '}
+                        <Markup.CodeTerm>id</Markup.CodeTerm> attribute.
                     </li>
                     <li>
-                        Each data cell's <Markup.Term>headers</Markup.Term> attribute must reference
-                        all cells that function as headers for that data cell.
+                        Each data cell's <Markup.CodeTerm>headers</Markup.CodeTerm> attribute must
+                        reference all cells that function as headers for that data cell.
                     </li>
                 </ol>
-                Note: If a <Markup.Term>headers</Markup.Term> attribute references an element that
-                is missing or invalid, it will fail an automated check.
+                Note: If a <Markup.CodeTerm>headers</Markup.CodeTerm> attribute references an
+                element that is missing or invalid, it will fail an automated check.
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
