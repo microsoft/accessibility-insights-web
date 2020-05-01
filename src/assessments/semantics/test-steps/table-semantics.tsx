@@ -25,12 +25,11 @@ const tableSemanticsHowToTest: JSX.Element = (
         <ol>
             <li>
                 Use the Web Developer browser extension (
-                <Markup.Term>Outline > Outline tables</Markup.Term>) to highlight tables on the
-                page.
+                <Markup.Term>Outline > Outline tables</Markup.Term>) to outline{' '}
+                <Markup.Tag tagName="table" /> elements on the page.
             </li>
             <li>
-                Examine the target page to identify any <Markup.Emphasis>data</Markup.Emphasis>{' '}
-                tables:
+                Examine each outlined table to determine its type:
                 <ol>
                     <li>
                         A <Markup.Emphasis>data</Markup.Emphasis> table uses rows and columns to

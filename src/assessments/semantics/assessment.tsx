@@ -9,10 +9,10 @@ import { AssessmentBuilder } from '../assessment-builder';
 import * as Markup from '../markup';
 import { CssContent } from './test-steps/css-content';
 import { SemanticsEmphasis } from './test-steps/emphasis';
-import { Headers } from './test-steps/headers';
 import { SemanticsLetterSpacing } from './test-steps/letter-spacing';
 import { SemanticsLists } from './test-steps/lists';
 import { SemanticsQuotes } from './test-steps/quotes';
+import { TableHeaders } from './test-steps/table-headers';
 import { TableSemantics } from './test-steps/table-semantics';
 
 const key = 'semanticsAssessment';
@@ -44,7 +44,7 @@ export const SemanticsAssessment = AssessmentBuilder.Assisted({
     requirements: [
         CssContent,
         TableSemantics,
-        Headers,
+        TableHeaders,
         HeadersAttribute,
         SemanticsLists,
         SemanticsEmphasis,

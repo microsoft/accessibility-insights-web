@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
-import * as content from 'content/test/semantics/headers';
+import * as content from 'content/test/semantics/table-headers';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
 import * as React from 'react';
 
@@ -68,9 +68,9 @@ const headersHowToTest: JSX.Element = (
 
 const key = SemanticsTestStep.headers;
 
-export const Headers: Requirement = {
+export const TableHeaders: Requirement = {
     key,
-    name: 'Headers',
+    name: 'Table headers',
     description: headersDescription,
     howToTest: headersHowToTest,
     isManual: true,
