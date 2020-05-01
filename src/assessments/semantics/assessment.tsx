@@ -25,11 +25,9 @@ const gettingStarted: JSX.Element = (
             available to non-sighted users. Using semantic markup helps achieve this by introducing
             meaning into a web page rather than just presentation. For example, HTML tags like{' '}
             <Markup.Tag tagName="b" /> and <Markup.Tag tagName="i" /> are not semantic because they
-            define only the <Markup.Emphasis>visual appearance </Markup.Emphasis>of text. On the
-            other hand, tags like <Markup.Tag tagName="blockquote" />
-            {', '}
-            <Markup.Tag tagName="em" /> {' and '}
-            <Markup.Tag tagName="ol" /> communicate the meaning of the text. Access to semantic
+            define only the <Markup.Emphasis>visual appearance</Markup.Emphasis> of text. On the
+            other hand, tags like <Markup.Tag tagName="blockquote" />, <Markup.Tag tagName="em" />,
+            and <Markup.Tag tagName="ol" /> communicate the meaning of the text. Access to semantic
             information allows browsers and assistive technologies to present the content
             appropriately to users. Using semantic elements correctly ensures all users have equal
             access to the meaning of content.

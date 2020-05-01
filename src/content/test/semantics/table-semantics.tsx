@@ -92,7 +92,7 @@ export const infoAndExamples = createWithTitle(
            </tr>
            <tr>
            <td>Saltwater State Park</td>
-           <td>Des Moines, WA<td>
+           <td>Des Moines, WA</td>
            </tr>
            </table>`}
                 passText={
@@ -116,7 +116,7 @@ export const infoAndExamples = createWithTitle(
             </tr>
             <tr>
             <td>Saltwater State Park</td>
-            <td>Des Moines, WA<td>
+            <td>Des Moines, WA</td>
             </tr>
             </table>`}
             />

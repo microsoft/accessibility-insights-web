@@ -25910,7 +25910,7 @@ exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches t
                 <br />
                             &lt;td&gt;Saltwater State Park&lt;/td&gt;
                 <br />
-                            &lt;td&gt;Des Moines, WA&lt;td&gt;
+                            &lt;td&gt;Des Moines, WA&lt;/td&gt;
                 <br />
                             &lt;/tr&gt;
                 <br />
@@ -26028,7 +26028,7 @@ exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches t
                 <br />
                             &lt;td&gt;Saltwater State Park&lt;/td&gt;
                 <br />
-                            &lt;td&gt;Des Moines, WA&lt;td&gt;
+                            &lt;td&gt;Des Moines, WA&lt;/td&gt;
                 <br />
                             &lt;/tr&gt;
                 <br />
@@ -27626,7 +27626,7 @@ exports[`Guidance Content pages test/semantics/tableSemantics/infoAndExamples ma
                 <br />
                            &lt;td&gt;Saltwater State Park&lt;/td&gt;
                 <br />
-                           &lt;td&gt;Des Moines, WA&lt;td&gt;
+                           &lt;td&gt;Des Moines, WA&lt;/td&gt;
                 <br />
                            &lt;/tr&gt;
                 <br />
@@ -27726,7 +27726,7 @@ exports[`Guidance Content pages test/semantics/tableSemantics/infoAndExamples ma
                 <br />
                             &lt;td&gt;Saltwater State Park&lt;/td&gt;
                 <br />
-                            &lt;td&gt;Des Moines, WA&lt;td&gt;
+                            &lt;td&gt;Des Moines, WA&lt;/td&gt;
                 <br />
                             &lt;/tr&gt;
                 <br />
