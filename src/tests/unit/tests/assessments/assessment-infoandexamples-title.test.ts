@@ -12,7 +12,8 @@ describe('assessment-infoandexamples-title', () => {
 
     function infoAndExamplesHasCorrectPageTitle(requirement: Requirement): boolean {
         return (
-            requirement.infoAndExamples === undefined || requirement.infoAndExamples.pageTitle === requirement.name
+            requirement.infoAndExamples === undefined ||
+            requirement.infoAndExamples.pageTitle === requirement.name
         );
     }
 
