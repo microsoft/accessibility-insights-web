@@ -107,7 +107,7 @@ export const infoAndExamples = createWithTitle(
 
             <h3>Common failures</h3>
             <Markup.Links>
-                <Markup.HyperLink href="https://www.w3.org/TR/2016/NOTE-WCAG20-TECHS-20161007/F90">
+                <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F90">
                     Failure of Success Criterion 1.3.1 for incorrectly associating table headers and content via the headers and id
                     attributes
                 </Markup.HyperLink>

@@ -70,7 +70,7 @@ const key = SemanticsTestStep.headers;
 
 export const Headers: Requirement = {
     key,
-    name: 'Headers',
+    name: 'Row/column headers',
     description: headersDescription,
     howToTest: headersHowToTest,
     isManual: true,

@@ -26475,7 +26475,7 @@ exports[`Guidance Content pages test/semantics/headersAttribute/infoAndExamples 
       >
         <a
           class="ms-Link insights-link root-000"
-          href="https://www.w3.org/TR/2016/NOTE-WCAG20-TECHS-20161007/F90"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F90"
           target="_blank"
         >
           Failure of Success Criterion 1.3.1 for incorrectly associating table headers and content via the headers and id attributes
@@ -27539,7 +27539,23 @@ exports[`Guidance Content pages test/semantics/tableSemantics/infoAndExamples ma
           </ul>
         </li>
       </ul>
+      Note: An element contained within a 
+      <span
+        class="insights-code"
+      >
+        &lt;th&gt;
+      </span>
+       or 
+      <span
+        class="insights-code"
+      >
+        &lt;td&gt;
+      </span>
+       can be coded as decorative when appropriate.
       <p />
+      <h2>
+        Example
+      </h2>
       <div
         class="pass-fail-grid"
       >

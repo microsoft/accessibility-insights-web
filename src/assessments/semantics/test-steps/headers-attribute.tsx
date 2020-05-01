@@ -12,7 +12,7 @@ import { SemanticsTestStep } from './test-steps';
 
 const headersAttributeDescription: JSX.Element = (
     <span>
-        A <Markup.CodeTerm>headers</Markup.CodeTerm> attribute of a <Markup.Tag tagName="td" />{' '}
+        The <Markup.CodeTerm>headers</Markup.CodeTerm> attribute of a <Markup.Tag tagName="td" />{' '}
         element must reference the correct <Markup.Tag tagName="th" /> element(s).
     </span>
 );
@@ -40,8 +40,12 @@ const headersAttributeHowToTest: JSX.Element = (
                 HTML to verify that they are coded correctly:
                 <ol>
                     <li>
-                        Each header cell (<Markup.Tag tagName="th" /> element(s)) must have an{' '}
+                        Each header cell (<Markup.Tag tagName="th" /> element) must have an{' '}
                         <Markup.CodeTerm>id</Markup.CodeTerm> attribute.
+                    </li>
+                    <li>
+                        Each data cell (<Markup.Tag tagName="td" /> element) must have an{' '}
+                        <Markup.CodeTerm>headers</Markup.CodeTerm> attribute.
                     </li>
                     <li>
                         Each data cell's <Markup.CodeTerm>headers</Markup.CodeTerm> attribute must
