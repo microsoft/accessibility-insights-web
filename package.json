@@ -155,7 +155,7 @@
         "react-router-dom": "^5.1.2",
         "ua-parser-js": "^0.7.21",
         "uuid": "^8.0.0",
-        "webextension-polyfill-ts": "^0.14.0"
+        "webextension-polyfill-ts": "^0.15.0"
     },
     "resolutions": {
         "acorn": "^7.1.1",
