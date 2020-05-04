@@ -68,7 +68,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             },
         };
         const assessmentNavState: AssessmentNavState = {
-            selectedTestStep: 'step1',
+            selectedTestSubview: 'step1',
             selectedTestType: 5,
         };
 
@@ -134,7 +134,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             description: 'des',
         };
         const assessmentNavState: AssessmentNavState = {
-            selectedTestStep: 'step1',
+            selectedTestSubview: 'step1',
             selectedTestType: 5,
         };
 
@@ -146,7 +146,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
         const rows = testSubject.createCapturedInstanceTableItems(
             [instance],
             assessmentNavState.selectedTestType,
-            assessmentNavState.selectedTestStep,
+            assessmentNavState.selectedTestSubview,
             featureFlagStoreData,
             pathSnippetStoreData,
         );
@@ -160,7 +160,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
         const instanceActionButtons: JSX.Element = (
             <AssessmentInstanceEditAndRemoveControl
                 test={assessmentNavState.selectedTestType}
-                step={assessmentNavState.selectedTestStep}
+                step={assessmentNavState.selectedTestSubview}
                 id={instance.id}
                 currentInstance={currentInstance}
                 onRemove={detailsViewActionMessageCreatorMock.object.removeFailureInstance}
@@ -190,7 +190,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             html: 'saved instance',
         };
         const assessmentNavState: AssessmentNavState = {
-            selectedTestStep: 'step1',
+            selectedTestSubview: 'step1',
             selectedTestType: 5,
         };
 
@@ -202,7 +202,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
         const rows = testSubject.createCapturedInstanceTableItems(
             [instance],
             assessmentNavState.selectedTestType,
-            assessmentNavState.selectedTestStep,
+            assessmentNavState.selectedTestSubview,
             featureFlagStoreData,
             pathSnippetStoreData,
         );
@@ -216,7 +216,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
         const instanceActionButtons: JSX.Element = (
             <AssessmentInstanceEditAndRemoveControl
                 test={assessmentNavState.selectedTestType}
-                step={assessmentNavState.selectedTestStep}
+                step={assessmentNavState.selectedTestSubview}
                 id={instance.id}
                 currentInstance={currentInstance}
                 onRemove={detailsViewActionMessageCreatorMock.object.removeFailureInstance}
@@ -241,7 +241,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
     test('getColumnConfigs', () => {
         const navState: AssessmentNavState = {
             selectedTestType: VisualizationType.HeadingsAssessment,
-            selectedTestStep: 'step',
+            selectedTestSubview: 'step',
         };
         const instanceMap = {
             selector1: {
@@ -376,7 +376,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
         } as GeneratedAssessmentInstance;
 
         const assessmentNavState: AssessmentNavState = {
-            selectedTestStep: 'step1',
+            selectedTestSubview: 'step1',
             selectedTestType: 5,
         };
 

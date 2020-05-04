@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { AutomatedChecksVisualizationToggle } from 'assessments/automated-checks/automated-checks-visualization-enabled-toggle';
 import { shallow, ShallowWrapper } from 'enzyme';
-import { forEach } from 'lodash';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
 import {
@@ -121,9 +120,7 @@ describe('AutomatedChecksVisualizationToggle', () => {
 
         const actualProps = visualizationToggle.props();
 
-        forEach(expectedProps, (value, key) => {
-            expect(actualProps[key]).toEqual(value);
-        });
+        expect(actualProps).toMatchObject(expectedProps);
     }
 
     function assertSnapshotMatch(wrapper: ShallowWrapper): void {

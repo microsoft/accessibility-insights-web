@@ -108,7 +108,7 @@ export class AssessmentInstanceTableHandler {
             const key = instanceKeys[keyIndex];
             const instance = instancesMap[key];
             if (
-                !instance.testStepResults[assessmentNavState.selectedTestStep]
+                !instance.testStepResults[assessmentNavState.selectedTestSubview]
                     .isVisualizationEnabled
             ) {
                 allEnabled = false;
@@ -153,7 +153,7 @@ export class AssessmentInstanceTableHandler {
         key: string,
         assessmentNavState: AssessmentNavState,
     ): JSX.Element => {
-        const step = assessmentNavState.selectedTestStep;
+        const step = assessmentNavState.selectedTestSubview;
         const test = assessmentNavState.selectedTestType;
         return (
             <TestStatusChoiceGroup
@@ -173,7 +173,7 @@ export class AssessmentInstanceTableHandler {
         key: string,
         assessmentNavState: AssessmentNavState,
     ): JSX.Element => {
-        const step = assessmentNavState.selectedTestStep;
+        const step = assessmentNavState.selectedTestSubview;
         const test = assessmentNavState.selectedTestType;
 
         return (
@@ -221,7 +221,9 @@ export class AssessmentInstanceTableHandler {
         assessmentNavState: AssessmentNavState,
     ): string[] {
         return Object.keys(instancesMap).filter(key => {
-            return instancesMap[key].testStepResults[assessmentNavState.selectedTestStep] != null;
+            return (
+                instancesMap[key].testStepResults[assessmentNavState.selectedTestSubview] != null
+            );
         });
     }
 }

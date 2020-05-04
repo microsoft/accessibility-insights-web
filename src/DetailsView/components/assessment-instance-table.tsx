@@ -80,7 +80,7 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
         );
         const defaultMessageComponent = getDefaultMessage(
             this.props.instancesMap,
-            this.props.assessmentNavState.selectedTestStep,
+            this.props.assessmentNavState.selectedTestSubview,
         );
 
         if (defaultMessageComponent) {
@@ -123,7 +123,7 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
     public renderDefaultInstanceTableHeader(items: AssessmentInstanceRowData[]): JSX.Element {
         const disabled = !this.isAnyInstanceStatusUnknown(
             items,
-            this.props.assessmentNavState.selectedTestStep,
+            this.props.assessmentNavState.selectedTestSubview,
         );
 
         return (
@@ -149,7 +149,7 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
     protected onPassUnmarkedInstances = (): void => {
         this.props.assessmentInstanceTableHandler.passUnmarkedInstances(
             this.props.assessmentNavState.selectedTestType,
-            this.props.assessmentNavState.selectedTestStep,
+            this.props.assessmentNavState.selectedTestSubview,
         );
     };
 }

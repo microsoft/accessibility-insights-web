@@ -81,7 +81,7 @@ export class TestStepView extends React.Component<TestStepViewProps> {
             return (
                 <ManualTestStepView
                     test={this.props.assessmentNavState.selectedTestType}
-                    step={this.props.assessmentNavState.selectedTestStep}
+                    step={this.props.assessmentNavState.selectedTestSubview}
                     manualTestStepResultMap={this.props.manualTestStepResultMap}
                     assessmentInstanceTableHandler={this.props.assessmentInstanceTableHandler}
                     assessmentsProvider={this.props.assessmentsProvider}
@@ -126,7 +126,7 @@ export class TestStepView extends React.Component<TestStepViewProps> {
     private getSelectedStep(): Readonly<Requirement> {
         return this.props.assessmentsProvider.getStep(
             this.props.assessmentNavState.selectedTestType,
-            this.props.assessmentNavState.selectedTestStep,
+            this.props.assessmentNavState.selectedTestSubview,
         );
     }
 

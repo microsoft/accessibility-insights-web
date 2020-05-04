@@ -48,7 +48,7 @@ export const AssessmentTestView = NamedFC<AssessmentTestViewProps>(
         const prevTarget = props.assessmentStoreData.persistedTabInfo;
         const isEnabled = props.configuration.getTestStatus(
             scanData,
-            assessmentNavState.selectedTestStep,
+            assessmentNavState.selectedTestSubview,
         );
         const currentTarget = {
             id: props.tabStoreData.id,
