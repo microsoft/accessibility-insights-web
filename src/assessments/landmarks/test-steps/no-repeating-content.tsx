@@ -26,7 +26,12 @@ const howToTest: JSX.Element = (
             The visual helper for this requirement highlights the page's{' '}
             <Markup.CodeTerm>main</Markup.CodeTerm> landmark.
         </p>
-        <TestAutomaticallyPassedNotice />
+        <p>
+            <Markup.Emphasis>
+                Note: If no landmarks are found, this requirement will automatically be marked as
+                pass.
+            </Markup.Emphasis>
+        </p>
         <ol>
             <li>
                 <p>Examine the target page to verify that all of the following are true:</p>
