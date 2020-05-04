@@ -11,7 +11,7 @@ jobs:
           unsignedPipelineResource: ${{ parameters.unsignedPipelineResource }}
           unsignedArtifactName: ${{ parameters.unsignedArtifactName }}
           signedArtifactName: ${{ parameters.signedArtifactName }}
-          vmImage: macOS-10.14
+          vmImage: macOS-10.15
           filePattern: '*.dmg, *.zip'
           platform: mac
           inlineSignParams: |

@@ -11,7 +11,7 @@ jobs:
           unsignedPipelineResource: ${{ parameters.unsignedPipelineResource }}
           unsignedArtifactName: ${{ parameters.unsignedArtifactName }}
           signedArtifactName: ${{ parameters.signedArtifactName }}
-          vmImage: windows-latest
+          vmImage: windows-2019
           filePattern: '*.exe, *.dll'
           platform: windows
           inlineSignParams: |
