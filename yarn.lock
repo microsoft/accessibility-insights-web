@@ -9070,10 +9070,10 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
   integrity sha1-tf3AjxKH6hF4Yo5BXiUTK3NkbG0=
 
-simple-git@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/simple-git/-/simple-git-2.2.0.tgz#eaee45250136625d79a4198726933fcd9f1abd16"
-  integrity sha512-zD4qLN3xZLxxc+QfTIn3zLs8faglQaLCGhhKmXV+SsQi8d6S6P8XxFso0WyVX3y0mftdFXpvbnph1eFuUuFscg==
+simple-git@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/simple-git/-/simple-git-2.3.0.tgz#fe74d4b8783d05b0007c8901947d9ab67ceec318"
+  integrity sha512-hyDbcdwB8mLMv1EhSGcJ5jv1SMrCLMzLzRoNPhSV6RBvtw7gGEldnxJtYcqudQdBxV+4lMwNd4UOrUjFrmPrDQ==
   dependencies:
     "@kwsites/exec-p" "^0.4.0"
     debug "^4.0.1"
