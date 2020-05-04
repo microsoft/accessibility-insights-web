@@ -96,7 +96,7 @@ describe('AssessmentViewTest', () => {
             const prevTest = -100 as VisualizationType;
             const prevProps = builder.buildProps();
             const props = builder.buildProps();
-            prevProps.assessmentNavState.selectedTestStep = prevStep;
+            prevProps.assessmentNavState.selectedTestSubview = prevStep;
             prevProps.assessmentNavState.selectedTestType = prevTest;
 
             builder.detailsViewActionMessageCreatorMock
@@ -118,7 +118,7 @@ describe('AssessmentViewTest', () => {
             const prevTest = -100 as VisualizationType;
             const prevProps = builder.buildProps({}, true);
             const props = builder.buildProps({}, true);
-            prevProps.assessmentNavState.selectedTestStep = prevStep;
+            prevProps.assessmentNavState.selectedTestSubview = prevStep;
             prevProps.assessmentNavState.selectedTestType = prevTest;
 
             builder.detailsViewActionMessageCreatorMock
@@ -139,9 +139,9 @@ describe('AssessmentViewTest', () => {
             const newStep = assessmentsProvider.all()[0].requirements[1].key;
             const prevProps = builder.buildProps();
             const props = builder.buildProps();
-            prevProps.assessmentNavState.selectedTestStep = prevStep;
+            prevProps.assessmentNavState.selectedTestSubview = prevStep;
             prevProps.assessmentNavState.selectedTestType = prevTest;
-            props.assessmentNavState.selectedTestStep = newStep;
+            props.assessmentNavState.selectedTestSubview = newStep;
 
             builder.detailsViewActionMessageCreatorMock
                 .setup(a => a.enableVisualHelper(firstAssessment.visualizationType, stepName, true))
@@ -170,6 +170,6 @@ describe('AssessmentViewTest', () => {
     });
 
     function setStepNotToScanByDefault(props: AssessmentViewProps): void {
-        props.assessmentNavState.selectedTestStep = assessmentsProvider.all()[0].requirements[1].key;
+        props.assessmentNavState.selectedTestSubview = assessmentsProvider.all()[0].requirements[1].key;
     }
 });

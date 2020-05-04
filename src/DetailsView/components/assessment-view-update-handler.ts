@@ -33,7 +33,7 @@ export class AssessmentViewUpdateHandler {
 
     private enableSelectedStepVisualHelper(props: AssessmentViewProps, sendTelemetry = true): void {
         const test = props.assessmentNavState.selectedTestType;
-        const step = props.assessmentNavState.selectedTestStep;
+        const step = props.assessmentNavState.selectedTestSubview;
         if (this.visualHelperDisabledByDefault(props, test, step) || this.isTargetChanged(props)) {
             return;
         }
@@ -58,8 +58,8 @@ export class AssessmentViewUpdateHandler {
         currentProps: AssessmentViewProps,
     ): boolean {
         return (
-            prevProps.assessmentNavState.selectedTestStep !==
-            currentProps.assessmentNavState.selectedTestStep
+            prevProps.assessmentNavState.selectedTestSubview !==
+            currentProps.assessmentNavState.selectedTestSubview
         );
     }
 
