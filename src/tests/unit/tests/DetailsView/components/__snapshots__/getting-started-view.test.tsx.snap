@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GettingStartedViewTest renders with content from props 1`] = `
+<div
+  className="gettingStartedView"
+>
+  <h2>
+    Getting Started
+  </h2>
+  <div>
+    test-getting-started-content
+  </div>
+</div>
+`;
