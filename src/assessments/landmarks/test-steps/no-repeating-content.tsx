@@ -4,6 +4,7 @@ import * as React from 'react';
 
 import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
+import { TestAutomaticallyPassedNotice } from 'content/test/common/test-automatically-passed-notice';
 import * as content from 'content/test/landmarks/no-repeating-content';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
@@ -13,7 +14,10 @@ import { Requirement } from '../../types/requirement';
 import { LandmarkTestStep } from './test-steps';
 
 const description: JSX.Element = (
-    <span>The main landmark must not contain any blocks of content that repeat across pages.</span>
+    <span>
+        The <Markup.CodeTerm>main</Markup.CodeTerm> landmark must not contain any blocks of content
+        that repeat across pages.
+    </span>
 );
 
 const howToTest: JSX.Element = (
@@ -22,10 +26,28 @@ const howToTest: JSX.Element = (
             The visual helper for this requirement highlights the page's{' '}
             <Markup.CodeTerm>main</Markup.CodeTerm> landmark.
         </p>
+        <TestAutomaticallyPassedNotice />
         <ol>
             <li>
-                In the target page, examine the main landmark to verify that it does not contain any
-                blocks of content that repeat across pages (e.g., site-wide navigation links).
+                <p>Examine the target page to verify that all of the following are true:</p>
+                <ol>
+                    <li>
+                        The page has exactly one <Markup.CodeTerm>main</Markup.CodeTerm> landmark,
+                        and
+                    </li>
+                    <li>
+                        The <Markup.CodeTerm>main</Markup.CodeTerm> landmark does not contain any
+                        blocks of content that repeat across pages (such as site-wide navigation
+                        links).
+                    </li>
+                </ol>
+                <p>
+                    Exception: If a page has nested <Markup.CodeTerm>document</Markup.CodeTerm> or{' '}
+                    <Markup.CodeTerm>application</Markup.CodeTerm> roles (typically applied to{' '}
+                    <Markup.Tag tagName="iframe" /> or <Markup.Tag tagName="frame" /> elements),
+                    each nested document or application may <Markup.Emphasis>also</Markup.Emphasis>{' '}
+                    have one <Markup.CodeTerm>main</Markup.CodeTerm> landmark.
+                </p>
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
