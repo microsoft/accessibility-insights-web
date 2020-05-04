@@ -664,7 +664,7 @@ describe('AssessmentStoreTest', () => {
             assessmentDataConverterMock.object,
         )
             .withSelectedTestType(visualizationType)
-            .withSelectedTestStep(requirement)
+            .withSelectedTestSubview(requirement)
             .build();
 
         const payload: SelectRequirementPayload = {
@@ -1473,7 +1473,7 @@ describe('AssessmentStoreTest', () => {
             assessmentsProvider,
             assessmentDataConverterMock.object,
         )
-            .withSelectedTestStep('step')
+            .withSelectedTestSubview('step')
             .withSelectedTestType(VisualizationType.Color)
             .build();
 
@@ -1481,7 +1481,7 @@ describe('AssessmentStoreTest', () => {
             assessmentsProvider,
             assessmentDataConverterMock.object,
         )
-            .withSelectedTestStep(requirementKey)
+            .withSelectedTestSubview(requirementKey)
             .withSelectedTestType(testType)
             .build();
 
@@ -1504,7 +1504,7 @@ describe('AssessmentStoreTest', () => {
             assessmentsProvider,
             assessmentDataConverterMock.object,
         )
-            .withSelectedTestStep('step')
+            .withSelectedTestSubview('step')
             .withSelectedTestType(selectedTest)
             .build();
 
@@ -1512,7 +1512,7 @@ describe('AssessmentStoreTest', () => {
             assessmentsProvider,
             assessmentDataConverterMock.object,
         )
-            .withSelectedTestStep('step')
+            .withSelectedTestSubview('step')
             .withSelectedTestType(selectedTest)
             .build();
 
@@ -1534,7 +1534,7 @@ describe('AssessmentStoreTest', () => {
             assessmentsProvider,
             assessmentDataConverterMock.object,
         )
-            .withSelectedTestStep('step')
+            .withSelectedTestSubview('step')
             .withSelectedTestType(VisualizationType.Color)
             .build();
 
@@ -1542,7 +1542,7 @@ describe('AssessmentStoreTest', () => {
             assessmentsProvider,
             assessmentDataConverterMock.object,
         )
-            .withSelectedTestStep('step')
+            .withSelectedTestSubview('step')
             .withSelectedTestType(VisualizationType.Color)
             .build();
 
@@ -1645,7 +1645,7 @@ describe('AssessmentStoreTest', () => {
                 manualTestStepResultMap: {},
                 testStepStatus: {},
             })
-            .withSelectedTestStep(selectedRequirement)
+            .withSelectedTestSubview(selectedRequirement)
             .build();
     }
 

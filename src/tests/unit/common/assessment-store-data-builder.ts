@@ -66,7 +66,7 @@ export class AssessmentsStoreDataBuilder extends BaseDataBuilder<AssessmentStore
         return this;
     }
 
-    public withSelectedTestStep(step: string): AssessmentsStoreDataBuilder {
+    public withSelectedTestSubview(step: string): AssessmentsStoreDataBuilder {
         this.data.assessmentNavState.selectedTestSubview = step;
         return this;
     }
