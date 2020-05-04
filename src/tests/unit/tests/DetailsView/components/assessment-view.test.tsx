@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { It, Times } from 'typemoq';
+import { Mock, Times } from 'typemoq';
 
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { AssessmentViewPropsBuilder } from 'tests/unit/tests/DetailsView/components/assessment-view-props-builder';
@@ -48,19 +48,27 @@ describe('AssessmentViewTest', () => {
     });
 
     test('componentDidUpdate', () => {
-        const prevStep = 'prevStep';
-        const prevTest = -100 as VisualizationType;
-        const prevProps = builder.buildProps();
+        const prevProps = buildPrevProps();
         const props = builder.buildProps();
-        prevProps.assessmentNavState.selectedTestSubview = prevStep;
-        prevProps.assessmentNavState.selectedTestType = prevTest;
-        builder.updateHandlerMock.setup(u => u.update(prevProps, props));
+        const onAssessmentViewUpdateMock = Mock.ofInstance(
+            (previousProps: AssessmentViewProps, currentProps: AssessmentViewProps) => {},
+        );
+
+        builder.updateHandlerMock.setup(u => u.update(prevProps, props)).verifiable(Times.once());
+        builder.detailsViewExtensionPointMock
+            .setup(d => d.apply(props.assessmentTestResult.definition.extensions))
+            .returns(() => {
+                return { onAssessmentViewUpdate: onAssessmentViewUpdateMock.object };
+            })
+            .verifiable(Times.once());
+        onAssessmentViewUpdateMock.setup(o => o(prevProps, props)).verifiable(Times.once());
 
         const testObject = new AssessmentView(props);
 
         testObject.componentDidUpdate(prevProps);
 
         builder.verifyAll();
+        onAssessmentViewUpdateMock.verifyAll();
     });
 
     test('componentWillUnmount', () => {
@@ -72,4 +80,13 @@ describe('AssessmentViewTest', () => {
         testObject.componentWillUnmount();
         builder.verifyAll();
     });
+
+    function buildPrevProps(): AssessmentViewProps {
+        const prevStep = 'prevStep';
+        const prevTest = -100 as VisualizationType;
+        const prevProps = builder.buildProps();
+        prevProps.assessmentNavState.selectedTestSubview = prevStep;
+        prevProps.assessmentNavState.selectedTestType = prevTest;
+        return prevProps;
+    }
 });

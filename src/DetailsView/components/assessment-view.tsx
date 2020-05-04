@@ -20,7 +20,7 @@ import {
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet-store-data';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
-import { detailsViewExtensionPoint } from '../extensions/details-view-extension-point';
+import { DetailsViewExtensionPoint } from '../extensions/details-view-extension-point';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 import { TargetChangeDialog, TargetChangeDialogDeps } from './target-change-dialog';
 import { TestStepView, TestStepViewDeps } from './test-step-view';
@@ -38,6 +38,7 @@ export type AssessmentViewDeps = ContentLinkDeps &
         detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
         assessmentsProvider: AssessmentsProvider;
         assessmentViewUpdateHandler: AssessmentViewUpdateHandler;
+        detailsViewExtensionPoint: DetailsViewExtensionPoint;
     };
 
 export interface AssessmentViewProps {
@@ -97,7 +98,7 @@ export class AssessmentView extends React.Component<AssessmentViewProps> {
         this.deps.assessmentViewUpdateHandler.update(prevProps, this.props);
 
         const { assessmentTestResult } = this.props;
-        detailsViewExtensionPoint
+        this.deps.detailsViewExtensionPoint
             .apply(assessmentTestResult.definition.extensions)
             .onAssessmentViewUpdate(prevProps, this.props);
     }

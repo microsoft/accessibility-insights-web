@@ -14,6 +14,7 @@ import { createDefaultLogger } from 'common/logging/default-logger';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { textContent } from 'content/strings/text-content';
+import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
 import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-available/no-content-available-view';
 import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
 import { NoContentAvailableViewRenderer } from 'DetailsView/no-content-available-view-renderer';
@@ -110,11 +111,11 @@ import { NavLinkHandler } from './components/left-nav/nav-link-handler';
 import { DetailsViewContainerDeps, DetailsViewContainerState } from './details-view-container';
 import { DetailsViewRenderer } from './details-view-renderer';
 import { DocumentTitleUpdater } from './document-title-updater';
+import { detailsViewExtensionPoint } from './extensions/details-view-extension-point';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { MasterCheckBoxConfigProvider } from './handlers/master-checkbox-config-provider';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
-import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
 
 declare const window: AutoChecker & Window;
 
@@ -437,6 +438,7 @@ if (isNaN(tabId) === false) {
                 scopingFlagsHandler,
                 Assessments,
                 assessmentViewUpdateHandler,
+                detailsViewExtensionPoint,
             };
 
             const renderer = new DetailsViewRenderer(
