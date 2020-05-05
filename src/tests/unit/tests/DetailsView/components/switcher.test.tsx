@@ -19,6 +19,11 @@ describe('Switcher', () => {
             deps: {
                 detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
             },
+            styles: {
+                switcherDropdownOption: 'dropdown-option',
+                headerSwitcher: 'header-switcher',
+                headerSwitcherDropdown: 'header-switcher-dropdown',
+            },
         };
     });
 

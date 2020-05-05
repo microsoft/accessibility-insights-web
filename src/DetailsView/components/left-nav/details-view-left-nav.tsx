@@ -12,6 +12,7 @@ import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-f
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { DetailsRightPanelConfiguration } from '../details-view-right-panel';
 import { DetailsViewSwitcherNavConfiguration, LeftNavDeps } from '../details-view-switcher-nav';
+import { getHeaderSwitcher } from 'DetailsView/components/get-switchers';
 
 export type DetailsViewLeftNavDeps = {
     assessmentsProvider: AssessmentsProvider;
@@ -51,9 +52,9 @@ export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewL
         assessmentsProvider,
         featureFlagStoreData,
     );
-    const switcher = featureFlagStoreData['reflowUI'] ? (
-        <Switcher deps={props.deps} pivotKey={props.selectedPivot} />
-    ) : null;
+    const switcher = featureFlagStoreData['reflowUI']
+        ? getHeaderSwitcher({ deps: props.deps, pivotKey: props.selectedPivot })
+        : null;
 
     const leftNav: JSX.Element = (
         <div className="left-nav main-nav">

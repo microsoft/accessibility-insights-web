@@ -7,15 +7,21 @@ import * as React from 'react';
 
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
-import * as styles from './switcher.scss';
 
 export type SwitcherDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
 };
 
+export interface SwitcherStylesModule {
+    switcherDropdownOption: string;
+    headerSwitcher: string;
+    headerSwitcherDropdown: string;
+}
+
 export interface SwitcherProps {
     deps: SwitcherDeps;
     pivotKey: DetailsViewPivotType;
+    styles: SwitcherStylesModule;
 }
 
 export interface SwitcherState {
@@ -36,7 +42,7 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
 
     private onRenderOption = (option: IDropdownOption): JSX.Element => {
         return (
-            <span className={styles.switcherDropdownOption}>
+            <span className={this.props.styles.switcherDropdownOption}>
                 {option.data && option.data.icon && <Icon iconName={option.data.icon} />}
                 <span>{option.text}</span>
             </span>
@@ -77,9 +83,9 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
 
     public render(): JSX.Element {
         return (
-            <div className={styles.headerSwitcher}>
+            <div className={this.props.styles.headerSwitcher}>
                 <Dropdown
-                    className={styles.headerSwitcherDropdown}
+                    className={this.props.styles.headerSwitcherDropdown}
                     ariaLabel="select activity"
                     responsiveMode={ResponsiveMode.large}
                     selectedKey={this.state.selectedKey}

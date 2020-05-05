@@ -55,6 +55,7 @@ exports[`InteractiveHeader render: tabClosed is false 1`] = `
         }
       }
       pivotKey={2}
+      styles={Object {}}
     />
   }
 />

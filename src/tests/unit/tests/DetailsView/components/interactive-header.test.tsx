@@ -27,6 +27,7 @@ describe('InteractiveHeader', () => {
         };
 
         const rendered = shallow(<InteractiveHeader {...props} />);
+        const element = rendered.getElement();
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
