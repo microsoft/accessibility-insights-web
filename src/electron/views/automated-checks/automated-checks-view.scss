@@ -21,7 +21,8 @@
 
     .automated-checks-panel-layout {
         display: flex;
-        height: 100%;
+        flex-grow: 1;
+        overflow: hidden;
         main {
             margin-top: 16px;
             margin-bottom: 16px;
