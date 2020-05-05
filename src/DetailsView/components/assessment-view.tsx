@@ -7,6 +7,7 @@ import * as React from 'react';
 import { ContentLink, ContentLinkDeps } from 'views/content/content-link';
 import { ContentPageComponent } from 'views/content/content-page';
 
+import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
 import { AssessmentTestResult } from '../../common/assessment/assessment-test-result';
 import { CollapsibleComponent } from '../../common/components/collapsible-component';
 import { reactExtensionPoint } from '../../common/extensibility/react-extension-point';
@@ -18,9 +19,8 @@ import {
 } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet-store-data';
-import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
-import { detailsViewExtensionPoint } from '../extensions/details-view-extension-point';
+import { DetailsViewExtensionPoint } from '../extensions/details-view-extension-point';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 import { TargetChangeDialog, TargetChangeDialogDeps } from './target-change-dialog';
 import { TestStepView, TestStepViewDeps } from './test-step-view';
@@ -37,6 +37,8 @@ export type AssessmentViewDeps = ContentLinkDeps &
     TargetChangeDialogDeps & {
         detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
         assessmentsProvider: AssessmentsProvider;
+        assessmentViewUpdateHandler: AssessmentViewUpdateHandler;
+        detailsViewExtensionPoint: DetailsViewExtensionPoint;
     };
 
 export interface AssessmentViewProps {
@@ -89,62 +91,20 @@ export class AssessmentView extends React.Component<AssessmentViewProps> {
     }
 
     public componentDidMount(): void {
-        this.enableSelectedStepVisualHelper();
+        this.deps.assessmentViewUpdateHandler.onMount(this.props);
     }
 
     public componentDidUpdate(prevProps: AssessmentViewProps): void {
-        if (this.isStepSwitched(prevProps)) {
-            this.disableVisualHelpersForTest(prevProps.assessmentNavState.selectedTestType);
-            this.enableSelectedStepVisualHelper();
-        } else {
-            // Cases where visualization doesn't reappear(Navigate back, refresh). No telemetry sent.
-            this.enableSelectedStepVisualHelper(false);
-        }
+        this.deps.assessmentViewUpdateHandler.update(prevProps, this.props);
 
         const { assessmentTestResult } = this.props;
-        detailsViewExtensionPoint
+        this.deps.detailsViewExtensionPoint
             .apply(assessmentTestResult.definition.extensions)
             .onAssessmentViewUpdate(prevProps, this.props);
     }
 
-    private enableSelectedStepVisualHelper(sendTelemetry = true): void {
-        const test = this.props.assessmentNavState.selectedTestType;
-        const step = this.props.assessmentNavState.selectedTestSubview;
-        if (this.visualHelperDisabledByDefault(test, step) || this.isTargetChanged()) {
-            return;
-        }
-
-        const isStepNotScanned = !this.props.assessmentData.testStepStatus[step].isStepScanned;
-        if (this.props.isEnabled === false || isStepNotScanned) {
-            this.props.deps.detailsViewActionMessageCreator.enableVisualHelper(
-                test,
-                step,
-                isStepNotScanned,
-                sendTelemetry,
-            );
-        }
-    }
-
-    private isTargetChanged(): boolean {
-        return (
-            this.props.prevTarget != null &&
-            this.props.prevTarget.id !== this.props.currentTarget.id
-        );
-    }
-
-    private isStepSwitched(prevProps: AssessmentViewProps): boolean {
-        return (
-            prevProps.assessmentNavState.selectedTestSubview !==
-            this.props.assessmentNavState.selectedTestSubview
-        );
-    }
-
-    private visualHelperDisabledByDefault(test: VisualizationType, step: string): boolean {
-        return this.props.deps.assessmentsProvider.getStep(test, step).doNotScanByDefault === true;
-    }
-
     public componentWillUnmount(): void {
-        this.disableVisualHelpersForTest(this.props.assessmentNavState.selectedTestType);
+        this.deps.assessmentViewUpdateHandler.onUnmount(this.props);
     }
 
     private renderTargetChangeDialog(): JSX.Element {
@@ -155,10 +115,6 @@ export class AssessmentView extends React.Component<AssessmentViewProps> {
                 newTab={this.props.currentTarget}
             />
         );
-    }
-
-    private disableVisualHelpersForTest(test: VisualizationType): void {
-        this.props.deps.detailsViewActionMessageCreator.disableVisualHelpersForTest(test);
     }
 
     private renderTitle(title: string, content?: ContentPageComponent): JSX.Element {
