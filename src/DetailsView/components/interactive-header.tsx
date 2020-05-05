@@ -22,7 +22,12 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
         return <Header deps={props.deps} />;
     }
 
-    const getItems = () => <Switcher deps={props.deps} pivotKey={props.selectedPivot} />;
+    const getItems = () => {
+        if (!props.featureFlagStoreData['reflowUI']) {
+            return <Switcher deps={props.deps} pivotKey={props.selectedPivot} />;
+        }
+        return null;
+    };
 
     const getFarItems = () => (
         <GearMenuButton deps={props.deps} featureFlagData={props.featureFlagStoreData} />

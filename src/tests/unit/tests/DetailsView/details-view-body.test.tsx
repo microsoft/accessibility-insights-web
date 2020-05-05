@@ -202,7 +202,12 @@ describe('DetailsViewBody', () => {
     }
 
     function buildLeftNav(givenProps: DetailsViewBodyProps): JSX.Element {
-        return <DetailsViewLeftNav {...givenProps} />;
+        return (
+            <DetailsViewLeftNav
+                selectedPivot={givenProps.visualizationStoreData.selectedDetailsViewPivot}
+                {...givenProps}
+            />
+        );
     }
 
     function buildTargetPageInfoBar(givenProps: DetailsViewBodyProps): JSX.Element {

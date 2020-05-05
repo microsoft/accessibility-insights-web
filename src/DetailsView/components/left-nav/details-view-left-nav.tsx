@@ -4,6 +4,8 @@ import { mapValues } from 'lodash';
 import * as React from 'react';
 
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { Switcher, SwitcherDeps } from 'DetailsView/components/switcher';
 import { NamedFC } from '../../../common/react/named-fc';
 import { AssessmentStoreData } from '../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
@@ -17,7 +19,8 @@ export type DetailsViewLeftNavDeps = {
         assessmentProvider: AssessmentsProvider,
         flags: FeatureFlagStoreData,
     ) => AssessmentsProvider;
-} & LeftNavDeps;
+} & LeftNavDeps &
+    SwitcherDeps;
 
 export type DetailsViewLeftNavProps = {
     deps: DetailsViewLeftNavDeps;
@@ -26,6 +29,7 @@ export type DetailsViewLeftNavProps = {
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     featureFlagStoreData: FeatureFlagStoreData;
     assessmentStoreData: AssessmentStoreData;
+    selectedPivot: DetailsViewPivotType;
 };
 
 export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewLeftNav', props => {
@@ -47,9 +51,13 @@ export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewL
         assessmentsProvider,
         featureFlagStoreData,
     );
+    const switcher = featureFlagStoreData['reflowUI'] ? (
+        <Switcher deps={props.deps} pivotKey={props.selectedPivot} />
+    ) : null;
 
     const leftNav: JSX.Element = (
         <div className="left-nav main-nav">
+            {switcher}
             <switcherNavConfiguration.LeftNav
                 {...props}
                 assessmentsProvider={filteredProvider}
