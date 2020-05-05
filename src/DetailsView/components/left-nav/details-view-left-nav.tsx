@@ -5,14 +5,14 @@ import * as React from 'react';
 
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
-import { Switcher, SwitcherDeps } from 'DetailsView/components/switcher';
+import { getLeftNavSwitcher } from 'DetailsView/components/get-switchers';
+import { SwitcherDeps } from 'DetailsView/components/switcher';
 import { NamedFC } from '../../../common/react/named-fc';
 import { AssessmentStoreData } from '../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { DetailsRightPanelConfiguration } from '../details-view-right-panel';
 import { DetailsViewSwitcherNavConfiguration, LeftNavDeps } from '../details-view-switcher-nav';
-import { getHeaderSwitcher } from 'DetailsView/components/get-switchers';
 
 export type DetailsViewLeftNavDeps = {
     assessmentsProvider: AssessmentsProvider;
@@ -53,7 +53,7 @@ export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewL
         featureFlagStoreData,
     );
     const switcher = featureFlagStoreData['reflowUI']
-        ? getHeaderSwitcher({ deps: props.deps, pivotKey: props.selectedPivot })
+        ? getLeftNavSwitcher({ deps: props.deps, pivotKey: props.selectedPivot })
         : null;
 
     const leftNav: JSX.Element = (

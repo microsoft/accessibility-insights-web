@@ -55,7 +55,13 @@ exports[`InteractiveHeader render: tabClosed is false 1`] = `
         }
       }
       pivotKey={2}
-      styles={Object {}}
+      styles={
+        Object {
+          "dropdownClassName": "headerSwitcherDropdown",
+          "dropdownOptionClassName": "switcherDropdownOption",
+          "switcherClassName": "headerSwitcher",
+        }
+      }
     />
   }
 />

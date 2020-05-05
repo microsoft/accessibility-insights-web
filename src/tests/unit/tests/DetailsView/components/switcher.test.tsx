@@ -20,9 +20,9 @@ describe('Switcher', () => {
                 detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
             },
             styles: {
-                switcherDropdownOption: 'dropdown-option',
-                headerSwitcher: 'header-switcher',
-                headerSwitcherDropdown: 'header-switcher-dropdown',
+                dropdownOptionClassName: 'dropdown-option',
+                switcherClassName: 'header-switcher',
+                dropdownClassName: 'header-switcher-dropdown',
             },
         };
     });
