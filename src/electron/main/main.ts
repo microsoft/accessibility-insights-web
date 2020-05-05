@@ -89,6 +89,8 @@ const createWindow = () => {
 
 const enableDevMode = (window: BrowserWindow) => {
     if (process.env.DEV_MODE === 'true') {
+        const devTools = new BrowserWindow();
+        window.webContents.setDevToolsWebContents(devTools.webContents);
         window.webContents.openDevTools({
             mode: 'detach',
         });
