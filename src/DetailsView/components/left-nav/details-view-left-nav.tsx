@@ -5,8 +5,8 @@ import * as React from 'react';
 
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
-import { getLeftNavSwitcher } from 'DetailsView/components/get-switchers';
-import { SwitcherDeps } from 'DetailsView/components/switcher';
+import { Switcher, SwitcherDeps } from 'DetailsView/components/switcher';
+import { leftNavSwitcherStyleNames } from 'DetailsView/components/switcher-style-names';
 import { NamedFC } from '../../../common/react/named-fc';
 import { AssessmentStoreData } from '../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
@@ -52,9 +52,15 @@ export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewL
         assessmentsProvider,
         featureFlagStoreData,
     );
-    const switcher = featureFlagStoreData['reflowUI']
-        ? getLeftNavSwitcher({ deps: props.deps, pivotKey: props.selectedPivot })
-        : null;
+    let switcher = null;
+    if (featureFlagStoreData['reflowUI']) {
+        const switcherProps = {
+            deps: props.deps,
+            pivotKey: props.selectedPivot,
+            styles: leftNavSwitcherStyleNames,
+        };
+        switcher = <Switcher {...switcherProps} />;
+    }
 
     const leftNav: JSX.Element = (
         <div className="left-nav main-nav">

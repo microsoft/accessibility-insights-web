@@ -5,9 +5,9 @@ import { Header, HeaderDeps } from 'common/components/header';
 import { NamedFC } from 'common/react/named-fc';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { getHeaderSwitcher } from 'DetailsView/components/get-switchers';
+import { headerSwitcherStyleNames } from 'DetailsView/components/switcher-style-names';
 import * as React from 'react';
-import { SwitcherDeps } from './switcher';
+import { Switcher, SwitcherDeps } from './switcher';
 
 export type InteractiveHeaderDeps = SwitcherDeps & HeaderDeps & GearMenuButtonDeps;
 
@@ -25,7 +25,12 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
 
     const getItems = () => {
         if (!props.featureFlagStoreData['reflowUI']) {
-            return getHeaderSwitcher({ deps: props.deps, pivotKey: props.selectedPivot });
+            const switcherProps = {
+                deps: props.deps,
+                pivotKey: props.selectedPivot,
+                styles: headerSwitcherStyleNames,
+            };
+            return <Switcher {...switcherProps} />;
         }
         return null;
     };

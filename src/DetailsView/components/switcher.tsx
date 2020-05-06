@@ -4,6 +4,7 @@ import { Dropdown, IDropdownOption } from 'office-ui-fabric-react';
 import { Icon } from 'office-ui-fabric-react';
 import { ResponsiveMode } from 'office-ui-fabric-react';
 import * as React from 'react';
+import { SwitcherStyleNames } from './switcher-style-names';
 
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
@@ -11,12 +12,6 @@ import { DetailsViewActionMessageCreator } from '../actions/details-view-action-
 export type SwitcherDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
 };
-
-export interface SwitcherStyleNames {
-    dropdownOptionClassName: string;
-    switcherClassName: string;
-    dropdownClassName: string;
-}
 
 export interface SwitcherProps {
     deps: SwitcherDeps;
