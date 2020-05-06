@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
-
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import * as React from 'react';
 import { NamedFC } from '../../../common/react/named-fc';
 import { ManualTestStatus, ManualTestStatusData } from '../../../common/types/manual-test-status';
 import { DictionaryStringTo } from '../../../types/common-types';
@@ -14,6 +14,7 @@ import {
     OverviewLinkBuilderDeps,
 } from './left-nav-link-builder';
 import { NavLinkHandler } from './nav-link-handler';
+import { FeatureFlags } from 'common/feature-flags';
 
 export type AssessmentLeftNavDeps = {
     leftNavLinkBuilder: LeftNavLinkBuilder;
@@ -26,6 +27,7 @@ export type AssessmentLeftNavProps = {
     selectedKey: string;
     assessmentsProvider: AssessmentsProvider;
     assessmentsData: DictionaryStringTo<ManualTestStatusData>;
+    featureFlagStoreData: FeatureFlagStoreData;
 };
 
 export type AssessmentLeftNavLink = {
@@ -33,7 +35,7 @@ export type AssessmentLeftNavLink = {
 } & BaseLeftNavLink;
 
 export const AssessmentLeftNav = NamedFC<AssessmentLeftNavProps>('AssessmentLeftNav', props => {
-    const { deps, selectedKey, assessmentsProvider, assessmentsData } = props;
+    const { deps, selectedKey, assessmentsProvider, assessmentsData, featureFlagStoreData } = props;
 
     const { navLinkHandler, leftNavLinkBuilder } = deps;
 
@@ -55,15 +57,28 @@ export const AssessmentLeftNav = NamedFC<AssessmentLeftNavProps>('AssessmentLeft
             0,
         ),
     );
-    links = links.concat(
-        leftNavLinkBuilder.buildAssessmentTestLinks(
-            deps,
-            navLinkHandler.onAssessmentTestClick,
-            assessmentsProvider,
-            assessmentsData,
-            1,
-        ),
-    );
+
+    if (featureFlagStoreData[FeatureFlags.reflowUI]) {
+        links = links.concat(
+            leftNavLinkBuilder.buildAssessmentTestLinks(
+                deps,
+                navLinkHandler.onAssessmentTestClick,
+                assessmentsProvider,
+                assessmentsData,
+                1,
+            ),
+        );
+    } else {
+        links = links.concat(
+            leftNavLinkBuilder.buildAssessmentTestLinks(
+                deps,
+                navLinkHandler.onAssessmentTestClick,
+                assessmentsProvider,
+                assessmentsData,
+                1,
+            ),
+        );
+    }
 
     return (
         <BaseLeftNav renderIcon={renderAssessmentIcon} selectedKey={selectedKey} links={links} />
