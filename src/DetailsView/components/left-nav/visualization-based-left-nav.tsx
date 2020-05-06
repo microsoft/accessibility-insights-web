@@ -46,12 +46,6 @@ export const VisualizationBasedLeftNav = NamedFC<VisualizationBasedLeftNavProps>
             );
         });
 
-        return (
-            <BaseLeftNav
-                renderIcon={link => <LeftNavIndexIcon item={link} />}
-                selectedKey={selectedKey}
-                links={links}
-            />
-        );
+        return <BaseLeftNav selectedKey={selectedKey} links={links} />;
     },
 );

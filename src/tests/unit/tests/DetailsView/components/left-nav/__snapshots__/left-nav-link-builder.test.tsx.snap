@@ -23,6 +23,27 @@ exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessme
 `;
 
 exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments 2`] = `
+<LeftNavStatusIcon
+  item={
+    Object {
+      "forceAnchor": true,
+      "iconProps": Object {
+        "className": "hidden",
+      },
+      "index": -1,
+      "key": "Issues",
+      "name": "some title",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "status": -2,
+      "title": "-1: some title (passed)",
+      "url": "",
+    }
+  }
+/>
+`;
+
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments 3`] = `
 <TestViewLeftNavLink
   link={
     Object {
@@ -44,6 +65,27 @@ exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessme
 />
 `;
 
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments 4`] = `
+<LeftNavStatusIcon
+  item={
+    Object {
+      "forceAnchor": true,
+      "iconProps": Object {
+        "className": "hidden",
+      },
+      "index": 0,
+      "key": "Issues",
+      "name": "some title",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "status": -2,
+      "title": "0: some title (passed)",
+      "url": "",
+    }
+  }
+/>
+`;
+
 exports[`LeftNavBuilder buildOverviewLink should build overview link 1`] = `
 <OverviewLeftNavLink
   link={
@@ -62,7 +104,6 @@ exports[`LeftNavBuilder buildOverviewLink should build overview link 1`] = `
       "url": "",
     }
   }
-  renderIcon={[Function]}
 />
 `;
 
@@ -83,5 +124,24 @@ exports[`LeftNavBuilder buildVisualizationConfigurationLink should build link us
     }
   }
   renderIcon={[Function]}
+/>
+`;
+
+exports[`LeftNavBuilder buildVisualizationConfigurationLink should build link using configuration 2`] = `
+<LeftNavIndexIcon
+  item={
+    Object {
+      "forceAnchor": true,
+      "iconProps": Object {
+        "className": "hidden",
+      },
+      "index": -1,
+      "key": "Issues",
+      "name": "some title",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "url": "",
+    }
+  }
 />
 `;

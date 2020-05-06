@@ -69,10 +69,7 @@ describe('VisualizationBasedLeftNav', () => {
 
     it('renders with index icon', () => {
         const actual = shallow(<VisualizationBasedLeftNav {...props} />);
-        const renderIcon: (link: BaseLeftNavLink) => JSX.Element = actual.prop('renderIcon');
-        const renderedIcon = shallow(renderIcon(linkStub));
 
         expect(actual.getElement()).toMatchSnapshot();
-        expect(renderedIcon.getElement()).toMatchSnapshot();
     });
 });

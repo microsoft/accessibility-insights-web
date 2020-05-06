@@ -25,6 +25,7 @@ import {
     LeftNavLinkBuilderDeps,
 } from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';
 import { DictionaryStringTo } from '../../../../../../types/common-types';
+import { shallow } from 'enzyme';
 
 describe('LeftNavBuilder', () => {
     let deps: LeftNavLinkBuilderDeps;
@@ -33,7 +34,6 @@ describe('LeftNavBuilder', () => {
     let assessmentsDataStub: DictionaryStringTo<ManualTestStatusData>;
     let testSubject: LeftNavLinkBuilder;
     let getAssessmentSummaryModelFromProviderAndStatusDataMock: IMock<GetAssessmentSummaryModelFromProviderAndStatusData>;
-    let renderIconStub: (link: BaseLeftNavLink) => JSX.Element;
     let getStatusForTestMock: IMock<(stats: RequirementOutcomeStats) => ManualTestStatus>;
     let outcomeTypeFromTestStatusMock: IMock<(testStatus: ManualTestStatus) => OutcomeTypeSemantic>;
     let outcomeStatsFromManualTestStatusMock: IMock<(
@@ -51,7 +51,6 @@ describe('LeftNavBuilder', () => {
             MockBehavior.Strict,
         );
         assessmentsDataStub = {};
-        renderIconStub = _ => null;
 
         deps = {
             getStatusForTest: getStatusForTestMock.object,
@@ -102,8 +101,8 @@ describe('LeftNavBuilder', () => {
                 percentComplete: expectedPercentComplete,
             };
 
-            expect(isMatch(actual, expected)).toBeTruthy();
-            expect(actual.onRenderNavLink(actual, renderIconStub)).toMatchSnapshot();
+            expect(actual).toMatchObject(expected);
+            expect(actual.onRenderNavLink(actual)).toMatchSnapshot();
         });
     });
 
@@ -137,8 +136,10 @@ describe('LeftNavBuilder', () => {
                 onClickNavLink: onLinkClickMock.object,
             };
 
-            expect(isMatch(actual, expected)).toBeTruthy();
-            expect(actual.onRenderNavLink(actual, renderIconStub)).toMatchSnapshot();
+            const navLink = actual.onRenderNavLink(actual);
+            expect(actual).toMatchObject(expected);
+            expect(navLink).toMatchSnapshot();
+            expect(navLink.props['renderIcon'](actual)).toMatchSnapshot();
         });
     });
 
@@ -198,8 +199,11 @@ describe('LeftNavBuilder', () => {
                         narratorStatusStub.pastTense
                     })`,
                 };
-                expect(isMatch(actual, expected)).toBeTruthy();
-                expect(actual.onRenderNavLink(actual, renderIconStub)).toMatchSnapshot();
+
+                const navLink = actual.onRenderNavLink(actual);
+                expect(actual).toMatchObject(expected);
+                expect(navLink).toMatchSnapshot();
+                expect(navLink.props['renderIcon'](actual)).toMatchSnapshot();
             });
         });
     });

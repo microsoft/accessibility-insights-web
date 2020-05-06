@@ -18,6 +18,7 @@ import {
 import { LeftNavLinkBuilder } from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';
 import { NavLinkHandler } from '../../../../../../DetailsView/components/left-nav/nav-link-handler';
 import { DictionaryStringTo } from '../../../../../../types/common-types';
+import { FeatureFlags } from 'common/feature-flags';
 
 describe('AssessmentLeftNav', () => {
     let linkStub: AssessmentLeftNavLink;
@@ -49,6 +50,7 @@ describe('AssessmentLeftNav', () => {
             leftNavLinkBuilder: leftNavLinkBuilderMock.object,
             assessmentsProvider: assessmentsProviderStub,
             assessmentsData: assessmentsDataStub,
+            featureFlagStoreData: {},
         };
 
         leftNavLinkBuilderMock
@@ -76,22 +78,15 @@ describe('AssessmentLeftNav', () => {
             .returns(() => [linkStub]);
     });
 
-    it('render with index icon', () => {
+    it('renders with reflow feature flag enabled', () => {
+        props.featureFlagStoreData[FeatureFlags.reflowUI] = true;
         const actual = shallow(<AssessmentLeftNav {...props} />);
-        const renderIcon: (link: AssessmentLeftNavLink) => JSX.Element = actual.prop('renderIcon');
-        const renderedIcon = shallow(renderIcon(linkStub));
-
         expect(actual.getElement()).toMatchSnapshot();
-        expect(renderedIcon.getElement()).toMatchSnapshot();
     });
 
-    it('render with status icon', () => {
-        linkStub.status = -1;
+    it('renders with reflow feature flag disabled', () => {
+        props.featureFlagStoreData[FeatureFlags.reflowUI] = false;
         const actual = shallow(<AssessmentLeftNav {...props} />);
-        const renderIcon: (link: AssessmentLeftNavLink) => JSX.Element = actual.prop('renderIcon');
-        const renderedIcon = shallow(renderIcon(linkStub));
-
         expect(actual.getElement()).toMatchSnapshot();
-        expect(renderedIcon.getElement()).toMatchSnapshot();
     });
 });

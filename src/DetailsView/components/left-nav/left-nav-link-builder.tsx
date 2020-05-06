@@ -1,9 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { Assessment } from 'assessments/types/iassessment';
+import { Requirement } from 'assessments/types/requirement';
+import { AssessmentLeftNavLink } from 'DetailsView/components/left-nav/assessment-left-nav';
+import { LeftNavIndexIcon, LeftNavStatusIcon } from 'DetailsView/components/left-nav/left-nav-icon';
 import { map } from 'lodash';
 import * as React from 'react';
-
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { OutcomeTypeSemantic } from 'reports/components/outcome-type';
 import { RequirementOutcomeStats } from 'reports/components/requirement-outcome-type';
 import { GetAssessmentSummaryModelFromProviderAndStatusData } from 'reports/get-assessment-summary-model';
@@ -53,7 +56,7 @@ export class LeftNavLinkBuilder {
             'Overview',
             'Overview',
             index,
-            (l, ri) => <OverviewLeftNavLink link={l} renderIcon={ri} />,
+            l => <OverviewLeftNavLink link={l} />,
             onLinkClick,
         );
 
@@ -93,7 +96,7 @@ export class LeftNavLinkBuilder {
                 name,
                 VisualizationType[assessment.visualizationType],
                 index,
-                (l, ri) => <TestViewLeftNavLink link={l} renderIcon={ri} />,
+                l => <TestViewLeftNavLink link={l} renderIcon={this.renderAssessmentTestIcon} />,
                 onLinkClick,
             );
 
@@ -110,6 +113,14 @@ export class LeftNavLinkBuilder {
         return testLinks;
     }
 
+    private renderAssessmentTestIcon: onBaseLeftNavItemRender = (link: AssessmentLeftNavLink) => {
+        if (link.status === ManualTestStatus.UNKNOWN) {
+            return <LeftNavIndexIcon item={link} />;
+        }
+
+        return <LeftNavStatusIcon item={link} />;
+    };
+
     public buildVisualizationConfigurationLink(
         configuration: VisualizationConfiguration,
         onLinkClick: onBaseLeftNavItemClick,
@@ -122,12 +133,16 @@ export class LeftNavLinkBuilder {
             displayableData.title,
             VisualizationType[visualizationType],
             index,
-            (l, ri) => <TestViewLeftNavLink link={l} renderIcon={ri} />,
+            l => <TestViewLeftNavLink link={l} renderIcon={this.renderVisualizationIcon} />,
             onLinkClick,
         );
 
         return link;
     }
+
+    private renderVisualizationIcon: onBaseLeftNavItemRender = link => (
+        <LeftNavIndexIcon item={link} />
+    );
 
     private buildLink(
         name: string,
