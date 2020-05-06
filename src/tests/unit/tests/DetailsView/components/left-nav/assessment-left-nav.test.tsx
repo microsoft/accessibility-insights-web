@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { FeatureFlags } from 'common/feature-flags';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
-
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import {
     ManualTestStatus,
     ManualTestStatusData,
@@ -18,7 +18,6 @@ import {
 import { LeftNavLinkBuilder } from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';
 import { NavLinkHandler } from '../../../../../../DetailsView/components/left-nav/nav-link-handler';
 import { DictionaryStringTo } from '../../../../../../types/common-types';
-import { FeatureFlags } from 'common/feature-flags';
 
 describe('AssessmentLeftNav', () => {
     let linkStub: AssessmentLeftNavLink;

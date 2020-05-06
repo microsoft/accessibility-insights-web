@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { Assessment } from 'assessments/types/iassessment';
-import { Requirement } from 'assessments/types/requirement';
 import { AssessmentLeftNavLink } from 'DetailsView/components/left-nav/assessment-left-nav';
 import { LeftNavIndexIcon, LeftNavStatusIcon } from 'DetailsView/components/left-nav/left-nav-icon';
 import { map } from 'lodash';

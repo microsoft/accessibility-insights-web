@@ -3,7 +3,6 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
-
 import { VisualizationConfiguration } from '../../../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../../../common/configs/visualization-configuration-factory';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
