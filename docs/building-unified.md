@@ -68,3 +68,7 @@ yarn test:unified -u
 ### Debugging in VS Code
 
 To debug the built app in Code, you can run the `Debug electron main process with --remote-debugging-port=9222` configuration. Once this is running, you can debug the renderer process via the `Attach debugger to electron renderer process` configuration.
+
+### Using Chrome DevTools
+
+To debug the renderer process, you can run the application with the environment variable 'DEV_MODE' set to 'true'. The app should open with a detached DevTools instance. See more info [here](https://www.electronjs.org/docs/tutorial/application-debugging#renderer-process). This allows you to inspect the DOM, programmatically set feature flags (e.g. `featureFlagsController.enableFeature("logTelemetryToConsole")`), or modify persisted data in the Application tab.
