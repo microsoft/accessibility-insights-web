@@ -4,6 +4,27 @@ exports[`DetailsViewLeftNav should render from switcher nav 1`] = `
 <div
   className="left-nav main-nav"
 >
+  <FlaggedComponent
+    enableJSXElement={
+      <Switcher
+        deps={
+          Object {
+            "assessmentsProvider": Object {},
+            "assessmentsProviderWithFeaturesEnabled": [Function],
+          }
+        }
+        styles={
+          Object {
+            "dropdownClassName": "leftNavSwitcherDropdown",
+            "dropdownOptionClassName": "switcherDropdownOption",
+            "switcherClassName": "leftNavSwitcher",
+          }
+        }
+      />
+    }
+    featureFlag="reflowUI"
+    featureFlagStoreData={Object {}}
+  />
   <test
     assessmentStoreData={
       Object {

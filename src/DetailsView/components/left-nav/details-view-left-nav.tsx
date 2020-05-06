@@ -4,6 +4,8 @@ import { mapValues } from 'lodash';
 import * as React from 'react';
 
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { FlaggedComponent } from 'common/components/flagged-component';
+import { FeatureFlags } from 'common/feature-flags';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { Switcher, SwitcherDeps } from 'DetailsView/components/switcher';
 import { leftNavSwitcherStyleNames } from 'DetailsView/components/switcher-style-names';
@@ -52,19 +54,20 @@ export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewL
         assessmentsProvider,
         featureFlagStoreData,
     );
-    let switcher = null;
-    if (featureFlagStoreData['reflowUI']) {
-        const switcherProps = {
-            deps: props.deps,
-            pivotKey: props.selectedPivot,
-            styles: leftNavSwitcherStyleNames,
-        };
-        switcher = <Switcher {...switcherProps} />;
-    }
+
+    const switcherProps = {
+        deps: props.deps,
+        pivotKey: props.selectedPivot,
+        styles: leftNavSwitcherStyleNames,
+    };
 
     const leftNav: JSX.Element = (
         <div className="left-nav main-nav">
-            {switcher}
+            <FlaggedComponent
+                featureFlag={FeatureFlags[FeatureFlags.reflowUI]}
+                featureFlagStoreData={featureFlagStoreData}
+                enableJSXElement={<Switcher {...switcherProps} />}
+            />
             <switcherNavConfiguration.LeftNav
                 {...props}
                 assessmentsProvider={filteredProvider}

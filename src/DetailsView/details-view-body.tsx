@@ -98,11 +98,12 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
             return null;
         }
 
-        const selectedPivot = this.props.visualizationStoreData
-            ? this.props.visualizationStoreData.selectedDetailsViewPivot
-            : null;
-
-        return <DetailsViewLeftNav selectedPivot={selectedPivot} {...this.props} />;
+        return (
+            <DetailsViewLeftNav
+                selectedPivot={this.props.visualizationStoreData?.selectedDetailsViewPivot}
+                {...this.props}
+            />
+        );
     }
 
     private getTargetPageHiddenBar(): JSX.Element {
