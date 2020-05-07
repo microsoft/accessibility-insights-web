@@ -15,13 +15,13 @@ import {
     ChangeRequirementStatusPayload,
     EditFailureInstancePayload,
     RemoveFailureInstancePayload,
-    SelectRequirementPayload,
+    SelectTestSubviewPayload,
     ToggleActionPayload,
     UpdateSelectedDetailsViewPayload,
 } from './action-payloads';
 
 export class AssessmentActions {
-    public readonly selectRequirement = new Action<SelectRequirementPayload>();
+    public readonly selectTestSubview = new Action<SelectTestSubviewPayload>();
     public readonly changeInstanceStatus = new Action<ChangeInstanceStatusPayload>();
     public readonly changeRequirementStatus = new Action<ChangeRequirementStatusPayload>();
     public readonly addFailureInstance = new Action<AddFailureInstancePayload>();

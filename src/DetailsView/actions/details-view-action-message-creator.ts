@@ -13,7 +13,7 @@ import {
     OnDetailsViewOpenPayload,
     OnDetailsViewPivotSelected,
     RemoveFailureInstancePayload,
-    SelectRequirementPayload,
+    SelectTestSubviewPayload,
     SetAllUrlsPermissionStatePayload,
     SwitchToTargetTabPayload,
     ToggleActionPayload,
@@ -164,13 +164,13 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         selectedRequirement: string,
         visualizationType: VisualizationType,
     ): void {
-        const payload: SelectRequirementPayload = {
+        const payload: SelectTestSubviewPayload = {
             telemetry: this.telemetryFactory.forSelectRequirement(
                 event,
                 visualizationType,
                 selectedRequirement,
             ),
-            selectedRequirement: selectedRequirement,
+            selectedTestSubview: selectedRequirement,
             selectedTest: visualizationType,
         };
 

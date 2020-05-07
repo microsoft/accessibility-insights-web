@@ -10,7 +10,7 @@ import {
     EditFailureInstancePayload,
     OnDetailsViewOpenPayload,
     RemoveFailureInstancePayload,
-    SelectRequirementPayload,
+    SelectTestSubviewPayload,
     ToggleActionPayload,
 } from 'background/actions/action-payloads';
 import { AssessmentActionCreator } from 'background/actions/assessment-action-creator';
@@ -527,13 +527,13 @@ describe('AssessmentActionCreatorTest', () => {
     });
 
     it('handles SelectTestRequirement message', () => {
-        const payload: SelectRequirementPayload = {
-            selectedRequirement: 'test-requirement',
+        const payload: SelectTestSubviewPayload = {
+            selectedTestSubview: 'test-requirement',
             ...telemetryOnlyPayload,
-        } as SelectRequirementPayload;
+        } as SelectTestSubviewPayload;
 
         const selectRequirementMock = createActionMock(payload);
-        const actionsMock = createActionsMock('selectRequirement', selectRequirementMock.object);
+        const actionsMock = createActionsMock('selectTestSubview', selectRequirementMock.object);
         const interpreterMock = createInterpreterMock(
             AssessmentMessages.SelectTestRequirement,
             payload,
