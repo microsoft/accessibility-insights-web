@@ -48,7 +48,7 @@ jobs:
                         }
                     ]
 
-          - script: 'rename "s/\.AppImage$/.sig/" $(System.DefaultWorkingDirectory)/detachedSignature/*.AppImage'
+          - script: 'sudo apt-get install rename; rename "s/\.AppImage$/.sig/" $(System.DefaultWorkingDirectory)/detachedSignature/*.AppImage'
             displayName: 'Change signature file extension to sig'
 
           - task: CopyFiles@2
