@@ -36,8 +36,9 @@ const downloadElectronArtifact = async (artifactName, destinationPath) => {
         version: `${pkg.dependencies.electron}`,
         artifactName,
         mirrorOptions: {
-            mirror: process.env.ELECTRON_MIRROR_VAR,
+            mirror: process.env.ELECTRON_MIRROR_BASE_VAR,
             customDir: process.env.ELECTRON_CUSTOM_DIR_VAR,
+            resolveAssetURL: resolveCustomAssetURL,
         },
         force: true,
     });
@@ -47,6 +48,17 @@ const downloadElectronArtifact = async (artifactName, destinationPath) => {
     fs.rmdirSync(destinationPath, { recursive: true });
 
     await extract(zipFilePath, { dir: destinationPath });
+};
+
+const resolveCustomAssetURL = details => {
+    const opts = details.mirrorOptions;
+    const file = details.artifactName.startsWith('SHASUMS256')
+        ? details.artifactName
+        : `${[details.artifactName, details.version, details.platform, details.arch].join(
+              '-',
+          )}.zip`;
+    const strippedVer = details.version.replace(/^v/, '');
+    return `${opts.mirror}/${strippedVer}/electron/${opts.customDir}/${file}`;
 };
 
 downloadMirrors().catch(err => {
