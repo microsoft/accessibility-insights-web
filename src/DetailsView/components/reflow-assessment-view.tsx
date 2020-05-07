@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-import { ContentLinkDeps } from 'views/content/content-link';
 
 import { AssessmentTestResult } from '../../common/assessment/assessment-test-result';
 import { Tab } from '../../common/itab';
@@ -13,9 +12,7 @@ import {
 import { GettingStartedView } from './getting-started-view';
 import { TargetChangeDialog, TargetChangeDialogDeps } from './target-change-dialog';
 
-export type WithAssessmentTestResult = { assessmentTestResult: AssessmentTestResult };
-
-export type ReflowAssessmentViewDeps = ContentLinkDeps & TargetChangeDialogDeps;
+export type ReflowAssessmentViewDeps = TargetChangeDialogDeps;
 
 export interface ReflowAssessmentViewProps {
     deps: ReflowAssessmentViewDeps;
