@@ -75,11 +75,13 @@ export class DetailsViewOverlay extends React.Component<DetailsViewOverlayProps>
         const {
             currentPanel: { isContentOpen },
             contentPath,
+            contentTitle,
         } = this.props.detailsViewStoreData;
         const contentProps: ContentPanelProps = {
             deps: this.props.deps,
             isOpen: isContentOpen,
             content: contentPath,
+            contentTitle: contentTitle,
         };
 
         return <ContentPanel {...contentProps} />;

@@ -34,6 +34,7 @@ describe('ContentActionMessageCreator', () => {
     describe('handles OpenPanel message', () => {
         const payload: ContentPayload = {
             contentPath: 'the path',
+            contentTitle: 'the name',
             telemetry: {
                 triggeredBy: 'N/A',
                 source: -1 as TelemetryEventSource,

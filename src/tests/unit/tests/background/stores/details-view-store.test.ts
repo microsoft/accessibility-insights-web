@@ -94,17 +94,17 @@ describe('DetailsViewStoreTest', () => {
         const initialState = new DetailsViewStoreDataBuilder().withContentOpen(false).build();
 
         const expectedState = new DetailsViewStoreDataBuilder()
-            .withContentOpen(true, 'content/path')
+            .withContentOpen(true, 'content/path', 'content title')
             .build();
 
         createStoreTesterForContentActions('openContentPanel')
-            .withActionParam({ contentPath: 'content/path' })
+            .withActionParam({ contentPath: 'content/path', contentTitle: 'content title' })
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     test('onCloseContent', () => {
         const initialState = new DetailsViewStoreDataBuilder()
-            .withContentOpen(true, 'content/path')
+            .withContentOpen(true, 'content/path', 'content title')
             .build();
 
         const expectedState = new DetailsViewStoreDataBuilder().withContentOpen(false).build();
