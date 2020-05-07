@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Assessment } from 'assessments/types/iassessment';
 import { AssessmentTestResult } from 'common/assessment/assessment-test-result';
 import { AssessmentData } from 'common/types/store-data/assessment-result-data';
 import { shallow } from 'enzyme';
@@ -17,30 +16,34 @@ describe('AssessmentViewTest', () => {
     test('render for requirement', () => {
         const props = generateProps('requirement');
         const rendered = shallow(<ReflowAssessmentView {...props} />);
-        expect(rendered.debug()).toMatchSnapshot();
+        expect(rendered.getElement()).toMatchSnapshot();
     });
 
     test('render for gettting started', () => {
         const props = generateProps('getting-started');
         const rendered = shallow(<ReflowAssessmentView {...props} />);
-        expect(rendered.debug()).toMatchSnapshot();
+        expect(rendered.getElement()).toMatchSnapshot();
     });
 
     function generateProps(subview: string): ReflowAssessmentViewProps {
-        const assessmentMock = Mock.ofType<Assessment>();
         const assessmentDataMock = Mock.ofType<AssessmentData>();
-        const assessmentTestResultMock = Mock.ofType<AssessmentTestResult>();
+
+        const assessmentTestResultStub: AssessmentTestResult = {
+            definition: {
+                gettingStarted: <h1>Hello</h1>,
+            },
+        } as AssessmentTestResult;
 
         const reflowProps = {
             deps: {} as ReflowAssessmentViewDeps,
-            prevTarget: {},
-            currentTarget: {},
+            prevTarget: { id: 4 },
+            currentTarget: { id: 5 },
             assessmentNavState: {
                 selectedTestSubview: subview,
-                selectedTestType: assessmentMock.object.visualizationType,
+                selectedTestType: -1,
             },
             assessmentData: assessmentDataMock.object,
-            assessmentTestResult: assessmentTestResultMock.object,
+            assessmentTestResult: assessmentTestResultStub,
         } as ReflowAssessmentViewProps;
         return reflowProps;
     }
