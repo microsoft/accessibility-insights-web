@@ -10,7 +10,7 @@ import {
     ChangeRequirementStatusPayload,
     EditFailureInstancePayload,
     RemoveFailureInstancePayload,
-    SelectRequirementPayload,
+    SelectTestSubviewPayload,
     ToggleActionPayload,
     UpdateSelectedDetailsViewPayload,
 } from 'background/actions/action-payloads';
@@ -667,14 +667,14 @@ describe('AssessmentStoreTest', () => {
             .withSelectedTestSubview(requirement)
             .build();
 
-        const payload: SelectRequirementPayload = {
-            selectedRequirement: requirement,
+        const payload: SelectTestSubviewPayload = {
+            selectedTestSubview: requirement,
             selectedTest: visualizationType,
         };
 
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
 
-        createStoreTesterForAssessmentActions('selectRequirement')
+        createStoreTesterForAssessmentActions('selectTestSubview')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, finalState);
     });

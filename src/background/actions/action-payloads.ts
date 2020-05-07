@@ -29,8 +29,8 @@ export interface BaseActionPayload {
     telemetry?: TelemetryData;
 }
 
-export interface SelectRequirementPayload extends BaseActionPayload {
-    selectedRequirement: string;
+export interface SelectTestSubviewPayload extends BaseActionPayload {
+    selectedTestSubview: string;
     selectedTest: VisualizationType;
 }
 

@@ -151,7 +151,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             messageType: Messages.Assessment.SelectTestRequirement,
             payload: {
                 telemetry: telemetry,
-                selectedRequirement: selectedRequirement,
+                selectedTestSubview: selectedRequirement,
                 selectedTest: view,
             },
         };

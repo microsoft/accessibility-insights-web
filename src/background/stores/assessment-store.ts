@@ -22,7 +22,7 @@ import {
 } from 'injected/analyzers/analyzer';
 import { forEach, isEmpty } from 'lodash';
 import { DictionaryStringTo } from 'types/common-types';
-import { AddResultDescriptionPayload, SelectRequirementPayload } from '../actions/action-payloads';
+import { AddResultDescriptionPayload, SelectTestSubviewPayload } from '../actions/action-payloads';
 import { AssessmentDataConverter } from '../assessment-data-converter';
 import { InitialAssessmentStoreDataGenerator } from '../initial-assessment-store-data-generator';
 import {
@@ -106,7 +106,7 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         this.assessmentActions.scanUpdate.addListener(this.onScanUpdate);
         this.assessmentActions.resetData.addListener(this.onResetData);
         this.assessmentActions.resetAllAssessmentsData.addListener(this.onResetAllAssessmentsData);
-        this.assessmentActions.selectRequirement.addListener(this.onSelectTestStep);
+        this.assessmentActions.selectTestSubview.addListener(this.onSelectTestSubview);
         this.assessmentActions.changeInstanceStatus.addListener(this.onChangeInstanceStatus);
         this.assessmentActions.changeRequirementStatus.addListener(this.onChangeStepStatus);
         this.assessmentActions.undoRequirementStatusChange.addListener(this.onUndoStepStatusChange);
@@ -363,9 +363,9 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         this.emitChanged();
     };
 
-    private onSelectTestStep = (payload: SelectRequirementPayload): void => {
+    private onSelectTestSubview = (payload: SelectTestSubviewPayload): void => {
         this.state.assessmentNavState.selectedTestType = payload.selectedTest;
-        this.state.assessmentNavState.selectedTestSubview = payload.selectedRequirement;
+        this.state.assessmentNavState.selectedTestSubview = payload.selectedTestSubview;
         this.emitChanged();
     };
 

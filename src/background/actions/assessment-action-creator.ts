@@ -9,7 +9,6 @@ import {
     ScanUpdatePayload,
 } from 'injected/analyzers/analyzer';
 import { capitalize } from 'lodash';
-
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import {
@@ -23,7 +22,7 @@ import {
     EditFailureInstancePayload,
     OnDetailsViewOpenPayload,
     RemoveFailureInstancePayload,
-    SelectRequirementPayload,
+    SelectTestSubviewPayload,
     ToggleActionPayload,
 } from './action-payloads';
 import { AssessmentActions } from './assessment-actions';
@@ -40,7 +39,7 @@ export class AssessmentActionCreator {
     public registerCallbacks(): void {
         this.interpreter.registerTypeToPayloadCallback(
             AssessmentMessages.SelectTestRequirement,
-            this.onSelectTestStep,
+            this.onSelectTestRequirement,
         );
         this.interpreter.registerTypeToPayloadCallback(
             getStoreStateMessage(StoreNames.AssessmentStore),
@@ -225,8 +224,8 @@ export class AssessmentActionCreator {
         this.assessmentActions.getCurrentState.invoke(null);
     };
 
-    private onSelectTestStep = (payload: SelectRequirementPayload): void => {
-        this.assessmentActions.selectRequirement.invoke(payload);
+    private onSelectTestRequirement = (payload: SelectTestSubviewPayload): void => {
+        this.assessmentActions.selectTestSubview.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.SELECT_REQUIREMENT, payload);
     };
 
