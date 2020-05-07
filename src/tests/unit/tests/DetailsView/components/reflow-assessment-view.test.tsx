@@ -1,100 +1,47 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
+import { Assessment } from 'assessments/types/iassessment';
+import { AssessmentTestResult } from 'common/assessment/assessment-test-result';
+import { AssessmentData } from 'common/types/store-data/assessment-result-data';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { AssessmentViewPropsBuilder } from 'tests/unit/tests/DetailsView/components/assessment-view-props-builder';
-import { Mock, Times } from 'typemoq';
+import { Mock } from 'typemoq';
 
-import { VisualizationType } from '../../../../../common/types/visualization-type';
 import {
-    AssessmentViewProps,
     ReflowAssessmentView,
+    ReflowAssessmentViewDeps,
+    ReflowAssessmentViewProps,
 } from '../../../../../DetailsView/components/reflow-assessment-view';
-import { CreateTestAssessmentProvider } from '../../../common/test-assessment-provider';
 
 describe('AssessmentViewTest', () => {
-    const assessmentsProvider = CreateTestAssessmentProvider();
-    const assessmentDefaultMessageGenerator = new AssessmentDefaultMessageGenerator();
-    let builder: AssessmentViewPropsBuilder;
-
-    beforeEach(() => {
-        builder = new AssessmentViewPropsBuilder(
-            assessmentsProvider,
-            assessmentDefaultMessageGenerator,
-        );
-    });
-
-    test('constructor', () => {
-        const testObject = new ReflowAssessmentView({} as AssessmentViewProps);
-        expect(testObject).toBeInstanceOf(React.Component);
-    });
-
     test('render for requirement', () => {
-        const props = builder.buildProps();
-
+        const props = generateProps('requirement');
         const rendered = shallow(<ReflowAssessmentView {...props} />);
         expect(rendered.debug()).toMatchSnapshot();
     });
 
     test('render for gettting started', () => {
-        const props = builder.buildProps();
-        props.assessmentNavState.selectedTestSubview = 'getting-started';
-
+        const props = generateProps('getting-started');
         const rendered = shallow(<ReflowAssessmentView {...props} />);
         expect(rendered.debug()).toMatchSnapshot();
     });
 
-    test('componentDidMount', () => {
-        const props = builder.buildProps();
-        builder.updateHandlerMock.setup(u => u.onMount(props)).verifiable(Times.once());
+    function generateProps(subview: string): ReflowAssessmentViewProps {
+        const assessmentMock = Mock.ofType<Assessment>();
+        const assessmentDataMock = Mock.ofType<AssessmentData>();
+        const assessmentTestResultMock = Mock.ofType<AssessmentTestResult>();
 
-        const testObject = new ReflowAssessmentView(props);
-
-        testObject.componentDidMount();
-        builder.verifyAll();
-    });
-
-    test('componentDidUpdate', () => {
-        const prevProps = buildPrevProps();
-        const props = builder.buildProps();
-        const onAssessmentViewUpdateMock = Mock.ofInstance(
-            (previousProps: AssessmentViewProps, currentProps: AssessmentViewProps) => {},
-        );
-
-        builder.updateHandlerMock.setup(u => u.update(prevProps, props)).verifiable(Times.once());
-        builder.detailsViewExtensionPointMock
-            .setup(d => d.apply(props.assessmentTestResult.definition.extensions))
-            .returns(() => {
-                return { onAssessmentViewUpdate: onAssessmentViewUpdateMock.object };
-            })
-            .verifiable(Times.once());
-        onAssessmentViewUpdateMock.setup(o => o(prevProps, props)).verifiable(Times.once());
-
-        const testObject = new ReflowAssessmentView(props);
-
-        testObject.componentDidUpdate(prevProps);
-
-        builder.verifyAll();
-        onAssessmentViewUpdateMock.verifyAll();
-    });
-
-    test('componentWillUnmount', () => {
-        const props = builder.buildProps();
-        builder.updateHandlerMock.setup(u => u.onUnmount(props)).verifiable(Times.once());
-
-        const testObject = new ReflowAssessmentView(props);
-
-        testObject.componentWillUnmount();
-        builder.verifyAll();
-    });
-
-    function buildPrevProps(): AssessmentViewProps {
-        const prevStep = 'prevStep';
-        const prevTest = -100 as VisualizationType;
-        const prevProps = builder.buildProps();
-        prevProps.assessmentNavState.selectedTestSubview = prevStep;
-        prevProps.assessmentNavState.selectedTestType = prevTest;
-        return prevProps;
+        const reflowProps = {
+            deps: {} as ReflowAssessmentViewDeps,
+            prevTarget: {},
+            currentTarget: {},
+            assessmentNavState: {
+                selectedTestSubview: subview,
+                selectedTestType: assessmentMock.object.visualizationType,
+            },
+            assessmentData: assessmentDataMock.object,
+            assessmentTestResult: assessmentTestResultMock.object,
+        } as ReflowAssessmentViewProps;
+        return reflowProps;
     }
 });
