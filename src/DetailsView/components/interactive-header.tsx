@@ -26,17 +26,19 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
     }
 
     const getItems = () => {
-        const switcherProps = {
-            deps: props.deps,
-            pivotKey: props.selectedPivot,
-            styles: headerSwitcherStyleNames,
-        };
+        const switcher = (
+            <Switcher
+                deps={props.deps}
+                pivotKey={props.selectedPivot}
+                styles={headerSwitcherStyleNames}
+            />
+        );
         return (
             <FlaggedComponent
                 featureFlag={FeatureFlags[FeatureFlags.reflowUI]}
                 featureFlagStoreData={props.featureFlagStoreData}
                 enableJSXElement={null}
-                disableJSXElement={<Switcher {...switcherProps} />}
+                disableJSXElement={switcher}
             />
         );
     };
