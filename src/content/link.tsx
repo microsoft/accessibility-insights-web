@@ -50,7 +50,7 @@ export const link = {
     ]),
     WCAG_2_5_3: guidanceLinkTo('WCAG 2.5.3', 'https://www.w3.org/WAI/WCAG21/Understanding/label-in-name', [guidanceTags.WCAG_2_1]),
     WCAG_2_5_4: guidanceLinkTo('WCAG 2.5.4', 'https://www.w3.org/WAI/WCAG21/Understanding/motion-actuation.html', [guidanceTags.WCAG_2_1]),
-    WCAG_2_5_5: guidanceLinkTo('WCAG 2.5.5', 'https://learningplayer.microsoft.com/activity/S1315002/launch'),
+    WCAG_2_5_5: guidanceLinkTo('WCAG 2.5.5', 'https://www.w3.org/WAI/WCAG21/Understanding/target-size.html'),
     WCAG_3_1_1: guidanceLinkTo('WCAG 3.1.1', 'https://www.w3.org/WAI/WCAG21/Understanding/language-of-page.html'),
     WCAG_3_1_2: guidanceLinkTo('WCAG 3.1.2', 'https://www.w3.org/WAI/WCAG21/Understanding/language-of-parts.html'),
     WCAG_3_2_1: guidanceLinkTo('WCAG 3.2.1', 'https://www.w3.org/WAI/WCAG21/Understanding/on-focus.html'),
