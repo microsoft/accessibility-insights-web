@@ -40,21 +40,39 @@ exports[`InteractiveHeader render: tabClosed is false 1`] = `
     />
   }
   items={
-    <Switcher
-      deps={
+    <FlaggedComponent
+      disableJSXElement={
+        <Switcher
+          deps={
+            Object {
+              "dropdownClickHandler": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "dropdownActionMessageCreator": undefined,
+                "openDebugTools": [Function],
+                "openPreviewFeaturesPanelHandler": [Function],
+                "openScopingPanelHandler": [Function],
+                "openSettingsPanelHandler": [Function],
+                "source": undefined,
+              },
+            }
+          }
+          pivotKey={2}
+          styles={
+            Object {
+              "dropdownClassName": "headerSwitcherDropdown",
+              "dropdownOptionClassName": "switcherDropdownOption",
+              "switcherClassName": "headerSwitcher",
+            }
+          }
+        />
+      }
+      enableJSXElement={null}
+      featureFlag="reflowUI"
+      featureFlagStoreData={
         Object {
-          "dropdownClickHandler": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "dropdownActionMessageCreator": undefined,
-            "openDebugTools": [Function],
-            "openPreviewFeaturesPanelHandler": [Function],
-            "openScopingPanelHandler": [Function],
-            "openSettingsPanelHandler": [Function],
-            "source": undefined,
-          },
+          "test-flag": true,
         }
       }
-      pivotKey={2}
     />
   }
 />
