@@ -15,12 +15,13 @@ export type ContentPanelDeps = {
 export type ContentPanelProps = {
     deps: ContentPanelDeps;
     content: ContentReference;
+    contentTitle: string;
     isOpen: boolean;
 };
 
 export const ContentPanel = NamedFC<ContentPanelProps>(
     'ContentPanel',
-    ({ deps, content, isOpen }) => {
+    ({ deps, content, contentTitle, isOpen }) => {
         const { contentProvider, contentActionMessageCreator } = deps;
 
         if (!content) {
@@ -36,7 +37,7 @@ export const ContentPanel = NamedFC<ContentPanelProps>(
                 type={PanelType.medium}
                 isLightDismiss={true}
                 closeButtonAriaLabel="Close panel"
-                headerText={ContentPage.pageTitle}
+                headerText={contentTitle}
                 headerTextProps={{ role: 'heading', 'aria-level': 1 }}
                 headerClassName={'content-header'}
             >

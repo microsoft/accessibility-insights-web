@@ -61,6 +61,7 @@ export class TestStepView extends React.Component<TestStepViewProps> {
                         deps={this.props.deps}
                         reference={this.props.testStep.infoAndExamples}
                         iconName="info"
+                        contentTitle={this.props.testStep.name}
                     >
                         Info &amp; examples
                     </ContentPanelButton>

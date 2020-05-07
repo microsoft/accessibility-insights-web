@@ -5,6 +5,7 @@ import { BaseActionPayload } from './action-payloads';
 
 export interface ContentPayload extends BaseActionPayload {
     contentPath: string;
+    contentTitle: string;
 }
 
 export class ContentActions {
