@@ -29,7 +29,6 @@ import {
     ScanUpdatePayload,
 } from 'injected/analyzers/analyzer';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
-
 import {
     createActionMock,
     createInterpreterMock,

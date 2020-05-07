@@ -9,7 +9,6 @@ import {
     ScanUpdatePayload,
 } from 'injected/analyzers/analyzer';
 import { capitalize } from 'lodash';
-
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import {
