@@ -51,13 +51,14 @@ export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewL
     const leftNav: JSX.Element = (
         <div className="left-nav main-nav">
             <switcherNavConfiguration.LeftNav
-                {...props}
+                deps={deps}
                 assessmentsProvider={filteredProvider}
                 selectedKey={selectedKey}
                 assessmentsData={mapValues(
                     assessmentStoreData.assessments,
                     data => data.testStepStatus,
                 )}
+                featureFlagStoreData={featureFlagStoreData}
             />
         </div>
     );

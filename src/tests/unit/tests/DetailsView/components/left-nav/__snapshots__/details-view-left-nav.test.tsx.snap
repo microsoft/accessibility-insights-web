@@ -5,15 +5,6 @@ exports[`DetailsViewLeftNav should render from switcher nav 1`] = `
   className="left-nav main-nav"
 >
   <test
-    assessmentStoreData={
-      Object {
-        "assessments": Object {
-          "x": Object {
-            "testStepStatus": Object {},
-          },
-        },
-      }
-    }
     assessmentsData={
       Object {
         "x": Object {},
@@ -27,18 +18,7 @@ exports[`DetailsViewLeftNav should render from switcher nav 1`] = `
       }
     }
     featureFlagStoreData={Object {}}
-    rightPanelConfiguration={
-      Object {
-        "GetLeftNavSelectedKey": [Function],
-      }
-    }
     selectedKey="some key"
-    selectedTest={-1}
-    switcherNavConfiguration={
-      Object {
-        "LeftNav": [Function],
-      }
-    }
   />
 </div>
 `;

@@ -8,13 +8,6 @@ exports[`VisualizationBasedLeftNav renders with index icon 1`] = `
       Object {},
     ]
   }
-  renderIcon={[Function]}
   selectedKey="some key"
-/>
-`;
-
-exports[`VisualizationBasedLeftNav renders with index icon 2`] = `
-<span
-  className="index-circle"
 />
 `;

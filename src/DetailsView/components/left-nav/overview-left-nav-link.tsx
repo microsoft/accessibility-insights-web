@@ -7,7 +7,7 @@ import * as React from 'react';
 import { NamedFC } from '../../../common/react/named-fc';
 import { BaseLeftNavLinkProps } from '../base-left-nav';
 
-export const OverviewLeftNavLink = NamedFC<BaseLeftNavLinkProps>(
+export const OverviewLeftNavLink = NamedFC<Pick<BaseLeftNavLinkProps, 'link'>>(
     'OverviewLeftNavLink',
     ({ link }) => {
         return (
