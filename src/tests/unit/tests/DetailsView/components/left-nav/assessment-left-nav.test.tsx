@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { FeatureFlags } from 'common/feature-flags';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
-
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import {
     ManualTestStatus,
     ManualTestStatusData,
@@ -49,6 +49,7 @@ describe('AssessmentLeftNav', () => {
             leftNavLinkBuilder: leftNavLinkBuilderMock.object,
             assessmentsProvider: assessmentsProviderStub,
             assessmentsData: assessmentsDataStub,
+            featureFlagStoreData: {},
         };
 
         leftNavLinkBuilderMock
@@ -76,22 +77,15 @@ describe('AssessmentLeftNav', () => {
             .returns(() => [linkStub]);
     });
 
-    it('render with index icon', () => {
+    it('renders with reflow feature flag enabled', () => {
+        props.featureFlagStoreData[FeatureFlags.reflowUI] = true;
         const actual = shallow(<AssessmentLeftNav {...props} />);
-        const renderIcon: (link: AssessmentLeftNavLink) => JSX.Element = actual.prop('renderIcon');
-        const renderedIcon = shallow(renderIcon(linkStub));
-
         expect(actual.getElement()).toMatchSnapshot();
-        expect(renderedIcon.getElement()).toMatchSnapshot();
     });
 
-    it('render with status icon', () => {
-        linkStub.status = -1;
+    it('renders with reflow feature flag disabled', () => {
+        props.featureFlagStoreData[FeatureFlags.reflowUI] = false;
         const actual = shallow(<AssessmentLeftNav {...props} />);
-        const renderIcon: (link: AssessmentLeftNavLink) => JSX.Element = actual.prop('renderIcon');
-        const renderedIcon = shallow(renderIcon(linkStub));
-
         expect(actual.getElement()).toMatchSnapshot();
-        expect(renderedIcon.getElement()).toMatchSnapshot();
     });
 });

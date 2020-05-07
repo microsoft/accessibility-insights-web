@@ -98,7 +98,12 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
             return null;
         }
 
-        return <DetailsViewLeftNav {...this.props} />;
+        return (
+            <DetailsViewLeftNav
+                selectedPivot={this.props.visualizationStoreData?.selectedDetailsViewPivot}
+                {...this.props}
+            />
+        );
     }
 
     private getTargetPageHiddenBar(): JSX.Element {

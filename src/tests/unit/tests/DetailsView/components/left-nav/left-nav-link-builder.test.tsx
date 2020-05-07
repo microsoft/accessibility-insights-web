@@ -1,8 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { isMatch } from 'lodash';
-import { IMock, Mock, MockBehavior } from 'typemoq';
-
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
@@ -10,16 +7,14 @@ import { OverviewSummaryReportModel } from 'reports/assessment-report-model';
 import { OutcomeTypeSemantic } from 'reports/components/outcome-type';
 import { RequirementOutcomeStats } from 'reports/components/requirement-outcome-type';
 import { GetAssessmentSummaryModelFromProviderAndStatusData } from 'reports/get-assessment-summary-model';
+import { IMock, Mock, MockBehavior } from 'typemoq';
 import { VisualizationConfiguration } from '../../../../../../common/configs/visualization-configuration';
 import {
     ManualTestStatus,
     ManualTestStatusData,
 } from '../../../../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
-import {
-    BaseLeftNavLink,
-    onBaseLeftNavItemClick,
-} from '../../../../../../DetailsView/components/base-left-nav';
+import { onBaseLeftNavItemClick } from '../../../../../../DetailsView/components/base-left-nav';
 import {
     LeftNavLinkBuilder,
     LeftNavLinkBuilderDeps,
@@ -33,7 +28,6 @@ describe('LeftNavBuilder', () => {
     let assessmentsDataStub: DictionaryStringTo<ManualTestStatusData>;
     let testSubject: LeftNavLinkBuilder;
     let getAssessmentSummaryModelFromProviderAndStatusDataMock: IMock<GetAssessmentSummaryModelFromProviderAndStatusData>;
-    let renderIconStub: (link: BaseLeftNavLink) => JSX.Element;
     let getStatusForTestMock: IMock<(stats: RequirementOutcomeStats) => ManualTestStatus>;
     let outcomeTypeFromTestStatusMock: IMock<(testStatus: ManualTestStatus) => OutcomeTypeSemantic>;
     let outcomeStatsFromManualTestStatusMock: IMock<(
@@ -51,7 +45,6 @@ describe('LeftNavBuilder', () => {
             MockBehavior.Strict,
         );
         assessmentsDataStub = {};
-        renderIconStub = _ => null;
 
         deps = {
             getStatusForTest: getStatusForTestMock.object,
@@ -102,8 +95,8 @@ describe('LeftNavBuilder', () => {
                 percentComplete: expectedPercentComplete,
             };
 
-            expect(isMatch(actual, expected)).toBeTruthy();
-            expect(actual.onRenderNavLink(actual, renderIconStub)).toMatchSnapshot();
+            expect(actual).toMatchObject(expected);
+            expect(actual.onRenderNavLink(actual)).toMatchSnapshot();
         });
     });
 
@@ -137,8 +130,10 @@ describe('LeftNavBuilder', () => {
                 onClickNavLink: onLinkClickMock.object,
             };
 
-            expect(isMatch(actual, expected)).toBeTruthy();
-            expect(actual.onRenderNavLink(actual, renderIconStub)).toMatchSnapshot();
+            const navLink = actual.onRenderNavLink(actual);
+            expect(actual).toMatchObject(expected);
+            expect(navLink).toMatchSnapshot();
+            expect(navLink.props['renderIcon'](actual)).toMatchSnapshot();
         });
     });
 
@@ -198,8 +193,11 @@ describe('LeftNavBuilder', () => {
                         narratorStatusStub.pastTense
                     })`,
                 };
-                expect(isMatch(actual, expected)).toBeTruthy();
-                expect(actual.onRenderNavLink(actual, renderIconStub)).toMatchSnapshot();
+
+                const navLink = actual.onRenderNavLink(actual);
+                expect(actual).toMatchObject(expected);
+                expect(navLink).toMatchSnapshot();
+                expect(navLink.props['renderIcon'](actual)).toMatchSnapshot();
             });
         });
     });

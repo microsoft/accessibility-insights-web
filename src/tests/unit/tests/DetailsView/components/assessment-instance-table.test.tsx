@@ -197,7 +197,7 @@ describe('AssessmentInstanceTable', () => {
                     .setup(a =>
                         a.passUnmarkedInstances(
                             props.assessmentNavState.selectedTestType,
-                            props.assessmentNavState.selectedTestStep,
+                            props.assessmentNavState.selectedTestSubview,
                         ),
                     )
                     .verifiable(Times.once());
@@ -220,7 +220,7 @@ describe('AssessmentInstanceTable', () => {
             instancesMap: instancesMap,
             columnConfiguration: [],
             assessmentNavState: {
-                selectedTestStep: selectedTestStep,
+                selectedTestSubview: selectedTestStep,
                 selectedTestType: 1,
             },
             assessmentInstanceTableHandler: assessmentInstanceTableHandler,

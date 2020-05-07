@@ -20,6 +20,7 @@ describe('ContentPanelActionMessageCreator', () => {
     const source = -1 as TelemetryEventSource;
     const triggeredBy = 'triggeredBy' as TriggeredBy;
     const contentPath = 'content/path';
+    const contentTitle = 'the title';
     const href = 'http://external.link';
 
     const telemetryDataFactoryMock = Mock.ofType<TelemetryDataFactory>();
@@ -85,11 +86,12 @@ describe('ContentPanelActionMessageCreator', () => {
             .setup(tdf => tdf.withTriggeredByAndSource(event, source))
             .returns(() => telemetry);
 
-        testSubject.openContentPanel(event, contentPath);
+        testSubject.openContentPanel(event, contentPath, contentTitle);
 
         const message: Message = {
             payload: {
                 contentPath,
+                contentTitle,
                 telemetry,
             },
             messageType: Messages.ContentPanel.OpenPanel,

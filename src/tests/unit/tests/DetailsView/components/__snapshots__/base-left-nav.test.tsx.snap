@@ -15,5 +15,10 @@ exports[`BaseLeftNav should render 1`] = `
   onLinkClick={[Function]}
   onRenderLink={[Function]}
   selectedKey="some key"
+  styles={
+    Object {
+      "chevronButton": "hidden",
+    }
+  }
 />
 `;

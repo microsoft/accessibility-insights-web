@@ -13,6 +13,7 @@ export type ContentPanelButtonDeps = {
 };
 
 export type ContentPanelButtonProps = {
+    contentTitle: string;
     deps: ContentPanelButtonDeps;
     reference: ContentReference;
     iconName: string;
@@ -20,7 +21,7 @@ export type ContentPanelButtonProps = {
 
 export const ContentPanelButton = NamedFC<ContentPanelButtonProps>(
     'ContentPanelButton',
-    ({ deps, reference, children, iconName }) => {
+    ({ contentTitle, deps, reference, children, iconName }) => {
         const { contentProvider, contentActionMessageCreator } = deps;
 
         if (!reference) {
@@ -28,7 +29,8 @@ export const ContentPanelButton = NamedFC<ContentPanelButtonProps>(
         }
 
         const contentPath = contentProvider.pathFromReference(reference);
-        const onClick = ev => contentActionMessageCreator.openContentPanel(ev, contentPath);
+        const onClick = ev =>
+            contentActionMessageCreator.openContentPanel(ev, contentPath, contentTitle);
 
         return (
             <ActionButton iconProps={{ iconName }} onClick={onClick}>

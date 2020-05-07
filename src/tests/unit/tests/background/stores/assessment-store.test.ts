@@ -10,7 +10,7 @@ import {
     ChangeRequirementStatusPayload,
     EditFailureInstancePayload,
     RemoveFailureInstancePayload,
-    SelectRequirementPayload,
+    SelectTestSubviewPayload,
     ToggleActionPayload,
     UpdateSelectedDetailsViewPayload,
 } from 'background/actions/action-payloads';
@@ -169,7 +169,7 @@ describe('AssessmentStoreTest', () => {
             },
             assessmentNavState: {
                 selectedTestType: expectedTestType,
-                selectedTestStep: expectedTestStep,
+                selectedTestSubview: expectedTestStep,
             },
             resultDescription: '',
         };
@@ -185,7 +185,7 @@ describe('AssessmentStoreTest', () => {
             assessments: {},
             assessmentNavState: {
                 selectedTestType: expectedTestType,
-                selectedTestStep: expectedTestStep,
+                selectedTestSubview: expectedTestStep,
             },
             resultDescription: '',
         };
@@ -664,17 +664,17 @@ describe('AssessmentStoreTest', () => {
             assessmentDataConverterMock.object,
         )
             .withSelectedTestType(visualizationType)
-            .withSelectedTestStep(requirement)
+            .withSelectedTestSubview(requirement)
             .build();
 
-        const payload: SelectRequirementPayload = {
-            selectedRequirement: requirement,
+        const payload: SelectTestSubviewPayload = {
+            selectedTestSubview: requirement,
             selectedTest: visualizationType,
         };
 
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
 
-        createStoreTesterForAssessmentActions('selectRequirement')
+        createStoreTesterForAssessmentActions('selectTestSubview')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, finalState);
     });
@@ -1473,7 +1473,7 @@ describe('AssessmentStoreTest', () => {
             assessmentsProvider,
             assessmentDataConverterMock.object,
         )
-            .withSelectedTestStep('step')
+            .withSelectedTestSubview('step')
             .withSelectedTestType(VisualizationType.Color)
             .build();
 
@@ -1481,7 +1481,7 @@ describe('AssessmentStoreTest', () => {
             assessmentsProvider,
             assessmentDataConverterMock.object,
         )
-            .withSelectedTestStep(requirementKey)
+            .withSelectedTestSubview(requirementKey)
             .withSelectedTestType(testType)
             .build();
 
@@ -1504,7 +1504,7 @@ describe('AssessmentStoreTest', () => {
             assessmentsProvider,
             assessmentDataConverterMock.object,
         )
-            .withSelectedTestStep('step')
+            .withSelectedTestSubview('step')
             .withSelectedTestType(selectedTest)
             .build();
 
@@ -1512,7 +1512,7 @@ describe('AssessmentStoreTest', () => {
             assessmentsProvider,
             assessmentDataConverterMock.object,
         )
-            .withSelectedTestStep('step')
+            .withSelectedTestSubview('step')
             .withSelectedTestType(selectedTest)
             .build();
 
@@ -1534,7 +1534,7 @@ describe('AssessmentStoreTest', () => {
             assessmentsProvider,
             assessmentDataConverterMock.object,
         )
-            .withSelectedTestStep('step')
+            .withSelectedTestSubview('step')
             .withSelectedTestType(VisualizationType.Color)
             .build();
 
@@ -1542,7 +1542,7 @@ describe('AssessmentStoreTest', () => {
             assessmentsProvider,
             assessmentDataConverterMock.object,
         )
-            .withSelectedTestStep('step')
+            .withSelectedTestSubview('step')
             .withSelectedTestType(VisualizationType.Color)
             .build();
 
@@ -1645,7 +1645,7 @@ describe('AssessmentStoreTest', () => {
                 manualTestStepResultMap: {},
                 testStepStatus: {},
             })
-            .withSelectedTestStep(selectedRequirement)
+            .withSelectedTestSubview(selectedRequirement)
             .build();
     }
 

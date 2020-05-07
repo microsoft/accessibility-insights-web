@@ -31,9 +31,11 @@ export class DetailsViewStoreDataBuilder extends BaseDataBuilder<DetailsViewStor
     public withContentOpen(
         isContentOpen: boolean,
         contentPath?: string,
+        contentTitle?: string,
     ): DetailsViewStoreDataBuilder {
         this.data.currentPanel.isContentOpen = isContentOpen;
         this.data.contentPath = contentPath || null;
+        this.data.contentTitle = contentTitle || null;
         return this;
     }
 

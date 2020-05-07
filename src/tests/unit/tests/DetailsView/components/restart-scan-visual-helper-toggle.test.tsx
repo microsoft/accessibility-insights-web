@@ -64,7 +64,7 @@ describe('RestartScanVisualHelperToggleTest', () => {
                 return stepIsEnabled
                     ? acm.disableVisualHelper(
                           props.assessmentNavState.selectedTestType,
-                          props.assessmentNavState.selectedTestStep,
+                          props.assessmentNavState.selectedTestSubview,
                       )
                     : acm.enableVisualHelper(props.assessmentNavState.selectedTestType, stepKey);
             })

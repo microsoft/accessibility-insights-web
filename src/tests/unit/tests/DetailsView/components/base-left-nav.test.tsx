@@ -8,6 +8,7 @@ import {
     BaseLeftNav,
     BaseLeftNavLink,
     BaseLeftNavProps,
+    onBaseLeftNavItemRender,
 } from '../../../../../DetailsView/components/base-left-nav';
 
 class TestableBaseLeftNav extends BaseLeftNav {
@@ -60,23 +61,16 @@ describe('BaseLeftNav', () => {
     });
 
     it('render side-effect: onRenderLink with item', () => {
-        const props = {
-            renderIcon: _ => null,
-        } as BaseLeftNavProps;
+        const props = {} as BaseLeftNavProps;
         const actual = new TestableBaseLeftNav(props);
         const elemnentStub = {} as JSX.Element;
-        const onRenderNavLinkMock = Mock.ofInstance(
-            (link, renderIcon) => null,
-            MockBehavior.Strict,
-        );
+        const onRenderNavLinkMock = Mock.ofType<onBaseLeftNavItemRender>(null, MockBehavior.Strict);
         const itemStub = {
             onRenderNavLink: onRenderNavLinkMock.object,
         } as BaseLeftNavLink;
         const onRenderLinkCallback = actual.getOnRenderLink();
 
-        onRenderNavLinkMock
-            .setup(ocnlm => ocnlm(itemStub, props.renderIcon))
-            .returns(() => elemnentStub);
+        onRenderNavLinkMock.setup(ocnlm => ocnlm(itemStub)).returns(() => elemnentStub);
 
         expect(onRenderLinkCallback(itemStub)).toEqual(elemnentStub);
     });

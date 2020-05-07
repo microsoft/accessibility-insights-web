@@ -13,7 +13,7 @@ import {
     OnDetailsViewOpenPayload,
     OnDetailsViewPivotSelected,
     RemoveFailureInstancePayload,
-    SelectRequirementPayload,
+    SelectTestSubviewPayload,
     SetAllUrlsPermissionStatePayload,
     SwitchToTargetTabPayload,
     ToggleActionPayload,
@@ -21,9 +21,8 @@ import {
 import { FeatureFlagPayload } from 'background/actions/feature-flag-actions';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import * as React from 'react';
-
-import { ReportExportFormat } from '../../common/extension-telemetry-events';
 import * as TelemetryEvents from '../../common/extension-telemetry-events';
+import { ReportExportFormat } from '../../common/extension-telemetry-events';
 import { Message } from '../../common/message';
 import { DevToolActionMessageCreator } from '../../common/message-creators/dev-tool-action-message-creator';
 import { Messages } from '../../common/messages';
@@ -164,13 +163,13 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         selectedRequirement: string,
         visualizationType: VisualizationType,
     ): void {
-        const payload: SelectRequirementPayload = {
+        const payload: SelectTestSubviewPayload = {
             telemetry: this.telemetryFactory.forSelectRequirement(
                 event,
                 visualizationType,
                 selectedRequirement,
             ),
-            selectedRequirement: selectedRequirement,
+            selectedTestSubview: selectedRequirement,
             selectedTest: visualizationType,
         };
 
