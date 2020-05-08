@@ -9,6 +9,9 @@ import {
 } from 'DetailsView/components/scan-incomplete-warning';
 import * as React from 'react';
 
+import { FlaggedComponent } from 'common/components/flagged-component';
+import { FeatureFlags } from 'common/feature-flags';
+import { ReflowAssessmentView } from 'DetailsView/components/reflow-assessment-view';
 import { AssessmentTestResult } from '../../common/assessment/assessment-test-result';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
 import { NamedFC } from '../../common/react/named-fc';
@@ -60,14 +63,21 @@ export const AssessmentTestView = NamedFC<AssessmentTestViewProps>(
             assessmentNavState.selectedTestType,
             assessmentData,
         );
-        return (
-            <>
-                <ScanIncompleteWarning
+
+        const renderReflowAssessmentView = (): JSX.Element => {
+            return (
+                <ReflowAssessmentView
                     deps={deps}
-                    warnings={assessmentData.scanIncompleteWarnings}
-                    warningConfiguration={props.switcherNavConfiguration.warningConfiguration}
-                    test={assessmentNavState.selectedTestType}
+                    assessmentNavState={assessmentNavState}
+                    assessmentData={assessmentData}
+                    currentTarget={currentTarget}
+                    prevTarget={prevTarget}
+                    assessmentTestResult={assessmentTestResult}
                 />
+            );
+        };
+        const renderAssessmentView = (): JSX.Element => {
+            return (
                 <AssessmentView
                     deps={deps}
                     isScanning={isScanning}
@@ -82,6 +92,23 @@ export const AssessmentTestView = NamedFC<AssessmentTestViewProps>(
                     featureFlagStoreData={props.featureFlagStoreData}
                     pathSnippetStoreData={props.pathSnippetStoreData}
                     switcherNavConfiguration={props.switcherNavConfiguration}
+                />
+            );
+        };
+
+        return (
+            <>
+                <ScanIncompleteWarning
+                    deps={deps}
+                    warnings={assessmentData.scanIncompleteWarnings}
+                    warningConfiguration={props.switcherNavConfiguration.warningConfiguration}
+                    test={assessmentNavState.selectedTestType}
+                />
+                <FlaggedComponent
+                    enableJSXElement={renderReflowAssessmentView()}
+                    disableJSXElement={renderAssessmentView()}
+                    featureFlag={FeatureFlags.reflowUI}
+                    featureFlagStoreData={props.featureFlagStoreData}
                 />
             </>
         );
