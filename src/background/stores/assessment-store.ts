@@ -437,15 +437,15 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         const step = this.assessmentsProvider.getStep(testType, testStepName);
         const { isManual, getInitialManualTestStatus } = step;
 
-        if (isManual !== true) {
-            this.updateTestStepStatusForGeneratedInstances(assessmentData, testStepName);
-        } else if (getInitialManualTestStatus != null) {
+        if (isManual) {
             this.applyInitialManualTestStatus(
                 assessmentData,
                 testStepName,
                 testType,
                 getInitialManualTestStatus,
             );
+        } else {
+            this.updateTestStepStatusForGeneratedInstances(assessmentData, testStepName);
         }
     }
 
