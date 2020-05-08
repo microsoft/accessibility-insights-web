@@ -11,6 +11,7 @@ import {
     AssessmentData,
     AssessmentStoreData,
     GeneratedAssessmentInstance,
+    InstanceIdToInstanceDataMap,
     TestStepResult,
     UserCapturedInstance,
 } from 'common/types/store-data/assessment-result-data';
@@ -432,10 +433,36 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         testStepName: string,
         testType: VisualizationType,
     ): void {
-        const isManual = this.assessmentsProvider.getStep(testType, testStepName).isManual;
+        const step = this.assessmentsProvider.getStep(testType, testStepName);
+        const { isManual, getInitialManualTestStatus } = step;
+
         if (isManual !== true) {
             this.updateTestStepStatusForGeneratedInstances(assessmentData, testStepName);
+        } else if (getInitialManualTestStatus != null) {
+            this.applyInitialManualTestStatus(
+                assessmentData,
+                testStepName,
+                testType,
+                getInitialManualTestStatus,
+            );
         }
+    }
+
+    private applyInitialManualTestStatus(
+        assessmentData: AssessmentData,
+        testStepName: string,
+        testType: VisualizationType,
+        getInitialManualTestStatus: (InstanceIdToInstanceDataMap) => ManualTestStatus,
+    ): void {
+        const originalStatus = assessmentData.manualTestStepResultMap[testStepName].status;
+        if (originalStatus !== ManualTestStatus.UNKNOWN) {
+            return; // Never override an explicitly set status
+        }
+
+        const instanceMap = assessmentData.generatedAssessmentInstancesMap;
+        const autoPassStatus = getInitialManualTestStatus(instanceMap);
+        assessmentData.manualTestStepResultMap[testStepName].status = autoPassStatus;
+        this.updateManualTestStepStatus(assessmentData, testStepName, testType);
     }
 
     private getGroupResult(

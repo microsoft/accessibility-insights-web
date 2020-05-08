@@ -4,13 +4,13 @@ import * as React from 'react';
 
 import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
-import { TestAutomaticallyPassedNotice } from 'content/test/common/test-automatically-passed-notice';
 import * as content from 'content/test/landmarks/primary-content';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
+import { autoPassIfNoLandmarks } from '../auto-pass-if-no-landmarks';
 import { LandmarkTestStep } from './test-steps';
 
 const description: JSX.Element = (
@@ -64,6 +64,7 @@ export const PrimaryContent: Requirement = {
     description,
     howToTest,
     isManual: true,
+    getInitialManualTestStatus: autoPassIfNoLandmarks,
     guidanceLinks: [link.WCAG_1_3_1, link.WCAG_2_4_1],
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(

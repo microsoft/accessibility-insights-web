@@ -5,6 +5,7 @@ import { ManualTestStatus } from 'common/types/manual-test-status';
 import {
     AssessmentNavState,
     GeneratedAssessmentInstance,
+    InstanceIdToInstanceDataMap,
 } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
@@ -39,6 +40,9 @@ export interface Requirement {
     addFailureInstruction?: string;
     infoAndExamples?: ContentPageComponent;
     isManual: boolean;
+    // This is for semi-manual cases where we can't present a list of instances like an assisted
+    // test would, but can infer a PASS or FAIL state. If not specified, acts like () => UNKNOWN.
+    getInitialManualTestStatus?: (InstanceIdToInstanceDataMap) => ManualTestStatus;
     guidanceLinks: HyperlinkDefinition[];
     columnsConfig?: InstanceTableColumn[];
     getAnalyzer?: (provider: AnalyzerProvider) => Analyzer;
