@@ -320,7 +320,7 @@ describe('TelemetryDataFactoryTest', () => {
         expect(actual).toEqual(expected);
     });
 
-    test('forSelectRequirement', () => {
+    test('forSelectGettingStarted', () => {
         const event = mouseClickEvent;
         const expected: SelectGettingStartedTelemetryData = {
             triggeredBy: 'mouseclick',
