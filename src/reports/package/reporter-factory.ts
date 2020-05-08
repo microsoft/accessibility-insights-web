@@ -85,8 +85,9 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
     return new AxeResultsReport(deps, parameters, environmentInfoProvider.getToolData());
 };
 
+initializeFabricIcons();
+
 export const reporterFactory: ReporterFactory = () => {
-    initializeFabricIcons();
 
     return new Reporter(axeResultsReportGenerator);
 };
