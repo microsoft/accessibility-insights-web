@@ -7,7 +7,10 @@ import * as React from 'react';
 import { ContentLink, ContentLinkDeps } from 'views/content/content-link';
 import { ContentPageComponent } from 'views/content/content-page';
 
-import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
+import {
+    AssessmentViewUpdateHandler,
+    AssessmentViewUpdateHandlerDeps,
+} from 'DetailsView/components/assessment-view-update-handler';
 import { AssessmentTestResult } from '../../common/assessment/assessment-test-result';
 import { CollapsibleComponent } from '../../common/components/collapsible-component';
 import { reactExtensionPoint } from '../../common/extensibility/react-extension-point';
@@ -34,8 +37,8 @@ export const AssessmentViewMainContentExtensionPoint = reactExtensionPoint<
 export type AssessmentViewDeps = ContentLinkDeps &
     TestStepViewDeps &
     TestStepNavDeps &
-    TargetChangeDialogDeps & {
-        detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    TargetChangeDialogDeps &
+    AssessmentViewUpdateHandlerDeps & {
         assessmentsProvider: AssessmentsProvider;
         assessmentViewUpdateHandler: AssessmentViewUpdateHandler;
         detailsViewExtensionPoint: DetailsViewExtensionPoint;
