@@ -338,10 +338,10 @@
     ajv "^6.12.0"
     ajv-keywords "^3.4.1"
 
-"@electron/get@^1.0.1", "@electron/get@^1.12.0":
-  version "1.12.0"
-  resolved "https://registry.yarnpkg.com/@electron/get/-/get-1.12.0.tgz#df559d2d1b7ead327fa3eac03c6e88330283d0ea"
-  integrity sha512-tBACjjmdEz2PmnawnHHACSoihicuo8TVEwmdzwJsXHzR2oyz6KpatP3+BUIgZeuFxoISvp8OTQPBIWdXqfAtkQ==
+"@electron/get@^1.0.1", "@electron/get@^1.12.2":
+  version "1.12.2"
+  resolved "https://registry.yarnpkg.com/@electron/get/-/get-1.12.2.tgz#6442066afb99be08cefb9a281e4b4692b33764f3"
+  integrity sha512-vAuHUbfvBQpYTJ5wB7uVIDq5c/Ry0fiTBMs7lnEYAo/qXXppIVcWdfBr57u6eRnKdVso7KSiH6p/LbQAG6Izrg==
   dependencies:
     debug "^4.1.1"
     env-paths "^2.2.0"
