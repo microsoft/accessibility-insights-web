@@ -22,7 +22,6 @@ import {
 } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet-store-data';
-import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { DetailsViewExtensionPoint } from '../extensions/details-view-extension-point';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 import { TargetChangeDialog, TargetChangeDialogDeps } from './target-change-dialog';
