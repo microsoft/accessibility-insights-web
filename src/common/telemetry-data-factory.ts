@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import { gettingStartedSubview } from 'common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../types/common-types';
 import {
     AssessmentRequirementScanTelemetryData,
@@ -21,6 +22,7 @@ import {
     RequirementStatusTelemetryData,
     RuleAnalyzerScanTelemetryData,
     ScopingTelemetryData,
+    SelectGettingStartedTelemetryData,
     SetAllUrlsPermissionTelemetryData,
     SettingsOpenSourceItem,
     SettingsOpenTelemetryData,
@@ -131,6 +133,16 @@ export class TelemetryDataFactory {
             ...this.withTriggeredByAndSource(event, TelemetryEventSource.DetailsView),
             selectedTest: VisualizationType[visualizationType],
             selectedRequirement: requirement,
+        };
+    }
+
+    public forSelectGettingStarted(
+        event: SupportedMouseEvent,
+        visualizationType: VisualizationType,
+    ): SelectGettingStartedTelemetryData {
+        return {
+            ...this.withTriggeredByAndSource(event, TelemetryEventSource.DetailsView),
+            selectedTest: VisualizationType[visualizationType],
         };
     }
 

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { gettingStartedSubview } from 'common/types/store-data/assessment-result-data';
 import {
     AssessmentTelemetryData,
     BaseTelemetryData,
@@ -19,6 +20,7 @@ import {
     TelemetryEventSource,
     ToggleTelemetryData,
     TriggeredByNotApplicable,
+    SelectGettingStartedTelemetryData,
 } from '../../../../common/extension-telemetry-events';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
 import { DetailsViewPivotType } from '../../../../common/types/details-view-pivot-type';
@@ -314,6 +316,22 @@ describe('TelemetryDataFactoryTest', () => {
             event,
             VisualizationType.Headings,
             'requirement',
+        );
+
+        expect(actual).toEqual(expected);
+    });
+
+    test('forSelectRequirement', () => {
+        const event = mouseClickEvent;
+        const expected: SelectGettingStartedTelemetryData = {
+            triggeredBy: 'mouseclick',
+            source: TelemetryEventSource.DetailsView,
+            selectedTest: VisualizationType[VisualizationType.Headings],
+        };
+
+        const actual: SelectGettingStartedTelemetryData = testObject.forSelectGettingStarted(
+            event,
+            VisualizationType.Headings,
         );
 
         expect(actual).toEqual(expected);
