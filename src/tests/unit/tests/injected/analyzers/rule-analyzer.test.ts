@@ -87,7 +87,7 @@ describe('RuleAnalyzer', () => {
             .returns(() => []);
     });
 
-    test('analyze', async done => {
+    test('analyze', (done: () => void) => {
         testGetResults(done);
     });
 

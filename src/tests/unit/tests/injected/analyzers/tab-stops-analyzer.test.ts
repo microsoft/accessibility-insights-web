@@ -14,7 +14,7 @@ import { TabStopsAnalyzer } from '../../../../../injected/analyzers/tab-stops-an
 import { TabStopEvent, TabStopsListener } from '../../../../../injected/tab-stops-listener';
 import { itIsFunction } from '../../../common/it-is-function';
 
-describe('TabStopsAnalyzerTests', () => {
+describe('TabStopsAnalyzer', () => {
     let windowUtilsMock: IMock<WindowUtils>;
     let sendMessageMock: IMock<(message) => void>;
     let configStub: FocusAnalyzerConfiguration;
@@ -54,7 +54,7 @@ describe('TabStopsAnalyzerTests', () => {
         typeStub = -1 as VisualizationType;
     });
 
-    test('analyze', async (completeSignal: () => void) => {
+    test('analyze', (done: () => void) => {
         const tabEventStub: TabStopEvent = {
             target: ['selector'],
             html: 'test',
@@ -87,7 +87,7 @@ describe('TabStopsAnalyzerTests', () => {
         setupSendMessageMock(expectedOnProgressMessage, () => {
             verifyAll();
             expect((testSubject as any).onTabbedTimeoutId).toBeNull();
-            completeSignal();
+            done();
         });
 
         testSubject.analyze();

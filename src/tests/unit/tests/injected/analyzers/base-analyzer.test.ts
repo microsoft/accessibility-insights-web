@@ -9,7 +9,7 @@ import { AnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { BaseAnalyzer } from 'injected/analyzers/base-analyzer';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 
-describe('BaseAnalyzerTest', () => {
+describe('BaseAnalyzer', () => {
     let testSubject: BaseAnalyzer;
     let configStub: AnalyzerConfiguration;
     let sendMessageMock: IMock<(message) => void>;
@@ -32,7 +32,7 @@ describe('BaseAnalyzerTest', () => {
         );
     });
 
-    test('analyze', async done => {
+    test('analyze', (done: () => void) => {
         const resultsStub = {};
         const scanIncompleteWarnings: ScanIncompleteWarningId[] = [
             'missing-required-cross-origin-permissions',
