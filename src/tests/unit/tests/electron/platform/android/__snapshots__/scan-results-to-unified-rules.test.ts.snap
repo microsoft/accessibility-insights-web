@@ -30,7 +30,13 @@ exports[`ScanResultsToUnifiedRules ScanResults with a mix of supported rules, un
 Array [
   Object {
     "description": "This describes Rule #3",
-    "guidance": Array [],
+    "guidance": Array [
+      Object {
+        "href": "https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html",
+        "tags": undefined,
+        "text": "WCAG 1.1.1",
+      },
+    ],
     "id": "Rule #3",
     "uid": "gguid-mock-stub",
     "url": null,
