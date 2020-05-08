@@ -9,6 +9,9 @@ import {
 } from 'DetailsView/components/scan-incomplete-warning';
 import * as React from 'react';
 
+import { FlaggedComponent } from 'common/components/flagged-component';
+import { FeatureFlags } from 'common/feature-flags';
+import { ReflowAssessmentView } from 'DetailsView/components/reflow-assessment-view';
 import { AssessmentTestResult } from '../../common/assessment/assessment-test-result';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
 import { NamedFC } from '../../common/react/named-fc';
@@ -19,9 +22,6 @@ import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 import { AssessmentView, AssessmentViewDeps } from './assessment-view';
-import { FeatureFlags } from 'common/feature-flags';
-import { ReflowAssessmentView } from 'DetailsView/components/reflow-assessment-view';
-import { FlaggedComponent } from 'common/components/flagged-component';
 
 export type AssessmentTestViewDeps = AssessmentViewDeps &
     ScanIncompleteWarningDeps & {
