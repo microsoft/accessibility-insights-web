@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autoPassIfNoLandmarks } from 'assessments/landmarks/auto-pass-if-no-landmarks';
-import { LandmarkTestStep } from 'assessments/landmarks/test-steps/test-steps';
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import { InstanceIdToInstanceDataMap } from 'common/types/store-data/assessment-result-data';
 
@@ -30,11 +29,10 @@ describe('autoPassIfNoLandmarks', () => {
             data[`#element-with-${landmarkRole}`] = {
                 target: [`#element-with-${landmarkRole}`],
                 html: `<div id="element-with-${landmarkRole}" role="${landmarkRole}" />`,
-                testStepResults: {
-                    [LandmarkTestStep.landmarkRoles]: {
-                        /* irrelevant, any non-null object */
-                    },
+                propertyBag: {
+                    role: landmarkRole,
                 },
+                testStepResults: {},
             };
         }
         return data;

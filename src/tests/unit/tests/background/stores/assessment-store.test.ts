@@ -533,7 +533,8 @@ describe('AssessmentStoreTest', () => {
                     payload.selectorMap,
                     requirementKey,
                     instanceIdentifierGeneratorStub,
-                    It.isAny(),
+                    stepConfig.getInstanceStatus,
+                    stepConfig.isVisualizationSupportedForResult,
                 ),
             )
             .returns(() => expectedInstanceMap);

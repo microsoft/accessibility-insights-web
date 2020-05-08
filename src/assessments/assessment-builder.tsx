@@ -52,6 +52,11 @@ export class AssessmentBuilder {
             requirement.getInstanceStatus = AssessmentBuilder.getInstanceStatus;
         }
 
+        if (!requirement.isVisualizationSupportedForResult) {
+            requirement.isVisualizationSupportedForResult =
+                AssessmentBuilder.isVisualizationSupportedForResult;
+        }
+
         if (!requirement.getInstanceStatusColumns) {
             requirement.getInstanceStatusColumns = AssessmentBuilder.getInstanceStatusColumns;
         }
@@ -73,6 +78,10 @@ export class AssessmentBuilder {
 
     private static getInstanceStatus(result: DecoratedAxeNodeResult): ManualTestStatus {
         return ManualTestStatus.UNKNOWN;
+    }
+
+    private static isVisualizationSupportedForResult(result: DecoratedAxeNodeResult): boolean {
+        return true;
     }
 
     private static getInstanceStatusColumns(): Readonly<IColumn>[] {

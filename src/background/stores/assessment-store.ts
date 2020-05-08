@@ -273,16 +273,17 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
     private onChangeAssessmentVisualizationStateForAll = (
         payload: ChangeInstanceSelectionPayload,
     ): void => {
-        const config = this.assessmentsProvider
-            .forType(payload.test)
-            .getVisualizationConfiguration();
+        const { test, requirement } = payload;
+        const config = this.assessmentsProvider.forType(test).getVisualizationConfiguration();
         const assessmentDataMap = config.getAssessmentData(this.state)
             .generatedAssessmentInstancesMap;
+
         forEach(assessmentDataMap, val => {
-            const stepResult = val.testStepResults[payload.requirement];
+            const stepResult = val.testStepResults[requirement];
 
             if (stepResult != null) {
-                stepResult.isVisualizationEnabled = payload.isVisualizationEnabled;
+                stepResult.isVisualizationEnabled =
+                    stepResult.isVisualizationSupported && payload.isVisualizationEnabled;
             }
         });
 
@@ -319,15 +320,14 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
     private onChangeAssessmentVisualizationState = (
         payload: ChangeInstanceSelectionPayload,
     ): void => {
-        const config = this.assessmentsProvider
-            .forType(payload.test)
-            .getVisualizationConfiguration();
+        const { test, requirement } = payload;
+        const config = this.assessmentsProvider.forType(test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
-        const stepResult: TestStepResult =
-            assessmentData.generatedAssessmentInstancesMap[payload.selector].testStepResults[
-                payload.requirement
-            ];
-        stepResult.isVisualizationEnabled = payload.isVisualizationEnabled;
+        const instance = assessmentData.generatedAssessmentInstancesMap[payload.selector];
+        const stepResult: TestStepResult = instance.testStepResults[requirement];
+
+        stepResult.isVisualizationEnabled =
+            stepResult.isVisualizationSupported && payload.isVisualizationEnabled;
 
         this.emitChanged();
     };
@@ -383,6 +383,7 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
             step,
             config.getInstanceIdentiferGenerator(step),
             stepConfig.getInstanceStatus,
+            stepConfig.isVisualizationSupportedForResult,
         );
         assessmentData.generatedAssessmentInstancesMap = generatedAssessmentInstancesMap;
         assessmentData.testStepStatus[step].isStepScanned = true;
@@ -460,8 +461,8 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         }
 
         const instanceMap = assessmentData.generatedAssessmentInstancesMap;
-        const autoPassStatus = getInitialManualTestStatus(instanceMap);
-        assessmentData.manualTestStepResultMap[testStepName].status = autoPassStatus;
+        const status = getInitialManualTestStatus(instanceMap);
+        assessmentData.manualTestStepResultMap[testStepName].status = status;
         this.updateManualTestStepStatus(assessmentData, testStepName, testType);
     }
 

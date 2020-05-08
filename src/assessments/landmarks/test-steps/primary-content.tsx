@@ -6,6 +6,8 @@ import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import * as content from 'content/test/landmarks/primary-content';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
+import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
+import { some } from 'lodash';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
@@ -58,6 +60,13 @@ const howToTest: JSX.Element = (
     </div>
 );
 
+const isInstanceMainLandmark = (instance: DecoratedAxeNodeResult) => {
+    return (
+        some(instance.any, checkResult => checkResult.data['role'] === 'main') ||
+        some(instance.all, checkResult => checkResult.data['role'] === 'main')
+    );
+};
+
 export const PrimaryContent: Requirement = {
     key: LandmarkTestStep.primaryContent,
     name: 'Primary content',
@@ -65,11 +74,12 @@ export const PrimaryContent: Requirement = {
     howToTest,
     isManual: true,
     getInitialManualTestStatus: autoPassIfNoLandmarks,
+    isVisualizationSupportedForResult: isInstanceMainLandmark,
     guidanceLinks: [link.WCAG_1_3_1, link.WCAG_2_4_1],
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
-                rules: ['main-landmark'],
+                rules: ['unique-landmark'],
                 key: LandmarkTestStep.primaryContent,
                 testType: VisualizationType.LandmarksAssessment,
             }),

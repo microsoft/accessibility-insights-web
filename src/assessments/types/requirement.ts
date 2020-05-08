@@ -47,6 +47,10 @@ export interface Requirement {
     columnsConfig?: InstanceTableColumn[];
     getAnalyzer?: (provider: AnalyzerProvider) => Analyzer;
     getVisualHelperToggle?: (props: VisualHelperToggleConfig) => JSX.Element;
+    // Any results this returns false for will be omitted from visual helper displays, but still
+    // present for the purposes of instance lists or getInitialManualTestStatus. By default, all
+    // results support visualization.
+    isVisualizationSupportedForResult?: (result: DecoratedAxeNodeResult) => boolean;
     visualizationInstanceProcessor?: VisualizationInstanceProcessorCallback<
         PropertyBags,
         PropertyBags

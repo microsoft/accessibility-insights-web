@@ -22,6 +22,7 @@ describe('AssessmentDataConverterTest', () => {
         status: ManualTestStatus.UNKNOWN,
         isCapturedByUser: false,
         failureSummary: null,
+        isVisualizationSupported: true,
         isVisualizationEnabled: true,
         isVisible: true,
     };
@@ -73,6 +74,7 @@ describe('AssessmentDataConverterTest', () => {
             testStep,
             generateInstanceIdentifierMock.object,
             () => ManualTestStatus.UNKNOWN,
+            () => true,
         );
 
         expect(instanceMap[identifierStub].propertyBag).toEqual(expectedPropertyBag);
@@ -126,6 +128,7 @@ describe('AssessmentDataConverterTest', () => {
             testStep,
             generateInstanceIdentifierMock.object,
             () => ManualTestStatus.UNKNOWN,
+            () => true,
         );
 
         expect(instanceMap).toEqual(expectedResult);
@@ -146,6 +149,7 @@ describe('AssessmentDataConverterTest', () => {
             testStep,
             undefined,
             null,
+            null,
         );
 
         expect(instanceMap).toEqual(expectedResult);
@@ -165,6 +169,7 @@ describe('AssessmentDataConverterTest', () => {
             selectorMap,
             testStep,
             undefined,
+            null,
             null,
         );
 
@@ -212,6 +217,7 @@ describe('AssessmentDataConverterTest', () => {
             testStep,
             generateInstanceIdentifierMock.object,
             () => ManualTestStatus.UNKNOWN,
+            () => true,
         );
 
         expect(instanceMap).toEqual(expectedResult);
@@ -257,6 +263,7 @@ describe('AssessmentDataConverterTest', () => {
             testStep,
             generateInstanceIdentifierMock.object,
             () => ManualTestStatus.FAIL,
+            () => true,
         );
 
         expect(instanceMap).toEqual(expectedResult);
@@ -335,6 +342,7 @@ describe('AssessmentDataConverterTest', () => {
             testStep,
             generateInstanceIdentifierMock.object,
             () => ManualTestStatus.UNKNOWN,
+            () => true,
         );
 
         expect(instanceMap).toEqual(expectedResult);
