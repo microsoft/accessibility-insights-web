@@ -22,6 +22,7 @@ import {
     EditFailureInstancePayload,
     OnDetailsViewOpenPayload,
     RemoveFailureInstancePayload,
+    SelectGettingStartedPayload,
     SelectTestSubviewPayload,
     ToggleActionPayload,
 } from './action-payloads';
@@ -40,6 +41,10 @@ export class AssessmentActionCreator {
         this.interpreter.registerTypeToPayloadCallback(
             AssessmentMessages.SelectTestRequirement,
             this.onSelectTestRequirement,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            AssessmentMessages.SelectGettingStarted,
+            this.onSelectGettingStarted,
         );
         this.interpreter.registerTypeToPayloadCallback(
             getStoreStateMessage(StoreNames.AssessmentStore),
@@ -227,6 +232,14 @@ export class AssessmentActionCreator {
     private onSelectTestRequirement = (payload: SelectTestSubviewPayload): void => {
         this.assessmentActions.selectTestSubview.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.SELECT_REQUIREMENT, payload);
+    };
+
+    private onSelectGettingStarted = (payload: SelectGettingStartedPayload): void => {
+        this.assessmentActions.selectGettingStarted.invoke(payload);
+        this.telemetryEventHandler.publishTelemetry(
+            TelemetryEvents.SELECT_GETTING_STARTED,
+            payload,
+        );
     };
 
     private onScanUpdate = (payload: ScanUpdatePayload): void => {

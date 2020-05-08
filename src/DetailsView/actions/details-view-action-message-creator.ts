@@ -13,6 +13,7 @@ import {
     OnDetailsViewOpenPayload,
     OnDetailsViewPivotSelected,
     RemoveFailureInstancePayload,
+    SelectGettingStartedPayload,
     SelectTestSubviewPayload,
     SetAllUrlsPermissionStatePayload,
     SwitchToTargetTabPayload,
@@ -175,6 +176,21 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
 
         this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.SelectTestRequirement,
+            payload: payload,
+        });
+    }
+
+    public selectGettingStarted(
+        event: React.MouseEvent<HTMLElement>,
+        visualizationType: VisualizationType,
+    ): void {
+        const payload: SelectGettingStartedPayload = {
+            telemetry: this.telemetryFactory.forSelectGettingStarted(event, visualizationType),
+            selectedTest: visualizationType,
+        };
+
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.Assessment.SelectGettingStarted,
             payload: payload,
         });
     }

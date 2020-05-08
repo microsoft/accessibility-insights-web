@@ -10,6 +10,7 @@ import {
     EditFailureInstancePayload,
     OnDetailsViewOpenPayload,
     RemoveFailureInstancePayload,
+    SelectGettingStartedPayload,
     SelectTestSubviewPayload,
     ToggleActionPayload,
 } from 'background/actions/action-payloads';
@@ -549,6 +550,36 @@ describe('AssessmentActionCreatorTest', () => {
         selectRequirementMock.verifyAll();
         telemetryEventHandlerMock.verify(
             tp => tp.publishTelemetry(TelemetryEvents.SELECT_REQUIREMENT, payload),
+            Times.once(),
+        );
+    });
+
+    it('handles SelectGettingStarted message', () => {
+        const payload: SelectGettingStartedPayload = {
+            ...telemetryOnlyPayload,
+        } as SelectGettingStartedPayload;
+
+        const selectGettingStartedMock = createActionMock(payload);
+        const actionsMock = createActionsMock(
+            'selectGettingStarted',
+            selectGettingStartedMock.object,
+        );
+        const interpreterMock = createInterpreterMock(
+            AssessmentMessages.SelectGettingStarted,
+            payload,
+        );
+
+        const testSubject = new AssessmentActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
+
+        testSubject.registerCallbacks();
+
+        selectGettingStartedMock.verifyAll();
+        telemetryEventHandlerMock.verify(
+            tp => tp.publishTelemetry(TelemetryEvents.SELECT_GETTING_STARTED, payload),
             Times.once(),
         );
     });

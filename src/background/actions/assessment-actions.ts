@@ -15,6 +15,7 @@ import {
     ChangeRequirementStatusPayload,
     EditFailureInstancePayload,
     RemoveFailureInstancePayload,
+    SelectGettingStartedPayload,
     SelectTestSubviewPayload,
     ToggleActionPayload,
     UpdateSelectedDetailsViewPayload,
@@ -22,6 +23,7 @@ import {
 
 export class AssessmentActions {
     public readonly selectTestSubview = new Action<SelectTestSubviewPayload>();
+    public readonly selectGettingStarted = new Action<SelectGettingStartedPayload>();
     public readonly changeInstanceStatus = new Action<ChangeInstanceStatusPayload>();
     public readonly changeRequirementStatus = new Action<ChangeRequirementStatusPayload>();
     public readonly addFailureInstance = new Action<AddFailureInstancePayload>();
