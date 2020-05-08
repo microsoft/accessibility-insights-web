@@ -235,7 +235,10 @@ export class AssessmentActionCreator {
     };
 
     private onSelectGettingStarted = (payload: SelectGettingStartedPayload): void => {
-        this.assessmentActions.selectGettingStarted.invoke(payload);
+        this.assessmentActions.selectTestSubview.invoke({
+            selectedTestSubview: 'getting-started',
+            ...payload,
+        });
         this.telemetryEventHandler.publishTelemetry(
             TelemetryEvents.SELECT_GETTING_STARTED,
             payload,

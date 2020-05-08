@@ -558,12 +558,13 @@ describe('AssessmentActionCreatorTest', () => {
         const payload: SelectGettingStartedPayload = {
             ...telemetryOnlyPayload,
         } as SelectGettingStartedPayload;
+        const actionPayload: SelectTestSubviewPayload = {
+            selectedTestSubview: 'getting-started',
+            ...telemetryOnlyPayload,
+        } as SelectTestSubviewPayload;
 
-        const selectGettingStartedMock = createActionMock(payload);
-        const actionsMock = createActionsMock(
-            'selectGettingStarted',
-            selectGettingStartedMock.object,
-        );
+        const selectRequirementMock = createActionMock(actionPayload);
+        const actionsMock = createActionsMock('selectTestSubview', selectRequirementMock.object);
         const interpreterMock = createInterpreterMock(
             AssessmentMessages.SelectGettingStarted,
             payload,
@@ -577,7 +578,7 @@ describe('AssessmentActionCreatorTest', () => {
 
         testSubject.registerCallbacks();
 
-        selectGettingStartedMock.verifyAll();
+        selectRequirementMock.verifyAll();
         telemetryEventHandlerMock.verify(
             tp => tp.publishTelemetry(TelemetryEvents.SELECT_GETTING_STARTED, payload),
             Times.once(),

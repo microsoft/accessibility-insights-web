@@ -322,15 +322,16 @@ describe('TelemetryDataFactoryTest', () => {
 
     test('forSelectGettingStarted', () => {
         const event = mouseClickEvent;
+        const visualizationType = VisualizationType.Headings;
         const expected: SelectGettingStartedTelemetryData = {
             triggeredBy: 'mouseclick',
             source: TelemetryEventSource.DetailsView,
-            selectedTest: VisualizationType[VisualizationType.Headings],
+            selectedTest: VisualizationType[visualizationType],
         };
 
         const actual: SelectGettingStartedTelemetryData = testObject.forSelectGettingStarted(
             event,
-            VisualizationType.Headings,
+            visualizationType,
         );
 
         expect(actual).toEqual(expected);
