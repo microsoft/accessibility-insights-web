@@ -13,7 +13,8 @@ import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { autoPassIfNoLandmarks } from '../auto-pass-if-no-landmarks';
 import { LandmarkTestStep } from './test-steps';
-JSX.Element = (
+
+const description: JSX.Element = (
     <span>
         The <Markup.CodeTerm>main</Markup.CodeTerm> landmark must not contain any blocks of content
         that repeat across pages.
