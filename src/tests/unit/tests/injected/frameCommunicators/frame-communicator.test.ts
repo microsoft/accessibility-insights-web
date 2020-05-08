@@ -26,7 +26,7 @@ interface FrameInfo {
     window: Window;
 }
 
-describe('FrameCommunicatorTests', () => {
+describe('FrameCommunicator', () => {
     let testSubject: FrameCommunicator;
 
     let childFrame1Info: FrameInfo;
@@ -92,7 +92,7 @@ describe('FrameCommunicatorTests', () => {
         mockWindowMessageHandler.verifyAll();
     });
 
-    test('verifyDispose', async done => {
+    test('verifyDispose', (done: () => void) => {
         const frameRequests: MessageRequest<any>[] = [];
         const frameRequestCompleteDeferred: Q.Deferred<any> = Q.defer<any>();
         const framesCompletedData = {};
@@ -271,7 +271,7 @@ describe('FrameCommunicatorTests', () => {
         sendMessageToFrameStrictMock.verifyAll();
     });
 
-    test('SendMessageToFrame should not throw if window does not exist for frame', async done => {
+    test('SendMessageToFrame should not throw if window does not exist for frame', (done: () => void) => {
         const frameMessageRequest: MessageRequest<any> = {
             command: 'command1',
             frame: childFrameWithoutWindowInfo.frameElement,
@@ -292,7 +292,7 @@ describe('FrameCommunicatorTests', () => {
         });
     });
 
-    test('SendMessageToWindow should timeout If frame doesnt respond for ping', async done => {
+    test("SendMessageToWindow should timeout if frame doesn't respond to ping", (done: () => void) => {
         const windowMessageRequest: MessageRequest<any> = {
             command: 'command1',
             win: childFrame1Info.window,
@@ -342,7 +342,7 @@ describe('FrameCommunicatorTests', () => {
         pingTimeoutDeferred.reject({});
     });
 
-    test('SendMessageToFrame should rejected if frmae is sandboxed', async done => {
+    test('SendMessageToFrame should rejected if frame is sandboxed', (done: () => void) => {
         const frameMessageRequest: MessageRequest<any> = {
             command: 'command1',
             frame: childFrame1Info.frameElement,
@@ -367,7 +367,7 @@ describe('FrameCommunicatorTests', () => {
         });
     });
 
-    test("SendMessageToWindow should timeout If frame doesn't respond for command", async done => {
+    test("SendMessageToWindow should timeout if frame doesn't respond to command", (done: () => void) => {
         const windowMessageRequest: MessageRequest<any> = {
             command: 'command1',
             win: childFrame1Info.window,
@@ -444,7 +444,7 @@ describe('FrameCommunicatorTests', () => {
         requestTimeoutDeferred.reject({});
     });
 
-    test('SendMessageToWindow should handle for error response of command from iframe', async done => {
+    test('SendMessageToWindow should handle for error response of command from iframe', (done: () => void) => {
         const windowMessageRequest: MessageRequest<any> = {
             command: 'command1',
             win: childFrame1Info.window,
@@ -519,7 +519,7 @@ describe('FrameCommunicatorTests', () => {
         pingDeferered.resolve({});
     });
 
-    test('SendMessageToWindow should handle for success response of command from iframe', async done => {
+    test('SendMessageToWindow should handle for success response of command from iframe', (done: () => void) => {
         const windowMessageRequest: MessageRequest<any> = {
             command: 'command1',
             win: childFrame1Info.window,
@@ -594,7 +594,7 @@ describe('FrameCommunicatorTests', () => {
         pingDeferered.resolve({});
     });
 
-    test('SendMessageToFrame should handle sandboxed iframe with allow-scripts', async done => {
+    test('SendMessageToFrame should handle sandboxed iframe with allow-scripts', (done: () => void) => {
         const frameMessageRequest: MessageRequest<any> = {
             command: 'command1',
             frame: childFrame1Info.frameElement,
