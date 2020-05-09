@@ -13,6 +13,7 @@ import {
     RequirementActionTelemetryData,
     RequirementSelectTelemetryData,
     RuleAnalyzerScanTelemetryData,
+    SelectGettingStartedTelemetryData,
     SetAllUrlsPermissionTelemetryData,
     SettingsOpenSourceItem,
     SettingsOpenTelemetryData,
@@ -314,6 +315,23 @@ describe('TelemetryDataFactoryTest', () => {
             event,
             VisualizationType.Headings,
             'requirement',
+        );
+
+        expect(actual).toEqual(expected);
+    });
+
+    test('forSelectGettingStarted', () => {
+        const event = mouseClickEvent;
+        const visualizationType = VisualizationType.Headings;
+        const expected: SelectGettingStartedTelemetryData = {
+            triggeredBy: 'mouseclick',
+            source: TelemetryEventSource.DetailsView,
+            selectedTest: VisualizationType[visualizationType],
+        };
+
+        const actual: SelectGettingStartedTelemetryData = testObject.forSelectGettingStarted(
+            event,
+            visualizationType,
         );
 
         expect(actual).toEqual(expected);
