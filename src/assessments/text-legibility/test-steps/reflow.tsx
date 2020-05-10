@@ -9,7 +9,7 @@ import * as content from 'content/test/text-legibility/reflow';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 
 const reflowDescription: JSX.Element = (
-    <span>Text content must be visible without having to scroll in two dimensions.</span>
+    <span>Content must be visible without having to scroll in two dimensions.</span>
 );
 
 const reflowHowToTest: JSX.Element = (
