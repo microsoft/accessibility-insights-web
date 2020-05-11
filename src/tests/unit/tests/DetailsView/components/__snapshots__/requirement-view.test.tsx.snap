@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RequirementViewTest render snapshot matches with manual false and scanning is finished 1`] = `
-"<div className=\\"test-step-view\\">
-  <div className=\\"test-step-title-container\\">
-    <h1 className=\\"test-step-view-title\\">
+"<div className=\\"requirementView\\">
+  <div className=\\"requirementTitleContainer\\">
+    <h1 className=\\"requirementViewTitle\\">
       Test Step Test Name
       <GuidanceTags deps={[undefined]} links={{...}} />
       <ContentPanelButton deps={[undefined]} reference={[undefined]} iconName=\\"info\\" contentTitle=\\"Test Step Test Name\\" />
@@ -12,7 +12,7 @@ exports[`RequirementViewTest render snapshot matches with manual false and scann
   <p>
     description
   </p>
-  <CollapsibleComponent header={{...}} content={{...}} contentClassName=\\"testStepInstructions\\" />
+  <CollapsibleComponent header={{...}} content={{...}} contentClassName=\\"requirementInstructions\\" />
   <div role=\\"alert\\" aria-live=\\"polite\\" aria-label=\\"Scan Complete\\" />
   <h2 className=\\"test-step-instances-header\\">
     Instances
@@ -22,9 +22,9 @@ exports[`RequirementViewTest render snapshot matches with manual false and scann
 `;
 
 exports[`RequirementViewTest render, variable part for assisted test 1`] = `
-"<div className=\\"test-step-view\\">
-  <div className=\\"test-step-title-container\\">
-    <h1 className=\\"test-step-view-title\\">
+"<div className=\\"requirementView\\">
+  <div className=\\"requirementTitleContainer\\">
+    <h1 className=\\"requirementViewTitle\\">
       Test Step Test Name
       <GuidanceTags deps={[undefined]} links={{...}} />
       <ContentPanelButton deps={[undefined]} reference={[undefined]} iconName=\\"info\\" contentTitle=\\"Test Step Test Name\\" />
@@ -33,7 +33,7 @@ exports[`RequirementViewTest render, variable part for assisted test 1`] = `
   <p>
     description
   </p>
-  <CollapsibleComponent header={{...}} content={{...}} contentClassName=\\"testStepInstructions\\" />
+  <CollapsibleComponent header={{...}} content={{...}} contentClassName=\\"requirementInstructions\\" />
   <h2 className=\\"test-step-instances-header\\">
     Instances
   </h2>

@@ -15,7 +15,7 @@ import { PathSnippetStoreData } from 'common/types/store-data/path-snippet-store
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { AssessmentInstanceTable } from 'DetailsView/components/assessment-instance-table';
 import { ManualTestStepView } from 'DetailsView/components/manual-test-step-view';
-import * as styles from 'DetailsView/components/test-step-view.scss';
+import * as styles from 'DetailsView/components/requirement-view.scss';
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react';
 import * as React from 'react';
@@ -47,9 +47,9 @@ export interface RequirementViewProps {
 export class RequirementView extends React.Component<RequirementViewProps> {
     public render(): JSX.Element {
         return (
-            <div className="test-step-view">
-                <div className="test-step-title-container">
-                    <h1 className="test-step-view-title">
+            <div className={styles.requirementView}>
+                <div className={styles.requirementTitleContainer}>
+                    <h1 className={styles.requirementViewTitle}>
                         {this.props.testStep.name}
                         <GuidanceTags
                             deps={this.props.deps}
@@ -66,9 +66,9 @@ export class RequirementView extends React.Component<RequirementViewProps> {
                 {this.props.testStep.description}
                 {this.renderVisualHelperToggle()}
                 <CollapsibleComponent
-                    header={<h3 className={styles.testStepInstructionsHeader}>How to test</h3>}
+                    header={<h2 className={styles.requirementInstructionsHeader}>How to test</h2>}
                     content={this.props.testStep.howToTest}
-                    contentClassName={styles.testStepInstructions}
+                    contentClassName={styles.requirementInstructions}
                 />
                 {this.renderTable()}
             </div>

@@ -1,0 +1,105 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
+@import '../../common/styles/common.scss';
+
+.requirement-view {
+    padding-left: 0.75vw;
+    padding-right: 0.75vw;
+    padding-bottom: 3.5vw;
+    .requirement-title-container {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        vertical-align: middle;
+        padding-top: 1vw;
+        .requirement-view-title {
+            font-size: 17px;
+            padding-top: 0px;
+            display: inline-block;
+        }
+    }
+    .visual-helper {
+        display: flex;
+        vertical-align: middle;
+        flex-direction: row;
+        padding-top: 1.5vh;
+        padding-bottom: 1.1vh;
+        flex-wrap: wrap;
+        &-text {
+            padding-right: 0.9vh;
+            padding-bottom: 0.9vh;
+            font-family: $fontFamily;
+            font-size: 14px;
+            line-height: normal;
+        }
+        .ms-Toggle {
+            margin-bottom: 0;
+        }
+    }
+    .test-step-instructions-header {
+        font-size: 14px;
+        font-weight: $normalTitleFontWeight;
+    }
+    .no-matching-elements {
+        font-weight: bold;
+    }
+    .is-disabled.visual-helper-toggle {
+        .ms-Toggle-stateText {
+            color: $secondary-text;
+        }
+    }
+    .test-step-choice-group-container {
+        margin-left: 8px;
+        margin-bottom: 4px;
+        margin-top: 20px;
+    }
+    .master-visualization-column-header-selected {
+        background-color: $communication-primary;
+        color: $neutral-0;
+        display: inline;
+    }
+    .property-bag-container {
+        display: flex;
+        flex-direction: column;
+        font-size: 14px;
+        line-height: 24px;
+        * + *.property-bag-div {
+            margin-top: 4px;
+        }
+        .property-bag-div {
+            color: $secondary-text;
+            .expanded-property-div {
+                margin-left: 20px;
+            }
+            .display-name {
+                color: $neutral-80;
+            }
+            white-space: normal;
+        }
+    }
+}
+
+.requirement-instructions {
+    font-family: $fontFamily;
+    p,
+    ol,
+    li {
+        margin: 5px 0px;
+    }
+    ol {
+        -webkit-padding-start: 16px;
+    }
+    ol ol {
+        list-style-type: lower-alpha;
+    }
+    ol ol ol {
+        list-style-type: lower-roman;
+    }
+}
+
+.requirement-instructions-header {
+    font-size: 14px;
+    font-weight: $normalTitleFontWeight;
+}

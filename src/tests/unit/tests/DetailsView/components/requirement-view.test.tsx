@@ -11,7 +11,7 @@ import { AssessmentInstanceTable } from 'DetailsView/components/assessment-insta
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
 import { ManualTestStepView } from 'DetailsView/components/manual-test-step-view';
 import { RequirementView, RequirementViewProps } from 'DetailsView/components/requirement-view';
-import * as styles from 'DetailsView/components/test-step-view.scss';
+import * as styles from 'DetailsView/components/requirement-view.scss';
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
 import * as Enzyme from 'enzyme';
 import * as React from 'react';
@@ -39,11 +39,11 @@ describe('RequirementViewTest', () => {
 
         const wrapper = Enzyme.shallow(<RequirementView {...props} />);
 
-        const mainDiv = wrapper.find('.test-step-view');
+        const mainDiv = wrapper.find('.requirementView');
 
         expect(mainDiv.exists()).toBeTruthy();
 
-        const title = mainDiv.find('h1.test-step-view-title');
+        const title = mainDiv.find('h1.requirementViewTitle');
 
         expect(title.exists()).toBeTruthy();
         expect(title.text().startsWith(props.testStep.name)).toBe(true);
@@ -52,9 +52,9 @@ describe('RequirementViewTest', () => {
 
         expect(testInstructions.exists()).toBeTruthy();
         expect(props.testStep.howToTest).toEqual(testInstructions.prop('content'));
-        expect(testInstructions.prop('contentClassName')).toBe(styles.testStepInstructions);
+        expect(testInstructions.prop('contentClassName')).toBe(styles.requirementInstructions);
         expect(testInstructions.prop('header')).toEqual(
-            <h3 className={styles.testStepInstructionsHeader}>How to test</h3>,
+            <h2 className={styles.requirementInstructionsHeader}>How to test</h2>,
         );
     });
 
