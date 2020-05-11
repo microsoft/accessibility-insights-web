@@ -12,6 +12,7 @@ pr:
     paths:
         include:
             - src/tests/end-to-end/
+            - Dockerfile
 
 jobs:
     - template: ./e2e-job-per-environment.yaml
