@@ -17,19 +17,19 @@ describe('AssessmentViewTest', () => {
     let updateHandlerMock: IMock<AssessmentViewUpdateHandler>;
 
     beforeEach(() => {
-        updateHandlerMock = Mock.ofType<AssessmentViewUpdateHandler>();
+        updateHandlerMock = Mock.ofType(AssessmentViewUpdateHandler);
     });
 
     test('render for requirement', () => {
         const props = generateProps('requirement');
         const rendered = shallow(<ReflowAssessmentView {...props} />);
-        expect(rendered.debug()).toMatchSnapshot();
+        expect(rendered.getElement()).toMatchSnapshot();
     });
 
     test('render for gettting started', () => {
         const props = generateProps('getting-started');
         const rendered = shallow(<ReflowAssessmentView {...props} />);
-        expect(rendered.debug()).toMatchSnapshot();
+        expect(rendered.getElement()).toMatchSnapshot();
     });
 
     test('componentDidMount', () => {
