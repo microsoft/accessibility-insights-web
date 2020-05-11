@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Audio control</h1>
         <p>If audio content plays automatically for longer than 3 seconds, users must be able to pause or mute it.</p>
 
         <h2>Why it matters</h2>

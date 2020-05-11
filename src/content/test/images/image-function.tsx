@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Image function</h1>
         <p>Every image must be correctly coded as either meaningful or decorative.</p>
 
         <h2>Why it matters</h2>

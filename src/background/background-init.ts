@@ -7,6 +7,7 @@ import { DebugToolsTelemetryClient } from 'background/telemetry/debug-tools-tele
 import { AxeInfo } from '../common/axe-info';
 import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
+import { DateProvider } from '../common/date-provider';
 import { EnvironmentInfoProvider } from '../common/environment-info-provider';
 import { getIndexedDBStore } from '../common/indexedDB/get-indexeddb-store';
 import { IndexedDBAPI, IndexedDBUtil } from '../common/indexedDB/indexedDB';
@@ -39,6 +40,7 @@ import {
 import { TelemetryEventHandler } from './telemetry/telemetry-event-handler';
 import { TelemetryLogger } from './telemetry/telemetry-logger';
 import { TelemetryStateListener } from './telemetry/telemetry-state-listener';
+import { UsageLogger } from './usage-logger';
 import { cleanKeysFromStorage } from './user-stored-data-cleaner';
 
 declare var window: Window & InsightsWindowExtensions;
@@ -96,6 +98,8 @@ async function initialize(): Promise<void> {
         debugToolsTelemetryClient,
     ]);
 
+    const usageLogger = new UsageLogger(browserAdapter, DateProvider.getCurrentDate, logger);
+
     const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
 
     const browserSpec = new NavigatorUtils(window.navigator, logger).getBrowserSpec();
@@ -149,6 +153,7 @@ async function initialize(): Promise<void> {
         globalContext.stores.userConfigurationStore,
         browserAdapter,
         logger,
+        usageLogger,
     );
     keyboardShortcutHandler.initialize();
 
@@ -173,6 +178,7 @@ async function initialize(): Promise<void> {
         targetTabController,
         promiseFactory,
         logger,
+        usageLogger,
     );
 
     const targetPageController = new TargetPageController(

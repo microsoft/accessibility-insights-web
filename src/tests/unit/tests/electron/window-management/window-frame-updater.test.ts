@@ -1,32 +1,30 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { BrowserWindow } from 'electron';
 import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
 import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
+import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import { WindowFrameUpdater } from 'electron/window-management/window-frame-updater';
-import { ExpectedCallType, IMock, Mock, MockBehavior, Times } from 'typemoq';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe(WindowFrameUpdater, () => {
     let windowFrameActions: WindowFrameActions;
     let testSubject: WindowFrameUpdater;
-    let browserWindowMock: IMock<BrowserWindow>;
+    let ipcRendererShimMock: IMock<IpcRendererShim>;
 
     beforeEach(() => {
         windowFrameActions = new WindowFrameActions();
-        browserWindowMock = Mock.ofType(BrowserWindow, MockBehavior.Strict);
+        ipcRendererShimMock = Mock.ofType<IpcRendererShim>(undefined, MockBehavior.Strict);
 
-        testSubject = new WindowFrameUpdater(windowFrameActions, browserWindowMock.object);
+        testSubject = new WindowFrameUpdater(windowFrameActions, ipcRendererShimMock.object);
     });
 
     afterEach(() => {
-        browserWindowMock.verifyAll();
+        ipcRendererShimMock.verifyAll();
     });
 
     it(' do nothing on action invocation before initialize', () => {
         windowFrameActions.maximize.invoke(null);
-
-        browserWindowMock.setup(b => b.maximize()).verifiable(Times.never());
     });
 
     describe('verify action listeners', () => {
@@ -35,57 +33,51 @@ describe(WindowFrameUpdater, () => {
         });
 
         it('invokes maximize', () => {
-            browserWindowMock.setup(b => b.maximize()).verifiable(Times.once());
+            ipcRendererShimMock.setup(b => b.maximizeWindow()).verifiable(Times.once());
 
             windowFrameActions.maximize.invoke(null);
         });
 
         it('invokes minimize', () => {
-            browserWindowMock.setup(b => b.minimize()).verifiable(Times.once());
+            ipcRendererShimMock.setup(b => b.minimizeWindow()).verifiable(Times.once());
 
             windowFrameActions.minimize.invoke(null);
         });
 
-        it('handles restore when in full screen', () => {
-            browserWindowMock
-                .setup(b => b.isFullScreen())
-                .returns(() => true)
-                .verifiable(Times.once());
-            browserWindowMock.setup(b => b.setFullScreen(false)).verifiable(Times.once());
-
-            windowFrameActions.restore.invoke(null);
-        });
-
-        it('handles restore when not in full screen', () => {
-            browserWindowMock
-                .setup(b => b.isFullScreen())
-                .returns(() => false)
-                .verifiable(Times.once());
-            browserWindowMock.setup(b => b.unmaximize()).verifiable(Times.once());
+        it('invokes restore', () => {
+            ipcRendererShimMock.setup(b => b.restoreWindow()).verifiable(Times.once());
 
             windowFrameActions.restore.invoke(null);
         });
 
         it('invokes close', () => {
-            browserWindowMock.setup(b => b.close()).verifiable(Times.once());
+            ipcRendererShimMock.setup(b => b.closeWindow()).verifiable(Times.once());
 
             windowFrameActions.close.invoke(null);
         });
 
-        it('invokes setSize', () => {
+        it('invokes setSizeAndCenter', () => {
+            const width = 12;
+            const height = 34;
+
+            let actualWidth: number;
+            let actualHeight: number;
             const sizePayload: SetSizePayload = {
-                width: 12,
-                height: 34,
+                width,
+                height,
             };
 
-            browserWindowMock
-                .setup(b => b.setSize(sizePayload.width, sizePayload.height))
-                .verifiable(Times.once(), ExpectedCallType.InSequence);
-            browserWindowMock
-                .setup(b => b.center())
-                .verifiable(Times.once(), ExpectedCallType.InSequence);
+            ipcRendererShimMock
+                .setup(b => b.setSizeAndCenterWindow(It.isAny()))
+                .callback(args => {
+                    actualWidth = args.width;
+                    actualHeight = args.height;
+                })
+                .verifiable(Times.once());
 
             windowFrameActions.setWindowSize.invoke(sizePayload);
+            expect(actualHeight).toBe(height);
+            expect(actualWidth).toBe(width);
         });
     });
 });

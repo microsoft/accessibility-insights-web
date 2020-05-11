@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { EnumHelper } from 'common/enum-helper';
-import { BrowserWindow } from 'electron';
 import { DeviceConnectState } from 'electron/flux/types/device-connect-state';
+import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import {
     DeviceConnectBody,
     DeviceConnectBodyDeps,
@@ -19,11 +19,11 @@ describe('DeviceConnectBodyTest', () => {
     it.each(deviceConnectStates)(`renders, with device connect state = %s`, stateName => {
         const props: DeviceConnectBodyProps = {
             deps: {
-                currentWindow: {
-                    close: () => {
+                ipcRendererShim: {
+                    closeWindow: () => {
                         return;
                     },
-                } as BrowserWindow,
+                } as IpcRendererShim,
             } as DeviceConnectBodyDeps,
             viewState: {
                 connectedDevice: 'Test Device',

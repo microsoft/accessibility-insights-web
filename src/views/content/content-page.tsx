@@ -26,6 +26,7 @@ export interface ContentPageOptions {
 export type ContentPageProps = { deps: ContentPageDeps; options?: ContentPageOptions };
 export type ContentPageComponent = React.FC<ContentPageProps> & {
     displayName: 'ContentPageComponent';
+    pageTitle?: string;
 };
 export type ContentReference = string | ContentPageComponent;
 type CreateProps<M extends HyperlinkDefinitionMap> = {

@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Instructions</h1>
         <p>If a native widget has visible label or instructions, they must be programmatically related to it.</p>
 
         <h2>Why it matters</h2>

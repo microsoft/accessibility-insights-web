@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>No keystroke timings</h1>
         <p>Components must not require specific timings for individual keystrokes.</p>
 
         <h2>Why it matters</h2>

@@ -3,13 +3,13 @@
 exports[`AssessmentTestView assessment view, isScanning is false 1`] = `
 "<Fragment>
   <ScanIncompleteWarning deps={{...}} warnings={[undefined]} warningConfiguration={{...}} test={-1} />
-  <AssessmentView deps={{...}} isScanning={false} isEnabled={false} assessmentNavState={{...}} assessmentInstanceTableHandler={{...}} assessmentData={{...}} currentTarget={{...}} prevTarget={[undefined]} assessmentDefaultMessageGenerator={[undefined]} assessmentTestResult={{...}} featureFlagStoreData={{...}} pathSnippetStoreData={{...}} switcherNavConfiguration={{...}} />
+  <FlaggedComponent enableJSXElement={{...}} disableJSXElement={{...}} featureFlag=\\"reflowUI\\" featureFlagStoreData={{...}} />
 </Fragment>"
 `;
 
 exports[`AssessmentTestView assessment view, isScanning is true 1`] = `
 "<Fragment>
   <ScanIncompleteWarning deps={{...}} warnings={[undefined]} warningConfiguration={{...}} test={-1} />
-  <AssessmentView deps={{...}} isScanning={true} isEnabled={false} assessmentNavState={{...}} assessmentInstanceTableHandler={{...}} assessmentData={{...}} currentTarget={{...}} prevTarget={[undefined]} assessmentDefaultMessageGenerator={[undefined]} assessmentTestResult={{...}} featureFlagStoreData={{...}} pathSnippetStoreData={{...}} switcherNavConfiguration={{...}} />
+  <FlaggedComponent enableJSXElement={{...}} disableJSXElement={{...}} featureFlag=\\"reflowUI\\" featureFlagStoreData={{...}} />
 </Fragment>"
 `;

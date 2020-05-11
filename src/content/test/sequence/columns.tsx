@@ -5,9 +5,7 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
-        <h1>Columns</h1>
         <p>White space characters must not be used to create the appearance of columns.</p>
-
         <h2>Why it matters</h2>
         <p>
             When white space characters are used to arrange text visually to create the appearance of columns, sighted users perceive a
@@ -15,7 +13,6 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             content appears in the HTML), people who use assistive technologies are likely to read the text in an order that doesn't make
             sense. (Also, a screen reader might announce each space character individually.)
         </p>
-
         <h2>How to fix</h2>
         <p>
             Use one of the following techniques to restructure the content so that the DOM order matches the expected reading order:
@@ -25,7 +22,6 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 <li> Best: Use CSS to display the content in columns.</li>
             </ul>
         </p>
-
         <Markup.PassFail
             failText={
                 <p>
@@ -80,9 +76,7 @@ common defense,   States of America.]
             </html>
             `}
         />
-
         <h2>More examples</h2>
-
         <h3>WCAG success criteria</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html">
@@ -92,14 +86,12 @@ common defense,   States of America.]
                 Understanding Success Criterion 1.3.2: Meaningful Sequence
             </Markup.HyperLink>
         </Markup.Links>
-
         <h3>Sufficient techniques</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G57">
                 Ordering the content in a meaningful sequence
             </Markup.HyperLink>
         </Markup.Links>
-
         <h3>Common failures</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F33">

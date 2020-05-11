@@ -14,20 +14,20 @@ export function getReportExportComponentForAssessment(props: CommandBarProps): J
         assessmentStoreData,
         assessmentsProvider,
         featureFlagStoreData,
-        scanMetaData,
+        scanMetadata,
     } = props;
     const reportGenerator = deps.reportGenerator;
     const reportExportComponentProps: ReportExportComponentProps = {
         deps: deps,
-        exportResultsType: 'Assessment',
-        pageTitle: scanMetaData.targetAppInfo.name,
+        reportExportFormat: 'Assessment',
+        pageTitle: scanMetadata.targetAppInfo.name,
         scanDate: deps.getCurrentDate(),
         htmlGenerator: description =>
             reportGenerator.generateAssessmentReport(
                 assessmentStoreData,
                 assessmentsProvider,
                 featureFlagStoreData,
-                scanMetaData.targetAppInfo,
+                scanMetadata.targetAppInfo,
                 description,
             ),
         updatePersistedDescription: value =>
@@ -53,21 +53,20 @@ export function getReportExportComponentForFastPass(props: CommandBarProps): JSX
     }
 
     const { deps } = props;
-    const scanDate = deps.getDateFromTimestamp(props.scanMetaData.timestamp);
+    const scanDate = deps.getDateFromTimestamp(props.scanMetadata.timestamp);
     const reportGenerator = deps.reportGenerator;
 
     const reportExportComponentProps: ReportExportComponentProps = {
         deps: deps,
         scanDate: scanDate,
-        pageTitle: props.scanMetaData.targetAppInfo.name,
-        exportResultsType: 'AutomatedChecks',
+        pageTitle: props.scanMetadata.targetAppInfo.name,
+        reportExportFormat: 'AutomatedChecks',
         htmlGenerator: description =>
             reportGenerator.generateFastPassAutomatedChecksReport(
                 scanDate,
-                props.scanMetaData.targetAppInfo,
                 props.cardsViewData,
                 description,
-                props.scanMetaData.toolData,
+                props.scanMetadata,
             ),
         updatePersistedDescription: () => null,
         getExportDescription: () => '',

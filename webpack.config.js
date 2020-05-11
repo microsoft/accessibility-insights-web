@@ -82,7 +82,8 @@ const commonConfig = {
         rules: [tsRule, scssRule(true)],
     },
     resolve: {
-        modules: [path.resolve(__dirname, './src'), path.resolve(__dirname, 'node_modules')],
+        // It is important that src is absolute but node_modules is relative. See #2520
+        modules: [path.resolve(__dirname, './src'), 'node_modules'],
         extensions: ['.tsx', '.ts', '.js'],
     },
     plugins: commonPlugins,
@@ -93,6 +94,10 @@ const commonConfig = {
         // We allow higher-than-normal sizes because our users only have to do local fetches of our bundles
         maxEntrypointSize: 10 * 1024 * 1024,
         maxAssetSize: 10 * 1024 * 1024,
+    },
+    stats: {
+        // This is to suppress noise from mini-css-extract-plugin
+        children: false,
     },
 };
 

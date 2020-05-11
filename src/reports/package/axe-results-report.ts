@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { CardSelectionViewData } from 'common/get-card-selection-view-data';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
-import { ToolData } from 'common/types/store-data/unified-data-interface';
+import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
 import { UUIDGenerator } from 'common/uid-generator';
 import { convertScanResultsToUnifiedResults } from 'injected/adapters/scan-results-to-unified-results';
 import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results-to-unified-rules';
@@ -40,21 +40,30 @@ export class AxeResultsReport implements AccessibilityInsightsReport.Report {
         const unifiedResults = getUnifiedResults(scanResults, getUUID);
 
         const cardSelectionViewData: CardSelectionViewData = {
-            highlightedResultUids: [],
             selectedResultUids: [],
             expandedRuleIds: [],
             visualHelperEnabled: false,
+            resultsHighlightStatus: {},
         };
 
         const cardsViewModel = getCards(unifiedRules, unifiedResults, cardSelectionViewData);
 
+        const targetAppInfo = {
+            name: pageTitle,
+            url: results.url,
+        };
+
+        const scanMetadata: ScanMetadata = {
+            targetAppInfo: targetAppInfo,
+            toolData: this.toolInfo,
+            timestamp: null,
+        };
+
         const html = reportHtmlGenerator.generateHtml(
             scanDate,
-            pageTitle,
-            results.url,
             description,
             cardsViewModel,
-            this.toolInfo,
+            scanMetadata,
         );
 
         return html;

@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Auto-updating content</h1>
         <p>If content updates automatically, users must be able to pause, stop, hide, or control the frequency of updates.</p>
 
         <h2>Why it matters</h2>

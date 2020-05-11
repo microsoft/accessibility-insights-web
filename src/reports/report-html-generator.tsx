@@ -8,7 +8,7 @@ import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import * as React from 'react';
 
-import { ToolData } from 'common/types/store-data/unified-data-interface';
+import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { ReportBody, ReportBodyProps } from './components/report-sections/report-body';
 import { ReportCollapsibleContainerControl } from './components/report-sections/report-collapsible-container';
 import {
@@ -31,18 +31,12 @@ export class ReportHtmlGenerator {
 
     public generateHtml(
         scanDate: Date,
-        pageTitle: string,
-        pageUrl: string,
         description: string,
         cardsViewData: CardsViewModel,
-        toolData: ToolData,
+        scanMetadata: ScanMetadata,
     ): string {
         const HeadSection = this.sectionFactory.HeadSection;
         const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(<HeadSection />);
-        const targetAppInfo = {
-            name: pageTitle,
-            url: pageUrl,
-        };
 
         const detailsProps: SectionProps = {
             description,
@@ -56,12 +50,11 @@ export class ReportHtmlGenerator {
                 cardsVisualizationModifierButtons: NullComponent,
             } as SectionDeps,
             cardsViewData: cardsViewData,
-            toolData: toolData,
             toUtcString: this.utcDateConverter,
             getCollapsibleScript: this.getCollapsibleScript,
             getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,
             fixInstructionProcessor: this.fixInstructionProcessor,
-            targetAppInfo: targetAppInfo,
+            scanMetadata,
         } as SectionProps;
 
         const props: ReportBodyProps = {

@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>No keyboard traps</h1>
         <p>
             Users must be able to <Markup.Emphasis>navigate away</Markup.Emphasis> from all components using a keyboard.
         </p>

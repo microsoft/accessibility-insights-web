@@ -16,7 +16,6 @@ describe('device connection dialog', () => {
     });
 
     afterEach(async () => {
-        dialog = null;
         if (app != null) {
             await app.stop();
         }
@@ -37,14 +36,16 @@ describe('device connection dialog', () => {
 
     it('should leave the validate and start buttons disabled when provided an invalid port number', async () => {
         await dialog.click(DeviceConnectionDialogSelectors.portNumber);
-        await dialog.findElement(DeviceConnectionDialogSelectors.portNumber).keys('abc');
+        await dialog.client.$(DeviceConnectionDialogSelectors.portNumber);
+        await dialog.client.keys('abc');
         expect(await dialog.isEnabled(DeviceConnectionDialogSelectors.validateButton)).toBe(false);
         expect(await dialog.isEnabled(DeviceConnectionDialogSelectors.startButton)).toBe(false);
     });
 
     it('should enable the validate and start buttons when provided a valid port number', async () => {
         await dialog.click(DeviceConnectionDialogSelectors.portNumber);
-        await dialog.findElement(DeviceConnectionDialogSelectors.portNumber).keys('999');
+        await dialog.client.$(DeviceConnectionDialogSelectors.portNumber);
+        await dialog.client.keys('999');
         expect(await dialog.isEnabled(DeviceConnectionDialogSelectors.validateButton)).toBe(true);
         expect(await dialog.isEnabled(DeviceConnectionDialogSelectors.startButton)).toBe(false);
     });

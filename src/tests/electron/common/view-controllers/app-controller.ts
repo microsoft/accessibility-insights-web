@@ -2,16 +2,16 @@
 // Licensed under the MIT License.
 import { Application } from 'spectron';
 import { DeviceConnectionDialogController } from 'tests/electron/common/view-controllers/device-connection-dialog-controller';
+import { SpectronAsyncClient } from 'tests/electron/common/view-controllers/spectron-async-client';
 import { testResourceServerConfig } from 'tests/electron/setup/test-resource-server-config';
 import { DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS } from 'tests/electron/setup/timeouts';
-import * as WebDriverIO from 'webdriverio';
 import { AutomatedChecksViewController } from './automated-checks-view-controller';
 
 export class AppController {
-    public client: WebDriverIO.Client<void>;
+    public client: SpectronAsyncClient;
 
     constructor(public app: Application) {
-        this.client = app.client;
+        this.client = app.client as any;
     }
 
     public async stop(): Promise<void> {
@@ -44,6 +44,8 @@ export class AppController {
     }
 
     public async setHighContrastMode(enableHighContrast: boolean): Promise<void> {
+        await this.waitForUserConfigurationInitializer();
+
         await this.app.webContents.executeJavaScript(
             `window.insightsUserConfiguration.setHighContrastMode(${enableHighContrast})`,
         );
@@ -54,13 +56,8 @@ export class AppController {
 
         await this.client.waitUntil(
             async () => {
-                const classes = await this.client.$('body').getAttribute('class');
-
-                if (expectedHighContrastMode) {
-                    return classes.includes(highContrastThemeClass);
-                } else {
-                    return !classes.includes(highContrastThemeClass);
-                }
+                const classes = await this.client.getAttribute<string>('body', 'class');
+                return expectedHighContrastMode === classes.includes(highContrastThemeClass);
             },
             DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS,
             `was expecting body element ${
@@ -70,6 +67,14 @@ export class AppController {
     }
 
     public async setTelemetryState(enableTelemetry: boolean): Promise<void> {
+        await this.waitForUserConfigurationInitializer();
+
+        await this.app.webContents.executeJavaScript(
+            `window.insightsUserConfiguration.setTelemetryState(${enableTelemetry})`,
+        );
+    }
+
+    private async waitForUserConfigurationInitializer(): Promise<void> {
         await this.client.waitUntil(
             async () => {
                 const executeOutput = await this.client.executeAsync(done => {
@@ -80,10 +85,6 @@ export class AppController {
             },
             DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS,
             'was expecting window.insightsUserConfiguration to be defined',
-        );
-
-        await this.app.webContents.executeJavaScript(
-            `window.insightsUserConfiguration.setTelemetryState(${enableTelemetry})`,
         );
     }
 }

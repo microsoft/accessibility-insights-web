@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>CAPTCHAs</h1>
         <p>If a non-text CAPTCHA is used, alternative methods must be provided for both users without vision and users without hearing.</p>
 
         <h2>Why it matters </h2>

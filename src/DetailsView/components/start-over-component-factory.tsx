@@ -13,7 +13,7 @@ export function getStartOverComponentForAssessment(props: CommandBarProps): JSX.
         deps: deps,
         testName: test.title,
         test: selectedTest,
-        requirementKey: props.assessmentStoreData.assessmentNavState.selectedTestStep,
+        requirementKey: props.assessmentStoreData.assessmentNavState.selectedTestSubview,
         rightPanelConfiguration: props.rightPanelConfiguration,
     };
 

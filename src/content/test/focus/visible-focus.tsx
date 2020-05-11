@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Visible focus</h1>
         <p>Components must provide a visible indication when they have the input focus.</p>
 
         <h2>Why it matters</h2>

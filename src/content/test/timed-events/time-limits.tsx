@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <React.Fragment>
-        <h1>Time limits</h1>
         <p>If a time limit is set by the content, the user must be able to turn off, adjust, or extend the time limit.</p>
 
         <h2>Why it matters</h2>

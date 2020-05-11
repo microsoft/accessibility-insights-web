@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Reflow</h1>
         <p>Text content must be visible without having to scroll both vertically and horizontally.</p>
 
         <h2>Why it matters</h2>

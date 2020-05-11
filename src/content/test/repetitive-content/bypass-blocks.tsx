@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Bypass blocks</h1>
         <p>A page must provide a keyboard-accessible method to bypass repetitive content.</p>
 
         <h2>Why it matters</h2>

@@ -5,8 +5,8 @@ import { FixInstructionProcessor } from 'common/components/fix-instruction-proce
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { ReactFCWithDisplayName } from 'common/react/named-fc';
 
+import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { CardsViewModel } from '../../../common/types/store-data/card-view-model';
-import { TargetAppData, ToolData } from '../../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import { NotApplicableChecksSectionDeps } from './not-applicable-checks-section';
 import { PassedChecksSectionDeps } from './passed-checks-section';
@@ -20,14 +20,13 @@ export type SectionProps = {
     fixInstructionProcessor: FixInstructionProcessor;
     description: string;
     scanDate: Date;
-    toolData: ToolData;
     toUtcString: (date: Date) => string;
     getCollapsibleScript: () => string;
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;
     cardsViewData: CardsViewModel;
     userConfigurationStoreData: UserConfigurationStoreData;
-    targetAppInfo: TargetAppData;
     shouldAlertFailuresCount?: boolean;
+    scanMetadata: ScanMetadata;
 };
 
 export type ReportSectionFactory = {
@@ -43,5 +42,5 @@ export type ReportSectionFactory = {
     PassedChecksSection: ReactFCWithDisplayName<SectionProps>;
     NotApplicableChecksSection: ReactFCWithDisplayName<SectionProps>;
     FooterSection: ReactFCWithDisplayName;
-    FooterText: ReactFCWithDisplayName<Pick<SectionProps, 'toolData'>>;
+    FooterText: ReactFCWithDisplayName<Pick<SectionProps, 'scanMetadata'>>;
 };

@@ -4,8 +4,7 @@ import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { getDefaultFeatureFlagsWeb } from 'common/feature-flags';
-import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
-import { TargetAppData } from 'common/types/store-data/unified-data-interface';
+import { ScanMetadata, TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { DetailsViewCommandBarDeps } from 'DetailsView/components/details-view-command-bar';
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
@@ -93,7 +92,7 @@ describe('DetailsViewBody', () => {
 
             const assessmentStoreData = {
                 assessmentNavState: {
-                    selectedTestStep: 'sample test step',
+                    selectedTestSubview: 'sample test step',
                 } as AssessmentNavState,
                 assessments: {
                     assessment: {
@@ -135,9 +134,9 @@ describe('DetailsViewBody', () => {
                     visualHelperEnabled: true,
                     allCardsCollapsed: true,
                 },
-                scanMetaData: {
+                scanMetadata: {
                     targetAppInfo: targetAppInfoStub,
-                } as ScanMetaData,
+                } as ScanMetadata,
             } as DetailsViewBodyProps;
         });
 
@@ -203,7 +202,12 @@ describe('DetailsViewBody', () => {
     }
 
     function buildLeftNav(givenProps: DetailsViewBodyProps): JSX.Element {
-        return <DetailsViewLeftNav {...givenProps} />;
+        return (
+            <DetailsViewLeftNav
+                selectedPivot={givenProps.visualizationStoreData.selectedDetailsViewPivot}
+                {...givenProps}
+            />
+        );
     }
 
     function buildTargetPageInfoBar(givenProps: DetailsViewBodyProps): JSX.Element {
@@ -216,7 +220,6 @@ describe('DetailsViewBody', () => {
 
     function buildRightPanel(givenProps: DetailsViewBodyProps): JSX.Element {
         const rightPanelProps = {
-            targetAppInfo: givenProps.scanMetaData.targetAppInfo,
             ...givenProps,
         };
         return <rightPanelConfig.RightPanel {...rightPanelProps} />;

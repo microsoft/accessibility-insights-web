@@ -144,9 +144,11 @@ exports[`IssuesTableTest table with 0 issues 1`] = `
           },
         }
       }
-      targetAppInfo={
+      scanMetadata={
         Object {
-          "name": "app",
+          "targetAppInfo": Object {
+            "name": "app",
+          },
         }
       }
       userConfigurationStoreData={
@@ -232,9 +234,11 @@ exports[`IssuesTableTest table with 1 issues 1`] = `
           },
         }
       }
-      targetAppInfo={
+      scanMetadata={
         Object {
-          "name": "app",
+          "targetAppInfo": Object {
+            "name": "app",
+          },
         }
       }
       userConfigurationStoreData={
@@ -320,9 +324,11 @@ exports[`IssuesTableTest table with 2 issues 1`] = `
           },
         }
       }
-      targetAppInfo={
+      scanMetadata={
         Object {
-          "name": "app",
+          "targetAppInfo": Object {
+            "name": "app",
+          },
         }
       }
       userConfigurationStoreData={

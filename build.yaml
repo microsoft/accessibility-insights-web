@@ -14,7 +14,7 @@ jobs:
     - job: 'unit_tests_and_lints'
 
       pool:
-          vmImage: 'macOS-10.14'
+          vmImage: 'macOS-10.15'
 
       steps:
           - template: pipeline/install-node-prerequisites.yaml
@@ -63,19 +63,28 @@ jobs:
             displayName: Publish code coverage to codecov
             timeoutInMinutes: 3
 
-          # CI build only
+    - job: 'publish_build_drops'
+      pool:
+          vmImage: 'ubuntu-18.04'
+      steps:
+          - template: pipeline/install-node-prerequisites.yaml
+
           - task: ComponentGovernanceComponentDetection@0
-            displayName: 'Component Detection'
-            condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
+            displayName: 'dependency detection (Component Governance)'
+            condition: and(succeeded(), eq(variables['GenerateReleaseNoticeFile'], 'true'))
             inputs:
+                detectorsFilter: Yarn
+                ignoreDirectories: 'drop,dist,extension,node_modules'
                 verbosity: Normal
             timeoutInMinutes: 5
 
-    - job: 'publish_build_drops'
-      pool:
-          vmImage: 'ubuntu-16.04'
-      steps:
-          - template: pipeline/install-node-prerequisites.yaml
+          - task: msospo.ospo-extension.8d7f9abb-6896-461d-9e25-4f74ed65ddb2.notice@0
+            displayName: 'generate NOTICE.html file'
+            condition: and(succeeded(), eq(variables['GenerateReleaseNoticeFile'], 'true'))
+            inputs:
+                outputfile: '$(System.DefaultWorkingDirectory)/src/NOTICE.html'
+                outputformat: html
+            timeoutInMinutes: 5
 
           - script: yarn build:all
             displayName: build:all
@@ -90,7 +99,7 @@ jobs:
 
     - job: 'e2e_mac_web_unified'
       pool:
-          vmImage: macOS-10.14
+          vmImage: macOS-10.15
       steps:
           - template: pipeline/install-node-prerequisites.yaml
           - template: pipeline/e2e-test-from-agent.yaml
@@ -100,7 +109,7 @@ jobs:
 
     - job: 'e2e_linux_unified'
       pool:
-          vmImage: ubuntu-16.04
+          vmImage: ubuntu-18.04
       steps:
           - template: pipeline/install-node-prerequisites.yaml
           - template: pipeline/unified/unified-e2e-test-linux.yaml
@@ -108,7 +117,7 @@ jobs:
 
     - job: 'e2e_windows_unified'
       pool:
-          vmImage: windows-latest
+          vmImage: windows-2019
       steps:
           - template: pipeline/install-node-prerequisites.yaml
           - template: pipeline/unified/unified-e2e-test-interactive.yaml

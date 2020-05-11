@@ -5,7 +5,7 @@ import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { NamedFC } from 'common/react/named-fc';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
+import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import {
     ReportExportComponent,
     ReportExportComponentDeps,
@@ -34,30 +34,29 @@ export interface CommandBarProps {
     scanStoreData: ScanStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
     cardsViewData: CardsViewModel;
-    scanMetaData: ScanMetaData;
+    scanMetadata: ScanMetadata;
 }
 
 export const commandButtonRefreshId = 'command-button-refresh';
 export const commandButtonSettingsId = 'command-button-settings';
 
 export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
-    const { deps, deviceStoreData, featureFlagStoreData, cardsViewData, scanMetaData } = props;
+    const { deps, deviceStoreData, featureFlagStoreData, cardsViewData, scanMetadata } = props;
     let exportReport = null;
 
-    if (scanMetaData != null) {
+    if (scanMetadata != null) {
         exportReport = (
             <ReportExportComponent
                 deps={deps}
-                exportResultsType={'AutomatedChecks'}
-                pageTitle={scanMetaData.targetAppInfo.name}
-                scanDate={deps.getDateFromTimestamp(scanMetaData.timestamp)}
+                reportExportFormat={'AutomatedChecks'}
+                pageTitle={scanMetadata.targetAppInfo.name}
+                scanDate={deps.getDateFromTimestamp(scanMetadata.timestamp)}
                 htmlGenerator={description =>
                     deps.reportGenerator.generateFastPassAutomatedChecksReport(
-                        deps.getDateFromTimestamp(scanMetaData.timestamp),
-                        scanMetaData.targetAppInfo,
+                        deps.getDateFromTimestamp(scanMetadata.timestamp),
                         cardsViewData,
                         description,
-                        scanMetaData.toolData,
+                        scanMetadata,
                     )
                 }
                 updatePersistedDescription={() => null}

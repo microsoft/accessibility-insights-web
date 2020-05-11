@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Consistent identification</h1>
         <p>Functional components that appear on multiple pages must be identified consistently.</p>
 
         <h2>Why it matters</h2>

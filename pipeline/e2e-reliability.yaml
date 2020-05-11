@@ -1,7 +1,12 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
+schedules:
+    - cron: '0 8 * * 1-5'
+      displayName: Weekdays at 8AM UTC (1AM PDT)
+      branches:
+          include:
+              - master
 trigger:
-    - master
     - e2e-reliability/*
 pr:
     paths:

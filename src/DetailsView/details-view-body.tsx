@@ -7,7 +7,7 @@ import { DetailsViewCommandBarProps } from 'DetailsView/components/details-view-
 import { ISelection } from 'office-ui-fabric-react';
 import * as React from 'react';
 
-import { ScanMetaData } from 'common/types/store-data/scan-meta-data';
+import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
@@ -23,7 +23,6 @@ import { DetailsViewCommandBarDeps } from './components/details-view-command-bar
 import {
     DetailsRightPanelConfiguration,
     DetailsViewContentDeps,
-    RightPanelProps,
 } from './components/details-view-right-panel';
 import { DetailsViewSwitcherNavConfiguration } from './components/details-view-switcher-nav';
 import { IssuesTableHandler } from './components/issues-table-handler';
@@ -61,7 +60,7 @@ export interface DetailsViewBodyProps {
     userConfigurationStoreData: UserConfigurationStoreData;
     cardsViewData: CardsViewModel;
     scanIncompleteWarnings: ScanIncompleteWarningId[];
-    scanMetaData: ScanMetaData;
+    scanMetadata: ScanMetadata;
 }
 
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
@@ -99,7 +98,12 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
             return null;
         }
 
-        return <DetailsViewLeftNav {...this.props} />;
+        return (
+            <DetailsViewLeftNav
+                selectedPivot={this.props.visualizationStoreData?.selectedDetailsViewPivot}
+                {...this.props}
+            />
+        );
     }
 
     private getTargetPageHiddenBar(): JSX.Element {
@@ -113,11 +117,6 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
     }
 
     private renderRightPanel(): JSX.Element {
-        const rightPanelProps: RightPanelProps = {
-            targetAppInfo: this.props.scanMetaData.targetAppInfo,
-            ...this.props,
-        };
-
-        return <this.props.rightPanelConfiguration.RightPanel {...rightPanelProps} />;
+        return <this.props.rightPanelConfiguration.RightPanel {...this.props} />;
     }
 }

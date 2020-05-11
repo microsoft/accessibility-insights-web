@@ -28,7 +28,7 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
         const step = assessment.requirements[0];
         const navState: AssessmentNavState = {
             selectedTestType: assessment.visualizationType,
-            selectedTestStep: step.key,
+            selectedTestSubview: step.key,
         };
 
         const baseConfig = {
@@ -64,7 +64,7 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
         const step = assessment.requirements[0];
         const navState: AssessmentNavState = {
             selectedTestType: assessment.visualizationType,
-            selectedTestStep: step.key,
+            selectedTestSubview: step.key,
         };
 
         const baseConfig = {
@@ -92,7 +92,7 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
         const step = assessment.requirements[0];
         const navState: AssessmentNavState = {
             selectedTestType: assessment.visualizationType,
-            selectedTestStep: step.key,
+            selectedTestSubview: step.key,
         };
 
         masterCheckboxConfigProviderMock

@@ -3,7 +3,7 @@
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { ToolData } from 'common/types/store-data/unified-data-interface';
+import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
 import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
 import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
@@ -29,6 +29,10 @@ describe('ReportGenerator', () => {
         name: title,
         url: url,
     };
+    const scanMetadataStub: ScanMetadata = {
+        toolData: toolDataStub,
+        targetAppInfo: targetAppInfo,
+    } as ScanMetadata;
 
     let dataBuilderMock: IMock<ReportHtmlGenerator>;
     let nameBuilderMock: IMock<ReportNameGenerator>;
@@ -46,14 +50,7 @@ describe('ReportGenerator', () => {
     test('generateHtml', () => {
         dataBuilderMock
             .setup(builder =>
-                builder.generateHtml(
-                    date,
-                    title,
-                    url,
-                    description,
-                    cardsViewDataStub,
-                    toolDataStub,
-                ),
+                builder.generateHtml(date, description, cardsViewDataStub, scanMetadataStub),
             )
             .returns(() => 'returned-data');
 
@@ -64,10 +61,9 @@ describe('ReportGenerator', () => {
         );
         const actual = testObject.generateFastPassAutomatedChecksReport(
             date,
-            targetAppInfo,
             cardsViewDataStub,
             description,
-            toolDataStub,
+            scanMetadataStub,
         );
 
         expect(actual).toMatchSnapshot();

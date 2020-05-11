@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Page title</h1>
         <p>A web page must have a title that describes its topic or purpose.</p>
 
         <h2>Why it matters</h2>

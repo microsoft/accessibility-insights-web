@@ -4,9 +4,7 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
-        <h1>Keyboard interaction</h1>
         <p>A custom widget must support the keyboard interaction specified by its design pattern.</p>
-
         <h2>Why it matters</h2>
         <p>
             For a web page to be accessible, all of its interactive interface components—including custom widgets—must be operable using a
@@ -23,7 +21,6 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             <li>Make sure your custom widget follows the design pattern's specifications for "Keyboard interaction."</li>
         </ol>
         <h2>How to fix</h2>
-
         <h2>Example</h2>
         <Markup.PassFail
             failText={
@@ -41,9 +38,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 </p>
             }
         />
-
         <h2>More examples</h2>
-
         <h3>WCAG success criteria</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html">
@@ -64,7 +59,6 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 Using redundant keyboard and mouse event handlers
             </Markup.HyperLink>
         </Markup.Links>
-
         <h3>Common failures</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F54">
@@ -75,7 +69,6 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 Failure of Success Criteria 1.3.1, 2.1.1, 2.1.3, or 4.1.2 when emulating links
             </Markup.HyperLink>
         </Markup.Links>
-
         <h3>Additional guidance</h3>
         <Markup.Links>
             <Link.WAIARIAAuthoringPractices />

@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Link purpose</h1>
         <p>A link's purpose must be described to users.</p>
 
         <h2>Why it matters</h2>

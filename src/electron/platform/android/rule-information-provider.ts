@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { UnifiedFormattableResolution } from 'common/types/store-data/unified-data-interface';
+import { link } from 'content/link';
 import { DictionaryStringTo } from 'types/common-types';
 
 import { RuleResultsData } from './android-scan-results';
@@ -14,18 +15,21 @@ export class RuleInformationProvider {
             ColorContrast: new RuleInformation(
                 'ColorContrast',
                 'Text elements must have sufficient contrast against the background.',
+                [link.WCAG_1_4_3],
                 this.getColorContrastUnifiedFormattableResolution,
                 this.includeColorContrastResult,
             ),
             TouchSizeWcag: new RuleInformation(
                 'TouchSizeWcag',
                 'Touch inputs must have a sufficient target size.',
+                [link.WCAG_1_3_1, link.WCAG_3_3_2],
                 this.getTouchSizeUnifiedFormattableResolution,
                 this.includeAllResults,
             ),
             ActiveViewName: new RuleInformation(
                 'ActiveViewName',
                 "Active views must have a name that's available to assistive technologies.",
+                [link.WCAG_2_5_5],
                 () =>
                     this.buildUnifiedFormattableResolution(
                         'The view is active but has no name available to assistive technologies. Provide a name for the view using its contentDescription, hint, labelFor, or text attribute (depending on the view type)',
@@ -36,6 +40,7 @@ export class RuleInformationProvider {
             ImageViewName: new RuleInformation(
                 'ImageViewName',
                 'Meaningful images must have alternate text.',
+                [link.WCAG_1_1_1],
                 () =>
                     this.buildUnifiedFormattableResolution(
                         'The image has no alternate text and is not identified as decorative. If the image conveys meaningful content, provide alternate text using the contentDescription attribute. If the image is decorative, give it an empty contentDescription, or set its isImportantForAccessibility attribute to false.',
@@ -46,6 +51,7 @@ export class RuleInformationProvider {
             EditTextValue: new RuleInformation(
                 'EditTextValue',
                 'EditText elements must expose their entered text value to assistive technologies',
+                [link.WCAG_4_1_2],
                 () =>
                     this.buildUnifiedFormattableResolution(
                         "The element's contentDescription overrides the text value required by assistive technologies. Remove the element’s contentDescription attribute.",

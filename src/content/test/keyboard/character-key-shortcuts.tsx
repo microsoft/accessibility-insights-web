@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Character key shortcuts</h1>
         <p>Users must be able to turn off or remap single-key key shortcuts.</p>
 
         <h2>Why it matters</h2>

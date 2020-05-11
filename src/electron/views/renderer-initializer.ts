@@ -28,6 +28,7 @@ import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/car
 import { CardsCollapsibleControl } from 'common/components/cards/collapsible-component-cards';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { getPropertyConfiguration } from 'common/configs/unified-result-property-configurations';
+import { config } from 'common/configuration';
 import { DateProvider } from 'common/date-provider';
 import { DocumentManipulator } from 'common/document-manipulator';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
@@ -36,6 +37,7 @@ import { FeatureFlagDefaultsHelper } from 'common/feature-flag-defaults-helper';
 import { FileURLProvider } from 'common/file-url-provider';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
+import { isResultHighlightUnavailableUnified } from 'common/is-result-highlight-unavailable';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { DropdownActionMessageCreator } from 'common/message-creators/dropdown-action-message-creator';
@@ -45,7 +47,7 @@ import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { WindowUtils } from 'common/window-utils';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { CardsViewDeps } from 'DetailsView/components/cards-view';
-import { ipcRenderer, remote } from 'electron';
+import { ipcRenderer } from 'electron';
 import { DirectActionMessageDispatcher } from 'electron/adapters/direct-action-message-dispatcher';
 import { NullDetailsViewController } from 'electron/adapters/null-details-view-controller';
 import { NullStoreActionMessageCreator } from 'electron/adapters/null-store-action-message-creator';
@@ -59,13 +61,14 @@ import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
 import { WindowStateActions } from 'electron/flux/action/window-state-actions';
 import { ScanStore } from 'electron/flux/store/scan-store';
 import { WindowStateStore } from 'electron/flux/store/window-state-store';
-import { IPC_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME } from 'electron/ipc/ipc-channel-names';
 import { IpcMessageReceiver } from 'electron/ipc/ipc-message-receiver';
+import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import { createDeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
 import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { ScanController } from 'electron/platform/android/scan-controller';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
 import { UnifiedSettingsProvider } from 'electron/settings/unified-settings-provider';
+import { UnifiedReportNameGenerator } from 'electron/views/report/unified-report-name-generator';
 import { UnifiedReportSectionFactory } from 'electron/views/report/unified-report-section-factory';
 import { RootContainerState } from 'electron/views/root-container/components/root-container';
 import { PlatformInfo } from 'electron/window-management/platform-info';
@@ -73,13 +76,11 @@ import { WindowFrameListener } from 'electron/window-management/window-frame-lis
 import { WindowFrameUpdater } from 'electron/window-management/window-frame-updater';
 import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
+import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
-import { ReportNameGenerator } from 'reports/report-name-generator';
-
-import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
 import { IndexedDBDataKeys } from '../../background/IndexedDBDataKeys';
@@ -131,9 +132,11 @@ const sidePanelActions = new SidePanelActions();
 const previewFeaturesActions = new PreviewFeaturesActions(); // not really used but needed by DetailsViewStore
 const contentActions = new ContentActions(); // not really used but needed by DetailsViewStore
 const featureFlagActions = new FeatureFlagActions();
+const ipcRendererShim = new IpcRendererShim(ipcRenderer);
+ipcRendererShim.initialize();
 
 const storageAdapter = new ElectronStorageAdapter(indexedDBInstance);
-const appDataAdapter = new ElectronAppDataAdapter();
+const appDataAdapter = new ElectronAppDataAdapter(config);
 
 const indexedDBDataKeysToFetch = [
     IndexedDBDataKeys.userConfiguration,
@@ -198,8 +201,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         );
         featureFlagStore.initialize();
 
-        const currentWindow = remote.getCurrentWindow();
-        const windowFrameUpdater = new WindowFrameUpdater(windowFrameActions, currentWindow);
+        const windowFrameUpdater = new WindowFrameUpdater(windowFrameActions, ipcRendererShim);
         windowFrameUpdater.initialize();
 
         const storesHub = new BaseClientStoresHub<RootContainerState>([
@@ -297,7 +299,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         const windowFrameListener = new WindowFrameListener(
             windowStateActionCreator,
-            currentWindow,
+            ipcRendererShim,
         );
         windowFrameListener.initialize();
 
@@ -374,13 +376,13 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         );
 
         const reportGenerator = new ReportGenerator(
-            new ReportNameGenerator(),
+            new UnifiedReportNameGenerator(),
             reportHtmlGenerator,
             null,
         );
 
         const deps: RootContainerRendererDeps = {
-            currentWindow,
+            ipcRendererShim: ipcRendererShim,
             userConfigurationStore,
             deviceStore,
             userConfigMessageCreator,
@@ -401,6 +403,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             settingsProvider: UnifiedSettingsProvider,
             loadTheme,
             documentManipulator,
+            isResultHighlightUnavailable: isResultHighlightUnavailableUnified,
             reportGenerator: reportGenerator,
             fileURLProvider: new FileURLProvider(new WindowUtils(), provideBlob),
             getDateFromTimestamp: DateProvider.getDateFromTimestamp,
@@ -415,6 +418,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         sendAppInitializedTelemetryEvent(telemetryEventHandler, platformInfo);
 
-        ipcRenderer.send(IPC_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME);
+        ipcRendererShim.initializeWindow();
     },
 );

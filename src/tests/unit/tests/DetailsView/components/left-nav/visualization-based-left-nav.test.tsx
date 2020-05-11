@@ -3,7 +3,6 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
-
 import { VisualizationConfiguration } from '../../../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../../../common/configs/visualization-configuration-factory';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
@@ -69,10 +68,7 @@ describe('VisualizationBasedLeftNav', () => {
 
     it('renders with index icon', () => {
         const actual = shallow(<VisualizationBasedLeftNav {...props} />);
-        const renderIcon: (link: BaseLeftNavLink) => JSX.Element = actual.prop('renderIcon');
-        const renderedIcon = shallow(renderIcon(linkStub));
 
         expect(actual.getElement()).toMatchSnapshot();
-        expect(renderedIcon.getElement()).toMatchSnapshot();
     });
 });

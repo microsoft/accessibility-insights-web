@@ -1,6 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { flatMap, forOwn, keys } from 'lodash';
+import { HighlightState } from 'common/components/cards/instance-details-footer';
+import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
+import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
+import { flatMap, forOwn, isEmpty, keys } from 'lodash';
+
 import {
     CardSelectionStoreData,
     RuleExpandCollapseData,
@@ -8,65 +12,91 @@ import {
 } from './types/store-data/card-selection-store-data';
 
 export interface CardSelectionViewData {
-    highlightedResultUids: string[]; // page elements to highlight
     selectedResultUids: string[]; // indicates selected cards
     expandedRuleIds: string[];
     visualHelperEnabled: boolean;
+    resultsHighlightStatus: ResultsHighlightStatus;
 }
 
-export type GetCardSelectionViewData = (storeData: CardSelectionStoreData) => CardSelectionViewData;
+export type ResultsHighlightStatus = { [resultUid: string]: HighlightState };
+
+export type GetCardSelectionViewData = (
+    storeData: CardSelectionStoreData,
+    unifiedScanResultStoreData: UnifiedScanResultStoreData,
+    isResultHighlightUnavailable: IsResultHighlightUnavailable,
+) => CardSelectionViewData;
 
 export const getCardSelectionViewData: GetCardSelectionViewData = (
-    storeData: CardSelectionStoreData,
+    cardSelectionStoreData: CardSelectionStoreData,
+    unifiedScanResultStoreData: UnifiedScanResultStoreData,
+    isResultHighlightUnavailable: IsResultHighlightUnavailable,
 ): CardSelectionViewData => {
     const viewData = getEmptyViewData();
 
-    if (!storeData) {
+    if (isEmpty(cardSelectionStoreData) || unifiedScanResultStoreData?.results == null) {
         return viewData;
     }
 
-    viewData.visualHelperEnabled = storeData.visualHelperEnabled || false;
-
-    viewData.expandedRuleIds = getRuleIdsOfExpandedRules(storeData.rules);
-
-    if (!storeData.visualHelperEnabled) {
-        // no selected cards; no highlighted instances
-        return viewData;
-    }
-
-    if (viewData.expandedRuleIds.length === 0) {
-        viewData.highlightedResultUids = getAllResultUids(storeData.rules);
-        return viewData;
-    }
-
-    viewData.selectedResultUids = getOnlyResultUidsFromSelectedCards(
-        storeData.rules,
+    viewData.visualHelperEnabled = cardSelectionStoreData.visualHelperEnabled || false;
+    viewData.expandedRuleIds = getRuleIdsOfExpandedRules(cardSelectionStoreData.rules);
+    const allResultUids = getAllResultUids(cardSelectionStoreData.rules);
+    const unavailableResultUids = getResultsWithUnavailableHighlightStatus(
+        unifiedScanResultStoreData,
+        isResultHighlightUnavailable,
+    );
+    let selectedResultUids = getOnlyResultUidsFromSelectedCards(
+        cardSelectionStoreData.rules,
         viewData.expandedRuleIds,
     );
+    let visibleResultUids: string[];
 
-    viewData.highlightedResultUids = viewData.selectedResultUids.length
-        ? viewData.selectedResultUids
-        : getAllResultUidsFromRuleIdArray(storeData.rules, viewData.expandedRuleIds);
+    if (!cardSelectionStoreData.visualHelperEnabled) {
+        visibleResultUids = [];
+        selectedResultUids = [];
+    } else if (viewData.expandedRuleIds.length === 0) {
+        visibleResultUids = allResultUids;
+    } else if (selectedResultUids.length > 0) {
+        visibleResultUids = selectedResultUids;
+    } else {
+        visibleResultUids = getAllResultUidsFromRuleIdArray(
+            cardSelectionStoreData.rules,
+            viewData.expandedRuleIds,
+        );
+    }
+
+    viewData.selectedResultUids = selectedResultUids;
+    viewData.resultsHighlightStatus = getHighlightStatusByResultUid(
+        allResultUids,
+        visibleResultUids,
+        unavailableResultUids,
+    );
 
     return viewData;
 };
 
 function getEmptyViewData(): CardSelectionViewData {
-    const viewData: CardSelectionViewData = {
-        highlightedResultUids: [],
+    return {
         selectedResultUids: [],
         expandedRuleIds: [],
         visualHelperEnabled: false,
+        resultsHighlightStatus: {},
     };
+}
 
-    return viewData;
+function getResultsWithUnavailableHighlightStatus(
+    unifiedScanResultStoreData: UnifiedScanResultStoreData,
+    isResultHighlightUnavailable: IsResultHighlightUnavailable,
+): string[] {
+    return unifiedScanResultStoreData.results
+        .filter(
+            result =>
+                result.status === 'fail' &&
+                isResultHighlightUnavailable(result, unifiedScanResultStoreData.platformInfo),
+        )
+        .map(result => result.uid);
 }
 
 function getRuleIdsOfExpandedRules(ruleDictionary: RuleExpandCollapseDataDictionary): string[] {
-    if (!ruleDictionary) {
-        return [];
-    }
-
     const expandedRuleIds: string[] = [];
 
     forOwn(ruleDictionary, (rule, ruleId) => {
@@ -110,4 +140,22 @@ function getResultUidsFromSelectedCards(rule: RuleExpandCollapseData): string[] 
     });
 
     return results;
+}
+
+function getHighlightStatusByResultUid(
+    allResultUids: string[],
+    visibleResultUids: string[],
+    unavailableResultUids: string[],
+): ResultsHighlightStatus {
+    const result = {};
+    for (const resultUid of allResultUids) {
+        result[resultUid] = 'hidden';
+    }
+    for (const resultUid of visibleResultUids) {
+        result[resultUid] = 'visible';
+    }
+    for (const resultUid of unavailableResultUids) {
+        result[resultUid] = 'unavailable';
+    }
+    return result;
 }

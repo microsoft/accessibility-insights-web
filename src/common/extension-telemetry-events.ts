@@ -22,6 +22,7 @@ export const INSPECT_OPEN: string = 'InspectOpen';
 export const COPY_ISSUE_DETAILS: string = 'CopyIssueDetails';
 export const FILE_ISSUE_CLICK: string = 'FileIssueClick';
 export const SELECT_REQUIREMENT: string = 'selectRequirement';
+export const SELECT_GETTING_STARTED: string = 'selectGettingStarted';
 export const START_OVER_TEST: string = 'startOverTest';
 export const CANCEL_START_OVER_TEST: string = 'cancelStartOverTest';
 export const START_OVER_ASSESSMENT: string = 'startOverAssessment';
@@ -69,7 +70,7 @@ export const ALL_URLS_PERMISSION_UPDATED: string = 'allUrlsPermissionUpdated';
 export const TriggeredByNotApplicable: TriggeredBy = 'N/A';
 export type TriggeredBy = 'mouseclick' | 'keypress' | 'shortcut' | 'N/A';
 
-export type ExportResultType = 'Assessment' | 'AutomatedChecks';
+export type ReportExportFormat = 'Assessment' | 'AutomatedChecks';
 
 export enum TelemetryEventSource {
     LaunchPad,
@@ -129,6 +130,10 @@ export type FileIssueClickTelemetryData = {
 export type RequirementSelectTelemetryData = {
     selectedTest: string;
     selectedRequirement: string;
+} & BaseTelemetryData;
+
+export type SelectGettingStartedTelemetryData = {
+    selectedTest: string;
 } & BaseTelemetryData;
 
 export type RequirementStatusTelemetryData = {

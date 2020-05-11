@@ -4,16 +4,13 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
-        <h1>Cues</h1>
         <p>If a native widget adopts certain interactive states, it must provide appropriate cues.</p>
-
         <h2>Why it matters</h2>
         <p>
             Users need to know whether a widget is disabled or read-only, so they know whether they can interact with it. They need to know
             whether it is required, so they can decide whether to skip it. To ensure users of assistive technology are aware of these
             states, the cues must be provided programmatically, and not just visually.
         </p>
-
         <h2>How to fix</h2>
         <p>Make sure each native widget has the appropriate HTML attribute when it is disabled, read-only, or required.</p>
         <ul>
@@ -23,8 +20,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 <Markup.Code>{`<textarea>`}</Markup.Code> elements. A disabled widget is non-editable and non-focusable.
             </li>
             <li>
-                The <Markup.Term>readonly</Markup.Term> attribute is supported by <Markup.Code>{`<textarea>`}</Markup.Code> elements and by
-                {' ' + ''}
+                The <Markup.Term>readonly</Markup.Term> attribute is supported by <Markup.Code>{`<textarea>`}</Markup.Code> elements and by{' '}
                 <Markup.Code>{`<input>`}</Markup.Code> elements that accept text input. A read-only widget is non-editable, but it is
                 focusable, and users can select its text.
             </li>
@@ -33,7 +29,6 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 those that function as buttons. A required widget must have input before a form can be submitted.
             </li>
         </ul>
-
         <h2>Example</h2>
         <Markup.PassFail
             failText={<p>A text field does not communicate programmatically that it is required.</p>}
@@ -47,9 +42,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             passExample={`<label for="username">*User name:</label>
             <input type="text" name="username" id="username" [required]>`}
         />
-
         <h2>More examples</h2>
-
         <h3>WCAG success criteria</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html">

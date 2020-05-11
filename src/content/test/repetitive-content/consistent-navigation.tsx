@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Consistent navigation</h1>
         <p>Navigational mechanisms that appear on multiple pages must be presented in the same relative order.</p>
 
         <h2>Why it matters</h2>

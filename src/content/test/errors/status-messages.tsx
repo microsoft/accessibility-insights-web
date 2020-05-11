@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Status messages</h1>
         <p>Status messages must be programmatically determinable without receiving focus.</p>
 
         <h2>Why it matters</h2>

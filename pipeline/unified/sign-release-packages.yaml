@@ -1,6 +1,6 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-name: InsiderProductionSigning-$(Rev:r)
+name: Signing-$(Rev:r)
 
 trigger: none
 
@@ -8,9 +8,15 @@ resources:
     pipelines:
         - pipeline: build-unsigned-release-packages
           source: Accessibility Insights Unified - build-unsigned-release-packages
-          trigger: none # manual
+          trigger:
+              branches: [master]
 
 jobs:
+    - template: channel/sign-release-packages-for-channel.yaml
+      parameters:
+          unsignedPipelineResource: build-unsigned-release-packages
+          channel: canary
+
     - template: channel/sign-release-packages-for-channel.yaml
       parameters:
           unsignedPipelineResource: build-unsigned-release-packages

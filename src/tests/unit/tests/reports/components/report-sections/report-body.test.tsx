@@ -18,6 +18,18 @@ describe('ReportBody', () => {
         const getScriptStub = () => '';
         const getGuidanceTagsStub = () => [];
         const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
+        const toolData = {
+            scanEngineProperties: {
+                name: 'engine-name',
+                version: 'engine-version',
+            },
+            applicationProperties: {
+                name: 'app-name',
+                version: 'app-version',
+                environmentName: 'environmentName',
+            },
+        };
+        const targetAppInfo = { name: 'app' };
 
         const detailsProps: SectionProps = {
             deps: {} as FailedInstancesSectionDeps,
@@ -26,17 +38,7 @@ describe('ReportBody', () => {
             pageUrl,
             description: 'test description',
             scanDate: new Date('2019-05-29T19:12:16.804Z'),
-            toolData: {
-                scanEngineProperties: {
-                    name: 'engine-name',
-                    version: 'engine-version',
-                },
-                applicationProperties: {
-                    name: 'app-name',
-                    version: 'app-version',
-                    environmentName: 'environmentName',
-                },
-            },
+            toolData,
             scanResult: {
                 passes: [],
                 violations: [],
@@ -55,8 +57,13 @@ describe('ReportBody', () => {
                 allCardsCollapsed: true,
             },
             userConfigurationStoreData: null,
-            targetAppInfo: { name: 'app' },
+            targetAppInfo,
             shouldAlertFailuresCount: false,
+            scanMetadata: {
+                toolData,
+                targetAppInfo,
+                timestamp: 'today',
+            },
         };
 
         const props: ReportBodyProps = {

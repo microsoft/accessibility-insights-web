@@ -8,7 +8,7 @@ jobs:
     - job: 'build_and_publish_package'
 
       pool:
-          vmImage: 'macOS-10.14'
+          vmImage: 'macOS-10.15'
 
       steps:
           - template: install-node-prerequisites.yaml

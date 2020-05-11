@@ -4,16 +4,13 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
-        <h1>Emphasis</h1>
         <p>Words and phrases that are visually emphasized must be contained within semantically correct elements.</p>
-
         <h2>Why it matters</h2>
         <p>
             People with good vision can infer from visual styling that a word or phrase is especially important. For example, it might be
             displayed using bold or italic font. Unless the visually emphasized word or phrase is also contained in a semantically correct
             element, people who use screen readers won't know that it's emphasized.
         </p>
-
         <h2>How to fix</h2>
         <p>
             Contain the emphasized word or phrase in a semantically correct element:
@@ -30,7 +27,6 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 </li>
             </ul>
         </p>
-
         <Markup.PassFail
             failText={
                 <p>
@@ -47,9 +43,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             }
             passExample={`<p>These carrots are [<em>]not[</em>] crunchy!</p>`}
         />
-
         <h2>More examples</h2>
-
         <h3>WCAG success criteria</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html">
@@ -65,7 +59,6 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 Using semantic markup to mark emphasized or special text
             </Markup.HyperLink>
         </Markup.Links>
-
         <h3>Common failures</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F2">

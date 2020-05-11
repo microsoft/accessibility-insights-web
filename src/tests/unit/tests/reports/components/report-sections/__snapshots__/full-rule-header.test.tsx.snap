@@ -1,5 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`FullRuleHeader guidance links and the containing parenthesis are not rendered without guidance 1`] = `
+<React.Fragment>
+  <div
+    className="rule-detail"
+  >
+    <div>
+      <span
+        aria-hidden="true"
+      >
+        <OutcomeChip
+          count={1}
+          outcomeType="fail"
+        />
+      </span>
+       
+      <span
+        className="rule-details-id"
+      >
+        <NewTabLink
+          aria-describedby="failed-rule-rule id-description"
+          aria-label="rule rule id"
+          href="url://help.url"
+        >
+          rule id
+        </NewTabLink>
+      </span>
+      : 
+      <span
+        className="rule-details-description"
+        id="failed-rule-rule id-description"
+      >
+        rule description
+      </span>
+      <GuidanceTags
+        deps={Object {}}
+        links={null}
+      />
+    </div>
+  </div>
+</React.Fragment>
+`;
+
 exports[`FullRuleHeader renders, outcomeType = fail 1`] = `
 <React.Fragment>
   <div
@@ -33,22 +75,24 @@ exports[`FullRuleHeader renders, outcomeType = fail 1`] = `
       >
         rule description
       </span>
-       (
-      <GuidanceLinks
-        links={
-          Array [
-            Object {
-              "href": "url://guidance-01.link",
-              "text": "guidance-01",
-            },
-            Object {
-              "href": "url://guidance-02.link",
-              "text": "guidance-02",
-            },
-          ]
-        }
-      />
-      )
+      <React.Fragment>
+        (
+        <GuidanceLinks
+          links={
+            Array [
+              Object {
+                "href": "url://guidance-01.link",
+                "text": "guidance-01",
+              },
+              Object {
+                "href": "url://guidance-02.link",
+                "text": "guidance-02",
+              },
+            ]
+          }
+        />
+        )
+      </React.Fragment>
       <GuidanceTags
         deps={Object {}}
         links={
@@ -94,22 +138,24 @@ exports[`FullRuleHeader renders, outcomeType = inapplicable 1`] = `
       >
         rule description
       </span>
-       (
-      <GuidanceLinks
-        links={
-          Array [
-            Object {
-              "href": "url://guidance-01.link",
-              "text": "guidance-01",
-            },
-            Object {
-              "href": "url://guidance-02.link",
-              "text": "guidance-02",
-            },
-          ]
-        }
-      />
-      )
+      <React.Fragment>
+        (
+        <GuidanceLinks
+          links={
+            Array [
+              Object {
+                "href": "url://guidance-01.link",
+                "text": "guidance-01",
+              },
+              Object {
+                "href": "url://guidance-02.link",
+                "text": "guidance-02",
+              },
+            ]
+          }
+        />
+        )
+      </React.Fragment>
       <GuidanceTags
         deps={Object {}}
         links={
@@ -155,8 +201,26 @@ exports[`FullRuleHeader renders, outcomeType = pass 1`] = `
       >
         rule description
       </span>
-       (
-      <GuidanceLinks
+      <React.Fragment>
+        (
+        <GuidanceLinks
+          links={
+            Array [
+              Object {
+                "href": "url://guidance-01.link",
+                "text": "guidance-01",
+              },
+              Object {
+                "href": "url://guidance-02.link",
+                "text": "guidance-02",
+              },
+            ]
+          }
+        />
+        )
+      </React.Fragment>
+      <GuidanceTags
+        deps={Object {}}
         links={
           Array [
             Object {
@@ -170,7 +234,58 @@ exports[`FullRuleHeader renders, outcomeType = pass 1`] = `
           ]
         }
       />
-      )
+    </div>
+  </div>
+</React.Fragment>
+`;
+
+exports[`FullRuleHeader ruleId is displayed as text when there is no url provided for a link 1`] = `
+<React.Fragment>
+  <div
+    className="rule-detail"
+  >
+    <div>
+      <span
+        aria-hidden="true"
+      >
+        <OutcomeChip
+          count={1}
+          outcomeType="fail"
+        />
+      </span>
+       
+      <span
+        className="rule-details-id"
+      >
+        <React.Fragment>
+          rule id
+        </React.Fragment>
+      </span>
+      : 
+      <span
+        className="rule-details-description"
+        id="failed-rule-rule id-description"
+      >
+        rule description
+      </span>
+      <React.Fragment>
+        (
+        <GuidanceLinks
+          links={
+            Array [
+              Object {
+                "href": "url://guidance-01.link",
+                "text": "guidance-01",
+              },
+              Object {
+                "href": "url://guidance-02.link",
+                "text": "guidance-02",
+              },
+            ]
+          }
+        />
+        )
+      </React.Fragment>
       <GuidanceTags
         deps={Object {}}
         links={

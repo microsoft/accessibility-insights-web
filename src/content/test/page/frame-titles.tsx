@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Frame title</h1>
         <p>A frame or iframe must have an accessible name that describes its content.</p>
 
         <h2>Why it matters</h2>

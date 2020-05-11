@@ -9,10 +9,12 @@ import { UserConfigurationStore } from 'background/stores/global/user-configurat
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { ThemeInnerState } from 'common/components/theme';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
+import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unavailable';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { textContent } from 'content/strings/text-content';
+import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
 import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-available/no-content-available-view';
 import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
 import { NoContentAvailableViewRenderer } from 'DetailsView/no-content-available-view-renderer';
@@ -36,7 +38,7 @@ import {
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
-import { ReportNameGenerator } from 'reports/report-name-generator';
+import { WebReportNameGenerator } from 'reports/report-name-generator';
 import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AutoChecker } from '../common/auto-checker';
 import { AxeInfo } from '../common/axe-info';
@@ -109,6 +111,7 @@ import { NavLinkHandler } from './components/left-nav/nav-link-handler';
 import { DetailsViewContainerDeps, DetailsViewContainerState } from './details-view-container';
 import { DetailsViewRenderer } from './details-view-renderer';
 import { DocumentTitleUpdater } from './document-title-updater';
+import { detailsViewExtensionPoint } from './extensions/details-view-extension-point';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { MasterCheckBoxConfigProvider } from './handlers/master-checkbox-config-provider';
@@ -290,7 +293,7 @@ if (isNaN(tabId) === false) {
             );
 
             const reactStaticRenderer = new ReactStaticRenderer();
-            const reportNameGenerator = new ReportNameGenerator();
+            const reportNameGenerator = new WebReportNameGenerator();
 
             const fixInstructionProcessor = new FixInstructionProcessor();
 
@@ -364,6 +367,8 @@ if (isNaN(tabId) === false) {
 
             const documentManipulator = new DocumentManipulator(document);
 
+            const assessmentViewUpdateHandler = new AssessmentViewUpdateHandler();
+
             const deps: DetailsViewContainerDeps = {
                 textContent,
                 fixInstructionProcessor,
@@ -419,6 +424,7 @@ if (isNaN(tabId) === false) {
                     browserAdapter,
                     detailsViewActionMessageCreator,
                 ),
+                isResultHighlightUnavailable: isResultHighlightUnavailableWeb,
                 setFocusVisibility,
                 documentManipulator,
                 customCongratsMessage: null, // uses default message
@@ -431,6 +437,8 @@ if (isNaN(tabId) === false) {
                 previewFeatureFlagsHandler,
                 scopingFlagsHandler,
                 Assessments,
+                assessmentViewUpdateHandler,
+                detailsViewExtensionPoint,
             };
 
             const renderer = new DetailsViewRenderer(

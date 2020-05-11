@@ -23,14 +23,14 @@ export class AssessmentVisualizationEnabledToggle extends BaseVisualHelperToggle
                 ),
             ),
             this.props.assessmentNavState.selectedTestType,
-            this.props.assessmentNavState.selectedTestStep,
+            this.props.assessmentNavState.selectedTestSubview,
         );
     };
 
     private isAnyInstanceVisible(instances: GeneratedAssessmentInstance<{}, {}>[]): boolean {
         return instances.some(
             instance =>
-                instance.testStepResults[this.props.assessmentNavState.selectedTestStep]
+                instance.testStepResults[this.props.assessmentNavState.selectedTestSubview]
                     .isVisualizationEnabled,
         );
     }

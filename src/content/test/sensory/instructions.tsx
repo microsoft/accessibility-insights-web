@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Instructions</h1>
         <p>
             Instructions must not rely <Markup.Emphasis>solely</Markup.Emphasis> on color or other sensory characteristics.
         </p>

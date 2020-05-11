@@ -66,7 +66,7 @@ describe('AssessmentTestView', () => {
         assessmentStoreDataStub = {
             assessmentNavState: {
                 selectedTestType: selectedTest,
-                selectedTestStep: selectedTestStep,
+                selectedTestSubview: selectedTestStep,
             },
         } as AssessmentStoreData;
 

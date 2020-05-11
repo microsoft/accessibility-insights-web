@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Text alternative</h1>
         <p>A meaningful image must have a text alternative that serves the equivalent purpose.</p>
 
         <h2>Why it matters</h2>

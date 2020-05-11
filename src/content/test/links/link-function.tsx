@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Link function</h1>
         <p>If an anchor element functions as a custom widget, it must have the appropriate ARIA widget role.</p>
 
         <h2>Why it matters</h2>

@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <React.Fragment>
-        <h1>No conflict</h1>
         <p>An audio description must not conflict with audible information in the sound track.</p>
 
         <h2>Why it matters</h2>

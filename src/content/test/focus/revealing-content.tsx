@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Revealing content</h1>
         <p>Activating a component that reveals hidden content must move input focus into the revealed content.</p>
 
         <h2>Why it matters</h2>

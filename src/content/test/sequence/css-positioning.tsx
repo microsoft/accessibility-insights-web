@@ -4,9 +4,7 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
-        <h1>CSS positioning</h1>
         <p>Meaningful content positioned on the page using CSS must retain its meaning when CSS is disabled.</p>
-
         <h2>Why it matters</h2>
         <p>
             Assistive technologies present content to users in DOM order (the order that content appears in the HTML). When CSS is used to
@@ -18,7 +16,6 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             Also, some people with limited vision need to customize the styling of a web page in order to see its content. When they modify
             or disable CSS styling, positioned content might move to a location where its meaning is changed or lost.
         </p>
-
         <h2>How to fix</h2>
         <ul>
             <li>
@@ -29,7 +26,6 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 elements displayed on the right of the screen appear in the DOM before those on the left.{' '}
             </li>
         </ul>
-
         <Markup.PassFail
             failText={
                 <p>
@@ -67,16 +63,13 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             </tr>
             ...`}
         />
-
         <h2>More examples</h2>
-
         <h3>WCAG success criteria</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Understanding/meaningful-sequence.html">
                 Understanding Success Criterion 1.3.2: Meaningful Sequence
             </Markup.HyperLink>
         </Markup.Links>
-
         <h3>Sufficient techniques</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G57">
@@ -89,7 +82,6 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 Making the DOM order match the visual order
             </Markup.HyperLink>
         </Markup.Links>
-
         <h3>Common failures</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F1">

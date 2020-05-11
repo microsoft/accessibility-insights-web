@@ -3,7 +3,6 @@
 import { create, React } from '../../common';
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Autocomplete</h1>
         <p>Form fields that serve certain purposes must have the correct HTML5 autocomplete attribute.</p>
 
         <h2>Why it matters</h2>

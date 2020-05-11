@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Orientation</h1>
         <p>Web content must not be locked to a particular screen orientation.</p>
 
         <h2>Why it matters</h2>

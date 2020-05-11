@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Language of page</h1>
         <p>A page must have the correct default language.</p>
 
         <h2>Why it matters</h2>

@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Text spacing</h1>
         <p>Users must be able to adjust text spacing with no loss of content or functionality.</p>
 
         <h2>Why it matters</h2>

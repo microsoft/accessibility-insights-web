@@ -7,11 +7,13 @@ import { ToolLink } from 'reports/components/report-sections/tool-link';
 
 export const FooterTextForUnified = NamedFC<FooterTextProps>(
     'FooterTextForUnified',
-    ({ toolData }) => {
+    ({ scanMetadata }) => {
+        const applicationProperties = scanMetadata.toolData.applicationProperties;
+        const scanEngineProperties = scanMetadata.toolData.scanEngineProperties;
         return (
             <>
                 This automated checks result was generated using{' '}
-                {`${toolData.applicationProperties.name} ${toolData.applicationProperties.version} (${toolData.scanEngineProperties.name} ${toolData.scanEngineProperties.version})`}
+                {`${applicationProperties.name} ${applicationProperties.version} (${scanEngineProperties.name})`}
                 , a tool that helps debug and find accessibility issues earlier. Get more
                 information & download this tool at <ToolLink />.
             </>

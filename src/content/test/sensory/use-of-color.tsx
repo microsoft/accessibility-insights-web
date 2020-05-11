@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Color as meaning</h1>
         <p>Color must not be used as the only visual means for conveying meaning.</p>
 
         <h2>Why it matters</h2>

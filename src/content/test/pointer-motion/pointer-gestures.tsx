@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Pointer gestures</h1>
         <p>Functions must be operable without requiring multipoint or path-based gestures.</p>
 
         <h2>Why it matters</h2>

@@ -10,7 +10,8 @@ import {
     EditFailureInstancePayload,
     OnDetailsViewOpenPayload,
     RemoveFailureInstancePayload,
-    SelectRequirementPayload,
+    SelectGettingStartedPayload,
+    SelectTestSubviewPayload,
     ToggleActionPayload,
 } from 'background/actions/action-payloads';
 import { AssessmentActionCreator } from 'background/actions/assessment-action-creator';
@@ -29,7 +30,6 @@ import {
     ScanUpdatePayload,
 } from 'injected/analyzers/analyzer';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
-
 import {
     createActionMock,
     createInterpreterMock,
@@ -527,13 +527,13 @@ describe('AssessmentActionCreatorTest', () => {
     });
 
     it('handles SelectTestRequirement message', () => {
-        const payload: SelectRequirementPayload = {
-            selectedRequirement: 'test-requirement',
+        const payload: SelectTestSubviewPayload = {
+            selectedTestSubview: 'test-requirement',
             ...telemetryOnlyPayload,
-        } as SelectRequirementPayload;
+        } as SelectTestSubviewPayload;
 
         const selectRequirementMock = createActionMock(payload);
-        const actionsMock = createActionsMock('selectRequirement', selectRequirementMock.object);
+        const actionsMock = createActionsMock('selectTestSubview', selectRequirementMock.object);
         const interpreterMock = createInterpreterMock(
             AssessmentMessages.SelectTestRequirement,
             payload,
@@ -550,6 +550,37 @@ describe('AssessmentActionCreatorTest', () => {
         selectRequirementMock.verifyAll();
         telemetryEventHandlerMock.verify(
             tp => tp.publishTelemetry(TelemetryEvents.SELECT_REQUIREMENT, payload),
+            Times.once(),
+        );
+    });
+
+    it('handles SelectGettingStarted message', () => {
+        const payload: SelectGettingStartedPayload = {
+            ...telemetryOnlyPayload,
+        } as SelectGettingStartedPayload;
+        const actionPayload: SelectTestSubviewPayload = {
+            selectedTestSubview: 'getting-started',
+            ...telemetryOnlyPayload,
+        } as SelectTestSubviewPayload;
+
+        const selectRequirementMock = createActionMock(actionPayload);
+        const actionsMock = createActionsMock('selectTestSubview', selectRequirementMock.object);
+        const interpreterMock = createInterpreterMock(
+            AssessmentMessages.SelectGettingStarted,
+            payload,
+        );
+
+        const testSubject = new AssessmentActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
+
+        testSubject.registerCallbacks();
+
+        selectRequirementMock.verifyAll();
+        telemetryEventHandlerMock.verify(
+            tp => tp.publishTelemetry(TelemetryEvents.SELECT_GETTING_STARTED, payload),
             Times.once(),
         );
     });

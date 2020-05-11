@@ -4,6 +4,11 @@ import { mapValues } from 'lodash';
 import * as React from 'react';
 
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { FlaggedComponent } from 'common/components/flagged-component';
+import { FeatureFlags } from 'common/feature-flags';
+import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { Switcher, SwitcherDeps } from 'DetailsView/components/switcher';
+import { leftNavSwitcherStyleNames } from 'DetailsView/components/switcher-style-names';
 import { NamedFC } from '../../../common/react/named-fc';
 import { AssessmentStoreData } from '../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
@@ -17,7 +22,8 @@ export type DetailsViewLeftNavDeps = {
         assessmentProvider: AssessmentsProvider,
         flags: FeatureFlagStoreData,
     ) => AssessmentsProvider;
-} & LeftNavDeps;
+} & LeftNavDeps &
+    SwitcherDeps;
 
 export type DetailsViewLeftNavProps = {
     deps: DetailsViewLeftNavDeps;
@@ -26,6 +32,7 @@ export type DetailsViewLeftNavProps = {
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     featureFlagStoreData: FeatureFlagStoreData;
     assessmentStoreData: AssessmentStoreData;
+    selectedPivot: DetailsViewPivotType;
 };
 
 export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewLeftNav', props => {
@@ -48,16 +55,30 @@ export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewL
         featureFlagStoreData,
     );
 
+    const switcher = (
+        <Switcher
+            deps={props.deps}
+            pivotKey={props.selectedPivot}
+            styles={leftNavSwitcherStyleNames}
+        />
+    );
+
     const leftNav: JSX.Element = (
         <div className="left-nav main-nav">
+            <FlaggedComponent
+                featureFlag={FeatureFlags[FeatureFlags.reflowUI]}
+                featureFlagStoreData={featureFlagStoreData}
+                enableJSXElement={switcher}
+            />
             <switcherNavConfiguration.LeftNav
-                {...props}
+                deps={deps}
                 assessmentsProvider={filteredProvider}
                 selectedKey={selectedKey}
                 assessmentsData={mapValues(
                     assessmentStoreData.assessments,
                     data => data.testStepStatus,
                 )}
+                featureFlagStoreData={featureFlagStoreData}
             />
         </div>
     );

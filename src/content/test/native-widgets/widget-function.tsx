@@ -4,9 +4,7 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
-        <h1>Widget function</h1>
         <p>If a native widget functions as a custom widget, it must have the appropriate ARIA widget role.</p>
-
         <h2>Why it matters</h2>
         <p>Widgets are interactive interface components, such as links, buttons, and combo boxes.</p>
         <p>Native widgets include the following simple, interactive HTML elements:</p>
@@ -32,7 +30,6 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             A native widget that functions as a custom widget usually requires an ARIA widget role. The role communicates the correct
             function to assistive technologies and enables them to interact with the widget.
         </p>
-
         <h2>How to fix</h2>
         <p>
             If possible, replace the custom widget with a native HTML control. (As a rule, it's better to use native semantics than to
@@ -54,7 +51,6 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             Most design patterns have additional requirements related to (1) roles, states, properties, and (2) keyboard interaction. These
             requirements are covered in the Custom widgets test.
         </p>
-
         <h2>Example</h2>
         <Markup.PassFail
             failText={
@@ -73,7 +69,6 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 </p>
             }
         />
-
         <h2>More examples</h2>
         <h3>WCAG success criteria</h3>
         <Markup.Links>
@@ -87,7 +82,6 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 Using a WAI-ARIA role to expose the role of a user interface component
             </Markup.HyperLink>
         </Markup.Links>
-
         <h3>Additional guidance</h3>
         <Markup.Links>
             <Link.WAIARIAAuthoringPractices />

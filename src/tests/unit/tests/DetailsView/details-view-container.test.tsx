@@ -5,6 +5,7 @@ import {
     CardSelectionViewData,
     GetCardSelectionViewData,
 } from 'common/get-card-selection-view-data';
+import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { StoreActionMessageCreator } from 'common/message-creators/store-action-message-creator';
 import { StoreActionMessageCreatorImpl } from 'common/message-creators/store-action-message-creator-impl';
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
@@ -65,6 +66,7 @@ describe('DetailsViewContainer', () => {
     let getCardViewDataMock: IMock<GetCardViewData>;
     let getCardSelectionViewDataMock: IMock<GetCardSelectionViewData>;
     let targetAppInfo: TargetAppData;
+    let isResultHighlightUnavailableStub: IsResultHighlightUnavailable;
     let timestamp: string;
     let toolData: ToolData;
 
@@ -90,6 +92,7 @@ describe('DetailsViewContainer', () => {
             (storeData: CardSelectionStoreData) => null,
             MockBehavior.Strict,
         );
+        isResultHighlightUnavailableStub = () => null;
         timestamp = 'timestamp';
         targetAppInfo = {
             name: pageTitle,
@@ -104,6 +107,7 @@ describe('DetailsViewContainer', () => {
             getDetailsSwitcherNavConfiguration: getDetailsSwitcherNavConfiguration.object,
             getCardViewData: getCardViewDataMock.object,
             getCardSelectionViewData: getCardSelectionViewDataMock.object,
+            isResultHighlightUnavailable: isResultHighlightUnavailableStub,
         } as DetailsViewContainerDeps;
     });
 
@@ -271,7 +275,13 @@ describe('DetailsViewContainer', () => {
             } as CardsViewModel;
             const cardSelectionViewData: CardSelectionViewData = {} as CardSelectionViewData;
             getCardSelectionViewDataMock
-                .setup(g => g(state.cardSelectionStoreData))
+                .setup(g =>
+                    g(
+                        state.cardSelectionStoreData,
+                        state.unifiedScanResultStoreData,
+                        isResultHighlightUnavailableStub,
+                    ),
+                )
                 .returns(() => cardSelectionViewData);
             getCardViewDataMock
                 .setup(m =>
@@ -375,7 +385,7 @@ describe('DetailsViewContainer', () => {
         cardsViewData: CardsViewModel,
         targetApp: TargetAppData,
     ): JSX.Element {
-        const scanMetaData = {
+        const scanMetadata = {
             timestamp: timestamp,
             toolData: toolData,
             targetAppInfo: targetApp,
@@ -406,7 +416,7 @@ describe('DetailsViewContainer', () => {
                 scanIncompleteWarnings={
                     storeMocks.unifiedScanResultStoreData.scanIncompleteWarnings
                 }
-                scanMetaData={scanMetaData}
+                scanMetadata={scanMetadata}
             />
         );
     }
@@ -575,7 +585,13 @@ describe('DetailsViewContainer', () => {
 
         const cardSelectionViewData: CardSelectionViewData = {} as CardSelectionViewData;
         getCardSelectionViewDataMock
-            .setup(g => g(state.cardSelectionStoreData))
+            .setup(g =>
+                g(
+                    state.cardSelectionStoreData,
+                    state.unifiedScanResultStoreData,
+                    isResultHighlightUnavailableStub,
+                ),
+            )
             .returns(() => cardSelectionViewData)
             .verifiable(Times.once());
 

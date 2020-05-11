@@ -65,7 +65,7 @@ export class AssessmentTableColumnConfigHandler {
         let allColumns: IColumn[] = [];
         const stepConfig = this.assessmentProvider.getStep(
             assessmentNavState.selectedTestType,
-            assessmentNavState.selectedTestStep,
+            assessmentNavState.selectedTestSubview,
         );
 
         if (hasVisualHelper) {
@@ -89,7 +89,7 @@ export class AssessmentTableColumnConfigHandler {
     private getCustomColumns(assessmentNavState: AssessmentNavState): IColumn[] {
         const stepConfig = this.assessmentProvider.getStep(
             assessmentNavState.selectedTestType,
-            assessmentNavState.selectedTestStep,
+            assessmentNavState.selectedTestSubview,
         );
 
         const customColumns = stepConfig.columnsConfig.map(columnConfig => {

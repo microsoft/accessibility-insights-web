@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Pointer cancellation</h1>
         <p>Users must be able to cancel functions that can be operated using a single pointer.</p>
 
         <h2>Why it matters</h2>
@@ -16,12 +15,11 @@ export const infoAndExamples = create(({ Markup }) => (
         <h2>How to fix</h2>
         <p>For any function that can be operated using a single pointer, make sure at least one of the following is true:</p>
         <ul>
-            <li> The down event doesn't trigger any part of the function, or</li>
+            <li>The down event doesn't trigger any part of the function, or</li>
             <li>
-                {' '}
                 The down event initiates the function, which is completed only on the up event, and users can abort or undo the function, or
             </li>
-            <li> The down event completes the function, and the up event reverses the outcome of the preceding down event.</li>
+            <li>The down event completes the function, and the up event reverses the outcome of the preceding down event.</li>
         </ul>
         <h2>Example</h2>
         <Markup.PassFail

@@ -29,11 +29,11 @@ export function getAllFeatureFlagDetailsUnified(): FeatureFlagDetail[] {
         },
         {
             id: UnifiedFeatureFlags.exportReport,
-            defaultValue: false,
+            defaultValue: true,
             displayableName: 'Show export report button',
             displayableDescription: 'Show the export report button on the automated checks window',
             isPreviewFeature: false,
-            forceDefault: false,
+            forceDefault: true,
         },
     ];
 }

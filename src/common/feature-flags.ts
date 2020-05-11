@@ -13,8 +13,8 @@ export class FeatureFlags {
     public static readonly showInstanceVisibility = 'showInstanceVisibility';
     public static readonly manualInstanceDetails = 'manualInstanceDetails';
     public static readonly debugTools = 'debugTools';
-
-    public static readonly exportReport = 'exportReport';
+    public static readonly reflowUI = 'reflowUI';
+    public static readonly exportReportOptions = 'exportReportOptions';
 }
 
 export interface FeatureFlagDetail {
@@ -102,11 +102,20 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             forceDefault: false,
         },
         {
-            id: FeatureFlags.exportReport,
+            id: FeatureFlags.exportReportOptions,
             defaultValue: false,
             displayableName: 'More export options',
             displayableDescription: 'Enables exporting reports to external services',
             isPreviewFeature: true,
+            forceDefault: false,
+        },
+        {
+            id: FeatureFlags.reflowUI,
+            defaultValue: false,
+            displayableName: 'Reflow UI',
+            displayableDescription:
+                'Enables new UX to allow for better reflow of application content and UI elements.',
+            isPreviewFeature: false,
             forceDefault: false,
         },
     ];

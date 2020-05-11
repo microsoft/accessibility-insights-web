@@ -35,7 +35,7 @@ exports[`ExportDialog renders with open false 1`] = `
   hidden={true}
   modalProps={
     Object {
-      "containerClassName": "insights-dialog-main-override",
+      "containerClassName": "exportDialog",
       "isBlocking": false,
     }
   }
@@ -85,7 +85,7 @@ exports[`ExportDialog renders with open false 1`] = `
           />
         </React.Fragment>
       }
-      featureFlag="exportReport"
+      featureFlag="exportReportOptions"
       featureFlagStoreData={Object {}}
     />
   </StyledDialogFooterBase>
@@ -104,7 +104,7 @@ exports[`ExportDialog renders with open true 1`] = `
   hidden={false}
   modalProps={
     Object {
-      "containerClassName": "insights-dialog-main-override",
+      "containerClassName": "exportDialog",
       "isBlocking": false,
     }
   }
@@ -154,7 +154,7 @@ exports[`ExportDialog renders with open true 1`] = `
           />
         </React.Fragment>
       }
-      featureFlag="exportReport"
+      featureFlag="exportReportOptions"
       featureFlagStoreData={Object {}}
     />
   </StyledDialogFooterBase>
