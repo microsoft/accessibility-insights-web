@@ -1,28 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AssessmentViewTest render for gettting started 1`] = `
-<div>
-  <TargetChangeDialog
-    deps={Object {}}
-    newTab={
-      Object {
-        "id": 5,
-      }
-    }
-    prevTab={
-      Object {
-        "id": 4,
-      }
-    }
-  />
-  <GettingStartedView
-    gettingStartedContent={
-      <h1>
-        Hello
-      </h1>
-    }
-  />
-</div>
+"<div>
+  <TargetChangeDialog deps={{...}} prevTab={{...}} newTab={{...}} />
+  <GettingStartedView gettingStartedContent={{...}} />
+</div>"
 `;
 
-exports[`AssessmentViewTest render for requirement 1`] = `null`;
+exports[`AssessmentViewTest render for requirement 1`] = `""`;
