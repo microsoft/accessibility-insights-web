@@ -17,8 +17,8 @@ const title = 'Pointer / motion';
 const gettingStarted: JSX.Element = (
     <>
         <p>
-            The requirements in this test ensure that functionality operated through touch or motion
-            can be used successfully by everyone.
+            The requirements in this test ensure that functionality operated through pointers
+            (mouse, touch, stylus) or motion can be used successfully by everyone.
         </p>
     </>
 );
