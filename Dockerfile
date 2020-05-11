@@ -9,6 +9,11 @@
 # build agents running apt-get for all those dependencies.
 FROM cypress/base:12.16.1
 
+RUN apt-get update && \
+    apt-get install --no-install-recommends -y \
+    libgbm1 \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN npm install -g yarn@1.22.4
 
 WORKDIR /app
