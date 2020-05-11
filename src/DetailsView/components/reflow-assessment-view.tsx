@@ -2,6 +2,10 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import {
+    AssessmentViewUpdateHandler,
+    AssessmentViewUpdateHandlerDeps,
+} from 'DetailsView/components/assessment-view-update-handler';
 import { AssessmentTestResult } from '../../common/assessment/assessment-test-result';
 import { Tab } from '../../common/itab';
 import {
@@ -12,7 +16,10 @@ import {
 import { GettingStartedView } from './getting-started-view';
 import { TargetChangeDialog, TargetChangeDialogDeps } from './target-change-dialog';
 
-export type ReflowAssessmentViewDeps = TargetChangeDialogDeps;
+export type ReflowAssessmentViewDeps = {
+    assessmentViewUpdateHandler: AssessmentViewUpdateHandler;
+} & AssessmentViewUpdateHandlerDeps &
+    TargetChangeDialogDeps;
 
 export interface ReflowAssessmentViewProps {
     deps: ReflowAssessmentViewDeps;
@@ -21,6 +28,7 @@ export interface ReflowAssessmentViewProps {
     currentTarget: Tab;
     prevTarget: PersistedTabInfo;
     assessmentTestResult: AssessmentTestResult;
+    isEnabled: boolean;
 }
 
 export class ReflowAssessmentView extends React.Component<ReflowAssessmentViewProps> {
@@ -37,6 +45,18 @@ export class ReflowAssessmentView extends React.Component<ReflowAssessmentViewPr
             );
         }
         return null;
+    }
+
+    public componentDidMount(): void {
+        this.props.deps.assessmentViewUpdateHandler.onMount(this.props);
+    }
+
+    public componentDidUpdate(prevProps: ReflowAssessmentViewProps): void {
+        this.props.deps.assessmentViewUpdateHandler.update(prevProps, this.props);
+    }
+
+    public componentWillUnmount(): void {
+        this.props.deps.assessmentViewUpdateHandler.onUnmount(this.props);
     }
 
     private renderTargetChangeDialog(): JSX.Element {
