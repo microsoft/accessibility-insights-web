@@ -31675,7 +31675,7 @@ exports[`Guidance Content pages test/textLegibility/reflow/infoAndExamples match
       class="content"
     >
       <p>
-        Text content must be visible without having to scroll both vertically and horizontally.
+        Content must be visible without having to scroll both vertically and horizontally.
       </p>
       <h2>
         Why it matters
