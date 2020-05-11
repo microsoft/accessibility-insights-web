@@ -48,6 +48,11 @@ export type onTestRequirementClick = (
     item: TestRequirementLeftNavLink,
 ) => void;
 
+export type onTestGettingStartedClick = (
+    event: React.MouseEvent<HTMLElement>,
+    item: TestGettingStartedNavLink,
+) => void;
+
 export const AssessmentLeftNav = NamedFC<AssessmentLeftNavProps>('AssessmentLeftNav', props => {
     const { deps, selectedKey, assessmentsProvider, assessmentsData, featureFlagStoreData } = props;
 
@@ -65,7 +70,14 @@ export const AssessmentLeftNav = NamedFC<AssessmentLeftNavProps>('AssessmentLeft
     );
 
     if (featureFlagStoreData[FeatureFlags.reflowUI]) {
-        links = links;
+        links = links.concat(
+            leftNavLinkBuilder.buildReflowAssessmentTestLinks(
+                deps,
+                assessmentsProvider,
+                assessmentsData,
+                1,
+            ),
+        );
     } else {
         links = links.concat(
             leftNavLinkBuilder.buildAssessmentTestLinks(
