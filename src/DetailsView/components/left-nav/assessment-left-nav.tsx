@@ -3,6 +3,7 @@
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { FeatureFlags } from 'common/feature-flags';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { VisualizationType } from 'common/types/visualization-type';
 import * as React from 'react';
 import { NamedFC } from '../../../common/react/named-fc';
 import { ManualTestStatus, ManualTestStatusData } from '../../../common/types/manual-test-status';
@@ -32,6 +33,20 @@ export type AssessmentLeftNavProps = {
 export type AssessmentLeftNavLink = {
     status: ManualTestStatus;
 } & BaseLeftNavLink;
+
+export type TestGettingStartedNavLink = {
+    testType: VisualizationType;
+} & BaseLeftNavLink;
+
+export type TestRequirementLeftNavLink = {
+    displayedIndex: string;
+    testType: VisualizationType;
+} & AssessmentLeftNavLink;
+
+export type onTestRequirementClick = (
+    event: React.MouseEvent<HTMLElement>,
+    item: TestRequirementLeftNavLink,
+) => void;
 
 export const AssessmentLeftNav = NamedFC<AssessmentLeftNavProps>('AssessmentLeftNav', props => {
     const { deps, selectedKey, assessmentsProvider, assessmentsData, featureFlagStoreData } = props;
