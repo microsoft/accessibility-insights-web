@@ -18,7 +18,10 @@ Array [
       "contentDescription": "myDescription1",
       "text": "myText1",
     },
-    "identifiers": null,
+    "identifiers": Object {
+      "conciseName": "myClass1",
+      "identifier": "myClass1",
+    },
     "resolution": Object {
       "howtoFixSummary": "How to fix My Rule #1",
     },
@@ -33,7 +36,10 @@ Array [
       "contentDescription": null,
       "text": null,
     },
-    "identifiers": null,
+    "identifiers": Object {
+      "conciseName": "myClass3",
+      "identifier": "myClass3",
+    },
     "resolution": Object {
       "howtoFixSummary": "How to fix My Rule #2",
     },
@@ -53,7 +59,10 @@ Array [
       "contentDescription": "myDescription4",
       "text": "myText4",
     },
-    "identifiers": null,
+    "identifiers": Object {
+      "conciseName": "myClass4",
+      "identifier": "myClass4",
+    },
     "resolution": Object {
       "howtoFixSummary": "How to fix My Rule #2",
     },
@@ -73,7 +82,10 @@ Array [
       "contentDescription": null,
       "text": null,
     },
-    "identifiers": null,
+    "identifiers": Object {
+      "conciseName": "myClass2",
+      "identifier": "myClass2",
+    },
     "resolution": Object {
       "howtoFixSummary": "How to fix My Rule #3",
     },
@@ -83,7 +95,10 @@ Array [
   },
   Object {
     "descriptors": null,
-    "identifiers": null,
+    "identifiers": Object {
+      "conciseName": undefined,
+      "identifier": undefined,
+    },
     "resolution": Object {
       "howtoFixSummary": "How to fix My Rule #2",
     },
