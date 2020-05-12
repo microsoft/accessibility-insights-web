@@ -9,6 +9,7 @@ import { ContentPage } from 'views/content/content-page';
 import { RequirementComparer } from '../../../common/assessment/requirement-comparer';
 import { AssessmentVisualizationConfiguration } from '../../../common/configs/assessment-visualization-configuration';
 import { FeatureFlags } from '../../../common/feature-flags';
+import { ManualTestStatus } from '../../../common/types/manual-test-status';
 import { AssessmentData } from '../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { RequirementLink } from '../../../DetailsView/components/requirement-link';
@@ -136,6 +137,7 @@ const automatedAssessment = {
             isManual: null,
             guidanceLinks: [],
             columnsConfig: [],
+            defaultInstanceStatus: ManualTestStatus.FAIL,
             renderInstanceTableHeader: () => null,
             getInstanceStatusColumns: () => [],
             renderRequirementDescription: renderRequirementDescription,
@@ -148,6 +150,7 @@ const automatedAssessment = {
             isManual: null,
             guidanceLinks: [],
             columnsConfig: [],
+            defaultInstanceStatus: ManualTestStatus.FAIL,
             renderInstanceTableHeader: () => null,
             getInstanceStatusColumns: () => [],
             renderRequirementDescription: renderRequirementDescription,
