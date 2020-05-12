@@ -3,7 +3,10 @@
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { ManualTestStatus } from 'common/types/manual-test-status';
-import { AssessmentData } from 'common/types/store-data/assessment-result-data';
+import {
+    AssessmentData,
+    gettingStartedSubview,
+} from 'common/types/store-data/assessment-result-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
     AssessmentViewUpdateHandler,
@@ -153,6 +156,48 @@ describe('AssessmentViewTest', () => {
             detailsViewActionMessageCreatorMock
                 .setup(a => a.disableVisualHelpersForTest(prevTest))
                 .verifiable(Times.once());
+
+            testObject.update(prevProps, props);
+
+            detailsViewActionMessageCreatorMock.verifyAll();
+        });
+
+        test('do not enable for getting started view', () => {
+            const prevStep = 'prevStep';
+            const prevTest = -100 as VisualizationType;
+            const prevProps = buildProps();
+            const props = buildProps();
+            props.assessmentNavState.selectedTestSubview = gettingStartedSubview;
+            props.assessmentNavState.selectedTestType = null;
+            prevProps.assessmentNavState.selectedTestSubview = prevStep;
+            prevProps.assessmentNavState.selectedTestType = prevTest;
+
+            detailsViewActionMessageCreatorMock
+                .setup(a => a.enableVisualHelper(It.isAny(), It.isAny(), It.isAny()))
+                .verifiable(Times.never());
+            detailsViewActionMessageCreatorMock
+                .setup(a => a.disableVisualHelpersForTest(prevTest))
+                .verifiable(Times.once());
+
+            testObject.update(prevProps, props);
+
+            detailsViewActionMessageCreatorMock.verifyAll();
+        });
+
+        test('do not disable for getting started view', () => {
+            const prevProps = buildProps();
+            const props = buildProps();
+            prevProps.assessmentNavState.selectedTestSubview = gettingStartedSubview;
+            prevProps.assessmentNavState.selectedTestType = null;
+
+            detailsViewActionMessageCreatorMock
+                .setup(a =>
+                    a.enableVisualHelper(firstAssessment.visualizationType, stepName, true, true),
+                )
+                .verifiable(Times.once());
+            detailsViewActionMessageCreatorMock
+                .setup(a => a.disableVisualHelpersForTest(It.isAny()))
+                .verifiable(Times.never());
 
             testObject.update(prevProps, props);
 
