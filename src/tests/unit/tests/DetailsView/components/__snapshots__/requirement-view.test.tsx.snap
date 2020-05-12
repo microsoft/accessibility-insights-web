@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RequirementViewTest renders with content from props 1`] = `
-<div
-  className="requirementView"
->
+<div>
   <div>
     test-description
   </div>
