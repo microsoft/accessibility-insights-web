@@ -162,7 +162,7 @@ describe('AssessmentViewTest', () => {
             detailsViewActionMessageCreatorMock.verifyAll();
         });
 
-        test('do not enable for getting started view', () => {
+        test('do not enable visual helper for getting started view', () => {
             const prevStep = 'prevStep';
             const prevTest = -100 as VisualizationType;
             const prevProps = buildProps();
@@ -184,7 +184,7 @@ describe('AssessmentViewTest', () => {
             detailsViewActionMessageCreatorMock.verifyAll();
         });
 
-        test('do not disable for getting started view', () => {
+        test('do not disable visual helper for getting started view', () => {
             const prevProps = buildProps();
             const props = buildProps();
             prevProps.assessmentNavState.selectedTestSubview = gettingStartedSubview;
