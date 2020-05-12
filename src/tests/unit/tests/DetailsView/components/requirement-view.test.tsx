@@ -8,11 +8,13 @@ import * as React from 'react';
 describe('RequirementViewTest', () => {
     it('renders with content from props', () => {
         const requirementStub = {
+            name: 'test-requirement-name',
             description: <div>test-description</div>,
         } as Requirement;
-        const props: RequirementViewProps = {
+
+        const props = {
             requirement: requirementStub,
-        };
+        } as RequirementViewProps;
 
         const rendered = shallow(<RequirementView {...props} />);
 
