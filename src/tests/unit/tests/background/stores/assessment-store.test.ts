@@ -59,7 +59,7 @@ const assessmentKey: string = 'assessment-1';
 const requirementKey: string = 'assessment-1-step-1';
 const assessmentType = -1 as VisualizationType;
 
-describe('AssessmentStoreTest', () => {
+describe('AssessmentStore', () => {
     let browserMock: IMock<BrowserAdapter>;
     let assessmentDataConverterMock: IMock<AssessmentDataConverter>;
     let assessmentDataRemoverMock: IMock<AssessmentDataRemover>;
@@ -894,56 +894,73 @@ describe('AssessmentStoreTest', () => {
             .testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on changeAssessmentVisualizationState', () => {
-        const generatedAssessmentInstancesMap: DictionaryStringTo<GeneratedAssessmentInstance> = {
-            selector: {
-                testStepResults: {
-                    [requirementKey]: {
-                        isVisualizationEnabled: true,
+    test.each`
+        supportsVisualization | startsEnabled | payloadEnabled | expectedFinalEnabled
+        ${false}              | ${false}      | ${true}        | ${false}
+        ${true}               | ${false}      | ${true}        | ${true}
+        ${true}               | ${true}       | ${false}       | ${false}
+        ${true}               | ${true}       | ${true}        | ${true}
+        ${true}               | ${false}      | ${false}       | ${false}
+    `(
+        'on changeAssessmentVisualizationState: supportsVisualization:$supportsVisualization, ' +
+            'startsEnabled:$startsEnabled, payloadEnabled:$payloadEnabled -> finalEnabled:$expectedFinalEnabled',
+        ({ supportsVisualization, startsEnabled, payloadEnabled, expectedFinalEnabled }) => {
+            const generatedAssessmentInstancesMap: DictionaryStringTo<GeneratedAssessmentInstance> = {
+                selector: {
+                    testStepResults: {
+                        [requirementKey]: {
+                            isVisualizationEnabled: startsEnabled,
+                            isVisualizationSupported: supportsVisualization,
+                        },
                     },
-                },
-            } as any,
-        };
+                } as any,
+            };
 
-        const assessmentData = new AssessmentDataBuilder()
-            .with('generatedAssessmentInstancesMap', generatedAssessmentInstancesMap)
-            .build();
+            const assessmentData = new AssessmentDataBuilder()
+                .with('generatedAssessmentInstancesMap', generatedAssessmentInstancesMap)
+                .build();
 
-        const initialState = getStateWithAssessment(assessmentData);
+            const initialState = getStateWithAssessment(assessmentData);
 
-        const payload: ChangeInstanceSelectionPayload = {
-            test: assessmentType,
-            requirement: requirementKey,
-            isVisualizationEnabled: true,
-            selector: 'selector',
-        };
+            const payload: ChangeInstanceSelectionPayload = {
+                test: assessmentType,
+                requirement: requirementKey,
+                isVisualizationEnabled: payloadEnabled,
+                selector: 'selector',
+            };
 
-        assessmentsProviderMock
-            .setup(apm => apm.forType(payload.test))
-            .returns(() => assessmentMock.object);
+            assessmentsProviderMock
+                .setup(apm => apm.forType(payload.test))
+                .returns(() => assessmentMock.object);
 
-        assessmentMock.setup(am => am.getVisualizationConfiguration()).returns(() => configStub);
+            assessmentMock
+                .setup(am => am.getVisualizationConfiguration())
+                .returns(() => configStub);
 
-        const expectedInstancesMap = cloneDeep(generatedAssessmentInstancesMap);
-        expectedInstancesMap.selector.testStepResults[requirementKey].isVisualizationEnabled = true;
+            const expectedInstancesMap = cloneDeep(generatedAssessmentInstancesMap);
+            expectedInstancesMap.selector.testStepResults[
+                requirementKey
+            ].isVisualizationEnabled = expectedFinalEnabled;
 
-        const expectedAssessment = new AssessmentDataBuilder()
-            .with('generatedAssessmentInstancesMap', expectedInstancesMap)
-            .build();
+            const expectedAssessment = new AssessmentDataBuilder()
+                .with('generatedAssessmentInstancesMap', expectedInstancesMap)
+                .build();
 
-        const finalState = getStateWithAssessment(expectedAssessment);
+            const finalState = getStateWithAssessment(expectedAssessment);
 
-        createStoreTesterForAssessmentActions('changeAssessmentVisualizationState')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
-    });
+            createStoreTesterForAssessmentActions('changeAssessmentVisualizationState')
+                .withActionParam(payload)
+                .testListenerToBeCalledOnce(initialState, finalState);
+        },
+    );
 
-    test('on changeAssessmentVisualizationStateForAll', () => {
+    test('changeAssessmentVisualizationStateForAll enables all visualizations that support it', () => {
         const generatedAssessmentInstancesMap: DictionaryStringTo<GeneratedAssessmentInstance> = {
             selector1: {
                 testStepResults: {
                     [requirementKey]: {
                         isVisualizationEnabled: true,
+                        isVisualizationSupported: true,
                     },
                 },
             } as any,
@@ -951,11 +968,20 @@ describe('AssessmentStoreTest', () => {
                 testStepResults: {
                     [requirementKey]: {
                         isVisualizationEnabled: false,
+                        isVisualizationSupported: false,
                     },
                 },
             } as any,
             selector3: {
                 testStepResults: {},
+            } as any,
+            selector4: {
+                testStepResults: {
+                    [requirementKey]: {
+                        isVisualizationEnabled: false,
+                        isVisualizationSupported: true,
+                    },
+                },
             } as any,
         };
 
@@ -979,7 +1005,12 @@ describe('AssessmentStoreTest', () => {
         assessmentMock.setup(am => am.getVisualizationConfiguration()).returns(() => configStub);
 
         const expectedInstancesMap = cloneDeep(generatedAssessmentInstancesMap);
-        expectedInstancesMap.selector2.testStepResults[
+
+        // Selector 1 shouldn't change because it's already enabled
+        // Selector 2 shouldn't change because it doesn't support visualizations
+        // Selector 3 shouldn't change because it has no test step results
+        // Selector 4 should toggle from disabled to enabled:
+        expectedInstancesMap.selector4.testStepResults[
             requirementKey
         ].isVisualizationEnabled = true;
 
