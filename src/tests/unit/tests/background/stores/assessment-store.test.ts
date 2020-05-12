@@ -550,7 +550,7 @@ describe('AssessmentStore', () => {
             .testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('onScanCompleted with a manual requirement', () => {
+    test('onScanCompleted with a manual requirement uses getInitialManualTestStatus to set status', () => {
         const initialManualTestStepResult = {
             status: ManualTestStatus.UNKNOWN,
             id: requirementKey,
@@ -604,6 +604,106 @@ describe('AssessmentStore', () => {
                     ...initialManualTestStepResult,
                     // should FAIL based on getInitialManualTestStatus
                     status: ManualTestStatus.FAIL,
+                },
+            })
+            .build();
+
+        const finalState = getStateWithAssessment(assessmentData);
+
+        assessmentsProviderMock
+            .setup(provider => provider.all())
+            .returns(() => assessmentsProvider.all());
+
+        assessmentsProviderMock
+            .setup(provider => provider.getStepMap(assessmentType))
+            .returns(() => stepMapStub);
+
+        assessmentsProviderMock
+            .setup(provider => provider.getStep(assessmentType, 'assessment-1-step-1'))
+            .returns(() => stepConfig);
+
+        assessmentsProviderMock
+            .setup(provider => provider.forType(payload.testType))
+            .returns(() => assessmentMock.object);
+
+        assessmentMock.setup(am => am.getVisualizationConfiguration()).returns(() => configStub);
+
+        getInstanceIdentiferGeneratorMock
+            .setup(idGetter => idGetter(requirementKey))
+            .returns(() => instanceIdentifierGeneratorStub);
+
+        assessmentDataConverterMock
+            .setup(a =>
+                a.generateAssessmentInstancesMap(
+                    initialAssessmentData.generatedAssessmentInstancesMap,
+                    payload.selectorMap,
+                    requirementKey,
+                    instanceIdentifierGeneratorStub,
+                    stepConfig.getInstanceStatus,
+                    stepConfig.isVisualizationSupportedForResult,
+                ),
+            )
+            .returns(() => expectedInstanceMap);
+
+        createStoreTesterForAssessmentActions('scanCompleted')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, finalState);
+    });
+
+    test('onScanCompleted with a manual requirement skips getInitialManualTestStatus for requirements that already have a status', () => {
+        const initialManualTestStepResult = {
+            status: ManualTestStatus.PASS,
+            id: requirementKey,
+            instances: [
+                {
+                    id: '1',
+                    description: 'aaa',
+                },
+            ],
+        };
+        const initialAssessmentData = new AssessmentDataBuilder()
+            .with('testStepStatus', {
+                ['assessment-1-step-1']: generateTestStepData(ManualTestStatus.PASS, true),
+                ['assessment-1-step-2']: getDefaultTestStepData(),
+                ['assessment-1-step-3']: getDefaultTestStepData(),
+            })
+            .with('manualTestStepResultMap', {
+                [requirementKey]: initialManualTestStepResult,
+            })
+            .build();
+        const initialState = getStateWithAssessment(initialAssessmentData);
+
+        const payload: ScanCompletedPayload<any> = {
+            selectorMap: {},
+            scanResult: {} as ScanResults,
+            testType: assessmentType,
+            key: requirementKey,
+            scanIncompleteWarnings: [],
+        };
+
+        const expectedInstanceMap = {};
+        const stepMapStub = assessmentsProvider.getStepMap(assessmentType);
+        const stepConfig: Readonly<Requirement> = {
+            ...assessmentsProvider.getStep(assessmentType, 'assessment-1-step-1'),
+            isManual: true,
+            getInitialManualTestStatus: () => ManualTestStatus.FAIL,
+        };
+
+        const assessmentData = new AssessmentDataBuilder()
+            .with('generatedAssessmentInstancesMap', expectedInstanceMap)
+            .with('testStepStatus', {
+                // should ignore getInitialManualTestStatus because the original state was not UNKNOWN
+                ['assessment-1-step-1']: generateTestStepData(ManualTestStatus.PASS, true),
+                // should stay unchanged because the event/payload is requirement-specific
+                ['assessment-1-step-2']: getDefaultTestStepData(),
+                ['assessment-1-step-3']: getDefaultTestStepData(),
+            })
+            .with('scanIncompleteWarnings', [])
+            .with('manualTestStepResultMap', {
+                [requirementKey]: {
+                    ...initialManualTestStepResult,
+                    // should ignore getInitialManualTestStatus because the original state was not UNKNOWN
+                    status: ManualTestStatus.PASS,
                 },
             })
             .build();
