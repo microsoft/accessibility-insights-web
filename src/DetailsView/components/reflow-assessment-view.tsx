@@ -28,7 +28,7 @@ export interface ReflowAssessmentViewProps {
     currentTarget: Tab;
     prevTarget: PersistedTabInfo;
     assessmentTestResult: AssessmentTestResult;
-    isEnabled: boolean;
+    selectedRequirementIsEnabled: boolean;
 }
 
 export class ReflowAssessmentView extends React.Component<ReflowAssessmentViewProps> {
