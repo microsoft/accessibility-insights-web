@@ -46,7 +46,7 @@ export type AssessmentViewDeps = ContentLinkDeps &
 export interface AssessmentViewProps {
     deps: AssessmentViewDeps;
     isScanning: boolean;
-    isEnabled: boolean;
+    selectedRequirementIsEnabled: boolean;
     assessmentNavState: AssessmentNavState;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
     assessmentData: AssessmentData;
@@ -177,7 +177,7 @@ export class AssessmentView extends React.Component<AssessmentViewProps> {
                         assessmentInstanceTableHandler={this.props.assessmentInstanceTableHandler}
                         manualTestStepResultMap={this.props.assessmentData.manualTestStepResultMap}
                         assessmentsProvider={this.props.deps.assessmentsProvider}
-                        isStepEnabled={this.props.isEnabled}
+                        isStepEnabled={this.props.selectedRequirementIsEnabled}
                         isStepScanned={isStepScanned}
                         assessmentDefaultMessageGenerator={
                             this.props.assessmentDefaultMessageGenerator
