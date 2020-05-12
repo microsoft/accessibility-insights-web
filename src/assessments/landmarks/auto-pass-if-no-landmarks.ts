@@ -5,10 +5,10 @@ import { InstanceIdToInstanceDataMap } from 'common/types/store-data/assessment-
 import { some } from 'lodash';
 
 export function autoPassIfNoLandmarks(instanceData: InstanceIdToInstanceDataMap): ManualTestStatus {
-    const someInstanceHasLandmarkRoleResult = some(
+    const someInstanceHasLandmarkRole = some(
         Object.values(instanceData),
         instance => instance.propertyBag != null && instance.propertyBag['role'] != null,
     );
 
-    return someInstanceHasLandmarkRoleResult ? ManualTestStatus.UNKNOWN : ManualTestStatus.PASS;
+    return someInstanceHasLandmarkRole ? ManualTestStatus.UNKNOWN : ManualTestStatus.PASS;
 }
