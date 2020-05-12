@@ -13,7 +13,7 @@ import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../../../../injec
 import { TabStopEvent } from '../../../../injected/tab-stops-listener';
 import { DictionaryStringTo } from '../../../../types/common-types';
 
-describe('AssessmentDataConverterTest', () => {
+describe('AssessmentDataConverter', () => {
     let testSubject: AssessmentDataConverter;
     const uid: string = 'uid123';
     let testStep: string;
@@ -40,312 +40,285 @@ describe('AssessmentDataConverterTest', () => {
         htmlStub = 'some html';
     });
 
-    test('generateAssessmentInstancesMap: property bag from any checks', () => {
-        const expectedPropertyBag = {
-            someProperty: 1,
-        };
-
-        const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {
-            [selectorStub]: {
-                ruleResults: {
-                    rule1: {
-                        any: [
-                            {
-                                id: 'rule1',
-                                data: expectedPropertyBag,
-                            },
-                        ],
-                        html: htmlStub,
-                        id: 'id1',
-                        status: true,
-                    } as DecoratedAxeNodeResult,
+    describe('generateAssessmentInstancesMap', () => {
+        it('should ignore selectors with no rule results.', () => {
+            const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {
+                [selectorStub]: {
+                    ruleResults: {},
+                    target: [selectorStub],
                 },
-                target: [selectorStub],
-            },
-        };
+            };
+            const previouslyGeneratedInstances = {};
+            const instanceMap = testSubject.generateAssessmentInstancesMap(
+                previouslyGeneratedInstances,
+                selectorMap,
+                testStep,
+                undefined,
+                null,
+                null,
+            );
 
-        setupGenerateInstanceIdentifierMock(
-            { target: [selectorStub], html: htmlStub },
-            identifierStub,
-        );
-        const instanceMap = testSubject.generateAssessmentInstancesMap(
-            null,
-            selectorMap,
-            testStep,
-            generateInstanceIdentifierMock.object,
-            () => ManualTestStatus.UNKNOWN,
-            () => true,
-        );
+            expect(instanceMap).toEqual(previouslyGeneratedInstances);
+        });
 
-        expect(instanceMap[identifierStub].propertyBag).toEqual(expectedPropertyBag);
-    });
-
-    test(`generateAssessmentInstancesMap: previouslyGeneratedInstances is null,
-            new rule result is not false and any data is there.`, () => {
-        const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {
-            [selectorStub]: {
-                ruleResults: {
-                    rule1: {
-                        any: [
-                            {
-                                id: 'rule1',
-                                data: { someProperty: 1 },
-                            },
-                        ],
-                        html: htmlStub,
-                        id: 'id1',
-                        status: true,
-                    } as DecoratedAxeNodeResult,
+        it('should produce an empty map (not null) if previouslyGeneratedInstances is null and there are no rule results to add', () => {
+            const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {
+                [selectorStub]: {
+                    ruleResults: {},
+                    target: [selectorStub],
                 },
-                target: [selectorStub],
-            },
-        };
-        const expectedResult = {
-            [identifierStub]: {
-                html: htmlStub,
-                propertyBag: { someProperty: 1 },
-                target: [selectorStub],
-                testStepResults: {
-                    [testStep]: {
-                        id: 'id1',
-                        status: ManualTestStatus.UNKNOWN,
-                        isCapturedByUser: false,
-                        failureSummary: undefined,
-                        isVisible: true,
-                        isVisualizationEnabled: false,
+            };
+            const expectedResult = {};
+            const instanceMap = testSubject.generateAssessmentInstancesMap(
+                null,
+                selectorMap,
+                testStep,
+                undefined,
+                null,
+                null,
+            );
+
+            expect(instanceMap).toEqual(expectedResult);
+        });
+
+        it('should create a new instance wrapping the generated result if there is no existing instance matching the selector', () => {
+            const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {
+                [selectorStub]: {
+                    ruleResults: {
+                        rule1: {
+                            html: htmlStub,
+                            id: 'id1',
+                            status: false,
+                        } as DecoratedAxeNodeResult,
+                    },
+                    target: [selectorStub],
+                },
+            };
+            const expectedResult = {
+                [identifierStub]: {
+                    html: htmlStub,
+                    propertyBag: null,
+                    target: [selectorStub],
+                    testStepResults: {
+                        [testStep]: {
+                            id: 'id1',
+                            status: ManualTestStatus.UNKNOWN,
+                            isCapturedByUser: false,
+                            failureSummary: undefined,
+                            isVisible: true,
+                            isVisualizationEnabled: false,
+                            isVisualizationSupported: true,
+                        },
                     },
                 },
-            },
-        };
+            };
+            setupGenerateInstanceIdentifierMock(
+                { target: [selectorStub], html: htmlStub },
+                identifierStub,
+            );
+            const instanceMap = testSubject.generateAssessmentInstancesMap(
+                {},
+                selectorMap,
+                testStep,
+                generateInstanceIdentifierMock.object,
+                () => ManualTestStatus.UNKNOWN,
+                () => true,
+            );
 
-        setupGenerateInstanceIdentifierMock(
-            { target: [selectorStub], html: htmlStub },
-            identifierStub,
-        );
-        const instanceMap = testSubject.generateAssessmentInstancesMap(
-            null,
-            selectorMap,
-            testStep,
-            generateInstanceIdentifierMock.object,
-            () => ManualTestStatus.UNKNOWN,
-            () => true,
-        );
+            expect(instanceMap).toEqual(expectedResult);
+        });
 
-        expect(instanceMap).toEqual(expectedResult);
-    });
+        it("should merge check results' data into the instance's propertyBag", () => {
+            const expectedPropertyBag = {
+                someProperty: 1,
+            };
 
-    test(`generateAssessmentInstancesMap: previouslyGeneratedInstances is null,
-            new rule result is null (shouldn't happen but covered).`, () => {
-        const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {
-            [selectorStub]: {
-                ruleResults: {},
-                target: [selectorStub],
-            },
-        };
-        const expectedResult = {};
-        const instanceMap = testSubject.generateAssessmentInstancesMap(
-            null,
-            selectorMap,
-            testStep,
-            undefined,
-            null,
-            null,
-        );
-
-        expect(instanceMap).toEqual(expectedResult);
-    });
-
-    test(`generateAssessmentInstancesMap: previouslyGeneratedInstances is not null,
-            new rule result is null (shouldn't happen but covered).`, () => {
-        const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {
-            [selectorStub]: {
-                ruleResults: {},
-                target: [selectorStub],
-            },
-        };
-        const previouslyGeneratedInstances = {};
-        const instanceMap = testSubject.generateAssessmentInstancesMap(
-            previouslyGeneratedInstances,
-            selectorMap,
-            testStep,
-            undefined,
-            null,
-            null,
-        );
-
-        expect(instanceMap).toEqual(previouslyGeneratedInstances);
-    });
-
-    test(`generateAssessmentInstancesMap: previouslyGeneratedInstances is
-            empty/does not match any new instances and any data is not there`, () => {
-        const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {
-            [selectorStub]: {
-                ruleResults: {
-                    rule1: {
-                        html: htmlStub,
-                        id: 'id1',
-                        status: false,
-                    } as DecoratedAxeNodeResult,
+            const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {
+                [selectorStub]: {
+                    ruleResults: {
+                        rule1: {
+                            any: [
+                                {
+                                    id: 'rule1',
+                                    data: expectedPropertyBag,
+                                },
+                            ],
+                            html: htmlStub,
+                            id: 'id1',
+                            status: true,
+                        } as DecoratedAxeNodeResult,
+                    },
+                    target: [selectorStub],
                 },
-                target: [selectorStub],
+            };
+
+            setupGenerateInstanceIdentifierMock(
+                { target: [selectorStub], html: htmlStub },
+                identifierStub,
+            );
+            const instanceMap = testSubject.generateAssessmentInstancesMap(
+                null,
+                selectorMap,
+                testStep,
+                generateInstanceIdentifierMock.object,
+                () => ManualTestStatus.UNKNOWN,
+                () => true,
+            );
+
+            expect(instanceMap[identifierStub].propertyBag).toEqual(expectedPropertyBag);
+        });
+
+        it.each([ManualTestStatus.FAIL, ManualTestStatus.UNKNOWN, ManualTestStatus.PASS])(
+            'should use getInstanceStatus to determine the status of the generated step result',
+            (getInstanceStatusResult: ManualTestStatus) => {
+                const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {
+                    [selectorStub]: {
+                        ruleResults: {
+                            rule1: {
+                                html: htmlStub,
+                                id: 'id1',
+                                status: false,
+                            } as DecoratedAxeNodeResult,
+                        },
+                        target: [selectorStub],
+                    },
+                };
+
+                setupGenerateInstanceIdentifierMock(
+                    { target: [selectorStub], html: htmlStub },
+                    identifierStub,
+                );
+                const instanceMap = testSubject.generateAssessmentInstancesMap(
+                    {},
+                    selectorMap,
+                    testStep,
+                    generateInstanceIdentifierMock.object,
+                    () => getInstanceStatusResult,
+                    () => true,
+                );
+
+                expect(instanceMap[identifierStub].testStepResults[testStep].status).toEqual(
+                    getInstanceStatusResult,
+                );
             },
-        };
-        const expectedResult = {
-            [identifierStub]: {
-                html: htmlStub,
-                propertyBag: null,
-                target: [selectorStub],
-                testStepResults: {
-                    [testStep]: {
-                        id: 'id1',
-                        status: ManualTestStatus.UNKNOWN,
-                        isCapturedByUser: false,
-                        failureSummary: undefined,
-                        isVisible: true,
-                        isVisualizationEnabled: false,
+        );
+
+        it.each([true, false])(
+            'should use isVisualizationSupported to determine the corresponding property of the generated step result',
+            (isVisualizationSupportedResult: boolean) => {
+                const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {
+                    [selectorStub]: {
+                        ruleResults: {
+                            rule1: {
+                                html: htmlStub,
+                                id: 'id1',
+                                status: false,
+                            } as DecoratedAxeNodeResult,
+                        },
+                        target: [selectorStub],
+                    },
+                };
+
+                setupGenerateInstanceIdentifierMock(
+                    { target: [selectorStub], html: htmlStub },
+                    identifierStub,
+                );
+                const instanceMap = testSubject.generateAssessmentInstancesMap(
+                    {},
+                    selectorMap,
+                    testStep,
+                    generateInstanceIdentifierMock.object,
+                    () => ManualTestStatus.UNKNOWN,
+                    () => isVisualizationSupportedResult,
+                );
+
+                expect(
+                    instanceMap[identifierStub].testStepResults[testStep].isVisualizationSupported,
+                ).toEqual(isVisualizationSupportedResult);
+            },
+        );
+
+        it('should merge results for a previously seen selector into the existing instance data', () => {
+            const anotherTestStep = 'another test step';
+            const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {
+                [selectorStub]: {
+                    ruleResults: {
+                        rule1: {
+                            any: [
+                                {
+                                    id: 'rule1',
+                                    data: { someProperty: 1 },
+                                },
+                            ],
+                            html: htmlStub,
+                            id: 'id1',
+                            status: false,
+                        } as DecoratedAxeNodeResult,
+                    },
+                    target: [selectorStub],
+                },
+            };
+            const previouslyGeneratedInstances: AssessmentInstancesMap = {
+                [identifierStub]: {
+                    html: htmlStub,
+                    propertyBag: { someProperty: 3 },
+                    target: [selectorStub],
+                    testStepResults: {
+                        [anotherTestStep]: {
+                            id: 'id2',
+                            status: ManualTestStatus.UNKNOWN,
+                            isCapturedByUser: false,
+                            failureSummary: undefined,
+                            isVisible: true,
+                            isVisualizationEnabled: true,
+                            isVisualizationSupported: true,
+                        },
                     },
                 },
-            },
-        };
-        setupGenerateInstanceIdentifierMock(
-            { target: [selectorStub], html: htmlStub },
-            identifierStub,
-        );
-        const instanceMap = testSubject.generateAssessmentInstancesMap(
-            {},
-            selectorMap,
-            testStep,
-            generateInstanceIdentifierMock.object,
-            () => ManualTestStatus.UNKNOWN,
-            () => true,
-        );
-
-        expect(instanceMap).toEqual(expectedResult);
-    });
-
-    test('generateAssessmentInstancesMap: automated check status should be FAIL', () => {
-        const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {
-            [selectorStub]: {
-                ruleResults: {
-                    rule1: {
-                        html: htmlStub,
-                        id: 'id1',
-                        status: false,
-                    } as DecoratedAxeNodeResult,
-                },
-                target: [selectorStub],
-            },
-        };
-        const expectedResult = {
-            [identifierStub]: {
-                html: htmlStub,
-                propertyBag: null,
-                target: [selectorStub],
-                testStepResults: {
-                    [testStep]: {
-                        id: 'id1',
-                        status: ManualTestStatus.FAIL,
-                        isCapturedByUser: false,
-                        failureSummary: undefined,
-                        isVisible: true,
-                        isVisualizationEnabled: false,
+            };
+            const expectedResult = {
+                [identifierStub]: {
+                    html: htmlStub,
+                    propertyBag: { someProperty: 3 },
+                    target: [selectorStub],
+                    testStepResults: {
+                        [testStep]: {
+                            id: 'id1',
+                            status: ManualTestStatus.UNKNOWN,
+                            isCapturedByUser: false,
+                            failureSummary: undefined,
+                            isVisible: true,
+                            isVisualizationEnabled: false,
+                            isVisualizationSupported: true,
+                        },
+                        [anotherTestStep]: {
+                            id: 'id2',
+                            status: ManualTestStatus.UNKNOWN,
+                            isCapturedByUser: false,
+                            failureSummary: undefined,
+                            isVisible: true,
+                            isVisualizationEnabled: true,
+                            isVisualizationSupported: true,
+                        },
                     },
                 },
-            },
-        };
-        setupGenerateInstanceIdentifierMock(
-            { target: [selectorStub], html: htmlStub },
-            identifierStub,
-        );
-        const instanceMap = testSubject.generateAssessmentInstancesMap(
-            {},
-            selectorMap,
-            testStep,
-            generateInstanceIdentifierMock.object,
-            () => ManualTestStatus.FAIL,
-            () => true,
-        );
+            };
 
-        expect(instanceMap).toEqual(expectedResult);
-    });
+            setupGenerateInstanceIdentifierMock(
+                { target: [selectorStub], html: htmlStub },
+                identifierStub,
+            );
+            const instanceMap = testSubject.generateAssessmentInstancesMap(
+                previouslyGeneratedInstances,
+                selectorMap,
+                testStep,
+                generateInstanceIdentifierMock.object,
+                () => ManualTestStatus.UNKNOWN,
+                () => true,
+            );
 
-    test('generateAssessmentInstancesMap: previouslyGeneratedInstances contains matching instance', () => {
-        const anotherTestStep = 'another test step';
-        const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {
-            [selectorStub]: {
-                ruleResults: {
-                    rule1: {
-                        any: [
-                            {
-                                id: 'rule1',
-                                data: { someProperty: 1 },
-                            },
-                        ],
-                        html: htmlStub,
-                        id: 'id1',
-                        status: false,
-                    } as DecoratedAxeNodeResult,
-                },
-                target: [selectorStub],
-            },
-        };
-        const previouslyGeneratedInstances: AssessmentInstancesMap = {
-            [identifierStub]: {
-                html: htmlStub,
-                propertyBag: { someProperty: 3 },
-                target: [selectorStub],
-                testStepResults: {
-                    [anotherTestStep]: {
-                        id: 'id2',
-                        status: ManualTestStatus.UNKNOWN,
-                        isCapturedByUser: false,
-                        failureSummary: undefined,
-                        isVisible: true,
-                        isVisualizationEnabled: true,
-                    },
-                },
-            },
-        };
-        const expectedResult = {
-            [identifierStub]: {
-                html: htmlStub,
-                propertyBag: { someProperty: 3 },
-                target: [selectorStub],
-                testStepResults: {
-                    [testStep]: {
-                        id: 'id1',
-                        status: ManualTestStatus.UNKNOWN,
-                        isCapturedByUser: false,
-                        failureSummary: undefined,
-                        isVisible: true,
-                        isVisualizationEnabled: false,
-                    },
-                    [anotherTestStep]: {
-                        id: 'id2',
-                        status: ManualTestStatus.UNKNOWN,
-                        isCapturedByUser: false,
-                        failureSummary: undefined,
-                        isVisible: true,
-                        isVisualizationEnabled: true,
-                    },
-                },
-            },
-        };
-
-        setupGenerateInstanceIdentifierMock(
-            { target: [selectorStub], html: htmlStub },
-            identifierStub,
-        );
-        const instanceMap = testSubject.generateAssessmentInstancesMap(
-            previouslyGeneratedInstances,
-            selectorMap,
-            testStep,
-            generateInstanceIdentifierMock.object,
-            () => ManualTestStatus.UNKNOWN,
-            () => true,
-        );
-
-        expect(instanceMap).toEqual(expectedResult);
+            expect(instanceMap).toEqual(expectedResult);
+        });
     });
 
     test('generateAssessmentInstancesMapForEvents: previouslyGeneratedInstances is null', () => {
