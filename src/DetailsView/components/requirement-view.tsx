@@ -22,7 +22,7 @@ export const RequirementView = NamedFC<RequirementViewProps>('RequirementView', 
                 name={props.requirement.name}
                 guidanceLinks={props.requirement.guidanceLinks}
                 infoAndExamples={props.requirement.infoAndExamples}
-            ></RequirementViewTitle>
+            />
             {props.requirement.description}
         </div>
     );
