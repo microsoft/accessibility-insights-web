@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
 import { UnifiedFormattableResolution } from 'common/types/store-data/unified-data-interface';
+import { GuidanceLink } from 'scanner/rule-to-links-mappings';
+
 import { RuleResultsData } from './android-scan-results';
 
 export type GetUnifiedFormattableResolutionDelegate = (
@@ -14,6 +15,7 @@ export class RuleInformation {
     constructor(
         readonly ruleId: string,
         readonly ruleDescription: string,
+        readonly guidance: GuidanceLink[],
         readonly getUnifiedFormattableResolutionDelegate: GetUnifiedFormattableResolutionDelegate,
         readonly includeThisResultDelegate: IncludeThisResultDelegate,
     ) {}

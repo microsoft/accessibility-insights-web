@@ -1,15 +1,195 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AssessmentTestView assessment view, isScanning is false 1`] = `
-"<Fragment>
-  <ScanIncompleteWarning deps={{...}} warnings={[undefined]} warningConfiguration={{...}} test={-1} />
-  <AssessmentView deps={{...}} isScanning={false} isEnabled={false} assessmentNavState={{...}} assessmentInstanceTableHandler={{...}} assessmentData={{...}} currentTarget={{...}} prevTarget={[undefined]} assessmentDefaultMessageGenerator={[undefined]} assessmentTestResult={{...}} featureFlagStoreData={{...}} pathSnippetStoreData={{...}} switcherNavConfiguration={{...}} />
-</Fragment>"
+<React.Fragment>
+  <ScanIncompleteWarning
+    deps={
+      Object {
+        "detailsViewActionMessageCreator": Object {},
+      }
+    }
+    test={-1}
+    warningConfiguration={Object {}}
+  />
+  <FlaggedComponent
+    disableJSXElement={
+      <AssessmentView
+        assessmentData={Object {}}
+        assessmentInstanceTableHandler={Object {}}
+        assessmentNavState={
+          Object {
+            "selectedTestSubview": "step",
+            "selectedTestType": -1,
+          }
+        }
+        assessmentTestResult={
+          AssessmentTestResult {
+            "assessmentProvider": undefined,
+            "data": Object {},
+            "deps": Object {
+              "getRequirementsResults": [Function],
+              "outcomeStatsFromManualTestStatus": [Function],
+            },
+            "visualizationType": -1,
+          }
+        }
+        currentTarget={
+          Object {
+            "id": -2,
+            "title": "test title",
+            "url": "test url",
+          }
+        }
+        deps={
+          Object {
+            "detailsViewActionMessageCreator": Object {},
+          }
+        }
+        featureFlagStoreData={Object {}}
+        isEnabled={false}
+        isScanning={false}
+        pathSnippetStoreData={Object {}}
+        switcherNavConfiguration={
+          Object {
+            "warningConfiguration": Object {},
+          }
+        }
+      />
+    }
+    enableJSXElement={
+      <ReflowAssessmentView
+        assessmentData={Object {}}
+        assessmentNavState={
+          Object {
+            "selectedTestSubview": "step",
+            "selectedTestType": -1,
+          }
+        }
+        assessmentTestResult={
+          AssessmentTestResult {
+            "assessmentProvider": undefined,
+            "data": Object {},
+            "deps": Object {
+              "getRequirementsResults": [Function],
+              "outcomeStatsFromManualTestStatus": [Function],
+            },
+            "visualizationType": -1,
+          }
+        }
+        currentTarget={
+          Object {
+            "id": -2,
+            "title": "test title",
+            "url": "test url",
+          }
+        }
+        deps={
+          Object {
+            "detailsViewActionMessageCreator": Object {},
+          }
+        }
+        isEnabled={false}
+      />
+    }
+    featureFlag="reflowUI"
+    featureFlagStoreData={Object {}}
+  />
+</React.Fragment>
 `;
 
 exports[`AssessmentTestView assessment view, isScanning is true 1`] = `
-"<Fragment>
-  <ScanIncompleteWarning deps={{...}} warnings={[undefined]} warningConfiguration={{...}} test={-1} />
-  <AssessmentView deps={{...}} isScanning={true} isEnabled={false} assessmentNavState={{...}} assessmentInstanceTableHandler={{...}} assessmentData={{...}} currentTarget={{...}} prevTarget={[undefined]} assessmentDefaultMessageGenerator={[undefined]} assessmentTestResult={{...}} featureFlagStoreData={{...}} pathSnippetStoreData={{...}} switcherNavConfiguration={{...}} />
-</Fragment>"
+<React.Fragment>
+  <ScanIncompleteWarning
+    deps={
+      Object {
+        "detailsViewActionMessageCreator": Object {},
+      }
+    }
+    test={-1}
+    warningConfiguration={Object {}}
+  />
+  <FlaggedComponent
+    disableJSXElement={
+      <AssessmentView
+        assessmentData={Object {}}
+        assessmentInstanceTableHandler={Object {}}
+        assessmentNavState={
+          Object {
+            "selectedTestSubview": "step",
+            "selectedTestType": -1,
+          }
+        }
+        assessmentTestResult={
+          AssessmentTestResult {
+            "assessmentProvider": undefined,
+            "data": Object {},
+            "deps": Object {
+              "getRequirementsResults": [Function],
+              "outcomeStatsFromManualTestStatus": [Function],
+            },
+            "visualizationType": -1,
+          }
+        }
+        currentTarget={
+          Object {
+            "id": -2,
+            "title": "test title",
+            "url": "test url",
+          }
+        }
+        deps={
+          Object {
+            "detailsViewActionMessageCreator": Object {},
+          }
+        }
+        featureFlagStoreData={Object {}}
+        isEnabled={false}
+        isScanning={true}
+        pathSnippetStoreData={Object {}}
+        switcherNavConfiguration={
+          Object {
+            "warningConfiguration": Object {},
+          }
+        }
+      />
+    }
+    enableJSXElement={
+      <ReflowAssessmentView
+        assessmentData={Object {}}
+        assessmentNavState={
+          Object {
+            "selectedTestSubview": "step",
+            "selectedTestType": -1,
+          }
+        }
+        assessmentTestResult={
+          AssessmentTestResult {
+            "assessmentProvider": undefined,
+            "data": Object {},
+            "deps": Object {
+              "getRequirementsResults": [Function],
+              "outcomeStatsFromManualTestStatus": [Function],
+            },
+            "visualizationType": -1,
+          }
+        }
+        currentTarget={
+          Object {
+            "id": -2,
+            "title": "test title",
+            "url": "test url",
+          }
+        }
+        deps={
+          Object {
+            "detailsViewActionMessageCreator": Object {},
+          }
+        }
+        isEnabled={false}
+      />
+    }
+    featureFlag="reflowUI"
+    featureFlagStoreData={Object {}}
+  />
+</React.Fragment>
 `;

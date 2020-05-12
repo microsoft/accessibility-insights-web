@@ -49,6 +49,6 @@ function createUnifiedRuleFromRuleResult(
         id: ruleInformation.ruleId,
         description: ruleInformation.ruleDescription,
         url: null,
-        guidance: [],
+        guidance: ruleInformation.guidance,
     };
 }
