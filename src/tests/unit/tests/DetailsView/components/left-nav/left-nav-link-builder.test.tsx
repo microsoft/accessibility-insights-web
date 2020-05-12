@@ -3,6 +3,10 @@
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
+import { Requirement } from 'assessments/types/requirement';
+import { gettingStartedSubview } from 'common/types/store-data/assessment-result-data';
+import { TestRequirementLeftNavLink } from 'DetailsView/components/left-nav/assessment-left-nav';
+import { NavLinkHandler } from 'DetailsView/components/left-nav/nav-link-handler';
 import { OverviewSummaryReportModel } from 'reports/assessment-report-model';
 import { OutcomeTypeSemantic } from 'reports/components/outcome-type';
 import { RequirementOutcomeStats } from 'reports/components/requirement-outcome-type';
@@ -33,6 +37,7 @@ describe('LeftNavBuilder', () => {
     let outcomeStatsFromManualTestStatusMock: IMock<(
         testStepStatus: ManualTestStatusData,
     ) => RequirementOutcomeStats>;
+    let navLinkHandlerMock: IMock<NavLinkHandler>;
 
     beforeEach(() => {
         onLinkClickMock = Mock.ofInstance((e, item) => null, MockBehavior.Strict);
@@ -45,6 +50,7 @@ describe('LeftNavBuilder', () => {
             MockBehavior.Strict,
         );
         assessmentsDataStub = {};
+        navLinkHandlerMock = Mock.ofType(NavLinkHandler);
 
         deps = {
             getStatusForTest: getStatusForTestMock.object,
@@ -52,6 +58,7 @@ describe('LeftNavBuilder', () => {
             outcomeTypeSemanticsFromTestStatus: outcomeTypeFromTestStatusMock.object,
             getAssessmentSummaryModelFromProviderAndStatusData:
                 getAssessmentSummaryModelFromProviderAndStatusDataMock.object,
+            navLinkHandler: navLinkHandlerMock.object,
         } as LeftNavLinkBuilderDeps;
 
         testSubject = new LeftNavLinkBuilder();
@@ -201,4 +208,133 @@ describe('LeftNavBuilder', () => {
             });
         });
     });
+
+    describe('buildReflowAssessmentTestLinks', () => {
+        it('should build links for assessments', () => {
+            const startingIndexStub = -1;
+            const requirementStubA = {
+                name: 'requirement-name-1',
+                key: 'requirement-key-1',
+            } as Requirement;
+            const requirementStubB = {
+                name: 'requirement-name-2',
+                key: 'requirement-key-2',
+            } as Requirement;
+            const assessmentStub = {
+                key: 'some key',
+                title: 'some title',
+                visualizationType: 1,
+                requirements: [requirementStubA, requirementStubB],
+            } as Assessment;
+            const assessmentsStub = [assessmentStub, assessmentStub];
+            const outcomeStatsStub = {} as RequirementOutcomeStats;
+            const testStatusStub = -2 as ManualTestStatus;
+            const narratorStatusStub = { pastTense: 'passed' } as OutcomeTypeSemantic;
+            const stepStatusStub: ManualTestStatusData = {
+                [requirementStubA.key]: {
+                    stepFinalResult: testStatusStub,
+                },
+                [requirementStubB.key]: {
+                    stepFinalResult: testStatusStub,
+                },
+            } as ManualTestStatusData;
+
+            assessmentsDataStub = {
+                [assessmentStub.key]: stepStatusStub,
+            };
+
+            assessmentProviderMock.setup(apm => apm.all()).returns(() => assessmentsStub);
+
+            outcomeStatsFromManualTestStatusMock
+                .setup(mock => mock(stepStatusStub))
+                .returns(() => outcomeStatsStub);
+
+            getStatusForTestMock
+                .setup(mock => mock(outcomeStatsStub))
+                .returns(() => testStatusStub);
+
+            outcomeTypeFromTestStatusMock
+                .setup(mock => mock(testStatusStub))
+                .returns(() => narratorStatusStub);
+
+            const links = testSubject.buildReflowAssessmentTestLinks(
+                deps,
+                assessmentProviderMock.object,
+                assessmentsDataStub,
+                startingIndexStub,
+            );
+
+            links.forEach((testLink, linkIndex) => {
+                const expectedTestLink = {
+                    name: assessmentStub.title,
+                    key: VisualizationType[assessmentStub.visualizationType],
+                    forceAnchor: true,
+                    url: '',
+                    index: startingIndexStub + linkIndex,
+                    iconProps: {
+                        className: 'hidden',
+                    },
+                    status: testStatusStub,
+                    title: `${startingIndexStub + linkIndex}: ${assessmentStub.title} (${
+                        narratorStatusStub.pastTense
+                    })`,
+                };
+                const expectedGettingStartedLink = {
+                    name: 'Getting Started',
+                    key: gettingStartedSubview,
+                    forceAnchor: true,
+                    url: '',
+                    index: 0,
+                    iconProps: {
+                        className: 'hidden',
+                    },
+                };
+                const expectedRequirementLinkA = getExpectedRequirementLink(
+                    requirementStubA,
+                    assessmentStub.visualizationType,
+                    testStatusStub,
+                );
+
+                const actualGettingStartedLink = testLink.links[0];
+                const actualRequirementLink = testLink.links[1] as TestRequirementLeftNavLink;
+                const testNavLink = testLink.onRenderNavLink(testLink);
+                const requirementNavLink = actualRequirementLink.onRenderNavLink(
+                    actualRequirementLink,
+                );
+                expect(testLink).toMatchObject(expectedTestLink);
+                expect(actualGettingStartedLink).toMatchObject(expectedGettingStartedLink);
+                expect(actualRequirementLink).toMatchObject(expectedRequirementLinkA);
+
+                expect(testNavLink).toMatchSnapshot('test nav link render');
+                expect(testNavLink.props['renderIcon'](testLink)).toMatchSnapshot(
+                    'test nav link render icon',
+                );
+                expect(requirementNavLink).toMatchSnapshot('requirement nav link render');
+                expect(requirementNavLink.props['renderIcon'](requirementNavLink)).toMatchSnapshot(
+                    'requirement nav link render icon',
+                );
+                expect(actualGettingStartedLink.onRenderNavLink()).toMatchSnapshot(
+                    'getting started nav link render',
+                );
+            });
+        });
+    });
+
+    function getExpectedRequirementLink(
+        requirement: Requirement,
+        test: VisualizationType,
+        status: ManualTestStatus,
+    ): TestRequirementLeftNavLink {
+        return {
+            name: requirement.name,
+            key: requirement.key,
+            forceAnchor: true,
+            url: '',
+            iconProps: {
+                className: 'hidden',
+            },
+            testType: test,
+            status,
+        } as TestRequirementLeftNavLink;
+    }
 });
