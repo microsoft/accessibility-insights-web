@@ -5,6 +5,7 @@ import * as React from 'react';
 import {
     AssessmentViewUpdateHandler,
     AssessmentViewUpdateHandlerDeps,
+    AssessmentViewUpdateHandlerProps,
 } from 'DetailsView/components/assessment-view-update-handler';
 import { AssessmentTestResult } from '../../common/assessment/assessment-test-result';
 import { Tab } from '../../common/itab';
@@ -21,15 +22,14 @@ export type ReflowAssessmentViewDeps = {
 } & AssessmentViewUpdateHandlerDeps &
     TargetChangeDialogDeps;
 
-export interface ReflowAssessmentViewProps {
+export type ReflowAssessmentViewProps = {
     deps: ReflowAssessmentViewDeps;
     assessmentNavState: AssessmentNavState;
     assessmentData: AssessmentData;
     currentTarget: Tab;
     prevTarget: PersistedTabInfo;
     assessmentTestResult: AssessmentTestResult;
-    selectedRequirementIsEnabled: boolean;
-}
+} & AssessmentViewUpdateHandlerProps;
 
 export class ReflowAssessmentView extends React.Component<ReflowAssessmentViewProps> {
     public render(): JSX.Element {
