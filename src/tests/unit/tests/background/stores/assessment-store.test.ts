@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
+import { Requirement } from 'assessments/types/requirement';
 import {
     AddFailureInstancePayload,
     AddResultDescriptionPayload,
@@ -54,7 +55,6 @@ import { AssessmentsStoreDataBuilder } from '../../../common/assessment-store-da
 import { AssessmentStoreTester } from '../../../common/assessment-store-tester';
 import { createStoreWithNullParams } from '../../../common/store-tester';
 import { CreateTestAssessmentProvider } from '../../../common/test-assessment-provider';
-import { Requirement } from 'assessments/types/requirement';
 
 const assessmentKey: string = 'assessment-1';
 const requirementKey: string = 'assessment-1-step-1';
