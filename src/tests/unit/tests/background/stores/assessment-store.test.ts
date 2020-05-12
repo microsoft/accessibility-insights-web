@@ -54,6 +54,7 @@ import { AssessmentsStoreDataBuilder } from '../../../common/assessment-store-da
 import { AssessmentStoreTester } from '../../../common/assessment-store-tester';
 import { createStoreWithNullParams } from '../../../common/store-tester';
 import { CreateTestAssessmentProvider } from '../../../common/test-assessment-provider';
+import { Requirement } from 'assessments/types/requirement';
 
 const assessmentKey: string = 'assessment-1';
 const requirementKey: string = 'assessment-1-step-1';
@@ -470,7 +471,7 @@ describe('AssessmentStore', () => {
             .testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('onScanCompleted', () => {
+    test('onScanCompleted with an assisted requirement', () => {
         const initialAssessmentData = new AssessmentDataBuilder()
             .with('testStepStatus', {
                 ['assessment-1-step-1']: getDefaultTestStepData(),
@@ -490,16 +491,121 @@ describe('AssessmentStore', () => {
 
         const expectedInstanceMap = {};
         const stepMapStub = assessmentsProvider.getStepMap(assessmentType);
-        const stepConfig = assessmentsProvider.getStep(assessmentType, 'assessment-1-step-1');
+        const stepConfig: Readonly<Requirement> = {
+            ...assessmentsProvider.getStep(assessmentType, 'assessment-1-step-1'),
+            isManual: false,
+        };
 
         const assessmentData = new AssessmentDataBuilder()
             .with('generatedAssessmentInstancesMap', expectedInstanceMap)
             .with('testStepStatus', {
+                // should PASS because it is a non-manual test with no associated instances
                 ['assessment-1-step-1']: generateTestStepData(ManualTestStatus.PASS, true),
+                // should stay unchanged because the event/payload is requirement-specific
                 ['assessment-1-step-2']: getDefaultTestStepData(),
                 ['assessment-1-step-3']: getDefaultTestStepData(),
             })
             .with('scanIncompleteWarnings', [])
+            .build();
+
+        const finalState = getStateWithAssessment(assessmentData);
+
+        assessmentsProviderMock
+            .setup(provider => provider.all())
+            .returns(() => assessmentsProvider.all());
+
+        assessmentsProviderMock
+            .setup(provider => provider.getStepMap(assessmentType))
+            .returns(() => stepMapStub);
+
+        assessmentsProviderMock
+            .setup(provider => provider.getStep(assessmentType, 'assessment-1-step-1'))
+            .returns(() => stepConfig);
+
+        assessmentsProviderMock
+            .setup(provider => provider.forType(payload.testType))
+            .returns(() => assessmentMock.object);
+
+        assessmentMock.setup(am => am.getVisualizationConfiguration()).returns(() => configStub);
+
+        getInstanceIdentiferGeneratorMock
+            .setup(idGetter => idGetter(requirementKey))
+            .returns(() => instanceIdentifierGeneratorStub);
+
+        assessmentDataConverterMock
+            .setup(a =>
+                a.generateAssessmentInstancesMap(
+                    initialAssessmentData.generatedAssessmentInstancesMap,
+                    payload.selectorMap,
+                    requirementKey,
+                    instanceIdentifierGeneratorStub,
+                    stepConfig.getInstanceStatus,
+                    stepConfig.isVisualizationSupportedForResult,
+                ),
+            )
+            .returns(() => expectedInstanceMap);
+
+        createStoreTesterForAssessmentActions('scanCompleted')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, finalState);
+    });
+
+    test('onScanCompleted with a manual requirement', () => {
+        const initialManualTestStepResult = {
+            status: ManualTestStatus.UNKNOWN,
+            id: requirementKey,
+            instances: [
+                {
+                    id: '1',
+                    description: 'aaa',
+                },
+            ],
+        };
+        const initialAssessmentData = new AssessmentDataBuilder()
+            .with('testStepStatus', {
+                ['assessment-1-step-1']: getDefaultTestStepData(),
+                ['assessment-1-step-2']: getDefaultTestStepData(),
+                ['assessment-1-step-3']: getDefaultTestStepData(),
+            })
+            .with('manualTestStepResultMap', {
+                [requirementKey]: initialManualTestStepResult,
+            })
+            .build();
+        const initialState = getStateWithAssessment(initialAssessmentData);
+
+        const payload: ScanCompletedPayload<any> = {
+            selectorMap: {},
+            scanResult: {} as ScanResults,
+            testType: assessmentType,
+            key: requirementKey,
+            scanIncompleteWarnings: [],
+        };
+
+        const expectedInstanceMap = {};
+        const stepMapStub = assessmentsProvider.getStepMap(assessmentType);
+        const stepConfig: Readonly<Requirement> = {
+            ...assessmentsProvider.getStep(assessmentType, 'assessment-1-step-1'),
+            isManual: true,
+            getInitialManualTestStatus: () => ManualTestStatus.FAIL,
+        };
+
+        const assessmentData = new AssessmentDataBuilder()
+            .with('generatedAssessmentInstancesMap', expectedInstanceMap)
+            .with('testStepStatus', {
+                // should FAIL based on getInitialManualTestStatus
+                ['assessment-1-step-1']: generateTestStepData(ManualTestStatus.FAIL, true),
+                // should stay unchanged because the event/payload is requirement-specific
+                ['assessment-1-step-2']: getDefaultTestStepData(),
+                ['assessment-1-step-3']: getDefaultTestStepData(),
+            })
+            .with('scanIncompleteWarnings', [])
+            .with('manualTestStepResultMap', {
+                [requirementKey]: {
+                    ...initialManualTestStepResult,
+                    // should FAIL based on getInitialManualTestStatus
+                    status: ManualTestStatus.FAIL,
+                },
+            })
             .build();
 
         const finalState = getStateWithAssessment(assessmentData);
