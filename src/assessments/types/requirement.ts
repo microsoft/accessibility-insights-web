@@ -42,7 +42,7 @@ export interface Requirement {
     isManual: boolean;
     // This is for semi-manual cases where we can't present a list of instances like an assisted
     // test would, but can infer a PASS or FAIL state. If not specified, acts like () => UNKNOWN.
-    getInitialManualTestStatus?: (InstanceIdToInstanceDataMap) => ManualTestStatus;
+    getInitialManualTestStatus?: (instances: InstanceIdToInstanceDataMap) => ManualTestStatus;
     guidanceLinks: HyperlinkDefinition[];
     columnsConfig?: InstanceTableColumn[];
     getAnalyzer?: (provider: AnalyzerProvider) => Analyzer;
