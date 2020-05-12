@@ -5,6 +5,7 @@ import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import { ContentPageComponent, HyperlinkDefinition } from 'views/content/content-page';
 import { ContentPanelButton, ContentPanelButtonDeps } from 'views/content/content-panel-button';
+import * as styles from './requirement-view-title.scss';
 
 export type RequirementViewTitleDeps = GuidanceTagsDeps & ContentPanelButtonDeps;
 
@@ -19,7 +20,7 @@ export const RequirementViewTitle = NamedFC<RequirementViewTitleProps>(
     'RequirementViewTitle',
     props => {
         return (
-            <h1 className="requirement-view-title">
+            <h1 className={styles.requirementViewTitle}>
                 {props.name}
                 <GuidanceTags deps={props.deps} links={props.guidanceLinks} />
                 <ContentPanelButton
