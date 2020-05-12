@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RequirementViewTitleTest renders with content from props 1`] = `
+<h1
+  className="requirement-view-title"
+>
+  test-requirement-name
+  <GuidanceTags />
+  <ContentPanelButton
+    contentTitle="test-requirement-name"
+    iconName="info"
+  />
+</h1>
+`;
