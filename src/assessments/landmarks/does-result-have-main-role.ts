@@ -3,9 +3,9 @@
 import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
 import { some } from 'lodash';
 
-export function doesResultHaveMainRole(instance: DecoratedAxeNodeResult): boolean {
+export function doesResultHaveMainRole(result: DecoratedAxeNodeResult): boolean {
     return (
-        some(instance.any, checkResult => checkResult.data['role'] === 'main') ||
-        some(instance.all, checkResult => checkResult.data['role'] === 'main')
+        some(result.any, checkResult => checkResult.data['role'] === 'main') ||
+        some(result.all, checkResult => checkResult.data['role'] === 'main')
     );
 }

@@ -27,18 +27,16 @@ export class AssessmentVisualizationEnabledToggle extends BaseVisualHelperToggle
     };
 
     private isAnyInstanceVisible(instances: GeneratedAssessmentInstance<{}, {}>[]): boolean {
+        const testStep = this.props.assessmentNavState.selectedTestSubview;
         return instances.some(
-            instance =>
-                instance.testStepResults[this.props.assessmentNavState.selectedTestSubview]
-                    .isVisualizationEnabled,
+            instance => instance.testStepResults[testStep].isVisualizationEnabled,
         );
     }
 
     private isAnyInstanceVisualizable(instances: GeneratedAssessmentInstance<{}, {}>[]): boolean {
+        const testStep = this.props.assessmentNavState.selectedTestSubview;
         return instances.some(
-            instance =>
-                instance.testStepResults[this.props.assessmentNavState.selectedTestSubview]
-                    .isVisualizationSupported,
+            instance => instance.testStepResults[testStep].isVisualizationSupported,
         );
     }
 }
