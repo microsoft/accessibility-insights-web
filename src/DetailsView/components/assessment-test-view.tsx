@@ -73,7 +73,6 @@ export const AssessmentTestView = NamedFC<AssessmentTestViewProps>(
                     currentTarget={currentTarget}
                     prevTarget={prevTarget}
                     assessmentTestResult={assessmentTestResult}
-                    selectedRequirementIsEnabled={selectedRequirementIsEnabled}
                 />
             );
         };

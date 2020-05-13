@@ -18,12 +18,12 @@ describe('AssessmentViewTest', () => {
     const firstAssessment = assessmentsProvider.all()[0];
     const stepName = firstAssessment.requirements[0].key;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
-    let selectedRequirementIsEnabled: boolean;
+    let isRequirementEnabled: boolean;
 
     let testObject: AssessmentViewUpdateHandler;
 
     beforeEach(() => {
-        selectedRequirementIsEnabled = false;
+        isRequirementEnabled = false;
         detailsViewActionMessageCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
         testObject = new AssessmentViewUpdateHandler();
     });
@@ -71,7 +71,7 @@ describe('AssessmentViewTest', () => {
                     a.enableVisualHelper(firstAssessment.visualizationType, stepName, false),
                 )
                 .verifiable(Times.never());
-            selectedRequirementIsEnabled = true;
+            isRequirementEnabled = true;
             const props = buildProps({ selector: {} });
 
             testObject.onMount(props);
@@ -218,7 +218,7 @@ describe('AssessmentViewTest', () => {
             deps,
             prevTarget,
             currentTarget: isTargetChanged ? anotherTarget : prevTarget,
-            selectedRequirementIsEnabled: selectedRequirementIsEnabled,
+            isRequirementEnabled: isRequirementEnabled,
             assessmentNavState,
             assessmentData,
         };

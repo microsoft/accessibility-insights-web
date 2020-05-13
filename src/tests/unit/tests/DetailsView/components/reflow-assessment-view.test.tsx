@@ -4,9 +4,8 @@ import { AssessmentTestResult } from 'common/assessment/assessment-test-result';
 import { AssessmentData } from 'common/types/store-data/assessment-result-data';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, Mock, Times } from 'typemoq';
+import { Mock } from 'typemoq';
 
-import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
 import {
     ReflowAssessmentView,
     ReflowAssessmentViewDeps,
@@ -14,12 +13,6 @@ import {
 } from '../../../../../DetailsView/components/reflow-assessment-view';
 
 describe('AssessmentViewTest', () => {
-    let updateHandlerMock: IMock<AssessmentViewUpdateHandler>;
-
-    beforeEach(() => {
-        updateHandlerMock = Mock.ofType(AssessmentViewUpdateHandler);
-    });
-
     test('render for requirement', () => {
         const props = generateProps('requirement');
         const rendered = shallow(<ReflowAssessmentView {...props} />);
@@ -32,37 +25,6 @@ describe('AssessmentViewTest', () => {
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
-    test('componentDidMount', () => {
-        const props = generateProps('requirement');
-        updateHandlerMock.setup(u => u.onMount(props)).verifiable(Times.once());
-        const testObject = new ReflowAssessmentView(props);
-
-        testObject.componentDidMount();
-
-        updateHandlerMock.verifyAll();
-    });
-
-    test('componentWillUnmount', () => {
-        const props = generateProps('requirement');
-        updateHandlerMock.setup(u => u.onUnmount(props)).verifiable(Times.once());
-        const testObject = new ReflowAssessmentView(props);
-
-        testObject.componentWillUnmount();
-
-        updateHandlerMock.verifyAll();
-    });
-
-    test('componentDidUpdate', () => {
-        const prevProps = generateProps('requirement1');
-        const props = generateProps('requirement2');
-        updateHandlerMock.setup(u => u.update(prevProps, props)).verifiable(Times.once());
-        const testObject = new ReflowAssessmentView(props);
-
-        testObject.componentDidUpdate(prevProps);
-
-        updateHandlerMock.verifyAll();
-    });
-
     function generateProps(subview: string): ReflowAssessmentViewProps {
         const assessmentDataMock = Mock.ofType<AssessmentData>();
 
@@ -73,9 +35,7 @@ describe('AssessmentViewTest', () => {
         } as AssessmentTestResult;
 
         const reflowProps = {
-            deps: {
-                assessmentViewUpdateHandler: updateHandlerMock.object,
-            } as ReflowAssessmentViewDeps,
+            deps: {} as ReflowAssessmentViewDeps,
             prevTarget: { id: 4 },
             currentTarget: { id: 5 },
             assessmentNavState: {

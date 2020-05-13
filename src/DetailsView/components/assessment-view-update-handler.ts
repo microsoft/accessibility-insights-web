@@ -26,7 +26,7 @@ export interface AssessmentViewUpdateHandlerProps {
     deps: AssessmentViewUpdateHandlerDeps;
     assessmentNavState: AssessmentNavState;
     assessmentData: AssessmentData;
-    selectedRequirementIsEnabled: boolean;
+    isRequirementEnabled: boolean;
     currentTarget: Tab;
     prevTarget: PersistedTabInfo;
 }
@@ -65,12 +65,12 @@ export class AssessmentViewUpdateHandler {
             return;
         }
 
-        const isStepNotScanned = !props.assessmentData.testStepStatus[step].isStepScanned;
-        if (props.selectedRequirementIsEnabled === false || isStepNotScanned) {
+        const isRequirementNotScanned = !props.assessmentData.testStepStatus[step].isStepScanned;
+        if (props.isRequirementEnabled === false || isRequirementNotScanned) {
             props.deps.detailsViewActionMessageCreator.enableVisualHelper(
                 test,
                 step,
-                isStepNotScanned,
+                isRequirementNotScanned,
                 sendTelemetry,
             );
         }
