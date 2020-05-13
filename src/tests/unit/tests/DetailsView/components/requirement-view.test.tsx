@@ -14,6 +14,7 @@ describe('RequirementViewTest', () => {
         const requirementStub = {
             name: 'test-requirement-name',
             description: <div>test-description</div>,
+            howToTest: <p>how-to-test-stub</p>,
         } as Requirement;
 
         const props: RequirementViewProps = {
