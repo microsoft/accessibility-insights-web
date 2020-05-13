@@ -2,6 +2,10 @@
 
 exports[`RequirementViewTest renders with content from props 1`] = `
 <div>
+  <RequirementViewTitle
+    deps={Object {}}
+    name="test-requirement-name"
+  />
   <div>
     test-description
   </div>
