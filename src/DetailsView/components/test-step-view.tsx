@@ -17,6 +17,11 @@ import * as React from 'react';
 import { DictionaryStringTo } from 'types/common-types';
 import { ContentPanelButton, ContentPanelButtonDeps } from 'views/content/content-panel-button';
 
+import {
+    AssessmentViewUpdateHandler,
+    AssessmentViewUpdateHandlerDeps,
+    AssessmentViewUpdateHandlerProps,
+} from 'DetailsView/components/assessment-view-update-handler';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 import { AssessmentInstanceTable } from './assessment-instance-table';
@@ -25,10 +30,12 @@ import * as styles from './test-step-view.scss';
 
 export type TestStepViewDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    assessmentViewUpdateHandler: AssessmentViewUpdateHandler;
 } & ContentPanelButtonDeps &
-    GuidanceTagsDeps;
+    GuidanceTagsDeps &
+    AssessmentViewUpdateHandlerDeps;
 
-export interface TestStepViewProps {
+export type TestStepViewProps = {
     deps: TestStepViewDeps;
     isStepEnabled: boolean;
     isStepScanned: boolean;
@@ -43,7 +50,7 @@ export interface TestStepViewProps {
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
     featureFlagStoreData: FeatureFlagStoreData;
     pathSnippetStoreData: PathSnippetStoreData;
-}
+} & AssessmentViewUpdateHandlerProps;
 
 export class TestStepView extends React.Component<TestStepViewProps> {
     public render(): JSX.Element {
@@ -75,6 +82,18 @@ export class TestStepView extends React.Component<TestStepViewProps> {
                 {this.renderTable()}
             </div>
         );
+    }
+
+    public componentDidMount(): void {
+        this.props.deps.assessmentViewUpdateHandler.onMount(this.props);
+    }
+
+    public componentDidUpdate(prevProps: TestStepViewProps): void {
+        this.props.deps.assessmentViewUpdateHandler.update(prevProps, this.props);
+    }
+
+    public componentWillUnmount(): void {
+        this.props.deps.assessmentViewUpdateHandler.onUnmount(this.props);
     }
 
     private renderTable(): JSX.Element {

@@ -32,36 +32,36 @@ describe('AssessmentViewTest', () => {
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
-    test('componentDidMount', () => {
-        const props = generateProps('requirement');
-        updateHandlerMock.setup(u => u.onMount(props)).verifiable(Times.once());
-        const testObject = new ReflowAssessmentView(props);
+    // test('componentDidMount', () => {
+    //     const props = generateProps('requirement');
+    //     updateHandlerMock.setup(u => u.onMount(props)).verifiable(Times.once());
+    //     const testObject = new ReflowAssessmentView(props);
 
-        testObject.componentDidMount();
+    //     testObject.componentDidMount();
 
-        updateHandlerMock.verifyAll();
-    });
+    //     updateHandlerMock.verifyAll();
+    // });
 
-    test('componentWillUnmount', () => {
-        const props = generateProps('requirement');
-        updateHandlerMock.setup(u => u.onUnmount(props)).verifiable(Times.once());
-        const testObject = new ReflowAssessmentView(props);
+    // test('componentWillUnmount', () => {
+    //     const props = generateProps('requirement');
+    //     updateHandlerMock.setup(u => u.onUnmount(props)).verifiable(Times.once());
+    //     const testObject = new ReflowAssessmentView(props);
 
-        testObject.componentWillUnmount();
+    //     testObject.componentWillUnmount();
 
-        updateHandlerMock.verifyAll();
-    });
+    //     updateHandlerMock.verifyAll();
+    // });
 
-    test('componentDidUpdate', () => {
-        const prevProps = generateProps('requirement1');
-        const props = generateProps('requirement2');
-        updateHandlerMock.setup(u => u.update(prevProps, props)).verifiable(Times.once());
-        const testObject = new ReflowAssessmentView(props);
+    // test('componentDidUpdate', () => {
+    //     const prevProps = generateProps('requirement1');
+    //     const props = generateProps('requirement2');
+    //     updateHandlerMock.setup(u => u.update(prevProps, props)).verifiable(Times.once());
+    //     const testObject = new ReflowAssessmentView(props);
 
-        testObject.componentDidUpdate(prevProps);
+    //     testObject.componentDidUpdate(prevProps);
 
-        updateHandlerMock.verifyAll();
-    });
+    //     updateHandlerMock.verifyAll();
+    // });
 
     function generateProps(subview: string): ReflowAssessmentViewProps {
         const assessmentDataMock = Mock.ofType<AssessmentData>();
