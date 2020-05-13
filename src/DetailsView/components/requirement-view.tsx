@@ -1,7 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Requirement } from 'assessments/types/requirement';
 import { NamedFC } from 'common/react/named-fc';
+import { AssessmentNavState } from 'common/types/store-data/assessment-result-data';
 import { RequirementInstructions } from 'DetailsView/components/requirement-instructions';
 import {
     RequirementViewTitle,
@@ -14,9 +16,22 @@ export type RequirementViewDeps = RequirementViewTitleDeps;
 export interface RequirementViewProps {
     deps: RequirementViewDeps;
     requirement: Requirement;
+    assessmentsProvider: AssessmentsProvider;
+    assessmentNavState: AssessmentNavState;
 }
 
 export const RequirementView = NamedFC<RequirementViewProps>('RequirementView', props => {
+    const getRequirement = (): Readonly<Requirement> => {
+        return props.assessmentsProvider.getStep(
+            props.assessmentNavState.selectedTestType,
+            props.assessmentNavState.selectedTestSubview,
+        );
+    };
+
+    const hasVisualHelper = (): boolean => {
+        return getRequirement().getVisualHelperToggle != null;
+    };
+
     return (
         <div className={styles.requirementView}>
             <RequirementViewTitle
