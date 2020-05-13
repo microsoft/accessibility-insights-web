@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RequirementInstructions renders with content from props 1`] = `
+<CollapsibleComponent
+  content={
+    <p>
+      how to test stub
+    </p>
+  }
+  contentClassName="requirementInstructions"
+  header={
+    <h2
+      className="requirementInstructionsHeader"
+    >
+      How to test
+    </h2>
+  }
+/>
+`;

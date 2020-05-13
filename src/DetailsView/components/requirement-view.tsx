@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { Requirement } from 'assessments/types/requirement';
 import { NamedFC } from 'common/react/named-fc';
-import { RequirementInstructionsComponent } from 'DetailsView/components/requirement-instructions';
+import { RequirementInstructions } from 'DetailsView/components/requirement-instructions';
 import {
     RequirementViewTitle,
     RequirementViewTitleDeps,
@@ -26,7 +26,7 @@ export const RequirementView = NamedFC<RequirementViewProps>('RequirementView', 
                 infoAndExamples={props.requirement.infoAndExamples}
             />
             {props.requirement.description}
-            <RequirementInstructionsComponent howToTest={props.requirement.howToTest} />
+            <RequirementInstructions howToTest={props.requirement.howToTest} />
         </div>
     );
 });

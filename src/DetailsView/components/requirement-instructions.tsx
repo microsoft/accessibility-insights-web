@@ -5,12 +5,12 @@ import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import * as styles from './requirement-how-to-test.scss';
 
-export interface RequirementHowToTestProps {
+export interface RequirementInstructionsProps {
     howToTest: JSX.Element;
 }
 
-export const RequirementInstructionsComponent = NamedFC<RequirementHowToTestProps>(
-    'RequirementInstructionsComponent',
+export const RequirementInstructions = NamedFC<RequirementInstructionsProps>(
+    'RequirementInstructions',
     props => {
         return (
             <CollapsibleComponent
