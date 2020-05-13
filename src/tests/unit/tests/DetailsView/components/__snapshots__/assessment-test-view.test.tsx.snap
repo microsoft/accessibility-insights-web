@@ -88,7 +88,6 @@ exports[`AssessmentTestView assessment view, isScanning is false 1`] = `
             "detailsViewActionMessageCreator": Object {},
           }
         }
-        selectedRequirementIsEnabled={false}
       />
     }
     featureFlag="reflowUI"
@@ -185,7 +184,6 @@ exports[`AssessmentTestView assessment view, isScanning is true 1`] = `
             "detailsViewActionMessageCreator": Object {},
           }
         }
-        selectedRequirementIsEnabled={false}
       />
     }
     featureFlag="reflowUI"

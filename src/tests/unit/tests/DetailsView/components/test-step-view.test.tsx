@@ -6,7 +6,10 @@ import { CollapsibleComponent } from 'common/components/collapsible-component';
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import { VisualizationType } from 'common/types/visualization-type';
 import { AssessmentInstanceTable } from 'DetailsView/components/assessment-instance-table';
-import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
+import {
+    AssessmentViewUpdateHandler,
+    AssessmentViewUpdateHandlerProps,
+} from 'DetailsView/components/assessment-view-update-handler';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
 import { ManualTestStepView } from 'DetailsView/components/manual-test-step-view';
 import {
@@ -150,7 +153,9 @@ describe('TestStepViewTest', () => {
             getVisualHelperToggleMock.object,
         ).build();
         prevProps.assessmentNavState.selectedTestSubview = 'prevTestStep';
-        updateHandlerMock.setup(u => u.update(prevProps, props)).verifiable(Times.once());
+        updateHandlerMock
+            .setup(u => u.update(getUpdateHandlerProps(prevProps), getUpdateHandlerProps(props)))
+            .verifiable(Times.once());
 
         const testObject = new TestStepView(props);
 
@@ -163,7 +168,9 @@ describe('TestStepViewTest', () => {
         const props = TestStepViewPropsBuilder.defaultProps(
             getVisualHelperToggleMock.object,
         ).build();
-        updateHandlerMock.setup(u => u.onMount(props)).verifiable(Times.once());
+        updateHandlerMock
+            .setup(u => u.onMount(getUpdateHandlerProps(props)))
+            .verifiable(Times.once());
 
         const testObject = new TestStepView(props);
 
@@ -176,7 +183,9 @@ describe('TestStepViewTest', () => {
         const props = TestStepViewPropsBuilder.defaultProps(
             getVisualHelperToggleMock.object,
         ).build();
-        updateHandlerMock.setup(u => u.onUnmount(props)).verifiable(Times.once());
+        updateHandlerMock
+            .setup(u => u.onUnmount(getUpdateHandlerProps(props)))
+            .verifiable(Times.once());
 
         const testObject = new TestStepView(props);
 
@@ -198,6 +207,17 @@ describe('TestStepViewTest', () => {
             view.prop('assessmentInstanceTableHandler'),
         );
         expect(props.assessmentsProvider).toEqual(view.prop('assessmentsProvider'));
+    }
+
+    function getUpdateHandlerProps(props: TestStepViewProps): AssessmentViewUpdateHandlerProps {
+        return {
+            deps: props.deps,
+            isRequirementEnabled: props.isStepEnabled,
+            assessmentNavState: props.assessmentNavState,
+            assessmentData: props.assessmentData,
+            prevTarget: props.prevTarget,
+            currentTarget: props.currentTarget,
+        };
     }
 });
 
