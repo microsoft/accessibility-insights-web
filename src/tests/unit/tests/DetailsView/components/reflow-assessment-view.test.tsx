@@ -4,9 +4,8 @@ import { AssessmentTestResult } from 'common/assessment/assessment-test-result';
 import { AssessmentData } from 'common/types/store-data/assessment-result-data';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, Mock, Times } from 'typemoq';
+import { Mock } from 'typemoq';
 
-import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
 import {
     ReflowAssessmentView,
     ReflowAssessmentViewDeps,

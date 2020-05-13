@@ -5,7 +5,6 @@ import * as React from 'react';
 import {
     AssessmentViewUpdateHandler,
     AssessmentViewUpdateHandlerDeps,
-    AssessmentViewUpdateHandlerProps,
 } from 'DetailsView/components/assessment-view-update-handler';
 import { AssessmentTestResult } from '../../common/assessment/assessment-test-result';
 import { Tab } from '../../common/itab';

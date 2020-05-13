@@ -5,7 +5,6 @@ import { Tab } from 'common/itab';
 import {
     AssessmentData,
     AssessmentNavState,
-    gettingStartedSubview,
     PersistedTabInfo,
 } from 'common/types/store-data/assessment-result-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
@@ -62,11 +61,7 @@ export class AssessmentViewUpdateHandler {
     ): void {
         const test = props.assessmentNavState.selectedTestType;
         const step = props.assessmentNavState.selectedTestSubview;
-        if (
-            step === gettingStartedSubview ||
-            this.visualHelperDisabledByDefault(props, test, step) ||
-            this.isTargetChanged(props)
-        ) {
+        if (this.visualHelperDisabledByDefault(props, test, step) || this.isTargetChanged(props)) {
             return;
         }
 
@@ -105,9 +100,6 @@ export class AssessmentViewUpdateHandler {
 
     private disableVisualHelpersForSelectedTest(props: AssessmentViewUpdateHandlerProps): void {
         const test = props.assessmentNavState.selectedTestType;
-        const subview = props.assessmentNavState.selectedTestSubview;
-        if (subview !== gettingStartedSubview) {
-            props.deps.detailsViewActionMessageCreator.disableVisualHelpersForTest(test);
-        }
+        props.deps.detailsViewActionMessageCreator.disableVisualHelpersForTest(test);
     }
 }
