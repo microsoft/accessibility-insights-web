@@ -47,18 +47,6 @@ export class ReflowAssessmentView extends React.Component<ReflowAssessmentViewPr
         return null;
     }
 
-    // public componentDidMount(): void {
-    //     this.props.deps.assessmentViewUpdateHandler.onMount(this.props);
-    // }
-
-    // public componentDidUpdate(prevProps: ReflowAssessmentViewProps): void {
-    //     this.props.deps.assessmentViewUpdateHandler.update(prevProps, this.props);
-    // }
-
-    // public componentWillUnmount(): void {
-    //     this.props.deps.assessmentViewUpdateHandler.onUnmount(this.props);
-    // }
-
     private renderTargetChangeDialog(): JSX.Element {
         return (
             <TargetChangeDialog
