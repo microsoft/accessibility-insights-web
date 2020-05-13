@@ -21,16 +21,12 @@ export interface RequirementViewProps {
 }
 
 export const RequirementView = NamedFC<RequirementViewProps>('RequirementView', props => {
-    const getRequirement = (): Readonly<Requirement> => {
-        return props.assessmentsProvider.getStep(
-            props.assessmentNavState.selectedTestType,
-            props.assessmentNavState.selectedTestSubview,
-        );
-    };
+    const selectedRequirement: Readonly<Requirement> = props.assessmentsProvider.getStep(
+        props.assessmentNavState.selectedTestType,
+        props.assessmentNavState.selectedTestSubview,
+    );
 
-    const hasVisualHelper = (): boolean => {
-        return getRequirement().getVisualHelperToggle != null;
-    };
+    const hasVisualHelper: boolean = selectedRequirement.getVisualHelperToggle != null;
 
     return (
         <div className={styles.requirementView}>
