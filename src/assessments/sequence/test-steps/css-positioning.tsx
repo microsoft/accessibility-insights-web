@@ -4,6 +4,7 @@ import { autoPassIfNoResults } from 'assessments/auto-pass-if-no-results';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
+import { TestAutomaticallyPassedNotice } from 'content/test/common/test-automatically-passed-notice';
 import * as content from 'content/test/sequence/css-positioning';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
 import * as React from 'react';
@@ -27,6 +28,7 @@ const howToTest: JSX.Element = (
             CSS <Markup.Term>position:absolute</Markup.Term> or{' '}
             <Markup.Term>float:right</Markup.Term>.
         </p>
+        <TestAutomaticallyPassedNotice />
         <p>
             This procedure also uses the{' '}
             <NewTabLink href="https://chrome.google.com/webstore/detail/web-developer/bfbameneiokkgbdmiekhjnmfkcnldhhm">

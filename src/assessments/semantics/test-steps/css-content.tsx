@@ -4,6 +4,7 @@ import { autoPassIfNoResults } from 'assessments/auto-pass-if-no-results';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
+import { TestAutomaticallyPassedNotice } from 'content/test/common/test-automatically-passed-notice';
 import * as content from 'content/test/semantics/css-content';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
 import * as React from 'react';
@@ -18,6 +19,9 @@ const cssContentHowToTest: JSX.Element = (
         <p>
             The visual helper for this requirement highlights content inserted in the page using CSS{' '}
             <Markup.CodeTerm>:before</Markup.CodeTerm> or <Markup.CodeTerm>:after</Markup.CodeTerm>.
+        </p>
+        <TestAutomaticallyPassedNotice />
+        <p>
             This procedure uses the{' '}
             <NewTabLink href="https://chrome.google.com/webstore/detail/web-developer/bfbameneiokkgbdmiekhjnmfkcnldhhm">
                 Web Developer
