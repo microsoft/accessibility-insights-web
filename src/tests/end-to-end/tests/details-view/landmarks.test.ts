@@ -46,19 +46,5 @@ describe('Details View -> Assessment -> Landmarks', () => {
             });
             await detailsViewPage.waitForRequirementStatus('Primary content', 'Incomplete');
         });
-
-        it('should visualize main landmarks', async () => {
-            const { detailsViewPage, targetPage } = await browser.newAssessment({
-                testResourcePath: 'landmarks/mixed-landmarks.html',
-            });
-            await detailsViewPage.navigateToTest('Landmarks');
-            await detailsViewPage.navigateToRequirement('Primary content');
-            await detailsViewPage.setToggleState('button[aria-label="Visual helper"]', true);
-
-            await targetPage.bringToFront();
-            const visualization = await targetPage.waitForVisualizationBox();
-            const visualizationLabel = await targetPage.getInnerText(visualization);
-            expect(visualizationLabel).toBe('main LM');
-        });
     });
 });

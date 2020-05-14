@@ -4,7 +4,6 @@ import { ElementHandle } from 'puppeteer';
 import * as Puppeteer from 'puppeteer';
 
 import { formatChildElementForSnapshot } from 'tests/common/element-snapshot-formatter';
-import { TargetPageInjectedComponentSelectors } from 'tests/end-to-end/common/element-identifiers/target-page-selectors';
 import { getTestResourceUrl } from '../test-resources';
 import { Page, PageOptions } from './page';
 
@@ -27,10 +26,6 @@ export function targetPageUrl(options?: TargetPageUrlOptions): string {
     return DEFAULT_TARGET_PAGE_URL;
 }
 
-export type VisualizationBoxOptions = {
-    label?: string;
-};
-
 export class TargetPage extends Page {
     constructor(
         underlyingPage: Puppeteer.Page,
@@ -43,7 +38,7 @@ export class TargetPage extends Page {
     public async waitForSelectorInShadowRoot(
         selector: string,
         options?: Puppeteer.WaitForSelectorOptions,
-    ): Promise<ElementHandle> {
+    ): Promise<Puppeteer.JSHandle<any>> {
         const shadowRoot = await this.waitForShadowRoot();
         return this.waitForDescendentSelector(shadowRoot, selector, options);
     }
@@ -53,19 +48,12 @@ export class TargetPage extends Page {
         await this.clickDescendentSelector(shadowRoot, selector, { visible: true });
     }
 
-    public async waitForShadowRoot(): Promise<ElementHandle> {
+    public async waitForShadowRoot(): Promise<ElementHandle<Element>> {
         return await this.waitForShadowRootOfSelector('#insights-shadow-host');
     }
 
     public async waitForShadowRootHtmlSnapshot(): Promise<Node> {
         const shadowRoot = await this.waitForShadowRoot();
         return await formatChildElementForSnapshot(shadowRoot, '#insights-shadow-container');
-    }
-
-    public async waitForVisualizationBox(): Promise<ElementHandle> {
-        return await this.waitForSelectorInShadowRoot(
-            TargetPageInjectedComponentSelectors.insightsVisualizationBox,
-            { visible: true },
-        );
     }
 }

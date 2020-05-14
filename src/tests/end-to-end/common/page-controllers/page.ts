@@ -145,7 +145,7 @@ export class Page {
     public async waitForSelector(
         selector: string,
         options?: Puppeteer.WaitForSelectorOptions,
-    ): Promise<Puppeteer.ElementHandle> {
+    ): Promise<Puppeteer.ElementHandle<Element>> {
         return await this.screenshotOnError(
             async () =>
                 await this.underlyingPage.waitForSelector(selector, {
@@ -155,7 +155,7 @@ export class Page {
         );
     }
 
-    public async waitForSelectorXPath(xpath: string): Promise<Puppeteer.ElementHandle> {
+    public async waitForSelectorXPath(xpath: string): Promise<Puppeteer.ElementHandle<Element>> {
         return await this.screenshotOnError(
             async () =>
                 await this.underlyingPage.waitForXPath(xpath, {
@@ -164,7 +164,7 @@ export class Page {
         );
     }
 
-    public async waitForId(id: string): Promise<Puppeteer.ElementHandle> {
+    public async waitForId(id: string): Promise<Puppeteer.ElementHandle<Element>> {
         return this.waitForSelector(`#${id}`);
     }
 
@@ -191,33 +191,27 @@ export class Page {
     }
 
     public async waitForDescendentSelector(
-        parentElement: Puppeteer.ElementHandle,
+        parentElement: Puppeteer.ElementHandle<Element>,
         descendentSelector: string,
         options?: Puppeteer.WaitForSelectorOptions,
-    ): Promise<Puppeteer.ElementHandle> {
+    ): Promise<Puppeteer.JSHandle> {
         options = {
             timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
             ...options,
         };
         return await this.screenshotOnError(async () => {
-            return (
-                await this.underlyingPage.waitForFunction(
-                    (parent, selector) => parent.querySelector(selector),
-                    options,
-                    parentElement,
-                    descendentSelector,
-                )
-            ).asElement();
+            return await this.underlyingPage.waitForFunction(
+                (parent, selector) => parent.querySelector(selector),
+                options,
+                parentElement,
+                descendentSelector,
+            );
         });
     }
 
-    public async getInnerText(element: Puppeteer.ElementHandle): Promise<string> {
-        return await this.screenshotOnError(async () => {
-            return await this.underlyingPage.evaluate(e => e.innerText, element);
-        });
-    }
-
-    public async waitForShadowRootOfSelector(selector: string): Promise<Puppeteer.ElementHandle> {
+    public async waitForShadowRootOfSelector(
+        selector: string,
+    ): Promise<Puppeteer.ElementHandle<Element>> {
         return await this.screenshotOnError(async () => {
             const shadowRootHandle = await this.underlyingPage.waitForFunction(
                 selectorInEval => {
@@ -243,7 +237,7 @@ export class Page {
     }
 
     public async clickDescendentSelector(
-        parentElement: Puppeteer.ElementHandle,
+        parentElement: Puppeteer.ElementHandle<Element>,
         descendentSelector: string,
         options?: Puppeteer.WaitForSelectorOptions,
     ): Promise<void> {
@@ -252,28 +246,30 @@ export class Page {
         await this.clickElementHandle(element);
     }
 
-    public async clickElementHandle(element: Puppeteer.ElementHandle): Promise<void> {
+    public async clickElementHandle(element: Puppeteer.ElementHandle<Element>): Promise<void> {
         await this.screenshotOnError(async () => {
             await element.click({ delay: DEFAULT_CLICK_MOUSEUP_DELAY_MS });
         });
     }
 
     public async getDescendentSelectorElement(
-        parentElement: Puppeteer.ElementHandle,
+        parentElement: Puppeteer.ElementHandle<Element>,
         descendentSelector: string,
-    ): Promise<Puppeteer.ElementHandle> {
+    ): Promise<Puppeteer.ElementHandle<Element>> {
         return await this.screenshotOnError(async () => {
             return await parentElement.$(descendentSelector);
         });
     }
 
-    public async getSelectorElement(selector: string): Promise<Puppeteer.ElementHandle> {
+    public async getSelectorElement(selector: string): Promise<Puppeteer.ElementHandle<Element>> {
         return await this.screenshotOnError(async () => {
             return await this.underlyingPage.$(selector);
         });
     }
 
-    public async getSelectorElements(selector: string): Promise<Puppeteer.ElementHandle[]> {
+    public async getSelectorElements(
+        selector: string,
+    ): Promise<Puppeteer.ElementHandle<Element>[]> {
         return await this.screenshotOnError(async () => {
             return await this.underlyingPage.$$(selector);
         });
