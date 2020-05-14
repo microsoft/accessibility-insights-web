@@ -13,7 +13,10 @@ import {
 import { FeatureFlagStoreData } from '../../../../../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
 import { DetailsRightPanelConfiguration } from '../../../../../../DetailsView/components/details-view-right-panel';
-import { DetailsViewSwitcherNavConfiguration } from '../../../../../../DetailsView/components/details-view-switcher-nav';
+import {
+    DetailsViewSwitcherNavConfiguration,
+    LeftNavProps,
+} from '../../../../../../DetailsView/components/details-view-switcher-nav';
 import {
     DetailsViewLeftNav,
     DetailsViewLeftNavDeps,
@@ -36,9 +39,10 @@ describe('DetailsViewLeftNav', () => {
             (theProps: GetLeftNavSelectedKeyProps) => null,
             MockBehavior.Strict,
         );
-        const LeftNavStub: Readonly<ReactFCWithDisplayName<DetailsViewLeftNavProps>> = NamedFC<
-            DetailsViewLeftNavProps
-        >('test', _ => null);
+        const LeftNavStub: Readonly<ReactFCWithDisplayName<LeftNavProps>> = NamedFC<LeftNavProps>(
+            'test',
+            _ => null,
+        );
         const assessmentDataStub: { [key: string]: AssessmentData } = {
             x: { testStepStatus: {} } as AssessmentData,
         };
