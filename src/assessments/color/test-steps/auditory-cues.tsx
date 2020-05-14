@@ -40,5 +40,5 @@ export const AuditoryCues: Requirement = {
     howToTest: auditoryCuesHowToTest,
     isManual: true,
     ...content,
-    guidanceLinks: [link.WCAG_1_3_3],
+    guidanceLinks: [link.WCAG_1_1_1],
 };

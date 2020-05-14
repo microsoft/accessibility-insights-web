@@ -2,8 +2,10 @@
 // Licensed under the MIT License.
 @import '../../common/styles/common.scss';
 
-.getting-started-view {
-    margin: 0px 18px;
-    padding-left: 6px;
-    padding-top: 1vh;
+.requirement-view-title {
+    @include text-style-title-m;
+
+    color: $primary-text;
+    display: flex;
+    align-items: center;
 }

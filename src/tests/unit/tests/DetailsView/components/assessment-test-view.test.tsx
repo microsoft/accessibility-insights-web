@@ -115,7 +115,7 @@ describe('AssessmentTestView', () => {
     });
     test('assessment view, isScanning is true', () => {
         const actual = shallow(<AssessmentTestView {...props} />);
-        expect(actual.debug()).toMatchSnapshot();
+        expect(actual.getElement()).toMatchSnapshot();
         verifyAll();
     });
 
@@ -123,7 +123,7 @@ describe('AssessmentTestView', () => {
         props.visualizationStoreData.scanning = null;
 
         const actual = shallow(<AssessmentTestView {...props} />);
-        expect(actual.debug()).toMatchSnapshot();
+        expect(actual.getElement()).toMatchSnapshot();
         verifyAll();
     });
 

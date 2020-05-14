@@ -46,7 +46,7 @@ export type AssessmentViewDeps = ContentLinkDeps &
 export interface AssessmentViewProps {
     deps: AssessmentViewDeps;
     isScanning: boolean;
-    isEnabled: boolean;
+    selectedRequirementIsEnabled: boolean;
     assessmentNavState: AssessmentNavState;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
     assessmentData: AssessmentData;
@@ -92,21 +92,11 @@ export class AssessmentView extends React.Component<AssessmentViewProps> {
         );
     }
 
-    public componentDidMount(): void {
-        this.deps.assessmentViewUpdateHandler.onMount(this.props);
-    }
-
     public componentDidUpdate(prevProps: AssessmentViewProps): void {
-        this.deps.assessmentViewUpdateHandler.update(prevProps, this.props);
-
         const { assessmentTestResult } = this.props;
         this.deps.detailsViewExtensionPoint
             .apply(assessmentTestResult.definition.extensions)
             .onAssessmentViewUpdate(prevProps, this.props);
-    }
-
-    public componentWillUnmount(): void {
-        this.deps.assessmentViewUpdateHandler.onUnmount(this.props);
     }
 
     private renderTargetChangeDialog(): JSX.Element {
@@ -177,13 +167,16 @@ export class AssessmentView extends React.Component<AssessmentViewProps> {
                         assessmentInstanceTableHandler={this.props.assessmentInstanceTableHandler}
                         manualTestStepResultMap={this.props.assessmentData.manualTestStepResultMap}
                         assessmentsProvider={this.props.deps.assessmentsProvider}
-                        isStepEnabled={this.props.isEnabled}
+                        isStepEnabled={this.props.selectedRequirementIsEnabled}
                         isStepScanned={isStepScanned}
                         assessmentDefaultMessageGenerator={
                             this.props.assessmentDefaultMessageGenerator
                         }
                         featureFlagStoreData={this.props.featureFlagStoreData}
                         pathSnippetStoreData={this.props.pathSnippetStoreData}
+                        assessmentData={this.props.assessmentData}
+                        currentTarget={this.props.currentTarget}
+                        prevTarget={this.props.prevTarget}
                     />
                 </div>
             </div>

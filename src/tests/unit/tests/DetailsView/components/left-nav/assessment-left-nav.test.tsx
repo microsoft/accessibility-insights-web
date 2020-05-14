@@ -4,7 +4,7 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { FeatureFlags } from 'common/feature-flags';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, Mock } from 'typemoq';
+import { IMock, Mock, MockBehavior } from 'typemoq';
 import {
     ManualTestStatus,
     ManualTestStatusData,
@@ -31,7 +31,7 @@ describe('AssessmentLeftNav', () => {
     beforeEach(() => {
         assessmentsDataStub = {};
         assessmentsProviderStub = {} as AssessmentsProvider;
-        leftNavLinkBuilderMock = Mock.ofType(LeftNavLinkBuilder);
+        leftNavLinkBuilderMock = Mock.ofType(LeftNavLinkBuilder, MockBehavior.Strict);
         navLinkHandlerMock = {
             onOverviewClick: () => {},
             onAssessmentTestClick: (x, y) => {},
@@ -63,6 +63,28 @@ describe('AssessmentLeftNav', () => {
                 ),
             )
             .returns(() => linkStub);
+    });
+
+    it('renders with reflow feature flag enabled', () => {
+        props.featureFlagStoreData[FeatureFlags.reflowUI] = true;
+
+        leftNavLinkBuilderMock
+            .setup(lnlbm =>
+                lnlbm.buildReflowAssessmentTestLinks(
+                    deps,
+                    assessmentsProviderStub,
+                    assessmentsDataStub,
+                    1,
+                ),
+            )
+            .returns(() => [linkStub]);
+
+        const actual = shallow(<AssessmentLeftNav {...props} />);
+        expect(actual.getElement()).toMatchSnapshot();
+    });
+
+    it('renders with reflow feature flag disabled', () => {
+        props.featureFlagStoreData[FeatureFlags.reflowUI] = false;
 
         leftNavLinkBuilderMock
             .setup(lnlbm =>
@@ -75,16 +97,7 @@ describe('AssessmentLeftNav', () => {
                 ),
             )
             .returns(() => [linkStub]);
-    });
 
-    it('renders with reflow feature flag enabled', () => {
-        props.featureFlagStoreData[FeatureFlags.reflowUI] = true;
-        const actual = shallow(<AssessmentLeftNav {...props} />);
-        expect(actual.getElement()).toMatchSnapshot();
-    });
-
-    it('renders with reflow feature flag disabled', () => {
-        props.featureFlagStoreData[FeatureFlags.reflowUI] = false;
         const actual = shallow(<AssessmentLeftNav {...props} />);
         expect(actual.getElement()).toMatchSnapshot();
     });

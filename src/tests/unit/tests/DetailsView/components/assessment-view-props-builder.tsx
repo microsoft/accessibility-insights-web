@@ -36,7 +36,7 @@ export class AssessmentViewPropsBuilder {
     public detailsViewExtensionPointMock: IMock<DetailsViewExtensionPoint>;
     private assessmentGeneratorInstance: AssessmentDefaultMessageGenerator;
     private content: JSX.Element = (<div>AssessmentViewTest content</div>);
-    private isEnabled: boolean = false;
+    private selectedRequirementIsEnabled: boolean = false;
     private provider: AssessmentsProvider;
 
     constructor(provider: AssessmentsProvider, assessmentGeneratorInstanceMock) {
@@ -48,8 +48,8 @@ export class AssessmentViewPropsBuilder {
         this.provider = provider;
     }
 
-    public setIsEnabled(isEnabled: true): AssessmentViewPropsBuilder {
-        this.isEnabled = isEnabled;
+    public setRequirementIsEnabled(isEnabled: true): AssessmentViewPropsBuilder {
+        this.selectedRequirementIsEnabled = isEnabled;
         return this;
     }
 
@@ -109,7 +109,7 @@ export class AssessmentViewPropsBuilder {
             prevTarget,
             currentTarget: isTargetChanged ? anotherTarget : prevTarget,
             isScanning: false,
-            isEnabled: this.isEnabled,
+            selectedRequirementIsEnabled: this.selectedRequirementIsEnabled,
             content: this.content,
             assessmentNavState,
             assessmentInstanceTableHandler: this.assessmentInstanceTableHandlerMock.object,

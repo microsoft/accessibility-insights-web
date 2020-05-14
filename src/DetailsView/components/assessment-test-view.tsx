@@ -49,7 +49,7 @@ export const AssessmentTestView = NamedFC<AssessmentTestViewProps>(
         const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
         const assessmentData = props.configuration.getAssessmentData(props.assessmentStoreData);
         const prevTarget = props.assessmentStoreData.persistedTabInfo;
-        const isEnabled = props.configuration.getTestStatus(
+        const selectedRequirementIsEnabled = props.configuration.getTestStatus(
             scanData,
             assessmentNavState.selectedTestSubview,
         );
@@ -81,7 +81,7 @@ export const AssessmentTestView = NamedFC<AssessmentTestViewProps>(
                 <AssessmentView
                     deps={deps}
                     isScanning={isScanning}
-                    isEnabled={isEnabled}
+                    selectedRequirementIsEnabled={selectedRequirementIsEnabled}
                     assessmentNavState={assessmentNavState}
                     assessmentInstanceTableHandler={props.assessmentInstanceTableHandler}
                     assessmentData={assessmentData}

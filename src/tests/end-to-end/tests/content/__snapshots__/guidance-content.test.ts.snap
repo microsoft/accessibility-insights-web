@@ -28346,10 +28346,10 @@ exports[`Guidance Content pages test/sensory/guidance matches the snapshot 1`] =
               Don't use audio as the only means of conveying information. (
               <a
                 class="ms-Link insights-link root-000"
-                href="https://www.w3.org/WAI/WCAG21/Understanding/sensory-characteristics.html"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html"
                 target="_blank"
               >
-                WCAG 1.3.3
+                WCAG 1.1.1
               </a>
               )
             </h3>
@@ -31675,7 +31675,7 @@ exports[`Guidance Content pages test/textLegibility/reflow/infoAndExamples match
       class="content"
     >
       <p>
-        Text content must be visible without having to scroll both vertically and horizontally.
+        Content must be visible without having to scroll both vertically and horizontally.
       </p>
       <h2>
         Why it matters

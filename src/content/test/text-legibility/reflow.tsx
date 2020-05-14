@@ -4,7 +4,7 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <p>Text content must be visible without having to scroll both vertically and horizontally.</p>
+        <p>Content must be visible without having to scroll both vertically and horizontally.</p>
 
         <h2>Why it matters</h2>
         <p>
