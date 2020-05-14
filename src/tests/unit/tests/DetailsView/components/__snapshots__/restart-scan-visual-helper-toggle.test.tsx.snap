@@ -15,6 +15,7 @@ exports[`RestartScanVisualHelperToggleTest onClick: step enabled = false 1`] = `
     <VisualizationToggle
       checked={false}
       className="visual-helper-toggle"
+      data-automation-id="visual-helper-toggle"
       disabled={false}
       onClick={[Function]}
       visualizationName="Visual helper"
@@ -38,6 +39,7 @@ exports[`RestartScanVisualHelperToggleTest onClick: step enabled = true 1`] = `
     <VisualizationToggle
       checked={true}
       className="visual-helper-toggle"
+      data-automation-id="visual-helper-toggle"
       disabled={false}
       onClick={[Function]}
       visualizationName="Visual helper"
@@ -61,6 +63,7 @@ exports[`RestartScanVisualHelperToggleTest render 1`] = `
     <VisualizationToggle
       checked={true}
       className="visual-helper-toggle"
+      data-automation-id="visual-helper-toggle"
       disabled={false}
       onClick={[Function]}
       visualizationName="Visual helper"
