@@ -2,7 +2,7 @@
 
 exports[`GettingStartedNavLink renders 1`] = `
 <span
-  className="getting-started"
+  className="gettingStarted"
 >
   Getting Started
 </span>
