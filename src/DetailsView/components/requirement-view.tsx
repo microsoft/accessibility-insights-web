@@ -32,30 +32,22 @@ export interface RequirementViewProps {
 }
 
 export const RequirementView = NamedFC<RequirementViewProps>('RequirementView', props => {
-    const getRequirement = () => {
-        return props.assessmentsProvider.getStep(
-            props.assessmentNavState.selectedTestType,
-            props.assessmentNavState.selectedTestSubview,
-        );
+    const requirement: Readonly<Requirement> = props.assessmentsProvider.getStep(
+        props.assessmentNavState.selectedTestType,
+        props.assessmentNavState.selectedTestSubview,
+    );
+
+    const visualHelperToggleConfig: VisualHelperToggleConfig = {
+        deps: props.deps,
+        assessmentNavState: props.assessmentNavState,
+        instancesMap: props.instancesMap,
+        isStepEnabled: props.isStepEnabled,
+        isStepScanned: props.isStepScanned,
     };
 
-    const hasVisualHelper: boolean = getRequirement().getVisualHelperToggle != null;
-
-    const renderVisualHelperToggle = () => {
-        if (!hasVisualHelper) {
-            return null;
-        }
-
-        const visualHelperToggleConfig: VisualHelperToggleConfig = {
-            deps: props.deps,
-            assessmentNavState: props.assessmentNavState,
-            instancesMap: props.instancesMap,
-            isStepEnabled: props.isStepEnabled,
-            isStepScanned: props.isStepScanned,
-        };
-
-        return getRequirement().getVisualHelperToggle(visualHelperToggleConfig);
-    };
+    const visualHelperToggle = requirement.getVisualHelperToggle
+        ? requirement.getVisualHelperToggle(visualHelperToggleConfig)
+        : null;
 
     return (
         <div className={styles.requirementView}>
@@ -66,7 +58,7 @@ export const RequirementView = NamedFC<RequirementViewProps>('RequirementView', 
                 infoAndExamples={props.requirement.infoAndExamples}
             />
             {props.requirement.description}
-            {renderVisualHelperToggle()}
+            {visualHelperToggle}
             <RequirementInstructions howToTest={props.requirement.howToTest} />
         </div>
     );
