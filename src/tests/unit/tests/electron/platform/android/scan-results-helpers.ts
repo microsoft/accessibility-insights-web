@@ -112,12 +112,14 @@ export function buildViewElement(
 
 export function buildRuleInformation(
     ruleId: string,
+    ruleLink = 'rule-link',
     guidance: GuidanceLink[] = [],
     includeResults: boolean = true,
 ): RuleInformation {
     return {
         ruleId: ruleId,
         ruleDescription: 'This describes ' + ruleId,
+        ruleLink,
         guidance,
         getUnifiedFormattableResolutionDelegate: r => {
             expect('getUnifiedResolution').toBe('This code should never execute');

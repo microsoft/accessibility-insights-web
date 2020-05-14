@@ -14,6 +14,7 @@ export type IncludeThisResultDelegate = (ruleResultsData: RuleResultsData) => bo
 export class RuleInformation {
     constructor(
         readonly ruleId: string,
+        readonly ruleLink: string,
         readonly ruleDescription: string,
         readonly guidance: GuidanceLink[],
         readonly getUnifiedFormattableResolutionDelegate: GetUnifiedFormattableResolutionDelegate,

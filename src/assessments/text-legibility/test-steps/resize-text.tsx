@@ -28,9 +28,9 @@ const resizeTextHowToTest: JSX.Element = (
         &nbsp;
         <ol>
             <li>
-                Use <Markup.Term>Windows Settings</Markup.Term> > <Markup.Term>System</Markup.Term>{' '}
-                > <Markup.Term>Display</Markup.Term> > <Markup.Term>Scale and layout</Markup.Term>{' '}
-                to
+                Use <Markup.Term>Windows Settings</Markup.Term> {'>'}{' '}
+                <Markup.Term>System</Markup.Term> {'>'} <Markup.Term>Display</Markup.Term> {'>'}{' '}
+                <Markup.Term>Scale and layout</Markup.Term> to
                 <ol>
                     <li>Set the resolution to 1920x1080, and</li>
                     <li>Set scaling to 100%.</li>
