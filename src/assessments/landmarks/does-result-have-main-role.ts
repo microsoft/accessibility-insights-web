@@ -4,6 +4,8 @@ import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
 import { some } from 'lodash';
 
 export function doesResultHaveMainRole(result: DecoratedAxeNodeResult): boolean {
+    // This 'role' data is populated by the unique-landmark rule, which considers
+    // both explicit role attributes and implicit roles based on tag name
     return (
         some(result.any, checkResult => checkResult.data['role'] === 'main') ||
         some(result.all, checkResult => checkResult.data['role'] === 'main')
