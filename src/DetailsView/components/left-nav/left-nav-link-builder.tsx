@@ -3,7 +3,10 @@
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { Requirement } from 'assessments/types/requirement';
-import { gettingStartedSubview } from 'common/types/store-data/assessment-result-data';
+import {
+    GettingStarted,
+    gettingStartedSubview,
+} from 'common/types/store-data/assessment-result-data';
 import {
     AssessmentLeftNavLink,
     onTestGettingStartedClick,
@@ -11,6 +14,7 @@ import {
     TestGettingStartedNavLink,
     TestRequirementLeftNavLink,
 } from 'DetailsView/components/left-nav/assessment-left-nav';
+import { getReflowRequirementViewKey } from 'DetailsView/components/left-nav/get-left-nav-selected-key';
 import { GettingStartedNavLink } from 'DetailsView/components/left-nav/getting-started-nav-link';
 import { LeftNavIndexIcon, LeftNavStatusIcon } from 'DetailsView/components/left-nav/left-nav-icon';
 import { NavLinkHandler } from 'DetailsView/components/left-nav/nav-link-handler';
@@ -214,7 +218,7 @@ export class LeftNavLinkBuilder {
 
         const baselink = this.buildBaseLink(
             name,
-            requirement.key,
+            this.getSubviewLinkKey(test, requirement.key),
             requirementIndex,
             l => <TestViewLeftNavLink link={l} renderIcon={this.renderRequirementIcon} />,
             onClick,
@@ -237,12 +241,19 @@ export class LeftNavLinkBuilder {
             testType: test.visualizationType,
             ...this.buildBaseLink(
                 'Getting Started',
-                gettingStartedSubview,
+                this.getSubviewLinkKey(test.visualizationType, gettingStartedSubview),
                 0,
                 () => <GettingStartedNavLink />,
                 onClick,
             ),
         };
+    }
+
+    private getSubviewLinkKey(
+        visualizationType: VisualizationType,
+        selectedSubview: string,
+    ): string {
+        return getReflowRequirementViewKey({ visualizationType, selectedSubview });
     }
 
     private renderRequirementIcon = (link: TestRequirementLeftNavLink) => {

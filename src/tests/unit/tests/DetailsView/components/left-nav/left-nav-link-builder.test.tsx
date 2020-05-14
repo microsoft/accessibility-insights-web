@@ -220,10 +220,11 @@ describe('LeftNavBuilder', () => {
                 name: 'requirement-name-2',
                 key: 'requirement-key-2',
             } as Requirement;
+            const visualizationType: VisualizationType = 1;
             const assessmentStub = {
                 key: 'some key',
                 title: 'some title',
-                visualizationType: 1,
+                visualizationType,
                 requirements: [requirementStubA, requirementStubB],
             } as Assessment;
             const assessmentsStub = [assessmentStub, assessmentStub];
@@ -265,9 +266,10 @@ describe('LeftNavBuilder', () => {
             );
 
             links.forEach((testLink, linkIndex) => {
+                const visualizationTypeName = VisualizationType[assessmentStub.visualizationType];
                 const expectedTestLink = {
                     name: assessmentStub.title,
-                    key: VisualizationType[assessmentStub.visualizationType],
+                    key: visualizationTypeName,
                     forceAnchor: true,
                     url: '',
                     index: startingIndexStub + linkIndex,
@@ -281,7 +283,7 @@ describe('LeftNavBuilder', () => {
                 };
                 const expectedGettingStartedLink = {
                     name: 'Getting Started',
-                    key: gettingStartedSubview,
+                    key: `${visualizationTypeName}: ${gettingStartedSubview}`,
                     forceAnchor: true,
                     url: '',
                     index: 0,
@@ -327,7 +329,7 @@ describe('LeftNavBuilder', () => {
     ): TestRequirementLeftNavLink {
         return {
             name: requirement.name,
-            key: requirement.key,
+            key: `${VisualizationType[test]}: ${requirement.key}`,
             forceAnchor: true,
             url: '',
             iconProps: {
