@@ -73,9 +73,12 @@ describe('ScanResultsToUnifiedRules', () => {
 
         const ruleInformation1: RuleInformation = buildRuleInformation(ruleId1);
         const ruleInformation2: RuleInformation = buildRuleInformation(ruleId2);
-        const ruleInformation3: RuleInformation = buildRuleInformation(ruleId3, [link.WCAG_1_1_1]);
+        const ruleInformation3: RuleInformation = buildRuleInformation(ruleId3, 'rule-link-3', [
+            link.WCAG_1_1_1,
+        ]);
         const ruleInformation4: RuleInformation = buildRuleInformation(
             ruleId4,
+            'rule-link-4',
             [link.WCAG_1_2_1],
             false,
         );
