@@ -7,3 +7,14 @@
     padding-left: 6px;
     padding-top: 1vh;
 }
+
+:global(.visual-helper) {
+    display: flex;
+    padding-top: 1.5vh;
+    &-text {
+        padding-right: 0.9vh;
+        font-family: $fontFamily;
+        font-size: 14px;
+        line-height: 20px;
+    }
+}
