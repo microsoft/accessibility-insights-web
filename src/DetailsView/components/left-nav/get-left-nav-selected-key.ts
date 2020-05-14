@@ -16,7 +16,11 @@ export function getTestViewKey(props: GetLeftNavSelectedKeyProps): string {
     return VisualizationType[props.visualizationType];
 }
 
-export function getReflowRequirementViewKey(props: GetLeftNavSelectedKeyProps): string {
+export function getRequirementViewKey(props: GetLeftNavSelectedKeyProps): string {
+    return props.selectedSubview;
+}
+
+export function getGettingStartedViewKey(props: GetLeftNavSelectedKeyProps): string {
     const testName = VisualizationType[props.visualizationType];
     const subview = props.selectedSubview;
     return `${testName}: ${subview}`;

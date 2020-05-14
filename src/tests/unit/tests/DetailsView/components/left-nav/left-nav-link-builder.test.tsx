@@ -329,7 +329,7 @@ describe('LeftNavBuilder', () => {
     ): TestRequirementLeftNavLink {
         return {
             name: requirement.name,
-            key: `${VisualizationType[test]}: ${requirement.key}`,
+            key: requirement.key,
             forceAnchor: true,
             url: '',
             iconProps: {

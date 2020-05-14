@@ -3,8 +3,9 @@
 import { EnumHelper } from '../../../../../../common/enum-helper';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
 import {
+    getGettingStartedViewKey,
     getOverviewKey,
-    getReflowRequirementViewKey,
+    getRequirementViewKey,
     getTestViewKey,
 } from '../../../../../../DetailsView/components/left-nav/get-left-nav-selected-key';
 
@@ -25,17 +26,28 @@ describe('getTestviewKey', () => {
     });
 });
 
-describe('getReflowKey', () => {
-    const types = EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
-    describe.each(types)('returns using VisualizationType', visualizationType => {
-        it('for ' + VisualizationType[visualizationType], () => {
-            const requirementName = 'requirement-name';
-            expect(
-                getReflowRequirementViewKey({
-                    visualizationType: visualizationType,
-                    selectedSubview: requirementName,
-                }),
-            ).toEqual(`${VisualizationType[visualizationType]}: ${requirementName}`);
-        });
+describe('getRequirementViewKey', () => {
+    it('returns requirement name', () => {
+        const requirementName = 'requirement-name';
+        expect(
+            getRequirementViewKey({
+                visualizationType: 1,
+                selectedSubview: requirementName,
+            }),
+        ).toEqual(requirementName);
+    });
+});
+
+describe('getGettingStartedViewKey', () => {
+    it('returns prefixed with VisualizationType', () => {
+        const selectedSubview = 'subview';
+        const visualizationType: VisualizationType = 1;
+        const expectedKey = `${VisualizationType[visualizationType]}: ${selectedSubview}`;
+        expect(
+            getGettingStartedViewKey({
+                visualizationType,
+                selectedSubview,
+            }),
+        ).toEqual(expectedKey);
     });
 });

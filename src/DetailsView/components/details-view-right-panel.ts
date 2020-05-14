@@ -9,10 +9,11 @@ import {
 } from '../handlers/get-document-title';
 import { DetailsViewRightContentPanelType } from './left-nav/details-view-right-content-panel-type';
 import {
+    getGettingStartedViewKey,
     GetLeftNavSelectedKeyProps,
     getOverviewKey,
+    getRequirementViewKey,
     getTestViewKey,
-    getReflowRequirementViewKey,
 } from './left-nav/get-left-nav-selected-key';
 import {
     OverviewContainer,
@@ -65,10 +66,16 @@ const detailsViewTypeContentMap: {
         GetLeftNavSelectedKey: getTestViewKey,
         GetStartOverContextualMenuItemKeys: () => ['assessment', 'test'],
     },
-    ReflowRequirementView: {
+    RequirementView: {
         RightPanel: TestViewContainer,
         GetTitle: getTestViewTitle,
-        GetLeftNavSelectedKey: getReflowRequirementViewKey,
+        GetLeftNavSelectedKey: getRequirementViewKey,
+        GetStartOverContextualMenuItemKeys: () => ['assessment', 'test'],
+    },
+    GettingStartedView: {
+        RightPanel: TestViewContainer,
+        GetTitle: getTestViewTitle,
+        GetLeftNavSelectedKey: getGettingStartedViewKey,
         GetStartOverContextualMenuItemKeys: () => ['assessment', 'test'],
     },
 };
