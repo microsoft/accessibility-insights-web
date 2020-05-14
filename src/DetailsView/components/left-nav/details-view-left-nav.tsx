@@ -49,6 +49,7 @@ export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewL
 
     const selectedKey: string = rightPanelConfiguration.GetLeftNavSelectedKey({
         visualizationType: selectedTest,
+        selectedSubview: assessmentStoreData.assessmentNavState.selectedTestSubview,
     });
     const filteredProvider = assessmentsProviderWithFeaturesEnabled(
         assessmentsProvider,

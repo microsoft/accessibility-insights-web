@@ -8,6 +8,7 @@ import { It, Mock, MockBehavior } from 'typemoq';
 import { NamedFC, ReactFCWithDisplayName } from '../../../../../../common/react/named-fc';
 import {
     AssessmentData,
+    AssessmentNavState,
     AssessmentStoreData,
 } from '../../../../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../../../../common/types/store-data/feature-flag-store-data';
@@ -42,8 +43,12 @@ describe('DetailsViewLeftNav', () => {
         const assessmentDataStub: { [key: string]: AssessmentData } = {
             x: { testStepStatus: {} } as AssessmentData,
         };
+        const selectedSubview = 'selected requirement';
         const assessmentStoreDataStub = {
             assessments: assessmentDataStub,
+            assessmentNavState: {
+                selectedTestSubview: selectedSubview,
+            } as AssessmentNavState,
         } as AssessmentStoreData;
 
         const rightPanelConfig: DetailsRightPanelConfiguration = {
@@ -70,7 +75,7 @@ describe('DetailsViewLeftNav', () => {
         } as DetailsViewLeftNavProps;
 
         GetLeftNavSelectedKeyMock.setup(getter =>
-            getter(It.isValue({ visualizationType: selectedTestStub })),
+            getter(It.isValue({ visualizationType: selectedTestStub, selectedSubview })),
         ).returns(() => selectedKeyStub);
 
         assessmentsProviderWithFeaturesEnabledMock

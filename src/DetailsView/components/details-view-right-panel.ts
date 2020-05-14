@@ -12,6 +12,7 @@ import {
     GetLeftNavSelectedKeyProps,
     getOverviewKey,
     getTestViewKey,
+    getReflowRequirementViewKey,
 } from './left-nav/get-left-nav-selected-key';
 import {
     OverviewContainer,
@@ -62,6 +63,12 @@ const detailsViewTypeContentMap: {
         RightPanel: TestViewContainer,
         GetTitle: getTestViewTitle,
         GetLeftNavSelectedKey: getTestViewKey,
+        GetStartOverContextualMenuItemKeys: () => ['assessment', 'test'],
+    },
+    ReflowRequirementView: {
+        RightPanel: TestViewContainer,
+        GetTitle: getTestViewTitle,
+        GetLeftNavSelectedKey: getReflowRequirementViewKey,
         GetStartOverContextualMenuItemKeys: () => ['assessment', 'test'],
     },
 };
