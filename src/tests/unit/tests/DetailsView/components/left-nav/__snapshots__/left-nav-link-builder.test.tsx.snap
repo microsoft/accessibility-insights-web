@@ -86,6 +86,27 @@ exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessme
 />
 `;
 
+exports[`LeftNavBuilder buildOverviewLink should build overview link 1`] = `
+<OverviewLeftNavLink
+  link={
+    Object {
+      "forceAnchor": true,
+      "iconProps": Object {
+        "className": "hidden",
+      },
+      "index": -1,
+      "key": "Overview",
+      "name": "Overview",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "percentComplete": 75,
+      "title": "Overview 75% Completed",
+      "url": "",
+    }
+  }
+/>
+`;
+
 exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for assessments: getting started nav link render 1`] = `<GettingStartedNavLink />`;
 
 exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for assessments: getting started nav link render 2`] = `<GettingStartedNavLink />`;
@@ -104,6 +125,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
       "name": "requirement-name-1",
       "onClickNavLink": [Function],
       "onRenderNavLink": [Function],
+      "requirementKey": "requirement-key-1",
       "status": -2,
       "testType": 1,
       "title": "-1.1: requirement-name-1 (passed)",
@@ -128,6 +150,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
       "name": "requirement-name-1",
       "onClickNavLink": [Function],
       "onRenderNavLink": [Function],
+      "requirementKey": "requirement-key-1",
       "status": -2,
       "testType": 1,
       "title": "0.1: requirement-name-1 (passed)",
@@ -154,6 +177,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
           "name": "requirement-name-1",
           "onClickNavLink": [Function],
           "onRenderNavLink": [Function],
+          "requirementKey": "requirement-key-1",
           "status": -2,
           "testType": 1,
           "title": "-1.1: requirement-name-1 (passed)",
@@ -182,6 +206,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
           "name": "requirement-name-1",
           "onClickNavLink": [Function],
           "onRenderNavLink": [Function],
+          "requirementKey": "requirement-key-1",
           "status": -2,
           "testType": 1,
           "title": "0.1: requirement-name-1 (passed)",
@@ -230,6 +255,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
           "name": "requirement-name-1",
           "onClickNavLink": [Function],
           "onRenderNavLink": [Function],
+          "requirementKey": "requirement-key-1",
           "status": -2,
           "testType": 1,
           "title": "-1.1: requirement-name-1 (passed)",
@@ -246,6 +272,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
           "name": "requirement-name-2",
           "onClickNavLink": [Function],
           "onRenderNavLink": [Function],
+          "requirementKey": "requirement-key-2",
           "status": -2,
           "testType": 1,
           "title": "-1.2: requirement-name-2 (passed)",
@@ -300,6 +327,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
           "name": "requirement-name-1",
           "onClickNavLink": [Function],
           "onRenderNavLink": [Function],
+          "requirementKey": "requirement-key-1",
           "status": -2,
           "testType": 1,
           "title": "0.1: requirement-name-1 (passed)",
@@ -316,6 +344,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
           "name": "requirement-name-2",
           "onClickNavLink": [Function],
           "onRenderNavLink": [Function],
+          "requirementKey": "requirement-key-2",
           "status": -2,
           "testType": 1,
           "title": "0.2: requirement-name-2 (passed)",
@@ -370,6 +399,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
           "name": "requirement-name-1",
           "onClickNavLink": [Function],
           "onRenderNavLink": [Function],
+          "requirementKey": "requirement-key-1",
           "status": -2,
           "testType": 1,
           "title": "-1.1: requirement-name-1 (passed)",
@@ -386,6 +416,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
           "name": "requirement-name-2",
           "onClickNavLink": [Function],
           "onRenderNavLink": [Function],
+          "requirementKey": "requirement-key-2",
           "status": -2,
           "testType": 1,
           "title": "-1.2: requirement-name-2 (passed)",
@@ -439,6 +470,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
           "name": "requirement-name-1",
           "onClickNavLink": [Function],
           "onRenderNavLink": [Function],
+          "requirementKey": "requirement-key-1",
           "status": -2,
           "testType": 1,
           "title": "0.1: requirement-name-1 (passed)",
@@ -455,6 +487,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
           "name": "requirement-name-2",
           "onClickNavLink": [Function],
           "onRenderNavLink": [Function],
+          "requirementKey": "requirement-key-2",
           "status": -2,
           "testType": 1,
           "title": "0.2: requirement-name-2 (passed)",
@@ -466,27 +499,6 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
       "onRenderNavLink": [Function],
       "status": -2,
       "title": "0: some title (passed)",
-      "url": "",
-    }
-  }
-/>
-`;
-
-exports[`LeftNavBuilder buildOverviewLink should build overview link 1`] = `
-<OverviewLeftNavLink
-  link={
-    Object {
-      "forceAnchor": true,
-      "iconProps": Object {
-        "className": "hidden",
-      },
-      "index": -1,
-      "key": "Overview",
-      "name": "Overview",
-      "onClickNavLink": [Function],
-      "onRenderNavLink": [Function],
-      "percentComplete": 75,
-      "title": "Overview 75% Completed",
       "url": "",
     }
   }

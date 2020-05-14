@@ -41,7 +41,11 @@ export class NavLinkHandler {
         event: React.MouseEvent<HTMLElement>,
         item: TestRequirementLeftNavLink,
     ) => {
-        this.detailsViewActionMessageCreator.selectRequirement(event, item.key, item.testType);
+        this.detailsViewActionMessageCreator.selectRequirement(
+            event,
+            item.requirementKey,
+            item.testType,
+        );
         this.detailsViewActionMessageCreator.changeRightContentPanel('TestView');
     };
 
