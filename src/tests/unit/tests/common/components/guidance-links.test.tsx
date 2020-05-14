@@ -5,6 +5,7 @@ import * as React from 'react';
 
 import { GuidanceLinks, GuidanceLinksProps } from '../../../../../common/components/guidance-links';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
+import { ElectronExternalLink } from 'electron/views/device-connect-view/components/electron-external-link';
 
 describe('GuidanceLinksTest', () => {
     test('links is null', () => {
@@ -40,6 +41,21 @@ describe('GuidanceLinksTest', () => {
                 },
             ],
             classNameForDiv: 'className',
+        };
+
+        const rendered = shallow(<GuidanceLinks {...props} />);
+        expect(rendered.debug()).toMatchSnapshot();
+    });
+
+    test('linkComponentType is defined as ElectronExternalLink', () => {
+        const props: GuidanceLinksProps = {
+            links: [
+                {
+                    text: 'text1',
+                    href: 'https://url1',
+                },
+            ],
+            LinkComponent: ElectronExternalLink,
         };
 
         const rendered = shallow(<GuidanceLinks {...props} />);
