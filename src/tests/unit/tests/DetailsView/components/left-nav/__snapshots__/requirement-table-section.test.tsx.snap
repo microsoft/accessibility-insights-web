@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RequirementTableSection render ManualTestStepView when requirement is manual 1`] = `
+<ManualTestStepView
+  assessmentInstanceTableHandler={
+    Object {
+      "changeRequirementStatus": null,
+    }
+  }
+  assessmentsProvider={
+    Object {
+      "all": null,
+    }
+  }
+  featureFlagStoreData={
+    Object {
+      "some feature flag": true,
+    }
+  }
+  manualTestStepResultMap={
+    Object {
+      "some manual test step result id": null,
+    }
+  }
+  pathSnippetStoreData={
+    Object {
+      "path": null,
+    }
+  }
+  step="some test view"
+  test={-1}
+/>
+`;
+
+exports[`RequirementTableSection render Spinner when scanning in progress 1`] = `
+<StyledSpinnerBase
+  className="details-view-spinner"
+  label="Scanning"
+  size={3}
+/>
+`;
+
+exports[`RequirementTableSection render instance table 1`] = `
+<React.Fragment>
+  <h3>
+    Instances
+  </h3>
+  <AssessmentInstanceTable
+    assessmentInstanceTableHandler={
+      Object {
+        "changeRequirementStatus": null,
+      }
+    }
+    assessmentNavState={
+      Object {
+        "selectedTestSubview": "some test view",
+        "selectedTestType": -1,
+      }
+    }
+    getDefaultMessage={[Function]}
+    renderInstanceTableHeader={[Function]}
+  />
+</React.Fragment>
+`;
