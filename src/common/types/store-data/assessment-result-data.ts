@@ -61,6 +61,7 @@ export interface TestStepResult {
     status: ManualTestStatus;
     isCapturedByUser: boolean;
     failureSummary: string;
+    isVisualizationSupported: boolean;
     isVisualizationEnabled: boolean;
     isVisible: boolean;
     originalStatus?: ManualTestStatus;

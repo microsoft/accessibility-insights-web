@@ -76,8 +76,8 @@ const howToTest: JSX.Element = (
                 If a CSS background image is coded as meaningful:
                 <ol>
                     <li>
-                        Use the Web Developer browser extension (<Markup.Term>CSS</Markup.Term> >{' '}
-                        <Markup.Term>Disable All Styles</Markup.Term>) to turn off CSS.
+                        Use the Web Developer browser extension (<Markup.Term>CSS</Markup.Term>{' '}
+                        {'>'} <Markup.Term>Disable All Styles</Markup.Term>) to turn off CSS.
                     </li>
                     <li>
                         Verify that the information conveyed by the image is visible when CSS is
