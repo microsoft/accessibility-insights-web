@@ -42,7 +42,7 @@ export class NavLinkHandler {
         item: TestRequirementLeftNavLink,
     ) => {
         this.detailsViewActionMessageCreator.selectRequirement(event, item.key, item.testType);
-        this.detailsViewActionMessageCreator.changeRightContentPanel('TestView');
+        this.detailsViewActionMessageCreator.changeRightContentPanel('RequirementView');
     };
 
     public onGettingStartedClick = (
@@ -50,6 +50,6 @@ export class NavLinkHandler {
         item: TestGettingStartedNavLink,
     ) => {
         this.detailsViewActionMessageCreator.selectGettingStarted(event, item.testType);
-        this.detailsViewActionMessageCreator.changeRightContentPanel('TestView');
+        this.detailsViewActionMessageCreator.changeRightContentPanel('GettingStartedView');
     };
 }

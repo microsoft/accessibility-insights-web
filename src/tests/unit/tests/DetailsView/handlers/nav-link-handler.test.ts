@@ -91,7 +91,7 @@ describe('NavLinkHandler', () => {
                 .verifiable();
 
             detailsViewActionMessageCreatorMock
-                .setup(amc => amc.changeRightContentPanel('TestView'))
+                .setup(amc => amc.changeRightContentPanel('RequirementView'))
                 .verifiable();
 
             testSubject.onRequirementClick(eventStub, requirementLink);
@@ -109,7 +109,7 @@ describe('NavLinkHandler', () => {
                 .verifiable();
 
             detailsViewActionMessageCreatorMock
-                .setup(amc => amc.changeRightContentPanel('TestView'))
+                .setup(amc => amc.changeRightContentPanel('GettingStartedView'))
                 .verifiable();
 
             testSubject.onGettingStartedClick(eventStub, gettingStartedLink);
