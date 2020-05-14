@@ -20,11 +20,25 @@ describe('RequirementViewTest', () => {
             howToTest: <p>how-to-test-stub</p>,
         } as Requirement;
 
-        const assessmentsProviderMock = Mock.ofType(AssessmentsProviderImpl);
         const assessmentNavState = {
-            selectedTestSubview: 'test-requirement-name',
             selectedTestType: VisualizationType.Headings,
+            selectedTestSubview: 'test-requirement-name',
         };
+
+        const selectedRequirementStub = {
+            getVisualHelperToggle: ({}) => <div>test-visual-helper-toggle</div>,
+        } as Readonly<Requirement>;
+
+        const assessmentsProviderMock = Mock.ofType(AssessmentsProviderImpl);
+        assessmentsProviderMock
+            .setup(ap =>
+                ap.getStep(
+                    assessmentNavState.selectedTestType,
+                    assessmentNavState.selectedTestSubview,
+                ),
+            )
+            .returns(() => selectedRequirementStub);
+
         const props: RequirementViewProps = {
             deps: {} as RequirementViewDeps,
             requirement: requirementStub,
