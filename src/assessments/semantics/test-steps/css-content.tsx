@@ -70,8 +70,8 @@ const cssContentHowToTest: JSX.Element = (
                         <ul>
                             <li>
                                 Use the Web Developer browser extension{' '}
-                                <Markup.Term>(CSS > Disable All Styles)</Markup.Term> to turn off
-                                CSS.
+                                <Markup.Term>(CSS {'>'} Disable All Styles)</Markup.Term> to turn
+                                off CSS.
                             </li>
                             <li>
                                 Verify that any information conveyed by the inserted content is
