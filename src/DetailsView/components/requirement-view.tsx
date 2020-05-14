@@ -1,23 +1,34 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { Requirement } from 'assessments/types/requirement';
+import { Requirement, VisualHelperToggleConfig } from 'assessments/types/requirement';
 import { NamedFC } from 'common/react/named-fc';
-import { AssessmentNavState } from 'common/types/store-data/assessment-result-data';
+import {
+    AssessmentNavState,
+    GeneratedAssessmentInstance,
+} from 'common/types/store-data/assessment-result-data';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { RequirementInstructions } from 'DetailsView/components/requirement-instructions';
 import {
     RequirementViewTitle,
     RequirementViewTitleDeps,
 } from 'DetailsView/components/requirement-view-title';
 import * as React from 'react';
+import { DictionaryStringTo } from 'types/common-types';
 import * as styles from './requirement-view.scss';
 
-export type RequirementViewDeps = RequirementViewTitleDeps;
+export type RequirementViewDeps = {
+    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+} & RequirementViewTitleDeps;
+
 export interface RequirementViewProps {
     deps: RequirementViewDeps;
     requirement: Requirement;
     assessmentsProvider: AssessmentsProvider;
     assessmentNavState: AssessmentNavState;
+    instancesMap: DictionaryStringTo<GeneratedAssessmentInstance>;
+    isStepEnabled: boolean;
+    isStepScanned: boolean;
 }
 
 export const RequirementView = NamedFC<RequirementViewProps>('RequirementView', props => {
@@ -30,6 +41,22 @@ export const RequirementView = NamedFC<RequirementViewProps>('RequirementView', 
 
     const hasVisualHelper: boolean = getRequirement().getVisualHelperToggle != null;
 
+    const renderVisualHelperToggle = () => {
+        if (!hasVisualHelper) {
+            return null;
+        }
+
+        const visualHelperToggleConfig: VisualHelperToggleConfig = {
+            deps: props.deps,
+            assessmentNavState: props.assessmentNavState,
+            instancesMap: props.instancesMap,
+            isStepEnabled: props.isStepEnabled,
+            isStepScanned: props.isStepScanned,
+        };
+
+        return getRequirement().getVisualHelperToggle(visualHelperToggleConfig);
+    };
+
     return (
         <div className={styles.requirementView}>
             <RequirementViewTitle
@@ -39,6 +66,7 @@ export const RequirementView = NamedFC<RequirementViewProps>('RequirementView', 
                 infoAndExamples={props.requirement.infoAndExamples}
             />
             {props.requirement.description}
+            {renderVisualHelperToggle()}
             <RequirementInstructions howToTest={props.requirement.howToTest} />
         </div>
     );

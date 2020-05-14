@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { Requirement } from 'assessments/types/requirement';
+import { GeneratedAssessmentInstance } from 'common/types/store-data/assessment-result-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import {
     RequirementView,
@@ -11,6 +12,7 @@ import {
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
+import { DictionaryStringTo } from 'types/common-types';
 
 describe('RequirementViewTest', () => {
     it('renders with content from props', () => {
@@ -44,6 +46,9 @@ describe('RequirementViewTest', () => {
             requirement: requirementStub,
             assessmentsProvider: assessmentsProviderMock.object,
             assessmentNavState: assessmentNavState,
+            instancesMap: {} as DictionaryStringTo<GeneratedAssessmentInstance>,
+            isStepEnabled: true,
+            isStepScanned: true,
         };
 
         const rendered = shallow(<RequirementView {...props} />);
