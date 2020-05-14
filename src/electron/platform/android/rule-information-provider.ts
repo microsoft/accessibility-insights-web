@@ -9,12 +9,12 @@ import { RuleInformation } from './rule-information';
 
 export class RuleInformationProvider {
     private supportedRules: DictionaryStringTo<RuleInformation>;
-
+    private readonly ruleLinkBaseUrl = 'https://accessibilityinsights.io/info-examples/android';
     constructor() {
         this.supportedRules = {
             ColorContrast: new RuleInformation(
                 'ColorContrast',
-                'https://accessibilityinsights.io/info-examples/android/color-contrast/',
+                `${this.ruleLinkBaseUrl}/color-contrast/`,
                 'Text elements must have sufficient contrast against the background.',
                 [link.WCAG_1_4_3],
                 this.getColorContrastUnifiedFormattableResolution,
@@ -22,7 +22,7 @@ export class RuleInformationProvider {
             ),
             TouchSizeWcag: new RuleInformation(
                 'TouchSizeWcag',
-                'https://accessibilityinsights.io/info-examples/android/touch-size-wcag/',
+                `${this.ruleLinkBaseUrl}/touch-size-wcag/`,
                 'Touch inputs must have a sufficient target size.',
                 [link.WCAG_1_3_1, link.WCAG_3_3_2],
                 this.getTouchSizeUnifiedFormattableResolution,
@@ -30,7 +30,7 @@ export class RuleInformationProvider {
             ),
             ActiveViewName: new RuleInformation(
                 'ActiveViewName',
-                'https://accessibilityinsights.io/info-examples/android/active-view-name/',
+                `${this.ruleLinkBaseUrl}/active-view-name/`,
                 "Active views must have a name that's available to assistive technologies.",
                 [link.WCAG_2_5_5],
                 () =>
@@ -42,7 +42,7 @@ export class RuleInformationProvider {
             ),
             ImageViewName: new RuleInformation(
                 'ImageViewName',
-                'https://accessibilityinsights.io/info-examples/android/image-view-name/',
+                `${this.ruleLinkBaseUrl}/image-view-name/`,
                 'Meaningful images must have alternate text.',
                 [link.WCAG_1_1_1],
                 () =>
@@ -54,7 +54,7 @@ export class RuleInformationProvider {
             ),
             EditTextValue: new RuleInformation(
                 'EditTextValue',
-                'https://accessibilityinsights.io/info-examples/android/edit-text-value/',
+                `${this.ruleLinkBaseUrl}/edit-text-value/`,
                 'EditText elements must expose their entered text value to assistive technologies',
                 [link.WCAG_4_1_2],
                 () =>
