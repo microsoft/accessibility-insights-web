@@ -25,7 +25,7 @@ const tableSemanticsHowToTest: JSX.Element = (
         <ol>
             <li>
                 Use the Web Developer browser extension (
-                <Markup.Term>Outline > Outline tables</Markup.Term>) to outline{' '}
+                <Markup.Term>Outline {'>'} Outline tables</Markup.Term>) to outline{' '}
                 <Markup.Tag tagName="table" /> elements on the page.
             </li>
             <li>
@@ -43,7 +43,7 @@ const tableSemanticsHowToTest: JSX.Element = (
             </li>
             <li>
                 Use the Web Developer browser extension to reveal elements with ARIA roles (
-                <Markup.Term>Information > Display ARIA Roles</Markup.Term>).
+                <Markup.Term>Information {'>'} Display ARIA Roles</Markup.Term>).
             </li>
             <li>
                 Verify that each table is coded correctly for its type:

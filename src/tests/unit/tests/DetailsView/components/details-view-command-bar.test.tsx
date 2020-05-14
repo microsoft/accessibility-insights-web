@@ -3,8 +3,10 @@
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
-import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
-import { DetailsViewBodyProps } from 'DetailsView/details-view-body';
+import {
+    DetailsViewSwitcherNavConfiguration,
+    LeftNavProps,
+} from 'DetailsView/components/details-view-switcher-nav';
 import { shallow } from 'enzyme';
 import { ActionButton } from 'office-ui-fabric-react';
 import * as React from 'react';
@@ -38,12 +40,13 @@ describe('DetailsViewCommandBar', () => {
     });
 
     function getProps(): DetailsViewCommandBarProps {
-        const CommandBarStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<
-            DetailsViewBodyProps
+        const CommandBarStub: ReactFCWithDisplayName<DetailsViewCommandBarProps> = NamedFC<
+            DetailsViewCommandBarProps
         >('test', _ => null);
-        const LeftNavStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<
-            DetailsViewBodyProps
-        >('test', _ => null);
+        const LeftNavStub: ReactFCWithDisplayName<LeftNavProps> = NamedFC<LeftNavProps>(
+            'test',
+            _ => null,
+        );
         const switcherNavConfiguration: DetailsViewSwitcherNavConfiguration = {
             CommandBar: CommandBarStub,
             ReportExportComponentFactory: p => reportExportComponent,
