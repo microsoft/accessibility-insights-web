@@ -42,13 +42,30 @@ export class DetailsViewPage extends Page {
         await this.waitForSelectorXPath(`//h3[text()="${requirementName}"]`);
     }
 
+    public async waitForVisualHelperState(
+        state: 'On' | 'Off' | 'disabled',
+        waitOptions?: Puppeteer.WaitForSelectorOptions,
+    ): Promise<void> {
+        const selectorStateSuffix = {
+            On: ':not([disabled])[aria-checked="true"]',
+            Off: ':not([disabled])[aria-checked="false"]',
+            disabled: '[disabled]',
+        }[state];
+
+        await this.waitForSelector(
+            detailsViewSelectors.visualHelperToggle + selectorStateSuffix,
+            waitOptions,
+        );
+    }
+
     public async waitForRequirementStatus(
         requirementName: string,
         status: 'Passed' | 'Failed' | 'Incomplete',
+        waitOptions?: Puppeteer.WaitForSelectorOptions,
     ): Promise<void> {
         await this.waitForSelector(
             detailsViewSelectors.requirementWithStatus(requirementName, status),
-            { timeout: DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS },
+            waitOptions,
         );
     }
 

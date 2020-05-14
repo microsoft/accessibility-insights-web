@@ -1,11 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Browser } from '../../common/browser';
-import { launchBrowser } from '../../common/browser-factory';
-import { detailsViewSelectors } from '../../common/element-identifiers/details-view-selectors';
-import { DetailsViewPage } from '../../common/page-controllers/details-view-page';
-import { TargetPage } from '../../common/page-controllers/target-page';
-import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
+import { Browser } from 'tests/end-to-end/common/browser';
+import { launchBrowser } from 'tests/end-to-end/common/browser-factory';
+import { DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS } from 'tests/end-to-end/common/timeouts';
 
 describe('Details View -> Assessment -> Landmarks', () => {
     let browser: Browser;
@@ -32,7 +29,9 @@ describe('Details View -> Assessment -> Landmarks', () => {
             await detailsViewPage.navigateToTest('Landmarks');
             await detailsViewPage.navigateToRequirement('Primary content');
 
-            await detailsViewPage.waitForRequirementStatus('Primary content', 'Passed');
+            await detailsViewPage.waitForRequirementStatus('Primary content', 'Passed', {
+                timeout: DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS,
+            });
         });
 
         it('should not automatically pass against a target page with any landmarks', async () => {
@@ -42,10 +41,13 @@ describe('Details View -> Assessment -> Landmarks', () => {
             await detailsViewPage.navigateToTest('Landmarks');
             await detailsViewPage.navigateToRequirement('Primary content');
 
+            await detailsViewPage.waitForVisualHelperState('Off', {
+                timeout: DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS,
+            });
             await detailsViewPage.waitForRequirementStatus('Primary content', 'Incomplete');
         });
 
-        it.only('should visualize main landmarks', async () => {
+        it('should visualize main landmarks', async () => {
             const { detailsViewPage, targetPage } = await browser.newAssessment({
                 testResourcePath: 'landmarks/mixed-landmarks.html',
             });

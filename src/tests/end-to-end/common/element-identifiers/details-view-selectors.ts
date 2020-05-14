@@ -3,6 +3,7 @@
 import { resultSectionAutomationId } from 'common/components/cards/result-section';
 import { ruleDetailsGroupAutomationId } from 'common/components/cards/rules-with-instances';
 import { instanceTableTextContentAutomationId } from 'DetailsView/components/assessment-instance-details-column';
+import { visualHelperToggleAutomationId } from 'DetailsView/components/base-visual-helper-toggle';
 import { settingsPanelAutomationId } from 'DetailsView/components/details-view-overlay/settings-panel/settings-panel';
 import { IframeWarningContainerAutomationId } from 'DetailsView/components/iframe-warning';
 import { overviewHeadingAutomationId } from 'DetailsView/components/overview-content/overview-heading';
@@ -19,6 +20,8 @@ export const detailsViewSelectors = {
 
     testNavLink: (testName: string): string => `nav [name="${testName}"] a`,
     requirementNavLink: (requirementName: string): string => `div [name="${requirementName}"] a`,
+
+    visualHelperToggle: getAutomationIdSelector(visualHelperToggleAutomationId),
 
     requirementWithStatus: (
         requirementName: string,

@@ -7,6 +7,7 @@ import { VisualizationToggle } from '../../common/components/visualization-toggl
 import { GeneratedAssessmentInstance } from '../../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../../types/common-types';
 
+export const visualHelperToggleAutomationId = 'visual-helper-toggle';
 export const visualHelperText = 'Visual helper';
 
 export abstract class BaseVisualHelperToggle extends React.Component<VisualHelperToggleConfig> {
@@ -30,6 +31,7 @@ export abstract class BaseVisualHelperToggle extends React.Component<VisualHelpe
                         onClick={onClick}
                         className="visual-helper-toggle"
                         visualizationName={visualHelperText}
+                        data-automation-id={visualHelperToggleAutomationId}
                     />
                 </div>
                 {disabledMessage}
