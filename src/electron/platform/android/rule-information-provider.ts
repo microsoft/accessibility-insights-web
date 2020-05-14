@@ -30,7 +30,7 @@ export class RuleInformationProvider {
             ),
             ActiveViewName: new RuleInformation(
                 'ActiveViewName',
-                'https://accessibilityinsights.io/info-examples/android/touch-size-wcag/',
+                'https://accessibilityinsights.io/info-examples/android/active-view-name/',
                 "Active views must have a name that's available to assistive technologies.",
                 [link.WCAG_2_5_5],
                 () =>
