@@ -36,7 +36,12 @@ describe('ScanResultsToUnifiedResults', () => {
         const ruleInformation1: RuleInformation = buildRuleInformation(ruleId1);
         const ruleInformation2: RuleInformation = buildRuleInformation(ruleId2);
         const ruleInformation3: RuleInformation = buildRuleInformation(ruleId3);
-        const ruleInformation4: RuleInformation = buildRuleInformation(ruleId4, [], false);
+        const ruleInformation4: RuleInformation = buildRuleInformation(
+            ruleId4,
+            'rule-link-4',
+            [],
+            false,
+        );
 
         ruleInformationProviderMock = Mock.ofType<RuleInformationProviderType>();
         ruleInformationProviderMock

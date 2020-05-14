@@ -20,7 +20,14 @@ describe('RuleInformation', () => {
 
     test('RuleId works correctly', () => {
         for (const ruleId of testInputs) {
-            const ruleInformation = new RuleInformation(ruleId, null, null, null, failIfCalled);
+            const ruleInformation = new RuleInformation(
+                ruleId,
+                null,
+                null,
+                null,
+                null,
+                failIfCalled,
+            );
             expect(ruleId === ruleInformation.ruleId);
         }
     });
@@ -28,6 +35,7 @@ describe('RuleInformation', () => {
     test('RuleDescription works correctly', () => {
         for (const ruleDescription of testInputs) {
             const ruleInformation = new RuleInformation(
+                null,
                 null,
                 ruleDescription,
                 null,
@@ -38,10 +46,23 @@ describe('RuleInformation', () => {
         }
     });
 
-    test('guidance works correctly', () => {
+    test('rule link works correctly', () => {
         const guidance = [link.WCAG_1_1_1];
-        const ruleInformation = new RuleInformation(null, null, guidance, null, failIfCalled);
+        const ruleInformation = new RuleInformation(null, null, null, guidance, null, failIfCalled);
         expect(ruleInformation.guidance).toEqual(guidance);
+    });
+
+    test('guidance works correctly', () => {
+        const url = 'rule-link';
+        const ruleInformation = new RuleInformation(
+            null,
+            'rule-link',
+            null,
+            null,
+            null,
+            failIfCalled,
+        );
+        expect(ruleInformation.ruleLink).toEqual(url);
     });
 
     test('GetUnifiedResolution works correctly', () => {
@@ -65,6 +86,7 @@ describe('RuleInformation', () => {
                 .returns(() => expectedUnifiedFormattableResolution);
 
             const ruleInformation = new RuleInformation(
+                null,
                 null,
                 null,
                 null,
@@ -95,6 +117,7 @@ describe('RuleInformation', () => {
             includeThisResultMock.setup(func => func(testData)).returns(() => expectedResult);
 
             const ruleInformation = new RuleInformation(
+                null,
                 null,
                 null,
                 null,
