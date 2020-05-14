@@ -46,7 +46,7 @@ describe('RuleInformation', () => {
         }
     });
 
-    test('guidance works correctly', () => {
+    test('rule link works correctly', () => {
         const guidance = [link.WCAG_1_1_1];
         const ruleInformation = new RuleInformation(null, null, null, guidance, null, failIfCalled);
         expect(ruleInformation.guidance).toEqual(guidance);
