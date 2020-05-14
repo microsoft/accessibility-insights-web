@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { autoPassIfNoResults } from 'assessments/auto-pass-if-no-results';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
@@ -101,6 +102,7 @@ export const CssContent: Requirement = {
     description: cssContentDescription,
     howToTest: cssContentHowToTest,
     isManual: true,
+    getInitialManualTestStatus: autoPassIfNoResults,
     guidanceLinks: [link.WCAG_1_3_1],
     ...content,
     getAnalyzer: provider =>

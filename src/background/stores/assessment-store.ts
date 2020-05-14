@@ -21,7 +21,7 @@ import {
     ScanCompletedPayload,
     ScanUpdatePayload,
 } from 'injected/analyzers/analyzer';
-import { forEach, isEmpty } from 'lodash';
+import { forEach, isEmpty, pickBy } from 'lodash';
 import { DictionaryStringTo } from 'types/common-types';
 import { AddResultDescriptionPayload, SelectTestSubviewPayload } from '../actions/action-payloads';
 import { AssessmentDataConverter } from '../assessment-data-converter';
@@ -460,8 +460,13 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
             return; // Never override an explicitly set status
         }
 
-        const instanceMap = assessmentData.generatedAssessmentInstancesMap;
-        const status = getInitialManualTestStatus(instanceMap);
+        const allInstances = assessmentData.generatedAssessmentInstancesMap;
+        const instancesWithResultsForTestStep = pickBy(
+            allInstances,
+            (value, key) => value.testStepResults[testStepName] != null,
+        );
+
+        const status = getInitialManualTestStatus(instancesWithResultsForTestStep);
         assessmentData.manualTestStepResultMap[testStepName].status = status;
         this.updateManualTestStepStatus(assessmentData, testStepName, testType);
     }
