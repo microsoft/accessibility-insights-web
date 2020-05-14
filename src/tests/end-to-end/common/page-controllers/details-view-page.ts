@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Puppeteer from 'puppeteer';
+import { DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS } from 'tests/end-to-end/common/timeouts';
 import { CommonSelectors } from '../element-identifiers/common-selectors';
 import {
     detailsViewSelectors,
@@ -29,6 +30,26 @@ export class DetailsViewPage extends Page {
 
         await this.clickSelector('*[aria-label="select activity"]');
         await this.clickSelector('button[title="Assessment"]');
+    }
+
+    public async navigateToTest(testName: string): Promise<void> {
+        await this.clickSelector(detailsViewSelectors.testNavLink(testName));
+        await this.waitForSelectorXPath(`//h1[text()="${testName}"]`);
+    }
+
+    public async navigateToRequirement(requirementName: string): Promise<void> {
+        await this.clickSelector(detailsViewSelectors.requirementNavLink(requirementName));
+        await this.waitForSelectorXPath(`//h3[text()="${requirementName}"]`);
+    }
+
+    public async waitForRequirementStatus(
+        requirementName: string,
+        status: 'Passed' | 'Failed' | 'Incomplete',
+    ): Promise<void> {
+        await this.waitForSelector(
+            detailsViewSelectors.requirementWithStatus(requirementName, status),
+            { timeout: DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS },
+        );
     }
 
     public async openSettingsPanel(): Promise<void> {

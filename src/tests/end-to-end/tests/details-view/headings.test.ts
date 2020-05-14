@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS } from 'tests/end-to-end/common/timeouts';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { detailsViewSelectors } from '../../common/element-identifiers/details-view-selectors';
 import { DetailsViewPage } from '../../common/page-controllers/details-view-page';
 import { TargetPage } from '../../common/page-controllers/target-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
-import { DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS } from '../../common/timeouts';
 
 describe('Details View -> Assessment -> Headings', () => {
     let browser: Browser;
@@ -20,7 +20,15 @@ describe('Details View -> Assessment -> Headings', () => {
         });
         targetPage = await browser.newTargetPage();
         await browser.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
-        headingsPage = await openHeadingsPage(browser, targetPage);
+
+        headingsPage = await browser.newDetailsViewPage(targetPage);
+        await headingsPage.switchToAssessment();
+        await headingsPage.navigateToTest('Headings');
+
+        // Populating the instance table requires scanning the target page
+        await headingsPage.waitForSelector(detailsViewSelectors.instanceTableTextContent, {
+            timeout: DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS,
+        });
     });
 
     afterAll(async () => {
@@ -44,20 +52,3 @@ describe('Details View -> Assessment -> Headings', () => {
         },
     );
 });
-
-async function openHeadingsPage(
-    browser: Browser,
-    targetPage: TargetPage,
-): Promise<DetailsViewPage> {
-    const detailsViewPage = await browser.newDetailsViewPage(targetPage);
-    await detailsViewPage.switchToAssessment();
-
-    await detailsViewPage.clickSelector(detailsViewSelectors.testNavLink('Headings'));
-
-    // Populating the instance table requires scanning the target page
-    await detailsViewPage.waitForSelector(detailsViewSelectors.instanceTableTextContent, {
-        timeout: DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS,
-    });
-
-    return detailsViewPage;
-}

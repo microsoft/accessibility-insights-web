@@ -17,7 +17,13 @@ import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector
 export const detailsViewSelectors = {
     previewFeaturesPanel: '.preview-features-panel',
 
-    testNavLink: (testName: string): string => `nav [name=${testName}] a`,
+    testNavLink: (testName: string): string => `nav [name="${testName}"] a`,
+    requirementNavLink: (requirementName: string): string => `div [name="${requirementName}"] a`,
+
+    requirementWithStatus: (
+        requirementName: string,
+        status: 'Passed' | 'Failed' | 'Incomplete',
+    ): string => `div[name="${requirementName}"][title^="${requirementName}. ${status}."]`,
 
     mainContent: '[role=main]',
     instanceTableTextContent: getAutomationIdSelector(instanceTableTextContentAutomationId),
