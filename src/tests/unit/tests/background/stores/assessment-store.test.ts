@@ -35,6 +35,7 @@ import {
     AssessmentData,
     AssessmentStoreData,
     GeneratedAssessmentInstance,
+    InstanceIdToInstanceDataMap,
     ManualTestStepResult,
     PersistedTabInfo,
     TestStepResult,
@@ -581,16 +582,40 @@ describe('AssessmentStore', () => {
             scanIncompleteWarnings: [],
         };
 
-        const expectedInstanceMap = {};
+        const fullInstanceMap: InstanceIdToInstanceDataMap = {
+            '#selector-1': {
+                target: ['#selector-1'],
+                html: '<div id="selector-1" />',
+                testStepResults: { 'assessment-1-step-1': { resultData: 'result data' } },
+            },
+            '#selector-2': {
+                target: ['#selector-2'],
+                html: '<div id="selector-2" />',
+                testStepResults: { 'assessment-1-step-2': { resultData: 'result data' } },
+            },
+        };
+        const instanceMapFilteredForTestStep1 = {
+            '#selector-1': fullInstanceMap['#selector-1'],
+        };
+
+        const mockGetInitialManualTestStatus = Mock.ofInstance(
+            (_: InstanceIdToInstanceDataMap) => ManualTestStatus.FAIL,
+            MockBehavior.Strict,
+        );
+        mockGetInitialManualTestStatus
+            .setup(m => m(instanceMapFilteredForTestStep1))
+            .returns(() => ManualTestStatus.FAIL)
+            .verifiable();
+
         const stepMapStub = assessmentsProvider.getStepMap(assessmentType);
         const stepConfig: Readonly<Requirement> = {
             ...assessmentsProvider.getStep(assessmentType, 'assessment-1-step-1'),
             isManual: true,
-            getInitialManualTestStatus: () => ManualTestStatus.FAIL,
+            getInitialManualTestStatus: mockGetInitialManualTestStatus.object,
         };
 
         const assessmentData = new AssessmentDataBuilder()
-            .with('generatedAssessmentInstancesMap', expectedInstanceMap)
+            .with('generatedAssessmentInstancesMap', fullInstanceMap)
             .with('testStepStatus', {
                 // should FAIL based on getInitialManualTestStatus
                 ['assessment-1-step-1']: generateTestStepData(ManualTestStatus.FAIL, true),
@@ -643,11 +668,13 @@ describe('AssessmentStore', () => {
                     stepConfig.isVisualizationSupportedForResult,
                 ),
             )
-            .returns(() => expectedInstanceMap);
+            .returns(() => fullInstanceMap);
 
         createStoreTesterForAssessmentActions('scanCompleted')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, finalState);
+
+        mockGetInitialManualTestStatus.verifyAll();
     });
 
     test('onScanCompleted with a manual requirement skips getInitialManualTestStatus for requirements that already have a status', () => {
