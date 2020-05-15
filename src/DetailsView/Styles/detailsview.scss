@@ -235,7 +235,9 @@ div.insights-file-issue-details-dialog-container {
         grid-template-rows: 1fr;
         width: 100%;
         min-height: 0;
-
+        &.reflow-ui {
+            grid-template-columns: $detailsViewReflowLeftNavWidth 1fr;
+        }
         .details-view-test-nav-area {
             box-sizing: border-box;
             max-height: calc(
