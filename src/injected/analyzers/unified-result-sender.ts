@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ScanIncompleteWarningsTelemetryData } from 'common/extension-telemetry-events';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { isEmpty } from 'lodash';
 import { UnifiedScanCompletedPayload } from '../../background/actions/action-payloads';
@@ -10,7 +11,6 @@ import { ConvertScanResultsToUnifiedResultsDelegate } from '../adapters/scan-res
 import { ConvertScanResultsToUnifiedRulesDelegate } from '../adapters/scan-results-to-unified-rules';
 import { AxeAnalyzerResult } from './analyzer';
 import { MessageDelegate, PostResolveCallback } from './rule-analyzer';
-import { ToolData } from 'common/types/store-data/unified-data-interface';
 
 export class UnifiedResultSender {
     constructor(
@@ -20,7 +20,7 @@ export class UnifiedResultSender {
         private readonly toolData: ToolData,
         private readonly generateUID: UUIDGenerator,
         private readonly scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
-    ) { }
+    ) {}
 
     public sendResults: PostResolveCallback = (axeResults: AxeAnalyzerResult) => {
         const scanIncompleteWarnings = this.scanIncompleteWarningDetector.detectScanIncompleteWarnings();

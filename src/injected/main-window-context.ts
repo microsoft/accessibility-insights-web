@@ -20,7 +20,7 @@ export class MainWindowContext {
         private userConfigMessageCreator: UserConfigMessageCreator,
         private toolData: ToolData,
         private issueFilingServiceProvider: IssueFilingServiceProvider,
-    ) { }
+    ) {}
 
     public getDevToolStore(): BaseStore<DevToolStoreData> {
         return this.devToolStore;

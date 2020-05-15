@@ -28,7 +28,6 @@ describe('sendConvertedResults', () => {
     const uuidGeneratorStub = () => null;
     const testScanIncompleteWarningId = 'test-scan-incomplete-warning';
 
-
     let sendDelegate: IMock<MessageDelegate>;
     let convertToUnifiedMock: IMock<ConvertScanResultsToUnifiedResultsDelegate>;
     let convertToUnifiedRulesMock: IMock<ConvertScanResultsToUnifiedRulesDelegate>;

@@ -17,8 +17,8 @@ import { DefaultButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
-import { EventStubFactory } from '../../../common/event-stub-factory';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
+import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('IssueFilingButtonTest', () => {
     const testKey: string = 'test';

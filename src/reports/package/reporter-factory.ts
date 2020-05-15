@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { createToolData } from 'common/application-properties-provider';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { generateUID } from 'common/uid-generator';
 import { convertScanResultsToUnifiedResults } from 'injected/adapters/scan-results-to-unified-results';
@@ -24,7 +25,6 @@ import { initializeFabricIcons } from '../../common/fabric-icons';
 import { GetGuidanceTagsFromGuidanceLinks } from '../../common/get-guidance-tags-from-guidance-links';
 import { AxeReportParameters, ReporterFactory } from './accessibilityInsightsReport';
 import { Reporter } from './reporter';
-import { createToolData } from 'common/application-properties-provider';
 
 const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
     const {

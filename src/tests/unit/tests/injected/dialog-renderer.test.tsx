@@ -88,12 +88,12 @@ describe('DialogRendererTests', () => {
             },
             querySelector: selector => null,
             querySelectorAll: selector => null,
-            appendChild: node => { },
+            appendChild: node => {},
         } as any);
 
         shadowContainerMock = Mock.ofInstance({
-            querySelector: selector => { },
-            appendChild: node => { },
+            querySelector: selector => {},
+            appendChild: node => {},
         } as any);
         shadowRootMock = Mock.ofInstance({
             querySelector: selector => null,
