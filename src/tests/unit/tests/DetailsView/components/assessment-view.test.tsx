@@ -37,6 +37,16 @@ describe('AssessmentViewTest', () => {
         expect(rendered.debug()).toMatchSnapshot();
     });
 
+    test('componentDidMount', () => {
+        const props = builder.buildProps();
+        builder.updateHandlerMock.setup(u => u.onMount(props)).verifiable(Times.once());
+
+        const testObject = new AssessmentView(props);
+
+        testObject.componentDidMount();
+        builder.verifyAll();
+    });
+
     test('componentDidUpdate', () => {
         const prevProps = buildPrevProps();
         const props = builder.buildProps();
@@ -44,6 +54,7 @@ describe('AssessmentViewTest', () => {
             (previousProps: AssessmentViewProps, currentProps: AssessmentViewProps) => {},
         );
 
+        builder.updateHandlerMock.setup(u => u.update(prevProps, props)).verifiable(Times.once());
         builder.detailsViewExtensionPointMock
             .setup(d => d.apply(props.assessmentTestResult.definition.extensions))
             .returns(() => {
@@ -58,6 +69,16 @@ describe('AssessmentViewTest', () => {
 
         builder.verifyAll();
         onAssessmentViewUpdateMock.verifyAll();
+    });
+
+    test('componentWillUnmount', () => {
+        const props = builder.buildProps();
+        builder.updateHandlerMock.setup(u => u.onUnmount(props)).verifiable(Times.once());
+
+        const testObject = new AssessmentView(props);
+
+        testObject.componentWillUnmount();
+        builder.verifyAll();
     });
 
     function buildPrevProps(): AssessmentViewProps {

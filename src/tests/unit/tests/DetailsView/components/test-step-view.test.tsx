@@ -6,17 +6,9 @@ import { CollapsibleComponent } from 'common/components/collapsible-component';
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import { VisualizationType } from 'common/types/visualization-type';
 import { AssessmentInstanceTable } from 'DetailsView/components/assessment-instance-table';
-import {
-    AssessmentViewUpdateHandler,
-    AssessmentViewUpdateHandlerProps,
-} from 'DetailsView/components/assessment-view-update-handler';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
 import { ManualTestStepView } from 'DetailsView/components/manual-test-step-view';
-import {
-    TestStepView,
-    TestStepViewDeps,
-    TestStepViewProps,
-} from 'DetailsView/components/test-step-view';
+import { TestStepView, TestStepViewProps } from 'DetailsView/components/test-step-view';
 import * as styles from 'DetailsView/components/test-step-view.scss';
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
 import * as Enzyme from 'enzyme';
@@ -25,14 +17,12 @@ import { BaseDataBuilder } from 'tests/unit/common/base-data-builder';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 let getVisualHelperToggleMock: IMock<(provider, props) => {}>;
-let updateHandlerMock: IMock<AssessmentViewUpdateHandler>;
 
 describe('TestStepViewTest', () => {
     beforeEach(() => {
         getVisualHelperToggleMock = Mock.ofInstance((provider, props) => {
             return null;
         });
-        updateHandlerMock = Mock.ofType<AssessmentViewUpdateHandler>();
     });
 
     test('constructor, no side effects', () => {
@@ -145,55 +135,6 @@ describe('TestStepViewTest', () => {
         expect(wrapper.debug()).toMatchSnapshot();
     });
 
-    test('componentDidUpdate', () => {
-        const props = TestStepViewPropsBuilder.defaultProps(
-            getVisualHelperToggleMock.object,
-        ).build();
-        const prevProps = TestStepViewPropsBuilder.defaultProps(
-            getVisualHelperToggleMock.object,
-        ).build();
-        prevProps.assessmentNavState.selectedTestSubview = 'prevTestStep';
-        updateHandlerMock
-            .setup(u => u.update(getUpdateHandlerProps(prevProps), getUpdateHandlerProps(props)))
-            .verifiable(Times.once());
-
-        const testObject = new TestStepView(props);
-
-        testObject.componentDidUpdate(prevProps);
-
-        updateHandlerMock.verifyAll();
-    });
-
-    test('componentDidMount', () => {
-        const props = TestStepViewPropsBuilder.defaultProps(
-            getVisualHelperToggleMock.object,
-        ).build();
-        updateHandlerMock
-            .setup(u => u.onMount(getUpdateHandlerProps(props)))
-            .verifiable(Times.once());
-
-        const testObject = new TestStepView(props);
-
-        testObject.componentDidMount();
-
-        updateHandlerMock.verifyAll();
-    });
-
-    test('componentWillUnmount', () => {
-        const props = TestStepViewPropsBuilder.defaultProps(
-            getVisualHelperToggleMock.object,
-        ).build();
-        updateHandlerMock
-            .setup(u => u.onUnmount(getUpdateHandlerProps(props)))
-            .verifiable(Times.once());
-
-        const testObject = new TestStepView(props);
-
-        testObject.componentWillUnmount();
-
-        updateHandlerMock.verifyAll();
-    });
-
     function validateManualTestStepView(
         wrapper: Enzyme.ShallowWrapper,
         props: TestStepViewProps,
@@ -207,17 +148,6 @@ describe('TestStepViewTest', () => {
             view.prop('assessmentInstanceTableHandler'),
         );
         expect(props.assessmentsProvider).toEqual(view.prop('assessmentsProvider'));
-    }
-
-    function getUpdateHandlerProps(props: TestStepViewProps): AssessmentViewUpdateHandlerProps {
-        return {
-            deps: props.deps,
-            isRequirementEnabled: props.isStepEnabled,
-            assessmentNavState: props.assessmentNavState,
-            assessmentData: props.assessmentData,
-            prevTarget: props.prevTarget,
-            currentTarget: props.currentTarget,
-        };
     }
 });
 
@@ -289,10 +219,7 @@ class TestStepViewPropsBuilder extends BaseDataBuilder<TestStepViewProps> {
                 howToTest: <p>Instructions</p>,
                 isManual: false,
                 guidanceLinks: [],
-            })
-            .with('deps', {
-                assessmentViewUpdateHandler: updateHandlerMock.object,
-            } as TestStepViewDeps);
+            });
     }
 
     public withNoGetToggleConfig(): TestStepViewPropsBuilder {
