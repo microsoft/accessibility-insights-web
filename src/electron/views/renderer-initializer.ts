@@ -355,7 +355,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             detailsViewActionMessageCreator,
             issueFilingActionMessageCreator: null, // we don't support issue filing right now
 
-            environmentInfoProvider: null,
+            toolData: null,
             getPropertyConfigById: getPropertyConfiguration, // this seems to be axe-core specific
 
             issueDetailsTextGenerator: null,

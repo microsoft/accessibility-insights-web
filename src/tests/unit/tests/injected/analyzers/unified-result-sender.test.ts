@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { UnifiedScanCompletedPayload } from 'background/actions/action-payloads';
-import { EnvironmentInfoProvider } from 'common/environment-info-provider';
 import { Message } from 'common/message';
 import { Messages } from 'common/messages';
 import {
@@ -29,17 +28,16 @@ describe('sendConvertedResults', () => {
     const uuidGeneratorStub = () => null;
     const testScanIncompleteWarningId = 'test-scan-incomplete-warning';
 
+
     let sendDelegate: IMock<MessageDelegate>;
     let convertToUnifiedMock: IMock<ConvertScanResultsToUnifiedResultsDelegate>;
     let convertToUnifiedRulesMock: IMock<ConvertScanResultsToUnifiedRulesDelegate>;
-    let environmentInfoProviderMock: IMock<EnvironmentInfoProvider>;
     let scanIncompleteWarningDetectorMock: IMock<ScanIncompleteWarningDetector>;
 
     beforeEach(() => {
         sendDelegate = Mock.ofType<MessageDelegate>();
         convertToUnifiedMock = Mock.ofType<ConvertScanResultsToUnifiedResultsDelegate>();
         convertToUnifiedRulesMock = Mock.ofType<ConvertScanResultsToUnifiedRulesDelegate>();
-        environmentInfoProviderMock = Mock.ofType<EnvironmentInfoProvider>();
         scanIncompleteWarningDetectorMock = Mock.ofType<ScanIncompleteWarningDetector>();
     });
 
@@ -54,9 +52,6 @@ describe('sendConvertedResults', () => {
                 .setup(m => m(axeInputResults, uuidGeneratorStub))
                 .returns(val => unifiedResults);
             convertToUnifiedRulesMock.setup(m => m(axeInputResults)).returns(val => unifiedRules);
-            environmentInfoProviderMock
-                .setup(provider => provider.getToolData())
-                .returns(() => toolInfo);
             scanIncompleteWarningDetectorMock
                 .setup(m => m.detectScanIncompleteWarnings())
                 .returns(() => warnings);
@@ -65,7 +60,7 @@ describe('sendConvertedResults', () => {
                 sendDelegate.object,
                 convertToUnifiedMock.object,
                 convertToUnifiedRulesMock.object,
-                environmentInfoProviderMock.object,
+                toolInfo,
                 uuidGeneratorStub,
                 scanIncompleteWarningDetectorMock.object,
             );
@@ -77,7 +72,6 @@ describe('sendConvertedResults', () => {
 
             convertToUnifiedMock.verifyAll();
             convertToUnifiedRulesMock.verifyAll();
-            environmentInfoProviderMock.verifyAll();
 
             const expectedPayload: UnifiedScanCompletedPayload = {
                 scanResult: unifiedResults,

@@ -4,7 +4,6 @@ import { cloneDeep, isEqual } from 'lodash';
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react';
 import * as React from 'react';
 
-import { EnvironmentInfoProvider } from '../../common/environment-info-provider';
 import { IssueFilingActionMessageCreator } from '../../common/message-creators/issue-filing-action-message-creator';
 import { UserConfigMessageCreator } from '../../common/message-creators/user-config-message-creator';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
@@ -18,6 +17,7 @@ import {
 import { IssueFilingServiceProvider } from '../../issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from '../../issue-filing/types/issue-filing-service';
 import { ActionAndCancelButtonsComponent } from './action-and-cancel-buttons-component';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 
 export interface IssueFilingDialogProps {
     deps: IssueFilingDialogDeps;
@@ -29,7 +29,7 @@ export interface IssueFilingDialogProps {
 }
 
 export type IssueFilingDialogDeps = {
-    environmentInfoProvider: EnvironmentInfoProvider;
+    toolData: ToolData;
     userConfigMessageCreator: UserConfigMessageCreator;
     issueFilingServiceProvider: IssueFilingServiceProvider;
     issueFilingActionMessageCreator: IssueFilingActionMessageCreator;
@@ -45,7 +45,7 @@ export interface IssueFilingDialogState {
 export class IssueFilingDialog extends React.Component<
     IssueFilingDialogProps,
     IssueFilingDialogState
-> {
+    > {
     constructor(props: IssueFilingDialogProps) {
         super(props);
         this.state = this.getState(props);

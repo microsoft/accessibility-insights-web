@@ -3,9 +3,11 @@
 exports[`FooterTextForService renders: footer 1`] = `
 <React.Fragment>
   This automated checks result was generated using the 
-  ClientService
+  app-name
    
-  that helps find some of the most common accessibility issues. The scan was performed using axe-core 
+  that helps find some of the most common accessibility issues. The scan was performed using 
+  engine-name
+   
   engine-version
    and 
   environmentName

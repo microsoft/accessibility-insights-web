@@ -6,7 +6,6 @@ import * as React from 'react';
 import { IssueFilingDialogDeps } from '../../DetailsView/components/issue-filing-dialog';
 import { IssueFilingServiceProvider } from '../../issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from '../../issue-filing/types/issue-filing-service';
-import { EnvironmentInfoProvider } from '../environment-info-provider';
 import { LadyBugSolidIcon } from '../icons/lady-bug-solid-icon';
 import { IssueFilingActionMessageCreator } from '../message-creators/issue-filing-action-message-creator';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
@@ -18,10 +17,11 @@ import {
     IssueFilingServiceProperties,
     UserConfigurationStoreData,
 } from '../types/store-data/user-configuration-store';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 
 export type IssueFilingButtonDeps = {
     issueFilingActionMessageCreator: IssueFilingActionMessageCreator;
-    environmentInfoProvider: EnvironmentInfoProvider;
+    toolData: ToolData;
     issueFilingServiceProvider: IssueFilingServiceProvider;
 } & IssueFilingDialogDeps;
 
@@ -39,7 +39,7 @@ export type IssueFilingButtonState = {
 export class IssueFilingButton extends React.Component<
     IssueFilingButtonProps,
     IssueFilingButtonState
-> {
+    > {
     constructor(props) {
         super(props);
         this.state = {

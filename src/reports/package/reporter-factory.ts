@@ -20,11 +20,11 @@ import { ruleToLinkConfiguration } from 'scanner/rule-to-links-mappings';
 import { FixInstructionProcessor } from '../../common/components/fix-instruction-processor';
 import { getPropertyConfiguration } from '../../common/configs/unified-result-property-configurations';
 import { DateProvider } from '../../common/date-provider';
-import { EnvironmentInfoProvider } from '../../common/environment-info-provider';
 import { initializeFabricIcons } from '../../common/fabric-icons';
 import { GetGuidanceTagsFromGuidanceLinks } from '../../common/get-guidance-tags-from-guidance-links';
 import { AxeReportParameters, ReporterFactory } from './accessibilityInsightsReport';
 import { Reporter } from './reporter';
+import { createToolData } from 'common/application-properties-provider';
 
 const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
     const {
@@ -42,15 +42,20 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
         serviceName,
     } = parameters;
 
-    const environmentInfoProvider = new EnvironmentInfoProvider('', userAgent, axeVersion);
     const reactStaticRenderer = new ReactStaticRenderer();
     const fixInstructionProcessor = new FixInstructionProcessor();
 
-    const FooterText = FooterTextForService(serviceName);
+    const toolData = createToolData(
+        serviceName,
+        '',
+        'axe-core',
+        axeVersion,
+        userAgent,
+    );
 
     const sectionFactory = {
         ...AutomatedChecksReportSectionFactory,
-        FooterText,
+        FooterTextForService,
     };
 
     const reportHtmlGenerator = new ReportHtmlGenerator(
@@ -82,7 +87,7 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
         getUUID: generateUID,
     };
 
-    return new AxeResultsReport(deps, parameters, environmentInfoProvider.getToolData());
+    return new AxeResultsReport(deps, parameters, toolData);
 };
 
 initializeFabricIcons();

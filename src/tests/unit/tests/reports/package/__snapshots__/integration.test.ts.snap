@@ -7140,7 +7140,7 @@ exports[`report package integration with issues 1`] = `
       class="report-footer"
       role="contentinfo"
     >
-      This automated checks result was generated using the Accessibility Insights Service that helps find some of the most common accessibility issues. The scan was performed using axe-core 3.3.2 and Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/78.0.3904.108 Safari/537.36. For a complete WCAG 2.1 compliance assessment please visit 
+      This automated checks result was generated using Accessibility Insights Service  (axe-core 3.3.2), a tool that helps debug and find accessibility issues earlier on Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/78.0.3904.108 Safari/537.36. Get more information & download this tool at 
       <a
         class="ms-Link insights-link tool-name-link root-000"
         href="http://aka.ms/AccessibilityInsights"
@@ -11117,7 +11117,7 @@ exports[`report package integration with no issues 1`] = `
       class="report-footer"
       role="contentinfo"
     >
-      This automated checks result was generated using the Accessibility Insights Service that helps find some of the most common accessibility issues. The scan was performed using axe-core 3.3.2 and Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/78.0.3904.108 Safari/537.36. For a complete WCAG 2.1 compliance assessment please visit 
+      This automated checks result was generated using Accessibility Insights Service  (axe-core 3.3.2), a tool that helps debug and find accessibility issues earlier on Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/78.0.3904.108 Safari/537.36. Get more information & download this tool at 
       <a
         class="ms-Link insights-link tool-name-link root-000"
         href="http://aka.ms/AccessibilityInsights"

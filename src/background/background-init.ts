@@ -9,7 +9,6 @@ import { AxeInfo } from '../common/axe-info';
 import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DateProvider } from '../common/date-provider';
-import { EnvironmentInfoProvider } from '../common/environment-info-provider';
 import { getIndexedDBStore } from '../common/indexedDB/get-indexeddb-store';
 import { IndexedDBAPI, IndexedDBUtil } from '../common/indexedDB/indexedDB';
 import { InsightsWindowExtensions } from '../common/insights-window-extensions';
@@ -104,11 +103,6 @@ async function initialize(): Promise<void> {
     const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
 
     const browserSpec = new NavigatorUtils(window.navigator, logger).getBrowserSpec();
-    const environmentInfoProvider = new EnvironmentInfoProvider(
-        browserAdapter.getVersion(),
-        browserSpec,
-        AxeInfo.Default.version,
-    );
 
     const toolData = createToolData(
         toolName,
@@ -127,7 +121,6 @@ async function initialize(): Promise<void> {
         indexedDBInstance,
         persistedData,
         IssueFilingServiceProviderImpl,
-        environmentInfoProvider.getEnvironmentInfo(),
         toolData,
         browserAdapter,
         browserAdapter,
