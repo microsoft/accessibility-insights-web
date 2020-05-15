@@ -7,6 +7,7 @@ import {
     settingsPanelSelectors,
 } from '../element-identifiers/details-view-selectors';
 import { Page, PageOptions } from './page';
+import { DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS } from 'tests/end-to-end/common/timeouts';
 
 export class DetailsViewPage extends Page {
     constructor(underlyingPage: Puppeteer.Page, options?: PageOptions) {
@@ -39,6 +40,15 @@ export class DetailsViewPage extends Page {
     public async navigateToRequirement(requirementName: string): Promise<void> {
         await this.clickSelector(detailsViewSelectors.requirementNavLink(requirementName));
         await this.waitForSelectorXPath(`//h3[text()="${requirementName}"]`);
+    }
+
+    public async waitForScanCompleteAlert(
+        waitOptions?: Puppeteer.WaitForSelectorOptions,
+    ): Promise<void> {
+        await this.waitForSelector('[role="alert"][aria-label="Scan Complete"]', {
+            timeout: DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS,
+            ...waitOptions,
+        });
     }
 
     public async waitForVisualHelperState(
