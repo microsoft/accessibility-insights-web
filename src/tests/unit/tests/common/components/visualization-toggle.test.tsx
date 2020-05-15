@@ -33,6 +33,7 @@ describe('VisualizationToggleTest', () => {
             .setLabel('my test label')
             .setClassName('my test class')
             .setDisabled(true)
+            .setDataAutomationId('test-automation-id')
             .build();
 
         const wrapper = Enzyme.shallow(<VisualizationToggle {...props} />);
@@ -77,6 +78,7 @@ describe('VisualizationToggleTest', () => {
             componentRef: props.componentRef,
             onFocus: props.onFocus,
             onBlur: props.onBlur,
+            'data-automation-id': props['data-automation-id'],
         };
 
         return result;
@@ -89,6 +91,7 @@ class VisualizationTogglePropsBuilder {
     private disabled: boolean;
     private label: string;
     private className: string;
+    private dataAutomationId: string;
     private visualizationName: string = 'visualizationName';
     private componentRefStub: React.RefObject<any> = {} as React.RefObject<any>;
     private onBlurMock: IMock<(event) => void> = Mock.ofInstance(event => {});
@@ -96,6 +99,11 @@ class VisualizationTogglePropsBuilder {
 
     public setClassName(className: string): VisualizationTogglePropsBuilder {
         this.className = className;
+        return this;
+    }
+
+    public setDataAutomationId(dataAutomationId: string): VisualizationTogglePropsBuilder {
+        this.dataAutomationId = dataAutomationId;
         return this;
     }
 
@@ -136,6 +144,10 @@ class VisualizationTogglePropsBuilder {
 
         if (this.className != null) {
             props.className = this.className;
+        }
+
+        if (this.dataAutomationId != null) {
+            props['data-automation-id'] = this.dataAutomationId;
         }
 
         return props;

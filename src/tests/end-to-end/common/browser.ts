@@ -83,6 +83,18 @@ export class Browser {
         return page;
     }
 
+    public async newAssessment(
+        targetPageUrlOptions?: TargetPageUrlOptions,
+    ): Promise<{ detailsViewPage: DetailsViewPage; targetPage: TargetPage }> {
+        const targetPage = await this.newTargetPage(targetPageUrlOptions);
+        await this.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
+
+        const detailsViewPage = await this.newDetailsViewPage(targetPage);
+        await detailsViewPage.switchToAssessment();
+
+        return { detailsViewPage, targetPage };
+    }
+
     public async waitForDetailsViewPage(targetPage: TargetPage): Promise<DetailsViewPage> {
         const expectedUrl = await this.getExtensionUrl(detailsViewRelativeUrl(targetPage.tabId));
         const underlyingTarget = await this.underlyingBrowser.waitForTarget(
