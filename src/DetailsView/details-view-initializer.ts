@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
@@ -116,8 +119,6 @@ import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-to
 import { MasterCheckBoxConfigProvider } from './handlers/master-checkbox-config-provider';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
 
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License.
 declare const window: AutoChecker & Window;
 
 const browserAdapter = new ChromeAdapter();

@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { NewTabLink } from 'common/components/new-tab-link';
 import { NullComponent } from 'common/components/null-component';
 import { DateProvider } from 'common/date-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
@@ -20,6 +21,7 @@ import {
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { exampleUnifiedStatusResults } from '../common/components/cards/sample-view-model-data';
 
 describe('ReportHtmlGenerator', () => {
@@ -69,6 +71,7 @@ describe('ReportHtmlGenerator', () => {
                 collapsibleControl: ReportCollapsibleContainerControl,
                 cardInteractionSupport: cardInteractionSupport,
                 cardsVisualizationModifierButtons: NullComponent,
+                LinkComponent: NewTabLink,
             } as SectionDeps,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
             sectionFactory: sectionFactoryMock.object as ReportBodySectionFactory,

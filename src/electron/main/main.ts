@@ -72,6 +72,11 @@ const createWindow = () => {
         enableDevMode(mainWindow);
     });
 
+    mainWindow.webContents.on('new-window', (event, url) {
+        event.preventDefault();
+        require('electron').shell.openExternal(url);
+      });
+
     mainWindow.on('closed', () => {
         // Drop all references to the window object, to force garbage collection
         ipcMessageDispatcher.unregisterMessageSink(mainWindowMessageSink);

@@ -236,14 +236,15 @@ exports[`report package integration with issues 1`] = `
         </a>
         <script>
           ((linkId, doc, confirmCallback) =&gt; {
-  const targetPageLink = doc.getElementById(linkId);
-  targetPageLink.addEventListener('click', event =&gt; {
-    const result = confirmCallback('Are you sure you want to navigate away from the Accessibility Insights report?\\n' + 'This link will open the target page in a new tab.\\n\\nPress OK to continue or ' + 'Cancel to stay on the current page.');
-
-    if (result === false) {
-      event.preventDefault();
-    }
-  });
+    const targetPageLink = doc.getElementById(linkId);
+    targetPageLink.addEventListener('click', event =&gt; {
+        const result = confirmCallback('Are you sure you want to navigate away from the Accessibility Insights report?\\n' +
+            'This link will open the target page in a new tab.\\n\\nPress OK to continue or ' +
+            'Cancel to stay on the current page.');
+        if (result === false) {
+            event.preventDefault();
+        }
+    });
 })("new-tab-link-with-confirmation-dialog__1", document, confirm);
         </script>
       </div>
@@ -436,14 +437,15 @@ exports[`report package integration with issues 1`] = `
               </a>
               <script>
                 ((linkId, doc, confirmCallback) =&gt; {
-  const targetPageLink = doc.getElementById(linkId);
-  targetPageLink.addEventListener('click', event =&gt; {
-    const result = confirmCallback('Are you sure you want to navigate away from the Accessibility Insights report?\\n' + 'This link will open the target page in a new tab.\\n\\nPress OK to continue or ' + 'Cancel to stay on the current page.');
-
-    if (result === false) {
-      event.preventDefault();
-    }
-  });
+    const targetPageLink = doc.getElementById(linkId);
+    targetPageLink.addEventListener('click', event =&gt; {
+        const result = confirmCallback('Are you sure you want to navigate away from the Accessibility Insights report?\\n' +
+            'This link will open the target page in a new tab.\\n\\nPress OK to continue or ' +
+            'Cancel to stay on the current page.');
+        if (result === false) {
+            event.preventDefault();
+        }
+    });
 })("new-tab-link-with-confirmation-dialog__2", document, confirm);
               </script>
             </span>
@@ -7109,26 +7111,25 @@ exports[`report package integration with issues 1`] = `
         </div>
       </div>
       <script>
-        (doc =&gt; {
-  const collapsibles = doc.getElementsByClassName('collapsible-container');
-
-  for (let index = 0; index &lt; collapsibles.length; index++) {
-    const container = collapsibles.item(index);
-    const button = container.querySelector('.collapsible-control');
-    button.addEventListener('click', () =&gt; {
-      const content = button.parentElement.nextElementSibling;
-      const wasExpandedBefore = button.getAttribute('aria-expanded') === 'false' ? false : true;
-      const isExpandedAfter = !wasExpandedBefore;
-      button.setAttribute('aria-expanded', isExpandedAfter + '');
-      content.setAttribute('aria-hidden', !isExpandedAfter + '');
-
-      if (isExpandedAfter) {
-        container.classList.remove('collapsed');
-      } else {
-        container.classList.add('collapsed');
-      }
-    });
-  }
+        ((doc) =&gt; {
+    const collapsibles = doc.getElementsByClassName('collapsible-container');
+    for (let index = 0; index &lt; collapsibles.length; index++) {
+        const container = collapsibles.item(index);
+        const button = container.querySelector('.collapsible-control');
+        button.addEventListener('click', () =&gt; {
+            const content = button.parentElement.nextElementSibling;
+            const wasExpandedBefore = button.getAttribute('aria-expanded') === 'false' ? false : true;
+            const isExpandedAfter = !wasExpandedBefore;
+            button.setAttribute('aria-expanded', isExpandedAfter + '');
+            content.setAttribute('aria-hidden', !isExpandedAfter + '');
+            if (isExpandedAfter) {
+                container.classList.remove('collapsed');
+            }
+            else {
+                container.classList.add('collapsed');
+            }
+        });
+    }
 })(document)
       </script>
     </div>
@@ -7391,14 +7392,15 @@ exports[`report package integration with no issues 1`] = `
         </a>
         <script>
           ((linkId, doc, confirmCallback) =&gt; {
-  const targetPageLink = doc.getElementById(linkId);
-  targetPageLink.addEventListener('click', event =&gt; {
-    const result = confirmCallback('Are you sure you want to navigate away from the Accessibility Insights report?\\n' + 'This link will open the target page in a new tab.\\n\\nPress OK to continue or ' + 'Cancel to stay on the current page.');
-
-    if (result === false) {
-      event.preventDefault();
-    }
-  });
+    const targetPageLink = doc.getElementById(linkId);
+    targetPageLink.addEventListener('click', event =&gt; {
+        const result = confirmCallback('Are you sure you want to navigate away from the Accessibility Insights report?\\n' +
+            'This link will open the target page in a new tab.\\n\\nPress OK to continue or ' +
+            'Cancel to stay on the current page.');
+        if (result === false) {
+            event.preventDefault();
+        }
+    });
 })("new-tab-link-with-confirmation-dialog__3", document, confirm);
         </script>
       </div>
@@ -7591,14 +7593,15 @@ exports[`report package integration with no issues 1`] = `
               </a>
               <script>
                 ((linkId, doc, confirmCallback) =&gt; {
-  const targetPageLink = doc.getElementById(linkId);
-  targetPageLink.addEventListener('click', event =&gt; {
-    const result = confirmCallback('Are you sure you want to navigate away from the Accessibility Insights report?\\n' + 'This link will open the target page in a new tab.\\n\\nPress OK to continue or ' + 'Cancel to stay on the current page.');
-
-    if (result === false) {
-      event.preventDefault();
-    }
-  });
+    const targetPageLink = doc.getElementById(linkId);
+    targetPageLink.addEventListener('click', event =&gt; {
+        const result = confirmCallback('Are you sure you want to navigate away from the Accessibility Insights report?\\n' +
+            'This link will open the target page in a new tab.\\n\\nPress OK to continue or ' +
+            'Cancel to stay on the current page.');
+        if (result === false) {
+            event.preventDefault();
+        }
+    });
 })("new-tab-link-with-confirmation-dialog__4", document, confirm);
               </script>
             </span>
@@ -11086,26 +11089,25 @@ exports[`report package integration with no issues 1`] = `
         </div>
       </div>
       <script>
-        (doc =&gt; {
-  const collapsibles = doc.getElementsByClassName('collapsible-container');
-
-  for (let index = 0; index &lt; collapsibles.length; index++) {
-    const container = collapsibles.item(index);
-    const button = container.querySelector('.collapsible-control');
-    button.addEventListener('click', () =&gt; {
-      const content = button.parentElement.nextElementSibling;
-      const wasExpandedBefore = button.getAttribute('aria-expanded') === 'false' ? false : true;
-      const isExpandedAfter = !wasExpandedBefore;
-      button.setAttribute('aria-expanded', isExpandedAfter + '');
-      content.setAttribute('aria-hidden', !isExpandedAfter + '');
-
-      if (isExpandedAfter) {
-        container.classList.remove('collapsed');
-      } else {
-        container.classList.add('collapsed');
-      }
-    });
-  }
+        ((doc) =&gt; {
+    const collapsibles = doc.getElementsByClassName('collapsible-container');
+    for (let index = 0; index &lt; collapsibles.length; index++) {
+        const container = collapsibles.item(index);
+        const button = container.querySelector('.collapsible-control');
+        button.addEventListener('click', () =&gt; {
+            const content = button.parentElement.nextElementSibling;
+            const wasExpandedBefore = button.getAttribute('aria-expanded') === 'false' ? false : true;
+            const isExpandedAfter = !wasExpandedBefore;
+            button.setAttribute('aria-expanded', isExpandedAfter + '');
+            content.setAttribute('aria-hidden', !isExpandedAfter + '');
+            if (isExpandedAfter) {
+                container.classList.remove('collapsed');
+            }
+            else {
+                container.classList.add('collapsed');
+            }
+        });
+    }
 })(document)
       </script>
     </div>
