@@ -76,7 +76,7 @@ export class RequirementView extends React.Component<RequirementViewProps> {
     private getUpdateHandlerProps(props: RequirementViewProps): AssessmentViewUpdateHandlerProps {
         return {
             deps: props.deps,
-            isRequirementEnabled: props.isRequirementEnabled,
+            selectedRequirementIsEnabled: props.isRequirementEnabled,
             assessmentNavState: props.assessmentNavState,
             assessmentData: props.assessmentData,
             prevTarget: props.prevTarget,
