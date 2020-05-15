@@ -12,15 +12,15 @@ exports[`GuidanceLinksTest links is empty 1`] = `""`;
 
 exports[`GuidanceLinksTest links is not null 1`] = `
 "<span className=\\"className\\">
-  <NewTabLink href=\\"https://url1\\" onClick={[Function: onClick]}>
+  <ElectronExternalLink href=\\"https://url1\\" onClick={[Function: onClick]}>
     TEXT1
-  </NewTabLink>
+  </ElectronExternalLink>
   <span>
     , 
   </span>
-  <NewTabLink href=\\"https://url2\\" onClick={[Function: onClick]}>
+  <ElectronExternalLink href=\\"https://url2\\" onClick={[Function: onClick]}>
     TEXT2
-  </NewTabLink>
+  </ElectronExternalLink>
 </span>"
 `;
 

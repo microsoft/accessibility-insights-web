@@ -213,7 +213,10 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
             <section className="insights-dialog-success-criteria" aria-labelledby={successTitleId}>
                 {this.renderSectionTitle(sectionTitle, successTitleId)}
                 <div>
-                    <GuidanceLinks links={ruleGuidanceLinks} />
+                    <GuidanceLinks
+                        links={ruleGuidanceLinks}
+                        LinkComponent={this.props.deps.LinkComponent}
+                    />
                 </div>
             </section>
         );

@@ -1,17 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ElectronExternalLink } from 'electron/views/device-connect-view/components/electron-external-link';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { GuidanceLinks, GuidanceLinksProps } from '../../../../../common/components/guidance-links';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
-import { ElectronExternalLink } from 'electron/views/device-connect-view/components/electron-external-link';
 
 describe('GuidanceLinksTest', () => {
     test('links is null', () => {
         const props: GuidanceLinksProps = {
             links: null,
             classNameForDiv: null,
+            LinkComponent: NewTabLink,
         };
 
         const rendered = shallow(<GuidanceLinks {...props} />);
@@ -22,6 +23,7 @@ describe('GuidanceLinksTest', () => {
         const props: GuidanceLinksProps = {
             links: [],
             classNameForDiv: null,
+            LinkComponent: NewTabLink,
         };
 
         const rendered = shallow(<GuidanceLinks {...props} />);
@@ -41,6 +43,7 @@ describe('GuidanceLinksTest', () => {
                 },
             ],
             classNameForDiv: 'className',
+            LinkComponent: ElectronExternalLink,
         };
 
         const rendered = shallow(<GuidanceLinks {...props} />);
@@ -71,6 +74,7 @@ describe('GuidanceLinksTest', () => {
                 },
             ],
             classNameForDiv: 'className',
+            LinkComponent: NewTabLink,
         };
 
         const rendered = shallow(<GuidanceLinks {...props} />);
