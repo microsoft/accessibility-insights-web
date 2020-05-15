@@ -35,10 +35,10 @@ import {
     AssessmentData,
     AssessmentStoreData,
     GeneratedAssessmentInstance,
+    InstanceIdToInstanceDataMap,
     ManualTestStepResult,
     PersistedTabInfo,
     TestStepResult,
-    InstanceIdToInstanceDataMap,
 } from 'common/types/store-data/assessment-result-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import {
