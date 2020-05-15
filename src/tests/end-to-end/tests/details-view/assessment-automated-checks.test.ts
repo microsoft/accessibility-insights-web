@@ -3,6 +3,7 @@
 import { getDefaultRules } from 'scanner/exposed-apis';
 import { Browser } from 'tests/end-to-end/common/browser';
 import { launchBrowser } from 'tests/end-to-end/common/browser-factory';
+import { DEFAULT_E2E_TEST_TIMEOUT_MS } from 'tests/end-to-end/common/timeouts';
 
 describe('Details View -> Assessment -> Automated Checks', () => {
     let browser: Browser;
@@ -21,35 +22,51 @@ describe('Details View -> Assessment -> Automated Checks', () => {
         }
     });
 
-    it('should scan and show all passing results against a target page with no violations', async () => {
-        const { detailsViewPage } = await browser.newAssessment({
-            testResourcePath: 'clean.html',
-        });
-        await detailsViewPage.navigateToTest('Automated checks');
+    it(
+        'should scan and show all passing results against a target page with no violations',
+        async () => {
+            const { detailsViewPage } = await browser.newAssessment({
+                testResourcePath: 'clean.html',
+            });
+            await detailsViewPage.navigateToTest('Automated checks');
 
-        // Navigating to the test should automatically scan all rules
-        await detailsViewPage.waitForScanCompleteAlert();
-        await detailsViewPage.waitForVisualHelperState('disabled');
+            // Navigating to the test should automatically scan all rules
+            await detailsViewPage.waitForScanCompleteAlert();
 
-        for (const rule of getDefaultRules()) {
-            await detailsViewPage.waitForRequirementStatus(rule.id, 'Passed');
-        }
-    });
+            for (const rule of getDefaultRules()) {
+                await detailsViewPage.waitForRequirementStatus(rule.id, 'Passed');
+            }
+        },
+        DEFAULT_E2E_TEST_TIMEOUT_MS + 30000,
+    );
 
-    it('should scan and show mixed results against a target page with violations', async () => {
-        const { detailsViewPage } = await browser.newAssessment({
-            testResourcePath: 'all.html',
-        });
-        await detailsViewPage.navigateToTest('Automated checks');
+    it(
+        'should scan and show mixed results against a target page with violations',
+        async () => {
+            const ruleThatFailsInIframe = 'duplicate-id';
+            const ruleThatFailsInOuterPage = 'html-has-lang';
+            const ruleThatPasses = 'area-alt';
 
-        // Navigating to the test should automatically scan all rules
-        await detailsViewPage.waitForScanCompleteAlert();
+            const { detailsViewPage } = await browser.newAssessment({
+                testResourcePath: 'all.html',
+            });
+            await detailsViewPage.navigateToTest('Automated checks');
 
-        // Failure in the outer page
-        await detailsViewPage.waitForRequirementStatus('html-has-lang', 'Failed');
-        // Failure in an iframe
-        await detailsViewPage.waitForRequirementStatus('duplicate-id', 'Failed');
+            // Navigating to the test should automatically scan all rules
+            await detailsViewPage.waitForScanCompleteAlert();
 
-        await detailsViewPage.waitForRequirementStatus('duplicate-id', 'Passed');
-    });
+            await detailsViewPage.waitForRequirementStatus(ruleThatFailsInOuterPage, 'Failed');
+            await detailsViewPage.waitForRequirementStatus(ruleThatFailsInIframe, 'Failed');
+            await detailsViewPage.waitForRequirementStatus(ruleThatPasses, 'Passed');
+
+            // Failed requirements should have visual helpers available but off by default
+            await detailsViewPage.navigateToRequirement(ruleThatFailsInOuterPage);
+            await detailsViewPage.waitForVisualHelperState('Off');
+
+            // Passed requirements should have disabled visual helpers
+            await detailsViewPage.navigateToRequirement(ruleThatPasses);
+            await detailsViewPage.waitForVisualHelperState('disabled');
+        },
+        DEFAULT_E2E_TEST_TIMEOUT_MS + 30000,
+    );
 });
