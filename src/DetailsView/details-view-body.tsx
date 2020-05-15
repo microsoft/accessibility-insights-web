@@ -68,12 +68,9 @@ export interface DetailsViewBodyProps {
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
     public render(): JSX.Element {
         const bodyLayoutClassname = classNames({
-            'details-view-body-nav-content-layout reflow-ui': this.props.featureFlagStoreData[
-                FeatureFlags.reflowUI
-            ],
-            'details-view-body-nav-content-layout': !this.props.featureFlagStoreData[
-                FeatureFlags.reflowUI
-            ],
+            'details-view-body-nav-content-layout': true,
+
+            'reflow-ui': this.props.featureFlagStoreData[FeatureFlags.reflowUI],
         });
 
         return (
