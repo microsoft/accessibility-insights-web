@@ -16,6 +16,7 @@ import {
 import { DevToolStore } from 'background/stores/dev-tools-store';
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
 import { NavigatorUtils } from 'common/navigator-utils';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { EnvironmentInfoProvider } from '../../../../common/environment-info-provider';
 import { FeatureFlags, getDefaultFeatureFlagsWeb } from '../../../../common/feature-flags';
@@ -64,6 +65,8 @@ describe('DialogRendererTests', () => {
     ) => void;
     let getMainWindoContextMock: IGlobalMock<() => MainWindowContext>;
     let rootContainerMock: IMock<HTMLElement>;
+
+    const toolData = {} as ToolData;
 
     beforeEach(() => {
         htmlElementUtilsMock = Mock.ofType(HTMLElementUtils);
@@ -120,6 +123,7 @@ describe('DialogRendererTests', () => {
             issueFilingActionMessageCreatorMock.object,
             userConfigMessageCreatorMock.object,
             environmentInfoProviderMock.object,
+            toolData,
             issueFilingServiceProviderMock.object,
         );
     });

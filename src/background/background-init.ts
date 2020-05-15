@@ -4,6 +4,7 @@ import { AppInsights } from 'applicationinsights-js';
 import { Assessments } from 'assessments/assessments';
 import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
 import { DebugToolsTelemetryClient } from 'background/telemetry/debug-tools-telemetry-client';
+import { createToolData } from 'common/application-properties-provider';
 import { AxeInfo } from '../common/axe-info';
 import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -18,7 +19,7 @@ import { NotificationCreator } from '../common/notification-creator';
 import { createDefaultPromiseFactory } from '../common/promises/promise-factory';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { UrlValidator } from '../common/url-validator';
-import { title } from '../content/strings/application';
+import { title, toolName } from '../content/strings/application';
 import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-service-provider-impl';
 import { BrowserMessageBroadcasterFactory } from './browser-message-broadcaster-factory';
 import { DevToolsListener } from './dev-tools-listener';
@@ -109,6 +110,14 @@ async function initialize(): Promise<void> {
         AxeInfo.Default.version,
     );
 
+    const toolData = createToolData(
+        toolName,
+        browserAdapter.getVersion(),
+        'axe-core',
+        AxeInfo.Default.version,
+        browserSpec,
+    );
+
     const globalContext = await GlobalContextFactory.createContext(
         browserAdapter,
         telemetryEventHandler,
@@ -119,6 +128,7 @@ async function initialize(): Promise<void> {
         persistedData,
         IssueFilingServiceProviderImpl,
         environmentInfoProvider.getEnvironmentInfo(),
+        toolData,
         browserAdapter,
         browserAdapter,
         logger,

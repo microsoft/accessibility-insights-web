@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { IMock, Mock } from 'typemoq';
 
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { title } from 'content/strings/application';
-import { EnvironmentInfo } from '../../../../../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from '../../../../../../common/types/create-issue-details-text-data';
 import { HTTPQueryBuilder } from '../../../../../../issue-filing/common/http-query-builder';
 import { IssueDetailsBuilder } from '../../../../../../issue-filing/common/issue-details-builder';
@@ -16,7 +16,7 @@ describe('createAzureBoardsIssueFilingUrl', () => {
     const testIssueDetails = 'html issue details';
     let baseTags: string;
 
-    let environmentInfo: EnvironmentInfo;
+    let toolData: ToolData;
     let sampleIssueDetailsData: CreateIssueDetailsTextData;
     let settingsData: AzureBoardsIssueFilingSettings;
     let stringUtilsMock: IMock<IssueUrlCreationUtils>;
@@ -26,10 +26,16 @@ describe('createAzureBoardsIssueFilingUrl', () => {
     let testSubject: IssueFilingUrlProvider<AzureBoardsIssueFilingSettings>;
 
     beforeEach(() => {
-        environmentInfo = {
-            extensionVersion: '1.1.1',
-            axeCoreVersion: '2.2.2',
-            browserSpec: 'test spec',
+        toolData = {
+            scanEngineProperties: {
+                name: 'engine-name',
+                version: 'engine-version',
+            },
+            applicationProperties: {
+                name: 'app-name',
+                version: 'app-version',
+                environmentName: 'environmentName',
+            },
         };
         sampleIssueDetailsData = {
             rule: {
@@ -64,7 +70,7 @@ describe('createAzureBoardsIssueFilingUrl', () => {
 
         issueDetailsGetterMock = Mock.ofType<IssueDetailsBuilder>();
         issueDetailsGetterMock
-            .setup(getter => getter(environmentInfo, sampleIssueDetailsData))
+            .setup(getter => getter(toolData, sampleIssueDetailsData))
             .returns(() => testIssueDetails);
 
         queryBuilderMock = Mock.ofType<HTTPQueryBuilder>();
@@ -104,7 +110,7 @@ describe('createAzureBoardsIssueFilingUrl', () => {
                 .setup(builder => builder.withParam('[System.Description]', testIssueDetails))
                 .returns(() => queryBuilderMock.object);
 
-            const result = testSubject(settingsData, sampleIssueDetailsData, environmentInfo);
+            const result = testSubject(settingsData, sampleIssueDetailsData, toolData);
 
             expect(result).toMatchSnapshot();
         });
@@ -128,7 +134,7 @@ describe('createAzureBoardsIssueFilingUrl', () => {
                 .setup(builder => builder.withParam('[System.Description]', testIssueDetails))
                 .returns(() => queryBuilderMock.object);
 
-            const result = testSubject(settingsData, sampleIssueDetailsData, environmentInfo);
+            const result = testSubject(settingsData, sampleIssueDetailsData, toolData);
 
             expect(result).toMatchSnapshot();
         });
@@ -154,7 +160,7 @@ describe('createAzureBoardsIssueFilingUrl', () => {
                 )
                 .returns(() => queryBuilderMock.object);
 
-            const result = testSubject(settingsData, sampleIssueDetailsData, environmentInfo);
+            const result = testSubject(settingsData, sampleIssueDetailsData, toolData);
 
             expect(result).toMatchSnapshot();
         });
@@ -181,7 +187,7 @@ describe('createAzureBoardsIssueFilingUrl', () => {
                 )
                 .returns(() => queryBuilderMock.object);
 
-            const result = testSubject(settingsData, sampleIssueDetailsData, environmentInfo);
+            const result = testSubject(settingsData, sampleIssueDetailsData, toolData);
 
             expect(result).toMatchSnapshot();
         });

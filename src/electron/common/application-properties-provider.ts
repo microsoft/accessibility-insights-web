@@ -1,23 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AppDataAdapter } from 'common/browser-adapters/app-data-adapter';
+import { createToolData } from 'common/application-properties-provider';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
-import { androidAppTitle } from 'content/strings/application';
 import { AndroidScanResults } from 'electron/platform/android/android-scan-results';
 
 export type ToolDataDelegate = (scanResults: AndroidScanResults) => ToolData;
 
-export const createGetToolDataDelegate = (appDataAdapter: AppDataAdapter): ToolDataDelegate => {
+export const createGetToolDataDelegate = (
+    toolName: string,
+    toolVersion: string,
+    scanEngineName: string,
+): ToolDataDelegate => {
     return scanResults => {
-        return {
-            scanEngineProperties: {
-                name: 'axe-android',
-                version: scanResults.axeVersion,
-            },
-            applicationProperties: {
-                name: androidAppTitle,
-                version: appDataAdapter.getVersion(),
-            },
-        };
+        return createToolData(toolName, toolVersion, scanEngineName, scanResults.axeVersion);
     };
 };
