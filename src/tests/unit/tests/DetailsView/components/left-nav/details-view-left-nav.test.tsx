@@ -5,9 +5,11 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { It, Mock, MockBehavior } from 'typemoq';
 
+import { generateReflowAssessmentTestKey } from 'DetailsView/components/left-nav/left-nav-link-builder';
 import { NamedFC, ReactFCWithDisplayName } from '../../../../../../common/react/named-fc';
 import {
     AssessmentData,
+    AssessmentNavState,
     AssessmentStoreData,
 } from '../../../../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../../../../common/types/store-data/feature-flag-store-data';
@@ -46,8 +48,13 @@ describe('DetailsViewLeftNav', () => {
         const assessmentDataStub: { [key: string]: AssessmentData } = {
             x: { testStepStatus: {} } as AssessmentData,
         };
+        const selectedTestSubview = 'selected-subview';
+        const assessmentNavStateStub = {
+            selectedTestSubview,
+        } as AssessmentNavState;
         const assessmentStoreDataStub = {
             assessments: assessmentDataStub,
+            assessmentNavState: assessmentNavStateStub,
         } as AssessmentStoreData;
 
         const rightPanelConfig: DetailsRightPanelConfiguration = {
@@ -74,7 +81,15 @@ describe('DetailsViewLeftNav', () => {
         } as DetailsViewLeftNavProps;
 
         GetLeftNavSelectedKeyMock.setup(getter =>
-            getter(It.isValue({ visualizationType: selectedTestStub })),
+            getter(
+                It.isValue({
+                    visualizationType: selectedTestStub,
+                    featureFlagStoreData: featureFlagDataStub,
+                    selectedSubview: selectedTestSubview,
+                    deps: { generateReflowAssessmentTestKey },
+                    assessmentsProvider: assessmentProviderStub,
+                }),
+            ),
         ).returns(() => selectedKeyStub);
 
         assessmentsProviderWithFeaturesEnabledMock
