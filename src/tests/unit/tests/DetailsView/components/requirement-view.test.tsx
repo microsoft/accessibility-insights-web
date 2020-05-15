@@ -153,7 +153,7 @@ describe('RequirementViewTest', () => {
     ): AssessmentViewUpdateHandlerProps {
         return {
             deps: givenProps.deps,
-            isRequirementEnabled: givenProps.isRequirementEnabled,
+            selectedRequirementIsEnabled: givenProps.isRequirementEnabled,
             assessmentNavState: givenProps.assessmentNavState,
             assessmentData: givenProps.assessmentData,
             prevTarget: givenProps.prevTarget,
