@@ -6,11 +6,9 @@ import { Requirement, VisualHelperToggleConfig } from 'assessments/types/require
 import { CollapsibleComponent } from 'common/components/collapsible-component';
 import { GuidanceTags, GuidanceTagsDeps } from 'common/components/guidance-tags';
 import {
-    AssessmentData,
     AssessmentNavState,
     GeneratedAssessmentInstance,
     ManualTestStepResult,
-    PersistedTabInfo,
 } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { PathSnippetStoreData } from 'common/types/store-data/path-snippet-store-data';
@@ -19,12 +17,6 @@ import * as React from 'react';
 import { DictionaryStringTo } from 'types/common-types';
 import { ContentPanelButton, ContentPanelButtonDeps } from 'views/content/content-panel-button';
 
-import { Tab } from 'common/itab';
-import {
-    AssessmentViewUpdateHandler,
-    AssessmentViewUpdateHandlerDeps,
-    AssessmentViewUpdateHandlerProps,
-} from 'DetailsView/components/assessment-view-update-handler';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 import { AssessmentInstanceTable } from './assessment-instance-table';
@@ -33,12 +25,10 @@ import * as styles from './test-step-view.scss';
 
 export type TestStepViewDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-    assessmentViewUpdateHandler: AssessmentViewUpdateHandler;
 } & ContentPanelButtonDeps &
-    GuidanceTagsDeps &
-    AssessmentViewUpdateHandlerDeps;
+    GuidanceTagsDeps;
 
-export type TestStepViewProps = {
+export interface TestStepViewProps {
     deps: TestStepViewDeps;
     isStepEnabled: boolean;
     isStepScanned: boolean;
@@ -53,10 +43,7 @@ export type TestStepViewProps = {
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
     featureFlagStoreData: FeatureFlagStoreData;
     pathSnippetStoreData: PathSnippetStoreData;
-    assessmentData: AssessmentData;
-    currentTarget: Tab;
-    prevTarget: PersistedTabInfo;
-};
+}
 
 export class TestStepView extends React.Component<TestStepViewProps> {
     public render(): JSX.Element {
@@ -88,34 +75,6 @@ export class TestStepView extends React.Component<TestStepViewProps> {
                 {this.renderTable()}
             </div>
         );
-    }
-
-    public componentDidMount(): void {
-        this.props.deps.assessmentViewUpdateHandler.onMount(this.getUpdateHandlerProps(this.props));
-    }
-
-    public componentDidUpdate(prevProps: TestStepViewProps): void {
-        this.props.deps.assessmentViewUpdateHandler.update(
-            this.getUpdateHandlerProps(prevProps),
-            this.getUpdateHandlerProps(this.props),
-        );
-    }
-
-    public componentWillUnmount(): void {
-        this.props.deps.assessmentViewUpdateHandler.onUnmount(
-            this.getUpdateHandlerProps(this.props),
-        );
-    }
-
-    private getUpdateHandlerProps(props: TestStepViewProps): AssessmentViewUpdateHandlerProps {
-        return {
-            deps: props.deps,
-            isRequirementEnabled: props.isStepEnabled,
-            assessmentNavState: props.assessmentNavState,
-            assessmentData: props.assessmentData,
-            prevTarget: props.prevTarget,
-            currentTarget: props.currentTarget,
-        };
     }
 
     private renderTable(): JSX.Element {
