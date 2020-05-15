@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import { AssessmentTestResult } from '../../common/assessment/assessment-test-result';
 import { Tab } from '../../common/itab';
@@ -23,29 +24,27 @@ export type ReflowAssessmentViewProps = {
     assessmentTestResult: AssessmentTestResult;
 };
 
-export class ReflowAssessmentView extends React.Component<ReflowAssessmentViewProps> {
-    public render(): JSX.Element {
-        const { assessmentTestResult } = this.props;
-        if (this.props.assessmentNavState.selectedTestSubview === gettingStartedSubview) {
+export const ReflowAssessmentView = NamedFC<ReflowAssessmentViewProps>(
+    'ReflowAssessmentView',
+    props => {
+        const targetChangeDialog: JSX.Element = (
+            <TargetChangeDialog
+                deps={props.deps}
+                prevTab={props.prevTarget}
+                newTab={props.currentTarget}
+            />
+        );
+
+        if (props.assessmentNavState.selectedTestSubview === gettingStartedSubview) {
             return (
                 <div>
-                    {this.renderTargetChangeDialog()}
+                    {targetChangeDialog}
                     <GettingStartedView
-                        gettingStartedContent={assessmentTestResult.definition.gettingStarted}
+                        gettingStartedContent={props.assessmentTestResult.definition.gettingStarted}
                     />
                 </div>
             );
         }
         return null;
-    }
-
-    private renderTargetChangeDialog(): JSX.Element {
-        return (
-            <TargetChangeDialog
-                deps={this.props.deps}
-                prevTab={this.props.prevTarget}
-                newTab={this.props.currentTarget}
-            />
-        );
-    }
-}
+    },
+);
