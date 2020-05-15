@@ -4,13 +4,11 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { FeatureFlags } from 'common/feature-flags';
 import { GettingStarted, RequirementName } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { reflowAssessmentTestKeyGenerator } from 'DetailsView/components/left-nav/left-nav-link-builder';
 import { VisualizationType } from '../../../common/types/visualization-type';
 
 export type GetLeftNavSelectedKeyDeps = {
-    generateReflowAssessmentTestKey: (
-        visualizationType: VisualizationType,
-        selectedSubview: string,
-    ) => string;
+    generateReflowAssessmentTestKey: reflowAssessmentTestKeyGenerator;
 };
 
 export type GetLeftNavSelectedKeyProps = {

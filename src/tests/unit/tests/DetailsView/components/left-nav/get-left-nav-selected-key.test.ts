@@ -4,6 +4,7 @@ import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { FeatureFlags } from 'common/feature-flags';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { reflowAssessmentTestKeyGenerator } from 'DetailsView/components/left-nav/left-nav-link-builder';
 import { IMock, Mock } from 'typemoq';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
 import {
@@ -23,17 +24,12 @@ describe('getTestviewKey', () => {
     const selectedSubview = 'selected-subview';
     let featureFlagStoreData: FeatureFlagStoreData;
     let assessmentsProviderMock: IMock<AssessmentsProvider>;
-    let generateReflowAssessmentTestKeyMock: IMock<(
-        visualizationType: VisualizationType,
-        selectedSubview: string,
-    ) => string>;
+    let generateReflowAssessmentTestKeyMock: IMock<reflowAssessmentTestKeyGenerator>;
     let props: GetLeftNavSelectedKeyProps;
 
     beforeEach(() => {
         assessmentsProviderMock = Mock.ofType<AssessmentsProviderImpl>();
-        generateReflowAssessmentTestKeyMock = Mock.ofType<
-            (visualizationType: VisualizationType, selectedSubview: string) => string
-        >();
+        generateReflowAssessmentTestKeyMock = Mock.ofType<reflowAssessmentTestKeyGenerator>();
         featureFlagStoreData = {};
         featureFlagStoreData[FeatureFlags.reflowUI] = false;
 

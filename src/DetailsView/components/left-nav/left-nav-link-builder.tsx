@@ -53,6 +53,8 @@ export function generateReflowAssessmentTestKey(
     return `${VisualizationType[test]}: ${selectedSubview}`;
 }
 
+export type reflowAssessmentTestKeyGenerator = typeof generateReflowAssessmentTestKey;
+
 export class LeftNavLinkBuilder {
     public buildOverviewLink(
         deps: OverviewLinkBuilderDeps,
@@ -172,7 +174,7 @@ export class LeftNavLinkBuilder {
             VisualizationType[assessment.visualizationType],
             index,
             l => <TestViewLeftNavLink link={l} renderIcon={this.renderAssessmentTestIcon} />,
-            navLinkHandler.onAssessmentTestClick,
+            () => {},
         );
 
         const gettingStartedLink = this.buildGettingStartedLink(
