@@ -97,17 +97,23 @@ jobs:
             displayName: publish drop
             timeoutInMinutes: 5
 
-    - job: 'e2e_mac_web_unified'
+    - job: 'e2e_web_mac'
       pool:
           vmImage: macOS-10.15
       steps:
           - template: pipeline/install-node-prerequisites.yaml
           - template: pipeline/e2e-test-from-agent.yaml
           - template: pipeline/e2e-test-publish-results.yaml
+
+    - job: 'e2e_unified_mac'
+      pool:
+          vmImage: macOS-10.15
+      steps:
+          - template: pipeline/install-node-prerequisites.yaml
           - template: pipeline/unified/unified-e2e-test-interactive.yaml
           - template: pipeline/unified/unified-e2e-publish-results.yaml
 
-    - job: 'e2e_linux_unified'
+    - job: 'e2e_unified_linux'
       pool:
           vmImage: ubuntu-18.04
       steps:
@@ -115,7 +121,7 @@ jobs:
           - template: pipeline/unified/unified-e2e-test-linux.yaml
           - template: pipeline/unified/unified-e2e-publish-results.yaml
 
-    - job: 'e2e_windows_unified'
+    - job: 'e2e_unified_windows'
       pool:
           vmImage: windows-2019
       steps:
