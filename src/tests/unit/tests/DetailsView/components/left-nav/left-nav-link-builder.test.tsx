@@ -327,6 +327,7 @@ describe('LeftNavBuilder', () => {
     ): TestRequirementLeftNavLink {
         return {
             name: requirement.name,
+            key: requirement.key,
             forceAnchor: true,
             url: '',
             iconProps: {
