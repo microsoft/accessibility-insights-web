@@ -11,6 +11,7 @@ import {
     AssessmentData,
     AssessmentStoreData,
     GeneratedAssessmentInstance,
+    InstanceIdToInstanceDataMap,
     TestStepResult,
     UserCapturedInstance,
 } from 'common/types/store-data/assessment-result-data';
@@ -272,16 +273,17 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
     private onChangeAssessmentVisualizationStateForAll = (
         payload: ChangeInstanceSelectionPayload,
     ): void => {
-        const config = this.assessmentsProvider
-            .forType(payload.test)
-            .getVisualizationConfiguration();
+        const { test, requirement } = payload;
+        const config = this.assessmentsProvider.forType(test).getVisualizationConfiguration();
         const assessmentDataMap = config.getAssessmentData(this.state)
             .generatedAssessmentInstancesMap;
+
         forEach(assessmentDataMap, val => {
-            const stepResult = val.testStepResults[payload.requirement];
+            const stepResult = val.testStepResults[requirement];
 
             if (stepResult != null) {
-                stepResult.isVisualizationEnabled = payload.isVisualizationEnabled;
+                stepResult.isVisualizationEnabled =
+                    stepResult.isVisualizationSupported && payload.isVisualizationEnabled;
             }
         });
 
@@ -318,15 +320,14 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
     private onChangeAssessmentVisualizationState = (
         payload: ChangeInstanceSelectionPayload,
     ): void => {
-        const config = this.assessmentsProvider
-            .forType(payload.test)
-            .getVisualizationConfiguration();
+        const { test, requirement } = payload;
+        const config = this.assessmentsProvider.forType(test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
-        const stepResult: TestStepResult =
-            assessmentData.generatedAssessmentInstancesMap[payload.selector].testStepResults[
-                payload.requirement
-            ];
-        stepResult.isVisualizationEnabled = payload.isVisualizationEnabled;
+        const instance = assessmentData.generatedAssessmentInstancesMap[payload.selector];
+        const stepResult: TestStepResult = instance.testStepResults[requirement];
+
+        stepResult.isVisualizationEnabled =
+            stepResult.isVisualizationSupported && payload.isVisualizationEnabled;
 
         this.emitChanged();
     };
@@ -382,6 +383,7 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
             step,
             config.getInstanceIdentiferGenerator(step),
             stepConfig.getInstanceStatus,
+            stepConfig.isVisualizationSupportedForResult,
         );
         assessmentData.generatedAssessmentInstancesMap = generatedAssessmentInstancesMap;
         assessmentData.testStepStatus[step].isStepScanned = true;
@@ -432,10 +434,36 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         testStepName: string,
         testType: VisualizationType,
     ): void {
-        const isManual = this.assessmentsProvider.getStep(testType, testStepName).isManual;
-        if (isManual !== true) {
+        const step = this.assessmentsProvider.getStep(testType, testStepName);
+        const { isManual, getInitialManualTestStatus } = step;
+
+        if (isManual) {
+            this.applyInitialManualTestStatus(
+                assessmentData,
+                testStepName,
+                testType,
+                getInitialManualTestStatus,
+            );
+        } else {
             this.updateTestStepStatusForGeneratedInstances(assessmentData, testStepName);
         }
+    }
+
+    private applyInitialManualTestStatus(
+        assessmentData: AssessmentData,
+        testStepName: string,
+        testType: VisualizationType,
+        getInitialManualTestStatus: (InstanceIdToInstanceDataMap) => ManualTestStatus,
+    ): void {
+        const originalStatus = assessmentData.manualTestStepResultMap[testStepName].status;
+        if (originalStatus !== ManualTestStatus.UNKNOWN) {
+            return; // Never override an explicitly set status
+        }
+
+        const instanceMap = assessmentData.generatedAssessmentInstancesMap;
+        const status = getInitialManualTestStatus(instanceMap);
+        assessmentData.manualTestStepResultMap[testStepName].status = status;
+        this.updateManualTestStepStatus(assessmentData, testStepName, testType);
     }
 
     private getGroupResult(

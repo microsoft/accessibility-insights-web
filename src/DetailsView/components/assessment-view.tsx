@@ -92,11 +92,21 @@ export class AssessmentView extends React.Component<AssessmentViewProps> {
         );
     }
 
+    public componentDidMount(): void {
+        this.deps.assessmentViewUpdateHandler.onMount(this.props);
+    }
+
     public componentDidUpdate(prevProps: AssessmentViewProps): void {
+        this.deps.assessmentViewUpdateHandler.update(prevProps, this.props);
+
         const { assessmentTestResult } = this.props;
         this.deps.detailsViewExtensionPoint
             .apply(assessmentTestResult.definition.extensions)
             .onAssessmentViewUpdate(prevProps, this.props);
+    }
+
+    public componentWillUnmount(): void {
+        this.deps.assessmentViewUpdateHandler.onUnmount(this.props);
     }
 
     private renderTargetChangeDialog(): JSX.Element {
@@ -174,9 +184,6 @@ export class AssessmentView extends React.Component<AssessmentViewProps> {
                         }
                         featureFlagStoreData={this.props.featureFlagStoreData}
                         pathSnippetStoreData={this.props.pathSnippetStoreData}
-                        assessmentData={this.props.assessmentData}
-                        currentTarget={this.props.currentTarget}
-                        prevTarget={this.props.prevTarget}
                     />
                 </div>
             </div>

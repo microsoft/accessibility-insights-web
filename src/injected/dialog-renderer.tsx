@@ -83,7 +83,7 @@ export class DialogRenderer {
 
             const issueDetailsTextGenerator = new IssueDetailsTextGenerator(
                 IssueFilingUrlStringUtils,
-                mainWindowContext.getEnvironmentInfoProvider(),
+                mainWindowContext.getToolData(),
                 createIssueDetailsBuilder(PlainTextFormatter),
             );
 

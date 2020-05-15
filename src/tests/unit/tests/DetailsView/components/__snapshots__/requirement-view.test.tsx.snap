@@ -11,6 +11,9 @@ exports[`RequirementViewTest renders with content from props 1`] = `
   <div>
     test-description
   </div>
+  <div>
+    test-visual-helper-toggle
+  </div>
   <RequirementInstructions
     howToTest={
       <p>

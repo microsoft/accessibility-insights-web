@@ -31,6 +31,43 @@ export class DetailsViewPage extends Page {
         await this.clickSelector('button[title="Assessment"]');
     }
 
+    public async navigateToTest(testName: string): Promise<void> {
+        await this.clickSelector(detailsViewSelectors.testNavLink(testName));
+        await this.waitForSelectorXPath(`//h1[text()="${testName}"]`);
+    }
+
+    public async navigateToRequirement(requirementName: string): Promise<void> {
+        await this.clickSelector(detailsViewSelectors.requirementNavLink(requirementName));
+        await this.waitForSelectorXPath(`//h3[text()="${requirementName}"]`);
+    }
+
+    public async waitForVisualHelperState(
+        state: 'On' | 'Off' | 'disabled',
+        waitOptions?: Puppeteer.WaitForSelectorOptions,
+    ): Promise<void> {
+        const selectorStateSuffix = {
+            On: ':not([disabled])[aria-checked="true"]',
+            Off: ':not([disabled])[aria-checked="false"]',
+            disabled: '[disabled]',
+        }[state];
+
+        await this.waitForSelector(
+            detailsViewSelectors.visualHelperToggle + selectorStateSuffix,
+            waitOptions,
+        );
+    }
+
+    public async waitForRequirementStatus(
+        requirementName: string,
+        status: 'Passed' | 'Failed' | 'Incomplete',
+        waitOptions?: Puppeteer.WaitForSelectorOptions,
+    ): Promise<void> {
+        await this.waitForSelector(
+            detailsViewSelectors.requirementWithStatus(requirementName, status),
+            waitOptions,
+        );
+    }
+
     public async openSettingsPanel(): Promise<void> {
         await this.ensureNoModals();
 

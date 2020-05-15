@@ -10,6 +10,7 @@ import { RequirementComparer } from 'common/assessment/requirement-comparer';
 import { AssessmentVisualizationConfiguration } from 'common/configs/assessment-visualization-configuration';
 import { Messages } from 'common/messages';
 import { ManualTestStatus } from 'common/types/manual-test-status';
+import { InstanceIdToInstanceDataMap } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { AssessmentScanData, ScanData } from 'common/types/store-data/visualization-store-data';
 import {
@@ -52,6 +53,15 @@ export class AssessmentBuilder {
             requirement.getInstanceStatus = AssessmentBuilder.getInstanceStatus;
         }
 
+        if (!requirement.getInitialManualTestStatus) {
+            requirement.getInitialManualTestStatus = AssessmentBuilder.getInitialManualTestStatus;
+        }
+
+        if (!requirement.isVisualizationSupportedForResult) {
+            requirement.isVisualizationSupportedForResult =
+                AssessmentBuilder.isVisualizationSupportedForResult;
+        }
+
         if (!requirement.getInstanceStatusColumns) {
             requirement.getInstanceStatusColumns = AssessmentBuilder.getInstanceStatusColumns;
         }
@@ -73,6 +83,16 @@ export class AssessmentBuilder {
 
     private static getInstanceStatus(result: DecoratedAxeNodeResult): ManualTestStatus {
         return ManualTestStatus.UNKNOWN;
+    }
+
+    private static getInitialManualTestStatus(
+        instances: InstanceIdToInstanceDataMap,
+    ): ManualTestStatus {
+        return ManualTestStatus.UNKNOWN;
+    }
+
+    private static isVisualizationSupportedForResult(result: DecoratedAxeNodeResult): boolean {
+        return true;
     }
 
     private static getInstanceStatusColumns(): Readonly<IColumn>[] {

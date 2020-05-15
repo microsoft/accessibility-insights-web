@@ -21,6 +21,8 @@ import { TargetPageVisualizationUpdater } from 'injected/target-page-visualizati
 import { visualizationNeedsUpdate } from 'injected/visualization-needs-update';
 import { VisualizationStateChangeHandler } from 'injected/visualization-state-change-handler';
 
+import { createToolData } from 'common/application-properties-provider';
+import { toolName } from 'content/strings/application';
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
@@ -205,6 +207,14 @@ export class MainWindowInitializer extends WindowInitializer {
             AxeInfo.Default.version,
         );
 
+        const toolData = createToolData(
+            toolName,
+            this.appDataAdapter.getVersion(),
+            'axe-core',
+            AxeInfo.Default.version,
+            browserSpec,
+        );
+
         MainWindowContext.initialize(
             this.devToolStoreProxy,
             this.userConfigStoreProxy,
@@ -213,6 +223,7 @@ export class MainWindowInitializer extends WindowInitializer {
             issueFilingActionMessageCreator,
             userConfigMessageCreator,
             environmentInfoProvider,
+            toolData,
             IssueFilingServiceProviderImpl,
         );
 

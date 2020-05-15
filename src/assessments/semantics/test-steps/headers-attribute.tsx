@@ -29,8 +29,8 @@ const headersAttributeHowToTest: JSX.Element = (
         <ol>
             <li>
                 Use the Web Developer browser extension (
-                <Markup.Term>Information > Display table information</Markup.Term>) to reveal any{' '}
-                <Markup.CodeTerm>headers</Markup.CodeTerm> attributes on the page. Note: The{' '}
+                <Markup.Term>Information {'>'} Display table information</Markup.Term>) to reveal
+                any <Markup.CodeTerm>headers</Markup.CodeTerm> attributes on the page. Note: The{' '}
                 <Markup.CodeTerm>headers</Markup.CodeTerm> attributes are displayed on the data
                 cells, and not on the <Markup.Tag tagName="th" /> cells they reference.
             </li>

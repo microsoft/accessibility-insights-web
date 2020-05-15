@@ -9,7 +9,7 @@ Array [
     "guidance": Array [],
     "id": "Rule #1",
     "uid": "gguid-mock-stub",
-    "url": null,
+    "url": "rule-link",
   },
 ]
 `;
@@ -21,7 +21,7 @@ Array [
     "guidance": Array [],
     "id": "Rule #1",
     "uid": "gguid-mock-stub",
-    "url": null,
+    "url": "rule-link",
   },
 ]
 `;
@@ -39,21 +39,21 @@ Array [
     ],
     "id": "Rule #3",
     "uid": "gguid-mock-stub",
-    "url": null,
+    "url": "rule-link-3",
   },
   Object {
     "description": "This describes Rule #1",
     "guidance": Array [],
     "id": "Rule #1",
     "uid": "gguid-mock-stub",
-    "url": null,
+    "url": "rule-link",
   },
   Object {
     "description": "This describes Rule #2",
     "guidance": Array [],
     "id": "Rule #2",
     "uid": "gguid-mock-stub",
-    "url": null,
+    "url": "rule-link",
   },
 ]
 `;

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { BaseStore } from '../common/base-store';
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
 import { IssueFilingActionMessageCreator } from '../common/message-creators/issue-filing-action-message-creator';
@@ -19,6 +20,7 @@ export class MainWindowContext {
         private issueFilingActionMessageCreator: IssueFilingActionMessageCreator,
         private userConfigMessageCreator: UserConfigMessageCreator,
         private environmentInfoProvider: EnvironmentInfoProvider,
+        private toolData: ToolData,
         private issueFilingServiceProvider: IssueFilingServiceProvider,
     ) {}
 
@@ -50,6 +52,10 @@ export class MainWindowContext {
         return this.environmentInfoProvider;
     }
 
+    public getToolData(): ToolData {
+        return this.toolData;
+    }
+
     public getIssueFilingServiceProvider(): IssueFilingServiceProvider {
         return this.issueFilingServiceProvider;
     }
@@ -62,6 +68,7 @@ export class MainWindowContext {
         issueFilingActionMessageCreator: IssueFilingActionMessageCreator,
         userConfigMessageCreator: UserConfigMessageCreator,
         environmentInfoProvider: EnvironmentInfoProvider,
+        toolData: ToolData,
         issueFilingServiceProvider: IssueFilingServiceProvider,
     ): void {
         window.mainWindowContext = new MainWindowContext(
@@ -72,6 +79,7 @@ export class MainWindowContext {
             issueFilingActionMessageCreator,
             userConfigMessageCreator,
             environmentInfoProvider,
+            toolData,
             issueFilingServiceProvider,
         );
     }

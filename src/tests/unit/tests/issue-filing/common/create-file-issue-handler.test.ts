@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
-import { EnvironmentInfo } from 'common/environment-info-provider';
 import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { IssueFilingServicePropertiesMap } from 'common/types/store-data/user-configuration-store';
 import { createFileIssueHandler } from 'issue-filing/common/create-file-issue-handler';
 import { IssueFilingUrlProvider } from 'issue-filing/types/issue-filing-service';
@@ -16,10 +16,16 @@ describe('createFileIssueHandler', () => {
             name: 'pageTitle<x>',
         },
     } as CreateIssueDetailsTextData;
-    const environmentInfoStub: EnvironmentInfo = {
-        axeCoreVersion: 'test axe version',
-        browserSpec: 'test browser spec',
-        extensionVersion: 'test extension version',
+    const toolData: ToolData = {
+        scanEngineProperties: {
+            name: 'engine-name',
+            version: 'engine-version',
+        },
+        applicationProperties: {
+            name: 'app-name',
+            version: 'app-version',
+            environmentName: 'environmentName',
+        },
     };
     const settingsStub = {
         repo: 'test-repo',
@@ -39,7 +45,7 @@ describe('createFileIssueHandler', () => {
 
         urlProviderMock = Mock.ofType<IssueFilingUrlProvider<any>>(undefined, MockBehavior.Strict);
         urlProviderMock
-            .setup(provider => provider(settingsStub, issueData, environmentInfoStub))
+            .setup(provider => provider(settingsStub, issueData, toolData))
             .returns(() => urlStub);
 
         browserAdapterMock = Mock.ofType<BrowserAdapter>(undefined, MockBehavior.Strict);
@@ -57,7 +63,7 @@ describe('createFileIssueHandler', () => {
         );
 
         await expect(
-            testSubject(browserAdapterMock.object, serviceMap, issueData, environmentInfoStub),
+            testSubject(browserAdapterMock.object, serviceMap, issueData, toolData),
         ).resolves.toBe(undefined);
 
         browserAdapterMock.verifyAll();
@@ -76,7 +82,7 @@ describe('createFileIssueHandler', () => {
         );
 
         await expect(
-            testSubject(browserAdapterMock.object, serviceMap, issueData, environmentInfoStub),
+            testSubject(browserAdapterMock.object, serviceMap, issueData, toolData),
         ).rejects.toEqual(errorMessage);
     });
 });

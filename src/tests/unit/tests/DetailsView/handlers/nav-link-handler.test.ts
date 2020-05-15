@@ -81,12 +81,16 @@ describe('NavLinkHandler', () => {
     describe('onRequirementClick', () => {
         it('should call selectRequirement and changeRightContentPanel with appropriate params', () => {
             const requirementLink = {
-                key: 'some requirement',
+                requirementKey: 'some requirement',
                 testType: -1,
             } as TestRequirementLeftNavLink;
             detailsViewActionMessageCreatorMock
                 .setup(amc =>
-                    amc.selectRequirement(eventStub, requirementLink.key, requirementLink.testType),
+                    amc.selectRequirement(
+                        eventStub,
+                        requirementLink.requirementKey,
+                        requirementLink.testType,
+                    ),
                 )
                 .verifiable();
 

@@ -6,8 +6,6 @@ import { css, Toggle } from 'office-ui-fabric-react';
 import * as React from 'react';
 import * as styles from './visual-helper-toggle.scss';
 
-export const visualHelperToggleAutomationId = 'visual-helper-toggle';
-
 export type VisualHelperToggleDeps = {
     cardSelectionMessageCreator: CardSelectionMessageCreator;
 };

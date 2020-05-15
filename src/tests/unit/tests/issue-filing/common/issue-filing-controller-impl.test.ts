@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { BaseStore } from 'common/base-store';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
-import { EnvironmentInfo } from 'common/environment-info-provider';
 import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import {
     IssueFilingServicePropertiesMap,
     UserConfigurationStoreData,
@@ -19,10 +19,16 @@ describe('IssueFilingControllerImpl', () => {
         const issueData = {
             targetApp: {},
         } as CreateIssueDetailsTextData;
-        const environmentInfoStub: EnvironmentInfo = {
-            axeCoreVersion: 'test axe version',
-            browserSpec: 'test browser spec',
-            extensionVersion: 'test extension version',
+        const toolData: ToolData = {
+            scanEngineProperties: {
+                name: 'engine-name',
+                version: 'engine-version',
+            },
+            applicationProperties: {
+                name: 'app-name',
+                version: 'app-version',
+                environmentName: 'environmentName',
+            },
         };
         const testUrl = 'test-url';
         const map: IssueFilingServicePropertiesMap = {
@@ -36,7 +42,7 @@ describe('IssueFilingControllerImpl', () => {
         const issueFilingServiceMock = Mock.ofType<IssueFilingService>();
         issueFilingServiceMock
             .setup(service =>
-                service.fileIssue(browserAdapterMock.object, map, issueData, environmentInfoStub),
+                service.fileIssue(browserAdapterMock.object, map, issueData, toolData),
             )
             .returns(() => Promise.resolve());
 
@@ -51,7 +57,7 @@ describe('IssueFilingControllerImpl', () => {
         const testSubject = new IssueFilingControllerImpl(
             providerMock.object,
             browserAdapterMock.object,
-            environmentInfoStub,
+            toolData,
             storeMock.object,
         );
 
