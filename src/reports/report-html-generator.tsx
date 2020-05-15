@@ -2,13 +2,14 @@
 // Licensed under the MIT License.
 import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { NewTabLink } from 'common/components/new-tab-link';
 import { NullComponent } from 'common/components/null-component';
 import { PropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
+import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 
-import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { ReportBody, ReportBodyProps } from './components/report-sections/report-body';
 import { ReportCollapsibleContainerControl } from './components/report-sections/report-collapsible-container';
 import {
@@ -48,6 +49,7 @@ export class ReportHtmlGenerator {
                 getPropertyConfigById: this.getPropertyConfiguration,
                 cardInteractionSupport: noCardInteractionsSupported,
                 cardsVisualizationModifierButtons: NullComponent,
+                LinkComponent: NewTabLink,
             } as SectionDeps,
             cardsViewData: cardsViewData,
             toUtcString: this.utcDateConverter,

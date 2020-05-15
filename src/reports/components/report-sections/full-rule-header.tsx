@@ -5,15 +5,18 @@ import { GuidanceTags } from 'common/components/guidance-tags';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { NamedFC } from 'common/react/named-fc';
+import { LinkComponentType } from 'common/types/link-component-type';
 import { CardRuleResult } from 'common/types/store-data/card-view-model';
 import { isEmpty, kebabCase } from 'lodash';
 import * as React from 'react';
+
 import { InstanceOutcomeType } from '../instance-outcome-type';
 import { OutcomeChip } from '../outcome-chip';
 import { outcomeTypeSemantics } from '../outcome-type';
 
 export type FullRuleHeaderDeps = {
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;
+    LinkComponent: LinkComponentType;
 };
 
 export type FullRuleHeaderProps = {
@@ -63,7 +66,7 @@ export const FullRuleHeader = NamedFC<FullRuleHeaderProps>('FullRuleHeader', pro
         }
         return (
             <>
-                (<GuidanceLinks links={cardResult.guidance} />)
+                (<GuidanceLinks links={cardResult.guidance} LinkComponent={deps.LinkComponent} />)
             </>
         );
     };

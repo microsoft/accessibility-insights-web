@@ -4,6 +4,7 @@ import { DefaultMessageInterface } from 'assessments/assessment-default-message-
 import { GuidanceLinks } from 'common/components/guidance-links';
 import { GuidanceTags, GuidanceTagsDeps } from 'common/components/guidance-tags';
 import { NamedFC } from 'common/react/named-fc';
+import { LinkComponentType } from 'common/types/link-component-type';
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import * as React from 'react';
 
@@ -14,6 +15,7 @@ import { allRequirementOutcomeTypes } from './requirement-outcome-type';
 
 export type AssessmentReportStepHeaderDeps = GuidanceTagsDeps & {
     outcomeTypeSemanticsFromTestStatus: (testStatus: ManualTestStatus) => OutcomeTypeSemantic;
+    LinkComponent: LinkComponentType;
 };
 
 export interface AssessmentReportStepHeaderProps {
@@ -53,6 +55,7 @@ export const AssessmentReportStepHeader = NamedFC<AssessmentReportStepHeaderProp
                 <GuidanceLinks
                     classNameForDiv={`test-guidance-links-group`}
                     links={header.guidanceLinks}
+                    LinkComponent={deps.LinkComponent}
                 />
                 <OutcomeChip count={count} outcomeType={outcomeType} />
                 <GuidanceTags deps={deps} links={header.guidanceLinks} />
