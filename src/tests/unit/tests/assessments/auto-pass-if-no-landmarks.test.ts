@@ -5,7 +5,7 @@ import { ManualTestStatus } from 'common/types/manual-test-status';
 import { InstanceIdToInstanceDataMap } from 'common/types/store-data/assessment-result-data';
 
 describe('autoPassIfNoResults', () => {
-    it('returns PASS for instance data with a result', () => {
+    it('returns UNKNOWN for instance data with a result', () => {
         const inputWithResult: InstanceIdToInstanceDataMap = {
             '#some-element': {
                 target: ['#some-element'],
@@ -21,12 +21,12 @@ describe('autoPassIfNoResults', () => {
             },
         };
 
-        expect(autoPassIfNoResults(inputWithResult)).toBe(ManualTestStatus.PASS);
+        expect(autoPassIfNoResults(inputWithResult)).toBe(ManualTestStatus.UNKNOWN);
     });
 
-    it('returns UNKNOWN for instance data with no results', () => {
+    it('returns PASS for instance data with no results', () => {
         const inputWithNoResults: InstanceIdToInstanceDataMap = {};
 
-        expect(autoPassIfNoResults(inputWithNoResults)).toBe(ManualTestStatus.UNKNOWN);
+        expect(autoPassIfNoResults(inputWithNoResults)).toBe(ManualTestStatus.PASS);
     });
 });
