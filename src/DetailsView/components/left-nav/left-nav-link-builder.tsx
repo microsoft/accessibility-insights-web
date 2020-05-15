@@ -226,6 +226,7 @@ export class LeftNavLinkBuilder {
             title: `${displayedIndex}: ${name} (${narratorRequirementStatus})`,
             displayedIndex,
             testType: test,
+            requirementKey: requirement.key,
         };
     }
 

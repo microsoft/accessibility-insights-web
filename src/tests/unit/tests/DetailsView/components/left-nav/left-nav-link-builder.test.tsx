@@ -335,6 +335,7 @@ describe('LeftNavBuilder', () => {
             },
             testType: test,
             status,
+            requirementKey: requirement.key,
         } as TestRequirementLeftNavLink;
     }
 });

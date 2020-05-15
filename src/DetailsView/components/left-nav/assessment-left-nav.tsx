@@ -41,6 +41,7 @@ export type TestGettingStartedNavLink = {
 export type TestRequirementLeftNavLink = {
     displayedIndex: string;
     testType: VisualizationType;
+    requirementKey: string;
 } & AssessmentLeftNavLink;
 
 export type onTestRequirementClick = (
