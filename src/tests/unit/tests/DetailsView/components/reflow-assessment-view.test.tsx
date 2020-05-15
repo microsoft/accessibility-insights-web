@@ -1,11 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentTestResult } from 'common/assessment/assessment-test-result';
-import { AssessmentData } from 'common/types/store-data/assessment-result-data';
+import {
+    AssessmentData,
+    GettingStarted,
+    gettingStartedSubview,
+    RequirementName,
+} from 'common/types/store-data/assessment-result-data';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
-
 import {
     ReflowAssessmentView,
     ReflowAssessmentViewDeps,
@@ -20,12 +24,12 @@ describe('AssessmentViewTest', () => {
     });
 
     test('render for gettting started', () => {
-        const props = generateProps('getting-started');
+        const props = generateProps(gettingStartedSubview);
         const rendered = shallow(<ReflowAssessmentView {...props} />);
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
-    function generateProps(subview: string): ReflowAssessmentViewProps {
+    function generateProps(subview: RequirementName | GettingStarted): ReflowAssessmentViewProps {
         const assessmentDataMock = Mock.ofType<AssessmentData>();
 
         const assessmentTestResultStub: AssessmentTestResult = {

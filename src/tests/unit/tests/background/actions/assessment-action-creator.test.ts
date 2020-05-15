@@ -23,6 +23,7 @@ import { Action } from 'common/flux/action';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { gettingStartedSubview } from 'common/types/store-data/assessment-result-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import {
     ScanBasePayload,
@@ -559,7 +560,7 @@ describe('AssessmentActionCreatorTest', () => {
             ...telemetryOnlyPayload,
         } as SelectGettingStartedPayload;
         const actionPayload: SelectTestSubviewPayload = {
-            selectedTestSubview: 'getting-started',
+            selectedTestSubview: gettingStartedSubview,
             ...telemetryOnlyPayload,
         } as SelectTestSubviewPayload;
 
