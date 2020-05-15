@@ -39,7 +39,7 @@ export type IssueFilingButtonState = {
 export class IssueFilingButton extends React.Component<
     IssueFilingButtonProps,
     IssueFilingButtonState
-    > {
+> {
     constructor(props) {
         super(props);
         this.state = {
