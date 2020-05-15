@@ -303,7 +303,12 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         );
         windowFrameListener.initialize();
 
-        const getToolData = createGetToolDataDelegate(appDataAdapter);
+        const getToolData = createGetToolDataDelegate(
+            androidAppTitle,
+            appDataAdapter.getVersion(),
+            'axe-android',
+        );
+
         const unifiedResultsBuilder = createDefaultBuilder(getToolData);
         const scanController = new ScanController(
             scanActions,

@@ -9,6 +9,7 @@ describe('MainWindowContextTest', () => {
     const targetPageActionMessageCreator: any = { name: 'targetPageActionMessageCreator' };
     const issueFilingActionMessageCreator: any = { name: 'targetPageActionMessageCreator' };
     const environmentInfoProvider: any = { name: 'environmentInfoProvider' };
+    const toolData: any = { name: 'toolData' };
     const issueFilingServiceProvider: any = { name: 'issueFilingServiceProvider' };
     const userConfigMessageCreator: any = { name: 'userConfigMessageCreator' };
 
@@ -21,6 +22,7 @@ describe('MainWindowContextTest', () => {
             issueFilingActionMessageCreator,
             userConfigMessageCreator,
             environmentInfoProvider,
+            toolData,
             issueFilingServiceProvider,
         );
 
@@ -41,6 +43,7 @@ describe('MainWindowContextTest', () => {
             issueFilingActionMessageCreator,
             userConfigMessageCreator,
             environmentInfoProvider,
+            toolData,
             issueFilingServiceProvider,
         );
 
@@ -60,6 +63,7 @@ describe('MainWindowContextTest', () => {
         expect(MainWindowContext.getMainWindowContext().getEnvironmentInfoProvider()).toEqual(
             environmentInfoProvider,
         );
+        expect(MainWindowContext.getMainWindowContext().getToolData()).toEqual(toolData);
         expect(MainWindowContext.getMainWindowContext().getIssueFilingServiceProvider()).toEqual(
             issueFilingServiceProvider,
         );
@@ -74,6 +78,7 @@ describe('MainWindowContextTest', () => {
             issueFilingActionMessageCreator,
             userConfigMessageCreator,
             environmentInfoProvider,
+            toolData,
             issueFilingServiceProvider,
         );
 
@@ -81,6 +86,7 @@ describe('MainWindowContextTest', () => {
         const userConfigStoreLocal: any = { name: 'userConfigStoreLocal' };
         const devToolActionMessageCreatorLocal: any = { name: 'devToolActionMessageCreatorLocal' };
         const environmentInfoProviderLocal: any = { name: 'environmentInfoProviderLocal' };
+        const toolDataLocal: any = { name: 'toolDataLocal' };
         const issueFilingServiceProviderLocal: any = { name: 'issueFilingServiceProviderLocal' };
         const userConfigMessageCreatorLocal: any = { name: 'userConfigMessageCreatorLocal' };
 
@@ -92,6 +98,7 @@ describe('MainWindowContextTest', () => {
             issueFilingActionMessageCreator,
             userConfigMessageCreatorLocal,
             environmentInfoProviderLocal,
+            toolDataLocal,
             issueFilingServiceProviderLocal,
         );
 
@@ -110,6 +117,7 @@ describe('MainWindowContextTest', () => {
         expect(mainWindowContextGiven.getEnvironmentInfoProvider()).toEqual(
             environmentInfoProviderLocal,
         );
+        expect(mainWindowContextGiven.getToolData()).toEqual(toolDataLocal);
         expect(mainWindowContextGiven.getIssueFilingServiceProvider()).toEqual(
             issueFilingServiceProviderLocal,
         );
@@ -129,6 +137,7 @@ describe('MainWindowContextTest', () => {
         expect(mainWindowContextNotGiven.getEnvironmentInfoProvider()).toEqual(
             environmentInfoProvider,
         );
+        expect(mainWindowContextNotGiven.getToolData()).toEqual(toolData);
         expect(mainWindowContextNotGiven.getIssueFilingServiceProvider()).toEqual(
             issueFilingServiceProvider,
         );

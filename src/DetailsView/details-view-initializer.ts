@@ -6,6 +6,7 @@ import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-
 import { UserConfigurationActions } from 'background/actions/user-configuration-actions';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
+import { createToolData } from 'common/application-properties-provider';
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { ThemeInnerState } from 'common/components/theme';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
@@ -13,6 +14,7 @@ import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unav
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
+import { toolName } from 'content/strings/application';
 import { textContent } from 'content/strings/text-content';
 import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
 import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-available/no-content-available-view';
@@ -292,6 +294,14 @@ if (isNaN(tabId) === false) {
                 AxeInfo.Default.version,
             );
 
+            const toolData = createToolData(
+                toolName,
+                browserAdapter.getVersion(),
+                'axe-core',
+                AxeInfo.Default.version,
+                browserSpec,
+            );
+
             const reactStaticRenderer = new ReactStaticRenderer();
             const reportNameGenerator = new WebReportNameGenerator();
 
@@ -340,7 +350,7 @@ if (isNaN(tabId) === false) {
 
             const issueDetailsTextGenerator = new IssueDetailsTextGenerator(
                 IssueFilingUrlStringUtils,
-                environmentInfoProvider,
+                toolData,
                 createIssueDetailsBuilder(PlainTextFormatter),
             );
 

@@ -6,8 +6,8 @@ h-Target application-h--s-h-s--pageTitle<x>
 h-Element path-h--s-h-s--RR-selector<x>
 h-Snippet-h--s-h-s--s-RR-snippet   space-s
 h-How to fix-h--s-h-s--h-t--RR-failureSummary--h-t
-h-Environment-h--s-h-s--test spec
---f-s--This accessibility issue was found using Accessibility Insights for Web 1.1.1 (axe-core 2.2.2), a tool that helps find and fix accessibility issues. Get more information & download this tool at l-http://aka.ms/AccessibilityInsights-l."
+h-Environment-h--s-h-s--environmentName
+--f-s--This accessibility issue was found using app-name app-version (engine-name engine-version), a tool that helps find and fix accessibility issues. Get more information & download this tool at l-http://aka.ms/AccessibilityInsights-l."
 `;
 
 exports[`Name of the group build issue details when targetApp.url is pageUrl 1`] = `
@@ -16,6 +16,6 @@ h-Target application-h--s-h-s--l-pageUrl-pageTitle<x>-l
 h-Element path-h--s-h-s--RR-selector<x>
 h-Snippet-h--s-h-s--s-RR-snippet   space-s
 h-How to fix-h--s-h-s--h-t--RR-failureSummary--h-t
-h-Environment-h--s-h-s--test spec
---f-s--This accessibility issue was found using Accessibility Insights for Web 1.1.1 (axe-core 2.2.2), a tool that helps find and fix accessibility issues. Get more information & download this tool at l-http://aka.ms/AccessibilityInsights-l."
+h-Environment-h--s-h-s--environmentName
+--f-s--This accessibility issue was found using app-name app-version (engine-name engine-version), a tool that helps find and fix accessibility issues. Get more information & download this tool at l-http://aka.ms/AccessibilityInsights-l."
 `;

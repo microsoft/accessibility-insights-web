@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import { BaseStore } from 'common/base-store';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
-import { EnvironmentInfo } from 'common/environment-info-provider';
 import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { IssueFilingServiceProvider } from '../issue-filing-service-provider';
 
 export type IssueFilingController = {
@@ -16,7 +16,7 @@ export class IssueFilingControllerImpl implements IssueFilingController {
     constructor(
         private readonly provider: IssueFilingServiceProvider,
         private readonly browserAdapter: BrowserAdapter,
-        private readonly environmentInfo: EnvironmentInfo,
+        private readonly toolData: ToolData,
         private readonly userConfigurationStore: BaseStore<UserConfigurationStoreData>,
     ) {}
 
@@ -31,7 +31,7 @@ export class IssueFilingControllerImpl implements IssueFilingController {
             this.browserAdapter,
             userConfigurationStoreData.bugServicePropertiesMap,
             issueData,
-            this.environmentInfo,
+            this.toolData,
         );
     };
 }

@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { BrowserPermissionsTracker } from 'background/browser-permissions-tracker';
 import { Logger } from 'common/logging/logger';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { DebugToolsActionCreator } from 'debug-tools/action-creators/debug-tools-action-creator';
 import { DebugToolsController } from 'debug-tools/controllers/debug-tools-controller';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
@@ -45,6 +46,7 @@ export class GlobalContextFactory {
         persistedData: PersistedData,
         issueFilingServiceProvider: IssueFilingServiceProvider,
         environmentInfo: EnvironmentInfo,
+        toolData: ToolData,
         storageAdapter: StorageAdapter,
         commandsAdapter: CommandsAdapter,
         logger: Logger,
@@ -74,7 +76,7 @@ export class GlobalContextFactory {
         const issueFilingController = new IssueFilingControllerImpl(
             issueFilingServiceProvider,
             browserAdapter,
-            environmentInfo,
+            toolData,
             globalStoreHub.userConfigurationStore,
         );
 
