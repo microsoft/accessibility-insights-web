@@ -176,7 +176,7 @@ export class LeftNavLinkBuilder {
         );
 
         const gettingStartedLink = this.buildGettingStartedLink(
-            navLinkHandler.onRequirementClick,
+            navLinkHandler.onGettingStartedClick,
             assessment,
         );
 
