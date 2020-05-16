@@ -38,41 +38,45 @@ export type ReflowAssessmentViewProps = {
 export const ReflowAssessmentView = NamedFC<ReflowAssessmentViewProps>(
     'ReflowAssessmentView',
     props => {
-        const gettingStartedView: JSX.Element = (
-            <GettingStartedView
-                gettingStartedContent={props.assessmentTestResult.definition.gettingStarted}
-            />
-        );
+        const renderGettingStartedView = () => {
+            return (
+                <GettingStartedView
+                    gettingStartedContent={props.assessmentTestResult.definition.gettingStarted}
+                />
+            );
+        };
 
-        const selectedRequirement = props.assessmentTestResult.getRequirementResult(
-            props.assessmentNavState.selectedTestSubview,
-        );
+        const renderRequirementView = () => {
+            const selectedRequirement = props.assessmentTestResult.getRequirementResult(
+                props.assessmentNavState.selectedTestSubview,
+            );
 
-        const requirementView: JSX.Element = (
-            <RequirementView
-                deps={props.deps}
-                requirement={selectedRequirement.definition}
-                assessmentsProvider={props.deps.assessmentsProvider}
-                assessmentNavState={props.assessmentNavState}
-                instancesMap={props.assessmentData.generatedAssessmentInstancesMap}
-                isRequirementEnabled={props.selectedRequirementIsEnabled}
-                isRequirementScanned={selectedRequirement.data.isStepScanned}
-                assessmentInstanceTableHandler={props.assessmentInstanceTableHandler}
-                featureFlagStoreData={props.featureFlagStoreData}
-                pathSnippetStoreData={props.pathSnippetStoreData}
-                scanningInProgress={props.scanningInProgress}
-                manualRequirementResultMap={props.assessmentData.manualTestStepResultMap}
-                assessmentDefaultMessageGenerator={props.assessmentDefaultMessageGenerator}
-                assessmentData={props.assessmentData}
-                currentTarget={props.currentTarget}
-                prevTarget={props.prevTarget}
-            />
-        );
+            return (
+                <RequirementView
+                    deps={props.deps}
+                    requirement={selectedRequirement.definition}
+                    assessmentsProvider={props.deps.assessmentsProvider}
+                    assessmentNavState={props.assessmentNavState}
+                    instancesMap={props.assessmentData.generatedAssessmentInstancesMap}
+                    isRequirementEnabled={props.selectedRequirementIsEnabled}
+                    isRequirementScanned={selectedRequirement.data.isStepScanned}
+                    assessmentInstanceTableHandler={props.assessmentInstanceTableHandler}
+                    featureFlagStoreData={props.featureFlagStoreData}
+                    pathSnippetStoreData={props.pathSnippetStoreData}
+                    scanningInProgress={props.scanningInProgress}
+                    manualRequirementResultMap={props.assessmentData.manualTestStepResultMap}
+                    assessmentDefaultMessageGenerator={props.assessmentDefaultMessageGenerator}
+                    assessmentData={props.assessmentData}
+                    currentTarget={props.currentTarget}
+                    prevTarget={props.prevTarget}
+                />
+            );
+        };
 
         const mainContent: JSX.Element =
             props.assessmentNavState.selectedTestSubview === gettingStartedSubview
-                ? gettingStartedView
-                : requirementView;
+                ? renderGettingStartedView()
+                : renderRequirementView();
 
         return (
             <div>
