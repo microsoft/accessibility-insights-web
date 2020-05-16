@@ -7,6 +7,9 @@ import {
     gettingStartedSubview,
     RequirementName,
 } from 'common/types/store-data/assessment-result-data';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { PathSnippetStoreData } from 'common/types/store-data/path-snippet-store-data';
+import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
@@ -38,16 +41,32 @@ describe('AssessmentViewTest', () => {
             },
         } as AssessmentTestResult;
 
+        const assessmentInstanceTableHandlerStub = {
+            changeRequirementStatus: null,
+        } as AssessmentInstanceTableHandler;
+
+        const featureFlagStoreDataStub: FeatureFlagStoreData = {
+            'some feature flag': true,
+        };
+        const pathSnippetStoreDataStub = {
+            path: null,
+        } as PathSnippetStoreData;
+
         const reflowProps = {
             deps: {} as ReflowAssessmentViewDeps,
             prevTarget: { id: 4 },
             currentTarget: { id: 5 },
+            scanningInProgress: true,
+            selectedRequirementIsEnabled: true,
             assessmentNavState: {
                 selectedTestSubview: subview,
                 selectedTestType: -1,
             },
             assessmentData: assessmentDataMock.object,
             assessmentTestResult: assessmentTestResultStub,
+            assessmentInstanceTableHandler: assessmentInstanceTableHandlerStub,
+            featureFlagStoreData: featureFlagStoreDataStub,
+            pathSnippetStoreData: pathSnippetStoreDataStub,
         } as ReflowAssessmentViewProps;
         return reflowProps;
     }
