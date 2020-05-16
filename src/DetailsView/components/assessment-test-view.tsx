@@ -68,12 +68,17 @@ export const AssessmentTestView = NamedFC<AssessmentTestViewProps>(
             return (
                 <ReflowAssessmentView
                     deps={deps}
-                    assessmentNavState={assessmentNavState}
-                    assessmentData={assessmentData}
                     currentTarget={currentTarget}
                     prevTarget={prevTarget}
-                    assessmentTestResult={assessmentTestResult}
+                    scanningInProgress={isScanning}
                     selectedRequirementIsEnabled={selectedRequirementIsEnabled}
+                    assessmentNavState={assessmentNavState}
+                    assessmentData={assessmentData}
+                    assessmentDefaultMessageGenerator={deps.assessmentDefaultMessageGenerator}
+                    assessmentTestResult={assessmentTestResult}
+                    assessmentInstanceTableHandler={props.assessmentInstanceTableHandler}
+                    featureFlagStoreData={props.featureFlagStoreData}
+                    pathSnippetStoreData={props.pathSnippetStoreData}
                 />
             );
         };
