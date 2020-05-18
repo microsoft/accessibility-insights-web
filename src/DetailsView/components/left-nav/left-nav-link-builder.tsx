@@ -13,6 +13,7 @@ import {
 } from 'DetailsView/components/left-nav/assessment-left-nav';
 import { GettingStartedNavLink } from 'DetailsView/components/left-nav/getting-started-nav-link';
 import { LeftNavIndexIcon, LeftNavStatusIcon } from 'DetailsView/components/left-nav/left-nav-icon';
+import { requirementStatusIcon } from 'DetailsView/components/left-nav/left-nav-link-builder.scss';
 import { NavLinkHandler } from 'DetailsView/components/left-nav/nav-link-handler';
 import { map } from 'lodash';
 import * as React from 'react';
@@ -261,7 +262,7 @@ export class LeftNavLinkBuilder {
             return <>{link.displayedIndex}</>;
         }
 
-        return <LeftNavStatusIcon item={link} />;
+        return <LeftNavStatusIcon className={requirementStatusIcon} item={link} />;
     };
 
     private renderAssessmentTestIcon: onBaseLeftNavItemRender = (link: AssessmentLeftNavLink) => {
