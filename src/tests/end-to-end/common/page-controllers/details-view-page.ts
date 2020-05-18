@@ -33,14 +33,23 @@ export class DetailsViewPage extends Page {
         await this.clickSelector('button[title="Assessment"]');
     }
 
-    public async navigateToTest(testName: string): Promise<void> {
+    public async navigateToTest(
+        testName: string,
+        waitOptions?: Puppeteer.WaitForSelectorOptions,
+    ): Promise<void> {
         await this.clickSelector(assessmentSelectors.testNavLink(testName));
-        await this.waitForSelector(assessmentSelectors.testViewTitle(testName));
+        await this.waitForSelector(assessmentSelectors.testViewTitle(testName), waitOptions);
     }
 
-    public async navigateToRequirement(requirementName: string): Promise<void> {
+    public async navigateToRequirement(
+        requirementName: string,
+        waitOptions?: Puppeteer.WaitForSelectorOptions,
+    ): Promise<void> {
         await this.clickSelector(assessmentSelectors.requirementNavLink(requirementName));
-        await this.waitForSelector(assessmentSelectors.requirementViewTitle(requirementName));
+        await this.waitForSelector(
+            assessmentSelectors.requirementViewTitle(requirementName),
+            waitOptions,
+        );
     }
 
     public async waitForScanCompleteAlert(

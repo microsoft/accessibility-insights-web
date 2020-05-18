@@ -3,7 +3,10 @@
 import { getDefaultRules } from 'scanner/exposed-apis';
 import { Browser } from 'tests/end-to-end/common/browser';
 import { launchBrowser } from 'tests/end-to-end/common/browser-factory';
-import { DEFAULT_E2E_TEST_TIMEOUT_MS } from 'tests/end-to-end/common/timeouts';
+import {
+    DEFAULT_E2E_TEST_TIMEOUT_MS,
+    DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS,
+} from 'tests/end-to-end/common/timeouts';
 
 describe('Details View -> Assessment -> Automated Checks', () => {
     let browser: Browser;
@@ -28,9 +31,10 @@ describe('Details View -> Assessment -> Automated Checks', () => {
             const { detailsViewPage } = await browser.newAssessment({
                 testResourcePath: 'clean.html',
             });
-            await detailsViewPage.navigateToTest('Automated checks');
 
-            // Navigating to the test should automatically scan all rules
+            await detailsViewPage.navigateToTest('Automated checks', {
+                timeout: DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS,
+            });
             await detailsViewPage.waitForScanCompleteAlert();
 
             for (const rule of getDefaultRules()) {
@@ -50,9 +54,10 @@ describe('Details View -> Assessment -> Automated Checks', () => {
             const { detailsViewPage } = await browser.newAssessment({
                 testResourcePath: 'all.html',
             });
-            await detailsViewPage.navigateToTest('Automated checks');
 
-            // Navigating to the test should automatically scan all rules
+            await detailsViewPage.navigateToTest('Automated checks', {
+                timeout: DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS,
+            });
             await detailsViewPage.waitForScanCompleteAlert();
 
             await detailsViewPage.waitForRequirementStatus(ruleThatFailsInOuterPage, 'Failed');
