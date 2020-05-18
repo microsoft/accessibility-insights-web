@@ -3,6 +3,7 @@
 exports[`RequirementViewTitleTest renders with content from props 1`] = `
 <h1
   className="requirementViewTitle"
+  data-automation-id="requirement-title-test-requirement-name"
 >
   test-requirement-name
   <GuidanceTags

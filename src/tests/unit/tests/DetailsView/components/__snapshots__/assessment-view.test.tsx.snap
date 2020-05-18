@@ -4,7 +4,7 @@ exports[`AssessmentViewTest render 1`] = `
 "<div className=\\"assessmentContent\\">
   <TargetChangeDialog deps={{...}} prevTab={{...}} newTab={{...}} />
   <div className=\\"assessmentTitle\\">
-    <h1 className=\\"assessmentHeader\\">
+    <h1 data-automation-id=\\"assessment-test-title-assessment 1\\" className=\\"assessmentHeader\\">
       assessment 1
        
       <ContentLink deps={{...}} reference={[Function]} iconName=\\"info\\" />

@@ -3,7 +3,7 @@
 exports[`TestStepViewTest render snapshot matches with manual false and scanning is finished 1`] = `
 "<div className=\\"test-step-view\\">
   <div className=\\"test-step-title-container\\">
-    <h3 className=\\"test-step-view-title\\">
+    <h3 data-automation-id=\\"requirement-title-Test Step Test Name\\" className=\\"test-step-view-title\\">
       Test Step Test Name
       <GuidanceTags deps={[undefined]} links={{...}} />
     </h3>
@@ -23,7 +23,7 @@ exports[`TestStepViewTest render snapshot matches with manual false and scanning
 exports[`TestStepViewTest render, variable part for assisted test 1`] = `
 "<div className=\\"test-step-view\\">
   <div className=\\"test-step-title-container\\">
-    <h3 className=\\"test-step-view-title\\">
+    <h3 data-automation-id=\\"requirement-title-Test Step Test Name\\" className=\\"test-step-view-title\\">
       Test Step Test Name
       <GuidanceTags deps={[undefined]} links={{...}} />
     </h3>
