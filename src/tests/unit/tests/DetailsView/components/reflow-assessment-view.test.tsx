@@ -14,7 +14,6 @@ import { PathSnippetStoreData } from 'common/types/store-data/path-snippet-store
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { Mock } from 'typemoq';
 import {
     ReflowAssessmentView,
     ReflowAssessmentViewDeps,
