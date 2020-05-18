@@ -24,7 +24,7 @@ export class RuleInformationProvider {
                 'TouchSizeWcag',
                 `${this.ruleLinkBaseUrl}/touch-size-wcag/`,
                 'Touch inputs must have a sufficient target size.',
-                [link.WCAG_1_3_1, link.WCAG_3_3_2],
+                [link.WCAG_2_5_5],
                 this.getTouchSizeUnifiedFormattableResolution,
                 this.includeAllResults,
             ),
@@ -32,7 +32,7 @@ export class RuleInformationProvider {
                 'ActiveViewName',
                 `${this.ruleLinkBaseUrl}/active-view-name/`,
                 "Active views must have a name that's available to assistive technologies.",
-                [link.WCAG_2_5_5],
+                [link.WCAG_1_3_1, link.WCAG_3_3_2],
                 () =>
                     this.buildUnifiedFormattableResolution(
                         'The view is active but has no name available to assistive technologies. Provide a name for the view using its contentDescription, hint, labelFor, or text attribute (depending on the view type)',

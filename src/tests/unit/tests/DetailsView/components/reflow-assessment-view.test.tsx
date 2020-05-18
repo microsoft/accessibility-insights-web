@@ -51,6 +51,7 @@ describe('AssessmentViewTest', () => {
         const assessmentTestResultStub: AssessmentTestResult = {
             definition: {
                 gettingStarted: <h1>Hello</h1>,
+                title: 'some title',
             },
             getRequirementResult: getRequirementResultStub,
         } as AssessmentTestResult;

@@ -43,6 +43,7 @@ export const ReflowAssessmentView = NamedFC<ReflowAssessmentViewProps>(
             return (
                 <GettingStartedView
                     gettingStartedContent={props.assessmentTestResult.definition.gettingStarted}
+                    title={props.assessmentTestResult.definition.title}
                 />
             );
         };

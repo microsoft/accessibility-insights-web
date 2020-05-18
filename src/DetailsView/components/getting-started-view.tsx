@@ -6,11 +6,13 @@ import * as React from 'react';
 
 export interface GettingStartedViewProps {
     gettingStartedContent: JSX.Element;
+    title: string;
 }
 
 export const GettingStartedView = NamedFC<GettingStartedViewProps>('GettingStartedView', props => {
     return (
         <div className={styles.gettingStartedView}>
+            <h1>{props.title}</h1>
             <h2>Getting Started</h2>
             {props.gettingStartedContent}
         </div>
