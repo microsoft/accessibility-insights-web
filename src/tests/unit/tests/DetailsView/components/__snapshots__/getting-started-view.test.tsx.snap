@@ -4,6 +4,9 @@ exports[`GettingStartedViewTest renders with content from props 1`] = `
 <div
   className="gettingStartedView"
 >
+  <h1>
+    some title
+  </h1>
   <h2>
     Getting Started
   </h2>
