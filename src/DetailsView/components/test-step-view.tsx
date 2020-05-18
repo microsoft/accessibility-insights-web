@@ -17,12 +17,12 @@ import * as React from 'react';
 import { DictionaryStringTo } from 'types/common-types';
 import { ContentPanelButton, ContentPanelButtonDeps } from 'views/content/content-panel-button';
 
+import { requirementViewTitleAutomationId } from 'DetailsView/components/requirement-view-title';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 import { AssessmentInstanceTable } from './assessment-instance-table';
 import { ManualTestStepView } from './manual-test-step-view';
 import * as styles from './test-step-view.scss';
-import { requirementViewTitleAutomationId } from 'DetailsView/components/requirement-view-title';
 
 export type TestStepViewDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
