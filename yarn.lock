@@ -866,10 +866,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/q@^1.5.3":
-  version "1.5.3"
-  resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.3.tgz#69047ef831f0e5849a3855a25e019850413dc922"
-  integrity sha512-I3wR8FNrk9ny4zJzSB1FBpPHw8kv+eVapS3Hkw+QAF7WCIF7foiEj0GcWFR5mwzw/HUMrLBD+rO/OKJcLf/v+w==
+"@types/q@^1.5.4":
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.4.tgz#15925414e0ad2cd765bfef58842f7e26a7accb24"
+  integrity sha512-1HcDas8SEj4z1Wc696tH56G8OlRaH/sqZOynNNB+HF0WOeXPaxTtbYzJY2oEfiUxjSKjhCKr+MvR7dCHcEelug==
 
 "@types/range-parser@*":
   version "1.2.3"
