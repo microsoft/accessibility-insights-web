@@ -21,6 +21,7 @@ exports[`AssessmentViewTest render for gettting started 1`] = `
         Hello
       </h1>
     }
+    title="some title"
   />
 </div>
 `;

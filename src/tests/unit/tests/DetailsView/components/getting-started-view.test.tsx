@@ -11,6 +11,7 @@ describe('GettingStartedViewTest', () => {
     it('renders with content from props', () => {
         const props: GettingStartedViewProps = {
             gettingStartedContent: <div>test-getting-started-content</div>,
+            title: 'some title',
         };
 
         const rendered = shallow(<GettingStartedView {...props} />);
