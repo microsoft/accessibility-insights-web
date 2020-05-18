@@ -6,6 +6,15 @@ exports[`GettingStartedViewTest renders with content from props 1`] = `
 >
   <h1>
     some title
+    <ContentLink
+      deps={Object {}}
+      iconName="info"
+      reference={
+        Object {
+          "pageTitle": "some page title",
+        }
+      }
+    />
   </h1>
   <h2>
     Getting Started
