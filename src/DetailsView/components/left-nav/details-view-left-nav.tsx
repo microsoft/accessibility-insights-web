@@ -7,6 +7,7 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { FlaggedComponent } from 'common/components/flagged-component';
 import { FeatureFlags } from 'common/feature-flags';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { generateReflowAssessmentTestKey } from 'DetailsView/components/left-nav/left-nav-link-builder';
 import { Switcher, SwitcherDeps } from 'DetailsView/components/switcher';
 import { leftNavSwitcherStyleNames } from 'DetailsView/components/switcher-style-names';
 import { NamedFC } from '../../../common/react/named-fc';
@@ -49,6 +50,12 @@ export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewL
 
     const selectedKey: string = rightPanelConfiguration.GetLeftNavSelectedKey({
         visualizationType: selectedTest,
+        selectedSubview: assessmentStoreData.assessmentNavState.selectedTestSubview,
+        featureFlagStoreData,
+        assessmentsProvider,
+        deps: {
+            generateReflowAssessmentTestKey,
+        },
     });
     const filteredProvider = assessmentsProviderWithFeaturesEnabled(
         assessmentsProvider,

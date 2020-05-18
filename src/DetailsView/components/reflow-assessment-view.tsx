@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-
 import { AssessmentTestResult } from '../../common/assessment/assessment-test-result';
 import { Tab } from '../../common/itab';
 import {
     AssessmentData,
     AssessmentNavState,
+    gettingStartedSubview,
     PersistedTabInfo,
 } from '../../common/types/store-data/assessment-result-data';
 import { GettingStartedView } from './getting-started-view';
@@ -26,7 +26,7 @@ export type ReflowAssessmentViewProps = {
 export class ReflowAssessmentView extends React.Component<ReflowAssessmentViewProps> {
     public render(): JSX.Element {
         const { assessmentTestResult } = this.props;
-        if (this.props.assessmentNavState.selectedTestSubview === 'getting-started') {
+        if (this.props.assessmentNavState.selectedTestSubview === gettingStartedSubview) {
             return (
                 <div>
                     {this.renderTargetChangeDialog()}

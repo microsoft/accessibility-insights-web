@@ -1,13 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import * as classNames from 'classnames';
+import { FeatureFlags } from 'common/feature-flags';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
+import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { ISelection } from 'office-ui-fabric-react';
 import * as React from 'react';
 
-import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
@@ -65,10 +67,16 @@ export interface DetailsViewBodyProps {
 
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
     public render(): JSX.Element {
+        const bodyLayoutClassname = classNames({
+            'details-view-body-nav-content-layout': true,
+
+            'reflow-ui': this.props.featureFlagStoreData[FeatureFlags.reflowUI],
+        });
+
         return (
             <div className="details-view-body">
                 {this.renderCommandBar()}
-                <div className="details-view-body-nav-content-layout">
+                <div className={bodyLayoutClassname}>
                     {this.renderNavBar()}
                     <div className="details-view-body-content-pane">
                         {this.getTargetPageHiddenBar()}
