@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Requirement } from 'assessments/types/requirement';
 import { AssessmentTestResult } from 'common/assessment/assessment-test-result';
+import { RequirementData, RequirementResult } from 'common/assessment/requirement';
 import {
     AssessmentData,
     GettingStarted,
@@ -33,12 +35,25 @@ describe('AssessmentViewTest', () => {
     });
 
     function generateProps(subview: RequirementName | GettingStarted): ReflowAssessmentViewProps {
-        const assessmentDataMock = Mock.ofType<AssessmentData>();
+        const assessmentDataStub = {} as AssessmentData;
 
+        const requirementStub = {
+            name: 'test-requirement-name',
+            description: <div>test-description</div>,
+            howToTest: <p>how-to-test-stub</p>,
+        } as Requirement;
+        const requirementResultStub: RequirementResult = {
+            definition: requirementStub,
+            data: { isStepScanned: true } as RequirementData,
+        };
+        const getRequirementResultStub = (requirementKey: string) => {
+            return requirementResultStub;
+        };
         const assessmentTestResultStub: AssessmentTestResult = {
             definition: {
                 gettingStarted: <h1>Hello</h1>,
             },
+            getRequirementResult: getRequirementResultStub,
         } as AssessmentTestResult;
 
         const assessmentInstanceTableHandlerStub = {
@@ -62,7 +77,7 @@ describe('AssessmentViewTest', () => {
                 selectedTestSubview: subview,
                 selectedTestType: -1,
             },
-            assessmentData: assessmentDataMock.object,
+            assessmentData: assessmentDataStub,
             assessmentTestResult: assessmentTestResultStub,
             assessmentInstanceTableHandler: assessmentInstanceTableHandlerStub,
             featureFlagStoreData: featureFlagStoreDataStub,

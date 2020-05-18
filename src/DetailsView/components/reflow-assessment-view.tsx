@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
+import { RequirementResult } from 'common/assessment/requirement';
 import { NamedFC } from 'common/react/named-fc';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { PathSnippetStoreData } from 'common/types/store-data/path-snippet-store-data';
@@ -47,7 +48,7 @@ export const ReflowAssessmentView = NamedFC<ReflowAssessmentViewProps>(
         };
 
         const renderRequirementView = () => {
-            const selectedRequirement = props.assessmentTestResult.getRequirementResult(
+            const selectedRequirement: RequirementResult = props.assessmentTestResult.getRequirementResult(
                 props.assessmentNavState.selectedTestSubview,
             );
 
