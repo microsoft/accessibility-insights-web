@@ -28,13 +28,15 @@ describe('Details View -> Assessment -> Automated Checks', () => {
     it(
         'should scan and show all passing results against a target page with no violations',
         async () => {
-            const { detailsViewPage } = await browser.newAssessment({
+            const { detailsViewPage, targetPage } = await browser.newAssessment({
                 testResourcePath: 'clean.html',
             });
 
-            await detailsViewPage.navigateToTest('Automated checks', {
+            const navigateToTest = detailsViewPage.navigateToTest('Automated checks', {
                 timeout: DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS,
             });
+            await targetPage.bringToFront();
+            await navigateToTest;
             await detailsViewPage.waitForScanCompleteAlert();
 
             for (const rule of getDefaultRules()) {
@@ -51,13 +53,15 @@ describe('Details View -> Assessment -> Automated Checks', () => {
             const ruleThatFailsInOuterPage = 'html-has-lang';
             const ruleThatPasses = 'area-alt';
 
-            const { detailsViewPage } = await browser.newAssessment({
+            const { detailsViewPage, targetPage } = await browser.newAssessment({
                 testResourcePath: 'all.html',
             });
 
-            await detailsViewPage.navigateToTest('Automated checks', {
+            const targetPageScanTrigger = detailsViewPage.navigateToTest('Automated checks', {
                 timeout: DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS,
             });
+            await targetPage.bringToFront();
+            await targetPageScanTrigger;
             await detailsViewPage.waitForScanCompleteAlert();
 
             await detailsViewPage.waitForRequirementStatus(ruleThatFailsInOuterPage, 'Failed');
