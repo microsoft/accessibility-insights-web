@@ -28,6 +28,9 @@ import { TargetChangeDialog, TargetChangeDialogDeps } from './target-change-dial
 import { TestStepView, TestStepViewDeps } from './test-step-view';
 import { TestStepNavDeps, TestStepsNav } from './test-steps-nav';
 
+export const assessmentTestTitleAutomationId = (testName: string): string =>
+    `assessment-test-title-${testName}`;
+
 export type WithAssessmentTestResult = { assessmentTestResult: AssessmentTestResult };
 export const AssessmentViewMainContentExtensionPoint = reactExtensionPoint<
     WithAssessmentTestResult
@@ -122,7 +125,10 @@ export class AssessmentView extends React.Component<AssessmentViewProps> {
     private renderTitle(title: string, content?: ContentPageComponent): JSX.Element {
         return (
             <div className={styles.assessmentTitle}>
-                <h1 className={styles.assessmentHeader}>
+                <h1
+                    data-automation-id={assessmentTestTitleAutomationId(title)}
+                    className={styles.assessmentHeader}
+                >
                     {title} <ContentLink deps={this.deps} reference={content} iconName="info" />
                 </h1>
             </div>

@@ -2,11 +2,12 @@
 // Licensed under the MIT License.
 import { resultSectionAutomationId } from 'common/components/cards/result-section';
 import { ruleDetailsGroupAutomationId } from 'common/components/cards/rules-with-instances';
-import { instanceTableTextContentAutomationId } from 'DetailsView/components/assessment-instance-details-column';
+import { assessmentTestTitleAutomationId } from 'DetailsView/components/assessment-view';
 import { visualHelperToggleAutomationId } from 'DetailsView/components/base-visual-helper-toggle';
 import { settingsPanelAutomationId } from 'DetailsView/components/details-view-overlay/settings-panel/settings-panel';
 import { IframeWarningContainerAutomationId } from 'DetailsView/components/iframe-warning';
 import { overviewHeadingAutomationId } from 'DetailsView/components/overview-content/overview-heading';
+import { requirementViewTitleAutomationId } from 'DetailsView/components/requirement-view-title';
 import { startOverAutomationId } from 'DetailsView/components/start-over-component-factory';
 import { failureCountAutomationId } from 'reports/components/outcome-chip';
 import {
@@ -17,9 +18,18 @@ import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector
 
 export const detailsViewSelectors = {
     previewFeaturesPanel: '.preview-features-panel',
+    settingsButton: 'button[name="Settings"]',
+    mainContent: '[role=main]',
+};
 
+export const assessmentSelectors = {
     testNavLink: (testName: string): string => `nav [name="${testName}"] a`,
     requirementNavLink: (requirementName: string): string => `div [name="${requirementName}"] a`,
+
+    testViewTitle: (testName: string): string =>
+        getAutomationIdSelector(assessmentTestTitleAutomationId(testName)),
+    requirementViewTitle: (requirementName: string): string =>
+        getAutomationIdSelector(requirementViewTitleAutomationId(requirementName)),
 
     visualHelperToggle: getAutomationIdSelector(visualHelperToggleAutomationId),
 
@@ -27,13 +37,6 @@ export const detailsViewSelectors = {
         requirementName: string,
         status: 'Passed' | 'Failed' | 'Incomplete',
     ): string => `div[name="${requirementName}"][title^="${requirementName}. ${status}."]`,
-
-    mainContent: '[role=main]',
-    instanceTableTextContent: getAutomationIdSelector(instanceTableTextContentAutomationId),
-
-    settingsButton: 'button[name="Settings"]',
-
-    automatedChecksResultSection: getAutomationIdSelector(resultSectionAutomationId),
 };
 
 export const fastPassAutomatedChecksSelectors = {
@@ -43,6 +46,7 @@ export const fastPassAutomatedChecksSelectors = {
     cardsRuleId: getAutomationIdSelector(cardsRuleIdAutomationId),
     failureCount: getAutomationIdSelector(failureCountAutomationId),
     iframeWarning: getAutomationIdSelector(IframeWarningContainerAutomationId),
+    automatedChecksResultSection: getAutomationIdSelector(resultSectionAutomationId),
 };
 
 export const overviewSelectors = {

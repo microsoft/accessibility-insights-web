@@ -22,6 +22,7 @@ import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-
 import { AssessmentInstanceTable } from './assessment-instance-table';
 import { ManualTestStepView } from './manual-test-step-view';
 import * as styles from './test-step-view.scss';
+import { requirementViewTitleAutomationId } from 'DetailsView/components/requirement-view-title';
 
 export type TestStepViewDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
@@ -50,7 +51,12 @@ export class TestStepView extends React.Component<TestStepViewProps> {
         return (
             <div className="test-step-view">
                 <div className="test-step-title-container">
-                    <h3 className="test-step-view-title">
+                    <h3
+                        data-automation-id={requirementViewTitleAutomationId(
+                            this.props.testStep.name,
+                        )}
+                        className="test-step-view-title"
+                    >
                         {this.props.testStep.name}
                         <GuidanceTags
                             deps={this.props.deps}

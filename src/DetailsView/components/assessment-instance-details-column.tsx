@@ -15,7 +15,6 @@ export interface AssessmentInstanceDetailsColumnProps {
     customClassName?: string;
 }
 
-export const instanceTableTextContentAutomationId = 'instance-table-text-content';
 export class AssessmentInstanceDetailsColumn extends React.Component<
     AssessmentInstanceDetailsColumnProps
 > {
@@ -41,10 +40,7 @@ export class AssessmentInstanceDetailsColumn extends React.Component<
                                     {this.props.headerText}{' '}
                                 </strong>
                             ) : null}
-                            <div
-                                className={styles.assessmentInstanceTextContent}
-                                data-automation-id={instanceTableTextContentAutomationId}
-                            >
+                            <div className={styles.assessmentInstanceTextContent}>
                                 {textContent}
                             </div>
                         </div>

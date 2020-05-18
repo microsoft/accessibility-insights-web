@@ -4,6 +4,7 @@ import * as Puppeteer from 'puppeteer';
 import { DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS } from 'tests/end-to-end/common/timeouts';
 import { CommonSelectors } from '../element-identifiers/common-selectors';
 import {
+    assessmentSelectors,
     detailsViewSelectors,
     settingsPanelSelectors,
 } from '../element-identifiers/details-view-selectors';
@@ -33,13 +34,13 @@ export class DetailsViewPage extends Page {
     }
 
     public async navigateToTest(testName: string): Promise<void> {
-        await this.clickSelector(detailsViewSelectors.testNavLink(testName));
-        await this.waitForSelectorXPath(`//h1[text()="${testName}"]`);
+        await this.clickSelector(assessmentSelectors.testNavLink(testName));
+        await this.waitForSelector(assessmentSelectors.testViewTitle(testName));
     }
 
     public async navigateToRequirement(requirementName: string): Promise<void> {
-        await this.clickSelector(detailsViewSelectors.requirementNavLink(requirementName));
-        await this.waitForSelectorXPath(`//h3[text()="${requirementName}"]`);
+        await this.clickSelector(assessmentSelectors.requirementNavLink(requirementName));
+        await this.waitForSelector(assessmentSelectors.requirementViewTitle(requirementName));
     }
 
     public async waitForScanCompleteAlert(
@@ -62,7 +63,7 @@ export class DetailsViewPage extends Page {
         }[state];
 
         await this.waitForSelector(
-            detailsViewSelectors.visualHelperToggle + selectorStateSuffix,
+            assessmentSelectors.visualHelperToggle + selectorStateSuffix,
             waitOptions,
         );
     }
@@ -73,7 +74,7 @@ export class DetailsViewPage extends Page {
         waitOptions?: Puppeteer.WaitForSelectorOptions,
     ): Promise<void> {
         await this.waitForSelector(
-            detailsViewSelectors.requirementWithStatus(requirementName, status),
+            assessmentSelectors.requirementWithStatus(requirementName, status),
             waitOptions,
         );
     }

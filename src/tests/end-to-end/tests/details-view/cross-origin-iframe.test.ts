@@ -6,10 +6,7 @@ import * as testResourceServer from '../../../miscellaneous/test-resource-server
 import { ResourceServerConfig } from '../../../miscellaneous/test-resource-server/resource-server-config';
 import { Browser } from '../../common/browser';
 import { ExtraPermissions, launchBrowser } from '../../common/browser-factory';
-import {
-    detailsViewSelectors,
-    fastPassAutomatedChecksSelectors,
-} from '../../common/element-identifiers/details-view-selectors';
+import { fastPassAutomatedChecksSelectors } from '../../common/element-identifiers/details-view-selectors';
 import { DetailsViewPage } from '../../common/page-controllers/details-view-page';
 import { TargetPage } from '../../common/page-controllers/target-page';
 import { DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS } from '../../common/timeouts';
@@ -129,9 +126,12 @@ describe('scanning', () => {
 
         await detailsViewPage.clickSelector(fastPassAutomatedChecksSelectors.startOverButton);
 
-        await detailsViewPage.waitForSelector(detailsViewSelectors.automatedChecksResultSection, {
-            timeout: DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS,
-        });
+        await detailsViewPage.waitForSelector(
+            fastPassAutomatedChecksSelectors.automatedChecksResultSection,
+            {
+                timeout: DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS,
+            },
+        );
 
         return detailsViewPage;
     }
