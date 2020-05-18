@@ -59,6 +59,7 @@ exports[`AssessmentTestView assessment view, isScanning is false 1`] = `
     enableJSXElement={
       <ReflowAssessmentView
         assessmentData={Object {}}
+        assessmentInstanceTableHandler={Object {}}
         assessmentNavState={
           Object {
             "selectedTestSubview": "step",
@@ -88,6 +89,9 @@ exports[`AssessmentTestView assessment view, isScanning is false 1`] = `
             "detailsViewActionMessageCreator": Object {},
           }
         }
+        featureFlagStoreData={Object {}}
+        pathSnippetStoreData={Object {}}
+        scanningInProgress={false}
         selectedRequirementIsEnabled={false}
       />
     }
@@ -156,6 +160,7 @@ exports[`AssessmentTestView assessment view, isScanning is true 1`] = `
     enableJSXElement={
       <ReflowAssessmentView
         assessmentData={Object {}}
+        assessmentInstanceTableHandler={Object {}}
         assessmentNavState={
           Object {
             "selectedTestSubview": "step",
@@ -185,6 +190,9 @@ exports[`AssessmentTestView assessment view, isScanning is true 1`] = `
             "detailsViewActionMessageCreator": Object {},
           }
         }
+        featureFlagStoreData={Object {}}
+        pathSnippetStoreData={Object {}}
+        scanningInProgress={true}
         selectedRequirementIsEnabled={false}
       />
     }

@@ -1,5 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
+import { RequirementResult } from 'common/assessment/requirement';
+import { NamedFC } from 'common/react/named-fc';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { PathSnippetStoreData } from 'common/types/store-data/path-snippet-store-data';
+import { RequirementView, RequirementViewDeps } from 'DetailsView/components/requirement-view';
+import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
 import * as React from 'react';
 import { AssessmentTestResult } from '../../common/assessment/assessment-test-result';
 import { Tab } from '../../common/itab';
@@ -12,40 +19,75 @@ import {
 import { GettingStartedView } from './getting-started-view';
 import { TargetChangeDialog, TargetChangeDialogDeps } from './target-change-dialog';
 
-export type ReflowAssessmentViewDeps = TargetChangeDialogDeps;
+export type ReflowAssessmentViewDeps = TargetChangeDialogDeps & RequirementViewDeps;
 
 export type ReflowAssessmentViewProps = {
     deps: ReflowAssessmentViewDeps;
-    assessmentNavState: AssessmentNavState;
-    assessmentData: AssessmentData;
     currentTarget: Tab;
     prevTarget: PersistedTabInfo;
+    scanningInProgress: boolean;
+    selectedRequirementIsEnabled: boolean;
+    assessmentNavState: AssessmentNavState;
+    assessmentData: AssessmentData;
+    assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
     assessmentTestResult: AssessmentTestResult;
+    assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
+    featureFlagStoreData: FeatureFlagStoreData;
+    pathSnippetStoreData: PathSnippetStoreData;
 };
 
-export class ReflowAssessmentView extends React.Component<ReflowAssessmentViewProps> {
-    public render(): JSX.Element {
-        const { assessmentTestResult } = this.props;
-        if (this.props.assessmentNavState.selectedTestSubview === gettingStartedSubview) {
+export const ReflowAssessmentView = NamedFC<ReflowAssessmentViewProps>(
+    'ReflowAssessmentView',
+    props => {
+        const renderGettingStartedView = () => {
             return (
-                <div>
-                    {this.renderTargetChangeDialog()}
-                    <GettingStartedView
-                        gettingStartedContent={assessmentTestResult.definition.gettingStarted}
-                    />
-                </div>
+                <GettingStartedView
+                    gettingStartedContent={props.assessmentTestResult.definition.gettingStarted}
+                />
             );
-        }
-        return null;
-    }
+        };
 
-    private renderTargetChangeDialog(): JSX.Element {
+        const renderRequirementView = () => {
+            const selectedRequirement: RequirementResult = props.assessmentTestResult.getRequirementResult(
+                props.assessmentNavState.selectedTestSubview,
+            );
+
+            return (
+                <RequirementView
+                    deps={props.deps}
+                    requirement={selectedRequirement.definition}
+                    assessmentsProvider={props.deps.assessmentsProvider}
+                    assessmentNavState={props.assessmentNavState}
+                    instancesMap={props.assessmentData.generatedAssessmentInstancesMap}
+                    isRequirementEnabled={props.selectedRequirementIsEnabled}
+                    isRequirementScanned={selectedRequirement.data.isStepScanned}
+                    assessmentInstanceTableHandler={props.assessmentInstanceTableHandler}
+                    featureFlagStoreData={props.featureFlagStoreData}
+                    pathSnippetStoreData={props.pathSnippetStoreData}
+                    scanningInProgress={props.scanningInProgress}
+                    manualRequirementResultMap={props.assessmentData.manualTestStepResultMap}
+                    assessmentDefaultMessageGenerator={props.assessmentDefaultMessageGenerator}
+                    assessmentData={props.assessmentData}
+                    currentTarget={props.currentTarget}
+                    prevTarget={props.prevTarget}
+                />
+            );
+        };
+
+        const mainContent: JSX.Element =
+            props.assessmentNavState.selectedTestSubview === gettingStartedSubview
+                ? renderGettingStartedView()
+                : renderRequirementView();
+
         return (
-            <TargetChangeDialog
-                deps={this.props.deps}
-                prevTab={this.props.prevTarget}
-                newTab={this.props.currentTarget}
-            />
+            <div>
+                <TargetChangeDialog
+                    deps={props.deps}
+                    prevTab={props.prevTarget}
+                    newTab={props.currentTarget}
+                />
+                {mainContent}
+            </div>
         );
-    }
-}
+    },
+);
