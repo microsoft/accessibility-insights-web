@@ -114,7 +114,7 @@
         "preprocess": "^3.2.0",
         "prettier": "^2.0.5",
         "puppeteer": "^3.1.0",
-        "react-devtools": "^4.6.0",
+        "react-devtools": "^4.7.0",
         "regenerator-runtime": "^0.13.5",
         "sass-loader": "^8.0.2",
         "script-loader": "0.7.2",
