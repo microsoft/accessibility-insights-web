@@ -8,7 +8,6 @@ import { PathSnippetStoreData } from 'common/types/store-data/path-snippet-store
 import { RequirementView, RequirementViewDeps } from 'DetailsView/components/requirement-view';
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
 import * as React from 'react';
-import { ContentLinkDeps } from 'views/content/content-link';
 import { AssessmentTestResult } from '../../common/assessment/assessment-test-result';
 import { Tab } from '../../common/itab';
 import {
