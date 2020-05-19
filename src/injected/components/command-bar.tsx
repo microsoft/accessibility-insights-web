@@ -91,7 +91,7 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
     const renderInspectMessage = (): JSX.Element => {
         if (props.shouldShowInspectButtonMessage()) {
             return (
-                <div className="insights-dialog-inspect-disabled">
+                <div role="alert" className="insights-dialog-inspect-disabled">
                     {`To use the Inspect HTML button, first open the developer tools (${props.devToolsShortcut}).`}
                 </div>
             );
