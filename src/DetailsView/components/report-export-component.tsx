@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { ReportExportFormat } from 'common/extension-telemetry-events';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { escape } from 'lodash';
 import { ActionButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
