@@ -95,6 +95,7 @@ exports[`CommandBar renders renders, shows inspect button message: true 1`] = `
   </React.Fragment>
   <div
     className="insights-dialog-inspect-disabled"
+    role="alert"
   >
     To use the Inspect HTML button, first open the developer tools (dev-tools-shortcut).
   </div>
