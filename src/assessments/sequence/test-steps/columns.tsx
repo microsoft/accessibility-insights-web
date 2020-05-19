@@ -7,23 +7,35 @@ import { ManualTestRecordYourResults } from '../../common/manual-test-record-you
 import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { SequenceTestStep } from './test-steps';
+import { NewTabLink } from 'common/components/new-tab-link';
 
 const description: JSX.Element = (
-    <span>White space characters must not be used to create the appearance of columns.</span>
+    <span>Content presented in multi-column format must support a correct reading sequence.</span>
 );
 
 const howToTest: JSX.Element = (
     <div>
-        <p>This procedure uses the browser Developer Tools (F12) to inspect the page's HTML.</p>
+        <p>
+            This procedure uses the{' '}
+            <NewTabLink href="https://chrome.google.com/webstore/detail/web-developer/bfbameneiokkgbdmiekhjnmfkcnldhhm">
+                Web Developer
+            </NewTabLink>{' '}
+            browser extension.
+        </p>
         <ol>
             <li>
-                Search the page's HTML to determine whether the page includes any{' '}
-                <Markup.Tag tagName="pre" /> elements.
+                Use the Web Developer browser extension (<Markup.Term>Outline</Markup.Term> {'>'}{' '}
+                <Markup.Term>Outline table cells</Markup.Term>) to highlight table cells (
+                <Markup.Tag tagName="td" /> and <Markup.Tag tagName="th" /> elements).
             </li>
             <li>
-                Examine each <Markup.Tag tagName="pre" /> element to verify that white space
-                characters are not used to arrange the text into a column. White space characters
-                include spaces, tabs, line breaks, and carriage returns.
+                Examine the page to identify any side-by-side columns of text or data that are{' '}
+                <Markup.Emphasis>not</Markup.Emphasis> contained in a table cell.
+            </li>
+            <li>
+                Using your mouse or keyboard, verify that you can select{' '}
+                <Markup.Emphasis>all</Markup.Emphasis> of the text in one column without selecting{' '}
+                <Markup.Emphasis>any</Markup.Emphasis> text from an adjacent column.
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
