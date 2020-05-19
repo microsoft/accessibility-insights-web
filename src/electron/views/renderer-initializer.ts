@@ -110,6 +110,7 @@ import {
     RootContainerRendererDeps,
 } from './root-container/root-container-renderer';
 import { screenshotViewModelProvider } from './screenshot/screenshot-view-model-provider';
+import { IssueFilingServiceProviderImpl } from 'issue-filing/issue-filing-service-provider-impl';
 
 declare var window: Window & {
     insightsUserConfiguration: UserConfigurationController;
@@ -359,7 +360,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             getPropertyConfigById: getPropertyConfiguration, // this seems to be axe-core specific
 
             issueDetailsTextGenerator: null,
-            issueFilingServiceProvider: null, // we don't support issue filing right now
+            issueFilingServiceProvider: IssueFilingServiceProviderImpl, // we don't support issue filing right now
             navigatorUtils: null,
             unifiedResultToIssueFilingDataConverter: null, // we don't support issue filing right now
             windowUtils: null,
