@@ -52,6 +52,7 @@ describe('AssessmentViewTest', () => {
             definition: {
                 gettingStarted: <h1>Hello</h1>,
                 title: 'some title',
+                guidance: { pageTitle: 'some page title' },
             },
             getRequirementResult: getRequirementResultStub,
         } as AssessmentTestResult;
