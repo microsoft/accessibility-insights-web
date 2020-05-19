@@ -18,11 +18,11 @@ export interface GettingStartedViewProps {
 export const GettingStartedView = NamedFC<GettingStartedViewProps>('GettingStartedView', props => {
     return (
         <div className={styles.gettingStartedView}>
-            <h1>
-                {props.title}
+            <h1 className={styles.gettingStartedHeader}>
+                <span className={styles.gettingStartedHeaderTitle}>{props.title}</span>
                 <ContentLink deps={props.deps} reference={props.guidance} iconName="info" />
             </h1>
-            <h2>Getting Started</h2>
+            <h2 className={styles.gettingStartedTitle}>Getting Started</h2>
             {props.gettingStartedContent}
         </div>
     );
