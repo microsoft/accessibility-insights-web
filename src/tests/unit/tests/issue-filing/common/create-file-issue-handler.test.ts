@@ -63,7 +63,7 @@ describe('createFileIssueHandler', () => {
         );
 
         await expect(
-            testSubject(browserAdapterMock.object, serviceMap, issueData, toolData),
+            testSubject(browserAdapterMock.object.createActiveTab, serviceMap, issueData, toolData),
         ).resolves.toBe(undefined);
 
         browserAdapterMock.verifyAll();
@@ -82,7 +82,7 @@ describe('createFileIssueHandler', () => {
         );
 
         await expect(
-            testSubject(browserAdapterMock.object, serviceMap, issueData, toolData),
+            testSubject(browserAdapterMock.object.createActiveTab, serviceMap, issueData, toolData),
         ).rejects.toEqual(errorMessage);
     });
 });
