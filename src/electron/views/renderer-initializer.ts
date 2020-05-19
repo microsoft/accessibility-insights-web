@@ -360,7 +360,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             getPropertyConfigById: getPropertyConfiguration, // this seems to be axe-core specific
 
             issueDetailsTextGenerator: null,
-            issueFilingServiceProvider: IssueFilingServiceProviderImpl, // we don't support issue filing right now
+            issueFilingServiceProvider: IssueFilingServiceProviderImpl,
             navigatorUtils: null,
             unifiedResultToIssueFilingDataConverter: null, // we don't support issue filing right now
             windowUtils: null,
