@@ -108,27 +108,33 @@ describe('ReportExportComponentTest', () => {
             htmlGeneratorMock.verifyAll();
         });
 
+        // We expect fabric's TextView.value and our htmlGenerator to take responsibility for
+        // escaping special characters, so we test that the export component passes specials down to
+        // the underlying dialog and the htmlGenerator as-is without escaping
+        const testContentWithSpecials = 'test content with special characters: <> $ " ` \'';
+
         test('edit text field', () => {
             updateDescriptionMock
-                .setup(udm => udm(It.isValue('new description')))
+                .setup(udm => udm(It.isValue(testContentWithSpecials)))
                 .returns(() => null)
                 .verifiable(Times.once());
 
             const wrapper = shallow(<ReportExportComponent {...props} />);
 
             const dialog = wrapper.find(ExportDialog);
-            dialog.props().onDescriptionChange('new description');
+            dialog.props().onDescriptionChange(testContentWithSpecials);
 
-            expect(wrapper.getElement()).toMatchSnapshot('user input new description');
+            expect(wrapper.getElement()).toMatchSnapshot(testContentWithSpecials);
 
             updateDescriptionMock.verifyAll();
         });
 
-        test('clicking export on the dialog should trigger the generateHtml', () => {
+        test('clicking export on the dialog should trigger generateHtml with the current exportDescription', () => {
             const wrapper = shallow(<ReportExportComponent {...props} />);
+            wrapper.setState({ exportDescription: testContentWithSpecials });
 
             htmlGeneratorMock
-                .setup(hgm => hgm(wrapper.state('exportDescription')))
+                .setup(hgm => hgm(testContentWithSpecials))
                 .returns(() => 'test html')
                 .verifiable(Times.once());
 

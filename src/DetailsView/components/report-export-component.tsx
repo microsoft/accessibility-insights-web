@@ -51,8 +51,7 @@ export class ReportExportComponent extends React.Component<
 
     private onExportDescriptionChange = (value: string) => {
         this.props.updatePersistedDescription(value);
-        const escapedExportDescription = escape(value);
-        this.setState({ exportDescription: escapedExportDescription });
+        this.setState({ exportDescription: value });
     };
 
     private generateHtml = () => {
