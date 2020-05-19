@@ -74,6 +74,7 @@ import { RootContainerState } from 'electron/views/root-container/components/roo
 import { PlatformInfo } from 'electron/window-management/platform-info';
 import { WindowFrameListener } from 'electron/window-management/window-frame-listener';
 import { WindowFrameUpdater } from 'electron/window-management/window-frame-updater';
+import { IssueFilingServiceProviderImpl } from 'issue-filing/issue-filing-service-provider-impl';
 import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
@@ -110,7 +111,6 @@ import {
     RootContainerRendererDeps,
 } from './root-container/root-container-renderer';
 import { screenshotViewModelProvider } from './screenshot/screenshot-view-model-provider';
-import { IssueFilingServiceProviderImpl } from 'issue-filing/issue-filing-service-provider-impl';
 
 declare var window: Window & {
     insightsUserConfiguration: UserConfigurationController;
