@@ -26,7 +26,6 @@ import { toolName } from 'content/strings/application';
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
-import { EnvironmentInfoProvider } from '../common/environment-info-provider';
 import { TelemetryEventSource } from '../common/extension-telemetry-events';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
@@ -201,12 +200,6 @@ export class MainWindowInitializer extends WindowInitializer {
 
         const browserSpec = new NavigatorUtils(window.navigator, logger).getBrowserSpec();
 
-        const environmentInfoProvider = new EnvironmentInfoProvider(
-            this.appDataAdapter.getVersion(),
-            browserSpec,
-            AxeInfo.Default.version,
-        );
-
         const toolData = createToolData(
             toolName,
             this.appDataAdapter.getVersion(),
@@ -222,7 +215,6 @@ export class MainWindowInitializer extends WindowInitializer {
             targetPageActionMessageCreator,
             issueFilingActionMessageCreator,
             userConfigMessageCreator,
-            environmentInfoProvider,
             toolData,
             IssueFilingServiceProviderImpl,
         );
@@ -300,7 +292,7 @@ export class MainWindowInitializer extends WindowInitializer {
             this.browserAdapter.sendMessageToFrames,
             convertScanResultsToUnifiedResults,
             convertScanResultsToUnifiedRules,
-            environmentInfoProvider,
+            toolData,
             generateUID,
             scanIncompleteWarningDetector,
         );

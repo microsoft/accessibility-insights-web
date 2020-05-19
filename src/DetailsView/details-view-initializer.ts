@@ -57,7 +57,6 @@ import { VisualizationConfigurationFactory } from '../common/configs/visualizati
 import { DateProvider } from '../common/date-provider';
 import { DocumentManipulator } from '../common/document-manipulator';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
-import { EnvironmentInfoProvider } from '../common/environment-info-provider';
 import { TelemetryEventSource } from '../common/extension-telemetry-events';
 import { initializeFabricIcons } from '../common/fabric-icons';
 import { getAllFeatureFlagDetails } from '../common/feature-flags';
@@ -290,12 +289,6 @@ if (isNaN(tabId) === false) {
             const axeVersion = getVersion();
             const browserSpec = navigatorUtils.getBrowserSpec();
 
-            const environmentInfoProvider = new EnvironmentInfoProvider(
-                browserAdapter.getVersion(),
-                browserSpec,
-                AxeInfo.Default.version,
-            );
-
             const toolData = createToolData(
                 toolName,
                 browserAdapter.getVersion(),
@@ -420,7 +413,7 @@ if (isNaN(tabId) === false) {
                 getCurrentDate: DateProvider.getCurrentDate,
                 settingsProvider: ExtensionSettingsProvider,
                 LinkComponent: NewTabLink,
-                environmentInfoProvider,
+                toolData,
                 issueFilingServiceProvider: IssueFilingServiceProviderImpl,
                 getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
                 reportGenerator,
