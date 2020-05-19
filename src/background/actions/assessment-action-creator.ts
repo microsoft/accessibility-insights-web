@@ -3,6 +3,7 @@
 import * as TelemetryEvents from 'common/extension-telemetry-events';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
+import { gettingStartedSubview } from 'common/types/store-data/assessment-result-data';
 import {
     ScanBasePayload,
     ScanCompletedPayload,
@@ -236,7 +237,7 @@ export class AssessmentActionCreator {
 
     private onSelectGettingStarted = (payload: SelectGettingStartedPayload): void => {
         this.assessmentActions.selectTestSubview.invoke({
-            selectedTestSubview: 'getting-started',
+            selectedTestSubview: gettingStartedSubview,
             ...payload,
         });
         this.telemetryEventHandler.publishTelemetry(

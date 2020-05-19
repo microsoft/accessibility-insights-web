@@ -6,7 +6,6 @@ import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool
 import { IssueFilingActionMessageCreator } from '../common/message-creators/issue-filing-action-message-creator';
 import { DevToolStoreData } from '../common/types/store-data/dev-tool-store-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
-import { EnvironmentInfoProvider } from './../common/environment-info-provider';
 import { UserConfigMessageCreator } from './../common/message-creators/user-config-message-creator';
 import { IssueFilingServiceProvider } from './../issue-filing/issue-filing-service-provider';
 import { TargetPageActionMessageCreator } from './target-page-action-message-creator';
@@ -19,7 +18,6 @@ export class MainWindowContext {
         private targetPageActionMessageCreator: TargetPageActionMessageCreator,
         private issueFilingActionMessageCreator: IssueFilingActionMessageCreator,
         private userConfigMessageCreator: UserConfigMessageCreator,
-        private environmentInfoProvider: EnvironmentInfoProvider,
         private toolData: ToolData,
         private issueFilingServiceProvider: IssueFilingServiceProvider,
     ) {}
@@ -48,10 +46,6 @@ export class MainWindowContext {
         return this.userConfigMessageCreator;
     }
 
-    public getEnvironmentInfoProvider(): EnvironmentInfoProvider {
-        return this.environmentInfoProvider;
-    }
-
     public getToolData(): ToolData {
         return this.toolData;
     }
@@ -67,7 +61,6 @@ export class MainWindowContext {
         targetPageActionMessageCreator: TargetPageActionMessageCreator,
         issueFilingActionMessageCreator: IssueFilingActionMessageCreator,
         userConfigMessageCreator: UserConfigMessageCreator,
-        environmentInfoProvider: EnvironmentInfoProvider,
         toolData: ToolData,
         issueFilingServiceProvider: IssueFilingServiceProvider,
     ): void {
@@ -78,7 +71,6 @@ export class MainWindowContext {
             targetPageActionMessageCreator,
             issueFilingActionMessageCreator,
             userConfigMessageCreator,
-            environmentInfoProvider,
             toolData,
             issueFilingServiceProvider,
         );

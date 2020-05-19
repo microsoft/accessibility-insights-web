@@ -121,7 +121,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
         "className": "hidden",
       },
       "index": 1,
-      "key": "requirement-key-1",
+      "key": "Issues: requirement-key-1",
       "name": "requirement-name-1",
       "onClickNavLink": [Function],
       "onRenderNavLink": [Function],
@@ -146,7 +146,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
         "className": "hidden",
       },
       "index": 1,
-      "key": "requirement-key-1",
+      "key": "Issues: requirement-key-1",
       "name": "requirement-name-1",
       "onClickNavLink": [Function],
       "onRenderNavLink": [Function],
@@ -163,6 +163,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
 
 exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for assessments: requirement nav link render icon 1`] = `
 <LeftNavStatusIcon
+  className="requirementStatusIcon"
   item={
     <TestViewLeftNavLink
       link={
@@ -173,7 +174,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
             "className": "hidden",
           },
           "index": 1,
-          "key": "requirement-key-1",
+          "key": "Issues: requirement-key-1",
           "name": "requirement-name-1",
           "onClickNavLink": [Function],
           "onRenderNavLink": [Function],
@@ -192,6 +193,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
 
 exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for assessments: requirement nav link render icon 2`] = `
 <LeftNavStatusIcon
+  className="requirementStatusIcon"
   item={
     <TestViewLeftNavLink
       link={
@@ -202,7 +204,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
             "className": "hidden",
           },
           "index": 1,
-          "key": "requirement-key-1",
+          "key": "Issues: requirement-key-1",
           "name": "requirement-name-1",
           "onClickNavLink": [Function],
           "onRenderNavLink": [Function],
@@ -237,7 +239,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
             "className": "hidden",
           },
           "index": 0,
-          "key": "getting-started",
+          "key": "Issues: getting-started",
           "name": "Getting Started",
           "onClickNavLink": [Function],
           "onRenderNavLink": [Function],
@@ -251,7 +253,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
             "className": "hidden",
           },
           "index": 1,
-          "key": "requirement-key-1",
+          "key": "Issues: requirement-key-1",
           "name": "requirement-name-1",
           "onClickNavLink": [Function],
           "onRenderNavLink": [Function],
@@ -268,7 +270,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
             "className": "hidden",
           },
           "index": 2,
-          "key": "requirement-key-2",
+          "key": "Issues: requirement-key-2",
           "name": "requirement-name-2",
           "onClickNavLink": [Function],
           "onRenderNavLink": [Function],
@@ -309,7 +311,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
             "className": "hidden",
           },
           "index": 0,
-          "key": "getting-started",
+          "key": "Issues: getting-started",
           "name": "Getting Started",
           "onClickNavLink": [Function],
           "onRenderNavLink": [Function],
@@ -323,7 +325,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
             "className": "hidden",
           },
           "index": 1,
-          "key": "requirement-key-1",
+          "key": "Issues: requirement-key-1",
           "name": "requirement-name-1",
           "onClickNavLink": [Function],
           "onRenderNavLink": [Function],
@@ -340,7 +342,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
             "className": "hidden",
           },
           "index": 2,
-          "key": "requirement-key-2",
+          "key": "Issues: requirement-key-2",
           "name": "requirement-name-2",
           "onClickNavLink": [Function],
           "onRenderNavLink": [Function],
@@ -381,7 +383,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
             "className": "hidden",
           },
           "index": 0,
-          "key": "getting-started",
+          "key": "Issues: getting-started",
           "name": "Getting Started",
           "onClickNavLink": [Function],
           "onRenderNavLink": [Function],
@@ -395,7 +397,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
             "className": "hidden",
           },
           "index": 1,
-          "key": "requirement-key-1",
+          "key": "Issues: requirement-key-1",
           "name": "requirement-name-1",
           "onClickNavLink": [Function],
           "onRenderNavLink": [Function],
@@ -412,7 +414,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
             "className": "hidden",
           },
           "index": 2,
-          "key": "requirement-key-2",
+          "key": "Issues: requirement-key-2",
           "name": "requirement-name-2",
           "onClickNavLink": [Function],
           "onRenderNavLink": [Function],
@@ -452,7 +454,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
             "className": "hidden",
           },
           "index": 0,
-          "key": "getting-started",
+          "key": "Issues: getting-started",
           "name": "Getting Started",
           "onClickNavLink": [Function],
           "onRenderNavLink": [Function],
@@ -466,7 +468,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
             "className": "hidden",
           },
           "index": 1,
-          "key": "requirement-key-1",
+          "key": "Issues: requirement-key-1",
           "name": "requirement-name-1",
           "onClickNavLink": [Function],
           "onRenderNavLink": [Function],
@@ -483,7 +485,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
             "className": "hidden",
           },
           "index": 2,
-          "key": "requirement-key-2",
+          "key": "Issues: requirement-key-2",
           "name": "requirement-name-2",
           "onClickNavLink": [Function],
           "onRenderNavLink": [Function],

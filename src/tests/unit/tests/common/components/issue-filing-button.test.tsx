@@ -5,7 +5,6 @@ import {
     IssueFilingButtonDeps,
     IssueFilingButtonProps,
 } from 'common/components/issue-filing-button';
-import { EnvironmentInfoProvider } from 'common/environment-info-provider';
 import { IssueFilingActionMessageCreator } from 'common/message-creators/issue-filing-action-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
@@ -18,17 +17,29 @@ import { DefaultButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('IssueFilingButtonTest', () => {
     const testKey: string = 'test';
     const eventStub = new EventStubFactory().createNativeMouseClickEvent() as any;
-    let environmentInfoProviderMock: IMock<EnvironmentInfoProvider>;
     let issueFilingServiceProviderMock: IMock<IssueFilingServiceProvider>;
     let issueFilingActionMessageCreatorMock: IMock<IssueFilingActionMessageCreator>;
     let userConfigurationStoreData: UserConfigurationStoreData;
     let testIssueFilingServiceStub: IssueFilingService;
     let needsSettingsContentRenderer: IssueFilingNeedsSettingsContentRenderer;
+
+    const toolData: ToolData = {
+        scanEngineProperties: {
+            name: 'engine-name',
+            version: 'engine-version',
+        },
+        applicationProperties: {
+            name: 'app-name',
+            version: 'app-version',
+            environmentName: 'environmentName',
+        },
+    };
 
     beforeEach(() => {
         testIssueFilingServiceStub = {
@@ -48,19 +59,8 @@ describe('IssueFilingButtonTest', () => {
                 [testKey]: {},
             },
         } as UserConfigurationStoreData;
-        environmentInfoProviderMock = Mock.ofType(EnvironmentInfoProvider);
         issueFilingServiceProviderMock = Mock.ofType(IssueFilingServiceProvider);
         issueFilingActionMessageCreatorMock = Mock.ofType(IssueFilingActionMessageCreator);
-        environmentInfoProviderMock
-            .setup(envp => envp.getEnvironmentInfo())
-            .returns(() => {
-                return {
-                    extensionVersion: '1',
-                    axeCoreVersion: '2',
-                    browserSpec: 'spec',
-                };
-            })
-            .verifiable();
         issueFilingServiceProviderMock
             .setup(bp => bp.forKey(testKey))
             .returns(() => testIssueFilingServiceStub)
@@ -73,7 +73,7 @@ describe('IssueFilingButtonTest', () => {
         const props: IssueFilingButtonProps = {
             deps: {
                 issueFilingActionMessageCreator: issueFilingActionMessageCreatorMock.object,
-                environmentInfoProvider: environmentInfoProviderMock.object,
+                toolData: toolData,
                 issueFilingServiceProvider: issueFilingServiceProviderMock.object,
             } as IssueFilingButtonDeps,
             issueDetailsData: {} as CreateIssueDetailsTextData,
@@ -90,7 +90,7 @@ describe('IssueFilingButtonTest', () => {
         const props: IssueFilingButtonProps = {
             deps: {
                 issueFilingActionMessageCreator: issueFilingActionMessageCreatorMock.object,
-                environmentInfoProvider: environmentInfoProviderMock.object,
+                toolData: toolData,
                 issueFilingServiceProvider: issueFilingServiceProviderMock.object,
             } as IssueFilingButtonDeps,
             issueDetailsData: {} as CreateIssueDetailsTextData,
@@ -119,7 +119,7 @@ describe('IssueFilingButtonTest', () => {
         const props: IssueFilingButtonProps = {
             deps: {
                 issueFilingActionMessageCreator: issueFilingActionMessageCreatorMock.object,
-                environmentInfoProvider: environmentInfoProviderMock.object,
+                toolData: toolData,
                 issueFilingServiceProvider: issueFilingServiceProviderMock.object,
             } as IssueFilingButtonDeps,
             issueDetailsData: {} as CreateIssueDetailsTextData,

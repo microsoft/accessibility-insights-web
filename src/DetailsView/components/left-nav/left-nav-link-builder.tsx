@@ -13,6 +13,7 @@ import {
 } from 'DetailsView/components/left-nav/assessment-left-nav';
 import { GettingStartedNavLink } from 'DetailsView/components/left-nav/getting-started-nav-link';
 import { LeftNavIndexIcon, LeftNavStatusIcon } from 'DetailsView/components/left-nav/left-nav-icon';
+import { requirementStatusIcon } from 'DetailsView/components/left-nav/left-nav-link-builder.scss';
 import { NavLinkHandler } from 'DetailsView/components/left-nav/nav-link-handler';
 import { map } from 'lodash';
 import * as React from 'react';
@@ -45,6 +46,15 @@ export type AssessmentLinkBuilderDeps = {
 };
 
 export type VisualizationConfigurationLinkBuilderDeps = {};
+
+export function generateReflowAssessmentTestKey(
+    test: VisualizationType,
+    selectedSubview: string,
+): string {
+    return `${VisualizationType[test]}: ${selectedSubview}`;
+}
+
+export type reflowAssessmentTestKeyGenerator = typeof generateReflowAssessmentTestKey;
 
 export class LeftNavLinkBuilder {
     public buildOverviewLink(
@@ -165,11 +175,11 @@ export class LeftNavLinkBuilder {
             VisualizationType[assessment.visualizationType],
             index,
             l => <TestViewLeftNavLink link={l} renderIcon={this.renderAssessmentTestIcon} />,
-            navLinkHandler.onAssessmentTestClick,
+            () => {},
         );
 
         const gettingStartedLink = this.buildGettingStartedLink(
-            navLinkHandler.onRequirementClick,
+            navLinkHandler.onGettingStartedClick,
             assessment,
         );
 
@@ -214,7 +224,7 @@ export class LeftNavLinkBuilder {
 
         const baselink = this.buildBaseLink(
             name,
-            requirement.key,
+            generateReflowAssessmentTestKey(test, requirement.key),
             requirementIndex,
             l => <TestViewLeftNavLink link={l} renderIcon={this.renderRequirementIcon} />,
             onClick,
@@ -234,11 +244,12 @@ export class LeftNavLinkBuilder {
         onClick: onTestGettingStartedClick,
         test: Assessment,
     ): TestGettingStartedNavLink {
+        const testType = test.visualizationType;
         return {
-            testType: test.visualizationType,
+            testType,
             ...this.buildBaseLink(
                 'Getting Started',
-                gettingStartedSubview,
+                generateReflowAssessmentTestKey(testType, gettingStartedSubview),
                 0,
                 () => <GettingStartedNavLink />,
                 onClick,
@@ -251,7 +262,7 @@ export class LeftNavLinkBuilder {
             return <>{link.displayedIndex}</>;
         }
 
-        return <LeftNavStatusIcon item={link} />;
+        return <LeftNavStatusIcon className={requirementStatusIcon} item={link} />;
     };
 
     private renderAssessmentTestIcon: onBaseLeftNavItemRender = (link: AssessmentLeftNavLink) => {
