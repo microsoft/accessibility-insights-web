@@ -111,23 +111,27 @@ export class RequirementView extends React.Component<RequirementViewProps> {
                     guidanceLinks={this.props.requirement.guidanceLinks}
                     infoAndExamples={this.props.requirement.infoAndExamples}
                 />
-                {this.props.requirement.description}
-                {visualHelperToggle}
-                <RequirementInstructions howToTest={this.props.requirement.howToTest} />
-                <RequirementTableSection
-                    requirement={requirement}
-                    assessmentNavState={this.props.assessmentNavState}
-                    instancesMap={this.props.instancesMap}
-                    manualRequirementResultMap={this.props.manualRequirementResultMap}
-                    assessmentInstanceTableHandler={this.props.assessmentInstanceTableHandler}
-                    assessmentsProvider={this.props.assessmentsProvider}
-                    featureFlagStoreData={this.props.featureFlagStoreData}
-                    pathSnippetStoreData={this.props.pathSnippetStoreData}
-                    scanningInProgress={this.props.scanningInProgress}
-                    selectedRequirementHasVisualHelper={requirementHasVisualHelper}
-                    isRequirementScanned={this.props.isRequirementScanned}
-                    assessmentDefaultMessageGenerator={this.props.assessmentDefaultMessageGenerator}
-                />
+                <div className={styles.mainContent}>
+                    {this.props.requirement.description}
+                    {visualHelperToggle}
+                    <RequirementInstructions howToTest={this.props.requirement.howToTest} />
+                    <RequirementTableSection
+                        requirement={requirement}
+                        assessmentNavState={this.props.assessmentNavState}
+                        instancesMap={this.props.instancesMap}
+                        manualRequirementResultMap={this.props.manualRequirementResultMap}
+                        assessmentInstanceTableHandler={this.props.assessmentInstanceTableHandler}
+                        assessmentsProvider={this.props.assessmentsProvider}
+                        featureFlagStoreData={this.props.featureFlagStoreData}
+                        pathSnippetStoreData={this.props.pathSnippetStoreData}
+                        scanningInProgress={this.props.scanningInProgress}
+                        selectedRequirementHasVisualHelper={requirementHasVisualHelper}
+                        isRequirementScanned={this.props.isRequirementScanned}
+                        assessmentDefaultMessageGenerator={
+                            this.props.assessmentDefaultMessageGenerator
+                        }
+                    />
+                </div>
             </div>
         );
     }
