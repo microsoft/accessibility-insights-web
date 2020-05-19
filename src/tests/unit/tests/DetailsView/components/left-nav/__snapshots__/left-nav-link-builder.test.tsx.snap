@@ -163,6 +163,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
 
 exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for assessments: requirement nav link render icon 1`] = `
 <LeftNavStatusIcon
+  className="requirementStatusIcon"
   item={
     <TestViewLeftNavLink
       link={
@@ -192,6 +193,7 @@ exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for as
 
 exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for assessments: requirement nav link render icon 2`] = `
 <LeftNavStatusIcon
+  className="requirementStatusIcon"
   item={
     <TestViewLeftNavLink
       link={
