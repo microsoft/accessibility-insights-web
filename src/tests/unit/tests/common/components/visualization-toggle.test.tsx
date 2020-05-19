@@ -74,7 +74,7 @@ describe('VisualizationToggleTest', () => {
             className: props.className,
             onText: 'On',
             offText: 'Off',
-            ariaLabel: props.visualizationName,
+            ariaLabel: props.label ? props.label : props.visualizationName,
             componentRef: props.componentRef,
             onFocus: props.onFocus,
             onBlur: props.onBlur,

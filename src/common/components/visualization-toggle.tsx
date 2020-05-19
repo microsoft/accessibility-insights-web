@@ -26,7 +26,7 @@ export class VisualizationToggle extends React.Component<VisualizationToggleProp
             className: this.props.className,
             onText: 'On',
             offText: 'Off',
-            ariaLabel: this.props.visualizationName,
+            ariaLabel: this.props.label ? this.props.label : this.props.visualizationName,
             componentRef: this.props.componentRef,
             onBlur: this.props.onBlur,
             onFocus: this.props.onFocus,
