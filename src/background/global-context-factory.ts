@@ -74,7 +74,6 @@ export class GlobalContextFactory {
         const issueFilingController = new IssueFilingControllerImpl(
             browserAdapter.createActiveTab,
             issueFilingServiceProvider,
-            toolData,
             globalStoreHub.userConfigurationStore,
         );
 

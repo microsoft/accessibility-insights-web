@@ -55,11 +55,12 @@ describe('IssueFilingControllerImpl', () => {
         const testSubject = new IssueFilingControllerImpl(
             openIssueLinkMock.object,
             providerMock.object,
-            toolData,
             storeMock.object,
         );
 
-        await expect(testSubject.fileIssue(serviceKey, issueData)).resolves.toBe(undefined);
+        await expect(testSubject.fileIssue(serviceKey, issueData, toolData)).resolves.toBe(
+            undefined,
+        );
 
         openIssueLinkMock.verifyAll();
     });

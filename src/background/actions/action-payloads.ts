@@ -163,6 +163,7 @@ export interface SetIssueFilingServicePropertyPayload extends BaseActionPayload 
 export interface FileIssuePayload extends BaseActionPayload {
     issueData: CreateIssueDetailsTextData;
     service: string;
+    toolData: ToolData;
 }
 
 export interface UnifiedScanCompletedPayload extends BaseActionPayload {

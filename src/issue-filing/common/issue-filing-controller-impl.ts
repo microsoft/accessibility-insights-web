@@ -9,20 +9,24 @@ import { OpenIssueLink } from 'issue-filing/common/create-file-issue-handler';
 import { IssueFilingServiceProvider } from '../issue-filing-service-provider';
 
 export type IssueFilingController = {
-    fileIssue: (serviceKey: string, issueData: CreateIssueDetailsTextData) => void;
+    fileIssue: (
+        serviceKey: string,
+        issueData: CreateIssueDetailsTextData,
+        toolData: ToolData,
+    ) => void;
 };
 
 export class IssueFilingControllerImpl implements IssueFilingController {
     constructor(
         private readonly openIssueLink: OpenIssueLink,
         private readonly provider: IssueFilingServiceProvider,
-        private readonly toolData: ToolData,
         private readonly userConfigurationStore: BaseStore<UserConfigurationStoreData>,
     ) {}
 
     public fileIssue = (
         serviceKey: string,
         issueData: CreateIssueDetailsTextData,
+        toolData: ToolData,
     ): Promise<void> => {
         const service = this.provider.forKey(serviceKey);
         const userConfigurationStoreData = this.userConfigurationStore.getState();
@@ -31,7 +35,7 @@ export class IssueFilingControllerImpl implements IssueFilingController {
             this.openIssueLink,
             userConfigurationStoreData.bugServicePropertiesMap,
             issueData,
-            this.toolData,
+            toolData,
         );
     };
 }

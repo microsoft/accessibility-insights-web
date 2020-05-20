@@ -346,7 +346,6 @@ if (isNaN(tabId) === false) {
 
             const issueDetailsTextGenerator = new IssueDetailsTextGenerator(
                 IssueFilingUrlStringUtils,
-                toolData,
                 createIssueDetailsBuilder(PlainTextFormatter),
             );
 

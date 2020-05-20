@@ -98,7 +98,9 @@ describe('IssueFilingButtonTest', () => {
             needsSettingsContentRenderer,
         };
         issueFilingActionMessageCreatorMock
-            .setup(creator => creator.fileIssue(eventStub, testKey, props.issueDetailsData))
+            .setup(creator =>
+                creator.fileIssue(eventStub, testKey, props.issueDetailsData, toolData),
+            )
             .verifiable(Times.once());
         const wrapper = shallow<IssueFilingButton>(<IssueFilingButton {...props} />);
 
