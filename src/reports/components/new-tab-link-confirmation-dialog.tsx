@@ -27,12 +27,21 @@ export const NewTabLinkWithConfirmationDialog = NamedFC<ILinkProps>(
 
 export type ConfirmType = (message?: string) => boolean;
 
-// the following comment is to exclude the function from code coverage and prevent code cov from
-// injecting functions that interfere with eval in the unit tests
+// Note: the source of this function's body is stringified and injected into the report.
+//
+// The use of function() {} syntax over arrow functions is important for IE compat (see #1875).
+//
+// The "istanbul ignore next" excludes the function from code coverage to prevent code cov from
+// injecting functions that interfere with eval in the unit tests.
+//
 /* istanbul ignore next */
-const addConfirmOnClickHandler = (linkId: string, doc: Document, confirmCallback: ConfirmType) => {
+const addConfirmOnClickHandler = function (
+    linkId: string,
+    doc: Document,
+    confirmCallback: ConfirmType,
+): void {
     const targetPageLink = doc.getElementById(linkId);
-    targetPageLink.addEventListener('click', event => {
+    targetPageLink.addEventListener('click', function (event): void {
         const result = confirmCallback(
             'Are you sure you want to navigate away from the Accessibility Insights report?\n' +
                 'This link will open the target page in a new tab.\n\nPress OK to continue or ' +
