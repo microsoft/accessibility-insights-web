@@ -19,3 +19,12 @@ h-How to fix-h--s-h-s--h-t--RR-failureSummary--h-t
 h-Environment-h--s-h-s--environmentName
 --f-s--This accessibility issue was found using app-name app-version (engine-name engine-version), a tool that helps find and fix accessibility issues. Get more information & download this tool at l-http://aka.ms/AccessibilityInsights-l."
 `;
+
+exports[`Name of the group builds issue details without snippet 1`] = `
+"h-Issue-h--s-h-s--s-RR-help-s (l-RR-help-url-RR-rule-id-l)
+h-Target application-h--s-h-s--pageTitle<x>
+h-Element path-h--s-h-s--RR-selector<x>
+h-How to fix-h--s-h-s--h-t--RR-failureSummary--h-t
+h-Environment-h--s-h-s--environmentName
+--f-s--This accessibility issue was found using app-name app-version (engine-name engine-version), a tool that helps find and fix accessibility issues. Get more information & download this tool at l-http://aka.ms/AccessibilityInsights-l."
+`;

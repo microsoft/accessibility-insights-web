@@ -29,7 +29,7 @@ export const createIssueDetailsBuilder = (markup: MarkupFormatter): IssueDetails
                   snippet(data.snippet),
                   sectionSeparator(),
               ]
-            : null;
+            : [];
 
         const lines = [
             sectionHeader('Issue'),
