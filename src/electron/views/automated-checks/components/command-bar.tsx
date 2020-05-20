@@ -86,10 +86,11 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
                 <CommandButton
                     data-automation-id={commandButtonSettingsId}
                     ariaLabel="settings"
-                    iconProps={{ iconName: 'Gear' }}
+                    iconProps={{ iconName: 'Gear', className: styles.buttonIcon }}
                     onClick={event =>
                         deps.dropdownClickHandler.openSettingsPanelHandler(event as any)
                     }
+                    className={styles.settingsGearButton}
                 />
             </div>
         </section>

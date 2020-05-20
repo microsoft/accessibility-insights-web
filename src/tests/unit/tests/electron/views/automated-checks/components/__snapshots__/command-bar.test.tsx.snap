@@ -34,9 +34,11 @@ exports[`CommandBar renders does not create report export when scan metadata is 
     />
     <CustomizedActionButton
       ariaLabel="settings"
+      className="settingsGearButton"
       data-automation-id="command-button-settings"
       iconProps={
         Object {
+          "className": "buttonIcon",
           "iconName": "Gear",
         }
       }
@@ -106,9 +108,11 @@ exports[`CommandBar renders while status is <Completed> 1`] = `
     />
     <CustomizedActionButton
       ariaLabel="settings"
+      className="settingsGearButton"
       data-automation-id="command-button-settings"
       iconProps={
         Object {
+          "className": "buttonIcon",
           "iconName": "Gear",
         }
       }
@@ -178,9 +182,11 @@ exports[`CommandBar renders while status is <Default> 1`] = `
     />
     <CustomizedActionButton
       ariaLabel="settings"
+      className="settingsGearButton"
       data-automation-id="command-button-settings"
       iconProps={
         Object {
+          "className": "buttonIcon",
           "iconName": "Gear",
         }
       }
@@ -250,9 +256,11 @@ exports[`CommandBar renders while status is <Failed> 1`] = `
     />
     <CustomizedActionButton
       ariaLabel="settings"
+      className="settingsGearButton"
       data-automation-id="command-button-settings"
       iconProps={
         Object {
+          "className": "buttonIcon",
           "iconName": "Gear",
         }
       }
@@ -322,9 +330,11 @@ exports[`CommandBar renders while status is <Scanning> 1`] = `
     />
     <CustomizedActionButton
       ariaLabel="settings"
+      className="settingsGearButton"
       data-automation-id="command-button-settings"
       iconProps={
         Object {
+          "className": "buttonIcon",
           "iconName": "Gear",
         }
       }
