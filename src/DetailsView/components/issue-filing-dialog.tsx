@@ -118,6 +118,7 @@ export class IssueFilingDialog extends React.Component<
             ev,
             service,
             this.props.selectedIssueData,
+            this.props.deps.toolData,
         );
         this.props.onClose(ev);
     };

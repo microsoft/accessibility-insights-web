@@ -70,13 +70,12 @@ describe('Issue details text builder', () => {
 
         testSubject = new IssueDetailsTextGenerator(
             issueUrlCreationUtilsMock.object,
-            toolData,
             issueDetailsBuilderMock.object,
         );
     });
 
     test('buildText', () => {
-        const actual = testSubject.buildText(sampleIssueDetailsData);
+        const actual = testSubject.buildText(sampleIssueDetailsData, toolData);
         const expected = [
             `Title: ${title}`,
             `Tags: Accessibility, ${wcagTags.join(', ')}, RR-rule-id`,

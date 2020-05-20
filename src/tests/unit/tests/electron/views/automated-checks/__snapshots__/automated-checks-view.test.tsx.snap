@@ -17,6 +17,11 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
           "scanActions": undefined,
         },
         "screenshotViewModelProvider": [Function],
+        "toolData": Object {
+          "applicationProperties": Object {
+            "name": "some app",
+          },
+        },
       }
     }
     pageTitle="Automated checks"
@@ -50,6 +55,11 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
               "scanActions": undefined,
             },
             "screenshotViewModelProvider": [Function],
+            "toolData": Object {
+              "applicationProperties": Object {
+                "name": "some app",
+              },
+            },
           }
         }
         deviceStoreData={Object {}}
@@ -98,6 +108,11 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
                 "scanActions": undefined,
               },
               "screenshotViewModelProvider": [Function],
+              "toolData": Object {
+                "applicationProperties": Object {
+                  "name": "some app",
+                },
+              },
             }
           }
           scanMetadata={
@@ -144,6 +159,11 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
           "scanActions": undefined,
         },
         "screenshotViewModelProvider": [Function],
+        "toolData": Object {
+          "applicationProperties": Object {
+            "name": "some app",
+          },
+        },
       }
     }
     featureFlagData={Object {}}
