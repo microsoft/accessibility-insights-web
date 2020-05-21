@@ -63,7 +63,7 @@ export class ExtensionDetailsViewController implements DetailsViewController {
     }
 
     private getDetailsUrlWithExtensionId(tabId: number): string {
-        return `${this.browserAdapter.getRunTimeId()}/${this.getDetailsUrl(tabId)}`;
+        return `${this.browserAdapter.getRunTimeId()}${this.getDetailsUrl(tabId)}`;
     }
 
     private getTargetTabIdForDetailsTabId(detailsTabId: number): number {
