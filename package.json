@@ -75,7 +75,7 @@
         "@types/react-dom": "^16.9.8",
         "@types/react-helmet": "^6.0.0",
         "@types/react-router-dom": "^5.1.5",
-        "@types/serve-static": "^1.13.3",
+        "@types/serve-static": "^1.13.4",
         "@types/ua-parser-js": "^0.7.33",
         "@types/uuid": "^7.0.3",
         "app-builder-lib": "^22.6.1",
