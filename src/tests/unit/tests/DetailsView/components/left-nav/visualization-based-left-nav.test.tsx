@@ -29,8 +29,8 @@ describe('VisualizationBasedLeftNav', () => {
 
     beforeEach(() => {
         visualizationsStub = [-1, -2];
-        leftNavLinkBuilderMock = Mock.ofType(LeftNavLinkBuilder, MockBehavior.Strict);
-        configFactoryMock = Mock.ofType(VisualizationConfigurationFactory, MockBehavior.Strict);
+        leftNavLinkBuilderMock = Mock.ofType(LeftNavLinkBuilder);
+        configFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
         onLinkClickStub = (event, item) => null;
         linkStub = {} as BaseLeftNavLink;
         configStub = {} as VisualizationConfiguration;
@@ -56,6 +56,7 @@ describe('VisualizationBasedLeftNav', () => {
             leftNavLinkBuilderMock
                 .setup(lnlbm =>
                     lnlbm.buildVisualizationConfigurationLink(
+                        deps,
                         configStub,
                         onLinkClickStub,
                         visualizationType,

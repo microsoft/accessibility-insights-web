@@ -18,6 +18,7 @@ import { CardSelectionStoreData } from 'common/types/store-data/card-selection-s
 import { toolName } from 'content/strings/application';
 import { textContent } from 'content/strings/text-content';
 import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
+import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
 import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-available/no-content-available-view';
 import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
 import { NoContentAvailableViewRenderer } from 'DetailsView/no-content-available-view-renderer';
@@ -42,7 +43,6 @@ import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { WebReportNameGenerator } from 'reports/report-name-generator';
-
 import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AutoChecker } from '../common/auto-checker';
 import { AxeInfo } from '../common/axe-info';
@@ -382,6 +382,8 @@ if (isNaN(tabId) === false) {
 
             const assessmentViewUpdateHandler = new AssessmentViewUpdateHandler();
 
+            const navLinkRenderer = new NavLinkRenderer();
+
             const deps: DetailsViewContainerDeps = {
                 textContent,
                 fixInstructionProcessor,
@@ -452,6 +454,7 @@ if (isNaN(tabId) === false) {
                 Assessments,
                 assessmentViewUpdateHandler,
                 detailsViewExtensionPoint,
+                navLinkRenderer,
             };
 
             const renderer = new DetailsViewRenderer(

@@ -36,6 +36,7 @@ export const VisualizationBasedLeftNav = NamedFC<VisualizationBasedLeftNavProps>
             const config = visualizationConfigurationFactory.getConfiguration(visualizationType);
             links.push(
                 leftNavLinkBuilder.buildVisualizationConfigurationLink(
+                    deps,
                     config,
                     onLinkClick,
                     visualizationType,

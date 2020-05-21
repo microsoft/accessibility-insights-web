@@ -7,6 +7,7 @@ import { Requirement } from 'assessments/types/requirement';
 import { gettingStartedSubview } from 'common/types/store-data/assessment-result-data';
 import { TestRequirementLeftNavLink } from 'DetailsView/components/left-nav/assessment-left-nav';
 import { NavLinkHandler } from 'DetailsView/components/left-nav/nav-link-handler';
+import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
 import { OverviewSummaryReportModel } from 'reports/assessment-report-model';
 import { OutcomeTypeSemantic } from 'reports/components/outcome-type';
 import { RequirementOutcomeStats } from 'reports/components/requirement-outcome-type';
@@ -38,6 +39,7 @@ describe('LeftNavBuilder', () => {
         testStepStatus: ManualTestStatusData,
     ) => RequirementOutcomeStats>;
     let navLinkHandlerMock: IMock<NavLinkHandler>;
+    let navLinkRendererMock: IMock<NavLinkRenderer>;
 
     beforeEach(() => {
         onLinkClickMock = Mock.ofInstance((e, item) => null, MockBehavior.Strict);
@@ -51,6 +53,7 @@ describe('LeftNavBuilder', () => {
         );
         assessmentsDataStub = {};
         navLinkHandlerMock = Mock.ofType(NavLinkHandler);
+        navLinkRendererMock = Mock.ofType(NavLinkRenderer);
 
         deps = {
             getStatusForTest: getStatusForTestMock.object,
@@ -59,6 +62,7 @@ describe('LeftNavBuilder', () => {
             getAssessmentSummaryModelFromProviderAndStatusData:
                 getAssessmentSummaryModelFromProviderAndStatusDataMock.object,
             navLinkHandler: navLinkHandlerMock.object,
+            navLinkRenderer: navLinkRendererMock.object,
         } as LeftNavLinkBuilderDeps;
 
         testSubject = new LeftNavLinkBuilder();
@@ -100,10 +104,10 @@ describe('LeftNavBuilder', () => {
                 onClickNavLink: onLinkClickMock.object,
                 title: expectedTitle,
                 percentComplete: expectedPercentComplete,
+                onRenderNavLink: navLinkRendererMock.object.renderOverviewLink,
             };
 
             expect(actual).toMatchObject(expected);
-            expect(actual.onRenderNavLink(actual)).toMatchSnapshot();
         });
     });
 
@@ -119,6 +123,7 @@ describe('LeftNavBuilder', () => {
             } as VisualizationConfiguration;
 
             const actual = testSubject.buildVisualizationConfigurationLink(
+                deps,
                 configStub,
                 onLinkClickMock.object,
                 visualizationTypeStub,
@@ -135,12 +140,10 @@ describe('LeftNavBuilder', () => {
                     className: 'hidden',
                 },
                 onClickNavLink: onLinkClickMock.object,
+                onRenderNavLink: navLinkRendererMock.object.renderVisualizationLink,
             };
 
-            const navLink = actual.onRenderNavLink(actual);
             expect(actual).toMatchObject(expected);
-            expect(navLink).toMatchSnapshot();
-            expect(navLink.props['renderIcon'](actual)).toMatchSnapshot();
         });
     });
 
@@ -199,12 +202,10 @@ describe('LeftNavBuilder', () => {
                     title: `${startingIndexStub + linkIndex}: ${assessmentStub.title} (${
                         narratorStatusStub.pastTense
                     })`,
+                    onRenderNavLink: navLinkRendererMock.object.renderAssessmentTestLink,
                 };
 
-                const navLink = actual.onRenderNavLink(actual);
                 expect(actual).toMatchObject(expected);
-                expect(navLink).toMatchSnapshot();
-                expect(navLink.props['renderIcon'](actual)).toMatchSnapshot();
             });
         });
     });
@@ -279,6 +280,7 @@ describe('LeftNavBuilder', () => {
                     title: `${startingIndexStub + linkIndex}: ${assessmentStub.title} (${
                         narratorStatusStub.pastTense
                     })`,
+                    onRenderNavLink: navLinkRendererMock.object.renderAssessmentTestLink,
                 };
                 const expectedGettingStartedLink = {
                     name: 'Getting Started',
@@ -289,6 +291,7 @@ describe('LeftNavBuilder', () => {
                     iconProps: {
                         className: 'hidden',
                     },
+                    onRenderNavLink: navLinkRendererMock.object.renderGettingStartedLink,
                 };
                 const expectedRequirementLinkA = getExpectedRequirementLink(
                     requirementStubA,
@@ -298,25 +301,9 @@ describe('LeftNavBuilder', () => {
 
                 const actualGettingStartedLink = testLink.links[0];
                 const actualRequirementLink = testLink.links[1] as TestRequirementLeftNavLink;
-                const testNavLink = testLink.onRenderNavLink(testLink);
-                const requirementNavLink = actualRequirementLink.onRenderNavLink(
-                    actualRequirementLink,
-                );
                 expect(testLink).toMatchObject(expectedTestLink);
                 expect(actualGettingStartedLink).toMatchObject(expectedGettingStartedLink);
                 expect(actualRequirementLink).toMatchObject(expectedRequirementLinkA);
-
-                expect(testNavLink).toMatchSnapshot('test nav link render');
-                expect(testNavLink.props['renderIcon'](testLink)).toMatchSnapshot(
-                    'test nav link render icon',
-                );
-                expect(requirementNavLink).toMatchSnapshot('requirement nav link render');
-                expect(requirementNavLink.props['renderIcon'](requirementNavLink)).toMatchSnapshot(
-                    'requirement nav link render icon',
-                );
-                expect(actualGettingStartedLink.onRenderNavLink()).toMatchSnapshot(
-                    'getting started nav link render',
-                );
             });
         });
     });
@@ -337,6 +324,7 @@ describe('LeftNavBuilder', () => {
             testType: test,
             status,
             requirementKey: requirement.key,
+            onRenderNavLink: navLinkRendererMock.object.renderRequirementLink,
         } as TestRequirementLeftNavLink;
     }
 });
