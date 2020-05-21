@@ -59,7 +59,7 @@ export class ExtensionDetailsViewController implements DetailsViewController {
     }
 
     private getDetailsUrl(tabId: number): string {
-        return `DetailsView/detailsView.html?tabId=${tabId}`;
+        return `/DetailsView/detailsView.html?tabId=${tabId}`;
     }
 
     private getDetailsUrlWithExtensionId(tabId: number): string {
