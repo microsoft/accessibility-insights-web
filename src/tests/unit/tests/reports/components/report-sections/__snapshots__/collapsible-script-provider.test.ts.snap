@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CollapsibleScriptProvider getDefaultAddListenerForCollapsibleSection matches snapshot 1`] = `
+exports[`CollapsibleScriptProvider produces script source that matches snapshot 1`] = `
 "(function (doc) {
   const collapsibles = doc.getElementsByClassName('collapsible-container');
 
@@ -23,5 +23,3 @@ exports[`CollapsibleScriptProvider getDefaultAddListenerForCollapsibleSection ma
   }
 })(document)"
 `;
-
-exports[`CollapsibleScriptProvider match content 1`] = `"(this is test code)(document)"`;
