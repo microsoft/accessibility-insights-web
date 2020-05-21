@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CollapsibleScriptProvider getDefaultAddListenerForCollapsibleSection matches snapshot 1`] = `
-"(doc => {
+"(function (doc) {
   const collapsibles = doc.getElementsByClassName('collapsible-container');
 
   for (let index = 0; index < collapsibles.length; index++) {
     const container = collapsibles.item(index);
     const button = container.querySelector('.collapsible-control');
-    button.addEventListener('click', () => {
+    button.addEventListener('click', function () {
       const content = button.parentElement.nextElementSibling;
       const wasExpandedBefore = button.getAttribute('aria-expanded') === 'false' ? false : true;
       const isExpandedAfter = !wasExpandedBefore;
