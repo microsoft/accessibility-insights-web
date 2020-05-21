@@ -69,7 +69,6 @@ describe('NewTabLinkWithConfirmationDialog', () => {
             const testSubject = shallow(<NewTabLinkWithConfirmationDialog />);
             const generatedScript = testSubject.find('script').render().html();
 
-            expect(generatedScript).toMatch(/function/);
             expect(generatedScript).not.toMatch(/=>/);
         });
 
