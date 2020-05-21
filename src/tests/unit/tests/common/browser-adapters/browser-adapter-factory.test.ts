@@ -1,4 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
+// webextension-polyfill errors on import if a global "chrome" variable is not defined
+expect((window as any).chrome).toBeUndefined();
+(window as any).chrome = { runtime: { id: 'mocked' } };
+import 'webextension-polyfill-ts';
+delete (window as any).chrome;
 
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { ChromiumAdapter } from 'common/browser-adapters/chromium-adapter';
@@ -6,7 +13,6 @@ import { FirefoxAdapter } from 'common/browser-adapters/firefox-adapter';
 import { IMock, Mock } from 'typemoq';
 import { UAParser } from 'ua-parser-js';
 
-// Licensed under the MIT License.
 describe('BrowserAdapterFactory', () => {
     describe('makeFromUserAgent', () => {
         let mockUAParser: IMock<UAParser>;
@@ -32,6 +38,8 @@ describe('BrowserAdapterFactory', () => {
         beforeEach(() => {
             mockUAParser = Mock.ofType<UAParser>();
         });
+
+        afterEach(() => {});
 
         function setupMockEngine(engineName: string): void {
             mockUAParser
