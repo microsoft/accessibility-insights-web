@@ -1,15 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { A11YSelfValidator } from 'common/a11y-self-validator';
-import { ChromeAdapter } from 'common/browser-adapters/chrome-adapter';
+import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { HTMLElementUtils } from 'common/html-element-utils';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { ScannerUtils } from 'injected/scanner-utils';
 import { scan } from 'scanner/exposed-apis';
+import { UAParser } from 'ua-parser-js';
 import { rendererDependencies } from './dependencies';
 import { renderer } from './renderer';
 
-const browserAdapter = new ChromeAdapter();
+const userAgentParser = new UAParser(window.navigator.userAgent);
+const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
+const browserAdapter = browserAdapterFactory.makeFromUserAgent();
+
 const logger = createDefaultLogger();
 renderer(rendererDependencies(browserAdapter, logger));
 

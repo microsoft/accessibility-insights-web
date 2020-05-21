@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DevToolsChromeAdapter } from 'background/dev-tools-chrome-adapter';
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { TargetPageInspector } from 'Devtools/target-page-inspector';
 import { StoreProxy } from '../common/store-proxy';
 import { StoreNames } from '../common/stores/store-names';
@@ -9,19 +9,19 @@ import { InspectHandler } from './inspect-handler';
 
 export class DevToolInitializer {
     constructor(
-        private readonly devToolsChromeAdapter: DevToolsChromeAdapter,
+        private readonly browserAdapter: BrowserAdapter,
         private readonly targetPageInspector: TargetPageInspector,
     ) {}
 
     public initialize(): void {
         const devtoolsStore = new StoreProxy<DevToolStoreData>(
             StoreNames[StoreNames.DevToolsStore],
-            this.devToolsChromeAdapter,
+            this.browserAdapter,
         );
 
         const inspectHandler = new InspectHandler(
             devtoolsStore,
-            this.devToolsChromeAdapter,
+            this.browserAdapter,
             this.targetPageInspector,
         );
 

@@ -1,10 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DevToolsChromeAdapterImpl } from 'background/dev-tools-chrome-adapter';
+import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { TargetPageInspector } from 'Devtools/target-page-inspector';
+import { UAParser } from 'ua-parser-js';
 import { DevToolInitializer } from './dev-tool-initializer';
 
-const browserAdapter = new DevToolsChromeAdapterImpl();
+const userAgentParser = new UAParser(window.navigator.userAgent);
+const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
+const browserAdapter = browserAdapterFactory.makeFromUserAgent();
+
 const targetPageInspector = new TargetPageInspector(chrome.devtools.inspectedWindow);
 
 const devToolInitializer: DevToolInitializer = new DevToolInitializer(
