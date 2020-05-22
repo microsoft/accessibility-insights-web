@@ -8,8 +8,8 @@ const path = require('path');
 
 /*
 This script replaces existing electron & chromedriver modules
-with mirror dependencies specified by ELECTRON_MIRROR_VAR
-and ELECTRON_CUSTOM_DIR_VAR (see @electron/get). We use this 
+with mirror dependencies specified by ELECTRON_MIRROR_BASE_VAR
+and ELECTRON_MIRROR_CUSTOM_DIR_VAR, and `assetNumber`. We use this 
 to avoid bundling non-freely-redistributable media codecs 
 in our release builds. The version of Electron published to npm 
 includes these as part of Chromium; our release builds use a 
@@ -17,12 +17,14 @@ Microsoft-maintained build of Electron that removes those codecs.
 */
 
 if (
-    process.env.ELECTRON_MIRROR_VAR === undefined ||
-    process.env.ELECTRON_CUSTOM_DIR_VAR === undefined
+    process.env.ELECTRON_MIRROR_BASE_VAR === undefined ||
+    process.env.ELECTRON_MIRROR_CUSTOM_DIR_VAR === undefined
 ) {
-    console.error('ELECTRON_MIRROR_VAR and ELECTRON_CUSTOM_DIR_VAR must be defined');
+    console.error('ELECTRON_MIRROR_BASE_VAR and ELECTRON_MIRROR_CUSTOM_DIR_VAR must be defined');
     process.exit(1);
 }
+
+const assetNumber = '4658637';
 
 const downloadMirrors = async () => {
     await downloadElectronArtifact('electron', 'node_modules/electron/dist');
@@ -37,7 +39,7 @@ const downloadElectronArtifact = async (artifactName, destinationPath) => {
         artifactName,
         mirrorOptions: {
             mirror: process.env.ELECTRON_MIRROR_BASE_VAR,
-            customDir: process.env.ELECTRON_CUSTOM_DIR_VAR,
+            customDir: process.env.ELECTRON_MIRROR_CUSTOM_DIR_VAR,
             resolveAssetURL: resolveCustomAssetURL,
         },
         force: true,
@@ -58,7 +60,7 @@ const resolveCustomAssetURL = details => {
               '-',
           )}.zip`;
     const strippedVer = details.version.replace(/^v/, '');
-    return `${opts.mirror}/${strippedVer}/electron/${opts.customDir}/${file}`;
+    return `${opts.mirror}/${strippedVer}/${opts.customDir}/${assetNumber}/${file}`;
 };
 
 downloadMirrors().catch(err => {
