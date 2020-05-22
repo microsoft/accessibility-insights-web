@@ -68,4 +68,13 @@ describe('Name of the group', () => {
 
         expect(result).toMatchSnapshot();
     });
+
+    it('builds issue details without snippet', () => {
+        sampleIssueDetailsData.snippet = null;
+        const testSubject = createIssueDetailsBuilder(markupMock.object);
+
+        const result = testSubject(toolData, sampleIssueDetailsData);
+
+        expect(result).toMatchSnapshot();
+    });
 });
