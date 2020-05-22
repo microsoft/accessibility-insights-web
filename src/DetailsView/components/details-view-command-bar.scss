@@ -32,3 +32,14 @@
         width: 50%;
     }
 }
+
+button.command-bar-button {
+    .command-bar-button-icon {
+        line-height: 16px;
+    }
+    &:active {
+        .command-bar-button-icon {
+            color: $primary-text;
+        }
+    }
+}
