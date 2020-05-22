@@ -13,7 +13,7 @@ import { BrowserAdapter } from './browser-adapter';
 import { CommandsAdapter } from './commands-adapter';
 import { StorageAdapter } from './storage-adapter';
 
-export abstract class WebextensionBrowserAdapter
+export abstract class WebExtensionBrowserAdapter
     implements BrowserAdapter, StorageAdapter, CommandsAdapter {
     public abstract getManageExtensionUrl(): string;
 

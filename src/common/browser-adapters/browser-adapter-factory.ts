@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 import { ChromiumAdapter } from 'common/browser-adapters/chromium-adapter';
 import { FirefoxAdapter } from 'common/browser-adapters/firefox-adapter';
-import { WebextensionBrowserAdapter } from 'common/browser-adapters/webextension-browser-adapter';
+import { WebExtensionBrowserAdapter } from 'common/browser-adapters/webextension-browser-adapter';
 import { UAParser } from 'ua-parser-js';
 
 export class BrowserAdapterFactory {
     public constructor(private readonly uaParser: UAParser) {}
 
-    public makeFromUserAgent(): WebextensionBrowserAdapter {
+    public makeFromUserAgent(): WebExtensionBrowserAdapter {
         if (this.uaParser.getEngine().name === 'Gecko') {
             return new FirefoxAdapter();
         } else {
