@@ -3,7 +3,16 @@
 @import '../../../common/styles/colors.scss';
 
 button.insights-command-button {
+    .command-bar-button-icon {
+        line-height: 16px;
+    }
+
     &:disabled {
         color: $disabled-text;
+    }
+    &:active {
+        .command-bar-button-icon {
+            color: $primary-text;
+        }
     }
 }
