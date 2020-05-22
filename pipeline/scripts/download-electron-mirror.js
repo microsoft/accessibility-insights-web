@@ -20,7 +20,11 @@ if (
     process.env.ELECTRON_MIRROR_BASE_VAR === undefined ||
     process.env.ELECTRON_MIRROR_CUSTOM_DIR_VAR === undefined
 ) {
-    console.error('ELECTRON_MIRROR_BASE_VAR and ELECTRON_MIRROR_CUSTOM_DIR_VAR must be defined');
+    console.error(
+        `Mirror variables are not set. Please ensure that
+        ELECTRON_MIRROR_BASE_VAR and ELECTRON_MIRROR_CUSTOM_DIR_VAR
+        are both set as variables in the pipeline`,
+    );
     process.exit(1);
 }
 
