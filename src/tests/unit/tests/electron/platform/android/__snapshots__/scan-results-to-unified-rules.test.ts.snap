@@ -9,7 +9,7 @@ Array [
     "guidance": Array [],
     "id": "Rule #1",
     "uid": "gguid-mock-stub",
-    "url": null,
+    "url": "rule-link",
   },
 ]
 `;
@@ -21,7 +21,7 @@ Array [
     "guidance": Array [],
     "id": "Rule #1",
     "uid": "gguid-mock-stub",
-    "url": null,
+    "url": "rule-link",
   },
 ]
 `;
@@ -30,24 +30,30 @@ exports[`ScanResultsToUnifiedRules ScanResults with a mix of supported rules, un
 Array [
   Object {
     "description": "This describes Rule #3",
-    "guidance": Array [],
+    "guidance": Array [
+      Object {
+        "href": "https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html",
+        "tags": undefined,
+        "text": "WCAG 1.1.1",
+      },
+    ],
     "id": "Rule #3",
     "uid": "gguid-mock-stub",
-    "url": null,
+    "url": "rule-link-3",
   },
   Object {
     "description": "This describes Rule #1",
     "guidance": Array [],
     "id": "Rule #1",
     "uid": "gguid-mock-stub",
-    "url": null,
+    "url": "rule-link",
   },
   Object {
     "description": "This describes Rule #2",
     "guidance": Array [],
     "id": "Rule #2",
     "uid": "gguid-mock-stub",
-    "url": null,
+    "url": "rule-link",
   },
 ]
 `;

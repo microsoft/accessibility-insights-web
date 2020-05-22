@@ -20,6 +20,7 @@ import {
     FeatureFlagToggleTelemetryData,
     RequirementActionTelemetryData,
     RequirementSelectTelemetryData,
+    SelectGettingStartedTelemetryData,
     SetAllUrlsPermissionTelemetryData,
     TelemetryEventSource,
     TriggeredByNotApplicable,
@@ -151,7 +152,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             messageType: Messages.Assessment.SelectTestRequirement,
             payload: {
                 telemetry: telemetry,
-                selectedRequirement: selectedRequirement,
+                selectedTestSubview: selectedRequirement,
                 selectedTest: view,
             },
         };
@@ -161,6 +162,35 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             .returns(() => telemetry);
 
         testSubject.selectRequirement(event, HeadingsTestStep.headingFunction, view);
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            Times.once(),
+        );
+    });
+
+    test('selectGettingStarted', () => {
+        const view = VisualizationType.Headings;
+        const event = eventStubFactory.createKeypressEvent() as any;
+        const telemetry: SelectGettingStartedTelemetryData = {
+            triggeredBy: 'keypress',
+            selectedTest: VisualizationType[view],
+            source: testSource,
+        };
+
+        const expectedMessage = {
+            messageType: Messages.Assessment.SelectGettingStarted,
+            payload: {
+                telemetry: telemetry,
+                selectedTest: view,
+            },
+        };
+
+        telemetryFactoryMock
+            .setup(tf => tf.forSelectGettingStarted(event, view))
+            .returns(() => telemetry);
+
+        testSubject.selectGettingStarted(event, view);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),

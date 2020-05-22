@@ -3,30 +3,12 @@
 @import '../../../../common/styles/colors.scss';
 @import '../../../../common/styles/fonts.scss';
 
-@mixin buttonColors($bckColor) {
-    color: $primary-text;
-    background-color: $bckColor;
-
-    .button-icon {
-        color: $primary-text;
-    }
-}
-
-// specificity required to override fabric style
-button.menu-item-button {
+button.settings-gear-button {
     color: $primary-text;
 
     .button-icon {
         color: $primary-text;
         line-height: 16px;
-    }
-
-    &:hover {
-        @include buttonColors($neutral-alpha-4);
-    }
-
-    &:active {
-        @include buttonColors($neutral-alpha-8);
     }
 
     &:focus::after {

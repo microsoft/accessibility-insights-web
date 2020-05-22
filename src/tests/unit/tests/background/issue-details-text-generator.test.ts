@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { IMock, Mock, MockBehavior } from 'typemoq';
-import { EnvironmentInfoProvider } from '../../../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from '../../../../common/types/create-issue-details-text-data';
 import { IssueDetailsBuilder } from '../../../../issue-filing/common/issue-details-builder';
 import { IssueUrlCreationUtils } from '../../../../issue-filing/common/issue-filing-url-string-utils';
@@ -11,12 +11,23 @@ describe('Issue details text builder', () => {
     let testSubject: IssueDetailsTextGenerator;
     let sampleIssueDetailsData: CreateIssueDetailsTextData;
     let issueUrlCreationUtilsMock: IMock<IssueUrlCreationUtils>;
-    let envInfoProviderMock: IMock<EnvironmentInfoProvider>;
     let issueDetailsBuilderMock: IMock<IssueDetailsBuilder>;
 
     const wcagTags = ['WCAG-1.4.1', 'WCAG-2.8.2'];
     const title = `${wcagTags.join(',')}: RR-help (RR-selector<x>)`;
     const selector = 'RR-selector<x>';
+
+    const toolData: ToolData = {
+        scanEngineProperties: {
+            name: 'engine-name',
+            version: 'engine-version',
+        },
+        applicationProperties: {
+            name: 'app-name',
+            version: 'app-version',
+            environmentName: 'environmentName',
+        },
+    };
 
     beforeEach(() => {
         sampleIssueDetailsData = {
@@ -52,28 +63,19 @@ describe('Issue details text builder', () => {
             .setup(utils => utils.standardizeTags(sampleIssueDetailsData))
             .returns(() => wcagTags);
 
-        const envInfo = {
-            axeCoreVersion: 'AXE.CORE.VER',
-            browserSpec: 'BROWSER.SPEC',
-            extensionVersion: 'MY.EXT.VER',
-        };
-        envInfoProviderMock = Mock.ofType<EnvironmentInfoProvider>(undefined, MockBehavior.Strict);
-        envInfoProviderMock.setup(provider => provider.getEnvironmentInfo()).returns(() => envInfo);
-
         issueDetailsBuilderMock = Mock.ofType<IssueDetailsBuilder>(undefined, MockBehavior.Strict);
         issueDetailsBuilderMock
-            .setup(builder => builder(envInfo, sampleIssueDetailsData))
+            .setup(builder => builder(toolData, sampleIssueDetailsData))
             .returns(() => 'test-issue-details-builder');
 
         testSubject = new IssueDetailsTextGenerator(
             issueUrlCreationUtilsMock.object,
-            envInfoProviderMock.object,
             issueDetailsBuilderMock.object,
         );
     });
 
     test('buildText', () => {
-        const actual = testSubject.buildText(sampleIssueDetailsData);
+        const actual = testSubject.buildText(sampleIssueDetailsData, toolData);
         const expected = [
             `Title: ${title}`,
             `Tags: Accessibility, ${wcagTags.join(', ')}, RR-rule-id`,

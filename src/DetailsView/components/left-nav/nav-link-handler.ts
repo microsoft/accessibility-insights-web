@@ -1,5 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import {
+    TestGettingStartedNavLink,
+    TestRequirementLeftNavLink,
+} from 'DetailsView/components/left-nav/assessment-left-nav';
 import * as React from 'react';
 import { DetailsViewPivotType } from '../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../common/types/visualization-type';
@@ -30,6 +34,26 @@ export class NavLinkHandler {
             VisualizationType[item.key],
             DetailsViewPivotType.assessment,
         );
+        this.detailsViewActionMessageCreator.changeRightContentPanel('TestView');
+    };
+
+    public onRequirementClick = (
+        event: React.MouseEvent<HTMLElement>,
+        item: TestRequirementLeftNavLink,
+    ) => {
+        this.detailsViewActionMessageCreator.selectRequirement(
+            event,
+            item.requirementKey,
+            item.testType,
+        );
+        this.detailsViewActionMessageCreator.changeRightContentPanel('TestView');
+    };
+
+    public onGettingStartedClick = (
+        event: React.MouseEvent<HTMLElement>,
+        item: TestGettingStartedNavLink,
+    ) => {
+        this.detailsViewActionMessageCreator.selectGettingStarted(event, item.testType);
         this.detailsViewActionMessageCreator.changeRightContentPanel('TestView');
     };
 }

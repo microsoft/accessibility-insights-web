@@ -48,7 +48,7 @@ function createUnifiedRuleFromRuleResult(
         uid: uuidGenerator(),
         id: ruleInformation.ruleId,
         description: ruleInformation.ruleDescription,
-        url: null,
-        guidance: [],
+        url: ruleInformation.ruleLink,
+        guidance: ruleInformation.guidance,
     };
 }

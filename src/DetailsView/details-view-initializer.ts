@@ -1,11 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
 import { UserConfigurationActions } from 'background/actions/user-configuration-actions';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
+import { createToolData } from 'common/application-properties-provider';
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { ThemeInnerState } from 'common/components/theme';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
@@ -13,6 +15,7 @@ import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unav
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
+import { toolName } from 'content/strings/application';
 import { textContent } from 'content/strings/text-content';
 import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
 import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-available/no-content-available-view';
@@ -39,6 +42,7 @@ import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { WebReportNameGenerator } from 'reports/report-name-generator';
+
 import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AutoChecker } from '../common/auto-checker';
 import { AxeInfo } from '../common/axe-info';
@@ -53,7 +57,6 @@ import { VisualizationConfigurationFactory } from '../common/configs/visualizati
 import { DateProvider } from '../common/date-provider';
 import { DocumentManipulator } from '../common/document-manipulator';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
-import { EnvironmentInfoProvider } from '../common/environment-info-provider';
 import { TelemetryEventSource } from '../common/extension-telemetry-events';
 import { initializeFabricIcons } from '../common/fabric-icons';
 import { getAllFeatureFlagDetails } from '../common/feature-flags';
@@ -286,10 +289,12 @@ if (isNaN(tabId) === false) {
             const axeVersion = getVersion();
             const browserSpec = navigatorUtils.getBrowserSpec();
 
-            const environmentInfoProvider = new EnvironmentInfoProvider(
+            const toolData = createToolData(
+                toolName,
                 browserAdapter.getVersion(),
-                browserSpec,
+                'axe-core',
                 AxeInfo.Default.version,
+                browserSpec,
             );
 
             const reactStaticRenderer = new ReactStaticRenderer();
@@ -310,6 +315,7 @@ if (isNaN(tabId) === false) {
             const assessmentReportHtmlGeneratorDeps = {
                 outcomeTypeSemanticsFromTestStatus,
                 getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
+                LinkComponent: NewTabLink,
             };
             const assessmentReportHtmlGenerator = new AssessmentReportHtmlGenerator(
                 assessmentReportHtmlGeneratorDeps,
@@ -340,7 +346,6 @@ if (isNaN(tabId) === false) {
 
             const issueDetailsTextGenerator = new IssueDetailsTextGenerator(
                 IssueFilingUrlStringUtils,
-                environmentInfoProvider,
                 createIssueDetailsBuilder(PlainTextFormatter),
             );
 
@@ -407,7 +412,7 @@ if (isNaN(tabId) === false) {
                 getCurrentDate: DateProvider.getCurrentDate,
                 settingsProvider: ExtensionSettingsProvider,
                 LinkComponent: NewTabLink,
-                environmentInfoProvider,
+                toolData,
                 issueFilingServiceProvider: IssueFilingServiceProviderImpl,
                 getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
                 reportGenerator,

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
-import { EnvironmentInfo } from '../../../../../common/environment-info-provider';
 import { createIssueDetailsBuilder } from '../../../../../issue-filing/common/create-issue-details-builder';
 import { MarkupFormatter } from '../../../../../issue-filing/common/markup/markup-formatter';
 
@@ -24,10 +24,17 @@ describe('Name of the group', () => {
         howToFixSummary: 'RR-failureSummary',
         snippet: 'RR-snippet   space',
     };
-    const environmentInfo: EnvironmentInfo = {
-        extensionVersion: '1.1.1',
-        axeCoreVersion: '2.2.2',
-        browserSpec: 'test spec',
+
+    const toolData: ToolData = {
+        scanEngineProperties: {
+            name: 'engine-name',
+            version: 'engine-version',
+        },
+        applicationProperties: {
+            name: 'app-name',
+            version: 'app-version',
+            environmentName: 'environmentName',
+        },
     };
 
     let markupMock: IMock<MarkupFormatter>;
@@ -57,7 +64,7 @@ describe('Name of the group', () => {
         sampleIssueDetailsData.targetApp.url = targetAppUrl;
         const testSubject = createIssueDetailsBuilder(markupMock.object);
 
-        const result = testSubject(environmentInfo, sampleIssueDetailsData);
+        const result = testSubject(toolData, sampleIssueDetailsData);
 
         expect(result).toMatchSnapshot();
     });

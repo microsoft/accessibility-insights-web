@@ -1,6 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentViewProps } from 'DetailsView/components/assessment-view';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { Tab } from 'common/itab';
+import {
+    AssessmentData,
+    AssessmentNavState,
+    PersistedTabInfo,
+} from 'common/types/store-data/assessment-result-data';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { AssessmentTestResult } from '../../common/assessment/assessment-test-result';
 import { reactExtensionPoint } from '../../common/extensibility/react-extension-point';
 import { VisualizationType } from '../../common/types/visualization-type';
@@ -10,18 +17,35 @@ export const AssessmentViewMainContentExtensionPoint = reactExtensionPoint<
     WithAssessmentTestResult
 >('AssessmentViewMainContentExtensionPoint');
 
+export interface AssessmentViewUpdateHandlerDeps {
+    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    assessmentsProvider: AssessmentsProvider;
+}
+
+export interface AssessmentViewUpdateHandlerProps {
+    deps: AssessmentViewUpdateHandlerDeps;
+    assessmentNavState: AssessmentNavState;
+    assessmentData: AssessmentData;
+    selectedRequirementIsEnabled: boolean;
+    currentTarget: Tab;
+    prevTarget: PersistedTabInfo;
+}
+
 export class AssessmentViewUpdateHandler {
     public static readonly requirementsTitle: string = 'Requirements';
 
-    public onMount(props: AssessmentViewProps): void {
+    public onMount(props: AssessmentViewUpdateHandlerProps): void {
         this.enableSelectedStepVisualHelper(props);
     }
 
-    public onUnmount(props: AssessmentViewProps): void {
+    public onUnmount(props: AssessmentViewUpdateHandlerProps): void {
         this.disableVisualHelpersForSelectedTest(props);
     }
 
-    public update(prevProps: AssessmentViewProps, currentProps: AssessmentViewProps): void {
+    public update(
+        prevProps: AssessmentViewUpdateHandlerProps,
+        currentProps: AssessmentViewUpdateHandlerProps,
+    ): void {
         if (this.isStepSwitched(prevProps, currentProps)) {
             this.disableVisualHelpersForSelectedTest(prevProps);
             this.enableSelectedStepVisualHelper(currentProps);
@@ -31,7 +55,10 @@ export class AssessmentViewUpdateHandler {
         }
     }
 
-    private enableSelectedStepVisualHelper(props: AssessmentViewProps, sendTelemetry = true): void {
+    private enableSelectedStepVisualHelper(
+        props: AssessmentViewUpdateHandlerProps,
+        sendTelemetry = true,
+    ): void {
         const test = props.assessmentNavState.selectedTestType;
         const step = props.assessmentNavState.selectedTestSubview;
         if (this.visualHelperDisabledByDefault(props, test, step) || this.isTargetChanged(props)) {
@@ -39,7 +66,7 @@ export class AssessmentViewUpdateHandler {
         }
 
         const isStepNotScanned = !props.assessmentData.testStepStatus[step].isStepScanned;
-        if (props.isEnabled === false || isStepNotScanned) {
+        if (props.selectedRequirementIsEnabled === false || isStepNotScanned) {
             props.deps.detailsViewActionMessageCreator.enableVisualHelper(
                 test,
                 step,
@@ -49,13 +76,13 @@ export class AssessmentViewUpdateHandler {
         }
     }
 
-    private isTargetChanged(props: AssessmentViewProps): boolean {
+    private isTargetChanged(props: AssessmentViewUpdateHandlerProps): boolean {
         return props.prevTarget != null && props.prevTarget.id !== props.currentTarget.id;
     }
 
     private isStepSwitched(
-        prevProps: AssessmentViewProps,
-        currentProps: AssessmentViewProps,
+        prevProps: AssessmentViewUpdateHandlerProps,
+        currentProps: AssessmentViewUpdateHandlerProps,
     ): boolean {
         return (
             prevProps.assessmentNavState.selectedTestSubview !==
@@ -64,14 +91,14 @@ export class AssessmentViewUpdateHandler {
     }
 
     private visualHelperDisabledByDefault(
-        props: AssessmentViewProps,
+        props: AssessmentViewUpdateHandlerProps,
         test: VisualizationType,
         step: string,
     ): boolean {
         return props.deps.assessmentsProvider.getStep(test, step).doNotScanByDefault === true;
     }
 
-    private disableVisualHelpersForSelectedTest(props: AssessmentViewProps): void {
+    private disableVisualHelpersForSelectedTest(props: AssessmentViewUpdateHandlerProps): void {
         const test = props.assessmentNavState.selectedTestType;
         props.deps.detailsViewActionMessageCreator.disableVisualHelpersForTest(test);
     }

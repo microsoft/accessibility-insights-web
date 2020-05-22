@@ -24,6 +24,7 @@ exports[`AssessmentReportStepHeader matches snapshot 1`] = `
   </span>
   -
   <GuidanceLinks
+    LinkComponent={[Function]}
     classNameForDiv="test-guidance-links-group"
     links={
       Array [
@@ -41,6 +42,7 @@ exports[`AssessmentReportStepHeader matches snapshot 1`] = `
   <GuidanceTags
     deps={
       Object {
+        "LinkComponent": [Function],
         "getGuidanceTagsFromGuidanceLinks": [Function],
         "outcomeTypeSemanticsFromTestStatus": [Function],
       }

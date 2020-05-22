@@ -29,8 +29,12 @@ export interface BaseActionPayload {
     telemetry?: TelemetryData;
 }
 
-export interface SelectRequirementPayload extends BaseActionPayload {
-    selectedRequirement: string;
+export interface SelectTestSubviewPayload extends BaseActionPayload {
+    selectedTestSubview: string;
+    selectedTest: VisualizationType;
+}
+
+export interface SelectGettingStartedPayload extends BaseActionPayload {
     selectedTest: VisualizationType;
 }
 
@@ -159,6 +163,7 @@ export interface SetIssueFilingServicePropertyPayload extends BaseActionPayload 
 export interface FileIssuePayload extends BaseActionPayload {
     issueData: CreateIssueDetailsTextData;
     service: string;
+    toolData: ToolData;
 }
 
 export interface UnifiedScanCompletedPayload extends BaseActionPayload {

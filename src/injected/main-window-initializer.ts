@@ -21,10 +21,11 @@ import { TargetPageVisualizationUpdater } from 'injected/target-page-visualizati
 import { visualizationNeedsUpdate } from 'injected/visualization-needs-update';
 import { VisualizationStateChangeHandler } from 'injected/visualization-state-change-handler';
 
+import { createToolData } from 'common/application-properties-provider';
+import { toolName } from 'content/strings/application';
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
-import { EnvironmentInfoProvider } from '../common/environment-info-provider';
 import { TelemetryEventSource } from '../common/extension-telemetry-events';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
@@ -199,10 +200,12 @@ export class MainWindowInitializer extends WindowInitializer {
 
         const browserSpec = new NavigatorUtils(window.navigator, logger).getBrowserSpec();
 
-        const environmentInfoProvider = new EnvironmentInfoProvider(
+        const toolData = createToolData(
+            toolName,
             this.appDataAdapter.getVersion(),
-            browserSpec,
+            'axe-core',
             AxeInfo.Default.version,
+            browserSpec,
         );
 
         MainWindowContext.initialize(
@@ -212,7 +215,7 @@ export class MainWindowInitializer extends WindowInitializer {
             targetPageActionMessageCreator,
             issueFilingActionMessageCreator,
             userConfigMessageCreator,
-            environmentInfoProvider,
+            toolData,
             IssueFilingServiceProviderImpl,
         );
 
@@ -289,7 +292,7 @@ export class MainWindowInitializer extends WindowInitializer {
             this.browserAdapter.sendMessageToFrames,
             convertScanResultsToUnifiedResults,
             convertScanResultsToUnifiedRules,
-            environmentInfoProvider,
+            toolData,
             generateUID,
             scanIncompleteWarningDetector,
         );

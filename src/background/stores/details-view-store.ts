@@ -28,6 +28,7 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
     public getDefaultState(): DetailsViewStoreData {
         const data: DetailsViewStoreData = {
             contentPath: '',
+            contentTitle: '',
             currentPanel: {
                 isPreviewFeaturesOpen: false,
                 isScopingOpen: false,
@@ -46,10 +47,16 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
         );
 
         this.contentActions.openContentPanel.addListener(contentPayload =>
-            this.onOpen('isContentOpen', state => (state.contentPath = contentPayload.contentPath)),
+            this.onOpen('isContentOpen', state => {
+                state.contentPath = contentPayload.contentPath;
+                state.contentTitle = contentPayload.contentTitle;
+            }),
         );
         this.contentActions.closeContentPanel.addListener(() =>
-            this.onClose('isContentOpen', state => (state.contentPath = null)),
+            this.onClose('isContentOpen', state => {
+                state.contentPath = null;
+                state.contentTitle = null;
+            }),
         );
 
         this.detailsViewActions.setSelectedDetailsViewRightContentPanel.addListener(

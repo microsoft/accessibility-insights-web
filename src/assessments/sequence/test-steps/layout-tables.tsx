@@ -24,7 +24,8 @@ const howToTest: JSX.Element = (
         </p>
         <ol>
             <li>
-                Use the Web Developer extension (<Markup.Term>Outline > Outline Tables</Markup.Term>
+                Use the Web Developer extension (
+                <Markup.Term>Outline {'>'} Outline Tables</Markup.Term>
                 ) to identify any <Markup.Tag tagName="table" /> elements in the target page.
             </li>
             <li>
@@ -43,8 +44,8 @@ const howToTest: JSX.Element = (
             </li>
             <li>
                 If you find a layout table, use the Web Developer browser extension (
-                <Markup.Term>Miscellaneous > Linearize page</Markup.Term>) to show the page in DOM
-                order.
+                <Markup.Term>Miscellaneous {'>'} Linearize page</Markup.Term>) to show the page in
+                DOM order.
             </li>
             <li>
                 Verify that content in layout tables still has the correct reading order when the

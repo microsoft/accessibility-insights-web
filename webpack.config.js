@@ -95,6 +95,10 @@ const commonConfig = {
         maxEntrypointSize: 10 * 1024 * 1024,
         maxAssetSize: 10 * 1024 * 1024,
     },
+    stats: {
+        // This is to suppress noise from mini-css-extract-plugin
+        children: false,
+    },
 };
 
 const unifiedConfig = {

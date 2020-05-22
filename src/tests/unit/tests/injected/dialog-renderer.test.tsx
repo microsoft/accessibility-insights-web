@@ -16,8 +16,8 @@ import {
 import { DevToolStore } from 'background/stores/dev-tools-store';
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
 import { NavigatorUtils } from 'common/navigator-utils';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
-import { EnvironmentInfoProvider } from '../../../../common/environment-info-provider';
 import { FeatureFlags, getDefaultFeatureFlagsWeb } from '../../../../common/feature-flags';
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
 import { DevToolActionMessageCreator } from '../../../../common/message-creators/dev-tool-action-message-creator';
@@ -65,6 +65,8 @@ describe('DialogRendererTests', () => {
     let getMainWindoContextMock: IGlobalMock<() => MainWindowContext>;
     let rootContainerMock: IMock<HTMLElement>;
 
+    const toolData = {} as ToolData;
+
     beforeEach(() => {
         htmlElementUtilsMock = Mock.ofType(HTMLElementUtils);
         windowUtilsMock = Mock.ofType(WindowUtils);
@@ -108,7 +110,6 @@ describe('DialogRendererTests', () => {
         const devToolActionMessageCreatorMock = Mock.ofType(DevToolActionMessageCreator);
         const targetActionPageMessageCreatorMock = Mock.ofType(TargetPageActionMessageCreator);
         const issueFilingActionMessageCreatorMock = Mock.ofType(IssueFilingActionMessageCreator);
-        const environmentInfoProviderMock = Mock.ofType(EnvironmentInfoProvider);
         const issueFilingServiceProviderMock = Mock.ofType(IssueFilingServiceProvider);
         const userConfigMessageCreatorMock = Mock.ofType(UserConfigMessageCreator);
 
@@ -119,7 +120,7 @@ describe('DialogRendererTests', () => {
             targetActionPageMessageCreatorMock.object,
             issueFilingActionMessageCreatorMock.object,
             userConfigMessageCreatorMock.object,
-            environmentInfoProviderMock.object,
+            toolData,
             issueFilingServiceProviderMock.object,
         );
     });

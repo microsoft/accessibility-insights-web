@@ -27,6 +27,7 @@ $detailsViewNavPivotsHeight: 41px !default;
 $detailsViewCommandBarHeight: 40px !default;
 $detailsViewCommandBarBorderHeight: 1px !default;
 $detailsViewLeftNavWidth: 200px !default;
+$detailsViewReflowLeftNavWidth: 250px !default;
 $detailsViewTotalHeaderHeight: (
     #{$detailsViewCommandBarBorderHeight} + #{$detailsViewCommandBarHeight} + #{$detailsViewHeaderBarHeight}
 );

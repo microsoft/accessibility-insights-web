@@ -107,6 +107,406 @@ exports[`LeftNavBuilder buildOverviewLink should build overview link 1`] = `
 />
 `;
 
+exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for assessments: getting started nav link render 1`] = `<GettingStartedNavLink />`;
+
+exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for assessments: getting started nav link render 2`] = `<GettingStartedNavLink />`;
+
+exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for assessments: requirement nav link render 1`] = `
+<TestViewLeftNavLink
+  link={
+    Object {
+      "displayedIndex": "-1.1",
+      "forceAnchor": true,
+      "iconProps": Object {
+        "className": "hidden",
+      },
+      "index": 1,
+      "key": "Issues: requirement-key-1",
+      "name": "requirement-name-1",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "requirementKey": "requirement-key-1",
+      "status": -2,
+      "testType": 1,
+      "title": "-1.1: requirement-name-1 (passed)",
+      "url": "",
+    }
+  }
+  renderIcon={[Function]}
+/>
+`;
+
+exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for assessments: requirement nav link render 2`] = `
+<TestViewLeftNavLink
+  link={
+    Object {
+      "displayedIndex": "0.1",
+      "forceAnchor": true,
+      "iconProps": Object {
+        "className": "hidden",
+      },
+      "index": 1,
+      "key": "Issues: requirement-key-1",
+      "name": "requirement-name-1",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "requirementKey": "requirement-key-1",
+      "status": -2,
+      "testType": 1,
+      "title": "0.1: requirement-name-1 (passed)",
+      "url": "",
+    }
+  }
+  renderIcon={[Function]}
+/>
+`;
+
+exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for assessments: requirement nav link render icon 1`] = `
+<LeftNavStatusIcon
+  className="requirementStatusIcon"
+  item={
+    <TestViewLeftNavLink
+      link={
+        Object {
+          "displayedIndex": "-1.1",
+          "forceAnchor": true,
+          "iconProps": Object {
+            "className": "hidden",
+          },
+          "index": 1,
+          "key": "Issues: requirement-key-1",
+          "name": "requirement-name-1",
+          "onClickNavLink": [Function],
+          "onRenderNavLink": [Function],
+          "requirementKey": "requirement-key-1",
+          "status": -2,
+          "testType": 1,
+          "title": "-1.1: requirement-name-1 (passed)",
+          "url": "",
+        }
+      }
+      renderIcon={[Function]}
+    />
+  }
+/>
+`;
+
+exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for assessments: requirement nav link render icon 2`] = `
+<LeftNavStatusIcon
+  className="requirementStatusIcon"
+  item={
+    <TestViewLeftNavLink
+      link={
+        Object {
+          "displayedIndex": "0.1",
+          "forceAnchor": true,
+          "iconProps": Object {
+            "className": "hidden",
+          },
+          "index": 1,
+          "key": "Issues: requirement-key-1",
+          "name": "requirement-name-1",
+          "onClickNavLink": [Function],
+          "onRenderNavLink": [Function],
+          "requirementKey": "requirement-key-1",
+          "status": -2,
+          "testType": 1,
+          "title": "0.1: requirement-name-1 (passed)",
+          "url": "",
+        }
+      }
+      renderIcon={[Function]}
+    />
+  }
+/>
+`;
+
+exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for assessments: test nav link render 1`] = `
+<TestViewLeftNavLink
+  link={
+    Object {
+      "forceAnchor": true,
+      "iconProps": Object {
+        "className": "hidden",
+      },
+      "index": -1,
+      "isExpanded": true,
+      "key": "Issues",
+      "links": Array [
+        Object {
+          "forceAnchor": true,
+          "iconProps": Object {
+            "className": "hidden",
+          },
+          "index": 0,
+          "key": "Issues: getting-started",
+          "name": "Getting Started",
+          "onClickNavLink": [Function],
+          "onRenderNavLink": [Function],
+          "testType": 1,
+          "url": "",
+        },
+        Object {
+          "displayedIndex": "-1.1",
+          "forceAnchor": true,
+          "iconProps": Object {
+            "className": "hidden",
+          },
+          "index": 1,
+          "key": "Issues: requirement-key-1",
+          "name": "requirement-name-1",
+          "onClickNavLink": [Function],
+          "onRenderNavLink": [Function],
+          "requirementKey": "requirement-key-1",
+          "status": -2,
+          "testType": 1,
+          "title": "-1.1: requirement-name-1 (passed)",
+          "url": "",
+        },
+        Object {
+          "displayedIndex": "-1.2",
+          "forceAnchor": true,
+          "iconProps": Object {
+            "className": "hidden",
+          },
+          "index": 2,
+          "key": "Issues: requirement-key-2",
+          "name": "requirement-name-2",
+          "onClickNavLink": [Function],
+          "onRenderNavLink": [Function],
+          "requirementKey": "requirement-key-2",
+          "status": -2,
+          "testType": 1,
+          "title": "-1.2: requirement-name-2 (passed)",
+          "url": "",
+        },
+      ],
+      "name": "some title",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "status": -2,
+      "title": "-1: some title (passed)",
+      "url": "",
+    }
+  }
+  renderIcon={[Function]}
+/>
+`;
+
+exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for assessments: test nav link render 2`] = `
+<TestViewLeftNavLink
+  link={
+    Object {
+      "forceAnchor": true,
+      "iconProps": Object {
+        "className": "hidden",
+      },
+      "index": 0,
+      "isExpanded": true,
+      "key": "Issues",
+      "links": Array [
+        Object {
+          "forceAnchor": true,
+          "iconProps": Object {
+            "className": "hidden",
+          },
+          "index": 0,
+          "key": "Issues: getting-started",
+          "name": "Getting Started",
+          "onClickNavLink": [Function],
+          "onRenderNavLink": [Function],
+          "testType": 1,
+          "url": "",
+        },
+        Object {
+          "displayedIndex": "0.1",
+          "forceAnchor": true,
+          "iconProps": Object {
+            "className": "hidden",
+          },
+          "index": 1,
+          "key": "Issues: requirement-key-1",
+          "name": "requirement-name-1",
+          "onClickNavLink": [Function],
+          "onRenderNavLink": [Function],
+          "requirementKey": "requirement-key-1",
+          "status": -2,
+          "testType": 1,
+          "title": "0.1: requirement-name-1 (passed)",
+          "url": "",
+        },
+        Object {
+          "displayedIndex": "0.2",
+          "forceAnchor": true,
+          "iconProps": Object {
+            "className": "hidden",
+          },
+          "index": 2,
+          "key": "Issues: requirement-key-2",
+          "name": "requirement-name-2",
+          "onClickNavLink": [Function],
+          "onRenderNavLink": [Function],
+          "requirementKey": "requirement-key-2",
+          "status": -2,
+          "testType": 1,
+          "title": "0.2: requirement-name-2 (passed)",
+          "url": "",
+        },
+      ],
+      "name": "some title",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "status": -2,
+      "title": "0: some title (passed)",
+      "url": "",
+    }
+  }
+  renderIcon={[Function]}
+/>
+`;
+
+exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for assessments: test nav link render icon 1`] = `
+<LeftNavStatusIcon
+  item={
+    Object {
+      "forceAnchor": true,
+      "iconProps": Object {
+        "className": "hidden",
+      },
+      "index": -1,
+      "isExpanded": true,
+      "key": "Issues",
+      "links": Array [
+        Object {
+          "forceAnchor": true,
+          "iconProps": Object {
+            "className": "hidden",
+          },
+          "index": 0,
+          "key": "Issues: getting-started",
+          "name": "Getting Started",
+          "onClickNavLink": [Function],
+          "onRenderNavLink": [Function],
+          "testType": 1,
+          "url": "",
+        },
+        Object {
+          "displayedIndex": "-1.1",
+          "forceAnchor": true,
+          "iconProps": Object {
+            "className": "hidden",
+          },
+          "index": 1,
+          "key": "Issues: requirement-key-1",
+          "name": "requirement-name-1",
+          "onClickNavLink": [Function],
+          "onRenderNavLink": [Function],
+          "requirementKey": "requirement-key-1",
+          "status": -2,
+          "testType": 1,
+          "title": "-1.1: requirement-name-1 (passed)",
+          "url": "",
+        },
+        Object {
+          "displayedIndex": "-1.2",
+          "forceAnchor": true,
+          "iconProps": Object {
+            "className": "hidden",
+          },
+          "index": 2,
+          "key": "Issues: requirement-key-2",
+          "name": "requirement-name-2",
+          "onClickNavLink": [Function],
+          "onRenderNavLink": [Function],
+          "requirementKey": "requirement-key-2",
+          "status": -2,
+          "testType": 1,
+          "title": "-1.2: requirement-name-2 (passed)",
+          "url": "",
+        },
+      ],
+      "name": "some title",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "status": -2,
+      "title": "-1: some title (passed)",
+      "url": "",
+    }
+  }
+/>
+`;
+
+exports[`LeftNavBuilder buildReflowAssessmentTestLinks should build links for assessments: test nav link render icon 2`] = `
+<LeftNavStatusIcon
+  item={
+    Object {
+      "forceAnchor": true,
+      "iconProps": Object {
+        "className": "hidden",
+      },
+      "index": 0,
+      "isExpanded": true,
+      "key": "Issues",
+      "links": Array [
+        Object {
+          "forceAnchor": true,
+          "iconProps": Object {
+            "className": "hidden",
+          },
+          "index": 0,
+          "key": "Issues: getting-started",
+          "name": "Getting Started",
+          "onClickNavLink": [Function],
+          "onRenderNavLink": [Function],
+          "testType": 1,
+          "url": "",
+        },
+        Object {
+          "displayedIndex": "0.1",
+          "forceAnchor": true,
+          "iconProps": Object {
+            "className": "hidden",
+          },
+          "index": 1,
+          "key": "Issues: requirement-key-1",
+          "name": "requirement-name-1",
+          "onClickNavLink": [Function],
+          "onRenderNavLink": [Function],
+          "requirementKey": "requirement-key-1",
+          "status": -2,
+          "testType": 1,
+          "title": "0.1: requirement-name-1 (passed)",
+          "url": "",
+        },
+        Object {
+          "displayedIndex": "0.2",
+          "forceAnchor": true,
+          "iconProps": Object {
+            "className": "hidden",
+          },
+          "index": 2,
+          "key": "Issues: requirement-key-2",
+          "name": "requirement-name-2",
+          "onClickNavLink": [Function],
+          "onRenderNavLink": [Function],
+          "requirementKey": "requirement-key-2",
+          "status": -2,
+          "testType": 1,
+          "title": "0.2: requirement-name-2 (passed)",
+          "url": "",
+        },
+      ],
+      "name": "some title",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "status": -2,
+      "title": "0: some title (passed)",
+      "url": "",
+    }
+  }
+/>
+`;
+
 exports[`LeftNavBuilder buildVisualizationConfigurationLink should build link using configuration 1`] = `
 <TestViewLeftNavLink
   link={

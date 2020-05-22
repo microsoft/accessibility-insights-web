@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ScanIncompleteWarningsTelemetryData } from 'common/extension-telemetry-events';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { isEmpty } from 'lodash';
 import { UnifiedScanCompletedPayload } from '../../background/actions/action-payloads';
-import { EnvironmentInfoProvider } from '../../common/environment-info-provider';
 import { Messages } from '../../common/messages';
 import { UUIDGenerator } from '../../common/uid-generator';
 import { ConvertScanResultsToUnifiedResultsDelegate } from '../adapters/scan-results-to-unified-results';
@@ -17,7 +17,7 @@ export class UnifiedResultSender {
         private readonly sendMessage: MessageDelegate,
         private readonly convertScanResultsToUnifiedResults: ConvertScanResultsToUnifiedResultsDelegate,
         private readonly convertScanResultsToUnifiedRules: ConvertScanResultsToUnifiedRulesDelegate,
-        private readonly environmentInfoProvider: EnvironmentInfoProvider,
+        private readonly toolData: ToolData,
         private readonly generateUID: UUIDGenerator,
         private readonly scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
     ) {}
@@ -39,7 +39,7 @@ export class UnifiedResultSender {
                 this.generateUID,
             ),
             rules: this.convertScanResultsToUnifiedRules(axeResults.originalResult),
-            toolInfo: this.environmentInfoProvider.getToolData(),
+            toolInfo: this.toolData,
             timestamp: axeResults.originalResult.timestamp,
             targetAppInfo: {
                 name: axeResults.originalResult.targetPageTitle,

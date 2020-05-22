@@ -18,6 +18,7 @@ describe('LeftNavStatusIcon', () => {
                 name: 'test',
                 url: 'test',
             },
+            className: 'some class',
         } as LeftNavIconProps;
 
         const actual = shallow(<LeftNavStatusIcon {...props} />);

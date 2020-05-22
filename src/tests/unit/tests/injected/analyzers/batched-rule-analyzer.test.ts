@@ -81,7 +81,7 @@ describe('BatchedRuleAnalyzer', () => {
             .returns(() => []);
     });
 
-    test('analyze', async done => {
+    test('analyze', (done: () => void) => {
         testGetResults(done);
     });
 

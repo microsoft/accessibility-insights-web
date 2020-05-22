@@ -4,10 +4,10 @@ import { Dropdown, IDropdownOption } from 'office-ui-fabric-react';
 import { Icon } from 'office-ui-fabric-react';
 import { ResponsiveMode } from 'office-ui-fabric-react';
 import * as React from 'react';
+import { SwitcherStyleNames } from './switcher-style-names';
 
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
-import * as styles from './switcher.scss';
 
 export type SwitcherDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
@@ -16,6 +16,7 @@ export type SwitcherDeps = {
 export interface SwitcherProps {
     deps: SwitcherDeps;
     pivotKey: DetailsViewPivotType;
+    styles: SwitcherStyleNames;
 }
 
 export interface SwitcherState {
@@ -36,7 +37,7 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
 
     private onRenderOption = (option: IDropdownOption): JSX.Element => {
         return (
-            <span className={styles.switcherDropdownOption}>
+            <span className={this.props.styles.dropdownOptionClassName}>
                 {option.data && option.data.icon && <Icon iconName={option.data.icon} />}
                 <span>{option.text}</span>
             </span>
@@ -77,9 +78,9 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
 
     public render(): JSX.Element {
         return (
-            <div className={styles.headerSwitcher}>
+            <div className={this.props.styles.switcherClassName}>
                 <Dropdown
-                    className={styles.headerSwitcherDropdown}
+                    className={this.props.styles.dropdownClassName}
                     ariaLabel="select activity"
                     responsiveMode={ResponsiveMode.large}
                     selectedKey={this.state.selectedKey}

@@ -4,7 +4,22 @@
 
 .getting-started-view {
     margin: 0px 18px;
-    border-top: 1px solid $neutral-8;
     padding-left: 6px;
     padding-top: 1vh;
+}
+
+.getting-started-header {
+    @include text-style-title-m;
+    padding-top: 8px;
+    i {
+        font-size: 16px;
+    }
+}
+
+.getting-started-header-title {
+    margin-right: 8px;
+}
+
+.getting-started-title {
+    @include text-style-title-s;
 }

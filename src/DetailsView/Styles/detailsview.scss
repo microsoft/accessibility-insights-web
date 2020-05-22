@@ -235,7 +235,9 @@ div.insights-file-issue-details-dialog-container {
         grid-template-rows: 1fr;
         width: 100%;
         min-height: 0;
-
+        &.reflow-ui {
+            grid-template-columns: $detailsViewReflowLeftNavWidth 1fr;
+        }
         .details-view-test-nav-area {
             box-sizing: border-box;
             max-height: calc(
@@ -393,10 +395,14 @@ div.insights-file-issue-details-dialog-container {
             .dark-gray {
                 color: $neutral-60;
             }
+            .is-selected .button-flex-container {
+                color: $always-black;
+            }
             .button-flex-container {
                 padding-left: 5%;
                 padding-right: 8%;
                 width: $detailsViewLeftNavWidth;
+                color: $primary-text;
                 .status-icon {
                     font-size: 24px;
                 }

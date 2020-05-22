@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VisualizationToggleTest render with a specified label 1`] = `
+<StyledToggleBase
+  ariaLabel="test-label"
+  checked={false}
+  className="my test class"
+  componentRef={Object {}}
+  data-automation-id="test-automation-id"
+  disabled={true}
+  label="test-label"
+  offText="Off"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onText="On"
+/>
+`;
+
+exports[`VisualizationToggleTest render with no label 1`] = `
+<StyledToggleBase
+  ariaLabel="visualizationName"
+  checked={false}
+  className="my test class"
+  componentRef={Object {}}
+  data-automation-id="test-automation-id"
+  disabled={true}
+  offText="Off"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onText="On"
+/>
+`;

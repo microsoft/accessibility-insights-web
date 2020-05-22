@@ -5,7 +5,10 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { getDefaultFeatureFlagsWeb } from 'common/feature-flags';
 import { ScanMetadata, TargetAppData } from 'common/types/store-data/unified-data-interface';
-import { DetailsViewCommandBarDeps } from 'DetailsView/components/details-view-command-bar';
+import {
+    DetailsViewCommandBarDeps,
+    DetailsViewCommandBarProps,
+} from 'DetailsView/components/details-view-command-bar';
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { NamedFC, ReactFCWithDisplayName } from '../../../../common/react/named-fc';
@@ -22,8 +25,14 @@ import {
 } from '../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../DetailsView/actions/details-view-action-message-creator';
-import { DetailsRightPanelConfiguration } from '../../../../DetailsView/components/details-view-right-panel';
-import { DetailsViewSwitcherNavConfiguration } from '../../../../DetailsView/components/details-view-switcher-nav';
+import {
+    DetailsRightPanelConfiguration,
+    RightPanelProps,
+} from '../../../../DetailsView/components/details-view-right-panel';
+import {
+    DetailsViewSwitcherNavConfiguration,
+    LeftNavProps,
+} from '../../../../DetailsView/components/details-view-switcher-nav';
 import { DetailsViewLeftNav } from '../../../../DetailsView/components/left-nav/details-view-left-nav';
 import { TargetPageHiddenBar } from '../../../../DetailsView/components/target-page-hidden-bar';
 import { DetailsViewBody, DetailsViewBodyProps } from '../../../../DetailsView/details-view-body';
@@ -49,14 +58,14 @@ describe('DetailsViewBody', () => {
     describe('render', () => {
         beforeEach(() => {
             selectedTest = -1;
-            const RightPanelStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<
-                DetailsViewBodyProps
+            const RightPanelStub: Readonly<ReactFCWithDisplayName<RightPanelProps>> = NamedFC<
+                RightPanelProps
             >('test', _ => null);
-            const CommandBarStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<
-                DetailsViewBodyProps
-            >('test', _ => null);
-            const LeftNavStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<
-                DetailsViewBodyProps
+            const CommandBarStub: Readonly<ReactFCWithDisplayName<
+                DetailsViewCommandBarProps
+            >> = NamedFC<DetailsViewCommandBarProps>('test', _ => null);
+            const LeftNavStub: Readonly<ReactFCWithDisplayName<LeftNavProps>> = NamedFC<
+                LeftNavProps
             >('test', _ => null);
             rightPanelConfig = {
                 RightPanel: RightPanelStub,
@@ -202,7 +211,12 @@ describe('DetailsViewBody', () => {
     }
 
     function buildLeftNav(givenProps: DetailsViewBodyProps): JSX.Element {
-        return <DetailsViewLeftNav {...givenProps} />;
+        return (
+            <DetailsViewLeftNav
+                selectedPivot={givenProps.visualizationStoreData.selectedDetailsViewPivot}
+                {...givenProps}
+            />
+        );
     }
 
     function buildTargetPageInfoBar(givenProps: DetailsViewBodyProps): JSX.Element {

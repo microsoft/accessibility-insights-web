@@ -8,6 +8,7 @@ import { IMock, It, Mock, Times } from 'typemoq';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { Toast } from 'common/components/toast';
 import { NavigatorUtils } from 'common/navigator-utils';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { WindowUtils } from 'common/window-utils';
 import {
     CopyIssueDetailsButton,
@@ -21,6 +22,18 @@ describe('CopyIssueDetailsButtonTest', () => {
     let windowUtilsMock: IMock<WindowUtils>;
     let navigatorUtilsMock: IMock<NavigatorUtils>;
     const issueDetailsText = 'placeholder text';
+    const toolData: ToolData = {
+        scanEngineProperties: {
+            name: 'engine-name',
+            version: 'engine-version',
+        },
+        applicationProperties: {
+            name: 'app-name',
+            version: 'app-version',
+            environmentName: 'environmentName',
+        },
+    };
+
     beforeEach(() => {
         onClickMock = Mock.ofInstance(e => {});
         windowUtilsMock = Mock.ofType<WindowUtils>();
@@ -30,8 +43,9 @@ describe('CopyIssueDetailsButtonTest', () => {
                 windowUtils: windowUtilsMock.object,
                 navigatorUtils: navigatorUtilsMock.object,
                 issueDetailsTextGenerator: {
-                    buildText: _ => issueDetailsText,
+                    buildText: (_, __) => issueDetailsText,
                 } as IssueDetailsTextGenerator,
+                toolData,
             },
             issueDetailsData: {} as CreateIssueDetailsTextData,
             onClick: onClickMock.object,

@@ -74,6 +74,7 @@ import { RootContainerState } from 'electron/views/root-container/components/roo
 import { PlatformInfo } from 'electron/window-management/platform-info';
 import { WindowFrameListener } from 'electron/window-management/window-frame-listener';
 import { WindowFrameUpdater } from 'electron/window-management/window-frame-updater';
+import { IssueFilingServiceProviderImpl } from 'issue-filing/issue-filing-service-provider-impl';
 import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
@@ -303,7 +304,12 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         );
         windowFrameListener.initialize();
 
-        const getToolData = createGetToolDataDelegate(appDataAdapter);
+        const getToolData = createGetToolDataDelegate(
+            androidAppTitle,
+            appDataAdapter.getVersion(),
+            'axe-android',
+        );
+
         const unifiedResultsBuilder = createDefaultBuilder(getToolData);
         const scanController = new ScanController(
             scanActions,
@@ -350,11 +356,11 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             detailsViewActionMessageCreator,
             issueFilingActionMessageCreator: null, // we don't support issue filing right now
 
-            environmentInfoProvider: null,
+            toolData: null,
             getPropertyConfigById: getPropertyConfiguration, // this seems to be axe-core specific
 
             issueDetailsTextGenerator: null,
-            issueFilingServiceProvider: null, // we don't support issue filing right now
+            issueFilingServiceProvider: IssueFilingServiceProviderImpl,
             navigatorUtils: null,
             unifiedResultToIssueFilingDataConverter: null, // we don't support issue filing right now
             windowUtils: null,

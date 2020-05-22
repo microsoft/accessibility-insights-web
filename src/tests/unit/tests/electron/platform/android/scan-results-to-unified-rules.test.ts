@@ -1,10 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { generateUID } from 'common/uid-generator';
+import { link } from 'content/link';
 import {
     AndroidScanResults,
     RuleResultsData,
@@ -12,6 +10,8 @@ import {
 import { RuleInformation } from 'electron/platform/android/rule-information';
 import { RuleInformationProviderType } from 'electron/platform/android/rule-information-provider-type';
 import { convertScanResultsToUnifiedRules } from 'electron/platform/android/scan-results-to-unified-rules';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+
 import {
     buildRuleInformation,
     buildRuleResultObject,
@@ -73,8 +73,15 @@ describe('ScanResultsToUnifiedRules', () => {
 
         const ruleInformation1: RuleInformation = buildRuleInformation(ruleId1);
         const ruleInformation2: RuleInformation = buildRuleInformation(ruleId2);
-        const ruleInformation3: RuleInformation = buildRuleInformation(ruleId3);
-        const ruleInformation4: RuleInformation = buildRuleInformation(ruleId4, false);
+        const ruleInformation3: RuleInformation = buildRuleInformation(ruleId3, 'rule-link-3', [
+            link.WCAG_1_1_1,
+        ]);
+        const ruleInformation4: RuleInformation = buildRuleInformation(
+            ruleId4,
+            'rule-link-4',
+            [link.WCAG_1_2_1],
+            false,
+        );
 
         ruleInformationProviderMock = Mock.ofType<RuleInformationProviderType>();
         ruleInformationProviderMock

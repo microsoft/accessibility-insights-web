@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
+import { Requirement } from 'assessments/types/requirement';
 import {
     AddFailureInstancePayload,
     AddResultDescriptionPayload,
@@ -10,7 +11,7 @@ import {
     ChangeRequirementStatusPayload,
     EditFailureInstancePayload,
     RemoveFailureInstancePayload,
-    SelectRequirementPayload,
+    SelectTestSubviewPayload,
     ToggleActionPayload,
     UpdateSelectedDetailsViewPayload,
 } from 'background/actions/action-payloads';
@@ -34,6 +35,7 @@ import {
     AssessmentData,
     AssessmentStoreData,
     GeneratedAssessmentInstance,
+    InstanceIdToInstanceDataMap,
     ManualTestStepResult,
     PersistedTabInfo,
     TestStepResult,
@@ -59,7 +61,7 @@ const assessmentKey: string = 'assessment-1';
 const requirementKey: string = 'assessment-1-step-1';
 const assessmentType = -1 as VisualizationType;
 
-describe('AssessmentStoreTest', () => {
+describe('AssessmentStore', () => {
     let browserMock: IMock<BrowserAdapter>;
     let assessmentDataConverterMock: IMock<AssessmentDataConverter>;
     let assessmentDataRemoverMock: IMock<AssessmentDataRemover>;
@@ -470,7 +472,7 @@ describe('AssessmentStoreTest', () => {
             .testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('onScanCompleted', () => {
+    test('onScanCompleted with an assisted requirement', () => {
         const initialAssessmentData = new AssessmentDataBuilder()
             .with('testStepStatus', {
                 ['assessment-1-step-1']: getDefaultTestStepData(),
@@ -490,12 +492,17 @@ describe('AssessmentStoreTest', () => {
 
         const expectedInstanceMap = {};
         const stepMapStub = assessmentsProvider.getStepMap(assessmentType);
-        const stepConfig = assessmentsProvider.getStep(assessmentType, 'assessment-1-step-1');
+        const stepConfig: Readonly<Requirement> = {
+            ...assessmentsProvider.getStep(assessmentType, 'assessment-1-step-1'),
+            isManual: false,
+        };
 
         const assessmentData = new AssessmentDataBuilder()
             .with('generatedAssessmentInstancesMap', expectedInstanceMap)
             .with('testStepStatus', {
+                // should PASS because it is a non-manual test with no associated instances
                 ['assessment-1-step-1']: generateTestStepData(ManualTestStatus.PASS, true),
+                // should stay unchanged because the event/payload is requirement-specific
                 ['assessment-1-step-2']: getDefaultTestStepData(),
                 ['assessment-1-step-3']: getDefaultTestStepData(),
             })
@@ -533,7 +540,234 @@ describe('AssessmentStoreTest', () => {
                     payload.selectorMap,
                     requirementKey,
                     instanceIdentifierGeneratorStub,
-                    It.isAny(),
+                    stepConfig.getInstanceStatus,
+                    stepConfig.isVisualizationSupportedForResult,
+                ),
+            )
+            .returns(() => expectedInstanceMap);
+
+        createStoreTesterForAssessmentActions('scanCompleted')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, finalState);
+    });
+
+    test('onScanCompleted with a manual requirement uses getInitialManualTestStatus to set status', () => {
+        const initialManualTestStepResult = {
+            status: ManualTestStatus.UNKNOWN,
+            id: requirementKey,
+            instances: [
+                {
+                    id: '1',
+                    description: 'aaa',
+                },
+            ],
+        };
+        const initialAssessmentData = new AssessmentDataBuilder()
+            .with('testStepStatus', {
+                ['assessment-1-step-1']: getDefaultTestStepData(),
+                ['assessment-1-step-2']: getDefaultTestStepData(),
+                ['assessment-1-step-3']: getDefaultTestStepData(),
+            })
+            .with('manualTestStepResultMap', {
+                [requirementKey]: initialManualTestStepResult,
+            })
+            .build();
+        const initialState = getStateWithAssessment(initialAssessmentData);
+
+        const payload: ScanCompletedPayload<any> = {
+            selectorMap: {},
+            scanResult: {} as ScanResults,
+            testType: assessmentType,
+            key: requirementKey,
+            scanIncompleteWarnings: [],
+        };
+
+        const fullInstanceMap: InstanceIdToInstanceDataMap = {
+            '#selector-1': {
+                target: ['#selector-1'],
+                html: '<div id="selector-1" />',
+                testStepResults: { 'assessment-1-step-1': { resultData: 'result data' } },
+            },
+            '#selector-2': {
+                target: ['#selector-2'],
+                html: '<div id="selector-2" />',
+                testStepResults: { 'assessment-1-step-2': { resultData: 'result data' } },
+            },
+        };
+        const instanceMapFilteredForTestStep1 = {
+            '#selector-1': fullInstanceMap['#selector-1'],
+        };
+
+        const mockGetInitialManualTestStatus = Mock.ofInstance(
+            (_: InstanceIdToInstanceDataMap) => ManualTestStatus.FAIL,
+            MockBehavior.Strict,
+        );
+        mockGetInitialManualTestStatus
+            .setup(m => m(instanceMapFilteredForTestStep1))
+            .returns(() => ManualTestStatus.FAIL)
+            .verifiable();
+
+        const stepMapStub = assessmentsProvider.getStepMap(assessmentType);
+        const stepConfig: Readonly<Requirement> = {
+            ...assessmentsProvider.getStep(assessmentType, 'assessment-1-step-1'),
+            isManual: true,
+            getInitialManualTestStatus: mockGetInitialManualTestStatus.object,
+        };
+
+        const assessmentData = new AssessmentDataBuilder()
+            .with('generatedAssessmentInstancesMap', fullInstanceMap)
+            .with('testStepStatus', {
+                // should FAIL based on getInitialManualTestStatus
+                ['assessment-1-step-1']: generateTestStepData(ManualTestStatus.FAIL, true),
+                // should stay unchanged because the event/payload is requirement-specific
+                ['assessment-1-step-2']: getDefaultTestStepData(),
+                ['assessment-1-step-3']: getDefaultTestStepData(),
+            })
+            .with('scanIncompleteWarnings', [])
+            .with('manualTestStepResultMap', {
+                [requirementKey]: {
+                    ...initialManualTestStepResult,
+                    // should FAIL based on getInitialManualTestStatus
+                    status: ManualTestStatus.FAIL,
+                },
+            })
+            .build();
+
+        const finalState = getStateWithAssessment(assessmentData);
+
+        assessmentsProviderMock
+            .setup(provider => provider.all())
+            .returns(() => assessmentsProvider.all());
+
+        assessmentsProviderMock
+            .setup(provider => provider.getStepMap(assessmentType))
+            .returns(() => stepMapStub);
+
+        assessmentsProviderMock
+            .setup(provider => provider.getStep(assessmentType, 'assessment-1-step-1'))
+            .returns(() => stepConfig);
+
+        assessmentsProviderMock
+            .setup(provider => provider.forType(payload.testType))
+            .returns(() => assessmentMock.object);
+
+        assessmentMock.setup(am => am.getVisualizationConfiguration()).returns(() => configStub);
+
+        getInstanceIdentiferGeneratorMock
+            .setup(idGetter => idGetter(requirementKey))
+            .returns(() => instanceIdentifierGeneratorStub);
+
+        assessmentDataConverterMock
+            .setup(a =>
+                a.generateAssessmentInstancesMap(
+                    initialAssessmentData.generatedAssessmentInstancesMap,
+                    payload.selectorMap,
+                    requirementKey,
+                    instanceIdentifierGeneratorStub,
+                    stepConfig.getInstanceStatus,
+                    stepConfig.isVisualizationSupportedForResult,
+                ),
+            )
+            .returns(() => fullInstanceMap);
+
+        createStoreTesterForAssessmentActions('scanCompleted')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, finalState);
+
+        mockGetInitialManualTestStatus.verifyAll();
+    });
+
+    test('onScanCompleted with a manual requirement skips getInitialManualTestStatus for requirements that already have a status', () => {
+        const initialManualTestStepResult = {
+            status: ManualTestStatus.PASS,
+            id: requirementKey,
+            instances: [
+                {
+                    id: '1',
+                    description: 'aaa',
+                },
+            ],
+        };
+        const initialAssessmentData = new AssessmentDataBuilder()
+            .with('testStepStatus', {
+                ['assessment-1-step-1']: generateTestStepData(ManualTestStatus.PASS, true),
+                ['assessment-1-step-2']: getDefaultTestStepData(),
+                ['assessment-1-step-3']: getDefaultTestStepData(),
+            })
+            .with('manualTestStepResultMap', {
+                [requirementKey]: initialManualTestStepResult,
+            })
+            .build();
+        const initialState = getStateWithAssessment(initialAssessmentData);
+
+        const payload: ScanCompletedPayload<any> = {
+            selectorMap: {},
+            scanResult: {} as ScanResults,
+            testType: assessmentType,
+            key: requirementKey,
+            scanIncompleteWarnings: [],
+        };
+
+        const expectedInstanceMap = {};
+        const stepMapStub = assessmentsProvider.getStepMap(assessmentType);
+        const stepConfig: Readonly<Requirement> = {
+            ...assessmentsProvider.getStep(assessmentType, 'assessment-1-step-1'),
+            isManual: true,
+            getInitialManualTestStatus: () => ManualTestStatus.FAIL,
+        };
+
+        const assessmentData = new AssessmentDataBuilder()
+            .with('generatedAssessmentInstancesMap', expectedInstanceMap)
+            .with('testStepStatus', {
+                // should ignore getInitialManualTestStatus because the original state was not UNKNOWN
+                ['assessment-1-step-1']: generateTestStepData(ManualTestStatus.PASS, true),
+                // should stay unchanged because the event/payload is requirement-specific
+                ['assessment-1-step-2']: getDefaultTestStepData(),
+                ['assessment-1-step-3']: getDefaultTestStepData(),
+            })
+            .with('scanIncompleteWarnings', [])
+            .with('manualTestStepResultMap', {
+                [requirementKey]: {
+                    ...initialManualTestStepResult,
+                    // should ignore getInitialManualTestStatus because the original state was not UNKNOWN
+                    status: ManualTestStatus.PASS,
+                },
+            })
+            .build();
+
+        const finalState = getStateWithAssessment(assessmentData);
+
+        assessmentsProviderMock
+            .setup(provider => provider.all())
+            .returns(() => assessmentsProvider.all());
+
+        assessmentsProviderMock
+            .setup(provider => provider.getStepMap(assessmentType))
+            .returns(() => stepMapStub);
+
+        assessmentsProviderMock
+            .setup(provider => provider.getStep(assessmentType, 'assessment-1-step-1'))
+            .returns(() => stepConfig);
+
+        assessmentsProviderMock
+            .setup(provider => provider.forType(payload.testType))
+            .returns(() => assessmentMock.object);
+
+        assessmentMock.setup(am => am.getVisualizationConfiguration()).returns(() => configStub);
+
+        getInstanceIdentiferGeneratorMock
+            .setup(idGetter => idGetter(requirementKey))
+            .returns(() => instanceIdentifierGeneratorStub);
+
+        assessmentDataConverterMock
+            .setup(a =>
+                a.generateAssessmentInstancesMap(
+                    initialAssessmentData.generatedAssessmentInstancesMap,
+                    payload.selectorMap,
+                    requirementKey,
+                    instanceIdentifierGeneratorStub,
+                    stepConfig.getInstanceStatus,
+                    stepConfig.isVisualizationSupportedForResult,
                 ),
             )
             .returns(() => expectedInstanceMap);
@@ -667,14 +901,14 @@ describe('AssessmentStoreTest', () => {
             .withSelectedTestSubview(requirement)
             .build();
 
-        const payload: SelectRequirementPayload = {
-            selectedRequirement: requirement,
+        const payload: SelectTestSubviewPayload = {
+            selectedTestSubview: requirement,
             selectedTest: visualizationType,
         };
 
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
 
-        createStoreTesterForAssessmentActions('selectRequirement')
+        createStoreTesterForAssessmentActions('selectTestSubview')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, finalState);
     });
@@ -893,56 +1127,73 @@ describe('AssessmentStoreTest', () => {
             .testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on changeAssessmentVisualizationState', () => {
-        const generatedAssessmentInstancesMap: DictionaryStringTo<GeneratedAssessmentInstance> = {
-            selector: {
-                testStepResults: {
-                    [requirementKey]: {
-                        isVisualizationEnabled: true,
+    test.each`
+        supportsVisualization | startsEnabled | payloadEnabled | expectedFinalEnabled
+        ${false}              | ${false}      | ${true}        | ${false}
+        ${true}               | ${false}      | ${true}        | ${true}
+        ${true}               | ${true}       | ${false}       | ${false}
+        ${true}               | ${true}       | ${true}        | ${true}
+        ${true}               | ${false}      | ${false}       | ${false}
+    `(
+        'on changeAssessmentVisualizationState: supportsVisualization:$supportsVisualization, ' +
+            'startsEnabled:$startsEnabled, payloadEnabled:$payloadEnabled -> finalEnabled:$expectedFinalEnabled',
+        ({ supportsVisualization, startsEnabled, payloadEnabled, expectedFinalEnabled }) => {
+            const generatedAssessmentInstancesMap: DictionaryStringTo<GeneratedAssessmentInstance> = {
+                selector: {
+                    testStepResults: {
+                        [requirementKey]: {
+                            isVisualizationEnabled: startsEnabled,
+                            isVisualizationSupported: supportsVisualization,
+                        },
                     },
-                },
-            } as any,
-        };
+                } as any,
+            };
 
-        const assessmentData = new AssessmentDataBuilder()
-            .with('generatedAssessmentInstancesMap', generatedAssessmentInstancesMap)
-            .build();
+            const assessmentData = new AssessmentDataBuilder()
+                .with('generatedAssessmentInstancesMap', generatedAssessmentInstancesMap)
+                .build();
 
-        const initialState = getStateWithAssessment(assessmentData);
+            const initialState = getStateWithAssessment(assessmentData);
 
-        const payload: ChangeInstanceSelectionPayload = {
-            test: assessmentType,
-            requirement: requirementKey,
-            isVisualizationEnabled: true,
-            selector: 'selector',
-        };
+            const payload: ChangeInstanceSelectionPayload = {
+                test: assessmentType,
+                requirement: requirementKey,
+                isVisualizationEnabled: payloadEnabled,
+                selector: 'selector',
+            };
 
-        assessmentsProviderMock
-            .setup(apm => apm.forType(payload.test))
-            .returns(() => assessmentMock.object);
+            assessmentsProviderMock
+                .setup(apm => apm.forType(payload.test))
+                .returns(() => assessmentMock.object);
 
-        assessmentMock.setup(am => am.getVisualizationConfiguration()).returns(() => configStub);
+            assessmentMock
+                .setup(am => am.getVisualizationConfiguration())
+                .returns(() => configStub);
 
-        const expectedInstancesMap = cloneDeep(generatedAssessmentInstancesMap);
-        expectedInstancesMap.selector.testStepResults[requirementKey].isVisualizationEnabled = true;
+            const expectedInstancesMap = cloneDeep(generatedAssessmentInstancesMap);
+            expectedInstancesMap.selector.testStepResults[
+                requirementKey
+            ].isVisualizationEnabled = expectedFinalEnabled;
 
-        const expectedAssessment = new AssessmentDataBuilder()
-            .with('generatedAssessmentInstancesMap', expectedInstancesMap)
-            .build();
+            const expectedAssessment = new AssessmentDataBuilder()
+                .with('generatedAssessmentInstancesMap', expectedInstancesMap)
+                .build();
 
-        const finalState = getStateWithAssessment(expectedAssessment);
+            const finalState = getStateWithAssessment(expectedAssessment);
 
-        createStoreTesterForAssessmentActions('changeAssessmentVisualizationState')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
-    });
+            createStoreTesterForAssessmentActions('changeAssessmentVisualizationState')
+                .withActionParam(payload)
+                .testListenerToBeCalledOnce(initialState, finalState);
+        },
+    );
 
-    test('on changeAssessmentVisualizationStateForAll', () => {
+    test('changeAssessmentVisualizationStateForAll enables all visualizations that support it', () => {
         const generatedAssessmentInstancesMap: DictionaryStringTo<GeneratedAssessmentInstance> = {
             selector1: {
                 testStepResults: {
                     [requirementKey]: {
                         isVisualizationEnabled: true,
+                        isVisualizationSupported: true,
                     },
                 },
             } as any,
@@ -950,11 +1201,20 @@ describe('AssessmentStoreTest', () => {
                 testStepResults: {
                     [requirementKey]: {
                         isVisualizationEnabled: false,
+                        isVisualizationSupported: false,
                     },
                 },
             } as any,
             selector3: {
                 testStepResults: {},
+            } as any,
+            selector4: {
+                testStepResults: {
+                    [requirementKey]: {
+                        isVisualizationEnabled: false,
+                        isVisualizationSupported: true,
+                    },
+                },
             } as any,
         };
 
@@ -978,7 +1238,12 @@ describe('AssessmentStoreTest', () => {
         assessmentMock.setup(am => am.getVisualizationConfiguration()).returns(() => configStub);
 
         const expectedInstancesMap = cloneDeep(generatedAssessmentInstancesMap);
-        expectedInstancesMap.selector2.testStepResults[
+
+        // Selector 1 shouldn't change because it's already enabled
+        // Selector 2 shouldn't change because it doesn't support visualizations
+        // Selector 3 shouldn't change because it has no test step results
+        // Selector 4 should toggle from disabled to enabled:
+        expectedInstancesMap.selector4.testStepResults[
             requirementKey
         ].isVisualizationEnabled = true;
 

@@ -71,13 +71,14 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
             return this.renderLayout(null, null, this.renderDeviceDisconnected());
         } else if (status === ScanStatus.Completed) {
             const { unifiedScanResultStoreData, cardSelectionStoreData, deps } = this.props;
-            const { rules, results } = unifiedScanResultStoreData;
+            const { rules, results, toolInfo } = unifiedScanResultStoreData;
             const cardSelectionViewData = deps.getCardSelectionViewData(
                 cardSelectionStoreData,
                 unifiedScanResultStoreData,
                 deps.isResultHighlightUnavailable,
             );
             const cardsViewData = deps.getCardsViewData(rules, results, cardSelectionViewData);
+            deps.toolData = toolInfo;
             const highlightedResultUids = Object.keys(
                 cardSelectionViewData.resultsHighlightStatus,
             ).filter(uid => cardSelectionViewData.resultsHighlightStatus[uid] === 'visible');

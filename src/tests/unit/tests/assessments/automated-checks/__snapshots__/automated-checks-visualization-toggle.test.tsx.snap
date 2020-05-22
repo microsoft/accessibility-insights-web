@@ -15,6 +15,7 @@ exports[`AutomatedChecksVisualizationToggle render with disabled message 1`] = `
     <VisualizationToggle
       checked={false}
       className="visual-helper-toggle"
+      data-automation-id="visual-helper-toggle"
       disabled={true}
       onClick={[Function]}
       visualizationName="Visual helper"
@@ -43,6 +44,7 @@ exports[`AutomatedChecksVisualizationToggle render: toggle disabled when there a
     <VisualizationToggle
       checked={false}
       className="visual-helper-toggle"
+      data-automation-id="visual-helper-toggle"
       disabled={true}
       onClick={[Function]}
       visualizationName="Visual helper"
@@ -71,6 +73,7 @@ exports[`AutomatedChecksVisualizationToggle render: toggle not disabled 1`] = `
     <VisualizationToggle
       checked={false}
       className="visual-helper-toggle"
+      data-automation-id="visual-helper-toggle"
       disabled={false}
       onClick={[Function]}
       visualizationName="Visual helper"

@@ -3,14 +3,7 @@
 import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
-import {
-    ContentCreator,
-    ContentCreatorWithTitle,
-    ContentPage,
-    ContentPageComponent,
-    ContentPageDeps,
-    linkTo,
-} from 'views/content/content-page';
+import { ContentCreator, ContentPage, ContentPageDeps, linkTo } from 'views/content/content-page';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
 
 describe('ContentPage', () => {
@@ -119,20 +112,6 @@ describe('ContentPage', () => {
             const link = wrapped.find(NewTabLink);
 
             expect(link.getElement()).toMatchSnapshot();
-        });
-
-        it('...WithTitle sets title', () => {
-            const config = { pageTitle: 'Test title' };
-            const contentPage = {} as ContentPageComponent;
-            const props = ({ Link }) => <Link.testLink />;
-            const createMock = Mock.ofInstance(create);
-            createMock.setup(a => a(props)).returns(() => contentPage);
-
-            const createWithTitle = ContentCreatorWithTitle(createMock.object);
-            const MyPage = createWithTitle(config, props);
-
-            createMock.verifyAll();
-            expect(MyPage).toMatchSnapshot();
         });
     });
 });

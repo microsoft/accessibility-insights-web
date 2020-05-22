@@ -61,21 +61,6 @@ export function ContentCreator<M extends HyperlinkDefinitionMap>(
     return create;
 }
 
-interface ContentPageConfiguration {
-    pageTitle: string;
-}
-export const ContentCreatorWithTitle = (
-    create: (
-        fn: (props: CreateProps<HyperlinkDefinitionMap>) => JSX.Element,
-    ) => ContentPageComponent,
-) => {
-    return (config: ContentPageConfiguration, props) => {
-        const component = create(props);
-        component.pageTitle = config.pageTitle;
-        return component;
-    };
-};
-
 export interface ContentProvider {
     getPage(path: string): ContentPageComponent;
     allPaths(): string[];

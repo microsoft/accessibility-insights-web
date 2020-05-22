@@ -52,6 +52,7 @@ export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<VisualHelpe
     }
     public withNonEmptyFilteredMap(
         isVisualizationEnabled: boolean = false,
+        isVisualizationSupported: boolean = true,
     ): VisualHelperToggleConfigBuilder {
         this.data.instancesMap = {
             'selector-1': {
@@ -59,7 +60,8 @@ export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<VisualHelpe
                     [this.stepKey]: {
                         id: 'id1',
                         status: ManualTestStatus.UNKNOWN,
-                        isVisualizationEnabled: isVisualizationEnabled,
+                        isVisualizationEnabled,
+                        isVisualizationSupported,
                     } as TestStepResult,
                 } as AssessmentResultType<any>,
             } as GeneratedAssessmentInstance,
@@ -68,7 +70,8 @@ export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<VisualHelpe
                     [this.stepKey]: {
                         id: 'id1',
                         status: ManualTestStatus.FAIL,
-                        isVisualizationEnabled: isVisualizationEnabled,
+                        isVisualizationEnabled,
+                        isVisualizationSupported,
                     } as TestStepResult,
                 } as AssessmentResultType<any>,
             } as GeneratedAssessmentInstance,
@@ -99,6 +102,31 @@ export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<VisualHelpe
                 } as AssessmentResultType<any>,
             } as GeneratedAssessmentInstance,
             'selector-2': null,
+        };
+        return this;
+    }
+    public withMixedVisualizationSupportFilteredMap(): VisualHelperToggleConfigBuilder {
+        this.data.instancesMap = {
+            'selector-1': {
+                testStepResults: {
+                    [this.stepKey]: {
+                        id: 'id1',
+                        status: ManualTestStatus.PASS,
+                        isVisualizationEnabled: true,
+                        isVisualizationSupported: true,
+                    } as TestStepResult,
+                } as AssessmentResultType<any>,
+            } as GeneratedAssessmentInstance,
+            'selector-2': {
+                testStepResults: {
+                    [this.stepKey]: {
+                        id: 'id1',
+                        status: ManualTestStatus.PASS,
+                        isVisualizationEnabled: false,
+                        isVisualizationSupported: false,
+                    } as TestStepResult,
+                } as AssessmentResultType<any>,
+            } as GeneratedAssessmentInstance,
         };
         return this;
     }

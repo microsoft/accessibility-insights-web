@@ -10,7 +10,6 @@ import { frameTitleConfiguration } from './custom-rules/frame-title';
 import { headerRuleConfiguration } from './custom-rules/header-rule';
 import { headingConfiguration } from './custom-rules/heading-rule';
 import { imageConfiguration } from './custom-rules/image-rule';
-import { landmarkConfiguration } from './custom-rules/landmark-rule';
 import { linkFunctionConfiguration } from './custom-rules/link-function';
 import { linkPurposeConfiguration } from './custom-rules/link-purpose';
 import { nativeWidgetsDefaultConfiguration } from './custom-rules/native-widgets-default';
@@ -24,7 +23,6 @@ import { RuleConfiguration } from './iruleresults';
 export const configuration: RuleConfiguration[] = [
     headingConfiguration,
     colorConfiguration,
-    landmarkConfiguration,
     uniqueLandmarkConfiguration,
     imageConfiguration,
     textAlternativeConfiguration,

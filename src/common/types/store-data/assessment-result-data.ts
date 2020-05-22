@@ -10,6 +10,8 @@ export type TestStepInstance = UserCapturedInstance & GeneratedAssessmentInstanc
 export type RequirementName = string;
 export type GettingStarted = 'getting-started';
 
+export const gettingStartedSubview: GettingStarted = 'getting-started';
+
 export type PersistedTabInfo = Tab & {
     appRefreshed: boolean;
 };
@@ -59,6 +61,7 @@ export interface TestStepResult {
     status: ManualTestStatus;
     isCapturedByUser: boolean;
     failureSummary: string;
+    isVisualizationSupported: boolean;
     isVisualizationEnabled: boolean;
     isVisible: boolean;
     originalStatus?: ManualTestStatus;

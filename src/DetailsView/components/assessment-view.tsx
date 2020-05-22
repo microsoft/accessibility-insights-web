@@ -7,7 +7,10 @@ import * as React from 'react';
 import { ContentLink, ContentLinkDeps } from 'views/content/content-link';
 import { ContentPageComponent } from 'views/content/content-page';
 
-import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
+import {
+    AssessmentViewUpdateHandler,
+    AssessmentViewUpdateHandlerDeps,
+} from 'DetailsView/components/assessment-view-update-handler';
 import { AssessmentTestResult } from '../../common/assessment/assessment-test-result';
 import { CollapsibleComponent } from '../../common/components/collapsible-component';
 import { reactExtensionPoint } from '../../common/extensibility/react-extension-point';
@@ -19,7 +22,6 @@ import {
 } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet-store-data';
-import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { DetailsViewExtensionPoint } from '../extensions/details-view-extension-point';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 import { TargetChangeDialog, TargetChangeDialogDeps } from './target-change-dialog';
@@ -34,8 +36,8 @@ export const AssessmentViewMainContentExtensionPoint = reactExtensionPoint<
 export type AssessmentViewDeps = ContentLinkDeps &
     TestStepViewDeps &
     TestStepNavDeps &
-    TargetChangeDialogDeps & {
-        detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    TargetChangeDialogDeps &
+    AssessmentViewUpdateHandlerDeps & {
         assessmentsProvider: AssessmentsProvider;
         assessmentViewUpdateHandler: AssessmentViewUpdateHandler;
         detailsViewExtensionPoint: DetailsViewExtensionPoint;
@@ -44,7 +46,7 @@ export type AssessmentViewDeps = ContentLinkDeps &
 export interface AssessmentViewProps {
     deps: AssessmentViewDeps;
     isScanning: boolean;
-    isEnabled: boolean;
+    selectedRequirementIsEnabled: boolean;
     assessmentNavState: AssessmentNavState;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
     assessmentData: AssessmentData;
@@ -175,7 +177,7 @@ export class AssessmentView extends React.Component<AssessmentViewProps> {
                         assessmentInstanceTableHandler={this.props.assessmentInstanceTableHandler}
                         manualTestStepResultMap={this.props.assessmentData.manualTestStepResultMap}
                         assessmentsProvider={this.props.deps.assessmentsProvider}
-                        isStepEnabled={this.props.isEnabled}
+                        isStepEnabled={this.props.selectedRequirementIsEnabled}
                         isStepScanned={isStepScanned}
                         assessmentDefaultMessageGenerator={
                             this.props.assessmentDefaultMessageGenerator

@@ -1,16 +1,21 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-// the following comment is to exclude the function from code coverage and prevent code cov from
-// injecting functions that affect snapshot tests
+// Note: the source of this function's body is stringified and injected into the report.
+//
+// The use of function() {} syntax over arrow functions is important for IE compat (see #1875).
+//
+// The "istanbul ignore next" excludes the function from code coverage to prevent code cov from
+// injecting functions that interfere with eval in the unit tests.
+//
 /* istanbul ignore next */
-export const addEventListenerForCollapsibleSection = (doc: Document) => {
+export const addEventListenerForCollapsibleSection = function (doc: Document): void {
     const collapsibles = doc.getElementsByClassName('collapsible-container');
 
     for (let index = 0; index < collapsibles.length; index++) {
         const container = collapsibles.item(index);
         const button = container.querySelector('.collapsible-control');
-        button.addEventListener('click', () => {
+        button.addEventListener('click', function (): void {
             const content = button.parentElement.nextElementSibling as HTMLElement;
             const wasExpandedBefore =
                 button.getAttribute('aria-expanded') === 'false' ? false : true;
