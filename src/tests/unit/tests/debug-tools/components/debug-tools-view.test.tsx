@@ -9,6 +9,7 @@ import {
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
+//
 describe('DebugToolsView', () => {
     it('renders', () => {
         const deps = {
