@@ -9,10 +9,12 @@ exports[`CommandBar renders does not create report export when scan metadata is 
     className="items"
   >
     <CustomizedActionButton
+      className="commandBarButton"
       data-automation-id="command-button-refresh"
       disabled={true}
       iconProps={
         Object {
+          "className": "commandBarButtonIcon",
           "iconName": "Refresh",
         }
       }
@@ -38,7 +40,7 @@ exports[`CommandBar renders does not create report export when scan metadata is 
       data-automation-id="command-button-settings"
       iconProps={
         Object {
-          "className": "buttonIcon",
+          "className": "settingsGearButtonIcon",
           "iconName": "Gear",
         }
       }
@@ -57,10 +59,12 @@ exports[`CommandBar renders while status is <Completed> 1`] = `
     className="items"
   >
     <CustomizedActionButton
+      className="commandBarButton"
       data-automation-id="command-button-refresh"
       disabled={false}
       iconProps={
         Object {
+          "className": "commandBarButtonIcon",
           "iconName": "Refresh",
         }
       }
@@ -112,7 +116,7 @@ exports[`CommandBar renders while status is <Completed> 1`] = `
       data-automation-id="command-button-settings"
       iconProps={
         Object {
-          "className": "buttonIcon",
+          "className": "settingsGearButtonIcon",
           "iconName": "Gear",
         }
       }
@@ -131,10 +135,12 @@ exports[`CommandBar renders while status is <Default> 1`] = `
     className="items"
   >
     <CustomizedActionButton
+      className="commandBarButton"
       data-automation-id="command-button-refresh"
       disabled={false}
       iconProps={
         Object {
+          "className": "commandBarButtonIcon",
           "iconName": "Refresh",
         }
       }
@@ -186,7 +192,7 @@ exports[`CommandBar renders while status is <Default> 1`] = `
       data-automation-id="command-button-settings"
       iconProps={
         Object {
-          "className": "buttonIcon",
+          "className": "settingsGearButtonIcon",
           "iconName": "Gear",
         }
       }
@@ -205,10 +211,12 @@ exports[`CommandBar renders while status is <Failed> 1`] = `
     className="items"
   >
     <CustomizedActionButton
+      className="commandBarButton"
       data-automation-id="command-button-refresh"
       disabled={false}
       iconProps={
         Object {
+          "className": "commandBarButtonIcon",
           "iconName": "Refresh",
         }
       }
@@ -260,7 +268,7 @@ exports[`CommandBar renders while status is <Failed> 1`] = `
       data-automation-id="command-button-settings"
       iconProps={
         Object {
-          "className": "buttonIcon",
+          "className": "settingsGearButtonIcon",
           "iconName": "Gear",
         }
       }
@@ -279,10 +287,12 @@ exports[`CommandBar renders while status is <Scanning> 1`] = `
     className="items"
   >
     <CustomizedActionButton
+      className="commandBarButton"
       data-automation-id="command-button-refresh"
       disabled={true}
       iconProps={
         Object {
+          "className": "commandBarButtonIcon",
           "iconName": "Refresh",
         }
       }
@@ -334,7 +344,7 @@ exports[`CommandBar renders while status is <Scanning> 1`] = `
       data-automation-id="command-button-settings"
       iconProps={
         Object {
-          "className": "buttonIcon",
+          "className": "settingsGearButtonIcon",
           "iconName": "Gear",
         }
       }

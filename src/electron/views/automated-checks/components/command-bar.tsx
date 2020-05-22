@@ -72,9 +72,10 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
                 <CommandButton
                     data-automation-id={commandButtonRefreshId}
                     text="Start over"
-                    iconProps={{ iconName: 'Refresh' }}
+                    iconProps={{ iconName: 'Refresh', className: styles.commandBarButtonIcon }}
                     onClick={() => deps.scanActionCreator.scan(deviceStoreData.port)}
                     disabled={props.scanStoreData.status === ScanStatus.Scanning}
+                    className={styles.commandBarButton}
                 />
             </div>
             <div className={styles.farItems}>
@@ -86,7 +87,7 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
                 <CommandButton
                     data-automation-id={commandButtonSettingsId}
                     ariaLabel="settings"
-                    iconProps={{ iconName: 'Gear', className: styles.buttonIcon }}
+                    iconProps={{ iconName: 'Gear', className: styles.settingsGearButtonIcon }}
                     onClick={event =>
                         deps.dropdownClickHandler.openSettingsPanelHandler(event as any)
                     }

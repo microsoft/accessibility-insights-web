@@ -6,13 +6,30 @@
 button.settings-gear-button {
     color: $primary-text;
 
-    .button-icon {
+    .settings-gear-button-icon {
         color: $primary-text;
         line-height: 16px;
     }
 
+    &:active {
+        .settings-gear-button-icon {
+            color: $primary-text;
+        }
+    }
+
     &:focus::after {
         outline: $secondary-text solid 1px !important;
+    }
+}
+
+button.command-bar-button {
+    .command-bar-button-icon {
+        line-height: 16px;
+    }
+    &:active {
+        .command-bar-button-icon {
+            color: $primary-text;
+        }
     }
 }
 
