@@ -3317,10 +3317,10 @@ electron-download@^4.1.0, electron-download@^4.1.1:
     semver "^5.4.1"
     sumchecker "^2.0.2"
 
-electron-log@^4.1.3:
-  version "4.1.3"
-  resolved "https://registry.yarnpkg.com/electron-log/-/electron-log-4.1.3.tgz#ece91d7b478c4b2fa7b73b3c26d4e822f5db1dc1"
-  integrity sha512-W7lWIP23U6/2eDJvz/GcTl1E/Ik7p/aFiV73gA0VjNxymJnVkucMLr2Sd1LvHcJT1oXYwBQnVyQI7YOcKkE3Ug==
+electron-log@^4.1.4:
+  version "4.1.4"
+  resolved "https://registry.yarnpkg.com/electron-log/-/electron-log-4.1.4.tgz#b027c76b42b622c59fcf921cf8c67f1588b6a363"
+  integrity sha512-lRXc8yENqbViOLn2U91DzoNno14wgNWuURgliLXxLtXCVTxB1FK6J0zj7o/SrtPAIcXQa2JPXKlM/qRxP8D9iQ==
 
 electron-publish@22.6.1:
   version "22.6.1"
