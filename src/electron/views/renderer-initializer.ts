@@ -74,6 +74,7 @@ import { RootContainerState } from 'electron/views/root-container/components/roo
 import { PlatformInfo } from 'electron/window-management/platform-info';
 import { WindowFrameListener } from 'electron/window-management/window-frame-listener';
 import { WindowFrameUpdater } from 'electron/window-management/window-frame-updater';
+import { IssueFilingServiceProviderImpl } from 'issue-filing/issue-filing-service-provider-impl';
 import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
@@ -359,7 +360,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             getPropertyConfigById: getPropertyConfiguration, // this seems to be axe-core specific
 
             issueDetailsTextGenerator: null,
-            issueFilingServiceProvider: null, // we don't support issue filing right now
+            issueFilingServiceProvider: IssueFilingServiceProviderImpl,
             navigatorUtils: null,
             unifiedResultToIssueFilingDataConverter: null, // we don't support issue filing right now
             windowUtils: null,
