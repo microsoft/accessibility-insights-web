@@ -9,6 +9,9 @@ button.insights-command-button {
 
     &:disabled {
         color: $disabled-text;
+        .command-bar-button-icon {
+            color: $disabled-text;
+        }
     }
     &:active {
         .command-bar-button-icon {

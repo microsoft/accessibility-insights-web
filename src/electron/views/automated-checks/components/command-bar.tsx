@@ -15,10 +15,10 @@ import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-crea
 import { DeviceStoreData } from 'electron/flux/types/device-store-data';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
-import { CommandButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 
+import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import * as styles from './command-bar.scss';
 
 export type CommandBarDeps = {
@@ -69,13 +69,12 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
     return (
         <section className={styles.commandBar} aria-label="command bar">
             <div className={styles.items}>
-                <CommandButton
+                <InsightsCommandButton
                     data-automation-id={commandButtonRefreshId}
                     text="Start over"
-                    iconProps={{ iconName: 'Refresh', className: styles.commandBarButtonIcon }}
+                    iconProps={{ iconName: 'Refresh' }}
                     onClick={() => deps.scanActionCreator.scan(deviceStoreData.port)}
                     disabled={props.scanStoreData.status === ScanStatus.Scanning}
-                    className={styles.commandBarButton}
                 />
             </div>
             <div className={styles.farItems}>
@@ -84,7 +83,7 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
                     featureFlagStoreData={featureFlagStoreData}
                     featureFlag={UnifiedFeatureFlags.exportReport}
                 />
-                <CommandButton
+                <InsightsCommandButton
                     data-automation-id={commandButtonSettingsId}
                     ariaLabel="settings"
                     iconProps={{ iconName: 'Gear', className: styles.settingsGearButtonIcon }}

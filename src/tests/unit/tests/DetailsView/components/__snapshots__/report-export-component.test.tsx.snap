@@ -2,18 +2,16 @@
 
 exports[`ReportExportComponentTest render 1`] = `
 <React.Fragment>
-  <CustomizedActionButton
-    className="commandBarButton"
+  <InsightsCommandButton
     iconProps={
       Object {
-        "className": "commandBarButtonIcon",
         "iconName": "Export",
       }
     }
     onClick={[Function]}
   >
     Export result
-  </CustomizedActionButton>
+  </InsightsCommandButton>
   <ExportDialog
     deps={
       Object {
@@ -44,18 +42,16 @@ exports[`ReportExportComponentTest render 1`] = `
 
 exports[`ReportExportComponentTest user interactions click export button: dialog should show 1`] = `
 <React.Fragment>
-  <CustomizedActionButton
-    className="commandBarButton"
+  <InsightsCommandButton
     iconProps={
       Object {
-        "className": "commandBarButtonIcon",
         "iconName": "Export",
       }
     }
     onClick={[Function]}
   >
     Export result
-  </CustomizedActionButton>
+  </InsightsCommandButton>
   <ExportDialog
     deps={
       Object {
@@ -85,18 +81,16 @@ exports[`ReportExportComponentTest user interactions click export button: dialog
 
 exports[`ReportExportComponentTest user interactions dismiss dialog: dialog should be dismissed 1`] = `
 <React.Fragment>
-  <CustomizedActionButton
-    className="commandBarButton"
+  <InsightsCommandButton
     iconProps={
       Object {
-        "className": "commandBarButtonIcon",
         "iconName": "Export",
       }
     }
     onClick={[Function]}
   >
     Export result
-  </CustomizedActionButton>
+  </InsightsCommandButton>
   <ExportDialog
     deps={
       Object {
@@ -126,18 +120,16 @@ exports[`ReportExportComponentTest user interactions dismiss dialog: dialog shou
 
 exports[`ReportExportComponentTest user interactions edit text field: test content with special characters: <> $ " \` ' 1`] = `
 <React.Fragment>
-  <CustomizedActionButton
-    className="commandBarButton"
+  <InsightsCommandButton
     iconProps={
       Object {
-        "className": "commandBarButtonIcon",
         "iconName": "Export",
       }
     }
     onClick={[Function]}
   >
     Export result
-  </CustomizedActionButton>
+  </InsightsCommandButton>
   <ExportDialog
     deps={
       Object {
