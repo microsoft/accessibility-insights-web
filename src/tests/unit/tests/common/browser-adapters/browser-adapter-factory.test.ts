@@ -39,8 +39,6 @@ describe('BrowserAdapterFactory', () => {
             mockUAParser = Mock.ofType<UAParser>();
         });
 
-        afterEach(() => {});
-
         function setupMockEngine(engineName: string): void {
             mockUAParser
                 .setup(m => m.getEngine())
