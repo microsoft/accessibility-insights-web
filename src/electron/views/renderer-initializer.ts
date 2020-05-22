@@ -448,7 +448,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             documentManipulator,
             isResultHighlightUnavailable: isResultHighlightUnavailableUnified,
             reportGenerator: reportGenerator,
-            fileURLProvider: new FileURLProvider(new WindowUtils(), provideBlob),
+            fileURLProvider: new FileURLProvider(windowUtils, provideBlob),
             getDateFromTimestamp: DateProvider.getDateFromTimestamp,
             reportExportServiceProvider: ReportExportServiceProviderImpl,
         };
