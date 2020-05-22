@@ -375,6 +375,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         const navigatorUtils = new NavigatorUtils(window.navigator, logger);
 
+        const windowUtils = new WindowUtils();
+
         const cardsViewDeps: CardsViewDeps = {
             LinkComponent: ElectronLink,
 
@@ -398,7 +400,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             issueFilingServiceProvider: IssueFilingServiceProviderImpl,
             navigatorUtils: navigatorUtils,
             unifiedResultToIssueFilingDataConverter: new UnifiedResultToIssueFilingDataConverter(),
-            windowUtils: null,
+            windowUtils: windowUtils,
             setFocusVisibility,
             customCongratsMessage:
                 "No failed automated checks were found. Continue investigating your app's accessibility compliance through manual testing.",
