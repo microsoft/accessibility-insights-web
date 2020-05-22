@@ -8,11 +8,10 @@ const path = require('path');
 
 /*
 This script replaces existing electron & chromedriver modules
-with mirror dependencies specified by ELECTRON_MIRROR_BASE_VAR
-and ELECTRON_MIRROR_CUSTOM_DIR_VAR, and `assetNumber`. We use this 
-to avoid bundling non-freely-redistributable media codecs 
-in our release builds. The version of Electron published to npm 
-includes these as part of Chromium; our release builds use a 
+with mirror dependencies specified by `assetNumber` and pipeline
+build variables. We use this to avoid bundling non-freely-redistributable 
+media codecs in our release builds. The version of Electron published to 
+npm includes these as part of Chromium; our release builds use a 
 Microsoft-maintained build of Electron that removes those codecs.
 */
 
