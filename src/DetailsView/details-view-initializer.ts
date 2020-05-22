@@ -8,6 +8,7 @@ import { UserConfigurationActions } from 'background/actions/user-configuration-
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
 import { createToolData } from 'common/application-properties-provider';
+import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { ThemeInnerState } from 'common/components/theme';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
@@ -42,12 +43,12 @@ import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { WebReportNameGenerator } from 'reports/report-name-generator';
+import { UAParser } from 'ua-parser-js';
 
 import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AutoChecker } from '../common/auto-checker';
 import { AxeInfo } from '../common/axe-info';
 import { provideBlob } from '../common/blob-provider';
-import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
 import { allCardInteractionsSupported } from '../common/components/cards/card-interaction-support';
 import { CardsCollapsibleControl } from '../common/components/cards/collapsible-component-cards';
 import { FixInstructionProcessor } from '../common/components/fix-instruction-processor';
@@ -122,7 +123,10 @@ import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-han
 
 declare const window: AutoChecker & Window;
 
-const browserAdapter = new ChromeAdapter();
+const userAgentParser = new UAParser(window.navigator.userAgent);
+const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
+const browserAdapter = browserAdapterFactory.makeFromUserAgent();
+
 const urlParser = new UrlParser();
 const tabId = urlParser.getIntParam(window.location.href, 'tabId');
 const dom = document;

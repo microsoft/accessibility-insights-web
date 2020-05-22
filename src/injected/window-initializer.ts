@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { getRTL } from '@uifabric/utilities';
+import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { NavigatorUtils } from 'common/navigator-utils';
 import * as Q from 'q';
+import { UAParser } from 'ua-parser-js';
 import { AppDataAdapter } from '../common/browser-adapters/app-data-adapter';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
-import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../common/enum-helper';
 import { HTMLElementUtils } from '../common/html-element-utils';
@@ -54,10 +55,12 @@ export class WindowInitializer {
 
     public async initialize(): Promise<void> {
         const asyncInitializationSteps: Promise<void>[] = [];
-        const chromeAdapter = new ChromeAdapter();
+        const userAgentParser = new UAParser(window.navigator.userAgent);
+        const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
+        const browserAdapter = browserAdapterFactory.makeFromUserAgent();
 
-        this.browserAdapter = chromeAdapter;
-        this.appDataAdapter = chromeAdapter;
+        this.browserAdapter = browserAdapter;
+        this.appDataAdapter = browserAdapter;
         this.windowUtils = new WindowUtils();
         const htmlElementUtils = new HTMLElementUtils();
         this.clientUtils = new ClientUtils(window);

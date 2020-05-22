@@ -13,10 +13,9 @@ import { BrowserAdapter } from './browser-adapter';
 import { CommandsAdapter } from './commands-adapter';
 import { StorageAdapter } from './storage-adapter';
 
-export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAdapter {
-    public getManageExtensionUrl(): string {
-        return `chrome://extensions/?id=${chrome.runtime.id}`;
-    }
+export abstract class WebExtensionBrowserAdapter
+    implements BrowserAdapter, StorageAdapter, CommandsAdapter {
+    public abstract getManageExtensionUrl(): string;
 
     public getAllWindows(getInfo: Windows.GetAllGetInfoType): Promise<Windows.Window[]> {
         return browser.windows.getAll(getInfo);
@@ -214,5 +213,9 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
 
     public containsPermissions(permissions: Permissions.Permissions): Promise<boolean> {
         return browser.permissions.contains(permissions);
+    }
+
+    public getInspectedWindowTabId(): number {
+        return chrome.devtools.inspectedWindow.tabId;
     }
 }
