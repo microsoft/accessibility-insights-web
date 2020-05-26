@@ -3,14 +3,12 @@
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { title } from 'content/strings/application';
 import { CreateIssueDetailsTextData } from '../../../common/types/create-issue-details-text-data';
-import { createIssueDetailsBuilder } from '../../common/create-issue-details-builder';
 import { HTTPQueryBuilder } from '../../common/http-query-builder';
 import { IssueDetailsBuilder } from '../../common/issue-details-builder';
 import {
     IssueFilingUrlStringUtils,
     IssueUrlCreationUtils,
 } from '../../common/issue-filing-url-string-utils';
-import { HTMLFormatter } from '../../common/markup/html-formatter';
 import {
     AzureBoardsIssueFilingSettings,
     AzureBoardsWorkItemType,
@@ -54,8 +52,9 @@ export const createAzureBoardsIssueFilingUrlProvider = (
     };
 };
 
-export const azureBoardsIssueFilingUrlProvider = createAzureBoardsIssueFilingUrlProvider(
-    IssueFilingUrlStringUtils,
-    createIssueDetailsBuilder(HTMLFormatter),
-    () => new HTTPQueryBuilder(),
-);
+export const azureBoardsIssueFilingUrlProvider = (issueDetailsBuilder: IssueDetailsBuilder) =>
+    createAzureBoardsIssueFilingUrlProvider(
+        IssueFilingUrlStringUtils,
+        issueDetailsBuilder,
+        () => new HTTPQueryBuilder(),
+    );

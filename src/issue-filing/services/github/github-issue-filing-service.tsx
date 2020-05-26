@@ -4,6 +4,7 @@ import { isEmpty, isString } from 'lodash';
 import { TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
 
+import { IssueDetailsBuilder } from 'issue-filing/common/issue-details-builder';
 import { NamedFC } from '../../../common/react/named-fc';
 import { createFileIssueHandler } from '../../common/create-file-issue-handler';
 import { createSettingsGetter } from '../../common/create-settings-getter';
@@ -59,12 +60,19 @@ const settingsForm = NamedFC<SettingsFormProps<GitHubIssueFilingSettings>>(
 
 const settingsGetter = createSettingsGetter<GitHubIssueFilingSettings>(GitHubIssueFilingServiceKey);
 
-export const GitHubIssueFilingService: IssueFilingServiceWithSettings<GitHubIssueFilingSettings> = {
-    key: GitHubIssueFilingServiceKey,
-    displayName: 'GitHub',
-    settingsForm,
-    buildStoreData,
-    getSettingsFromStoreData: settingsGetter,
-    isSettingsValid,
-    fileIssue: createFileIssueHandler(gitHubIssueFilingUrlProvider, settingsGetter),
-};
+export function getGitHubIssueFilingService(
+    issueDetailsBuilder: IssueDetailsBuilder,
+): IssueFilingServiceWithSettings<GitHubIssueFilingSettings> {
+    return {
+        key: GitHubIssueFilingServiceKey,
+        displayName: 'GitHub',
+        settingsForm,
+        buildStoreData,
+        getSettingsFromStoreData: settingsGetter,
+        isSettingsValid,
+        fileIssue: createFileIssueHandler(
+            gitHubIssueFilingUrlProvider(issueDetailsBuilder),
+            settingsGetter,
+        ),
+    };
+}

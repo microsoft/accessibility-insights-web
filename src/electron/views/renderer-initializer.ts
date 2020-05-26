@@ -78,11 +78,11 @@ import { RootContainerState } from 'electron/views/root-container/components/roo
 import { PlatformInfo } from 'electron/window-management/platform-info';
 import { WindowFrameListener } from 'electron/window-management/window-frame-listener';
 import { WindowFrameUpdater } from 'electron/window-management/window-frame-updater';
-import { createIssueDetailsBuilder } from 'issue-filing/common/create-issue-details-builder';
+import { createIssueDetailsBuilderForUnified } from 'issue-filing/common/create-issue-details-builder-for-unified';
 import { IssueFilingControllerImpl } from 'issue-filing/common/issue-filing-controller-impl';
 import { IssueFilingUrlStringUtils } from 'issue-filing/common/issue-filing-url-string-utils';
 import { PlainTextFormatter } from 'issue-filing/common/markup/plain-text-formatter';
-import { IssueFilingServiceProviderImpl } from 'issue-filing/issue-filing-service-provider-impl';
+import { IssueFilingServiceProviderForUnifiedImpl } from 'issue-filing/issue-filing-service-provider-for-unified-impl';
 import { UnifiedResultToIssueFilingDataConverter } from 'issue-filing/unified-result-to-issue-filing-data';
 import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
@@ -351,7 +351,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         const issueFilingController = new IssueFilingControllerImpl(
             shell.openExternal,
-            IssueFilingServiceProviderImpl,
+            IssueFilingServiceProviderForUnifiedImpl,
             userConfigurationStore,
         );
 
@@ -364,7 +364,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         const issueDetailsTextGenerator = new IssueDetailsTextGenerator(
             IssueFilingUrlStringUtils,
-            createIssueDetailsBuilder(PlainTextFormatter),
+            createIssueDetailsBuilderForUnified(PlainTextFormatter),
         );
 
         const issueFilingActionMessageCreator = new IssueFilingActionMessageCreator(
@@ -397,7 +397,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             getPropertyConfigById: getPropertyConfiguration,
 
             issueDetailsTextGenerator: issueDetailsTextGenerator,
-            issueFilingServiceProvider: IssueFilingServiceProviderImpl,
+            issueFilingServiceProvider: IssueFilingServiceProviderForUnifiedImpl,
             navigatorUtils: navigatorUtils,
             unifiedResultToIssueFilingDataConverter: new UnifiedResultToIssueFilingDataConverter(),
             windowUtils: windowUtils,

@@ -6,7 +6,7 @@ import * as React from 'react';
 import { SettingsFormProps } from '../../types/settings-form-props';
 import {
     AzureBoardsIssueDetailLocationDropdownOption,
-    AzureBoardsIssueFilingService,
+    AzureBoardsIssueFilingServiceKey,
 } from './azure-boards-issue-filing-service';
 import {
     AzureBoardsIssueDetailField,
@@ -33,7 +33,7 @@ export const AzureBoardsSettingsForm = NamedFC<SettingsFormProps<AzureBoardsIssu
         ) => {
             const propertyName: keyof AzureBoardsIssueFilingSettings = 'projectURL';
             const payload = {
-                issueFilingServiceName: AzureBoardsIssueFilingService.key,
+                issueFilingServiceName: AzureBoardsIssueFilingServiceKey,
                 propertyName,
                 propertyValue: newValue,
             };
@@ -46,7 +46,7 @@ export const AzureBoardsSettingsForm = NamedFC<SettingsFormProps<AzureBoardsIssu
         ) => {
             const propertyName: keyof AzureBoardsIssueFilingSettings = 'issueDetailsField';
             const payload = {
-                issueFilingServiceName: AzureBoardsIssueFilingService.key,
+                issueFilingServiceName: AzureBoardsIssueFilingServiceKey,
                 propertyName,
                 propertyValue: newValue.key as AzureBoardsIssueDetailField,
             };
