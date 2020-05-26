@@ -11,6 +11,7 @@ import { IssueFilingServiceWithSettings } from '../../types/issue-filing-service
 import { SettingsFormProps } from '../../types/settings-form-props';
 import { gitHubIssueFilingUrlProvider } from './create-github-issue-filing-url';
 import { GitHubIssueFilingSettings } from './github-issue-filing-settings';
+import { IssueDetailsBuilder } from 'issue-filing/common/issue-details-builder';
 
 const GitHubIssueFilingServiceKey = 'gitHub';
 
@@ -59,12 +60,14 @@ const settingsForm = NamedFC<SettingsFormProps<GitHubIssueFilingSettings>>(
 
 const settingsGetter = createSettingsGetter<GitHubIssueFilingSettings>(GitHubIssueFilingServiceKey);
 
-export const GitHubIssueFilingService: IssueFilingServiceWithSettings<GitHubIssueFilingSettings> = {
-    key: GitHubIssueFilingServiceKey,
-    displayName: 'GitHub',
-    settingsForm,
-    buildStoreData,
-    getSettingsFromStoreData: settingsGetter,
-    isSettingsValid,
-    fileIssue: createFileIssueHandler(gitHubIssueFilingUrlProvider, settingsGetter),
+export function getGitHubIssueFilingService(issueDetailsBuilder: IssueDetailsBuilder): IssueFilingServiceWithSettings<GitHubIssueFilingSettings> {
+    return {
+        key: GitHubIssueFilingServiceKey,
+        displayName: 'GitHub',
+        settingsForm,
+        buildStoreData,
+        getSettingsFromStoreData: settingsGetter,
+        isSettingsValid,
+        fileIssue: createFileIssueHandler(gitHubIssueFilingUrlProvider(issueDetailsBuilder), settingsGetter),
+    }
 };

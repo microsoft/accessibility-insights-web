@@ -12,8 +12,9 @@ import {
 } from './azure-boards-issue-filing-settings';
 import { AzureBoardsSettingsForm } from './azure-boards-settings-form';
 import { azureBoardsIssueFilingUrlProvider } from './create-azure-boards-issue-filing-url';
+import { IssueDetailsBuilder } from 'issue-filing/common/issue-details-builder';
 
-const AzureBoardsIssueFilingServiceKey = 'azureBoards';
+export const AzureBoardsIssueFilingServiceKey = 'azureBoards';
 
 export interface AzureBoardsIssueDetailLocationDropdownOption extends IDropdownOption {
     key: AzureBoardsIssueDetailField;
@@ -43,12 +44,15 @@ const settingsGetter = createSettingsGetter<AzureBoardsIssueFilingSettings>(
     AzureBoardsIssueFilingServiceKey,
 );
 
-export const AzureBoardsIssueFilingService: IssueFilingServiceWithSettings<AzureBoardsIssueFilingSettings> = {
-    key: AzureBoardsIssueFilingServiceKey,
-    displayName: 'Azure Boards',
-    settingsForm: AzureBoardsSettingsForm,
-    buildStoreData,
-    getSettingsFromStoreData: settingsGetter,
-    isSettingsValid,
-    fileIssue: createFileIssueHandler(azureBoardsIssueFilingUrlProvider, settingsGetter),
+
+export function getAzureBoardsIssueFilingService(issueDetailsBuilder: IssueDetailsBuilder): IssueFilingServiceWithSettings<AzureBoardsIssueFilingSettings> {
+    return {
+        key: AzureBoardsIssueFilingServiceKey,
+        displayName: 'Azure Boards',
+        settingsForm: AzureBoardsSettingsForm,
+        buildStoreData,
+        getSettingsFromStoreData: settingsGetter,
+        isSettingsValid,
+        fileIssue: createFileIssueHandler(azureBoardsIssueFilingUrlProvider(issueDetailsBuilder), settingsGetter),
+    }
 };

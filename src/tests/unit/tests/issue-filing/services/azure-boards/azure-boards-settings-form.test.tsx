@@ -3,7 +3,7 @@
 import { SettingsDeps } from 'DetailsView/components/details-view-overlay/settings-panel/settings/settings-props';
 import { shallow } from 'enzyme';
 import { OnPropertyUpdateCallback } from 'issue-filing/components/issue-filing-settings-container';
-import { AzureBoardsIssueFilingService } from 'issue-filing/services/azure-boards/azure-boards-issue-filing-service';
+import { getAzureBoardsIssueFilingService } from 'issue-filing/services/azure-boards/azure-boards-issue-filing-service';
 import { AzureBoardsIssueFilingSettings } from 'issue-filing/services/azure-boards/azure-boards-issue-filing-settings';
 import { AzureBoardsSettingsForm } from 'issue-filing/services/azure-boards/azure-boards-settings-form';
 import { SettingsFormProps } from 'issue-filing/types/settings-form-props';
@@ -17,6 +17,7 @@ describe('AzureBoardsSettingsForm', () => {
     let deps: SettingsDeps;
     let settingsStub: AzureBoardsIssueFilingSettings;
     let onPropertyUpdateCallbackMock: IMock<OnPropertyUpdateCallback>;
+    const azureBoardsIssueFilingService = getAzureBoardsIssueFilingService(null);
 
     beforeEach(() => {
         settingsStub = { projectURL: 'some project URL', issueDetailsField: 'description' };
@@ -53,7 +54,7 @@ describe('AzureBoardsSettingsForm', () => {
 
             const projectUrlProperty: keyof AzureBoardsIssueFilingSettings = 'projectURL';
             const payload = {
-                issueFilingServiceName: AzureBoardsIssueFilingService.key,
+                issueFilingServiceName: azureBoardsIssueFilingService.key,
                 propertyName: projectUrlProperty,
                 propertyValue: newProjectUrl,
             };
@@ -74,7 +75,7 @@ describe('AzureBoardsSettingsForm', () => {
             const issueDetailsFieldProperty: keyof AzureBoardsIssueFilingSettings =
                 'issueDetailsField';
             const payload = {
-                issueFilingServiceName: AzureBoardsIssueFilingService.key,
+                issueFilingServiceName: azureBoardsIssueFilingService.key,
                 propertyName: issueDetailsFieldProperty,
                 propertyValue: newIssueDetailsFieldKey,
             };

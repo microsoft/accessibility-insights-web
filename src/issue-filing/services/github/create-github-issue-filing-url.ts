@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { CreateIssueDetailsTextData } from '../../../common/types/create-issue-details-text-data';
-import { createIssueDetailsBuilder } from '../../common/create-issue-details-builder';
 import { HTTPQueryBuilder } from '../../common/http-query-builder';
 import { IssueDetailsBuilder } from '../../common/issue-details-builder';
 import {
@@ -37,9 +36,9 @@ export const createGitHubIssueFilingUrlProvider = (
     };
 };
 
-export const gitHubIssueFilingUrlProvider = createGitHubIssueFilingUrlProvider(
+export const gitHubIssueFilingUrlProvider = (issueDetailsBuilder: IssueDetailsBuilder) => createGitHubIssueFilingUrlProvider(
     IssueFilingUrlStringUtils,
-    createIssueDetailsBuilder(MarkdownFormatter),
+    issueDetailsBuilder,
     () => new HTTPQueryBuilder(),
     rectify,
 );
