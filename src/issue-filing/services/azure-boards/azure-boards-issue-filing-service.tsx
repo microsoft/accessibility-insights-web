@@ -44,8 +44,9 @@ const settingsGetter = createSettingsGetter<AzureBoardsIssueFilingSettings>(
     AzureBoardsIssueFilingServiceKey,
 );
 
-
-export function getAzureBoardsIssueFilingService(issueDetailsBuilder: IssueDetailsBuilder): IssueFilingServiceWithSettings<AzureBoardsIssueFilingSettings> {
+export function getAzureBoardsIssueFilingService(
+    issueDetailsBuilder: IssueDetailsBuilder,
+): IssueFilingServiceWithSettings<AzureBoardsIssueFilingSettings> {
     return {
         key: AzureBoardsIssueFilingServiceKey,
         displayName: 'Azure Boards',
@@ -53,6 +54,9 @@ export function getAzureBoardsIssueFilingService(issueDetailsBuilder: IssueDetai
         buildStoreData,
         getSettingsFromStoreData: settingsGetter,
         isSettingsValid,
-        fileIssue: createFileIssueHandler(azureBoardsIssueFilingUrlProvider(issueDetailsBuilder), settingsGetter),
-    }
-};
+        fileIssue: createFileIssueHandler(
+            azureBoardsIssueFilingUrlProvider(issueDetailsBuilder),
+            settingsGetter,
+        ),
+    };
+}

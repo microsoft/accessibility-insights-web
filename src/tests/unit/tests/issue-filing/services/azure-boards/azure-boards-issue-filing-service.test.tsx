@@ -13,7 +13,6 @@ describe('AzureBoardsIssueFilingServiceTest', () => {
     const issueDetailsLocationStub: AzureBoardsIssueDetailField = 'some location' as AzureBoardsIssueDetailField;
     const azureBoardsIssueFilingService = getAzureBoardsIssueFilingService(null);
 
-
     it('static properties', () => {
         expect(azureBoardsIssueFilingService.key).toBe('azureBoards');
         expect(azureBoardsIssueFilingService.displayName).toBe('Azure Boards');

@@ -9,7 +9,6 @@ import {
     IssueFilingUrlStringUtils,
     IssueUrlCreationUtils,
 } from '../../common/issue-filing-url-string-utils';
-import { HTMLFormatter } from '../../common/markup/html-formatter';
 import {
     AzureBoardsIssueFilingSettings,
     AzureBoardsWorkItemType,
@@ -53,9 +52,9 @@ export const createAzureBoardsIssueFilingUrlProvider = (
     };
 };
 
-
-export const azureBoardsIssueFilingUrlProvider = (issueDetailsBuilder: IssueDetailsBuilder) => createAzureBoardsIssueFilingUrlProvider(
-    IssueFilingUrlStringUtils,
-    issueDetailsBuilder,
-    () => new HTTPQueryBuilder(),
-);
+export const azureBoardsIssueFilingUrlProvider = (issueDetailsBuilder: IssueDetailsBuilder) =>
+    createAzureBoardsIssueFilingUrlProvider(
+        IssueFilingUrlStringUtils,
+        issueDetailsBuilder,
+        () => new HTTPQueryBuilder(),
+    );

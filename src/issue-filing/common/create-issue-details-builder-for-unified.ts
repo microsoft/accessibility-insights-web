@@ -6,7 +6,9 @@ import { CreateIssueDetailsTextData } from '../../common/types/create-issue-deta
 import { IssueDetailsBuilder } from './issue-details-builder';
 import { MarkupFormatter } from './markup/markup-formatter';
 
-export const createIssueDetailsBuilderForUnified = (markup: MarkupFormatter): IssueDetailsBuilder => {
+export const createIssueDetailsBuilderForUnified = (
+    markup: MarkupFormatter,
+): IssueDetailsBuilder => {
     const getter = (toolData: ToolData, data: CreateIssueDetailsTextData): string => {
         const {
             howToFixSection,
@@ -24,11 +26,11 @@ export const createIssueDetailsBuilderForUnified = (markup: MarkupFormatter): Is
 
         const snippetSection = data.snippet
             ? [
-                sectionHeader('Snippet'),
-                sectionHeaderSeparator(),
-                snippet(data.snippet),
-                sectionSeparator(),
-            ]
+                  sectionHeader('Snippet'),
+                  sectionHeaderSeparator(),
+                  snippet(data.snippet),
+                  sectionSeparator(),
+              ]
             : [];
 
         const lines = [
@@ -62,9 +64,9 @@ export const createIssueDetailsBuilderForUnified = (markup: MarkupFormatter): Is
             footerSeparator(),
 
             `This accessibility issue was found using ${toolData.applicationProperties.name} ` +
-            `${toolData.applicationProperties.version} (${toolData.scanEngineProperties.name}), ` +
-            'a tool that helps find and fix accessibility issues. Get more information & download ' +
-            `this tool at ${link('http://aka.ms/AccessibilityInsights')}.`,
+                `${toolData.applicationProperties.version} (${toolData.scanEngineProperties.name}), ` +
+                'a tool that helps find and fix accessibility issues. Get more information & download ' +
+                `this tool at ${link('http://aka.ms/AccessibilityInsights')}.`,
         ];
 
         return compact(lines).join('');

@@ -8,7 +8,6 @@ import {
     IssueFilingUrlStringUtils,
     IssueUrlCreationUtils,
 } from '../../common/issue-filing-url-string-utils';
-import { MarkdownFormatter } from '../../common/markup/markdown-formatter';
 import { GitHubIssueFilingSettings } from './github-issue-filing-settings';
 import { rectify, UrlRectifier } from './github-url-rectifier';
 
@@ -36,9 +35,10 @@ export const createGitHubIssueFilingUrlProvider = (
     };
 };
 
-export const gitHubIssueFilingUrlProvider = (issueDetailsBuilder: IssueDetailsBuilder) => createGitHubIssueFilingUrlProvider(
-    IssueFilingUrlStringUtils,
-    issueDetailsBuilder,
-    () => new HTTPQueryBuilder(),
-    rectify,
-);
+export const gitHubIssueFilingUrlProvider = (issueDetailsBuilder: IssueDetailsBuilder) =>
+    createGitHubIssueFilingUrlProvider(
+        IssueFilingUrlStringUtils,
+        issueDetailsBuilder,
+        () => new HTTPQueryBuilder(),
+        rectify,
+    );
