@@ -65,6 +65,13 @@ describe('NewTabLinkWithConfirmationDialog', () => {
             window.confirm = originalConfirm;
         });
 
+        it('does not use IE-incompatible arrow function syntax', () => {
+            const testSubject = shallow(<NewTabLinkWithConfirmationDialog />);
+            const generatedScript = testSubject.find('script').render().html();
+
+            expect(generatedScript).not.toMatch(/=>/);
+        });
+
         it('is added to the link', () => {
             targetPageLinkMock
                 .setup(link => link.addEventListener('click', It.is(isFunction)))

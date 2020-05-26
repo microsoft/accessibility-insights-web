@@ -5,8 +5,9 @@ import { Assessments } from 'assessments/assessments';
 import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
 import { DebugToolsTelemetryClient } from 'background/telemetry/debug-tools-telemetry-client';
 import { createToolData } from 'common/application-properties-provider';
+import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
+import { UAParser } from 'ua-parser-js';
 import { AxeInfo } from '../common/axe-info';
-import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DateProvider } from '../common/date-provider';
 import { getIndexedDBStore } from '../common/indexedDB/get-indexeddb-store';
@@ -46,7 +47,9 @@ import { cleanKeysFromStorage } from './user-stored-data-cleaner';
 declare var window: Window & InsightsWindowExtensions;
 
 async function initialize(): Promise<void> {
-    const browserAdapter = new ChromeAdapter();
+    const userAgentParser = new UAParser(window.navigator.userAgent);
+    const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
+    const browserAdapter = browserAdapterFactory.makeFromUserAgent();
 
     // This only removes keys that are unused by current versions of the extension, so it's okay for it to race with everything else
     const cleanKeysFromStoragePromise = cleanKeysFromStorage(

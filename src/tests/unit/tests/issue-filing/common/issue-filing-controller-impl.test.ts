@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BaseStore } from 'common/base-store';
-import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import {
     IssueFilingServicePropertiesMap,
     UserConfigurationStoreData,
 } from 'common/types/store-data/user-configuration-store';
+import { OpenIssueLink } from 'issue-filing/common/create-file-issue-handler';
 import { IssueFilingControllerImpl } from 'issue-filing/common/issue-filing-controller-impl';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
@@ -38,12 +38,10 @@ describe('IssueFilingControllerImpl', () => {
         };
         const serviceConfig = { bugServicePropertiesMap: map } as UserConfigurationStoreData;
 
-        const browserAdapterMock = Mock.ofType<BrowserAdapter>();
+        const openIssueLinkMock = Mock.ofType<OpenIssueLink>();
         const issueFilingServiceMock = Mock.ofType<IssueFilingService>();
         issueFilingServiceMock
-            .setup(service =>
-                service.fileIssue(browserAdapterMock.object, map, issueData, toolData),
-            )
+            .setup(service => service.fileIssue(openIssueLinkMock.object, map, issueData, toolData))
             .returns(() => Promise.resolve());
 
         const providerMock = Mock.ofType<IssueFilingServiceProvider>();
@@ -55,14 +53,15 @@ describe('IssueFilingControllerImpl', () => {
         storeMock.setup(store => store.getState()).returns(() => serviceConfig);
 
         const testSubject = new IssueFilingControllerImpl(
+            openIssueLinkMock.object,
             providerMock.object,
-            browserAdapterMock.object,
-            toolData,
             storeMock.object,
         );
 
-        await expect(testSubject.fileIssue(serviceKey, issueData)).resolves.toBe(undefined);
+        await expect(testSubject.fileIssue(serviceKey, issueData, toolData)).resolves.toBe(
+            undefined,
+        );
 
-        browserAdapterMock.verifyAll();
+        openIssueLinkMock.verifyAll();
     });
 });

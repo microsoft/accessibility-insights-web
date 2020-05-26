@@ -129,7 +129,7 @@ export class CardKebabMenuButton extends React.Component<
 
     private fileIssue = (event: React.MouseEvent<any>): void => {
         const { issueDetailsData, userConfigurationStoreData, deps } = this.props;
-        const { issueFilingServiceProvider, issueFilingActionMessageCreator } = deps;
+        const { issueFilingServiceProvider, issueFilingActionMessageCreator, toolData } = deps;
 
         const selectedBugFilingService = issueFilingServiceProvider.forKey(
             userConfigurationStoreData.bugService,
@@ -146,6 +146,7 @@ export class CardKebabMenuButton extends React.Component<
                 event,
                 userConfigurationStoreData.bugService,
                 issueDetailsData,
+                toolData,
             );
             this.closeNeedsSettingsContent();
         } else {
@@ -156,6 +157,7 @@ export class CardKebabMenuButton extends React.Component<
     private copyFailureDetails = async (event: React.MouseEvent<any>): Promise<void> => {
         const text = this.props.deps.issueDetailsTextGenerator.buildText(
             this.props.issueDetailsData,
+            this.props.deps.toolData,
         );
         this.props.deps.detailsViewActionMessageCreator.copyIssueDetailsClicked(event);
 

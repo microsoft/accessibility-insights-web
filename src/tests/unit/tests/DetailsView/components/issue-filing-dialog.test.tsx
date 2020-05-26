@@ -135,6 +135,7 @@ describe('IssueFilingDialog', () => {
                     eventStub as any,
                     serviceKey,
                     It.isValue(props.selectedIssueData),
+                    toolData,
                 ),
             )
             .verifiable(Times.once());

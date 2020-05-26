@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ToolData } from 'common/types/store-data/unified-data-interface';
-import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
+import { OpenIssueLink } from 'issue-filing/common/create-file-issue-handler';
 import { ReactFCWithDisplayName } from '../../common/react/named-fc';
 import { IssueFilingServicePropertiesMap } from '../../common/types/store-data/user-configuration-store';
 import { CreateIssueDetailsTextData } from './../../common/types/create-issue-details-text-data';
@@ -22,7 +22,7 @@ export interface IssueFilingService {
     isSettingsValid: (data: Object) => boolean;
     getSettingsFromStoreData: (data: IssueFilingServicePropertiesMap) => Object;
     fileIssue: (
-        browserAdapter: BrowserAdapter,
+        openIssueLink: OpenIssueLink,
         servicePropertiesMap: IssueFilingServicePropertiesMap,
         issueData: CreateIssueDetailsTextData,
         toolData: ToolData,

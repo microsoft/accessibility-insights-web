@@ -10,7 +10,11 @@ import { Requirement } from '../../types/requirement';
 import { SemanticsTestStep } from './test-steps';
 
 const tableSemanticsDescription: JSX.Element = (
-    <span>Semantic elements in a data table must not be coded as decorative.</span>
+    <span>
+        A <Markup.Tag tagName="table" /> element must be coded correctly as a{' '}
+        <Markup.Emphasis>data</Markup.Emphasis> table or a <Markup.Emphasis>layout</Markup.Emphasis>{' '}
+        table.
+    </span>
 );
 
 const tableSemanticsHowToTest: JSX.Element = (
@@ -49,14 +53,48 @@ const tableSemanticsHowToTest: JSX.Element = (
                 Verify that each table is coded correctly for its type:
                 <ol>
                     <li>
-                        A <Markup.Tag tagName="table" /> element that serves as a data table{' '}
-                        <Markup.Emphasis>must not be</Markup.Emphasis> marked with{' '}
+                        A <Markup.Emphasis>data</Markup.Emphasis> table{' '}
+                        <Markup.Emphasis>must not have</Markup.Emphasis>{' '}
                         <Markup.CodeTerm>role="presentation"</Markup.CodeTerm> or{' '}
-                        <Markup.CodeTerm>role="none"</Markup.CodeTerm>.
+                        <Markup.CodeTerm>role="none"</Markup.CodeTerm> on any of its semantic
+                        elements:
+                        <ul>
+                            <li>
+                                <Markup.Tag tagName="table" />
+                            </li>
+                            <li>
+                                <Markup.Tag tagName="tr" />
+                            </li>
+                            <li>
+                                <Markup.Tag tagName="th" />
+                            </li>
+                            <li>
+                                <Markup.Tag tagName="td" />
+                            </li>
+                            <li>
+                                <Markup.Tag tagName="caption" />
+                            </li>
+                            <li>
+                                <Markup.Tag tagName="col" />
+                            </li>
+                            <li>
+                                <Markup.Tag tagName="colgroup" />
+                            </li>
+                            <li>
+                                <Markup.Tag tagName="thead" />
+                            </li>
+                            <li>
+                                <Markup.Tag tagName="tfoot" />
+                            </li>
+                            <li>
+                                <Markup.Tag tagName="tbody" />
+                            </li>
+                        </ul>
                     </li>
                     <li>
-                        A <Markup.Tag tagName="table" /> element that serves as a layout table{' '}
-                        <Markup.Emphasis>must be</Markup.Emphasis> marked with{' '}
+                        The <Markup.Tag tagName="table" /> element of a{' '}
+                        <Markup.Emphasis>layout</Markup.Emphasis> table{' '}
+                        <Markup.Emphasis>must have</Markup.Emphasis>{' '}
                         <Markup.CodeTerm>role="presentation"</Markup.CodeTerm> or{' '}
                         <Markup.CodeTerm>role="none"</Markup.CodeTerm>.
                     </li>

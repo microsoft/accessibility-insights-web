@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { BaseStore } from 'common/base-store';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
-import { ChromeAdapter } from 'common/browser-adapters/chrome-adapter';
+import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { DateProvider } from 'common/date-provider';
 import { initializeFabricIcons } from 'common/fabric-icons';
 import { createDefaultLogger } from 'common/logging/default-logger';
@@ -24,10 +24,13 @@ import {
 import { TelemetryListener } from 'debug-tools/controllers/telemetry-listener';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { UAParser } from 'ua-parser-js';
 
 export const initializeDebugTools = () => {
     initializeFabricIcons();
-    const browserAdapter = new ChromeAdapter();
+    const userAgentParser = new UAParser(window.navigator.userAgent);
+    const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
+    const browserAdapter = browserAdapterFactory.makeFromUserAgent();
 
     const stores = createStoreProxies(browserAdapter);
     const storeActionMessageCreator = getStoreActionMessageCreator(browserAdapter, stores);

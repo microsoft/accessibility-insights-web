@@ -11,11 +11,11 @@
         "axe-core": "3.5.1",
         "classnames": "^2.2.6",
         "lodash": "^4.17.15",
-        "moment": "^2.25.3",
+        "moment": "^2.26.0",
         "office-ui-fabric-react": "7.98.0",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
         "react-helmet": "^6.0.0",
-        "uuid": "^8.0.0"
+        "uuid": "^8.1.0"
     }
 }

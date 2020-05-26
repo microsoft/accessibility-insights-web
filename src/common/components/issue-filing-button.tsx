@@ -92,7 +92,7 @@ export class IssueFilingButton extends React.Component<
 
     private onClickFileIssueButton = (event: React.MouseEvent<any>): void => {
         const { issueDetailsData, userConfigurationStoreData, deps } = this.props;
-        const { issueFilingServiceProvider, issueFilingActionMessageCreator } = deps;
+        const { issueFilingServiceProvider, issueFilingActionMessageCreator, toolData } = deps;
 
         const selectedBugFilingService = issueFilingServiceProvider.forKey(
             userConfigurationStoreData.bugService,
@@ -109,6 +109,7 @@ export class IssueFilingButton extends React.Component<
                 event,
                 userConfigurationStoreData.bugService,
                 issueDetailsData,
+                toolData,
             );
             this.closeNeedsSettingsContent();
         } else {

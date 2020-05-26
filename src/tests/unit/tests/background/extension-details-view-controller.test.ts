@@ -93,7 +93,7 @@ describe('ExtensionDetailsViewController', () => {
             browserAdapterMock
                 .setup(adapter =>
                     adapter.createTabInNewWindow(
-                        'DetailsView/detailsView.html?tabId=' + targetTabId,
+                        '/DetailsView/detailsView.html?tabId=' + targetTabId,
                     ),
                 )
                 .returns(() => Promise.reject(errorMessage))
@@ -372,7 +372,7 @@ describe('ExtensionDetailsViewController', () => {
     const setupCreateDetailsView = (targetTabId: number, resultingDetailsViewTabId: number) => {
         return browserAdapterMock
             .setup(adapter =>
-                adapter.createTabInNewWindow('DetailsView/detailsView.html?tabId=' + targetTabId),
+                adapter.createTabInNewWindow('/DetailsView/detailsView.html?tabId=' + targetTabId),
             )
             .returns(() => Promise.resolve({ id: resultingDetailsViewTabId } as Tabs.Tab));
     };

@@ -9,8 +9,7 @@ type ColorMatch = {
 };
 
 export class FixInstructionProcessor {
-    private readonly colorGroupName = 'color';
-    private readonly colorValueMatcher = `(?<${this.colorGroupName}>#[0-9a-f]{6})`;
+    private readonly colorValueMatcher = `(#[0-9a-f]{6})`;
     private readonly foregroundColorText = 'foreground color: ';
     private readonly foregroundRegExp = new RegExp(
         `${this.foregroundColorText}${this.colorValueMatcher}`,
@@ -37,9 +36,7 @@ export class FixInstructionProcessor {
         }
 
         const match = colorRegex.exec(fixInstruction);
-
-        const groups = match['groups'];
-        const colorHexValue = groups[this.colorGroupName];
+        const colorHexValue = match[1];
 
         return {
             splitIndex: match.index + this.foregroundColorText.length + colorHexValue.length,
