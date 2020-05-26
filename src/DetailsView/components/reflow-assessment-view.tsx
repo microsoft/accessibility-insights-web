@@ -16,10 +16,12 @@ import {
     gettingStartedSubview,
     PersistedTabInfo,
 } from '../../common/types/store-data/assessment-result-data';
-import { GettingStartedView } from './getting-started-view';
+import { GettingStartedView, GettingStartedViewDeps } from './getting-started-view';
 import { TargetChangeDialog, TargetChangeDialogDeps } from './target-change-dialog';
 
-export type ReflowAssessmentViewDeps = TargetChangeDialogDeps & RequirementViewDeps;
+export type ReflowAssessmentViewDeps = TargetChangeDialogDeps &
+    GettingStartedViewDeps &
+    RequirementViewDeps;
 
 export type ReflowAssessmentViewProps = {
     deps: ReflowAssessmentViewDeps;
@@ -42,8 +44,10 @@ export const ReflowAssessmentView = NamedFC<ReflowAssessmentViewProps>(
         const renderGettingStartedView = () => {
             return (
                 <GettingStartedView
+                    deps={props.deps}
                     gettingStartedContent={props.assessmentTestResult.definition.gettingStarted}
                     title={props.assessmentTestResult.definition.title}
+                    guidance={props.assessmentTestResult.definition.guidance}
                 />
             );
         };

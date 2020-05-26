@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { createToolData } from 'common/application-properties-provider';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { generateUID } from 'common/uid-generator';
 import { convertScanResultsToUnifiedResults } from 'injected/adapters/scan-results-to-unified-results';
@@ -20,7 +21,6 @@ import { ruleToLinkConfiguration } from 'scanner/rule-to-links-mappings';
 import { FixInstructionProcessor } from '../../common/components/fix-instruction-processor';
 import { getPropertyConfiguration } from '../../common/configs/unified-result-property-configurations';
 import { DateProvider } from '../../common/date-provider';
-import { EnvironmentInfoProvider } from '../../common/environment-info-provider';
 import { initializeFabricIcons } from '../../common/fabric-icons';
 import { GetGuidanceTagsFromGuidanceLinks } from '../../common/get-guidance-tags-from-guidance-links';
 import { AxeReportParameters, ReporterFactory } from './accessibilityInsightsReport';
@@ -42,15 +42,20 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
         serviceName,
     } = parameters;
 
-    const environmentInfoProvider = new EnvironmentInfoProvider('', userAgent, axeVersion);
     const reactStaticRenderer = new ReactStaticRenderer();
     const fixInstructionProcessor = new FixInstructionProcessor();
 
-    const FooterText = FooterTextForService(serviceName);
+    const toolData = createToolData(
+        serviceName,
+        '',
+        'axe-core',
+        axeVersion,
+        userAgent,
+    );
 
     const sectionFactory = {
         ...AutomatedChecksReportSectionFactory,
-        FooterText,
+        FooterTextForService,
     };
 
     const reportHtmlGenerator = new ReportHtmlGenerator(
@@ -82,7 +87,7 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
         getUUID: generateUID,
     };
 
-    return new AxeResultsReport(deps, parameters, environmentInfoProvider.getToolData());
+    return new AxeResultsReport(deps, parameters, toolData);
 };
 
 initializeFabricIcons();

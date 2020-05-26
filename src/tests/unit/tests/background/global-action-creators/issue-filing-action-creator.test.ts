@@ -6,6 +6,7 @@ import { FileIssuePayload } from 'background/actions/action-payloads';
 import { IssueFilingActionCreator } from 'background/global-action-creators/issue-filing-action-creator';
 import { Interpreter } from 'background/interpreter';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import {
     FILE_ISSUE_CLICK,
     TelemetryEventSource,
@@ -25,6 +26,7 @@ describe('IssueFilingActionCreator', () => {
                 triggeredBy: 'test' as TriggeredBy,
                 source: -1 as TelemetryEventSource,
             },
+            toolData: {} as ToolData,
         };
 
         const interpreterMock = Mock.ofType<Interpreter>();
@@ -42,7 +44,9 @@ describe('IssueFilingActionCreator', () => {
             MockBehavior.Strict,
         );
         issueFilingControllerMock
-            .setup(controller => controller.fileIssue(payload.service, payload.issueData))
+            .setup(controller =>
+                controller.fileIssue(payload.service, payload.issueData, payload.toolData),
+            )
             .verifiable(Times.once());
 
         const testSubject = new IssueFilingActionCreator(

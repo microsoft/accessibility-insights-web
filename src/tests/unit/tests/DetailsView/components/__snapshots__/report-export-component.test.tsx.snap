@@ -118,7 +118,7 @@ exports[`ReportExportComponentTest user interactions dismiss dialog: dialog shou
 </React.Fragment>
 `;
 
-exports[`ReportExportComponentTest user interactions edit text field: user input new description 1`] = `
+exports[`ReportExportComponentTest user interactions edit text field: test content with special characters: <> $ " \` ' 1`] = `
 <React.Fragment>
   <CustomizedActionButton
     iconProps={
@@ -141,7 +141,7 @@ exports[`ReportExportComponentTest user interactions edit text field: user input
         },
       }
     }
-    description="new description"
+    description="test content with special characters: <> $ \\" \` '"
     featureFlagStoreData={
       Object {
         "test-feature-flag": true,

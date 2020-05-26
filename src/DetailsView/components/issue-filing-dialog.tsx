@@ -4,7 +4,7 @@ import { cloneDeep, isEqual } from 'lodash';
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react';
 import * as React from 'react';
 
-import { EnvironmentInfoProvider } from '../../common/environment-info-provider';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { IssueFilingActionMessageCreator } from '../../common/message-creators/issue-filing-action-message-creator';
 import { UserConfigMessageCreator } from '../../common/message-creators/user-config-message-creator';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
@@ -29,7 +29,7 @@ export interface IssueFilingDialogProps {
 }
 
 export type IssueFilingDialogDeps = {
-    environmentInfoProvider: EnvironmentInfoProvider;
+    toolData: ToolData;
     userConfigMessageCreator: UserConfigMessageCreator;
     issueFilingServiceProvider: IssueFilingServiceProvider;
     issueFilingActionMessageCreator: IssueFilingActionMessageCreator;
@@ -118,6 +118,7 @@ export class IssueFilingDialog extends React.Component<
             ev,
             service,
             this.props.selectedIssueData,
+            this.props.deps.toolData,
         );
         this.props.onClose(ev);
     };

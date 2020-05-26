@@ -5,11 +5,11 @@ import { Assessments } from 'assessments/assessments';
 import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
 import { DebugToolsTelemetryClient } from 'background/telemetry/debug-tools-telemetry-client';
 import { createToolData } from 'common/application-properties-provider';
+import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
+import { UAParser } from 'ua-parser-js';
 import { AxeInfo } from '../common/axe-info';
-import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DateProvider } from '../common/date-provider';
-import { EnvironmentInfoProvider } from '../common/environment-info-provider';
 import { getIndexedDBStore } from '../common/indexedDB/get-indexeddb-store';
 import { IndexedDBAPI, IndexedDBUtil } from '../common/indexedDB/indexedDB';
 import { InsightsWindowExtensions } from '../common/insights-window-extensions';
@@ -47,7 +47,9 @@ import { cleanKeysFromStorage } from './user-stored-data-cleaner';
 declare var window: Window & InsightsWindowExtensions;
 
 async function initialize(): Promise<void> {
-    const browserAdapter = new ChromeAdapter();
+    const userAgentParser = new UAParser(window.navigator.userAgent);
+    const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
+    const browserAdapter = browserAdapterFactory.makeFromUserAgent();
 
     // This only removes keys that are unused by current versions of the extension, so it's okay for it to race with everything else
     const cleanKeysFromStoragePromise = cleanKeysFromStorage(
@@ -104,11 +106,6 @@ async function initialize(): Promise<void> {
     const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
 
     const browserSpec = new NavigatorUtils(window.navigator, logger).getBrowserSpec();
-    const environmentInfoProvider = new EnvironmentInfoProvider(
-        browserAdapter.getVersion(),
-        browserSpec,
-        AxeInfo.Default.version,
-    );
 
     const toolData = createToolData(
         toolName,
@@ -127,7 +124,6 @@ async function initialize(): Promise<void> {
         indexedDBInstance,
         persistedData,
         IssueFilingServiceProviderImpl,
-        environmentInfoProvider.getEnvironmentInfo(),
         toolData,
         browserAdapter,
         browserAdapter,

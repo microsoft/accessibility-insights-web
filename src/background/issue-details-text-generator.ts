@@ -8,18 +8,17 @@ import { IssueUrlCreationUtils } from '../issue-filing/common/issue-filing-url-s
 export class IssueDetailsTextGenerator {
     constructor(
         private issueFilingUrlStringUtils: IssueUrlCreationUtils,
-        private toolData: ToolData,
         private issueDetailsBuilder: IssueDetailsBuilder,
     ) {}
 
-    public buildText(data: CreateIssueDetailsTextData): string {
+    public buildText(data: CreateIssueDetailsTextData, toolData: ToolData): string {
         const standardTags = this.issueFilingUrlStringUtils.standardizeTags(data);
 
         const text = [
             `Title: ${this.issueFilingUrlStringUtils.getTitle(data)}`,
             `Tags: ${this.buildTags(data, standardTags)}`,
             ``,
-            this.issueDetailsBuilder(this.toolData, data),
+            this.issueDetailsBuilder(toolData, data),
         ].join('\n');
 
         return text;

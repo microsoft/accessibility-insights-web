@@ -23,6 +23,6 @@ export class IssueFilingActionCreator {
 
     private onFileIssue = (payload: FileIssuePayload) => {
         this.telemetryEventHandler.publishTelemetry(FILE_ISSUE_CLICK, payload);
-        this.issueFilingController.fileIssue(payload.service, payload.issueData);
+        this.issueFilingController.fileIssue(payload.service, payload.issueData, payload.toolData);
     };
 }

@@ -13,9 +13,11 @@ import { SidePanelActions } from 'background/actions/side-panel-actions';
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { FeatureFlagsController } from 'background/feature-flags-controller';
 import { FeatureFlagsActionCreator } from 'background/global-action-creators/feature-flags-action-creator';
+import { IssueFilingActionCreator } from 'background/global-action-creators/issue-filing-action-creator';
 import { registerUserConfigurationMessageCallback } from 'background/global-action-creators/registrar/register-user-configuration-message-callbacks';
 import { UserConfigurationActionCreator } from 'background/global-action-creators/user-configuration-action-creator';
 import { Interpreter } from 'background/interpreter';
+import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { CardSelectionStore } from 'background/stores/card-selection-store';
 import { DetailsViewStore } from 'background/stores/details-view-store';
 import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
@@ -23,7 +25,7 @@ import { UnifiedScanResultStore } from 'background/stores/unified-scan-result-st
 import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
 import { UserConfigurationController } from 'background/user-configuration-controller';
 import { provideBlob } from 'common/blob-provider';
-import { onlyHighlightingSupported } from 'common/components/cards/card-interaction-support';
+import { allCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { CardsCollapsibleControl } from 'common/components/cards/collapsible-component-cards';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
@@ -41,13 +43,15 @@ import { isResultHighlightUnavailableUnified } from 'common/is-result-highlight-
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { DropdownActionMessageCreator } from 'common/message-creators/dropdown-action-message-creator';
+import { IssueFilingActionMessageCreator } from 'common/message-creators/issue-filing-action-message-creator';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
+import { NavigatorUtils } from 'common/navigator-utils';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { WindowUtils } from 'common/window-utils';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { CardsViewDeps } from 'DetailsView/components/cards-view';
-import { ipcRenderer } from 'electron';
+import { ipcRenderer, shell } from 'electron';
 import { DirectActionMessageDispatcher } from 'electron/adapters/direct-action-message-dispatcher';
 import { NullDetailsViewController } from 'electron/adapters/null-details-view-controller';
 import { NullStoreActionMessageCreator } from 'electron/adapters/null-store-action-message-creator';
@@ -74,6 +78,12 @@ import { RootContainerState } from 'electron/views/root-container/components/roo
 import { PlatformInfo } from 'electron/window-management/platform-info';
 import { WindowFrameListener } from 'electron/window-management/window-frame-listener';
 import { WindowFrameUpdater } from 'electron/window-management/window-frame-updater';
+import { createIssueDetailsBuilder } from 'issue-filing/common/create-issue-details-builder';
+import { IssueFilingControllerImpl } from 'issue-filing/common/issue-filing-controller-impl';
+import { IssueFilingUrlStringUtils } from 'issue-filing/common/issue-filing-url-string-utils';
+import { PlainTextFormatter } from 'issue-filing/common/markup/plain-text-formatter';
+import { IssueFilingServiceProviderImpl } from 'issue-filing/issue-filing-service-provider-impl';
+import { UnifiedResultToIssueFilingDataConverter } from 'issue-filing/unified-result-to-issue-filing-data';
 import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
@@ -339,10 +349,38 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         const fixInstructionProcessor = new FixInstructionProcessor();
 
+        const issueFilingController = new IssueFilingControllerImpl(
+            shell.openExternal,
+            IssueFilingServiceProviderImpl,
+            userConfigurationStore,
+        );
+
+        const issueFilingActionCreator = new IssueFilingActionCreator(
+            interpreter,
+            telemetryEventHandler,
+            issueFilingController,
+        );
+        issueFilingActionCreator.registerCallbacks();
+
+        const issueDetailsTextGenerator = new IssueDetailsTextGenerator(
+            IssueFilingUrlStringUtils,
+            createIssueDetailsBuilder(PlainTextFormatter),
+        );
+
+        const issueFilingActionMessageCreator = new IssueFilingActionMessageCreator(
+            dispatcher,
+            telemetryDataFactory,
+            TelemetryEventSource.ElectronAutomatedChecksView,
+        );
+
+        const navigatorUtils = new NavigatorUtils(window.navigator, logger);
+
+        const windowUtils = new WindowUtils();
+
         const cardsViewDeps: CardsViewDeps = {
             LinkComponent: ElectronLink,
 
-            cardInteractionSupport: onlyHighlightingSupported, // once we have a working settings experience, switch to allCardInteractionsSupported
+            cardInteractionSupport: allCardInteractionsSupported,
             getCardSelectionViewData: getCardSelectionViewData,
             collapsibleControl: CardsCollapsibleControl,
             cardsVisualizationModifierButtons: ExpandCollapseVisualHelperModifierButtons,
@@ -353,16 +391,16 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             cardSelectionMessageCreator,
 
             detailsViewActionMessageCreator,
-            issueFilingActionMessageCreator: null, // we don't support issue filing right now
+            issueFilingActionMessageCreator: issueFilingActionMessageCreator,
 
-            environmentInfoProvider: null,
-            getPropertyConfigById: getPropertyConfiguration, // this seems to be axe-core specific
+            toolData: null,
+            getPropertyConfigById: getPropertyConfiguration,
 
-            issueDetailsTextGenerator: null,
-            issueFilingServiceProvider: null, // we don't support issue filing right now
-            navigatorUtils: null,
-            unifiedResultToIssueFilingDataConverter: null, // we don't support issue filing right now
-            windowUtils: null,
+            issueDetailsTextGenerator: issueDetailsTextGenerator,
+            issueFilingServiceProvider: IssueFilingServiceProviderImpl,
+            navigatorUtils: navigatorUtils,
+            unifiedResultToIssueFilingDataConverter: new UnifiedResultToIssueFilingDataConverter(),
+            windowUtils: windowUtils,
             setFocusVisibility,
             customCongratsMessage:
                 "No failed automated checks were found. Continue investigating your app's accessibility compliance through manual testing.",
@@ -410,7 +448,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             documentManipulator,
             isResultHighlightUnavailable: isResultHighlightUnavailableUnified,
             reportGenerator: reportGenerator,
-            fileURLProvider: new FileURLProvider(new WindowUtils(), provideBlob),
+            fileURLProvider: new FileURLProvider(windowUtils, provideBlob),
             getDateFromTimestamp: DateProvider.getDateFromTimestamp,
             reportExportServiceProvider: ReportExportServiceProviderImpl,
         };

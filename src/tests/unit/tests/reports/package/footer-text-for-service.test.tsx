@@ -22,9 +22,8 @@ describe('FooterTextForService', () => {
             toolData,
         } as ScanMetadata;
 
-        const FooterText = FooterTextForService('ClientService');
 
-        const footerWrapper = shallow(<FooterText {...{ scanMetadata }} />);
+        const footerWrapper = shallow(<FooterTextForService  {...{ scanMetadata }} />);
         expect(footerWrapper.getElement()).toMatchSnapshot('footer');
     });
 });

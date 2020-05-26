@@ -5,7 +5,8 @@ import { create, React } from '../../common';
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
         <p>
-            A <Markup.Code>{'<table>'}</Markup.Code> element must be coded correctly as a data table or layout table.
+            A <Markup.Code>{'<table>'}</Markup.Code> element must be coded correctly as a <Markup.Emphasis>data</Markup.Emphasis> table or a{' '}
+            <Markup.Emphasis>layout</Markup.Emphasis> table.
         </p>
 
         <h2>Why it matters</h2>

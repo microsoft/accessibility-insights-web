@@ -16,10 +16,16 @@ exports[`AssessmentViewTest render for gettting started 1`] = `
     }
   />
   <GettingStartedView
+    deps={Object {}}
     gettingStartedContent={
       <h1>
         Hello
       </h1>
+    }
+    guidance={
+      Object {
+        "pageTitle": "some page title",
+      }
     }
     title="some title"
   />

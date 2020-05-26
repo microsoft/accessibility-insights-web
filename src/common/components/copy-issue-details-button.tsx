@@ -5,6 +5,7 @@ import { NavigatorUtils } from 'common/navigator-utils';
 import { DefaultButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { CopyIcon } from '../../common/icons/copy-icon';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
 import { Toast, ToastDeps } from './toast';
@@ -12,6 +13,7 @@ import { Toast, ToastDeps } from './toast';
 export type CopyIssueDetailsButtonDeps = ToastDeps & {
     navigatorUtils: NavigatorUtils;
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
+    toolData: ToolData;
 };
 
 export type CopyIssueDetailsButtonProps = {
@@ -28,7 +30,10 @@ export class CopyIssueDetailsButton extends React.Component<CopyIssueDetailsButt
     }
 
     private getIssueDetailsText(issueData: CreateIssueDetailsTextData): string {
-        return this.props.deps.issueDetailsTextGenerator.buildText(issueData);
+        return this.props.deps.issueDetailsTextGenerator.buildText(
+            issueData,
+            this.props.deps.toolData,
+        );
     }
 
     private copyButtonClicked = async (event: React.MouseEvent<any>): Promise<void> => {

@@ -3,6 +3,7 @@
 import { BaseActionPayload, FileIssuePayload } from 'background/actions/action-payloads';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { FILE_ISSUE_CLICK, TelemetryEventSource } from '../extension-telemetry-events';
 import { Message } from '../message';
 import { Messages } from '../messages';
@@ -43,6 +44,7 @@ export class IssueFilingActionMessageCreator {
         event: SupportedMouseEvent,
         serviceKey: string,
         issueData: CreateIssueDetailsTextData,
+        toolData: ToolData,
     ): void {
         const messageType = Messages.IssueFiling.FileIssue;
         const telemetry = this.telemetryFactory.forFileIssueClick(event, this.source, serviceKey);
@@ -50,6 +52,7 @@ export class IssueFilingActionMessageCreator {
             telemetry,
             issueData,
             service: serviceKey,
+            toolData,
         };
         const message: Message = {
             messageType,

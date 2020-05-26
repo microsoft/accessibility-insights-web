@@ -3,6 +3,7 @@
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { IMock, It, Mock, Times } from 'typemoq';
 
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import {
     BaseTelemetryData,
     FILE_ISSUE_CLICK,
@@ -22,6 +23,18 @@ describe('IssueFilingActionMessageCreator', () => {
     const telemetryStub: BaseTelemetryData = {
         triggeredBy: 'test' as TriggeredBy,
         source,
+    };
+
+    const toolData: ToolData = {
+        scanEngineProperties: {
+            name: 'engine-name',
+            version: 'engine-version',
+        },
+        applicationProperties: {
+            name: 'app-name',
+            version: 'app-version',
+            environmentName: 'environmentName',
+        },
     };
 
     let telemetryFactoryMock: IMock<TelemetryDataFactory>;
@@ -90,7 +103,7 @@ describe('IssueFilingActionMessageCreator', () => {
             .returns(() => telemetry);
         const issueDetailsData: CreateIssueDetailsTextData = {} as any;
 
-        testSubject.fileIssue(eventStub, testService, issueDetailsData);
+        testSubject.fileIssue(eventStub, testService, issueDetailsData, toolData);
 
         dispatcherMock.verify(
             dispatcher =>
@@ -101,6 +114,7 @@ describe('IssueFilingActionMessageCreator', () => {
                             service: testService,
                             issueData: issueDetailsData,
                             telemetry,
+                            toolData,
                         },
                     }),
                 ),

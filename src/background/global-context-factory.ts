@@ -8,7 +8,6 @@ import { DebugToolsController } from 'debug-tools/controllers/debug-tools-contro
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { CommandsAdapter } from '../common/browser-adapters/commands-adapter';
 import { StorageAdapter } from '../common/browser-adapters/storage-adapter';
-import { EnvironmentInfo } from '../common/environment-info-provider';
 import { IndexedDBAPI } from '../common/indexedDB/indexedDB';
 import { StateDispatcher } from '../common/state-dispatcher';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
@@ -45,7 +44,6 @@ export class GlobalContextFactory {
         indexedDBInstance: IndexedDBAPI,
         persistedData: PersistedData,
         issueFilingServiceProvider: IssueFilingServiceProvider,
-        environmentInfo: EnvironmentInfo,
         toolData: ToolData,
         storageAdapter: StorageAdapter,
         commandsAdapter: CommandsAdapter,
@@ -74,9 +72,8 @@ export class GlobalContextFactory {
         globalStoreHub.initialize();
 
         const issueFilingController = new IssueFilingControllerImpl(
+            browserAdapter.createActiveTab,
             issueFilingServiceProvider,
-            browserAdapter,
-            toolData,
             globalStoreHub.userConfigurationStore,
         );
 
