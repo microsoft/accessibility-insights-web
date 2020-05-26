@@ -3,6 +3,7 @@
 import { isEmpty } from 'lodash';
 import { IDropdownOption } from 'office-ui-fabric-react';
 
+import { IssueDetailsBuilder } from 'issue-filing/common/issue-details-builder';
 import { createFileIssueHandler } from '../../common/create-file-issue-handler';
 import { createSettingsGetter } from '../../common/create-settings-getter';
 import { IssueFilingServiceWithSettings } from '../../types/issue-filing-service';
@@ -12,7 +13,6 @@ import {
 } from './azure-boards-issue-filing-settings';
 import { AzureBoardsSettingsForm } from './azure-boards-settings-form';
 import { azureBoardsIssueFilingUrlProvider } from './create-azure-boards-issue-filing-url';
-import { IssueDetailsBuilder } from 'issue-filing/common/issue-details-builder';
 
 export const AzureBoardsIssueFilingServiceKey = 'azureBoards';
 

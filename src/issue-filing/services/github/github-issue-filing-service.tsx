@@ -4,6 +4,7 @@ import { isEmpty, isString } from 'lodash';
 import { TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
 
+import { IssueDetailsBuilder } from 'issue-filing/common/issue-details-builder';
 import { NamedFC } from '../../../common/react/named-fc';
 import { createFileIssueHandler } from '../../common/create-file-issue-handler';
 import { createSettingsGetter } from '../../common/create-settings-getter';
@@ -11,7 +12,6 @@ import { IssueFilingServiceWithSettings } from '../../types/issue-filing-service
 import { SettingsFormProps } from '../../types/settings-form-props';
 import { gitHubIssueFilingUrlProvider } from './create-github-issue-filing-url';
 import { GitHubIssueFilingSettings } from './github-issue-filing-settings';
-import { IssueDetailsBuilder } from 'issue-filing/common/issue-details-builder';
 
 const GitHubIssueFilingServiceKey = 'gitHub';
 
