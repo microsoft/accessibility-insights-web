@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
-import { ActionButton } from 'office-ui-fabric-react';
 import { ContextualMenu } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
+import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { DetailsRightPanelConfiguration } from '../../../../../DetailsView/components/details-view-right-panel';
@@ -46,7 +46,7 @@ describe('StartOverDropdownTest', () => {
 
     it('render ContextualMenu', () => {
         const rendered = shallow<StartOverDropdown>(<StartOverDropdown {...defaultProps} />);
-        rendered.find(ActionButton).simulate('click', event);
+        rendered.find(InsightsCommandButton).simulate('click', event);
         expect(rendered.getElement()).toMatchSnapshot();
         expect(rendered.state().target).toBe(event.currentTarget);
     });
@@ -56,14 +56,14 @@ describe('StartOverDropdownTest', () => {
             GetStartOverContextualMenuItemKeys: () => ['assessment'],
         } as DetailsRightPanelConfiguration;
         const rendered = shallow<StartOverDropdown>(<StartOverDropdown {...defaultProps} />);
-        rendered.find(ActionButton).simulate('click', event);
+        rendered.find(InsightsCommandButton).simulate('click', event);
         expect(rendered.getElement()).toMatchSnapshot();
         expect(rendered.state().target).toBe(event.currentTarget);
     });
 
     it('render GenericDialog for start over a test', () => {
         const rendered = shallow(<StartOverDropdown {...defaultProps} />);
-        rendered.find(ActionButton).simulate('click', event);
+        rendered.find(InsightsCommandButton).simulate('click', event);
         rendered
             .find(ContextualMenu)
             .prop('items')
@@ -74,7 +74,7 @@ describe('StartOverDropdownTest', () => {
 
     it('render GenericDialog for start over the whole assessment', () => {
         const rendered = shallow(<StartOverDropdown {...defaultProps} />);
-        rendered.find(ActionButton).simulate('click', event);
+        rendered.find(InsightsCommandButton).simulate('click', event);
         rendered
             .find(ContextualMenu)
             .prop('items')
@@ -91,7 +91,7 @@ describe('StartOverDropdownTest', () => {
             .verifiable(Times.once());
 
         const rendered = shallow<StartOverDropdown>(<StartOverDropdown {...defaultProps} />);
-        rendered.find(ActionButton).simulate('click', event);
+        rendered.find(InsightsCommandButton).simulate('click', event);
         rendered
             .find(ContextualMenu)
             .prop('items')
@@ -109,7 +109,7 @@ describe('StartOverDropdownTest', () => {
             .verifiable(Times.once());
 
         const rendered = shallow<StartOverDropdown>(<StartOverDropdown {...defaultProps} />);
-        rendered.find(ActionButton).simulate('click', event);
+        rendered.find(InsightsCommandButton).simulate('click', event);
         rendered
             .find(ContextualMenu)
             .prop('items')
@@ -127,7 +127,7 @@ describe('StartOverDropdownTest', () => {
             .verifiable(Times.once());
 
         const rendered = shallow<StartOverDropdown>(<StartOverDropdown {...defaultProps} />);
-        rendered.find(ActionButton).simulate('click', event);
+        rendered.find(InsightsCommandButton).simulate('click', event);
         rendered
             .find(ContextualMenu)
             .prop('items')
@@ -145,7 +145,7 @@ describe('StartOverDropdownTest', () => {
             .verifiable(Times.once());
 
         const rendered = shallow<StartOverDropdown>(<StartOverDropdown {...defaultProps} />);
-        rendered.find(ActionButton).simulate('click', event);
+        rendered.find(InsightsCommandButton).simulate('click', event);
         rendered
             .find(ContextualMenu)
             .prop('items')
@@ -159,7 +159,7 @@ describe('StartOverDropdownTest', () => {
 
     it('should dismiss the contextMenu', () => {
         const rendered = shallow<StartOverDropdown>(<StartOverDropdown {...defaultProps} />);
-        rendered.find(ActionButton).simulate('click', event);
+        rendered.find(InsightsCommandButton).simulate('click', event);
         rendered.find(ContextualMenu).prop('onDismiss')();
 
         expect(rendered.state().isContextMenuVisible).toBe(false);

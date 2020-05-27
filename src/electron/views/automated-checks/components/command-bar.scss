@@ -6,9 +6,15 @@
 button.settings-gear-button {
     color: $primary-text;
 
-    .button-icon {
+    .settings-gear-button-icon {
         color: $primary-text;
         line-height: 16px;
+    }
+
+    &:active {
+        .settings-gear-button-icon {
+            color: $primary-text;
+        }
     }
 
     &:focus::after {

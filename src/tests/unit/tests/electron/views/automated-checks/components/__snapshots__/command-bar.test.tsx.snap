@@ -8,7 +8,7 @@ exports[`CommandBar renders does not create report export when scan metadata is 
   <div
     className="items"
   >
-    <CustomizedActionButton
+    <InsightsCommandButton
       data-automation-id="command-button-refresh"
       disabled={true}
       iconProps={
@@ -32,13 +32,13 @@ exports[`CommandBar renders does not create report export when scan metadata is 
         }
       }
     />
-    <CustomizedActionButton
+    <InsightsCommandButton
       ariaLabel="settings"
       className="settingsGearButton"
       data-automation-id="command-button-settings"
       iconProps={
         Object {
-          "className": "buttonIcon",
+          "className": "settingsGearButtonIcon",
           "iconName": "Gear",
         }
       }
@@ -56,7 +56,7 @@ exports[`CommandBar renders while status is <Completed> 1`] = `
   <div
     className="items"
   >
-    <CustomizedActionButton
+    <InsightsCommandButton
       data-automation-id="command-button-refresh"
       disabled={false}
       iconProps={
@@ -106,13 +106,13 @@ exports[`CommandBar renders while status is <Completed> 1`] = `
         }
       }
     />
-    <CustomizedActionButton
+    <InsightsCommandButton
       ariaLabel="settings"
       className="settingsGearButton"
       data-automation-id="command-button-settings"
       iconProps={
         Object {
-          "className": "buttonIcon",
+          "className": "settingsGearButtonIcon",
           "iconName": "Gear",
         }
       }
@@ -130,7 +130,7 @@ exports[`CommandBar renders while status is <Default> 1`] = `
   <div
     className="items"
   >
-    <CustomizedActionButton
+    <InsightsCommandButton
       data-automation-id="command-button-refresh"
       disabled={false}
       iconProps={
@@ -180,13 +180,13 @@ exports[`CommandBar renders while status is <Default> 1`] = `
         }
       }
     />
-    <CustomizedActionButton
+    <InsightsCommandButton
       ariaLabel="settings"
       className="settingsGearButton"
       data-automation-id="command-button-settings"
       iconProps={
         Object {
-          "className": "buttonIcon",
+          "className": "settingsGearButtonIcon",
           "iconName": "Gear",
         }
       }
@@ -204,7 +204,7 @@ exports[`CommandBar renders while status is <Failed> 1`] = `
   <div
     className="items"
   >
-    <CustomizedActionButton
+    <InsightsCommandButton
       data-automation-id="command-button-refresh"
       disabled={false}
       iconProps={
@@ -254,13 +254,13 @@ exports[`CommandBar renders while status is <Failed> 1`] = `
         }
       }
     />
-    <CustomizedActionButton
+    <InsightsCommandButton
       ariaLabel="settings"
       className="settingsGearButton"
       data-automation-id="command-button-settings"
       iconProps={
         Object {
-          "className": "buttonIcon",
+          "className": "settingsGearButtonIcon",
           "iconName": "Gear",
         }
       }
@@ -278,7 +278,7 @@ exports[`CommandBar renders while status is <Scanning> 1`] = `
   <div
     className="items"
   >
-    <CustomizedActionButton
+    <InsightsCommandButton
       data-automation-id="command-button-refresh"
       disabled={true}
       iconProps={
@@ -328,13 +328,13 @@ exports[`CommandBar renders while status is <Scanning> 1`] = `
         }
       }
     />
-    <CustomizedActionButton
+    <InsightsCommandButton
       ariaLabel="settings"
       className="settingsGearButton"
       data-automation-id="command-button-settings"
       iconProps={
         Object {
-          "className": "buttonIcon",
+          "className": "settingsGearButtonIcon",
           "iconName": "Gear",
         }
       }
