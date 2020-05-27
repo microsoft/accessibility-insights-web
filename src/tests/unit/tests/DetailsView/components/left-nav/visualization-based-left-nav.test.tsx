@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, Mock, MockBehavior } from 'typemoq';
+import { IMock, Mock } from 'typemoq';
 import { VisualizationConfiguration } from '../../../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../../../common/configs/visualization-configuration-factory';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
@@ -29,8 +29,8 @@ describe('VisualizationBasedLeftNav', () => {
 
     beforeEach(() => {
         visualizationsStub = [-1, -2];
-        leftNavLinkBuilderMock = Mock.ofType(LeftNavLinkBuilder, MockBehavior.Strict);
-        configFactoryMock = Mock.ofType(VisualizationConfigurationFactory, MockBehavior.Strict);
+        leftNavLinkBuilderMock = Mock.ofType(LeftNavLinkBuilder);
+        configFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
         onLinkClickStub = (event, item) => null;
         linkStub = {} as BaseLeftNavLink;
         configStub = {} as VisualizationConfiguration;
@@ -56,6 +56,7 @@ describe('VisualizationBasedLeftNav', () => {
             leftNavLinkBuilderMock
                 .setup(lnlbm =>
                     lnlbm.buildVisualizationConfigurationLink(
+                        deps,
                         configStub,
                         onLinkClickStub,
                         visualizationType,

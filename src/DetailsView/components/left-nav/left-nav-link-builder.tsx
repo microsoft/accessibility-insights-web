@@ -5,18 +5,14 @@ import { Assessment } from 'assessments/types/iassessment';
 import { Requirement } from 'assessments/types/requirement';
 import { gettingStartedSubview } from 'common/types/store-data/assessment-result-data';
 import {
-    AssessmentLeftNavLink,
     onTestGettingStartedClick,
     onTestRequirementClick,
     TestGettingStartedNavLink,
     TestRequirementLeftNavLink,
 } from 'DetailsView/components/left-nav/assessment-left-nav';
-import { GettingStartedNavLink } from 'DetailsView/components/left-nav/getting-started-nav-link';
-import { LeftNavIndexIcon, LeftNavStatusIcon } from 'DetailsView/components/left-nav/left-nav-icon';
-import { requirementStatusIcon } from 'DetailsView/components/left-nav/left-nav-link-builder.scss';
 import { NavLinkHandler } from 'DetailsView/components/left-nav/nav-link-handler';
+import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
 import { map } from 'lodash';
-import * as React from 'react';
 import { OutcomeTypeSemantic } from 'reports/components/outcome-type';
 import { RequirementOutcomeStats } from 'reports/components/requirement-outcome-type';
 import { GetAssessmentSummaryModelFromProviderAndStatusData } from 'reports/get-assessment-summary-model';
@@ -25,8 +21,6 @@ import { ManualTestStatus, ManualTestStatusData } from '../../../common/types/ma
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../../types/common-types';
 import { BaseLeftNavLink, onBaseLeftNavItemClick, onBaseLeftNavItemRender } from '../base-left-nav';
-import { OverviewLeftNavLink } from './overview-left-nav-link';
-import { TestViewLeftNavLink } from './test-view-left-nav-link';
 
 export type LeftNavLinkBuilderDeps = OverviewLinkBuilderDeps &
     AssessmentLinkBuilderDeps &
@@ -34,6 +28,7 @@ export type LeftNavLinkBuilderDeps = OverviewLinkBuilderDeps &
 
 export type OverviewLinkBuilderDeps = {
     getAssessmentSummaryModelFromProviderAndStatusData: GetAssessmentSummaryModelFromProviderAndStatusData;
+    navLinkRenderer: NavLinkRenderer;
 };
 
 export type AssessmentLinkBuilderDeps = {
@@ -43,9 +38,12 @@ export type AssessmentLinkBuilderDeps = {
     outcomeStatsFromManualTestStatus: (
         testStepStatus: ManualTestStatusData,
     ) => RequirementOutcomeStats;
+    navLinkRenderer: NavLinkRenderer;
 };
 
-export type VisualizationConfigurationLinkBuilderDeps = {};
+export type VisualizationConfigurationLinkBuilderDeps = {
+    navLinkRenderer: NavLinkRenderer;
+};
 
 export function generateReflowAssessmentTestKey(
     test: VisualizationType,
@@ -64,7 +62,7 @@ export class LeftNavLinkBuilder {
         assessmentsData: DictionaryStringTo<ManualTestStatusData>,
         index: number,
     ): BaseLeftNavLink {
-        const { getAssessmentSummaryModelFromProviderAndStatusData } = deps;
+        const { getAssessmentSummaryModelFromProviderAndStatusData, navLinkRenderer } = deps;
 
         const reportModel = getAssessmentSummaryModelFromProviderAndStatusData(
             assessmentsProvider,
@@ -76,7 +74,7 @@ export class LeftNavLinkBuilder {
             'Overview',
             'Overview',
             index,
-            l => <OverviewLeftNavLink link={l} />,
+            navLinkRenderer.renderOverviewLink,
             onLinkClick,
         );
 
@@ -100,6 +98,7 @@ export class LeftNavLinkBuilder {
             getStatusForTest,
             outcomeTypeSemanticsFromTestStatus,
             outcomeStatsFromManualTestStatus,
+            navLinkRenderer,
         } = deps;
 
         const assessments = assessmentsProvider.all();
@@ -116,7 +115,7 @@ export class LeftNavLinkBuilder {
                 name,
                 VisualizationType[assessment.visualizationType],
                 index,
-                l => <TestViewLeftNavLink link={l} renderIcon={this.renderAssessmentTestIcon} />,
+                navLinkRenderer.renderAssessmentTestLink,
                 onLinkClick,
             );
 
@@ -162,6 +161,7 @@ export class LeftNavLinkBuilder {
             outcomeTypeSemanticsFromTestStatus,
             outcomeStatsFromManualTestStatus,
             navLinkHandler,
+            navLinkRenderer,
         } = deps;
 
         const stepStatus = assessmentsData[assessment.key];
@@ -174,11 +174,12 @@ export class LeftNavLinkBuilder {
             name,
             VisualizationType[assessment.visualizationType],
             index,
-            l => <TestViewLeftNavLink link={l} renderIcon={this.renderAssessmentTestIcon} />,
+            navLinkRenderer.renderAssessmentTestLink,
             () => {},
         );
 
         const gettingStartedLink = this.buildGettingStartedLink(
+            navLinkRenderer.renderGettingStartedLink,
             navLinkHandler.onGettingStartedClick,
             assessment,
         );
@@ -216,7 +217,7 @@ export class LeftNavLinkBuilder {
         testIndex: number,
         onClick: onTestRequirementClick,
     ): TestRequirementLeftNavLink {
-        const { outcomeTypeSemanticsFromTestStatus } = deps;
+        const { outcomeTypeSemanticsFromTestStatus, navLinkRenderer } = deps;
         const name = requirement.name;
         const displayedIndex = `${testIndex}.${requirementIndex}`;
         const narratorRequirementStatus = outcomeTypeSemanticsFromTestStatus(requirementStatus)
@@ -226,7 +227,7 @@ export class LeftNavLinkBuilder {
             name,
             generateReflowAssessmentTestKey(test, requirement.key),
             requirementIndex,
-            l => <TestViewLeftNavLink link={l} renderIcon={this.renderRequirementIcon} />,
+            navLinkRenderer.renderRequirementLink,
             onClick,
         );
 
@@ -241,6 +242,7 @@ export class LeftNavLinkBuilder {
     }
 
     private buildGettingStartedLink(
+        renderGettingStartedLink: onBaseLeftNavItemRender,
         onClick: onTestGettingStartedClick,
         test: Assessment,
     ): TestGettingStartedNavLink {
@@ -251,50 +253,32 @@ export class LeftNavLinkBuilder {
                 'Getting Started',
                 generateReflowAssessmentTestKey(testType, gettingStartedSubview),
                 0,
-                () => <GettingStartedNavLink />,
+                renderGettingStartedLink,
                 onClick,
             ),
         };
     }
 
-    private renderRequirementIcon = (link: TestRequirementLeftNavLink) => {
-        if (link.status === ManualTestStatus.UNKNOWN) {
-            return <>{link.displayedIndex}</>;
-        }
-
-        return <LeftNavStatusIcon className={requirementStatusIcon} item={link} />;
-    };
-
-    private renderAssessmentTestIcon: onBaseLeftNavItemRender = (link: AssessmentLeftNavLink) => {
-        if (link.status === ManualTestStatus.UNKNOWN) {
-            return <LeftNavIndexIcon item={link} />;
-        }
-
-        return <LeftNavStatusIcon item={link} />;
-    };
-
     public buildVisualizationConfigurationLink(
+        deps: VisualizationConfigurationLinkBuilderDeps,
         configuration: VisualizationConfiguration,
         onLinkClick: onBaseLeftNavItemClick,
         visualizationType: VisualizationType,
         index: number,
     ): BaseLeftNavLink {
         const displayableData = configuration.displayableData;
+        const { navLinkRenderer } = deps;
 
         const link = this.buildBaseLink(
             displayableData.title,
             VisualizationType[visualizationType],
             index,
-            l => <TestViewLeftNavLink link={l} renderIcon={this.renderVisualizationIcon} />,
+            navLinkRenderer.renderVisualizationLink,
             onLinkClick,
         );
 
         return link;
     }
-
-    private renderVisualizationIcon: onBaseLeftNavItemRender = link => (
-        <LeftNavIndexIcon item={link} />
-    );
 
     private buildBaseLink(
         name: string,
