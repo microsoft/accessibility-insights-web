@@ -90,7 +90,7 @@
         "enzyme-adapter-react-16": "^1.15.2",
         "express": "^4.16.4",
         "extract-zip": "^2.0.0",
-        "fake-indexeddb": "^3.0.0",
+        "fake-indexeddb": "^3.0.1",
         "fork-ts-checker-webpack-plugin": "^4.1.6",
         "grunt": "^1.1.0",
         "grunt-bom-removal": "1.0.1",
