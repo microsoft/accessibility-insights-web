@@ -195,6 +195,13 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     }
 
+    public expandOrCollapseTestNav(
+        event: React.MouseEvent<HTMLElement>,
+        visualizationType: VisualizationType,
+    ): void {
+        // TODO: write this
+    }
+
     public sendPivotItemClicked(pivotKey: string, ev?: React.MouseEvent<HTMLElement>): void {
         const telemetry = this.telemetryFactory.forDetailsViewNavPivotActivated(ev, pivotKey);
 

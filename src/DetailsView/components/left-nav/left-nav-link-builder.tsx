@@ -7,6 +7,7 @@ import { gettingStartedSubview } from 'common/types/store-data/assessment-result
 import {
     onTestGettingStartedClick,
     onTestRequirementClick,
+    ReflowAssessmentLeftNavLink,
     TestGettingStartedNavLink,
     TestRequirementLeftNavLink,
 } from 'DetailsView/components/left-nav/assessment-left-nav';
@@ -155,7 +156,7 @@ export class LeftNavLinkBuilder {
         assessment: Assessment,
         index: number,
         assessmentsData: DictionaryStringTo<ManualTestStatusData>,
-    ) => {
+    ): ReflowAssessmentLeftNavLink => {
         const {
             getStatusForTest,
             outcomeTypeSemanticsFromTestStatus,
@@ -175,7 +176,7 @@ export class LeftNavLinkBuilder {
             VisualizationType[assessment.visualizationType],
             index,
             navLinkRenderer.renderAssessmentTestLink,
-            () => {},
+            navLinkHandler.onTestHeadingClick,
         );
 
         const gettingStartedLink = this.buildGettingStartedLink(
@@ -203,6 +204,7 @@ export class LeftNavLinkBuilder {
             title: `${index}: ${name} (${narratorTestStatus})`,
             links: [gettingStartedLink, ...requirementLinks],
             isExpanded: true,
+            testType: assessment.visualizationType,
         };
 
         return testLink;

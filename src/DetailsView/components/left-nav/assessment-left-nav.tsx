@@ -34,6 +34,11 @@ export type AssessmentLeftNavLink = {
     status: ManualTestStatus;
 } & BaseLeftNavLink;
 
+export type ReflowAssessmentLeftNavLink = {
+    testType: VisualizationType;
+    status: ManualTestStatus;
+} & BaseLeftNavLink;
+
 export type TestGettingStartedNavLink = {
     testType: VisualizationType;
 } & BaseLeftNavLink;

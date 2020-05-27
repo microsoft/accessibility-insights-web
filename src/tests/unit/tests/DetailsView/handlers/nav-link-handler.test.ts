@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.`
 import {
+    ReflowAssessmentLeftNavLink,
     TestGettingStartedNavLink,
     TestRequirementLeftNavLink,
 } from 'DetailsView/components/left-nav/assessment-left-nav';
@@ -117,6 +118,20 @@ describe('NavLinkHandler', () => {
                 .verifiable();
 
             testSubject.onGettingStartedClick(eventStub, gettingStartedLink);
+            detailsViewActionMessageCreatorMock.verifyAll();
+        });
+    });
+
+    describe('onTestHeadingClick', () => {
+        it('should call expandOrCollapseTestNav with appropriate params', () => {
+            const testHeadingLink = {
+                testType: -1,
+            } as ReflowAssessmentLeftNavLink;
+            detailsViewActionMessageCreatorMock
+                .setup(amc => amc.expandOrCollapseTestNav(eventStub, testHeadingLink.testType))
+                .verifiable();
+
+            testSubject.onTestHeadingClick(eventStub, testHeadingLink);
             detailsViewActionMessageCreatorMock.verifyAll();
         });
     });
