@@ -26,9 +26,11 @@ export class DebugToolsNavStore extends BaseStoreImpl<DebugToolsNavStoreData> {
         this.toolsNavActions.setSelectedTool.addListener(this.onSetSelectedTool);
     }
     private onSetSelectedTool = (selectedTool: ToolsNavKey) => {
-        if (this.state.selectedTool !== selectedTool) {
-            this.state.selectedTool = selectedTool;
-            this.emitChanged();
+        if (this.state.selectedTool === selectedTool) {
+            return;
         }
+
+        this.state.selectedTool = selectedTool;
+        this.emitChanged();
     };
 }
