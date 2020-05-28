@@ -5,11 +5,8 @@
 #side-nav-container {
     .left-nav-panel {
         margin-top: $detailsViewHeaderBarHeight;
-        .left-nav {
-            height: calc(100vh - $detailsViewHeaderBarHeight) !important;
+        :global(.ms-Panel-content) {
+            padding: 0px;
         }
-    }
-    :global(.ms-Panel-content) {
-        padding: 0px;
     }
 }

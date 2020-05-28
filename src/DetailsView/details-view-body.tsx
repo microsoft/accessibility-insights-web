@@ -74,7 +74,7 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
         return (
             <div className="details-view-body">
                 {this.renderCommandBar()}
-                <div className={bodyLayoutClassname} id="details-view-body-nav-content-layout">
+                <div className={bodyLayoutClassname}>
                     {this.renderNavBar()}
                     <div className="details-view-body-content-pane">
                         {this.getTargetPageHiddenBar()}
