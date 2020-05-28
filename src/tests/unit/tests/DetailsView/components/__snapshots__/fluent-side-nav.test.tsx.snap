@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FluentSideNav render null if tab is closed 1`] = `null`;
+
+exports[`FluentSideNav render side nav 1`] = `
+<div
+  id="sideNavContainer"
+>
+  <DetailsViewLeftNav
+    selectedPivot={0}
+    tabStoreData={
+      Object {
+        "isClosed": false,
+      }
+    }
+  />
+  <GenericPanel
+    className="leftNavPanel"
+    customWidth="240px"
+    hasCloseButton={false}
+    isHiddenOnDismiss={true}
+    isLightDismiss={true}
+    isOpen={false}
+    layerProps={
+      Object {
+        "hostId": "sideNavContainer",
+      }
+    }
+    onRenderHeader={[Function]}
+    onRenderNavigation={[Function]}
+    onRenderNavigationContent={[Function]}
+    type={8}
+  >
+    <DetailsViewLeftNav
+      selectedPivot={0}
+      tabStoreData={
+        Object {
+          "isClosed": false,
+        }
+      }
+    />
+  </GenericPanel>
+</div>
+`;
