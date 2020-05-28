@@ -1,14 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
-import { IMock, Mock, MockBehavior } from 'typemoq';
-
 import { getDefaultFeatureFlagsWeb } from 'common/feature-flags';
 import { ScanMetadata, TargetAppData } from 'common/types/store-data/unified-data-interface';
 import {
     DetailsViewCommandBarDeps,
     DetailsViewCommandBarProps,
 } from 'DetailsView/components/details-view-command-bar';
+import { FluentSideNav } from 'DetailsView/components/left-nav/fluent-side-nav';
+import * as React from 'react';
+import { IMock, Mock, MockBehavior } from 'typemoq';
+
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { NamedFC, ReactFCWithDisplayName } from '../../../../common/react/named-fc';
@@ -33,7 +34,6 @@ import {
     DetailsViewSwitcherNavConfiguration,
     LeftNavProps,
 } from '../../../../DetailsView/components/details-view-switcher-nav';
-import { DetailsViewLeftNav } from '../../../../DetailsView/components/left-nav/details-view-left-nav';
 import { TargetPageHiddenBar } from '../../../../DetailsView/components/target-page-hidden-bar';
 import { DetailsViewBody, DetailsViewBodyProps } from '../../../../DetailsView/details-view-body';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
@@ -212,7 +212,7 @@ describe('DetailsViewBody', () => {
 
     function buildLeftNav(givenProps: DetailsViewBodyProps): JSX.Element {
         return (
-            <DetailsViewLeftNav
+            <FluentSideNav
                 selectedPivot={givenProps.visualizationStoreData.selectedDetailsViewPivot}
                 {...givenProps}
             />

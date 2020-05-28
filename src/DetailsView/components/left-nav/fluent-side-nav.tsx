@@ -15,7 +15,6 @@ import * as React from 'react';
 export type FluentSideNavDeps = DetailsViewLeftNavDeps;
 export type FluentSideNavProps = DetailsViewLeftNavProps & {
     tabStoreData: TabStoreData;
-    visualizationStoreData: VisualizationStoreData;
 };
 
 export class FluentSideNav extends React.Component<FluentSideNavProps> {
