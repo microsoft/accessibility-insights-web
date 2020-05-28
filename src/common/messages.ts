@@ -116,6 +116,7 @@ export class Messages {
     public static readonly Assessment = {
         SelectTestRequirement: `${messagePrefix}/details-view/requirement/select`,
         SelectGettingStarted: `${messagePrefix}/details-view/select-getting-started`,
+        ExpandOrCollapseTestNav: `${messagePrefix}/details-view/expand-or-collapse-test-nav`,
         AssessmentScanCompleted: `${messagePrefix}/assessment/scanComplete`,
         TabbedElementAdded: `${messagePrefix}/assessment/tab-stops/element-added`,
         TrackingCompleted: `${messagePrefix}/assessment/tab-stops/recording-completed`,

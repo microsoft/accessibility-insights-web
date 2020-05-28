@@ -281,6 +281,7 @@ describe('LeftNavBuilder', () => {
                         narratorStatusStub.pastTense
                     })`,
                     onRenderNavLink: navLinkRendererMock.object.renderAssessmentTestLink,
+                    testType: visualizationType,
                 };
                 const expectedGettingStartedLink = {
                     name: 'Getting Started',

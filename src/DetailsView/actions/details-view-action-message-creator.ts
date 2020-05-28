@@ -10,6 +10,7 @@ import {
     ChangeInstanceStatusPayload,
     ChangeRequirementStatusPayload,
     EditFailureInstancePayload,
+    ExpandOrCollapseTestNavPayload,
     OnDetailsViewOpenPayload,
     OnDetailsViewPivotSelected,
     RemoveFailureInstancePayload,
@@ -199,7 +200,14 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         event: React.MouseEvent<HTMLElement>,
         visualizationType: VisualizationType,
     ): void {
-        // TODO: write this
+        const payload: ExpandOrCollapseTestNavPayload = {
+            selectedTest: visualizationType,
+        };
+
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.Assessment.ExpandOrCollapseTestNav,
+            payload: payload,
+        });
     }
 
     public sendPivotItemClicked(pivotKey: string, ev?: React.MouseEvent<HTMLElement>): void {
