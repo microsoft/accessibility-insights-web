@@ -592,8 +592,8 @@ describe('AssessmentActionCreatorTest', () => {
             selectedTest: 1,
         } as ExpandTestNavPayload;
 
-        const expandTestNavMock = createActionMock(payload);
-        const actionsMock = createActionsMock('expandTestNav', expandTestNavMock.object);
+        const setExpandedTestNavMock = createActionMock(payload);
+        const actionsMock = createActionsMock('setExpandedTestNav', setExpandedTestNavMock.object);
         const interpreterMock = createInterpreterMock(AssessmentMessages.ExpandTestNav, payload);
 
         const testSubject = new AssessmentActionCreator(
@@ -604,7 +604,27 @@ describe('AssessmentActionCreatorTest', () => {
 
         testSubject.registerCallbacks();
 
-        expandTestNavMock.verifyAll();
+        setExpandedTestNavMock.verifyAll();
+    });
+
+    it('handles CollapseTestNav message', () => {
+        const payload: ExpandTestNavPayload = {
+            selectedTest: null,
+        } as ExpandTestNavPayload;
+
+        const setExpandedTestNavMock = createActionMock(payload);
+        const actionsMock = createActionsMock('setExpandedTestNav', setExpandedTestNavMock.object);
+        const interpreterMock = createInterpreterMock(AssessmentMessages.CollapseTestNav, null);
+
+        const testSubject = new AssessmentActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
+
+        testSubject.registerCallbacks();
+
+        setExpandedTestNavMock.verifyAll();
     });
 
     it('handles ScanUpdate message', () => {

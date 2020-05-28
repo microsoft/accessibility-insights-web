@@ -217,8 +217,6 @@ describe('DetailsViewActionMessageCreatorTest', () => {
     });
 
     test('collapseTestNav', () => {
-        const event = eventStubFactory.createKeypressEvent() as any;
-
         const expectedMessage = {
             messageType: Messages.Assessment.CollapseTestNav,
         };

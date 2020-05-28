@@ -914,7 +914,7 @@ describe('AssessmentStore', () => {
             .testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on expandTestNav when clicked test is not selected', () => {
+    test('on setExpandedTestNav', () => {
         const visualizationType = 1 as VisualizationType;
         const initialState = new AssessmentsStoreDataBuilder(
             assessmentsProvider,
@@ -933,33 +933,7 @@ describe('AssessmentStore', () => {
 
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
 
-        createStoreTesterForAssessmentActions('expandTestNav')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
-    });
-
-    test('on expandTestNav when clicked test is already selected', () => {
-        const visualizationType = 1 as VisualizationType;
-        const initialState = new AssessmentsStoreDataBuilder(
-            assessmentsProvider,
-            assessmentDataConverterMock.object,
-        )
-            .withExpandedTest(visualizationType)
-            .build();
-        const finalState = new AssessmentsStoreDataBuilder(
-            assessmentsProvider,
-            assessmentDataConverterMock.object,
-        )
-            .withExpandedTest(undefined)
-            .build();
-
-        const payload: ExpandTestNavPayload = {
-            selectedTest: visualizationType,
-        };
-
-        assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
-
-        createStoreTesterForAssessmentActions('expandTestNav')
+        createStoreTesterForAssessmentActions('setExpandedTestNav')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, finalState);
     });

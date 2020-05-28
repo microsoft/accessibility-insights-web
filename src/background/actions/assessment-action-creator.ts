@@ -53,6 +53,10 @@ export class AssessmentActionCreator {
             this.onExpandTestNav,
         );
         this.interpreter.registerTypeToPayloadCallback(
+            AssessmentMessages.CollapseTestNav,
+            this.onCollapseTestNav,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
             getStoreStateMessage(StoreNames.AssessmentStore),
             this.onGetAssessmentCurrentState,
         );
@@ -252,7 +256,11 @@ export class AssessmentActionCreator {
     };
 
     private onExpandTestNav = (payload: ExpandTestNavPayload): void => {
-        this.assessmentActions.expandTestNav.invoke(payload);
+        this.assessmentActions.setExpandedTestNav.invoke(payload);
+    };
+
+    private onCollapseTestNav = (): void => {
+        this.assessmentActions.setExpandedTestNav.invoke({ selectedTest: null });
     };
 
     private onScanUpdate = (payload: ScanUpdatePayload): void => {
