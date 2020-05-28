@@ -60,25 +60,35 @@ describe('AssessmentInstanceSelectedButton', () => {
             };
         });
 
-        it.each([true, false])('onButtonClicked: with visualization enabled = %s', isVisualizationEnabled => {
-            const props: AssessmentInstanceSelectedButtonProps = {
-                ...baseProps,
-                isVisualizationEnabled,
-                isVisible: true,
-            } as AssessmentInstanceSelectedButtonProps;
+        it.each([true, false])(
+            'onButtonClicked: with visualization enabled = %s',
+            isVisualizationEnabled => {
+                const props: AssessmentInstanceSelectedButtonProps = {
+                    ...baseProps,
+                    isVisualizationEnabled,
+                    isVisible: true,
+                } as AssessmentInstanceSelectedButtonProps;
 
-            onSelectedMock
-                .setup(handler => handler(!isVisualizationEnabled, baseProps.test, baseProps.step, baseProps.selector))
-                .verifiable(Times.once());
+                onSelectedMock
+                    .setup(handler =>
+                        handler(
+                            !isVisualizationEnabled,
+                            baseProps.test,
+                            baseProps.step,
+                            baseProps.selector,
+                        ),
+                    )
+                    .verifiable(Times.once());
 
-            const wrapped = shallow(<AssessmentInstanceSelectedButton {...props} />);
+                const wrapped = shallow(<AssessmentInstanceSelectedButton {...props} />);
 
-            const iconButton = wrapped.find(IconButton);
+                const iconButton = wrapped.find(IconButton);
 
-            iconButton.simulate('click', eventStub);
+                iconButton.simulate('click', eventStub);
 
-            onSelectedMock.verifyAll();
-        });
+                onSelectedMock.verifyAll();
+            },
+        );
 
         test('onButtonClicked: isVisible = false', () => {
             const props: AssessmentInstanceSelectedButtonProps = {
@@ -87,7 +97,9 @@ describe('AssessmentInstanceSelectedButton', () => {
                 isVisible: false,
             } as AssessmentInstanceSelectedButtonProps;
 
-            onSelectedMock.setup(handler => handler(It.isAny(), It.isAny(), It.isAny(), It.isAny())).verifiable(Times.never());
+            onSelectedMock
+                .setup(handler => handler(It.isAny(), It.isAny(), It.isAny(), It.isAny()))
+                .verifiable(Times.never());
 
             const wrapped = shallow(<AssessmentInstanceSelectedButton {...props} />);
 

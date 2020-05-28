@@ -2,31 +2,49 @@
 // Licensed under the MIT License.
 import { BaseStore } from 'common/base-store';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
-import { ChromeAdapter } from 'common/browser-adapters/chrome-adapter';
+import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
+import { DateProvider } from 'common/date-provider';
 import { initializeFabricIcons } from 'common/fabric-icons';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { RemoteActionMessageDispatcher } from 'common/message-creators/remote-action-message-dispatcher';
 import { StoreActionMessageCreatorFactory } from 'common/message-creators/store-action-message-creator-factory';
 import { StoreProxy } from 'common/store-proxy';
+import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { StoreNames } from 'common/stores/store-names';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { PermissionsStateStoreData } from 'common/types/store-data/permissions-state-store-data';
 import { ScopingStoreData } from 'common/types/store-data/scoping-store-data';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
-import { StoresTree, StoresTreeProps } from 'debug-tools/components/stores-tree';
+import { textContent } from 'content/strings/text-content';
+import {
+    DebugToolsView,
+    DebugToolsViewDeps,
+    DebugToolsViewState,
+} from 'debug-tools/components/debug-tools-view';
+import { TelemetryListener } from 'debug-tools/controllers/telemetry-listener';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { UAParser } from 'ua-parser-js';
 
 export const initializeDebugTools = () => {
     initializeFabricIcons();
-    const browserAdapter = new ChromeAdapter();
+    const userAgentParser = new UAParser(window.navigator.userAgent);
+    const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
+    const browserAdapter = browserAdapterFactory.makeFromUserAgent();
 
     const stores = createStoreProxies(browserAdapter);
     const storeActionMessageCreator = getStoreActionMessageCreator(browserAdapter, stores);
 
-    const props = {
-        global: stores,
+    const storesHub = new BaseClientStoresHub<DebugToolsViewState>(stores);
+
+    const telemetryListener = new TelemetryListener(browserAdapter, DateProvider.getCurrentDate);
+    telemetryListener.initialize();
+
+    const props: DebugToolsViewDeps = {
+        storesHub,
         storeActionMessageCreator,
+        textContent,
+        telemetryListener,
     };
 
     render(props);
@@ -67,10 +85,10 @@ const getStoreActionMessageCreator = (browserAdapter: BrowserAdapter, stores: Ba
     return storeActionMessageCreatorFactory.fromStores(stores);
 };
 
-const render = (props: StoresTreeProps) => {
+const render = (deps: DebugToolsViewDeps) => {
     const container = document.querySelector('#debug-tools-container');
 
-    ReactDOM.render(<StoresTree {...props} />, container);
+    ReactDOM.render(<DebugToolsView deps={deps} />, container);
 };
 
 initializeDebugTools();

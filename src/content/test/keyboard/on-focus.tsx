@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>On focus</h1>
         <p>Navigating to a component must not trigger any unexpected change of context.</p>
 
         <h2>Why it matters</h2>

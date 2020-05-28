@@ -57,12 +57,14 @@ export class ContentActionMessageCreator {
     public openContentPanel = (
         event: React.MouseEvent<HTMLElement> | MouseEvent,
         contentPath: string,
+        contentTitle: string,
     ): void => {
         const messageType = Messages.ContentPanel.OpenPanel;
         const telemetry = this.telemetryFactory.withTriggeredByAndSource(event, this.source);
         const payload: ContentPayload = {
             telemetry,
             contentPath,
+            contentTitle,
         };
 
         this.dispatcher.dispatchMessage({

@@ -30,7 +30,9 @@ describe('UrlParserTest', () => {
         ];
 
         test.each(validCases)('return valid value', (testCase: ValidCase) => {
-            expect(testSubject.getIntParam(testCase.url, testCase.key)).toBe(testCase.expectedValue);
+            expect(testSubject.getIntParam(testCase.url, testCase.key)).toBe(
+                testCase.expectedValue,
+            );
         });
 
         interface InvalidCase {

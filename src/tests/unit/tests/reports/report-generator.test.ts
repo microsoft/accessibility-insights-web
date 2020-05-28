@@ -3,7 +3,7 @@
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { TabStoreData } from 'common/types/store-data/tab-store-data';
+import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
 import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
 import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
@@ -17,7 +17,22 @@ describe('ReportGenerator', () => {
     const title = 'title';
     const url = 'http://url/';
     const description = 'description';
-    const cardsViewDataStub = { cards: exampleUnifiedStatusResults, visualHelperEnabled: true, allCardsCollapsed: true };
+    const cardsViewDataStub = {
+        cards: exampleUnifiedStatusResults,
+        visualHelperEnabled: true,
+        allCardsCollapsed: true,
+    };
+    const toolDataStub: ToolData = {
+        applicationProperties: { name: 'some app' },
+    } as ToolData;
+    const targetAppInfo = {
+        name: title,
+        url: url,
+    };
+    const scanMetadataStub: ScanMetadata = {
+        toolData: toolDataStub,
+        targetAppInfo: targetAppInfo,
+    } as ScanMetadata;
 
     let dataBuilderMock: IMock<ReportHtmlGenerator>;
     let nameBuilderMock: IMock<ReportNameGenerator>;
@@ -26,24 +41,30 @@ describe('ReportGenerator', () => {
     beforeEach(() => {
         nameBuilderMock = Mock.ofType<ReportNameGenerator>(undefined, MockBehavior.Strict);
         dataBuilderMock = Mock.ofType<ReportHtmlGenerator>(undefined, MockBehavior.Strict);
-        assessmentReportHtmlGeneratorMock = Mock.ofType(AssessmentReportHtmlGenerator, MockBehavior.Strict);
+        assessmentReportHtmlGeneratorMock = Mock.ofType(
+            AssessmentReportHtmlGenerator,
+            MockBehavior.Strict,
+        );
     });
 
     test('generateHtml', () => {
         dataBuilderMock
             .setup(builder =>
-                builder.generateHtml(
-                    It.isValue(date),
-                    It.isValue(title),
-                    It.isValue(url),
-                    It.isValue(description),
-                    It.isValue(cardsViewDataStub),
-                ),
+                builder.generateHtml(date, description, cardsViewDataStub, scanMetadataStub),
             )
             .returns(() => 'returned-data');
 
-        const testObject = new ReportGenerator(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
-        const actual = testObject.generateFastPassAutomatedChecksReport(date, title, url, cardsViewDataStub, description);
+        const testObject = new ReportGenerator(
+            nameBuilderMock.object,
+            dataBuilderMock.object,
+            assessmentReportHtmlGeneratorMock.object,
+        );
+        const actual = testObject.generateFastPassAutomatedChecksReport(
+            date,
+            cardsViewDataStub,
+            description,
+            scanMetadataStub,
+        );
 
         expect(actual).toMatchSnapshot();
     });
@@ -52,22 +73,31 @@ describe('ReportGenerator', () => {
         const assessmentStoreData: AssessmentStoreData = { stub: 'assessmentStoreData' } as any;
         const assessmentsProvider: AssessmentsProvider = { stub: 'assessmentsProvider' } as any;
         const featureFlagStoreData: FeatureFlagStoreData = { stub: 'featureFlagStoreData' } as any;
-        const tabStoreData: TabStoreData = { stub: 'tabStoreData' } as any;
         const assessmentDescription = 'generateAssessmentHtml-description';
 
         assessmentReportHtmlGeneratorMock
             .setup(builder =>
-                builder.generateHtml(assessmentStoreData, assessmentsProvider, featureFlagStoreData, tabStoreData, assessmentDescription),
+                builder.generateHtml(
+                    assessmentStoreData,
+                    assessmentsProvider,
+                    featureFlagStoreData,
+                    targetAppInfo,
+                    assessmentDescription,
+                ),
             )
             .returns(() => 'generated-assessment-html')
             .verifiable(Times.once());
 
-        const testObject = new ReportGenerator(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
+        const testObject = new ReportGenerator(
+            nameBuilderMock.object,
+            dataBuilderMock.object,
+            assessmentReportHtmlGeneratorMock.object,
+        );
         const actual = testObject.generateAssessmentReport(
             assessmentStoreData,
             assessmentsProvider,
             featureFlagStoreData,
-            tabStoreData,
+            targetAppInfo,
             assessmentDescription,
         );
 
@@ -77,11 +107,17 @@ describe('ReportGenerator', () => {
 
     test('generateName', () => {
         nameBuilderMock
-            .setup(builder => builder.generateName('InsightsScan', It.isValue(date), It.isValue(title)))
+            .setup(builder =>
+                builder.generateName('InsightsScan', It.isValue(date), It.isValue(title)),
+            )
             .returns(() => 'returned-name')
             .verifiable(Times.once());
 
-        const testObject = new ReportGenerator(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
+        const testObject = new ReportGenerator(
+            nameBuilderMock.object,
+            dataBuilderMock.object,
+            assessmentReportHtmlGeneratorMock.object,
+        );
         const actual = testObject.generateName('InsightsScan', date, title);
 
         const expected = 'returned-name';

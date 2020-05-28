@@ -84,8 +84,7 @@ export class SelectorMapHelper {
         switch (visualizationType) {
             case VisualizationType.Issues:
                 selectorMap = this.getElementBasedViewModel(
-                    unifiedScanData.rules,
-                    unifiedScanData.results,
+                    unifiedScanData,
                     cardSelectionStoreData,
                 );
                 break;

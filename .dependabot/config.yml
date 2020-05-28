@@ -29,3 +29,7 @@ update_configs:
           # All electron builds are going to be manually updated
           # since our release builds use a non-standard Electron build with distribution-restricted media codecs stripped out
           dependency_name: "electron"
+      - match:
+          # Temporarily ignoring fabric updates until fix for
+          # https://github.com/OfficeDev/office-ui-fabric-react/issues/12195
+          dependency_name: "office-ui-fabric-react"

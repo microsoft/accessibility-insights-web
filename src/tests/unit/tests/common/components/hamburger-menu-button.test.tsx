@@ -1,6 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { HamburgerMenuButton, HamburgerMenuButtonDeps, HamburgerMenuButtonProps } from 'common/components/hamburger-menu-button';
+import {
+    HamburgerMenuButton,
+    HamburgerMenuButtonDeps,
+    HamburgerMenuButtonProps,
+} from 'common/components/hamburger-menu-button';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { VisualizationType } from 'common/types/visualization-type';
@@ -104,19 +108,34 @@ describe('HamburgerMenuButton', () => {
         });
 
         it('handles ad-hoc', () => {
-            launchPanelHeaderClickHandlerMock.verify(handler => handler.openAdhocToolsPanel(It.isAny()), Times.never());
+            launchPanelHeaderClickHandlerMock.verify(
+                handler => handler.openAdhocToolsPanel(It.isAny()),
+                Times.never(),
+            );
             findMenuItemByKey('ad-hoc-tools').onClick(event);
-            launchPanelHeaderClickHandlerMock.verify(handler => handler.openAdhocToolsPanel(headerMock.object), Times.once());
+            launchPanelHeaderClickHandlerMock.verify(
+                handler => handler.openAdhocToolsPanel(headerMock.object),
+                Times.once(),
+            );
         });
 
         it('handles keyboards shortcuts', () => {
-            popupActionMessageCreatorMock.verify(handler => handler.openShortcutConfigureTab(It.isAny()), Times.never());
+            popupActionMessageCreatorMock.verify(
+                handler => handler.openShortcutConfigureTab(It.isAny()),
+                Times.never(),
+            );
             findMenuItemByKey('modify-shortcuts').onClick(event);
-            popupActionMessageCreatorMock.verify(handler => handler.openShortcutConfigureTab(It.isObjectWith(event)), Times.once());
+            popupActionMessageCreatorMock.verify(
+                handler => handler.openShortcutConfigureTab(It.isObjectWith(event)),
+                Times.once(),
+            );
         });
 
         it('handles help', () => {
-            launchPanelHeaderClickHandlerMock.verify(handler => handler.onClickLink(It.isAny(), It.isAny(), It.isAny()), Times.never());
+            launchPanelHeaderClickHandlerMock.verify(
+                handler => handler.onClickLink(It.isAny(), It.isAny(), It.isAny()),
+                Times.never(),
+            );
             const helpMenuItem = findMenuItemByKey('help');
             helpMenuItem.onClick(event, helpMenuItem);
             launchPanelHeaderClickHandlerMock.verify(
@@ -131,6 +150,31 @@ describe('HamburgerMenuButton', () => {
                             },
                             data: 'https://go.microsoft.com/fwlink/?linkid=2077937',
                             name: 'Help',
+                        }),
+                    ),
+                Times.once(),
+            );
+        });
+
+        it('handles third-party-notices', () => {
+            launchPanelHeaderClickHandlerMock.verify(
+                handler => handler.onClickLink(It.isAny(), It.isAny(), It.isAny()),
+                Times.never(),
+            );
+            const noticesItem = findMenuItemByKey('third-party-notices');
+            noticesItem.onClick(event, noticesItem);
+            launchPanelHeaderClickHandlerMock.verify(
+                handler =>
+                    handler.onClickLink(
+                        popupWindowMock.object,
+                        It.isObjectWith(event),
+                        It.isObjectWith({
+                            key: 'third-party-notices',
+                            iconProps: {
+                                iconName: 'TextDocument',
+                            },
+                            data: '/NOTICE.html',
+                            name: 'Third party notices',
                         }),
                     ),
                 Times.once(),

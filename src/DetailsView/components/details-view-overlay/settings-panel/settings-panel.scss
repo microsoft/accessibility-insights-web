@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 @import '../../../../common/styles/colors.scss';
+@import '../../../../common/styles/fonts.scss';
 
 .settings-panel {
     h3 {
-        font-size: 17px;
+        @include text-style-title-s;
         margin-block-end: 8px;
     }
 
@@ -18,9 +19,5 @@
         :global(.ms-TextField-field) {
             color: $neutral-100;
         }
-    }
-
-    :global(.ms-Panel-content) {
-        padding-top: 20px;
     }
 }

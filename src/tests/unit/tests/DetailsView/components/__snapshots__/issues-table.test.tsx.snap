@@ -2,17 +2,17 @@
 
 exports[`IssuesTableTest automated checks disabled 1`] = `
 <div
-  className="issues-table"
+  className="issuesTable"
 >
   <h1>
     test title
   </h1>
   <div
-    className="issues-table-content"
+    className="issuesTableContent"
   >
     <React.Fragment>
       <div
-        className="details-disabled-message"
+        className="detailsDisabledMessage"
         role="alert"
       >
         <span>
@@ -29,11 +29,11 @@ exports[`IssuesTableTest automated checks disabled 1`] = `
 `;
 
 exports[`IssuesTableTest includes subtitle if specified 1`] = `
-"<div className=\\"issues-table\\">
+"<div className=\\"issuesTable\\">
   <h1>
     test title
   </h1>
-  <div className=\\"issues-table-subtitle\\">
+  <div className=\\"issuesTableSubtitle\\">
     test subtitle text
   </div>
   <ScanningSpinner isSpinning={true} label=\\"Loading...\\" />
@@ -41,18 +41,18 @@ exports[`IssuesTableTest includes subtitle if specified 1`] = `
 `;
 
 exports[`IssuesTableTest spinner for scanning state 1`] = `
-"<div className=\\"issues-table\\">
+"<div className=\\"issuesTable\\">
   <h1>
     test title
   </h1>
-  <div className=\\"issues-table-content\\">
+  <div className=\\"issuesTableContent\\">
     <ScanningSpinner isSpinning={true} label=\\"Scanning...\\" />
   </div>
 </div>"
 `;
 
 exports[`IssuesTableTest spinner, issuesEnabled == null 1`] = `
-"<div className=\\"issues-table\\">
+"<div className=\\"issuesTable\\">
   <h1>
     test title
   </h1>
@@ -61,11 +61,11 @@ exports[`IssuesTableTest spinner, issuesEnabled == null 1`] = `
 `;
 
 exports[`IssuesTableTest spinner, issuesEnabled is an empty object 1`] = `
-"<div className=\\"issues-table\\">
+"<div className=\\"issuesTable\\">
   <h1>
     test title
   </h1>
-  <div className=\\"issues-table-content\\">
+  <div className=\\"issuesTableContent\\">
     <ScanningSpinner isSpinning={true} label=\\"Loading data...\\" />
   </div>
 </div>"
@@ -73,13 +73,13 @@ exports[`IssuesTableTest spinner, issuesEnabled is an empty object 1`] = `
 
 exports[`IssuesTableTest table with 0 issues 1`] = `
 <div
-  className="issues-table"
+  className="issuesTable"
 >
   <h1>
     test title
   </h1>
   <div
-    className="issues-table-content"
+    className="issuesTableContent"
   >
     <CardsView
       cardsViewData={
@@ -144,9 +144,11 @@ exports[`IssuesTableTest table with 0 issues 1`] = `
           },
         }
       }
-      targetAppInfo={
+      scanMetadata={
         Object {
-          "name": "app",
+          "targetAppInfo": Object {
+            "name": "app",
+          },
         }
       }
       userConfigurationStoreData={
@@ -161,13 +163,13 @@ exports[`IssuesTableTest table with 0 issues 1`] = `
 
 exports[`IssuesTableTest table with 1 issues 1`] = `
 <div
-  className="issues-table"
+  className="issuesTable"
 >
   <h1>
     test title
   </h1>
   <div
-    className="issues-table-content"
+    className="issuesTableContent"
   >
     <CardsView
       cardsViewData={
@@ -232,9 +234,11 @@ exports[`IssuesTableTest table with 1 issues 1`] = `
           },
         }
       }
-      targetAppInfo={
+      scanMetadata={
         Object {
-          "name": "app",
+          "targetAppInfo": Object {
+            "name": "app",
+          },
         }
       }
       userConfigurationStoreData={
@@ -249,13 +253,13 @@ exports[`IssuesTableTest table with 1 issues 1`] = `
 
 exports[`IssuesTableTest table with 2 issues 1`] = `
 <div
-  className="issues-table"
+  className="issuesTable"
 >
   <h1>
     test title
   </h1>
   <div
-    className="issues-table-content"
+    className="issuesTableContent"
   >
     <CardsView
       cardsViewData={
@@ -320,9 +324,11 @@ exports[`IssuesTableTest table with 2 issues 1`] = `
           },
         }
       }
-      targetAppInfo={
+      scanMetadata={
         Object {
-          "name": "app",
+          "targetAppInfo": Object {
+            "name": "app",
+          },
         }
       }
       userConfigurationStoreData={

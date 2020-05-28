@@ -1,43 +1,95 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AssessmentInstanceTableTest renders default instance table header disabled with instance 1`] = `
-<CustomizedActionButton
-  disabled={true}
-  iconProps={
-    Object {
-      "iconName": "skypeCheck",
+exports[`AssessmentInstanceTable with instances renders per snapshot 1`] = `
+<div>
+  <InsightsCommandButton
+    data-automation-id="assessment-instance-table-pass-unmarked-instances-button"
+    disabled={false}
+    iconProps={
+      Object {
+        "iconName": "skypeCheck",
+      }
     }
-  }
-  onClick={[Function]}
->
-  Pass unmarked instances
-</CustomizedActionButton>
+    onClick={[Function]}
+  >
+    Pass unmarked instances
+  </InsightsCommandButton>
+  <StyledWithViewportComponent
+    ariaLabelForGrid="Use arrow keys to navigate inside the instances grid"
+    checkboxVisibility={2}
+    columns={
+      Array [
+        Object {
+          "fieldName": "fieldName",
+          "key": "col1",
+          "minWidth": 0,
+          "name": "col1",
+        },
+      ]
+    }
+    constrainMode={1}
+    items={
+      Array [
+        Object {
+          "instance": Object {
+            "testStepResults": Object {
+              "step": Object {
+                "status": 1,
+              },
+            },
+          },
+          "statusChoiceGroup": null,
+          "visualizationButton": null,
+        },
+      ]
+    }
+    onItemInvoked={[Function]}
+    onRenderRow={[Function]}
+  />
+</div>
 `;
 
-exports[`AssessmentInstanceTableTest renders default instance table header disabled without instance 1`] = `
-<CustomizedActionButton
-  disabled={true}
-  iconProps={
-    Object {
-      "iconName": "skypeCheck",
+exports[`AssessmentInstanceTable with instances renders per snapshot with null header 1`] = `
+<div>
+  <StyledWithViewportComponent
+    ariaLabelForGrid="Use arrow keys to navigate inside the instances grid"
+    checkboxVisibility={2}
+    columns={
+      Array [
+        Object {
+          "fieldName": "fieldName",
+          "key": "col1",
+          "minWidth": 0,
+          "name": "col1",
+        },
+      ]
     }
-  }
-  onClick={[Function]}
->
-  Pass unmarked instances
-</CustomizedActionButton>
+    constrainMode={1}
+    items={
+      Array [
+        Object {
+          "instance": Object {
+            "testStepResults": Object {
+              "step": Object {
+                "status": 1,
+              },
+            },
+          },
+          "statusChoiceGroup": null,
+          "visualizationButton": null,
+        },
+      ]
+    }
+    onItemInvoked={[Function]}
+    onRenderRow={[Function]}
+  />
+</div>
 `;
 
-exports[`AssessmentInstanceTableTest renders default instance table header enabled 1`] = `
-<CustomizedActionButton
-  disabled={false}
-  iconProps={
-    Object {
-      "iconName": "skypeCheck",
-    }
-  }
-  onClick={[Function]}
->
-  Pass unmarked instances
-</CustomizedActionButton>
+exports[`AssessmentInstanceTable with null instance data renders a spinner per snapshot 1`] = `
+<StyledSpinnerBase
+  className="details-view-spinner"
+  label="Scanning"
+  size={3}
+/>
 `;

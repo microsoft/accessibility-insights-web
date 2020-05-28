@@ -1,28 +1,43 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
+trigger: # trigger only affects CI builds
+    branches:
+        include:
+            - master
+
+pr: # pr does not trigger CI builds
+    branches:
+        include:
+            - '*' # must quote since "*" is a YAML reserved character; we want a string
+
 jobs:
     - job: 'unit_tests_and_lints'
 
       pool:
-          vmImage: 'macOS-10.14'
+          vmImage: 'macOS-10.15'
 
       steps:
           - template: pipeline/install-node-prerequisites.yaml
 
           - script: yarn lint:check
             displayName: check lint errors
+            timeoutInMinutes: 5
 
           - script: yarn format:check
             displayName: check formatting errors
+            timeoutInMinutes: 5
 
           - script: yarn copyright:check
             displayName: check copyrightheaders
+            timeoutInMinutes: 1
 
           - script: yarn scss:build
             displayName: generate typings for scss files
+            timeoutInMinutes: 3
 
           - script: yarn test --ci
             displayName: run unit tests
+            timeoutInMinutes: 10
 
           - task: PublishTestResults@2
             inputs:
@@ -30,6 +45,7 @@ jobs:
                 testRunTitle: $(Agent.JobName)
             condition: always()
             displayName: publish test results
+            timeoutInMinutes: 3
 
           - task: PublishCodeCoverageResults@1
             inputs:
@@ -41,53 +57,73 @@ jobs:
                 # Consider re-enabling this once https://github.com/Microsoft/azure-pipelines-tasks/issues/4945 is resolved.
                 # reportDirectory: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/lcov-report
             displayName: publish code coverage
+            timeoutInMinutes: 5
 
           - script: yarn publish-code-coverage -t $(CODECOV_TOKEN)
             displayName: Publish code coverage to codecov
-
-          # CI build only
-          - task: ComponentGovernanceComponentDetection@0
-            displayName: 'Component Detection'
-            condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
-            inputs:
-                verbosity: Normal
+            timeoutInMinutes: 3
 
     - job: 'publish_build_drops'
       pool:
-          vmImage: 'ubuntu-16.04'
+          vmImage: 'ubuntu-18.04'
       steps:
           - template: pipeline/install-node-prerequisites.yaml
 
+          - task: ComponentGovernanceComponentDetection@0
+            displayName: 'dependency detection (Component Governance)'
+            condition: and(succeeded(), eq(variables['GenerateReleaseNoticeFile'], 'true'))
+            inputs:
+                detectorsFilter: Yarn
+                ignoreDirectories: 'drop,dist,extension,node_modules'
+                verbosity: Normal
+            timeoutInMinutes: 5
+
+          - task: msospo.ospo-extension.8d7f9abb-6896-461d-9e25-4f74ed65ddb2.notice@0
+            displayName: 'generate NOTICE.html file'
+            condition: and(succeeded(), eq(variables['GenerateReleaseNoticeFile'], 'true'))
+            inputs:
+                outputfile: '$(System.DefaultWorkingDirectory)/src/NOTICE.html'
+                outputformat: html
+            timeoutInMinutes: 5
+
           - script: yarn build:all
             displayName: build:all
+            timeoutInMinutes: 10
 
           - task: PublishBuildArtifacts@1
             inputs:
                 pathtoPublish: '$(System.DefaultWorkingDirectory)/drop'
                 artifactName: 'drop'
             displayName: publish drop
+            timeoutInMinutes: 5
 
-    - job: 'e2e_mac_web_unified'
+    - job: 'e2e_web_mac'
       pool:
-          vmImage: macOS-10.14
+          vmImage: macOS-10.15
       steps:
           - template: pipeline/install-node-prerequisites.yaml
           - template: pipeline/e2e-test-from-agent.yaml
           - template: pipeline/e2e-test-publish-results.yaml
+
+    - job: 'e2e_unified_mac'
+      pool:
+          vmImage: macOS-10.15
+      steps:
+          - template: pipeline/install-node-prerequisites.yaml
           - template: pipeline/unified/unified-e2e-test-interactive.yaml
           - template: pipeline/unified/unified-e2e-publish-results.yaml
 
-    - job: 'e2e_linux_unified'
+    - job: 'e2e_unified_linux'
       pool:
-          vmImage: ubuntu-16.04
+          vmImage: ubuntu-18.04
       steps:
           - template: pipeline/install-node-prerequisites.yaml
           - template: pipeline/unified/unified-e2e-test-linux.yaml
           - template: pipeline/unified/unified-e2e-publish-results.yaml
 
-    - job: 'e2e_windows_unified'
+    - job: 'e2e_unified_windows'
       pool:
-          vmImage: windows-latest
+          vmImage: windows-2019
       steps:
           - template: pipeline/install-node-prerequisites.yaml
           - template: pipeline/unified/unified-e2e-test-interactive.yaml

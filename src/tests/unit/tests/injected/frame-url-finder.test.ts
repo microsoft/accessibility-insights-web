@@ -4,8 +4,15 @@ import { It, Mock, MockBehavior } from 'typemoq';
 
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
 import { WindowUtils } from '../../../../common/window-utils';
-import { FrameUrlFinder, FrameUrlMessage, TargetMessage } from '../../../../injected/frame-url-finder';
-import { FrameCommunicator, MessageRequest } from '../../../../injected/frameCommunicators/frame-communicator';
+import {
+    FrameUrlFinder,
+    FrameUrlMessage,
+    TargetMessage,
+} from '../../../../injected/frame-url-finder';
+import {
+    FrameCommunicator,
+    MessageRequest,
+} from '../../../../injected/frameCommunicators/frame-communicator';
 
 describe('frameUrlFinderTest', () => {
     test('constructor', () => {
@@ -16,7 +23,11 @@ describe('frameUrlFinderTest', () => {
         const frameCommunicatorMock = Mock.ofType(FrameCommunicator, MockBehavior.Strict);
         const testSubject = new FrameUrlFinder(frameCommunicatorMock.object, null, null);
 
-        frameCommunicatorMock.setup(mfc => mfc.subscribe(FrameUrlFinder.GetTargetFrameUrlCommand, testSubject.processRequest)).verifiable();
+        frameCommunicatorMock
+            .setup(mfc =>
+                mfc.subscribe(FrameUrlFinder.GetTargetFrameUrlCommand, testSubject.processRequest),
+            )
+            .verifiable();
 
         testSubject.initialize();
 
@@ -42,7 +53,9 @@ describe('frameUrlFinderTest', () => {
             },
         };
 
-        frameCommunicatorMock.setup(mfc => mfc.sendMessage(It.isValue(sentMessageStub))).verifiable();
+        frameCommunicatorMock
+            .setup(mfc => mfc.sendMessage(It.isValue(sentMessageStub)))
+            .verifiable();
 
         windowUtilsMock
             .setup(mwu => mwu.getTopWindow())
@@ -58,7 +71,11 @@ describe('frameUrlFinderTest', () => {
             })
             .verifiable();
 
-        const testSubject = new FrameUrlFinder(frameCommunicatorMock.object, windowUtilsMock.object, null);
+        const testSubject = new FrameUrlFinder(
+            frameCommunicatorMock.object,
+            windowUtilsMock.object,
+            null,
+        );
         testSubject.processRequest(processRequestMessageStub);
 
         windowUtilsMock.verifyAll();
@@ -81,7 +98,9 @@ describe('frameUrlFinderTest', () => {
             },
         };
 
-        frameCommunicatorMock.setup(mfc => mfc.sendMessage(It.isValue(sentMessageMock))).verifiable();
+        frameCommunicatorMock
+            .setup(mfc => mfc.sendMessage(It.isValue(sentMessageMock)))
+            .verifiable();
 
         htmlUtilsMock
             .setup(mhu => mhu.querySelector('abc'))
@@ -90,7 +109,11 @@ describe('frameUrlFinderTest', () => {
             })
             .verifiable();
 
-        const testSubject = new FrameUrlFinder(frameCommunicatorMock.object, null, htmlUtilsMock.object);
+        const testSubject = new FrameUrlFinder(
+            frameCommunicatorMock.object,
+            null,
+            htmlUtilsMock.object,
+        );
         testSubject.processRequest(processRequestMessageMock);
 
         htmlUtilsMock.verifyAll();

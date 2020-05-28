@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Flashing</h1>
         <p>Web pages must not have content that flashes more than three times per second.</p>
 
         <h2>Why it matters</h2>

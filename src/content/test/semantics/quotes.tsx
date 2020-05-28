@@ -5,24 +5,20 @@ import { create, React } from '../../common';
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
         <h1>Quotes</h1>
-        <h1>Quotes</h1>
         <p>
             The <Markup.Code>{'<blockquote>'}</Markup.Code> element must not be used to indent non-quote text.
         </p>
-
         <h2>Why it matters</h2>
         <p>
             The <Markup.Code>{'<blockquote>'}</Markup.Code> is a semantic element that conveys to assistive technologies that it contains a
             quote. People who use assistive technologies might be confused if this semantic element is used instead as a quick way to style
             non-quote text.
         </p>
-
         <h2>How to fix</h2>
         <p>
             Do not use the <Markup.Code>{'<blockquote>'}</Markup.Code> element. Instead, use CSS <Markup.Code>margin</Markup.Code>{' '}
             properties to create space around blocks of text.
         </p>
-
         <Markup.PassFail
             failText={
                 <p>
@@ -43,7 +39,6 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             <p>The Rentenmark was a currency introduced in 1923 in Weimar Germany after hyperinflation destroyed the value of the previous currency.</p>
             <a href="/wiki/German_Rentenmark" title="German Rentenmark">Learn more about the Rentenmark</a>`}
         />
-
         <h2>More examples</h2>
         <h3>WCAG success criteria</h3>
         <Markup.Links>
@@ -60,7 +55,6 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 Using semantic markup to mark emphasized or special text
             </Markup.HyperLink>
         </Markup.Links>
-
         <h3>Common failures</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F43">

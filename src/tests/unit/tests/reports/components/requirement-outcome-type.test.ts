@@ -18,9 +18,15 @@ describe('OutcomeType', () => {
     });
 
     it('translates test status to outcomeTypeSemantics', () => {
-        expect(outcomeTypeSemanticsFromTestStatus(ManualTestStatus.PASS)).toEqual({ pastTense: 'Passed' } as OutcomeTypeSemantic);
-        expect(outcomeTypeSemanticsFromTestStatus(ManualTestStatus.FAIL)).toEqual({ pastTense: 'Failed' } as OutcomeTypeSemantic);
-        expect(outcomeTypeSemanticsFromTestStatus(ManualTestStatus.UNKNOWN)).toEqual({ pastTense: 'Incomplete' } as OutcomeTypeSemantic);
+        expect(outcomeTypeSemanticsFromTestStatus(ManualTestStatus.PASS)).toEqual({
+            pastTense: 'Passed',
+        } as OutcomeTypeSemantic);
+        expect(outcomeTypeSemanticsFromTestStatus(ManualTestStatus.FAIL)).toEqual({
+            pastTense: 'Failed',
+        } as OutcomeTypeSemantic);
+        expect(outcomeTypeSemanticsFromTestStatus(ManualTestStatus.UNKNOWN)).toEqual({
+            pastTense: 'Incomplete',
+        } as OutcomeTypeSemantic);
     });
 
     describe('outcomeStatsFromManualTestStatus', () => {
@@ -29,11 +35,16 @@ describe('OutcomeType', () => {
             expect(stats).toEqual({ pass: 0, fail: 0, incomplete: 0 });
         });
 
-        function generateManualTestStatus(pass: number, fail: number, incomplete: number): ManualTestStatusData {
+        function generateManualTestStatus(
+            pass: number,
+            fail: number,
+            incomplete: number,
+        ): ManualTestStatusData {
             let i = 0;
             const result: ManualTestStatusData = {};
             function setStep(status): () => { stepFinalResult: string; isStepScanned: boolean } {
-                return () => (result['step' + ++i] = { stepFinalResult: status, isStepScanned: true });
+                return () =>
+                    (result['step' + ++i] = { stepFinalResult: status, isStepScanned: true });
             }
             times(pass, setStep(ManualTestStatus.PASS));
             times(fail, setStep(ManualTestStatus.FAIL));

@@ -32,7 +32,7 @@ const howToTest: JSX.Element = (
 
 export const NoKeystrokeTiming: Requirement = {
     key: KeyboardInteractionTestStep.noKeystrokeTiming,
-    name: 'No keystroke timing',
+    name: 'No keystroke timings',
     description,
     howToTest,
     isManual: true,

@@ -5,12 +5,20 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { It, Mock, MockBehavior } from 'typemoq';
 
+import { generateReflowAssessmentTestKey } from 'DetailsView/components/left-nav/left-nav-link-builder';
 import { NamedFC, ReactFCWithDisplayName } from '../../../../../../common/react/named-fc';
-import { AssessmentData, AssessmentStoreData } from '../../../../../../common/types/store-data/assessment-result-data';
+import {
+    AssessmentData,
+    AssessmentNavState,
+    AssessmentStoreData,
+} from '../../../../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../../../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
 import { DetailsRightPanelConfiguration } from '../../../../../../DetailsView/components/details-view-right-panel';
-import { DetailsViewSwitcherNavConfiguration } from '../../../../../../DetailsView/components/details-view-switcher-nav';
+import {
+    DetailsViewSwitcherNavConfiguration,
+    LeftNavProps,
+} from '../../../../../../DetailsView/components/details-view-switcher-nav';
 import {
     DetailsViewLeftNav,
     DetailsViewLeftNavDeps,
@@ -23,14 +31,30 @@ describe('DetailsViewLeftNav', () => {
         const selectedTestStub: VisualizationType = -1;
         const selectedKeyStub: string = 'some key';
         const featureFlagDataStub: FeatureFlagStoreData = {};
-        const assessmentsProviderWithFeaturesEnabledMock = Mock.ofInstance((provider, featureFlagData) => null, MockBehavior.Strict);
+        const assessmentsProviderWithFeaturesEnabledMock = Mock.ofInstance(
+            (provider, featureFlagData) => null,
+            MockBehavior.Strict,
+        );
         const assessmentProviderStub = {} as AssessmentsProvider;
         const filteredProviderStub = {} as AssessmentsProvider;
-        const GetLeftNavSelectedKeyMock = Mock.ofInstance((theProps: GetLeftNavSelectedKeyProps) => null, MockBehavior.Strict);
-        const LeftNavStub: Readonly<ReactFCWithDisplayName<DetailsViewLeftNavProps>> = NamedFC<DetailsViewLeftNavProps>('test', _ => null);
-        const assessmentDataStub: { [key: string]: AssessmentData } = { x: { testStepStatus: {} } as AssessmentData };
+        const GetLeftNavSelectedKeyMock = Mock.ofInstance(
+            (theProps: GetLeftNavSelectedKeyProps) => null,
+            MockBehavior.Strict,
+        );
+        const LeftNavStub: Readonly<ReactFCWithDisplayName<LeftNavProps>> = NamedFC<LeftNavProps>(
+            'test',
+            _ => null,
+        );
+        const assessmentDataStub: { [key: string]: AssessmentData } = {
+            x: { testStepStatus: {} } as AssessmentData,
+        };
+        const selectedTestSubview = 'selected-subview';
+        const assessmentNavStateStub = {
+            selectedTestSubview,
+        } as AssessmentNavState;
         const assessmentStoreDataStub = {
             assessments: assessmentDataStub,
+            assessmentNavState: assessmentNavStateStub,
         } as AssessmentStoreData;
 
         const rightPanelConfig: DetailsRightPanelConfiguration = {
@@ -43,7 +67,8 @@ describe('DetailsViewLeftNav', () => {
 
         const deps = {
             assessmentsProvider: assessmentProviderStub,
-            assessmentsProviderWithFeaturesEnabled: assessmentsProviderWithFeaturesEnabledMock.object,
+            assessmentsProviderWithFeaturesEnabled:
+                assessmentsProviderWithFeaturesEnabledMock.object,
         } as DetailsViewLeftNavDeps;
 
         const props = {
@@ -55,9 +80,17 @@ describe('DetailsViewLeftNav', () => {
             assessmentStoreData: assessmentStoreDataStub,
         } as DetailsViewLeftNavProps;
 
-        GetLeftNavSelectedKeyMock.setup(getter => getter(It.isValue({ visualizationType: selectedTestStub }))).returns(
-            () => selectedKeyStub,
-        );
+        GetLeftNavSelectedKeyMock.setup(getter =>
+            getter(
+                It.isValue({
+                    visualizationType: selectedTestStub,
+                    featureFlagStoreData: featureFlagDataStub,
+                    selectedSubview: selectedTestSubview,
+                    deps: { generateReflowAssessmentTestKey },
+                    assessmentsProvider: assessmentProviderStub,
+                }),
+            ),
+        ).returns(() => selectedKeyStub);
 
         assessmentsProviderWithFeaturesEnabledMock
             .setup(ap => ap(assessmentProviderStub, featureFlagDataStub))

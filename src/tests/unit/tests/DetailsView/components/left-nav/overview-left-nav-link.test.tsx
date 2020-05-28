@@ -3,7 +3,10 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { BaseLeftNavLink, BaseLeftNavLinkProps } from '../../../../../../DetailsView/components/base-left-nav';
+import {
+    BaseLeftNavLink,
+    BaseLeftNavLinkProps,
+} from '../../../../../../DetailsView/components/base-left-nav';
 import { OverviewLeftNavLink } from '../../../../../../DetailsView/components/left-nav/overview-left-nav-link';
 
 describe('OverviewLeftNavLink', () => {

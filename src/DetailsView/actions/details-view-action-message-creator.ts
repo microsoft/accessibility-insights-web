@@ -13,7 +13,8 @@ import {
     OnDetailsViewOpenPayload,
     OnDetailsViewPivotSelected,
     RemoveFailureInstancePayload,
-    SelectRequirementPayload,
+    SelectGettingStartedPayload,
+    SelectTestSubviewPayload,
     SetAllUrlsPermissionStatePayload,
     SwitchToTargetTabPayload,
     ToggleActionPayload,
@@ -21,9 +22,8 @@ import {
 import { FeatureFlagPayload } from 'background/actions/feature-flag-actions';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import * as React from 'react';
-
-import { ExportResultType } from '../../common/extension-telemetry-events';
 import * as TelemetryEvents from '../../common/extension-telemetry-events';
+import { ReportExportFormat } from '../../common/extension-telemetry-events';
 import { Message } from '../../common/message';
 import { DevToolActionMessageCreator } from '../../common/message-creators/dev-tool-action-message-creator';
 import { Messages } from '../../common/messages';
@@ -110,12 +110,12 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
     };
 
     public exportResultsClicked(
-        exportResultsType: ExportResultType,
+        reportExportFormat: ReportExportFormat,
         exportedHtml: string,
         event: React.MouseEvent<HTMLElement>,
     ): void {
         const telemetryData = this.telemetryFactory.forExportedHtml(
-            exportResultsType,
+            reportExportFormat,
             exportedHtml,
             event,
             TelemetryEvents.TelemetryEventSource.DetailsView,
@@ -164,18 +164,33 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         selectedRequirement: string,
         visualizationType: VisualizationType,
     ): void {
-        const payload: SelectRequirementPayload = {
+        const payload: SelectTestSubviewPayload = {
             telemetry: this.telemetryFactory.forSelectRequirement(
                 event,
                 visualizationType,
                 selectedRequirement,
             ),
-            selectedRequirement: selectedRequirement,
+            selectedTestSubview: selectedRequirement,
             selectedTest: visualizationType,
         };
 
         this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.SelectTestRequirement,
+            payload: payload,
+        });
+    }
+
+    public selectGettingStarted(
+        event: React.MouseEvent<HTMLElement>,
+        visualizationType: VisualizationType,
+    ): void {
+        const payload: SelectGettingStartedPayload = {
+            telemetry: this.telemetryFactory.forSelectGettingStarted(event, visualizationType),
+            selectedTest: visualizationType,
+        };
+
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.Assessment.SelectGettingStarted,
             payload: payload,
         });
     }
@@ -500,12 +515,18 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
 
     public startOverAllAssessments = (event: React.MouseEvent<any>): void => {
         const telemetry = this.telemetryFactory.fromDetailsView(event);
-        const payload: BaseActionPayload = {
+        const setDetailsViewRightContentPanelPayload: DetailsViewRightContentPanelType = 'Overview';
+        const startOverAllAssessmentsActionPayload: BaseActionPayload = {
             telemetry: telemetry,
         };
+
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.Visualizations.DetailsView.SetDetailsViewRightContentPanel,
+            payload: setDetailsViewRightContentPanelPayload,
+        });
         this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.StartOverAllAssessments,
-            payload,
+            payload: startOverAllAssessmentsActionPayload,
         });
     };
 

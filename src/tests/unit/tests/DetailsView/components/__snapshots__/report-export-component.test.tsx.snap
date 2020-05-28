@@ -2,7 +2,7 @@
 
 exports[`ReportExportComponentTest render 1`] = `
 <React.Fragment>
-  <CustomizedActionButton
+  <InsightsCommandButton
     iconProps={
       Object {
         "iconName": "Export",
@@ -11,24 +11,38 @@ exports[`ReportExportComponentTest render 1`] = `
     onClick={[Function]}
   >
     Export result
-  </CustomizedActionButton>
+  </InsightsCommandButton>
   <ExportDialog
-    deps={Object {}}
+    deps={
+      Object {
+        "reportGenerator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "assessmentReportHtmlGenerator": undefined,
+          "reportHtmlGenerator": undefined,
+          "reportNameGenerator": undefined,
+        },
+      }
+    }
     description=""
-    exportResultsType="Assessment"
+    featureFlagStoreData={
+      Object {
+        "test-feature-flag": true,
+      }
+    }
     fileName=""
     html=""
     isOpen={false}
     onClose={[Function]}
     onDescriptionChange={[Function]}
     onExportClick={[Function]}
+    reportExportFormat="Assessment"
   />
 </React.Fragment>
 `;
 
 exports[`ReportExportComponentTest user interactions click export button: dialog should show 1`] = `
 <React.Fragment>
-  <CustomizedActionButton
+  <InsightsCommandButton
     iconProps={
       Object {
         "iconName": "Export",
@@ -37,23 +51,37 @@ exports[`ReportExportComponentTest user interactions click export button: dialog
     onClick={[Function]}
   >
     Export result
-  </CustomizedActionButton>
+  </InsightsCommandButton>
   <ExportDialog
-    deps={Object {}}
+    deps={
+      Object {
+        "reportGenerator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "assessmentReportHtmlGenerator": undefined,
+          "reportHtmlGenerator": undefined,
+          "reportNameGenerator": undefined,
+        },
+      }
+    }
     description="persisted description"
-    exportResultsType="Assessment"
+    featureFlagStoreData={
+      Object {
+        "test-feature-flag": true,
+      }
+    }
     html=""
     isOpen={true}
     onClose={[Function]}
     onDescriptionChange={[Function]}
     onExportClick={[Function]}
+    reportExportFormat="Assessment"
   />
 </React.Fragment>
 `;
 
 exports[`ReportExportComponentTest user interactions dismiss dialog: dialog should be dismissed 1`] = `
 <React.Fragment>
-  <CustomizedActionButton
+  <InsightsCommandButton
     iconProps={
       Object {
         "iconName": "Export",
@@ -62,23 +90,37 @@ exports[`ReportExportComponentTest user interactions dismiss dialog: dialog shou
     onClick={[Function]}
   >
     Export result
-  </CustomizedActionButton>
+  </InsightsCommandButton>
   <ExportDialog
-    deps={Object {}}
+    deps={
+      Object {
+        "reportGenerator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "assessmentReportHtmlGenerator": undefined,
+          "reportHtmlGenerator": undefined,
+          "reportNameGenerator": undefined,
+        },
+      }
+    }
     description=""
-    exportResultsType="Assessment"
+    featureFlagStoreData={
+      Object {
+        "test-feature-flag": true,
+      }
+    }
     html=""
     isOpen={false}
     onClose={[Function]}
     onDescriptionChange={[Function]}
     onExportClick={[Function]}
+    reportExportFormat="Assessment"
   />
 </React.Fragment>
 `;
 
-exports[`ReportExportComponentTest user interactions edit text field: user input new description 1`] = `
+exports[`ReportExportComponentTest user interactions edit text field: test content with special characters: <> $ " \` ' 1`] = `
 <React.Fragment>
-  <CustomizedActionButton
+  <InsightsCommandButton
     iconProps={
       Object {
         "iconName": "Export",
@@ -87,17 +129,31 @@ exports[`ReportExportComponentTest user interactions edit text field: user input
     onClick={[Function]}
   >
     Export result
-  </CustomizedActionButton>
+  </InsightsCommandButton>
   <ExportDialog
-    deps={Object {}}
-    description="new description"
-    exportResultsType="Assessment"
+    deps={
+      Object {
+        "reportGenerator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "assessmentReportHtmlGenerator": undefined,
+          "reportHtmlGenerator": undefined,
+          "reportNameGenerator": undefined,
+        },
+      }
+    }
+    description="test content with special characters: <> $ \\" \` '"
+    featureFlagStoreData={
+      Object {
+        "test-feature-flag": true,
+      }
+    }
     fileName=""
     html=""
     isOpen={false}
     onClose={[Function]}
     onDescriptionChange={[Function]}
     onExportClick={[Function]}
+    reportExportFormat="Assessment"
   />
 </React.Fragment>
 `;

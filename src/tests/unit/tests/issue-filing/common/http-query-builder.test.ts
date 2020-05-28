@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { repeat } from 'lodash';
-import { HTTPQueryBuilder, QueryParam } from '../../../../../issue-filing/common/http-query-builder';
+import {
+    HTTPQueryBuilder,
+    QueryParam,
+} from '../../../../../issue-filing/common/http-query-builder';
 
 describe('HTTPQueryBuilder', () => {
     const testUrl = 'https://some-test-url';
@@ -57,17 +60,22 @@ describe('HTTPQueryBuilder', () => {
         const expectedUrlNoHtmlTags = actualUrlNoHtmlTags.substr(0, actualUrlNoHtmlTags.length - 3);
 
         const testCases = [
-            [`length ${HTTPQueryBuilder.maxUrlLength - 1}, with html tags`, actualUrl1, expectedUrl1],
+            [
+                `length ${HTTPQueryBuilder.maxUrlLength - 1}, with html tags`,
+                actualUrl1,
+                expectedUrl1,
+            ],
             [`length ${HTTPQueryBuilder.maxUrlLength}, with html tags`, actualUrl2, expectedUrl2],
-            [`length ${HTTPQueryBuilder.maxUrlLength + 1}, with html tags`, actualUrl3, expectedUrl3],
+            [
+                `length ${HTTPQueryBuilder.maxUrlLength + 1}, with html tags`,
+                actualUrl3,
+                expectedUrl3,
+            ],
             ['no html tags', actualUrlNoHtmlTags, expectedUrlNoHtmlTags],
         ];
 
         it.each(testCases)('of length %s', (name, actual, expected) => {
-            const result = testSubject
-                .withBaseUrl('')
-                .withParam('a', actual)
-                .build();
+            const result = testSubject.withBaseUrl('').withParam('a', actual).build();
 
             expect(result).toEqual('?a=' + expected);
         });

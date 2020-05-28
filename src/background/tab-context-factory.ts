@@ -16,7 +16,6 @@ import { InjectionActionCreator } from './actions/injection-action-creator';
 import { InspectActionCreator } from './actions/inspect-action-creator';
 import { PathSnippetActionCreator } from './actions/path-snippet-action-creator';
 import { PopupActionCreator } from './actions/popup-action-creator';
-import { ScopingPanelActionCreator } from './actions/scoping-panel-action-creator';
 import { ShortcutsPageActionCreator } from './actions/shortcuts-page-action-creator';
 import { TabActionCreator } from './actions/tab-action-creator';
 import { UnifiedScanResultActionCreator } from './actions/unified-scan-result-action-creator';
@@ -29,6 +28,7 @@ import { TabContextStoreHub } from './stores/tab-context-store-hub';
 import { TabContext } from './tab-context';
 import { TargetTabController } from './target-tab-controller';
 import { TelemetryEventHandler } from './telemetry/telemetry-event-handler';
+import { UsageLogger } from './usage-logger';
 
 export class TabContextFactory {
     constructor(
@@ -37,6 +37,7 @@ export class TabContextFactory {
         private targetTabController: TargetTabController,
         private readonly promiseFactory: PromiseFactory,
         private readonly logger: Logger,
+        private readonly usageLogger: UsageLogger,
     ) {}
 
     public createTabContext(
@@ -69,11 +70,13 @@ export class TabContextFactory {
             notificationCreator,
             this.visualizationConfigurationFactory,
             this.targetTabController,
+            this.logger,
         );
 
         const detailsViewActionCreator = new DetailsViewActionCreator(
             interpreter,
             actionsHub.detailsViewActions,
+            actionsHub.sidePanelActions,
             detailsViewController,
             this.telemetryEventHandler,
         );
@@ -89,6 +92,7 @@ export class TabContextFactory {
             interpreter,
             actionsHub.tabActions,
             this.telemetryEventHandler,
+            this.usageLogger,
         );
         const devToolsActionCreator = new DevToolsActionCreator(
             interpreter,
@@ -110,12 +114,6 @@ export class TabContextFactory {
             interpreter,
             actionsHub.scanResultActions,
             this.telemetryEventHandler,
-        );
-        const scopingPanelActionCreator = new ScopingPanelActionCreator(
-            interpreter,
-            actionsHub.scopingActions,
-            this.telemetryEventHandler,
-            detailsViewController,
         );
         const contentActionCreator = new ContentActionCreator(
             interpreter,
@@ -149,7 +147,6 @@ export class TabContextFactory {
         pathSnippetActionCreator.registerCallbacks();
         tabActionCreator.registerCallbacks();
         popupActionCreator.registerCallbacks();
-        scopingPanelActionCreator.registerCallbacks();
         contentActionCreator.registerCallbacks();
         scanResultActionCreator.registerCallbacks();
         cardSelectionActionCreator.registerCallbacks();

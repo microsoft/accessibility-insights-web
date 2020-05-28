@@ -2,7 +2,11 @@
 // Licensed under the MIT License.
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
-import { InteractiveHeader, InteractiveHeaderProps } from 'DetailsView/components/interactive-header';
+import {
+    InteractiveHeader,
+    InteractiveHeaderDeps,
+    InteractiveHeaderProps,
+} from 'DetailsView/components/interactive-header';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
@@ -11,13 +15,14 @@ describe('InteractiveHeader', () => {
     it.each([false, true])('render: tabClosed is %s', tabClosed => {
         const dropdownClickHandlerMock = Mock.ofType(DropdownClickHandler);
         const props: InteractiveHeaderProps = {
-            dropdownClickHandler: dropdownClickHandlerMock.object,
             featureFlagStoreData: {
                 'test-flag': true,
             },
             avatarUrl: 'avatarUrl',
             tabClosed,
-            deps: null,
+            deps: {
+                dropdownClickHandler: dropdownClickHandlerMock.object,
+            } as InteractiveHeaderDeps,
             selectedPivot: DetailsViewPivotType.assessment,
         };
 

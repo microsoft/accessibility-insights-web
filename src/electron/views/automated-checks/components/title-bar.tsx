@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { HeaderIcon, HeaderIconDeps } from 'common/components/header-icon';
 import { NamedFC } from 'common/react/named-fc';
-import { brand } from 'content/strings/application';
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { WindowTitle, WindowTitleDeps } from 'electron/views/common/window-title/window-title';
@@ -18,6 +17,7 @@ export type TitleBarDeps = {
 
 export interface TitleBarProps {
     deps: TitleBarDeps;
+    pageTitle: string;
     windowStateStoreData: WindowStateStoreData;
 }
 
@@ -60,11 +60,12 @@ export const TitleBar = NamedFC<TitleBarProps>('TitleBar', (props: TitleBarProps
 
     return (
         <WindowTitle
-            title={brand}
+            pageTitle={props.pageTitle}
             actionableIcons={icons}
             windowStateStoreData={props.windowStateStoreData}
             deps={props.deps}
             className={styles.titleBar}
+            headerTextClassName={styles.headerText}
         >
             <HeaderIcon deps={props.deps} />
         </WindowTitle>

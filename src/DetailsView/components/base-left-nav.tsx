@@ -7,15 +7,11 @@ export type onBaseLeftNavItemClick = (
     event: React.MouseEvent<HTMLElement>,
     item: BaseLeftNavLink,
 ) => void;
-export type onBaseLeftNavItemRender = (
-    link: BaseLeftNavLink,
-    renderIcon: (link: BaseLeftNavLink) => JSX.Element,
-) => JSX.Element;
+export type onBaseLeftNavItemRender = (link: BaseLeftNavLink) => JSX.Element;
 
 export type BaseLeftNavProps = {
     selectedKey: string;
     links: BaseLeftNavLink[];
-    renderIcon: (link: BaseLeftNavLink) => JSX.Element;
 };
 
 export interface BaseLeftNavLink extends INavLink {
@@ -45,6 +41,9 @@ export class BaseLeftNav extends React.Component<BaseLeftNavProps> {
                 ]}
                 onRenderLink={this.onRenderLink}
                 onLinkClick={this.onNavLinkClick}
+                styles={{
+                    chevronButton: 'hidden',
+                }}
             />
         );
     }
@@ -59,6 +58,6 @@ export class BaseLeftNav extends React.Component<BaseLeftNavProps> {
     };
 
     protected onRenderLink = (link: BaseLeftNavLink): JSX.Element => {
-        return link.onRenderNavLink(link, this.props.renderIcon);
+        return link.onRenderNavLink(link);
     };
 }

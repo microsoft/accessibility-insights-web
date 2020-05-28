@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BoundingRectangle } from 'electron/platform/android/scan-results';
+import { BoundingRectangle } from 'electron/platform/android/android-scan-results';
 import { GuidanceLink } from '../../../scanner/rule-to-links-mappings';
 import { ScanIncompleteWarningId } from '../scan-incomplete-warnings';
 
@@ -13,6 +13,7 @@ export interface ScanEngineProperties {
 export interface ApplicationProperties {
     name: string;
     version: string;
+    environmentName?: string;
 }
 
 export interface OSProperties {
@@ -43,6 +44,13 @@ export interface ToolData {
     applicationProperties: ApplicationProperties;
 }
 
+export type ScanMetadata = {
+    timestamp: string;
+    toolData: ToolData;
+    targetAppInfo: TargetAppData;
+    deviceName?: string;
+};
+
 export interface UnifiedRule {
     id: string;
     description: string;
@@ -56,6 +64,7 @@ export interface UnifiedScanResultStoreData {
     platformInfo?: PlatformData;
     toolInfo?: ToolData;
     targetAppInfo?: TargetAppData;
+    timestamp?: string;
     scanIncompleteWarnings?: ScanIncompleteWarningId[];
     screenshotData?: ScreenshotData;
 }

@@ -8,63 +8,70 @@ import { FeatureFlags } from '../feature-flags';
 import { FeatureFlagStoreData } from '../types/store-data/feature-flag-store-data';
 import * as styles from './gear-menu-button.scss';
 
-export interface GearMenuButtonProps {
+export type GearMenuButtonDeps = {
     dropdownClickHandler: DropdownClickHandler;
-    featureFlags: FeatureFlagStoreData;
+};
+
+export interface GearMenuButtonProps {
+    deps: GearMenuButtonDeps;
+    featureFlagData: FeatureFlagStoreData;
 }
 
-export const GearMenuButton = NamedFC<GearMenuButtonProps>('GearOptionsButtonComponent', props => {
-    const getMenuItems = () => {
-        const menuToReturn: IContextualMenuItem[] = [
-            {
-                key: 'settings',
-                iconProps: {
-                    iconName: 'gear',
+export const GearMenuButton = NamedFC<GearMenuButtonProps>(
+    'GearOptionsButtonComponent',
+    ({ deps, featureFlagData }) => {
+        const getMenuItems = () => {
+            const menuToReturn: IContextualMenuItem[] = [
+                {
+                    key: 'settings',
+                    iconProps: {
+                        iconName: 'gear',
+                    },
+                    onClick: deps.dropdownClickHandler.openSettingsPanelHandler,
+                    name: 'Settings',
                 },
-                onClick: props.dropdownClickHandler.openSettingsPanelHandler,
-                name: 'Settings',
-            },
-            {
-                key: 'preview-features',
-                iconProps: {
-                    iconName: 'giftboxOpen',
+                {
+                    key: 'preview-features',
+                    iconProps: {
+                        iconName: 'giftboxOpen',
+                    },
+                    onClick: deps.dropdownClickHandler.openPreviewFeaturesPanelHandler,
+                    name: 'Preview features',
+                    className: 'preview-features-drop-down-button',
                 },
-                onClick: props.dropdownClickHandler.openPreviewFeaturesPanelHandler,
-                name: 'Preview features',
-                className: 'preview-features-drop-down-button',
-            },
-        ];
+            ];
 
-        if (props.featureFlags[FeatureFlags.scoping]) {
-            menuToReturn.push(getScopingFeatureMenuItem());
-        }
+            if (featureFlagData[FeatureFlags.scoping]) {
+                menuToReturn.push(getScopingFeatureMenuItem());
+            }
 
-        return menuToReturn;
-    };
-
-    const getScopingFeatureMenuItem = () => {
-        return {
-            key: 'scoping-feature',
-            iconProps: {
-                iconName: 'scopeTemplate',
-            },
-            onClick: props.dropdownClickHandler.openScopingPanelHandler,
-            name: 'Scoping',
+            return menuToReturn;
         };
-    };
 
-    return (
-        <IconButton
-            className={styles.gearMenuButton}
-            iconProps={{ iconName: 'Gear' }}
-            menuProps={{
-                items: getMenuItems(),
-                calloutProps: {
-                    className: styles.gearMenuButtonCallout,
+        const getScopingFeatureMenuItem = () => {
+            return {
+                key: 'scoping-feature',
+                iconProps: {
+                    iconName: 'scopeTemplate',
                 },
-            }}
-            onRenderMenuIcon={() => null}
-            ariaLabel="manage settings"
-        />
-    );
-});
+                onClick: deps.dropdownClickHandler.openScopingPanelHandler,
+                name: 'Scoping',
+            };
+        };
+
+        return (
+            <IconButton
+                className={styles.gearMenuButton}
+                iconProps={{ iconName: 'Gear' }}
+                menuProps={{
+                    items: getMenuItems(),
+                    calloutProps: {
+                        className: styles.gearMenuButtonCallout,
+                    },
+                }}
+                onRenderMenuIcon={() => null}
+                ariaLabel="manage settings"
+            />
+        );
+    },
+);

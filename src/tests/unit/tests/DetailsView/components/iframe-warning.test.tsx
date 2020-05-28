@@ -20,10 +20,14 @@ import { IMock, It, Mock, Times } from 'typemoq';
 
 describe('IframeWarning', () => {
     test('render', () => {
-        const onAllowPermissionsClickMock = Mock.ofInstance((e: SupportedMouseEvent): Promise<void> => null);
+        const onAllowPermissionsClickMock = Mock.ofInstance(
+            (e: SupportedMouseEvent): Promise<void> => null,
+        );
         const eventStub = {} as any;
 
-        const wrapper = shallow(<IframeWarning onAllowPermissionsClick={onAllowPermissionsClickMock.object} />);
+        const wrapper = shallow(
+            <IframeWarning onAllowPermissionsClick={onAllowPermissionsClickMock.object} />,
+        );
         const onAllowPermissionsClick = wrapper.find(Link).prop('onClick');
 
         onAllowPermissionsClick(eventStub);
@@ -65,7 +69,10 @@ describe('AssessmentIframeWarning', () => {
 
         await onAllowPermissionsClick(eventStub);
 
-        detailsViewActionCreatorMock.verify(m => m.startOverTest(eventStub, testStub), Times.once());
+        detailsViewActionCreatorMock.verify(
+            m => m.startOverTest(eventStub, testStub),
+            Times.once(),
+        );
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 });
@@ -102,7 +109,10 @@ describe('FastPassIframeWarning', () => {
 
         await onAllowPermissionsClick(eventStub);
 
-        detailsViewActionCreatorMock.verify(m => m.rescanVisualization(testStub, eventStub), Times.once());
+        detailsViewActionCreatorMock.verify(
+            m => m.rescanVisualization(testStub, eventStub),
+            Times.once(),
+        );
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 });

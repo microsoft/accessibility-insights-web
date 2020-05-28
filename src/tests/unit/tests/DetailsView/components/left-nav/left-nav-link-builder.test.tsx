@@ -1,20 +1,29 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { isMatch } from 'lodash';
-import { IMock, Mock, MockBehavior } from 'typemoq';
-
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
+import { Requirement } from 'assessments/types/requirement';
+import { gettingStartedSubview } from 'common/types/store-data/assessment-result-data';
+import { TestRequirementLeftNavLink } from 'DetailsView/components/left-nav/assessment-left-nav';
+import { NavLinkHandler } from 'DetailsView/components/left-nav/nav-link-handler';
+import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
 import { OverviewSummaryReportModel } from 'reports/assessment-report-model';
 import { OutcomeTypeSemantic } from 'reports/components/outcome-type';
 import { RequirementOutcomeStats } from 'reports/components/requirement-outcome-type';
 import { GetAssessmentSummaryModelFromProviderAndStatusData } from 'reports/get-assessment-summary-model';
+import { IMock, Mock, MockBehavior } from 'typemoq';
 import { VisualizationConfiguration } from '../../../../../../common/configs/visualization-configuration';
-import { ManualTestStatus, ManualTestStatusData } from '../../../../../../common/types/manual-test-status';
+import {
+    ManualTestStatus,
+    ManualTestStatusData,
+} from '../../../../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
-import { BaseLeftNavLink, onBaseLeftNavItemClick } from '../../../../../../DetailsView/components/base-left-nav';
-import { LeftNavLinkBuilder, LeftNavLinkBuilderDeps } from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';
+import { onBaseLeftNavItemClick } from '../../../../../../DetailsView/components/base-left-nav';
+import {
+    LeftNavLinkBuilder,
+    LeftNavLinkBuilderDeps,
+} from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';
 import { DictionaryStringTo } from '../../../../../../types/common-types';
 
 describe('LeftNavBuilder', () => {
@@ -24,10 +33,13 @@ describe('LeftNavBuilder', () => {
     let assessmentsDataStub: DictionaryStringTo<ManualTestStatusData>;
     let testSubject: LeftNavLinkBuilder;
     let getAssessmentSummaryModelFromProviderAndStatusDataMock: IMock<GetAssessmentSummaryModelFromProviderAndStatusData>;
-    let renderIconStub: (link: BaseLeftNavLink) => JSX.Element;
     let getStatusForTestMock: IMock<(stats: RequirementOutcomeStats) => ManualTestStatus>;
     let outcomeTypeFromTestStatusMock: IMock<(testStatus: ManualTestStatus) => OutcomeTypeSemantic>;
-    let outcomeStatsFromManualTestStatusMock: IMock<(testStepStatus: ManualTestStatusData) => RequirementOutcomeStats>;
+    let outcomeStatsFromManualTestStatusMock: IMock<(
+        testStepStatus: ManualTestStatusData,
+    ) => RequirementOutcomeStats>;
+    let navLinkHandlerMock: IMock<NavLinkHandler>;
+    let navLinkRendererMock: IMock<NavLinkRenderer>;
 
     beforeEach(() => {
         onLinkClickMock = Mock.ofInstance((e, item) => null, MockBehavior.Strict);
@@ -35,15 +47,22 @@ describe('LeftNavBuilder', () => {
         outcomeTypeFromTestStatusMock = Mock.ofInstance(_ => null, MockBehavior.Strict);
         outcomeStatsFromManualTestStatusMock = Mock.ofInstance(_ => null, MockBehavior.Strict);
         assessmentProviderMock = Mock.ofType(AssessmentsProviderImpl, MockBehavior.Strict);
-        getAssessmentSummaryModelFromProviderAndStatusDataMock = Mock.ofInstance((provider, statusData) => null, MockBehavior.Strict);
+        getAssessmentSummaryModelFromProviderAndStatusDataMock = Mock.ofInstance(
+            (provider, statusData) => null,
+            MockBehavior.Strict,
+        );
         assessmentsDataStub = {};
-        renderIconStub = _ => null;
+        navLinkHandlerMock = Mock.ofType(NavLinkHandler);
+        navLinkRendererMock = Mock.ofType(NavLinkRenderer);
 
         deps = {
             getStatusForTest: getStatusForTestMock.object,
             outcomeStatsFromManualTestStatus: outcomeStatsFromManualTestStatusMock.object,
             outcomeTypeSemanticsFromTestStatus: outcomeTypeFromTestStatusMock.object,
-            getAssessmentSummaryModelFromProviderAndStatusData: getAssessmentSummaryModelFromProviderAndStatusDataMock.object,
+            getAssessmentSummaryModelFromProviderAndStatusData:
+                getAssessmentSummaryModelFromProviderAndStatusDataMock.object,
+            navLinkHandler: navLinkHandlerMock.object,
+            navLinkRenderer: navLinkRendererMock.object,
         } as LeftNavLinkBuilderDeps;
 
         testSubject = new LeftNavLinkBuilder();
@@ -85,10 +104,10 @@ describe('LeftNavBuilder', () => {
                 onClickNavLink: onLinkClickMock.object,
                 title: expectedTitle,
                 percentComplete: expectedPercentComplete,
+                onRenderNavLink: navLinkRendererMock.object.renderOverviewLink,
             };
 
-            expect(isMatch(actual, expected)).toBeTruthy();
-            expect(actual.onRenderNavLink(actual, renderIconStub)).toMatchSnapshot();
+            expect(actual).toMatchObject(expected);
         });
     });
 
@@ -104,6 +123,7 @@ describe('LeftNavBuilder', () => {
             } as VisualizationConfiguration;
 
             const actual = testSubject.buildVisualizationConfigurationLink(
+                deps,
                 configStub,
                 onLinkClickMock.object,
                 visualizationTypeStub,
@@ -120,10 +140,10 @@ describe('LeftNavBuilder', () => {
                     className: 'hidden',
                 },
                 onClickNavLink: onLinkClickMock.object,
+                onRenderNavLink: navLinkRendererMock.object.renderVisualizationLink,
             };
 
-            expect(isMatch(actual, expected)).toBeTruthy();
-            expect(actual.onRenderNavLink(actual, renderIconStub)).toMatchSnapshot();
+            expect(actual).toMatchObject(expected);
         });
     });
 
@@ -147,11 +167,17 @@ describe('LeftNavBuilder', () => {
 
             assessmentProviderMock.setup(apm => apm.all()).returns(() => assessmentsStub);
 
-            outcomeStatsFromManualTestStatusMock.setup(mock => mock(stepStatusStub)).returns(() => outcomeStatsStub);
+            outcomeStatsFromManualTestStatusMock
+                .setup(mock => mock(stepStatusStub))
+                .returns(() => outcomeStatsStub);
 
-            getStatusForTestMock.setup(mock => mock(outcomeStatsStub)).returns(() => testStatusStub);
+            getStatusForTestMock
+                .setup(mock => mock(outcomeStatsStub))
+                .returns(() => testStatusStub);
 
-            outcomeTypeFromTestStatusMock.setup(mock => mock(testStatusStub)).returns(() => narratorStatusStub);
+            outcomeTypeFromTestStatusMock
+                .setup(mock => mock(testStatusStub))
+                .returns(() => narratorStatusStub);
 
             const links = testSubject.buildAssessmentTestLinks(
                 deps,
@@ -173,11 +199,132 @@ describe('LeftNavBuilder', () => {
                     },
                     onClickNavLink: onLinkClickMock.object,
                     status: testStatusStub,
-                    title: `${startingIndexStub + linkIndex}: ${assessmentStub.title} (${narratorStatusStub.pastTense})`,
+                    title: `${startingIndexStub + linkIndex}: ${assessmentStub.title} (${
+                        narratorStatusStub.pastTense
+                    })`,
+                    onRenderNavLink: navLinkRendererMock.object.renderAssessmentTestLink,
                 };
-                expect(isMatch(actual, expected)).toBeTruthy();
-                expect(actual.onRenderNavLink(actual, renderIconStub)).toMatchSnapshot();
+
+                expect(actual).toMatchObject(expected);
             });
         });
     });
+
+    describe('buildReflowAssessmentTestLinks', () => {
+        it('should build links for assessments', () => {
+            const startingIndexStub = -1;
+            const requirementStubA = {
+                name: 'requirement-name-1',
+                key: 'requirement-key-1',
+            } as Requirement;
+            const requirementStubB = {
+                name: 'requirement-name-2',
+                key: 'requirement-key-2',
+            } as Requirement;
+            const assessmentStub = {
+                key: 'some key',
+                title: 'some title',
+                visualizationType: 1,
+                requirements: [requirementStubA, requirementStubB],
+            } as Assessment;
+            const assessmentsStub = [assessmentStub, assessmentStub];
+            const outcomeStatsStub = {} as RequirementOutcomeStats;
+            const testStatusStub = -2 as ManualTestStatus;
+            const narratorStatusStub = { pastTense: 'passed' } as OutcomeTypeSemantic;
+            const stepStatusStub: ManualTestStatusData = {
+                [requirementStubA.key]: {
+                    stepFinalResult: testStatusStub,
+                },
+                [requirementStubB.key]: {
+                    stepFinalResult: testStatusStub,
+                },
+            } as ManualTestStatusData;
+
+            assessmentsDataStub = {
+                [assessmentStub.key]: stepStatusStub,
+            };
+
+            assessmentProviderMock.setup(apm => apm.all()).returns(() => assessmentsStub);
+
+            outcomeStatsFromManualTestStatusMock
+                .setup(mock => mock(stepStatusStub))
+                .returns(() => outcomeStatsStub);
+
+            getStatusForTestMock
+                .setup(mock => mock(outcomeStatsStub))
+                .returns(() => testStatusStub);
+
+            outcomeTypeFromTestStatusMock
+                .setup(mock => mock(testStatusStub))
+                .returns(() => narratorStatusStub);
+
+            const links = testSubject.buildReflowAssessmentTestLinks(
+                deps,
+                assessmentProviderMock.object,
+                assessmentsDataStub,
+                startingIndexStub,
+            );
+
+            links.forEach((testLink, linkIndex) => {
+                const visualizationType = assessmentStub.visualizationType;
+                const expectedTestLink = {
+                    name: assessmentStub.title,
+                    key: VisualizationType[visualizationType],
+                    forceAnchor: true,
+                    url: '',
+                    index: startingIndexStub + linkIndex,
+                    iconProps: {
+                        className: 'hidden',
+                    },
+                    status: testStatusStub,
+                    title: `${startingIndexStub + linkIndex}: ${assessmentStub.title} (${
+                        narratorStatusStub.pastTense
+                    })`,
+                    onRenderNavLink: navLinkRendererMock.object.renderAssessmentTestLink,
+                };
+                const expectedGettingStartedLink = {
+                    name: 'Getting Started',
+                    key: `${VisualizationType[visualizationType]}: ${gettingStartedSubview}`,
+                    forceAnchor: true,
+                    url: '',
+                    index: 0,
+                    iconProps: {
+                        className: 'hidden',
+                    },
+                    onRenderNavLink: navLinkRendererMock.object.renderGettingStartedLink,
+                };
+                const expectedRequirementLinkA = getExpectedRequirementLink(
+                    requirementStubA,
+                    assessmentStub.visualizationType,
+                    testStatusStub,
+                );
+
+                const actualGettingStartedLink = testLink.links[0];
+                const actualRequirementLink = testLink.links[1] as TestRequirementLeftNavLink;
+                expect(testLink).toMatchObject(expectedTestLink);
+                expect(actualGettingStartedLink).toMatchObject(expectedGettingStartedLink);
+                expect(actualRequirementLink).toMatchObject(expectedRequirementLinkA);
+            });
+        });
+    });
+
+    function getExpectedRequirementLink(
+        requirement: Requirement,
+        test: VisualizationType,
+        status: ManualTestStatus,
+    ): TestRequirementLeftNavLink {
+        return {
+            name: requirement.name,
+            key: `${VisualizationType[test]}: ${requirement.key}`,
+            forceAnchor: true,
+            url: '',
+            iconProps: {
+                className: 'hidden',
+            },
+            testType: test,
+            status,
+            requirementKey: requirement.key,
+            onRenderNavLink: navLinkRendererMock.object.renderRequirementLink,
+        } as TestRequirementLeftNavLink;
+    }
 });

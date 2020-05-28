@@ -4,16 +4,13 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
-        <h1>Role, state, property</h1>
         <p>A custom widget must support the ARIA roles, states, and properties specified by its design pattern.</p>
-
         <h2>Why it matters</h2>
         <p>
             Making a custom widget involves modifying the role and/or function of one or more of the native HTML elements used as its
             building blocks. Additional coding is required to ensure that the widget provides the right information to browsers and
             assistive technologies.
         </p>
-
         <h2>How to fix</h2>
         <ol>
             <li>
@@ -24,7 +21,6 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             <li>Determine which design pattern your widget should follow.</li>
             <li>Make sure your custom widget follows the design pattern's specifications for "WAI-ARIA Roles, States, and Properties."</li>
         </ol>
-
         <h2>Example</h2>
         <Markup.PassFail
             failText={
@@ -54,9 +50,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             <li id="entree2" [role="option"]>Roasted Veggie Casserole</li>
             </ul>`}
         />
-
         <h2>More examples</h2>
-
         <h3>WCAG success criteria</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html">
@@ -75,7 +69,6 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 Using WAI-ARIA state and property attributes to expose the state of a user interface component
             </Markup.HyperLink>
         </Markup.Links>
-
         <h3>Common failures</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F59">
@@ -91,7 +84,6 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 determinable or no notification of change of focus state available
             </Markup.HyperLink>
         </Markup.Links>
-
         <h3>Additional guidance</h3>
         <Markup.Links>
             <Link.WAIARIAAuthoringPractices />

@@ -55,9 +55,7 @@ export const guidance = create(({ Markup, Link }) => (
                     <li>Programmatic heading levels should match their visual appearance (like size and boldness).</li>
                 </ul>
 
-                <h3>
-                    Use exactly one top-level heading. (<Link.WCAG_1_3_1 />){' '}
-                </h3>
+                <h3>Use exactly one top-level heading. (best practice) </h3>
                 <ul>
                     <li>
                         Top-level (<Markup.Code>h1</Markup.Code>) headings should give an overall description of the page content.

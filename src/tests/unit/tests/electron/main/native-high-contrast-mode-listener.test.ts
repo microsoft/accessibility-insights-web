@@ -26,7 +26,10 @@ describe('NativeHighContrastModeListener', () => {
             })
             .verifiable();
 
-        testSubject = new NativeHighContrastModeListener(mockNativeTheme.object, mockMessageCreator.object);
+        testSubject = new NativeHighContrastModeListener(
+            mockNativeTheme.object,
+            mockMessageCreator.object,
+        );
     });
 
     function setNativeContrastMode(value: boolean): void {
@@ -40,12 +43,15 @@ describe('NativeHighContrastModeListener', () => {
         mockNativeTheme.verify(m => m.on(It.isAny(), It.isAny()), Times.never());
     });
 
-    it.each([true, false])('should send an initial message on startListening in state %p', initialState => {
-        mockNativeTheme.setup(m => m.shouldUseHighContrastColors).returns(() => initialState);
-        testSubject.startListening();
+    it.each([true, false])(
+        'should send an initial message on startListening in state %p',
+        initialState => {
+            mockNativeTheme.setup(m => m.shouldUseHighContrastColors).returns(() => initialState);
+            testSubject.startListening();
 
-        mockMessageCreator.verify(m => m.setHighContrastMode(initialState), Times.once());
-    });
+            mockMessageCreator.verify(m => m.setNativeHighContrastMode(initialState), Times.once());
+        },
+    );
 
     it('should send messages when the underlying high contrast state changes', () => {
         setNativeContrastMode(false);
@@ -56,7 +62,7 @@ describe('NativeHighContrastModeListener', () => {
         setNativeContrastMode(true);
 
         testSubjectOnNativeThemeUpdateHandler();
-        mockMessageCreator.verify(m => m.setHighContrastMode(true), Times.once());
+        mockMessageCreator.verify(m => m.setNativeHighContrastMode(true), Times.once());
     });
 
     it("should avoid sending messages for underlying state changes that don't impact high contrast mode", () => {
@@ -66,14 +72,16 @@ describe('NativeHighContrastModeListener', () => {
 
         // shouldUseHighContrastColors still false
         testSubjectOnNativeThemeUpdateHandler();
-        mockMessageCreator.verify(m => m.setHighContrastMode(It.isAny()), Times.never());
+        mockMessageCreator.verify(m => m.setNativeHighContrastMode(It.isAny()), Times.never());
     });
 
     it('should unregister all underlying event handlers on stopListening', () => {
         setNativeContrastMode(false);
         testSubject.startListening();
 
-        mockNativeTheme.setup(m => m.removeListener('updated', testSubjectOnNativeThemeUpdateHandler)).verifiable(Times.once());
+        mockNativeTheme
+            .setup(m => m.removeListener('updated', testSubjectOnNativeThemeUpdateHandler))
+            .verifiable(Times.once());
         testSubject.stopListening();
 
         mockNativeTheme.verifyAll();

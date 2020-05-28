@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
-        <h1>Graphics</h1>
         <p>Meaningful graphics must have sufficient contrast.</p>
 
         <h2>Why it matters</h2>

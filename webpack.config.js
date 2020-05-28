@@ -32,7 +32,7 @@ const commonEntryFiles = {
         path.resolve(__dirname, 'src/injected/stylesheet-init.ts'),
         path.resolve(__dirname, 'src/injected/client-init.ts'),
     ],
-    popup: path.resolve(__dirname, 'src/popup/popup-init.ts'),
+    popup: [path.resolve(__dirname, 'src/popup/popup-init.ts')],
     insights: [path.resolve(__dirname, 'src/views/insights/initializer.ts')],
     detailsView: [path.resolve(__dirname, 'src/DetailsView/details-view-initializer.ts')],
     devtools: [path.resolve(__dirname, 'src/Devtools/dev-tool-init.ts')],
@@ -82,7 +82,8 @@ const commonConfig = {
         rules: [tsRule, scssRule(true)],
     },
     resolve: {
-        modules: [path.resolve(__dirname, './src'), path.resolve(__dirname, 'node_modules')],
+        // It is important that src is absolute but node_modules is relative. See #2520
+        modules: [path.resolve(__dirname, './src'), 'node_modules'],
         extensions: ['.tsx', '.ts', '.js'],
     },
     plugins: commonPlugins,
@@ -93,6 +94,10 @@ const commonConfig = {
         // We allow higher-than-normal sizes because our users only have to do local fetches of our bundles
         maxEntrypointSize: 10 * 1024 * 1024,
         maxAssetSize: 10 * 1024 * 1024,
+    },
+    stats: {
+        // This is to suppress noise from mini-css-extract-plugin
+        children: false,
     },
 };
 
@@ -119,6 +124,11 @@ const unifiedConfig = {
 
 const devConfig = {
     ...commonConfig,
+    entry: {
+        ...commonEntryFiles,
+        detailsView: ['react-devtools', ...commonEntryFiles.detailsView],
+        popup: ['react-devtools', ...commonEntryFiles.popup],
+    },
     name: 'dev',
     mode: 'development',
     devtool: 'eval-source-map',

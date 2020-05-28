@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CardsCollapsibleControl, CollapsibleComponentCardsProps } from 'common/components/cards/collapsible-component-cards';
+import {
+    CardsCollapsibleControl,
+    CollapsibleComponentCardsProps,
+} from 'common/components/cards/collapsible-component-cards';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { shallow } from 'enzyme';
 import { forOwn } from 'lodash';
@@ -59,7 +62,9 @@ describe('CollapsibleComponentCardsTest', () => {
 
     test('toggle from expanded to collapsed', () => {
         const eventStub = eventStubFactory.createKeypressEvent() as any;
-        cardSelectionMessageCreatorMock.setup(mock => mock.toggleRuleExpandCollapse(It.isAnyString(), eventStub)).verifiable(Times.once());
+        cardSelectionMessageCreatorMock
+            .setup(mock => mock.toggleRuleExpandCollapse(It.isAnyString(), eventStub))
+            .verifiable(Times.once());
 
         const props: CollapsibleComponentCardsProps = {
             ...partialProps,
@@ -108,7 +113,10 @@ describe('CollapsibleComponentCardsTest', () => {
             const button = result.find('CustomizedActionButton');
             button.simulate('click', eventStub);
 
-            setFocusVisibilityMock.verify(handler => handler(It.isAny(), It.isAny()), Times.never());
+            setFocusVisibilityMock.verify(
+                handler => handler(It.isAny(), It.isAny()),
+                Times.never(),
+            );
         });
     });
 });

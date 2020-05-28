@@ -3,7 +3,11 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { LeftNavIconProps, LeftNavIndexIcon, LeftNavStatusIcon } from '../../../../../../DetailsView/components/left-nav/left-nav-icon';
+import {
+    LeftNavIconProps,
+    LeftNavIndexIcon,
+    LeftNavStatusIcon,
+} from '../../../../../../DetailsView/components/left-nav/left-nav-icon';
 
 describe('LeftNavStatusIcon', () => {
     it('render', () => {
@@ -14,6 +18,7 @@ describe('LeftNavStatusIcon', () => {
                 name: 'test',
                 url: 'test',
             },
+            className: 'some class',
         } as LeftNavIconProps;
 
         const actual = shallow(<LeftNavStatusIcon {...props} />);

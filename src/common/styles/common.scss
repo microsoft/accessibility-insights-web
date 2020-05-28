@@ -1,5 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+
+// This file is @imported by many SCSS modules, which means it *must not* contain any actual style
+// definitions; it may *only* contain SCSS directives (eg, $variable, @function, and @mixin).
+
 @import 'high-contrast-override.scss';
 @import 'colors.scss';
 @import 'fonts.scss';
@@ -13,58 +17,6 @@ $focus-ring-color: $neutral-100;
     }
 }
 
-.ms-Fabric.is-focusVisible .ms-Nav-group .ms-nav-linkButton:focus::after {
-    @include set-focus-ring-styles('border');
-}
-
-button::after {
-    content: '';
-    position: absolute;
-}
-
-.ms-fontColor-neutralPrimary,
-.ms-fontColor-neutralPrimary--hover:hover {
-    color: $neutral-100 !important;
-}
-
-.ms-Fabric {
-    color: $neutral-100;
-}
-
-.high-contrast-theme {
-    .insights-link {
-        &:hover {
-            text-decoration: underline;
-        }
-    }
-    .is-selected {
-        .status-icon {
-            color: $high-contrast-icon-color !important;
-        }
-    }
-}
-
-.insights-link {
-    // marking important to override office fabric style
-    color: $link !important;
-    text-decoration: none;
-
-    &:hover {
-        color: $link-hover !important;
-        text-decoration: underline;
-    }
-}
-
-.ms-Spinner {
-    .ms-Spinner-circle {
-        border-top-color: $spinner-text;
-    }
-
-    .ms-Spinner-label {
-        color: $spinner-text;
-    }
-}
-
 $normalTitleFontWeight: 300 !default;
 
 $pivotItemLeftBorderWidth: 3px !default;
@@ -75,6 +27,7 @@ $detailsViewNavPivotsHeight: 41px !default;
 $detailsViewCommandBarHeight: 40px !default;
 $detailsViewCommandBarBorderHeight: 1px !default;
 $detailsViewLeftNavWidth: 200px !default;
+$detailsViewReflowLeftNavWidth: 250px !default;
 $detailsViewTotalHeaderHeight: (
     #{$detailsViewCommandBarBorderHeight} + #{$detailsViewCommandBarHeight} + #{$detailsViewHeaderBarHeight}
 );

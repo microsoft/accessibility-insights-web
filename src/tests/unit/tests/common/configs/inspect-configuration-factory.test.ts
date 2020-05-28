@@ -3,7 +3,10 @@
 import { InspectMode } from 'background/inspect-modes';
 import { ScopingInputTypes } from 'background/scoping-input-types';
 import { Mock, Times } from 'typemoq';
-import { ConfigurationKey, InspectConfigurationFactory } from '../../../../../common/configs/inspect-configuration-factory';
+import {
+    ConfigurationKey,
+    InspectConfigurationFactory,
+} from '../../../../../common/configs/inspect-configuration-factory';
 import { ScopingActionMessageCreator } from '../../../../../common/message-creators/scoping-action-message-creator';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
@@ -40,7 +43,9 @@ describe('InspectConfigurationTest', () => {
 
         it('handles include', () => {
             scopingActionMessageCreatorMock
-                .setup(creator => creator.addSelector(event, ScopingInputTypes.include, testSelector))
+                .setup(creator =>
+                    creator.addSelector(event, ScopingInputTypes.include, testSelector),
+                )
                 .verifiable(Times.once());
 
             const handler = testObject.getConfigurationByKey(InspectMode.scopingAddInclude);
@@ -51,7 +56,9 @@ describe('InspectConfigurationTest', () => {
 
         it('handles exclude', () => {
             scopingActionMessageCreatorMock
-                .setup(creator => creator.addSelector(event, ScopingInputTypes.exclude, testSelector))
+                .setup(creator =>
+                    creator.addSelector(event, ScopingInputTypes.exclude, testSelector),
+                )
                 .verifiable(Times.once());
 
             const handler = testObject.getConfigurationByKey(InspectMode.scopingAddExclude);

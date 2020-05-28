@@ -2,7 +2,10 @@
 // Licensed under the MIT License.
 import { DisplayableFeatureFlag } from 'common/types/store-data/displayable-feature-flag';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
-import { PreviewFeaturesToggleList, PreviewFeaturesToggleListProps } from 'DetailsView/components/preview-features-toggle-list';
+import {
+    PreviewFeaturesToggleList,
+    PreviewFeaturesToggleListProps,
+} from 'DetailsView/components/preview-features-toggle-list';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
@@ -34,6 +37,8 @@ describe('PreviewFeaturesToggleListTest', () => {
         const testSubject = shallow(<PreviewFeaturesToggleList {...props} />);
         expect(testSubject.debug()).toMatchSnapshot();
 
-        expect(testSubject.find({ id: 'test-id-1' }).props().onClick).toBe(detailsViewActionMessageCreatorMock.object.setFeatureFlag);
+        expect(testSubject.find({ id: 'test-id-1' }).props().onClick).toBe(
+            detailsViewActionMessageCreatorMock.object.setFeatureFlag,
+        );
     });
 });

@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { KeyCodeConstants } from 'common/constants/keycode-constants';
-import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react';
-import { MaskedTextField } from 'office-ui-fabric-react';
+import { DefaultButton, MaskedTextField, PrimaryButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { DeviceConnectActionCreator } from '../../../flux/action-creator/device-connect-action-creator';
@@ -29,6 +28,8 @@ export interface DeviceConnectPortEntryState {
     port: string;
 }
 
+const textFieldId = 'port-number-text-field-id';
+
 export class DeviceConnectPortEntry extends React.Component<
     DeviceConnectPortEntryProps,
     DeviceConnectPortEntryState
@@ -41,18 +42,27 @@ export class DeviceConnectPortEntry extends React.Component<
     public render(): JSX.Element {
         return (
             <div className={styles.deviceConnectPortEntry}>
-                <h3>Android device port number</h3>
-                <MaskedTextField
-                    data-automation-id={deviceConnectPortNumberFieldAutomationId}
-                    ariaLabel="Port number"
-                    onChange={this.onPortTextChanged}
-                    placeholder="Ex: 12345"
-                    className={styles.portNumberField}
-                    maskChar=""
-                    mask="99999"
-                    onKeyDown={this.onEnterKey}
-                />
-                {this.renderValidationPortButton()}
+                <label htmlFor={textFieldId} className={styles.portNumberLabel}>
+                    Android device port number
+                </label>
+                <div className={styles.deviceConnectPortEntryBody}>
+                    <MaskedTextField
+                        id={textFieldId}
+                        data-automation-id={deviceConnectPortNumberFieldAutomationId}
+                        onChange={this.onPortTextChanged}
+                        placeholder="Ex: 12345"
+                        className={styles.portNumberField}
+                        maskChar=""
+                        mask="99999"
+                        onKeyDown={this.onEnterKey}
+                        onRenderDescription={() => (
+                            <span className={styles.portNumberFieldDescription}>
+                                The port number must be between 0 and 65535.
+                            </span>
+                        )}
+                    />
+                    {this.renderValidationPortButton()}
+                </div>
             </div>
         );
     }

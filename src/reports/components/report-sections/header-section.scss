@@ -14,20 +14,21 @@
     height: $detailsViewHeaderBarHeight;
     width: 100%;
 
-    .header-icon {
+    :global(.header-icon) {
         flex-shrink: 0;
         margin-left: 16px;
         height: 22px;
+        width: 22px;
     }
+
     .header-text {
         margin-left: 8px;
 
         color: $header-bar-title-color;
-        font-size: $fontSizeML;
-        font-family: $fontFamily;
 
         flex-shrink: 1;
         @include ellipsedText();
+        @include text-style-header-s;
     }
 }
 

@@ -10,13 +10,21 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
       Object {
         "getCardSelectionViewData": [Function],
         "getCardsViewData": [Function],
+        "isResultHighlightUnavailable": [Function],
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "deviceActions": undefined,
           "scanActions": undefined,
         },
         "screenshotViewModelProvider": [Function],
+        "toolData": Object {
+          "applicationProperties": Object {
+            "name": "some app",
+          },
+        },
       }
     }
+    pageTitle="Automated checks"
   />
   <div
     className="automatedChecksPanelLayout"
@@ -25,18 +33,50 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
       className="mainContentWrapper"
     >
       <CommandBar
+        cardsViewData={
+          Object {
+            "cards": Object {
+              "fail": Array [
+                Object {
+                  "id": "test-fail-id",
+                },
+              ],
+            },
+          }
+        }
         deps={
           Object {
             "getCardSelectionViewData": [Function],
             "getCardsViewData": [Function],
+            "isResultHighlightUnavailable": [Function],
             "scanActionCreator": proxy {
               "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "deviceActions": undefined,
               "scanActions": undefined,
             },
             "screenshotViewModelProvider": [Function],
+            "toolData": Object {
+              "applicationProperties": Object {
+                "name": "some app",
+              },
+            },
           }
         }
         deviceStoreData={Object {}}
+        scanMetadata={
+          Object {
+            "deviceName": "TEST DEVICE",
+            "targetAppInfo": Object {
+              "name": "test-target-app-name",
+            },
+            "timestamp": "test timestamp",
+            "toolData": Object {
+              "applicationProperties": Object {
+                "name": "some app",
+              },
+            },
+          }
+        }
         scanStoreData={
           Object {
             "status": 2,
@@ -61,16 +101,32 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
             Object {
               "getCardSelectionViewData": [Function],
               "getCardsViewData": [Function],
+              "isResultHighlightUnavailable": [Function],
               "scanActionCreator": proxy {
                 "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "deviceActions": undefined,
                 "scanActions": undefined,
               },
               "screenshotViewModelProvider": [Function],
+              "toolData": Object {
+                "applicationProperties": Object {
+                  "name": "some app",
+                },
+              },
             }
           }
-          targetAppInfo={
+          scanMetadata={
             Object {
-              "name": "test-target-app-name",
+              "deviceName": "TEST DEVICE",
+              "targetAppInfo": Object {
+                "name": "test-target-app-name",
+              },
+              "timestamp": "test timestamp",
+              "toolData": Object {
+                "applicationProperties": Object {
+                  "name": "some app",
+                },
+              },
             }
           }
           userConfigurationStoreData={
@@ -96,11 +152,18 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
       Object {
         "getCardSelectionViewData": [Function],
         "getCardsViewData": [Function],
+        "isResultHighlightUnavailable": [Function],
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "deviceActions": undefined,
           "scanActions": undefined,
         },
         "screenshotViewModelProvider": [Function],
+        "toolData": Object {
+          "applicationProperties": Object {
+            "name": "some app",
+          },
+        },
       }
     }
     featureFlagData={Object {}}
@@ -122,8 +185,10 @@ exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
   <TitleBar
     deps={
       Object {
+        "isResultHighlightUnavailable": [Function],
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "deviceActions": undefined,
           "scanActions": undefined,
         },
         "windowStateActionCreator": proxy {
@@ -133,6 +198,7 @@ exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
         },
       }
     }
+    pageTitle="Automated checks"
     windowStateStoreData="window state store data"
   />
   <div
@@ -142,10 +208,13 @@ exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
       className="mainContentWrapper"
     >
       <CommandBar
+        cardsViewData={null}
         deps={
           Object {
+            "isResultHighlightUnavailable": [Function],
             "scanActionCreator": proxy {
               "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "deviceActions": undefined,
               "scanActions": undefined,
             },
             "windowStateActionCreator": proxy {
@@ -160,6 +229,7 @@ exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
             "connectedDevice": "TEST DEVICE",
           }
         }
+        scanMetadata={null}
         scanStoreData={
           Object {
             "status": 3,
@@ -179,8 +249,10 @@ exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
   <SettingsPanel
     deps={
       Object {
+        "isResultHighlightUnavailable": [Function],
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "deviceActions": undefined,
           "scanActions": undefined,
         },
         "windowStateActionCreator": proxy {
@@ -205,8 +277,10 @@ exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
   <TitleBar
     deps={
       Object {
+        "isResultHighlightUnavailable": [Function],
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "deviceActions": undefined,
           "scanActions": undefined,
         },
         "windowStateActionCreator": proxy {
@@ -216,6 +290,7 @@ exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
         },
       }
     }
+    pageTitle="Automated checks"
     windowStateStoreData="window state store data"
   />
   <div
@@ -225,10 +300,13 @@ exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
       className="mainContentWrapper"
     >
       <CommandBar
+        cardsViewData={null}
         deps={
           Object {
+            "isResultHighlightUnavailable": [Function],
             "scanActionCreator": proxy {
               "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "deviceActions": undefined,
               "scanActions": undefined,
             },
             "windowStateActionCreator": proxy {
@@ -243,6 +321,7 @@ exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
             "connectedDevice": "TEST DEVICE",
           }
         }
+        scanMetadata={null}
         scanStoreData={
           Object {
             "status": 1,
@@ -262,8 +341,10 @@ exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
   <SettingsPanel
     deps={
       Object {
+        "isResultHighlightUnavailable": [Function],
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "deviceActions": undefined,
           "scanActions": undefined,
         },
         "windowStateActionCreator": proxy {
@@ -288,8 +369,10 @@ exports[`AutomatedChecksView renders when status scan <undefined> 1`] = `
   <TitleBar
     deps={
       Object {
+        "isResultHighlightUnavailable": [Function],
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "deviceActions": undefined,
           "scanActions": undefined,
         },
         "windowStateActionCreator": proxy {
@@ -299,6 +382,7 @@ exports[`AutomatedChecksView renders when status scan <undefined> 1`] = `
         },
       }
     }
+    pageTitle="Automated checks"
     windowStateStoreData="window state store data"
   />
   <div
@@ -308,10 +392,13 @@ exports[`AutomatedChecksView renders when status scan <undefined> 1`] = `
       className="mainContentWrapper"
     >
       <CommandBar
+        cardsViewData={null}
         deps={
           Object {
+            "isResultHighlightUnavailable": [Function],
             "scanActionCreator": proxy {
               "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "deviceActions": undefined,
               "scanActions": undefined,
             },
             "windowStateActionCreator": proxy {
@@ -326,6 +413,7 @@ exports[`AutomatedChecksView renders when status scan <undefined> 1`] = `
             "connectedDevice": "TEST DEVICE",
           }
         }
+        scanMetadata={null}
         scanStoreData={
           Object {
             "status": undefined,
@@ -345,8 +433,10 @@ exports[`AutomatedChecksView renders when status scan <undefined> 1`] = `
   <SettingsPanel
     deps={
       Object {
+        "isResultHighlightUnavailable": [Function],
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "deviceActions": undefined,
           "scanActions": undefined,
         },
         "windowStateActionCreator": proxy {

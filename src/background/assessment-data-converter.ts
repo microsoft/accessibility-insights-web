@@ -29,6 +29,7 @@ export class AssessmentDataConverter {
         stepName: string,
         generateInstanceIdentifier: (instance: UniquelyIdentifiableInstances) => string,
         getInstanceStatus: (result: DecoratedAxeNodeResult) => ManualTestStatus,
+        isVisualizationSupported: (result: DecoratedAxeNodeResult) => boolean,
     ): AssessmentInstancesMap {
         let instancesMap: AssessmentInstancesMap = {};
 
@@ -51,6 +52,7 @@ export class AssessmentDataConverter {
                     stepName,
                     ruleResult,
                     getInstanceStatus,
+                    isVisualizationSupported,
                 );
             }
         });
@@ -98,6 +100,7 @@ export class AssessmentDataConverter {
         testStep: string,
         ruleResult: DecoratedAxeNodeResult,
         getInstanceStatus: (result: DecoratedAxeNodeResult) => ManualTestStatus,
+        isVisualizationSupported: (result: DecoratedAxeNodeResult) => boolean,
     ): GeneratedAssessmentInstance {
         const target: string[] = elementAxeResult.target;
         let testStepResults = {};
@@ -114,6 +117,7 @@ export class AssessmentDataConverter {
             ruleResult,
             elementAxeResult,
             getInstanceStatus,
+            isVisualizationSupported,
         );
 
         let actualPropertyBag = {
@@ -163,6 +167,7 @@ export class AssessmentDataConverter {
             status: ManualTestStatus.UNKNOWN,
             isCapturedByUser: false,
             failureSummary: null,
+            isVisualizationSupported: true,
             isVisualizationEnabled: true,
             isVisible: true,
         };
@@ -172,12 +177,14 @@ export class AssessmentDataConverter {
         ruleResult: DecoratedAxeNodeResult,
         elementAxeResult: HtmlElementAxeResults,
         getInstanceStatus: (result: DecoratedAxeNodeResult) => ManualTestStatus,
+        isVisualizationSupported: (result: DecoratedAxeNodeResult) => boolean,
     ): TestStepResult {
         return {
             id: ruleResult.id,
             status: getInstanceStatus(ruleResult),
             isCapturedByUser: false,
             failureSummary: ruleResult.failureSummary,
+            isVisualizationSupported: isVisualizationSupported(ruleResult),
             isVisualizationEnabled: false,
             isVisible: true,
         };

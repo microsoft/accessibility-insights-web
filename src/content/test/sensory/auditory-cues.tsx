@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Auditory cues</h1>
         <p>Auditory cues must be accompanied by visual cues.</p>
 
         <h2>Why it matters</h2>

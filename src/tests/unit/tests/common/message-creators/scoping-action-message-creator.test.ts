@@ -3,7 +3,10 @@
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
-import { ScopingTelemetryData, TelemetryEventSource } from '../../../../../common/extension-telemetry-events';
+import {
+    ScopingTelemetryData,
+    TelemetryEventSource,
+} from '../../../../../common/extension-telemetry-events';
 import { Message } from '../../../../../common/message';
 import { ScopingActionMessageCreator } from '../../../../../common/message-creators/scoping-action-message-creator';
 import { Messages } from '../../../../../common/messages';
@@ -20,7 +23,11 @@ describe('ScopingActionMessageCreatorTest', () => {
     beforeEach(() => {
         dispatcherMock.reset();
         telemetryFactoryMock = Mock.ofType(TelemetryDataFactory, MockBehavior.Strict);
-        testSubject = new ScopingActionMessageCreator(telemetryFactoryMock.object, testSource, dispatcherMock.object);
+        testSubject = new ScopingActionMessageCreator(
+            telemetryFactoryMock.object,
+            testSource,
+            dispatcherMock.object,
+        );
     });
 
     it('dispatches message for addSelector', () => {
@@ -50,7 +57,10 @@ describe('ScopingActionMessageCreatorTest', () => {
 
         testSubject.addSelector(event, inputType, testSelector);
         telemetryFactoryMock.verifyAll();
-        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
     });
 
     it('dispatches message for deleteSelector', () => {
@@ -80,6 +90,9 @@ describe('ScopingActionMessageCreatorTest', () => {
 
         testSubject.deleteSelector(event, inputType, testSelector);
         telemetryFactoryMock.verifyAll();
-        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
     });
 });

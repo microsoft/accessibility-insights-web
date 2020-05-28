@@ -28,10 +28,13 @@ describe('UrlValidatorTest', () => {
         testSubject = new UrlValidator(browserAdapterMock.object);
     });
 
-    test.each(supportedUrlCases)('isSupportedUrl: %s should be %s', async (url: string, expected: boolean) => {
-        const isSupported = await testSubject.isSupportedUrl(url);
-        expect(isSupported).toBe(expected);
-    });
+    test.each(supportedUrlCases)(
+        'isSupportedUrl: %s should be %s',
+        async (url: string, expected: boolean) => {
+            const isSupported = await testSubject.isSupportedUrl(url);
+            expect(isSupported).toBe(expected);
+        },
+    );
 
     test('isSupportedUrl: file', async () => {
         const url: string = 'file://test';

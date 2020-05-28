@@ -14,7 +14,10 @@ describe('ScanIncompleteWarningDetector', () => {
     beforeEach(() => {
         permissionsStateStoreMock = Mock.ofType<BaseStore<PermissionsStateStoreData>>();
         iframeDetectorMock = Mock.ofType<IframeDetector>();
-        testSubject = new ScanIncompleteWarningDetector(iframeDetectorMock.object, permissionsStateStoreMock.object);
+        testSubject = new ScanIncompleteWarningDetector(
+            iframeDetectorMock.object,
+            permissionsStateStoreMock.object,
+        );
     });
 
     it.each`
@@ -27,7 +30,9 @@ describe('ScanIncompleteWarningDetector', () => {
         'should detect $expectedResults if iframesDetected=$iframesDetected and crossOriginPermissions=$crossOriginPermissions',
         ({ iframesDetected, hasAllUrlAndFilePermissions, expectedResults }) => {
             iframeDetectorMock.setup(m => m.hasIframes()).returns(() => iframesDetected);
-            permissionsStateStoreMock.setup(m => m.getState()).returns(() => ({ hasAllUrlAndFilePermissions }));
+            permissionsStateStoreMock
+                .setup(m => m.getState())
+                .returns(() => ({ hasAllUrlAndFilePermissions }));
 
             expect(testSubject.detectScanIncompleteWarnings()).toStrictEqual(expectedResults);
         },

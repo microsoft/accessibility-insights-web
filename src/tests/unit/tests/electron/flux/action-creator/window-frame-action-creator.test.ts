@@ -22,7 +22,9 @@ describe(WindowFrameActionCreator, () => {
             height: 1,
             width: 2,
         };
-        windowFrameActionsMock.setup(actions => actions.setWindowSize).returns(() => setRouteActionMock.object);
+        windowFrameActionsMock
+            .setup(actions => actions.setWindowSize)
+            .returns(() => setRouteActionMock.object);
         setRouteActionMock.setup(s => s.invoke(testPayload)).verifiable(Times.once());
 
         testSubject.setWindowSize(testPayload);
@@ -33,7 +35,9 @@ describe(WindowFrameActionCreator, () => {
     it('calling maximize invokes maximize action', () => {
         const maximizeActionMock = Mock.ofType<Action<void>>();
 
-        windowFrameActionsMock.setup(actions => actions.maximize).returns(() => maximizeActionMock.object);
+        windowFrameActionsMock
+            .setup(actions => actions.maximize)
+            .returns(() => maximizeActionMock.object);
         maximizeActionMock.setup(s => s.invoke()).verifiable(Times.once());
 
         testSubject.maximize();
@@ -44,7 +48,9 @@ describe(WindowFrameActionCreator, () => {
     it('calling minimize invokes minimize action', () => {
         const minimizeActionMock = Mock.ofType<Action<void>>();
 
-        windowFrameActionsMock.setup(actions => actions.minimize).returns(() => minimizeActionMock.object);
+        windowFrameActionsMock
+            .setup(actions => actions.minimize)
+            .returns(() => minimizeActionMock.object);
         minimizeActionMock.setup(s => s.invoke()).verifiable(Times.once());
 
         testSubject.minimize();
@@ -55,7 +61,9 @@ describe(WindowFrameActionCreator, () => {
     it('calling maximize invokes restore action', () => {
         const restoreActionMock = Mock.ofType<Action<void>>();
 
-        windowFrameActionsMock.setup(actions => actions.restore).returns(() => restoreActionMock.object);
+        windowFrameActionsMock
+            .setup(actions => actions.restore)
+            .returns(() => restoreActionMock.object);
         restoreActionMock.setup(s => s.invoke()).verifiable(Times.once());
 
         testSubject.restore();
@@ -66,7 +74,9 @@ describe(WindowFrameActionCreator, () => {
     it('calling close invokes close action', () => {
         const closeActionMock = Mock.ofType<Action<void>>();
 
-        windowFrameActionsMock.setup(actions => actions.close).returns(() => closeActionMock.object);
+        windowFrameActionsMock
+            .setup(actions => actions.close)
+            .returns(() => closeActionMock.object);
         closeActionMock.setup(s => s.invoke()).verifiable(Times.once());
 
         testSubject.close();

@@ -1,8 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { UnifiedResolution } from 'common/types/store-data/unified-data-interface';
+import {
+    AndroidScanResults,
+    DeviceInfo,
+    RuleResultsData,
+    ViewElementData,
+} from 'electron/platform/android/android-scan-results';
 import { RuleInformation } from 'electron/platform/android/rule-information';
-import { DeviceInfo, RuleResultsData, ScanResults, ViewElementData } from 'electron/platform/android/scan-results';
+import { GuidanceLink } from './../../../../../../scanner/rule-to-links-mappings';
 
 export function buildScanResultsObject(
     deviceName: string = null,
@@ -12,7 +18,7 @@ export function buildScanResultsObject(
     axeVersion: string = null,
     screenshotData: string = null,
     deviceInfo: DeviceInfo = null,
-): ScanResults {
+): AndroidScanResults {
     const scanResults = {};
     const axeContext = {};
     let addContext = false;
@@ -62,10 +68,15 @@ export function buildScanResultsObject(
         scanResults['axeContext'] = axeContext;
     }
 
-    return new ScanResults(scanResults);
+    return new AndroidScanResults(scanResults);
 }
 
-export function buildRuleResultObject(ruleId: string, status: string, axeViewId: string = null, props: any = null): RuleResultsData {
+export function buildRuleResultObject(
+    ruleId: string,
+    status: string,
+    axeViewId: string = null,
+    props: any = null,
+): RuleResultsData {
     const result = {};
     result['ruleId'] = ruleId;
     result['status'] = status;
@@ -99,10 +110,17 @@ export function buildViewElement(
     return viewElement as ViewElementData;
 }
 
-export function buildRuleInformation(ruleId: string, includeResults: boolean = true): RuleInformation {
+export function buildRuleInformation(
+    ruleId: string,
+    ruleLink = 'rule-link',
+    guidance: GuidanceLink[] = [],
+    includeResults: boolean = true,
+): RuleInformation {
     return {
         ruleId: ruleId,
         ruleDescription: 'This describes ' + ruleId,
+        ruleLink,
+        guidance,
         getUnifiedFormattableResolutionDelegate: r => {
             expect('getUnifiedResolution').toBe('This code should never execute');
             return null;

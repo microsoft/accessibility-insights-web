@@ -9,9 +9,15 @@ describe('RulesOnly', () => {
     const depsStub = {} as RulesOnlyDeps;
 
     it('renders', () => {
-        const cardResults = [{ id: '1' } as CardRuleResult, { id: '2' } as CardRuleResult, { id: '3' } as CardRuleResult];
+        const cardResults = [
+            { id: '1' } as CardRuleResult,
+            { id: '2' } as CardRuleResult,
+            { id: '3' } as CardRuleResult,
+        ];
 
-        const wrapped = shallow(<RulesOnly deps={depsStub} outcomeType={'pass'} cardRuleResults={cardResults} />);
+        const wrapped = shallow(
+            <RulesOnly deps={depsStub} outcomeType={'pass'} cardRuleResults={cardResults} />,
+        );
 
         expect(wrapped.getElement()).toMatchSnapshot();
     });

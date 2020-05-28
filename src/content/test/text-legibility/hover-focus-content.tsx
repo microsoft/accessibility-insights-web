@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Hover / focus content</h1>
         <p>Content that appears on focus or hover must be dismissible, hoverable, and persistent.</p>
 
         <h2>Why it matters</h2>

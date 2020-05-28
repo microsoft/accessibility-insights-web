@@ -69,7 +69,9 @@ describe('getAssessmentSummaryModel', () => {
     };
 
     const zeroRequirementsAll: IAssessmentSubsetForSummary[] = [];
-    const zeroAssessmentsProvider: AssessmentsProvider = createTestAssessmentsProvider(zeroRequirementsAll);
+    const zeroAssessmentsProvider: AssessmentsProvider = createTestAssessmentsProvider(
+        zeroRequirementsAll,
+    );
     const zeroRequirementsStatusData: AssessmentStatusData = {} as any;
     const zeroRequirementsStoreData: AssessmentStoreData = {} as any;
     const zeroRequirementsResults: AssessmentSummaryResult[] = [];
@@ -88,7 +90,9 @@ describe('getAssessmentSummaryModel', () => {
     };
 
     const singleRequirementAll: IAssessmentSubsetForSummary[] = [sampleTests.test1];
-    const singleAssessmentsProvider: AssessmentsProvider = createTestAssessmentsProvider(singleRequirementAll);
+    const singleAssessmentsProvider: AssessmentsProvider = createTestAssessmentsProvider(
+        singleRequirementAll,
+    );
     const singleRequirementStatusData: AssessmentStatusData = {
         [sampleTests.test1.key]: sampleResults[sampleTests.test1.key].storeData.testStepStatus,
     } as any;
@@ -97,7 +101,9 @@ describe('getAssessmentSummaryModel', () => {
             [sampleTests.test1.key]: sampleResults[sampleTests.test1.key].storeData,
         },
     } as any;
-    const singleRequirementResults: AssessmentSummaryResult[] = [sampleResults[sampleTests.test1.key]];
+    const singleRequirementResults: AssessmentSummaryResult[] = [
+        sampleResults[sampleTests.test1.key],
+    ];
     const singleRequirementModel: OverviewSummaryReportModel = {
         byPercentage: {
             fail: 0,
@@ -119,8 +125,13 @@ describe('getAssessmentSummaryModel', () => {
         ],
     };
 
-    const multipleRequirementsAll: IAssessmentSubsetForSummary[] = [sampleTests.test1, sampleTests.test2];
-    const multipleAssessmentsProvider: AssessmentsProvider = createTestAssessmentsProvider(multipleRequirementsAll);
+    const multipleRequirementsAll: IAssessmentSubsetForSummary[] = [
+        sampleTests.test1,
+        sampleTests.test2,
+    ];
+    const multipleAssessmentsProvider: AssessmentsProvider = createTestAssessmentsProvider(
+        multipleRequirementsAll,
+    );
     const multipleRequirementsStatusData: AssessmentStatusData = {
         [sampleTests.test1.key]: sampleResults[sampleTests.test1.key].storeData.testStepStatus,
         [sampleTests.test2.key]: sampleResults[sampleTests.test2.key].storeData.testStepStatus,
@@ -162,7 +173,9 @@ describe('getAssessmentSummaryModel', () => {
         ],
     };
 
-    function createTestAssessmentsProvider(requirements: IAssessmentSubsetForSummary[]): AssessmentsProvider {
+    function createTestAssessmentsProvider(
+        requirements: IAssessmentSubsetForSummary[],
+    ): AssessmentsProvider {
         const testAssessmentsProvider: AssessmentsProvider = {
             all: () => requirements,
         } as any;
@@ -171,19 +184,28 @@ describe('getAssessmentSummaryModel', () => {
 
     describe('getAssessmentSummaryModelFromProviderAndStoreData', () => {
         it('handles zero requirements', () => {
-            const actual = getAssessmentSummaryModelFromProviderAndStoreData(zeroAssessmentsProvider, zeroRequirementsStoreData);
+            const actual = getAssessmentSummaryModelFromProviderAndStoreData(
+                zeroAssessmentsProvider,
+                zeroRequirementsStoreData,
+            );
 
             expect(actual).toEqual(zeroRequirementsModel);
         });
 
         it('handles one requirement', () => {
-            const actual = getAssessmentSummaryModelFromProviderAndStoreData(singleAssessmentsProvider, singleRequirementStoreData);
+            const actual = getAssessmentSummaryModelFromProviderAndStoreData(
+                singleAssessmentsProvider,
+                singleRequirementStoreData,
+            );
 
             expect(actual).toEqual(singleRequirementModel);
         });
 
         it('handles multiple requirements', () => {
-            const actual = getAssessmentSummaryModelFromProviderAndStoreData(multipleAssessmentsProvider, multipleRequirementsStoreData);
+            const actual = getAssessmentSummaryModelFromProviderAndStoreData(
+                multipleAssessmentsProvider,
+                multipleRequirementsStoreData,
+            );
 
             expect(actual).toEqual(multipleRequirementsModel);
         });
@@ -191,19 +213,28 @@ describe('getAssessmentSummaryModel', () => {
 
     describe('getAssessmentSummaryModelFromProviderAndStatusData', () => {
         it('handles zero requirements', () => {
-            const actual = getAssessmentSummaryModelFromProviderAndStatusData(zeroAssessmentsProvider, zeroRequirementsStatusData);
+            const actual = getAssessmentSummaryModelFromProviderAndStatusData(
+                zeroAssessmentsProvider,
+                zeroRequirementsStatusData,
+            );
 
             expect(actual).toEqual(zeroRequirementsModel);
         });
 
         it('handles one requirement', () => {
-            const actual = getAssessmentSummaryModelFromProviderAndStatusData(singleAssessmentsProvider, singleRequirementStatusData);
+            const actual = getAssessmentSummaryModelFromProviderAndStatusData(
+                singleAssessmentsProvider,
+                singleRequirementStatusData,
+            );
 
             expect(actual).toEqual(singleRequirementModel);
         });
 
         it('handles multiple requirements', () => {
-            const actual = getAssessmentSummaryModelFromProviderAndStatusData(multipleAssessmentsProvider, multipleRequirementsStatusData);
+            const actual = getAssessmentSummaryModelFromProviderAndStatusData(
+                multipleAssessmentsProvider,
+                multipleRequirementsStatusData,
+            );
 
             expect(actual).toEqual(multipleRequirementsModel);
         });

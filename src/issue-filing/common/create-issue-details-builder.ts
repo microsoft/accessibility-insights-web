@@ -1,14 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { title } from 'content/strings/application';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { compact } from 'lodash';
-import { EnvironmentInfo } from '../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { IssueDetailsBuilder } from './issue-details-builder';
 import { MarkupFormatter } from './markup/markup-formatter';
 
 export const createIssueDetailsBuilder = (markup: MarkupFormatter): IssueDetailsBuilder => {
-    const getter = (environmentInfo: EnvironmentInfo, data: CreateIssueDetailsTextData): string => {
+    const getter = (toolData: ToolData, data: CreateIssueDetailsTextData): string => {
         const {
             howToFixSection,
             link,
@@ -30,7 +29,7 @@ export const createIssueDetailsBuilder = (markup: MarkupFormatter): IssueDetails
                   snippet(data.snippet),
                   sectionSeparator(),
               ]
-            : null;
+            : [];
 
         const lines = [
             sectionHeader('Issue'),
@@ -57,13 +56,13 @@ export const createIssueDetailsBuilder = (markup: MarkupFormatter): IssueDetails
 
             sectionHeader('Environment'),
             sectionHeaderSeparator(),
-            environmentInfo.browserSpec,
+            toolData.applicationProperties.environmentName,
             sectionSeparator(),
 
             footerSeparator(),
 
-            `This accessibility issue was found using ${title} ` +
-                `${environmentInfo.extensionVersion} (axe-core ${environmentInfo.axeCoreVersion}), ` +
+            `This accessibility issue was found using ${toolData.applicationProperties.name} ` +
+                `${toolData.applicationProperties.version} (${toolData.scanEngineProperties.name} ${toolData.scanEngineProperties.version}), ` +
                 'a tool that helps find and fix accessibility issues. Get more information & download ' +
                 `this tool at ${link('http://aka.ms/AccessibilityInsights')}.`,
         ];

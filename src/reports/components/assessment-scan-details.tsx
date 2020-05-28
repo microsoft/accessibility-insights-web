@@ -1,11 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NewTabLink } from 'common/components/new-tab-link';
 import { CommentIcon } from 'common/icons/comment-icon';
 import { DateIcon } from 'common/icons/date-icon';
 import { UrlIcon } from 'common/icons/url-icon';
 import * as React from 'react';
-
+import { NewTabLinkWithConfirmationDialog } from 'reports/components/new-tab-link-confirmation-dialog';
 import { ScanDetailsReportModel } from '../assessment-report-model';
 import { FormattedDate } from './formatted-date';
 
@@ -26,12 +25,12 @@ export class AssessmentScanDetails extends React.Component<AssessmentScanDetails
                                 <UrlIcon />
                             </td>
                             <td>
-                                <NewTabLink
+                                <NewTabLinkWithConfirmationDialog
                                     href={this.props.details.url}
                                     title="Navigate to target page"
                                 >
                                     {this.props.details.url}
-                                </NewTabLink>
+                                </NewTabLinkWithConfirmationDialog>
                             </td>
                         </tr>
                         <tr>

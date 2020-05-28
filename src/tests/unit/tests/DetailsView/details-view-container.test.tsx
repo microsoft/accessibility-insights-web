@@ -1,60 +1,64 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CardSelectionViewData, GetCardSelectionViewData } from 'common/get-card-selection-view-data';
+import { DropdownClickHandler } from 'common/dropdown-click-handler';
+import {
+    CardSelectionViewData,
+    GetCardSelectionViewData,
+} from 'common/get-card-selection-view-data';
+import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
+import { StoreActionMessageCreator } from 'common/message-creators/store-action-message-creator';
+import { StoreActionMessageCreatorImpl } from 'common/message-creators/store-action-message-creator-impl';
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
+import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
+import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
-import { shallow } from 'enzyme';
-import { ISelection, Selection } from 'office-ui-fabric-react';
-import * as React from 'react';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
-import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
-import { StoreActionMessageCreator } from '../../../../common/message-creators/store-action-message-creator';
-import { StoreActionMessageCreatorImpl } from '../../../../common/message-creators/store-action-message-creator-impl';
-import { BaseClientStoresHub } from '../../../../common/stores/base-client-stores-hub';
-import { DetailsViewPivotType } from '../../../../common/types/details-view-pivot-type';
-import { CardsViewModel } from '../../../../common/types/store-data/card-view-model';
-import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
+import { CardsViewModel } from 'common/types/store-data/card-view-model';
+import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import {
     TargetAppData,
+    ToolData,
     UnifiedResult,
     UnifiedRule,
     UnifiedScanResultStoreData,
-} from '../../../../common/types/store-data/unified-data-interface';
-import { UserConfigurationStoreData } from '../../../../common/types/store-data/user-configuration-store';
-import { VisualizationType } from '../../../../common/types/visualization-type';
-import { DetailsViewActionMessageCreator } from '../../../../DetailsView/actions/details-view-action-message-creator';
-import { DetailsViewOverlay } from '../../../../DetailsView/components/details-view-overlay/details-view-overlay';
+} from 'common/types/store-data/unified-data-interface';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { VisualizationType } from 'common/types/visualization-type';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { DetailsViewOverlay } from 'DetailsView/components/details-view-overlay/details-view-overlay';
 import {
     DetailsRightPanelConfiguration,
     GetDetailsRightPanelConfiguration,
     GetDetailsRightPanelConfigurationProps,
-} from '../../../../DetailsView/components/details-view-right-panel';
+} from 'DetailsView/components/details-view-right-panel';
 import {
     DetailsViewSwitcherNavConfiguration,
     GetDetailsSwitcherNavConfiguration,
     GetDetailsSwitcherNavConfigurationProps,
-} from '../../../../DetailsView/components/details-view-switcher-nav';
-import { InteractiveHeader } from '../../../../DetailsView/components/interactive-header';
-import { DetailsViewRightContentPanelType } from '../../../../DetailsView/components/left-nav/details-view-right-content-panel-type';
-import { GetSelectedDetailsViewProps } from '../../../../DetailsView/components/left-nav/get-selected-details-view';
-import { DetailsViewBody } from '../../../../DetailsView/details-view-body';
+} from 'DetailsView/components/details-view-switcher-nav';
+import { InteractiveHeader } from 'DetailsView/components/interactive-header';
+import { DetailsViewRightContentPanelType } from 'DetailsView/components/left-nav/details-view-right-content-panel-type';
+import { GetSelectedDetailsViewProps } from 'DetailsView/components/left-nav/get-selected-details-view';
+import { DetailsViewBody } from 'DetailsView/details-view-body';
 import {
     DetailsViewContainer,
     DetailsViewContainerDeps,
     DetailsViewContainerProps,
     DetailsViewContainerState,
-} from '../../../../DetailsView/details-view-container';
-import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
-import { PreviewFeatureFlagsHandler } from '../../../../DetailsView/handlers/preview-feature-flags-handler';
+} from 'DetailsView/details-view-container';
+import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
+import { shallow } from 'enzyme';
+import * as React from 'react';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { DetailsViewStoreDataBuilder } from '../../common/details-view-store-data-builder';
 import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
-import { CreateTestAssessmentProviderWithFeatureFlag } from '../../common/test-assessment-provider';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 import { DetailsViewContainerPropsBuilder } from './details-view-container-props-builder';
 import { StoreMocks } from './store-mocks';
 
 describe('DetailsViewContainer', () => {
+    const pageTitle = 'DetailsViewContainerTest title';
+    const pageUrl = 'http://detailsViewContainerTest/url/';
     let detailsViewActionMessageCreator: IMock<DetailsViewActionMessageCreator>;
     let deps: DetailsViewContainerDeps;
     let getDetailsRightPanelConfiguration: IMock<GetDetailsRightPanelConfiguration>;
@@ -62,42 +66,74 @@ describe('DetailsViewContainer', () => {
     let getCardViewDataMock: IMock<GetCardViewData>;
     let getCardSelectionViewDataMock: IMock<GetCardSelectionViewData>;
     let targetAppInfo: TargetAppData;
+    let isResultHighlightUnavailableStub: IsResultHighlightUnavailable;
+    let timestamp: string;
+    let toolData: ToolData;
 
     beforeEach(() => {
         detailsViewActionMessageCreator = Mock.ofType<DetailsViewActionMessageCreator>();
-        getDetailsRightPanelConfiguration = Mock.ofInstance((props: GetDetailsRightPanelConfigurationProps) => null, MockBehavior.Strict);
-        getDetailsSwitcherNavConfiguration = Mock.ofInstance((props: GetDetailsSwitcherNavConfigurationProps) => null, MockBehavior.Strict);
-        getCardViewDataMock = Mock.ofInstance(
-            (rules: UnifiedRule[], results: UnifiedResult[], cardSelectionViewData: CardSelectionViewData) => null,
+        getDetailsRightPanelConfiguration = Mock.ofInstance(
+            (props: GetDetailsRightPanelConfigurationProps) => null,
             MockBehavior.Strict,
         );
-        getCardSelectionViewDataMock = Mock.ofInstance((storeData: CardSelectionStoreData) => null, MockBehavior.Strict);
-        targetAppInfo = { name: 'app' };
+        getDetailsSwitcherNavConfiguration = Mock.ofInstance(
+            (props: GetDetailsSwitcherNavConfigurationProps) => null,
+            MockBehavior.Strict,
+        );
+        getCardViewDataMock = Mock.ofInstance(
+            (
+                rules: UnifiedRule[],
+                results: UnifiedResult[],
+                cardSelectionViewData: CardSelectionViewData,
+            ) => null,
+            MockBehavior.Strict,
+        );
+        getCardSelectionViewDataMock = Mock.ofInstance(
+            (storeData: CardSelectionStoreData) => null,
+            MockBehavior.Strict,
+        );
+        isResultHighlightUnavailableStub = () => null;
+        timestamp = 'timestamp';
+        targetAppInfo = {
+            name: pageTitle,
+            url: pageUrl,
+        };
+        toolData = {
+            applicationProperties: { name: 'some app' },
+        } as ToolData;
         deps = {
             detailsViewActionMessageCreator: detailsViewActionMessageCreator.object,
             getDetailsRightPanelConfiguration: getDetailsRightPanelConfiguration.object,
             getDetailsSwitcherNavConfiguration: getDetailsSwitcherNavConfiguration.object,
             getCardViewData: getCardViewDataMock.object,
             getCardSelectionViewData: getCardSelectionViewDataMock.object,
+            isResultHighlightUnavailable: isResultHighlightUnavailableStub,
         } as DetailsViewContainerDeps;
     });
 
-    const assessmentProviderMock = Mock.ofInstance(CreateTestAssessmentProviderWithFeatureFlag());
-
     describe('render', () => {
         it('renders spinner when stores not ready', () => {
-            const detailsViewStoreActionMessageCreatorMock = Mock.ofType(StoreActionMessageCreatorImpl, MockBehavior.Strict);
-            detailsViewStoreActionMessageCreatorMock.setup(amc => amc.getAllStates()).verifiable(Times.once());
+            const detailsViewStoreActionMessageCreatorMock = Mock.ofType(
+                StoreActionMessageCreatorImpl,
+                MockBehavior.Strict,
+            );
+            detailsViewStoreActionMessageCreatorMock
+                .setup(amc => amc.getAllStates())
+                .verifiable(Times.once());
 
             const storeMocks = new StoreMocks()
                 .setDetailsViewStoreData(null)
                 .setVisualizationStoreData(null)
-                .setUserConfigurationStoreData({ enableTelemetry: true } as UserConfigurationStoreData);
+                .setUserConfigurationStoreData({
+                    enableTelemetry: true,
+                } as UserConfigurationStoreData);
 
             const props = new DetailsViewContainerPropsBuilder(deps)
                 .setStoreMocks(storeMocks)
                 .setStoresHubMock(createStoresHubMock(storeMocks, true, false).object)
-                .setDetailsViewStoreActionMessageCreator(detailsViewStoreActionMessageCreatorMock.object)
+                .setDetailsViewStoreActionMessageCreator(
+                    detailsViewStoreActionMessageCreatorMock.object,
+                )
                 .build();
 
             const testObject = shallow(<DetailsViewContainer {...props} />);
@@ -113,30 +149,42 @@ describe('DetailsViewContainer', () => {
         });
 
         it('renders TargetPageClosedView when target page closed', () => {
-            const props = new DetailsViewContainerPropsBuilder(null).build();
+            const dropdownClickHandler = Mock.ofType(DropdownClickHandler);
+            const props = new DetailsViewContainerPropsBuilder(null)
+                .setDropdownClickHandler(dropdownClickHandler.object)
+                .build();
             const rendered = shallow(<DetailsViewContainer {...props} />);
             expect(rendered.debug()).toMatchSnapshot();
         });
 
         it('shows target tab was closed when stores are not loaded', () => {
-            const storeActionCreator = Mock.ofType(StoreActionMessageCreatorImpl, MockBehavior.Strict);
+            const storeActionCreator = Mock.ofType(
+                StoreActionMessageCreatorImpl,
+                MockBehavior.Strict,
+            );
 
             const visualizationStoreData = new VisualizationStoreDataBuilder()
                 .with('selectedAdhocDetailsView', VisualizationType.Issues)
                 .build();
 
-            setupActionMessageCreatorMock(detailsViewActionMessageCreator, visualizationStoreData.selectedDetailsViewPivot, 1);
+            setupActionMessageCreatorMock(
+                detailsViewActionMessageCreator,
+                visualizationStoreData.selectedDetailsViewPivot,
+                1,
+            );
 
             const tabStoreData: TabStoreData = {
-                title: 'DetailsViewContainerTest title',
-                url: 'http://detailsViewContainerTest/url/',
+                title: pageTitle,
+                url: pageUrl,
                 id: 1,
                 isClosed: true,
                 isChanged: false,
                 isPageHidden: false,
             };
 
-            const storeMocks = new StoreMocks().setVisualizationStoreData(visualizationStoreData).setTabStoreData(tabStoreData);
+            const storeMocks = new StoreMocks()
+                .setVisualizationStoreData(visualizationStoreData)
+                .setTabStoreData(tabStoreData);
 
             const detailsViewStoreActionCreatorMock = Mock.ofType<StoreActionMessageCreator>();
 
@@ -152,9 +200,14 @@ describe('DetailsViewContainer', () => {
         });
 
         it('render twice; should not call details view opened on 2nd render', () => {
-            const storeActionCreator = Mock.ofType(StoreActionMessageCreatorImpl, MockBehavior.Strict);
-            const clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory);
-            const getSelectedDetailsViewMock = Mock.ofInstance((theProps: GetSelectedDetailsViewProps) => null, MockBehavior.Strict);
+            const storeActionCreator = Mock.ofType(
+                StoreActionMessageCreatorImpl,
+                MockBehavior.Strict,
+            );
+            const getSelectedDetailsViewMock = Mock.ofInstance(
+                (theProps: GetSelectedDetailsViewProps) => null,
+                MockBehavior.Strict,
+            );
             const rightContentPanelType = 'TestView';
             const viewType = VisualizationType.Headings;
             const switcherNavConfig = {
@@ -162,12 +215,25 @@ describe('DetailsViewContainer', () => {
             } as DetailsViewSwitcherNavConfiguration;
 
             const visualizationStoreData = new VisualizationStoreDataBuilder().build();
-            const detailsViewState = new DetailsViewStoreDataBuilder().withDetailsViewRightContentPanel(rightContentPanelType).build();
+            const detailsViewState = new DetailsViewStoreDataBuilder()
+                .withDetailsViewRightContentPanel(rightContentPanelType)
+                .build();
             const tabStoreData = new TabStoreDataBuilder().with('isClosed', false).build();
 
-            setupGetDetailsRightPanelConfiguration(rightContentPanelType, visualizationStoreData.selectedDetailsViewPivot, null);
-            setupGetSwitcherNavConfiguration(visualizationStoreData.selectedDetailsViewPivot, switcherNavConfig);
-            setupActionMessageCreatorMock(detailsViewActionMessageCreator, visualizationStoreData.selectedDetailsViewPivot, 1);
+            setupGetDetailsRightPanelConfiguration(
+                rightContentPanelType,
+                visualizationStoreData.selectedDetailsViewPivot,
+                null,
+            );
+            setupGetSwitcherNavConfiguration(
+                visualizationStoreData.selectedDetailsViewPivot,
+                switcherNavConfig,
+            );
+            setupActionMessageCreatorMock(
+                detailsViewActionMessageCreator,
+                visualizationStoreData.selectedDetailsViewPivot,
+                1,
+            );
 
             const unifiedScanResultStoreData: UnifiedScanResultStoreData = {
                 results: [],
@@ -183,7 +249,6 @@ describe('DetailsViewContainer', () => {
             const props = new DetailsViewContainerPropsBuilder(deps)
                 .setStoreMocks(storeMocks)
                 .setStoreActionMessageCreator(storeActionCreator.object)
-                .setClickHandlerFactory(clickHandlerFactoryMock.object)
                 .setStoresHubMock(createStoresHubMock(storeMocks).object)
                 .build();
 
@@ -209,16 +274,34 @@ describe('DetailsViewContainer', () => {
                 allCardsCollapsed: true,
             } as CardsViewModel;
             const cardSelectionViewData: CardSelectionViewData = {} as CardSelectionViewData;
-            getCardSelectionViewDataMock.setup(g => g(state.cardSelectionStoreData)).returns(() => cardSelectionViewData);
+            getCardSelectionViewDataMock
+                .setup(g =>
+                    g(
+                        state.cardSelectionStoreData,
+                        state.unifiedScanResultStoreData,
+                        isResultHighlightUnavailableStub,
+                    ),
+                )
+                .returns(() => cardSelectionViewData);
             getCardViewDataMock
-                .setup(m => m(state.unifiedScanResultStoreData.rules, state.unifiedScanResultStoreData.results, cardSelectionViewData))
+                .setup(m =>
+                    m(
+                        state.unifiedScanResultStoreData.rules,
+                        state.unifiedScanResultStoreData.results,
+                        cardSelectionViewData,
+                    ),
+                )
                 .returns(() => cardViewData);
 
             testObject.render();
 
             detailsViewActionMessageCreator.verifyAll();
             detailsViewActionMessageCreator.reset();
-            setupActionMessageCreatorMock(detailsViewActionMessageCreator, visualizationStoreData.selectedDetailsViewPivot, 0);
+            setupActionMessageCreatorMock(
+                detailsViewActionMessageCreator,
+                visualizationStoreData.selectedDetailsViewPivot,
+                0,
+            );
 
             testObject.render();
             detailsViewActionMessageCreator.verifyAll();
@@ -229,15 +312,21 @@ describe('DetailsViewContainer', () => {
 
             const toggleClickHandlerMock = Mock.ofInstance(event => {});
             const clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory);
-            const storeActionCreator = Mock.ofType(StoreActionMessageCreatorImpl, MockBehavior.Strict);
+            const storeActionCreator = Mock.ofType(
+                StoreActionMessageCreatorImpl,
+                MockBehavior.Strict,
+            );
 
-            const visualizationStoreData = new VisualizationStoreDataBuilder().with('selectedAdhocDetailsView', unsupportedType).build();
+            const visualizationStoreData = new VisualizationStoreDataBuilder()
+                .with('selectedAdhocDetailsView', unsupportedType)
+                .build();
 
-            const storeMocks = new StoreMocks().setDetailsViewStoreData(null).setVisualizationStoreData(visualizationStoreData);
+            const storeMocks = new StoreMocks()
+                .setDetailsViewStoreData(null)
+                .setVisualizationStoreData(visualizationStoreData);
 
             const props = new DetailsViewContainerPropsBuilder(deps)
                 .setStoreMocks(storeMocks)
-                .setClickHandlerFactory(clickHandlerFactoryMock.object)
                 .setStoreActionMessageCreator(storeActionCreator.object)
                 .setStoresHubMock(createStoresHubMock(storeMocks, false).object)
                 .build();
@@ -253,7 +342,11 @@ describe('DetailsViewContainer', () => {
         });
     });
 
-    function createStoresHubMock(storeMocks: StoreMocks, hasStores = true, hasStoreData = true): IMock<BaseClientStoresHub<any>> {
+    function createStoresHubMock(
+        storeMocks: StoreMocks,
+        hasStores = true,
+        hasStoreData = true,
+    ): IMock<BaseClientStoresHub<any>> {
         const storesHubMock = Mock.ofType(BaseClientStoresHub);
         storesHubMock.setup(s => s.hasStores()).returns(() => hasStores);
         storesHubMock.setup(s => s.hasStoreData()).returns(() => hasStoreData);
@@ -267,7 +360,8 @@ describe('DetailsViewContainer', () => {
                     storeMocks && {
                         visualizationStoreData: storeMocks.visualizationStoreData,
                         tabStoreData: storeMocks.tabStoreData,
-                        visualizationScanResultStoreData: storeMocks.visualizationScanResultsStoreData,
+                        visualizationScanResultStoreData:
+                            storeMocks.visualizationScanResultsStoreData,
                         featureFlagStoreData: storeMocks.featureFlagStoreData,
                         detailsViewStoreData: storeMocks.detailsViewStoreData,
                         assessmentStoreData: storeMocks.assessmentStoreData,
@@ -291,6 +385,11 @@ describe('DetailsViewContainer', () => {
         cardsViewData: CardsViewModel,
         targetApp: TargetAppData,
     ): JSX.Element {
+        const scanMetadata = {
+            timestamp: timestamp,
+            toolData: toolData,
+            targetAppInfo: targetApp,
+        };
         return (
             <DetailsViewBody
                 deps={deps}
@@ -302,20 +401,22 @@ describe('DetailsViewContainer', () => {
                 detailsViewStoreData={storeMocks.detailsViewStoreData}
                 visualizationStoreData={storeMocks.visualizationStoreData}
                 visualizationScanResultData={storeMocks.visualizationScanResultsStoreData}
-                visualizationConfigurationFactory={props.visualizationConfigurationFactory}
-                assessmentsProvider={props.assessmentsProvider}
-                dropdownClickHandler={props.dropdownClickHandler}
-                clickHandlerFactory={props.clickHandlerFactory}
-                assessmentInstanceTableHandler={props.assessmentInstanceTableHandler}
-                issuesSelection={props.issuesSelection}
-                issuesTableHandler={props.issuesTableHandler}
+                visualizationConfigurationFactory={props.deps.visualizationConfigurationFactory}
+                assessmentsProvider={props.deps.assessmentsProvider}
+                dropdownClickHandler={props.deps.dropdownClickHandler}
+                clickHandlerFactory={props.deps.clickHandlerFactory}
+                assessmentInstanceTableHandler={props.deps.assessmentInstanceTableHandler}
+                issuesSelection={props.deps.issuesSelection}
+                issuesTableHandler={props.deps.issuesTableHandler}
                 rightPanelConfiguration={rightPanelConfiguration}
                 switcherNavConfiguration={switcherNavConfiguration}
                 userConfigurationStoreData={storeMocks.userConfigurationStoreData}
                 cardsViewData={cardsViewData}
-                targetAppInfo={targetApp}
                 cardSelectionStoreData={storeMocks.cardSelectionStoreData}
-                scanIncompleteWarnings={storeMocks.unifiedScanResultStoreData.scanIncompleteWarnings}
+                scanIncompleteWarnings={
+                    storeMocks.unifiedScanResultStoreData.scanIncompleteWarnings
+                }
+                scanMetadata={scanMetadata}
             />
         );
     }
@@ -329,7 +430,9 @@ describe('DetailsViewContainer', () => {
             selectedDetailsViewPivot: selectedPivot,
             detailsViewRightContentPanel: contentPanelType,
         };
-        getDetailsRightPanelConfiguration.setup(gtrpc => gtrpc(It.isValue(expected))).returns(() => returnConfiguration);
+        getDetailsRightPanelConfiguration
+            .setup(gtrpc => gtrpc(It.isValue(expected)))
+            .returns(() => returnConfiguration);
     }
 
     function setupGetSwitcherNavConfiguration(
@@ -339,16 +442,18 @@ describe('DetailsViewContainer', () => {
         const expected: GetDetailsSwitcherNavConfigurationProps = {
             selectedDetailsViewPivot: selectedPivot,
         };
-        getDetailsSwitcherNavConfiguration.setup(gtrpc => gtrpc(It.isValue(expected))).returns(() => returnConfiguration);
+        getDetailsSwitcherNavConfiguration
+            .setup(gtrpc => gtrpc(It.isValue(expected)))
+            .returns(() => returnConfiguration);
     }
 
     function buildOverlay(storeMocks: StoreMocks, props: DetailsViewContainerProps): JSX.Element {
         return (
             <DetailsViewOverlay
                 deps={props.deps}
-                previewFeatureFlagsHandler={props.previewFeatureFlagsHandler}
-                scopingActionMessageCreator={props.scopingActionMessageCreator}
-                inspectActionMessageCreator={props.inspectActionMessageCreator}
+                previewFeatureFlagsHandler={props.deps.previewFeatureFlagsHandler}
+                scopingActionMessageCreator={props.deps.scopingActionMessageCreator}
+                inspectActionMessageCreator={props.deps.inspectActionMessageCreator}
                 detailsViewStoreData={storeMocks.detailsViewStoreData}
                 scopingStoreData={storeMocks.scopingStoreData}
                 featureFlagStoreData={storeMocks.featureFlagStoreData}
@@ -387,12 +492,16 @@ describe('DetailsViewContainer', () => {
         };
     }
 
-    function testRenderStaticContent(viewType: VisualizationType, isPreviewFeaturesOpen: boolean): void {
-        const selectionMock = Mock.ofType<ISelection>(Selection);
+    function testRenderStaticContent(
+        viewType: VisualizationType,
+        isPreviewFeaturesOpen: boolean,
+    ): void {
         const clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory);
-        const previewFeatureFlagsHandlerMock = Mock.ofType(PreviewFeatureFlagsHandler);
         const dropdownClickHandler = Mock.ofType(DropdownClickHandler);
-        const getSelectedDetailsViewMock = Mock.ofInstance((theProps: GetSelectedDetailsViewProps) => null, MockBehavior.Strict);
+        const getSelectedDetailsViewMock = Mock.ofInstance(
+            (theProps: GetSelectedDetailsViewProps) => null,
+            MockBehavior.Strict,
+        );
         const rightContentPanelType = 'TestView';
         const rightContentPanelConfig = {} as DetailsRightPanelConfiguration;
         const switcherNavConfig = {
@@ -404,7 +513,11 @@ describe('DetailsViewContainer', () => {
             .with('selectedAdhocDetailsView', viewType)
             .build();
 
-        setupActionMessageCreatorMock(detailsViewActionMessageCreator, visualizationStoreData.selectedDetailsViewPivot, 1);
+        setupActionMessageCreatorMock(
+            detailsViewActionMessageCreator,
+            visualizationStoreData.selectedDetailsViewPivot,
+            1,
+        );
 
         setupGetDetailsRightPanelConfiguration(
             rightContentPanelType,
@@ -412,7 +525,10 @@ describe('DetailsViewContainer', () => {
             rightContentPanelConfig,
         );
 
-        setupGetSwitcherNavConfiguration(visualizationStoreData.selectedDetailsViewPivot, switcherNavConfig);
+        setupGetSwitcherNavConfiguration(
+            visualizationStoreData.selectedDetailsViewPivot,
+            switcherNavConfig,
+        );
 
         const detailsViewState = new DetailsViewStoreDataBuilder()
             .withPreviewFeaturesOpen(isPreviewFeaturesOpen)
@@ -423,6 +539,7 @@ describe('DetailsViewContainer', () => {
             isFirstTime: false,
             enableTelemetry: true,
             enableHighContrast: false,
+            lastSelectedHighContrast: false,
             bugService: 'gitHub',
             bugServicePropertiesMap: { gitHub: { repository: 'gitHub-repository' } },
         };
@@ -431,6 +548,8 @@ describe('DetailsViewContainer', () => {
             results: [],
             rules: [],
             targetAppInfo: targetAppInfo,
+            timestamp: timestamp,
+            toolInfo: toolData,
         };
 
         const storeMocks = new StoreMocks()
@@ -441,13 +560,10 @@ describe('DetailsViewContainer', () => {
 
         const storesHubMock = createStoresHubMock(storeMocks);
 
+        deps.dropdownClickHandler = dropdownClickHandler.object;
+
         const props = new DetailsViewContainerPropsBuilder(deps)
             .setStoreMocks(storeMocks)
-            .setDropdownClickHandler(dropdownClickHandler.object)
-            .setIssuesSelection(selectionMock.object)
-            .setClickHandlerFactory(clickHandlerFactoryMock.object)
-            .setPreviewFeatureFlagsHandler(previewFeatureFlagsHandlerMock.object)
-            .setAssessmentProvider(assessmentProviderMock.object)
             .setStoresHubMock(storesHubMock.object)
             .build();
 
@@ -469,13 +585,25 @@ describe('DetailsViewContainer', () => {
 
         const cardSelectionViewData: CardSelectionViewData = {} as CardSelectionViewData;
         getCardSelectionViewDataMock
-            .setup(g => g(state.cardSelectionStoreData))
+            .setup(g =>
+                g(
+                    state.cardSelectionStoreData,
+                    state.unifiedScanResultStoreData,
+                    isResultHighlightUnavailableStub,
+                ),
+            )
             .returns(() => cardSelectionViewData)
             .verifiable(Times.once());
 
         const cardsViewData: CardsViewModel = {} as any;
         getCardViewDataMock
-            .setup(m => m(state.unifiedScanResultStoreData.rules, state.unifiedScanResultStoreData.results, cardSelectionViewData))
+            .setup(m =>
+                m(
+                    state.unifiedScanResultStoreData.rules,
+                    state.unifiedScanResultStoreData.results,
+                    cardSelectionViewData,
+                ),
+            )
             .returns(() => cardsViewData);
 
         const expected: JSX.Element = (
@@ -484,7 +612,6 @@ describe('DetailsViewContainer', () => {
                     deps={props.deps}
                     selectedPivot={DetailsViewPivotType.fastPass}
                     featureFlagStoreData={storeMocks.featureFlagStoreData}
-                    dropdownClickHandler={dropdownClickHandler.object}
                     tabClosed={storeMocks.tabStoreData.isClosed}
                 />
                 {buildDetailsViewBody(

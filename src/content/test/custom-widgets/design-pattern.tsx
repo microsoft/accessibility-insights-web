@@ -4,9 +4,7 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
-        <h1>Design pattern</h1>
         <p>A custom widget must have the appropriate ARIA widget role for its design pattern.</p>
-
         <h2>Why it matters</h2>
         <p>Widgets are interactive interface components, such as links, buttons, and combo boxes.</p>
         <p>Native widgets include the following simple, interactive HTML elements:</p>
@@ -37,7 +35,6 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             A custom widget usually requires an ARIA widget role to communicate the correct function to assistive technologies and enable
             them to interact with the widget.
         </p>
-
         <h2>How to fix</h2>
         <p>
             If possible, replace the custom widget with a native HTML control. (As a rule, it's better to use native semantics than to
@@ -56,7 +53,6 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 require a widget role.
             </li>
         </ol>
-
         <h2>Example</h2>
         <Markup.PassFail
             failText={
@@ -75,9 +71,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 </p>
             }
         />
-
         <h2>More examples</h2>
-
         <h3>WCAG success criteria</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html">
@@ -90,7 +84,6 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 Using a WAI-ARIA role to expose the role of a user interface component
             </Markup.HyperLink>
         </Markup.Links>
-
         <h3>Common failures</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F59">
@@ -98,7 +91,6 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 providing a role for the control
             </Markup.HyperLink>
         </Markup.Links>
-
         <h3>Additional guidance</h3>
         <Markup.Links>
             <Link.WAIARIAAuthoringPractices />

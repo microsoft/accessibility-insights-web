@@ -14,7 +14,7 @@ describe(RootContainerCreator, () => {
         htmlElementUtilsMock = Mock.ofType(HTMLElementUtils);
 
         bodyStub = document.createElement('body');
-        htmlElementUtilsMock.setup(h => h.querySelector('body')).returns(() => bodyStub);
+        htmlElementUtilsMock.setup(h => h.getBody()).returns(() => bodyStub);
     });
 
     it('should create root container', () => {

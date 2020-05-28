@@ -1,0 +1,65 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
+@import '../../common/styles/common.scss';
+.assessment-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 24px;
+    .assessment-title {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        min-height: fit-content;
+        align-items: center;
+        .assessment-header {
+            font-size: 21px;
+            margin-left: 24px !important; // necessary due to broad css styles in detailsview.scss
+            padding-top: 8px;
+            i {
+                font-size: 16px;
+            }
+        }
+    }
+    .details-view-assessment-content {
+        flex-grow: 1;
+        display: flex;
+        height: 0;
+        border-top: 1px solid $neutral-8;
+
+        .test-steps-nav-container {
+            display: flex;
+            overflow-y: auto;
+            overflow-x: hidden;
+            border-right: 1px solid $neutral-8;
+        }
+    }
+    .assessment-requirements-title {
+        width: 100%;
+        border-bottom: 1px solid $neutral-8;
+        .assessment-requirements {
+            font-size: 17px;
+            font-weight: $normalTitleFontWeight;
+            margin: 0px 0px 0px 24px;
+            padding-top: 1vh;
+            padding-bottom: 1vh;
+        }
+    }
+}
+
+.assessment-getting-started-container {
+    margin: 0px 18px;
+    border-top: 1px solid $neutral-8;
+    padding-left: 6px;
+    padding-top: 1vh;
+}
+
+.test-step-view-container {
+    display: inline-block;
+    width: calc(100% - 401px);
+    vertical-align: top;
+    overflow-y: auto;
+    overflow-x: hidden;
+}

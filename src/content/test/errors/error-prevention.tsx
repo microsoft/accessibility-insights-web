@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Error prevention</h1>
         <p>
             If submitting data might have serious consequences, users must be able to correct the data input before finalizing a submission.
         </p>

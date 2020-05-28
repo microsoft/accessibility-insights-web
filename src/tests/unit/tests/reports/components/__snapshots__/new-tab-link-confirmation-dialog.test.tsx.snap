@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewTabLinkWithConfirmationDialog contains NewTabLink with forwarded props 1`] = `
+Object {
+  "children": <div>
+    test-child
+  </div>,
+  "href": "test-href",
+  "title": "test-title",
+}
+`;
+
+exports[`NewTabLinkWithConfirmationDialog onClickHandler calls confirm function with expected text 1`] = `
+"Are you sure you want to navigate away from the Accessibility Insights report?
+This link will open the target page in a new tab.
+
+Press OK to continue or Cancel to stay on the current page."
+`;

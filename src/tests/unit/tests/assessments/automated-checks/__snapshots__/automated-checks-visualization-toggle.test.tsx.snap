@@ -9,13 +9,18 @@ exports[`AutomatedChecksVisualizationToggle render with disabled message 1`] = `
   >
     Visual helper
   </div>
-  <VisualizationToggle
-    checked={false}
-    className="visual-helper-toggle"
-    disabled={true}
-    onClick={[Function]}
-    visualizationName="Visual helper"
-  />
+  <div
+    aria-hidden={true}
+  >
+    <VisualizationToggle
+      checked={false}
+      className="visual-helper-toggle"
+      data-automation-id="visual-helper-toggle"
+      disabled={true}
+      onClick={[Function]}
+      visualizationName="Visual helper"
+    />
+  </div>
   <span
     className="no-matching-elements"
   >
@@ -33,13 +38,18 @@ exports[`AutomatedChecksVisualizationToggle render: toggle disabled when there a
   >
     Visual helper
   </div>
-  <VisualizationToggle
-    checked={false}
-    className="visual-helper-toggle"
-    disabled={true}
-    onClick={[Function]}
-    visualizationName="Visual helper"
-  />
+  <div
+    aria-hidden={true}
+  >
+    <VisualizationToggle
+      checked={false}
+      className="visual-helper-toggle"
+      data-automation-id="visual-helper-toggle"
+      disabled={true}
+      onClick={[Function]}
+      visualizationName="Visual helper"
+    />
+  </div>
   <span
     className="no-matching-elements"
   >
@@ -57,12 +67,17 @@ exports[`AutomatedChecksVisualizationToggle render: toggle not disabled 1`] = `
   >
     Visual helper
   </div>
-  <VisualizationToggle
-    checked={false}
-    className="visual-helper-toggle"
-    disabled={false}
-    onClick={[Function]}
-    visualizationName="Visual helper"
-  />
+  <div
+    aria-hidden={false}
+  >
+    <VisualizationToggle
+      checked={false}
+      className="visual-helper-toggle"
+      data-automation-id="visual-helper-toggle"
+      disabled={false}
+      onClick={[Function]}
+      visualizationName="Visual helper"
+    />
+  </div>
 </div>
 `;

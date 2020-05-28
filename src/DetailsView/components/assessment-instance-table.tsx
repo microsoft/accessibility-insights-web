@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { IRenderFunction } from '@uifabric/utilities';
 import { has } from 'lodash';
-import { ActionButton } from 'office-ui-fabric-react';
 import {
     CheckboxVisibility,
     ConstrainMode,
@@ -15,6 +14,7 @@ import { Spinner, SpinnerSize } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
+import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import {
     AssessmentNavState,
@@ -23,6 +23,9 @@ import {
 } from '../../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../../types/common-types';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
+
+export const passUnmarkedInstancesButtonAutomationId =
+    'assessment-instance-table-pass-unmarked-instances-button';
 
 export interface AssessmentInstanceTableProps {
     instancesMap: DictionaryStringTo<GeneratedAssessmentInstance>;
@@ -77,7 +80,7 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
         );
         const defaultMessageComponent = getDefaultMessage(
             this.props.instancesMap,
-            this.props.assessmentNavState.selectedTestStep,
+            this.props.assessmentNavState.selectedTestSubview,
         );
 
         if (defaultMessageComponent) {
@@ -120,17 +123,18 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
     public renderDefaultInstanceTableHeader(items: AssessmentInstanceRowData[]): JSX.Element {
         const disabled = !this.isAnyInstanceStatusUnknown(
             items,
-            this.props.assessmentNavState.selectedTestStep,
+            this.props.assessmentNavState.selectedTestSubview,
         );
 
         return (
-            <ActionButton
+            <InsightsCommandButton
+                data-automation-id={passUnmarkedInstancesButtonAutomationId}
                 iconProps={{ iconName: 'skypeCheck' }}
                 onClick={this.onPassUnmarkedInstances}
                 disabled={disabled}
             >
                 Pass unmarked instances
-            </ActionButton>
+            </InsightsCommandButton>
         );
     }
 
@@ -145,7 +149,7 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
     protected onPassUnmarkedInstances = (): void => {
         this.props.assessmentInstanceTableHandler.passUnmarkedInstances(
             this.props.assessmentNavState.selectedTestType,
-            this.props.assessmentNavState.selectedTestStep,
+            this.props.assessmentNavState.selectedTestSubview,
         );
     };
 }

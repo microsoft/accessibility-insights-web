@@ -6,7 +6,10 @@ import { InspectActionMessageCreator } from 'common/message-creators/inspect-act
 import { ScopingActionMessageCreator } from 'common/message-creators/scoping-action-message-creator';
 import { ScopingStoreData } from 'common/types/store-data/scoping-store-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
-import { ScopingContainer, ScopingContainerProps } from 'DetailsView/components/details-view-overlay/scoping-panel/scoping-container';
+import {
+    ScopingContainer,
+    ScopingContainerProps,
+} from 'DetailsView/components/details-view-overlay/scoping-panel/scoping-container';
 import * as Enzyme from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
@@ -91,6 +94,8 @@ describe('ScopingContainerTest', () => {
         expect(list.prop('inputType')).toEqual(inputType);
         expect(list.prop('onAddSelector')).toEqual(scopingActionMessageCreator.addSelector);
         expect(list.prop('onDeleteSelector')).toEqual(scopingActionMessageCreator.deleteSelector);
-        expect(list.prop('onChangeInspectMode')).toEqual(inspectActionMessageCreator.changeInspectMode);
+        expect(list.prop('onChangeInspectMode')).toEqual(
+            inspectActionMessageCreator.changeInspectMode,
+        );
     }
 });

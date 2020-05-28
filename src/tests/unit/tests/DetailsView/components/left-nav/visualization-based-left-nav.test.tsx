@@ -2,12 +2,14 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, Mock, MockBehavior } from 'typemoq';
-
+import { IMock, Mock } from 'typemoq';
 import { VisualizationConfiguration } from '../../../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../../../common/configs/visualization-configuration-factory';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
-import { BaseLeftNavLink, onBaseLeftNavItemClick } from '../../../../../../DetailsView/components/base-left-nav';
+import {
+    BaseLeftNavLink,
+    onBaseLeftNavItemClick,
+} from '../../../../../../DetailsView/components/base-left-nav';
 import { LeftNavLinkBuilder } from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';
 import {
     VisualizationBasedLeftNav,
@@ -27,8 +29,8 @@ describe('VisualizationBasedLeftNav', () => {
 
     beforeEach(() => {
         visualizationsStub = [-1, -2];
-        leftNavLinkBuilderMock = Mock.ofType(LeftNavLinkBuilder, MockBehavior.Strict);
-        configFactoryMock = Mock.ofType(VisualizationConfigurationFactory, MockBehavior.Strict);
+        leftNavLinkBuilderMock = Mock.ofType(LeftNavLinkBuilder);
+        configFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
         onLinkClickStub = (event, item) => null;
         linkStub = {} as BaseLeftNavLink;
         configStub = {} as VisualizationConfiguration;
@@ -47,20 +49,27 @@ describe('VisualizationBasedLeftNav', () => {
         };
 
         visualizationsStub.forEach((visualizationType, index) => {
-            configFactoryMock.setup(cfm => cfm.getConfiguration(visualizationType)).returns(() => configStub);
+            configFactoryMock
+                .setup(cfm => cfm.getConfiguration(visualizationType))
+                .returns(() => configStub);
 
             leftNavLinkBuilderMock
-                .setup(lnlbm => lnlbm.buildVisualizationConfigurationLink(configStub, onLinkClickStub, visualizationType, index + 1))
+                .setup(lnlbm =>
+                    lnlbm.buildVisualizationConfigurationLink(
+                        deps,
+                        configStub,
+                        onLinkClickStub,
+                        visualizationType,
+                        index + 1,
+                    ),
+                )
                 .returns(() => linkStub);
         });
     });
 
     it('renders with index icon', () => {
         const actual = shallow(<VisualizationBasedLeftNav {...props} />);
-        const renderIcon: (link: BaseLeftNavLink) => JSX.Element = actual.prop('renderIcon');
-        const renderedIcon = shallow(renderIcon(linkStub));
 
         expect(actual.getElement()).toMatchSnapshot();
-        expect(renderedIcon.getElement()).toMatchSnapshot();
     });
 });

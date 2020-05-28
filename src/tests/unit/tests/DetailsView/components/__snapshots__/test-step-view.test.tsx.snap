@@ -7,11 +7,11 @@ exports[`TestStepViewTest render snapshot matches with manual false and scanning
       Test Step Test Name
       <GuidanceTags deps={[undefined]} links={{...}} />
     </h3>
-    <ContentPanelButton deps={[undefined]} reference={[undefined]} iconName=\\"info\\">
+    <ContentPanelButton deps={[undefined]} reference={[undefined]} iconName=\\"info\\" contentTitle=\\"Test Step Test Name\\">
       Info &amp; examples
     </ContentPanelButton>
   </div>
-  <CollapsibleComponent header={{...}} content={{...}} contentClassName=\\"test-step-instructions\\" />
+  <CollapsibleComponent header={{...}} content={{...}} contentClassName=\\"testStepInstructions\\" />
   <div role=\\"alert\\" aria-live=\\"polite\\" aria-label=\\"Scan Complete\\" />
   <h3 className=\\"test-step-instances-header\\">
     Instances
@@ -27,11 +27,11 @@ exports[`TestStepViewTest render, variable part for assisted test 1`] = `
       Test Step Test Name
       <GuidanceTags deps={[undefined]} links={{...}} />
     </h3>
-    <ContentPanelButton deps={[undefined]} reference={[undefined]} iconName=\\"info\\">
+    <ContentPanelButton deps={[undefined]} reference={[undefined]} iconName=\\"info\\" contentTitle=\\"Test Step Test Name\\">
       Info &amp; examples
     </ContentPanelButton>
   </div>
-  <CollapsibleComponent header={{...}} content={{...}} contentClassName=\\"test-step-instructions\\" />
+  <CollapsibleComponent header={{...}} content={{...}} contentClassName=\\"testStepInstructions\\" />
   <h3 className=\\"test-step-instances-header\\">
     Instances
   </h3>

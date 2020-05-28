@@ -59,11 +59,11 @@ export class ExtensionDetailsViewController implements DetailsViewController {
     }
 
     private getDetailsUrl(tabId: number): string {
-        return `DetailsView/detailsView.html?tabId=${tabId}`;
+        return `/DetailsView/detailsView.html?tabId=${tabId}`;
     }
 
     private getDetailsUrlWithExtensionId(tabId: number): string {
-        return `${this.browserAdapter.getRunTimeId()}/${this.getDetailsUrl(tabId)}`;
+        return `${this.browserAdapter.getRunTimeId()}${this.getDetailsUrl(tabId)}`;
     }
 
     private getTargetTabIdForDetailsTabId(detailsTabId: number): number {

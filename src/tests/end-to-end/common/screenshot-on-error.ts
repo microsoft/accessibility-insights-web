@@ -6,7 +6,7 @@ import { prepareTestResultFilePath } from './prepare-test-result-file-path';
 
 const promiseFactory = createDefaultPromiseFactory();
 
-async function takeScreenshot(saveScreenshot: (path) => Promise<Buffer>): Promise<void> {
+async function takeScreenshot(saveScreenshot: (path) => Promise<void>): Promise<void> {
     const path = await prepareTestResultFilePath('failure-screenshots', 'png');
     await promiseFactory.timeout(saveScreenshot(path), DEFAULT_SCREENSHOT_TIMEOUT_MS);
 
@@ -15,7 +15,7 @@ async function takeScreenshot(saveScreenshot: (path) => Promise<Buffer>): Promis
 }
 
 export async function screenshotOnError<T>(
-    saveScreenshot: (path) => Promise<Buffer>,
+    saveScreenshot: (path) => Promise<any>,
     wrappedFunction: () => Promise<T>,
 ): Promise<T> {
     try {

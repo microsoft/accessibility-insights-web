@@ -17,7 +17,9 @@ describe('PopupViewControllerHandlerTest', () => {
         const testSubject: PopupViewControllerHandler = new PopupViewControllerHandler();
 
         const actionMessageCreatorMock = Mock.ofType(PopupActionMessageCreator);
-        actionMessageCreatorMock.setup(a => a.setLaunchPanelType(testPanelType)).verifiable(Times.once());
+        actionMessageCreatorMock
+            .setup(a => a.setLaunchPanelType(testPanelType))
+            .verifiable(Times.once());
 
         setlaunchPanelTypeMock.setup(cM => cM(testPanelType)).verifiable(Times.once());
 
@@ -47,7 +49,9 @@ describe('PopupViewControllerHandlerTest', () => {
         const testSubject: PopupViewControllerHandler = new PopupViewControllerHandler();
 
         const actionMessageCreatorMock = Mock.ofType(PopupActionMessageCreator);
-        actionMessageCreatorMock.setup(a => a.setLaunchPanelType(testPanelType)).verifiable(Times.once());
+        actionMessageCreatorMock
+            .setup(a => a.setLaunchPanelType(testPanelType))
+            .verifiable(Times.once());
 
         setlaunchPanelTypeMock.setup(cM => cM(testPanelType)).verifiable(Times.once());
 

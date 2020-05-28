@@ -24,7 +24,9 @@ describe('ElectronStorageAdapter', () => {
         `('succeed to set $items', async ({ items }) => {
             await testSubject.setUserData(items);
 
-            Object.keys(items).forEach(key => indexedDBInstanceMock.verify(db => db.setItem(key, items[key]), Times.once()));
+            Object.keys(items).forEach(key =>
+                indexedDBInstanceMock.verify(db => db.setItem(key, items[key]), Times.once()),
+            );
         });
 
         it('propagates exceptions from indexedDB as-is', async () => {
@@ -36,7 +38,9 @@ describe('ElectronStorageAdapter', () => {
                 [firstKey]: 1,
             };
 
-            indexedDBInstanceMock.setup(indexedDB => indexedDB.setItem(firstKey, items[firstKey])).returns(() => Promise.reject(reason));
+            indexedDBInstanceMock
+                .setup(indexedDB => indexedDB.setItem(firstKey, items[firstKey]))
+                .returns(() => Promise.reject(reason));
 
             await expect(testSubject.setUserData(items)).rejects.toMatch(reason);
         });
@@ -53,7 +57,11 @@ describe('ElectronStorageAdapter', () => {
         `('properly reads $items', async ({ items }) => {
             const keys = Object.keys(items);
 
-            keys.forEach(key => indexedDBInstanceMock.setup(db => db.getItem(key)).returns(() => Promise.resolve(items[key])));
+            keys.forEach(key =>
+                indexedDBInstanceMock
+                    .setup(db => db.getItem(key))
+                    .returns(() => Promise.resolve(items[key])),
+            );
 
             const result = await testSubject.getUserData(keys);
 
@@ -66,7 +74,9 @@ describe('ElectronStorageAdapter', () => {
 
             const firstKey = 'first';
 
-            indexedDBInstanceMock.setup(db => db.getItem(firstKey)).returns(() => Promise.reject(reason));
+            indexedDBInstanceMock
+                .setup(db => db.getItem(firstKey))
+                .returns(() => Promise.reject(reason));
 
             await expect(testSubject.getUserData([firstKey])).rejects.toMatch(reason);
         });
@@ -84,7 +94,9 @@ describe('ElectronStorageAdapter', () => {
         it('propagate exceptions from indexedDB as-is', async () => {
             const reason = 'test-error-reason';
 
-            indexedDBInstanceMock.setup(db => db.removeItem(key)).returns(() => Promise.reject(reason));
+            indexedDBInstanceMock
+                .setup(db => db.removeItem(key))
+                .returns(() => Promise.reject(reason));
 
             await expect(testSubject.removeUserData(key)).rejects.toMatch(reason);
         });

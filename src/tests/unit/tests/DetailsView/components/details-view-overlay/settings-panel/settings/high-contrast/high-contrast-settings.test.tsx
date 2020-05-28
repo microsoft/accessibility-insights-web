@@ -3,7 +3,10 @@
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { HighContrastSettings } from 'DetailsView/components/details-view-overlay/settings-panel/settings/high-contrast/high-contrast-settings';
-import { SettingsDeps, SettingsProps } from 'DetailsView/components/details-view-overlay/settings-panel/settings/settings-props';
+import {
+    SettingsDeps,
+    SettingsProps,
+} from 'DetailsView/components/details-view-overlay/settings-panel/settings/settings-props';
 import { shallow } from 'enzyme';
 import { Toggle } from 'office-ui-fabric-react';
 import * as React from 'react';
@@ -44,12 +47,11 @@ describe('HighContrastSettings', () => {
 
             const wrapper = shallow(<HighContrastSettings {...props} />);
 
-            userConfigMessageCreatorMock.setup(creator => creator.setHighContrastMode(!enabled)).verifiable(Times.once());
+            userConfigMessageCreatorMock
+                .setup(creator => creator.setHighContrastMode(!enabled))
+                .verifiable(Times.once());
 
-            wrapper
-                .dive()
-                .find(Toggle)
-                .simulate('click');
+            wrapper.dive().find(Toggle).simulate('click');
 
             userConfigMessageCreatorMock.verifyAll();
         });

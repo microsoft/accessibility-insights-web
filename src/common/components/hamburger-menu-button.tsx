@@ -80,6 +80,16 @@ export const HamburgerMenuButton = NamedFC<HamburgerMenuButtonProps>(
                 onClick: event => popupActionMessageCreator.openShortcutConfigureTab(event),
             },
             {
+                key: 'third-party-notices',
+                iconProps: {
+                    iconName: 'TextDocument',
+                },
+                data: '/NOTICE.html',
+                onClick: (event, item) =>
+                    launchPanelHeaderClickHandler.onClickLink(popupWindow, event as any, item),
+                name: 'Third party notices',
+            },
+            {
                 key: 'help',
                 iconProps: {
                     iconName: 'Unknown',

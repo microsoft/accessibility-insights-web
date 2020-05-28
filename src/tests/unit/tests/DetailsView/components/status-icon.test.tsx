@@ -13,17 +13,23 @@ describe('StatusIcon', () => {
     });
 
     test('render for PASS with extra class name', () => {
-        const wrapper = Enzyme.shallow(<StatusIcon status={ManualTestStatus.PASS} className={'test'} level="test" />);
+        const wrapper = Enzyme.shallow(
+            <StatusIcon status={ManualTestStatus.PASS} className={'test'} level="test" />,
+        );
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
     test('render for FAIL', () => {
-        const wrapper = Enzyme.shallow(<StatusIcon status={ManualTestStatus.FAIL} level="requirement" />);
+        const wrapper = Enzyme.shallow(
+            <StatusIcon status={ManualTestStatus.FAIL} level="requirement" />,
+        );
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
     test('render for UNKNOWN', () => {
-        const wrapper = Enzyme.shallow(<StatusIcon status={ManualTestStatus.UNKNOWN} level="requirement" />);
+        const wrapper = Enzyme.shallow(
+            <StatusIcon status={ManualTestStatus.UNKNOWN} level="requirement" />,
+        );
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 

@@ -15,7 +15,10 @@ import {
     TestStepResult,
 } from '../../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
-import { SelectorMapHelper, VisualizationRelatedStoreData } from '../../../../injected/selector-map-helper';
+import {
+    SelectorMapHelper,
+    VisualizationRelatedStoreData,
+} from '../../../../injected/selector-map-helper';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 
@@ -24,11 +27,18 @@ describe('SelectorMapHelperTest', () => {
     let testSubject: SelectorMapHelper;
     let getElementBasedViewModelMock: IMock<GetElementBasedViewModelCallback>;
 
-    const adHocVisualizationTypes = [VisualizationType.Headings, VisualizationType.Landmarks, VisualizationType.Color];
+    const adHocVisualizationTypes = [
+        VisualizationType.Headings,
+        VisualizationType.Landmarks,
+        VisualizationType.Color,
+    ];
     beforeEach(() => {
         assessmentsProvider = CreateTestAssessmentProvider();
         getElementBasedViewModelMock = Mock.ofType<GetElementBasedViewModelCallback>();
-        testSubject = new SelectorMapHelper(assessmentsProvider, getElementBasedViewModelMock.object);
+        testSubject = new SelectorMapHelper(
+            assessmentsProvider,
+            getElementBasedViewModelMock.object,
+        );
     });
 
     test('constructor', () => {
@@ -38,11 +48,15 @@ describe('SelectorMapHelperTest', () => {
     adHocVisualizationTypes.forEach(visualizationType => {
         test(`getSelectorMap: ${VisualizationType[visualizationType]}`, () => {
             const selectorMap = { key1: { target: ['element1'] } };
-            const state = new VisualizationScanResultStoreDataBuilder().withSelectorMap(visualizationType, selectorMap).build();
+            const state = new VisualizationScanResultStoreDataBuilder()
+                .withSelectorMap(visualizationType, selectorMap)
+                .build();
             const storeData: VisualizationRelatedStoreData = {
                 visualizationScanResultStoreData: state,
             } as VisualizationRelatedStoreData;
-            expect(testSubject.getSelectorMap(visualizationType, null, storeData)).toEqual(selectorMap);
+            expect(testSubject.getSelectorMap(visualizationType, null, storeData)).toEqual(
+                selectorMap,
+            );
         });
     });
 
@@ -60,10 +74,14 @@ describe('SelectorMapHelperTest', () => {
         } as VisualizationRelatedStoreData;
 
         getElementBasedViewModelMock
-            .setup(gebvm => gebvm(rulesStub, resultsStub, storeData.cardSelectionStoreData))
+            .setup(gebvm =>
+                gebvm(storeData.unifiedScanResultStoreData, storeData.cardSelectionStoreData),
+            )
             .returns(() => selectorMap);
 
-        expect(testSubject.getSelectorMap(VisualizationType.Issues, null, storeData)).toEqual(selectorMap);
+        expect(testSubject.getSelectorMap(VisualizationType.Issues, null, storeData)).toEqual(
+            selectorMap,
+        );
     });
 
     test('getState: tabStops', () => {

@@ -32,8 +32,12 @@ describe('FileUrlUnsupportedMessagePanel', () => {
     it('has a NewTabLink that uses createActiveTab to open the manage extension page', async () => {
         const stubExtensionPageUrl = 'protocol://extension-page';
         const browserAdapterMock = Mock.ofType<BrowserAdapter>(null, MockBehavior.Strict);
-        browserAdapterMock.setup(adapter => adapter.getManageExtensionUrl()).returns(() => stubExtensionPageUrl);
-        browserAdapterMock.setup(adapter => adapter.createActiveTab(stubExtensionPageUrl)).returns(() => Promise.resolve({} as Tabs.Tab));
+        browserAdapterMock
+            .setup(adapter => adapter.getManageExtensionUrl())
+            .returns(() => stubExtensionPageUrl);
+        browserAdapterMock
+            .setup(adapter => adapter.createActiveTab(stubExtensionPageUrl))
+            .returns(() => Promise.resolve({} as Tabs.Tab));
 
         const props: FileUrlUnsupportedMessagePanelProps = {
             deps: {

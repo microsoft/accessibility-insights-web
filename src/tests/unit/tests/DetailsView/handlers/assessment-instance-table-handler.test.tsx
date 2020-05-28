@@ -14,7 +14,10 @@ import { VisualizationType } from '../../../../../common/types/visualization-typ
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { AssessmentInstanceEditAndRemoveControl } from '../../../../../DetailsView/components/assessment-instance-edit-and-remove-control';
 import { AssessmentInstanceSelectedButton } from '../../../../../DetailsView/components/assessment-instance-selected-button';
-import { AssessmentInstanceRowData, CapturedInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
+import {
+    AssessmentInstanceRowData,
+    CapturedInstanceRowData,
+} from '../../../../../DetailsView/components/assessment-instance-table';
 import { AssessmentTableColumnConfigHandler } from '../../../../../DetailsView/components/assessment-table-column-config-handler';
 import { TestStatusChoiceGroup } from '../../../../../DetailsView/components/test-status-choice-group';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
@@ -65,11 +68,15 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             },
         };
         const assessmentNavState: AssessmentNavState = {
-            selectedTestStep: 'step1',
+            selectedTestSubview: 'step1',
             selectedTestType: 5,
         };
 
-        const rows = testSubject.createAssessmentInstanceTableItems(instancesMap, assessmentNavState, true);
+        const rows = testSubject.createAssessmentInstanceTableItems(
+            instancesMap,
+            assessmentNavState,
+            true,
+        );
         const choiceGroup: JSX.Element = (
             <TestStatusChoiceGroup
                 test={5}
@@ -77,8 +84,12 @@ describe('AssessmentInstanceTableHandlerTest', () => {
                 selector={'selector1'}
                 status={ManualTestStatus.FAIL}
                 originalStatus={2}
-                onGroupChoiceChange={detailsViewActionMessageCreatorMock.object.changeManualTestStatus}
-                onUndoClicked={detailsViewActionMessageCreatorMock.object.undoManualTestStatusChange}
+                onGroupChoiceChange={
+                    detailsViewActionMessageCreatorMock.object.changeManualTestStatus
+                }
+                onUndoClicked={
+                    detailsViewActionMessageCreatorMock.object.undoManualTestStatusChange
+                }
             />
         );
         const selectedButton: JSX.Element = (
@@ -88,7 +99,9 @@ describe('AssessmentInstanceTableHandlerTest', () => {
                 selector={'selector1'}
                 isVisualizationEnabled={false}
                 isVisible={false}
-                onSelected={detailsViewActionMessageCreatorMock.object.changeAssessmentVisualizationState}
+                onSelected={
+                    detailsViewActionMessageCreatorMock.object.changeAssessmentVisualizationState
+                }
             />
         );
 
@@ -121,7 +134,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             description: 'des',
         };
         const assessmentNavState: AssessmentNavState = {
-            selectedTestStep: 'step1',
+            selectedTestSubview: 'step1',
             selectedTestType: 5,
         };
 
@@ -133,7 +146,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
         const rows = testSubject.createCapturedInstanceTableItems(
             [instance],
             assessmentNavState.selectedTestType,
-            assessmentNavState.selectedTestStep,
+            assessmentNavState.selectedTestSubview,
             featureFlagStoreData,
             pathSnippetStoreData,
         );
@@ -147,13 +160,15 @@ describe('AssessmentInstanceTableHandlerTest', () => {
         const instanceActionButtons: JSX.Element = (
             <AssessmentInstanceEditAndRemoveControl
                 test={assessmentNavState.selectedTestType}
-                step={assessmentNavState.selectedTestStep}
+                step={assessmentNavState.selectedTestSubview}
                 id={instance.id}
                 currentInstance={currentInstance}
                 onRemove={detailsViewActionMessageCreatorMock.object.removeFailureInstance}
                 onEdit={detailsViewActionMessageCreatorMock.object.editFailureInstance}
                 onAddPath={detailsViewActionMessageCreatorMock.object.addPathForValidation}
-                onClearPathSnippetData={detailsViewActionMessageCreatorMock.object.clearPathSnippetData}
+                onClearPathSnippetData={
+                    detailsViewActionMessageCreatorMock.object.clearPathSnippetData
+                }
                 assessmentsProvider={assessmentsProvider}
                 featureFlagStoreData={featureFlagStoreData}
             />
@@ -175,7 +190,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             html: 'saved instance',
         };
         const assessmentNavState: AssessmentNavState = {
-            selectedTestStep: 'step1',
+            selectedTestSubview: 'step1',
             selectedTestType: 5,
         };
 
@@ -187,7 +202,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
         const rows = testSubject.createCapturedInstanceTableItems(
             [instance],
             assessmentNavState.selectedTestType,
-            assessmentNavState.selectedTestStep,
+            assessmentNavState.selectedTestSubview,
             featureFlagStoreData,
             pathSnippetStoreData,
         );
@@ -201,13 +216,15 @@ describe('AssessmentInstanceTableHandlerTest', () => {
         const instanceActionButtons: JSX.Element = (
             <AssessmentInstanceEditAndRemoveControl
                 test={assessmentNavState.selectedTestType}
-                step={assessmentNavState.selectedTestStep}
+                step={assessmentNavState.selectedTestSubview}
                 id={instance.id}
                 currentInstance={currentInstance}
                 onRemove={detailsViewActionMessageCreatorMock.object.removeFailureInstance}
                 onEdit={detailsViewActionMessageCreatorMock.object.editFailureInstance}
                 onAddPath={detailsViewActionMessageCreatorMock.object.addPathForValidation}
-                onClearPathSnippetData={detailsViewActionMessageCreatorMock.object.clearPathSnippetData}
+                onClearPathSnippetData={
+                    detailsViewActionMessageCreatorMock.object.clearPathSnippetData
+                }
                 assessmentsProvider={assessmentsProvider}
                 featureFlagStoreData={featureFlagStoreData}
             />
@@ -224,7 +241,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
     test('getColumnConfigs', () => {
         const navState: AssessmentNavState = {
             selectedTestType: VisualizationType.HeadingsAssessment,
-            selectedTestStep: 'step',
+            selectedTestSubview: 'step',
         };
         const instanceMap = {
             selector1: {
@@ -237,9 +254,15 @@ describe('AssessmentInstanceTableHandlerTest', () => {
                 html: '',
             },
         };
-        configFactoryMock.setup(c => c.getColumnConfigs(navState, true, true)).verifiable(Times.once());
+        configFactoryMock
+            .setup(c => c.getColumnConfigs(navState, true, true))
+            .verifiable(Times.once());
 
-        testSubject.getColumnConfigs(instanceMap as DictionaryStringTo<GeneratedAssessmentInstance>, navState, true);
+        testSubject.getColumnConfigs(
+            instanceMap as DictionaryStringTo<GeneratedAssessmentInstance>,
+            navState,
+            true,
+        );
 
         configFactoryMock.verifyAll();
     });
@@ -282,14 +305,18 @@ describe('AssessmentInstanceTableHandlerTest', () => {
 
     test('addPathForValidation', () => {
         const path = 'test path';
-        detailsViewActionMessageCreatorMock.setup(a => a.addPathForValidation(path)).verifiable(Times.once());
+        detailsViewActionMessageCreatorMock
+            .setup(a => a.addPathForValidation(path))
+            .verifiable(Times.once());
         testSubject.addPathForValidation(path);
 
         detailsViewActionMessageCreatorMock.verifyAll();
     });
 
     test('clearPathSnippetData', () => {
-        detailsViewActionMessageCreatorMock.setup(a => a.clearPathSnippetData()).verifiable(Times.once());
+        detailsViewActionMessageCreatorMock
+            .setup(a => a.clearPathSnippetData())
+            .verifiable(Times.once());
         testSubject.clearPathSnippetData();
 
         detailsViewActionMessageCreatorMock.verifyAll();
@@ -304,7 +331,9 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             snippet: 'snippet',
         };
 
-        detailsViewActionMessageCreatorMock.setup(a => a.addFailureInstance(instanceData, test, requirement)).verifiable(Times.once());
+        detailsViewActionMessageCreatorMock
+            .setup(a => a.addFailureInstance(instanceData, test, requirement))
+            .verifiable(Times.once());
 
         testSubject.addFailureInstance(instanceData, test, requirement);
 
@@ -314,7 +343,9 @@ describe('AssessmentInstanceTableHandlerTest', () => {
     test('passUnmarkedInstances', () => {
         const test = VisualizationType.HeadingsAssessment;
         const requirement = 'missingHeadings';
-        detailsViewActionMessageCreatorMock.setup(a => a.passUnmarkedInstances(test, requirement)).verifiable(Times.once());
+        detailsViewActionMessageCreatorMock
+            .setup(a => a.passUnmarkedInstances(test, requirement))
+            .verifiable(Times.once());
 
         testSubject.passUnmarkedInstances(test, requirement);
 
@@ -323,7 +354,9 @@ describe('AssessmentInstanceTableHandlerTest', () => {
 
     test('updateFocusedInstance', () => {
         const targetStub = ['target'];
-        detailsViewActionMessageCreatorMock.setup(a => a.updateFocusedInstanceTarget(targetStub)).verifiable(Times.once());
+        detailsViewActionMessageCreatorMock
+            .setup(a => a.updateFocusedInstanceTarget(targetStub))
+            .verifiable(Times.once());
         testSubject.updateFocusedTarget(targetStub);
 
         detailsViewActionMessageCreatorMock.verifyAll();
@@ -343,7 +376,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
         } as GeneratedAssessmentInstance;
 
         const assessmentNavState: AssessmentNavState = {
-            selectedTestStep: 'step1',
+            selectedTestSubview: 'step1',
             selectedTestType: 5,
         };
 
@@ -353,7 +386,9 @@ describe('AssessmentInstanceTableHandlerTest', () => {
     });
 
     test('getColumnConfigsForCapturedInstance', () => {
-        configFactoryMock.setup(c => c.getColumnConfigsForCapturedInstances()).verifiable(Times.once());
+        configFactoryMock
+            .setup(c => c.getColumnConfigsForCapturedInstances())
+            .verifiable(Times.once());
 
         testSubject.getColumnConfigsForCapturedInstance();
 

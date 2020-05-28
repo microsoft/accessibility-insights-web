@@ -1,9 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { map } from 'lodash';
-import * as React from 'react';
-
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { Assessment } from 'assessments/types/iassessment';
+import { Requirement } from 'assessments/types/requirement';
+import { gettingStartedSubview } from 'common/types/store-data/assessment-result-data';
+import {
+    onTestGettingStartedClick,
+    onTestRequirementClick,
+    TestGettingStartedNavLink,
+    TestRequirementLeftNavLink,
+} from 'DetailsView/components/left-nav/assessment-left-nav';
+import { NavLinkHandler } from 'DetailsView/components/left-nav/nav-link-handler';
+import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
+import { map } from 'lodash';
 import { OutcomeTypeSemantic } from 'reports/components/outcome-type';
 import { RequirementOutcomeStats } from 'reports/components/requirement-outcome-type';
 import { GetAssessmentSummaryModelFromProviderAndStatusData } from 'reports/get-assessment-summary-model';
@@ -12,8 +21,6 @@ import { ManualTestStatus, ManualTestStatusData } from '../../../common/types/ma
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../../types/common-types';
 import { BaseLeftNavLink, onBaseLeftNavItemClick, onBaseLeftNavItemRender } from '../base-left-nav';
-import { OverviewLeftNavLink } from './overview-left-nav-link';
-import { TestViewLeftNavLink } from './test-view-left-nav-link';
 
 export type LeftNavLinkBuilderDeps = OverviewLinkBuilderDeps &
     AssessmentLinkBuilderDeps &
@@ -21,17 +28,31 @@ export type LeftNavLinkBuilderDeps = OverviewLinkBuilderDeps &
 
 export type OverviewLinkBuilderDeps = {
     getAssessmentSummaryModelFromProviderAndStatusData: GetAssessmentSummaryModelFromProviderAndStatusData;
+    navLinkRenderer: NavLinkRenderer;
 };
 
 export type AssessmentLinkBuilderDeps = {
+    navLinkHandler: NavLinkHandler;
     getStatusForTest: (stats: RequirementOutcomeStats) => ManualTestStatus;
     outcomeTypeSemanticsFromTestStatus: (testStatus: ManualTestStatus) => OutcomeTypeSemantic;
     outcomeStatsFromManualTestStatus: (
         testStepStatus: ManualTestStatusData,
     ) => RequirementOutcomeStats;
+    navLinkRenderer: NavLinkRenderer;
 };
 
-export type VisualizationConfigurationLinkBuilderDeps = {};
+export type VisualizationConfigurationLinkBuilderDeps = {
+    navLinkRenderer: NavLinkRenderer;
+};
+
+export function generateReflowAssessmentTestKey(
+    test: VisualizationType,
+    selectedSubview: string,
+): string {
+    return `${VisualizationType[test]}: ${selectedSubview}`;
+}
+
+export type reflowAssessmentTestKeyGenerator = typeof generateReflowAssessmentTestKey;
 
 export class LeftNavLinkBuilder {
     public buildOverviewLink(
@@ -41,7 +62,7 @@ export class LeftNavLinkBuilder {
         assessmentsData: DictionaryStringTo<ManualTestStatusData>,
         index: number,
     ): BaseLeftNavLink {
-        const { getAssessmentSummaryModelFromProviderAndStatusData } = deps;
+        const { getAssessmentSummaryModelFromProviderAndStatusData, navLinkRenderer } = deps;
 
         const reportModel = getAssessmentSummaryModelFromProviderAndStatusData(
             assessmentsProvider,
@@ -49,11 +70,11 @@ export class LeftNavLinkBuilder {
         );
         const percentComplete = 100 - reportModel.byPercentage.incomplete;
 
-        const baselink = this.buildLink(
+        const baselink = this.buildBaseLink(
             'Overview',
             'Overview',
             index,
-            (l, ri) => <OverviewLeftNavLink link={l} renderIcon={ri} />,
+            navLinkRenderer.renderOverviewLink,
             onLinkClick,
         );
 
@@ -77,6 +98,7 @@ export class LeftNavLinkBuilder {
             getStatusForTest,
             outcomeTypeSemanticsFromTestStatus,
             outcomeStatsFromManualTestStatus,
+            navLinkRenderer,
         } = deps;
 
         const assessments = assessmentsProvider.all();
@@ -89,11 +111,11 @@ export class LeftNavLinkBuilder {
             const narratorTestStatus = outcomeTypeSemanticsFromTestStatus(status).pastTense;
             const name = assessment.title;
 
-            const baselink = this.buildLink(
+            const baselink = this.buildBaseLink(
                 name,
                 VisualizationType[assessment.visualizationType],
                 index,
-                (l, ri) => <TestViewLeftNavLink link={l} renderIcon={ri} />,
+                navLinkRenderer.renderAssessmentTestLink,
                 onLinkClick,
             );
 
@@ -110,26 +132,155 @@ export class LeftNavLinkBuilder {
         return testLinks;
     }
 
+    public buildReflowAssessmentTestLinks(
+        deps: AssessmentLinkBuilderDeps,
+        assessmentsProvider: AssessmentsProvider,
+        assessmentsData: DictionaryStringTo<ManualTestStatusData>,
+        startingIndex: number,
+    ): BaseLeftNavLink[] {
+        const assessments = assessmentsProvider.all();
+        let index = startingIndex;
+
+        const allTestLinks = map(assessments, assessment => {
+            const test = this.buildAssessmentLink(deps, assessment, index, assessmentsData);
+            index++;
+            return test;
+        });
+
+        return allTestLinks;
+    }
+
+    private buildAssessmentLink = (
+        deps: AssessmentLinkBuilderDeps,
+        assessment: Assessment,
+        index: number,
+        assessmentsData: DictionaryStringTo<ManualTestStatusData>,
+    ) => {
+        const {
+            getStatusForTest,
+            outcomeTypeSemanticsFromTestStatus,
+            outcomeStatsFromManualTestStatus,
+            navLinkHandler,
+            navLinkRenderer,
+        } = deps;
+
+        const stepStatus = assessmentsData[assessment.key];
+        const stats = outcomeStatsFromManualTestStatus(stepStatus);
+        const status = getStatusForTest(stats);
+        const narratorTestStatus = outcomeTypeSemanticsFromTestStatus(status).pastTense;
+        const name = assessment.title;
+
+        const baselink = this.buildBaseLink(
+            name,
+            VisualizationType[assessment.visualizationType],
+            index,
+            navLinkRenderer.renderAssessmentTestLink,
+            () => {},
+        );
+
+        const gettingStartedLink = this.buildGettingStartedLink(
+            navLinkRenderer.renderGettingStartedLink,
+            navLinkHandler.onGettingStartedClick,
+            assessment,
+        );
+
+        const requirementLinks = assessment.requirements.map(
+            (requirement: Requirement, requirementIndex: number) =>
+                this.buildRequirementLink(
+                    deps,
+                    assessment.visualizationType,
+                    requirement,
+                    stepStatus[requirement.key]?.stepFinalResult,
+                    requirementIndex + 1,
+                    index,
+                    navLinkHandler.onRequirementClick,
+                ),
+        );
+
+        const testLink = {
+            ...baselink,
+            status,
+            title: `${index}: ${name} (${narratorTestStatus})`,
+            links: [gettingStartedLink, ...requirementLinks],
+            isExpanded: true,
+        };
+
+        return testLink;
+    };
+
+    private buildRequirementLink(
+        deps: AssessmentLinkBuilderDeps,
+        test: VisualizationType,
+        requirement: Requirement,
+        requirementStatus: ManualTestStatus,
+        requirementIndex: number,
+        testIndex: number,
+        onClick: onTestRequirementClick,
+    ): TestRequirementLeftNavLink {
+        const { outcomeTypeSemanticsFromTestStatus, navLinkRenderer } = deps;
+        const name = requirement.name;
+        const displayedIndex = `${testIndex}.${requirementIndex}`;
+        const narratorRequirementStatus = outcomeTypeSemanticsFromTestStatus(requirementStatus)
+            .pastTense;
+
+        const baselink = this.buildBaseLink(
+            name,
+            generateReflowAssessmentTestKey(test, requirement.key),
+            requirementIndex,
+            navLinkRenderer.renderRequirementLink,
+            onClick,
+        );
+
+        return {
+            ...baselink,
+            status: requirementStatus,
+            title: `${displayedIndex}: ${name} (${narratorRequirementStatus})`,
+            displayedIndex,
+            testType: test,
+            requirementKey: requirement.key,
+        };
+    }
+
+    private buildGettingStartedLink(
+        renderGettingStartedLink: onBaseLeftNavItemRender,
+        onClick: onTestGettingStartedClick,
+        test: Assessment,
+    ): TestGettingStartedNavLink {
+        const testType = test.visualizationType;
+        return {
+            testType,
+            ...this.buildBaseLink(
+                'Getting Started',
+                generateReflowAssessmentTestKey(testType, gettingStartedSubview),
+                0,
+                renderGettingStartedLink,
+                onClick,
+            ),
+        };
+    }
+
     public buildVisualizationConfigurationLink(
+        deps: VisualizationConfigurationLinkBuilderDeps,
         configuration: VisualizationConfiguration,
         onLinkClick: onBaseLeftNavItemClick,
         visualizationType: VisualizationType,
         index: number,
     ): BaseLeftNavLink {
         const displayableData = configuration.displayableData;
+        const { navLinkRenderer } = deps;
 
-        const link = this.buildLink(
+        const link = this.buildBaseLink(
             displayableData.title,
             VisualizationType[visualizationType],
             index,
-            (l, ri) => <TestViewLeftNavLink link={l} renderIcon={ri} />,
+            navLinkRenderer.renderVisualizationLink,
             onLinkClick,
         );
 
         return link;
     }
 
-    private buildLink(
+    private buildBaseLink(
         name: string,
         key: string,
         index: number,

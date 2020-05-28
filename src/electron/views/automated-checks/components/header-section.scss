@@ -8,11 +8,8 @@
     margin-bottom: 24px;
 
     .title {
-        font-family: $semiBoldFontFamily;
-        font-weight: $fontWeightSemiBold;
-        font-size: $fontSizeLML;
+        @include text-style-title-m;
         line-height: 25px;
-        letter-spacing: -0.02em;
         color: $primary-text;
         margin-top: 0;
         margin-bottom: 8px;

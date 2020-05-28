@@ -16,7 +16,7 @@ exports[`report package integration with issues 1`] = `
   </style>
   <header>
     <div
-      class="report-header-bar"
+      class="reportHeaderBar"
     >
       <svg
         aria-hidden="true"
@@ -213,26 +213,39 @@ exports[`report package integration with issues 1`] = `
         </defs>
       </svg>
       <div
-        class="ms-font-m header-text ms-fontWeight-semibold"
+        class="headerText"
       >
         Accessibility Insights for Web
       </div>
     </div>
     <div
-      class="report-header-command-bar"
+      class="reportHeaderCommandBar"
     >
       <div
-        class="target-page"
+        class="targetPage"
       >
         Target page: 
         <a
           class="ms-Link insights-link root-000"
           href="https://markreay.github.io/AU/before.html"
+          id="new-tab-link-with-confirmation-dialog__000"
           target="_blank"
           title="PAGE_TITLE"
         >
           PAGE_TITLE
         </a>
+        <script>
+          (function (linkId, doc, confirmCallback) {
+  const targetPageLink = doc.getElementById(linkId);
+  targetPageLink.addEventListener('click', function (event) {
+    const result = confirmCallback('Are you sure you want to navigate away from the Accessibility Insights report?\\n' + 'This link will open the target page in a new tab.\\n\\nPress OK to continue or ' + 'Cancel to stay on the current page.');
+
+    if (result === false) {
+      event.preventDefault();
+    }
+  });
+})("new-tab-link-with-confirmation-dialog__1", document, confirm);
+        </script>
       </div>
     </div>
   </header>
@@ -415,11 +428,24 @@ exports[`report package integration with issues 1`] = `
               <a
                 class="ms-Link insights-link root-000"
                 href="https://markreay.github.io/AU/before.html"
+                id="new-tab-link-with-confirmation-dialog__000"
                 target="_blank"
                 title="PAGE_TITLE"
               >
                 https://markreay.github.io/AU/before.html
               </a>
+              <script>
+                (function (linkId, doc, confirmCallback) {
+  const targetPageLink = doc.getElementById(linkId);
+  targetPageLink.addEventListener('click', function (event) {
+    const result = confirmCallback('Are you sure you want to navigate away from the Accessibility Insights report?\\n' + 'This link will open the target page in a new tab.\\n\\nPress OK to continue or ' + 'Cancel to stay on the current page.');
+
+    if (result === false) {
+      event.preventDefault();
+    }
+  });
+})("new-tab-link-with-confirmation-dialog__2", document, confirm);
+              </script>
             </span>
           </li>
           <li>
@@ -4117,7 +4143,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures aria-hidden='true' is not present on the document body.
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4157,7 +4183,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensure that text spacing set through style attributes can be adjusted with custom stylesheets
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4204,7 +4230,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures related &lt;input type="checkbox"&gt; elements have a group and that the group designation is consistent
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4243,7 +4269,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4283,7 +4309,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures each HTML document contains a non-empty &lt;title&gt; element
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4323,7 +4349,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures every id attribute value of active elements is unique
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4363,7 +4389,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures every id attribute value is unique
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4403,7 +4429,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures form field does not have multiple label elements
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4442,7 +4468,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;img&gt; elements have alternate text or a role of none or presentation
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4482,7 +4508,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensure image alternative is not repeated as text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4521,7 +4547,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures input buttons have discernible text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4561,7 +4587,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures that every form element is not solely labeled using the title or aria-describedby attributes
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4600,7 +4626,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures the document has at most one banner landmark
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4649,7 +4675,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures the document has at most one contentinfo landmark
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4698,7 +4724,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures links have discernible text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4748,7 +4774,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures that lists are structured correctly
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4788,7 +4814,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;li&gt; elements are used semantically
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4828,7 +4854,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensure that tables do not have the same summary and caption
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4867,7 +4893,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensure that each cell in a table using the headers refers to another cell in that table
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -4907,7 +4933,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensure that each table header in a data table refers to data cells
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5045,17 +5071,16 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures every accesskey attribute value is unique
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
-                      <a
+                      <button
                         class="ms-Link insights-link root-000"
-                        href="https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html"
-                        target="_blank"
+                        type="button"
                       >
-                        WCAG 2.1.1
-                      </a>
+                        BEST PRACTICE
+                      </button>
                     </span>
                     )
                   </div>
@@ -5085,7 +5110,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;area&gt; elements of image maps have alternate text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5125,7 +5150,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures ARIA attributes are allowed for an element's role
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5175,7 +5200,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures role attribute has an appropriate value for the element
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5214,7 +5239,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures unsupported DPUB roles are only used on elements with implicit fallback roles
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5253,7 +5278,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures aria-hidden elements do not contain focusable elements
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5303,7 +5328,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures every ARIA input field has an accessible name
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5343,7 +5368,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures elements with ARIA roles have all required ARIA attributes
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5393,7 +5418,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures elements with an ARIA role that require child roles contain them
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5433,7 +5458,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures elements with an ARIA role that require parent roles are contained by them
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5473,7 +5498,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures all elements with a role attribute use a valid value
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5533,7 +5558,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures every ARIA toggle field has an accessible name
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5573,7 +5598,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures all ARIA attributes have valid values
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5623,7 +5648,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures attributes that begin with aria- are valid ARIA attributes
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5663,7 +5688,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensure the autocomplete attribute is correct and suitable for the form field
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5710,7 +5735,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;blink&gt; elements are not used
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5750,7 +5775,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures buttons have discernible text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5790,7 +5815,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;dl&gt; elements are structured correctly
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5830,7 +5855,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;dt&gt; and &lt;dd&gt; elements are contained by a &lt;dl&gt;
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5870,7 +5895,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures every id attribute value used in ARIA and in labels is unique
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5910,7 +5935,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures headings have discernible text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5949,7 +5974,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;iframe&gt; and &lt;frame&gt; elements contain the axe-core script
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -5988,7 +6013,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;iframe&gt; and &lt;frame&gt; elements contain a unique title attribute
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6027,7 +6052,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;iframe&gt; and &lt;frame&gt; elements contain a non-empty title attribute
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6067,7 +6092,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures the order of headings is semantically correct
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6106,7 +6131,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures the lang attribute of the &lt;html&gt; element has a valid value
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6146,7 +6171,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensure that HTML elements with both valid lang and xml:lang attributes agree on the base language of the page
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6186,7 +6211,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;input type="image"&gt; elements have alternate text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6226,7 +6251,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures the banner landmark is at top level
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6275,7 +6300,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures the complementary landmark or aside is at top level
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6324,7 +6349,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures the contentinfo landmark is at top level
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6373,7 +6398,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures the main landmark is at top level
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6422,7 +6447,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Landmarks must have a unique role or role/label/title (i.e. accessible name) combination
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6461,17 +6486,16 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures presentational &lt;table&gt; elements do not use &lt;th&gt;, &lt;caption&gt; elements or the summary attribute
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
-                      <a
+                      <button
                         class="ms-Link insights-link root-000"
-                        href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
-                        target="_blank"
+                        type="button"
                       >
-                        WCAG 1.3.1
-                      </a>
+                        BEST PRACTICE
+                      </button>
                     </span>
                     )
                   </div>
@@ -6501,7 +6525,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;marquee&gt; elements are not used
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6541,7 +6565,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;meta http-equiv="refresh"&gt; is not used
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6581,7 +6605,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;meta name="viewport"&gt; can scale a significant amount
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6620,17 +6644,16 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;meta name="viewport"&gt; does not disable text scaling and zooming
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
-                      <a
+                      <button
                         class="ms-Link insights-link root-000"
-                        href="https://www.w3.org/WAI/WCAG21/Understanding/resize-text.html"
-                        target="_blank"
+                        type="button"
                       >
-                        WCAG 1.4.4
-                      </a>
+                        BEST PRACTICE
+                      </button>
                     </span>
                     )
                   </div>
@@ -6660,7 +6683,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;object&gt; elements have alternate text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6700,7 +6723,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures related &lt;input type="radio"&gt; elements have a group and that the group designation is consistent
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6739,7 +6762,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures [role='img'] elements have alternate text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6779,7 +6802,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures the scope attribute is used correctly on tables
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6818,7 +6841,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Elements that have scrollable content should be accessible by keyboard
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6867,7 +6890,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures that server-side image maps are not used
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6907,7 +6930,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensure all skip links have a focusable target
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6946,7 +6969,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures tabindex attribute values are not greater than 0
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -6985,7 +7008,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures lang attributes have valid values
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -7025,7 +7048,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;video&gt; elements have captions
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -7065,7 +7088,7 @@ exports[`report package integration with issues 1`] = `
                     >
                       Ensures &lt;video&gt; elements have audio descriptions
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -7085,6 +7108,29 @@ exports[`report package integration with issues 1`] = `
           </div>
         </div>
       </div>
+      <script>
+        (function (doc) {
+  const collapsibles = doc.getElementsByClassName('collapsible-container');
+
+  for (let index = 0; index &lt; collapsibles.length; index++) {
+    const container = collapsibles.item(index);
+    const button = container.querySelector('.collapsible-control');
+    button.addEventListener('click', function () {
+      const content = button.parentElement.nextElementSibling;
+      const wasExpandedBefore = button.getAttribute('aria-expanded') === 'false' ? false : true;
+      const isExpandedAfter = !wasExpandedBefore;
+      button.setAttribute('aria-expanded', isExpandedAfter + '');
+      content.setAttribute('aria-hidden', !isExpandedAfter + '');
+
+      if (isExpandedAfter) {
+        container.classList.remove('collapsed');
+      } else {
+        container.classList.add('collapsed');
+      }
+    });
+  }
+})(document)
+      </script>
     </div>
   </main>
   <div
@@ -7094,7 +7140,7 @@ exports[`report package integration with issues 1`] = `
       class="report-footer"
       role="contentinfo"
     >
-      This automated checks result was generated using the Accessibility Insights Service that helps find some of the most common accessibility issues. The scan was performed using axe-core 3.3.2 and Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/78.0.3904.108 Safari/537.36. For a complete WCAG 2.1 compliance assessment please visit 
+      This automated checks result was generated using Accessibility Insights Service  (axe-core 3.3.2), a tool that helps debug and find accessibility issues earlier on Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/78.0.3904.108 Safari/537.36. Get more information & download this tool at 
       <a
         class="ms-Link insights-link tool-name-link root-000"
         href="http://aka.ms/AccessibilityInsights"
@@ -7125,7 +7171,7 @@ exports[`report package integration with no issues 1`] = `
   </style>
   <header>
     <div
-      class="report-header-bar"
+      class="reportHeaderBar"
     >
       <svg
         aria-hidden="true"
@@ -7322,26 +7368,39 @@ exports[`report package integration with no issues 1`] = `
         </defs>
       </svg>
       <div
-        class="ms-font-m header-text ms-fontWeight-semibold"
+        class="headerText"
       >
         Accessibility Insights for Web
       </div>
     </div>
     <div
-      class="report-header-command-bar"
+      class="reportHeaderCommandBar"
     >
       <div
-        class="target-page"
+        class="targetPage"
       >
         Target page: 
         <a
           class="ms-Link insights-link root-000"
           href="https://markreay.github.io/AU/after.html"
+          id="new-tab-link-with-confirmation-dialog__000"
           target="_blank"
           title="PAGE_TITLE"
         >
           PAGE_TITLE
         </a>
+        <script>
+          (function (linkId, doc, confirmCallback) {
+  const targetPageLink = doc.getElementById(linkId);
+  targetPageLink.addEventListener('click', function (event) {
+    const result = confirmCallback('Are you sure you want to navigate away from the Accessibility Insights report?\\n' + 'This link will open the target page in a new tab.\\n\\nPress OK to continue or ' + 'Cancel to stay on the current page.');
+
+    if (result === false) {
+      event.preventDefault();
+    }
+  });
+})("new-tab-link-with-confirmation-dialog__3", document, confirm);
+        </script>
       </div>
     </div>
   </header>
@@ -7524,11 +7583,24 @@ exports[`report package integration with no issues 1`] = `
               <a
                 class="ms-Link insights-link root-000"
                 href="https://markreay.github.io/AU/after.html"
+                id="new-tab-link-with-confirmation-dialog__000"
                 target="_blank"
                 title="PAGE_TITLE"
               >
                 https://markreay.github.io/AU/after.html
               </a>
+              <script>
+                (function (linkId, doc, confirmCallback) {
+  const targetPageLink = doc.getElementById(linkId);
+  targetPageLink.addEventListener('click', function (event) {
+    const result = confirmCallback('Are you sure you want to navigate away from the Accessibility Insights report?\\n' + 'This link will open the target page in a new tab.\\n\\nPress OK to continue or ' + 'Cancel to stay on the current page.');
+
+    if (result === false) {
+      event.preventDefault();
+    }
+  });
+})("new-tab-link-with-confirmation-dialog__4", document, confirm);
+              </script>
             </span>
           </li>
           <li>
@@ -7801,7 +7873,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures ARIA attributes are allowed for an element's role
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -7851,7 +7923,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures role attribute has an appropriate value for the element
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -7890,7 +7962,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures aria-hidden='true' is not present on the document body.
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -7930,7 +8002,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures elements with ARIA roles have all required ARIA attributes
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -7980,7 +8052,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures elements with an ARIA role that require child roles contain them
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8020,7 +8092,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures elements with an ARIA role that require parent roles are contained by them
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8060,7 +8132,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures all elements with a role attribute use a valid value
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8120,7 +8192,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures all ARIA attributes have valid values
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8170,7 +8242,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures attributes that begin with aria- are valid ARIA attributes
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8210,7 +8282,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensure that text spacing set through style attributes can be adjusted with custom stylesheets
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8257,7 +8329,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures buttons have discernible text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8297,7 +8369,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures each page has at least one mechanism for a user to bypass navigation and jump straight to the content
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8337,7 +8409,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures related &lt;input type="checkbox"&gt; elements have a group and that the group designation is consistent
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8376,7 +8448,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8416,7 +8488,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures each HTML document contains a non-empty &lt;title&gt; element
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8456,7 +8528,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures every id attribute value of active elements is unique
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8496,7 +8568,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures every id attribute value used in ARIA and in labels is unique
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8536,7 +8608,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures every id attribute value is unique
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8576,7 +8648,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures headings have discernible text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8615,7 +8687,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures form field does not have multiple label elements
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8654,7 +8726,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures the order of headings is semantically correct
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8693,7 +8765,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures every HTML document has a lang attribute
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8733,7 +8805,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures the lang attribute of the &lt;html&gt; element has a valid value
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8773,7 +8845,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;img&gt; elements have alternate text or a role of none or presentation
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8813,7 +8885,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensure image alternative is not repeated as text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8852,7 +8924,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures input buttons have discernible text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8892,7 +8964,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures that every form element is not solely labeled using the title or aria-describedby attributes
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8931,7 +9003,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures every form element has a label
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -8981,7 +9053,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures the banner landmark is at top level
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9030,7 +9102,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures the contentinfo landmark is at top level
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9079,7 +9151,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures the main landmark is at top level
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9128,7 +9200,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures the document has at most one banner landmark
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9177,7 +9249,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures the document has at most one contentinfo landmark
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9226,7 +9298,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures the document has only one main landmark and each iframe in the page has at most one main landmark
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9265,7 +9337,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Landmarks must have a unique role or role/label/title (i.e. accessible name) combination
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9304,7 +9376,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures links have discernible text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9354,7 +9426,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures that lists are structured correctly
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9394,7 +9466,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;li&gt; elements are used semantically
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9434,7 +9506,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensure that the page, or at least one of its frames contains a level-one heading
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9473,7 +9545,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures all page content is contained by landmarks
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9512,7 +9584,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures the scope attribute is used correctly on tables
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9551,7 +9623,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensure that tables do not have the same summary and caption
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9590,7 +9662,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensure that each cell in a table using the headers refers to another cell in that table
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9630,7 +9702,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensure that each table header in a data table refers to data cells
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9670,7 +9742,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures lang attributes have valid values
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9808,17 +9880,16 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures every accesskey attribute value is unique
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
-                      <a
+                      <button
                         class="ms-Link insights-link root-000"
-                        href="https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html"
-                        target="_blank"
+                        type="button"
                       >
-                        WCAG 2.1.1
-                      </a>
+                        BEST PRACTICE
+                      </button>
                     </span>
                     )
                   </div>
@@ -9848,7 +9919,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;area&gt; elements of image maps have alternate text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9888,7 +9959,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures unsupported DPUB roles are only used on elements with implicit fallback roles
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9927,7 +9998,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures aria-hidden elements do not contain focusable elements
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -9977,7 +10048,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures every ARIA input field has an accessible name
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10017,7 +10088,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures every ARIA toggle field has an accessible name
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10057,7 +10128,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensure the autocomplete attribute is correct and suitable for the form field
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10104,7 +10175,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;blink&gt; elements are not used
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10144,7 +10215,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;dl&gt; elements are structured correctly
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10184,7 +10255,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;dt&gt; and &lt;dd&gt; elements are contained by a &lt;dl&gt;
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10224,7 +10295,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;iframe&gt; and &lt;frame&gt; elements contain the axe-core script
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10263,7 +10334,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;iframe&gt; and &lt;frame&gt; elements contain a unique title attribute
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10302,7 +10373,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;iframe&gt; and &lt;frame&gt; elements contain a non-empty title attribute
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10342,7 +10413,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensure that HTML elements with both valid lang and xml:lang attributes agree on the base language of the page
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10382,7 +10453,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;input type="image"&gt; elements have alternate text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10422,7 +10493,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures the complementary landmark or aside is at top level
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10471,17 +10542,16 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures presentational &lt;table&gt; elements do not use &lt;th&gt;, &lt;caption&gt; elements or the summary attribute
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
-                      <a
+                      <button
                         class="ms-Link insights-link root-000"
-                        href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
-                        target="_blank"
+                        type="button"
                       >
-                        WCAG 1.3.1
-                      </a>
+                        BEST PRACTICE
+                      </button>
                     </span>
                     )
                   </div>
@@ -10511,7 +10581,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;marquee&gt; elements are not used
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10551,7 +10621,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;meta http-equiv="refresh"&gt; is not used
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10591,7 +10661,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;meta name="viewport"&gt; can scale a significant amount
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10630,17 +10700,16 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;meta name="viewport"&gt; does not disable text scaling and zooming
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
-                      <a
+                      <button
                         class="ms-Link insights-link root-000"
-                        href="https://www.w3.org/WAI/WCAG21/Understanding/resize-text.html"
-                        target="_blank"
+                        type="button"
                       >
-                        WCAG 1.4.4
-                      </a>
+                        BEST PRACTICE
+                      </button>
                     </span>
                     )
                   </div>
@@ -10670,7 +10739,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;object&gt; elements have alternate text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10710,7 +10779,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures related &lt;input type="radio"&gt; elements have a group and that the group designation is consistent
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10749,7 +10818,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures [role='img'] elements have alternate text
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10789,7 +10858,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Elements that have scrollable content should be accessible by keyboard
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10838,7 +10907,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures that server-side image maps are not used
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10878,7 +10947,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensure all skip links have a focusable target
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10917,7 +10986,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures tabindex attribute values are not greater than 0
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10956,7 +11025,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;video&gt; elements have captions
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -10996,7 +11065,7 @@ exports[`report package integration with no issues 1`] = `
                     >
                       Ensures &lt;video&gt; elements have audio descriptions
                     </span>
-                     (
+                    (
                     <span
                       class="guidance-links"
                     >
@@ -11016,6 +11085,29 @@ exports[`report package integration with no issues 1`] = `
           </div>
         </div>
       </div>
+      <script>
+        (function (doc) {
+  const collapsibles = doc.getElementsByClassName('collapsible-container');
+
+  for (let index = 0; index &lt; collapsibles.length; index++) {
+    const container = collapsibles.item(index);
+    const button = container.querySelector('.collapsible-control');
+    button.addEventListener('click', function () {
+      const content = button.parentElement.nextElementSibling;
+      const wasExpandedBefore = button.getAttribute('aria-expanded') === 'false' ? false : true;
+      const isExpandedAfter = !wasExpandedBefore;
+      button.setAttribute('aria-expanded', isExpandedAfter + '');
+      content.setAttribute('aria-hidden', !isExpandedAfter + '');
+
+      if (isExpandedAfter) {
+        container.classList.remove('collapsed');
+      } else {
+        container.classList.add('collapsed');
+      }
+    });
+  }
+})(document)
+      </script>
     </div>
   </main>
   <div
@@ -11025,7 +11117,7 @@ exports[`report package integration with no issues 1`] = `
       class="report-footer"
       role="contentinfo"
     >
-      This automated checks result was generated using the Accessibility Insights Service that helps find some of the most common accessibility issues. The scan was performed using axe-core 3.3.2 and Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/78.0.3904.108 Safari/537.36. For a complete WCAG 2.1 compliance assessment please visit 
+      This automated checks result was generated using Accessibility Insights Service  (axe-core 3.3.2), a tool that helps debug and find accessibility issues earlier on Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/78.0.3904.108 Safari/537.36. Get more information & download this tool at 
       <a
         class="ms-Link insights-link tool-name-link root-000"
         href="http://aka.ms/AccessibilityInsights"

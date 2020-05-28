@@ -3,6 +3,7 @@
 import { Assessments } from 'assessments/assessments';
 import { EnumHelper } from 'common/enum-helper';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
+import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unavailable';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
@@ -19,10 +20,12 @@ import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-
 import { TargetPageVisualizationUpdater } from 'injected/target-page-visualization-updater';
 import { visualizationNeedsUpdate } from 'injected/visualization-needs-update';
 import { VisualizationStateChangeHandler } from 'injected/visualization-state-change-handler';
+
+import { createToolData } from 'common/application-properties-provider';
+import { toolName } from 'content/strings/application';
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
-import { EnvironmentInfoProvider } from '../common/environment-info-provider';
 import { TelemetryEventSource } from '../common/extension-telemetry-events';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
@@ -197,10 +200,12 @@ export class MainWindowInitializer extends WindowInitializer {
 
         const browserSpec = new NavigatorUtils(window.navigator, logger).getBrowserSpec();
 
-        const environmentInfoProvider = new EnvironmentInfoProvider(
+        const toolData = createToolData(
+            toolName,
             this.appDataAdapter.getVersion(),
-            browserSpec,
+            'axe-core',
             AxeInfo.Default.version,
+            browserSpec,
         );
 
         MainWindowContext.initialize(
@@ -210,7 +215,7 @@ export class MainWindowInitializer extends WindowInitializer {
             targetPageActionMessageCreator,
             issueFilingActionMessageCreator,
             userConfigMessageCreator,
-            environmentInfoProvider,
+            toolData,
             IssueFilingServiceProviderImpl,
         );
 
@@ -218,6 +223,7 @@ export class MainWindowInitializer extends WindowInitializer {
         const elementBasedViewModelCreator = new ElementBasedViewModelCreator(
             getDecoratedAxeNode,
             getCardSelectionViewData,
+            isResultHighlightUnavailableWeb,
         );
         const selectorMapHelper = new SelectorMapHelper(
             Assessments,
@@ -286,7 +292,7 @@ export class MainWindowInitializer extends WindowInitializer {
             this.browserAdapter.sendMessageToFrames,
             convertScanResultsToUnifiedResults,
             convertScanResultsToUnifiedRules,
-            environmentInfoProvider,
+            toolData,
             generateUID,
             scanIncompleteWarningDetector,
         );

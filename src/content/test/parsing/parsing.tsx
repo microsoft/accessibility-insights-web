@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Parsing</h1>
         <p>
             Elements must have complete start and end tags, must not contain duplicate attributes, and must be nested according to their
             specifications.

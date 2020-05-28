@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>No obstruction</h1>
         <p>Captions must not obscure or obstruct relevant information in the video.</p>
 
         <h2>Why it matters</h2>

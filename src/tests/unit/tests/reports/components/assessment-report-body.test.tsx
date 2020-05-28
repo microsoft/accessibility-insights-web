@@ -2,13 +2,19 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { AssessmentReportBody, AssessmentReportBodyDeps, AssessmentReportBodyProps } from 'reports/components/assessment-report-body';
+import {
+    AssessmentReportBody,
+    AssessmentReportBodyDeps,
+    AssessmentReportBodyProps,
+} from 'reports/components/assessment-report-body';
 import { AssessmentReportBuilderTestHelper } from '../../DetailsView/assessment-report-builder-test-helper';
 
 describe('AssessmentReportBody', () => {
     test('render', () => {
         const deps: AssessmentReportBodyDeps = {
-            outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
+            outcomeTypeSemanticsFromTestStatus: {
+                stub: 'outcomeTypeSemanticsFromTestStatus',
+            } as any,
         } as AssessmentReportBodyDeps;
 
         const props: AssessmentReportBodyProps = {

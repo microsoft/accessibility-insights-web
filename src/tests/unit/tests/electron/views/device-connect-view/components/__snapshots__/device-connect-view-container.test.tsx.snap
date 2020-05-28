@@ -6,7 +6,7 @@ exports[`DeviceConnectViewContainer renders 1`] = `
 >
   <WindowTitle
     deps={Object {}}
-    title="Accessibility Insights"
+    pageTitle="Connect to your Android device"
     windowStateStoreData={
       Object {
         "currentWindowState": "customSize",

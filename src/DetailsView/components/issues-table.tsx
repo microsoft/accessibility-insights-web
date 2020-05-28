@@ -4,8 +4,9 @@ import * as Markup from 'assessments/markup';
 import { ScanningSpinner } from 'common/components/scanning-spinner/scanning-spinner';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { TargetAppData } from 'common/types/store-data/unified-data-interface';
+import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import * as styles from 'DetailsView/components/issues-table.scss';
 import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
 import { ISelection } from 'office-ui-fabric-react';
 import * as React from 'react';
@@ -39,7 +40,7 @@ export interface IssuesTableProps {
     featureFlags: FeatureFlagStoreData;
     scanResult: ScanResults;
     userConfigurationStoreData: UserConfigurationStoreData;
-    targetAppInfo: TargetAppData;
+    scanMetadata: ScanMetadata;
     cardsViewData: CardsViewModel;
 }
 
@@ -54,7 +55,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
 
     public render(): JSX.Element {
         return (
-            <div className="issues-table">
+            <div className={styles.issuesTable}>
                 <h1>{this.props.title}</h1>
                 {this.renderSubtitle()}
                 {this.renderContent()}
@@ -66,7 +67,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
         if (!this.props.subtitle) {
             return null;
         }
-        return <div className="issues-table-subtitle">{this.props.subtitle}</div>;
+        return <div className={styles.issuesTableSubtitle}>{this.props.subtitle}</div>;
     }
 
     private renderContent(): JSX.Element {
@@ -74,7 +75,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
             return this.renderSpinner('Loading...');
         }
 
-        return <div className="issues-table-content">{this.renderComponent()}</div>;
+        return <div className={styles.issuesTableContent}>{this.renderComponent()}</div>;
     }
 
     private renderComponent(): JSX.Element {
@@ -95,7 +96,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
                 deps={this.props.deps}
                 cardsViewData={this.props.cardsViewData}
                 userConfigurationStoreData={this.props.userConfigurationStoreData}
-                targetAppInfo={this.props.targetAppInfo}
+                scanMetadata={this.props.scanMetadata}
             />
         );
     }
@@ -113,7 +114,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
 
         return (
             <>
-                <div className="details-disabled-message" role="alert">
+                <div className={styles.detailsDisabledMessage} role="alert">
                     {disabledMessage}
                 </div>
             </>

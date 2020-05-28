@@ -6,7 +6,6 @@ import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
-import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
@@ -21,6 +20,7 @@ import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/detai
 import { ISelection } from 'office-ui-fabric-react';
 import * as React from 'react';
 
+import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { NamedFC } from '../../common/react/named-fc';
 import { DetailsListIssuesView, DetailsListIssuesViewDeps } from './details-list-issues-view';
 import { TargetPageChangedView } from './target-page-changed-view';
@@ -42,7 +42,7 @@ export type AdhocIssuesTestViewProps = {
     issuesTableHandler: IssuesTableHandler;
     configuration: VisualizationConfiguration;
     userConfigurationStoreData: UserConfigurationStoreData;
-    targetAppInfo: TargetAppData;
+    scanMetadata: ScanMetadata;
     cardsViewData: CardsViewModel;
 };
 

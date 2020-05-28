@@ -2,13 +2,13 @@
 
 exports[`TargetPageChangedView renders with subtitle=test subtitle content and feature flag= false 1`] = `
 <div
-  className="target-page-changed"
+  className="staticContentInDetailsView"
 >
   <h1>
     test title
   </h1>
   <div
-    className="target-page-changed-subtitle"
+    className="targetPageChangedSubtitle"
   >
     test subtitle content
   </div>
@@ -20,13 +20,13 @@ exports[`TargetPageChangedView renders with subtitle=test subtitle content and f
 
 exports[`TargetPageChangedView renders with subtitle=undefined and feature flag= false 1`] = `
 <div
-  className="target-page-changed"
+  className="staticContentInDetailsView"
 >
   <h1>
     test title
   </h1>
   <div
-    className="target-page-changed-subtitle"
+    className="targetPageChangedSubtitle"
   />
   <p>
     The target page has changed. Use the start over button to scan the new target page.
@@ -36,13 +36,13 @@ exports[`TargetPageChangedView renders with subtitle=undefined and feature flag=
 
 exports[`TargetPageChangedView renders with subtitle=undefined and feature flag= true 1`] = `
 <div
-  className="target-page-changed"
+  className="staticContentInDetailsView"
 >
   <h1>
     test title
   </h1>
   <div
-    className="target-page-changed-subtitle"
+    className="targetPageChangedSubtitle"
   />
   <p>
     The target page has changed. Use the start over button to scan the new target page.

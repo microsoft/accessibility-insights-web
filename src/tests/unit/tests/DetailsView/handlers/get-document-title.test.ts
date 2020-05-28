@@ -7,7 +7,11 @@ import {
     DisplayableVisualizationTypeData,
     VisualizationConfigurationFactory,
 } from '../../../../../common/configs/visualization-configuration-factory';
-import { getOverviewTitle, getTestViewTitle, GetTestViewTitleProps } from '../../../../../DetailsView/handlers/get-document-title';
+import {
+    getOverviewTitle,
+    getTestViewTitle,
+    GetTestViewTitleProps,
+} from '../../../../../DetailsView/handlers/get-document-title';
 
 describe('getTestViewTitle', () => {
     it('should get title from displayable data from config factory', () => {

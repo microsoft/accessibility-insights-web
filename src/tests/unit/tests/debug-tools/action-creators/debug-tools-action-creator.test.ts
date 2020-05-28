@@ -11,7 +11,10 @@ describe('DebugToolsActionCreator', () => {
         const interpreterMock = createInterpreterMock(Messages.DebugTools.Open, undefined);
         const debugToolsControllerMock = Mock.ofType<DebugToolsController>();
 
-        const testSubject = new DebugToolsActionCreator(interpreterMock.object, debugToolsControllerMock.object);
+        const testSubject = new DebugToolsActionCreator(
+            interpreterMock.object,
+            debugToolsControllerMock.object,
+        );
 
         testSubject.registerCallback();
 

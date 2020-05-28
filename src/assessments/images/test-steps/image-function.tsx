@@ -31,11 +31,12 @@ const howToTest: JSX.Element = (
         <Markup.Emphasis>
             Notes: (1) If an image has no code to identify it as meaningful or decorative, it will
             fail an automated check. (2) Assistive technologies will ignore any image coded as
-            decorative, even if it has an accessible name.
+            decorative, even if it has an accessible name. (3) If no matching/failing instances are
+            found, this requirement will automatically be marked as Pass.
         </Markup.Emphasis>
         <ol>
             <li>
-                Examine each image to verify that its coded function is correct.
+                Examine each image to verify that its coded function is correct:
                 <ol>
                     <li>
                         An image should be coded as <Markup.Emphasis>meaningful</Markup.Emphasis> if
@@ -63,6 +64,11 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<ImageFunctionPropertyBa
     {
         propertyName: 'codedAs',
         displayName: 'Coded as',
+        defaultValue: NoValue,
+    },
+    {
+        propertyName: 'ariaRole',
+        displayName: 'ARIA role',
         defaultValue: NoValue,
     },
     {

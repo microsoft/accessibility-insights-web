@@ -21,7 +21,13 @@ describe('InlineImageTest', () => {
 
     test('optional class name', () => {
         const testClassName = 'test-class-name';
-        const wrapped = shallow(<InlineImage imageType={InlineImageType.SleepingAda} alt="" className={testClassName} />);
+        const wrapped = shallow(
+            <InlineImage
+                imageType={InlineImageType.SleepingAda}
+                alt=""
+                className={testClassName}
+            />,
+        );
 
         const element = wrapped.getElement();
 

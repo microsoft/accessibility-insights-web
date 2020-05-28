@@ -17,12 +17,12 @@ exports[`AssessmentScanDetails render Correct composition 1`] = `
           <UrlIcon />
         </td>
         <td>
-          <NewTabLink
+          <NewTabLinkWithConfirmationDialog
             href="https://test-url/path/"
             title="Navigate to target page"
           >
             https://test-url/path/
-          </NewTabLink>
+          </NewTabLinkWithConfirmationDialog>
         </td>
       </tr>
       <tr>

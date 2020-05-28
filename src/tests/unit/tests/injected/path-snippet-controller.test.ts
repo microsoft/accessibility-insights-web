@@ -32,7 +32,11 @@ describe('InspectControllerTests', () => {
             then: processRequestPromiseHandlerMock.object,
         };
 
-        testObject = new PathSnippetController(pathSnippetStoreMock.object, elementFinderMock.object, addCorrespondingSnippetMock.object);
+        testObject = new PathSnippetController(
+            pathSnippetStoreMock.object,
+            elementFinderMock.object,
+            addCorrespondingSnippetMock.object,
+        );
     });
 
     afterEach(() => {

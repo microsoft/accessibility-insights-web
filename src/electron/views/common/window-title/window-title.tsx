@@ -2,10 +2,12 @@
 // Licensed under the MIT License.
 import { css } from '@uifabric/utilities';
 import { NamedFC } from 'common/react/named-fc';
+import { androidAppTitle, brand } from 'content/strings/application';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { PlatformInfo } from 'electron/window-management/platform-info';
 import { isEmpty } from 'lodash';
 import * as React from 'react';
+import { Helmet } from 'react-helmet';
 import * as styles from './window-title.scss';
 
 export interface WindowTitleDeps {
@@ -13,10 +15,11 @@ export interface WindowTitleDeps {
 }
 export interface WindowTitleProps {
     deps: WindowTitleDeps;
-    title: string;
+    pageTitle: string;
     children?: JSX.Element;
     actionableIcons?: JSX.Element[];
     className?: string;
+    headerTextClassName?: string;
     windowStateStoreData: WindowStateStoreData;
 }
 
@@ -27,9 +30,14 @@ export const WindowTitle = NamedFC<WindowTitleProps>('WindowTitle', (props: Wind
 
     return (
         <header className={css(styles.windowTitle, props.className)}>
+            <Helmet>
+                <title>
+                    {androidAppTitle} - {props.pageTitle}
+                </title>
+            </Helmet>
             <div className={styles.titleContainer}>
                 {props.children}
-                <h1 className={styles.headerText}>{props.title}</h1>
+                <span className={css(styles.headerText, props.headerTextClassName)}>{brand}</span>
             </div>
             {getIconsContainer(props)}
         </header>

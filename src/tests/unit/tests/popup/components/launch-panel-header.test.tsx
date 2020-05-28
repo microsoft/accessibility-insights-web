@@ -5,7 +5,11 @@ import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { mount, shallow } from 'enzyme';
 import { PopupActionMessageCreator } from 'popup/actions/popup-action-message-creator';
-import { LaunchPanelHeader, LaunchPanelHeaderDeps, LaunchPanelHeaderProps } from 'popup/components/launch-panel-header';
+import {
+    LaunchPanelHeader,
+    LaunchPanelHeaderDeps,
+    LaunchPanelHeaderProps,
+} from 'popup/components/launch-panel-header';
 import { LaunchPanelHeaderClickHandler } from 'popup/handlers/launch-panel-header-click-handler';
 import * as React from 'react';
 import { Mock, Times } from 'typemoq';
@@ -44,7 +48,9 @@ describe('LaunchPanelHeaderTest', () => {
 
         const wrapped = mount(<LaunchPanelHeader {...props} />);
 
-        dropdownClickHandlerMock.setup(handler => handler.openDebugTools()).verifiable(Times.once());
+        dropdownClickHandlerMock
+            .setup(handler => handler.openDebugTools())
+            .verifiable(Times.once());
 
         const flaggedComponent = wrapped.find(FlaggedComponent);
 

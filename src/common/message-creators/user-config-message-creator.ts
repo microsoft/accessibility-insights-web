@@ -5,6 +5,7 @@ import {
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
+    SetNativeHighContrastModePayload,
     SetTelemetryStatePayload,
 } from 'background/actions/action-payloads';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
@@ -31,6 +32,17 @@ export class UserConfigMessageCreator {
 
         this.dispatcher.dispatchMessage({
             messageType: Messages.UserConfig.SetHighContrastConfig,
+            payload,
+        });
+    }
+
+    public setNativeHighContrastMode(enableHighContrast: boolean): void {
+        const payload: SetNativeHighContrastModePayload = {
+            enableHighContrast,
+        };
+
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.UserConfig.SetNativeHighContrastConfig,
             payload,
         });
     }

@@ -1,8 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { autoPassIfNoResults } from 'assessments/auto-pass-if-no-results';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
+import { TestAutomaticallyPassedNotice } from 'content/test/common/test-automatically-passed-notice';
 import * as content from 'content/test/semantics/css-content';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
 import * as React from 'react';
@@ -16,8 +18,11 @@ const cssContentHowToTest: JSX.Element = (
     <div>
         <p>
             The visual helper for this requirement highlights content inserted in the page using CSS{' '}
-            <Markup.Term>:before</Markup.Term> or <Markup.Term>:after</Markup.Term>. This procedure
-            uses the{' '}
+            <Markup.CodeTerm>:before</Markup.CodeTerm> or <Markup.CodeTerm>:after</Markup.CodeTerm>.
+        </p>
+        <TestAutomaticallyPassedNotice />
+        <p>
+            This procedure uses the{' '}
             <NewTabLink href="https://chrome.google.com/webstore/detail/web-developer/bfbameneiokkgbdmiekhjnmfkcnldhhm">
                 Web Developer
             </NewTabLink>{' '}
@@ -70,8 +75,8 @@ const cssContentHowToTest: JSX.Element = (
                         <ul>
                             <li>
                                 Use the Web Developer browser extension{' '}
-                                <Markup.Term>(CSS > Disable All Styles)</Markup.Term> to turn off
-                                CSS.
+                                <Markup.Term>(CSS {'>'} Disable All Styles)</Markup.Term> to turn
+                                off CSS.
                             </li>
                             <li>
                                 Verify that any information conveyed by the inserted content is
@@ -88,8 +93,8 @@ const cssContentHowToTest: JSX.Element = (
 
 const cssContentDescription: JSX.Element = (
     <span>
-        Meaningful content must not be implemented using only CSS <Markup.Term>:before</Markup.Term>{' '}
-        or <Markup.Term>:after</Markup.Term>.
+        Meaningful content must not be implemented using only CSS{' '}
+        <Markup.CodeTerm>:before</Markup.CodeTerm> or <Markup.CodeTerm>:after</Markup.CodeTerm>.
     </span>
 );
 
@@ -101,6 +106,7 @@ export const CssContent: Requirement = {
     description: cssContentDescription,
     howToTest: cssContentHowToTest,
     isManual: true,
+    getInitialManualTestStatus: autoPassIfNoResults,
     guidanceLinks: [link.WCAG_1_3_1],
     ...content,
     getAnalyzer: provider =>

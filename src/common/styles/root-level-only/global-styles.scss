@@ -1,0 +1,61 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
+// This file should *only* be @imported from root-level SCSS files, *not* individual SCSS modules.
+//
+// If a SCSS module @imports this, the styles will be repeated once per @importing module in the
+// final packed .css file, which causes perf issues (especially with Chromium's dev tools).
+
+@import '../common.scss';
+
+.ms-Fabric.is-focusVisible .ms-Nav-group .ms-nav-linkButton:focus::after {
+    @include set-focus-ring-styles('border');
+}
+
+button::after {
+    content: '';
+    position: absolute;
+}
+
+.ms-fontColor-neutralPrimary,
+.ms-fontColor-neutralPrimary--hover:hover {
+    color: $neutral-100 !important;
+}
+
+.ms-Fabric {
+    color: $neutral-100;
+}
+
+.high-contrast-theme {
+    .insights-link {
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    .is-selected {
+        .status-icon {
+            color: $high-contrast-icon-color !important;
+        }
+    }
+}
+
+.insights-link {
+    // marking important to override office fabric style
+    color: $link !important;
+    text-decoration: none;
+
+    &:hover {
+        color: $link-hover !important;
+        text-decoration: underline;
+    }
+}
+
+.ms-Spinner {
+    .ms-Spinner-circle {
+        border-top-color: $spinner-text;
+    }
+
+    .ms-Spinner-label {
+        color: $spinner-text;
+    }
+}

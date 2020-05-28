@@ -7,4 +7,5 @@ export interface DetailsViewStoreData {
     detailsViewRightContentPanel: DetailsViewRightContentPanelType;
     currentPanel: CurrentPanel;
     contentPath: string;
+    contentTitle: string;
 }

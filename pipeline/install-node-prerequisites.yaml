@@ -3,14 +3,14 @@
 steps:
     - task: NodeTool@0
       inputs:
-          versionSpec: '12.13.0'
-      displayName: use node 12.13.0
+          versionSpec: '12.16.3'
+      displayName: use node 12.16.3
+      timeoutInMinutes: 2
 
-    - script: npm install -g npm@6.11.1
-      displayName: install npm 6.11.1
-
-    - script: npm install yarn@1.17.3 -g
+    - script: npm install yarn@1.22.4 -g
       displayName: install yarn as a global dependency
+      timeoutInMinutes: 1
 
     - script: yarn install --frozen-lockfile
       displayName: install packages and dependencies
+      timeoutInMinutes: 10

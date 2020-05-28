@@ -46,7 +46,7 @@ export class MasterCheckBoxConfigProvider {
             this.detailsViewActionMessageCreator.changeAssessmentVisualizationStateForAll(
                 !allEnabled,
                 assessmentNavState.selectedTestType,
-                assessmentNavState.selectedTestStep,
+                assessmentNavState.selectedTestSubview,
             );
         };
     };

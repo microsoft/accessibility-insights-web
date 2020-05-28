@@ -4,21 +4,35 @@ exports[`InteractiveHeader render: no feature flag store data 1`] = `"<Header de
 
 exports[`InteractiveHeader render: tabClosed is false 1`] = `
 <Header
-  deps={null}
+  deps={
+    Object {
+      "dropdownClickHandler": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "dropdownActionMessageCreator": undefined,
+        "openDebugTools": [Function],
+        "openPreviewFeaturesPanelHandler": [Function],
+        "openScopingPanelHandler": [Function],
+        "openSettingsPanelHandler": [Function],
+        "source": undefined,
+      },
+    }
+  }
   farItems={
     <GearOptionsButtonComponent
-      dropdownClickHandler={
-        proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dropdownActionMessageCreator": undefined,
-          "openDebugTools": [Function],
-          "openPreviewFeaturesPanelHandler": [Function],
-          "openScopingPanelHandler": [Function],
-          "openSettingsPanelHandler": [Function],
-          "source": undefined,
+      deps={
+        Object {
+          "dropdownClickHandler": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "dropdownActionMessageCreator": undefined,
+            "openDebugTools": [Function],
+            "openPreviewFeaturesPanelHandler": [Function],
+            "openScopingPanelHandler": [Function],
+            "openSettingsPanelHandler": [Function],
+            "source": undefined,
+          },
         }
       }
-      featureFlags={
+      featureFlagData={
         Object {
           "test-flag": true,
         }
@@ -26,9 +40,39 @@ exports[`InteractiveHeader render: tabClosed is false 1`] = `
     />
   }
   items={
-    <Switcher
-      deps={null}
-      pivotKey={2}
+    <FlaggedComponent
+      disableJSXElement={
+        <Switcher
+          deps={
+            Object {
+              "dropdownClickHandler": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "dropdownActionMessageCreator": undefined,
+                "openDebugTools": [Function],
+                "openPreviewFeaturesPanelHandler": [Function],
+                "openScopingPanelHandler": [Function],
+                "openSettingsPanelHandler": [Function],
+                "source": undefined,
+              },
+            }
+          }
+          pivotKey={2}
+          styles={
+            Object {
+              "dropdownClassName": "headerSwitcherDropdown",
+              "dropdownOptionClassName": "switcherDropdownOption",
+              "switcherClassName": "headerSwitcher",
+            }
+          }
+        />
+      }
+      enableJSXElement={null}
+      featureFlag="reflowUI"
+      featureFlagStoreData={
+        Object {
+          "test-flag": true,
+        }
+      }
     />
   }
 />
@@ -36,6 +80,18 @@ exports[`InteractiveHeader render: tabClosed is false 1`] = `
 
 exports[`InteractiveHeader render: tabClosed is true 1`] = `
 <Header
-  deps={null}
+  deps={
+    Object {
+      "dropdownClickHandler": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "dropdownActionMessageCreator": undefined,
+        "openDebugTools": [Function],
+        "openPreviewFeaturesPanelHandler": [Function],
+        "openScopingPanelHandler": [Function],
+        "openSettingsPanelHandler": [Function],
+        "source": undefined,
+      },
+    }
+  }
 />
 `;

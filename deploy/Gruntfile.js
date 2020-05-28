@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-module.exports = function(grunt) {
+module.exports = function (grunt) {
     const webStoreAccount = {
         client_id: grunt.option('webstore-client-id'),
         client_secret: grunt.option('webstore-client-secret'),
@@ -44,6 +44,11 @@ module.exports = function(grunt) {
                 },
             },
             onError: e => grunt.fail.fatal(e.errorMsg),
+            onExtensionPublished: info => {
+                if (!info.success) {
+                    grunt.fail.fatal(JSON.stringify(info));
+                }
+            },
         },
     });
 
@@ -54,11 +59,12 @@ module.exports = function(grunt) {
 
     const makeVersionFromDateString = lastSeperator => {
         const now = new Date();
-        return `${now.getUTCFullYear()}.${now.getUTCMonth() +
-            1}.${now.getUTCDate()}${lastSeperator}${now.getUTCHours() * 100 + now.getUTCMinutes()}`;
+        return `${now.getUTCFullYear()}.${
+            now.getUTCMonth() + 1
+        }.${now.getUTCDate()}${lastSeperator}${now.getUTCHours() * 100 + now.getUTCMinutes()}`;
     };
 
-    grunt.registerTask('update-config', function() {
+    grunt.registerTask('update-config', function () {
         const configJSONPath = 'product/insights.config.json';
         const config = grunt.file.readJSON(configJSONPath);
 
@@ -74,7 +80,7 @@ module.exports = function(grunt) {
         grunt.file.write(configJSPath, configJS);
     });
 
-    grunt.registerTask('update-manifest', function() {
+    grunt.registerTask('update-manifest', function () {
         const manifestPath = 'product/manifest.json';
         const manifest = grunt.file.readJSON(manifestPath);
         let version = options.extensionVersion;

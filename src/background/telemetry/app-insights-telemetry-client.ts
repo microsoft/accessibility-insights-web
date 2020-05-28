@@ -4,7 +4,6 @@ import { config } from '../../common/configuration';
 import { ApplicationTelemetryDataFactory } from './application-telemetry-data-factory';
 import { TelemetryBaseData } from './telemetry-base-data';
 import { TelemetryClient } from './telemetry-client';
-import { TelemetryLogger } from './telemetry-logger';
 
 export interface TelemetryData {
     baseData: TelemetryBaseData;
@@ -21,7 +20,6 @@ export class AppInsightsTelemetryClient implements TelemetryClient {
     constructor(
         private readonly appInsights: Microsoft.ApplicationInsights.IAppInsights,
         private readonly coreTelemetryDataFactory: ApplicationTelemetryDataFactory,
-        private readonly logger: TelemetryLogger,
     ) {}
 
     public enableTelemetry(): void {
@@ -86,7 +84,6 @@ export class AppInsightsTelemetryClient implements TelemetryClient {
                 ...this.coreTelemetryDataFactory.getData(),
             };
 
-            this.logger.log(baseData);
             return true;
         });
     }

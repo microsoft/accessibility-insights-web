@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Moving content</h1>
         <p>If content moves, blinks, or scrolls automatically for more than five seconds, users must be able to pause, stop, or hide it.</p>
 
         <h2>Why it matters</h2>

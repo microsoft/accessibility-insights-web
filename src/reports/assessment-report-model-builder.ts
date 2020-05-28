@@ -12,7 +12,7 @@ import {
     AssessmentStoreData,
     TestStepInstance,
 } from 'common/types/store-data/assessment-result-data';
-import { TabStoreData } from 'common/types/store-data/tab-store-data';
+import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { find, keys } from 'lodash';
 import { assessmentReportExtensionPoint } from '../DetailsView/extensions/assessment-report-extension-point';
 import {
@@ -30,7 +30,7 @@ export class AssessmentReportModelBuilder {
     constructor(
         private readonly assessmentsProvider: AssessmentsProvider,
         private readonly assessmentStoreData: AssessmentStoreData,
-        private readonly tabStoreData: TabStoreData,
+        private readonly targetAppInfo: TargetAppData,
         private readonly reportDate: Date,
         private assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator,
     ) {}
@@ -43,8 +43,8 @@ export class AssessmentReportModelBuilder {
         }));
 
         const scanDetails = {
-            targetPage: this.tabStoreData.title,
-            url: this.tabStoreData.url,
+            targetPage: this.targetAppInfo.name,
+            url: this.targetAppInfo.url,
             reportDate: this.reportDate,
         };
 

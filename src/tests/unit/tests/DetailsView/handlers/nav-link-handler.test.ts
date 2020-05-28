@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.`
+import {
+    TestGettingStartedNavLink,
+    TestRequirementLeftNavLink,
+} from 'DetailsView/components/left-nav/assessment-left-nav';
 import { IMock, Mock, MockBehavior } from 'typemoq';
-
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
@@ -15,7 +18,10 @@ describe('NavLinkHandler', () => {
     let link: BaseLeftNavLink;
 
     beforeEach(() => {
-        detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator, MockBehavior.Strict);
+        detailsViewActionMessageCreatorMock = Mock.ofType(
+            DetailsViewActionMessageCreator,
+            MockBehavior.Strict,
+        );
         testSubject = new NavLinkHandler(detailsViewActionMessageCreatorMock.object);
         eventStub = {} as React.MouseEvent<HTMLElement>;
         link = {
@@ -25,7 +31,9 @@ describe('NavLinkHandler', () => {
 
     describe('onOverviewClick', () => {
         it('should call changeRightContentPanel with appropriate params', () => {
-            detailsViewActionMessageCreatorMock.setup(amc => amc.changeRightContentPanel('Overview')).verifiable();
+            detailsViewActionMessageCreatorMock
+                .setup(amc => amc.changeRightContentPanel('Overview'))
+                .verifiable();
 
             testSubject.onOverviewClick();
             detailsViewActionMessageCreatorMock.verifyAll();
@@ -35,7 +43,13 @@ describe('NavLinkHandler', () => {
     describe('onFastPassTestClick', () => {
         it('should call selectDetailsView with appropriate params', () => {
             detailsViewActionMessageCreatorMock
-                .setup(amc => amc.selectDetailsView(eventStub, VisualizationType[link.key], DetailsViewPivotType.fastPass))
+                .setup(amc =>
+                    amc.selectDetailsView(
+                        eventStub,
+                        VisualizationType[link.key],
+                        DetailsViewPivotType.fastPass,
+                    ),
+                )
                 .verifiable();
 
             testSubject.onFastPassTestClick(eventStub, link);
@@ -46,12 +60,63 @@ describe('NavLinkHandler', () => {
     describe('onAssessmentTestClick', () => {
         it('should call selectDetailsView and changeRightContentPanel with appropriate params', () => {
             detailsViewActionMessageCreatorMock
-                .setup(amc => amc.selectDetailsView(eventStub, VisualizationType[link.key], DetailsViewPivotType.assessment))
+                .setup(amc =>
+                    amc.selectDetailsView(
+                        eventStub,
+                        VisualizationType[link.key],
+                        DetailsViewPivotType.assessment,
+                    ),
+                )
                 .verifiable();
 
-            detailsViewActionMessageCreatorMock.setup(amc => amc.changeRightContentPanel('TestView')).verifiable();
+            detailsViewActionMessageCreatorMock
+                .setup(amc => amc.changeRightContentPanel('TestView'))
+                .verifiable();
 
             testSubject.onAssessmentTestClick(eventStub, link);
+            detailsViewActionMessageCreatorMock.verifyAll();
+        });
+    });
+
+    describe('onRequirementClick', () => {
+        it('should call selectRequirement and changeRightContentPanel with appropriate params', () => {
+            const requirementLink = {
+                requirementKey: 'some requirement',
+                testType: -1,
+            } as TestRequirementLeftNavLink;
+            detailsViewActionMessageCreatorMock
+                .setup(amc =>
+                    amc.selectRequirement(
+                        eventStub,
+                        requirementLink.requirementKey,
+                        requirementLink.testType,
+                    ),
+                )
+                .verifiable();
+
+            detailsViewActionMessageCreatorMock
+                .setup(amc => amc.changeRightContentPanel('TestView'))
+                .verifiable();
+
+            testSubject.onRequirementClick(eventStub, requirementLink);
+            detailsViewActionMessageCreatorMock.verifyAll();
+        });
+    });
+
+    describe('onGettingStartedClick', () => {
+        it('should call selectGettingStarted and changeRightContentPanel with appropriate params', () => {
+            const gettingStartedLink = {
+                testType: -1,
+            } as TestGettingStartedNavLink;
+            detailsViewActionMessageCreatorMock
+                .setup(amc => amc.selectGettingStarted(eventStub, gettingStartedLink.testType))
+                .verifiable();
+
+            detailsViewActionMessageCreatorMock
+                .setup(amc => amc.changeRightContentPanel('TestView'))
+                .verifiable();
+
+            testSubject.onGettingStartedClick(eventStub, gettingStartedLink);
             detailsViewActionMessageCreatorMock.verifyAll();
         });
     });

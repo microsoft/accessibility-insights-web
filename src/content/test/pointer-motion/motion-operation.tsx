@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Motion operation</h1>
         <p>If any function can be operated through motion, it must also be operable through user interface components.</p>
 
         <h2>Why it matters</h2>

@@ -103,7 +103,10 @@ describe('IssueDetailsNavigationControls', () => {
 
             nextButton.simulate('click');
 
-            navigationHandlerMock.verify(handler => handler.nextButtonClickHandler(controlProps.container), Times.once());
+            navigationHandlerMock.verify(
+                handler => handler.nextButtonClickHandler(controlProps.container),
+                Times.once(),
+            );
         });
 
         it('handles next button activation, shadow dom on', () => {
@@ -120,7 +123,10 @@ describe('IssueDetailsNavigationControls', () => {
 
             nextButton.simulate('click');
 
-            navigationHandlerMock.verify(handler => handler.nextButtonClickHandler(controlProps.container), Times.never());
+            navigationHandlerMock.verify(
+                handler => handler.nextButtonClickHandler(controlProps.container),
+                Times.never(),
+            );
         });
 
         it('handles back button activation', () => {
@@ -133,7 +139,10 @@ describe('IssueDetailsNavigationControls', () => {
 
             backButton.simulate('click');
 
-            navigationHandlerMock.verify(handler => handler.backButtonClickHandler(controlProps.container), Times.once());
+            navigationHandlerMock.verify(
+                handler => handler.backButtonClickHandler(controlProps.container),
+                Times.once(),
+            );
         });
 
         it('handles back button activation, shadow dom on', () => {
@@ -150,7 +159,10 @@ describe('IssueDetailsNavigationControls', () => {
 
             backButton.simulate('click');
 
-            navigationHandlerMock.verify(handler => handler.backButtonClickHandler(controlProps.container), Times.never());
+            navigationHandlerMock.verify(
+                handler => handler.backButtonClickHandler(controlProps.container),
+                Times.never(),
+            );
         });
     });
 });

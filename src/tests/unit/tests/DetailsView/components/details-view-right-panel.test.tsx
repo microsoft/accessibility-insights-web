@@ -5,10 +5,16 @@ import {
     DetailsRightPanelConfiguration,
     GetDetailsRightPanelConfiguration,
 } from '../../../../../DetailsView/components/details-view-right-panel';
-import { getOverviewKey, getTestViewKey } from '../../../../../DetailsView/components/left-nav/get-left-nav-selected-key';
+import {
+    getOverviewKey,
+    getTestViewKey,
+} from '../../../../../DetailsView/components/left-nav/get-left-nav-selected-key';
 import { OverviewContainer } from '../../../../../DetailsView/components/overview-content/overview-content-container';
 import { TestViewContainer } from '../../../../../DetailsView/components/test-view-container';
-import { getOverviewTitle, getTestViewTitle } from '../../../../../DetailsView/handlers/get-document-title';
+import {
+    getOverviewTitle,
+    getTestViewTitle,
+} from '../../../../../DetailsView/handlers/get-document-title';
 
 describe('DetailsViewRightPanelTests', () => {
     describe('GetDetailsRightPanelConfiguration', () => {

@@ -1,199 +1,27 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-:root {
-    // consistent colors
-    --black: #000000;
-    --light-black: #161616;
-    --white: #ffffff;
-    --brand-blue: #004880;
-    --grey: #333333;
-    --high-contrast-icon-color: var(--black);
 
-    // Accessibility Insights brand color
-    --ada-brand-color: var(--brand-blue);
-    --ada-brand-variant: #336d99;
-
-    // Text colors
-    --primary-text: rgba(0, 0, 0, 0.9);
-    --secondary-text: rgba(0, 0, 0, 0.7);
-    --disabled-text: rgba(0, 0, 0, 0.38);
-    --primary-text-invert: rgba(255, 255, 255, 1);
-    --secondary-text-invert: rgba(255, 255, 255, 0.65);
-    --disabled-text-invert: rgba(255, 255, 255, 0.32);
-
-    // UI colors
-    --communication-primary: #106ebe;
-    --communication-tint-40: #eff6fc;
-    --communication-tint-30: #deecf9;
-    --communication-tint-20: #c7e0f4;
-    --communication-tint-10: #2b88d8;
-    --communication-shade-10: #005a9e;
-    --communication-shade-20: #004578;
-    --communication-shade-30: #003358;
-    // Base
-    --neutral-0: var(--white);
-    --neutral-100: var(--black);
-    // Neutral surfaces
-    --neutral-2: #f8f8f8;
-    --neutral-4: #f4f4f4;
-    --neutral-6: #f2f2f2;
-    --neutral-6-5: #f1f1f1;
-    --neutral-8: #ebebeb;
-    --neutral-10: #dedede;
-    --neutral-20: #c8c8c8;
-    --neutral-30: #a6a6a6;
-    --neutral-55: #6e6e6e;
-    --neutral-60: #666666;
-    --neutral-70: #3c3c3c;
-    --neutral-80: --var(--grey);
-    --neutral-alpha-2: rgba(0, 0, 0, 0.02);
-    --neutral-alpha-4: rgba(0, 0, 0, 0.04);
-    --neutral-alpha-6: rgba(0, 0, 0, 0.06);
-    --neutral-alpha-8: rgba(0, 0, 0, 0.08);
-    --neutral-alpha-10: rgba(0, 0, 0, 0.1);
-    --neutral-alpha-20: rgba(0, 0, 0, 0.2);
-    --neutral-alpha-30: rgba(0, 0, 0, 0.3);
-    --neutral-alpha-60: rgba(0, 0, 0, 0.6);
-    --neutral-alpha-70: rgba(0, 0, 0, 0.7);
-    --neutral-alpha-80: rgba(0, 0, 0, 0.8);
-    --neutral-alpha-90: rgba(0, 0, 0, 0.9);
-    // Outcome colors
-    --positive-outcome: #228722;
-    --negative-outcome: #e81123;
-    --neutral-outcome: var(--neutral-60);
-    --incomplete-color: var(--neutral-60);
-    // Additional colors
-    --acrylic-light: #f6f6f6;
-    --box-shadow-108: rgba(0, 0, 0, 0.108);
-    --box-shadow-132: rgba(0, 0, 0, 0.132);
-    --box-shadow-27: rgba(0, 0, 0, 0.27);
-    --accent2-dark: rgb(16, 124, 16);
-    --communication-alpha-5: rgba(0, 120, 212, 0.05);
-    --overview-percent-selected: var(--neutral-55);
-    --index-circle-background: var(--communication-primary);
-    --check-box-border: var(--neutral-30);
-    --check-box-tick: var(--neutral-100);
-    --check-box-background: var(--neutral-8);
-    --row-selected-background: var(--communication-tint-40);
-    --group-selected-background: var(--communication-tint-40);
-    --row-hover-background: var(--neutral-4);
-    --menu-item-background-hover: var(--neutral-alpha-4);
-    --menu-item-background-active: var(--neutral-alpha-8);
-    --link: var(--communication-primary);
-    --unified-link: var(black);
-    --link-hover: var(--communication-shade-20);
-    --switcher-border: var(--ada-brand-variant);
-    --switcher-focus-border: var(--neutral-0);
-    --help-links-section-background: var(--neutral-4);
-    --help-links-section-border: var(--neutral-4);
-    --highlighted-text: var(--black);
-    --pill: var(--primary-text);
-    --pill-background: var(--neutral-alpha-8);
-    --spinner-text: var(--communication-primary);
-    --menu-background: --acrylic-light;
-    --menu-border: --menu-background;
-    --screenshot-image-outline: #8b8b8b;
-    --card-border: transparent;
-    --card-footer-border: var(--neutral-10);
-    --button-hover: var(--communication-primary);
-
-    // Landmark colors
-    --landmark-contentinfo: #00a88c;
-    --landmark-main: #cb2e6d;
-    --landmark-complementary: #6b9d1a;
-    --landmark-banner: #d08311;
-    --landmark-region: #2560e0;
-    --landmark-navigation: #9b38e6;
-    --landmark-search: #d363d8;
-    --landmark-form: #0298c7;
-    --header-bar-title-color: var(--neutral-0);
-
-    .high-contrast-theme {
-        --ada-brand-color: var(--white);
-        --ada-brand-variant: var(--white);
-        // Base
-        --neutral-0: var(--light-black);
-        --neutral-2: var(--light-black);
-        --neutral-4: var(--light-black);
-        --neutral-6: var(--light-black);
-        --neutral-6-5: var(--light-black);
-        --neutral-10: var(--light-black);
-        --neutral-55: var(--white);
-        --neutral-60: var(--white);
-        --neutral-70: var(--white);
-        --neutral-80: var(--white);
-        --neutral-100: var(--white);
-        --neutral-alpha-8: var(--white);
-        --neutral-alpha-90: var(--white);
-        --secondary-text: var(--white);
-        --primary-text: var(--white);
-
-        // Outcome colors
-        --positive-outcome: #4ac94a;
-        --negative-outcome: #fc7ab1;
-        --neutral-outcome: var(--neutral-0);
-
-        // neutral-60 to white
-        --incomplete-color: var(--neutral-100);
-        // used for many links
-        --communication-shade-10: #ffff00;
-        --communication-tint-30: var(--communication-tint-10);
-        --communication-tint-40: #38a9ff;
-        --disabled-text: #c285ff;
-        --overview-percent-selected: var(--black);
-        --index-circle-background: var(--communication-tint-40);
-        --header-bar-title-color: var(--brand-blue);
-        --check-box-border: var(--light-black);
-        --check-box-tick: var(--light-black);
-        --check-box-background: var(--communication-tint-40);
-        --row-selected-background: var(--communication-tint-40);
-        --group-selected-background: var(--grey);
-        --row-hover-background: var(--communication-tint-40);
-        --link: var(--communication-shade-10);
-        --unified-link: var(--communication-tint-40);
-        --link-hover: var(--communication-shade-10);
-        --switcher-border: var(--brand-blue);
-        --switcher-focus-border: var(--black);
-        --help-links-section-background: transparent;
-        --help-links-section-border: var(--white);
-        --highlighted-text: var(--black);
-        --pill: var(--black);
-        --pill-background: var(--white);
-        --spinner-text: var(--communication-tint-40);
-        --menu-item-background-hover: var(--grey);
-        --menu-item-background-active: var(--communication-tint-40);
-        --menu-background: var(--light-black);
-        --menu-border: var(--grey);
-        --screenshot-image-outline: var(--white);
-        --card-border: var(--white);
-        --card-footer-border: var(--white);
-        --button-hover: #0078d4; // this is the same color office fabric uses on hover
-    }
-}
+// This file is @imported by many SCSS modules, which means it *must not* contain any actual style
+// definitions; it may *only* contain SCSS directives (eg, $variable, @function, and @mixin).
 
 // Accessibility Insights brand color
 $ada-brand-color: var(--ada-brand-color);
+
 // Text colors
 $primary-text: var(--primary-text);
 $secondary-text: var(--secondary-text);
 $disabled-text: var(--disabled-text);
-$primary-text-invert: var(--primary-text-invert);
-$secondary-text-invert: var(--secondary-text-invert);
-$disabled-text-invert: var(--disabled-text-invert);
-$header-bar-title-color: var(--header-bar-title-color);
+
 // UI colors
 $communication-primary: var(--communication-primary);
 $communication-tint-40: var(--communication-tint-40);
 $communication-tint-30: var(--communication-tint-30);
 $communication-tint-20: var(--communication-tint-20);
 $communication-tint-10: var(--communication-tint-10);
-$communication-shade-10: var(--communication-shade-10);
 $communication-shade-20: var(--communication-shade-20);
-$communication-shade-30: var(--communication-shade-30);
-// Base
-$neutral-0: var(--neutral-0);
-$neutral-100: var(--neutral-100);
+
 // Neutral surfaces
+$neutral-0: var(--neutral-0);
 $neutral-2: var(--neutral-2);
 $neutral-4: var(--neutral-4);
 $neutral-6: var(--neutral-6);
@@ -206,6 +34,7 @@ $neutral-55: var(--neutral-55);
 $neutral-60: var(--neutral-60);
 $neutral-70: var(--neutral-70);
 $neutral-80: var(--neutral-80);
+$neutral-100: var(--neutral-100);
 $neutral-alpha-2: var(--neutral-alpha-2);
 $neutral-alpha-4: var(--neutral-alpha-4);
 $neutral-alpha-6: var(--neutral-alpha-6);
@@ -217,7 +46,6 @@ $neutral-alpha-60: var(--neutral-alpha-60);
 $neutral-alpha-70: var(--neutral-alpha-70);
 $neutral-alpha-80: var(--neutral-alpha-80);
 $neutral-alpha-90: var(--neutral-alpha-90);
-$acrylic-light: var(--acrylic-light);
 $box-shadow-132: var(--box-shadow-132);
 $box-shadow-108: var(--box-shadow-108);
 $box-shadow-27: var(--box-shadow-27);
@@ -226,7 +54,8 @@ $box-shadow-27: var(--box-shadow-27);
 $positive-outcome: var(--positive-outcome);
 $negative-outcome: var(--negative-outcome);
 $neutral-outcome: var(--neutral-outcome);
-$incomplete-color: var(--incomplete-color);
+$incomplete-color: var(--neutral-60);
+
 // Landmark colors
 $landmark-contentinfo: var(--landmark-contentinfo);
 $landmark-main: var(--landmark-main);
@@ -236,40 +65,28 @@ $landmark-region: var(--landmark-region);
 $landmark-navigation: var(--landmark-navigation);
 $landmark-search: var(--landmark-search);
 $landmark-form: var(--landmark-form);
+
 // Additional colors
-$accent2-dark: var(--accent2-dark);
-$ada-brand-variant: var(--ada-brand-variant);
-$communication-alpha-5: var(--communication-alpha-5);
-$overview-percent-selected: var(--overview-percent-selected);
-$index-circle-background: var(--index-circle-background);
-$check-box-border: var(--check-box-border);
-$check-box-tick: var(--check-box-tick);
-$check-box-background: var(--check-box-background);
-$row-selected-background: var(--row-selected-background);
-$group-selected-background: var(--group-selected-background);
-$row-hover-background: var(--row-hover-background);
-$link: var(--link);
-$unified-link: var(--unified-link);
-$link-hover: var(--link-hover);
-$switcher-border: var(--switcher-border);
-$switcher-focus-border: var(--switcher-focus-border);
-$help-links-section-background: var(--help-links-section-background);
-$help-links-section-border: var(--help-links-section-border);
-$highlighted-text: var(--highlighted-text);
-$pill: var(--pill);
-$pill-background: var(--pill-background);
-$spinner-text: var(--spinner-text);
-$menu-item-background-hover: var(--menu-item-background-hover);
-$menu-item-background-active: var(--menu-item-background-active);
-$menu-border: var(--menu-border);
-$menu-background: var(--menu-background);
-$screenshot-image-outline: var(--screenshot-image-outline);
 $card-border: var(--card-border);
 $card-footer-border: var(--card-footer-border);
-$button-hover: var(--button-hover);
+$header-bar-title-color: var(--header-bar-title-color);
+$help-links-section-background: var(--help-links-section-background);
+$help-links-section-border: var(--help-links-section-border);
+$high-contrast-icon-color: var(--black);
+$highlighted-text: var(--black);
+$index-circle-background: var(--index-circle-background);
+$link-hover: var(--link-hover);
+$link: var(--link);
+$menu-background: var(--neutral-3);
+$menu-border: var(--menu-border);
+$menu-item-background-active: var(--menu-item-background-active);
+$menu-item-background-hover: var(--menu-item-background-hover);
+$overview-percent-selected: var(--overview-percent-selected);
+$pill-background: var(--pill-background);
+$pill: var(--pill);
+$screenshot-image-outline: var(--screenshot-image-outline);
+$spinner-text: var(--spinner-text);
 
-// consistent colors
-$always-white: #ffffff;
-$always-black: #161616;
-
-$high-contrast-icon-color: var(--high-contrast-icon-color);
+// Consistent colors that don't vary with high contrast mode. Use sparingly.
+$always-white: var(--white);
+$always-black: var(--light-black);

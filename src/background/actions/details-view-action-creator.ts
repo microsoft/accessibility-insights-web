@@ -1,7 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { SidePanelActions } from 'background/actions/side-panel-actions';
 import { DetailsViewController } from 'background/details-view-controller';
-import { SETTINGS_PANEL_CLOSE, SETTINGS_PANEL_OPEN } from 'common/extension-telemetry-events';
+import { SidePanel } from 'background/stores/side-panel';
+import {
+    PREVIEW_FEATURES_OPEN,
+    SCOPING_CLOSE,
+    SCOPING_OPEN,
+    SETTINGS_PANEL_CLOSE,
+    SETTINGS_PANEL_OPEN,
+} from 'common/extension-telemetry-events';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { Logger } from 'common/logging/logger';
 import { getStoreStateMessage, Messages } from 'common/messages';
@@ -12,10 +20,15 @@ import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import { BaseActionPayload } from './action-payloads';
 import { DetailsViewActions } from './details-view-actions';
 
+type SidePanelToTelemetryEventName = {
+    [P in SidePanel]: string;
+};
+
 export class DetailsViewActionCreator {
     constructor(
         private readonly interpreter: Interpreter,
         private readonly detailsViewActions: DetailsViewActions,
+        private readonly sidePanelActions: SidePanelActions,
         private readonly detailsViewController: DetailsViewController,
         private readonly telemetryEventHandler: TelemetryEventHandler,
         private readonly logger: Logger = createDefaultLogger(),
@@ -24,11 +37,23 @@ export class DetailsViewActionCreator {
     public registerCallback(): void {
         this.interpreter.registerTypeToPayloadCallback(
             Messages.SettingsPanel.OpenPanel,
-            this.onOpenSettingsPanel,
+            this.onOpenSidePanel.bind(this, 'Settings'),
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.PreviewFeatures.OpenPanel,
+            this.onOpenSidePanel.bind(this, 'PreviewFeatures'),
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Scoping.OpenPanel,
+            this.onOpenSidePanel.bind(this, 'Scoping'),
         );
         this.interpreter.registerTypeToPayloadCallback(
             Messages.SettingsPanel.ClosePanel,
-            this.onCloseSettingsPanel,
+            this.onCloseSidePanel.bind(this, 'Settings'),
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Scoping.ClosePanel,
+            this.onCloseSidePanel.bind(this, 'Scoping'),
         );
         this.interpreter.registerTypeToPayloadCallback(
             getStoreStateMessage(StoreNames.DetailsViewStore),
@@ -40,18 +65,35 @@ export class DetailsViewActionCreator {
         );
     }
 
-    private onOpenSettingsPanel = async (
+    private sidePanelToOpenPanelTelemetryEventName: SidePanelToTelemetryEventName = {
+        Settings: SETTINGS_PANEL_OPEN,
+        PreviewFeatures: PREVIEW_FEATURES_OPEN,
+        Scoping: SCOPING_OPEN,
+    };
+
+    private onOpenSidePanel = async (
+        panel: SidePanel,
         payload: BaseActionPayload,
         tabId: number,
     ): Promise<void> => {
-        this.detailsViewActions.openSettingsPanel.invoke(null);
+        this.sidePanelActions.openSidePanel.invoke(panel);
         await this.detailsViewController.showDetailsView(tabId).catch(this.logger.error);
-        this.telemetryEventHandler.publishTelemetry(SETTINGS_PANEL_OPEN, payload);
+
+        const eventName = this.sidePanelToOpenPanelTelemetryEventName[panel];
+        this.telemetryEventHandler.publishTelemetry(eventName, payload);
     };
 
-    private onCloseSettingsPanel = (payload: BaseActionPayload): void => {
-        this.detailsViewActions.closeSettingsPanel.invoke(null);
-        this.telemetryEventHandler.publishTelemetry(SETTINGS_PANEL_CLOSE, payload);
+    private sidePanelToClosePanelTelemetryEventName: SidePanelToTelemetryEventName = {
+        Settings: SETTINGS_PANEL_CLOSE,
+        PreviewFeatures: null, // not supported here yet,
+        Scoping: SCOPING_CLOSE,
+    };
+
+    private onCloseSidePanel = (panel: SidePanel, payload: BaseActionPayload): void => {
+        this.sidePanelActions.closeSidePanel.invoke(panel);
+
+        const eventName = this.sidePanelToClosePanelTelemetryEventName[panel];
+        this.telemetryEventHandler.publishTelemetry(eventName, payload);
     };
 
     private onSetDetailsViewRightContentPanel = (

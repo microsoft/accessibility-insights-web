@@ -16,13 +16,25 @@ describe('NonTextComponentFormatterTests', () => {
 
     test('verify drawer configs: getBoundingRect', () => {
         const data = { isFailure: true } as AssessmentVisualizationInstance;
-        const rectWithPadding = testSubject.getDrawerConfiguration(htmlElement, data).getBoundingRect(htmlElement);
-        const baseRect = customWidgetsFormatter.getDrawerConfiguration(htmlElement, data).getBoundingRect(htmlElement);
+        const rectWithPadding = testSubject
+            .getDrawerConfiguration(htmlElement, data)
+            .getBoundingRect(htmlElement);
+        const baseRect = customWidgetsFormatter
+            .getDrawerConfiguration(htmlElement, data)
+            .getBoundingRect(htmlElement);
         expect(rectWithPadding.left - baseRect.left).toBe(-NonTextComponentFormatter.PADDING_VALUE);
-        expect(rectWithPadding.right - baseRect.right).toBe(NonTextComponentFormatter.PADDING_VALUE);
+        expect(rectWithPadding.right - baseRect.right).toBe(
+            NonTextComponentFormatter.PADDING_VALUE,
+        );
         expect(rectWithPadding.top - baseRect.top).toBe(-NonTextComponentFormatter.PADDING_VALUE);
-        expect(rectWithPadding.bottom - baseRect.bottom).toBe(NonTextComponentFormatter.PADDING_VALUE);
-        expect(rectWithPadding.width - baseRect.width).toBe(2 * NonTextComponentFormatter.PADDING_VALUE);
-        expect(rectWithPadding.height - baseRect.height).toBe(2 * NonTextComponentFormatter.PADDING_VALUE);
+        expect(rectWithPadding.bottom - baseRect.bottom).toBe(
+            NonTextComponentFormatter.PADDING_VALUE,
+        );
+        expect(rectWithPadding.width - baseRect.width).toBe(
+            2 * NonTextComponentFormatter.PADDING_VALUE,
+        );
+        expect(rectWithPadding.height - baseRect.height).toBe(
+            2 * NonTextComponentFormatter.PADDING_VALUE,
+        );
     });
 });

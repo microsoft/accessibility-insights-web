@@ -12,13 +12,21 @@ describe('MasterCheckBoxConfigProviderTest', () => {
         const allEnabled = true;
         const navState: AssessmentNavState = {
             selectedTestType: VisualizationType.HeadingsAssessment,
-            selectedTestStep: '',
+            selectedTestSubview: '',
         };
         const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
         detailsViewActionMessageCreatorMock
-            .setup(acm => acm.changeAssessmentVisualizationStateForAll(false, navState.selectedTestType, navState.selectedTestStep))
+            .setup(acm =>
+                acm.changeAssessmentVisualizationStateForAll(
+                    false,
+                    navState.selectedTestType,
+                    navState.selectedTestSubview,
+                ),
+            )
             .verifiable(Times.once());
-        const provider = new MasterCheckBoxConfigProvider(detailsViewActionMessageCreatorMock.object);
+        const provider = new MasterCheckBoxConfigProvider(
+            detailsViewActionMessageCreatorMock.object,
+        );
 
         const config = provider.getMasterCheckBoxProperty(navState, allEnabled);
         config.onColumnClick(null, null);
@@ -35,7 +43,7 @@ describe('MasterCheckBoxConfigProviderTest', () => {
         const allEnabled = false;
         const navState: AssessmentNavState = {
             selectedTestType: VisualizationType.HeadingsAssessment,
-            selectedTestStep: '',
+            selectedTestSubview: '',
         };
 
         const provider = new MasterCheckBoxConfigProvider(null);

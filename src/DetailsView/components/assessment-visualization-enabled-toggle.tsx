@@ -1,13 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { GeneratedAssessmentInstance } from 'common/types/store-data/assessment-result-data';
-import { isEmpty } from 'lodash';
 
 import { BaseVisualHelperToggle } from './base-visual-helper-toggle';
 
 export class AssessmentVisualizationEnabledToggle extends BaseVisualHelperToggle {
-    protected isDisabled(filteredInstances: GeneratedAssessmentInstance<{}, {}>[]): boolean {
-        return isEmpty(filteredInstances);
+    protected isDisabled(instances: GeneratedAssessmentInstance<{}, {}>[]): boolean {
+        return !this.isAnyInstanceVisualizable(instances);
     }
 
     protected isChecked(instances: GeneratedAssessmentInstance<{}, {}>[]): boolean {
@@ -23,15 +22,21 @@ export class AssessmentVisualizationEnabledToggle extends BaseVisualHelperToggle
                 ),
             ),
             this.props.assessmentNavState.selectedTestType,
-            this.props.assessmentNavState.selectedTestStep,
+            this.props.assessmentNavState.selectedTestSubview,
         );
     };
 
     private isAnyInstanceVisible(instances: GeneratedAssessmentInstance<{}, {}>[]): boolean {
+        const testStep = this.props.assessmentNavState.selectedTestSubview;
         return instances.some(
-            instance =>
-                instance.testStepResults[this.props.assessmentNavState.selectedTestStep]
-                    .isVisualizationEnabled,
+            instance => instance.testStepResults[testStep].isVisualizationEnabled,
+        );
+    }
+
+    private isAnyInstanceVisualizable(instances: GeneratedAssessmentInstance<{}, {}>[]): boolean {
+        const testStep = this.props.assessmentNavState.selectedTestSubview;
+        return instances.some(
+            instance => instance.testStepResults[testStep].isVisualizationSupported,
         );
     }
 }

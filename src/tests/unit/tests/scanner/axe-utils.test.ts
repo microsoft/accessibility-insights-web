@@ -118,7 +118,7 @@ describe('AxeUtils', () => {
             document.body.querySelector('#test-fixture').remove();
         });
 
-        it('decorative because empty alt', () => {
+        it('Decorative because empty alt', () => {
             fixture.innerHTML = `
                 <img id="el1" alt="" />
             `;
@@ -129,7 +129,7 @@ describe('AxeUtils', () => {
             expect(result).toEqual('Decorative');
         });
 
-        it('decorative because empty alt, even with aira label', () => {
+        it('Decorative because empty alt, even with aria label', () => {
             fixture.innerHTML = `
                 <img id="el1" alt="" aria-label="some"/>
             `;
@@ -140,9 +140,42 @@ describe('AxeUtils', () => {
             expect(result).toEqual('Decorative');
         });
 
-        it('decorative because alt not value, even with aira label', () => {
+        it('Decorative because alt not value, even with aria label', () => {
             fixture.innerHTML = `
                 <img id="el1" alt aria-label="some"/>
+            `;
+            const element1 = fixture.querySelector('#el1');
+            setAxeGlobalTreeTo(document.documentElement);
+
+            const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
+            expect(result).toEqual('Decorative');
+        });
+
+        it('Decorative because svg without role=img, despite aria-label', () => {
+            fixture.innerHTML = `
+                <svg id="el1" aria-label="some"/>
+            `;
+            const element1 = fixture.querySelector('#el1');
+            setAxeGlobalTreeTo(document.documentElement);
+
+            const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
+            expect(result).toEqual('Decorative');
+        });
+
+        it('Decorative because icon font without role=img, despite aria-label', () => {
+            fixture.innerHTML = `
+                <i id="el1" aria-label="some"/>
+            `;
+            const element1 = fixture.querySelector('#el1');
+            setAxeGlobalTreeTo(document.documentElement);
+
+            const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
+            expect(result).toEqual('Decorative');
+        });
+
+        it('decorative because CSS bg image without role=img, despite aria-label', () => {
+            fixture.innerHTML = `
+                <div id="el1" aria-label="some"/>
             `;
             const element1 = fixture.querySelector('#el1');
             setAxeGlobalTreeTo(document.documentElement);
@@ -207,7 +240,41 @@ describe('AxeUtils', () => {
             expect(result).toEqual('Meaningful');
         });
 
-        it('cannot tell', () => {
+        it('Meaningful because svg with role=img and accessible text', () => {
+            fixture.innerHTML = `
+                <svg id="el1" role="img" aria-label="some"/>
+            `;
+            const element1 = fixture.querySelector('#el1');
+            setAxeGlobalTreeTo(document.documentElement);
+
+            const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
+            expect(result).toEqual('Meaningful');
+        });
+
+        it('Meaningful because svg with role=img and accessible text', () => {
+            fixture.innerHTML = `
+                <i id="el1" role="img" title="some"/>
+            `;
+            const element1 = fixture.querySelector('#el1');
+            setAxeGlobalTreeTo(document.documentElement);
+
+            const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
+            expect(result).toEqual('Meaningful');
+        });
+
+        it('Meaningful because CSS background image with role=img and accessible text', () => {
+            fixture.innerHTML = `
+                <div id="el1" role="img" aria-labelledby="el2" />
+                <p id="el2">some</p>
+            `;
+            const element1 = fixture.querySelector('#el1');
+            setAxeGlobalTreeTo(document.documentElement);
+
+            const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
+            expect(result).toEqual('Meaningful');
+        });
+
+        it('Indeterminate because img with no alt tag', () => {
             fixture.innerHTML = `
                 <img id="el1"/>
             `;
@@ -218,7 +285,7 @@ describe('AxeUtils', () => {
             expect(result).toBeNull();
         });
 
-        it('cannot tell', () => {
+        it('Indeterminate because img with no alt tag, despite aria-describedby', () => {
             fixture.innerHTML = `
                 <img id="el1" aria-describedby="some-id"/>
                 <div id="some-id"> hello </div>

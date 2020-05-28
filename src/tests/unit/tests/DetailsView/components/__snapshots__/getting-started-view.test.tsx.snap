@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GettingStartedViewTest renders with content from props 1`] = `
+<div
+  className="gettingStartedView"
+>
+  <h1
+    className="gettingStartedHeader"
+  >
+    <span
+      className="gettingStartedHeaderTitle"
+    >
+      some title
+    </span>
+    <ContentLink
+      deps={Object {}}
+      iconName="info"
+      reference={
+        Object {
+          "pageTitle": "some page title",
+        }
+      }
+    />
+  </h1>
+  <h2
+    className="gettingStartedTitle"
+  >
+    Getting Started
+  </h2>
+  <div>
+    test-getting-started-content
+  </div>
+</div>
+`;

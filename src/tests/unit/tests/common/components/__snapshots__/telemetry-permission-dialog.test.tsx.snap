@@ -4,10 +4,8 @@ exports[`TelemetryPermissionDialogTest render dialog 1`] = `
 <StyledWithResponsiveMode
   dialogContentProps={
     Object {
+      "showCloseButton": false,
       "title": "We need your help",
-      "titleProps": Object {
-        "id": "telemetry-permission-title",
-      },
       "type": 0,
     }
   }

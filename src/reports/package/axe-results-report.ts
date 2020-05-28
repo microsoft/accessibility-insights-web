@@ -2,10 +2,12 @@
 // Licensed under the MIT License.
 import { CardSelectionViewData } from 'common/get-card-selection-view-data';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
+import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
 import { UUIDGenerator } from 'common/uid-generator';
 import { convertScanResultsToUnifiedResults } from 'injected/adapters/scan-results-to-unified-results';
 import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results-to-unified-rules';
 import { ResultDecorator } from 'scanner/result-decorator';
+
 import { ReportHtmlGenerator } from '../report-html-generator';
 import AccessibilityInsightsReport from './accessibilityInsightsReport';
 
@@ -22,6 +24,7 @@ export class AxeResultsReport implements AccessibilityInsightsReport.Report {
     constructor(
         private readonly deps: AxeResultsReportDeps,
         private readonly parameters: AccessibilityInsightsReport.AxeReportParameters,
+        private readonly toolInfo: ToolData,
     ) { }
 
     public asHTML(): string {
@@ -37,20 +40,30 @@ export class AxeResultsReport implements AccessibilityInsightsReport.Report {
         const unifiedResults = getUnifiedResults(scanResults, getUUID);
 
         const cardSelectionViewData: CardSelectionViewData = {
-            highlightedResultUids: [],
             selectedResultUids: [],
             expandedRuleIds: [],
             visualHelperEnabled: false,
+            resultsHighlightStatus: {},
         };
 
         const cardsViewModel = getCards(unifiedRules, unifiedResults, cardSelectionViewData);
 
+        const targetAppInfo = {
+            name: pageTitle,
+            url: results.url,
+        };
+
+        const scanMetadata: ScanMetadata = {
+            targetAppInfo: targetAppInfo,
+            toolData: this.toolInfo,
+            timestamp: null,
+        };
+
         const html = reportHtmlGenerator.generateHtml(
             scanDate,
-            pageTitle,
-            results.url,
             description,
             cardsViewModel,
+            scanMetadata,
         );
 
         return html;

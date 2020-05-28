@@ -52,7 +52,7 @@ export const DeviceConnectConnectedDevice = NamedFC<DeviceConnectConnectedDevice
 
         return (
             <div className={styles.deviceConnectConnectedDevice}>
-                <h3>Connected device</h3>
+                <div className={styles.label}>Connected device</div>
                 <div role="alert" aria-live="assertive">
                     {renderContents()}
                 </div>

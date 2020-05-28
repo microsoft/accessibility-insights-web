@@ -18,19 +18,29 @@ describe('ScanResults to Unified Results Test', () => {
             .verifiable(Times.atLeastOnce());
     });
     const nullIdentifiers = [null, undefined, {}];
-    test.each(nullIdentifiers)('convertScanResultsToUnifiedResults provides a defined UnifiedResult instance %s', scanResultStub => {
-        const unifiedResults = convertScanResultsToUnifiedResults(scanResultStub as ScanResults, generateGuidMock.object);
-        expect(unifiedResults).toBeDefined();
-    });
+    test.each(nullIdentifiers)(
+        'convertScanResultsToUnifiedResults provides a defined UnifiedResult instance %s',
+        scanResultStub => {
+            const unifiedResults = convertScanResultsToUnifiedResults(
+                scanResultStub as ScanResults,
+                generateGuidMock.object,
+            );
+            expect(unifiedResults).toBeDefined();
+        },
+    );
 
     test('conversion works fine when there is no data in scanresults', () => {
         const scanResultsStub: ScanResults = createTestResultsWithNoData();
-        expect(convertScanResultsToUnifiedResults(scanResultsStub, generateGuidMock.object)).toMatchSnapshot();
+        expect(
+            convertScanResultsToUnifiedResults(scanResultsStub, generateGuidMock.object),
+        ).toMatchSnapshot();
     });
 
     test('conversion works with filled up passes and failures value in scan results', () => {
         const scanResultsStub: ScanResults = createTestResults();
-        expect(convertScanResultsToUnifiedResults(scanResultsStub, generateGuidMock.object)).toMatchSnapshot();
+        expect(
+            convertScanResultsToUnifiedResults(scanResultsStub, generateGuidMock.object),
+        ).toMatchSnapshot();
         generateGuidMock.verifyAll();
     });
 

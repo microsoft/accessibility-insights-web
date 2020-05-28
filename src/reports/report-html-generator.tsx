@@ -2,13 +2,14 @@
 // Licensed under the MIT License.
 import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { NewTabLink } from 'common/components/new-tab-link';
 import { NullComponent } from 'common/components/null-component';
 import { PropertyConfiguration } from 'common/configs/unified-result-property-configurations';
-import { EnvironmentInfo } from 'common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
+import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
-import { ReportHead } from './components/report-head';
+
 import { ReportBody, ReportBodyProps } from './components/report-sections/report-body';
 import { ReportCollapsibleContainerControl } from './components/report-sections/report-collapsible-container';
 import {
@@ -22,7 +23,6 @@ export class ReportHtmlGenerator {
     constructor(
         private readonly sectionFactory: ReportSectionFactory,
         private readonly reactStaticRenderer: ReactStaticRenderer,
-        private readonly environmentInfo: EnvironmentInfo,
         private readonly getCollapsibleScript: () => string,
         private readonly utcDateConverter: (scanDate: Date) => string,
         private readonly getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
@@ -32,17 +32,14 @@ export class ReportHtmlGenerator {
 
     public generateHtml(
         scanDate: Date,
-        pageTitle: string,
-        pageUrl: string,
         description: string,
         cardsViewData: CardsViewModel,
+        scanMetadata: ScanMetadata,
     ): string {
-        const headElement: JSX.Element = <ReportHead />;
-        const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(headElement);
+        const HeadSection = this.sectionFactory.HeadSection;
+        const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(<HeadSection />);
 
         const detailsProps: SectionProps = {
-            pageTitle,
-            pageUrl,
             description,
             scanDate,
             deps: {
@@ -52,13 +49,14 @@ export class ReportHtmlGenerator {
                 getPropertyConfigById: this.getPropertyConfiguration,
                 cardInteractionSupport: noCardInteractionsSupported,
                 cardsVisualizationModifierButtons: NullComponent,
+                LinkComponent: NewTabLink,
             } as SectionDeps,
             cardsViewData: cardsViewData,
-            environmentInfo: this.environmentInfo,
             toUtcString: this.utcDateConverter,
             getCollapsibleScript: this.getCollapsibleScript,
             getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,
             fixInstructionProcessor: this.fixInstructionProcessor,
+            scanMetadata,
         } as SectionProps;
 
         const props: ReportBodyProps = {

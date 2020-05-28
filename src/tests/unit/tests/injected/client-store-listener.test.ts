@@ -3,31 +3,46 @@
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { ClientStoreListener, TargetPageStoreData } from '../../../../injected/client-store-listener';
+import {
+    ClientStoreListener,
+    TargetPageStoreData,
+} from '../../../../injected/client-store-listener';
 
 describe('ClientStoreListener', () => {
     describe('initialize', () => {
         let testSubject: ClientStoreListener;
         let storeHubMock: IMock<BaseClientStoresHub<TargetPageStoreData>>;
-        let onReadyToExecuteVisualizationUpdatesMock: IMock<(storeData: TargetPageStoreData) => void>;
+        let onReadyToExecuteVisualizationUpdatesMock: IMock<(
+            storeData: TargetPageStoreData,
+        ) => void>;
         let triggerOnChange: () => void;
 
         beforeEach(() => {
-            storeHubMock = Mock.ofType<BaseClientStoresHub<TargetPageStoreData>>(null, MockBehavior.Strict);
-            onReadyToExecuteVisualizationUpdatesMock = Mock.ofType<(storeData: TargetPageStoreData) => void>();
+            storeHubMock = Mock.ofType<BaseClientStoresHub<TargetPageStoreData>>(
+                null,
+                MockBehavior.Strict,
+            );
+            onReadyToExecuteVisualizationUpdatesMock = Mock.ofType<
+                (storeData: TargetPageStoreData) => void
+            >();
 
             storeHubMock
                 .setup(shm => shm.addChangedListenerToAllStores(It.isAny()))
                 .callback(givenCallback => (triggerOnChange = givenCallback));
 
             testSubject = new ClientStoreListener(storeHubMock.object);
-            testSubject.registerOnReadyToExecuteVisualizationCallback(onReadyToExecuteVisualizationUpdatesMock.object);
+            testSubject.registerOnReadyToExecuteVisualizationCallback(
+                onReadyToExecuteVisualizationUpdatesMock.object,
+            );
         });
 
         test('registerOnReadyToExecuteVisualizationCallback: no store data', () => {
             storeHubMock.setup(shm => shm.hasStoreData()).returns(() => false);
             triggerOnChange();
-            onReadyToExecuteVisualizationUpdatesMock.verify(callback => callback(It.isAny()), Times.never());
+            onReadyToExecuteVisualizationUpdatesMock.verify(
+                callback => callback(It.isAny()),
+                Times.never(),
+            );
         });
 
         test('registerOnReadyToExecuteVisualizationCallback: with store data & not scanning', () => {
@@ -41,7 +56,10 @@ describe('ClientStoreListener', () => {
 
             triggerOnChange();
 
-            onReadyToExecuteVisualizationUpdatesMock.verify(callback => callback(storeDataMock), Times.once());
+            onReadyToExecuteVisualizationUpdatesMock.verify(
+                callback => callback(storeDataMock),
+                Times.once(),
+            );
         });
 
         test('registerOnReadyToExecuteVisualizationCallback: with store data & scanning', () => {
@@ -55,7 +73,10 @@ describe('ClientStoreListener', () => {
 
             triggerOnChange();
 
-            onReadyToExecuteVisualizationUpdatesMock.verify(callback => callback(storeDataMock), Times.never());
+            onReadyToExecuteVisualizationUpdatesMock.verify(
+                callback => callback(storeDataMock),
+                Times.never(),
+            );
         });
     });
 });

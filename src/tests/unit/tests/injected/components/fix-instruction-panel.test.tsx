@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FixInstructionPanel, FixInstructionPanelProps } from 'common/components/fix-instruction-panel';
+import {
+    FixInstructionPanel,
+    FixInstructionPanelProps,
+} from 'common/components/fix-instruction-panel';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { shallow } from 'enzyme';
 import { CheckType } from 'injected/components/details-dialog';
@@ -11,8 +14,13 @@ describe('FixInstructionPanelTests', () => {
     let fixInstructionProcessorMock: IMock<FixInstructionProcessor>;
 
     beforeEach(() => {
-        fixInstructionProcessorMock = Mock.ofType<FixInstructionProcessor>(undefined, MockBehavior.Strict);
-        fixInstructionProcessorMock.setup(processor => processor.process(It.isAnyString())).returns(instruction => <>{instruction}</>);
+        fixInstructionProcessorMock = Mock.ofType<FixInstructionProcessor>(
+            undefined,
+            MockBehavior.Strict,
+        );
+        fixInstructionProcessorMock
+            .setup(processor => processor.process(It.isAnyString()))
+            .returns(instruction => <>{instruction}</>);
     });
 
     test('render all checks', () => {

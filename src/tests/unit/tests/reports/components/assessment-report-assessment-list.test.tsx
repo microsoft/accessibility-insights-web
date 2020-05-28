@@ -63,7 +63,10 @@ describe('AssessmentReportAssessmentListTest', () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     }
 
-    function testAssessmentHeader(assessment: AssessmentDetailsReportModel, assessmentHeader: Enzyme.ShallowWrapper<any, any>): void {
+    function testAssessmentHeader(
+        assessment: AssessmentDetailsReportModel,
+        assessmentHeader: Enzyme.ShallowWrapper<any, any>,
+    ): void {
         expect(assessmentHeader.hasClass('assessment-header')).toBe(true);
         expect(assessmentHeader.children()).toHaveLength(2);
 

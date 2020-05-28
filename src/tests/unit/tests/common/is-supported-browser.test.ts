@@ -35,7 +35,9 @@ describe('isSupportedBrowser', () => {
         expect(result).toBe(isSupported);
     });
 
-    const setGetBrowser = (browser: IUAParser.IBrowser) => uaParserMock.setup(parser => parser.getBrowser()).returns(() => browser);
+    const setGetBrowser = (browser: IUAParser.IBrowser) =>
+        uaParserMock.setup(parser => parser.getBrowser()).returns(() => browser);
 
-    const setGetEngine = (engine: IUAParser.IEngine) => uaParserMock.setup(parser => parser.getEngine()).returns(() => engine);
+    const setGetEngine = (engine: IUAParser.IEngine) =>
+        uaParserMock.setup(parser => parser.getEngine()).returns(() => engine);
 });

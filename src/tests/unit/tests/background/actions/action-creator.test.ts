@@ -384,12 +384,14 @@ describe('ActionCreatorTest', () => {
     });
 
     test('registerCallbacks for scrollRequested', () => {
-        const actionName = 'scrollRequested';
+        const visualizationActionName = 'scrollRequested';
+        const cardSelectionActionName = 'resetFocusedIdentifier';
         const tabId = 1;
         const builder = new ActionCreatorValidator()
-            .setupActionOnVisualizationActions(actionName)
-            .setupVisualizationActionWithInvokeParameter(actionName, null)
-            .setupCardSelectionActionWithInvokeParameter('resetFocusedIdentifier', null)
+            .setupActionOnVisualizationActions(visualizationActionName)
+            .setupVisualizationActionWithInvokeParameter(visualizationActionName, null)
+            .setupActionOnCardSelectionActions(cardSelectionActionName)
+            .setupCardSelectionActionWithInvokeParameter(cardSelectionActionName, null)
             .setupRegistrationCallback(VisualizationMessage.Common.ScrollRequested, [null, tabId]);
 
         const actionCreator = builder.buildActionCreator();
@@ -495,7 +497,7 @@ describe('ActionCreatorTest', () => {
         builder.verifyAll();
     });
 
-    describe.only('registerCallback for onDetailsViewSelected', () => {
+    describe('registerCallback for onDetailsViewSelected', () => {
         const viewType = VisualizationType.Issues;
         const pivotType = DetailsViewPivotType.fastPass;
         const updateViewActionName = 'updateSelectedPivotChild';
@@ -853,59 +855,6 @@ describe('ActionCreatorTest', () => {
         validator.verifyAll();
     });
 
-    describe('registerCallback for onOpenPreviewFeaturesPanel', () => {
-        const tabId = 1;
-        const actionName = 'openPreviewFeatures';
-        const telemetryData: BaseTelemetryData = {
-            triggeredBy: 'stub triggered by' as TriggeredBy,
-            source: testSource,
-        };
-
-        const telemetryInfo = {
-            telemetryData,
-        };
-
-        it('open preview features panel, shows the details view and send telemetry', async () => {
-            const validator = new ActionCreatorValidator()
-                .setupRegistrationCallback(PreviewFeaturesMessage.OpenPanel, [telemetryInfo, tabId])
-                .setupActionOnPreviewFeaturesActions(actionName)
-                .setupTelemetrySend(TelemetryEvents.PREVIEW_FEATURES_OPEN, telemetryInfo, tabId)
-                .setupShowDetailsView(tabId, Promise.resolve())
-                .setupPreviewFeaturesActionWithInvokeParameter(actionName, null);
-
-            const actionCreator = validator.buildActionCreator();
-
-            actionCreator.registerCallbacks();
-
-            await tick();
-
-            validator.verifyAll();
-        });
-
-        it('propagate errors showing the details view to the logger', async () => {
-            const showDetailsViewErrorMessage = 'error on showDetailsView ';
-
-            const validator = new ActionCreatorValidator()
-                .setupRegistrationCallback(PreviewFeaturesMessage.OpenPanel, [telemetryInfo, tabId])
-                .setupActionOnPreviewFeaturesActions(actionName)
-                .setupTelemetrySend(TelemetryEvents.PREVIEW_FEATURES_OPEN, telemetryInfo, tabId)
-                .setupShowDetailsView(
-                    tabId,
-                    Promise.reject({ message: showDetailsViewErrorMessage }),
-                )
-                .setupLogError(showDetailsViewErrorMessage)
-                .setupPreviewFeaturesActionWithInvokeParameter(actionName, null);
-
-            const actionCreator = validator.buildActionCreator();
-
-            actionCreator.registerCallbacks();
-
-            await tick();
-
-            validator.verifyAll();
-        });
-    });
-
     test('registerCallback for switch focus back to target', () => {
         const pivot = DetailsViewPivotType.fastPass;
         const updatePivotActionName = 'updateSelectedPivot';
@@ -1002,6 +951,7 @@ class ActionCreatorValidator {
     private scopingActionsContainerMock = Mock.ofType(ScopingActions);
     private assessmentActionsContainerMock = Mock.ofType(AssessmentActions);
     private inspectActionsContainerMock = Mock.ofType(InspectActions);
+    private cardSelectionActionsContainerMock = Mock.ofType(CardSelectionActions);
     private previewFeaturesActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
     private scopingActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
     private detailsViewActionsMocks: DictionaryStringTo<IMock<Action<any>>> = {};
@@ -1023,20 +973,14 @@ class ActionCreatorValidator {
     private actionHubMock: ActionHub = {
         visualizationActions: this.visualizationActionsContainerMock.object,
         visualizationScanResultActions: this.visualizationScanResultActionsContainerMock.object,
-        tabActions: null,
-        featureFlagActions: null,
         devToolActions: this.devToolActionsContainerMock.object,
         previewFeaturesActions: this.previewFeaturesActionsContainerMock.object,
         scopingActions: this.scopingActionsContainerMock.object,
         assessmentActions: this.assessmentActionsContainerMock.object,
         inspectActions: this.inspectActionsContainerMock.object,
-        contentActions: null,
         detailsViewActions: this.detailsViewActionsContainerMock.object,
-        pathSnippetActions: null,
-        scanResultActions: null,
-        cardSelectionActions: null,
-        injectionActions: null,
-    };
+        cardSelectionActions: this.cardSelectionActionsContainerMock.object,
+    } as ActionHub;
 
     private telemetryEventHandlerStrictMock = Mock.ofType<TelemetryEventHandler>(
         null,
@@ -1208,6 +1152,18 @@ class ActionCreatorValidator {
         }
 
         actionsContainerMock.setup(x => x[actionName]).returns(() => action.object);
+
+        return this;
+    }
+
+    public setupActionOnCardSelectionActions(
+        actionName: keyof CardSelectionActions,
+    ): ActionCreatorValidator {
+        this.setupAction(
+            actionName,
+            this.cardSelectionActionsMocks,
+            this.cardSelectionActionsContainerMock,
+        );
 
         return this;
     }

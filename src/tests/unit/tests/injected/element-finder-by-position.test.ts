@@ -5,7 +5,10 @@ import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
 import { SingleElementSelector } from '../../../../common/types/store-data/scoping-store-data';
 import { ClientUtils } from '../../../../injected/client-utils';
-import { ElementFinderByPosition, ElementFinderByPositionMessage } from '../../../../injected/element-finder-by-position';
+import {
+    ElementFinderByPosition,
+    ElementFinderByPositionMessage,
+} from '../../../../injected/element-finder-by-position';
 import { ErrorMessageContent } from '../../../../injected/frameCommunicators/error-message-content';
 import { FrameCommunicator } from '../../../../injected/frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from '../../../../injected/frameCommunicators/window-message-handler';
@@ -69,7 +72,9 @@ describe('ElementFinderByPositionTest', () => {
     });
 
     test('initialize', () => {
-        const responderMock = Mock.ofInstance((result: any, error: ErrorMessageContent, messageSourceWindow: Window) => {});
+        const responderMock = Mock.ofInstance(
+            (result: any, error: ErrorMessageContent, messageSourceWindow: Window) => {},
+        );
         const processRequestPromiseHandlerMock = Mock.ofInstance((successCb, errorCb) => {});
         const processRequestMock = Mock.ofInstance(message => {
             return null;
@@ -87,7 +92,12 @@ describe('ElementFinderByPositionTest', () => {
         } as Q.IPromise<string[]>;
 
         frameCommunicatorMock
-            .setup(fcm => fcm.subscribe(ElementFinderByPosition.findElementByPositionCommand, subscribeCallback))
+            .setup(fcm =>
+                fcm.subscribe(
+                    ElementFinderByPosition.findElementByPositionCommand,
+                    subscribeCallback,
+                ),
+            )
             .verifiable();
 
         processRequestMock
@@ -210,7 +220,10 @@ describe('ElementFinderByPositionTest', () => {
         verifyAll();
     });
 
-    function setupElementsFromPointMock(messageStub: ElementFinderByPositionMessage, elements: HTMLElement[]): void {
+    function setupElementsFromPointMock(
+        messageStub: ElementFinderByPositionMessage,
+        elements: HTMLElement[],
+    ): void {
         elementsFromPointMock
             .setup(em => em(messageStub.x, messageStub.y))
             .returns(() => elements)

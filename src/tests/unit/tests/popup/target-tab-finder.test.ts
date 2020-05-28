@@ -34,7 +34,12 @@ describe('TargetTabFinderTest', () => {
         urlParserMock = Mock.ofType(UrlParser);
         urlValidatorMock = Mock.ofType(UrlValidator);
 
-        testSubject = new TargetTabFinder(windowStub, browserAdapterMock.object, urlValidatorMock.object, urlParserMock.object);
+        testSubject = new TargetTabFinder(
+            windowStub,
+            browserAdapterMock.object,
+            urlValidatorMock.object,
+            urlParserMock.object,
+        );
     });
 
     type TestCase = {
@@ -87,11 +92,15 @@ describe('TargetTabFinderTest', () => {
                 reject();
             });
         setupIsSupportedCall(true);
-        await testSubject.getTargetTab().catch(error => expect(error).toEqual(`Tab with Id ${tabId} not found`));
+        await testSubject
+            .getTargetTab()
+            .catch(error => expect(error).toEqual(`Tab with Id ${tabId} not found`));
     });
 
     function setupGetTabIdParamFromUrl(tabIdValue: number): void {
-        urlParserMock.setup(p => p.getIntParam(windowStub.location.href, 'tabId')).returns(() => tabIdValue);
+        urlParserMock
+            .setup(p => p.getIntParam(windowStub.location.href, 'tabId'))
+            .returns(() => tabIdValue);
     }
 
     function setupGetTabCall(): void {
@@ -109,6 +118,8 @@ describe('TargetTabFinderTest', () => {
     }
 
     function setupIsSupportedCall(isSupported: boolean): void {
-        urlValidatorMock.setup(v => v.isSupportedUrl(tabStub.url)).returns(() => Promise.resolve(isSupported));
+        urlValidatorMock
+            .setup(v => v.isSupportedUrl(tabStub.url))
+            .returns(() => Promise.resolve(isSupported));
     }
 });

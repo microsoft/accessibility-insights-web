@@ -10,11 +10,11 @@ import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { LaunchPanelStore } from 'background/stores/global/launch-panel-store';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { Logger } from 'common/logging/logger';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { IMock, It, Mock } from 'typemoq';
 import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { CommandsAdapter } from '../../../../common/browser-adapters/commands-adapter';
 import { StorageAdapter } from '../../../../common/browser-adapters/storage-adapter';
-import { EnvironmentInfo } from '../../../../common/environment-info-provider';
 import { IndexedDBAPI } from '../../../../common/indexedDB/indexedDB';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
 import { IssueFilingServiceProvider } from '../../../../issue-filing/issue-filing-service-provider';
@@ -29,7 +29,7 @@ describe('GlobalContextFactoryTest', () => {
     let issueFilingServiceProviderMock: IMock<IssueFilingServiceProvider>;
     let loggerMock: IMock<Logger>;
 
-    let environmentInfoStub: EnvironmentInfo;
+    let toolData: ToolData;
     let userDataStub: LocalStorageData;
     let idbInstance: IndexedDBAPI;
     let persistedDataStub: PersistedData;
@@ -50,7 +50,7 @@ describe('GlobalContextFactoryTest', () => {
         issueFilingServiceProviderMock = Mock.ofType(IssueFilingServiceProvider);
 
         userDataStub = {};
-        environmentInfoStub = {} as EnvironmentInfo;
+        toolData = {} as ToolData;
         persistedDataStub = {} as PersistedData;
         idbInstance = {} as IndexedDBAPI;
     });
@@ -65,7 +65,7 @@ describe('GlobalContextFactoryTest', () => {
             idbInstance,
             persistedDataStub,
             issueFilingServiceProviderMock.object,
-            environmentInfoStub,
+            toolData,
             storageAdapterMock.object,
             commandsAdapterMock.object,
             loggerMock.object,

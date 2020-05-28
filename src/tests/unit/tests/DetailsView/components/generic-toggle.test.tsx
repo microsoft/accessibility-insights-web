@@ -61,7 +61,10 @@ describe('GenericToggleTest', () => {
             const eventStub: any = {};
             toggle.simulate('click', eventStub);
 
-            onClickMock.verify(handler => handler(props.id, !props.enabled, eventStub), Times.once());
+            onClickMock.verify(
+                handler => handler(props.id, !props.enabled, eventStub),
+                Times.once(),
+            );
         });
     });
 });

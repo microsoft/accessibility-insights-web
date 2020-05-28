@@ -3,7 +3,10 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
-import { TelemetryNotice, TelemetryNoticeDeps } from '../../../../../common/components/telemetry-notice';
+import {
+    TelemetryNotice,
+    TelemetryNoticeDeps,
+} from '../../../../../common/components/telemetry-notice';
 
 describe('TelemetryNotice', () => {
     it('renders', () => {

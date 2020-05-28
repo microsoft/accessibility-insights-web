@@ -3,7 +3,10 @@
 import { CardRuleResult, CardsViewModel } from 'common/types/store-data/card-view-model';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { PassedChecksSection, PassedChecksSectionProps } from 'reports/components/report-sections/passed-checks-section';
+import {
+    PassedChecksSection,
+    PassedChecksSectionProps,
+} from 'reports/components/report-sections/passed-checks-section';
 
 import { SectionDeps } from '../../../../../../reports/components/report-sections/report-section-factory';
 

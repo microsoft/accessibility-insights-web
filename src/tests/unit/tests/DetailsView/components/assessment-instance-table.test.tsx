@@ -1,34 +1,39 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ActionButton } from 'office-ui-fabric-react';
-import { CheckboxVisibility, ConstrainMode, DetailsList, IColumn } from 'office-ui-fabric-react';
-import { Spinner, SpinnerSize } from 'office-ui-fabric-react';
-import * as React from 'react';
-import { Mock, MockBehavior, Times } from 'typemoq';
-
 import {
     AssessmentDefaultMessageGenerator,
     DefaultMessageInterface,
     IGetMessageGenerator,
     IMessageGenerator,
 } from 'assessments/assessment-default-message-generator';
+import { mount, shallow } from 'enzyme';
+import { DetailsList, IColumn } from 'office-ui-fabric-react';
+import * as React from 'react';
+import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
-import { AssessmentResultType, GeneratedAssessmentInstance } from '../../../../../common/types/store-data/assessment-result-data';
+import {
+    AssessmentResultType,
+    GeneratedAssessmentInstance,
+} from '../../../../../common/types/store-data/assessment-result-data';
 import {
     AssessmentInstanceRowData,
     AssessmentInstanceTable,
     AssessmentInstanceTableProps,
+    passUnmarkedInstancesButtonAutomationId,
 } from '../../../../../DetailsView/components/assessment-instance-table';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 
-describe('AssessmentInstanceTableTest', () => {
+describe('AssessmentInstanceTable', () => {
     let getDefaultMessageStub: IGetMessageGenerator;
-    let getDefaultMessageMock;
-    let assessmentDefaultMessageGeneratorMock;
+    let getDefaultMessageMock: IMock<IGetMessageGenerator>;
+    let assessmentDefaultMessageGeneratorMock: IMock<AssessmentDefaultMessageGenerator>;
     let generatorStub: IMessageGenerator;
-    let generatorMock;
-    let expectedMessage: DefaultMessageInterface;
+    let generatorMock: IMock<IMessageGenerator>;
+    let defaultMessage: DefaultMessageInterface;
+    let assessmentInstanceTableHandlerMock: IMock<AssessmentInstanceTableHandler>;
+    const selectedTestStep = 'step';
 
     beforeEach(() => {
         getDefaultMessageStub = generator => (map, step) => null;
@@ -41,7 +46,9 @@ describe('AssessmentInstanceTableTest', () => {
         generatorStub = (instances, step) => null;
         generatorMock = Mock.ofInstance(generatorStub);
 
-        expectedMessage = {} as DefaultMessageInterface;
+        defaultMessage = {} as DefaultMessageInterface;
+
+        assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
 
         getDefaultMessageMock
             .setup(gdm => gdm(assessmentDefaultMessageGeneratorMock.object))
@@ -49,290 +56,158 @@ describe('AssessmentInstanceTableTest', () => {
             .verifiable();
 
         generatorMock
-            .setup(gm => gm({}, 'step'))
-            .returns(() => expectedMessage)
+            .setup(gm => gm(It.isAny(), selectedTestStep))
+            .returns(() => defaultMessage)
             .verifiable();
     });
 
-    it('render spinner', () => {
-        const assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
+    describe('with null instance data', () => {
+        it('renders a spinner per snapshot', () => {
+            const props: AssessmentInstanceTableProps = getProps(
+                null,
+                assessmentInstanceTableHandlerMock.object,
+                assessmentDefaultMessageGeneratorMock.object,
+                getDefaultMessageMock.object,
+            );
 
-        const props: AssessmentInstanceTableProps = getProps(
-            null,
-            assessmentInstanceTableHandlerMock.object,
-            assessmentDefaultMessageGeneratorMock.object,
-            getDefaultMessageMock.object,
-        );
-        const testObject = new AssessmentInstanceTable(props);
-        const expected = <Spinner className="details-view-spinner" size={SpinnerSize.large} label={'Scanning'} />;
-        expect(testObject.render()).toEqual(expected);
+            const testSubject = shallow(<AssessmentInstanceTable {...props} />);
+            expect(testSubject.getElement()).toMatchSnapshot();
+        });
     });
 
-    it('render', () => {
-        const assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
-        expectedMessage = null;
+    describe('with instances', () => {
+        let props: AssessmentInstanceTableProps;
+        let testStepResults: AssessmentResultType<{}>;
 
-        const props: AssessmentInstanceTableProps = getProps(
-            {},
-            assessmentInstanceTableHandlerMock.object,
-            assessmentDefaultMessageGeneratorMock.object,
-            getDefaultMessageMock.object,
-        );
-        const items: AssessmentInstanceRowData[] = [
-            {
-                statusChoiceGroup: null,
-                visualizationButton: null,
-                instance: {} as GeneratedAssessmentInstance,
-            },
-        ];
-        const cols: IColumn[] = [
-            {
-                key: 'col1',
-                name: 'col1',
-                fieldName: 'fieldName',
-                minWidth: 0,
-            },
-        ];
+        beforeEach(() => {
+            testStepResults = {
+                [selectedTestStep]: { status: ManualTestStatus.UNKNOWN },
+            };
 
-        assessmentInstanceTableHandlerMock
-            .setup(a => a.createAssessmentInstanceTableItems(props.instancesMap, props.assessmentNavState, props.hasVisualHelper))
-            .returns(() => items)
-            .verifiable(Times.once());
+            defaultMessage = null;
 
-        assessmentInstanceTableHandlerMock
-            .setup(a => a.getColumnConfigs(props.instancesMap, props.assessmentNavState, props.hasVisualHelper))
-            .returns(() => cols)
-            .verifiable(Times.once());
-
-        const testObject = new TestableAssessmentInstanceTable(props);
-
-        const expected = (
-            <div>
-                <ActionButton iconProps={{ iconName: 'skypeCheck' }} onClick={testObject.getOnPassUnmarkedInstances()} disabled={true}>
-                    Pass unmarked instances
-                </ActionButton>
-                <DetailsList
-                    ariaLabelForGrid="Use arrow keys to navigate inside the instances grid"
-                    items={items}
-                    columns={cols}
-                    checkboxVisibility={CheckboxVisibility.hidden}
-                    constrainMode={ConstrainMode.horizontalConstrained}
-                    onRenderRow={testObject.renderRow}
-                    onItemInvoked={testObject.onItemInvoked}
-                />
-            </div>
-        );
-
-        const actualObj = testObject.render();
-
-        assessmentInstanceTableHandlerMock.verifyAll();
-        getDefaultMessageMock.verifyAll();
-        expect(actualObj).toEqual(expected);
-    });
-
-    it('renders with empty header', () => {
-        const assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler, MockBehavior.Strict);
-        expectedMessage = null;
-
-        const props: AssessmentInstanceTableProps = getProps(
-            {},
-            assessmentInstanceTableHandlerMock.object,
-            assessmentDefaultMessageGeneratorMock.object,
-            getDefaultMessageMock.object,
-        );
-        props.renderInstanceTableHeader = () => null;
-        const items: AssessmentInstanceRowData[] = [
-            {
-                statusChoiceGroup: null,
-                visualizationButton: null,
-                instance: {} as GeneratedAssessmentInstance,
-            },
-        ];
-        const cols: IColumn[] = [
-            {
-                key: 'col1',
-                name: 'col1',
-                fieldName: 'fieldName',
-                minWidth: 0,
-            },
-        ];
-
-        assessmentInstanceTableHandlerMock
-            .setup(a => a.createAssessmentInstanceTableItems(props.instancesMap, props.assessmentNavState, props.hasVisualHelper))
-            .returns(() => items)
-            .verifiable(Times.once());
-
-        assessmentInstanceTableHandlerMock
-            .setup(a => a.getColumnConfigs(props.instancesMap, props.assessmentNavState, props.hasVisualHelper))
-            .returns(() => cols)
-            .verifiable(Times.once());
-
-        const testObject = new TestableAssessmentInstanceTable(props);
-
-        const expected = (
-            <div>
-                {null}
-                <DetailsList
-                    ariaLabelForGrid="Use arrow keys to navigate inside the instances grid"
-                    items={items}
-                    columns={cols}
-                    checkboxVisibility={CheckboxVisibility.hidden}
-                    constrainMode={ConstrainMode.horizontalConstrained}
-                    onRenderRow={testObject.renderRow}
-                    onItemInvoked={testObject.onItemInvoked}
-                />
-            </div>
-        );
-
-        expect(testObject.render()).toEqual(expected);
-        assessmentInstanceTableHandlerMock.verifyAll();
-        assessmentDefaultMessageGeneratorMock.verifyAll();
-        getDefaultMessageMock.verifyAll();
-    });
-
-    it('renders default instance table header enabled', () => {
-        const selectedTestStep = 'step';
-        const testStepResults = {} as AssessmentResultType<{}>;
-        testStepResults[selectedTestStep] = { status: ManualTestStatus.UNKNOWN };
-        const props = getProps({}, null, null, null);
-        const testObject = new AssessmentInstanceTable(props);
-        const items: AssessmentInstanceRowData[] = [
-            {
-                statusChoiceGroup: null,
-                visualizationButton: null,
-                instance: { testStepResults } as GeneratedAssessmentInstance,
-            },
-        ];
-
-        const actual = testObject.renderDefaultInstanceTableHeader(items);
-
-        expect(actual).toMatchSnapshot();
-    });
-
-    it('renders default instance table header disabled with instance', () => {
-        const selectedTestStep = 'step';
-        const testStepResults = {} as AssessmentResultType<{}>;
-        testStepResults[selectedTestStep] = { status: ManualTestStatus.PASS };
-        const props = getProps({}, null, null, null);
-        const testObject = new AssessmentInstanceTable(props);
-        const items: AssessmentInstanceRowData[] = [
-            {
-                statusChoiceGroup: null,
-                visualizationButton: null,
-                instance: { testStepResults } as GeneratedAssessmentInstance,
-            },
-        ];
-
-        const actual = testObject.renderDefaultInstanceTableHeader(items);
-
-        expect(actual).toMatchSnapshot();
-    });
-
-    it('renders default instance table header disabled without instance', () => {
-        const props = getProps({}, null, null, null);
-        const testObject = new AssessmentInstanceTable(props);
-        const items: AssessmentInstanceRowData[] = [];
-
-        const actual = testObject.renderDefaultInstanceTableHeader(items);
-
-        expect(actual).toMatchSnapshot();
-    });
-
-    it('onItemInvoked, updateFocusedTarget', () => {
-        const assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
-
-        const props: AssessmentInstanceTableProps = getProps(
-            {},
-            assessmentInstanceTableHandlerMock.object,
-            assessmentDefaultMessageGeneratorMock.object,
-            getDefaultMessageMock.object,
-        );
-
-        const items: AssessmentInstanceRowData[] = [
-            {
-                statusChoiceGroup: null,
-                visualizationButton: null,
-                instance: {
-                    target: ['target'],
-                } as GeneratedAssessmentInstance,
-            },
-        ];
-
-        assessmentInstanceTableHandlerMock.setup(a => a.updateFocusedTarget(items[0].instance.target)).verifiable(Times.once());
-
-        const testObject = new TestableAssessmentInstanceTable(props);
-        testObject.onItemInvoked(items[0]);
-
-        assessmentInstanceTableHandlerMock.verifyAll();
-    });
-
-    it('passUnmarkedInstances', () => {
-        const assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
-
-        const props: AssessmentInstanceTableProps = getProps(
-            {},
-            assessmentInstanceTableHandlerMock.object,
-            assessmentDefaultMessageGeneratorMock.object,
-            getDefaultMessageMock.object,
-        );
-
-        assessmentInstanceTableHandlerMock
-            .setup(a => a.passUnmarkedInstances(props.assessmentNavState.selectedTestType, props.assessmentNavState.selectedTestStep))
-            .verifiable(Times.once());
-
-        const testObject = new TestableAssessmentInstanceTable(props);
-        testObject.getOnPassUnmarkedInstances()();
-
-        assessmentInstanceTableHandlerMock.verifyAll();
-    });
-
-    it('if the function returns no failing instances message when there are instances but no failing ones', () => {
-        const assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
-        const instancesMap: DictionaryStringTo<GeneratedAssessmentInstance> = {
-            selector1: {
-                target: ['target1'],
-                html: 'html',
-                testStepResults: {
-                    step: {
-                        status: ManualTestStatus.PASS,
-                        originalStatus: 2,
-                        isVisualizationEnabled: false,
-                        isVisible: false,
-                    },
+            props = getProps(
+                {},
+                assessmentInstanceTableHandlerMock.object,
+                assessmentDefaultMessageGeneratorMock.object,
+                getDefaultMessageMock.object,
+            );
+            const items: AssessmentInstanceRowData[] = [
+                {
+                    statusChoiceGroup: null,
+                    visualizationButton: null,
+                    instance: { testStepResults } as GeneratedAssessmentInstance,
                 },
-            },
-            selector2: {
-                target: ['target2'],
-                html: 'html',
-                testStepResults: {
-                    step1: {
-                        status: ManualTestStatus.PASS,
-                        isVisualizationEnabled: false,
-                        isVisible: false,
-                    },
+            ];
+            const cols: IColumn[] = [
+                {
+                    key: 'col1',
+                    name: 'col1',
+                    fieldName: 'fieldName',
+                    minWidth: 0,
                 },
-            },
-        };
-        expectedMessage = {
-            message: <div className="no-failure-view">No failing instances</div>,
-            instanceCount: 1,
-        } as DefaultMessageInterface;
+            ];
 
-        generatorMock
-            .setup(gm => gm(instancesMap, 'step'))
-            .returns(() => expectedMessage)
-            .verifiable();
+            assessmentInstanceTableHandlerMock
+                .setup(a =>
+                    a.createAssessmentInstanceTableItems(
+                        props.instancesMap,
+                        props.assessmentNavState,
+                        props.hasVisualHelper,
+                    ),
+                )
+                .returns(() => items)
+                .verifiable(Times.once());
 
-        const props: AssessmentInstanceTableProps = getProps(
-            instancesMap,
-            assessmentInstanceTableHandlerMock.object,
-            assessmentDefaultMessageGeneratorMock.object,
-            getDefaultMessageMock.object,
-        );
+            assessmentInstanceTableHandlerMock
+                .setup(a =>
+                    a.getColumnConfigs(
+                        props.instancesMap,
+                        props.assessmentNavState,
+                        props.hasVisualHelper,
+                    ),
+                )
+                .returns(() => cols)
+                .verifiable(Times.once());
+        });
 
-        const testObject = new TestableAssessmentInstanceTable(props);
-        expect(testObject.render()).toEqual(expectedMessage.message);
-        getDefaultMessageMock.verifyAll();
+        it('renders per snapshot', () => {
+            const testSubject = shallow(<AssessmentInstanceTable {...props} />);
+            expect(testSubject.getElement()).toMatchSnapshot();
+        });
+
+        it('renders per snapshot with null header', () => {
+            const testSubject = shallow(
+                <AssessmentInstanceTable {...props} renderInstanceTableHeader={() => null} />,
+            );
+            expect(testSubject.getElement()).toMatchSnapshot();
+        });
+
+        it('prefers rendering with getDefaultMessage if non-null', () => {
+            defaultMessage = {
+                message: <>Message from getDefaultMessage</>,
+                instanceCount: 1,
+            } as DefaultMessageInterface;
+
+            const testSubject = shallow(<AssessmentInstanceTable {...props} />);
+            expect(testSubject.getElement()).toEqual(defaultMessage.message);
+
+            getDefaultMessageMock.verifyAll();
+        });
+
+        it("delegates the underlying list's onItemInvoked to the handler's updateFocusedTarget", () => {
+            const fakeItem = { instance: { target: ['fake-instance-target-0'] } };
+            assessmentInstanceTableHandlerMock
+                .setup(a => a.updateFocusedTarget(fakeItem.instance.target))
+                .verifiable(Times.once());
+
+            const testSubject = mount(<AssessmentInstanceTable {...props} />);
+            testSubject.find(DetailsList).prop('onItemInvoked')(fakeItem);
+
+            assessmentInstanceTableHandlerMock.verifyAll();
+        });
+
+        describe('"Pass all unmarked instances" button', () => {
+            const passUnmarkedInstancesButtonSelector = `button${getAutomationIdSelector(
+                passUnmarkedInstancesButtonAutomationId,
+            )}`;
+            it('is enabled if there is an instance with unknown status', () => {
+                testStepResults[selectedTestStep] = { status: ManualTestStatus.UNKNOWN };
+
+                const testSubject = mount(<AssessmentInstanceTable {...props} />);
+                expect(
+                    testSubject.find(passUnmarkedInstancesButtonSelector).prop('disabled'),
+                ).toBeUndefined();
+            });
+
+            it.each([ManualTestStatus.FAIL, ManualTestStatus.PASS])(
+                'is disabled if all instances are in non-UNKNOWN status %p',
+                testStatus => {
+                    testStepResults[selectedTestStep] = { status: testStatus };
+
+                    const testSubject = mount(<AssessmentInstanceTable {...props} />);
+                    expect(
+                        testSubject.find(passUnmarkedInstancesButtonSelector).prop('disabled'),
+                    ).toBe(true);
+                },
+            );
+
+            it("delegates the button action to the handler's passUnmarkedInstances", () => {
+                assessmentInstanceTableHandlerMock
+                    .setup(a =>
+                        a.passUnmarkedInstances(
+                            props.assessmentNavState.selectedTestType,
+                            props.assessmentNavState.selectedTestSubview,
+                        ),
+                    )
+                    .verifiable(Times.once());
+
+                const testSubject = mount(<AssessmentInstanceTable {...props} />);
+                testSubject.find(passUnmarkedInstancesButtonSelector).simulate('click');
+
+                assessmentInstanceTableHandlerMock.verifyAll();
+            });
+        });
     });
 
     function getProps(
@@ -345,21 +220,17 @@ describe('AssessmentInstanceTableTest', () => {
             instancesMap: instancesMap,
             columnConfiguration: [],
             assessmentNavState: {
-                selectedTestStep: 'step',
+                selectedTestSubview: selectedTestStep,
                 selectedTestType: 1,
             },
             assessmentInstanceTableHandler: assessmentInstanceTableHandler,
             getDefaultMessage: defaultMessageMock,
             assessmentDefaultMessageGenerator: defaultMessageGeneratorMock,
-            renderInstanceTableHeader: (table: AssessmentInstanceTable, items: AssessmentInstanceRowData[]) =>
-                table.renderDefaultInstanceTableHeader(items),
+            renderInstanceTableHeader: (
+                table: AssessmentInstanceTable,
+                items: AssessmentInstanceRowData[],
+            ) => table.renderDefaultInstanceTableHeader(items),
             hasVisualHelper: true,
         };
     }
 });
-
-class TestableAssessmentInstanceTable extends AssessmentInstanceTable {
-    public getOnPassUnmarkedInstances(): () => void {
-        return this.onPassUnmarkedInstances;
-    }
-}

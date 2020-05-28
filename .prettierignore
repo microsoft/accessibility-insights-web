@@ -6,6 +6,7 @@
 **/*.gitignore
 **/*.icns
 **/*.ico
+**/*.mp3
 **/*.nsh
 **/*.png
 **/*.snap
@@ -23,7 +24,6 @@ docs/art/ada-cat.ansi256.txt
 docs/LICENSE.txt
 src/electron/resources/license_en.txt
 src/electron/resources/license.txt
-docs/NOTICE.html
 drop/
 extension/
 package/

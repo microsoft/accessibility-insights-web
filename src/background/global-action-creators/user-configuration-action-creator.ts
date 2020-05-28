@@ -5,6 +5,7 @@ import {
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
+    SetNativeHighContrastModePayload,
 } from '../actions/action-payloads';
 import { UserConfigurationActions } from '../actions/user-configuration-actions';
 
@@ -18,6 +19,9 @@ export class UserConfigurationActionCreator {
 
     public setHighContrastMode = (payload: SetHighContrastModePayload) =>
         this.userConfigActions.setHighContrastMode.invoke(payload);
+
+    public setNativeHighContrastMode = (payload: SetNativeHighContrastModePayload) =>
+        this.userConfigActions.setNativeHighContrastMode.invoke(payload);
 
     public setIssueFilingService = (payload: SetIssueFilingServicePayload) =>
         this.userConfigActions.setIssueFilingService.invoke(payload);

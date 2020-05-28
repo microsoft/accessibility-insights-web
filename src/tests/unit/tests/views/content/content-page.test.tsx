@@ -24,7 +24,9 @@ describe('ContentPage', () => {
                 return <>{(Markup as any).options.testString}</>;
             });
 
-            const result = shallow(<MyPage deps={deps} options={{ setPageTitle: true, testString: 'TEST STRING' }} />);
+            const result = shallow(
+                <MyPage deps={deps} options={{ setPageTitle: true, testString: 'TEST STRING' }} />,
+            );
             expect(result.getElement()).toMatchSnapshot();
         });
     });
@@ -69,7 +71,13 @@ describe('ContentPage', () => {
             expect(result.getElement()).toMatchSnapshot();
         });
 
-        ['forest', 'notForest/thePage', 'forest/notThePage', 'extraPath/forest/thePage', 'thePage'].forEach(page =>
+        [
+            'forest',
+            'notForest/thePage',
+            'forest/notThePage',
+            'extraPath/forest/thePage',
+            'thePage',
+        ].forEach(page =>
             it(`doesn't find ${page}`, () => {
                 const MyPage = provider.getPage(page);
                 expect(MyPage.displayName).toEqual('ContentPageComponent');

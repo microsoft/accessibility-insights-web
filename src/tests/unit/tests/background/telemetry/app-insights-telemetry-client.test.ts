@@ -5,16 +5,14 @@ import {
     ExtendedEnvelop,
 } from 'background/telemetry/app-insights-telemetry-client';
 import { ApplicationTelemetryDataFactory } from 'background/telemetry/application-telemetry-data-factory';
-import { TelemetryLogger } from 'background/telemetry/telemetry-logger';
+import { configMutator } from 'common/configuration';
 import { cloneDeep } from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { configMutator } from '../../../../../common/configuration';
 
 describe('AppInsights telemetry client tests', () => {
     let addTelemetryInitializerStrictMock: IMock<(callback) => void>;
     let appInsightsStrictMock: IMock<Microsoft.ApplicationInsights.IAppInsights>;
     let coreTelemetryDataFactoryMock: IMock<ApplicationTelemetryDataFactory>;
-    let loggerMock: IMock<TelemetryLogger>;
     let operationStub: Microsoft.ApplicationInsights.Context.IOperation;
     let testSubject: AppInsightsTelemetryClient;
     const aiKey: string = 'ai key';
@@ -35,8 +33,6 @@ describe('AppInsights telemetry client tests', () => {
         aiConfig = {};
         configMutator.setOption('appInsightsInstrumentationKey', aiKey);
         addTelemetryInitializerStrictMock = Mock.ofInstance(callback => {}, MockBehavior.Strict);
-        loggerMock = Mock.ofType<TelemetryLogger>();
-        loggerMock.setup(l => l.log(It.isAny()));
         operationStub = {
             name: 'should be overwritten to an empty string',
         } as Microsoft.ApplicationInsights.Context.IOperation;
@@ -53,7 +49,6 @@ describe('AppInsights telemetry client tests', () => {
         testSubject = new AppInsightsTelemetryClient(
             appInsightsStrictMock.object,
             coreTelemetryDataFactoryMock.object,
-            loggerMock.object,
         );
     });
 

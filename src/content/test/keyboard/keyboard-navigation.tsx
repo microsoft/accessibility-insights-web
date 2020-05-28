@@ -4,8 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup, Link }) => (
     <React.Fragment>
-        <h1>Keyboard navigation</h1>
-
         <p>Users must be able to navigate to all interactive interface components using a keyboard.</p>
 
         <h2>Why it matters</h2>

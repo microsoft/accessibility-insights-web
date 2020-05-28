@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { UUIDGenerator } from 'common/uid-generator';
 import { ToolDataDelegate } from 'electron/common/application-properties-provider';
+import { AndroidScanResults } from 'electron/platform/android/android-scan-results';
 import { RuleInformationProviderType } from 'electron/platform/android/rule-information-provider-type';
-import { ScanResults } from 'electron/platform/android/scan-results';
 import { ConvertScanResultsToPlatformDataDelegate } from 'electron/platform/android/scan-results-to-platform-data';
 import { ConvertScanResultsToUnifiedResultsDelegate } from 'electron/platform/android/scan-results-to-unified-results';
 import { ConvertScanResultsToUnifiedRulesDelegate } from 'electron/platform/android/scan-results-to-unified-rules';
@@ -12,7 +12,7 @@ import { axeRuleResultExample } from 'tests/unit/tests/electron/flux/action-crea
 import { Mock, MockBehavior } from 'typemoq';
 
 describe('buildUnifiedScanCompletedPayload', () => {
-    const exampleScanResults = new ScanResults(axeRuleResultExample);
+    const exampleScanResults = new AndroidScanResults(axeRuleResultExample);
 
     it('builds the payload', () => {
         const generateUIDMock = Mock.ofType<UUIDGenerator>();
@@ -21,7 +21,13 @@ describe('buildUnifiedScanCompletedPayload', () => {
 
         const getUnifiedResultsMock = Mock.ofType<ConvertScanResultsToUnifiedResultsDelegate>();
         getUnifiedResultsMock
-            .setup(converter => converter(exampleScanResults, ruleInformationProviderMock.object, generateUIDMock.object))
+            .setup(converter =>
+                converter(
+                    exampleScanResults,
+                    ruleInformationProviderMock.object,
+                    generateUIDMock.object,
+                ),
+            )
             .returns(() => {
                 return [
                     {
@@ -35,9 +41,18 @@ describe('buildUnifiedScanCompletedPayload', () => {
                 ];
             });
 
-        const getUnifiedRulesMock = Mock.ofType<ConvertScanResultsToUnifiedRulesDelegate>(undefined, MockBehavior.Strict);
+        const getUnifiedRulesMock = Mock.ofType<ConvertScanResultsToUnifiedRulesDelegate>(
+            undefined,
+            MockBehavior.Strict,
+        );
         getUnifiedRulesMock
-            .setup(converter => converter(exampleScanResults, ruleInformationProviderMock.object, generateUIDMock.object))
+            .setup(converter =>
+                converter(
+                    exampleScanResults,
+                    ruleInformationProviderMock.object,
+                    generateUIDMock.object,
+                ),
+            )
             .returns(() => {
                 return [
                     {
@@ -49,7 +64,10 @@ describe('buildUnifiedScanCompletedPayload', () => {
                 ];
             });
 
-        const getPlatformDataMock = Mock.ofType<ConvertScanResultsToPlatformDataDelegate>(undefined, MockBehavior.Strict);
+        const getPlatformDataMock = Mock.ofType<ConvertScanResultsToPlatformDataDelegate>(
+            undefined,
+            MockBehavior.Strict,
+        );
         getPlatformDataMock
             .setup(converter => converter(exampleScanResults))
             .returns(() => ({

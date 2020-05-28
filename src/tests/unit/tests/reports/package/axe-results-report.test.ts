@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AxeResults } from 'axe-core';
+import { CardSelectionViewData } from 'common/get-card-selection-view-data';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
-import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
+import { ToolData, UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { generateUID } from 'common/uid-generator';
 import { convertScanResultsToUnifiedResults } from 'injected/adapters/scan-results-to-unified-results';
 import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results-to-unified-rules';
@@ -19,6 +20,18 @@ describe('AxeResultReport', () => {
     const url = 'https://the.page';
     const pageTitle = 'PAGE_TITLE';
     const description = 'DESCRIPTION';
+    const toolDataStub: ToolData = {
+        applicationProperties: { name: 'some app' },
+    } as ToolData;
+    const targetAppInfoStub = {
+        name: pageTitle,
+        url: url,
+    };
+    const scanMetadataStub = {
+        toolData: toolDataStub,
+        targetAppInfo: targetAppInfoStub,
+        timestamp: null,
+    };
 
     const results = {
         timestamp: reportDateTime.toISOString(),
@@ -48,11 +61,11 @@ describe('AxeResultReport', () => {
     const mockGetResults = Mock.ofType<typeof convertScanResultsToUnifiedResults>(null, MockBehavior.Strict);
     mockGetResults.setup(fn => fn(mockScanResults.object, generateUID)).returns(() => mockResults.object);
 
-    const emptyCardSelectionViewData = {
-        highlightedResultUids: [],
+    const emptyCardSelectionViewData: CardSelectionViewData = {
         selectedResultUids: [],
         expandedRuleIds: [],
         visualHelperEnabled: false,
+        resultsHighlightStatus: {},
     };
     const mockCardsViewModel = Mock.ofType<CardsViewModel>();
     const mockGetCards = Mock.ofType<typeof getCardViewData>(null, MockBehavior.Strict);
@@ -61,7 +74,7 @@ describe('AxeResultReport', () => {
     const expectedHTML = '<div>The Report!</div>';
     const mockReportHtmlGenerator = Mock.ofType<ReportHtmlGenerator>(null, MockBehavior.Strict);
     mockReportHtmlGenerator
-        .setup(gen => gen.generateHtml(reportDateTime, pageTitle, url, description, mockCardsViewModel.object))
+        .setup(gen => gen.generateHtml(reportDateTime, description, mockCardsViewModel.object, scanMetadataStub))
         .returns(() => expectedHTML);
 
     const deps: AxeResultsReportDeps = {
@@ -74,7 +87,7 @@ describe('AxeResultReport', () => {
     };
 
     it('returns HTML', () => {
-        const report = new AxeResultsReport(deps, parameters);
+        const report = new AxeResultsReport(deps, parameters, toolDataStub);
 
         const html = report.asHTML();
 

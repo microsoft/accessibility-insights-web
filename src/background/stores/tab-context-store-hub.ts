@@ -53,9 +53,9 @@ export class TabContextStoreHub implements StoreHub {
 
         this.detailsViewStore = new DetailsViewStore(
             actionHub.previewFeaturesActions,
-            actionHub.scopingActions,
             actionHub.contentActions,
             actionHub.detailsViewActions,
+            actionHub.sidePanelActions,
         );
         this.detailsViewStore.initialize();
 

@@ -4,7 +4,10 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { AutomatedChecksCommandBar } from 'DetailsView/components/automated-checks-command-bar';
-import { CommandBarProps, DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
+import {
+    CommandBarProps,
+    DetailsViewCommandBarProps,
+} from 'DetailsView/components/details-view-command-bar';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 
 function getProps(): CommandBarProps {

@@ -2,6 +2,8 @@
 // Licensed under the MIT License.
 import { resultSectionAutomationId } from 'common/components/cards/result-section';
 import { ruleDetailsGroupAutomationId } from 'common/components/cards/rules-with-instances';
+import { instanceTableTextContentAutomationId } from 'DetailsView/components/assessment-instance-details-column';
+import { visualHelperToggleAutomationId } from 'DetailsView/components/base-visual-helper-toggle';
 import { settingsPanelAutomationId } from 'DetailsView/components/details-view-overlay/settings-panel/settings-panel';
 import { IframeWarningContainerAutomationId } from 'DetailsView/components/iframe-warning';
 import { overviewHeadingAutomationId } from 'DetailsView/components/overview-content/overview-heading';
@@ -11,16 +13,23 @@ import {
     cardsRuleIdAutomationId,
     ruleDetailAutomationId,
 } from 'reports/components/report-sections/minimal-rule-header';
-
-const getAutomationIdSelector = (id: string) => `[data-automation-id="${id}"]`;
+import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 
 export const detailsViewSelectors = {
     previewFeaturesPanel: '.preview-features-panel',
 
-    testNavLink: (testName: string): string => `nav [name=${testName}] a`,
+    testNavLink: (testName: string): string => `nav [name="${testName}"] a`,
+    requirementNavLink: (requirementName: string): string => `div [name="${requirementName}"] a`,
+
+    visualHelperToggle: getAutomationIdSelector(visualHelperToggleAutomationId),
+
+    requirementWithStatus: (
+        requirementName: string,
+        status: 'Passed' | 'Failed' | 'Incomplete',
+    ): string => `div[name="${requirementName}"][title^="${requirementName}. ${status}."]`,
 
     mainContent: '[role=main]',
-    instanceTableTextContent: '.assessment-instance-textContent',
+    instanceTableTextContent: getAutomationIdSelector(instanceTableTextContentAutomationId),
 
     settingsButton: 'button[name="Settings"]',
 

@@ -2,6 +2,10 @@
 // Licensed under the MIT License.
 @import '../../common/styles/colors.scss';
 
+:global(.ms-Button).gear-menu-button:focus::after {
+    border: 1px $neutral-0 solid;
+}
+
 :global(.high-contrast-theme) {
     .gear-menu-button {
         color: $neutral-alpha-90;

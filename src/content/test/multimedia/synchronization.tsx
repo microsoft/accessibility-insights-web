@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <React.Fragment>
-        <h1>Synchronization</h1>
         <p>An audio description must be synchronized with the video content.</p>
 
         <h2>Why it matters</h2>

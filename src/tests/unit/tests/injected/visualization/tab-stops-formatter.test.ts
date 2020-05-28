@@ -8,7 +8,10 @@ describe('TabStopsFormatterTests', () => {
     let testSubject: TabStopsFormatter;
     let sandbox: HTMLDivElement;
 
-    function createTestDrawerConfig(showSolidFocusLine = true, showTabIndexedLabel = true): SVGDrawerConfiguration {
+    function createTestDrawerConfig(
+        showSolidFocusLine = true,
+        showTabIndexedLabel = true,
+    ): SVGDrawerConfiguration {
         return {
             circle: {
                 stroke: '#777777',

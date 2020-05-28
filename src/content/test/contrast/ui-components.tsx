@@ -4,16 +4,13 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
-        <h1>UI Components</h1>
         <p>Visual information used to indicate states and boundaries of active UI Components must have sufficient contrast.</p>
-
         <h2>Why it matters</h2>
         <p>
             Most people find it easier to see and use UI Components when they have sufficient contrast against the background. People with
             low vision, limited color perception, or <Link.Presbyopia /> are especially likely to struggle with controls when contrast is
             too low.
         </p>
-
         <h2>How to fix</h2>
         <p>
             Make sure any visual information that helps users detect and operate a control has a contrast ratio ≥ 3:1. Such visual
@@ -37,7 +34,6 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 </p>
             }
         />
-
         <h2>More examples</h2>
         <h3>WCAG success criteria</h3>
         <Markup.Links>
@@ -45,14 +41,12 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 Understanding Success Criterion 1.4.11: Non-text Contrast
             </Markup.HyperLink>
         </Markup.Links>
-
         <h3>Sufficient techniques</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G195">
                 Using an author-supplied, highly visible focus indicator
             </Markup.HyperLink>
         </Markup.Links>
-
         <h3>Common failures</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F78">
@@ -60,7 +54,6 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 the visual focus indicator
             </Markup.HyperLink>
         </Markup.Links>
-
         <h3>Additional guidance</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G183">

@@ -3,7 +3,10 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { CollapsibleComponent, CollapsibleComponentProps } from '../../../../../common/components/collapsible-component';
+import {
+    CollapsibleComponent,
+    CollapsibleComponentProps,
+} from '../../../../../common/components/collapsible-component';
 
 describe('CollapsibleComponentTest', () => {
     test('render expanded with content-class-name', () => {

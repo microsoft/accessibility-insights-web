@@ -61,6 +61,7 @@ describe('UnifiedScanResultStore Test', () => {
                     name: 'test-scan-engine-name',
                 },
             },
+            timestamp: 'timestamp',
             scanIncompleteWarnings: ['some-incomplete-warning-id' as ScanIncompleteWarningId],
             screenshotData: {
                 base64PngData: 'testScreenshotText',
@@ -76,6 +77,7 @@ describe('UnifiedScanResultStore Test', () => {
             results: payload.scanResult,
             toolInfo: payload.toolInfo,
             targetAppInfo,
+            timestamp: payload.timestamp,
             scanIncompleteWarnings: payload.scanIncompleteWarnings,
             screenshotData: payload.screenshotData,
             platformInfo: payload.platformInfo,

@@ -7,6 +7,7 @@ import { VisualizationToggle } from '../../common/components/visualization-toggl
 import { GeneratedAssessmentInstance } from '../../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../../types/common-types';
 
+export const visualHelperToggleAutomationId = 'visual-helper-toggle';
 export const visualHelperText = 'Visual helper';
 
 export abstract class BaseVisualHelperToggle extends React.Component<VisualHelperToggleConfig> {
@@ -23,13 +24,16 @@ export abstract class BaseVisualHelperToggle extends React.Component<VisualHelpe
         return (
             <div className="visual-helper">
                 <div className="visual-helper-text">{visualHelperText}</div>
-                <VisualizationToggle
-                    checked={isChecked}
-                    disabled={isDisabled}
-                    onClick={onClick}
-                    className="visual-helper-toggle"
-                    visualizationName={visualHelperText}
-                />
+                <div aria-hidden={isDisabled} /* disabledMessage supersedes it; see #682 */>
+                    <VisualizationToggle
+                        checked={isChecked}
+                        disabled={isDisabled}
+                        onClick={onClick}
+                        className="visual-helper-toggle"
+                        visualizationName={visualHelperText}
+                        data-automation-id={visualHelperToggleAutomationId}
+                    />
+                </div>
                 {disabledMessage}
             </div>
         );
@@ -45,7 +49,7 @@ export abstract class BaseVisualHelperToggle extends React.Component<VisualHelpe
         assessmentNavState,
         instancesMap: DictionaryStringTo<GeneratedAssessmentInstance>,
     ): GeneratedAssessmentInstance<{}, {}>[] {
-        const selectedTestStep = assessmentNavState.selectedTestStep;
+        const selectedTestSubview = assessmentNavState.selectedTestSubview;
 
         return filter(instancesMap, instance => {
             if (instance == null) {
@@ -54,8 +58,8 @@ export abstract class BaseVisualHelperToggle extends React.Component<VisualHelpe
 
             const testStepKeys = keys(instance.testStepResults);
             return (
-                includes(testStepKeys, selectedTestStep) &&
-                instance.testStepResults[selectedTestStep] != null
+                includes(testStepKeys, selectedTestSubview) &&
+                instance.testStepResults[selectedTestSubview] != null
             );
         });
     }

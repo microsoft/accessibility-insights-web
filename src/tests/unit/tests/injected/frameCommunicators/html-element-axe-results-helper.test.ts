@@ -17,7 +17,10 @@ describe('HtmlElementAxeResultsHelperTest', () => {
     beforeEach(() => {
         mockDocumentElementUtils = Mock.ofType(HTMLElementUtils);
         const loggerMock = Mock.ofType<Logger>();
-        testSubject = new HtmlElementAxeResultsHelper(mockDocumentElementUtils.object, loggerMock.object);
+        testSubject = new HtmlElementAxeResultsHelper(
+            mockDocumentElementUtils.object,
+            loggerMock.object,
+        );
     });
 
     afterEach(() => {
@@ -25,16 +28,27 @@ describe('HtmlElementAxeResultsHelperTest', () => {
     });
 
     test('splitResultsByFrame_ShouldIncludeResultsForMissingFrames', () => {
-        const framesInWindow = HTMLCollectionOfBuilder.create([document.createElement('iframe'), document.createElement('iframe')]);
+        const framesInWindow = HTMLCollectionOfBuilder.create([
+            document.createElement('iframe'),
+            document.createElement('iframe'),
+        ]);
 
-        mockDocumentElementUtils.setup(x => x.getAllElementsByTagName('iframe')).returns(() => framesInWindow);
+        mockDocumentElementUtils
+            .setup(x => x.getAllElementsByTagName('iframe'))
+            .returns(() => framesInWindow);
         const resultsByFrame = testSubject.splitResultsByFrame([]);
 
         expect(resultsByFrame.length).toEqual(3);
         expect(resultsByFrame.filter(result => result.frame == null).length).toEqual(1);
-        expect(resultsByFrame.filter(result => result.frame === framesInWindow[0]).length).toEqual(1);
-        expect(resultsByFrame.filter(result => result.frame === framesInWindow[1]).length).toEqual(1);
-        expect(resultsByFrame.filter(result => result.elementResults.length === 0).length).toEqual(3);
+        expect(resultsByFrame.filter(result => result.frame === framesInWindow[0]).length).toEqual(
+            1,
+        );
+        expect(resultsByFrame.filter(result => result.frame === framesInWindow[1]).length).toEqual(
+            1,
+        );
+        expect(resultsByFrame.filter(result => result.elementResults.length === 0).length).toEqual(
+            3,
+        );
     });
 
     test('splitResultsByFrame_ShouldNotUpdateSelectorForCurrentFrame', () => {
@@ -55,11 +69,17 @@ describe('HtmlElementAxeResultsHelperTest', () => {
             .returns(() => framesInWindow)
             .verifiable();
 
-        const resultsByFrame = testSubject.splitResultsByFrame([currentFrameResultInstance1, currentFrameResultInstance2]);
+        const resultsByFrame = testSubject.splitResultsByFrame([
+            currentFrameResultInstance1,
+            currentFrameResultInstance2,
+        ]);
 
         expect(resultsByFrame.length).toEqual(1);
         expect(resultsByFrame[0].frame).toBeNull();
-        expect(resultsByFrame[0].elementResults).toMatchObject([currentFrameResultInstance1, currentFrameResultInstance2]);
+        expect(resultsByFrame[0].elementResults).toMatchObject([
+            currentFrameResultInstance1,
+            currentFrameResultInstance2,
+        ]);
     });
 
     test('splitResultsByFrame_WithUndefinedTargetIndex_ShouldIncrementTargetIndexByOne', () => {
@@ -148,7 +168,9 @@ describe('HtmlElementAxeResultsHelperTest', () => {
             targetIndex: 5,
         };
 
-        mockDocumentElementUtils.setup(x => x.getAllElementsByTagName('iframe')).returns(() => framesInWindow);
+        mockDocumentElementUtils
+            .setup(x => x.getAllElementsByTagName('iframe'))
+            .returns(() => framesInWindow);
 
         const resultsByFrame = testSubject.splitResultsByFrame([frameResult]);
         const resultsForTargetFrame = resultsByFrame.filter(result => result.frame === frame1)[0];

@@ -1,5 +1,11 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
+schedules:
+    - cron: '0 10 * * 1-5'
+      displayName: Weekdays at 10AM UTC (3AM PDT)
+      branches:
+          include:
+              - master
 trigger:
     - build-reliability/*
 pr:

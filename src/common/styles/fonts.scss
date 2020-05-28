@@ -1,5 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+
+// This file is @imported by many SCSS modules, which means it *must not* contain any actual style
+// definitions; it may *only* contain SCSS directives (eg, $variable, @function, and @mixin).
+
 @function make-font-family($fonts) {
     $comma: '';
     $family: '';
@@ -60,9 +64,31 @@ $fontSizeXXXXL: 72px !default;
 $codeFontFamily: Menlo, Consolas, Courier New, monospace !default;
 $semiBoldFontFamily: make-font-family($semiBoldFonts) !default;
 
+@mixin text-style-title-m {
+    font-family: $semiBoldFontFamily;
+    font-weight: $fontWeightSemiBold;
+    font-size: $fontSizeLML;
+    line-height: 32px;
+    letter-spacing: -0.02em;
+}
+
+@mixin text-style-title-l {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 40px;
+}
+
 @mixin text-style-title-s {
     font-family: $semiBoldFontFamily;
     font-weight: $fontWeightSemiBold;
+    font-size: 17px;
+    line-height: 24px;
+}
+
+@mixin text-style-header-s {
+    font-family: $fontFamily;
+    font-weight: $fontWeightNormal;
     font-size: 17px;
     line-height: 24px;
 }

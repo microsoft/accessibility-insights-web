@@ -4,8 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>On input</h1>
-
         <p>Changing a component's settings must not trigger any unexpected change of context.</p>
 
         <h2>Why it matters</h2>

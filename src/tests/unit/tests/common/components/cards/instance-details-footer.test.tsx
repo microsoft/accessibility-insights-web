@@ -19,7 +19,10 @@ import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
 import { CreateIssueDetailsTextData } from '../../../../../../common/types/create-issue-details-text-data';
-import { TargetAppData, UnifiedRule } from '../../../../../../common/types/store-data/unified-data-interface';
+import {
+    TargetAppData,
+    UnifiedRule,
+} from '../../../../../../common/types/store-data/unified-data-interface';
 import { UnifiedResultToIssueFilingDataConverter } from '../../../../../../issue-filing/unified-result-to-issue-filing-data';
 import { exampleUnifiedResult, exampleUnifiedRuleResult } from './sample-view-model-data';
 
@@ -105,12 +108,15 @@ describe('InstanceDetailsFooter', () => {
 
     const allHighlightStates: HighlightState[] = ['visible', 'hidden', 'unavailable'];
 
-    it.each(allHighlightStates)('renders per snapshot with highlightState="%s"', (highlightState: HighlightState) => {
-        resultStub.highlightStatus = highlightState;
-        setupConverterToBeCalledOnce();
-        const testSubject = shallow(<InstanceDetailsFooter {...props} />);
+    it.each(allHighlightStates)(
+        'renders per snapshot with highlightState="%s"',
+        (highlightState: HighlightState) => {
+            resultStub.highlightStatus = highlightState;
+            setupConverterToBeCalledOnce();
+            const testSubject = shallow(<InstanceDetailsFooter {...props} />);
 
-        expect(testSubject.getElement()).toMatchSnapshot();
-        converterMock.verifyAll();
-    });
+            expect(testSubject.getElement()).toMatchSnapshot();
+            converterMock.verifyAll();
+        },
+    );
 });

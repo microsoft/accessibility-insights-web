@@ -1,11 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CardSelectionViewData } from 'common/get-card-selection-view-data';
+import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
+import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
-import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
+import {
+    UnifiedResult,
+    UnifiedScanResultStoreData,
+} from 'common/types/store-data/unified-data-interface';
 import { AssessmentVisualizationInstance } from 'injected/frameCommunicators/html-element-axe-results-helper';
 import { GetDecoratedAxeNodeCallback } from 'injected/get-decorated-axe-node';
-import { find, includes } from 'lodash';
+import { find } from 'lodash';
 import { DictionaryStringTo } from 'types/common-types';
 
 export interface CheckData {
@@ -16,40 +20,35 @@ export interface CheckData {
 }
 
 export type GetElementBasedViewModelCallback = (
-    rules: UnifiedRule[],
-    results: UnifiedResult[],
+    unifiedScanResultStoreData: UnifiedScanResultStoreData,
     cardSelectionData: CardSelectionStoreData,
 ) => DictionaryStringTo<AssessmentVisualizationInstance>;
-
-export type GetHighlightedResultInstanceIdsCallback = (
-    cardSelectionData: CardSelectionStoreData,
-) => Pick<CardSelectionViewData, 'highlightedResultUids'>;
 
 export class ElementBasedViewModelCreator {
     constructor(
         private getDecoratedAxeNode: GetDecoratedAxeNodeCallback,
-        private getHighlightedResultInstanceIds: GetHighlightedResultInstanceIdsCallback,
+        private getHighlightedResultInstanceIds: GetCardSelectionViewData,
+        private isResultHighlightUnavailable: IsResultHighlightUnavailable,
     ) {}
 
     public getElementBasedViewModel: GetElementBasedViewModelCallback = (
-        rules: UnifiedRule[],
-        results: UnifiedResult[],
-        cardSelectionData: CardSelectionStoreData,
+        unifiedScanResultStoreData,
+        cardSelectionData,
     ) => {
+        const { rules, results } = unifiedScanResultStoreData;
         if (rules == null || results == null || cardSelectionData == null) {
             return;
         }
 
         const resultDictionary: DictionaryStringTo<AssessmentVisualizationInstance> = {};
-        const highlightedResultInstanceUids = this.getHighlightedResultInstanceIds(
+        const resultsHighlightStatus = this.getHighlightedResultInstanceIds(
             cardSelectionData,
-        ).highlightedResultUids;
+            unifiedScanResultStoreData,
+            this.isResultHighlightUnavailable,
+        ).resultsHighlightStatus;
 
         results.forEach(unifiedResult => {
-            if (
-                unifiedResult.status !== 'fail' ||
-                !includes(highlightedResultInstanceUids, unifiedResult.uid)
-            ) {
+            if (resultsHighlightStatus[unifiedResult.uid] !== 'visible') {
                 return;
             }
 

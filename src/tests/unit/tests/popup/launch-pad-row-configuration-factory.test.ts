@@ -19,13 +19,15 @@ describe('LaunchPadRowConfigurationFactoryTests', () => {
         const fastPassRowConfig = {
             iconName: 'Rocket',
             title: 'FastPass',
-            description: 'Run two tests to find the most common accessibility issues in less than 5 minutes.',
+            description:
+                'Run two tests to find the most common accessibility issues in less than 5 minutes.',
             onClickTitle: null,
         };
         const adhocRowConfig = {
             iconName: 'Medical',
             title: 'Ad hoc tools',
-            description: 'Get quick access to visualizations that help you identify accessibility issues.',
+            description:
+                'Get quick access to visualizations that help you identify accessibility issues.',
             onClickTitle: null,
         };
         const assessmentRowConfig = {
@@ -35,9 +37,17 @@ describe('LaunchPadRowConfigurationFactoryTests', () => {
             onClickTitle: null,
         };
 
-        const expectedConfig: LaunchPadRowConfiguration[] = [fastPassRowConfig, assessmentRowConfig, adhocRowConfig];
+        const expectedConfig: LaunchPadRowConfiguration[] = [
+            fastPassRowConfig,
+            assessmentRowConfig,
+            adhocRowConfig,
+        ];
 
-        const configs = testSubject.createRowConfigs(componentStub as any, actionMessageCreatorMock.object, handlerMock.object);
+        const configs = testSubject.createRowConfigs(
+            componentStub as any,
+            actionMessageCreatorMock.object,
+            handlerMock.object,
+        );
 
         compareStaticProperties(expectedConfig, configs);
     });
@@ -50,17 +60,35 @@ describe('LaunchPadRowConfigurationFactoryTests', () => {
 
         actionMessageCreatorMock
             .setup(a =>
-                a.openDetailsView(null, VisualizationType.Issues, TelemetryEventSource.LaunchPadFastPass, DetailsViewPivotType.fastPass),
+                a.openDetailsView(
+                    null,
+                    VisualizationType.Issues,
+                    TelemetryEventSource.LaunchPadFastPass,
+                    DetailsViewPivotType.fastPass,
+                ),
             )
             .verifiable(Times.once());
 
         actionMessageCreatorMock
-            .setup(a => a.openDetailsView(null, null, TelemetryEventSource.LaunchPadAssessment, DetailsViewPivotType.assessment))
+            .setup(a =>
+                a.openDetailsView(
+                    null,
+                    null,
+                    TelemetryEventSource.LaunchPadAssessment,
+                    DetailsViewPivotType.assessment,
+                ),
+            )
             .verifiable(Times.once());
 
-        handlerMock.setup(h => h.openAdhocToolsPanel(componentStub as any)).verifiable(Times.once());
+        handlerMock
+            .setup(h => h.openAdhocToolsPanel(componentStub as any))
+            .verifiable(Times.once());
 
-        const configs = testSubject.createRowConfigs(componentStub as any, actionMessageCreatorMock.object, handlerMock.object);
+        const configs = testSubject.createRowConfigs(
+            componentStub as any,
+            actionMessageCreatorMock.object,
+            handlerMock.object,
+        );
 
         configs[0].onClickTitle(null);
         configs[1].onClickTitle(null);
@@ -70,7 +98,10 @@ describe('LaunchPadRowConfigurationFactoryTests', () => {
         handlerMock.verifyAll();
     });
 
-    function compareStaticProperties(expected: LaunchPadRowConfiguration[], actual: LaunchPadRowConfiguration[]): void {
+    function compareStaticProperties(
+        expected: LaunchPadRowConfiguration[],
+        actual: LaunchPadRowConfiguration[],
+    ): void {
         expect(actual.length).toEqual(expected.length);
 
         expected.forEach((config: LaunchPadRowConfiguration, index: number) => {

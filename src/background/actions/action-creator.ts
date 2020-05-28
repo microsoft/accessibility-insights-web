@@ -4,7 +4,6 @@ import { CardSelectionActions } from 'background/actions/card-selection-actions'
 import { TestMode } from 'common/configs/test-mode';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import * as TelemetryEvents from 'common/extension-telemetry-events';
-import { createDefaultLogger } from 'common/logging/default-logger';
 import { Logger } from 'common/logging/logger';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { NotificationCreator } from 'common/notification-creator';
@@ -12,7 +11,6 @@ import { StoreNames } from 'common/stores/store-names';
 import { VisualizationType } from 'common/types/visualization-type';
 import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
 import { DictionaryNumberTo } from 'types/common-types';
-
 import { VisualizationActions } from '../actions/visualization-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
 import { ExtensionDetailsViewController } from '../extension-details-view-controller';
@@ -56,7 +54,7 @@ export class ActionCreator {
         private readonly notificationCreator: NotificationCreator,
         private readonly visualizationConfigurationFactory: VisualizationConfigurationFactory,
         private readonly targetTabController: TargetTabController,
-        private readonly logger: Logger = createDefaultLogger(),
+        private readonly logger: Logger,
     ) {
         this.visualizationActions = actionHub.visualizationActions;
         this.previewFeaturesActions = actionHub.previewFeaturesActions;
@@ -131,10 +129,6 @@ export class ActionCreator {
             this.onDetailsViewClosed,
         );
 
-        this.interpreter.registerTypeToPayloadCallback(
-            Messages.PreviewFeatures.OpenPanel,
-            this.onOpenPreviewFeaturesPanel,
-        );
         this.interpreter.registerTypeToPayloadCallback(
             Messages.PreviewFeatures.ClosePanel,
             this.onClosePreviewFeaturesPanel,
@@ -243,17 +237,6 @@ export class ActionCreator {
         await this.targetTabController.showTargetTab(tabId, payload.testType, payload.key);
     };
 
-    private onOpenPreviewFeaturesPanel = async (
-        payload: BaseActionPayload,
-        tabId: number,
-    ): Promise<void> => {
-        this.previewFeaturesActions.openPreviewFeatures.invoke(null);
-        await this.detailsViewController
-            .showDetailsView(tabId)
-            .catch(e => this.logger.error(e.message));
-        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.PREVIEW_FEATURES_OPEN, payload);
-    };
-
     private onClosePreviewFeaturesPanel = (payload: BaseActionPayload): void => {
         this.previewFeaturesActions.closePreviewFeatures.invoke(null);
         this.telemetryEventHandler.publishTelemetry(
@@ -302,7 +285,7 @@ export class ActionCreator {
         await this.targetTabController.showTargetTab(tabId, payload.testType, payload.key);
     };
 
-    private onScrollRequested = (payload: BaseActionPayload): void => {
+    private onScrollRequested = (): void => {
         this.visualizationActions.scrollRequested.invoke(null);
         this.cardSelectionActions.resetFocusedIdentifier.invoke(null);
     };

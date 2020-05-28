@@ -1,14 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
-
+import { NewTabLink } from 'common/components/new-tab-link';
 import { TextAlternativePropertyBag } from 'common/types/property-bag/text-alternative-property-bag';
 import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import { productName } from 'content/strings/application';
-import { TestAutomaticallyPassedNotice } from 'content/test/common/test-automatically-passed-notice';
 import * as content from 'content/test/images/text-alternative';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
+import * as React from 'react';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
 import {
@@ -28,7 +27,16 @@ const description: JSX.Element = (
 const howToTest: JSX.Element = (
     <div>
         <p>For this requirement, {productName} highlights images that are coded as meaningful.</p>
-        <TestAutomaticallyPassedNotice />
+        <p>
+            <Markup.Emphasis>
+                Notes: (1) This procedure may require use of the{' '}
+                <NewTabLink href="https://chrome.google.com/webstore/detail/web-developer/bfbameneiokkgbdmiekhjnmfkcnldhhm">
+                    Web Developer
+                </NewTabLink>{' '}
+                browser extension. (2) If no matching/failing instances are found, this requirement
+                will automatically be marked as <Markup.Term>Pass</Markup.Term>.
+            </Markup.Emphasis>
+        </p>
         <ol>
             <li>
                 Examine each image in the <Markup.Term>Instances</Markup.Term> list to verify that
@@ -61,6 +69,19 @@ const howToTest: JSX.Element = (
                                 image.
                             </li>
                         </ol>
+                    </li>
+                </ol>
+            </li>
+            <li>
+                If a CSS background image is coded as meaningful:
+                <ol>
+                    <li>
+                        Use the Web Developer browser extension (<Markup.Term>CSS</Markup.Term>{' '}
+                        {'>'} <Markup.Term>Disable All Styles</Markup.Term>) to turn off CSS.
+                    </li>
+                    <li>
+                        Verify that the information conveyed by the image is visible when CSS is
+                        turned off.
                     </li>
                 </ol>
             </li>

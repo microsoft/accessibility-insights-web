@@ -8,6 +8,7 @@ import * as bundledStyles from '../../DetailsView/bundled-details-view-styles';
 import * as reportStyles from '../automated-checks-report.styles';
 
 export const ReportHead = NamedFC('ReportHead', () => {
+    // tslint:disable: react-no-dangerous-html
     return (
         <head>
             <meta charSet="UTF-8" />

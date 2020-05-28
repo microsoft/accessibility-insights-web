@@ -3,7 +3,10 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
-import { withStoreSubscription, WithStoreSubscriptionProps } from '../../../../../common/components/with-store-subscription';
+import {
+    withStoreSubscription,
+    WithStoreSubscriptionProps,
+} from '../../../../../common/components/with-store-subscription';
 import { StoreActionMessageCreatorImpl } from '../../../../../common/message-creators/store-action-message-creator-impl';
 import { ClientStoresHub } from '../../../../../common/stores/client-stores-hub';
 
@@ -212,7 +215,9 @@ describe('withStoreSubscription', () => {
         addChangedListenerToAllStoresMock.mockImplementation(cb => {
             onStoreChange = cb;
         });
-        getStoreDataMock.mockReturnValueOnce({ message: 'before change' }).mockReturnValueOnce({ message: 'after change' });
+        getStoreDataMock
+            .mockReturnValueOnce({ message: 'before change' })
+            .mockReturnValueOnce({ message: 'after change' });
 
         hasStoresMock.mockReturnValue(true);
         const storesHubStub: ClientStoresHub<any> = {} as ClientStoresHub<any>;

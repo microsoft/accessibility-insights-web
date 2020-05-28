@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Captions</h1>
         <p>Pre-recorded multimedia content must have captions.</p>
 
         <h2>Why it matters</h2>
@@ -25,15 +24,13 @@ export const infoAndExamples = create(({ Markup }) => (
         <h2>How to fix</h2>
         <ul>
             <li>
-                {' '}
                 If captions are missing, add them.
                 <ul>
-                    <li>Use closed captions (visible on demand) if possible. </li>
-                    <li> Use open captions (always visible) if your media player or hosting provider doesn't support closed captions. </li>
+                    <li>Use closed captions (visible on demand) if possible.</li>
+                    <li>Use open captions (always visible) if your media player or hosting provider doesn't support closed captions.</li>
                 </ul>
             </li>
             <li>
-                {' '}
                 Make sure the captions provide an accurate and complete description of the audio content:
                 <ul>
                     <li>Include all speech.</li>

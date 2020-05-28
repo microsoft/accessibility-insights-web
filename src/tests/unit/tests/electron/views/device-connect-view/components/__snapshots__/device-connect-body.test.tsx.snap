@@ -4,12 +4,20 @@ exports[`DeviceConnectBodyTest renders, with device connect state = Connected 1`
 <div
   className="deviceConnectBody"
 >
-  <DeviceConnectHeader />
+  <DeviceConnectHeader
+    deps={
+      Object {
+        "ipcRendererShim": Object {
+          "closeWindow": [Function],
+        },
+      }
+    }
+  />
   <DeviceConnectPortEntry
     deps={
       Object {
-        "currentWindow": Object {
-          "close": [Function],
+        "ipcRendererShim": Object {
+          "closeWindow": [Function],
         },
       }
     }
@@ -28,8 +36,8 @@ exports[`DeviceConnectBodyTest renders, with device connect state = Connected 1`
     cancelClick={[Function]}
     deps={
       Object {
-        "currentWindow": Object {
-          "close": [Function],
+        "ipcRendererShim": Object {
+          "closeWindow": [Function],
         },
       }
     }
@@ -41,12 +49,20 @@ exports[`DeviceConnectBodyTest renders, with device connect state = Connecting 1
 <div
   className="deviceConnectBody"
 >
-  <DeviceConnectHeader />
+  <DeviceConnectHeader
+    deps={
+      Object {
+        "ipcRendererShim": Object {
+          "closeWindow": [Function],
+        },
+      }
+    }
+  />
   <DeviceConnectPortEntry
     deps={
       Object {
-        "currentWindow": Object {
-          "close": [Function],
+        "ipcRendererShim": Object {
+          "closeWindow": [Function],
         },
       }
     }
@@ -65,8 +81,8 @@ exports[`DeviceConnectBodyTest renders, with device connect state = Connecting 1
     cancelClick={[Function]}
     deps={
       Object {
-        "currentWindow": Object {
-          "close": [Function],
+        "ipcRendererShim": Object {
+          "closeWindow": [Function],
         },
       }
     }
@@ -78,12 +94,20 @@ exports[`DeviceConnectBodyTest renders, with device connect state = Default 1`] 
 <div
   className="deviceConnectBody"
 >
-  <DeviceConnectHeader />
+  <DeviceConnectHeader
+    deps={
+      Object {
+        "ipcRendererShim": Object {
+          "closeWindow": [Function],
+        },
+      }
+    }
+  />
   <DeviceConnectPortEntry
     deps={
       Object {
-        "currentWindow": Object {
-          "close": [Function],
+        "ipcRendererShim": Object {
+          "closeWindow": [Function],
         },
       }
     }
@@ -102,8 +126,8 @@ exports[`DeviceConnectBodyTest renders, with device connect state = Default 1`] 
     cancelClick={[Function]}
     deps={
       Object {
-        "currentWindow": Object {
-          "close": [Function],
+        "ipcRendererShim": Object {
+          "closeWindow": [Function],
         },
       }
     }
@@ -115,12 +139,20 @@ exports[`DeviceConnectBodyTest renders, with device connect state = Error 1`] = 
 <div
   className="deviceConnectBody"
 >
-  <DeviceConnectHeader />
+  <DeviceConnectHeader
+    deps={
+      Object {
+        "ipcRendererShim": Object {
+          "closeWindow": [Function],
+        },
+      }
+    }
+  />
   <DeviceConnectPortEntry
     deps={
       Object {
-        "currentWindow": Object {
-          "close": [Function],
+        "ipcRendererShim": Object {
+          "closeWindow": [Function],
         },
       }
     }
@@ -139,8 +171,8 @@ exports[`DeviceConnectBodyTest renders, with device connect state = Error 1`] = 
     cancelClick={[Function]}
     deps={
       Object {
-        "currentWindow": Object {
-          "close": [Function],
+        "ipcRendererShim": Object {
+          "closeWindow": [Function],
         },
       }
     }

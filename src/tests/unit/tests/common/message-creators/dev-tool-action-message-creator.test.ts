@@ -1,6 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { InspectElementPayload, InspectFrameUrlPayload, OnDevToolOpenPayload } from 'background/actions/action-payloads';
+import {
+    InspectElementPayload,
+    InspectFrameUrlPayload,
+    OnDevToolOpenPayload,
+} from 'background/actions/action-payloads';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { IMock, It, Mock, Times } from 'typemoq';
 
@@ -17,7 +21,10 @@ describe('DevToolActionMessageCreatorTest', () => {
     beforeEach(() => {
         dispatcherMock = Mock.ofType<ActionMessageDispatcher>();
         eventStubFactory = new EventStubFactory();
-        testSubject = new DevToolActionMessageCreator(new TelemetryDataFactory(), dispatcherMock.object);
+        testSubject = new DevToolActionMessageCreator(
+            new TelemetryDataFactory(),
+            dispatcherMock.object,
+        );
     });
 
     test('setDevToolStatus', () => {
@@ -31,7 +38,10 @@ describe('DevToolActionMessageCreatorTest', () => {
 
         testSubject.setDevToolStatus(status);
 
-        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            Times.once(),
+        );
     });
 
     test('setInspectElement', () => {
@@ -49,7 +59,10 @@ describe('DevToolActionMessageCreatorTest', () => {
 
         testSubject.setInspectElement(event, target);
 
-        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            Times.once(),
+        );
     });
 
     test('setInspectFrameUrl', () => {
@@ -63,6 +76,9 @@ describe('DevToolActionMessageCreatorTest', () => {
 
         testSubject.setInspectFrameUrl(frameUrl);
 
-        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            Times.once(),
+        );
     });
 });

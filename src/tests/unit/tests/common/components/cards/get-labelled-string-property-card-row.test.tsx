@@ -4,7 +4,10 @@ import { GetLabelledStringPropertyCardRow } from 'common/components/cards/get-la
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { CardRowDeps, CardRowProps } from '../../../../../../common/configs/unified-result-property-configurations';
+import {
+    CardRowDeps,
+    CardRowProps,
+} from '../../../../../../common/configs/unified-result-property-configurations';
 
 describe('GetLabelledStringPropertyCardRow', () => {
     it('renders with appropriate label/propertyData without contentClassName', () => {

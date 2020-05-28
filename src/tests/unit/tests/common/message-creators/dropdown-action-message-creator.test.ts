@@ -3,7 +3,10 @@
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { IMock, Mock, Times } from 'typemoq';
 
-import { SettingsOpenSourceItem, TelemetryEventSource } from '../../../../../common/extension-telemetry-events';
+import {
+    SettingsOpenSourceItem,
+    TelemetryEventSource,
+} from '../../../../../common/extension-telemetry-events';
 import { Message } from '../../../../../common/message';
 import { DropdownActionMessageCreator } from '../../../../../common/message-creators/dropdown-action-message-creator';
 import { Messages } from '../../../../../common/messages';
@@ -28,7 +31,10 @@ describe('DropdownActionMessageCreatorTest', () => {
             triggeredBy: 'mouseclick',
             source: testSource,
         };
-        testObject = new DropdownActionMessageCreator(telemetryFactoryMock.object, dispatcherMock.object);
+        testObject = new DropdownActionMessageCreator(
+            telemetryFactoryMock.object,
+            dispatcherMock.object,
+        );
     });
 
     it('dispatches message for openPreviewFeaturesPanel', () => {
@@ -38,7 +44,10 @@ describe('DropdownActionMessageCreatorTest', () => {
 
         testObject.openPreviewFeaturesPanel(event, testSource);
 
-        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
     });
 
     it('dispatches message for openScopingPanel', () => {
@@ -48,7 +57,10 @@ describe('DropdownActionMessageCreatorTest', () => {
 
         testObject.openScopingPanel(event, testSource);
 
-        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
     });
 
     it('dispatches message for openSettingsPanel', () => {
@@ -60,13 +72,19 @@ describe('DropdownActionMessageCreatorTest', () => {
 
         testObject.openSettingsPanel(event, testSource);
 
-        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
     });
 
     it('dispatches message for openDebugTools', () => {
         testObject.openDebugTools();
 
-        dispatcherMock.verify(dispatcher => dispatcher.dispatchType(Messages.DebugTools.Open), Times.once());
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchType(Messages.DebugTools.Open),
+            Times.once(),
+        );
     });
 
     function getExpectedMessage(messageType: string): Message {
@@ -79,10 +97,14 @@ describe('DropdownActionMessageCreatorTest', () => {
     }
 
     function setupTelemetryFactoryWithTriggeredByAndSourceCall(): void {
-        telemetryFactoryMock.setup(tf => tf.withTriggeredByAndSource(event, testSource)).returns(() => telemetryData);
+        telemetryFactoryMock
+            .setup(tf => tf.withTriggeredByAndSource(event, testSource))
+            .returns(() => telemetryData);
     }
 
-    function setupTelemetryFactoryForSettingsPanelOpenCall(sourceItem: SettingsOpenSourceItem): void {
+    function setupTelemetryFactoryForSettingsPanelOpenCall(
+        sourceItem: SettingsOpenSourceItem,
+    ): void {
         telemetryFactoryMock
             .setup(tf => tf.forSettingsPanelOpen(event, testSource, sourceItem))
             .returns(() => telemetryData)

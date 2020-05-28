@@ -2,12 +2,18 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { getDefaultFeatureFlagValues } from '../../../../common/feature-flags';
+import { getDefaultFeatureFlagsWeb } from '../../../../common/feature-flags';
 import { VisualizationType } from '../../../../common/types/visualization-type';
-import { DrawingController, VisualizationWindowMessage } from '../../../../injected/drawing-controller';
+import {
+    DrawingController,
+    VisualizationWindowMessage,
+} from '../../../../injected/drawing-controller';
 import { DrawingInitiator } from '../../../../injected/drawing-initiator';
 import { AssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
-import { PropertyBags, VisualizationInstanceProcessorCallback } from '../../../../injected/visualization-instance-processor';
+import {
+    PropertyBags,
+    VisualizationInstanceProcessorCallback,
+} from '../../../../injected/visualization-instance-processor';
 import { DictionaryStringTo } from '../../../../types/common-types';
 
 class DrawingControllerStub extends DrawingController {
@@ -67,7 +73,7 @@ describe('DrawingInitiatorTest', () => {
                     ruleResults: null,
                 },
             ],
-            featureFlagStoreData: getDefaultFeatureFlagValues(),
+            featureFlagStoreData: getDefaultFeatureFlagsWeb(),
             configId: configId,
         };
         setupProcessorMock();
@@ -78,7 +84,13 @@ describe('DrawingInitiatorTest', () => {
             })
             .verifiable();
 
-        testObject.enableVisualization(visualizationType, getDefaultFeatureFlagValues(), selectorMap, configId, processorMock.object);
+        testObject.enableVisualization(
+            visualizationType,
+            getDefaultFeatureFlagsWeb(),
+            selectorMap,
+            configId,
+            processorMock.object,
+        );
 
         verifyAll();
     });
@@ -89,7 +101,7 @@ describe('DrawingInitiatorTest', () => {
         const expectedvisualizationMessage: VisualizationWindowMessage = {
             visualizationType: visualizationType,
             isEnabled: false,
-            featureFlagStoreData: getDefaultFeatureFlagValues(),
+            featureFlagStoreData: getDefaultFeatureFlagsWeb(),
             configId: configId,
         };
 
@@ -100,7 +112,7 @@ describe('DrawingInitiatorTest', () => {
             })
             .verifiable();
 
-        testObject.disableVisualization(visualizationType, getDefaultFeatureFlagValues(), configId);
+        testObject.disableVisualization(visualizationType, getDefaultFeatureFlagsWeb(), configId);
 
         verifyAll();
     });
@@ -112,7 +124,13 @@ describe('DrawingInitiatorTest', () => {
 
         drawingControllerMock.setup(x => x.processRequest(It.isAny())).verifiable(Times.never());
 
-        testObject.enableVisualization(visualizationType, featureFlagStoreData, null, step, processorMock.object);
+        testObject.enableVisualization(
+            visualizationType,
+            featureFlagStoreData,
+            null,
+            step,
+            processorMock.object,
+        );
 
         verifyAll();
     });
@@ -125,7 +143,7 @@ describe('DrawingInitiatorTest', () => {
             visualizationType: visualizationType,
             isEnabled: true,
             elementResults: [],
-            featureFlagStoreData: getDefaultFeatureFlagValues(),
+            featureFlagStoreData: getDefaultFeatureFlagsWeb(),
             configId: configId,
         };
         setupProcessorMock();
@@ -136,7 +154,13 @@ describe('DrawingInitiatorTest', () => {
             })
             .verifiable();
 
-        testObject.enableVisualization(visualizationType, getDefaultFeatureFlagValues(), {}, configId, processorMock.object);
+        testObject.enableVisualization(
+            visualizationType,
+            getDefaultFeatureFlagsWeb(),
+            {},
+            configId,
+            processorMock.object,
+        );
 
         verifyAll();
     });

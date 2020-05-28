@@ -13,10 +13,6 @@ describe('report package integration', () => {
     const description = 'DESCRIPTION';
     const serviceName = 'Accessibility Insights Service';
 
-    // Removing script block to address issues with istanbul code coverage
-    // constructs interfering with snapshot determinism.
-    const rexScriptBlock = /\<script\>.*\<\/script\>/ms;
-
     const scans = [
         { scan: scanIssues, name: 'with issues' },
         { scan: scanNoIssues, name: 'with no issues' },
@@ -30,7 +26,7 @@ describe('report package integration', () => {
             serviceName,
             scanContext,
         };
-        const html = formatHtmlForSnapshot(reporter.fromAxeResult(parameters).asHTML().replace(rexScriptBlock, ''));
+        const html = formatHtmlForSnapshot(reporter.fromAxeResult(parameters).asHTML());
         expect(html).toMatchSnapshot();
     }));
 });

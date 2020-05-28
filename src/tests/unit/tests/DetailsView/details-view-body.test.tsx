@@ -3,8 +3,12 @@
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
-import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
-import { DetailsViewCommandBarDeps } from 'DetailsView/components/details-view-command-bar';
+import { getDefaultFeatureFlagsWeb } from 'common/feature-flags';
+import { ScanMetadata, TargetAppData } from 'common/types/store-data/unified-data-interface';
+import {
+    DetailsViewCommandBarDeps,
+    DetailsViewCommandBarProps,
+} from 'DetailsView/components/details-view-command-bar';
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { NamedFC, ReactFCWithDisplayName } from '../../../../common/react/named-fc';
@@ -15,11 +19,20 @@ import {
     AssessmentStoreData,
     PersistedTabInfo,
 } from '../../../../common/types/store-data/assessment-result-data';
-import { ScanData, TestsEnabledState } from '../../../../common/types/store-data/visualization-store-data';
+import {
+    ScanData,
+    TestsEnabledState,
+} from '../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../DetailsView/actions/details-view-action-message-creator';
-import { DetailsRightPanelConfiguration } from '../../../../DetailsView/components/details-view-right-panel';
-import { DetailsViewSwitcherNavConfiguration } from '../../../../DetailsView/components/details-view-switcher-nav';
+import {
+    DetailsRightPanelConfiguration,
+    RightPanelProps,
+} from '../../../../DetailsView/components/details-view-right-panel';
+import {
+    DetailsViewSwitcherNavConfiguration,
+    LeftNavProps,
+} from '../../../../DetailsView/components/details-view-switcher-nav';
 import { DetailsViewLeftNav } from '../../../../DetailsView/components/left-nav/details-view-left-nav';
 import { TargetPageHiddenBar } from '../../../../DetailsView/components/target-page-hidden-bar';
 import { DetailsViewBody, DetailsViewBodyProps } from '../../../../DetailsView/details-view-body';
@@ -40,13 +53,20 @@ describe('DetailsViewBody', () => {
     let props: DetailsViewBodyProps;
     let rightPanelConfig: DetailsRightPanelConfiguration;
     let switcherNavConfig: DetailsViewSwitcherNavConfiguration;
+    let targetAppInfoStub: TargetAppData;
 
     describe('render', () => {
         beforeEach(() => {
             selectedTest = -1;
-            const RightPanelStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<DetailsViewBodyProps>('test', _ => null);
-            const CommandBarStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<DetailsViewBodyProps>('test', _ => null);
-            const LeftNavStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<DetailsViewBodyProps>('test', _ => null);
+            const RightPanelStub: Readonly<ReactFCWithDisplayName<RightPanelProps>> = NamedFC<
+                RightPanelProps
+            >('test', _ => null);
+            const CommandBarStub: Readonly<ReactFCWithDisplayName<
+                DetailsViewCommandBarProps
+            >> = NamedFC<DetailsViewCommandBarProps>('test', _ => null);
+            const LeftNavStub: Readonly<ReactFCWithDisplayName<LeftNavProps>> = NamedFC<
+                LeftNavProps
+            >('test', _ => null);
             rightPanelConfig = {
                 RightPanel: RightPanelStub,
             } as DetailsRightPanelConfiguration;
@@ -57,7 +77,10 @@ describe('DetailsViewBody', () => {
                 LeftNav: LeftNavStub,
             } as DetailsViewSwitcherNavConfiguration;
             configFactoryMock = Mock.ofType(VisualizationConfigurationFactory, MockBehavior.Strict);
-            clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory, MockBehavior.Strict);
+            clickHandlerFactoryMock = Mock.ofType(
+                DetailsViewToggleClickHandlerFactory,
+                MockBehavior.Strict,
+            );
             getStoreDataMock = Mock.ofInstance(() => null, MockBehavior.Strict);
 
             configStub = {
@@ -69,11 +92,16 @@ describe('DetailsViewBody', () => {
                 enabled: false,
             } as ScanData;
 
+            targetAppInfoStub = {
+                name: 'name',
+                url: 'url',
+            } as TargetAppData;
+
             clickHandlerStub = () => {};
 
             const assessmentStoreData = {
                 assessmentNavState: {
-                    selectedTestStep: 'sample test step',
+                    selectedTestSubview: 'sample test step',
                 } as AssessmentNavState,
                 assessments: {
                     assessment: {
@@ -94,12 +122,13 @@ describe('DetailsViewBody', () => {
 
             props = {
                 deps: {
-                    detailsViewActionMessageCreator: Mock.ofType(DetailsViewActionMessageCreator).object,
+                    detailsViewActionMessageCreator: Mock.ofType(DetailsViewActionMessageCreator)
+                        .object,
                 } as DetailsViewCommandBarDeps,
                 tabStoreData: new TabStoreDataBuilder().build(),
                 visualizationStoreData: new VisualizationStoreDataBuilder().build(),
                 visualizationScanResultData: new VisualizationScanResultStoreDataBuilder().build(),
-                featureFlagStoreData: new FeatureFlagStore(null, null, null).getDefaultState(),
+                featureFlagStoreData: getDefaultFeatureFlagsWeb(),
                 selectedTest: selectedTest,
                 visualizationConfigurationFactory: configFactoryMock.object,
                 clickHandlerFactory: clickHandlerFactoryMock.object,
@@ -109,13 +138,30 @@ describe('DetailsViewBody', () => {
                 },
                 rightPanelConfiguration: rightPanelConfig,
                 switcherNavConfiguration: switcherNavConfig,
-                cardsViewData: { cards: exampleUnifiedStatusResults, visualHelperEnabled: true, allCardsCollapsed: true },
+                cardsViewData: {
+                    cards: exampleUnifiedStatusResults,
+                    visualHelperEnabled: true,
+                    allCardsCollapsed: true,
+                },
+                scanMetadata: {
+                    targetAppInfo: targetAppInfoStub,
+                } as ScanMetadata,
             } as DetailsViewBodyProps;
         });
 
         test('a non-assessment or non-issues view', () => {
-            setupClickHandlerFactoryMock(clickHandlerFactoryMock, selectedTest, !scanDataStub.enabled);
-            setupConfigFactoryMock(configFactoryMock, getStoreDataMock, configStub, scanDataStub, props);
+            setupClickHandlerFactoryMock(
+                clickHandlerFactoryMock,
+                selectedTest,
+                !scanDataStub.enabled,
+            );
+            setupConfigFactoryMock(
+                configFactoryMock,
+                getStoreDataMock,
+                configStub,
+                scanDataStub,
+                props,
+            );
 
             const expected = (
                 <div className="details-view-body">
@@ -125,7 +171,7 @@ describe('DetailsViewBody', () => {
                         <div className="details-view-body-content-pane">
                             {buildTargetPageInfoBar(props)}
                             <div className="view" role="main">
-                                <rightPanelConfig.RightPanel {...props} />
+                                {buildRightPanel(props)}
                             </div>
                         </div>
                     </div>
@@ -145,9 +191,13 @@ describe('DetailsViewBody', () => {
         scanData: ScanData,
         givenProps: DetailsViewBodyProps,
     ): void {
-        factoryMock.setup(cfm => cfm.getConfiguration(givenProps.selectedTest)).returns(() => config);
+        factoryMock
+            .setup(cfm => cfm.getConfiguration(givenProps.selectedTest))
+            .returns(() => config);
 
-        givenGetStoreDataMock.setup(gsdm => gsdm(givenProps.visualizationStoreData.tests)).returns(() => scanData);
+        givenGetStoreDataMock
+            .setup(gsdm => gsdm(givenProps.visualizationStoreData.tests))
+            .returns(() => scanData);
     }
 
     function setupClickHandlerFactoryMock(
@@ -155,11 +205,18 @@ describe('DetailsViewBody', () => {
         setupType: VisualizationType,
         setupNewValue: boolean,
     ): void {
-        factoryMock.setup(chfm => chfm.createClickHandler(setupType, setupNewValue)).returns(() => clickHandlerStub);
+        factoryMock
+            .setup(chfm => chfm.createClickHandler(setupType, setupNewValue))
+            .returns(() => clickHandlerStub);
     }
 
     function buildLeftNav(givenProps: DetailsViewBodyProps): JSX.Element {
-        return <DetailsViewLeftNav {...givenProps} />;
+        return (
+            <DetailsViewLeftNav
+                selectedPivot={givenProps.visualizationStoreData.selectedDetailsViewPivot}
+                {...givenProps}
+            />
+        );
     }
 
     function buildTargetPageInfoBar(givenProps: DetailsViewBodyProps): JSX.Element {
@@ -167,6 +224,13 @@ describe('DetailsViewBody', () => {
     }
 
     function buildCommandBar(givenProps: DetailsViewBodyProps): JSX.Element {
-        return <switcherNavConfig.CommandBar {...props} />;
+        return <switcherNavConfig.CommandBar {...givenProps} />;
+    }
+
+    function buildRightPanel(givenProps: DetailsViewBodyProps): JSX.Element {
+        const rightPanelProps = {
+            ...givenProps,
+        };
+        return <rightPanelConfig.RightPanel {...rightPanelProps} />;
     }
 });

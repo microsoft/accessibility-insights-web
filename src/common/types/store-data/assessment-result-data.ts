@@ -7,6 +7,10 @@ import { ManualTestStatus, ManualTestStatusData } from '../manual-test-status';
 import { VisualizationType } from '../visualization-type';
 
 export type TestStepInstance = UserCapturedInstance & GeneratedAssessmentInstance;
+export type RequirementName = string;
+export type GettingStarted = 'getting-started';
+
+export const gettingStartedSubview: GettingStarted = 'getting-started';
 
 export type PersistedTabInfo = Tab & {
     appRefreshed: boolean;
@@ -57,13 +61,14 @@ export interface TestStepResult {
     status: ManualTestStatus;
     isCapturedByUser: boolean;
     failureSummary: string;
+    isVisualizationSupported: boolean;
     isVisualizationEnabled: boolean;
     isVisible: boolean;
     originalStatus?: ManualTestStatus;
 }
 
 export interface AssessmentNavState {
-    selectedTestStep: string;
+    selectedTestSubview: RequirementName | GettingStarted;
     selectedTestType: VisualizationType;
 }
 

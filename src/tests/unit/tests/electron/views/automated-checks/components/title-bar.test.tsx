@@ -23,15 +23,20 @@ describe('TitleBar', () => {
     let props: TitleBarProps;
 
     beforeEach(() => {
-        windowFrameActionCreator = Mock.ofType<WindowFrameActionCreator>(undefined, MockBehavior.Strict);
+        windowFrameActionCreator = Mock.ofType<WindowFrameActionCreator>(
+            undefined,
+            MockBehavior.Strict,
+        );
         windowStateStoreData = { routeId: 'resultsView', currentWindowState: 'maximized' };
         props = {
             deps: {
                 windowFrameActionCreator: windowFrameActionCreator.object,
                 platformInfo: Mock.ofType(PlatformInfo).object,
                 storeActionMessageCreator: Mock.ofType(StoreActionMessageCreatorImpl).object,
-                storesHub: Mock.ofType<ClientStoresHub<ThemeInnerState>>(BaseClientStoresHub).object,
+                storesHub: Mock.ofType<ClientStoresHub<ThemeInnerState>>(BaseClientStoresHub)
+                    .object,
             },
+            pageTitle: 'test page title',
             windowStateStoreData,
         };
     });
@@ -90,9 +95,21 @@ describe('TitleBar', () => {
     });
 
     const maximizeButtonTestCases = [
-        { label: 'maximize when on custom size', setupMock: setupVerifiableWindowMaximizeAction, isMaximized: false }, // maximize validation
-        { label: 'restore when on full screen', setupMock: setupVerifiableWindowRestoreActionFromFullScreen, isMaximized: true }, // restore validation from full screen
-        { label: 'restore when on maximized state', setupMock: setupVerifiableWindowRestoreActionFromMaximized, isMaximized: true }, // restore validation from maximized state
+        {
+            label: 'maximize when on custom size',
+            setupMock: setupVerifiableWindowMaximizeAction,
+            isMaximized: false,
+        }, // maximize validation
+        {
+            label: 'restore when on full screen',
+            setupMock: setupVerifiableWindowRestoreActionFromFullScreen,
+            isMaximized: true,
+        }, // restore validation from full screen
+        {
+            label: 'restore when on maximized state',
+            setupMock: setupVerifiableWindowRestoreActionFromMaximized,
+            isMaximized: true,
+        }, // restore validation from maximized state
     ];
 
     maximizeButtonTestCases.forEach(testCase => {

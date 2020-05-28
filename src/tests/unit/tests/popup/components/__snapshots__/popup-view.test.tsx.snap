@@ -59,12 +59,17 @@ exports[`PopupView renderFailureMsgPanelForChromeUrl 1`] = `
   >
     <div
       className="launch-panel-general-container"
-      dangerouslySetInnerHTML={
-        Object {
-          "__html": "Accessibility Insights for Web can't run on this URL.</br>You'll need to go to a different page.",
-        }
-      }
-    />
+    >
+      <React.Fragment>
+        <span>
+          Accessibility Insights for Web can't run on this URL.
+        </span>
+        <br />
+        <span>
+          You'll need to go to a different page.
+        </span>
+      </React.Fragment>
+    </div>
   </div>
 </div>
 `;

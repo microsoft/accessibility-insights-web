@@ -6,7 +6,10 @@ import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
 
 import { FeatureFlags } from '../../../../common/feature-flags';
-import { LayeredDetailsDialogComponent, LayeredDetailsDialogProps } from '../../../../injected/layered-details-dialog-component';
+import {
+    LayeredDetailsDialogComponent,
+    LayeredDetailsDialogProps,
+} from '../../../../injected/layered-details-dialog-component';
 import { DictionaryStringTo } from '../../../../types/common-types';
 
 describe('LayeredDetailsDialogComponent', () => {

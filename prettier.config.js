@@ -6,21 +6,12 @@ module.exports = {
     singleQuote: true,
     tabWidth: 4,
     trailingComma: 'all',
+    // We'd like to remove this arrowParens setting and use the new Prettier 2.0 default
+    // But since it has a lot of conflict potential, defering that until a quiet weekend
+    arrowParens: 'avoid',
     overrides: [
         {
-            files: [
-                'src/content/**/*',
-                'src/icons/**/*',
-                'src/tests/unit/tests/common/**/*',
-                'src/tests/unit/tests/debug-tools/**/*',
-                'src/tests/unit/tests/DetailsView/**/*',
-                'src/tests/unit/tests/electron/**/*',
-                'src/tests/unit/tests/injected/**/*',
-                'src/tests/unit/tests/issue-filing/**/*',
-                'src/tests/unit/tests/popup/**/*',
-                'src/tests/unit/tests/reports/**/*',
-                'src/tests/unit/tests/views/**/*',
-            ],
+            files: ['src/content/**/*'],
             options: {
                 printWidth: 140,
             },

@@ -9,6 +9,7 @@ import {
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
+    SetNativeHighContrastModePayload,
 } from '../../actions/action-payloads';
 import { UserConfigurationActions } from '../../actions/user-configuration-actions';
 import { IndexedDBDataKeys } from '../../IndexedDBDataKeys';
@@ -19,6 +20,7 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         isFirstTime: true,
         enableTelemetry: false,
         enableHighContrast: false,
+        lastSelectedHighContrast: false,
         bugService: 'none',
         bugServicePropertiesMap: {},
     };
@@ -51,6 +53,9 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         this.userConfigActions.getCurrentState.addListener(this.onGetCurrentState);
         this.userConfigActions.setTelemetryState.addListener(this.onSetTelemetryState);
         this.userConfigActions.setHighContrastMode.addListener(this.onSetHighContrastMode);
+        this.userConfigActions.setNativeHighContrastMode.addListener(
+            this.onSetNativeHighContrastMode,
+        );
         this.userConfigActions.setIssueFilingService.addListener(this.onSetIssueFilingService);
         this.userConfigActions.setIssueFilingServiceProperty.addListener(
             this.onSetIssueFilingServiceProperty,
@@ -66,6 +71,14 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
 
     private onSetHighContrastMode = (payload: SetHighContrastModePayload): void => {
         this.state.enableHighContrast = payload.enableHighContrast;
+        this.state.lastSelectedHighContrast = payload.enableHighContrast;
+        this.saveAndEmitChanged();
+    };
+
+    private onSetNativeHighContrastMode = (payload: SetNativeHighContrastModePayload): void => {
+        this.state.enableHighContrast = payload.enableHighContrast
+            ? true
+            : this.state.lastSelectedHighContrast;
         this.saveAndEmitChanged();
     };
 

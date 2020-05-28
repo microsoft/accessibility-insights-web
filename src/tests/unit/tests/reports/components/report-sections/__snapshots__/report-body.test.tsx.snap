@@ -56,22 +56,14 @@ exports[`ReportBody renders 1`] = `
     }
     deps={Object {}}
     description="test description"
-    environmentInfo={
-      Object {
-        "axeCoreVersion": "axe-core-version",
-        "browserSpec": "browser-spec",
-        "extensionVersion": "extension-version",
-      }
-    }
     fixInstructionProcessor={
       proxy {
         "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
         "backgroundColorText": "background color: ",
-        "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
-        "colorGroupName": "color",
-        "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
+        "backgroundRegExp": /background color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
+        "colorValueMatcher": "(#[0-9a-f]{6})",
         "foregroundColorText": "foreground color: ",
-        "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+        "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
       }
     }
     getCollapsibleScript={[Function]}
@@ -79,6 +71,25 @@ exports[`ReportBody renders 1`] = `
     pageTitle="page-title"
     pageUrl="url:target-page"
     scanDate={2019-05-29T19:12:16.804Z}
+    scanMetadata={
+      Object {
+        "targetAppInfo": Object {
+          "name": "app",
+        },
+        "timestamp": "today",
+        "toolData": Object {
+          "applicationProperties": Object {
+            "environmentName": "environmentName",
+            "name": "app-name",
+            "version": "app-version",
+          },
+          "scanEngineProperties": Object {
+            "name": "engine-name",
+            "version": "engine-version",
+          },
+        },
+      }
+    }
     scanResult={
       Object {
         "inapplicable": Array [],
@@ -97,6 +108,19 @@ exports[`ReportBody renders 1`] = `
       }
     }
     toUtcString={[Function]}
+    toolData={
+      Object {
+        "applicationProperties": Object {
+          "environmentName": "environmentName",
+          "name": "app-name",
+          "version": "app-version",
+        },
+        "scanEngineProperties": Object {
+          "name": "engine-name",
+          "version": "engine-version",
+        },
+      }
+    }
     userConfigurationStoreData={null}
   />
   <content-container>
@@ -155,22 +179,14 @@ exports[`ReportBody renders 1`] = `
       }
       deps={Object {}}
       description="test description"
-      environmentInfo={
-        Object {
-          "axeCoreVersion": "axe-core-version",
-          "browserSpec": "browser-spec",
-          "extensionVersion": "extension-version",
-        }
-      }
       fixInstructionProcessor={
         proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "backgroundColorText": "background color: ",
-          "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
-          "colorGroupName": "color",
-          "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
+          "backgroundRegExp": /background color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
+          "colorValueMatcher": "(#[0-9a-f]{6})",
           "foregroundColorText": "foreground color: ",
-          "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+          "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
         }
       }
       getCollapsibleScript={[Function]}
@@ -178,6 +194,25 @@ exports[`ReportBody renders 1`] = `
       pageTitle="page-title"
       pageUrl="url:target-page"
       scanDate={2019-05-29T19:12:16.804Z}
+      scanMetadata={
+        Object {
+          "targetAppInfo": Object {
+            "name": "app",
+          },
+          "timestamp": "today",
+          "toolData": Object {
+            "applicationProperties": Object {
+              "environmentName": "environmentName",
+              "name": "app-name",
+              "version": "app-version",
+            },
+            "scanEngineProperties": Object {
+              "name": "engine-name",
+              "version": "engine-version",
+            },
+          },
+        }
+      }
       scanResult={
         Object {
           "inapplicable": Array [],
@@ -196,6 +231,19 @@ exports[`ReportBody renders 1`] = `
         }
       }
       toUtcString={[Function]}
+      toolData={
+        Object {
+          "applicationProperties": Object {
+            "environmentName": "environmentName",
+            "name": "app-name",
+            "version": "app-version",
+          },
+          "scanEngineProperties": Object {
+            "name": "engine-name",
+            "version": "engine-version",
+          },
+        }
+      }
       userConfigurationStoreData={null}
     />
     <details-section
@@ -252,22 +300,14 @@ exports[`ReportBody renders 1`] = `
       }
       deps={Object {}}
       description="test description"
-      environmentInfo={
-        Object {
-          "axeCoreVersion": "axe-core-version",
-          "browserSpec": "browser-spec",
-          "extensionVersion": "extension-version",
-        }
-      }
       fixInstructionProcessor={
         proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "backgroundColorText": "background color: ",
-          "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
-          "colorGroupName": "color",
-          "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
+          "backgroundRegExp": /background color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
+          "colorValueMatcher": "(#[0-9a-f]{6})",
           "foregroundColorText": "foreground color: ",
-          "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+          "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
         }
       }
       getCollapsibleScript={[Function]}
@@ -275,6 +315,25 @@ exports[`ReportBody renders 1`] = `
       pageTitle="page-title"
       pageUrl="url:target-page"
       scanDate={2019-05-29T19:12:16.804Z}
+      scanMetadata={
+        Object {
+          "targetAppInfo": Object {
+            "name": "app",
+          },
+          "timestamp": "today",
+          "toolData": Object {
+            "applicationProperties": Object {
+              "environmentName": "environmentName",
+              "name": "app-name",
+              "version": "app-version",
+            },
+            "scanEngineProperties": Object {
+              "name": "engine-name",
+              "version": "engine-version",
+            },
+          },
+        }
+      }
       scanResult={
         Object {
           "inapplicable": Array [],
@@ -293,6 +352,19 @@ exports[`ReportBody renders 1`] = `
         }
       }
       toUtcString={[Function]}
+      toolData={
+        Object {
+          "applicationProperties": Object {
+            "environmentName": "environmentName",
+            "name": "app-name",
+            "version": "app-version",
+          },
+          "scanEngineProperties": Object {
+            "name": "engine-name",
+            "version": "engine-version",
+          },
+        }
+      }
       userConfigurationStoreData={null}
     />
     <result-section
@@ -349,22 +421,14 @@ exports[`ReportBody renders 1`] = `
       }
       deps={Object {}}
       description="test description"
-      environmentInfo={
-        Object {
-          "axeCoreVersion": "axe-core-version",
-          "browserSpec": "browser-spec",
-          "extensionVersion": "extension-version",
-        }
-      }
       fixInstructionProcessor={
         proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "backgroundColorText": "background color: ",
-          "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
-          "colorGroupName": "color",
-          "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
+          "backgroundRegExp": /background color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
+          "colorValueMatcher": "(#[0-9a-f]{6})",
           "foregroundColorText": "foreground color: ",
-          "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+          "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
         }
       }
       getCollapsibleScript={[Function]}
@@ -372,6 +436,25 @@ exports[`ReportBody renders 1`] = `
       pageTitle="page-title"
       pageUrl="url:target-page"
       scanDate={2019-05-29T19:12:16.804Z}
+      scanMetadata={
+        Object {
+          "targetAppInfo": Object {
+            "name": "app",
+          },
+          "timestamp": "today",
+          "toolData": Object {
+            "applicationProperties": Object {
+              "environmentName": "environmentName",
+              "name": "app-name",
+              "version": "app-version",
+            },
+            "scanEngineProperties": Object {
+              "name": "engine-name",
+              "version": "engine-version",
+            },
+          },
+        }
+      }
       scanResult={
         Object {
           "inapplicable": Array [],
@@ -390,6 +473,19 @@ exports[`ReportBody renders 1`] = `
         }
       }
       toUtcString={[Function]}
+      toolData={
+        Object {
+          "applicationProperties": Object {
+            "environmentName": "environmentName",
+            "name": "app-name",
+            "version": "app-version",
+          },
+          "scanEngineProperties": Object {
+            "name": "engine-name",
+            "version": "engine-version",
+          },
+        }
+      }
       userConfigurationStoreData={null}
     >
       <failed-instances-section
@@ -446,22 +542,14 @@ exports[`ReportBody renders 1`] = `
         }
         deps={Object {}}
         description="test description"
-        environmentInfo={
-          Object {
-            "axeCoreVersion": "axe-core-version",
-            "browserSpec": "browser-spec",
-            "extensionVersion": "extension-version",
-          }
-        }
         fixInstructionProcessor={
           proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
             "backgroundColorText": "background color: ",
-            "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
-            "colorGroupName": "color",
-            "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
+            "backgroundRegExp": /background color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
+            "colorValueMatcher": "(#[0-9a-f]{6})",
             "foregroundColorText": "foreground color: ",
-            "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+            "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
           }
         }
         getCollapsibleScript={[Function]}
@@ -469,6 +557,25 @@ exports[`ReportBody renders 1`] = `
         pageTitle="page-title"
         pageUrl="url:target-page"
         scanDate={2019-05-29T19:12:16.804Z}
+        scanMetadata={
+          Object {
+            "targetAppInfo": Object {
+              "name": "app",
+            },
+            "timestamp": "today",
+            "toolData": Object {
+              "applicationProperties": Object {
+                "environmentName": "environmentName",
+                "name": "app-name",
+                "version": "app-version",
+              },
+              "scanEngineProperties": Object {
+                "name": "engine-name",
+                "version": "engine-version",
+              },
+            },
+          }
+        }
         scanResult={
           Object {
             "inapplicable": Array [],
@@ -487,6 +594,19 @@ exports[`ReportBody renders 1`] = `
           }
         }
         toUtcString={[Function]}
+        toolData={
+          Object {
+            "applicationProperties": Object {
+              "environmentName": "environmentName",
+              "name": "app-name",
+              "version": "app-version",
+            },
+            "scanEngineProperties": Object {
+              "name": "engine-name",
+              "version": "engine-version",
+            },
+          }
+        }
         userConfigurationStoreData={null}
       />
       <passed-checks-section
@@ -543,22 +663,14 @@ exports[`ReportBody renders 1`] = `
         }
         deps={Object {}}
         description="test description"
-        environmentInfo={
-          Object {
-            "axeCoreVersion": "axe-core-version",
-            "browserSpec": "browser-spec",
-            "extensionVersion": "extension-version",
-          }
-        }
         fixInstructionProcessor={
           proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
             "backgroundColorText": "background color: ",
-            "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
-            "colorGroupName": "color",
-            "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
+            "backgroundRegExp": /background color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
+            "colorValueMatcher": "(#[0-9a-f]{6})",
             "foregroundColorText": "foreground color: ",
-            "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+            "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
           }
         }
         getCollapsibleScript={[Function]}
@@ -566,6 +678,25 @@ exports[`ReportBody renders 1`] = `
         pageTitle="page-title"
         pageUrl="url:target-page"
         scanDate={2019-05-29T19:12:16.804Z}
+        scanMetadata={
+          Object {
+            "targetAppInfo": Object {
+              "name": "app",
+            },
+            "timestamp": "today",
+            "toolData": Object {
+              "applicationProperties": Object {
+                "environmentName": "environmentName",
+                "name": "app-name",
+                "version": "app-version",
+              },
+              "scanEngineProperties": Object {
+                "name": "engine-name",
+                "version": "engine-version",
+              },
+            },
+          }
+        }
         scanResult={
           Object {
             "inapplicable": Array [],
@@ -584,6 +715,19 @@ exports[`ReportBody renders 1`] = `
           }
         }
         toUtcString={[Function]}
+        toolData={
+          Object {
+            "applicationProperties": Object {
+              "environmentName": "environmentName",
+              "name": "app-name",
+              "version": "app-version",
+            },
+            "scanEngineProperties": Object {
+              "name": "engine-name",
+              "version": "engine-version",
+            },
+          }
+        }
         userConfigurationStoreData={null}
       />
       <not-applicable-checks-section
@@ -640,22 +784,14 @@ exports[`ReportBody renders 1`] = `
         }
         deps={Object {}}
         description="test description"
-        environmentInfo={
-          Object {
-            "axeCoreVersion": "axe-core-version",
-            "browserSpec": "browser-spec",
-            "extensionVersion": "extension-version",
-          }
-        }
         fixInstructionProcessor={
           proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
             "backgroundColorText": "background color: ",
-            "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
-            "colorGroupName": "color",
-            "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
+            "backgroundRegExp": /background color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
+            "colorValueMatcher": "(#[0-9a-f]{6})",
             "foregroundColorText": "foreground color: ",
-            "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+            "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
           }
         }
         getCollapsibleScript={[Function]}
@@ -663,6 +799,25 @@ exports[`ReportBody renders 1`] = `
         pageTitle="page-title"
         pageUrl="url:target-page"
         scanDate={2019-05-29T19:12:16.804Z}
+        scanMetadata={
+          Object {
+            "targetAppInfo": Object {
+              "name": "app",
+            },
+            "timestamp": "today",
+            "toolData": Object {
+              "applicationProperties": Object {
+                "environmentName": "environmentName",
+                "name": "app-name",
+                "version": "app-version",
+              },
+              "scanEngineProperties": Object {
+                "name": "engine-name",
+                "version": "engine-version",
+              },
+            },
+          }
+        }
         scanResult={
           Object {
             "inapplicable": Array [],
@@ -681,6 +836,19 @@ exports[`ReportBody renders 1`] = `
           }
         }
         toUtcString={[Function]}
+        toolData={
+          Object {
+            "applicationProperties": Object {
+              "environmentName": "environmentName",
+              "name": "app-name",
+              "version": "app-version",
+            },
+            "scanEngineProperties": Object {
+              "name": "engine-name",
+              "version": "engine-version",
+            },
+          }
+        }
         userConfigurationStoreData={null}
       />
     </result-section>
@@ -740,22 +908,14 @@ exports[`ReportBody renders 1`] = `
       }
       deps={Object {}}
       description="test description"
-      environmentInfo={
-        Object {
-          "axeCoreVersion": "axe-core-version",
-          "browserSpec": "browser-spec",
-          "extensionVersion": "extension-version",
-        }
-      }
       fixInstructionProcessor={
         proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "backgroundColorText": "background color: ",
-          "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
-          "colorGroupName": "color",
-          "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
+          "backgroundRegExp": /background color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
+          "colorValueMatcher": "(#[0-9a-f]{6})",
           "foregroundColorText": "foreground color: ",
-          "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+          "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
         }
       }
       getCollapsibleScript={[Function]}
@@ -763,6 +923,25 @@ exports[`ReportBody renders 1`] = `
       pageTitle="page-title"
       pageUrl="url:target-page"
       scanDate={2019-05-29T19:12:16.804Z}
+      scanMetadata={
+        Object {
+          "targetAppInfo": Object {
+            "name": "app",
+          },
+          "timestamp": "today",
+          "toolData": Object {
+            "applicationProperties": Object {
+              "environmentName": "environmentName",
+              "name": "app-name",
+              "version": "app-version",
+            },
+            "scanEngineProperties": Object {
+              "name": "engine-name",
+              "version": "engine-version",
+            },
+          },
+        }
+      }
       scanResult={
         Object {
           "inapplicable": Array [],
@@ -781,6 +960,19 @@ exports[`ReportBody renders 1`] = `
         }
       }
       toUtcString={[Function]}
+      toolData={
+        Object {
+          "applicationProperties": Object {
+            "environmentName": "environmentName",
+            "name": "app-name",
+            "version": "app-version",
+          },
+          "scanEngineProperties": Object {
+            "name": "engine-name",
+            "version": "engine-version",
+          },
+        }
+      }
       userConfigurationStoreData={null}
     />
   </footer-section>

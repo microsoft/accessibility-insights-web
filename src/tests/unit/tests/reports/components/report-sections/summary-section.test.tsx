@@ -3,13 +3,19 @@
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { SummarySection, SummarySectionProps } from 'reports/components/report-sections/summary-section';
+import { InstanceOutcomeType } from 'reports/components/instance-outcome-type';
+import {
+    AllOutcomesSummarySection,
+    BaseSummarySection,
+    PassFailSummarySection,
+    SummarySectionProps,
+} from 'reports/components/report-sections/summary-section';
 
 describe('SummarySection', () => {
     const noViolations = [];
     const noPasses = [];
     const noNonApplicable = [];
-
+    const outcomeTypes: InstanceOutcomeType[] = ['pass'];
     const violations = [
         {
             nodes: [{}],
@@ -93,12 +99,32 @@ describe('SummarySection', () => {
         ],
     ];
 
-    it.each(scenarios)('%s', (_, cardsViewData) => {
+    it.each(scenarios)('BaseSummarySection: %s', (_, cardsViewData) => {
         const props: SummarySectionProps = {
             cardsViewData: cardsViewData,
         };
-        const wrapper = shallow(<SummarySection {...props} />);
+        const wrapper = shallow(<BaseSummarySection {...props} outcomeTypesShown={outcomeTypes} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();
+    });
+
+    describe('AllOutcomesSummarySection', () => {
+        test('renders BaseSummarySection with all outcome types', () => {
+            const props: SummarySectionProps = {
+                cardsViewData: {} as CardsViewModel,
+            };
+            const wrapper = shallow(<AllOutcomesSummarySection {...props} />);
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
+    });
+
+    describe('PassFailSummarySection', () => {
+        test('renders BaseSummarySection with only pass and failed outcome types', () => {
+            const props: SummarySectionProps = {
+                cardsViewData: {} as CardsViewModel,
+            };
+            const wrapper = shallow(<PassFailSummarySection {...props} />);
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
     });
 });

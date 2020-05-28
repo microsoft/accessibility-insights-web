@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, Mock } from 'typemoq';
 
-import { EnvironmentInfo } from '../../../../../../common/environment-info-provider';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { HTTPQueryBuilder } from '../../../../../../issue-filing/common/http-query-builder';
 import { IssueDetailsBuilder } from '../../../../../../issue-filing/common/issue-details-builder';
 import { IssueUrlCreationUtils } from '../../../../../../issue-filing/common/issue-filing-url-string-utils';
@@ -13,7 +13,7 @@ import { IssueFilingUrlProvider } from '../../../../../../issue-filing/types/iss
 
 const buildedUrl = 'https://builded-url';
 describe('createGitHubIssueFilingUrlTest', () => {
-    let environmentInfo: EnvironmentInfo;
+    let toolData: ToolData;
     let sampleIssueDetailsData;
     let settingsData: GitHubIssueFilingSettings;
     let stringUtilsMock: IMock<IssueUrlCreationUtils>;
@@ -23,10 +23,16 @@ describe('createGitHubIssueFilingUrlTest', () => {
     let rectifyMock: IMock<UrlRectifier>;
 
     beforeEach(() => {
-        environmentInfo = {
-            extensionVersion: '1.1.1',
-            axeCoreVersion: '2.2.2',
-            browserSpec: 'test spec',
+        toolData = {
+            scanEngineProperties: {
+                name: 'engine-name',
+                version: 'engine-version',
+            },
+            applicationProperties: {
+                name: 'app-name',
+                version: 'app-version',
+                environmentName: 'environmentName',
+            },
         };
         sampleIssueDetailsData = {
             pageTitle: 'pageTitle<x>',
@@ -49,22 +55,34 @@ describe('createGitHubIssueFilingUrlTest', () => {
         stringUtilsMock = Mock.ofType<IssueUrlCreationUtils>();
 
         const testTitle = 'test title';
-        stringUtilsMock.setup(utils => utils.getTitle(sampleIssueDetailsData)).returns(() => testTitle);
+        stringUtilsMock
+            .setup(utils => utils.getTitle(sampleIssueDetailsData))
+            .returns(() => testTitle);
 
         issueDetailsGetter = Mock.ofType<IssueDetailsBuilder>();
         const testIssueDetails = 'test issue details';
-        issueDetailsGetter.setup(getter => getter(environmentInfo, sampleIssueDetailsData)).returns(() => testIssueDetails);
+        issueDetailsGetter
+            .setup(getter => getter(toolData, sampleIssueDetailsData))
+            .returns(() => testIssueDetails);
 
         const rectifiedUrl = 'rectified-url';
         rectifyMock = Mock.ofType<UrlRectifier>();
-        rectifyMock.setup(rectifier => rectifier(settingsData.repository)).returns(() => rectifiedUrl);
+        rectifyMock
+            .setup(rectifier => rectifier(settingsData.repository))
+            .returns(() => rectifiedUrl);
 
         queryBuilderMock = Mock.ofType<HTTPQueryBuilder>();
 
-        queryBuilderMock.setup(builder => builder.withBaseUrl(`${rectifiedUrl}/new`)).returns(() => queryBuilderMock.object);
+        queryBuilderMock
+            .setup(builder => builder.withBaseUrl(`${rectifiedUrl}/new`))
+            .returns(() => queryBuilderMock.object);
 
-        queryBuilderMock.setup(builder => builder.withParam('title', testTitle)).returns(() => queryBuilderMock.object);
-        queryBuilderMock.setup(builder => builder.withParam('body', testIssueDetails)).returns(() => queryBuilderMock.object);
+        queryBuilderMock
+            .setup(builder => builder.withParam('title', testTitle))
+            .returns(() => queryBuilderMock.object);
+        queryBuilderMock
+            .setup(builder => builder.withParam('body', testIssueDetails))
+            .returns(() => queryBuilderMock.object);
 
         queryBuilderMock.setup(builder => builder.build()).returns(() => buildedUrl);
 
@@ -77,7 +95,7 @@ describe('createGitHubIssueFilingUrlTest', () => {
     });
 
     it('creates url', () => {
-        const result = testObject(settingsData, sampleIssueDetailsData, environmentInfo);
+        const result = testObject(settingsData, sampleIssueDetailsData, toolData);
 
         expect(result).toEqual(buildedUrl);
     });

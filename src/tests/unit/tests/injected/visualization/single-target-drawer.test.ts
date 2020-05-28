@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, Mock, Times } from 'typemoq';
 
-import { getDefaultFeatureFlagValues } from '../../../../../common/feature-flags';
+import { getDefaultFeatureFlagsWeb } from '../../../../../common/feature-flags';
 import { HtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { DrawerInitData } from '../../../../../injected/visualization/drawer';
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
@@ -35,7 +35,7 @@ describe('SingleTargetDrawer Tests', () => {
                     target: ['body'],
                 },
             ] as HtmlElementAxeResults[],
-            featureFlagStoreData: getDefaultFeatureFlagValues(),
+            featureFlagStoreData: getDefaultFeatureFlagsWeb(),
         };
 
         testSubject.initialize(drawerInfo);
@@ -59,7 +59,7 @@ describe('SingleTargetDrawer Tests', () => {
                     target: ['body'],
                 },
             ] as HtmlElementAxeResults[],
-            featureFlagStoreData: getDefaultFeatureFlagValues(),
+            featureFlagStoreData: getDefaultFeatureFlagsWeb(),
         };
 
         testSubject.initialize(drawerInfo);
@@ -90,14 +90,14 @@ describe('SingleTargetDrawer Tests', () => {
                     target: ['body'],
                 },
             ] as HtmlElementAxeResults[],
-            featureFlagStoreData: getDefaultFeatureFlagValues(),
+            featureFlagStoreData: getDefaultFeatureFlagsWeb(),
         };
 
         testSubject.initialize(drawerInfo);
         expect(testSubject.isOverlayEnabled).toBe(false);
 
         testSubject.drawLayout();
-        testSubject.initialize({ data: [], featureFlagStoreData: getDefaultFeatureFlagValues() });
+        testSubject.initialize({ data: [], featureFlagStoreData: getDefaultFeatureFlagsWeb() });
 
         expect(testSubject.isOverlayEnabled).toBe(false);
 
@@ -121,7 +121,7 @@ describe('SingleTargetDrawer Tests', () => {
                     target: ['body'],
                 },
             ] as HtmlElementAxeResults[],
-            featureFlagStoreData: getDefaultFeatureFlagValues(),
+            featureFlagStoreData: getDefaultFeatureFlagsWeb(),
         };
 
         testSubject.initialize(drawerInfo);

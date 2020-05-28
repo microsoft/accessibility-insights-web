@@ -1,26 +1,26 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
-import { escape } from 'lodash';
-import { ActionButton } from 'office-ui-fabric-react';
+import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
+import { ReportExportFormat } from 'common/extension-telemetry-events';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
-import { ExportResultType } from '../../common/extension-telemetry-events';
+
 import { ExportDialog, ExportDialogDeps } from './export-dialog';
 
 export type ReportExportComponentDeps = {
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    reportGenerator: ReportGenerator;
 } & ExportDialogDeps;
 
 export interface ReportExportComponentProps {
     deps: ReportExportComponentDeps;
-    exportResultsType: ExportResultType;
-    reportGenerator: ReportGenerator;
+    reportExportFormat: ReportExportFormat;
     pageTitle: string;
     scanDate: Date;
     htmlGenerator: (descriptionPlaceholder: string) => string;
     updatePersistedDescription: (value: string) => void;
     getExportDescription: () => string;
+    featureFlagStoreData: FeatureFlagStoreData;
 }
 
 export interface ReportExportComponentState {
@@ -50,8 +50,7 @@ export class ReportExportComponent extends React.Component<
 
     private onExportDescriptionChange = (value: string) => {
         this.props.updatePersistedDescription(value);
-        const escapedExportDescription = escape(value);
-        this.setState({ exportDescription: escapedExportDescription });
+        this.setState({ exportDescription: value });
     };
 
     private generateHtml = () => {
@@ -61,20 +60,27 @@ export class ReportExportComponent extends React.Component<
     };
 
     private onExportButtonClick = () => {
-        const { reportGenerator, exportResultsType, scanDate, pageTitle } = this.props;
-        const exportName = reportGenerator.generateName(exportResultsType, scanDate, pageTitle);
+        const { deps, reportExportFormat, scanDate, pageTitle } = this.props;
+        const exportName = deps.reportGenerator.generateName(
+            reportExportFormat,
+            scanDate,
+            pageTitle,
+        );
         const exportDescription = this.props.getExportDescription();
         this.setState({ exportDescription, exportName, isOpen: true });
     };
 
     public render(): JSX.Element {
-        const { deps, exportResultsType } = this.props;
+        const { deps, reportExportFormat } = this.props;
         const { isOpen, exportName, exportDescription, exportData } = this.state;
         return (
             <>
-                <ActionButton iconProps={{ iconName: 'Export' }} onClick={this.onExportButtonClick}>
+                <InsightsCommandButton
+                    iconProps={{ iconName: 'Export' }}
+                    onClick={this.onExportButtonClick}
+                >
                     Export result
-                </ActionButton>
+                </InsightsCommandButton>
                 <ExportDialog
                     deps={deps}
                     isOpen={isOpen}
@@ -83,8 +89,9 @@ export class ReportExportComponent extends React.Component<
                     html={exportData}
                     onClose={this.onDismissExportDialog}
                     onDescriptionChange={this.onExportDescriptionChange}
-                    exportResultsType={exportResultsType}
+                    reportExportFormat={reportExportFormat}
                     onExportClick={this.generateHtml}
+                    featureFlagStoreData={this.props.featureFlagStoreData}
                 />
             </>
         );

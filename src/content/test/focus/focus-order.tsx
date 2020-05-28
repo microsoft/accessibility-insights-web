@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Focus order</h1>
         <p>Components must receive focus in an order that preserves meaning and operability.</p>
 
         <h2>Why it matters</h2>

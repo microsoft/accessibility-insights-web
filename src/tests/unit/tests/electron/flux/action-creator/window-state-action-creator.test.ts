@@ -16,9 +16,15 @@ describe(WindowStateActionCreator, () => {
 
     beforeEach(() => {
         windowStateActionsMock = Mock.ofType<WindowStateActions>();
-        windowFrameActionCreatorMock = Mock.ofType<WindowFrameActionCreator>(WindowFrameActionCreator, MockBehavior.Strict);
+        windowFrameActionCreatorMock = Mock.ofType<WindowFrameActionCreator>(
+            WindowFrameActionCreator,
+            MockBehavior.Strict,
+        );
 
-        testSubject = new WindowStateActionCreator(windowStateActionsMock.object, windowFrameActionCreatorMock.object);
+        testSubject = new WindowStateActionCreator(
+            windowStateActionsMock.object,
+            windowFrameActionCreatorMock.object,
+        );
     });
 
     it('calling setRoute invokes setRoute action with given payload', () => {
@@ -26,7 +32,9 @@ describe(WindowStateActionCreator, () => {
         const testPayload: RoutePayload = {
             routeId: 'resultsView',
         };
-        windowStateActionsMock.setup(actions => actions.setRoute).returns(() => setRouteActionMock.object);
+        windowStateActionsMock
+            .setup(actions => actions.setRoute)
+            .returns(() => setRouteActionMock.object);
         setRouteActionMock.setup(s => s.invoke(testPayload)).verifiable(Times.once());
 
         testSubject.setRoute(testPayload);
@@ -40,9 +48,13 @@ describe(WindowStateActionCreator, () => {
             routeId: 'deviceConnectView',
         };
 
-        windowFrameActionCreatorMock.setup(w => w.setWindowSize({ width: 600, height: 391 })).verifiable(Times.once());
+        windowFrameActionCreatorMock
+            .setup(w => w.setWindowSize({ width: 600, height: 391 }))
+            .verifiable(Times.once());
 
-        windowStateActionsMock.setup(actions => actions.setRoute).returns(() => setRouteActionMock.object);
+        windowStateActionsMock
+            .setup(actions => actions.setRoute)
+            .returns(() => setRouteActionMock.object);
         setRouteActionMock.setup(s => s.invoke(testPayload)).verifiable(Times.once());
 
         testSubject.setRoute(testPayload);
@@ -57,7 +69,9 @@ describe(WindowStateActionCreator, () => {
             currentWindowState: 'maximized',
         };
 
-        windowStateActionsMock.setup(actions => actions.setWindowState).returns(() => setWindowStatePayload.object);
+        windowStateActionsMock
+            .setup(actions => actions.setWindowState)
+            .returns(() => setWindowStatePayload.object);
         setWindowStatePayload.setup(s => s.invoke(testPayload)).verifiable(Times.once());
 
         testSubject.setWindowState(testPayload);

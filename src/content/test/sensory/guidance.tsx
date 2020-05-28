@@ -62,7 +62,7 @@ export const guidance = create(({ Markup, Link }) => (
                     </li>
                 </ul>
                 <h3>
-                    Don't use audio as the only means of conveying information. (<Link.WCAG_1_3_3 />)
+                    Don't use audio as the only means of conveying information. (<Link.WCAG_1_1_1 />)
                 </h3>
                 <ul>
                     <li>Convey the same information visually, such as through text or icons.</li>

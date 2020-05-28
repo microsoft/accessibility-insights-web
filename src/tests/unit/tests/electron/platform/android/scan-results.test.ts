@@ -1,99 +1,82 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ScreenshotData } from 'common/types/store-data/unified-data-interface';
-import { DeviceInfo } from 'electron/platform/android/scan-results';
-
-import { buildRuleResultObject, buildScanResultsObject, buildViewElement } from './scan-results-helpers';
+import {
+    AndroidScanResults,
+    DeviceInfo,
+    RuleResultsData,
+    ViewElementData,
+} from 'electron/platform/android/android-scan-results';
+import { set } from 'lodash';
+import { buildRuleResultObject, buildViewElement } from './scan-results-helpers';
 
 describe('ScanResults', () => {
-    test('axeVersion is "no-version" if missing from input', () => {
-        const scanResults = buildScanResultsObject();
-        expect(scanResults.axeVersion).toEqual('no-version');
-    });
+    it.each`
+        rawDataPath                                           | rawDataValue                | scanResultProp         | expectedValue
+        ${'rawData.axeContext.axeMetaData.axeVersion'}        | ${'test-axe-version'}       | ${'axeVersion'}        | ${'test-axe-version'}
+        ${'rawData.axeContext.axeMetaData'}                   | ${undefined}                | ${'axeVersion'}        | ${'no-version'}
+        ${'rawData.axeContext'}                               | ${undefined}                | ${'axeVersion'}        | ${'no-version'}
+        ${'rawData'}                                          | ${undefined}                | ${'axeVersion'}        | ${'no-version'}
+        ${'rawData.axeContext.axeDevice.name'}                | ${'test-name'}              | ${'deviceName'}        | ${'test-name'}
+        ${'rawData.axeContext.axeDevice'}                     | ${undefined}                | ${'deviceName'}        | ${null}
+        ${'rawData.axeContext'}                               | ${undefined}                | ${'deviceName'}        | ${null}
+        ${'rawData'}                                          | ${undefined}                | ${'deviceName'}        | ${null}
+        ${'rawData.axeContext.axeDevice'}                     | ${getTestDeviceInfo()}      | ${'deviceInfo'}        | ${getTestDeviceInfo()}
+        ${'rawData.axeContext'}                               | ${undefined}                | ${'deviceInfo'}        | ${null}
+        ${'rawData'}                                          | ${undefined}                | ${'deviceInfo'}        | ${null}
+        ${'rawData.axeContext.axeMetaData.appIdentifier'}     | ${'test-app-identifier'}    | ${'appIdentifier'}     | ${'test-app-identifier'}
+        ${'rawData.axeContext.axeMetaData'}                   | ${undefined}                | ${'appIdentifier'}     | ${null}
+        ${'rawData.axeContext'}                               | ${undefined}                | ${'appIdentifier'}     | ${null}
+        ${'rawData'}                                          | ${undefined}                | ${'appIdentifier'}     | ${null}
+        ${'rawData.axeRuleResults'}                           | ${getTestRuleResults()}     | ${'ruleResults'}       | ${getTestRuleResults()}
+        ${'rawData.axeRuleResults'}                           | ${undefined}                | ${'ruleResults'}       | ${[]}
+        ${'rawData'}                                          | ${undefined}                | ${'ruleResults'}       | ${[]}
+        ${'rawData.axeContext.axeView'}                       | ${getTestViewElementData()} | ${'viewElementTree'}   | ${getTestViewElementData()}
+        ${'rawData.axeContext'}                               | ${undefined}                | ${'viewElementTree'}   | ${null}
+        ${'rawData'}                                          | ${undefined}                | ${'viewElementTree'}   | ${null}
+        ${'rawData.axeContext.screenshot'}                    | ${'test-screenshot-data'}   | ${'screenshot'}        | ${{ base64PngData: 'test-screenshot-data' }}
+        ${'rawData.axeContext'}                               | ${undefined}                | ${'screenshot'}        | ${null}
+        ${'rawData'}                                          | ${undefined}                | ${'screenshot'}        | ${null}
+        ${'rawData.axeContext.axeMetaData.analysisTimestamp'} | ${'test-timestamp'}         | ${'analysisTimestamp'} | ${'test-timestamp'}
+        ${'rawData.axeContext.axeMetaData'}                   | ${undefined}                | ${'analysisTimestamp'} | ${null}
+        ${'rawData.axeContext'}                               | ${undefined}                | ${'analysisTimestamp'} | ${null}
+        ${'rawData'}                                          | ${undefined}                | ${'analysisTimestamp'} | ${null}
+    `(
+        'get ScanResult.$scanResultProp when $rawDataPath = $rawDataValue',
+        ({ rawDataPath, rawDataValue, scanResultProp, expectedValue }) => {
+            const dataContainer = {};
+            set(dataContainer, rawDataPath, rawDataValue);
 
-    test('axeVersion is correct if specified in input', () => {
-        const axeVersion = 'test-axe-version';
-        const scanResults = buildScanResultsObject(null, null, null, null, axeVersion);
-        expect(scanResults.axeVersion).toEqual(axeVersion);
-    });
+            const testObject = new AndroidScanResults(dataContainer['rawData']);
 
-    test('deviceInfo is null if missing from input', () => {
-        const scanResults = buildScanResultsObject();
-        expect(scanResults.deviceInfo).toBeNull();
-    });
+            expect(testObject[scanResultProp]).toEqual(expectedValue);
+        },
+    );
 
-    test('deviceInfo is correct if specified in input', () => {
-        const expectedDeviceInfo: DeviceInfo = {
+    function getTestDeviceInfo(): DeviceInfo {
+        return {
             dpi: 0.5,
             name: 'test-name',
             osVersion: 'test-os-version',
             screenHeight: 1,
             screenWidth: 2,
         };
-        const scanResults = buildScanResultsObject(null, null, null, null, null, null, expectedDeviceInfo);
-        expect(scanResults.deviceInfo).toEqual(expectedDeviceInfo);
-    });
+    }
 
-    test('deviceName is null if missing from input', () => {
-        const scanResults = buildScanResultsObject();
-        expect(scanResults.deviceName).toBeNull();
-    });
+    function getTestRuleResults(): RuleResultsData[] {
+        return [buildRuleResultObject('Rule1', 'PASS'), buildRuleResultObject('Rule2', 'FAIL')];
+    }
 
-    test('deviceName is correct if specified in input', () => {
-        const expectedDeviceName = 'Super WhizBang Gadget';
-        const scanResults = buildScanResultsObject(expectedDeviceName, null);
-        expect(scanResults.deviceName).toEqual(expectedDeviceName);
-    });
-
-    test('appIdentifier is null if missing from input', () => {
-        const scanResults = buildScanResultsObject();
-        expect(scanResults.appIdentifier).toBeNull();
-    });
-
-    test('appIdentifier is correct if specified in input', () => {
-        const expectedAppIdentifier = 'My Absolutely Amazing Application';
-        const scanResults = buildScanResultsObject(null, expectedAppIdentifier);
-        expect(scanResults.appIdentifier).toEqual(expectedAppIdentifier);
-    });
-
-    test('ruleResults is empty array if missing from input', () => {
-        const scanResults = buildScanResultsObject();
-        expect(scanResults.ruleResults).toHaveLength(0);
-    });
-
-    test('ruleResults is correct if specified in input', () => {
-        const resultsArray = [buildRuleResultObject('Rule1', 'PASS'), buildRuleResultObject('Rule2', 'FAIL')];
-        const scanResults = buildScanResultsObject(null, null, resultsArray);
-        expect(scanResults.ruleResults).toHaveLength(2);
-        expect(scanResults.ruleResults).toEqual(resultsArray);
-    });
-
-    test('viewElementTree is null if missing from input', () => {
-        const scanResults = buildScanResultsObject();
-        expect(scanResults.viewElementTree).toBeNull();
-    });
-
-    test('screenshotData is null if missing from input', () => {
-        const scanResults = buildScanResultsObject();
-        expect(scanResults.screenshot).toBeNull();
-    });
-
-    test('screenshotData is correct if specified in input', () => {
-        const screenshotBase64 = 'expected-string';
-        const expectedScreenshotData: ScreenshotData = { base64PngData: screenshotBase64 };
-        const scanResults = buildScanResultsObject(null, null, null, null, null, screenshotBase64);
-        expect(scanResults.screenshot).toEqual(expectedScreenshotData);
-    });
-
-    test('viewElementTree is correct if specifiecd in input', () => {
-        const viewElementTree = buildViewElement(
+    function getTestViewElementData(): ViewElementData {
+        return buildViewElement(
             'id1',
             { top: 0, left: 10, bottom: 800, right: 600 },
             'myClass1',
             'myDescription1',
             'myText1',
-            [buildViewElement('id2', null, null, null, null, null), buildViewElement('id3', null, null, null, null, null)],
+            [
+                buildViewElement('id2', null, null, null, null, null),
+                buildViewElement('id3', null, null, null, null, null),
+            ],
         );
-        expect(viewElementTree).toMatchSnapshot();
-    });
+    }
 });

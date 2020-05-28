@@ -4,14 +4,13 @@ exports[`Details View -> Preview Features Panel should match content in snapshot
 <DocumentFragment>
   <div
     aria-hidden="false"
-    class="ms-Panel is-open ms-Panel--hasCloseButton ms-Panel--custom generic-panel--{{CSS_MODULE_HASH}} preview-features-panel root-000"
+    class="ms-Panel is-open ms-Panel--hasCloseButton generic-panel--{{CSS_MODULE_HASH}} preview-features-panel root-000"
   >
     <div
       class="ms-Overlay overlay-000"
     />
     <div
       class="ms-Panel-main main-000"
-      style="width: 550px;"
     >
       <div
         data-is-visible="true"
@@ -73,10 +72,63 @@ exports[`Details View -> Preview Features Panel should match content in snapshot
             class="ms-Panel-content content-000"
           >
             <div
-              class="no-preview-feature-message--{{CSS_MODULE_HASH}}"
-              id="no-displayable-feature-flag-message"
+              data-automation-id="preview-features-container"
             >
-              No preview features are currently available to manage. Follow this page for future cool features.
+              <div
+                class="preview-features-description"
+              >
+                The following preview features are available for your evalution. Help us make them better!
+              </div>
+              <div
+                class="preview-feature-toggle-list--{{CSS_MODULE_HASH}}"
+              >
+                <div
+                  class="generic-toggle-component--{{CSS_MODULE_HASH}}"
+                >
+                  <div
+                    class="toggle-container--{{CSS_MODULE_HASH}}"
+                  >
+                    <div
+                      class="toggle-name--{{CSS_MODULE_HASH}}"
+                    >
+                      More export options
+                    </div>
+                    <div
+                      class="ms-Toggle is-enabled toggle--{{CSS_MODULE_HASH}} root-000"
+                    >
+                      <div
+                        class="ms-Toggle-innerContainer container-000"
+                      >
+                        <button
+                          aria-checked="false"
+                          aria-label="More export options"
+                          class="ms-Toggle-background pill-000"
+                          data-is-focusable="true"
+                          id="exportReportOptions"
+                          role="switch"
+                          type="button"
+                        >
+                          <span
+                            class="ms-Toggle-thumb thumb-000"
+                          />
+                        </button>
+                        <label
+                          class="ms-Label ms-Toggle-stateText text-000"
+                          for="exportReportOptions"
+                          id="exportReportOptions-stateText"
+                        >
+                          Off
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="toggle-description--{{CSS_MODULE_HASH}}"
+                  >
+                    Enables exporting reports to external services
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

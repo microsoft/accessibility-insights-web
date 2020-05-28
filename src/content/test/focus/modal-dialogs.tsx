@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Modal dialogs</h1>
         <p>Users must not be able to Tab away from a modal dialog without explicitly dismissing it.</p>
 
         <h2>Why it matters</h2>

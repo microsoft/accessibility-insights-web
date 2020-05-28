@@ -2,15 +2,17 @@
 // Licensed under the MIT License.
 import { GuidanceLinks } from 'common/components/guidance-links';
 import { GuidanceTags, GuidanceTagsDeps } from 'common/components/guidance-tags';
-import { NewTabLink } from 'common/components/new-tab-link';
 import { NamedFC } from 'common/react/named-fc';
+import { LinkComponentType } from 'common/types/link-component-type';
 import { UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { isEmpty } from 'lodash';
 import * as React from 'react';
 
 import * as styles from './rule-resources.scss';
 
-export type RuleResourcesDeps = GuidanceTagsDeps;
+export type RuleResourcesDeps = GuidanceTagsDeps & {
+    LinkComponent: LinkComponentType;
+};
 
 export type RuleResourcesProps = {
     deps: RuleResourcesDeps;
@@ -35,12 +37,16 @@ export const RuleResources = NamedFC<RuleResourcesProps>('RuleResources', ({ dep
         const ruleUrl = rule.url;
         return (
             <span className={styles.ruleDetailsId}>
-                <NewTabLink href={ruleUrl}>More information about {ruleId}</NewTabLink>
+                <deps.LinkComponent href={ruleUrl}>
+                    More information about {ruleId}
+                </deps.LinkComponent>
             </span>
         );
     };
 
-    const renderGuidanceLinks = () => <GuidanceLinks links={rule.guidance} />;
+    const renderGuidanceLinks = () => (
+        <GuidanceLinks links={rule.guidance} LinkComponent={deps.LinkComponent} />
+    );
     const renderGuidanceTags = () => <GuidanceTags deps={deps} links={rule.guidance} />;
 
     return (

@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CardRuleResult, CardRuleResultsByStatus } from '../../../../../../common/types/store-data/card-view-model';
+import {
+    CardRuleResult,
+    CardRuleResultsByStatus,
+} from '../../../../../../common/types/store-data/card-view-model';
 import { UnifiedResult } from '../../../../../../common/types/store-data/unified-data-interface';
 
 export const exampleUnifiedResult: UnifiedResult = {

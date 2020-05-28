@@ -7,39 +7,56 @@ import { CardSelectionActions } from 'background/actions/card-selection-actions'
 import { ContentActions } from 'background/actions/content-actions';
 import { DetailsViewActionCreator } from 'background/actions/details-view-action-creator';
 import { DetailsViewActions } from 'background/actions/details-view-actions';
+import { FeatureFlagActions } from 'background/actions/feature-flag-actions';
 import { PreviewFeaturesActions } from 'background/actions/preview-features-actions';
-import { ScopingActions } from 'background/actions/scoping-actions';
+import { SidePanelActions } from 'background/actions/side-panel-actions';
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
+import { FeatureFlagsController } from 'background/feature-flags-controller';
+import { FeatureFlagsActionCreator } from 'background/global-action-creators/feature-flags-action-creator';
+import { IssueFilingActionCreator } from 'background/global-action-creators/issue-filing-action-creator';
 import { registerUserConfigurationMessageCallback } from 'background/global-action-creators/registrar/register-user-configuration-message-callbacks';
 import { UserConfigurationActionCreator } from 'background/global-action-creators/user-configuration-action-creator';
 import { Interpreter } from 'background/interpreter';
+import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { CardSelectionStore } from 'background/stores/card-selection-store';
 import { DetailsViewStore } from 'background/stores/details-view-store';
+import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { UnifiedScanResultStore } from 'background/stores/unified-scan-result-store';
-import { onlyHighlightingSupported } from 'common/components/cards/card-interaction-support';
+import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
+import { UserConfigurationController } from 'background/user-configuration-controller';
+import { provideBlob } from 'common/blob-provider';
+import { allCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { CardsCollapsibleControl } from 'common/components/cards/collapsible-component-cards';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { getPropertyConfiguration } from 'common/configs/unified-result-property-configurations';
+import { config } from 'common/configuration';
 import { DateProvider } from 'common/date-provider';
 import { DocumentManipulator } from 'common/document-manipulator';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
+import { FeatureFlagDefaultsHelper } from 'common/feature-flag-defaults-helper';
+import { FileURLProvider } from 'common/file-url-provider';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
+import { isResultHighlightUnavailableUnified } from 'common/is-result-highlight-unavailable';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { DropdownActionMessageCreator } from 'common/message-creators/dropdown-action-message-creator';
+import { IssueFilingActionMessageCreator } from 'common/message-creators/issue-filing-action-message-creator';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
+import { NavigatorUtils } from 'common/navigator-utils';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
+import { WindowUtils } from 'common/window-utils';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { CardsViewDeps } from 'DetailsView/components/cards-view';
-import { ipcRenderer, remote } from 'electron';
+import { ipcRenderer, shell } from 'electron';
 import { DirectActionMessageDispatcher } from 'electron/adapters/direct-action-message-dispatcher';
 import { NullDetailsViewController } from 'electron/adapters/null-details-view-controller';
 import { NullStoreActionMessageCreator } from 'electron/adapters/null-store-action-message-creator';
 import { createGetToolDataDelegate } from 'electron/common/application-properties-provider';
+import { getAllFeatureFlagDetailsUnified } from 'electron/common/unified-feature-flags';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
@@ -48,24 +65,41 @@ import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
 import { WindowStateActions } from 'electron/flux/action/window-state-actions';
 import { ScanStore } from 'electron/flux/store/scan-store';
 import { WindowStateStore } from 'electron/flux/store/window-state-store';
-import { IPC_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME } from 'electron/ipc/ipc-channel-names';
 import { IpcMessageReceiver } from 'electron/ipc/ipc-message-receiver';
+import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
+import { createDeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
 import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { ScanController } from 'electron/platform/android/scan-controller';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
 import { UnifiedSettingsProvider } from 'electron/settings/unified-settings-provider';
+import { UnifiedReportNameGenerator } from 'electron/views/report/unified-report-name-generator';
+import { UnifiedReportSectionFactory } from 'electron/views/report/unified-report-section-factory';
 import { RootContainerState } from 'electron/views/root-container/components/root-container';
 import { PlatformInfo } from 'electron/window-management/platform-info';
 import { WindowFrameListener } from 'electron/window-management/window-frame-listener';
 import { WindowFrameUpdater } from 'electron/window-management/window-frame-updater';
+import { createIssueDetailsBuilderForUnified } from 'issue-filing/common/create-issue-details-builder-for-unified';
+import { IssueFilingControllerImpl } from 'issue-filing/common/issue-filing-controller-impl';
+import { IssueFilingUrlStringUtils } from 'issue-filing/common/issue-filing-url-string-utils';
+import { PlainTextFormatter } from 'issue-filing/common/markup/plain-text-formatter';
+import { IssueFilingServiceProviderForUnifiedImpl } from 'issue-filing/issue-filing-service-provider-for-unified-impl';
+import { UnifiedResultToIssueFilingDataConverter } from 'issue-filing/unified-result-to-issue-filing-data';
 import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
+import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
+import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
+import { ReactStaticRenderer } from 'reports/react-static-renderer';
+import { ReportGenerator } from 'reports/report-generator';
+import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
 import { IndexedDBDataKeys } from '../../background/IndexedDBDataKeys';
 import { InstallationData } from '../../background/installation-data';
 import { UserConfigurationStore } from '../../background/stores/global/user-configuration-store';
-import { getTelemetryClient } from '../../background/telemetry/telemetry-client-provider';
+import {
+    getApplicationTelemetryDataFactory,
+    getTelemetryClient,
+} from '../../background/telemetry/telemetry-client-provider';
 import { TelemetryEventHandler } from '../../background/telemetry/telemetry-event-handler';
 import { TelemetryLogger } from '../../background/telemetry/telemetry-logger';
 import { TelemetryStateListener } from '../../background/telemetry/telemetry-state-listener';
@@ -76,7 +110,6 @@ import { BaseClientStoresHub } from '../../common/stores/base-client-stores-hub'
 import { androidAppTitle } from '../../content/strings/application';
 import { ElectronAppDataAdapter } from '../adapters/electron-app-data-adapter';
 import { ElectronStorageAdapter } from '../adapters/electron-storage-adapter';
-import { RiggedFeatureFlagChecker } from '../common/rigged-feature-flag-checker';
 import { DeviceConnectActionCreator } from '../flux/action-creator/device-connect-action-creator';
 import { DeviceActions } from '../flux/action/device-actions';
 import { DeviceStore } from '../flux/store/device-store';
@@ -87,6 +120,11 @@ import {
     RootContainerRendererDeps,
 } from './root-container/root-container-renderer';
 import { screenshotViewModelProvider } from './screenshot/screenshot-view-model-provider';
+
+declare var window: Window & {
+    insightsUserConfiguration: UserConfigurationController;
+    featureFlagsController: FeatureFlagsController;
+};
 
 initializeFabricIcons();
 
@@ -100,16 +138,20 @@ const scanActions = new ScanActions();
 const unifiedScanResultActions = new UnifiedScanResultActions();
 const cardSelectionActions = new CardSelectionActions();
 const detailsViewActions = new DetailsViewActions();
+const sidePanelActions = new SidePanelActions();
 const previewFeaturesActions = new PreviewFeaturesActions(); // not really used but needed by DetailsViewStore
-const scopingActions = new ScopingActions(); // not really used but needed by DetailsViewStore
 const contentActions = new ContentActions(); // not really used but needed by DetailsViewStore
+const featureFlagActions = new FeatureFlagActions();
+const ipcRendererShim = new IpcRendererShim(ipcRenderer);
+ipcRendererShim.initialize();
 
 const storageAdapter = new ElectronStorageAdapter(indexedDBInstance);
-const appDataAdapter = new ElectronAppDataAdapter();
+const appDataAdapter = new ElectronAppDataAdapter(config);
 
 const indexedDBDataKeysToFetch = [
     IndexedDBDataKeys.userConfiguration,
     IndexedDBDataKeys.installation,
+    IndexedDBDataKeys.unifiedFeatureFlags,
 ];
 
 // tslint:disable-next-line:no-floating-promises - top-level entry points are intentionally floating promises
@@ -117,20 +159,15 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
     (persistedData: Partial<PersistedData>) => {
         const installationData: InstallationData = persistedData.installationData;
 
-        const telemetryDataFactory = new TelemetryDataFactory();
         const logger = createDefaultLogger();
-        const telemetryLogger = new TelemetryLogger(logger);
-        telemetryLogger.initialize(new RiggedFeatureFlagChecker());
 
-        const telemetryClient = getTelemetryClient(
-            androidAppTitle,
+        const applicationTelemetryDataFactory = getApplicationTelemetryDataFactory(
             installationData,
-            appDataAdapter,
-            telemetryLogger,
-            AppInsights,
             storageAdapter,
+            appDataAdapter,
+            androidAppTitle,
         );
-        const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
+
         const platformInfo = new PlatformInfo(process);
 
         const userConfigurationStore = new UserConfigurationStore(
@@ -160,14 +197,21 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         const detailsViewStore = new DetailsViewStore(
             previewFeaturesActions,
-            scopingActions,
             contentActions,
             detailsViewActions,
+            sidePanelActions,
         );
         detailsViewStore.initialize();
 
-        const currentWindow = remote.getCurrentWindow();
-        const windowFrameUpdater = new WindowFrameUpdater(windowFrameActions, currentWindow);
+        const featureFlagStore = new FeatureFlagStore(
+            featureFlagActions,
+            storageAdapter,
+            persistedData,
+            new FeatureFlagDefaultsHelper(getAllFeatureFlagDetailsUnified),
+        );
+        featureFlagStore.initialize();
+
+        const windowFrameUpdater = new WindowFrameUpdater(windowFrameActions, ipcRendererShim);
         windowFrameUpdater.initialize();
 
         const storesHub = new BaseClientStoresHub<RootContainerState>([
@@ -178,7 +222,37 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             unifiedScanResultStore,
             cardSelectionStore,
             detailsViewStore,
+            featureFlagStore,
         ]);
+
+        const fetchScanResults = createScanResultsFetcher(axios.get);
+        const fetchDeviceConfig = createDeviceConfigFetcher(axios.get);
+
+        const interpreter = new Interpreter();
+
+        const featureFlagsController = new FeatureFlagsController(featureFlagStore, interpreter);
+
+        const dispatcher = new DirectActionMessageDispatcher(interpreter);
+        const userConfigMessageCreator = new UserConfigMessageCreator(dispatcher);
+        const userConfigurationActionCreator = new UserConfigurationActionCreator(
+            userConfigActions,
+        );
+
+        const telemetryDataFactory = new TelemetryDataFactory();
+        const telemetryLogger = new TelemetryLogger(logger);
+        telemetryLogger.initialize(featureFlagsController);
+
+        const consoleTelemetryClient = new ConsoleTelemetryClient(
+            applicationTelemetryDataFactory,
+            telemetryLogger,
+        );
+
+        const telemetryClient = getTelemetryClient(applicationTelemetryDataFactory, AppInsights, [
+            consoleTelemetryClient,
+        ]);
+        const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
+
+        registerUserConfigurationMessageCallback(interpreter, userConfigurationActionCreator);
 
         const telemetryStateListener = new TelemetryStateListener(
             userConfigurationStore,
@@ -186,23 +260,12 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         );
         telemetryStateListener.initialize();
 
-        const fetchScanResults = createScanResultsFetcher(axios.get);
-
-        const interpreter = new Interpreter();
-        const dispatcher = new DirectActionMessageDispatcher(interpreter);
-        const userConfigMessageCreator = new UserConfigMessageCreator(dispatcher);
-        const userConfigurationActionCreator = new UserConfigurationActionCreator(
-            userConfigActions,
-        );
-
-        registerUserConfigurationMessageCallback(interpreter, userConfigurationActionCreator);
-
         const ipcMessageReceiver = new IpcMessageReceiver(interpreter, ipcRenderer, logger);
         ipcMessageReceiver.initialize();
 
         const deviceConnectActionCreator = new DeviceConnectActionCreator(
             deviceActions,
-            fetchScanResults,
+            fetchDeviceConfig,
             telemetryEventHandler,
         );
         const windowFrameActionCreator = new WindowFrameActionCreator(windowFrameActions);
@@ -210,7 +273,14 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             windowStateActions,
             windowFrameActionCreator,
         );
-        const scanActionCreator = new ScanActionCreator(scanActions);
+        const scanActionCreator = new ScanActionCreator(scanActions, deviceActions);
+
+        const featureFlagActionCreator = new FeatureFlagsActionCreator(
+            interpreter,
+            featureFlagActions,
+            telemetryEventHandler,
+        );
+        featureFlagActionCreator.registerCallbacks();
 
         const cardSelectionActionCreator = new CardSelectionActionCreator(
             interpreter,
@@ -224,6 +294,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const detailsViewActionCreator = new DetailsViewActionCreator(
             interpreter,
             detailsViewActions,
+            sidePanelActions,
             nullDetailsViewController,
             telemetryEventHandler,
             logger,
@@ -238,11 +309,16 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         const windowFrameListener = new WindowFrameListener(
             windowStateActionCreator,
-            currentWindow,
+            ipcRendererShim,
         );
         windowFrameListener.initialize();
 
-        const getToolData = createGetToolDataDelegate(appDataAdapter);
+        const getToolData = createGetToolDataDelegate(
+            androidAppTitle,
+            appDataAdapter.getVersion(),
+            'axe-android',
+        );
+
         const unifiedResultsBuilder = createDefaultBuilder(getToolData);
         const scanController = new ScanController(
             scanActions,
@@ -273,30 +349,58 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         const fixInstructionProcessor = new FixInstructionProcessor();
 
+        const issueFilingController = new IssueFilingControllerImpl(
+            shell.openExternal,
+            IssueFilingServiceProviderForUnifiedImpl,
+            userConfigurationStore,
+        );
+
+        const issueFilingActionCreator = new IssueFilingActionCreator(
+            interpreter,
+            telemetryEventHandler,
+            issueFilingController,
+        );
+        issueFilingActionCreator.registerCallbacks();
+
+        const issueDetailsTextGenerator = new IssueDetailsTextGenerator(
+            IssueFilingUrlStringUtils,
+            createIssueDetailsBuilderForUnified(PlainTextFormatter),
+        );
+
+        const issueFilingActionMessageCreator = new IssueFilingActionMessageCreator(
+            dispatcher,
+            telemetryDataFactory,
+            TelemetryEventSource.ElectronAutomatedChecksView,
+        );
+
+        const navigatorUtils = new NavigatorUtils(window.navigator, logger);
+
+        const windowUtils = new WindowUtils();
+
         const cardsViewDeps: CardsViewDeps = {
             LinkComponent: ElectronLink,
 
-            cardInteractionSupport: onlyHighlightingSupported, // once we have a working settings experience, switch to allCardInteractionsSupported
+            cardInteractionSupport: allCardInteractionsSupported,
             getCardSelectionViewData: getCardSelectionViewData,
             collapsibleControl: CardsCollapsibleControl,
             cardsVisualizationModifierButtons: ExpandCollapseVisualHelperModifierButtons,
             fixInstructionProcessor,
-            getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks, // I don't think we have guidance links for axe-android
+            getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
 
             userConfigMessageCreator: userConfigMessageCreator,
             cardSelectionMessageCreator,
 
             detailsViewActionMessageCreator,
-            issueFilingActionMessageCreator: null, // we don't support issue filing right now
+            issueFilingActionMessageCreator: issueFilingActionMessageCreator,
 
-            environmentInfoProvider: null,
-            getPropertyConfigById: getPropertyConfiguration, // this seems to be axe-core specific
+            toolData: null,
+            getPropertyConfigById: getPropertyConfiguration,
 
-            issueDetailsTextGenerator: null,
-            issueFilingServiceProvider: null, // we don't support issue filing right now
-            navigatorUtils: null,
-            unifiedResultToIssueFilingDataConverter: null, // we don't support issue filing right now
-            windowUtils: null,
+            issueDetailsTextGenerator: issueDetailsTextGenerator,
+            issueFilingServiceProvider: IssueFilingServiceProviderForUnifiedImpl,
+            navigatorUtils: navigatorUtils,
+            unifiedResultToIssueFilingDataConverter: new UnifiedResultToIssueFilingDataConverter(),
+            windowUtils: windowUtils,
             setFocusVisibility,
             customCongratsMessage:
                 "No failed automated checks were found. Continue investigating your app's accessibility compliance through manual testing.",
@@ -304,8 +408,24 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         const documentManipulator = new DocumentManipulator(document);
 
+        const reportHtmlGenerator = new ReportHtmlGenerator(
+            UnifiedReportSectionFactory,
+            new ReactStaticRenderer(),
+            getDefaultAddListenerForCollapsibleSection,
+            DateProvider.getUTCStringFromDate,
+            GetGuidanceTagsFromGuidanceLinks,
+            fixInstructionProcessor,
+            getPropertyConfiguration,
+        );
+
+        const reportGenerator = new ReportGenerator(
+            new UnifiedReportNameGenerator(),
+            reportHtmlGenerator,
+            null,
+        );
+
         const deps: RootContainerRendererDeps = {
-            currentWindow,
+            ipcRendererShim: ipcRendererShim,
             userConfigurationStore,
             deviceStore,
             userConfigMessageCreator,
@@ -326,13 +446,21 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             settingsProvider: UnifiedSettingsProvider,
             loadTheme,
             documentManipulator,
+            isResultHighlightUnavailable: isResultHighlightUnavailableUnified,
+            reportGenerator: reportGenerator,
+            fileURLProvider: new FileURLProvider(windowUtils, provideBlob),
+            getDateFromTimestamp: DateProvider.getDateFromTimestamp,
+            reportExportServiceProvider: ReportExportServiceProviderImpl,
         };
+
+        window.insightsUserConfiguration = new UserConfigurationController(interpreter);
+        window.featureFlagsController = featureFlagsController;
 
         const renderer = new RootContainerRenderer(ReactDOM.render, document, deps);
         renderer.render();
 
         sendAppInitializedTelemetryEvent(telemetryEventHandler, platformInfo);
 
-        ipcRenderer.send(IPC_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME);
+        ipcRendererShim.initializeWindow();
     },
 );

@@ -3,7 +3,10 @@
 import * as React from 'react';
 
 import { shallow } from 'enzyme';
-import { NoFailedInstancesCongrats, NoFailedInstancesCongratsDeps } from 'reports/components/report-sections/no-failed-instances-congrats';
+import {
+    NoFailedInstancesCongrats,
+    NoFailedInstancesCongratsDeps,
+} from 'reports/components/report-sections/no-failed-instances-congrats';
 
 describe('NoFailedInstancesCongrats with default message', () => {
     it('renders', () => {

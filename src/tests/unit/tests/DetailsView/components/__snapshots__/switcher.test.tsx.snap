@@ -11,7 +11,7 @@ Array [
   },
   Object {
     "data": Object {
-      "icon": "testBeaker",
+      "icon": "testBeakerSolid",
     },
     "key": 2,
     "text": "Assessment",
@@ -20,14 +20,14 @@ Array [
 `;
 
 exports[`Switcher renders Switcher itself matches snapshot 1`] = `
-"<div className=\\"headerSwitcher\\">
-  <StyledWithResponsiveMode className=\\"headerSwitcherDropdown\\" ariaLabel=\\"select activity\\" responsiveMode={2} selectedKey={0} onRenderOption={[Function]} onRenderTitle={[Function]} onChange={[Function]} options={{...}} />
+"<div className=\\"header-switcher\\">
+  <StyledWithResponsiveMode className=\\"header-switcher-dropdown\\" ariaLabel=\\"select activity\\" responsiveMode={2} selectedKey={0} onRenderOption={[Function]} onRenderTitle={[Function]} onChange={[Function]} options={{...}} />
 </div>"
 `;
 
 exports[`Switcher renders option renderer override matches snapshot  1`] = `
 <span
-  className="switcherDropdownOption"
+  className="dropdown-option"
 >
   <StyledIconBase
     iconName="Rocket"

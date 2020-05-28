@@ -3,18 +3,18 @@
 
 import { UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { UUIDGenerator } from 'common/uid-generator';
+import { AndroidScanResults } from './android-scan-results';
 import { RuleInformation } from './rule-information';
 import { RuleInformationProviderType } from './rule-information-provider-type';
-import { ScanResults } from './scan-results';
 
 export type ConvertScanResultsToUnifiedRulesDelegate = (
-    scanResults: ScanResults,
+    scanResults: AndroidScanResults,
     ruleInformationProvider: RuleInformationProviderType,
     uuidGenerator: UUIDGenerator,
 ) => UnifiedRule[];
 
 export function convertScanResultsToUnifiedRules(
-    scanResults: ScanResults,
+    scanResults: AndroidScanResults,
     ruleInformationProvider: RuleInformationProviderType,
     uuidGenerator: UUIDGenerator,
 ): UnifiedRule[] {
@@ -48,7 +48,7 @@ function createUnifiedRuleFromRuleResult(
         uid: uuidGenerator(),
         id: ruleInformation.ruleId,
         description: ruleInformation.ruleDescription,
-        url: null,
-        guidance: [],
+        url: ruleInformation.ruleLink,
+        guidance: ruleInformation.guidance,
     };
 }

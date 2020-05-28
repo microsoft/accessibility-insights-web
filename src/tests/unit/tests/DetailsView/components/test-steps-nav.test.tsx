@@ -12,12 +12,21 @@ import { outcomeTypeSemanticsFromTestStatus } from 'reports/components/requireme
 import { getInnerTextFromJsxElement } from '../../../../../common/get-inner-text-from-jsx-element';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import { TestStepNavProps, TestStepsNav } from '../../../../../DetailsView/components/test-steps-nav';
+import {
+    TestStepNavProps,
+    TestStepsNav,
+} from '../../../../../DetailsView/components/test-steps-nav';
 import { EventStubFactory } from '../../../common/event-stub-factory';
-import { CreateTestAssessmentProvider, CreateTestAssessmentProviderAutomated } from '../../../common/test-assessment-provider';
+import {
+    CreateTestAssessmentProvider,
+    CreateTestAssessmentProviderAutomated,
+} from '../../../common/test-assessment-provider';
 
 class TestableTestStepsNav extends TestStepsNav {
-    public getOnTestStepSelected(): (event?: React.MouseEvent<HTMLElement>, item?: INavLink) => void {
+    public getOnTestStepSelected(): (
+        event?: React.MouseEvent<HTMLElement>,
+        item?: INavLink,
+    ) => void {
         return this.onTestStepSelected;
     }
 
@@ -94,7 +103,9 @@ describe('TestStepsNav', () => {
         });
     }
     function createOutcomeTypeSemanticsFromTestStatusStub(): typeof outcomeTypeSemanticsFromTestStatus {
-        const outcomeTypeSemanticsFromTestStatusMock = Mock.ofInstance(outcomeTypeSemanticsFromTestStatus);
+        const outcomeTypeSemanticsFromTestStatusMock = Mock.ofInstance(
+            outcomeTypeSemanticsFromTestStatus,
+        );
 
         outcomeTypeSemanticsFromTestStatusMock
             .setup(f => f(ManualTestStatus.PASS))

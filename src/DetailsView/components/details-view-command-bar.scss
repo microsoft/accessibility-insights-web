@@ -1,8 +1,34 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+@import '../../common/styles/common.scss';
+
 .details-view-command-buttons {
     display: flex;
     margin-right: 16px;
     white-space: nowrap;
+}
+
+.details-view-command-bar {
+    height: $detailsViewCommandBarHeight;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    min-height: fit-content;
+    align-items: center;
+    background-color: $neutral-0;
+    font-size: 14px;
+    font-weight: normal;
+    border-bottom: $detailsViewCommandBarBorderHeight solid $neutral-alpha-8;
+
+    .details-view-target-page {
+        margin-left: 12px;
+        padding: 8px 8px;
+        display: inherit;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: $primary-text;
+        width: 50%;
+    }
 }

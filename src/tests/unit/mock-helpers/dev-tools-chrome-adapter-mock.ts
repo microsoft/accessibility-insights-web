@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DevToolsChromeAdapter } from 'background/dev-tools-chrome-adapter';
 import { PortWithTabId } from 'background/dev-tools-listener';
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { PortDisconnectStub, PortOnMessageStub } from '../stubs/chrome-adapter-stub';
@@ -22,8 +22,8 @@ export class PortWithTabTabIdStub extends PortStub implements PortWithTabId {
     public targetPageTabId: number = 0;
 }
 
-export class DevToolsChromeAdapterMock {
-    private underlyingMock: IMock<DevToolsChromeAdapter> = Mock.ofType<DevToolsChromeAdapter>(
+export class DevToolsBrowserAdapterMock {
+    private underlyingMock: IMock<BrowserAdapter> = Mock.ofType<BrowserAdapter>(
         undefined,
         MockBehavior.Strict,
     );
@@ -31,7 +31,7 @@ export class DevToolsChromeAdapterMock {
     public setUpAddListenerOnConnect(
         callback?: (onListenerConnect: (port: PortWithTabTabIdStub) => void) => void,
         times: number = 1,
-    ): DevToolsChromeAdapterMock {
+    ): DevToolsBrowserAdapterMock {
         this.underlyingMock
             .setup(x => x.addListenerOnConnect(It.isAny()))
             .callback(cb => {
@@ -47,7 +47,7 @@ export class DevToolsChromeAdapterMock {
     public setUpConnect(
         name: string,
         onConnectPort: chrome.runtime.Port,
-    ): DevToolsChromeAdapterMock {
+    ): DevToolsBrowserAdapterMock {
         this.underlyingMock
             .setup(x => x.connect(It.isObjectWith({ name: name })))
             .returns(() => onConnectPort)
@@ -56,21 +56,10 @@ export class DevToolsChromeAdapterMock {
         return this;
     }
 
-    public setupGetInspectedWindowTabId(tabId: number): DevToolsChromeAdapterMock {
+    public setupGetInspectedWindowTabId(tabId: number): DevToolsBrowserAdapterMock {
         this.underlyingMock
             .setup(x => x.getInspectedWindowTabId())
             .returns(() => tabId)
-            .verifiable(Times.once());
-
-        return this;
-    }
-
-    public setupExecuteScriptInInspectedWindow(
-        script: string,
-        frameUrl: string,
-    ): DevToolsChromeAdapterMock {
-        this.underlyingMock
-            .setup(x => x.executeScriptInInspectedWindow(It.isValue(script), frameUrl))
             .verifiable(Times.once());
 
         return this;
@@ -80,7 +69,7 @@ export class DevToolsChromeAdapterMock {
         this.underlyingMock.verifyAll();
     }
 
-    public getObject(): DevToolsChromeAdapter {
+    public getObject(): BrowserAdapter {
         return this.underlyingMock.object;
     }
 }

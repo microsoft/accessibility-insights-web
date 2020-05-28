@@ -9,14 +9,20 @@ import { IMock, Mock, Times } from 'typemoq';
 
 describe('AllUrlsPermissionHandler', () => {
     let browserAdapterMock: IMock<BrowserAdapter>;
-    let actionMessageCreatorMock: IMock<Pick<DetailsViewActionMessageCreator, 'setAllUrlsPermissionState'>>;
+    let actionMessageCreatorMock: IMock<Pick<
+        DetailsViewActionMessageCreator,
+        'setAllUrlsPermissionState'
+    >>;
     let testSubject: AllUrlsPermissionHandler;
 
     beforeEach(() => {
         browserAdapterMock = Mock.ofType<BrowserAdapter>();
         actionMessageCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
 
-        testSubject = new AllUrlsPermissionHandler(browserAdapterMock.object, actionMessageCreatorMock.object);
+        testSubject = new AllUrlsPermissionHandler(
+            browserAdapterMock.object,
+            actionMessageCreatorMock.object,
+        );
     });
 
     test('requestAllUrlsPermission with permissions granted', async () => {
@@ -29,7 +35,10 @@ describe('AllUrlsPermissionHandler', () => {
             .returns(() => Promise.resolve(expectedPermissions));
 
         await testSubject.requestAllUrlsPermission(eventStub, onSuccessCallback.object);
-        actionMessageCreatorMock.verify(m => m.setAllUrlsPermissionState(eventStub, expectedPermissions), Times.once());
+        actionMessageCreatorMock.verify(
+            m => m.setAllUrlsPermissionState(eventStub, expectedPermissions),
+            Times.once(),
+        );
         onSuccessCallback.verify(m => m(), Times.once());
     });
 
@@ -43,7 +52,10 @@ describe('AllUrlsPermissionHandler', () => {
             .returns(() => Promise.resolve(expectedPermissions));
 
         await testSubject.requestAllUrlsPermission(eventStub, onSuccessCallback.object);
-        actionMessageCreatorMock.verify(m => m.setAllUrlsPermissionState(eventStub, expectedPermissions), Times.once());
+        actionMessageCreatorMock.verify(
+            m => m.setAllUrlsPermissionState(eventStub, expectedPermissions),
+            Times.once(),
+        );
         onSuccessCallback.verify(m => m(), Times.never());
     });
 });

@@ -26,7 +26,10 @@ describe('RootContainer', () => {
         props = {
             deps,
             storeState: {
-                windowStateStoreData: { routeId: 'deviceConnectView', currentWindowState: 'customSize' },
+                windowStateStoreData: {
+                    routeId: 'deviceConnectView',
+                    currentWindowState: 'customSize',
+                },
                 userConfigurationStoreData: {
                     isFirstTime: false,
                 },

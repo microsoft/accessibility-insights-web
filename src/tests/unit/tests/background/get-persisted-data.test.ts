@@ -29,6 +29,7 @@ describe('GetPersistedDataTest', () => {
             isFirstTime: true,
             enableTelemetry: false,
             enableHighContrast: false,
+            lastSelectedHighContrast: false,
             bugService: 'none',
             bugServicePropertiesMap: {},
         };

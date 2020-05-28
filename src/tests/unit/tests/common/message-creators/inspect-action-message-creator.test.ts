@@ -4,7 +4,10 @@ import { InspectMode } from 'background/inspect-modes';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
-import { BaseTelemetryData, TelemetryEventSource } from '../../../../../common/extension-telemetry-events';
+import {
+    BaseTelemetryData,
+    TelemetryEventSource,
+} from '../../../../../common/extension-telemetry-events';
 import { Message } from '../../../../../common/message';
 import { InspectActionMessageCreator } from '../../../../../common/message-creators/inspect-action-message-creator';
 import { Messages } from '../../../../../common/messages';
@@ -21,7 +24,11 @@ describe('InspectActionMessageCreatorTest', () => {
     beforeEach(() => {
         dispatcherMock.reset();
         telemetryFactoryMock = Mock.ofType(TelemetryDataFactory, MockBehavior.Strict);
-        testSubject = new InspectActionMessageCreator(telemetryFactoryMock.object, testSource, dispatcherMock.object);
+        testSubject = new InspectActionMessageCreator(
+            telemetryFactoryMock.object,
+            testSource,
+            dispatcherMock.object,
+        );
     });
 
     it('dispatches message for changeMode', () => {
@@ -48,6 +55,9 @@ describe('InspectActionMessageCreatorTest', () => {
 
         testSubject.changeInspectMode(event, inspectMode);
         telemetryFactoryMock.verifyAll();
-        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
     });
 });

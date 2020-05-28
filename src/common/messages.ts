@@ -95,6 +95,7 @@ export class Messages {
     public static readonly UserConfig = {
         SetTelemetryConfig: `${messagePrefix}/userConfig/setTelemetryConfig`,
         SetHighContrastConfig: `${messagePrefix}/userConfig/setHighContrastConfig`,
+        SetNativeHighContrastConfig: `${messagePrefix}/userConfig/setNativeHighContrastConfig`,
         SetIssueFilingService: `${messagePrefix}/userConfig/setIssueFilingService`,
         SetIssueFilingServiceProperty: `${messagePrefix}/userConfig/setIssueFilingServiceProperty`,
         SaveIssueFilingSettings: `${messagePrefix}/userConfig/saveIssueFilingSettings`,
@@ -114,6 +115,7 @@ export class Messages {
 
     public static readonly Assessment = {
         SelectTestRequirement: `${messagePrefix}/details-view/requirement/select`,
+        SelectGettingStarted: `${messagePrefix}/details-view/select-getting-started`,
         AssessmentScanCompleted: `${messagePrefix}/assessment/scanComplete`,
         TabbedElementAdded: `${messagePrefix}/assessment/tab-stops/element-added`,
         TrackingCompleted: `${messagePrefix}/assessment/tab-stops/recording-completed`,

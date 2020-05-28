@@ -96,7 +96,7 @@
 table.report-instance-table {
     border-collapse: collapse;
     overflow-x: auto;
-    word-break: break-all;
+    word-break: break-word;
 }
 
 @media screen and (max-width: 480px) {

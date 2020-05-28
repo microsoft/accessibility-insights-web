@@ -11,19 +11,20 @@ describe('device connection dialog', () => {
     let dialog: DeviceConnectionDialogController;
 
     beforeEach(async () => {
-        app = await createApplication();
+        app = await createApplication({ suppressFirstTimeDialog: true });
         dialog = await app.openDeviceConnectionDialog();
     });
 
     afterEach(async () => {
-        dialog = null;
         if (app != null) {
             await app.stop();
         }
     });
 
     it('should use the expected window title', async () => {
-        expect(await app.getTitle()).toBe('Accessibility Insights for Android');
+        expect(await app.getTitle()).toBe(
+            'Accessibility Insights for Android - Connect to your Android device',
+        );
     });
 
     it('should initially have the cancel button and port field enabled, but validate and start buttons disabled', async () => {
@@ -35,20 +36,28 @@ describe('device connection dialog', () => {
 
     it('should leave the validate and start buttons disabled when provided an invalid port number', async () => {
         await dialog.click(DeviceConnectionDialogSelectors.portNumber);
-        await dialog.findElement(DeviceConnectionDialogSelectors.portNumber).keys('abc');
+        await dialog.client.$(DeviceConnectionDialogSelectors.portNumber);
+        await dialog.client.keys('abc');
         expect(await dialog.isEnabled(DeviceConnectionDialogSelectors.validateButton)).toBe(false);
         expect(await dialog.isEnabled(DeviceConnectionDialogSelectors.startButton)).toBe(false);
     });
 
     it('should enable the validate and start buttons when provided a valid port number', async () => {
         await dialog.click(DeviceConnectionDialogSelectors.portNumber);
-        await dialog.findElement(DeviceConnectionDialogSelectors.portNumber).keys('999');
+        await dialog.client.$(DeviceConnectionDialogSelectors.portNumber);
+        await dialog.client.keys('999');
         expect(await dialog.isEnabled(DeviceConnectionDialogSelectors.validateButton)).toBe(true);
         expect(await dialog.isEnabled(DeviceConnectionDialogSelectors.startButton)).toBe(false);
     });
 
-    it('should not contain any accessibility issues', async () => {
-        const violations = await scanForAccessibilityIssues(dialog);
-        expect(violations).toStrictEqual([]);
-    });
+    it.each([true, false])(
+        'should pass accessibility validation with highContrastMode=%s',
+        async highContrastMode => {
+            await app.setHighContrastMode(highContrastMode);
+            await app.waitForHighContrastMode(highContrastMode);
+
+            const violations = await scanForAccessibilityIssues(dialog);
+            expect(violations).toStrictEqual([]);
+        },
+    );
 });

@@ -50,6 +50,20 @@ describe('HTMLElementUtilsTest', () => {
         expect(result).toEqual(expectedElement);
     });
 
+    test('getBody', () => {
+        const expectedBody = 'body stub' as any;
+
+        const dom = {
+            body: expectedBody,
+        } as any;
+
+        const testObject = new HTMLElementUtils(dom);
+
+        const result = testObject.getBody();
+
+        expect(result).toEqual(expectedBody);
+    });
+
     test('querySelector', () => {
         const selector = 'selector';
 
@@ -75,7 +89,9 @@ describe('HTMLElementUtilsTest', () => {
 
         const expectedElements = HTMLCollectionOfBuilder.create(elements);
 
-        const querySelectorAllMock = Mock.ofInstance((_: string) => null as HTMLCollectionOf<Element>);
+        const querySelectorAllMock = Mock.ofInstance(
+            (_: string) => null as HTMLCollectionOf<Element>,
+        );
         querySelectorAllMock.setup(qs => qs(selector)).returns(() => expectedElements);
 
         const dom = {

@@ -11,9 +11,9 @@ import {
 } from 'electron/views/device-connect-view/components/device-connect-port-entry';
 import { portNumberField } from 'electron/views/device-connect-view/components/device-connect-port-entry.scss';
 import { shallow } from 'enzyme';
-import { Button } from 'office-ui-fabric-react';
-import { MaskedTextField } from 'office-ui-fabric-react';
+import { Button, MaskedTextField } from 'office-ui-fabric-react';
 import * as React from 'react';
+import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
@@ -24,13 +24,16 @@ describe('DeviceConnectPortEntryTest', () => {
     let deviceConnectActionCreatorMock: IMock<DeviceConnectActionCreator>;
 
     beforeEach(() => {
-        deviceConnectActionCreatorMock = Mock.ofType<DeviceConnectActionCreator>(undefined, MockBehavior.Strict);
+        deviceConnectActionCreatorMock = Mock.ofType<DeviceConnectActionCreator>(
+            undefined,
+            MockBehavior.Strict,
+        );
     });
 
     describe('renders', () => {
-        const deviceConnectStates = EnumHelper.getNumericValues<DeviceConnectState>(DeviceConnectState).map(
-            state => DeviceConnectState[state],
-        );
+        const deviceConnectStates = EnumHelper.getNumericValues<DeviceConnectState>(
+            DeviceConnectState,
+        ).map(state => DeviceConnectState[state]);
 
         it.each(deviceConnectStates)('with %p', deviceConnectStateName => {
             const props: DeviceConnectPortEntryProps = {
@@ -44,17 +47,33 @@ describe('DeviceConnectPortEntryTest', () => {
             expect(rendered.getElement()).toMatchSnapshot();
         });
 
-        it.each(deviceConnectStates)('with %p and some text in the port text field', deviceConnectStateName => {
+        it.each(deviceConnectStates)(
+            'with %p and some text in the port text field',
+            deviceConnectStateName => {
+                const props: DeviceConnectPortEntryProps = {
+                    viewState: {
+                        deviceConnectState: DeviceConnectState[deviceConnectStateName],
+                    },
+                } as DeviceConnectPortEntryProps;
+
+                const rendered = shallow(<DeviceConnectPortEntry {...props} />);
+                rendered.setState({ port: '1234' });
+
+                expect(rendered.getElement()).toMatchSnapshot();
+            },
+        );
+
+        it('renderedDescription', () => {
             const props: DeviceConnectPortEntryProps = {
-                viewState: {
-                    deviceConnectState: DeviceConnectState[deviceConnectStateName],
-                },
+                viewState: {},
             } as DeviceConnectPortEntryProps;
 
             const rendered = shallow(<DeviceConnectPortEntry {...props} />);
-            rendered.setState({ port: '1234' });
+            const renderedDescription = shallow(
+                rendered.find(MaskedTextField).prop('onRenderDescription')(),
+            );
 
-            expect(rendered.getElement()).toMatchSnapshot();
+            expect(renderedDescription.getElement()).toMatchSnapshot();
         });
     });
 
@@ -63,7 +82,9 @@ describe('DeviceConnectPortEntryTest', () => {
             const portNumberCases = [testPortNumber.toString(), '', null];
 
             it.each(portNumberCases)('handles port text = "%s"', portNumberText => {
-                deviceConnectActionCreatorMock.setup(creator => creator.resetConnection()).verifiable(Times.once());
+                deviceConnectActionCreatorMock
+                    .setup(creator => creator.resetConnection())
+                    .verifiable(Times.once());
 
                 const props = {
                     viewState: {
@@ -86,7 +107,9 @@ describe('DeviceConnectPortEntryTest', () => {
         });
 
         it('validates port', () => {
-            deviceConnectActionCreatorMock.setup(creator => creator.validatePort(testPortNumber)).verifiable(Times.once());
+            deviceConnectActionCreatorMock
+                .setup(creator => creator.validatePort(testPortNumber))
+                .verifiable(Times.once());
 
             const props = {
                 deps: {
@@ -98,7 +121,11 @@ describe('DeviceConnectPortEntryTest', () => {
             } as DeviceConnectPortEntryProps;
             const rendered = shallow(<DeviceConnectPortEntry {...props} />);
             rendered.setState({ port: testPortNumber });
-            const button = rendered.find(`[data-automation-id="${deviceConnectValidatePortButtonAutomationId}"]`);
+
+            const buttonSelector = getAutomationIdSelector(
+                deviceConnectValidatePortButtonAutomationId,
+            );
+            const button = rendered.find(buttonSelector);
 
             button.simulate('click', eventStub);
 
@@ -106,7 +133,9 @@ describe('DeviceConnectPortEntryTest', () => {
         });
 
         it('validates port through enter key', () => {
-            deviceConnectActionCreatorMock.setup(creator => creator.validatePort(testPortNumber)).verifiable(Times.once());
+            deviceConnectActionCreatorMock
+                .setup(creator => creator.validatePort(testPortNumber))
+                .verifiable(Times.once());
 
             const props = {
                 deps: {

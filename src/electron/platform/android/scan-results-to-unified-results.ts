@@ -8,18 +8,18 @@ import {
 } from 'common/types/store-data/unified-data-interface';
 import { UUIDGenerator } from 'common/uid-generator';
 import { DictionaryStringTo } from 'types/common-types';
+import { AndroidScanResults, RuleResultsData, ViewElementData } from './android-scan-results';
 import { RuleInformation } from './rule-information';
 import { RuleInformationProviderType } from './rule-information-provider-type';
-import { RuleResultsData, ScanResults, ViewElementData } from './scan-results';
 
 export type ConvertScanResultsToUnifiedResultsDelegate = (
-    scanResults: ScanResults,
+    scanResults: AndroidScanResults,
     ruleInformationProvider: RuleInformationProviderType,
     uuidGenerator: UUIDGenerator,
 ) => UnifiedResult[];
 
 export function convertScanResultsToUnifiedResults(
-    scanResults: ScanResults,
+    scanResults: AndroidScanResults,
     ruleInformationProvider: RuleInformationProviderType,
     uuidGenerator: UUIDGenerator,
 ): UnifiedResult[] {
@@ -31,7 +31,7 @@ export function convertScanResultsToUnifiedResults(
 }
 
 function createUnifiedResultsFromScanResults(
-    scanResults: ScanResults,
+    scanResults: AndroidScanResults,
     ruleInformationProvider: RuleInformationProviderType,
     uuidGenerator: UUIDGenerator,
 ): UnifiedResult[] {
@@ -55,7 +55,9 @@ function createUnifiedResultsFromScanResults(
     return unifiedResults;
 }
 
-function createViewElementLookup(scanResults: ScanResults): DictionaryStringTo<ViewElementData> {
+function createViewElementLookup(
+    scanResults: AndroidScanResults,
+): DictionaryStringTo<ViewElementData> {
     const viewElementLookup = {};
 
     addViewElementAndChildren(viewElementLookup, scanResults.viewElementTree);
@@ -88,7 +90,10 @@ function createUnifiedResult(
         ruleId: ruleInformation.ruleId,
         status: getStatus(ruleResult.status),
         descriptors: getDescriptors(viewElementLookup[ruleResult.axeViewId]),
-        identifiers: null,
+        identifiers: {
+            identifier: viewElementLookup[ruleResult.axeViewId]?.className,
+            conciseName: viewElementLookup[ruleResult.axeViewId]?.className,
+        },
         resolution: ruleInformation.getUnifiedFormattableResolution(ruleResult),
     };
 }

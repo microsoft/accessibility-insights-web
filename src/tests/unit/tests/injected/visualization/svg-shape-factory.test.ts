@@ -4,7 +4,11 @@ import { IPoint } from '@uifabric/utilities';
 import { Mock } from 'typemoq';
 
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
-import { CircleConfiguration, LineConfiguration, TextConfiguration } from '../../../../../injected/visualization/formatter';
+import {
+    CircleConfiguration,
+    LineConfiguration,
+    TextConfiguration,
+} from '../../../../../injected/visualization/formatter';
 import { SVGShapeFactory } from '../../../../../injected/visualization/svg-shape-factory';
 
 describe('SVGShapeFactoryTest', () => {
@@ -41,7 +45,13 @@ describe('SVGShapeFactoryTest', () => {
             y: 100,
         };
 
-        const line = testObject.createLine(source, destination, defaultTestLineConfiguration, defaultTestFilterName, defaultCircleRadius);
+        const line = testObject.createLine(
+            source,
+            destination,
+            defaultTestLineConfiguration,
+            defaultTestFilterName,
+            defaultCircleRadius,
+        );
 
         const angle = Math.PI / 4;
         const expectedSource: IPoint = {
@@ -68,7 +78,13 @@ describe('SVGShapeFactoryTest', () => {
             y: 100,
         };
 
-        const line = testObject.createLine(source, destination, defaultTestLineConfiguration, defaultTestFilterName, defaultCircleRadius);
+        const line = testObject.createLine(
+            source,
+            destination,
+            defaultTestLineConfiguration,
+            defaultTestFilterName,
+            defaultCircleRadius,
+        );
 
         const angle = (3 * Math.PI) / 4;
         const expectedSource: IPoint = {
@@ -95,7 +111,13 @@ describe('SVGShapeFactoryTest', () => {
             y: -100,
         };
 
-        const line = testObject.createLine(source, destination, defaultTestLineConfiguration, defaultTestFilterName, defaultCircleRadius);
+        const line = testObject.createLine(
+            source,
+            destination,
+            defaultTestLineConfiguration,
+            defaultTestFilterName,
+            defaultCircleRadius,
+        );
 
         const angle = (5 * Math.PI) / 4;
         const expectedSource: IPoint = {
@@ -122,7 +144,13 @@ describe('SVGShapeFactoryTest', () => {
             y: -100,
         };
 
-        const line = testObject.createLine(source, destination, defaultTestLineConfiguration, defaultTestFilterName, defaultCircleRadius);
+        const line = testObject.createLine(
+            source,
+            destination,
+            defaultTestLineConfiguration,
+            defaultTestFilterName,
+            defaultCircleRadius,
+        );
 
         const angle = (7 * Math.PI) / 4;
         const expectedSource: IPoint = {
@@ -149,7 +177,13 @@ describe('SVGShapeFactoryTest', () => {
             y: 0,
         };
 
-        const line = testObject.createLine(source, destination, defaultTestLineConfiguration, defaultTestFilterName, defaultCircleRadius);
+        const line = testObject.createLine(
+            source,
+            destination,
+            defaultTestLineConfiguration,
+            defaultTestFilterName,
+            defaultCircleRadius,
+        );
 
         const expectedSource: IPoint = {
             x: defaultCircleRadius + expectedLineBuffer,
@@ -175,7 +209,13 @@ describe('SVGShapeFactoryTest', () => {
             y: 0,
         };
 
-        const line = testObject.createLine(source, destination, defaultTestLineConfiguration, defaultTestFilterName, defaultCircleRadius);
+        const line = testObject.createLine(
+            source,
+            destination,
+            defaultTestLineConfiguration,
+            defaultTestFilterName,
+            defaultCircleRadius,
+        );
 
         const expectedSource: IPoint = {
             x: 100 - (defaultCircleRadius + expectedLineBuffer),
@@ -201,7 +241,13 @@ describe('SVGShapeFactoryTest', () => {
             y: 0,
         };
 
-        const line = testObject.createLine(source, destination, defaultTestLineConfiguration, defaultTestFilterName, defaultCircleRadius);
+        const line = testObject.createLine(
+            source,
+            destination,
+            defaultTestLineConfiguration,
+            defaultTestFilterName,
+            defaultCircleRadius,
+        );
 
         const expectedSource: IPoint = {
             x: 0,
@@ -227,7 +273,13 @@ describe('SVGShapeFactoryTest', () => {
             y: 100,
         };
 
-        const line = testObject.createLine(source, destination, defaultTestLineConfiguration, defaultTestFilterName, defaultCircleRadius);
+        const line = testObject.createLine(
+            source,
+            destination,
+            defaultTestLineConfiguration,
+            defaultTestFilterName,
+            defaultCircleRadius,
+        );
 
         const expectedSource: IPoint = {
             x: 0,
@@ -253,7 +305,13 @@ describe('SVGShapeFactoryTest', () => {
             y: 100,
         };
 
-        const line = testObject.createLine(source, destination, defaultTestLineConfiguration, defaultTestFilterName, defaultCircleRadius);
+        const line = testObject.createLine(
+            source,
+            destination,
+            defaultTestLineConfiguration,
+            defaultTestFilterName,
+            defaultCircleRadius,
+        );
 
         verifyLineParams(line, defaultTestLineConfiguration, defaultTestFilterName);
     });
@@ -274,7 +332,13 @@ describe('SVGShapeFactoryTest', () => {
             strokeWidth: '1',
         };
 
-        const line = testObject.createLine(source, destination, configuration, defaultTestFilterName, defaultCircleRadius);
+        const line = testObject.createLine(
+            source,
+            destination,
+            configuration,
+            defaultTestFilterName,
+            defaultCircleRadius,
+        );
 
         verifyLineParams(line, configuration, defaultTestFilterName);
     });
@@ -312,7 +376,12 @@ describe('SVGShapeFactoryTest', () => {
         verifyTabIndexLabelParams(label, textConfig, center, 10);
     });
 
-    function verifyTabIndexLabelParams(label: Element, configuration: TextConfiguration, center: IPoint, tabOrder: number): void {
+    function verifyTabIndexLabelParams(
+        label: Element,
+        configuration: TextConfiguration,
+        center: IPoint,
+        tabOrder: number,
+    ): void {
         expect(label.tagName).toEqual('text');
         expect(label.getAttributeNS(null, 'class')).toEqual('insights-svg-focus-indicator-text');
         expect(label.getAttributeNS(null, 'x')).toEqual(center.x.toString());
@@ -322,7 +391,11 @@ describe('SVGShapeFactoryTest', () => {
         expect(label.innerHTML).toEqual(tabOrder.toString());
     }
 
-    function verifyCircleParams(circle: Element, configuration: CircleConfiguration, center: IPoint): void {
+    function verifyCircleParams(
+        circle: Element,
+        configuration: CircleConfiguration,
+        center: IPoint,
+    ): void {
         expect(circle.tagName).toEqual('ellipse');
         expect(circle.getAttributeNS(null, 'fill')).toEqual(configuration.fill);
         expect(circle.getAttributeNS(null, 'stroke')).toEqual(configuration.stroke);
@@ -334,7 +407,11 @@ describe('SVGShapeFactoryTest', () => {
         expect(circle.getAttributeNS(null, 'cy')).toEqual(center.y.toString());
     }
 
-    function verifyLineParams(line: Element, configuration: LineConfiguration, filterName: string): void {
+    function verifyLineParams(
+        line: Element,
+        configuration: LineConfiguration,
+        filterName: string,
+    ): void {
         expect(line.tagName).toEqual('line');
         expect(line.getAttributeNS(null, 'class')).toEqual('insights-svg-line');
         expect(line.getAttributeNS(null, 'stroke')).toEqual(configuration.stroke);
@@ -353,7 +430,11 @@ describe('SVGShapeFactoryTest', () => {
         expect(filter).toEqual(`url(#${filterName})`);
     }
 
-    function verifyLinePoints(line: Element, expectedSource: IPoint, expectedDestination: IPoint): void {
+    function verifyLinePoints(
+        line: Element,
+        expectedSource: IPoint,
+        expectedDestination: IPoint,
+    ): void {
         const fractionDigits: number = 12;
         const x1 = parseFloat(line.getAttributeNS(null, 'x1'));
         expect(x1).toBeCloseTo(expectedSource.x, fractionDigits);

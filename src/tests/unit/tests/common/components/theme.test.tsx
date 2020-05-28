@@ -41,26 +41,32 @@ describe('ThemeInner', () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    test.each(testStub)('componentDidMount: is high contrast mode enabled: %s', (enableHighContrast: boolean) => {
-        const theme = enableHighContrast ? HighContrastThemePalette : DefaultThemePalette;
-        const userConfigurationStoreData = { enableHighContrast } as UserConfigurationStoreData;
-        shallow(<ThemeInner {...props} storeState={{ userConfigurationStoreData }} />);
+    test.each(testStub)(
+        'componentDidMount: is high contrast mode enabled: %s',
+        (enableHighContrast: boolean) => {
+            const theme = enableHighContrast ? HighContrastThemePalette : DefaultThemePalette;
+            const userConfigurationStoreData = { enableHighContrast } as UserConfigurationStoreData;
+            shallow(<ThemeInner {...props} storeState={{ userConfigurationStoreData }} />);
 
-        expect(loadThemeMock).toBeCalledWith(theme);
-    });
+            expect(loadThemeMock).toBeCalledWith(theme);
+        },
+    );
 
-    test.each(testStub)('componentDidUpdate: is high contrast mode enabled: %s', (enableHighContrast: boolean) => {
-        const theme = enableHighContrast ? HighContrastThemePalette : DefaultThemePalette;
-        const wrapper = shallow(<ThemeInner {...props} />);
+    test.each(testStub)(
+        'componentDidUpdate: is high contrast mode enabled: %s',
+        (enableHighContrast: boolean) => {
+            const theme = enableHighContrast ? HighContrastThemePalette : DefaultThemePalette;
+            const wrapper = shallow(<ThemeInner {...props} />);
 
-        loadThemeMock.mockReset();
-        wrapper.setProps({
-            storeState: {
-                userConfigurationStoreData: { enableHighContrast },
-            },
-        });
-        expect(loadThemeMock).toBeCalledWith(theme);
-    });
+            loadThemeMock.mockReset();
+            wrapper.setProps({
+                storeState: {
+                    userConfigurationStoreData: { enableHighContrast },
+                },
+            });
+            expect(loadThemeMock).toBeCalledWith(theme);
+        },
+    );
 
     test('loadTheme is not called if props did not change', () => {
         const component = new ThemeInner(props);

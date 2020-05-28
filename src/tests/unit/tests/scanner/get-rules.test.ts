@@ -40,7 +40,7 @@ describe('getDefaultRules', () => {
             ruleId: 'test id three',
         };
 
-        const rulesStub = [ruleStubOne, ruleStubTwo, ruleStubThree];
+        const rulesStub = [ruleStubOne, ruleStubTwo, ruleStubThree] as Axe.RuleMetadata[];
 
         const expected: ScannerRuleInfo[] = [
             {

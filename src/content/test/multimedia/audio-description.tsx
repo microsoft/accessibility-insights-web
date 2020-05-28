@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <React.Fragment>
-        <h1>Audio description</h1>
         <p>Pre-recorded video with audio must have an audio description.</p>
 
         <h2>Why it matters</h2>

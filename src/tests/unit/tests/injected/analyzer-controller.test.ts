@@ -12,7 +12,11 @@ import { VisualizationConfigurationFactory } from '../../../../common/configs/vi
 import { EnumHelper } from '../../../../common/enum-helper';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
-import { ScanData, TestsEnabledState, VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';
+import {
+    ScanData,
+    TestsEnabledState,
+    VisualizationStoreData,
+} from '../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { AnalyzerController } from '../../../../injected/analyzer-controller';
 import { AnalyzerStateUpdateHandler } from '../../../../injected/analyzer-state-update-handler';
@@ -76,7 +80,10 @@ describe('AnalyzerControllerTests', () => {
         scopingStoreMock.setup(sm => sm.getState()).returns(() => scopingStoreState);
 
         analyzerProviderStrictMock = Mock.ofType<AnalyzerProvider>(null, MockBehavior.Strict);
-        analyzerStateUpdateHandlerStrictMock = Mock.ofType<AnalyzerStateUpdateHandler>(null, MockBehavior.Strict);
+        analyzerStateUpdateHandlerStrictMock = Mock.ofType<AnalyzerStateUpdateHandler>(
+            null,
+            MockBehavior.Strict,
+        );
         analyzerStateUpdateHandlerStrictMock
             .setup(handler => handler.setupHandlers(It.isAny(), It.isAny()))
             .returns((startScanCb, teardownCb) => {
@@ -125,11 +132,15 @@ describe('AnalyzerControllerTests', () => {
             .returns(() => false)
             .verifiable(Times.atLeastOnce());
 
-        visualizationStoreState = new VisualizationStoreDataBuilder().with('scanning', testType.toString()).build();
+        visualizationStoreState = new VisualizationStoreDataBuilder()
+            .with('scanning', testType.toString())
+            .build();
 
         scopingStoreState = new ScopingStoreDataBuilder().build();
 
-        analyzerStateUpdateHandlerStrictMock.setup(handler => handler.handleUpdate(visualizationStoreState)).verifiable(Times.once());
+        analyzerStateUpdateHandlerStrictMock
+            .setup(handler => handler.handleUpdate(visualizationStoreState))
+            .verifiable(Times.once());
 
         testObject.listenToStore();
 
@@ -149,7 +160,9 @@ describe('AnalyzerControllerTests', () => {
             .returns(() => false)
             .verifiable(Times.atLeastOnce());
 
-        analyzerStateUpdateHandlerStrictMock.setup(handler => handler.handleUpdate(visualizationStoreState)).verifiable(Times.never());
+        analyzerStateUpdateHandlerStrictMock
+            .setup(handler => handler.handleUpdate(visualizationStoreState))
+            .verifiable(Times.never());
 
         testObject.listenToStore();
 

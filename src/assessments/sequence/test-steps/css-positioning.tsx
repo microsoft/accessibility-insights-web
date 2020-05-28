@@ -1,8 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { autoPassIfNoResults } from 'assessments/auto-pass-if-no-results';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
+import { TestAutomaticallyPassedNotice } from 'content/test/common/test-automatically-passed-notice';
 import * as content from 'content/test/sequence/css-positioning';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
 import * as React from 'react';
@@ -26,6 +28,7 @@ const howToTest: JSX.Element = (
             CSS <Markup.Term>position:absolute</Markup.Term> or{' '}
             <Markup.Term>float:right</Markup.Term>.
         </p>
+        <TestAutomaticallyPassedNotice />
         <p>
             This procedure also uses the{' '}
             <NewTabLink href="https://chrome.google.com/webstore/detail/web-developer/bfbameneiokkgbdmiekhjnmfkcnldhhm">
@@ -50,8 +53,8 @@ const howToTest: JSX.Element = (
             </li>
             <li>
                 If the page does have meaningful positioned content, use the Web Developer browser
-                extension (<Markup.Term>Miscellaneous > Linearize page</Markup.Term>) to show the
-                page in DOM order.
+                extension (<Markup.Term>Miscellaneous {'>'} Linearize page</Markup.Term>) to show
+                the page in DOM order.
             </li>
             <li>
                 Verify that the positioned content retains its meaning when the page is linearized.
@@ -69,6 +72,7 @@ export const CssPositioning: Requirement = {
     description: description,
     howToTest: howToTest,
     isManual: true,
+    getInitialManualTestStatus: autoPassIfNoResults,
     ...content,
     guidanceLinks: [link.WCAG_1_3_2],
     getAnalyzer: provider =>

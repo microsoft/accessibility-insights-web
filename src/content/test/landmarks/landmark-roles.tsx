@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Landmark roles</h1>
         <p>A landmark region must have the role that best describes its content.</p>
 
         <h2>Why it matters</h2>

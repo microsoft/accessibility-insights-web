@@ -54,7 +54,8 @@ exports[`TitleBar renders 1`] = `
       },
     }
   }
-  title="Accessibility Insights"
+  headerTextClassName="headerText"
+  pageTitle="test page title"
   windowStateStoreData={
     Object {
       "currentWindowState": "maximized",

@@ -71,7 +71,8 @@ describe('PopupInitializerTests', () => {
             isSupportedBrowserMock.object,
             loggerMock.object,
         );
-        (testSubject as any).useIncompatibleBrowserRenderer = useIncompatibleBrowserRendererMock.object;
+        (testSubject as any).useIncompatibleBrowserRenderer =
+            useIncompatibleBrowserRendererMock.object;
 
         const promise = await testSubject.initialize();
 

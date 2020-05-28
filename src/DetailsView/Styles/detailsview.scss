@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+@import '../../common/styles/root-level-only/color-definitions.scss';
+@import '../../common/styles/root-level-only/global-styles.scss';
 @import '../../common/styles/common.scss';
 @import '../../views/content/content.scss';
 @import '../../reports/components/outcome.scss';
@@ -7,7 +9,7 @@
 @import '../../reports/components/assessment-report-summary.scss';
 @import '../../reports/components/assessment-summary-details.scss';
 @import '../../common/components/toast.scss';
-@import '../../common/components//guidance-tags.scss';
+@import '../../common/components/guidance-tags.scss';
 
 body {
     margin: 0;
@@ -225,32 +227,6 @@ div.insights-file-issue-details-dialog-container {
             }
         }
     }
-    .details-view-command-bar {
-        height: $detailsViewCommandBarHeight;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        min-height: fit-content;
-        align-items: center;
-        background-color: $neutral-0;
-        font-size: 14px;
-        font-weight: normal;
-        border-bottom: $detailsViewCommandBarBorderHeight solid $neutral-alpha-8;
-
-        .details-view-target-page {
-            margin-left: 12px;
-            padding: 8px 8px;
-            display: inherit;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            color: $primary-text;
-            width: 50%;
-            .ms-Link {
-                color: $communication-primary;
-            }
-        }
-    }
     .details-view-body-nav-content-layout {
         padding-left: 0px;
         padding-right: 0px;
@@ -259,7 +235,9 @@ div.insights-file-issue-details-dialog-container {
         grid-template-rows: 1fr;
         width: 100%;
         min-height: 0;
-
+        &.reflow-ui {
+            grid-template-columns: $detailsViewReflowLeftNavWidth 1fr;
+        }
         .details-view-test-nav-area {
             box-sizing: border-box;
             max-height: calc(
@@ -304,170 +282,88 @@ div.insights-file-issue-details-dialog-container {
                 }
             }
         }
-        .test-steps-nav-container {
-            display: flex;
-            overflow-y: auto;
-            overflow-x: hidden;
-            border-right: 1px solid $neutral-8;
-        }
-        .test-step-view-container {
-            display: inline-block;
-            width: calc(100% - 401px);
-            vertical-align: top;
-            overflow-y: auto;
-            overflow-x: hidden;
-            .test-step-view {
-                padding-left: 0.75vw;
-                padding-right: 0.75vw;
-                padding-bottom: 3.5vw;
-                .test-step-title-container {
-                    display: flex;
-                    align-items: flex-start;
-                    justify-content: space-between;
-                    flex-wrap: wrap;
-                    vertical-align: middle;
-                    padding-top: 1vw;
-                    .test-step-view-title {
-                        font-size: 17px;
-                        padding-top: 0px;
-                        display: inline-block;
-                    }
-                    .test-guidance-links-group {
-                        align-items: flex-end;
-                        display: flex;
-                        flex-direction: column;
-                    }
-                }
-                .visual-helper {
-                    display: flex;
-                    vertical-align: middle;
-                    flex-direction: row;
-                    padding-top: 1.5vh;
-                    padding-bottom: 1.1vh;
-                    flex-wrap: wrap;
-                    &-text {
-                        padding-right: 0.9vh;
-                        padding-bottom: 0.9vh;
-                        font-family: $fontFamily;
-                        font-size: 14px;
-                        line-height: normal;
-                    }
-                    .ms-Toggle {
-                        margin-bottom: 0;
-                    }
-                }
-                .test-step-instructions-header {
-                    font-size: 14px;
-                    font-weight: $normalTitleFontWeight;
-                }
-                .test-step-instructions {
-                    font-family: $fontFamily;
-                    p,
-                    ol,
-                    li {
-                        margin: 5px 0px;
-                    }
-                    ol {
-                        -webkit-padding-start: 16px;
-                    }
-                    ol ol {
-                        list-style-type: lower-alpha;
-                    }
-                    ol ol ol {
-                        list-style-type: lower-roman;
-                    }
-                }
-                .test-step-instances-header {
-                    font-size: 15px;
-                    font-weight: normal;
-                    padding-top: 15px;
-                }
-                .no-matching-elements {
-                    font-weight: bold;
-                }
-                .is-disabled.visual-helper-toggle {
-                    .ms-Toggle-stateText {
-                        color: $secondary-text;
-                    }
-                }
-                .test-step-choice-group-container {
-                    margin-left: 8px;
-                    margin-bottom: 4px;
-                    margin-top: 20px;
-                }
-                .master-visualization-column-header-selected {
-                    background-color: $communication-primary;
-                    color: $neutral-0;
-                    display: inline;
-                }
-                .property-bag-container {
-                    display: flex;
-                    flex-direction: column;
-                    font-size: 14px;
-                    line-height: 24px;
-                    * + *.property-bag-div {
-                        margin-top: 4px;
-                    }
-                    .property-bag-div {
-                        color: $secondary-text;
-                        .expanded-property-div {
-                            margin-left: 20px;
-                        }
-                        .display-name {
-                            color: $neutral-80;
-                        }
-                        white-space: normal;
-                    }
-                }
-            }
-            .assessment-instance-label {
-                width: 24px;
-                font-size: 14px;
-                height: 24px;
-                text-align: center;
-                float: left;
-                margin-right: 8px;
-                line-height: 24px;
-                color: $always-white;
-            }
-            .assessment-instance-label.radio {
-                width: 14px;
-                height: 14px;
-                border-radius: 50%;
-                margin-top: 6px;
-            }
-            .assessment-instance-label.not-applicable {
-                font-size: 10px;
-            }
-            .all-content {
+        .test-step-view {
+            padding-left: 0.75vw;
+            padding-right: 0.75vw;
+            padding-bottom: 3.5vw;
+            .test-step-title-container {
                 display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                vertical-align: middle;
+                padding-top: 1vw;
+                .test-step-view-title {
+                    font-size: 17px;
+                    padding-top: 0px;
+                    display: inline-block;
+                }
+            }
+            .visual-helper {
+                display: flex;
+                vertical-align: middle;
                 flex-direction: row;
-                vertical-align: center;
+                padding-top: 1.5vh;
+                padding-bottom: 1.1vh;
+                flex-wrap: wrap;
+                &-text {
+                    padding-right: 0.9vh;
+                    padding-bottom: 0.9vh;
+                    font-family: $fontFamily;
+                    font-size: 14px;
+                    line-height: normal;
+                }
+                .ms-Toggle {
+                    margin-bottom: 0;
+                }
+            }
+            .test-step-instructions-header {
+                font-size: 14px;
+                font-weight: $normalTitleFontWeight;
+            }
+            .no-matching-elements {
+                font-weight: bold;
+            }
+            .is-disabled.visual-helper-toggle {
+                .ms-Toggle-stateText {
+                    color: $secondary-text;
+                }
+            }
+            .test-step-choice-group-container {
+                margin-left: 8px;
+                margin-bottom: 4px;
+                margin-top: 20px;
+            }
+            .master-visualization-column-header-selected {
+                background-color: $communication-primary;
+                color: $neutral-0;
+                display: inline;
+            }
+            .property-bag-container {
+                display: flex;
+                flex-direction: column;
                 font-size: 14px;
                 line-height: 24px;
-            }
-            .instance-header {
-                color: $primary-text;
-                white-space: pre;
-            }
-            .assessment-instance-textContent {
-                overflow: hidden;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                color: $secondary-text;
-            }
-            .remove-button {
-                margin-left: 12px;
-                font-size: 16px;
-                line-height: 24px;
-                color: $negative-outcome;
+                * + *.property-bag-div {
+                    margin-top: 4px;
+                }
+                .property-bag-div {
+                    color: $secondary-text;
+                    .expanded-property-div {
+                        margin-left: 20px;
+                    }
+                    .display-name {
+                        color: $neutral-80;
+                    }
+                    white-space: normal;
+                }
             }
         }
-        .assessment-getting-started-container {
-            margin: 0px 18px;
-            border-top: 1px solid $neutral-8;
-            padding-left: 6px;
-            padding-top: 1vh;
+        .remove-button {
+            margin-left: 12px;
+            font-size: 16px;
+            line-height: 24px;
+            color: $negative-outcome;
         }
         span.collapsible-title {
             padding-left: 0.5vw;
@@ -499,10 +395,14 @@ div.insights-file-issue-details-dialog-container {
             .dark-gray {
                 color: $neutral-60;
             }
+            .is-selected .button-flex-container {
+                color: $always-black;
+            }
             .button-flex-container {
                 padding-left: 5%;
                 padding-right: 8%;
                 width: $detailsViewLeftNavWidth;
+                color: $primary-text;
                 .status-icon {
                     font-size: 24px;
                 }
@@ -610,10 +510,8 @@ div.insights-file-issue-details-dialog-container {
                 min-width: 600px;
                 height: auto;
             }
-            .ms-MessageBar {
-                padding-left: 24px;
-            }
             .ms-MessageBar-icon i {
+                margin-left: 12px;
                 color: $secondary-text;
             }
             .view {
@@ -623,114 +521,6 @@ div.insights-file-issue-details-dialog-container {
                 display: flex;
                 flex-direction: column;
                 min-height: 0;
-                .target-page-changed,
-                .static-content-details-view {
-                    margin-top: $fastPassRightPanelMarginTop;
-                    margin-right: $fastPassRightPanelMarginRight;
-                    margin-left: $fastPassRightPanelMarginLeft;
-                    margin-bottom: auto;
-                    ol {
-                        -webkit-padding-start: 16px;
-                        li ul li {
-                            list-style-type: disc;
-                        }
-                    }
-                    i {
-                        font-size: 16px;
-                    }
-                }
-                .target-page-changed {
-                    .target-page-changed-subtitle {
-                        color: $secondary-text;
-                        max-width: 570px;
-                        font-size: 14px;
-                        margin-top: 4px;
-                        margin-bottom: 16px;
-                    }
-                }
-                .issues-table {
-                    background-color: $neutral-2;
-                    height: 100%;
-                    width: calc(
-                        100% - #{$fastPassRightPanelMarginRight} - #{$fastPassRightPanelMarginLeft}
-                    );
-                    display: flex;
-                    flex-direction: column;
-                    padding-top: $fastPassRightPanelMarginTop;
-                    padding-right: $fastPassRightPanelMarginRight;
-                    padding-left: $fastPassRightPanelMarginLeft;
-                    padding-bottom: auto;
-
-                    .issues-table-subtitle {
-                        color: $secondary-text;
-                        max-width: 570px;
-                        font-size: 14px;
-                        margin-top: 4px;
-                        margin-bottom: 16px;
-                    }
-                    .issues-table-content {
-                        height: 100%;
-                        display: flex;
-                        flex-direction: column;
-                        min-height: 0;
-                    }
-                }
-                .assessment-content {
-                    flex-grow: 1;
-                    display: flex;
-                    flex-direction: column;
-                    width: 100%;
-                    margin-top: 24px;
-                    .assessment-title {
-                        width: 100%;
-                        display: flex;
-                        justify-content: space-between;
-                        min-height: fit-content;
-                        align-items: center;
-                        .assessment-header {
-                            font-size: 21px;
-                            margin-left: 24px;
-                            padding-top: 8px;
-                            i {
-                                font-size: 16px;
-                            }
-                        }
-                    }
-                    .details-view-assessment-content {
-                        flex-grow: 1;
-                        display: flex;
-                        height: 0;
-                        border-top: 1px solid $neutral-8;
-                    }
-                    .assessment-requirements-title {
-                        width: 100%;
-                        border-bottom: 1px solid $neutral-8;
-                        .assessment-requirements {
-                            font-size: 17px;
-                            font-weight: $normalTitleFontWeight;
-                            margin: 0px 0px 0px 24px;
-                            padding-top: 1vh;
-                            padding-bottom: 1vh;
-                        }
-                    }
-                }
-                .issues-table-details {
-                    height: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    min-height: 0;
-                }
-                .issues-details-list {
-                    display: flex;
-                    flex-direction: column;
-                    height: 60%;
-                    min-height: 150px;
-                    > .ms-Viewport {
-                        display: flex;
-                        height: 100%;
-                        width: 100%;
-                    }
-                }
                 h1 {
                     margin: 0px;
                     font-weight: $fontWeightSemiBold;
@@ -751,79 +541,6 @@ div.insights-file-issue-details-dialog-container {
                 b {
                     font-weight: 600;
                 }
-                .why-vis {
-                    padding-top: 4px;
-                    font-size: 14px;
-                    .ms-Link {
-                        color: $communication-primary;
-                    }
-                }
-                .tab-stops-accessibility-problems-list {
-                    background: $neutral-6;
-                    list-style-type: disc;
-                }
-                .landmarks-legend {
-                    color: $neutral-100;
-                    font-size: 14px;
-                    display: table-cell;
-                    width: 110px;
-                    text-align: center;
-                    font-weight: 400;
-                    padding: 4px;
-                    vertical-align: middle;
-                    &.contentinfo-landmark {
-                        background-color: $landmark-contentinfo;
-                    }
-                    &.main-landmark {
-                        background-color: $landmark-main;
-                    }
-                    &.complementary-landmark {
-                        background-color: $landmark-complementary;
-                    }
-                    &.banner-landmark {
-                        background-color: $landmark-banner;
-                    }
-                    &.region-landmark {
-                        background-color: $landmark-region;
-                    }
-                    &.navigation-landmark {
-                        background-color: $landmark-navigation;
-                    }
-                    &.search-landmark {
-                        background-color: $landmark-search;
-                    }
-                    &.form-landmark {
-                        background-color: $landmark-form;
-                    }
-                }
-                .details-view-command-bar {
-                    margin-bottom: 12px;
-                    margin-top: 12px;
-                    height: $detailsViewCommandBarHeight;
-                    background-color: $neutral-4;
-                    display: -webkit-inline-box;
-                    .automated-checks-details-view-toggle {
-                        margin-bottom: unset;
-
-                        .ms-Toggle-label {
-                            float: left;
-                            margin: 5px 8px 5px 8px;
-                            color: $neutral-100;
-                        }
-                        .ms-Toggle-innerContainer {
-                            margin: 10px 0px 10px 0px;
-                        }
-                    }
-                    .ms-Button--command {
-                        margin-left: 20px;
-                        i {
-                            padding-top: 1px;
-                        }
-                        .ms-Button-label {
-                            padding-bottom: 1px;
-                        }
-                    }
-                }
                 .details-view-toggle {
                     margin-bottom: 0;
                     margin-top: 12px;
@@ -836,255 +553,6 @@ div.insights-file-issue-details-dialog-container {
                     }
                     .ms-Toggle-innerContainer {
                         margin: 10px 0px 10px 0px;
-                    }
-                }
-                .details-icon-error {
-                    color: $negative-outcome;
-                    padding-right: 0.3em;
-                    padding-bottom: 0.1em;
-                    vertical-align: text-bottom;
-                }
-                .details-disabled-message,
-                .details-message {
-                    margin-top: 5px;
-                    margin-bottom: 5px;
-                    font-size: $fontSizeM;
-                }
-                .details-list {
-                    min-width: 100%;
-                    max-width: 100%;
-                    overflow-x: auto;
-                    overflow-y: auto;
-                    > [role='grid'] {
-                        width: 100%;
-                        min-width: fit-content;
-                        > [role='presentation']:nth-child(2) {
-                            min-width: fit-content;
-                        }
-                    }
-                    .details-group-header-title {
-                        font-size: $fontSizeM;
-                        color: $neutral-100;
-                        font-weight: $fontWeightSemiBold;
-                    }
-                    .ms-GroupHeader-expand {
-                        font-size: $fontSize;
-                        color: $secondary-text;
-                    }
-                    .ms-GroupHeader.is-selected {
-                        background-color: $group-selected-background;
-                    }
-                    .ms-GroupHeader .ms-GroupHeader-check {
-                        padding: 12px;
-                    }
-                    .ms-DetailsRow-fields {
-                        font-size: $fontSizeM;
-                        color: $neutral-100;
-                    }
-                    .ms-DetailsRow {
-                        min-width: 100% !important;
-                        max-width: 100% !important;
-                        &.is-selected {
-                            background-color: $row-selected-background;
-                            .ms-DetailsRow-fields,
-                            .content-cell {
-                                color: $highlighted-text;
-                            }
-                        }
-                    }
-                    @mixin check-when-checked {
-                        border-color: $check-box-border;
-                        background: $check-box-background;
-                        &:before {
-                            background: $check-box-background;
-                        }
-                        .ms-Check-check {
-                            color: $check-box-tick;
-                        }
-                    }
-                    @mixin check-when-unchecked {
-                        .ms-Check-check {
-                            color: transparent;
-                            opacity: 0;
-                        }
-                    }
-                    @mixin check-hover-when-checked {
-                        @include check-when-checked;
-                        opacity: 1;
-                    }
-                    @mixin check-hover-when-unchecked {
-                        @include check-when-unchecked();
-                        border-color: $check-box-border;
-                        background: $check-box-background;
-                        opacity: 1;
-                        &:before {
-                            background: $check-box-background;
-                        }
-                        .ms-Check-check {
-                            opacity: 1;
-                        }
-                    }
-                    .ms-DetailsRow-check,
-                    .ms-GroupHeader-check {
-                        opacity: 1;
-                        &:focus {
-                            .ms-check:not(.is-checked) {
-                                @include check-hover-when-unchecked();
-                            }
-                        }
-                        .ms-check {
-                            height: 14px;
-                            width: 14px;
-                            overflow: hidden;
-                            border: 1px solid transparent;
-                            &::before {
-                                border-radius: 0%;
-                            }
-                            .ms-Check-circle {
-                                visibility: hidden;
-                            }
-                            .ms-Check-check {
-                                border: 0px;
-                                height: 14px;
-                                width: 14px;
-                                font-size: 14px;
-                                margin-top: -0.05em;
-                                text-align: center;
-                            }
-                            &.is-checked {
-                                @include check-when-checked();
-                            }
-                            &:not(.is-checked) {
-                                @include check-when-unchecked();
-                            }
-                        }
-                    }
-                    .ms-DetailsHeader-cellSizer {
-                        background: transparent;
-                        &:hover {
-                            background: transparent;
-                        }
-                        &:after {
-                            width: 2px;
-                        }
-                    }
-                    .ms-GroupHeader,
-                    .ms-DetailsRow,
-                    .ms-DetailsHeader-cell {
-                        &:hover {
-                            .ms-check.is-checked {
-                                @include check-hover-when-checked();
-                            }
-                            .ms-check:not(.is-checked) {
-                                @include check-hover-when-unchecked();
-                            }
-                        }
-                        &:focus {
-                            .ms-check:not(.is-checked) {
-                                @include check-hover-when-unchecked();
-                            }
-                        }
-                    }
-                }
-                .issue-detail-outer-container {
-                    min-width: 100%;
-                    max-width: 100%;
-                    overflow-y: auto;
-                    height: 40%;
-                    min-height: 150px;
-                    background-color: $neutral-2;
-                    > div {
-                        border-top: 1px solid $neutral-8;
-                        padding-left: 24px;
-                    }
-                    h2 {
-                        padding-top: 12px;
-                        padding-bottom: 8px;
-                        font-weight: $normalTitleFontWeight;
-                        font-size: 21px;
-                        display: inline-block;
-                    }
-                    .copy-issue-details-button {
-                        vertical-align: baseline;
-                        margin-left: 24px;
-                        .ms-Button-label {
-                            margin-left: 4px;
-                            margin-right: 4px;
-                            line-height: 100%;
-                            font-weight: 600;
-                        }
-                        svg {
-                            margin-left: 4px;
-                            margin-right: 4px;
-
-                            path {
-                                fill: $neutral-100 !important;
-                                fill-opacity: 0.9 !important;
-                            }
-                        }
-                    }
-                    .file-issue-button {
-                        vertical-align: baseline;
-                        margin-left: 8px;
-                        .ms-Button-label {
-                            margin-left: 4px;
-                            margin-right: 4px;
-                            line-height: 100%;
-                            font-weight: 600;
-                        }
-                        svg {
-                            margin-left: 4px;
-                            margin-right: 4px;
-                            path {
-                                fill: $neutral-100 !important;
-                                fill-opacity: 0.9 !important;
-                            }
-                        }
-                    }
-                    .file-issue-button-help {
-                        display: inline-block;
-                        margin-left: 8px;
-                        vertical-align: 2px;
-                        color: $negative-outcome;
-                        font-weight: $fontWeightSemiBold;
-                    }
-
-                    .issue-detail-table {
-                        width: 100%;
-                        padding: 0;
-                        border-collapse: collapse;
-                        tr > td {
-                            border-bottom: 1px solid $neutral-8;
-                            padding-top: 10px;
-                            padding-bottom: 10px;
-                            text-align: left;
-                            vertical-align: initial;
-                            font-size: 14px;
-                        }
-                        tr > td:first-child {
-                            width: 100px;
-                        }
-                        tr:last-child > td {
-                            border-bottom: none;
-                        }
-                        .snippet-content {
-                            font-family: $codeFontFamily;
-                            word-break: break-all;
-                        }
-                        .snippet-content,
-                        .path-content {
-                            font-size: 12px;
-                        }
-                        .fix-content > div:nth-child(2) {
-                            margin-top: 6px;
-                        }
-                        .fix-content ul {
-                            margin: 0px;
-                            -webkit-padding-start: 20px;
-                        }
-                    }
-                    .issue-detail-select-message {
-                        padding-top: 10px;
                     }
                 }
                 .overview {

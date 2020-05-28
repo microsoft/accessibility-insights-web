@@ -5,8 +5,9 @@ import { GuidanceTags } from 'common/components/guidance-tags';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { NamedFC } from 'common/react/named-fc';
+import { LinkComponentType } from 'common/types/link-component-type';
 import { CardRuleResult } from 'common/types/store-data/card-view-model';
-import { kebabCase } from 'lodash';
+import { isEmpty, kebabCase } from 'lodash';
 import * as React from 'react';
 
 import { InstanceOutcomeType } from '../instance-outcome-type';
@@ -15,6 +16,7 @@ import { outcomeTypeSemantics } from '../outcome-type';
 
 export type FullRuleHeaderDeps = {
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;
+    LinkComponent: LinkComponentType;
 };
 
 export type FullRuleHeaderProps = {
@@ -44,21 +46,29 @@ export const FullRuleHeader = NamedFC<FullRuleHeaderProps>('FullRuleHeader', pro
     const renderRuleLink = () => {
         const ruleId = cardResult.id;
         const ruleUrl = cardResult.url;
-        return (
-            <span className="rule-details-id">
-                <NewTabLink
-                    href={ruleUrl}
-                    aria-label={`rule ${ruleId}`}
-                    aria-describedby={ariaDescribedBy}
-                >
-                    {ruleId}
-                </NewTabLink>
-            </span>
+        const displayedRule = ruleUrl ? (
+            <NewTabLink
+                href={ruleUrl}
+                aria-label={`rule ${ruleId}`}
+                aria-describedby={ariaDescribedBy}
+            >
+                {ruleId}
+            </NewTabLink>
+        ) : (
+            <>{ruleId}</>
         );
+        return <span className="rule-details-id">{displayedRule}</span>;
     };
 
     const renderGuidanceLinks = () => {
-        return <GuidanceLinks links={cardResult.guidance} />;
+        if (isEmpty(cardResult.guidance)) {
+            return null;
+        }
+        return (
+            <>
+                (<GuidanceLinks links={cardResult.guidance} LinkComponent={deps.LinkComponent} />)
+            </>
+        );
     };
 
     const renderDescription = () => {
@@ -77,8 +87,9 @@ export const FullRuleHeader = NamedFC<FullRuleHeaderProps>('FullRuleHeader', pro
         <>
             <div className="rule-detail">
                 <div>
-                    {renderCountBadge()} {renderRuleLink()}: {renderDescription()} (
-                    {renderGuidanceLinks()}){renderGuidanceTags()}
+                    {renderCountBadge()} {renderRuleLink()}: {renderDescription()}
+                    {renderGuidanceLinks()}
+                    {renderGuidanceTags()}
                 </div>
             </div>
         </>

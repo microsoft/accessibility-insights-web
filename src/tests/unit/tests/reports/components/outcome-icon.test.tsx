@@ -21,7 +21,14 @@ describe('OutcomeIcon', () => {
     });
 });
 
-[CheckIcon, CheckIconInverted, CircleIcon, CrossIconInverted, InapplicableIcon, InapplicableIconInverted].forEach(Icon => {
+[
+    CheckIcon,
+    CheckIconInverted,
+    CircleIcon,
+    CrossIconInverted,
+    InapplicableIcon,
+    InapplicableIconInverted,
+].forEach(Icon => {
     const name = Icon.displayName;
     describe(name, () => {
         test('render', () => {

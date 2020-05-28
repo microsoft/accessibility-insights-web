@@ -36,9 +36,15 @@ describe('IpcMessageReceiver', () => {
             })
             .verifiable();
 
-        mockInterpreter.setup(m => m.interpret(It.isAny())).callback(message => sentMessages.push(message));
+        mockInterpreter
+            .setup(m => m.interpret(It.isAny()))
+            .callback(message => sentMessages.push(message));
 
-        testSubject = new IpcMessageReceiver(mockInterpreter.object, mockIpcRenderer.object, mockLogger.object);
+        testSubject = new IpcMessageReceiver(
+            mockInterpreter.object,
+            mockIpcRenderer.object,
+            mockLogger.object,
+        );
         testSubject.initialize();
 
         mockIpcRenderer.verifyAll();
@@ -48,7 +54,10 @@ describe('IpcMessageReceiver', () => {
         testSubjectMessageHandler({ senderId: 1 }, validMessage);
 
         expect(sentMessages).toEqual([]);
-        mockLogger.verify(l => l.error('Ignoring unexpected message from non-main-process senderId'), Times.once());
+        mockLogger.verify(
+            l => l.error('Ignoring unexpected message from non-main-process senderId'),
+            Times.once(),
+        );
     });
 
     it('rejects messages with no args', () => {

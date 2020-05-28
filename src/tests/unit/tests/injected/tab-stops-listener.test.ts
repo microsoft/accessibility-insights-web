@@ -6,7 +6,10 @@ import { HTMLElementUtils } from '../../../../common/html-element-utils';
 import { WindowUtils } from '../../../../common/window-utils';
 import { VisualizationWindowMessage } from '../../../../injected/drawing-controller';
 import { ErrorMessageContent } from '../../../../injected/frameCommunicators/error-message-content';
-import { FrameCommunicator, MessageRequest } from '../../../../injected/frameCommunicators/frame-communicator';
+import {
+    FrameCommunicator,
+    MessageRequest,
+} from '../../../../injected/frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from '../../../../injected/frameCommunicators/window-message-handler';
 import { ScannerUtils } from '../../../../injected/scanner-utils';
 import { TabStopEvent, TabStopsListener } from '../../../../injected/tab-stops-listener';
@@ -44,9 +47,15 @@ describe('TabStopsListenerTest', () => {
     });
 
     test('initialize', () => {
-        frameCommunicatorMock.setup(f => f.subscribe(TabStopsListener.startListeningCommand, It.isAny())).verifiable(Times.once());
-        frameCommunicatorMock.setup(f => f.subscribe(TabStopsListener.startListeningCommand, It.isAny())).verifiable(Times.once());
-        frameCommunicatorMock.setup(f => f.subscribe(TabStopsListener.startListeningCommand, It.isAny())).verifiable(Times.once());
+        frameCommunicatorMock
+            .setup(f => f.subscribe(TabStopsListener.startListeningCommand, It.isAny()))
+            .verifiable(Times.once());
+        frameCommunicatorMock
+            .setup(f => f.subscribe(TabStopsListener.startListeningCommand, It.isAny()))
+            .verifiable(Times.once());
+        frameCommunicatorMock
+            .setup(f => f.subscribe(TabStopsListener.startListeningCommand, It.isAny()))
+            .verifiable(Times.once());
 
         listenerObject.initialize();
         frameCommunicatorMock.verifyAll();
@@ -54,9 +63,15 @@ describe('TabStopsListenerTest', () => {
 
     test('Err: Tab Listener setup in child window', () => {
         windowUtilsMock.setup(w => w.isTopWindow()).returns(() => false);
-        frameCommunicatorMock.setup(f => f.subscribe(TabStopsListener.startListeningCommand, It.isAny())).verifiable(Times.once());
-        frameCommunicatorMock.setup(f => f.subscribe(TabStopsListener.startListeningCommand, It.isAny())).verifiable(Times.once());
-        frameCommunicatorMock.setup(f => f.subscribe(TabStopsListener.startListeningCommand, It.isAny())).verifiable(Times.once());
+        frameCommunicatorMock
+            .setup(f => f.subscribe(TabStopsListener.startListeningCommand, It.isAny()))
+            .verifiable(Times.once());
+        frameCommunicatorMock
+            .setup(f => f.subscribe(TabStopsListener.startListeningCommand, It.isAny()))
+            .verifiable(Times.once());
+        frameCommunicatorMock
+            .setup(f => f.subscribe(TabStopsListener.startListeningCommand, It.isAny()))
+            .verifiable(Times.once());
 
         listenerObject.initialize();
         const action = () => {
@@ -69,9 +84,15 @@ describe('TabStopsListenerTest', () => {
         const onStartListenToTabStopsMock = Mock.ofInstance(() => {});
 
         onStartListenToTabStopsMock.setup(o => o()).verifiable(Times.once());
-        frameCommunicatorMock.setup(f => f.subscribe(TabStopsListener.startListeningCommand, It.isAny())).verifiable(Times.once());
-        frameCommunicatorMock.setup(f => f.subscribe(TabStopsListener.startListeningCommand, It.isAny())).verifiable(Times.once());
-        frameCommunicatorMock.setup(f => f.subscribe(TabStopsListener.startListeningCommand, It.isAny())).verifiable(Times.once());
+        frameCommunicatorMock
+            .setup(f => f.subscribe(TabStopsListener.startListeningCommand, It.isAny()))
+            .verifiable(Times.once());
+        frameCommunicatorMock
+            .setup(f => f.subscribe(TabStopsListener.startListeningCommand, It.isAny()))
+            .verifiable(Times.once());
+        frameCommunicatorMock
+            .setup(f => f.subscribe(TabStopsListener.startListeningCommand, It.isAny()))
+            .verifiable(Times.once());
 
         listenerObject.initialize();
         (listenerObject as any).onStartListenToTabStops = onStartListenToTabStopsMock.object;
@@ -85,9 +106,15 @@ describe('TabStopsListenerTest', () => {
         const onStopListenToTabStopsMock = Mock.ofInstance(() => {});
 
         onStopListenToTabStopsMock.setup(o => o()).verifiable(Times.once());
-        frameCommunicatorMock.setup(f => f.subscribe(TabStopsListener.stopListeningCommand, It.isAny())).verifiable(Times.once());
-        frameCommunicatorMock.setup(f => f.subscribe(TabStopsListener.stopListeningCommand, It.isAny())).verifiable(Times.once());
-        frameCommunicatorMock.setup(f => f.subscribe(TabStopsListener.stopListeningCommand, It.isAny())).verifiable(Times.once());
+        frameCommunicatorMock
+            .setup(f => f.subscribe(TabStopsListener.stopListeningCommand, It.isAny()))
+            .verifiable(Times.once());
+        frameCommunicatorMock
+            .setup(f => f.subscribe(TabStopsListener.stopListeningCommand, It.isAny()))
+            .verifiable(Times.once());
+        frameCommunicatorMock
+            .setup(f => f.subscribe(TabStopsListener.stopListeningCommand, It.isAny()))
+            .verifiable(Times.once());
 
         listenerObject.initialize();
         (listenerObject as any).onStopListenToTabStops = onStopListenToTabStopsMock.object;
@@ -104,9 +131,15 @@ describe('TabStopsListenerTest', () => {
                 return [] as any;
             })
             .verifiable(Times.once());
-        frameCommunicatorMock.setup(f => f.subscribe(TabStopsListener.startListeningCommand, It.isAny())).verifiable(Times.once());
-        frameCommunicatorMock.setup(f => f.subscribe(TabStopsListener.startListeningCommand, It.isAny())).verifiable(Times.once());
-        frameCommunicatorMock.setup(f => f.subscribe(TabStopsListener.startListeningCommand, It.isAny())).verifiable(Times.once());
+        frameCommunicatorMock
+            .setup(f => f.subscribe(TabStopsListener.startListeningCommand, It.isAny()))
+            .verifiable(Times.once());
+        frameCommunicatorMock
+            .setup(f => f.subscribe(TabStopsListener.startListeningCommand, It.isAny()))
+            .verifiable(Times.once());
+        frameCommunicatorMock
+            .setup(f => f.subscribe(TabStopsListener.startListeningCommand, It.isAny()))
+            .verifiable(Times.once());
 
         listenerObject.initialize();
         frameCommunicatorMock.verifyAll();
@@ -195,7 +228,9 @@ describe('TabStopsListenerTest', () => {
             })
             .verifiable(Times.once());
 
-        frameCommunicatorMock.setup(f => f.sendMessage(It.isValue(startListenToTabStopsInFrameReqStub))).verifiable(Times.once());
+        frameCommunicatorMock
+            .setup(f => f.sendMessage(It.isValue(startListenToTabStopsInFrameReqStub)))
+            .verifiable(Times.once());
 
         frameCommunicatorMock
             .setup(f => f.subscribe(TabStopsListener.startListeningCommand, It.isAny()))
@@ -423,7 +458,9 @@ describe('TabStopsListenerTest', () => {
             )
             .verifiable(Times.once());
 
-        frameCommunicatorMock.setup(f => f.sendMessage(It.isObjectWith(messageStub))).verifiable(Times.once());
+        frameCommunicatorMock
+            .setup(f => f.sendMessage(It.isObjectWith(messageStub)))
+            .verifiable(Times.once());
 
         listenerObject.initialize();
         frameCommunicatorMock.verifyAll();

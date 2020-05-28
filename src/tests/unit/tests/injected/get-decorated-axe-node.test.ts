@@ -45,6 +45,8 @@ describe('GetDecoratedAxeNodeResult', () => {
             }),
         };
 
-        expect(getDecoratedAxeNode(unifiedResult, unifiedRule, selectorStub)).toEqual(expectedResult);
+        expect(getDecoratedAxeNode(unifiedResult, unifiedRule, selectorStub)).toEqual(
+            expectedResult,
+        );
     });
 });

@@ -8,10 +8,17 @@ import { VisualizationConfigurationFactory } from '../../../../../common/configs
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { WindowUtils } from '../../../../../common/window-utils';
-import { AnalyzerConfiguration, FocusAnalyzerConfiguration, RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
+import {
+    AnalyzerConfiguration,
+    FocusAnalyzerConfiguration,
+    RuleAnalyzerConfiguration,
+} from '../../../../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../../../../injected/analyzers/analyzer-provider';
 import { BaseAnalyzer } from '../../../../../injected/analyzers/base-analyzer';
-import { BatchedRuleAnalyzer, IResultRuleFilter } from '../../../../../injected/analyzers/batched-rule-analyzer';
+import {
+    BatchedRuleAnalyzer,
+    IResultRuleFilter,
+} from '../../../../../injected/analyzers/batched-rule-analyzer';
 import { PostResolveCallback, RuleAnalyzer } from '../../../../../injected/analyzers/rule-analyzer';
 import { ScannerUtils } from '../../../../../injected/scanner-utils';
 import { TabStopsListener } from '../../../../../injected/tab-stops-listener';

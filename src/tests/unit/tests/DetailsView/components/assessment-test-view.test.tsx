@@ -7,10 +7,17 @@ import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
-import { AssessmentData, AssessmentStoreData } from '../../../../../common/types/store-data/assessment-result-data';
+import {
+    AssessmentData,
+    AssessmentStoreData,
+} from '../../../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 import { PathSnippetStoreData } from '../../../../../common/types/store-data/path-snippet-store-data';
-import { ScanData, TestsEnabledState, VisualizationStoreData } from '../../../../../common/types/store-data/visualization-store-data';
+import {
+    ScanData,
+    TestsEnabledState,
+    VisualizationStoreData,
+} from '../../../../../common/types/store-data/visualization-store-data';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import {
     AssessmentTestView,
@@ -59,7 +66,7 @@ describe('AssessmentTestView', () => {
         assessmentStoreDataStub = {
             assessmentNavState: {
                 selectedTestType: selectedTest,
-                selectedTestStep: selectedTestStep,
+                selectedTestSubview: selectedTestStep,
             },
         } as AssessmentStoreData;
 
@@ -69,7 +76,9 @@ describe('AssessmentTestView', () => {
         assessmentDataStub = {} as AssessmentData;
         pathSnippetStoreDataStub = {} as PathSnippetStoreData;
         warningConfigurationStub = {} as WarningConfiguration;
-        switcherNavConfigurationStub = { warningConfiguration: warningConfigurationStub } as DetailsViewSwitcherNavConfiguration;
+        switcherNavConfigurationStub = {
+            warningConfiguration: warningConfigurationStub,
+        } as DetailsViewSwitcherNavConfiguration;
 
         props = {
             deps: {
@@ -106,7 +115,7 @@ describe('AssessmentTestView', () => {
     });
     test('assessment view, isScanning is true', () => {
         const actual = shallow(<AssessmentTestView {...props} />);
-        expect(actual.debug()).toMatchSnapshot();
+        expect(actual.getElement()).toMatchSnapshot();
         verifyAll();
     });
 
@@ -114,7 +123,7 @@ describe('AssessmentTestView', () => {
         props.visualizationStoreData.scanning = null;
 
         const actual = shallow(<AssessmentTestView {...props} />);
-        expect(actual.debug()).toMatchSnapshot();
+        expect(actual.getElement()).toMatchSnapshot();
         verifyAll();
     });
 

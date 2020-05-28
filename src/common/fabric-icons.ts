@@ -62,6 +62,7 @@ export function initializeFabricIcons(): void {
             tag: '\uE8EC',
             testBeaker: '\uF3A5',
             testBeakerSolid: '\uF3A6',
+            textDocument: '\uF029',
             undo: '\uE7A7',
             unknown: '\uE9CE',
             view: '\uE890',

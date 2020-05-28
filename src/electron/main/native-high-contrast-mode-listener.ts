@@ -22,7 +22,7 @@ export class NativeHighContrastModeListener {
 
     private notifyHighContrastModeChanged = (): void => {
         this.highContrastStateAtLastNotify = this.nativeTheme.shouldUseHighContrastColors;
-        this.userConfigMessageCreator.setHighContrastMode(this.highContrastStateAtLastNotify);
+        this.userConfigMessageCreator.setNativeHighContrastMode(this.highContrastStateAtLastNotify);
     };
 
     private onNativeThemeUpdated = (): void => {

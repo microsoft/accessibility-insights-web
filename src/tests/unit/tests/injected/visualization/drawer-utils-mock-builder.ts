@@ -32,48 +32,92 @@ export class DrawerUtilsMockBuilder {
     public setupGetContainerSize(sizeValue: number): DrawerUtilsMockBuilder {
         this.drawerUtilsMock
             .setup(d =>
-                d.getContainerHeight(It.isAny(), It.isAny(), It.isAnyNumber(), It.isValue(this.styleStub), It.isValue(this.styleStub)),
+                d.getContainerHeight(
+                    It.isAny(),
+                    It.isAny(),
+                    It.isAnyNumber(),
+                    It.isValue(this.styleStub),
+                    It.isValue(this.styleStub),
+                ),
             )
-            .returns((offset, doc, elementBoundingClientRectHeight, bodyStyle, docStyle) => sizeValue);
+            .returns(
+                (offset, doc, elementBoundingClientRectHeight, bodyStyle, docStyle) => sizeValue,
+            );
         this.drawerUtilsMock
             .setup(d =>
-                d.getContainerWidth(It.isAny(), It.isAny(), It.isAnyNumber(), It.isValue(this.styleStub), It.isValue(this.styleStub)),
+                d.getContainerWidth(
+                    It.isAny(),
+                    It.isAny(),
+                    It.isAnyNumber(),
+                    It.isValue(this.styleStub),
+                    It.isValue(this.styleStub),
+                ),
             )
-            .returns((offset, doc, elementBoundingClientRectHeight, bodyStyle, docStyle) => sizeValue);
+            .returns(
+                (offset, doc, elementBoundingClientRectHeight, bodyStyle, docStyle) => sizeValue,
+            );
         return this;
     }
 
     public setupGetDocSize(sizeValue: number): DrawerUtilsMockBuilder {
         this.drawerUtilsMock
             .setup(d => d.getDocumentHeight(It.isAny(), this.styleStub, this.styleStub))
-            .returns((offset, doc, elementBoundingClientRectHeight, bodyStyle, docStyle) => sizeValue)
+            .returns(
+                (offset, doc, elementBoundingClientRectHeight, bodyStyle, docStyle) => sizeValue,
+            )
             .verifiable(Times.once());
         this.drawerUtilsMock
             .setup(d => d.getDocumentWidth(It.isAny(), this.styleStub, this.styleStub))
-            .returns((offset, doc, elementBoundingClientRectHeight, bodyStyle, docStyle) => sizeValue)
+            .returns(
+                (offset, doc, elementBoundingClientRectHeight, bodyStyle, docStyle) => sizeValue,
+            )
             .verifiable(Times.once());
         return this;
     }
 
     public setupGetContainerOffsetNeverCall(): DrawerUtilsMockBuilder {
-        this.drawerUtilsMock.setup(d => d.getContainerTopOffset(It.isAny())).verifiable(Times.never());
-        this.drawerUtilsMock.setup(d => d.getContainerLeftOffset(It.isAny())).verifiable(Times.never());
+        this.drawerUtilsMock
+            .setup(d => d.getContainerTopOffset(It.isAny()))
+            .verifiable(Times.never());
+        this.drawerUtilsMock
+            .setup(d => d.getContainerLeftOffset(It.isAny()))
+            .verifiable(Times.never());
         return this;
     }
 
     public setupGetContainerOffset(offsetValue: number): DrawerUtilsMockBuilder {
-        this.drawerUtilsMock.setup(d => d.getContainerTopOffset(It.isAny())).returns(() => offsetValue);
-        this.drawerUtilsMock.setup(d => d.getContainerLeftOffset(It.isAny())).returns(() => offsetValue);
+        this.drawerUtilsMock
+            .setup(d => d.getContainerTopOffset(It.isAny()))
+            .returns(() => offsetValue);
+        this.drawerUtilsMock
+            .setup(d => d.getContainerLeftOffset(It.isAny()))
+            .returns(() => offsetValue);
 
         return this;
     }
 
     public setupGetContainerSizeNeverCall(): DrawerUtilsMockBuilder {
         this.drawerUtilsMock
-            .setup(d => d.getContainerHeight(It.isAny(), It.isAny(), It.isAnyNumber(), It.isAny(), It.isAny()))
+            .setup(d =>
+                d.getContainerHeight(
+                    It.isAny(),
+                    It.isAny(),
+                    It.isAnyNumber(),
+                    It.isAny(),
+                    It.isAny(),
+                ),
+            )
             .verifiable(Times.never());
         this.drawerUtilsMock
-            .setup(d => d.getContainerWidth(It.isAny(), It.isAny(), It.isAnyNumber(), It.isAny(), It.isAny()))
+            .setup(d =>
+                d.getContainerWidth(
+                    It.isAny(),
+                    It.isAny(),
+                    It.isAnyNumber(),
+                    It.isAny(),
+                    It.isAny(),
+                ),
+            )
             .verifiable(Times.never());
         return this;
     }

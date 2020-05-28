@@ -12,7 +12,10 @@ import { RendererDeps } from 'views/insights/renderer';
 describe('rendererDependencies', () => {
     let subject: RendererDeps;
     beforeAll(() => {
-        subject = rendererDependencies(Mock.ofType<BrowserAdapter>().object, Mock.ofType<Logger>().object);
+        subject = rendererDependencies(
+            Mock.ofType<BrowserAdapter>().object,
+            Mock.ofType<Logger>().object,
+        );
     });
 
     it('includes dom', () => {

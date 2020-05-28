@@ -4,16 +4,13 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
-        <h1>Lists</h1>
         <p>Lists must be coded with semantically correct elements.</p>
-
         <h2>Why it matters</h2>
         <p>
             When lists are coded with semantically correct elements, navigating them is easier for people who use assistive technologies.
             For example, most assistive technologies allow users to navigate from the first list item to the last, or to jump to the next
             list.
         </p>
-
         <h2>How to fix</h2>
         <p>
             Code the list using semantically correct elements:
@@ -56,7 +53,6 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 </li>
             </ul>
         </p>
-
         <Markup.PassFail
             failText={<p>These links are visually formatted as an unordered list, but they are not coded list semantics.</p>}
             failExample={`<h4>Top Tutorials</h4>
@@ -92,9 +88,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             [</li>
             </ul>]`}
         />
-
         <h2>More examples</h2>
-
         <h3>WCAG success criteria</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html">

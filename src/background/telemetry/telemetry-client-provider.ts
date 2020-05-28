@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { MultiplexingTelemetryClient } from 'background/telemetry/multiplexing-telemetry-client';
 import { AppDataAdapter } from '../../common/browser-adapters/app-data-adapter';
 import { StorageAdapter } from '../../common/browser-adapters/storage-adapter';
 import { config } from '../../common/configuration';
@@ -10,37 +11,42 @@ import { InstallDataGenerator } from '../install-data-generator';
 import { InstallationData } from '../installation-data';
 import { AppInsightsTelemetryClient } from './app-insights-telemetry-client';
 import { ApplicationTelemetryDataFactory } from './application-telemetry-data-factory';
-import { NullTelemetryClient } from './null-telemetry-client';
 import { TelemetryClient } from './telemetry-client';
-import { TelemetryLogger } from './telemetry-logger';
 
 export const getTelemetryClient = (
-    applicationName: string,
-    installationData: InstallationData,
-    appDataAdapter: AppDataAdapter,
-    logger: TelemetryLogger,
+    applicationTelemetryDataFactory: ApplicationTelemetryDataFactory,
     appInsights: Microsoft.ApplicationInsights.IAppInsights,
-    storageAdapter: StorageAdapter,
+    baseClients: TelemetryClient[],
 ): TelemetryClient => {
+    const clients = [...baseClients];
+
+    const appInsightsInstrumentationKey = config.getOption('appInsightsInstrumentationKey');
+
+    if (appInsightsInstrumentationKey != null) {
+        clients.push(new AppInsightsTelemetryClient(appInsights, applicationTelemetryDataFactory));
+    }
+
+    return new MultiplexingTelemetryClient(clients);
+};
+
+export const getApplicationTelemetryDataFactory = (
+    installationData: InstallationData,
+    storageAdapter: StorageAdapter,
+    appDataAdapter: AppDataAdapter,
+    applicationName: string,
+) => {
     const installDataGenerator = new InstallDataGenerator(
         installationData,
         generateUID,
         DateProvider.getCurrentDate,
         storageAdapter,
     );
+
     const applicationBuildGenerator = new ApplicationBuildGenerator();
-    const coreTelemetryDataFactory = new ApplicationTelemetryDataFactory(
+    return new ApplicationTelemetryDataFactory(
         appDataAdapter.getVersion(),
         applicationName,
         applicationBuildGenerator.getBuild(),
         installDataGenerator,
     );
-
-    const appInsightsInstrumentationKey = config.getOption('appInsightsInstrumentationKey');
-
-    if (appInsightsInstrumentationKey == null) {
-        return new NullTelemetryClient(coreTelemetryDataFactory, logger);
-    }
-
-    return new AppInsightsTelemetryClient(appInsights, coreTelemetryDataFactory, logger);
 };

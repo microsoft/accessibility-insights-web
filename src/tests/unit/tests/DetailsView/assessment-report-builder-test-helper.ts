@@ -13,7 +13,10 @@ import {
     RequirementReportModel,
     ScanDetailsReportModel,
 } from 'reports/assessment-report-model';
-import { ManualTestStatus, ManualTestStatusData } from '../../../../common/types/manual-test-status';
+import {
+    ManualTestStatus,
+    ManualTestStatusData,
+} from '../../../../common/types/manual-test-status';
 import {
     AssessmentData,
     AssessmentStoreData,
@@ -183,7 +186,9 @@ export class AssessmentReportBuilderTestHelper {
     }
 
     public static getAssessmentProviderAll(getDefaultMessage): Assessment[] {
-        const manualFields: ReportInstanceFields = [{ key: 'comment', label: 'Comment', getValue: i => i.description }];
+        const manualFields: ReportInstanceFields = [
+            { key: 'comment', label: 'Comment', getValue: i => i.description },
+        ];
 
         const automaticFields: ReportInstanceFields = [
             { key: 'path', label: 'Path', getValue: i => i.target && i.target.join(', ') },

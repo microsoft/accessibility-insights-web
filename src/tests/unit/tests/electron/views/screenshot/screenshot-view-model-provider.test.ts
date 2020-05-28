@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ScreenshotData, UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
-import { BoundingRectangle } from 'electron/platform/android/scan-results';
+import {
+    ScreenshotData,
+    UnifiedScanResultStoreData,
+} from 'common/types/store-data/unified-data-interface';
+import { BoundingRectangle } from 'electron/platform/android/android-scan-results';
 import { HighlightBoxViewModel } from 'electron/views/screenshot/screenshot-view-model';
 import { screenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
 import { exampleUnifiedResult } from 'tests/unit/tests/common/components/cards/sample-view-model-data';
@@ -25,7 +28,9 @@ describe('screenshotViewModelProvider', () => {
             platformInfo: { viewPortInfo: { width: 1, height: 1 } },
         } as UnifiedScanResultStoreData;
 
-        const output = screenshotViewModelProvider(unifiedScanResultStoreData, [exampleUnifiedResult.uid]);
+        const output = screenshotViewModelProvider(unifiedScanResultStoreData, [
+            exampleUnifiedResult.uid,
+        ]);
 
         expect(output.highlightBoxViewModels).toStrictEqual([]);
     });
@@ -37,7 +42,9 @@ describe('screenshotViewModelProvider', () => {
             results: [exampleUnifiedResult],
         } as UnifiedScanResultStoreData;
 
-        const output = screenshotViewModelProvider(unifiedScanResultStoreData, [exampleUnifiedResult.uid]);
+        const output = screenshotViewModelProvider(unifiedScanResultStoreData, [
+            exampleUnifiedResult.uid,
+        ]);
 
         expect(output.highlightBoxViewModels).toStrictEqual([]);
     });
@@ -89,7 +96,9 @@ describe('screenshotViewModelProvider', () => {
         const output = screenshotViewModelProvider(unifiedScanResultStoreData, highlightedUids);
 
         expect(output.highlightBoxViewModels).toHaveLength(1);
-        expect(output.highlightBoxViewModels[0].resultUid).toBe(resultCases.highlightedResultWithBoundingRectangle.uid);
+        expect(output.highlightBoxViewModels[0].resultUid).toBe(
+            resultCases.highlightedResultWithBoundingRectangle.uid,
+        );
     });
 
     it('calculates highlight box positional values as percentages relative to the viewport size', () => {
@@ -101,7 +110,11 @@ describe('screenshotViewModelProvider', () => {
             right: 80,
             bottom: 150,
         };
-        const highlightBoxViewModel = provideHighlightBoxViewModelForBoundingRectangle(inputRectangle, viewPortWidth, viewPortHeight);
+        const highlightBoxViewModel = provideHighlightBoxViewModelForBoundingRectangle(
+            inputRectangle,
+            viewPortWidth,
+            viewPortHeight,
+        );
 
         expect(highlightBoxViewModel.top).toBe('25%');
         expect(highlightBoxViewModel.left).toBe('20%');

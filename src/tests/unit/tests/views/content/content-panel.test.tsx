@@ -15,6 +15,7 @@ describe('ContentPanel', () => {
     };
 
     const applicationTitle = 'THE_APPLICATION_TITLE';
+    const contentTitle = 'THE CONTENT TITLE';
     const deps = {
         textContent: {
             applicationTitle,
@@ -24,17 +25,38 @@ describe('ContentPanel', () => {
     };
 
     it('renders from content', () => {
-        const result = shallow(<ContentPanel deps={deps} content={content.for.testing} isOpen={true} />);
+        const result = shallow(
+            <ContentPanel
+                deps={deps}
+                content={content.for.testing}
+                isOpen={true}
+                contentTitle={contentTitle}
+            />,
+        );
         expect(result.debug()).toMatchSnapshot();
     });
 
     it('renders from path', () => {
-        const result = shallow(<ContentPanel deps={deps} content={'for/testing'} isOpen={true} />);
+        const result = shallow(
+            <ContentPanel
+                deps={deps}
+                content={'for/testing'}
+                isOpen={true}
+                contentTitle={contentTitle}
+            />,
+        );
         expect(result.debug()).toMatchSnapshot();
     });
 
     it('renders closed', () => {
-        const result = shallow(<ContentPanel deps={deps} content={'for/testing'} isOpen={false} />);
+        const result = shallow(
+            <ContentPanel
+                deps={deps}
+                content={'for/testing'}
+                isOpen={false}
+                contentTitle={contentTitle}
+            />,
+        );
         expect(result.debug()).toMatchSnapshot();
     });
 });

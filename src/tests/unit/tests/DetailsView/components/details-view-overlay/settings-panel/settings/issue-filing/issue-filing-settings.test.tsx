@@ -4,7 +4,10 @@ import { UserConfigMessageCreator } from 'common/message-creators/user-config-me
 import { NamedFC } from 'common/react/named-fc';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { IssueFilingSettings } from 'DetailsView/components/details-view-overlay/settings-panel/settings/issue-filing/issue-filing-settings';
-import { SettingsDeps, SettingsProps } from 'DetailsView/components/details-view-overlay/settings-panel/settings/settings-props';
+import {
+    SettingsDeps,
+    SettingsProps,
+} from 'DetailsView/components/details-view-overlay/settings-panel/settings/settings-props';
 import { shallow } from 'enzyme';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
@@ -25,6 +28,7 @@ describe('IssueFilingSettings', () => {
             isFirstTime: true,
             enableTelemetry: true,
             enableHighContrast: true,
+            lastSelectedHighContrast: true,
             bugService: 'gitHub',
             bugServicePropertiesMap: { gitHub: { repository: 'test-repository' } },
         };
@@ -40,7 +44,9 @@ describe('IssueFilingSettings', () => {
             fileIssue: () => Promise.resolve(),
         };
 
-        issueFilingServiceProviderMock.setup(provider => provider.forKey(userData.bugService)).returns(() => testIssueFilingServiceStub);
+        issueFilingServiceProviderMock
+            .setup(provider => provider.forKey(userData.bugService))
+            .returns(() => testIssueFilingServiceStub);
     });
 
     it('renders', () => {

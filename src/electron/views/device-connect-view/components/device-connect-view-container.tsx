@@ -7,7 +7,6 @@ import {
 } from 'common/components/telemetry-permission-dialog';
 import { NamedFC } from 'common/react/named-fc';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
-import { brand } from 'content/strings/application';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import * as React from 'react';
 import { DeviceStoreData } from '../../../flux/types/device-store-data';
@@ -33,7 +32,7 @@ export const DeviceConnectViewContainer = NamedFC<DeviceConnectViewContainerProp
         return (
             <div className={deviceConnectView}>
                 <WindowTitle
-                    title={brand}
+                    pageTitle={'Connect to your Android device'}
                     deps={props.deps}
                     windowStateStoreData={props.windowStateStoreData}
                 >

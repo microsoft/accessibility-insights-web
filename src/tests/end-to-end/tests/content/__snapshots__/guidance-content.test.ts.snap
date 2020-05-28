@@ -1379,9 +1379,6 @@ exports[`Guidance Content pages test/audioVideoOnly/audioOnlyEquivalent/infoAndE
     <div
       class="content"
     >
-      <h1>
-        Audio-only equivalent
-      </h1>
       <p>
         Pre-recorded audio-only content must be accompanied by an equivalent text alternative.
       </p>
@@ -1687,9 +1684,6 @@ exports[`Guidance Content pages test/audioVideoOnly/videoOnlyEquivalent/infoAndE
     <div
       class="content"
     >
-      <h1>
-        Video-only equivalent
-      </h1>
       <p>
         Pre-recorded video-only content must be accompanied by an equivalent text or audio alternative.
       </p>
@@ -1897,9 +1891,6 @@ exports[`Guidance Content pages test/contrast/graphics/infoAndExamples matches t
     <div
       class="content"
     >
-      <h1>
-        Graphics
-      </h1>
       <p>
         Meaningful graphics must have sufficient contrast.
       </p>
@@ -2392,9 +2383,6 @@ exports[`Guidance Content pages test/contrast/uiComponents/infoAndExamples match
     <div
       class="content"
     >
-      <h1>
-        UI Components
-      </h1>
       <p>
         Visual information used to indicate states and boundaries of active UI Components must have sufficient contrast.
       </p>
@@ -2587,9 +2575,6 @@ exports[`Guidance Content pages test/customWidgets/cues/infoAndExamples matches 
     <div
       class="content"
     >
-      <h1>
-        Cues
-      </h1>
       <p>
         If a custom widget adopts certain interactive states, it must provide appropriate cues.
       </p>
@@ -2888,9 +2873,6 @@ exports[`Guidance Content pages test/customWidgets/designPattern/infoAndExamples
     <div
       class="content"
     >
-      <h1>
-        Design pattern
-      </h1>
       <p>
         A custom widget must have the appropriate ARIA widget role for its design pattern.
       </p>
@@ -3177,9 +3159,6 @@ exports[`Guidance Content pages test/customWidgets/expectedInput/infoAndExamples
     <div
       class="content"
     >
-      <h1>
-        Expected input
-      </h1>
       <p>
         A custom widget must have a label and/or instructions that identify the expected input.
       </p>
@@ -4223,9 +4202,6 @@ exports[`Guidance Content pages test/customWidgets/instructions/infoAndExamples 
     <div
       class="content"
     >
-      <h1>
-        Instructions
-      </h1>
       <p>
         If a custom widget has visible label or instructions, they must be programmatically related to it.
       </p>
@@ -4510,9 +4486,6 @@ exports[`Guidance Content pages test/customWidgets/keyboardInteraction/infoAndEx
     <div
       class="content"
     >
-      <h1>
-        Keyboard interaction
-      </h1>
       <p>
         A custom widget must support the keyboard interaction specified by its design pattern.
       </p>
@@ -4756,9 +4729,6 @@ exports[`Guidance Content pages test/customWidgets/roleStateProperty/infoAndExam
     <div
       class="content"
     >
-      <h1>
-        Role, state, property
-      </h1>
       <p>
         A custom widget must support the ARIA roles, states, and properties specified by its design pattern.
       </p>
@@ -5102,9 +5072,6 @@ exports[`Guidance Content pages test/errors/errorIdentification/infoAndExamples 
     <div
       class="content"
     >
-      <h1>
-        Error identification
-      </h1>
       <p>
         If an input error is automatically detected, the item in error must be identified, and the error described, in text.
       </p>
@@ -5381,9 +5348,6 @@ exports[`Guidance Content pages test/errors/errorPrevention/infoAndExamples matc
     <div
       class="content"
     >
-      <h1>
-        Error prevention
-      </h1>
       <p>
         If submitting data might have serious consequences, users must be able to correct the data input before finalizing a submission.
       </p>
@@ -5644,9 +5608,6 @@ exports[`Guidance Content pages test/errors/errorSuggestion/infoAndExamples matc
     <div
       class="content"
     >
-      <h1>
-        Error suggestion
-      </h1>
       <p>
         If an input error is automatically detected, guidance for correcting the error must be provided.
       </p>
@@ -6650,9 +6611,6 @@ exports[`Guidance Content pages test/errors/statusMessages/infoAndExamples match
     <div
       class="content"
     >
-      <h1>
-        Status messages
-      </h1>
       <p>
         Status messages must be programmatically determinable without receiving focus.
       </p>
@@ -7098,9 +7056,6 @@ exports[`Guidance Content pages test/focus/closingContent/infoAndExamples matche
     <div
       class="content"
     >
-      <h1>
-        Closing content
-      </h1>
       <p>
         Closing revealed content must move input focus to the component that revealed it.
       </p>
@@ -7306,9 +7261,6 @@ exports[`Guidance Content pages test/focus/focusOrder/infoAndExamples matches th
     <div
       class="content"
     >
-      <h1>
-        Focus order
-      </h1>
       <p>
         Components must receive focus in an order that preserves meaning and operability.
       </p>
@@ -7949,9 +7901,6 @@ exports[`Guidance Content pages test/focus/modalDialogs/infoAndExamples matches 
     <div
       class="content"
     >
-      <h1>
-        Modal dialogs
-      </h1>
       <p>
         Users must not be able to Tab away from a modal dialog without explicitly dismissing it.
       </p>
@@ -8147,9 +8096,6 @@ exports[`Guidance Content pages test/focus/revealingContent/infoAndExamples matc
     <div
       class="content"
     >
-      <h1>
-        Revealing content
-      </h1>
       <p>
         Activating a component that reveals hidden content must move input focus into the revealed content.
       </p>
@@ -8360,9 +8306,6 @@ exports[`Guidance Content pages test/focus/visibleFocus/infoAndExamples matches 
     <div
       class="content"
     >
-      <h1>
-        Visible focus
-      </h1>
       <p>
         Components must provide a visible indication when they have the input focus.
       </p>
@@ -8745,15 +8688,7 @@ exports[`Guidance Content pages test/headings/guidance matches the snapshot 1`] 
               </li>
             </ul>
             <h3>
-              Use exactly one top-level heading. (
-              <a
-                class="ms-Link insights-link root-000"
-                href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
-                target="_blank"
-              >
-                WCAG 1.3.1
-              </a>
-              ) 
+              Use exactly one top-level heading. (best practice) 
             </h3>
             <ul>
               <li>
@@ -9098,9 +9033,6 @@ exports[`Guidance Content pages test/headings/headingFunction/infoAndExamples ma
     <div
       class="content"
     >
-      <h1>
-        Heading function
-      </h1>
       <p>
         An element 
         <em>
@@ -9350,9 +9282,6 @@ exports[`Guidance Content pages test/headings/headingLevel/infoAndExamples match
     <div
       class="content"
     >
-      <h1>
-        Heading level
-      </h1>
       <p>
         A heading's programmatic level must match the level that's presented visually.
       </p>
@@ -9580,9 +9509,6 @@ exports[`Guidance Content pages test/headings/noMissingHeadings/infoAndExamples 
     <div
       class="content"
     >
-      <h1>
-        No missing headings
-      </h1>
       <p>
         Text that looks like a heading must be coded as a heading.
       </p>
@@ -9823,9 +9749,6 @@ exports[`Guidance Content pages test/images/captchas/infoAndExamples matches the
     <div
       class="content"
     >
-      <h1>
-        CAPTCHAs
-      </h1>
       <p>
         If a non-text CAPTCHA is used, alternative methods must be provided for both users without vision and users without hearing.
       </p>
@@ -10771,9 +10694,6 @@ exports[`Guidance Content pages test/images/imageFunction/infoAndExamples matche
     <div
       class="content"
     >
-      <h1>
-        Image function
-      </h1>
       <p>
         Every image must be correctly coded as either meaningful or decorative.
       </p>
@@ -10875,13 +10795,16 @@ exports[`Guidance Content pages test/images/imageFunction/infoAndExamples matche
               >
                 &lt;svg&gt;
               </span>
-               image, or CSS background image, add 
+               image, or CSS background image, also add 
               <span
                 class="insights-code"
               >
                 role="img"
               </span>
               .
+            </li>
+            <li>
+              If it's a CSS background image, also add a text element that conveys the image's information and is visible when CSS is turned off.
             </li>
           </ul>
         </li>
@@ -11270,9 +11193,6 @@ exports[`Guidance Content pages test/images/imagesOfText/infoAndExamples matches
     <div
       class="content"
     >
-      <h1>
-        Images of text
-      </h1>
       <p>
         Images of text are allowed only where a specific appearance is required (e.g., logotypes).
       </p>
@@ -11609,9 +11529,6 @@ exports[`Guidance Content pages test/images/textAlternative/infoAndExamples matc
     <div
       class="content"
     >
-      <h1>
-        Text alternative
-      </h1>
       <p>
         A meaningful image must have a text alternative that serves the equivalent purpose.
       </p>
@@ -12005,9 +11922,6 @@ exports[`Guidance Content pages test/keyboard/characterKeyShortcuts/infoAndExamp
     <div
       class="content"
     >
-      <h1>
-        Character key shortcuts
-      </h1>
       <p>
         Users must be able to turn off or remap single-key key shortcuts.
       </p>
@@ -12800,9 +12714,6 @@ exports[`Guidance Content pages test/keyboard/keyboardNavigation/infoAndExamples
     <div
       class="content"
     >
-      <h1>
-        Keyboard navigation
-      </h1>
       <p>
         Users must be able to navigate to all interactive interface components using a keyboard.
       </p>
@@ -13166,9 +13077,6 @@ exports[`Guidance Content pages test/keyboard/noKeyboardTraps/infoAndExamples ma
     <div
       class="content"
     >
-      <h1>
-        No keyboard traps
-      </h1>
       <p>
         Users must be able to 
         <em>
@@ -13447,9 +13355,6 @@ exports[`Guidance Content pages test/keyboard/noKeystrokeTimings/infoAndExamples
     <div
       class="content"
     >
-      <h1>
-        No keystroke timings
-      </h1>
       <p>
         Components must not require specific timings for individual keystrokes.
       </p>
@@ -13584,9 +13489,6 @@ exports[`Guidance Content pages test/keyboard/onFocus/infoAndExamples matches th
     <div
       class="content"
     >
-      <h1>
-        On focus
-      </h1>
       <p>
         Navigating to a component must not trigger any unexpected change of context.
       </p>
@@ -13781,9 +13683,6 @@ exports[`Guidance Content pages test/keyboard/onInput/infoAndExamples matches th
     <div
       class="content"
     >
-      <h1>
-        On input
-      </h1>
       <p>
         Changing a component's settings must not trigger any unexpected change of context.
       </p>
@@ -14640,9 +14539,6 @@ exports[`Guidance Content pages test/landmarks/landmarkRoles/infoAndExamples mat
     <div
       class="content"
     >
-      <h1>
-        Landmark roles
-      </h1>
       <p>
         A landmark region must have the role that best describes its content.
       </p>
@@ -14888,9 +14784,6 @@ exports[`Guidance Content pages test/landmarks/noRepeatingContent/infoAndExample
     <div
       class="content"
     >
-      <h1>
-        No repeating content
-      </h1>
       <p>
         The main landmark must not contain any blocks of content that repeat across pages.
       </p>
@@ -15153,9 +15046,6 @@ exports[`Guidance Content pages test/landmarks/primaryContent/infoAndExamples ma
     <div
       class="content"
     >
-      <h1>
-        Primary content
-      </h1>
       <p>
         The main landmark must contain all of the page's primary content.
       </p>
@@ -15709,9 +15599,6 @@ exports[`Guidance Content pages test/language/languageOfPage/infoAndExamples mat
     <div
       class="content"
     >
-      <h1>
-        Language of page
-      </h1>
       <p>
         A page must have the correct default language.
       </p>
@@ -15940,9 +15827,6 @@ exports[`Guidance Content pages test/language/languageOfParts/infoAndExamples ma
     <div
       class="content"
     >
-      <h1>
-        Language of parts
-      </h1>
       <p>
         If the language of a passage differs from the default language of the page, the passage must have its own language attribute.
       </p>
@@ -16179,9 +16063,6 @@ exports[`Guidance Content pages test/language/textDirection/infoAndExamples matc
     <div
       class="content"
     >
-      <h1>
-        Text direction
-      </h1>
       <p>
         If a page or a passage uses a script that is read right-to-left, it must have the correct text direction.
       </p>
@@ -16786,9 +16667,6 @@ exports[`Guidance Content pages test/links/linkFunction/infoAndExamples matches 
     <div
       class="content"
     >
-      <h1>
-        Link function
-      </h1>
       <p>
         If an anchor element functions as a custom widget, it must have the appropriate ARIA widget role.
       </p>
@@ -17056,9 +16934,6 @@ exports[`Guidance Content pages test/links/linkPurpose/infoAndExamples matches t
     <div
       class="content"
     >
-      <h1>
-        Link purpose
-      </h1>
       <p>
         A link's purpose must be described to users.
       </p>
@@ -17419,9 +17294,6 @@ exports[`Guidance Content pages test/liveMultimedia/captions/infoAndExamples mat
     <div
       class="content"
     >
-      <h1>
-        Captions
-      </h1>
       <p>
         Captions must be provided for live (streaming) video with audio
       </p>
@@ -17723,9 +17595,6 @@ exports[`Guidance Content pages test/multimedia/audioDescription/infoAndExamples
     <div
       class="content"
     >
-      <h1>
-        Audio description
-      </h1>
       <p>
         Pre-recorded video with audio must have an audio description.
       </p>
@@ -17961,9 +17830,6 @@ exports[`Guidance Content pages test/multimedia/captions/infoAndExamples matches
     <div
       class="content"
     >
-      <h1>
-        Captions
-      </h1>
       <p>
         Pre-recorded multimedia content must have captions.
       </p>
@@ -17986,18 +17852,18 @@ exports[`Guidance Content pages test/multimedia/captions/infoAndExamples matches
       </h2>
       <ul>
         <li>
-           If captions are missing, add them.
+          If captions are missing, add them.
           <ul>
             <li>
-              Use closed captions (visible on demand) if possible. 
+              Use closed captions (visible on demand) if possible.
             </li>
             <li>
-               Use open captions (always visible) if your media player or hosting provider doesn't support closed captions. 
+              Use open captions (always visible) if your media player or hosting provider doesn't support closed captions.
             </li>
           </ul>
         </li>
         <li>
-           Make sure the captions provide an accurate and complete description of the audio content:
+          Make sure the captions provide an accurate and complete description of the audio content:
           <ul>
             <li>
               Include all speech.
@@ -18520,9 +18386,6 @@ exports[`Guidance Content pages test/multimedia/noConflict/infoAndExamples match
     <div
       class="content"
     >
-      <h1>
-        No conflict
-      </h1>
       <p>
         An audio description must not conflict with audible information in the sound track.
       </p>
@@ -18727,9 +18590,6 @@ exports[`Guidance Content pages test/multimedia/noObstruction/infoAndExamples ma
     <div
       class="content"
     >
-      <h1>
-        No obstruction
-      </h1>
       <p>
         Captions must not obscure or obstruct relevant information in the video.
       </p>
@@ -18899,9 +18759,6 @@ exports[`Guidance Content pages test/multimedia/synchronization/infoAndExamples 
     <div
       class="content"
     >
-      <h1>
-        Synchronization
-      </h1>
       <p>
         An audio description must be synchronized with the video content.
       </p>
@@ -19118,9 +18975,6 @@ exports[`Guidance Content pages test/nativeWidgets/autocomplete/infoAndExamples 
     <div
       class="content"
     >
-      <h1>
-        Autocomplete
-      </h1>
       <p>
         Form fields that serve certain purposes must have the correct HTML5 autocomplete attribute.
       </p>
@@ -19381,9 +19235,6 @@ exports[`Guidance Content pages test/nativeWidgets/cues/infoAndExamples matches 
     <div
       class="content"
     >
-      <h1>
-        Cues
-      </h1>
       <p>
         If a native widget adopts certain interactive states, it must provide appropriate cues.
       </p>
@@ -19671,9 +19522,6 @@ exports[`Guidance Content pages test/nativeWidgets/expectedInput/infoAndExamples
     <div
       class="content"
     >
-      <h1>
-        Expected input
-      </h1>
       <p>
         A native widget must have a label and/or instructions that identify the expected input.
       </p>
@@ -20547,9 +20395,6 @@ exports[`Guidance Content pages test/nativeWidgets/instructions/infoAndExamples 
     <div
       class="content"
     >
-      <h1>
-        Instructions
-      </h1>
       <p>
         If a native widget has visible label or instructions, they must be programmatically related to it.
       </p>
@@ -20851,9 +20696,6 @@ exports[`Guidance Content pages test/nativeWidgets/widgetFunction/infoAndExample
     <div
       class="content"
     >
-      <h1>
-        Widget function
-      </h1>
       <p>
         If a native widget functions as a custom widget, it must have the appropriate ARIA widget role.
       </p>
@@ -21094,9 +20936,6 @@ exports[`Guidance Content pages test/page/frameTitles/infoAndExamples matches th
     <div
       class="content"
     >
-      <h1>
-        Frame title
-      </h1>
       <p>
         A frame or iframe must have an accessible name that describes its content.
       </p>
@@ -21347,9 +21186,6 @@ exports[`Guidance Content pages test/page/generalNavigation/infoAndExamples matc
     <div
       class="content"
     >
-      <h1>
-        Multiple ways
-      </h1>
       <p>
         Users must have multiple ways to locate and navigate to a page.
       </p>
@@ -21796,9 +21632,6 @@ exports[`Guidance Content pages test/page/pageTitle/infoAndExamples matches the 
     <div
       class="content"
     >
-      <h1>
-        Page title
-      </h1>
       <p>
         A web page must have a title that describes its topic or purpose.
       </p>
@@ -22578,9 +22411,6 @@ exports[`Guidance Content pages test/parsing/parsingContent/infoAndExamples matc
     <div
       class="content"
     >
-      <h1>
-        Parsing
-      </h1>
       <p>
         Elements must have complete start and end tags, must not contain duplicate attributes, and must be nested according to their specifications.
       </p>
@@ -23081,9 +22911,6 @@ exports[`Guidance Content pages test/pointerMotion/motionOperation/infoAndExampl
     <div
       class="content"
     >
-      <h1>
-        Motion operation
-      </h1>
       <p>
         If any function can be operated through motion, it must also be operable through user interface components.
       </p>
@@ -23226,9 +23053,6 @@ exports[`Guidance Content pages test/pointerMotion/pointerCancellation/infoAndEx
     <div
       class="content"
     >
-      <h1>
-        Pointer cancellation
-      </h1>
       <p>
         Users must be able to cancel functions that can be operated using a single pointer.
       </p>
@@ -23246,13 +23070,13 @@ exports[`Guidance Content pages test/pointerMotion/pointerCancellation/infoAndEx
       </p>
       <ul>
         <li>
-           The down event doesn't trigger any part of the function, or
+          The down event doesn't trigger any part of the function, or
         </li>
         <li>
-           The down event initiates the function, which is completed only on the up event, and users can abort or undo the function, or
+          The down event initiates the function, which is completed only on the up event, and users can abort or undo the function, or
         </li>
         <li>
-           The down event completes the function, and the up event reverses the outcome of the preceding down event.
+          The down event completes the function, and the up event reverses the outcome of the preceding down event.
         </li>
       </ul>
       <h2>
@@ -23374,9 +23198,6 @@ exports[`Guidance Content pages test/pointerMotion/pointerGestures/infoAndExampl
     <div
       class="content"
     >
-      <h1>
-        Pointer gestures
-      </h1>
       <p>
         Functions must be operable without requiring multipoint or path-based gestures.
       </p>
@@ -23519,9 +23340,6 @@ exports[`Guidance Content pages test/repetitiveContent/bypassBlocks/infoAndExamp
     <div
       class="content"
     >
-      <h1>
-        Bypass blocks
-      </h1>
       <p>
         A page must provide a keyboard-accessible method to bypass repetitive content.
       </p>
@@ -23912,9 +23730,6 @@ exports[`Guidance Content pages test/repetitiveContent/consistentIdentification/
     <div
       class="content"
     >
-      <h1>
-        Consistent identification
-      </h1>
       <p>
         Functional components that appear on multiple pages must be identified consistently.
       </p>
@@ -24145,9 +23960,6 @@ exports[`Guidance Content pages test/repetitiveContent/consistentNavigation/info
     <div
       class="content"
     >
-      <h1>
-        Consistent navigation
-      </h1>
       <p>
         Navigational mechanisms that appear on multiple pages must be presented in the same relative order.
       </p>
@@ -24744,9 +24556,6 @@ exports[`Guidance Content pages test/semantics/cssContent/infoAndExamples matche
     <div
       class="content"
     >
-      <h1>
-        CSS content
-      </h1>
       <p>
         Meaningful content must not be implemented using only CSS 
         <span
@@ -24989,420 +24798,6 @@ exports[`Guidance Content pages test/semantics/cssContent/infoAndExamples matche
 </DocumentFragment>
 `;
 
-exports[`Guidance Content pages test/semantics/dataTables/infoAndExamples matches the snapshot 1`] = `
-<DocumentFragment>
-  <div
-    class="content-container"
-  >
-    <div
-      class="content-left"
-    />
-    <div
-      class="content"
-    >
-      <h1>
-        Data tables
-      </h1>
-      <p>
-        Semantic elements in a data table must not be coded as presentational.
-      </p>
-      <h2>
-        Why it matters
-      </h2>
-      <p>
-        The semantic elements in a data table communicate relationships between cells and row or column headers. When 
-        <span
-          class="insights-code"
-        >
-          role="presentation"
-        </span>
-         is applied to a data table element, its semantics are suppressed, and critical relationships are consequently hidden from people who use assistive technologies. Moreover, they can't use the standard navigational shortcuts for data tables.
-      </p>
-      <p>
-        (Applying 
-        <span
-          class="insights-code"
-        >
-          role="presentation"
-        </span>
-         is appropriate for layout tables, because their table semantics do not communicate any meaningful relationships.)
-      </p>
-      <h2>
-        How to fix
-      </h2>
-      <p>
-        Do not use 
-        <span
-          class="insights-code"
-        >
-          role="presentation"
-        </span>
-         on any of the semantic elements in a data table:
-      </p>
-      <ul>
-        <li>
-          <span
-            class="insights-code"
-          >
-            &lt;table&gt;
-          </span>
-        </li>
-        <li>
-          <span
-            class="insights-code"
-          >
-            &lt;tr&gt;
-          </span>
-        </li>
-        <li>
-          <span
-            class="insights-code"
-          >
-             &lt;th&gt;
-          </span>
-        </li>
-        <li>
-          <span
-            class="insights-code"
-          >
-             &lt;td&gt;
-          </span>
-        </li>
-        <li>
-          <span
-            class="insights-code"
-          >
-             &lt;caption&gt;
-          </span>
-        </li>
-        <li>
-          <span
-            class="insights-code"
-          >
-             &lt;col&gt;
-          </span>
-        </li>
-        <li>
-          <span
-            class="insights-code"
-          >
-             &lt;colgroup&gt;
-          </span>
-        </li>
-        <li>
-          <span
-            class="insights-code"
-          >
-             &lt;thead&gt;
-          </span>
-        </li>
-        <li>
-          <span
-            class="insights-code"
-          >
-             &lt;tfoot&gt;
-          </span>
-        </li>
-        <li>
-          <span
-            class="insights-code"
-          >
-             &lt;tbody&gt;
-          </span>
-        </li>
-      </ul>
-      <p />
-      <div
-        class="pass-fail-grid"
-      >
-        <div
-          class="fail-section"
-        >
-          <div
-            class="fail-header"
-          >
-            <span
-              class="check-container"
-            >
-              <svg
-                fill="none"
-                height="16"
-                viewBox="0 0 16 16"
-                width="16"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="8"
-                  cy="8"
-                  fill="#E81123"
-                  r="8"
-                />
-                <path
-                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
-                  fill="white"
-                />
-              </svg>
-            </span>
-             
-            <h3>
-              Fail
-            </h3>
-          </div>
-          <p>
-            This data table is incorrectly coded as presentational. Assistive technologies are unaware of the table's semantic elements.
-          </p>
-        </div>
-        <div
-          class="fail-example"
-        >
-          <div
-            class="code-example"
-          >
-            <div
-              class="code-example-code"
-            >
-              <div
-                class="insights-code"
-              >
-                <span
-                  class="highlight"
-                >
-                  &lt;table role="presentation"&gt;
-                </span>
-                <br />
-                           &lt;tr&gt;
-                <br />
-                           &lt;th&gt;Park name&lt;/th&gt;
-                <br />
-                           &lt;th&gt;Location&lt;/th&gt;
-                <br />
-                           &lt;/tr&gt;
-                <br />
-                           &lt;tr&gt;
-                <br />
-                           &lt;td&gt;Bridle Trails State Park&lt;/td&gt;
-                <br />
-                           &lt;td&gt;Kirkland, WA&lt;/td&gt;
-                <br />
-                           &lt;/tr&gt;
-                <br />
-                           &lt;tr&gt;
-                <br />
-                           &lt;td&gt;Lake Sammamish State Park&lt;/td&gt;
-                <br />
-                           &lt;td&gt;Issaquah, WA&lt;/td&gt;
-                <br />
-                           &lt;/tr&gt;
-                <br />
-                           &lt;tr&gt;
-                <br />
-                           &lt;td&gt;Saltwater State Park&lt;/td&gt;
-                <br />
-                           &lt;td&gt;Des Moines, WA&lt;td&gt;
-                <br />
-                           &lt;/tr&gt;
-                <br />
-                           &lt;/table&gt;
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="pass-section"
-        >
-          <div
-            class="pass-header"
-          >
-            <span
-              class="check-container"
-            >
-              <svg
-                fill="none"
-                height="16"
-                viewBox="0 0 16 16"
-                width="16"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="8"
-                  cy="8"
-                  fill="#228722"
-                  r="8"
-                />
-                <path
-                  clip-rule="evenodd"
-                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
-                  fill="white"
-                  fill-rule="evenodd"
-                />
-              </svg>
-            </span>
-             
-            <h3>
-              Pass
-            </h3>
-          </div>
-          <p>
-            With 
-            <span
-              class="insights-code"
-            >
-              role="presentation"
-            </span>
-             removed, assistive technologies can help users understand the relationships between cells and column headers. 
-          </p>
-        </div>
-        <div
-          class="pass-example"
-        >
-          <div
-            class="code-example"
-          >
-            <div
-              class="code-example-code"
-            >
-              <div
-                class="insights-code"
-              >
-                <span
-                  class="highlight"
-                >
-                  &lt;table&gt;
-                </span>
-                <br />
-                            &lt;tr&gt;
-                <br />
-                            &lt;th&gt;Park name&lt;/th&gt;
-                <br />
-                            &lt;th&gt;Location&lt;/th&gt;
-                <br />
-                            &lt;/tr&gt;
-                <br />
-                            &lt;tr&gt;
-                <br />
-                            &lt;td&gt;Bridle Trails State Park&lt;/td&gt;
-                <br />
-                            &lt;td&gt;Kirkland, WA&lt;/td&gt;
-                <br />
-                            &lt;/tr&gt;
-                <br />
-                            &lt;tr&gt;
-                <br />
-                            &lt;td&gt;Lake Sammamish State Park&lt;/td&gt;
-                <br />
-                            &lt;td&gt;Issaquah, WA&lt;/td&gt;
-                <br />
-                            &lt;/tr&gt;
-                <br />
-                            &lt;tr&gt;
-                <br />
-                            &lt;td&gt;Saltwater State Park&lt;/td&gt;
-                <br />
-                            &lt;td&gt;Des Moines, WA&lt;td&gt;
-                <br />
-                            &lt;/tr&gt;
-                <br />
-                            &lt;/table&gt;
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <h2>
-        More examples
-      </h2>
-      <h3>
-        WCAG success criteria
-      </h3>
-      <div
-        class="content-hyperlinks"
-      >
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
-          target="_blank"
-        >
-          Understanding Success Criterion 1.3.1: Info and Relationships
-        </a>
-      </div>
-      <h3>
-        Sufficient techniques
-      </h3>
-      <div
-        class="content-hyperlinks"
-      >
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H51"
-          target="_blank"
-        >
-          Using table markup to present tabular information
-        </a>
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H39"
-          target="_blank"
-        >
-          Using caption elements to associate data table captions with data tables
-        </a>
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H73"
-          target="_blank"
-        >
-          Using the summary attribute of the table element to give an overview of data tables
-        </a>
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H63"
-          target="_blank"
-        >
-          Using the scope attribute to associate header cells and data cells in data tables
-        </a>
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H43"
-          target="_blank"
-        >
-          Using id and headers attributes to associate data cells with header cells in data tables
-        </a>
-      </div>
-      <h3>
-        Common failures
-      </h3>
-      <div
-        class="content-hyperlinks"
-      >
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F92"
-          target="_blank"
-        >
-          Failure of Success Criterion 1.3.1 due to the use of role presentation on content which conveys semantic information
-        </a>
-      </div>
-      <h3>
-        Additional guidance
-      </h3>
-      <div
-        class="content-hyperlinks"
-      >
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/TR/wai-aria-practices-1.1/"
-          target="_blank"
-        >
-          Intentionally Hiding Semantics with the Presentation Role
-        </a>
-      </div>
-    </div>
-    <div
-      class="content-right"
-    />
-  </div>
-</DocumentFragment>
-`;
-
 exports[`Guidance Content pages test/semantics/emphasis/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
   <div
@@ -25414,9 +24809,6 @@ exports[`Guidance Content pages test/semantics/emphasis/infoAndExamples matches 
     <div
       class="content"
     >
-      <h1>
-        Emphasis
-      </h1>
       <p>
         Words and phrases that are visually emphasized must be contained within semantically correct elements.
       </p>
@@ -26082,7 +25474,7 @@ exports[`Guidance Content pages test/semantics/guidance matches the snapshot 1`]
       >
         <a
           class="ms-Link insights-link root-000"
-          href="https://www.w3.org/TR/wai-aria-practices-1.1/"
+          href="https://www.w3.org/TR/wai-aria-practices-1.1/#presentation_role"
           target="_blank"
         >
           Intentionally Hiding Semantics with the Presentation Role
@@ -26296,6 +25688,821 @@ exports[`Guidance Content pages test/semantics/guidance matches the snapshot 1`]
 </DocumentFragment>
 `;
 
+exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <p>
+        Coded headers must be used correctly.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        When assistive technologies encounter a 
+        <em>
+          data
+        </em>
+         table, they report the data cells and their coded headers in a way that shows they are related. When a 
+        <em>
+          data
+        </em>
+         table has no coded headers, assistive technologies can't report these relationships. When a 
+        <em>
+          layout
+        </em>
+         table has coded headers, assistive technologies report relationships between cells that don't actually exist. Some users are likely to find the table's content confusing.
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Add programmatically identified headers to every data table:
+      </p>
+      <ol>
+        <li>
+          If the table has only one row or one column of headers, use 
+          <span
+            class="insights-code"
+          >
+            &lt;th&gt;
+          </span>
+           elements for header cells and 
+          <span
+            class="insights-code"
+          >
+            &lt;td&gt;
+          </span>
+           elements for data cells.
+        </li>
+        <li>
+          If the table has both row and column headers, add 
+          <span
+            class="insights-code"
+          >
+            scope="row"
+          </span>
+           or 
+          <span
+            class="insights-code"
+          >
+            scope="column"
+          </span>
+           to each header cell.
+        </li>
+        <li>
+          If the table has headers that span multiple rows or columns, add 
+          <span
+            class="insights-code"
+          >
+            colgroup
+          </span>
+           or 
+          <span
+            class="insights-code"
+          >
+            rowgroup
+          </span>
+           and 
+          <span
+            class="insights-code"
+          >
+            span
+          </span>
+           attributes to each header cell.
+        </li>
+        <li>
+          If the table has multi-level headers (not recommended):
+          <ol>
+            <li>
+              Provide an 
+              <span
+                class="insights-code"
+              >
+                id
+              </span>
+               for each header cell.
+            </li>
+            <li>
+              For each data cell, provide a 
+              <span
+                class="insights-code"
+              >
+                headers
+              </span>
+               attribute that references the correct header cell(s). 
+            </li>
+          </ol>
+        </li>
+      </ol>
+      <p />
+      <h2>
+        Example
+      </h2>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="white"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            Because this data table has no programmatically-identified headers, assistive technologies will report the headers as data cells. Some users will find the table difficult to understand.
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;table&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;td&gt;
+                </span>
+                Park name
+                <span
+                  class="highlight"
+                >
+                  &lt;/th&gt;
+                </span>
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;td&gt;
+                </span>
+                Location
+                <span
+                  class="highlight"
+                >
+                  &lt;/th&gt;
+                </span>
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;td&gt;Bridle Trails State Park&lt;/td&gt;
+                <br />
+                            &lt;td&gt;Kirkland, WA&lt;/td&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;td&gt;Lake Sammamish State Park&lt;/td&gt;
+                <br />
+                            &lt;td&gt;Issaquah, WA&lt;/td&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;td&gt;Saltwater State Park&lt;/td&gt;
+                <br />
+                            &lt;td&gt;Des Moines, WA&lt;/td&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;/table&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="white"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            Using 
+            <span
+              class="insights-code"
+            >
+              &lt;th&gt;
+            </span>
+             elements for headers identifies them correctly to assistive technologies. All users can distinguish between column headers and data cells.
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;table&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;th&gt;
+                </span>
+                Park name
+                <span
+                  class="highlight"
+                >
+                  &lt;/th&gt;
+                </span>
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;th&gt;
+                </span>
+                Location
+                <span
+                  class="highlight"
+                >
+                  &lt;/th&gt;
+                </span>
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;td&gt;Bridle Trails State Park&lt;/td&gt;
+                <br />
+                            &lt;td&gt;Kirkland, WA&lt;/td&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;td&gt;Lake Sammamish State Park&lt;/td&gt;
+                <br />
+                            &lt;td&gt;Issaquah, WA&lt;/td&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;td&gt;Saltwater State Park&lt;/td&gt;
+                <br />
+                            &lt;td&gt;Des Moines, WA&lt;/td&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;/table&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H51"
+          target="_blank"
+        >
+          Using table markup to present tabular information
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H63"
+          target="_blank"
+        >
+          Using the scope attribute to associate header cells and data cells in data tables
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H43"
+          target="_blank"
+        >
+          Using id and headers attributes to associate data cells with header cells in data tables
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F91"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.1 for not correctly marking up table headers 
+        </a>
+      </div>
+      <h3>
+        Additional guidance
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/tutorials/tables/"
+          target="_blank"
+        >
+          Tables Concepts – Tables – WAI Web Accessibility Tutorials
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Guidance Content pages test/semantics/headersAttribute/infoAndExamples matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <p>
+        The 
+        <span
+          class="insights-code"
+        >
+          headers
+        </span>
+         attribute of a 
+        <span
+          class="insights-code"
+        >
+          &lt;td&gt;
+        </span>
+         element must reference the correct 
+        <span
+          class="insights-code"
+        >
+          &lt;th&gt;
+        </span>
+         element(s).
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        When assistive technologies describe data tables, they mention both the data cells and their programmatically-related header cells. When incorrect header cells are reported, users are likely to find the table confusing.
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <ul>
+        <li>
+          Good: Modify the 
+          <span
+            class="insights-code"
+          >
+            headers
+          </span>
+           attribute of the 
+          <span
+            class="insights-code"
+          >
+            &lt;td&gt;
+          </span>
+           element(s) to match the 
+          <span
+            class="insights-code"
+          >
+            id
+          </span>
+           attribute of the correct 
+          <span
+            class="insights-code"
+          >
+            &lt;th&gt;
+          </span>
+           element(s), or
+        </li>
+        <li>
+          Better: Eliminate multi-level headings and define headers using 
+          <span
+            class="insights-code"
+          >
+            scope
+          </span>
+           attributes.
+        </li>
+      </ul>
+      <p />
+      <h2>
+        Example
+      </h2>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="white"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            This complex data table has two levels of headers. Three of the data cells' 
+            <span
+              class="insights-code"
+            >
+              headers
+            </span>
+             attributes should refer to both levels, but incorrectly refer to only the top-level header. Assistive technologies will announce only "Faculty" as the header for those data cells. Some users will find it difficult to understand the table.
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;table border="1"&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;th rowspan="2" id="s"&gt;Students&lt;/th&gt;
+                <br />
+                            &lt;th colspan="3" id="f"&gt;Faculty&lt;/th&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;th id="f000" headers="f"&gt;Teachers&lt;/th&gt;
+                <br />
+                            &lt;th id="f000" headers="f"&gt;Assistants&lt;/th&gt;
+                <br />
+                            &lt;th id="f000" headers="f"&gt;Observers&lt;/th&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;td headers="s"&gt;275&lt;/td&gt;
+                <br />
+                            &lt;td 
+                <span
+                  class="highlight"
+                >
+                  headers="f"
+                </span>
+                &gt;10&lt;/td&gt;
+                <br />
+                            &lt;td 
+                <span
+                  class="highlight"
+                >
+                  headers="f"
+                </span>
+                &gt;16&lt;/td&gt;
+                <br />
+                            &lt;td 
+                <span
+                  class="highlight"
+                >
+                  headers="f"
+                </span>
+                &gt;5&lt;/td&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;/table&gt; 
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="white"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            All data cells refer to the correct headers. Assistive technologies will announce both header levels where appropriate: "Faculty Teachers," "Faculty Assistants," and "Faculty Observers". Everyone can interpret the table correctly.
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;table border="1"&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;th rowspan="2" id="s"&gt;Students&lt;/th&gt;
+                <br />
+                            &lt;th colspan="3" id="f"&gt;Faculty&lt;/th&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;th id="f000" headers="f"&gt;Teachers&lt;/th&gt;
+                <br />
+                            &lt;th id="f000" headers="f"&gt;Assistants&lt;/th&gt;
+                <br />
+                            &lt;th id="f000" headers="f"&gt;Observers&lt;/th&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;td headers="s"&gt;275&lt;/td&gt;
+                <br />
+                            &lt;td 
+                <span
+                  class="highlight"
+                >
+                  headers="f f1"
+                </span>
+                &gt;10&lt;/td&gt;
+                <br />
+                            &lt;td 
+                <span
+                  class="highlight"
+                >
+                  headers="f f2"
+                </span>
+                &gt;16&lt;/td&gt;
+                <br />
+                            &lt;td 
+                <span
+                  class="highlight"
+                >
+                  headers="f f3"
+                </span>
+                &gt;5&lt;/td&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;/table&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H51"
+          target="_blank"
+        >
+          Using table markup to present tabular information
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H63"
+          target="_blank"
+        >
+          Using the scope attribute to associate header cells and data cells in data tables
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H43"
+          target="_blank"
+        >
+          Using id and headers attributes to associate data cells with header cells in data tables
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F90"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.1 for incorrectly associating table headers and content via the headers and id attributes
+        </a>
+      </div>
+      <h3>
+        Additional guidance
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/tutorials/tables/"
+          target="_blank"
+        >
+          Tables Concepts – Tables – WAI Web Accessibility Tutorials
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
 exports[`Guidance Content pages test/semantics/letterSpacing/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
   <div
@@ -26307,9 +26514,6 @@ exports[`Guidance Content pages test/semantics/letterSpacing/infoAndExamples mat
     <div
       class="content"
     >
-      <h1>
-        Letter spacing
-      </h1>
       <p>
         Spacing characters must not be used to increase the space between letters in a word.
       </p>
@@ -26552,9 +26756,6 @@ exports[`Guidance Content pages test/semantics/lists/infoAndExamples matches the
     <div
       class="content"
     >
-      <h1>
-        Lists
-      </h1>
       <p>
         Lists must be coded with semantically correct elements.
       </p>
@@ -26940,9 +27141,6 @@ exports[`Guidance Content pages test/semantics/quotes/infoAndExamples matches th
       <h1>
         Quotes
       </h1>
-      <h1>
-        Quotes
-      </h1>
       <p>
         The 
         <span
@@ -27195,6 +27393,472 @@ exports[`Guidance Content pages test/semantics/quotes/infoAndExamples matches th
 </DocumentFragment>
 `;
 
+exports[`Guidance Content pages test/semantics/tableSemantics/infoAndExamples matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <p>
+        A 
+        <span
+          class="insights-code"
+        >
+          &lt;table&gt;
+        </span>
+         element must be coded correctly as a 
+        <em>
+          data
+        </em>
+         table or a 
+        <em>
+          layout
+        </em>
+         table.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        The semantic elements in a data table communicate relationships between cells and row or column headers. Applying 
+        <span
+          class="insights-code"
+        >
+          role="presentation"
+        </span>
+         or 
+        <span
+          class="insights-code"
+        >
+          role="none"
+        </span>
+         suppresses those semantics.
+      </p>
+      <p>
+        When the semantics in a data table are suppressed, critical relationships are hidden from people who use assistive technologies. Moreover, they can't use the standard navigational shortcuts for data tables.
+      </p>
+      <p>
+        When the semantics in a layout table are not suppressed, assistive technologies communicate relationships that don't actually exist.
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p />
+      <ul>
+        <li>
+          Do use 
+          <span
+            class="insights-code"
+          >
+            role="presentation"
+          </span>
+           on layout tables.
+        </li>
+        <li>
+          Do not use 
+          <span
+            class="insights-code"
+          >
+            role="presentation"
+          </span>
+           or 
+          <span
+            class="insights-code"
+          >
+            role="none"
+          </span>
+           on any of these semantic elements in a data table:
+          <ul>
+            <li>
+              <span
+                class="insights-code"
+              >
+                &lt;table&gt;
+              </span>
+            </li>
+            <li>
+              <span
+                class="insights-code"
+              >
+                &lt;tr&gt;
+              </span>
+            </li>
+            <li>
+              <span
+                class="insights-code"
+              >
+                 &lt;th&gt;
+              </span>
+            </li>
+            <li>
+              <span
+                class="insights-code"
+              >
+                 &lt;td&gt;
+              </span>
+            </li>
+            <li>
+              <span
+                class="insights-code"
+              >
+                 &lt;caption&gt;
+              </span>
+            </li>
+            <li>
+              <span
+                class="insights-code"
+              >
+                 &lt;col&gt;
+              </span>
+            </li>
+            <li>
+              <span
+                class="insights-code"
+              >
+                 &lt;colgroup&gt;
+              </span>
+            </li>
+            <li>
+              <span
+                class="insights-code"
+              >
+                 &lt;thead&gt;
+              </span>
+            </li>
+            <li>
+              <span
+                class="insights-code"
+              >
+                 &lt;tfoot&gt;
+              </span>
+            </li>
+            <li>
+              <span
+                class="insights-code"
+              >
+                 &lt;tbody&gt;
+              </span>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      Note: An element contained 
+      <em>
+        within
+      </em>
+       a 
+      <span
+        class="insights-code"
+      >
+        &lt;th&gt;
+      </span>
+       or 
+      <span
+        class="insights-code"
+      >
+        &lt;td&gt;
+      </span>
+       element may be coded as decorative when appropriate.
+      <p />
+      <h2>
+        Example
+      </h2>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="white"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            This data table is incorrectly coded as presentational. Assistive technologies are unaware of the table's semantic elements. Some users will have difficulty navigating and understanding its contents.
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                <span
+                  class="highlight"
+                >
+                  &lt;table role="presentation"&gt;
+                </span>
+                <br />
+                           &lt;tr&gt;
+                <br />
+                           &lt;th&gt;Park name&lt;/th&gt;
+                <br />
+                           &lt;th&gt;Location&lt;/th&gt;
+                <br />
+                           &lt;/tr&gt;
+                <br />
+                           &lt;tr&gt;
+                <br />
+                           &lt;td&gt;Bridle Trails State Park&lt;/td&gt;
+                <br />
+                           &lt;td&gt;Kirkland, WA&lt;/td&gt;
+                <br />
+                           &lt;/tr&gt;
+                <br />
+                           &lt;tr&gt;
+                <br />
+                           &lt;td&gt;Lake Sammamish State Park&lt;/td&gt;
+                <br />
+                           &lt;td&gt;Issaquah, WA&lt;/td&gt;
+                <br />
+                           &lt;/tr&gt;
+                <br />
+                           &lt;tr&gt;
+                <br />
+                           &lt;td&gt;Saltwater State Park&lt;/td&gt;
+                <br />
+                           &lt;td&gt;Des Moines, WA&lt;/td&gt;
+                <br />
+                           &lt;/tr&gt;
+                <br />
+                           &lt;/table&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="white"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            With 
+            <span
+              class="insights-code"
+            >
+              role="presentation"
+            </span>
+             removed, assistive technologies can help users understand the relationships between cells and column headers. 
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                <span
+                  class="highlight"
+                >
+                  &lt;table&gt;
+                </span>
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;th&gt;Park name&lt;/th&gt;
+                <br />
+                            &lt;th&gt;Location&lt;/th&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;td&gt;Bridle Trails State Park&lt;/td&gt;
+                <br />
+                            &lt;td&gt;Kirkland, WA&lt;/td&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;td&gt;Lake Sammamish State Park&lt;/td&gt;
+                <br />
+                            &lt;td&gt;Issaquah, WA&lt;/td&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;td&gt;Saltwater State Park&lt;/td&gt;
+                <br />
+                            &lt;td&gt;Des Moines, WA&lt;/td&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;/table&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H51"
+          target="_blank"
+        >
+          Using table markup to present tabular information
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H39"
+          target="_blank"
+        >
+          Using caption elements to associate data table captions with data tables
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H73"
+          target="_blank"
+        >
+          Using the summary attribute of the table element to give an overview of data tables
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H63"
+          target="_blank"
+        >
+          Using the scope attribute to associate header cells and data cells in data tables
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H43"
+          target="_blank"
+        >
+          Using id and headers attributes to associate data cells with header cells in data tables
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F92"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.1 due to the use of role presentation on content which conveys semantic information
+        </a>
+      </div>
+      <h3>
+        Additional guidance
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/TR/wai-aria-practices-1.1/#presentation_role"
+          target="_blank"
+        >
+          Intentionally Hiding Semantics with the Presentation Role
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
 exports[`Guidance Content pages test/sensory/auditoryCues/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
   <div
@@ -27206,9 +27870,6 @@ exports[`Guidance Content pages test/sensory/auditoryCues/infoAndExamples matche
     <div
       class="content"
     >
-      <h1>
-        Auditory cues
-      </h1>
       <p>
         Auditory cues must be accompanied by visual cues.
       </p>
@@ -27343,9 +28004,6 @@ exports[`Guidance Content pages test/sensory/flashing/infoAndExamples matches th
     <div
       class="content"
     >
-      <h1>
-        Flashing
-      </h1>
       <p>
         Web pages must not have content that flashes more than three times per second.
       </p>
@@ -27696,10 +28354,10 @@ exports[`Guidance Content pages test/sensory/guidance matches the snapshot 1`] =
               Don't use audio as the only means of conveying information. (
               <a
                 class="ms-Link insights-link root-000"
-                href="https://www.w3.org/WAI/WCAG21/Understanding/sensory-characteristics.html"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html"
                 target="_blank"
               >
-                WCAG 1.3.3
+                WCAG 1.1.1
               </a>
               )
             </h3>
@@ -27933,9 +28591,6 @@ exports[`Guidance Content pages test/sensory/instructions/infoAndExamples matche
     <div
       class="content"
     >
-      <h1>
-        Instructions
-      </h1>
       <p>
         Instructions must not rely 
         <em>
@@ -28206,9 +28861,6 @@ exports[`Guidance Content pages test/sensory/useOfColor/infoAndExamples matches 
     <div
       class="content"
     >
-      <h1>
-        Color as meaning
-      </h1>
       <p>
         Color must not be used as the only visual means for conveying meaning.
       </p>
@@ -28524,17 +29176,17 @@ exports[`Guidance Content pages test/sequence/columns/infoAndExamples matches th
     <div
       class="content"
     >
-      <h1>
-        Columns
-      </h1>
       <p>
-        White space characters must not be used to create the appearance of columns.
+        Content presented in multi-column format must support a correct reading sequence.
       </p>
       <h2>
         Why it matters
       </h2>
       <p>
-        When white space characters are used to arrange text visually to create the appearance of columns, sighted users perceive a structure that isn't represented in the code. Because assistive technologies present content in DOM order (the order that content appears in the HTML), people who use assistive technologies are likely to read the text in an order that doesn't make sense. (Also, a screen reader might announce each space character individually.)
+        When white space characters or CSS spacers are used to arrange text visually to create the appearance of columns, sighted users can follow the visual cues to read the content in the correct order: from the top of the first column to its bottom, then to the top of the next column.
+      </p>
+      <p>
+        Unless the structure implied by the visual appearance is also built into the code, people who use assistive technologies are likely to read the same content in an order that doesn't make sense: from the first line of the first column, to the first line of the next column, then back to the second line of the first column, and so on. (Also, a screen reader might announce each white space character individually.)
       </p>
       <h2>
         How to fix
@@ -28550,7 +29202,7 @@ exports[`Guidance Content pages test/sequence/columns/infoAndExamples matches th
            Better: Use a layout table to display the content in columns.
         </li>
         <li>
-           Best: Use CSS to display the content in columns.
+           Best: Use CSS multi-column layout properties to display the content in columns.
         </li>
       </ul>
       <p />
@@ -28597,7 +29249,7 @@ exports[`Guidance Content pages test/sequence/columns/infoAndExamples matches th
             >
               &lt;pre&gt;
             </span>
-             element are used to create the appearance of two columns. When read in DOM order, the content doesn't make sense: "We the People general of the United Welfare, and States, in secure the Order…" 
+             element are used to create the appearance of two columns. When read in DOM order, the content doesn't make sense: "We the People promote the general of the United Welfare, and States, in secure the Order…"
           </p>
         </div>
         <div
@@ -28685,7 +29337,13 @@ exports[`Guidance Content pages test/sequence/columns/infoAndExamples matches th
             </h3>
           </div>
           <p>
-            CSS is used to display the content in columns in a way that the DOM order matches the expected reading order.
+            The CSS 
+            <span
+              class="insights-code"
+            >
+              column-count
+            </span>
+             property is used to display the content in columns in a way that the DOM order matches the expected reading order.
           </p>
         </div>
         <div
@@ -28702,57 +29360,38 @@ exports[`Guidance Content pages test/sequence/columns/infoAndExamples matches th
               >
                 &lt;style&gt;
                 <br />
-                            * {box-sizing: border-box;}
-                <br />
-                            .column {float:left; width:50%;
-                <br />
-                            padding:10px;}
+                            .columns {column-count: 2;}
                 <br />
                             &lt;/style&gt;
                 <br />
                             ...
                 <br />
-                            &lt;div class="column"&gt;
-                <span
-                  class="highlight"
-                >
-                  We the People
-                  <br />
-                              of the United States,
-                  <br />
-                              in Order to form a
-                  <br />
-                              more perfect Union,
-                  <br />
-                              establish Justice,
-                  <br />
-                              insure domestic Tranquility,
-                  <br />
-                              provide for the common defense,
-                  <br />
-                              
-                </span>
-                &lt;/div&gt;
+                            &lt;div class="columns"&gt;
                 <br />
-                            &lt;div class="column"&gt;
+                            
                 <span
                   class="highlight"
                 >
-                  promote the
+                  We the People of the United States,
                   <br />
-                              general Welfare,
+                              in Order to form a more perfect Union,
                   <br />
-                              and secure
+                              establish Justice, insure domestic
                   <br />
-                              the blessings of Liberty
+                              Tranquility, provide for the common
                   <br />
-                              to ourselves and our Posterity,
+                              defense, promote the general Welfare,
                   <br />
-                              do ordain and establish this Constitution
+                              and secure the blessings of Liberty to
                   <br />
-                              for the United States of America.
+                              ourselves and our Posterity, do ordain
+                  <br />
+                              and establish this Constitution for
+                  <br />
+                              the United States of America.
                 </span>
-                &lt;/div&gt;
+                <br />
+                            &lt;/div&gt;
                 <br />
                             &lt;/body&gt;
                 <br />
@@ -28816,6 +29455,27 @@ exports[`Guidance Content pages test/sequence/columns/infoAndExamples matches th
           Failure of Success Criterion 1.3.1 and 1.3.2 due to using white space characters to create multiple columns in plain text content
         </a>
       </div>
+      <h3>
+        Additional guidance
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Multiple-column_Layout"
+          target="_blank"
+        >
+          Multiple-column layout
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/TR/css-multicol-1/"
+          target="_blank"
+        >
+          CSS Multi-column Layout Module Level 1
+        </a>
+      </div>
     </div>
     <div
       class="content-right"
@@ -28835,9 +29495,6 @@ exports[`Guidance Content pages test/sequence/cssPositioning/infoAndExamples mat
     <div
       class="content"
     >
-      <h1>
-        CSS positioning
-      </h1>
       <p>
         Meaningful content positioned on the page using CSS must retain its meaning when CSS is disabled.
       </p>
@@ -29416,9 +30073,6 @@ exports[`Guidance Content pages test/sequence/layoutTables/infoAndExamples match
     <div
       class="content"
     >
-      <h1>
-        Layout tables
-      </h1>
       <p>
         The content in an HTML layout table must make sense when presented in DOM order.
       </p>
@@ -29669,9 +30323,6 @@ exports[`Guidance Content pages test/textLegibility/contrast/infoAndExamples mat
     <div
       class="content"
     >
-      <h1>
-        Contrast
-      </h1>
       <p>
         Text elements must have sufficient contrast.
       </p>
@@ -30689,9 +31340,6 @@ exports[`Guidance Content pages test/textLegibility/hoverFocusContent/infoAndExa
     <div
       class="content"
     >
-      <h1>
-        Hover / focus content
-      </h1>
       <p>
         Content that appears on focus or hover must be dismissible, hoverable, and persistent.
       </p>
@@ -30883,9 +31531,6 @@ exports[`Guidance Content pages test/textLegibility/orientation/infoAndExamples 
     <div
       class="content"
     >
-      <h1>
-        Orientation
-      </h1>
       <p>
         Web content must not be locked to a particular screen orientation.
       </p>
@@ -31048,11 +31693,8 @@ exports[`Guidance Content pages test/textLegibility/reflow/infoAndExamples match
     <div
       class="content"
     >
-      <h1>
-        Reflow
-      </h1>
       <p>
-        Text content must be visible without having to scroll both vertically and horizontally.
+        Content must be visible without having to scroll both vertically and horizontally.
       </p>
       <h2>
         Why it matters
@@ -31268,9 +31910,6 @@ exports[`Guidance Content pages test/textLegibility/resizeText/infoAndExamples m
     <div
       class="content"
     >
-      <h1>
-        Resize text
-      </h1>
       <p>
         Users must be able to resize text, without using assistive technology, up to 200% with no loss of content or functionality.
       </p>
@@ -31660,9 +32299,6 @@ exports[`Guidance Content pages test/textLegibility/textSpacing/infoAndExamples 
     <div
       class="content"
     >
-      <h1>
-        Text spacing
-      </h1>
       <p>
         Users must be able to adjust text spacing with no loss of content or functionality.
       </p>
@@ -31969,9 +32605,6 @@ exports[`Guidance Content pages test/timedEvents/audioControl/infoAndExamples ma
     <div
       class="content"
     >
-      <h1>
-        Audio control
-      </h1>
       <p>
         If audio content plays automatically for longer than 3 seconds, users must be able to pause or mute it.
       </p>
@@ -32187,9 +32820,6 @@ exports[`Guidance Content pages test/timedEvents/autoUpdatingContent/infoAndExam
     <div
       class="content"
     >
-      <h1>
-        Auto-updating content
-      </h1>
       <p>
         If content updates automatically, users must be able to pause, stop, hide, or control the frequency of updates.
       </p>
@@ -32816,9 +33446,6 @@ exports[`Guidance Content pages test/timedEvents/movingContent/infoAndExamples m
     <div
       class="content"
     >
-      <h1>
-        Moving content
-      </h1>
       <p>
         If content moves, blinks, or scrolls automatically for more than five seconds, users must be able to pause, stop, or hide it.
       </p>
@@ -33077,9 +33704,6 @@ exports[`Guidance Content pages test/timedEvents/timeLimits/infoAndExamples matc
     <div
       class="content"
     >
-      <h1>
-        Time limits
-      </h1>
       <p>
         If a time limit is set by the content, the user must be able to turn off, adjust, or extend the time limit.
       </p>

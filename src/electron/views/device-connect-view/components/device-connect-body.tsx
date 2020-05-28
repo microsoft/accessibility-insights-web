@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
-import { BrowserWindow } from 'electron';
+import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import * as React from 'react';
 
 import { DeviceConnectState } from '../../../flux/types/device-connect-state';
 import * as styles from './device-connect-body.scss';
 import { DeviceConnectConnectedDevice } from './device-connect-connected-device';
 import { DeviceConnectFooter, DeviceConnectFooterDeps } from './device-connect-footer';
-import { DeviceConnectHeader } from './device-connect-header';
+import { DeviceConnectHeader, DeviceConnectHeaderDeps } from './device-connect-header';
 import {
     DeviceConnectPortEntry,
     DeviceConnectPortEntryDeps,
@@ -22,9 +22,10 @@ export type DeviceConnectBodyState = DeviceConnectPortEntryViewState & {
 };
 
 export type DeviceConnectBodyDeps = {
-    currentWindow: BrowserWindow;
+    ipcRendererShim: IpcRendererShim;
 } & DeviceConnectPortEntryDeps &
-    DeviceConnectFooterDeps;
+    DeviceConnectFooterDeps &
+    DeviceConnectHeaderDeps;
 
 export interface DeviceConnectBodyProps {
     deps: DeviceConnectBodyDeps;
@@ -36,7 +37,7 @@ export const DeviceConnectBody = NamedFC<DeviceConnectBodyProps>('DeviceConnectB
 
     return (
         <div className={styles.deviceConnectBody}>
-            <DeviceConnectHeader />
+            <DeviceConnectHeader deps={props.deps} />
             <DeviceConnectPortEntry
                 deps={props.deps}
                 viewState={{ deviceConnectState: props.viewState.deviceConnectState }}
@@ -47,7 +48,7 @@ export const DeviceConnectBody = NamedFC<DeviceConnectBodyProps>('DeviceConnectB
             />
             <DeviceConnectFooter
                 deps={props.deps}
-                cancelClick={props.deps.currentWindow.close}
+                cancelClick={props.deps.ipcRendererShim.closeWindow}
                 canStartTesting={canStartTesting}
             ></DeviceConnectFooter>
         </div>

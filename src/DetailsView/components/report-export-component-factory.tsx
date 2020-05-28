@@ -14,26 +14,26 @@ export function getReportExportComponentForAssessment(props: CommandBarProps): J
         assessmentStoreData,
         assessmentsProvider,
         featureFlagStoreData,
-        tabStoreData,
+        scanMetadata,
     } = props;
     const reportGenerator = deps.reportGenerator;
     const reportExportComponentProps: ReportExportComponentProps = {
         deps: deps,
-        exportResultsType: 'Assessment',
-        reportGenerator: reportGenerator,
-        pageTitle: tabStoreData.title,
+        reportExportFormat: 'Assessment',
+        pageTitle: scanMetadata.targetAppInfo.name,
         scanDate: deps.getCurrentDate(),
         htmlGenerator: description =>
             reportGenerator.generateAssessmentReport(
                 assessmentStoreData,
                 assessmentsProvider,
                 featureFlagStoreData,
-                tabStoreData,
+                scanMetadata.targetAppInfo,
                 description,
             ),
         updatePersistedDescription: value =>
             props.deps.detailsViewActionMessageCreator.addResultDescription(value),
         getExportDescription: () => props.assessmentStoreData.resultDescription,
+        featureFlagStoreData: props.featureFlagStoreData,
     };
 
     return <ReportExportComponent {...reportExportComponentProps} />;
@@ -52,26 +52,25 @@ export function getReportExportComponentForFastPass(props: CommandBarProps): JSX
         return null;
     }
 
-    const { deps, tabStoreData } = props;
-    const scanDate = deps.getDateFromTimestamp(scanResult.timestamp);
+    const { deps } = props;
+    const scanDate = deps.getDateFromTimestamp(props.scanMetadata.timestamp);
     const reportGenerator = deps.reportGenerator;
 
     const reportExportComponentProps: ReportExportComponentProps = {
         deps: deps,
         scanDate: scanDate,
-        reportGenerator: reportGenerator,
-        pageTitle: tabStoreData.title,
-        exportResultsType: 'AutomatedChecks',
+        pageTitle: props.scanMetadata.targetAppInfo.name,
+        reportExportFormat: 'AutomatedChecks',
         htmlGenerator: description =>
             reportGenerator.generateFastPassAutomatedChecksReport(
                 scanDate,
-                tabStoreData.title,
-                tabStoreData.url,
                 props.cardsViewData,
                 description,
+                props.scanMetadata,
             ),
         updatePersistedDescription: () => null,
         getExportDescription: () => '',
+        featureFlagStoreData: props.featureFlagStoreData,
     };
 
     return <ReportExportComponent {...reportExportComponentProps} />;

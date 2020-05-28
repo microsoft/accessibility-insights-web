@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Closing content</h1>
         <p>Closing revealed content must move input focus to the component that revealed it.</p>
 
         <h2>Why it matters</h2>

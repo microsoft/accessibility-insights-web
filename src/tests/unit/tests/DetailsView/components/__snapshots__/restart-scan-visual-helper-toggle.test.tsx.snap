@@ -9,13 +9,18 @@ exports[`RestartScanVisualHelperToggleTest onClick: step enabled = false 1`] = `
   >
     Visual helper
   </div>
-  <VisualizationToggle
-    checked={false}
-    className="visual-helper-toggle"
-    disabled={false}
-    onClick={[Function]}
-    visualizationName="Visual helper"
-  />
+  <div
+    aria-hidden={false}
+  >
+    <VisualizationToggle
+      checked={false}
+      className="visual-helper-toggle"
+      data-automation-id="visual-helper-toggle"
+      disabled={false}
+      onClick={[Function]}
+      visualizationName="Visual helper"
+    />
+  </div>
 </div>
 `;
 
@@ -28,13 +33,18 @@ exports[`RestartScanVisualHelperToggleTest onClick: step enabled = true 1`] = `
   >
     Visual helper
   </div>
-  <VisualizationToggle
-    checked={true}
-    className="visual-helper-toggle"
-    disabled={false}
-    onClick={[Function]}
-    visualizationName="Visual helper"
-  />
+  <div
+    aria-hidden={false}
+  >
+    <VisualizationToggle
+      checked={true}
+      className="visual-helper-toggle"
+      data-automation-id="visual-helper-toggle"
+      disabled={false}
+      onClick={[Function]}
+      visualizationName="Visual helper"
+    />
+  </div>
 </div>
 `;
 
@@ -47,12 +57,17 @@ exports[`RestartScanVisualHelperToggleTest render 1`] = `
   >
     Visual helper
   </div>
-  <VisualizationToggle
-    checked={true}
-    className="visual-helper-toggle"
-    disabled={false}
-    onClick={[Function]}
-    visualizationName="Visual helper"
-  />
+  <div
+    aria-hidden={false}
+  >
+    <VisualizationToggle
+      checked={true}
+      className="visual-helper-toggle"
+      data-automation-id="visual-helper-toggle"
+      disabled={false}
+      onClick={[Function]}
+      visualizationName="Visual helper"
+    />
+  </div>
 </div>
 `;

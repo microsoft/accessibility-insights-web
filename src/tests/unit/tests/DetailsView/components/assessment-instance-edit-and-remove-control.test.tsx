@@ -21,7 +21,9 @@ describe('AssessmentInstanceRemoveButton', () => {
     const featureFlagStoreData = {} as FeatureFlagStoreData;
 
     test('constructor', () => {
-        const testObject = new AssessmentInstanceEditAndRemoveControl({} as AssessmentInstanceEditAndRemoveControlProps);
+        const testObject = new AssessmentInstanceEditAndRemoveControl(
+            {} as AssessmentInstanceEditAndRemoveControlProps,
+        );
         expect(testObject).toBeInstanceOf(React.Component);
     });
 
@@ -74,7 +76,9 @@ describe('AssessmentInstanceRemoveButton', () => {
 });
 
 class TestableAssessmentInstanceRemoveButton extends AssessmentInstanceEditAndRemoveControl {
-    public getOnRemoveButtonClicked(): (event?: React.MouseEvent<HTMLElement | HTMLAnchorElement | HTMLButtonElement>) => void {
+    public getOnRemoveButtonClicked(): (
+        event?: React.MouseEvent<HTMLElement | HTMLAnchorElement | HTMLButtonElement>,
+    ) => void {
         return this.onRemoveButtonClicked;
     }
 }

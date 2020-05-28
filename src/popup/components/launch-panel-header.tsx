@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { FlaggedComponent } from 'common/components/flagged-component';
-import { GearMenuButton } from 'common/components/gear-menu-button';
+import { GearMenuButton, GearMenuButtonDeps } from 'common/components/gear-menu-button';
 import {
     HamburgerMenuButton,
     HamburgerMenuButtonDeps,
@@ -17,7 +17,8 @@ import { Header } from './header';
 export type LaunchPanelHeaderDeps = {
     popupActionMessageCreator: PopupActionMessageCreator;
     dropdownClickHandler: DropdownClickHandler;
-} & HamburgerMenuButtonDeps;
+} & HamburgerMenuButtonDeps &
+    GearMenuButtonDeps;
 
 export interface LaunchPanelHeaderProps {
     deps: LaunchPanelHeaderDeps;
@@ -69,10 +70,7 @@ export class LaunchPanelHeader extends React.Component<
                         />
                     }
                 />
-                <GearMenuButton
-                    dropdownClickHandler={dropdownClickHandler}
-                    featureFlags={featureFlags}
-                />
+                <GearMenuButton deps={this.props.deps} featureFlagData={featureFlags} />
                 <HamburgerMenuButton
                     deps={this.props.deps}
                     popupWindow={this.props.popupWindow}

@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Primary content</h1>
         <p>The main landmark must contain all of the page's primary content.</p>
 
         <h2>Why it matters</h2>

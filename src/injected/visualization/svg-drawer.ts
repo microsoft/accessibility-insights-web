@@ -159,7 +159,7 @@ export class SVGDrawer extends BaseDrawer {
 
     private setSVGSize(): void {
         const doc = this.drawerUtils.getDocumentElement();
-        const body = doc.querySelector('body');
+        const body = doc.body;
         const bodyStyle = this.windowUtils.getComputedStyle(body);
         const docStyle = this.windowUtils.getComputedStyle(doc.documentElement);
 
@@ -296,12 +296,7 @@ export class SVGDrawer extends BaseDrawer {
 
         const result = chain(this.tabbedElements)
             .filter((element: TabbedItem) => element.shouldRedraw)
-            .map(tabbed =>
-                chain(tabbed.focusIndicator)
-                    .values()
-                    .compact()
-                    .value(),
-            )
+            .map(tabbed => chain(tabbed.focusIndicator).values().compact().value())
             .flatten()
             .value();
 

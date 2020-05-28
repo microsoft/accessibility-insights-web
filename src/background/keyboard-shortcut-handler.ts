@@ -20,6 +20,7 @@ import { DictionaryStringTo } from '../types/common-types';
 import { VisualizationTogglePayload } from './actions/action-payloads';
 import { UserConfigurationStore } from './stores/global/user-configuration-store';
 import { TabToContextMap } from './tab-context';
+import { UsageLogger } from './usage-logger';
 
 const VisualizationMessages = Messages.Visualizations;
 
@@ -37,6 +38,7 @@ export class KeyboardShortcutHandler {
         private userConfigurationStore: UserConfigurationStore,
         private commandsAdapter: CommandsAdapter,
         private logger: Logger,
+        private usageLogger: UsageLogger,
     ) {}
 
     public initialize(): void {
@@ -51,6 +53,7 @@ export class KeyboardShortcutHandler {
                 return;
             }
 
+            this.usageLogger.record();
             const currentTab = await this.queryCurrentActiveTab();
 
             if (!currentTab) {

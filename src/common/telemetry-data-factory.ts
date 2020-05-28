@@ -11,16 +11,17 @@ import {
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
     ExportResultsTelemetryData,
-    ExportResultType,
     FeatureFlagToggleTelemetryData,
     FileIssueClickTelemetryData,
     InspectTelemetryData,
     IssuesAnalyzerScanTelemetryData,
+    ReportExportFormat,
     RequirementActionTelemetryData,
     RequirementSelectTelemetryData,
     RequirementStatusTelemetryData,
     RuleAnalyzerScanTelemetryData,
     ScopingTelemetryData,
+    SelectGettingStartedTelemetryData,
     SetAllUrlsPermissionTelemetryData,
     SettingsOpenSourceItem,
     SettingsOpenTelemetryData,
@@ -78,14 +79,14 @@ export class TelemetryDataFactory {
     }
 
     public forExportedHtml(
-        exportResultsType: ExportResultType,
+        reportExportFormat: ReportExportFormat,
         html: string,
         event: SupportedMouseEvent,
         source: TelemetryEventSource,
     ): ExportResultsTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, source),
-            exportResultsType,
+            exportResultsType: reportExportFormat,
             exportResultsData: html.length,
         };
     }
@@ -131,6 +132,16 @@ export class TelemetryDataFactory {
             ...this.withTriggeredByAndSource(event, TelemetryEventSource.DetailsView),
             selectedTest: VisualizationType[visualizationType],
             selectedRequirement: requirement,
+        };
+    }
+
+    public forSelectGettingStarted(
+        event: SupportedMouseEvent,
+        visualizationType: VisualizationType,
+    ): SelectGettingStartedTelemetryData {
+        return {
+            ...this.withTriggeredByAndSource(event, TelemetryEventSource.DetailsView),
+            selectedTest: VisualizationType[visualizationType],
         };
     }
 

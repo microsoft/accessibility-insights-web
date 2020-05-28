@@ -3,6 +3,7 @@
 import { HighlightState } from 'common/components/cards/instance-details-footer';
 import { CardSelectionViewData } from 'common/get-card-selection-view-data';
 import { includes } from 'lodash';
+
 import {
     AllRuleResultStatuses,
     CardResult,
@@ -53,11 +54,7 @@ export const getCardViewData: GetCardViewData = (
         const isSelected = isFailedInstance
             ? includes(cardSelectionViewData.selectedResultUids, result.uid)
             : false;
-        const highlightStatus = getHighlightStatus(
-            isFailedInstance,
-            cardSelectionViewData.highlightedResultUids,
-            result.uid,
-        );
+        const highlightStatus = cardSelectionViewData.resultsHighlightStatus[result.uid];
 
         ruleResult.nodes.push(createCardResult(result, isSelected, highlightStatus));
 
@@ -94,22 +91,6 @@ const getEmptyStatusResults = (): CardRuleResultsByStatus => {
     });
 
     return statusResults as CardRuleResultsByStatus;
-};
-
-const getHighlightStatus = (
-    isFailedInstance: boolean,
-    highlightedResultUids: string[],
-    resultUid: string,
-) => {
-    if (!isFailedInstance) {
-        return 'unavailable';
-    }
-
-    if (includes(highlightedResultUids, resultUid)) {
-        return 'visible';
-    }
-
-    return 'hidden';
 };
 
 const createCardRuleResult = (

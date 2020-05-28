@@ -4,9 +4,7 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
-        <h1>Expected input</h1>
         <p>A custom widget must have a label and/or instructions that identify the expected input.</p>
-
         <h2>Why it matters</h2>
         <p>When a widget clearly communicates its expected input, all users are likely to make fewer input mistakes.</p>
         <h3>From a user's perspective</h3>
@@ -17,14 +15,12 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 information."
             </Markup.Emphasis>
         </p>
-
         <h2>How to fix</h2>
         <p>
             Make sure the widget's accessible name and/or accessible description communicates the expected input. For example, a button
             should indicate what action it will initiate. A text field should indicate what type of data is expected and whether a specific
             format is required.
         </p>
-
         <h2>Example</h2>
         <Markup.PassFail
             failText={
@@ -49,9 +45,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             <input type="text" aria-autocomplete="list" aria-controls="ex1-listbox" id="where-input" [aria-describedby="where-desc"]>
             </div>`}
         />
-
         <h2>More examples</h2>
-
         <h3>WCAG success criteria</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html">
@@ -78,7 +72,6 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 Positioning labels to maximize predictability of relationships
             </Markup.HyperLink>
         </Markup.Links>
-
         <h3>Common failures</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F82">

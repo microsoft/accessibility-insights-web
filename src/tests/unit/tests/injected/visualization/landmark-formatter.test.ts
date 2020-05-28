@@ -18,7 +18,16 @@ describe('LandmarkFormatterTests', () => {
         testStyling(config, 'banner');
     });
 
-    const landmarkRoles: string[] = ['banner', 'complementary', 'contentinfo', 'form', 'main', 'navigation', 'region', 'search'];
+    const landmarkRoles: string[] = [
+        'banner',
+        'complementary',
+        'contentinfo',
+        'form',
+        'main',
+        'navigation',
+        'region',
+        'search',
+    ];
 
     test.each(landmarkRoles)('verify styling for landmark role %s', role => {
         const axeData = getAxeData(role);
@@ -26,11 +35,14 @@ describe('LandmarkFormatterTests', () => {
         testStyling(config, role);
     });
 
-    test.each(['application', 'unrecognized-role'])('verify styling for non-landmark-role %s', role => {
-        const axeData = getAxeData(role, true);
-        const config = testSubject.getDrawerConfiguration(null, axeData);
-        testStyling(config, role, true);
-    });
+    test.each(['application', 'unrecognized-role'])(
+        'verify styling for non-landmark-role %s',
+        role => {
+            const axeData = getAxeData(role, true);
+            const config = testSubject.getDrawerConfiguration(null, axeData);
+            testStyling(config, role, true);
+        },
+    );
 
     function getLandmarkStyle(key: string): HeadingStyleConfiguration {
         const landmarkStyle = LandmarkFormatter.getStyleForLandmarkRole(key);

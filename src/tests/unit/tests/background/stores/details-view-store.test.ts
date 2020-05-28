@@ -3,7 +3,7 @@
 import { ContentActions } from 'background/actions/content-actions';
 import { DetailsViewActions } from 'background/actions/details-view-actions';
 import { PreviewFeaturesActions } from 'background/actions/preview-features-actions';
-import { ScopingActions } from 'background/actions/scoping-actions';
+import { SidePanelActions } from 'background/actions/side-panel-actions';
 import { DetailsViewStore } from 'background/stores/details-view-store';
 import { StoreNames } from 'common/stores/store-names';
 import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
@@ -39,10 +39,9 @@ describe('DetailsViewStoreTest', () => {
             .withPreviewFeaturesOpen(true)
             .build();
 
-        createStoreTesterForPreviewFeatureActions('openPreviewFeatures').testListenerToBeCalledOnce(
-            initialState,
-            expectedState,
-        );
+        createStoreTesterForSidePanelActions('openSidePanel')
+            .withActionParam('PreviewFeatures')
+            .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     test('onClosePreviewFeatures', () => {
@@ -64,10 +63,9 @@ describe('DetailsViewStoreTest', () => {
 
         const expectedState = new DetailsViewStoreDataBuilder().withScopingOpen(true).build();
 
-        createStoreTesterForScopingActions('openScopingPanel').testListenerToBeCalledOnce(
-            initialState,
-            expectedState,
-        );
+        createStoreTesterForSidePanelActions('openSidePanel')
+            .withActionParam('Scoping')
+            .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     test('onCloseScoping', () => {
@@ -75,21 +73,9 @@ describe('DetailsViewStoreTest', () => {
 
         const expectedState = new DetailsViewStoreDataBuilder().withScopingOpen(false).build();
 
-        createStoreTesterForScopingActions('closeScopingPanel').testListenerToBeCalledOnce(
-            initialState,
-            expectedState,
-        );
-    });
-
-    test('onOpenSettings', () => {
-        const initialState = new DetailsViewStoreDataBuilder().withSettingPanelState(false).build();
-
-        const expectedState = new DetailsViewStoreDataBuilder().withSettingPanelState(true).build();
-
-        createStoreTesterForDetailsViewActions('openSettingsPanel').testListenerToBeCalledOnce(
-            initialState,
-            expectedState,
-        );
+        createStoreTesterForSidePanelActions('closeSidePanel')
+            .withActionParam('Scoping')
+            .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     test('onCloseSettings', () => {
@@ -99,27 +85,26 @@ describe('DetailsViewStoreTest', () => {
             .withSettingPanelState(false)
             .build();
 
-        createStoreTesterForDetailsViewActions('closeSettingsPanel').testListenerToBeCalledOnce(
-            initialState,
-            expectedState,
-        );
+        createStoreTesterForSidePanelActions('closeSidePanel')
+            .withActionParam('Settings')
+            .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     test('onOpenContent', () => {
         const initialState = new DetailsViewStoreDataBuilder().withContentOpen(false).build();
 
         const expectedState = new DetailsViewStoreDataBuilder()
-            .withContentOpen(true, 'content/path')
+            .withContentOpen(true, 'content/path', 'content title')
             .build();
 
         createStoreTesterForContentActions('openContentPanel')
-            .withActionParam({ contentPath: 'content/path' })
+            .withActionParam({ contentPath: 'content/path', contentTitle: 'content title' })
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     test('onCloseContent', () => {
         const initialState = new DetailsViewStoreDataBuilder()
-            .withContentOpen(true, 'content/path')
+            .withContentOpen(true, 'content/path', 'content title')
             .build();
 
         const expectedState = new DetailsViewStoreDataBuilder().withContentOpen(false).build();
@@ -130,31 +115,27 @@ describe('DetailsViewStoreTest', () => {
         );
     });
 
+    test('onOpenSidePanel', () => {
+        const initialState = new DetailsViewStoreDataBuilder().withSettingPanelState(false).build();
+
+        const expectedState = new DetailsViewStoreDataBuilder().withSettingPanelState(true).build();
+
+        createStoreTesterForSidePanelActions('openSidePanel')
+            .withActionParam('Settings')
+            .testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
     function createStoreTesterForPreviewFeatureActions(
         actionName: keyof PreviewFeaturesActions,
     ): StoreTester<DetailsViewStoreData, PreviewFeaturesActions> {
         const factory = (actions: PreviewFeaturesActions) =>
             new DetailsViewStore(
                 actions,
-                new ScopingActions(),
                 new ContentActions(),
                 new DetailsViewActions(),
+                new SidePanelActions(),
             );
         return new StoreTester(PreviewFeaturesActions, actionName, factory);
-    }
-
-    function createStoreTesterForScopingActions(
-        actionName: keyof ScopingActions,
-    ): StoreTester<DetailsViewStoreData, ScopingActions> {
-        const factory = (actions: ScopingActions) =>
-            new DetailsViewStore(
-                new PreviewFeaturesActions(),
-                actions,
-                new ContentActions(),
-                new DetailsViewActions(),
-            );
-
-        return new StoreTester(ScopingActions, actionName, factory);
     }
 
     function createStoreTesterForContentActions(
@@ -163,9 +144,9 @@ describe('DetailsViewStoreTest', () => {
         const factory = (actions: ContentActions) =>
             new DetailsViewStore(
                 new PreviewFeaturesActions(),
-                new ScopingActions(),
                 actions,
                 new DetailsViewActions(),
+                new SidePanelActions(),
             );
 
         return new StoreTester(ContentActions, actionName, factory);
@@ -177,11 +158,25 @@ describe('DetailsViewStoreTest', () => {
         const factory = (actions: DetailsViewActions) =>
             new DetailsViewStore(
                 new PreviewFeaturesActions(),
-                new ScopingActions(),
                 new ContentActions(),
                 actions,
+                new SidePanelActions(),
             );
 
         return new StoreTester(DetailsViewActions, actionName, factory);
+    }
+
+    function createStoreTesterForSidePanelActions(
+        actionName: keyof SidePanelActions,
+    ): StoreTester<DetailsViewStoreData, SidePanelActions> {
+        const factory = (actions: SidePanelActions) =>
+            new DetailsViewStore(
+                new PreviewFeaturesActions(),
+                new ContentActions(),
+                new DetailsViewActions(),
+                actions,
+            );
+
+        return new StoreTester(SidePanelActions, actionName, factory);
     }
 });

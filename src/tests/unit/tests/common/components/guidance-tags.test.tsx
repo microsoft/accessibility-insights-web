@@ -12,7 +12,10 @@ describe('GuidanceTags', () => {
     let getGuidanceTagsFromGuidanceLinksMock: IMock<GetGuidanceTagsFromGuidanceLinks>;
 
     beforeEach(() => {
-        getGuidanceTagsFromGuidanceLinksMock = Mock.ofType<GetGuidanceTagsFromGuidanceLinks>(null, MockBehavior.Strict);
+        getGuidanceTagsFromGuidanceLinksMock = Mock.ofType<GetGuidanceTagsFromGuidanceLinks>(
+            null,
+            MockBehavior.Strict,
+        );
     });
 
     test.each([null, []])('tags is: %p', (tags?: GuidanceLink[]) => {
@@ -56,7 +59,9 @@ describe('GuidanceTags', () => {
             links: sampleLinks,
         };
 
-        getGuidanceTagsFromGuidanceLinksMock.setup(mock => mock(sampleLinks)).returns(() => sampleTags);
+        getGuidanceTagsFromGuidanceLinksMock
+            .setup(mock => mock(sampleLinks))
+            .returns(() => sampleTags);
 
         const testSubject = shallow(<GuidanceTags {...props} />);
         expect(testSubject.getElement()).toMatchSnapshot();

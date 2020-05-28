@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as styles from 'DetailsView/components/static-content-common.scss';
 import * as React from 'react';
-
 import { ContentInclude, ContentIncludeDeps } from 'views/content/content-include';
 import { ContentLink, ContentLinkDeps } from 'views/content/content-link';
 import { ContentReference } from 'views/content/content-page';
+
 import { VisualizationToggle } from '../../common/components/visualization-toggle';
 import { NamedFC } from '../../common/react/named-fc';
 
@@ -24,7 +25,7 @@ export const StaticContentDetailsView = NamedFC<StaticContentDetailsViewProps>(
     'StaticContentDetailsView',
     props => {
         return (
-            <div className="static-content-details-view">
+            <div className={styles.staticContentInDetailsView}>
                 <h1>
                     {props.title}{' '}
                     <ContentLink deps={props.deps} reference={props.guidance} iconName="info" />

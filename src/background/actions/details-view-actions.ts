@@ -8,6 +8,4 @@ export class DetailsViewActions {
         DetailsViewRightContentPanelType
     >();
     public readonly getCurrentState = new Action();
-    public readonly openSettingsPanel = new Action();
-    public readonly closeSettingsPanel = new Action();
 }

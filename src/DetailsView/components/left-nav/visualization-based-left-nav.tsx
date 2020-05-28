@@ -1,12 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-
 import { VisualizationConfigurationFactory } from '../../../common/configs/visualization-configuration-factory';
 import { NamedFC } from '../../../common/react/named-fc';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { BaseLeftNav, onBaseLeftNavItemClick } from '../base-left-nav';
-import { LeftNavIndexIcon } from './left-nav-icon';
 import {
     AssessmentLinkBuilderDeps,
     LeftNavLinkBuilder,
@@ -38,6 +36,7 @@ export const VisualizationBasedLeftNav = NamedFC<VisualizationBasedLeftNavProps>
             const config = visualizationConfigurationFactory.getConfiguration(visualizationType);
             links.push(
                 leftNavLinkBuilder.buildVisualizationConfigurationLink(
+                    deps,
                     config,
                     onLinkClick,
                     visualizationType,
@@ -46,12 +45,6 @@ export const VisualizationBasedLeftNav = NamedFC<VisualizationBasedLeftNavProps>
             );
         });
 
-        return (
-            <BaseLeftNav
-                renderIcon={link => <LeftNavIndexIcon item={link} />}
-                selectedKey={selectedKey}
-                links={links}
-            />
-        );
+        return <BaseLeftNav selectedKey={selectedKey} links={links} />;
     },
 );

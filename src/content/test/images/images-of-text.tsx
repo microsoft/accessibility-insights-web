@@ -5,7 +5,6 @@ import { create, React } from '../../common';
 /** Examples need special headers (HTML/CSS) */
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Images of text</h1>
         <p>Images of text are allowed only where a specific appearance is required (e.g., logotypes).</p>
 
         <h2>Why it matters</h2>

@@ -8,7 +8,10 @@ import {
     DeviceConnectFooterDeps,
     DeviceConnectFooterProps,
 } from 'electron/views/device-connect-view/components/device-connect-footer';
-import { footerButtonCancel, footerButtonStart } from 'electron/views/device-connect-view/components/device-connect-footer.scss';
+import {
+    footerButtonCancel,
+    footerButtonStart,
+} from 'electron/views/device-connect-view/components/device-connect-footer.scss';
 import { shallow } from 'enzyme';
 import { Button } from 'office-ui-fabric-react';
 import * as React from 'react';
@@ -60,7 +63,9 @@ describe('DeviceConnectFooterTest', () => {
     });
 
     test('start testing changes route & maximizes window', () => {
-        windowStateActionCreatorMock.setup(w => w.setRoute({ routeId: 'resultsView' })).verifiable(Times.once());
+        windowStateActionCreatorMock
+            .setup(w => w.setRoute({ routeId: 'resultsView' }))
+            .verifiable(Times.once());
         windowFrameActionCreatorMock.setup(w => w.maximize()).verifiable(Times.once());
         const props: DeviceConnectFooterProps = {
             cancelClick: onClickMock.object,

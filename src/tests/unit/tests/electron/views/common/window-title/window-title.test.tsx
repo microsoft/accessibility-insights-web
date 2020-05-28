@@ -17,7 +17,7 @@ describe('WindowTitleTest', () => {
         windowStateStoreData = { currentWindowState: 'maximized', routeId: 'deviceConnectView' };
 
         props = {
-            title: 'title 1',
+            pageTitle: 'page title 1',
             deps: { platformInfo: platformInfoMock.object },
             children: <span>logo</span>,
             actionableIcons: [<div key="key1">icon1</div>, <div key="key2">icon2</div>],
@@ -67,6 +67,14 @@ describe('WindowTitleTest', () => {
 
     it('renders with custom class name', () => {
         props.className = 'custom-class-name';
+
+        const rendered = shallow(<WindowTitle {...props} />);
+
+        expect(rendered.getElement()).toMatchSnapshot();
+    });
+
+    it('renders with custom header text class name', () => {
+        props.headerTextClassName = 'custom-class-name';
 
         const rendered = shallow(<WindowTitle {...props} />);
 

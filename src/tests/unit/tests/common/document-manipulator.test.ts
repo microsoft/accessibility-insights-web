@@ -8,16 +8,15 @@ describe('DocumentManipulator', () => {
     describe('setShortcutIcon', () => {
         it("updates the document's pre-existing link tag", () => {
             const expectedHref = 'defaultIcon.png';
-            const jsdom = new JSDOM('<html><head><link rel="shortcut icon" type="image/x-icon" href="badIcon.png" /></head></html>');
+            const jsdom = new JSDOM(
+                '<html><head><link rel="shortcut icon" type="image/x-icon" href="badIcon.png" /></head></html>',
+            );
             const document = jsdom.window.document;
             const setter = new DocumentManipulator(document);
 
             setter.setShortcutIcon(expectedHref);
 
-            const actualHref = document
-                .querySelector('link')
-                .getAttribute('href')
-                .valueOf();
+            const actualHref = document.querySelector('link').getAttribute('href').valueOf();
             expect(actualHref).toEqual(expectedHref);
         });
 

@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { previewFeaturesAutomationId } from 'DetailsView/components/details-view-overlay/preview-features-panel/preview-features-container';
 import { formatPageElementForSnapshot } from 'tests/common/element-snapshot-formatter';
-import { componentId } from '../../../../DetailsView/components/no-displayable-preview-features-message';
+import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { CommonSelectors } from '../../common/element-identifiers/common-selectors';
@@ -66,7 +67,7 @@ async function openPreviewFeaturesPanel(
         targetPage,
     );
 
-    await detailsViewPage.waitForId(componentId);
+    await detailsViewPage.waitForSelector(getAutomationIdSelector(previewFeaturesAutomationId));
 
     return detailsViewPage;
 }

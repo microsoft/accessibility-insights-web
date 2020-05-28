@@ -1,10 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { RuleResources, RuleResourcesDeps, RuleResourcesProps } from 'common/components/cards/rule-resources';
+import {
+    RuleResources,
+    RuleResourcesDeps,
+    RuleResourcesProps,
+} from 'common/components/cards/rule-resources';
+import { NewTabLink } from 'common/components/new-tab-link';
+import { LinkComponentType } from 'common/types/link-component-type';
+import { ElectronExternalLink } from 'electron/views/device-connect-view/components/electron-external-link';
 import { shallow } from 'enzyme';
 import { cloneDeep } from 'lodash';
 import * as React from 'react';
 import { GuidanceLink } from 'scanner/rule-to-links-mappings';
+
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
 describe('RuleResources', () => {
@@ -12,15 +20,24 @@ describe('RuleResources', () => {
         type TestCases = {
             url: string;
             guidanceLinks: GuidanceLink[];
+            linkComponent: LinkComponentType;
         };
 
         const testCases: TestCases[] = [
-            { url: 'test-url', guidanceLinks: [{ href: 'test-href' } as GuidanceLink] },
-            { url: null, guidanceLinks: [{ href: 'test-href' } as GuidanceLink] },
-            { url: 'test-url', guidanceLinks: [] },
-            { url: 'test-url', guidanceLinks: null },
-            { url: null, guidanceLinks: [] },
-            { url: null, guidanceLinks: null },
+            {
+                url: 'test-url',
+                guidanceLinks: [{ href: 'test-href' } as GuidanceLink],
+                linkComponent: ElectronExternalLink,
+            },
+            {
+                url: null,
+                guidanceLinks: [{ href: 'test-href' } as GuidanceLink],
+                linkComponent: NewTabLink,
+            },
+            { url: 'test-url', guidanceLinks: [], linkComponent: ElectronExternalLink },
+            { url: 'test-url', guidanceLinks: null, linkComponent: NewTabLink },
+            { url: null, guidanceLinks: [], linkComponent: ElectronExternalLink },
+            { url: null, guidanceLinks: null, linkComponent: NewTabLink },
         ];
 
         it.each(testCases)('with %o', testCase => {
@@ -30,7 +47,9 @@ describe('RuleResources', () => {
 
             const props: RuleResourcesProps = {
                 rule,
-                deps: {} as RuleResourcesDeps,
+                deps: {
+                    LinkComponent: testCase.linkComponent,
+                } as RuleResourcesDeps,
             };
 
             const wrapper = shallow(<RuleResources {...props} />);

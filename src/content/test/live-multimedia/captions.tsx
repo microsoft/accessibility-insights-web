@@ -4,7 +4,6 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Captions</h1>
         <p>Captions must be provided for live (streaming) video with audio</p>
 
         <h2>Why it matters</h2>

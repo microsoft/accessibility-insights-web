@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 
-const debugToolUrl = 'debug-tools/debug-tools.html';
+export const debugToolUrl = '/debug-tools/debug-tools.html';
 
 export class DebugToolsController {
     constructor(private readonly browserAdapter: BrowserAdapter) {}
