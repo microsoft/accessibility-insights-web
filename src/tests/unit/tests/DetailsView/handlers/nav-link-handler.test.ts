@@ -123,12 +123,12 @@ describe('NavLinkHandler', () => {
     });
 
     describe('onTestHeadingClick', () => {
-        it('should call expandOrCollapseTestNav with appropriate params', () => {
+        it('should call expandTestNav with appropriate params', () => {
             const testHeadingLink = {
                 testType: -1,
             } as ReflowAssessmentLeftNavLink;
             detailsViewActionMessageCreatorMock
-                .setup(amc => amc.expandOrCollapseTestNav(eventStub, testHeadingLink.testType))
+                .setup(amc => amc.expandTestNav(eventStub, testHeadingLink.testType))
                 .verifiable();
 
             testSubject.onTestHeadingClick(eventStub, testHeadingLink);

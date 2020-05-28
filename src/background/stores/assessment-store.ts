@@ -25,7 +25,7 @@ import { forEach, isEmpty, pickBy } from 'lodash';
 import { DictionaryStringTo } from 'types/common-types';
 import {
     AddResultDescriptionPayload,
-    ExpandOrCollapseTestNavPayload,
+    ExpandTestNavPayload,
     SelectTestSubviewPayload,
 } from '../actions/action-payloads';
 import { AssessmentDataConverter } from '../assessment-data-converter';
@@ -112,7 +112,7 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         this.assessmentActions.resetData.addListener(this.onResetData);
         this.assessmentActions.resetAllAssessmentsData.addListener(this.onResetAllAssessmentsData);
         this.assessmentActions.selectTestSubview.addListener(this.onSelectTestSubview);
-        this.assessmentActions.expandOrCollapseTestNav.addListener(this.onExpandOrCollapseTestNav);
+        this.assessmentActions.expandTestNav.addListener(this.onExpandTestNav);
         this.assessmentActions.changeInstanceStatus.addListener(this.onChangeInstanceStatus);
         this.assessmentActions.changeRequirementStatus.addListener(this.onChangeStepStatus);
         this.assessmentActions.undoRequirementStatusChange.addListener(this.onUndoStepStatusChange);
@@ -375,12 +375,8 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         this.emitChanged();
     };
 
-    private onExpandOrCollapseTestNav = (payload: ExpandOrCollapseTestNavPayload): void => {
-        const expandedTest = payload.selectedTest;
-        this.state.assessmentNavState.expandedTestType =
-            expandedTest === this.state.assessmentNavState.expandedTestType
-                ? undefined
-                : expandedTest;
+    private onExpandTestNav = (payload: ExpandTestNavPayload): void => {
+        this.state.assessmentNavState.expandedTestType = payload.selectedTest;
         this.emitChanged();
     };
 

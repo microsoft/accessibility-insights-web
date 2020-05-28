@@ -10,7 +10,7 @@ import {
     ChangeInstanceStatusPayload,
     ChangeRequirementStatusPayload,
     EditFailureInstancePayload,
-    ExpandOrCollapseTestNavPayload,
+    ExpandTestNavPayload,
     OnDetailsViewOpenPayload,
     OnDetailsViewPivotSelected,
     RemoveFailureInstancePayload,
@@ -196,16 +196,16 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     }
 
-    public expandOrCollapseTestNav(
+    public expandTestNav(
         event: React.MouseEvent<HTMLElement>,
         visualizationType: VisualizationType,
     ): void {
-        const payload: ExpandOrCollapseTestNavPayload = {
+        const payload: ExpandTestNavPayload = {
             selectedTest: visualizationType,
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.ExpandOrCollapseTestNav,
+            messageType: Messages.Assessment.ExpandTestNav,
             payload: payload,
         });
     }

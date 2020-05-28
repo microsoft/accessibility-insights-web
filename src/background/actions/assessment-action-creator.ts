@@ -21,7 +21,7 @@ import {
     ChangeInstanceStatusPayload,
     ChangeRequirementStatusPayload,
     EditFailureInstancePayload,
-    ExpandOrCollapseTestNavPayload,
+    ExpandTestNavPayload,
     OnDetailsViewOpenPayload,
     RemoveFailureInstancePayload,
     SelectGettingStartedPayload,
@@ -49,8 +49,8 @@ export class AssessmentActionCreator {
             this.onSelectGettingStarted,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            AssessmentMessages.ExpandOrCollapseTestNav,
-            this.onExpandOrCollapseTestNav,
+            AssessmentMessages.ExpandTestNav,
+            this.onExpandTestNav,
         );
         this.interpreter.registerTypeToPayloadCallback(
             getStoreStateMessage(StoreNames.AssessmentStore),
@@ -251,8 +251,8 @@ export class AssessmentActionCreator {
         );
     };
 
-    private onExpandOrCollapseTestNav = (payload: ExpandOrCollapseTestNavPayload): void => {
-        this.assessmentActions.expandOrCollapseTestNav.invoke(payload);
+    private onExpandTestNav = (payload: ExpandTestNavPayload): void => {
+        this.assessmentActions.expandTestNav.invoke(payload);
     };
 
     private onScanUpdate = (payload: ScanUpdatePayload): void => {

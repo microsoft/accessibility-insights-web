@@ -14,7 +14,7 @@ import {
     ChangeInstanceStatusPayload,
     ChangeRequirementStatusPayload,
     EditFailureInstancePayload,
-    ExpandOrCollapseTestNavPayload,
+    ExpandTestNavPayload,
     RemoveFailureInstancePayload,
     SelectTestSubviewPayload,
     ToggleActionPayload,
@@ -23,7 +23,7 @@ import {
 
 export class AssessmentActions {
     public readonly selectTestSubview = new Action<SelectTestSubviewPayload>();
-    public readonly expandOrCollapseTestNav = new Action<ExpandOrCollapseTestNavPayload>();
+    public readonly expandTestNav = new Action<ExpandTestNavPayload>();
     public readonly changeInstanceStatus = new Action<ChangeInstanceStatusPayload>();
     public readonly changeRequirementStatus = new Action<ChangeRequirementStatusPayload>();
     public readonly addFailureInstance = new Action<AddFailureInstancePayload>();

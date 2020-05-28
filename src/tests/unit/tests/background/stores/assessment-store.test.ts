@@ -10,7 +10,7 @@ import {
     ChangeInstanceStatusPayload,
     ChangeRequirementStatusPayload,
     EditFailureInstancePayload,
-    ExpandOrCollapseTestNavPayload,
+    ExpandTestNavPayload,
     RemoveFailureInstancePayload,
     SelectTestSubviewPayload,
     ToggleActionPayload,
@@ -914,7 +914,7 @@ describe('AssessmentStore', () => {
             .testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on expandOrCollapseTestNav when clicked test is not selected', () => {
+    test('on expandTestNav when clicked test is not selected', () => {
         const visualizationType = 1 as VisualizationType;
         const initialState = new AssessmentsStoreDataBuilder(
             assessmentsProvider,
@@ -927,18 +927,18 @@ describe('AssessmentStore', () => {
             .withExpandedTest(visualizationType)
             .build();
 
-        const payload: ExpandOrCollapseTestNavPayload = {
+        const payload: ExpandTestNavPayload = {
             selectedTest: visualizationType,
         };
 
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
 
-        createStoreTesterForAssessmentActions('expandOrCollapseTestNav')
+        createStoreTesterForAssessmentActions('expandTestNav')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on expandOrCollapseTestNav when clicked test is already selected', () => {
+    test('on expandTestNav when clicked test is already selected', () => {
         const visualizationType = 1 as VisualizationType;
         const initialState = new AssessmentsStoreDataBuilder(
             assessmentsProvider,
@@ -953,13 +953,13 @@ describe('AssessmentStore', () => {
             .withExpandedTest(undefined)
             .build();
 
-        const payload: ExpandOrCollapseTestNavPayload = {
+        const payload: ExpandTestNavPayload = {
             selectedTest: visualizationType,
         };
 
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
 
-        createStoreTesterForAssessmentActions('expandOrCollapseTestNav')
+        createStoreTesterForAssessmentActions('expandTestNav')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, finalState);
     });

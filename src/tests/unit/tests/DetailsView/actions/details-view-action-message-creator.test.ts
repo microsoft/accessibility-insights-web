@@ -198,18 +198,18 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         );
     });
 
-    test('expandOrCollapseTestNav', () => {
+    test('expandTestNav', () => {
         const view = VisualizationType.Headings;
         const event = eventStubFactory.createKeypressEvent() as any;
 
         const expectedMessage = {
-            messageType: Messages.Assessment.ExpandOrCollapseTestNav,
+            messageType: Messages.Assessment.ExpandTestNav,
             payload: {
                 selectedTest: view,
             },
         };
 
-        testSubject.expandOrCollapseTestNav(event, view);
+        testSubject.expandTestNav(event, view);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),

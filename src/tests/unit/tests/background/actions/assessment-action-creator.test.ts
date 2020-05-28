@@ -8,7 +8,7 @@ import {
     ChangeInstanceSelectionPayload,
     ChangeRequirementStatusPayload,
     EditFailureInstancePayload,
-    ExpandOrCollapseTestNavPayload,
+    ExpandTestNavPayload,
     OnDetailsViewOpenPayload,
     RemoveFailureInstancePayload,
     SelectGettingStartedPayload,
@@ -587,20 +587,14 @@ describe('AssessmentActionCreatorTest', () => {
         );
     });
 
-    it('handles ExpandOrCollapseTestNav message', () => {
-        const payload: ExpandOrCollapseTestNavPayload = {
+    it('handles ExpandTestNav message', () => {
+        const payload: ExpandTestNavPayload = {
             selectedTest: 1,
-        } as ExpandOrCollapseTestNavPayload;
+        } as ExpandTestNavPayload;
 
-        const expandOrCollapseTestNavMock = createActionMock(payload);
-        const actionsMock = createActionsMock(
-            'expandOrCollapseTestNav',
-            expandOrCollapseTestNavMock.object,
-        );
-        const interpreterMock = createInterpreterMock(
-            AssessmentMessages.ExpandOrCollapseTestNav,
-            payload,
-        );
+        const expandTestNavMock = createActionMock(payload);
+        const actionsMock = createActionsMock('expandTestNav', expandTestNavMock.object);
+        const interpreterMock = createInterpreterMock(AssessmentMessages.ExpandTestNav, payload);
 
         const testSubject = new AssessmentActionCreator(
             interpreterMock.object,
@@ -610,7 +604,7 @@ describe('AssessmentActionCreatorTest', () => {
 
         testSubject.registerCallbacks();
 
-        expandOrCollapseTestNavMock.verifyAll();
+        expandTestNavMock.verifyAll();
     });
 
     it('handles ScanUpdate message', () => {

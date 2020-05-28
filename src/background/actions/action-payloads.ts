@@ -38,7 +38,7 @@ export interface SelectGettingStartedPayload extends BaseActionPayload {
     selectedTest: VisualizationType;
 }
 
-export interface ExpandOrCollapseTestNavPayload extends BaseActionPayload {
+export interface ExpandTestNavPayload extends BaseActionPayload {
     selectedTest: VisualizationType;
 }
 
