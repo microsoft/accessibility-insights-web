@@ -86,6 +86,7 @@ export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewL
                     data => data.testStepStatus,
                 )}
                 featureFlagStoreData={featureFlagStoreData}
+                expandedTest={assessmentStoreData.assessmentNavState.expandedTestType}
             />
         </div>
     );

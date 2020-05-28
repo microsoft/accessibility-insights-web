@@ -221,13 +221,19 @@ describe('LeftNavBuilder', () => {
                 name: 'requirement-name-2',
                 key: 'requirement-key-2',
             } as Requirement;
-            const assessmentStub = {
+            const assessmentStub1 = {
                 key: 'some key',
                 title: 'some title',
                 visualizationType: 1,
                 requirements: [requirementStubA, requirementStubB],
             } as Assessment;
-            const assessmentsStub = [assessmentStub, assessmentStub];
+            const assessmentStub2 = {
+                key: 'another key',
+                title: 'another title',
+                visualizationType: 2,
+                requirements: [requirementStubA, requirementStubB],
+            } as Assessment;
+            const assessmentsStub = [assessmentStub1, assessmentStub2];
             const outcomeStatsStub = {} as RequirementOutcomeStats;
             const testStatusStub = -2 as ManualTestStatus;
             const narratorStatusStub = { pastTense: 'passed' } as OutcomeTypeSemantic;
@@ -239,9 +245,11 @@ describe('LeftNavBuilder', () => {
                     stepFinalResult: testStatusStub,
                 },
             } as ManualTestStatusData;
+            const expandedTest = assessmentStub1.visualizationType;
 
             assessmentsDataStub = {
-                [assessmentStub.key]: stepStatusStub,
+                [assessmentStub1.key]: stepStatusStub,
+                [assessmentStub2.key]: stepStatusStub,
             };
 
             assessmentProviderMock.setup(apm => apm.all()).returns(() => assessmentsStub);
@@ -263,9 +271,11 @@ describe('LeftNavBuilder', () => {
                 assessmentProviderMock.object,
                 assessmentsDataStub,
                 startingIndexStub,
+                expandedTest,
             );
 
             links.forEach((testLink, linkIndex) => {
+                const assessmentStub = assessmentsStub[linkIndex];
                 const visualizationType = assessmentStub.visualizationType;
                 const expectedTestLink = {
                     name: assessmentStub.title,
@@ -281,6 +291,7 @@ describe('LeftNavBuilder', () => {
                         narratorStatusStub.pastTense
                     })`,
                     onRenderNavLink: navLinkRendererMock.object.renderAssessmentTestLink,
+                    isExpanded: assessmentStub.visualizationType === expandedTest,
                     testType: visualizationType,
                 };
                 const expectedGettingStartedLink = {
