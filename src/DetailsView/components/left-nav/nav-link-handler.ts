@@ -62,6 +62,10 @@ export class NavLinkHandler {
         event: React.MouseEvent<HTMLElement>,
         item: ReflowAssessmentLeftNavLink,
     ) => {
-        this.detailsViewActionMessageCreator.expandTestNav(event, item.testType);
+        if (item.isExpanded) {
+            this.detailsViewActionMessageCreator.collapseTestNav();
+        } else {
+            this.detailsViewActionMessageCreator.expandTestNav(item.testType);
+        }
     };
 }

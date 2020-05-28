@@ -200,7 +200,6 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
     test('expandTestNav', () => {
         const view = VisualizationType.Headings;
-        const event = eventStubFactory.createKeypressEvent() as any;
 
         const expectedMessage = {
             messageType: Messages.Assessment.ExpandTestNav,
@@ -209,7 +208,22 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             },
         };
 
-        testSubject.expandTestNav(event, view);
+        testSubject.expandTestNav(view);
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            Times.once(),
+        );
+    });
+
+    test('collapseTestNav', () => {
+        const event = eventStubFactory.createKeypressEvent() as any;
+
+        const expectedMessage = {
+            messageType: Messages.Assessment.CollapseTestNav,
+        };
+
+        testSubject.collapseTestNav();
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),

@@ -117,6 +117,7 @@ export class Messages {
         SelectTestRequirement: `${messagePrefix}/details-view/requirement/select`,
         SelectGettingStarted: `${messagePrefix}/details-view/select-getting-started`,
         ExpandTestNav: `${messagePrefix}/details-view/expand-test-nav`,
+        CollapseTestNav: `${messagePrefix}/details-view/collapse-test-nav`,
         AssessmentScanCompleted: `${messagePrefix}/assessment/scanComplete`,
         TabbedElementAdded: `${messagePrefix}/assessment/tab-stops/element-added`,
         TrackingCompleted: `${messagePrefix}/assessment/tab-stops/recording-completed`,
