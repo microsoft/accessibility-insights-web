@@ -10,6 +10,7 @@ import {
     ChangeInstanceStatusPayload,
     ChangeRequirementStatusPayload,
     EditFailureInstancePayload,
+    ExpandOrCollapseTestNavPayload,
     RemoveFailureInstancePayload,
     SelectTestSubviewPayload,
     ToggleActionPayload,
@@ -909,6 +910,56 @@ describe('AssessmentStore', () => {
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
 
         createStoreTesterForAssessmentActions('selectTestSubview')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, finalState);
+    });
+
+    test('on expandOrCollapseTestNav when clicked test is not selected', () => {
+        const visualizationType = 1 as VisualizationType;
+        const initialState = new AssessmentsStoreDataBuilder(
+            assessmentsProvider,
+            assessmentDataConverterMock.object,
+        ).build();
+        const finalState = new AssessmentsStoreDataBuilder(
+            assessmentsProvider,
+            assessmentDataConverterMock.object,
+        )
+            .withExpandedTest(visualizationType)
+            .build();
+
+        const payload: ExpandOrCollapseTestNavPayload = {
+            selectedTest: visualizationType,
+        };
+
+        assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
+
+        createStoreTesterForAssessmentActions('expandOrCollapseTestNav')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, finalState);
+    });
+
+    test('on expandOrCollapseTestNav when clicked test is already selected', () => {
+        const visualizationType = 1 as VisualizationType;
+        const initialState = new AssessmentsStoreDataBuilder(
+            assessmentsProvider,
+            assessmentDataConverterMock.object,
+        )
+            .withExpandedTest(visualizationType)
+            .build();
+        const finalState = new AssessmentsStoreDataBuilder(
+            assessmentsProvider,
+            assessmentDataConverterMock.object,
+        )
+            .withExpandedTest(undefined)
+            .build();
+
+        const payload: ExpandOrCollapseTestNavPayload = {
+            selectedTest: visualizationType,
+        };
+
+        assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
+
+        createStoreTesterForAssessmentActions('expandOrCollapseTestNav')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, finalState);
     });
