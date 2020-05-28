@@ -8,6 +8,7 @@ import {
     ChangeInstanceSelectionPayload,
     ChangeRequirementStatusPayload,
     EditFailureInstancePayload,
+    ExpandOrCollapseTestNavPayload,
     OnDetailsViewOpenPayload,
     RemoveFailureInstancePayload,
     SelectGettingStartedPayload,
@@ -584,6 +585,32 @@ describe('AssessmentActionCreatorTest', () => {
             tp => tp.publishTelemetry(TelemetryEvents.SELECT_GETTING_STARTED, payload),
             Times.once(),
         );
+    });
+
+    it('handles ExpandOrCollapseTestNav message', () => {
+        const payload: ExpandOrCollapseTestNavPayload = {
+            selectedTest: 1,
+        } as ExpandOrCollapseTestNavPayload;
+
+        const expandOrCollapseTestNavMock = createActionMock(payload);
+        const actionsMock = createActionsMock(
+            'expandOrCollapseTestNav',
+            expandOrCollapseTestNavMock.object,
+        );
+        const interpreterMock = createInterpreterMock(
+            AssessmentMessages.ExpandOrCollapseTestNav,
+            payload,
+        );
+
+        const testSubject = new AssessmentActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
+
+        testSubject.registerCallbacks();
+
+        expandOrCollapseTestNavMock.verifyAll();
     });
 
     it('handles ScanUpdate message', () => {
