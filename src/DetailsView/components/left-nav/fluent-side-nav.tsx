@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
-import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { GenericPanel } from 'DetailsView/components/generic-panel';
 import {
     DetailsViewLeftNav,
@@ -29,7 +28,7 @@ export class FluentSideNav extends React.Component<FluentSideNavProps> {
         const navPanel = (
             <GenericPanel
                 className={styles.leftNavPanel}
-                isOpen={false}
+                isOpen={true}
                 isLightDismiss
                 hasCloseButton={false}
                 onRenderNavigationContent={() => null}
