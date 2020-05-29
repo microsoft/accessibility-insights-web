@@ -9,8 +9,6 @@ import * as React from 'react';
 describe(FluentSideNav, () => {
     let tabStoreData: TabStoreData;
 
-    beforeEach(() => {});
-
     test('render null if tab is closed', () => {
         tabStoreData = {
             isClosed: true,

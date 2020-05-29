@@ -28,7 +28,7 @@ export class FluentSideNav extends React.Component<FluentSideNavProps> {
         const navPanel = (
             <GenericPanel
                 className={styles.leftNavPanel}
-                isOpen={true}
+                isOpen={false}
                 isLightDismiss
                 hasCloseButton={false}
                 onRenderNavigationContent={() => null}
@@ -39,7 +39,6 @@ export class FluentSideNav extends React.Component<FluentSideNavProps> {
                 layerProps={{
                     hostId: styles.sideNavContainer,
                 }}
-                customWidth={'240px'}
             >
                 {nav}
             </GenericPanel>

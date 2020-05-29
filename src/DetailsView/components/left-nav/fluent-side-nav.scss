@@ -5,6 +5,9 @@
 #side-nav-container {
     .left-nav-panel {
         margin-top: $detailsViewHeaderBarHeight;
+        :global(.ms-Panel-main) {
+            width: $detailsViewReflowLeftNavWidth;
+        }
         :global(.ms-Panel-content) {
             padding: 0px;
         }
