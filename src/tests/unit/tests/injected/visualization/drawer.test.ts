@@ -13,7 +13,6 @@ import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils'
 import { DrawerConfiguration, Formatter } from '../../../../../injected/visualization/formatter';
 import { HighlightBoxDrawer } from '../../../../../injected/visualization/highlight-box-drawer';
 import { NonTextComponentFormatter } from '../../../../../injected/visualization/non-text-component-formatter';
-import { itIsFunction } from '../../../common/it-is-function';
 import { TestDocumentCreator } from '../../../common/test-document-creator';
 
 describe('Drawer', () => {
@@ -37,6 +36,8 @@ describe('Drawer', () => {
 
         shadowUtilsMock = Mock.ofType(ShadowUtils);
         shadowUtilsMock.setup(x => x.getShadowContainer()).returns(() => shadowContainer);
+
+        jest.useFakeTimers();
     });
 
     test('eraseLayout called when initialize', () => {
@@ -853,58 +854,6 @@ describe('Drawer', () => {
         windowUtilsMock.verifyAll();
     });
 
-    test('verifyResetTimerOnScrolling', () => {
-        fakeDocument.body.innerHTML = "<div id='id1'></div>";
-
-        setupGetComputedStyleCalled();
-
-        const elementResults = createElementResults(['#id1']);
-
-        const testSubject = createDrawerBuilder()
-            .setDomAndDrawerUtils(fakeDocument)
-            .setWindowUtils(windowUtilsMock.object)
-            .build();
-
-        testSubject.initialize(createDrawerInfo(elementResults));
-        expect(testSubject.isOverlayEnabled).toEqual(false);
-        let scrollCallback: Function;
-        const registerHandlerFunc: typeof windowUtilsMock.object.addEventListener = (
-            window,
-            eventName,
-            handler,
-            useCapture,
-        ) => (scrollCallback = handler);
-
-        setupWindow();
-        setupAddEventListerCalled(registerHandlerFunc);
-        testSubject.drawLayout();
-
-        // invoke scroll listener
-        const timeOutId = 10;
-
-        windowUtilsMock.setup(x => x.clearTimeout(It.isAny())).verifiable(Times.never());
-        windowUtilsMock
-            .setup(x => x.setTimeout(itIsFunction, HighlightBoxDrawer.recalculationTimeout))
-            .returns(() => timeOutId)
-            .verifiable();
-
-        scrollCallback();
-
-        windowUtilsMock.verifyAll();
-
-        // invoke scroll listener again (resets timer)
-        windowUtilsMock.reset();
-
-        windowUtilsMock.setup(x => x.clearTimeout(timeOutId)).verifiable();
-        windowUtilsMock
-            .setup(x => x.setTimeout(It.isAny(), HighlightBoxDrawer.recalculationTimeout))
-            .returns(() => timeOutId)
-            .verifiable();
-        scrollCallback();
-
-        windowUtilsMock.verifyAll();
-    });
-
     test('verifyScrollHandlerExecution', () => {
         fakeDocument.body.innerHTML = "<div id='id1'></div>";
 
@@ -932,30 +881,51 @@ describe('Drawer', () => {
         // draw
         testSubject.drawLayout();
 
-        // invoke scroll listener
-        let timeOutCallback: Function;
-        const timeOutId = 10;
-        const registerTimeOutHandlerFunc = (handler, timeout, ...args): number => {
-            timeOutCallback = handler as Function;
-            return timeout;
-        };
-
-        windowUtilsMock
-            .setup(x => x.setTimeout(It.isAny(), HighlightBoxDrawer.recalculationTimeout))
-            .callback(registerTimeOutHandlerFunc)
-            .returns(() => timeOutId)
-            .verifiable();
-
-        scrollCallback();
-
-        // invoke timeout callback (should invoke draw)
         const drawMock = Mock.ofInstance(() => {});
-        drawMock.setup(draw => draw()).verifiable();
+        drawMock.setup(draw => draw()).verifiable(Times.exactly(2));
         (testSubject as any).draw = drawMock.object;
-        timeOutCallback();
+
+        // call once, run all timers, call again; should yield two draw calls.
+        scrollCallback();
+        jest.runAllTimers();
+        scrollCallback();
 
         drawMock.verifyAll();
         windowUtilsMock.verifyAll();
+    });
+
+    test('verifyDrawsOnlyOnceWhenEnabled', () => {
+        fakeDocument.body.innerHTML = "<div id='id1'></div>";
+
+        setupGetComputedStyleCalled();
+
+        const elementResults = createElementResults(['#id1']);
+        const testSubject = createDrawerBuilder()
+            .setDomAndDrawerUtils(fakeDocument)
+            .setWindowUtils(windowUtilsMock.object)
+            .build();
+
+        testSubject.initialize(createDrawerInfo(elementResults));
+        expect(testSubject.isOverlayEnabled).toEqual(false);
+        let scrollCallback: Function;
+        const registerHandlerFunc: typeof windowUtilsMock.object.addEventListener = (
+            window,
+            eventName,
+            handler,
+            useCapture,
+        ) => (scrollCallback = handler);
+
+        setupWindow();
+        setupAddEventListerCalled(registerHandlerFunc);
+
+        const drawMock = Mock.ofInstance(() => {});
+        drawMock.setup(draw => draw()).verifiable(Times.once());
+        (testSubject as any).draw = drawMock.object;
+
+        testSubject.eraseLayout();
+        testSubject.drawLayout();
+
+        drawMock.verifyAll();
     });
 
     test('verifyWhenElementResultsIsEmpty', () => {
