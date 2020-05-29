@@ -34,7 +34,6 @@ export class FluentSideNav extends React.Component<FluentSideNavProps> {
                 onRenderNavigationContent={() => null}
                 onRenderHeader={() => null}
                 onRenderNavigation={() => null}
-                isHiddenOnDismiss={true}
                 type={PanelType.customNear}
                 layerProps={{
                     hostId: styles.sideNavContainer,

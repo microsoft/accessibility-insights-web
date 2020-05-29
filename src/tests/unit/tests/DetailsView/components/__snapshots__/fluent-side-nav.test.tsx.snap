@@ -17,7 +17,6 @@ exports[`FluentSideNav render side nav 1`] = `
   <GenericPanel
     className="leftNavPanel"
     hasCloseButton={false}
-    isHiddenOnDismiss={true}
     isLightDismiss={true}
     isOpen={false}
     layerProps={
