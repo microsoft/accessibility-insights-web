@@ -112,7 +112,8 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         this.assessmentActions.resetData.addListener(this.onResetData);
         this.assessmentActions.resetAllAssessmentsData.addListener(this.onResetAllAssessmentsData);
         this.assessmentActions.selectTestSubview.addListener(this.onSelectTestSubview);
-        this.assessmentActions.setExpandedTestNav.addListener(this.onSetExpandedTestNav);
+        this.assessmentActions.expandTestNav.addListener(this.onExpandTestNav);
+        this.assessmentActions.collapseTestNav.addListener(this.onCollapseTestNav);
         this.assessmentActions.changeInstanceStatus.addListener(this.onChangeInstanceStatus);
         this.assessmentActions.changeRequirementStatus.addListener(this.onChangeStepStatus);
         this.assessmentActions.undoRequirementStatusChange.addListener(this.onUndoStepStatusChange);
@@ -375,8 +376,13 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         this.emitChanged();
     };
 
-    private onSetExpandedTestNav = (payload: ExpandTestNavPayload): void => {
+    private onExpandTestNav = (payload: ExpandTestNavPayload): void => {
         this.state.assessmentNavState.expandedTestType = payload.selectedTest;
+        this.emitChanged();
+    };
+
+    private onCollapseTestNav = (): void => {
+        this.state.assessmentNavState.expandedTestType = null;
         this.emitChanged();
     };
 

@@ -23,7 +23,8 @@ import {
 
 export class AssessmentActions {
     public readonly selectTestSubview = new Action<SelectTestSubviewPayload>();
-    public readonly setExpandedTestNav = new Action<ExpandTestNavPayload>();
+    public readonly expandTestNav = new Action<ExpandTestNavPayload>();
+    public readonly collapseTestNav = new Action<null>();
     public readonly changeInstanceStatus = new Action<ChangeInstanceStatusPayload>();
     public readonly changeRequirementStatus = new Action<ChangeRequirementStatusPayload>();
     public readonly addFailureInstance = new Action<AddFailureInstancePayload>();

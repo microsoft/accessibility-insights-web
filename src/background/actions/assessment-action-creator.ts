@@ -256,11 +256,11 @@ export class AssessmentActionCreator {
     };
 
     private onExpandTestNav = (payload: ExpandTestNavPayload): void => {
-        this.assessmentActions.setExpandedTestNav.invoke(payload);
+        this.assessmentActions.expandTestNav.invoke(payload);
     };
 
     private onCollapseTestNav = (): void => {
-        this.assessmentActions.setExpandedTestNav.invoke({ selectedTest: null });
+        this.assessmentActions.collapseTestNav.invoke(null);
     };
 
     private onScanUpdate = (payload: ScanUpdatePayload): void => {

@@ -914,7 +914,7 @@ describe('AssessmentStore', () => {
             .testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on setExpandedTestNav', () => {
+    test('on expandTestNav', () => {
         const visualizationType = 1 as VisualizationType;
         const initialState = new AssessmentsStoreDataBuilder(
             assessmentsProvider,
@@ -933,9 +933,29 @@ describe('AssessmentStore', () => {
 
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
 
-        createStoreTesterForAssessmentActions('setExpandedTestNav')
+        createStoreTesterForAssessmentActions('expandTestNav')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, finalState);
+    });
+
+    test('on collapseTestNav', () => {
+        const initialState = new AssessmentsStoreDataBuilder(
+            assessmentsProvider,
+            assessmentDataConverterMock.object,
+        ).build();
+        const finalState = new AssessmentsStoreDataBuilder(
+            assessmentsProvider,
+            assessmentDataConverterMock.object,
+        )
+            .withExpandedTest(null)
+            .build();
+
+        assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
+
+        createStoreTesterForAssessmentActions('collapseTestNav').testListenerToBeCalledOnce(
+            initialState,
+            finalState,
+        );
     });
 
     test('onUpdateTargetTabId', () => {
