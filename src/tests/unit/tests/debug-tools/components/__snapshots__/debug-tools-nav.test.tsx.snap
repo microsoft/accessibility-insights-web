@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DebugToolsNav renders 1`] = `
+<StyledNavBase
+  className="test-class-name"
+  groups={
+    Array [
+      Object {
+        "links": Array [
+          Object {
+            "icon": "OfflineStorage",
+            "key": "stores",
+            "name": "Stores",
+            "url": "",
+          },
+          Object {
+            "icon": "Diagnostic",
+            "key": "telemetryViewer",
+            "name": "TelemetryViewer",
+            "url": "",
+          },
+        ],
+      },
+    ]
+  }
+  onLinkClick={[Function]}
+  selectedKey="test-selected-tool"
+/>
+`;

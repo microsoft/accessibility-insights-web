@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DebugToolsView renders 1`] = `
-<React.Fragment>
+<div
+  className="debugToolsContainer"
+>
   <Header
     deps={
       Object {
@@ -9,7 +11,8 @@ exports[`DebugToolsView renders 1`] = `
       }
     }
   />
-  <StoresTree
+  <ToolsNav
+    className="nav"
     deps={
       Object {
         "storesHub": null,
@@ -23,5 +26,19 @@ exports[`DebugToolsView renders 1`] = `
       }
     }
   />
-</React.Fragment>
+  <CurrentView
+    deps={
+      Object {
+        "storesHub": null,
+      }
+    }
+    storeState={
+      Object {
+        "userConfigurationStoreData": Object {
+          "isFirstTime": true,
+        },
+      }
+    }
+  />
+</div>
 `;
