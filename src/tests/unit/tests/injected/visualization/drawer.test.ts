@@ -854,44 +854,53 @@ describe('Drawer', () => {
         windowUtilsMock.verifyAll();
     });
 
-    test('verifyScrollHandlerExecution', () => {
-        fakeDocument.body.innerHTML = "<div id='id1'></div>";
+    describe('verifyScrollHandlerExecution', () => {
+        [true, false].forEach(throttleTimeoutExpired => {
+            test(`throttle timeout expired: ${throttleTimeoutExpired}`, () => {
+                let drawCalledTimes = 1;
+                fakeDocument.body.innerHTML = "<div id='id1'></div>";
 
-        setupGetComputedStyleCalled();
+                setupGetComputedStyleCalled();
 
-        const elementResults = createElementResults(['#id1']);
-        const testSubject = createDrawerBuilder()
-            .setDomAndDrawerUtils(fakeDocument)
-            .setWindowUtils(windowUtilsMock.object)
-            .build();
+                const elementResults = createElementResults(['#id1']);
+                const testSubject = createDrawerBuilder()
+                    .setDomAndDrawerUtils(fakeDocument)
+                    .setWindowUtils(windowUtilsMock.object)
+                    .build();
 
-        testSubject.initialize(createDrawerInfo(elementResults));
-        expect(testSubject.isOverlayEnabled).toEqual(false);
-        let scrollCallback: Function;
-        const registerHandlerFunc: typeof windowUtilsMock.object.addEventListener = (
-            window,
-            eventName,
-            handler,
-            useCapture,
-        ) => (scrollCallback = handler);
+                testSubject.initialize(createDrawerInfo(elementResults));
+                expect(testSubject.isOverlayEnabled).toEqual(false);
+                let scrollCallback: Function;
+                const registerHandlerFunc: typeof windowUtilsMock.object.addEventListener = (
+                    window,
+                    eventName,
+                    handler,
+                    useCapture,
+                ) => (scrollCallback = handler);
 
-        setupWindow();
-        setupAddEventListerCalled(registerHandlerFunc);
+                setupWindow();
+                setupAddEventListerCalled(registerHandlerFunc);
 
-        // draw
-        testSubject.drawLayout();
+                // draw
+                testSubject.drawLayout();
 
-        const drawMock = Mock.ofInstance(() => {});
-        drawMock.setup(draw => draw()).verifiable(Times.exactly(2));
-        (testSubject as any).draw = drawMock.object;
+                const drawMock = Mock.ofInstance(() => {});
+                (testSubject as any).draw = drawMock.object;
 
-        // call once, run all timers, call again; should yield two draw calls.
-        scrollCallback();
-        jest.runAllTimers();
-        scrollCallback();
+                scrollCallback();
+                if (throttleTimeoutExpired) {
+                    // Following call should not be throttled; draw is called again.
+                    jest.runAllTimers();
+                    drawCalledTimes = 2;
+                }
+                scrollCallback();
 
-        drawMock.verifyAll();
-        windowUtilsMock.verifyAll();
+                drawMock.setup(draw => draw()).verifiable(Times.exactly(drawCalledTimes));
+
+                drawMock.verifyAll();
+                windowUtilsMock.verifyAll();
+            });
+        });
     });
 
     test('verifyDrawsOnlyOnceWhenEnabled', () => {
@@ -907,16 +916,8 @@ describe('Drawer', () => {
 
         testSubject.initialize(createDrawerInfo(elementResults));
         expect(testSubject.isOverlayEnabled).toEqual(false);
-        let scrollCallback: Function;
-        const registerHandlerFunc: typeof windowUtilsMock.object.addEventListener = (
-            window,
-            eventName,
-            handler,
-            useCapture,
-        ) => (scrollCallback = handler);
 
         setupWindow();
-        setupAddEventListerCalled(registerHandlerFunc);
 
         const drawMock = Mock.ofInstance(() => {});
         drawMock.setup(draw => draw()).verifiable(Times.once());
