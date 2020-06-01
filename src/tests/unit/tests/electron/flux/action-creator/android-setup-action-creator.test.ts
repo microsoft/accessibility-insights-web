@@ -12,7 +12,6 @@ describe(AndroidSetupActionCreator, () => {
 
     beforeEach(() => {
         androidSetupActionsMock = Mock.ofType<AndroidSetupActions>();
-
         testSubject = new AndroidSetupActionCreator(androidSetupActionsMock.object);
     });
 
@@ -25,7 +24,6 @@ describe(AndroidSetupActionCreator, () => {
         nextActionMock.setup(s => s.invoke(testPayload)).verifiable(Times.once());
 
         testSubject.next(testPayload);
-
         nextActionMock.verifyAll();
     });
 });
