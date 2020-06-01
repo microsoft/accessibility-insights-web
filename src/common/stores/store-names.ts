@@ -20,4 +20,5 @@ export enum StoreNames {
     WindowStateStore,
     ScanStore,
     PermissionsStateStore,
+    AndroidSetupStore,
 }
