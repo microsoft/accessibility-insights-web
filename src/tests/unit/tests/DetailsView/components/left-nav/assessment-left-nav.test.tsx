@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { FeatureFlags } from 'common/feature-flags';
+import { VisualizationType } from 'common/types/visualization-type';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
@@ -27,6 +28,7 @@ describe('AssessmentLeftNav', () => {
     let navLinkHandlerMock: NavLinkHandler;
     let assessmentsProviderStub: AssessmentsProvider;
     let assessmentsDataStub: DictionaryStringTo<ManualTestStatusData>;
+    const expandedTest: VisualizationType = 1;
 
     beforeEach(() => {
         assessmentsDataStub = {};
@@ -50,6 +52,7 @@ describe('AssessmentLeftNav', () => {
             assessmentsProvider: assessmentsProviderStub,
             assessmentsData: assessmentsDataStub,
             featureFlagStoreData: {},
+            expandedTest,
         };
 
         leftNavLinkBuilderMock
@@ -75,6 +78,7 @@ describe('AssessmentLeftNav', () => {
                     assessmentsProviderStub,
                     assessmentsDataStub,
                     1,
+                    expandedTest,
                 ),
             )
             .returns(() => [linkStub]);

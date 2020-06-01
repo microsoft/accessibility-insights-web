@@ -21,6 +21,7 @@ import {
     ChangeInstanceStatusPayload,
     ChangeRequirementStatusPayload,
     EditFailureInstancePayload,
+    ExpandTestNavPayload,
     OnDetailsViewOpenPayload,
     RemoveFailureInstancePayload,
     SelectGettingStartedPayload,
@@ -46,6 +47,14 @@ export class AssessmentActionCreator {
         this.interpreter.registerTypeToPayloadCallback(
             AssessmentMessages.SelectGettingStarted,
             this.onSelectGettingStarted,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            AssessmentMessages.ExpandTestNav,
+            this.onExpandTestNav,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            AssessmentMessages.CollapseTestNav,
+            this.onCollapseTestNav,
         );
         this.interpreter.registerTypeToPayloadCallback(
             getStoreStateMessage(StoreNames.AssessmentStore),
@@ -244,6 +253,14 @@ export class AssessmentActionCreator {
             TelemetryEvents.SELECT_GETTING_STARTED,
             payload,
         );
+    };
+
+    private onExpandTestNav = (payload: ExpandTestNavPayload): void => {
+        this.assessmentActions.expandTestNav.invoke(payload);
+    };
+
+    private onCollapseTestNav = (): void => {
+        this.assessmentActions.collapseTestNav.invoke(null);
     };
 
     private onScanUpdate = (payload: ScanUpdatePayload): void => {

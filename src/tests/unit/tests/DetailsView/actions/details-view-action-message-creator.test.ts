@@ -198,6 +198,37 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         );
     });
 
+    test('expandTestNav', () => {
+        const view = VisualizationType.Headings;
+
+        const expectedMessage = {
+            messageType: Messages.Assessment.ExpandTestNav,
+            payload: {
+                selectedTest: view,
+            },
+        };
+
+        testSubject.expandTestNav(view);
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            Times.once(),
+        );
+    });
+
+    test('collapseTestNav', () => {
+        const expectedMessage = {
+            messageType: Messages.Assessment.CollapseTestNav,
+        };
+
+        testSubject.collapseTestNav();
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            Times.once(),
+        );
+    });
+
     test('setFeatureFlag', () => {
         const event = eventStubFactory.createKeypressEvent() as any;
         const telemetry: FeatureFlagToggleTelemetryData = {
