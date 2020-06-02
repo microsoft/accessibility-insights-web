@@ -237,6 +237,26 @@ div.insights-file-issue-details-dialog-container {
         min-height: 0;
         &.reflow-ui {
             grid-template-columns: $detailsViewReflowLeftNavWidth 1fr;
+
+            .left-nav,
+            .test-step-nav {
+                .ms-Nav-compositeLink {
+                    &.is-selected {
+                        a {
+                            background-color: $communication-tint-20;
+                        }
+                    }
+                    &.is-expanded,
+                    &.is-expanded + ul {
+                        background-color: $communication-tint-40;
+                        .index-circle {
+                            color: $neutral-0;
+                            background: $index-circle-background;
+                            border-color: $neutral-0;
+                        }
+                    }
+                }
+            }
         }
         .details-view-test-nav-area {
             box-sizing: border-box;
