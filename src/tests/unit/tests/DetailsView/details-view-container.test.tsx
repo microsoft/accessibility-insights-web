@@ -419,6 +419,7 @@ describe('DetailsViewContainer', () => {
                 scanMetadata={scanMetadata}
                 isSideNavOpen={false}
                 setSideNavOpen={null}
+                isNarrowMode={false}
             />
         );
     }

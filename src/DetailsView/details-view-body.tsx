@@ -64,6 +64,7 @@ export interface DetailsViewBodyProps {
     scanMetadata: ScanMetadata;
     isSideNavOpen: boolean;
     setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    isNarrowMode: boolean;
 }
 
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
@@ -71,17 +72,13 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
         return (
             <div className="details-view-body">
                 {this.renderCommandBar()}
-                <ReactResizeDetector handleWidth querySelector="body">
-                    {dimentions => this.renderGrid(dimentions)}
-                </ReactResizeDetector>
+                {this.renderGrid()}
             </div>
         );
     }
 
-    private renderGrid(dimentions: { width: number }): JSX.Element {
-        const isNarrowMode =
-            this.props.featureFlagStoreData[FeatureFlags.reflowUI] === true &&
-            dimentions.width < 600;
+    private renderGrid(): JSX.Element {
+        const isNarrowMode = this.props.isNarrowMode;
 
         return (
             <div className={this.getClassName(isNarrowMode)}>

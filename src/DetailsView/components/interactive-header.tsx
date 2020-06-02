@@ -20,6 +20,7 @@ export interface InteractiveHeaderProps {
     featureFlagStoreData?: FeatureFlagStoreData;
     selectedPivot?: DetailsViewPivotType;
     setSideNavOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+    isNarrowMode?: boolean;
 }
 
 export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHeader', props => {
@@ -28,6 +29,10 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
     }
 
     const getNavMenu = () => {
+        if (props.isNarrowMode === false) {
+            return null;
+        }
+
         return (
             <FlaggedComponent
                 enableJSXElement={
