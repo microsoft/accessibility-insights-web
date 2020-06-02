@@ -10,6 +10,7 @@ import { DetailsViewCommandBarProps } from 'DetailsView/components/details-view-
 import { FluentSideNav } from 'DetailsView/components/left-nav/fluent-side-nav';
 import { ISelection } from 'office-ui-fabric-react';
 import * as React from 'react';
+import ReactResizeDetector from 'react-resize-detector';
 
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
@@ -67,26 +68,40 @@ export interface DetailsViewBodyProps {
 
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
     public render(): JSX.Element {
-        const bodyLayoutClassname = classNames({
-            'details-view-body-nav-content-layout': true,
-
-            'reflow-ui': this.props.featureFlagStoreData[FeatureFlags.reflowUI],
-        });
-
         return (
             <div className="details-view-body">
                 {this.renderCommandBar()}
-                <div className={bodyLayoutClassname}>
-                    {this.renderNavBar()}
-                    <div className="details-view-body-content-pane">
-                        {this.getTargetPageHiddenBar()}
-                        <div className="view" role="main">
-                            {this.renderRightPanel()}
-                        </div>
+                <ReactResizeDetector handleWidth querySelector="body">
+                    {dimentions => this.renderGrid(dimentions)}
+                </ReactResizeDetector>
+            </div>
+        );
+    }
+
+    private renderGrid(dimentions: { width: number }): JSX.Element {
+        const isNarrowMode =
+            this.props.featureFlagStoreData[FeatureFlags.reflowUI] === true &&
+            dimentions.width < 600;
+
+        return (
+            <div className={this.getClassName(isNarrowMode)}>
+                {this.renderNavBar(isNarrowMode)}
+                <div className="details-view-body-content-pane">
+                    {this.getTargetPageHiddenBar()}
+                    <div className="view" role="main">
+                        {this.renderRightPanel()}
                     </div>
                 </div>
             </div>
         );
+    }
+
+    private getClassName(isNarrowMode: boolean): string {
+        return classNames({
+            'details-view-body-nav-content-layout': true,
+            'narrow-mode': isNarrowMode,
+            'reflow-ui': this.props.featureFlagStoreData[FeatureFlags.reflowUI],
+        });
     }
 
     private renderCommandBar(): JSX.Element {
@@ -99,10 +114,11 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
         return <switcherNavConfiguration.CommandBar {...detailsViewCommandBarProps} />;
     }
 
-    private renderNavBar(): JSX.Element {
+    private renderNavBar(isNarrowMode: boolean): JSX.Element {
         return (
             <FluentSideNav
                 selectedPivot={this.props.visualizationStoreData?.selectedDetailsViewPivot}
+                isNarrowMode={isNarrowMode}
                 {...this.props}
             />
         );

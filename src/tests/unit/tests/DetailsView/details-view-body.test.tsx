@@ -215,6 +215,7 @@ describe('DetailsViewBody', () => {
         return (
             <FluentSideNav
                 selectedPivot={givenProps.visualizationStoreData.selectedDetailsViewPivot}
+                isNarrowMode={false}
                 {...givenProps}
             />
         );

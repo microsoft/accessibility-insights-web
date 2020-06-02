@@ -227,6 +227,7 @@ div.insights-file-issue-details-dialog-container {
             }
         }
     }
+
     .details-view-body-nav-content-layout {
         padding-left: 0px;
         padding-right: 0px;
@@ -237,6 +238,9 @@ div.insights-file-issue-details-dialog-container {
         min-height: 0;
         &.reflow-ui {
             grid-template-columns: $detailsViewReflowLeftNavWidth 1fr;
+        }
+        &.narrow-mode {
+            display: block;
         }
         .details-view-test-nav-area {
             box-sizing: border-box;
