@@ -8,6 +8,7 @@ import {
 import { NamedFC } from 'common/react/named-fc';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
+import { AndroidSetupPageDeps } from 'electron/views/android-setup/android-setup-page-deps';
 import * as React from 'react';
 import { DeviceStoreData } from '../../../flux/types/device-store-data';
 import { WindowTitle, WindowTitleDeps } from '../../common/window-title/window-title';
@@ -17,7 +18,8 @@ import { DeviceConnectBody, DeviceConnectBodyDeps } from './device-connect-body'
 export type DeviceConnectViewContainerDeps = TelemetryPermissionDialogDeps &
     DeviceConnectBodyDeps &
     WindowTitleDeps &
-    HeaderIconDeps;
+    HeaderIconDeps &
+    AndroidSetupPageDeps;
 
 export type DeviceConnectViewContainerProps = {
     deps: DeviceConnectViewContainerDeps;
