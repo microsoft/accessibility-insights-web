@@ -9,6 +9,7 @@ import * as styles from './left-nav-hamburger-button.scss';
 
 export type LeftNavHamburgerButtonProps = {
     selectedPivot: DetailsViewPivotType;
+    setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const LeftNavHamburgerButton = NamedFC<LeftNavHamburgerButtonProps>(
@@ -26,6 +27,7 @@ export const LeftNavHamburgerButton = NamedFC<LeftNavHamburgerButtonProps>(
                 className={styles.leftNavHamburgerButton}
                 iconProps={{ iconName: 'GlobalNavButton' }}
                 ariaLabel={ariaLabel}
+                onClick={() => props.setSideNavOpen(true)}
             />
         );
     },

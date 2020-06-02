@@ -16,9 +16,10 @@ export type InteractiveHeaderDeps = SwitcherDeps & HeaderDeps & GearMenuButtonDe
 
 export interface InteractiveHeaderProps {
     deps: InteractiveHeaderDeps;
-    featureFlagStoreData: FeatureFlagStoreData;
     tabClosed: boolean;
-    selectedPivot: DetailsViewPivotType;
+    featureFlagStoreData?: FeatureFlagStoreData;
+    selectedPivot?: DetailsViewPivotType;
+    setSideNavOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHeader', props => {
@@ -29,7 +30,12 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
     const getNavMenu = () => {
         return (
             <FlaggedComponent
-                enableJSXElement={<LeftNavHamburgerButton selectedPivot={props.selectedPivot} />}
+                enableJSXElement={
+                    <LeftNavHamburgerButton
+                        setSideNavOpen={props.setSideNavOpen}
+                        selectedPivot={props.selectedPivot}
+                    />
+                }
                 featureFlag={FeatureFlags.reflowUI}
                 featureFlagStoreData={props.featureFlagStoreData}
             />

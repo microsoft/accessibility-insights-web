@@ -417,6 +417,8 @@ describe('DetailsViewContainer', () => {
                     storeMocks.unifiedScanResultStoreData.scanIncompleteWarnings
                 }
                 scanMetadata={scanMetadata}
+                isSideNavOpen={false}
+                setSideNavOpen={null}
             />
         );
     }

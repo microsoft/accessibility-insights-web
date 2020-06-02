@@ -61,6 +61,8 @@ export interface DetailsViewBodyProps {
     cardsViewData: CardsViewModel;
     scanIncompleteWarnings: ScanIncompleteWarningId[];
     scanMetadata: ScanMetadata;
+    isSideNavOpen: boolean;
+    setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {

@@ -13,6 +13,7 @@ describe('LeftNavHamburgerButton', () => {
     it('renders per snapshot for FastPass', () => {
         const props: LeftNavHamburgerButtonProps = {
             selectedPivot: DetailsViewPivotType.fastPass,
+            setSideNavOpen: () => {},
         };
 
         const wrapper = shallow(<LeftNavHamburgerButton {...props} />);
@@ -23,6 +24,7 @@ describe('LeftNavHamburgerButton', () => {
     it('renders per snapshot for Assessment', () => {
         const props: LeftNavHamburgerButtonProps = {
             selectedPivot: DetailsViewPivotType.assessment,
+            setSideNavOpen: () => {},
         };
 
         const wrapper = shallow(<LeftNavHamburgerButton {...props} />);
