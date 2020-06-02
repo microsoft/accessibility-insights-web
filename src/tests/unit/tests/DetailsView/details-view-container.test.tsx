@@ -180,6 +180,7 @@ describe('DetailsViewContainer', () => {
                 isClosed: true,
                 isChanged: false,
                 isPageHidden: false,
+                isOriginChanged: false,
             };
 
             const storeMocks = new StoreMocks()

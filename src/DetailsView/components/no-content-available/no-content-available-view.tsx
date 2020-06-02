@@ -17,6 +17,7 @@ export const NoContentAvailableView = NamedFC<NoContentAvailableViewProps>(
         <>
             <Header deps={deps} />
             <NoContentAvailable />
+            <p>Rendered from Details View Initializer</p>
         </>
     ),
 );

@@ -66,6 +66,7 @@ export class StoreMocks {
         isClosed: false,
         isChanged: false,
         isPageHidden: false,
+        isOriginChanged: false,
     };
     public commandStoreData = new CommandStore(null, null).getDefaultState();
     public userConfigurationStoreData = new UserConfigurationStore(
