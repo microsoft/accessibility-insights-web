@@ -10,14 +10,16 @@ exports[`DetailsViewContainer render renders spinner when stores not ready 1`] =
 
 exports[`DetailsViewContainer renderContent renders TargetPageClosedView when target page closed 1`] = `
 "<Fragment>
-  <InteractiveHeader deps={{...}} selectedPivot={{...}} featureFlagStoreData={{...}} tabClosed={true} />
+  <Header deps={{...}} />
   <NoContentAvailable />
 </Fragment>"
 `;
 
+exports[`DetailsViewContainer renderContent renders normally 1`] = `"<DetailsViewContent deps={{...}} storeState={{...}} />"`;
+
 exports[`DetailsViewContainer renderContent shows target tab was closed when stores are not loaded 1`] = `
 "<Fragment>
-  <InteractiveHeader deps={{...}} selectedPivot={0} featureFlagStoreData={{...}} tabClosed={true} />
+  <Header deps={{...}} />
   <NoContentAvailable />
 </Fragment>"
 `;

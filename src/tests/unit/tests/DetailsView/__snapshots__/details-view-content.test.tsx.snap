@@ -1,0 +1,468 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` render renders normally 1`] = `
+<React.Fragment>
+  <InteractiveHeader
+    deps={
+      Object {
+        "detailsViewActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "addPathForValidation": [Function],
+          "cancelStartOver": [Function],
+          "cancelStartOverAllAssessments": [Function],
+          "changeAssessmentVisualizationState": [Function],
+          "changeManualRequirementStatus": [Function],
+          "changeManualTestStatus": [Function],
+          "clearPathSnippetData": [Function],
+          "closePreviewFeaturesPanel": [Function],
+          "closeScopingPanel": [Function],
+          "closeSettingsPanel": [Function],
+          "continuePreviousAssessment": [Function],
+          "copyIssueDetailsClicked": [Function],
+          "dispatcher": undefined,
+          "editFailureInstance": [Function],
+          "removeFailureInstance": [Function],
+          "rescanVisualization": [Function],
+          "setAllUrlsPermissionState": [Function],
+          "setFeatureFlag": [Function],
+          "startOverAllAssessments": [Function],
+          "switchToTargetTab": [Function],
+          "telemetryFactory": undefined,
+          "undoManualRequirementStatusChange": [Function],
+          "undoManualTestStatusChange": [Function],
+        },
+        "dropdownClickHandler": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "dropdownActionMessageCreator": undefined,
+          "openDebugTools": [Function],
+          "openPreviewFeaturesPanelHandler": [Function],
+          "openScopingPanelHandler": [Function],
+          "openSettingsPanelHandler": [Function],
+          "source": undefined,
+        },
+        "getCardSelectionViewData": [Function],
+        "getCardViewData": [Function],
+        "getDetailsRightPanelConfiguration": [Function],
+        "getDetailsSwitcherNavConfiguration": [Function],
+        "isResultHighlightUnavailable": [Function],
+        "storeActionMessageCreator": undefined,
+        "storesHub": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "stores": undefined,
+        },
+      }
+    }
+    featureFlagStoreData={
+      Object {
+        "logTelemetryToConsole": false,
+      }
+    }
+    selectedPivot={0}
+    tabClosed={false}
+  />
+  <DetailsViewBody
+    assessmentStoreData={
+      Object {
+        "assessmentNavState": Object {
+          "selectedTestSubview": null,
+          "selectedTestType": null,
+        },
+        "assessments": Object {},
+        "persistedTabInfo": null,
+        "resultDescription": "",
+      }
+    }
+    cardSelectionStoreData={
+      Object {
+        "focusedResultUid": null,
+        "rules": Object {},
+        "visualHelperEnabled": false,
+      }
+    }
+    cardsViewData={Object {}}
+    deps={
+      Object {
+        "detailsViewActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "addPathForValidation": [Function],
+          "cancelStartOver": [Function],
+          "cancelStartOverAllAssessments": [Function],
+          "changeAssessmentVisualizationState": [Function],
+          "changeManualRequirementStatus": [Function],
+          "changeManualTestStatus": [Function],
+          "clearPathSnippetData": [Function],
+          "closePreviewFeaturesPanel": [Function],
+          "closeScopingPanel": [Function],
+          "closeSettingsPanel": [Function],
+          "continuePreviousAssessment": [Function],
+          "copyIssueDetailsClicked": [Function],
+          "dispatcher": undefined,
+          "editFailureInstance": [Function],
+          "removeFailureInstance": [Function],
+          "rescanVisualization": [Function],
+          "setAllUrlsPermissionState": [Function],
+          "setFeatureFlag": [Function],
+          "startOverAllAssessments": [Function],
+          "switchToTargetTab": [Function],
+          "telemetryFactory": undefined,
+          "undoManualRequirementStatusChange": [Function],
+          "undoManualTestStatusChange": [Function],
+        },
+        "dropdownClickHandler": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "dropdownActionMessageCreator": undefined,
+          "openDebugTools": [Function],
+          "openPreviewFeaturesPanelHandler": [Function],
+          "openScopingPanelHandler": [Function],
+          "openSettingsPanelHandler": [Function],
+          "source": undefined,
+        },
+        "getCardSelectionViewData": [Function],
+        "getCardViewData": [Function],
+        "getDetailsRightPanelConfiguration": [Function],
+        "getDetailsSwitcherNavConfiguration": [Function],
+        "isResultHighlightUnavailable": [Function],
+        "storeActionMessageCreator": undefined,
+        "storesHub": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "stores": undefined,
+        },
+      }
+    }
+    detailsViewStoreData={
+      Object {
+        "contentPath": "",
+        "contentTitle": "",
+        "currentPanel": Object {
+          "isContentOpen": false,
+          "isPreviewFeaturesOpen": false,
+          "isScopingOpen": false,
+          "isSettingsOpen": false,
+        },
+        "detailsViewRightContentPanel": "TestView",
+      }
+    }
+    dropdownClickHandler={
+      proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "dropdownActionMessageCreator": undefined,
+        "openDebugTools": [Function],
+        "openPreviewFeaturesPanelHandler": [Function],
+        "openScopingPanelHandler": [Function],
+        "openSettingsPanelHandler": [Function],
+        "source": undefined,
+      }
+    }
+    featureFlagStoreData={
+      Object {
+        "logTelemetryToConsole": false,
+      }
+    }
+    pathSnippetStoreData={
+      Object {
+        "path": null,
+        "snippet": null,
+      }
+    }
+    rightPanelConfiguration={Object {}}
+    scanMetadata={
+      Object {
+        "targetAppInfo": Object {
+          "name": "DetailsViewContainerTest title",
+          "url": "http://detailsViewContainerTest/url/",
+        },
+        "timestamp": "timestamp",
+        "toolData": Object {
+          "applicationProperties": Object {
+            "name": "some app",
+          },
+        },
+      }
+    }
+    selectedTest={-1}
+    switcherNavConfiguration={
+      Object {
+        "getSelectedDetailsView": [Function],
+      }
+    }
+    tabStoreData={
+      Object {
+        "id": 1,
+        "isChanged": false,
+        "isClosed": false,
+        "isPageHidden": false,
+        "title": "DetailsViewContainerTest title",
+        "url": "http://detailsViewContainerTest/url/",
+      }
+    }
+    userConfigurationStoreData={
+      Object {
+        "bugService": "gitHub",
+        "bugServicePropertiesMap": Object {
+          "gitHub": Object {
+            "repository": "gitHub-repository",
+          },
+        },
+        "enableHighContrast": false,
+        "enableTelemetry": true,
+        "isFirstTime": false,
+        "lastSelectedHighContrast": false,
+      }
+    }
+    visualizationScanResultData={
+      Object {
+        "color": Object {
+          "fullAxeResultsMap": null,
+          "fullIdToRuleResultMap": null,
+          "scanResult": null,
+          "selectedAxeResultsMap": null,
+          "selectedIdToRuleResultMap": null,
+        },
+        "headings": Object {
+          "fullAxeResultsMap": null,
+          "fullIdToRuleResultMap": null,
+          "scanResult": null,
+          "selectedAxeResultsMap": null,
+          "selectedIdToRuleResultMap": null,
+        },
+        "issues": Object {
+          "fullAxeResultsMap": null,
+          "fullIdToRuleResultMap": null,
+          "scanResult": null,
+          "selectedAxeResultsMap": null,
+          "selectedIdToRuleResultMap": null,
+        },
+        "landmarks": Object {
+          "fullAxeResultsMap": null,
+          "fullIdToRuleResultMap": null,
+          "scanResult": null,
+          "selectedAxeResultsMap": null,
+          "selectedIdToRuleResultMap": null,
+        },
+        "tabStops": Object {
+          "tabbedElements": null,
+        },
+      }
+    }
+    visualizationStoreData={
+      Object {
+        "focusedTarget": null,
+        "injectingInProgress": null,
+        "injectingStarted": false,
+        "scanning": null,
+        "selectedAdhocDetailsView": -1,
+        "selectedDetailsViewPivot": 0,
+        "selectedFastPassDetailsView": 1,
+        "tests": Object {
+          "adhoc": Object {
+            "color": Object {
+              "enabled": false,
+            },
+            "headings": Object {
+              "enabled": false,
+            },
+            "issues": Object {
+              "enabled": false,
+            },
+            "landmarks": Object {
+              "enabled": false,
+            },
+            "tabStops": Object {
+              "enabled": false,
+            },
+          },
+          "assessments": Object {
+            "audioVideoOnlyAssessment": Object {
+              "enabled": false,
+              "stepStatus": Object {},
+            },
+            "automatedChecks": Object {
+              "enabled": false,
+              "stepStatus": Object {},
+            },
+            "colorSensoryAssessment": Object {
+              "enabled": false,
+              "stepStatus": Object {},
+            },
+            "contrastAssessment": Object {
+              "enabled": false,
+              "stepStatus": Object {},
+            },
+            "customWidgetsAssessment": Object {
+              "enabled": false,
+              "stepStatus": Object {},
+            },
+            "errorsAssessment": Object {
+              "enabled": false,
+              "stepStatus": Object {},
+            },
+            "headingsAssessment": Object {
+              "enabled": false,
+              "stepStatus": Object {},
+            },
+            "imageAssessment": Object {
+              "enabled": false,
+              "stepStatus": Object {},
+            },
+            "keyboardInteractionAssessment": Object {
+              "enabled": false,
+              "stepStatus": Object {},
+            },
+            "landmarksAssessment": Object {
+              "enabled": false,
+              "stepStatus": Object {},
+            },
+            "languageAssessment": Object {
+              "enabled": false,
+              "stepStatus": Object {},
+            },
+            "linksAssessment": Object {
+              "enabled": false,
+              "stepStatus": Object {},
+            },
+            "liveMultimediaAssessment": Object {
+              "enabled": false,
+              "stepStatus": Object {},
+            },
+            "nativeWidgetsAssessment": Object {
+              "enabled": false,
+              "stepStatus": Object {},
+            },
+            "pageAssessment": Object {
+              "enabled": false,
+              "stepStatus": Object {},
+            },
+            "parsingAssessment": Object {
+              "enabled": false,
+              "stepStatus": Object {},
+            },
+            "pointerMotionAssessment": Object {
+              "enabled": false,
+              "stepStatus": Object {},
+            },
+            "prerecordedMultimediaAssessment": Object {
+              "enabled": false,
+              "stepStatus": Object {},
+            },
+            "repetitiveContentAssessment": Object {
+              "enabled": false,
+              "stepStatus": Object {},
+            },
+            "semanticsAssessment": Object {
+              "enabled": false,
+              "stepStatus": Object {},
+            },
+            "sequenceAssessment": Object {
+              "enabled": false,
+              "stepStatus": Object {},
+            },
+            "textLegibilityAssessment": Object {
+              "enabled": false,
+              "stepStatus": Object {},
+            },
+            "timedEventsAssessment": Object {
+              "enabled": false,
+              "stepStatus": Object {},
+            },
+            "visibleFocusOrderAssessment": Object {
+              "enabled": false,
+              "stepStatus": Object {},
+            },
+          },
+        },
+      }
+    }
+  />
+  <DetailsViewOverlay
+    deps={
+      Object {
+        "detailsViewActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "addPathForValidation": [Function],
+          "cancelStartOver": [Function],
+          "cancelStartOverAllAssessments": [Function],
+          "changeAssessmentVisualizationState": [Function],
+          "changeManualRequirementStatus": [Function],
+          "changeManualTestStatus": [Function],
+          "clearPathSnippetData": [Function],
+          "closePreviewFeaturesPanel": [Function],
+          "closeScopingPanel": [Function],
+          "closeSettingsPanel": [Function],
+          "continuePreviousAssessment": [Function],
+          "copyIssueDetailsClicked": [Function],
+          "dispatcher": undefined,
+          "editFailureInstance": [Function],
+          "removeFailureInstance": [Function],
+          "rescanVisualization": [Function],
+          "setAllUrlsPermissionState": [Function],
+          "setFeatureFlag": [Function],
+          "startOverAllAssessments": [Function],
+          "switchToTargetTab": [Function],
+          "telemetryFactory": undefined,
+          "undoManualRequirementStatusChange": [Function],
+          "undoManualTestStatusChange": [Function],
+        },
+        "dropdownClickHandler": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "dropdownActionMessageCreator": undefined,
+          "openDebugTools": [Function],
+          "openPreviewFeaturesPanelHandler": [Function],
+          "openScopingPanelHandler": [Function],
+          "openSettingsPanelHandler": [Function],
+          "source": undefined,
+        },
+        "getCardSelectionViewData": [Function],
+        "getCardViewData": [Function],
+        "getDetailsRightPanelConfiguration": [Function],
+        "getDetailsSwitcherNavConfiguration": [Function],
+        "isResultHighlightUnavailable": [Function],
+        "storeActionMessageCreator": undefined,
+        "storesHub": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "stores": undefined,
+        },
+      }
+    }
+    detailsViewStoreData={
+      Object {
+        "contentPath": "",
+        "contentTitle": "",
+        "currentPanel": Object {
+          "isContentOpen": false,
+          "isPreviewFeaturesOpen": false,
+          "isScopingOpen": false,
+          "isSettingsOpen": false,
+        },
+        "detailsViewRightContentPanel": "TestView",
+      }
+    }
+    featureFlagStoreData={
+      Object {
+        "logTelemetryToConsole": false,
+      }
+    }
+    scopingStoreData={
+      Object {
+        "selectors": Object {
+          "exclude": Array [],
+          "include": Array [],
+        },
+      }
+    }
+    userConfigurationStoreData={
+      Object {
+        "bugService": "gitHub",
+        "bugServicePropertiesMap": Object {
+          "gitHub": Object {
+            "repository": "gitHub-repository",
+          },
+        },
+        "enableHighContrast": false,
+        "enableTelemetry": true,
+        "isFirstTime": false,
+        "lastSelectedHighContrast": false,
+      }
+    }
+  />
+</React.Fragment>
+`;
