@@ -19,6 +19,7 @@ import { CardSelectionStoreData } from 'common/types/store-data/card-selection-s
 import { toolName } from 'content/strings/application';
 import { textContent } from 'content/strings/text-content';
 import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
+import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
 import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-available/no-content-available-view';
 import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
 import { NoContentAvailableViewRenderer } from 'DetailsView/no-content-available-view-renderer';
@@ -378,6 +379,8 @@ if (isNaN(tabId) === false) {
 
             const assessmentViewUpdateHandler = new AssessmentViewUpdateHandler();
 
+            const navLinkRenderer = new NavLinkRenderer();
+
             const deps: DetailsViewContainerDeps = {
                 textContent,
                 fixInstructionProcessor,
@@ -448,6 +451,7 @@ if (isNaN(tabId) === false) {
                 Assessments,
                 assessmentViewUpdateHandler,
                 detailsViewExtensionPoint,
+                navLinkRenderer,
             };
 
             const renderer = new DetailsViewRenderer(

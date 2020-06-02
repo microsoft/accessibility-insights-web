@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { ReportExportFormat } from 'common/extension-telemetry-events';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { ActionButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 
@@ -75,9 +75,12 @@ export class ReportExportComponent extends React.Component<
         const { isOpen, exportName, exportDescription, exportData } = this.state;
         return (
             <>
-                <ActionButton iconProps={{ iconName: 'Export' }} onClick={this.onExportButtonClick}>
+                <InsightsCommandButton
+                    iconProps={{ iconName: 'Export' }}
+                    onClick={this.onExportButtonClick}
+                >
                     Export result
-                </ActionButton>
+                </InsightsCommandButton>
                 <ExportDialog
                     deps={deps}
                     isOpen={isOpen}

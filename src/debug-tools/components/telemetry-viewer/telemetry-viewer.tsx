@@ -38,27 +38,19 @@ export class TelemetryViewer extends React.Component<TelemetryViewerProps, Telem
 
     public render(): JSX.Element {
         if (this.state.telemetryMessages.length === 0) {
-            return (
-                <>
-                    {this.renderTitle()}
-                    {this.renderNoMessages()}
-                </>
-            );
+            return this.renderNoMessages();
         }
 
         return (
             <>
-                {this.renderTitle()}
                 {this.renderCommonFields()}
                 {this.renderTelemetryMessagesList()}
             </>
         );
     }
 
-    private renderTitle = () => <h1>Telemetry Viewer</h1>;
-
     private renderNoMessages = () => (
-        <span>No telemetry messages yet. Use the extension to see something here.</span>
+        <strong>No telemetry messages yet. Use the extension to see something here.</strong>
     );
 
     private renderCommonFields(): JSX.Element {

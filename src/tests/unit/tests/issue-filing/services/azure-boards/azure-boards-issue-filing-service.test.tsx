@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IssueFilingServicePropertiesMap } from '../../../../../../common/types/store-data/user-configuration-store';
-import { AzureBoardsIssueFilingService } from '../../../../../../issue-filing/services/azure-boards/azure-boards-issue-filing-service';
+import { getAzureBoardsIssueFilingService } from '../../../../../../issue-filing/services/azure-boards/azure-boards-issue-filing-service';
 import {
     AzureBoardsIssueDetailField,
     AzureBoardsIssueFilingSettings,
@@ -11,11 +11,12 @@ import { AzureBoardsSettingsForm } from '../../../../../../issue-filing/services
 describe('AzureBoardsIssueFilingServiceTest', () => {
     const projectUrlStub: string = 'some/project/url';
     const issueDetailsLocationStub: AzureBoardsIssueDetailField = 'some location' as AzureBoardsIssueDetailField;
+    const azureBoardsIssueFilingService = getAzureBoardsIssueFilingService(null);
 
     it('static properties', () => {
-        expect(AzureBoardsIssueFilingService.key).toBe('azureBoards');
-        expect(AzureBoardsIssueFilingService.displayName).toBe('Azure Boards');
-        expect(AzureBoardsIssueFilingService.isHidden).toBeUndefined();
+        expect(azureBoardsIssueFilingService.key).toBe('azureBoards');
+        expect(azureBoardsIssueFilingService.displayName).toBe('Azure Boards');
+        expect(azureBoardsIssueFilingService.isHidden).toBeUndefined();
     });
 
     it('buildStoreData', () => {
@@ -24,7 +25,7 @@ describe('AzureBoardsIssueFilingServiceTest', () => {
             issueDetailsField: issueDetailsLocationStub,
         };
         expect(
-            AzureBoardsIssueFilingService.buildStoreData(projectUrlStub, issueDetailsLocationStub),
+            azureBoardsIssueFilingService.buildStoreData(projectUrlStub, issueDetailsLocationStub),
         ).toEqual(expectedStoreData);
     });
 
@@ -35,9 +36,9 @@ describe('AzureBoardsIssueFilingServiceTest', () => {
         };
         const givenData: IssueFilingServicePropertiesMap = {
             'some other service': {},
-            [AzureBoardsIssueFilingService.key]: expectedStoreData,
+            [azureBoardsIssueFilingService.key]: expectedStoreData,
         };
-        expect(AzureBoardsIssueFilingService.getSettingsFromStoreData(givenData)).toEqual(
+        expect(azureBoardsIssueFilingService.getSettingsFromStoreData(givenData)).toEqual(
             expectedStoreData,
         );
     });
@@ -57,7 +58,7 @@ describe('AzureBoardsIssueFilingServiceTest', () => {
         ];
 
         it.each(invalidTestSettings)('handles invalid settings: %p', settings => {
-            expect(AzureBoardsIssueFilingService.isSettingsValid(settings)).toBe(false);
+            expect(azureBoardsIssueFilingService.isSettingsValid(settings)).toBe(false);
         });
 
         it('handles valid settings', () => {
@@ -66,11 +67,11 @@ describe('AzureBoardsIssueFilingServiceTest', () => {
                 issueDetailsField: 'some issue details location' as AzureBoardsIssueDetailField,
             };
 
-            expect(AzureBoardsIssueFilingService.isSettingsValid(validSettings)).toBe(true);
+            expect(azureBoardsIssueFilingService.isSettingsValid(validSettings)).toBe(true);
         });
     });
 
     it('has correct settingsForm', () => {
-        expect(AzureBoardsIssueFilingService.settingsForm).toBe(AzureBoardsSettingsForm);
+        expect(azureBoardsIssueFilingService.settingsForm).toBe(AzureBoardsSettingsForm);
     });
 });

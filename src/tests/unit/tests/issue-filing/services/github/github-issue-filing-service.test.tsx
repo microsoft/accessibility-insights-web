@@ -4,7 +4,7 @@ import { IssueFilingServicePropertiesMap } from 'common/types/store-data/user-co
 import { SettingsDeps } from 'DetailsView/components/details-view-overlay/settings-panel/settings/settings-props';
 import { shallow } from 'enzyme';
 import { OnPropertyUpdateCallback } from 'issue-filing/components/issue-filing-settings-container';
-import { GitHubIssueFilingService } from 'issue-filing/services/github/github-issue-filing-service';
+import { getGitHubIssueFilingService } from 'issue-filing/services/github/github-issue-filing-service';
 import { GitHubIssueFilingSettings } from 'issue-filing/services/github/github-issue-filing-settings';
 import { SettingsFormProps } from 'issue-filing/types/settings-form-props';
 import { TextField } from 'office-ui-fabric-react';
@@ -16,6 +16,8 @@ describe('GithubIssueFilingServiceTest', () => {
     let onPropertyUpdateCallbackMock: IMock<OnPropertyUpdateCallback>;
 
     const invalidTestSettings = [null, {}, undefined, { random: '' }, { repository: '' }];
+
+    const gitHubIssueFilingService = getGitHubIssueFilingService(null);
 
     beforeEach(() => {
         onPropertyUpdateCallbackMock = Mock.ofInstance(() => null);
@@ -31,9 +33,9 @@ describe('GithubIssueFilingServiceTest', () => {
     });
 
     it('static properties', () => {
-        expect(GitHubIssueFilingService.key).toBe('gitHub');
-        expect(GitHubIssueFilingService.displayName).toBe('GitHub');
-        expect(GitHubIssueFilingService.isHidden).toBeUndefined();
+        expect(gitHubIssueFilingService.key).toBe('gitHub');
+        expect(gitHubIssueFilingService.displayName).toBe('GitHub');
+        expect(gitHubIssueFilingService.isHidden).toBeUndefined();
     });
 
     it('buildStoreData', () => {
@@ -41,7 +43,7 @@ describe('GithubIssueFilingServiceTest', () => {
         const expectedStoreData: GitHubIssueFilingSettings = {
             repository: url,
         };
-        expect(GitHubIssueFilingService.buildStoreData(url)).toEqual(expectedStoreData);
+        expect(gitHubIssueFilingService.buildStoreData(url)).toEqual(expectedStoreData);
     });
 
     it('getSettingsFromStoreData', () => {
@@ -50,9 +52,9 @@ describe('GithubIssueFilingServiceTest', () => {
         };
         const givenData: IssueFilingServicePropertiesMap = {
             'some other service': {},
-            [GitHubIssueFilingService.key]: expectedStoreData,
+            [gitHubIssueFilingService.key]: expectedStoreData,
         };
-        expect(GitHubIssueFilingService.getSettingsFromStoreData(givenData)).toEqual(
+        expect(gitHubIssueFilingService.getSettingsFromStoreData(givenData)).toEqual(
             expectedStoreData,
         );
     });
@@ -61,7 +63,7 @@ describe('GithubIssueFilingServiceTest', () => {
         it.each(invalidTestSettings)(
             'invalid settings with %p',
             (settings: GitHubIssueFilingSettings) => {
-                expect(GitHubIssueFilingService.isSettingsValid(settings)).toBe(false);
+                expect(gitHubIssueFilingService.isSettingsValid(settings)).toBe(false);
             },
         );
 
@@ -70,19 +72,19 @@ describe('GithubIssueFilingServiceTest', () => {
                 repository: 'repository',
             };
 
-            expect(GitHubIssueFilingService.isSettingsValid(validSettings)).toBe(true);
+            expect(gitHubIssueFilingService.isSettingsValid(validSettings)).toBe(true);
         });
     });
 
     describe('settingsForm', () => {
         it('renders', () => {
-            const Component = GitHubIssueFilingService.settingsForm;
+            const Component = gitHubIssueFilingService.settingsForm;
             const wrapper = shallow(<Component {...props} />);
             expect(wrapper.getElement()).toMatchSnapshot();
         });
 
         it('renders with no valid settings object', () => {
-            const Component = GitHubIssueFilingService.settingsForm;
+            const Component = gitHubIssueFilingService.settingsForm;
             props.settings = null;
             const wrapper = shallow(<Component {...props} />);
             const textField = wrapper.find(TextField);
@@ -91,11 +93,11 @@ describe('GithubIssueFilingServiceTest', () => {
         });
 
         it('onChange', () => {
-            const Component = GitHubIssueFilingService.settingsForm;
+            const Component = gitHubIssueFilingService.settingsForm;
             const wrapper = shallow(<Component {...props} />);
             const newRepositoryValue = 'new repo';
             const payload = {
-                issueFilingServiceName: GitHubIssueFilingService.key,
+                issueFilingServiceName: gitHubIssueFilingService.key,
                 propertyName: 'repository',
                 propertyValue: newRepositoryValue,
             };

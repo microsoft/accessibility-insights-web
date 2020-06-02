@@ -10,6 +10,7 @@ import {
     ChangeInstanceStatusPayload,
     ChangeRequirementStatusPayload,
     EditFailureInstancePayload,
+    ExpandTestNavPayload,
     RemoveFailureInstancePayload,
     SelectTestSubviewPayload,
     ToggleActionPayload,
@@ -911,6 +912,50 @@ describe('AssessmentStore', () => {
         createStoreTesterForAssessmentActions('selectTestSubview')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, finalState);
+    });
+
+    test('on expandTestNav', () => {
+        const visualizationType = 1 as VisualizationType;
+        const initialState = new AssessmentsStoreDataBuilder(
+            assessmentsProvider,
+            assessmentDataConverterMock.object,
+        ).build();
+        const finalState = new AssessmentsStoreDataBuilder(
+            assessmentsProvider,
+            assessmentDataConverterMock.object,
+        )
+            .withExpandedTest(visualizationType)
+            .build();
+
+        const payload: ExpandTestNavPayload = {
+            selectedTest: visualizationType,
+        };
+
+        assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
+
+        createStoreTesterForAssessmentActions('expandTestNav')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, finalState);
+    });
+
+    test('on collapseTestNav', () => {
+        const initialState = new AssessmentsStoreDataBuilder(
+            assessmentsProvider,
+            assessmentDataConverterMock.object,
+        ).build();
+        const finalState = new AssessmentsStoreDataBuilder(
+            assessmentsProvider,
+            assessmentDataConverterMock.object,
+        )
+            .withExpandedTest(null)
+            .build();
+
+        assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
+
+        createStoreTesterForAssessmentActions('collapseTestNav').testListenerToBeCalledOnce(
+            initialState,
+            finalState,
+        );
     });
 
     test('onUpdateTargetTabId', () => {

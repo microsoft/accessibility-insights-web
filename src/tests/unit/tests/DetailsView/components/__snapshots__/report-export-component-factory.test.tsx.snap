@@ -2,18 +2,18 @@
 
 exports[`ReportExportComponentPropsFactory getReportExportComponentForAssessment expected properties are set 1`] = `
 "<Fragment>
-  <CustomizedActionButton iconProps={{...}} onClick={[Function]}>
+  <InsightsCommandButton iconProps={{...}} onClick={[Function]}>
     Export result
-  </CustomizedActionButton>
+  </InsightsCommandButton>
   <ExportDialog deps={{...}} isOpen={false} fileName=\\"\\" description=\\"\\" html=\\"\\" onClose={[Function]} onDescriptionChange={[Function]} reportExportFormat=\\"Assessment\\" onExportClick={[Function]} featureFlagStoreData={{...}} />
 </Fragment>"
 `;
 
 exports[`ReportExportComponentPropsFactory getReportExportComponentForFastPass, scanResults is not null, test is Issues, properties are set 1`] = `
 "<Fragment>
-  <CustomizedActionButton iconProps={{...}} onClick={[Function]}>
+  <InsightsCommandButton iconProps={{...}} onClick={[Function]}>
     Export result
-  </CustomizedActionButton>
+  </InsightsCommandButton>
   <ExportDialog deps={{...}} isOpen={false} fileName=\\"\\" description=\\"\\" html=\\"\\" onClose={[Function]} onDescriptionChange={[Function]} reportExportFormat=\\"AutomatedChecks\\" onExportClick={[Function]} featureFlagStoreData={{...}} />
 </Fragment>"
 `;

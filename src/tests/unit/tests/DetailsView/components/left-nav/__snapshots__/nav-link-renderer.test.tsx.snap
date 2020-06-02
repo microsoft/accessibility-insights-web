@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavLinkRenderer renderAssessmentTestLink render index icon when status is unknown 1`] = `
+<TestViewLeftNavLink
+  link={
+    Object {
+      "status": 1,
+    }
+  }
+  renderIcon={[Function]}
+/>
+`;
+
+exports[`NavLinkRenderer renderAssessmentTestLink render index icon when status is unknown 2`] = `<React.Fragment />`;
+
+exports[`NavLinkRenderer renderAssessmentTestLink render status icon with link 1`] = `
+<TestViewLeftNavLink
+  link={
+    Object {
+      "status": 0,
+    }
+  }
+  renderIcon={[Function]}
+/>
+`;
+
+exports[`NavLinkRenderer renderAssessmentTestLink render status icon with link 2`] = `
+<LeftNavStatusIcon
+  item={
+    Object {
+      "status": 0,
+    }
+  }
+/>
+`;
+
+exports[`NavLinkRenderer renderGettingStartedLink renders 1`] = `<GettingStartedNavLink />`;
+
+exports[`NavLinkRenderer renderOverviewLink renders 1`] = `
+<OverviewLeftNavLink
+  link={
+    Object {
+      "title": "some link",
+    }
+  }
+/>
+`;
+
+exports[`NavLinkRenderer renderRequirementLink render displayed index when status is unknown 1`] = `
+<TestViewLeftNavLink
+  link={
+    Object {
+      "displayedIndex": "some displayed index",
+      "status": 1,
+    }
+  }
+  renderIcon={[Function]}
+/>
+`;
+
+exports[`NavLinkRenderer renderRequirementLink render displayed index when status is unknown 2`] = `
+<React.Fragment>
+  some displayed index
+</React.Fragment>
+`;
+
+exports[`NavLinkRenderer renderRequirementLink render status icon with link 1`] = `
+<TestViewLeftNavLink
+  link={
+    Object {
+      "status": 0,
+    }
+  }
+  renderIcon={[Function]}
+/>
+`;
+
+exports[`NavLinkRenderer renderRequirementLink render status icon with link 2`] = `
+<LeftNavStatusIcon
+  className="requirementStatusIcon"
+  item={
+    Object {
+      "status": 0,
+    }
+  }
+/>
+`;
+
+exports[`NavLinkRenderer renderVisualizationLink renders 1`] = `
+<TestViewLeftNavLink
+  link={
+    Object {
+      "title": "some link",
+    }
+  }
+  renderIcon={[Function]}
+/>
+`;
+
+exports[`NavLinkRenderer renderVisualizationLink renders 2`] = `
+<LeftNavIndexIcon
+  item={
+    Object {
+      "title": "some link",
+    }
+  }
+/>
+`;

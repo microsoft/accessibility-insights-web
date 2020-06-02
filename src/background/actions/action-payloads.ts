@@ -38,6 +38,10 @@ export interface SelectGettingStartedPayload extends BaseActionPayload {
     selectedTest: VisualizationType;
 }
 
+export interface ExpandTestNavPayload extends BaseActionPayload {
+    selectedTest: VisualizationType;
+}
+
 export interface AssessmentToggleActionPayload extends ToggleActionPayload {
     requirement: string;
 }

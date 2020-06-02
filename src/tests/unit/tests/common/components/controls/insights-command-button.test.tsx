@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { shallow } from 'enzyme';
+import { IIconProps } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 describe('InsightsCommandButton', () => {
@@ -12,6 +13,20 @@ describe('InsightsCommandButton', () => {
 
     it('renders per snapshot with extra className combined with its own', () => {
         const testSubject = shallow(<InsightsCommandButton className={'test-extra-class-name'} />);
+        expect(testSubject.getElement()).toMatchSnapshot();
+    });
+
+    it('renders per snapshot with iconProps passed through', () => {
+        const iconProps = { testProperty: 'test-value' } as IIconProps;
+        const testSubject = shallow(<InsightsCommandButton iconProps={iconProps} />);
+        expect(testSubject.getElement()).toMatchSnapshot();
+    });
+
+    it('renders per snapshot with extra icon className combined with its own', () => {
+        const iconProps = {
+            className: 'icon-class-name',
+        } as IIconProps;
+        const testSubject = shallow(<InsightsCommandButton iconProps={iconProps} />);
         expect(testSubject.getElement()).toMatchSnapshot();
     });
 });

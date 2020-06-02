@@ -15,6 +15,10 @@ export const InsightsCommandButton = NamedFC<InsightsCommandButtonProps>(
             <ActionButton
                 {...props}
                 className={css(styles.insightsCommandButton, props.className)}
+                iconProps={{
+                    ...props.iconProps,
+                    className: css(styles.commandBarButtonIcon, props.iconProps?.className),
+                }}
             />
         );
     },

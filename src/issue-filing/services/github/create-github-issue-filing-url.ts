@@ -2,14 +2,12 @@
 // Licensed under the MIT License.
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { CreateIssueDetailsTextData } from '../../../common/types/create-issue-details-text-data';
-import { createIssueDetailsBuilder } from '../../common/create-issue-details-builder';
 import { HTTPQueryBuilder } from '../../common/http-query-builder';
 import { IssueDetailsBuilder } from '../../common/issue-details-builder';
 import {
     IssueFilingUrlStringUtils,
     IssueUrlCreationUtils,
 } from '../../common/issue-filing-url-string-utils';
-import { MarkdownFormatter } from '../../common/markup/markdown-formatter';
 import { GitHubIssueFilingSettings } from './github-issue-filing-settings';
 import { rectify, UrlRectifier } from './github-url-rectifier';
 
@@ -37,9 +35,10 @@ export const createGitHubIssueFilingUrlProvider = (
     };
 };
 
-export const gitHubIssueFilingUrlProvider = createGitHubIssueFilingUrlProvider(
-    IssueFilingUrlStringUtils,
-    createIssueDetailsBuilder(MarkdownFormatter),
-    () => new HTTPQueryBuilder(),
-    rectify,
-);
+export const gitHubIssueFilingUrlProvider = (issueDetailsBuilder: IssueDetailsBuilder) =>
+    createGitHubIssueFilingUrlProvider(
+        IssueFilingUrlStringUtils,
+        issueDetailsBuilder,
+        () => new HTTPQueryBuilder(),
+        rectify,
+    );

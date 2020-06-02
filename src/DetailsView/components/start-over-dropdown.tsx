@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IPoint } from '@uifabric/utilities';
-import { ActionButton } from 'office-ui-fabric-react';
 import { ContextualMenu, IContextualMenuItem } from 'office-ui-fabric-react';
 import * as React from 'react';
 
+import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
@@ -43,7 +43,7 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
     public render(): JSX.Element {
         return (
             <div>
-                <ActionButton
+                <InsightsCommandButton
                     iconProps={{
                         iconName: 'Refresh',
                     }}

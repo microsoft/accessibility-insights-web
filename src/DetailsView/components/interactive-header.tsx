@@ -3,6 +3,7 @@
 import { FlaggedComponent } from 'common/components/flagged-component';
 import { GearMenuButton, GearMenuButtonDeps } from 'common/components/gear-menu-button';
 import { Header, HeaderDeps } from 'common/components/header';
+import { LeftNavHamburgerButton } from 'common/components/left-nav-hamburger-button';
 import { FeatureFlags } from 'common/feature-flags';
 import { NamedFC } from 'common/react/named-fc';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
@@ -24,6 +25,16 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
     if (props.tabClosed) {
         return <Header deps={props.deps} />;
     }
+
+    const getNavMenu = () => {
+        return (
+            <FlaggedComponent
+                enableJSXElement={<LeftNavHamburgerButton selectedPivot={props.selectedPivot} />}
+                featureFlag={FeatureFlags.reflowUI}
+                featureFlagStoreData={props.featureFlagStoreData}
+            />
+        );
+    };
 
     const getItems = () => {
         const switcher = (
@@ -47,5 +58,12 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
         <GearMenuButton deps={props.deps} featureFlagData={props.featureFlagStoreData} />
     );
 
-    return <Header deps={props.deps} items={getItems()} farItems={getFarItems()}></Header>;
+    return (
+        <Header
+            deps={props.deps}
+            items={getItems()}
+            farItems={getFarItems()}
+            navMenu={getNavMenu()}
+        ></Header>
+    );
 });

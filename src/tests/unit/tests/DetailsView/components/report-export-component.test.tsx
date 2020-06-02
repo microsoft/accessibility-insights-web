@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
-import { ActionButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { IMock, It, Mock, Times } from 'typemoq';
 
+import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { ExportDialog } from '../../../../../DetailsView/components/export-dialog';
 import {
     ReportExportComponent,
@@ -67,7 +67,7 @@ describe('ReportExportComponentTest', () => {
             htmlGeneratorMock.setup(hgm => hgm(It.isAnyString())).verifiable(Times.never());
 
             const wrapper = shallow(<ReportExportComponent {...props} />);
-            const exportButton = wrapper.find(ActionButton);
+            const exportButton = wrapper.find(InsightsCommandButton);
 
             exportButton.simulate('click');
             const dialog = wrapper.find(ExportDialog);
@@ -97,7 +97,7 @@ describe('ReportExportComponentTest', () => {
 
             htmlGeneratorMock.setup(hgm => hgm(It.isAnyString())).verifiable(Times.never());
 
-            const exportButton = wrapper.find(ActionButton);
+            const exportButton = wrapper.find(InsightsCommandButton);
             exportButton.simulate('click');
             const dialog = wrapper.find(ExportDialog);
             dialog.props().onClose();
