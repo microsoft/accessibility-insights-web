@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FlaggedComponent } from 'common/components/flagged-component';
+import { FeatureFlags } from 'common/feature-flags';
 import { NamedFC } from 'common/react/named-fc';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { GenericPanel } from 'DetailsView/components/generic-panel';
@@ -56,9 +58,16 @@ export const FluentSideNav = NamedFC<FluentSideNavProps>('FluentSideNav', props 
 
     return (
         <div id={styles.sideNavContainer}>
-            <ReactResizeDetector handleWidth querySelector="body">
-                {({ width, height }) => renderNav(width)}
-            </ReactResizeDetector>
+            <FlaggedComponent
+                enableJSXElement={
+                    <ReactResizeDetector handleWidth querySelector="body">
+                        {({ width }) => renderNav(width)}
+                    </ReactResizeDetector>
+                }
+                disableJSXElement={navBar()}
+                featureFlag={FeatureFlags.reflowUI}
+                featureFlagStoreData={props.featureFlagStoreData}
+            />
         </div>
     );
 });
