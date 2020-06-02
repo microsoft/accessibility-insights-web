@@ -63,7 +63,7 @@ describe(DetailsViewContent, () => {
     let toolData: ToolData;
 
     beforeEach(() => {
-        detailsViewActionMessageCreator = Mock.ofType<DetailsViewActionMessageCreator>();
+        detailsViewActionMessageCreator = Mock.ofType(DetailsViewActionMessageCreator);
         getDetailsRightPanelConfiguration = Mock.ofInstance(
             (props: GetDetailsRightPanelConfigurationProps) => null,
             MockBehavior.Strict,
@@ -179,7 +179,6 @@ describe(DetailsViewContent, () => {
                 .build();
 
             const state = getState(storeMocks, viewType, rightContentPanelConfig);
-            // testObject.state = state;
 
             getSelectedDetailsViewMock
                 .setup(gsdvm =>
@@ -217,7 +216,7 @@ describe(DetailsViewContent, () => {
                 .returns(() => cardsViewData);
 
             const rendered = shallow(<DetailsViewContent {...props} />);
-            expect(rendered.debug()).toMatchSnapshot();
+            expect(rendered.getElement()).toMatchSnapshot();
 
             clickHandlerFactoryMock.verifyAll();
             getCardSelectionViewDataMock.verifyAll();

@@ -13,13 +13,11 @@ export type DetailsViewContentProps = DetailsViewContainerProps;
 export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewContent', props => {
     const renderHeader = () => {
         const storeState = props.storeState;
-        const visualizationStoreData = storeState ? storeState.visualizationStoreData : null;
+        const visualizationStoreData = storeState.visualizationStoreData;
         return (
             <InteractiveHeader
                 deps={props.deps}
-                selectedPivot={
-                    visualizationStoreData ? visualizationStoreData.selectedDetailsViewPivot : null
-                }
+                selectedPivot={visualizationStoreData.selectedDetailsViewPivot}
                 featureFlagStoreData={storeState.featureFlagStoreData}
                 tabClosed={props.storeState.tabStoreData.isClosed}
             />
