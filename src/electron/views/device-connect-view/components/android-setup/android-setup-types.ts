@@ -4,7 +4,7 @@ import { LinkComponentType } from 'common/types/link-component-type';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { AndroidSetupActionCreator } from 'electron/flux/action-creator/android-setup-action-creator';
 import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-data';
-import { AndroidSetupStepComponentProvider } from 'electron/views/device-connect-view/components/android-setup/android-setup-step-component-provider';
+import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setup-step-id';
 import * as React from 'react';
 
 export type AndroidSetupStep = React.ComponentType<CommonAndroidSetupStepProps>;
@@ -20,3 +20,7 @@ export type AndroidSetupPageDeps = {
     androidSetupStepComponentProvider: AndroidSetupStepComponentProvider;
     LinkComponent: LinkComponentType;
 };
+
+export type AndroidSetupStepComponentProvider = Partial<
+    Record<AndroidSetupStepId, AndroidSetupStep>
+>;
