@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` render renders normally 1`] = `
+"<Fragment>
+  <InteractiveHeader deps={{...}} selectedPivot={0} featureFlagStoreData={{...}} tabClosed={false} />
+  <DetailsViewBody deps={{...}} tabStoreData={{...}} assessmentStoreData={{...}} pathSnippetStoreData={{...}} featureFlagStoreData={{...}} selectedTest={-1} detailsViewStoreData={{...}} visualizationStoreData={{...}} visualizationScanResultData={{...}} visualizationConfigurationFactory={[undefined]} assessmentsProvider={[undefined]} dropdownClickHandler={{...}} clickHandlerFactory={[undefined]} assessmentInstanceTableHandler={[undefined]} issuesSelection={[undefined]} issuesTableHandler={[undefined]} rightPanelConfiguration={{...}} switcherNavConfiguration={{...}} userConfigurationStoreData={{...}} cardsViewData={{...}} cardSelectionStoreData={{...}} scanIncompleteWarnings={[undefined]} scanMetadata={{...}} />
+  <DetailsViewOverlay deps={{...}} previewFeatureFlagsHandler={[undefined]} scopingActionMessageCreator={[undefined]} inspectActionMessageCreator={[undefined]} detailsViewStoreData={{...}} scopingStoreData={{...}} featureFlagStoreData={{...}} userConfigurationStoreData={{...}} />
+</Fragment>"
+`;
