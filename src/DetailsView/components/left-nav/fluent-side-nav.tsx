@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NamedFC } from 'common/react/named-fc';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { GenericPanel } from 'DetailsView/components/generic-panel';
 import {
@@ -10,6 +11,7 @@ import {
 import * as styles from 'DetailsView/components/left-nav/fluent-side-nav.scss';
 import { PanelType } from 'office-ui-fabric-react';
 import * as React from 'react';
+import ReactResizeDetector from 'react-resize-detector';
 
 export type FluentSideNavDeps = DetailsViewLeftNavDeps;
 export type FluentSideNavProps = DetailsViewLeftNavProps & {
@@ -18,39 +20,45 @@ export type FluentSideNavProps = DetailsViewLeftNavProps & {
     setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export class FluentSideNav extends React.Component<FluentSideNavProps> {
-    public render(): JSX.Element {
-        const tabClosed = this.props.tabStoreData.isClosed;
+export const FluentSideNav = NamedFC<FluentSideNavProps>('FluentSideNav', props => {
+    const tabClosed = props.tabStoreData.isClosed;
 
-        if (tabClosed) {
-            return null;
-        }
-        const nav = <DetailsViewLeftNav {...this.props} />;
+    if (tabClosed) {
+        return null;
+    }
 
-        const navPanel = (
+    const navBar = () => <DetailsViewLeftNav {...props} />;
+
+    const navPanel = () => {
+        return (
             <GenericPanel
                 className={styles.leftNavPanel}
-                isOpen={this.props.isSideNavOpen}
+                isOpen={props.isSideNavOpen}
                 isLightDismiss
                 hasCloseButton={false}
                 onRenderNavigationContent={() => null}
                 onRenderHeader={() => null}
                 onRenderNavigation={() => null}
-                onDismiss={() => this.props.setSideNavOpen(false)}
+                onDismiss={() => props.setSideNavOpen(false)}
                 type={PanelType.customNear}
                 layerProps={{
                     hostId: styles.sideNavContainer,
                 }}
             >
-                {nav}
+                {navBar()}
             </GenericPanel>
         );
+    };
 
-        return (
-            <div id={styles.sideNavContainer}>
-                {nav}
-                {navPanel}
-            </div>
-        );
-    }
-}
+    const renderNav = (width: number) => {
+        return width < 600 ? navPanel() : navBar();
+    };
+
+    return (
+        <div id={styles.sideNavContainer}>
+            <ReactResizeDetector handleWidth querySelector="body">
+                {({ width, height }) => renderNav(width)}
+            </ReactResizeDetector>
+        </div>
+    );
+});

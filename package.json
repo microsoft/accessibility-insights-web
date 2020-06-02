@@ -136,6 +136,7 @@
         "webpack-node-externals": "^1.7.2"
     },
     "dependencies": {
+        "@types/react-resize-detector": "^4.2.0",
         "applicationinsights-js": "^1.0.21",
         "axe-core": "3.5.1",
         "axios": "^0.19.2",
@@ -152,6 +153,7 @@
         "react-copy-to-clipboard": "^5.0.2",
         "react-dom": "^16.13.1",
         "react-helmet": "^6.0.0",
+        "react-resize-detector": "^4.2.3",
         "react-router-dom": "^5.2.0",
         "ua-parser-js": "^0.7.21",
         "uuid": "^8.1.0",
