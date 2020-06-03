@@ -310,6 +310,7 @@ describe(DetailsViewContent, () => {
             selectedDetailsView: viewType,
             selectedDetailsRightPanelConfiguration: rightPanel,
             cardSelectionStoreData: storeMocks.cardSelectionStoreData,
+            permissionsStateStoreData: storeMocks.permissionsStateStoreData,
         };
     }
 });
