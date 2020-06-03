@@ -12,7 +12,7 @@ describe(DetailsViewContentWithLocalState, () => {
     test('render', () => {
         const props = {} as DetailsViewContentWithLocalStateProps;
         const wrapper = shallow(<DetailsViewContentWithLocalState {...props} />);
-        expect(wrapper).toMatchSnapshot();
+        expect(wrapper.getElement()).toMatchSnapshot();
     });
 
     test('verify state change', () => {
