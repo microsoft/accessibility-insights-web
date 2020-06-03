@@ -19,6 +19,7 @@ export interface InteractiveHeaderProps {
     featureFlagStoreData: FeatureFlagStoreData;
     tabClosed: boolean;
     selectedPivot: DetailsViewPivotType;
+    navMenuAriaLabel: string;
 }
 
 export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHeader', props => {
@@ -29,7 +30,7 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
     const getNavMenu = () => {
         return (
             <FlaggedComponent
-                enableJSXElement={<LeftNavHamburgerButton selectedPivot={props.selectedPivot} />}
+                enableJSXElement={<LeftNavHamburgerButton ariaLabel={props.navMenuAriaLabel} />}
                 featureFlag={FeatureFlags.reflowUI}
                 featureFlagStoreData={props.featureFlagStoreData}
             />
