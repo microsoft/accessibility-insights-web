@@ -423,11 +423,6 @@ div.insights-file-issue-details-dialog-container {
                     height: 100%;
                     align-items: center;
                 }
-                .index-circle {
-                    color: $secondary-text;
-                    background: $neutral-0;
-                    border-color: $neutral-20;
-                }
                 &.is-selected {
                     a {
                         background-color: $communication-tint-40;
