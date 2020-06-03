@@ -39,40 +39,40 @@ export const DeviceConnectViewContainer = NamedFC<DeviceConnectViewContainerProp
     'DeviceConnectViewContainer',
     props => {
         return (
-            <FlaggedComponent
-                featureFlagStoreData={props.featureFlagStoreData}
-                deps={props.deps}
-                featureFlag={UnifiedFeatureFlags.adbSetupView}
-                enableJSXElement={<AndroidSetupStepComponent {...props} />}
-                disableJSXElement={productionDeviceConnectView(props)}
-            ></FlaggedComponent>
+            <div className={deviceConnectView}>
+                <div className={mainContentWrapper}>
+                    <WindowTitle
+                        pageTitle={'Connect to your Android device'}
+                        deps={props.deps}
+                        windowStateStoreData={props.windowStateStoreData}
+                    >
+                        <HeaderIcon invertColors deps={props.deps} />
+                    </WindowTitle>
+                    <FlaggedComponent
+                        featureFlagStoreData={props.featureFlagStoreData}
+                        deps={props.deps}
+                        featureFlag={UnifiedFeatureFlags.adbSetupView}
+                        enableJSXElement={<AndroidSetupStepComponent {...props} />}
+                        disableJSXElement={productionDeviceConnectBody(props)}
+                    ></FlaggedComponent>
+                    <TelemetryPermissionDialog
+                        deps={props.deps}
+                        isFirstTime={props.userConfigurationStoreData.isFirstTime}
+                    />
+                </div>
+            </div>
         );
     },
 );
 
-const productionDeviceConnectView = (props: DeviceConnectViewContainerProps) => {
+const productionDeviceConnectBody = (props: DeviceConnectViewContainerProps) => {
     return (
-        <div className={deviceConnectView}>
-            <WindowTitle
-                pageTitle={'Connect to your Android device'}
-                deps={props.deps}
-                windowStateStoreData={props.windowStateStoreData}
-            >
-                <HeaderIcon invertColors deps={props.deps} />
-            </WindowTitle>
-            <div className={mainContentWrapper}>
-                <DeviceConnectBody
-                    deps={props.deps}
-                    viewState={{
-                        deviceConnectState: props.deviceStoreData.deviceConnectState,
-                        connectedDevice: props.deviceStoreData.connectedDevice,
-                    }}
-                />
-                <TelemetryPermissionDialog
-                    deps={props.deps}
-                    isFirstTime={props.userConfigurationStoreData.isFirstTime}
-                />
-            </div>
-        </div>
+        <DeviceConnectBody
+            deps={props.deps}
+            viewState={{
+                deviceConnectState: props.deviceStoreData.deviceConnectState,
+                connectedDevice: props.deviceStoreData.connectedDevice,
+            }}
+        />
     );
 };
