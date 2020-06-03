@@ -129,7 +129,16 @@ export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
         });
     };
 
-    public setTcpForwarding(deviceId: string): Promise<void> {
-        return null;
-    }
+    public setTcpForwarding = (deviceId: string): Promise<void> => {
+        return new Promise<void>((resolve, reject) => {
+            try {
+                const port: number = 62442;
+                this.adb.setDeviceId(deviceId);
+                this.adb.forwardPort(port, port);
+                resolve();
+            } catch (error) {
+                reject(error);
+            }
+        });
+    };
 }

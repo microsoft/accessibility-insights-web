@@ -270,18 +270,48 @@ describe('AppiumServiceConfigurator tests', () => {
         adbMock.verifyAll();
     });
 
+    it('setTcpForwarding, fails', async () => {
+        const expectedError: string = 'Oops';
+        adbMock
+            .setup(m => m.setDeviceId(emulatorId))
+            .throws(new Error(expectedError))
+            .verifiable(Times.once());
+
+        try {
+            await testSubject.setTcpForwarding(emulatorId);
+            expect('Code should never run').toBe(true);
+        } catch (e) {
+            const error: Error = e as Error;
+            expect(error.message).toBe(expectedError);
+        }
+
+        adbMock.verifyAll();
+    });
+
+    it('setTcpForwarding, succeeds', async () => {
+        const expectedPort: number = 62442;
+        adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
+        adbMock.setup(m => m.forwardPort(expectedPort, expectedPort)).verifiable(Times.once());
+
+        await testSubject.setTcpForwarding(emulatorId);
+
+        adbMock.verifyAll();
+    });
+
     async function setLiveTestSubject(): Promise<void> {
         // For live testing, set ANDROID_HOME or ANDROID_SDK_ROOT to point
-        // to your local installation, then call this from inside the test:
+        // to your local installation, then add this line just before
+        // calling the testSubject:
 
         // await setLiveTestSubject();
 
-        // Of course, the adbMock.VerifyAll calls will all fail...
+        // You'll also need to change the device ID to match your actual device
 
         return new Promise<void>(async (resolve, reject) => {
             try {
                 const adb: ADB = await ADB.createADB();
                 testSubject = new AppiumServiceConfigurator(adb);
+                adbMock = Mock.ofType<ADB>(undefined, MockBehavior.Strict);
                 resolve();
             } catch (error) {
                 reject(error);
