@@ -19,6 +19,7 @@ import { VisualizationStore } from 'background/stores/visualization-store';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { It, Mock, MockBehavior } from 'typemoq';
 
+import { PermissionsStateStore } from '../../../../background/stores/global/permissions-state-store';
 import { UnifiedScanResultStore } from '../../../../background/stores/unified-scan-result-store';
 import { FeatureFlags } from '../../../../common/feature-flags';
 import { AssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
@@ -26,6 +27,7 @@ import { CommandStoreData } from '../../../../common/types/store-data/command-st
 import { DetailsViewStoreData } from '../../../../common/types/store-data/details-view-store-data';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import { LaunchPanelStoreData } from '../../../../common/types/store-data/launch-panel-store-data';
+import { PermissionsStateStoreData } from '../../../../common/types/store-data/permissions-state-store-data';
 import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import { UnifiedScanResultStoreData } from '../../../../common/types/store-data/unified-data-interface';
@@ -55,6 +57,7 @@ export class StoreMocks {
     public userConfigurationStoreMock = Mock.ofType(UserConfigurationStore, MockBehavior.Strict);
     public launchPanelStateStoreMock = Mock.ofType(LaunchPanelStore, MockBehavior.Strict);
     public unifiedScanResultStoreMock = Mock.ofType(UnifiedScanResultStore, MockBehavior.Strict);
+    public permissionsStateStoreMock = Mock.ofType(PermissionsStateStore, MockBehavior.Strict);
 
     public visualizationStoreData = new VisualizationStoreDataBuilder().build();
     public visualizationScanResultsStoreData = new VisualizationScanResultStoreDataBuilder().build();
@@ -83,6 +86,7 @@ export class StoreMocks {
         [FeatureFlags[FeatureFlags.logTelemetryToConsole]]: false,
     };
     public assessmentStoreData: AssessmentStoreData;
+    public permissionsStateStoreData = new PermissionsStateStore(null).getDefaultState();
 
     public cardSelectionStoreData = new CardSelectionStore(null, null).getDefaultState();
 
@@ -157,6 +161,11 @@ export class StoreMocks {
         return this;
     }
 
+    public setPermissionsStateStoreData(data: PermissionsStateStoreData): StoreMocks {
+        this.permissionsStateStoreData = data;
+        return this;
+    }
+
     public verifyAll(): void {
         this.detailsViewStoreMock.verifyAll();
         this.featureFlagStoreMock.verifyAll();
@@ -167,5 +176,6 @@ export class StoreMocks {
         this.scopingStoreMock.verifyAll();
         this.inspectStoreMock.verifyAll();
         this.pathSnippetStoreMock.verifyAll();
+        this.permissionsStateStoreMock.verifyAll();
     }
 }
