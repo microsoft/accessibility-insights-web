@@ -3,7 +3,7 @@
 import { CommonAndroidSetupStepProps } from 'electron/views/device-connect-view/components/android-setup/android-setup-types';
 import * as React from 'react';
 
-export class AndroidSetupStepComponent extends React.Component<CommonAndroidSetupStepProps> {
+export class AndroidSetupStepContainer extends React.Component<CommonAndroidSetupStepProps> {
     constructor(props: CommonAndroidSetupStepProps) {
         super(props);
     }
