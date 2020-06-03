@@ -5,7 +5,7 @@ import { GearMenuButton, GearMenuButtonDeps } from 'common/components/gear-menu-
 import { Header, HeaderDeps } from 'common/components/header';
 import {
     LeftNavHamburgerButton,
-    LeftNavHamburgerButtonDeps,
+    LeftNavHamburgerButtonProps,
 } from 'common/components/left-nav-hamburger-button';
 import { FeatureFlags } from 'common/feature-flags';
 import { NamedFC } from 'common/react/named-fc';
@@ -15,16 +15,14 @@ import { headerSwitcherStyleNames } from 'DetailsView/components/switcher-style-
 import * as React from 'react';
 import { Switcher, SwitcherDeps } from './switcher';
 
-export type InteractiveHeaderDeps = SwitcherDeps &
-    HeaderDeps &
-    GearMenuButtonDeps &
-    LeftNavHamburgerButtonDeps;
+export type InteractiveHeaderDeps = SwitcherDeps & HeaderDeps & GearMenuButtonDeps;
 
 export interface InteractiveHeaderProps {
     deps: InteractiveHeaderDeps;
     featureFlagStoreData: FeatureFlagStoreData;
     tabClosed: boolean;
     selectedPivot: DetailsViewPivotType;
+    navMenuAriaLabel: string;
 }
 
 export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHeader', props => {
@@ -35,7 +33,7 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
     const getNavMenu = () => {
         return (
             <FlaggedComponent
-                enableJSXElement={<LeftNavHamburgerButton deps={props.deps} />}
+                enableJSXElement={<LeftNavHamburgerButton ariaLabel={props.navMenuAriaLabel} />}
                 featureFlag={FeatureFlags.reflowUI}
                 featureFlagStoreData={props.featureFlagStoreData}
             />

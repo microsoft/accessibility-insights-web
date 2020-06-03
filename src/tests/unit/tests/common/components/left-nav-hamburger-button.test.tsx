@@ -2,18 +2,18 @@
 // Licensed under the MIT License.
 import {
     LeftNavHamburgerButton,
-    LeftNavHamburgerButtonDeps,
+    LeftNavHamburgerButtonProps,
 } from 'common/components/left-nav-hamburger-button';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe('LeftNavHamburgerButton', () => {
     it('renders per snapshot', () => {
-        const deps: LeftNavHamburgerButtonDeps = {
+        const props: LeftNavHamburgerButtonProps = {
             ariaLabel: 'test-aria-label',
         };
 
-        const wrapper = shallow(<LeftNavHamburgerButton deps={deps} />);
+        const wrapper = shallow(<LeftNavHamburgerButton {...props} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });

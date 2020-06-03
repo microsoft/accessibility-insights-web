@@ -24,16 +24,14 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
     const renderHeader = () => {
         const storeState = props.storeState;
         const visualizationStoreData = storeState.visualizationStoreData;
-        const deps: InteractiveHeaderDeps = {
-            ...props.deps,
-            ariaLabel: selectedDetailsViewSwitcherNavConfiguration.leftNavMenuAriaLabel,
-        };
+
         return (
             <InteractiveHeader
-                deps={deps}
+                deps={props.deps}
                 selectedPivot={visualizationStoreData.selectedDetailsViewPivot}
                 featureFlagStoreData={storeState.featureFlagStoreData}
                 tabClosed={props.storeState.tabStoreData.isClosed}
+                navMenuAriaLabel={selectedDetailsViewSwitcherNavConfiguration.leftNavMenuAriaLabel}
             />
         );
     };

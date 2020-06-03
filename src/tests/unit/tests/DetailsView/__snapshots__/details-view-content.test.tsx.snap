@@ -5,7 +5,6 @@ exports[` render renders normally 1`] = `
   <InteractiveHeader
     deps={
       Object {
-        "ariaLabel": undefined,
         "detailsViewActionMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "addPathForValidation": [Function],

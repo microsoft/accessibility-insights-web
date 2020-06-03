@@ -79,19 +79,7 @@ exports[`InteractiveHeader render: tabClosed is false 1`] = `
     <FlaggedComponent
       enableJSXElement={
         <LeftNavHamburgerButton
-          deps={
-            Object {
-              "dropdownClickHandler": proxy {
-                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                "dropdownActionMessageCreator": undefined,
-                "openDebugTools": [Function],
-                "openPreviewFeaturesPanelHandler": [Function],
-                "openScopingPanelHandler": [Function],
-                "openSettingsPanelHandler": [Function],
-                "source": undefined,
-              },
-            }
-          }
+          ariaLabel="test-aria-label"
         />
       }
       featureFlag="reflowUI"
