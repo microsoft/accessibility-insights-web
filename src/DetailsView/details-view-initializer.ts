@@ -452,6 +452,7 @@ if (isNaN(tabId) === false) {
                 assessmentViewUpdateHandler,
                 detailsViewExtensionPoint,
                 navLinkRenderer,
+                ariaLabel: null,
             };
 
             const renderer = new DetailsViewRenderer(

@@ -6,8 +6,12 @@ import { IconButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import * as styles from './left-nav-hamburger-button.scss';
 
-export type LeftNavHamburgerButtonProps = {
+export type LeftNavHamburgerButtonDeps = {
     ariaLabel: string;
+};
+
+export type LeftNavHamburgerButtonProps = {
+    deps: LeftNavHamburgerButtonDeps;
 };
 
 export const LeftNavHamburgerButton = NamedFC<LeftNavHamburgerButtonProps>(
@@ -17,7 +21,7 @@ export const LeftNavHamburgerButton = NamedFC<LeftNavHamburgerButtonProps>(
             <IconButton
                 className={styles.leftNavHamburgerButton}
                 iconProps={{ iconName: 'GlobalNavButton' }}
-                ariaLabel={props.ariaLabel}
+                ariaLabel={props.deps.ariaLabel}
             />
         );
     },

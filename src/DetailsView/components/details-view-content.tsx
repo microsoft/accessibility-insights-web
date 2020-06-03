@@ -3,7 +3,10 @@
 import { NamedFC } from 'common/react/named-fc';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { DetailsViewOverlay } from 'DetailsView/components/details-view-overlay/details-view-overlay';
-import { InteractiveHeader } from 'DetailsView/components/interactive-header';
+import {
+    InteractiveHeader,
+    InteractiveHeaderDeps,
+} from 'DetailsView/components/interactive-header';
 import { DetailsViewBody } from 'DetailsView/details-view-body';
 import { DetailsViewContainerProps } from 'DetailsView/details-view-container';
 import * as React from 'react';
@@ -21,14 +24,16 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
     const renderHeader = () => {
         const storeState = props.storeState;
         const visualizationStoreData = storeState.visualizationStoreData;
-        const navMenuAriaLabel = selectedDetailsViewSwitcherNavConfiguration.leftNavMenuAriaLabel;
+        const deps: InteractiveHeaderDeps = {
+            ...props.deps,
+            ariaLabel: selectedDetailsViewSwitcherNavConfiguration.leftNavMenuAriaLabel,
+        };
         return (
             <InteractiveHeader
-                deps={props.deps}
+                deps={deps}
                 selectedPivot={visualizationStoreData.selectedDetailsViewPivot}
                 featureFlagStoreData={storeState.featureFlagStoreData}
                 tabClosed={props.storeState.tabStoreData.isClosed}
-                navMenuAriaLabel={navMenuAriaLabel}
             />
         );
     };
