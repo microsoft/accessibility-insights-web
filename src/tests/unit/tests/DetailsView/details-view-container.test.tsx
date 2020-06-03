@@ -301,7 +301,6 @@ describe('DetailsViewContainer', () => {
     ): DetailsViewContainerState {
         return {
             visualizationStoreData: storeMocks.visualizationStoreData,
-            permissionsStateStoreData: storeMocks.permissionsStateStoreData,
             tabStoreData: storeMocks.tabStoreData,
             featureFlagStoreData: storeMocks.featureFlagStoreData,
             detailsViewStoreData: storeMocks.detailsViewStoreData,
@@ -314,6 +313,7 @@ describe('DetailsViewContainer', () => {
             selectedDetailsView: viewType,
             selectedDetailsRightPanelConfiguration: rightPanel,
             cardSelectionStoreData: storeMocks.cardSelectionStoreData,
+            permissionsStateStoreData: storeMocks.permissionsStateStoreData,
         };
     }
 

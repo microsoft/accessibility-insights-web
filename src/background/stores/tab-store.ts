@@ -37,7 +37,6 @@ export class TabStore extends BaseStoreImpl<TabStoreData> {
         this.tabActions.getCurrentState.addListener(this.onGetCurrentState);
         this.tabActions.tabRemove.addListener(this.onTabRemove);
         this.tabActions.existingTabUpdated.addListener(this.onExistingTabUpdated);
-        // this.tabActions.tabOriginUpdated.addListener(this.onOriginUpdated);
         this.tabActions.tabVisibilityChange.addListener(this.onVisibilityChange);
         this.visualizationActions.updateSelectedPivotChild.addListener(this.resetTabChange);
 
