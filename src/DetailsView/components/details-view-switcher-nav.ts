@@ -58,6 +58,7 @@ export type DetailsViewSwitcherNavConfiguration = Readonly<{
     LeftNav: ReactFCWithDisplayName<LeftNavProps>;
     getSelectedDetailsView: (props: GetSelectedDetailsViewProps) => VisualizationType;
     warningConfiguration: WarningConfiguration;
+    leftNavMenuAriaLabel: string;
 }>;
 
 type InternalDetailsViewSwitcherNavConfiguration = Readonly<{
@@ -67,11 +68,16 @@ type InternalDetailsViewSwitcherNavConfiguration = Readonly<{
     LeftNav: ReactFCWithDisplayName<InternalLeftNavProps>;
     getSelectedDetailsView: (props: GetSelectedDetailsViewProps) => VisualizationType;
     warningConfiguration: WarningConfiguration;
+    leftNavMenuAriaLabel: string;
 }>;
 
 export type GetDetailsSwitcherNavConfigurationProps = {
     selectedDetailsViewPivot: DetailsViewPivotType;
 };
+
+const assessmentLeftNavMenuAriaLabel: string =
+    'Assessment expand to see list of all tests and requirements';
+const fastPassLeftNavMenuAriaLabel: string = 'FastPass expand to see a list of all tests';
 
 const detailsViewSwitcherNavs: {
     [key in DetailsViewPivotType]: InternalDetailsViewSwitcherNavConfiguration;
@@ -83,6 +89,7 @@ const detailsViewSwitcherNavs: {
         LeftNav: AssessmentLeftNav,
         getSelectedDetailsView: getAssessmentSelectedDetailsView,
         warningConfiguration: assessmentWarningConfiguration,
+        leftNavMenuAriaLabel: assessmentLeftNavMenuAriaLabel,
     },
     [DetailsViewPivotType.fastPass]: {
         CommandBar: AutomatedChecksCommandBar,
@@ -91,6 +98,7 @@ const detailsViewSwitcherNavs: {
         LeftNav: FastPassLeftNav,
         getSelectedDetailsView: getFastPassSelectedDetailsView,
         warningConfiguration: fastpassWarningConfiguration,
+        leftNavMenuAriaLabel: fastPassLeftNavMenuAriaLabel,
     },
 };
 
