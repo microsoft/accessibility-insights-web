@@ -18,8 +18,9 @@ describe('AppiumServiceConfigurator tests', () => {
     const deviceId: string = 'id2';
     const deviceModel: string = 'model2';
     const servicePackageName: string = 'com.microsoft.accessibilityinsightsforandroidservice';
-    const dumpsysAccessibilitySnippetWithServiceRunning =
+    const dumpsysAccessibilitySnippetWithServiceRunning: string =
         'Service[label=Accessibility Insights for';
+    const pathToApk: string = './ServiceForAndroid/AccessibilityInsightsforAndroidService.apk';
 
     beforeEach(() => {
         adbMock = Mock.ofType<ADB>(undefined, MockBehavior.Strict);
@@ -233,6 +234,38 @@ describe('AppiumServiceConfigurator tests', () => {
         const permissionInfo: PermissionInfo = await testSubject.getPermissionInfo(emulatorId);
 
         expect(permissionInfo.screenshotGranted).toBe(true);
+
+        adbMock.verifyAll();
+    });
+
+    it('installService, fails', async () => {
+        const expectedResult: string = 'Installation failed';
+        adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
+        adbMock
+            .setup(m => m.adbExec(['install', '-d', pathToApk]))
+            .returns(() => expectedResult)
+            .verifiable(Times.once());
+
+        try {
+            await testSubject.installService(emulatorId);
+            expect('Code should never run').toBe(true);
+        } catch (e) {
+            const error: Error = e as Error;
+            expect(error.message).toBe(expectedResult);
+        }
+
+        adbMock.verifyAll();
+    });
+
+    it('installService, succeeds', async () => {
+        const expectedResult: string = 'Success';
+        adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
+        adbMock
+            .setup(m => m.adbExec(['install', '-d', pathToApk]))
+            .returns(() => expectedResult)
+            .verifiable(Times.once());
+
+        await testSubject.installService(emulatorId);
 
         adbMock.verifyAll();
     });
