@@ -60,6 +60,7 @@ describe('AssessmentReportHtmlGenerator', () => {
                         extensionVersion="ProductVersion"
                         axeVersion="axeVersion"
                         chromeVersion="chromeVersion"
+                        featureFlagStoreData={featureFlagStoreData}
                     />
                 </body>
             </React.Fragment>

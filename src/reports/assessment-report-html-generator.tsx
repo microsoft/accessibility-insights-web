@@ -67,6 +67,7 @@ export class AssessmentReportHtmlGenerator {
                         extensionVersion={this.extensionVersion}
                         axeVersion={this.axeVersion}
                         chromeVersion={this.chromeVersion}
+                        featureFlagStoreData={featureFlagStoreData}
                     />
                 </body>
             </React.Fragment>

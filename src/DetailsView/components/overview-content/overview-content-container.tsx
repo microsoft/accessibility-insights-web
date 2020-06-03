@@ -82,7 +82,10 @@ export const OverviewContainer = NamedFC<OverviewContainerProps>('OverviewContai
             <TargetChangeDialog deps={deps} prevTab={prevTarget} newTab={currentTarget} />
             <section className="overview-text-summary-section">
                 <OverviewHeading />
-                <AssessmentReportSummary summary={summaryData} />
+                <AssessmentReportSummary
+                    summary={summaryData}
+                    featureFlagStoreData={featureFlagStoreData}
+                />
             </section>
             <section className={styles.overviewHelpSection}>
                 <OverviewHelpSection linkDataSource={linkDataSource} deps={deps} />

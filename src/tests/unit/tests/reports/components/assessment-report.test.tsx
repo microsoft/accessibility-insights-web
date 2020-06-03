@@ -3,6 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { AssessmentReport, AssessmentReportDeps } from 'reports/components/assessment-report';
 import { AssessmentReportBuilderTestHelper } from '../../DetailsView/assessment-report-builder-test-helper';
 
@@ -16,6 +17,8 @@ describe('AssessmentReport', () => {
 
         const data = AssessmentReportBuilderTestHelper.getAssessmentReportModel();
 
+        const featureFlagStoreData: FeatureFlagStoreData = { stub: 'featureFlagStoreData' } as any;
+
         const wrapper = shallow(
             <AssessmentReport
                 deps={deps}
@@ -24,6 +27,7 @@ describe('AssessmentReport', () => {
                 extensionVersion="ProductVersion"
                 axeVersion="axeVersion"
                 chromeVersion="chromeVersion"
+                featureFlagStoreData={featureFlagStoreData}
             />,
         );
         expect(wrapper.getElement()).toMatchSnapshot();

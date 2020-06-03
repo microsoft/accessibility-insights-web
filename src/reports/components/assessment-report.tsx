@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ReportModel } from '../assessment-report-model';
 import { AssessmentReportBody, AssessmentReportBodyDeps } from './assessment-report-body';
 import { AssessmentReportFooter } from './assessment-report-footer';
@@ -16,6 +17,7 @@ export interface AssessmentReportProps {
     extensionVersion: string;
     axeVersion: string;
     chromeVersion: string;
+    featureFlagStoreData: FeatureFlagStoreData;
 }
 
 export class AssessmentReport extends React.Component<AssessmentReportProps> {
@@ -32,6 +34,7 @@ export class AssessmentReport extends React.Component<AssessmentReportProps> {
                     deps={this.props.deps}
                     data={this.props.data}
                     description={this.props.description}
+                    featureFlagStoreData={this.props.featureFlagStoreData}
                 />
 
                 <AssessmentReportFooter

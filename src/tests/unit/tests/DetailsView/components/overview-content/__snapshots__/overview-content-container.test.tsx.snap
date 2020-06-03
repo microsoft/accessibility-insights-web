@@ -32,7 +32,9 @@ exports[`OverviewContainer component is defined and matches snapshot 1`] = `
     className="overview-text-summary-section"
   >
     <OverviewHeading />
-    <AssessmentReportSummary />
+    <AssessmentReportSummary
+      featureFlagStoreData={Object {}}
+    />
   </section>
   <section
     className="overviewHelpSection"

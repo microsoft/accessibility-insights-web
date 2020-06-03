@@ -3,6 +3,7 @@
 import * as React from 'react';
 
 import { ManualTestStatus } from 'common/types/manual-test-status';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { AssessmentDetailsReportModel, ReportModel } from '../assessment-report-model';
 import {
     AssessmentReportAssessmentList,
@@ -20,6 +21,7 @@ export interface AssessmentReportBodyProps {
     deps: AssessmentReportBodyDeps;
     data: ReportModel;
     description: string;
+    featureFlagStoreData: FeatureFlagStoreData;
 }
 
 export class AssessmentReportBody extends React.Component<AssessmentReportBodyProps> {
@@ -27,7 +29,10 @@ export class AssessmentReportBody extends React.Component<AssessmentReportBodyPr
         return (
             <div className="assessment-report-body" role="main">
                 <AssessmentReportBodyHeader />
-                <AssessmentReportSummary summary={this.props.data.summary} />
+                <AssessmentReportSummary
+                    summary={this.props.data.summary}
+                    featureFlagStoreData={this.props.featureFlagStoreData}
+                />
                 <AssessmentScanDetails
                     details={this.props.data.scanDetails}
                     description={this.props.description}

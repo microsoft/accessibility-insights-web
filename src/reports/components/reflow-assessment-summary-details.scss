@@ -1,0 +1,50 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../common/styles/colors.scss';
+@import '../../common/styles/fonts.scss';
+
+.reflow-assessment-summary-details {
+    display: flex;
+
+    .reflow-assessment-summary-details-body {
+        column-count: 2;
+        column-gap: 4%;
+        display: block;
+        width: 100%;
+        align-items: start;
+
+        @media screen and (max-width: 900px) {
+            column-count: 1;
+        }
+
+        .reflow-assessment-summary-details-row {
+            // This intermediate inline-block element between the wrapping multi-column block layout and
+            // the per-row flex layout is required for Chromium to respect the parent's align-items style.
+            display: inline-block;
+            width: 100%;
+
+            .reflow-test-summary {
+                // This prevents rows from overflowing/wrapping at small screen widths; it will need to be
+                // adjusted if we add new tests with longer names in the future.
+                min-width: 230px;
+
+                display: flex;
+                width: 98%;
+                padding: 2% 1% 2% 1%;
+                justify-content: space-between;
+                border-bottom: $neutral-alpha-8 solid 1px;
+            }
+
+            .reflow-test-summary-status {
+                display: flex;
+                align-items: center;
+            }
+
+            .reflow-test-summary-display-name {
+                font-family: $semiBoldFontFamily;
+                font-size: 14px;
+                line-height: 20px;
+            }
+        }
+    }
+}

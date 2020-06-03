@@ -215,6 +215,11 @@ exports[`AssessmentReport render 1`] = `
       }
     }
     description="test string"
+    featureFlagStoreData={
+      Object {
+        "stub": "featureFlagStoreData",
+      }
+    }
   />
   <AssessmentReportFooter
     axeVersion="axeVersion"
