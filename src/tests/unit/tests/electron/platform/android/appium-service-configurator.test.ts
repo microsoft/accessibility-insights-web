@@ -297,15 +297,15 @@ describe('AppiumServiceConfigurator tests', () => {
 
         adbMock.verifyAll();
     });
-
+    /*
+    // For live testing, set ANDROID_HOME or ANDROID_SDK_ROOT to point
+    // to your local installation, then add this line just before
+    // calling the testSubject:
+    //
+    // await setLiveTestSubject();
+    //
+    // You'll also need to change the device ID to match your actual device
     async function setLiveTestSubject(): Promise<void> {
-        // For live testing, set ANDROID_HOME or ANDROID_SDK_ROOT to point
-        // to your local installation, then add this line just before
-        // calling the testSubject:
-
-        // await setLiveTestSubject();
-
-        // You'll also need to change the device ID to match your actual device
 
         return new Promise<void>(async (resolve, reject) => {
             try {
@@ -318,4 +318,5 @@ describe('AppiumServiceConfigurator tests', () => {
             }
         });
     }
+    */
 });
