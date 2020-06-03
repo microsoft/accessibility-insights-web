@@ -97,26 +97,14 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
     private initialRender: boolean = true;
 
     public render(): JSX.Element {
-        if (this.isTargetPageClosed()) {
-            if (this.isTargetPageOriginDifferent()) {
-                if (this.isAllTabsPermissionGranted()) {
-                    return (
-                        <>
-                            <p>Closed page yes, different origin noted, yes permissions</p>
-                        </>
-                    );
-                }
-                return (
-                    <>
-                        <p>Closed page yes, different origin noted, no permissions</p>
-                    </>
-                );
-            }
+        if (
+            this.isTargetPageClosed() ||
+            (this.isTargetPageOriginDifferent() && !this.isAllTabsPermissionGranted())
+        ) {
             return (
                 <>
                     {this.renderHeader()}
                     <NoContentAvailable />
-                    <p>Rendered from Details View Container</p>
                 </>
             );
         }
