@@ -12,7 +12,7 @@ import { UserConfigurationStoreData } from 'common/types/store-data/user-configu
 import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
-import { AndroidSetupStepComponent } from 'electron/views/device-connect-view/components/android-setup/android-setup-step-component-provider';
+import { AndroidSetupStepContainer } from 'electron/views/device-connect-view/components/android-setup/android-setup-step-container';
 import * as React from 'react';
 import { DeviceStoreData } from '../../../flux/types/device-store-data';
 import { WindowTitle, WindowTitleDeps } from '../../common/window-title/window-title';
@@ -52,7 +52,7 @@ export const DeviceConnectViewContainer = NamedFC<DeviceConnectViewContainerProp
                         featureFlagStoreData={props.featureFlagStoreData}
                         deps={props.deps}
                         featureFlag={UnifiedFeatureFlags.adbSetupView}
-                        enableJSXElement={<AndroidSetupStepComponent {...props} />}
+                        enableJSXElement={<AndroidSetupStepContainer {...props} />}
                         disableJSXElement={productionDeviceConnectBody(props)}
                     ></FlaggedComponent>
                     <TelemetryPermissionDialog
