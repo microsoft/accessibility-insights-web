@@ -21,6 +21,8 @@ export type AndroidSetupPageDeps = {
     LinkComponent: LinkComponentType;
 };
 
+// 'Partial' is used to allow missing step IDs as they get implemented.
+// Once all step IDs have components, we should remove 'Partial'
 export type AndroidSetupStepComponentProvider = Partial<
     Record<AndroidSetupStepId, AndroidSetupStep>
 >;
