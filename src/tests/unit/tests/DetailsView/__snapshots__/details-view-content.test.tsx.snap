@@ -190,6 +190,7 @@ exports[` render renders normally 1`] = `
         "id": 1,
         "isChanged": false,
         "isClosed": false,
+        "isOriginChanged": false,
         "isPageHidden": false,
         "title": "DetailsViewContainerTest title",
         "url": "http://detailsViewContainerTest/url/",
