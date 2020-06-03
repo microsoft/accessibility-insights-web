@@ -40,14 +40,14 @@ export const DeviceConnectViewContainer = NamedFC<DeviceConnectViewContainerProp
     props => {
         return (
             <div className={deviceConnectView}>
+                <WindowTitle
+                    pageTitle={'Connect to your Android device'}
+                    deps={props.deps}
+                    windowStateStoreData={props.windowStateStoreData}
+                >
+                    <HeaderIcon invertColors deps={props.deps} />
+                </WindowTitle>
                 <div className={mainContentWrapper}>
-                    <WindowTitle
-                        pageTitle={'Connect to your Android device'}
-                        deps={props.deps}
-                        windowStateStoreData={props.windowStateStoreData}
-                    >
-                        <HeaderIcon invertColors deps={props.deps} />
-                    </WindowTitle>
                     <FlaggedComponent
                         featureFlagStoreData={props.featureFlagStoreData}
                         deps={props.deps}

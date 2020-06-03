@@ -4,24 +4,24 @@ exports[`DeviceConnectViewContainer renders 1`] = `
 <div
   className="deviceConnectView"
 >
+  <WindowTitle
+    deps={Object {}}
+    pageTitle="Connect to your Android device"
+    windowStateStoreData={
+      Object {
+        "currentWindowState": "customSize",
+        "routeId": "deviceConnectView",
+      }
+    }
+  >
+    <WithStoreSubscriptionForHeaderIconComponent
+      deps={Object {}}
+      invertColors={true}
+    />
+  </WindowTitle>
   <div
     className="mainContentWrapper"
   >
-    <WindowTitle
-      deps={Object {}}
-      pageTitle="Connect to your Android device"
-      windowStateStoreData={
-        Object {
-          "currentWindowState": "customSize",
-          "routeId": "deviceConnectView",
-        }
-      }
-    >
-      <WithStoreSubscriptionForHeaderIconComponent
-        deps={Object {}}
-        invertColors={true}
-      />
-    </WindowTitle>
     <FlaggedComponent
       deps={Object {}}
       disableJSXElement={
