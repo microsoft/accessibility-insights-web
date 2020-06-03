@@ -4,10 +4,10 @@ import { Header } from 'common/components/header';
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
-import { DetailsViewContent } from 'DetailsView/components/details-view-content';
 import { ISelection, Spinner, SpinnerSize } from 'office-ui-fabric-react';
 import * as React from 'react';
 
+import { DetailsViewContentWithLocalState } from 'DetailsView/components/details-view-content-with-local-state';
 import { ThemeDeps } from '../common/components/theme';
 import {
     withStoreSubscription,
@@ -43,7 +43,6 @@ import { DetailsViewBodyDeps } from './details-view-body';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
-import { DetailsViewContentWithLocalState } from 'DetailsView/components/details-view-content-with-local-state';
 
 export type DetailsViewContainerDeps = {
     getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration;
