@@ -4,7 +4,6 @@
 import { Action } from 'common/flux/action';
 import { StateMachine } from 'electron/platform/android/setup/state-machine/state-machine';
 import { StateMachineSteps } from 'electron/platform/android/setup/state-machine/state-machine-steps';
-import { StateMachineStepsFactory } from 'electron/platform/android/setup/state-machine/state-machine-steps-factory';
 import { ExpectedCallType, It, Mock, MockBehavior, Times } from 'typemoq';
 
 type MartiniStepId = 'gin' | 'vermouth' | 'olives';
@@ -51,6 +50,7 @@ describe('Android setup state machine', () => {
             'gin',
         );
 
+        expect(sm).toBeTruthy();
         factoryMock.verifyAll();
         stepTransitionCallbackMock.verifyAll();
     });
@@ -61,15 +61,14 @@ describe('Android setup state machine', () => {
             .setup(m => m(It.is<MartiniStepId>(v => true)))
             .verifiable(Times.never());
 
-        const testFunc = () => {
-            const sm = new StateMachine<MartiniStepId, MartiniActions>(
+        const construction = () =>
+            new StateMachine<MartiniStepId, MartiniActions>(
                 null,
                 stepTransitionCallbackMock.object,
                 'gin',
             );
-        };
 
-        expect(testFunc).toThrowError();
+        expect(construction).toThrowError();
 
         stepTransitionCallbackMock.verifyAll();
     });
@@ -81,15 +80,10 @@ describe('Android setup state machine', () => {
             .returns(factory)
             .verifiable(Times.never());
 
-        const testFunc = () => {
-            const sm = new StateMachine<MartiniStepId, MartiniActions>(
-                factoryMock.object,
-                null,
-                'gin',
-            );
-        };
+        const construction = () =>
+            new StateMachine<MartiniStepId, MartiniActions>(factoryMock.object, null, 'gin');
 
-        expect(testFunc).toThrowError();
+        expect(construction).toThrowError();
 
         factoryMock.verifyAll();
     });
@@ -106,15 +100,14 @@ describe('Android setup state machine', () => {
             .setup(m => m(It.is<MartiniStepId>(v => true)))
             .verifiable(Times.never());
 
-        const testFunc = () => {
-            const sm = new StateMachine<MartiniStepId, MartiniActions>(
+        const construction = () =>
+            new StateMachine<MartiniStepId, MartiniActions>(
                 factoryMock.object,
                 stepTransitionCallbackMock.object,
                 'gin',
             );
-        };
 
-        expect(testFunc).toThrowError();
+        expect(construction).toThrowError();
 
         factoryMock.verifyAll();
         stepTransitionCallbackMock.verifyAll();
@@ -126,15 +119,14 @@ describe('Android setup state machine', () => {
             .setup(m => m(It.is<MartiniStepId>(v => true)))
             .verifiable(Times.never());
 
-        const testFunc = () => {
-            const sm = new StateMachine<MartiniStepId, MartiniActions>(
+        const construction = () =>
+            new StateMachine<MartiniStepId, MartiniActions>(
                 factory,
                 stepTransitionCallbackMock.object,
                 'vermouth',
             );
-        };
 
-        expect(testFunc).not.toThrow();
+        expect(construction).not.toThrow();
         stepTransitionCallbackMock.verifyAll();
     });
 
@@ -202,6 +194,7 @@ describe('Android setup state machine', () => {
             'gin',
         );
 
+        expect(sm).toBeTruthy();
         onEnterMock.verifyAll();
         stepTransitionCallbackMock.verifyAll();
     });
@@ -220,15 +213,14 @@ describe('Android setup state machine', () => {
             .setup(m => m(It.is<MartiniStepId>(v => true)))
             .verifiable(Times.never());
 
-        const testFunc = () => {
-            const sm = new StateMachine<MartiniStepId, MartiniActions>(
+        const construction = () =>
+            new StateMachine<MartiniStepId, MartiniActions>(
                 factoryMock.object,
                 stepTransitionCallbackMock.object,
                 'gin',
             );
-        };
 
-        expect(testFunc).toThrowError(error);
+        expect(construction).toThrowError(error);
         factoryMock.verifyAll();
         stepTransitionCallbackMock.verifyAll();
     });
@@ -248,15 +240,14 @@ describe('Android setup state machine', () => {
             .throws(error)
             .verifiable(Times.once());
 
-        const testFunc = () => {
-            const sm = new StateMachine<MartiniStepId, MartiniActions>(
+        const construction = () =>
+            new StateMachine<MartiniStepId, MartiniActions>(
                 factoryMock.object,
                 stepTransitionCallbackMock.object,
                 'gin',
             );
-        };
 
-        expect(testFunc).toThrowError(error);
+        expect(construction).toThrowError(error);
         factoryMock.verifyAll();
         stepTransitionCallbackMock.verifyAll();
     });
@@ -286,15 +277,14 @@ describe('Android setup state machine', () => {
         const stepTransitionCallbackMock = Mock.ofInstance((_: MartiniStepId) => {});
         stepTransitionCallbackMock.setup(m => m('gin')).verifiable(Times.never());
 
-        const testFunc = () => {
-            const sm = new StateMachine<MartiniStepId, MartiniActions>(
+        const construction = () =>
+            new StateMachine<MartiniStepId, MartiniActions>(
                 otherFactory,
                 stepTransitionCallbackMock.object,
                 'gin',
             );
-        };
 
-        expect(testFunc).toThrowError(error);
+        expect(construction).toThrowError(error);
         onEnterMock.verifyAll();
         stepTransitionCallbackMock.verifyAll();
     });

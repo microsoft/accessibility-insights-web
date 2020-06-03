@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { EventHandlerList } from 'common/flux/event-handler-list';
 import { ActionBag } from './state-machine-action-callback';
 import { StateMachineSteps } from './state-machine-steps';
 import { StateMachineStepsFactory } from './state-machine-steps-factory';
