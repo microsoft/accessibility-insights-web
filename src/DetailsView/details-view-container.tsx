@@ -43,6 +43,7 @@ import { DetailsViewBodyDeps } from './details-view-body';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
+import { DetailsViewContentWithLocalState } from 'DetailsView/components/details-view-content-with-local-state';
 
 export type DetailsViewContainerDeps = {
     getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration;
@@ -129,7 +130,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
     }
 
     private renderContent(): JSX.Element {
-        return <DetailsViewContent {...this.props} />;
+        return <DetailsViewContentWithLocalState {...this.props} />;
     }
 
     private hasStores(): boolean {
