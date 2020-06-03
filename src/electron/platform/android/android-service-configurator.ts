@@ -8,7 +8,8 @@ export type DeviceInfo = {
 };
 
 export type PackageInfo = {
-    version: string;
+    versionCode: number;
+    versionName: string;
 };
 
 export type PermissionInfo = {

@@ -13,6 +13,8 @@ type AdbDevice = {
     udid: string;
 };
 
+const servicePackageName: string = 'com.microsoft.accessibilityinsightsforandroidservice';
+
 export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
     private readonly adb: ADB;
 
@@ -24,7 +26,7 @@ export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
         return new Promise<Array<DeviceInfo>>(async (resolve, reject) => {
             try {
                 // First add devices that are flagged as emulator, then
-                // add devices that aren't flagged as eulators
+                // add devices that aren't flagged as emulators
                 const detectedDevices = {};
                 await this.AddDevices(
                     await this.adb.getConnectedEmulators(),
@@ -75,9 +77,20 @@ export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
         });
     }
 
-    public getPackageInfo(deviceId: string): Promise<PackageInfo> {
-        return null;
-    }
+    public getPackageInfo = (deviceId: string): Promise<PackageInfo> => {
+        return new Promise<PackageInfo>(async (resolve, reject) => {
+            try {
+                this.adb.setDeviceId(deviceId);
+                const info: PackageInfo = await this.adb.getPackageInfo(servicePackageName);
+                if (info?.versionCode !== undefined) {
+                    resolve({ versionCode: info.versionCode, versionName: info.versionName });
+                }
+                reject(new Error('Unable to obtain package version information'));
+            } catch (error) {
+                reject(error);
+            }
+        });
+    };
 
     public getPermissionInfo(deviceId: string): Promise<PermissionInfo> {
         return null;
