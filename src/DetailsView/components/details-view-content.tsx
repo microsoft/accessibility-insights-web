@@ -11,15 +11,24 @@ import * as React from 'react';
 export type DetailsViewContentProps = DetailsViewContainerProps;
 
 export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewContent', props => {
+    const selectedDetailsViewSwitcherNavConfiguration = props.deps.getDetailsSwitcherNavConfiguration(
+        {
+            selectedDetailsViewPivot:
+                props.storeState.visualizationStoreData.selectedDetailsViewPivot,
+        },
+    );
+
     const renderHeader = () => {
         const storeState = props.storeState;
         const visualizationStoreData = storeState.visualizationStoreData;
+        const navMenuAriaLabel = selectedDetailsViewSwitcherNavConfiguration.leftNavMenuAriaLabel;
         return (
             <InteractiveHeader
                 deps={props.deps}
                 selectedPivot={visualizationStoreData.selectedDetailsViewPivot}
                 featureFlagStoreData={storeState.featureFlagStoreData}
                 tabClosed={props.storeState.tabStoreData.isClosed}
+                navMenuAriaLabel={navMenuAriaLabel}
             />
         );
     };
@@ -50,12 +59,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                     storeState.detailsViewStoreData.detailsViewRightContentPanel,
             },
         );
-        const selectedDetailsViewSwitcherNavConfiguration = props.deps.getDetailsSwitcherNavConfiguration(
-            {
-                selectedDetailsViewPivot:
-                    storeState.visualizationStoreData.selectedDetailsViewPivot,
-            },
-        );
+
         const selectedTest = selectedDetailsViewSwitcherNavConfiguration.getSelectedDetailsView(
             storeState,
         );
