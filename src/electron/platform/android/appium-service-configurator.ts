@@ -92,9 +92,25 @@ export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
         });
     };
 
-    public getPermissionInfo(deviceId: string): Promise<PermissionInfo> {
-        return null;
-    }
+    public getPermissionInfo = (deviceId: string): Promise<PermissionInfo> => {
+        return new Promise<PermissionInfo>(async (resolve, reject) => {
+            try {
+                const dumpsys = 'dumpsys';
+
+                this.adb.setDeviceId(deviceId);
+                let stdout: string = await this.adb.shell([dumpsys, 'accessibility']);
+                if (!stdout.includes('label=Accessibility Insights')) {
+                    reject(new Error('Accessibility Insights for Android Service is not running'));
+                } else {
+                    stdout = await this.adb.shell([dumpsys, 'media_projection']);
+                    const screenshotGranted: boolean = stdout.includes(servicePackageName);
+                    resolve({ screenshotGranted });
+                }
+            } catch (error) {
+                reject(error);
+            }
+        });
+    };
 
     public installService(deviceId: string): Promise<void> {
         return null;

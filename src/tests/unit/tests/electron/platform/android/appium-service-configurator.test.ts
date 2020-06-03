@@ -2,7 +2,10 @@
 // Licensed under the MIT License.
 
 import ADB from 'appium-adb';
-import { PackageInfo } from 'electron/platform/android/android-service-configurator';
+import {
+    PackageInfo,
+    PermissionInfo,
+} from 'electron/platform/android/android-service-configurator';
 import { AppiumServiceConfigurator } from 'electron/platform/android/appium-service-configurator';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
@@ -15,6 +18,8 @@ describe('AppiumServiceConfigurator tests', () => {
     const deviceId: string = 'id2';
     const deviceModel: string = 'model2';
     const servicePackageName: string = 'com.microsoft.accessibilityinsightsforandroidservice';
+    const dumpsysAccessibilitySnippetWithServiceRunning =
+        'Service[label=Accessibility Insights for';
 
     beforeEach(() => {
         adbMock = Mock.ofType<ADB>(undefined, MockBehavior.Strict);
@@ -175,6 +180,63 @@ describe('AppiumServiceConfigurator tests', () => {
         adbMock.verifyAll();
     });
 
+    it('getPermissionInfo, service is not running', async () => {
+        adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
+        adbMock
+            .setup(m => m.shell(['dumpsys', 'accessibility']))
+            .returns(() => '')
+            .verifiable(Times.once());
+
+        try {
+            await testSubject.getPermissionInfo(emulatorId);
+        } catch (e) {
+            const error: Error = e as Error;
+            expect(error.message).toBe('Accessibility Insights for Android Service is not running');
+        }
+
+        adbMock.verifyAll();
+    });
+
+    it('getPermissionInfo, service is running but has no screenshot permission', async () => {
+        adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
+        adbMock
+            .setup(m => m.shell(['dumpsys', 'accessibility']))
+            .returns(() => dumpsysAccessibilitySnippetWithServiceRunning)
+            .verifiable(Times.once());
+        adbMock
+            .setup(m => m.shell(['dumpsys', 'media_projection']))
+            .returns(() => '')
+            .verifiable(Times.once());
+
+        const permissionInfo: PermissionInfo = await testSubject.getPermissionInfo(emulatorId);
+
+        expect(permissionInfo.screenshotGranted).toBe(false);
+
+        adbMock.verifyAll();
+    });
+
+    it('getPermissionInfo, service is running but has no screenshot permission', async () => {
+        adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
+        adbMock
+            .setup(m => m.shell(['dumpsys', 'accessibility']))
+            .returns(() => dumpsysAccessibilitySnippetWithServiceRunning)
+            .verifiable(Times.once());
+        adbMock
+            .setup(m => m.shell(['dumpsys', 'media_projection']))
+            .returns(
+                () =>
+                    // This is just a snippet, not the full string
+                    '(com.microsoft.accessibilityinsightsforandroidservice, uid=10134): TYPE_SCREEN_CAPTURE',
+            )
+            .verifiable(Times.once());
+
+        const permissionInfo: PermissionInfo = await testSubject.getPermissionInfo(emulatorId);
+
+        expect(permissionInfo.screenshotGranted).toBe(true);
+
+        adbMock.verifyAll();
+    });
+
     async function setLiveTestSubject(): Promise<void> {
         // For live testing, set ANDROID_HOME or ANDROID_SDK_ROOT to point
         // to your local installation, then call this from inside the test:
@@ -183,9 +245,9 @@ describe('AppiumServiceConfigurator tests', () => {
 
         // Of course, the adbMock.VerifyAll calls will all fail...
 
-        return new Promise<void>((resolve, reject) => {
+        return new Promise<void>(async (resolve, reject) => {
             try {
-                const adb: ADB = ADB.createADB();
+                const adb: ADB = await ADB.createADB();
                 testSubject = new AppiumServiceConfigurator(adb);
                 resolve();
             } catch (error) {
