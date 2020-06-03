@@ -19,10 +19,9 @@ import { AssessmentStoreData } from '../common/types/store-data/assessment-resul
 import { DetailsViewStoreData } from '../common/types/store-data/details-view-store-data';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
+import { PermissionsStateStoreData } from '../common/types/store-data/permissions-state-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
-// import { PermissionsStateStoreData } from '../common/types/store-data/permissions-state-store-data';
-import { allUrlAndFilePermissions } from '../background/browser-permissions-tracker';
 import {
     ScanMetadata,
     UnifiedScanResultStoreData,
@@ -91,7 +90,7 @@ export interface DetailsViewContainerState {
     selectedDetailsView: VisualizationType;
     selectedDetailsRightPanelConfiguration: DetailsRightPanelConfiguration;
     cardSelectionStoreData: CardSelectionStoreData;
-    // permissionsStateStoreData: PermissionsStateStoreData;
+    permissionsStateStoreData: PermissionsStateStoreData;
 }
 
 export class DetailsViewContainer extends React.Component<DetailsViewContainerProps> {
@@ -99,7 +98,6 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
 
     public render(): JSX.Element {
         if (this.isTargetPageClosed()) {
-            // !(page diff AND permisisons)
             if (this.isTargetPageOriginDifferent()) {
                 if (this.isAllTabsPermissionGranted()) {
                     return (
@@ -122,15 +120,6 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
                 </>
             );
         }
-
-        // if (!this.initialRender && this.isTargetPageOriginDifferent()) {
-        //     return (
-        //         <>
-        //             {this.renderHeader()}
-        //             <p>Target Page has changed.</p>
-        //         </>
-        //     );
-        // }
 
         if (!this.props.deps.storesHub.hasStoreData()) {
             return this.renderSpinner();
@@ -156,14 +145,18 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
 
     private isTargetPageOriginDifferent(): boolean {
         return (
-            !this.hasStores() ||
-            (this.props.deps.storesHub.hasStoreData() &&
-                this.props.storeState.tabStoreData.isOriginChanged)
+            this.hasStores() &&
+            this.props.deps.storesHub.hasStoreData() &&
+            this.props.storeState.tabStoreData.isOriginChanged
         );
     }
 
     private isAllTabsPermissionGranted(): boolean {
-        return allUrlAndFilePermissions.permissions !== null;
+        return (
+            this.hasStores() &&
+            this.props.deps.storesHub.hasStoreData() &&
+            this.props.storeState.permissionsStateStoreData.hasAllUrlAndFilePermissions
+        );
     }
 
     private renderSpinner(): JSX.Element {

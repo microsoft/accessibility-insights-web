@@ -478,6 +478,7 @@ describe('DetailsViewContainer', () => {
     ): DetailsViewContainerState {
         return {
             visualizationStoreData: storeMocks.visualizationStoreData,
+            permissionsStateStoreData: storeMocks.permissionsStateStoreData,
             tabStoreData: storeMocks.tabStoreData,
             featureFlagStoreData: storeMocks.featureFlagStoreData,
             detailsViewStoreData: storeMocks.detailsViewStoreData,

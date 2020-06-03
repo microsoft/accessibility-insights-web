@@ -71,7 +71,7 @@ export class TabStore extends BaseStoreImpl<TabStoreData> {
 
     private onExistingTabUpdated = (payload: Tab): void => {
         if (!this.originsMatch(payload.url, this.state.url)) {
-            this.state.isClosed = true;
+            this.state.isClosed = true; // potentially remove
             this.state.isOriginChanged = true;
         }
         this.state.title = payload.title;
