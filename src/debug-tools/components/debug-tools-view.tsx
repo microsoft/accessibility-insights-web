@@ -6,12 +6,25 @@ import {
     WithStoreSubscriptionDeps,
 } from 'common/components/with-store-subscription';
 import { NamedFC } from 'common/react/named-fc';
-import { StoresTree, StoresTreeState } from 'debug-tools/components/stores-tree';
+import {
+    CurrentView,
+    CurrentViewDeps,
+    CurrentViewState,
+} from 'debug-tools/components/current-view/current-view';
+import {
+    DebugToolsNav,
+    DebugToolsNavDeps,
+    DebugToolsNavState,
+} from 'debug-tools/components/debug-tools-nav';
 import * as React from 'react';
+import * as styles from './debug-tools-view.scss';
 
-export type DebugToolsViewState = StoresTreeState;
+export type DebugToolsViewState = DebugToolsNavState & CurrentViewState;
 
-export type DebugToolsViewDeps = WithStoreSubscriptionDeps<DebugToolsViewState> & HeaderDeps;
+export type DebugToolsViewDeps = WithStoreSubscriptionDeps<DebugToolsViewState> &
+    HeaderDeps &
+    DebugToolsNavDeps &
+    CurrentViewDeps;
 
 export interface DebugToolsViewProps {
     deps: DebugToolsViewDeps;
@@ -20,10 +33,11 @@ export interface DebugToolsViewProps {
 
 export const DebugTools = NamedFC<DebugToolsViewProps>('DebugToolsView', ({ deps, storeState }) => {
     return (
-        <>
+        <div className={styles.debugToolsContainer}>
             <Header deps={deps} />
-            <StoresTree deps={deps} state={storeState} />
-        </>
+            <DebugToolsNav deps={deps} state={storeState} className={styles.nav} />
+            <CurrentView deps={deps} storeState={storeState} />
+        </div>
     );
 });
 

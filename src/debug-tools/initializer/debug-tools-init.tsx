@@ -16,12 +16,16 @@ import { PermissionsStateStoreData } from 'common/types/store-data/permissions-s
 import { ScopingStoreData } from 'common/types/store-data/scoping-store-data';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { textContent } from 'content/strings/text-content';
+import { DebugToolsNavActionCreator } from 'debug-tools/action-creators/debug-tools-nav-action-creator';
+import { DebugToolsNavActions } from 'debug-tools/actions/debug-tools-nav-actions';
 import {
     DebugToolsView,
     DebugToolsViewDeps,
     DebugToolsViewState,
 } from 'debug-tools/components/debug-tools-view';
+import { defaultDateFormatter } from 'debug-tools/components/telemetry-viewer/telemetry-messages-list';
 import { TelemetryListener } from 'debug-tools/controllers/telemetry-listener';
+import { DebugToolsNavStore } from 'debug-tools/stores/debug-tools-nav-store';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { UAParser } from 'ua-parser-js';
@@ -32,19 +36,28 @@ export const initializeDebugTools = () => {
     const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
     const browserAdapter = browserAdapterFactory.makeFromUserAgent();
 
-    const stores = createStoreProxies(browserAdapter);
-    const storeActionMessageCreator = getStoreActionMessageCreator(browserAdapter, stores);
+    const storeProxies = createStoreProxies(browserAdapter);
+    const storeActionMessageCreator = getStoreActionMessageCreator(browserAdapter, storeProxies);
 
-    const storesHub = new BaseClientStoresHub<DebugToolsViewState>(stores);
+    const debugToolsNavActions = new DebugToolsNavActions();
+
+    const debugToolsNavStore = new DebugToolsNavStore(debugToolsNavActions);
+    debugToolsNavStore.initialize();
+    const debugToolsNavActionCreator = new DebugToolsNavActionCreator(debugToolsNavActions);
+
+    const allStores = [...storeProxies, debugToolsNavStore];
+    const storesHub = new BaseClientStoresHub<DebugToolsViewState>(allStores);
 
     const telemetryListener = new TelemetryListener(browserAdapter, DateProvider.getCurrentDate);
     telemetryListener.initialize();
 
     const props: DebugToolsViewDeps = {
-        storesHub,
+        debugToolsNavActionCreator,
         storeActionMessageCreator,
-        textContent,
+        storesHub,
         telemetryListener,
+        textContent,
+        dateFormatter: defaultDateFormatter,
     };
 
     render(props);

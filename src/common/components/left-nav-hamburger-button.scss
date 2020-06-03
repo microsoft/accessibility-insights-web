@@ -1,0 +1,18 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../common/styles/colors.scss';
+
+.left-nav-hamburger-button {
+    color: $neutral-0;
+    margin-left: 11px;
+}
+
+.high-contrast-theme {
+    .left-nav-hamburger-button {
+        color: $neutral-alpha-90;
+    }
+}
+
+:global(.ms-Button).left-nav-hamburger-button:focus::after {
+    border: 1px $neutral-0 solid;
+}

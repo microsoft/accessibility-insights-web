@@ -57,12 +57,15 @@ import { NullDetailsViewController } from 'electron/adapters/null-details-view-c
 import { NullStoreActionMessageCreator } from 'electron/adapters/null-store-action-message-creator';
 import { createGetToolDataDelegate } from 'electron/common/application-properties-provider';
 import { getAllFeatureFlagDetailsUnified } from 'electron/common/unified-feature-flags';
+import { AndroidSetupActionCreator } from 'electron/flux/action-creator/android-setup-action-creator';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
+import { AndroidSetupActions } from 'electron/flux/action/android-setup-actions';
 import { ScanActions } from 'electron/flux/action/scan-actions';
 import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
 import { WindowStateActions } from 'electron/flux/action/window-state-actions';
+import { AndroidSetupStore } from 'electron/flux/store/android-setup-store';
 import { ScanStore } from 'electron/flux/store/scan-store';
 import { WindowStateStore } from 'electron/flux/store/window-state-store';
 import { IpcMessageReceiver } from 'electron/ipc/ipc-message-receiver';
@@ -132,6 +135,7 @@ const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil(getIndexedDBStore());
 
 const userConfigActions = new UserConfigurationActions();
 const deviceActions = new DeviceActions();
+const androidSetupActions = new AndroidSetupActions();
 const windowFrameActions = new WindowFrameActions();
 const windowStateActions = new WindowStateActions();
 const scanActions = new ScanActions();
@@ -180,6 +184,9 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const deviceStore = new DeviceStore(deviceActions);
         deviceStore.initialize();
 
+        const androidSetupStore = new AndroidSetupStore(androidSetupActions);
+        androidSetupStore.initialize();
+
         const windowStateStore = new WindowStateStore(windowStateActions);
         windowStateStore.initialize();
 
@@ -223,6 +230,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             cardSelectionStore,
             detailsViewStore,
             featureFlagStore,
+            androidSetupStore,
         ]);
 
         const fetchScanResults = createScanResultsFetcher(axios.get);
@@ -262,6 +270,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         const ipcMessageReceiver = new IpcMessageReceiver(interpreter, ipcRenderer, logger);
         ipcMessageReceiver.initialize();
+
+        const androidSetupActionCreator = new AndroidSetupActionCreator(androidSetupActions);
 
         const deviceConnectActionCreator = new DeviceConnectActionCreator(
             deviceActions,
@@ -434,6 +444,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             LinkComponent: ElectronLink,
             fetchScanResults,
             deviceConnectActionCreator,
+            androidSetupActionCreator,
             storesHub,
             scanActionCreator,
             windowFrameActionCreator,

@@ -1,0 +1,14 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+.debug-tools-container {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.nav {
+    flex: 1 auto;
+}
+
+.main {
+    flex: 2 0px;
+}

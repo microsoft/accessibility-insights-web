@@ -7,6 +7,7 @@ import { gettingStartedSubview } from 'common/types/store-data/assessment-result
 import {
     onTestGettingStartedClick,
     onTestRequirementClick,
+    ReflowAssessmentLeftNavLink,
     TestGettingStartedNavLink,
     TestRequirementLeftNavLink,
 } from 'DetailsView/components/left-nav/assessment-left-nav';
@@ -137,12 +138,20 @@ export class LeftNavLinkBuilder {
         assessmentsProvider: AssessmentsProvider,
         assessmentsData: DictionaryStringTo<ManualTestStatusData>,
         startingIndex: number,
+        expandedTest: VisualizationType | undefined,
     ): BaseLeftNavLink[] {
         const assessments = assessmentsProvider.all();
         let index = startingIndex;
 
         const allTestLinks = map(assessments, assessment => {
-            const test = this.buildAssessmentLink(deps, assessment, index, assessmentsData);
+            const isExpanded = assessment.visualizationType === expandedTest;
+            const test = this.buildAssessmentLink(
+                deps,
+                assessment,
+                index,
+                assessmentsData,
+                isExpanded,
+            );
             index++;
             return test;
         });
@@ -155,7 +164,8 @@ export class LeftNavLinkBuilder {
         assessment: Assessment,
         index: number,
         assessmentsData: DictionaryStringTo<ManualTestStatusData>,
-    ) => {
+        isExpanded: boolean,
+    ): ReflowAssessmentLeftNavLink => {
         const {
             getStatusForTest,
             outcomeTypeSemanticsFromTestStatus,
@@ -175,7 +185,7 @@ export class LeftNavLinkBuilder {
             VisualizationType[assessment.visualizationType],
             index,
             navLinkRenderer.renderAssessmentTestLink,
-            () => {},
+            navLinkHandler.onTestHeadingClick,
         );
 
         const gettingStartedLink = this.buildGettingStartedLink(
@@ -202,7 +212,8 @@ export class LeftNavLinkBuilder {
             status,
             title: `${index}: ${name} (${narratorTestStatus})`,
             links: [gettingStartedLink, ...requirementLinks],
-            isExpanded: true,
+            isExpanded: isExpanded,
+            testType: assessment.visualizationType,
         };
 
         return testLink;

@@ -10,6 +10,7 @@ import {
     ChangeInstanceStatusPayload,
     ChangeRequirementStatusPayload,
     EditFailureInstancePayload,
+    ExpandTestNavPayload,
     OnDetailsViewOpenPayload,
     OnDetailsViewPivotSelected,
     RemoveFailureInstancePayload,
@@ -192,6 +193,23 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.SelectGettingStarted,
             payload: payload,
+        });
+    }
+
+    public expandTestNav(visualizationType: VisualizationType): void {
+        const payload: ExpandTestNavPayload = {
+            selectedTest: visualizationType,
+        };
+
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.Assessment.ExpandTestNav,
+            payload: payload,
+        });
+    }
+
+    public collapseTestNav(): void {
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.Assessment.CollapseTestNav,
         });
     }
 

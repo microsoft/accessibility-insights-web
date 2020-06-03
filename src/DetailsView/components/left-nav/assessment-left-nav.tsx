@@ -28,9 +28,15 @@ export type AssessmentLeftNavProps = {
     assessmentsProvider: AssessmentsProvider;
     assessmentsData: DictionaryStringTo<ManualTestStatusData>;
     featureFlagStoreData: FeatureFlagStoreData;
+    expandedTest: VisualizationType | undefined;
 };
 
 export type AssessmentLeftNavLink = {
+    status: ManualTestStatus;
+} & BaseLeftNavLink;
+
+export type ReflowAssessmentLeftNavLink = {
+    testType: VisualizationType;
     status: ManualTestStatus;
 } & BaseLeftNavLink;
 
@@ -55,7 +61,14 @@ export type onTestGettingStartedClick = (
 ) => void;
 
 export const AssessmentLeftNav = NamedFC<AssessmentLeftNavProps>('AssessmentLeftNav', props => {
-    const { deps, selectedKey, assessmentsProvider, assessmentsData, featureFlagStoreData } = props;
+    const {
+        deps,
+        selectedKey,
+        assessmentsProvider,
+        assessmentsData,
+        featureFlagStoreData,
+        expandedTest,
+    } = props;
 
     const { navLinkHandler, leftNavLinkBuilder } = deps;
 
@@ -77,6 +90,7 @@ export const AssessmentLeftNav = NamedFC<AssessmentLeftNavProps>('AssessmentLeft
                 assessmentsProvider,
                 assessmentsData,
                 1,
+                expandedTest,
             ),
         );
     } else {
