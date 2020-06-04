@@ -158,6 +158,7 @@ exports[` render renders normally 1`] = `
         "logTelemetryToConsole": false,
       }
     }
+    isSideNavOpen={false}
     pathSnippetStoreData={
       Object {
         "path": null,
@@ -180,6 +181,7 @@ exports[` render renders normally 1`] = `
       }
     }
     selectedTest={-1}
+    setSideNavOpen={[Function]}
     switcherNavConfiguration={
       Object {
         "getSelectedDetailsView": [Function],
