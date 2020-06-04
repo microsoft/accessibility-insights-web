@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
-    getAssessmentLeftNavHamburgerButton,
-    getFastPassLeftNavHamburgerButton,
+    AssessmentLeftNavHamburgerButton,
+    ExpandCollpaseLeftNavButtonProps,
+    FastPassLeftNavHamburgerButton,
 } from 'common/components/left-nav-hamburger-button';
 import { AssessmentCommandBar } from 'DetailsView/components/assessment-command-bar';
 import { AutomatedChecksCommandBar } from 'DetailsView/components/automated-checks-command-bar';
@@ -61,7 +62,7 @@ export type DetailsViewSwitcherNavConfiguration = Readonly<{
     LeftNav: ReactFCWithDisplayName<LeftNavProps>;
     getSelectedDetailsView: (props: GetSelectedDetailsViewProps) => VisualizationType;
     warningConfiguration: WarningConfiguration;
-    leftNavHamburgerButton: () => JSX.Element;
+    leftNavHamburgerButton: ReactFCWithDisplayName<ExpandCollpaseLeftNavButtonProps>;
 }>;
 
 type InternalDetailsViewSwitcherNavConfiguration = Readonly<{
@@ -71,7 +72,7 @@ type InternalDetailsViewSwitcherNavConfiguration = Readonly<{
     LeftNav: ReactFCWithDisplayName<InternalLeftNavProps>;
     getSelectedDetailsView: (props: GetSelectedDetailsViewProps) => VisualizationType;
     warningConfiguration: WarningConfiguration;
-    leftNavHamburgerButton: () => JSX.Element;
+    leftNavHamburgerButton: ReactFCWithDisplayName<ExpandCollpaseLeftNavButtonProps>;
 }>;
 
 export type GetDetailsSwitcherNavConfigurationProps = {
@@ -88,7 +89,7 @@ const detailsViewSwitcherNavs: {
         LeftNav: AssessmentLeftNav,
         getSelectedDetailsView: getAssessmentSelectedDetailsView,
         warningConfiguration: assessmentWarningConfiguration,
-        leftNavHamburgerButton: getAssessmentLeftNavHamburgerButton,
+        leftNavHamburgerButton: AssessmentLeftNavHamburgerButton,
     },
     [DetailsViewPivotType.fastPass]: {
         CommandBar: AutomatedChecksCommandBar,
@@ -97,7 +98,7 @@ const detailsViewSwitcherNavs: {
         LeftNav: FastPassLeftNav,
         getSelectedDetailsView: getFastPassSelectedDetailsView,
         warningConfiguration: fastpassWarningConfiguration,
-        leftNavHamburgerButton: getFastPassLeftNavHamburgerButton,
+        leftNavHamburgerButton: FastPassLeftNavHamburgerButton,
     },
 };
 

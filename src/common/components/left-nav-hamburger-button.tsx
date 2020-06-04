@@ -23,12 +23,22 @@ const LeftNavHamburgerButton = NamedFC<LeftNavHamburgerButtonProps>(
     },
 );
 
-export const getAssessmentLeftNavHamburgerButton = (): JSX.Element => {
-    const ariaLabel: string = 'Assessment expand to see list of all tests and requirements';
-    return <LeftNavHamburgerButton ariaLabel={ariaLabel} />;
+export type ExpandCollpaseLeftNavButtonProps = {
+    isLeftNavOpen: boolean;
 };
 
-export const getFastPassLeftNavHamburgerButton = (): JSX.Element => {
-    const ariaLabel: string = 'FastPass expand to see a list of all tests';
-    return <LeftNavHamburgerButton ariaLabel={ariaLabel} />;
-};
+export const AssessmentLeftNavHamburgerButton = NamedFC<ExpandCollpaseLeftNavButtonProps>(
+    'AssessmentLeftNavHamburgerButton',
+    props => {
+        const ariaLabel: string = 'Assessment - all tests and requirements list';
+        return <LeftNavHamburgerButton ariaLabel={ariaLabel} />;
+    },
+);
+
+export const FastPassLeftNavHamburgerButton = NamedFC<ExpandCollpaseLeftNavButtonProps>(
+    'FastPassLeftNavHamburgerButton',
+    props => {
+        const ariaLabel: string = 'FastPass - all tests list';
+        return <LeftNavHamburgerButton ariaLabel={ariaLabel} />;
+    },
+);

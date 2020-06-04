@@ -28,7 +28,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 selectedPivot={visualizationStoreData.selectedDetailsViewPivot}
                 featureFlagStoreData={storeState.featureFlagStoreData}
                 tabClosed={props.storeState.tabStoreData.isClosed}
-                navMenu={selectedDetailsViewSwitcherNavConfiguration.leftNavHamburgerButton()}
+                navMenu={selectedDetailsViewSwitcherNavConfiguration.leftNavHamburgerButton}
             />
         );
     };
