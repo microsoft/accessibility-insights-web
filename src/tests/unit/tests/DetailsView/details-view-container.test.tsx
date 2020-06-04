@@ -1,13 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
-import { TargetAppData, ToolData } from 'common/types/store-data/unified-data-interface';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
     DetailsViewContainer,
-    DetailsViewContainerDeps,
     DetailsViewContainerProps,
 } from 'DetailsView/details-view-container';
 import { shallow } from 'enzyme';
