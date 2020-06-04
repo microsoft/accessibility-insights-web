@@ -133,11 +133,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
     }
 
     private hasStores(): boolean {
-        return (
-            this.props.deps !== null &&
-            this.props.deps.storesHub !== null &&
-            this.props.deps.storesHub.hasStores()
-        );
+        return this.props.deps.storesHub.hasStores();
     }
 }
 
