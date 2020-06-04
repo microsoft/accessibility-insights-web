@@ -37,7 +37,7 @@ describe('DetailsViewContainer', () => {
         });
     });
 
-    describe('renderContent', () => {
+    describe('render content', () => {
         it('show NoContentAvailable when stores are not loaded', () => {
             const storesHubMock = Mock.ofType(BaseClientStoresHub);
 

@@ -1,15 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DetailsViewContainer render renders spinner when stores not ready 1`] = `
-<StyledSpinnerBase
-  className="details-view-spinner"
-  label="Loading..."
-  size={3}
-/>
-`;
-
-exports[`DetailsViewContainer renderContent render once; should call details view opened 1`] = `
-<DetailsViewContent
+exports[`DetailsViewContainer render content render once; should call details view opened 1`] = `
+<DetailsViewContentWithLocalState
   deps={
     Object {
       "detailsViewActionMessageCreator": proxy {
@@ -90,7 +82,7 @@ exports[`DetailsViewContainer render content show NoContentAvailable when target
 </React.Fragment>
 `;
 
-exports[`DetailsViewContainer renderContent shows NoContentAvailable when target page is changed and no permissions granted 1`] = `
+exports[`DetailsViewContainer render content shows NoContentAvailable when target page is changed and no permissions granted 1`] = `
 <React.Fragment>
   <Header
     deps={
@@ -104,4 +96,12 @@ exports[`DetailsViewContainer renderContent shows NoContentAvailable when target
   />
   <NoContentAvailable />
 </React.Fragment>
+`;
+
+exports[`DetailsViewContainer render renders spinner when stores not ready 1`] = `
+<StyledSpinnerBase
+  className="details-view-spinner"
+  label="Loading..."
+  size={3}
+/>
 `;
