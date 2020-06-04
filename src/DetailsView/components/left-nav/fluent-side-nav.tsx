@@ -27,7 +27,7 @@ export class FluentSideNav extends React.Component<FluentSideNavProps> {
         }
         const nav = <DetailsViewLeftNav {...this.props} />;
 
-        const dismisPanel = () => {
+        const dismissPanel = () => {
             this.props.setSideNavOpen(false);
         };
 
@@ -40,7 +40,7 @@ export class FluentSideNav extends React.Component<FluentSideNavProps> {
                 onRenderNavigationContent={() => null}
                 onRenderHeader={() => null}
                 onRenderNavigation={() => null}
-                onDismiss={dismisPanel}
+                onDismiss={dismissPanel}
                 type={PanelType.customNear}
                 layerProps={{
                     hostId: styles.sideNavContainer,
