@@ -33,7 +33,7 @@ exports[`AssessmentReportSummary render Reflow UI is disabled 1`] = `
         testSummaries={Array []}
       />
     }
-    featureFlag="exportReportOptions"
+    featureFlag="reflowUI"
     featureFlagStoreData={
       Object {
         "reflowUI": false,
@@ -76,7 +76,7 @@ exports[`AssessmentReportSummary render Reflow UI is enabled 1`] = `
         testSummaries={Array []}
       />
     }
-    featureFlag="exportReportOptions"
+    featureFlag="reflowUI"
     featureFlagStoreData={
       Object {
         "reflowUI": true,
