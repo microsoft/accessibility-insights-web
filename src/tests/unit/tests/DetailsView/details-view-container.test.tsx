@@ -15,30 +15,10 @@ import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
 describe('DetailsViewContainer', () => {
-    const pageTitle = 'DetailsViewContainerTest title';
-    const pageUrl = 'http://detailsViewContainerTest/url/';
     let detailsViewActionMessageCreator: IMock<DetailsViewActionMessageCreator>;
-    let deps: DetailsViewContainerDeps;
-    let targetAppInfo: TargetAppData;
-    let isResultHighlightUnavailableStub: IsResultHighlightUnavailable;
-    let timestamp: string;
-    let toolData: ToolData;
 
     beforeEach(() => {
         detailsViewActionMessageCreator = Mock.ofType(DetailsViewActionMessageCreator);
-        isResultHighlightUnavailableStub = () => null;
-        timestamp = 'timestamp';
-        targetAppInfo = {
-            name: pageTitle,
-            url: pageUrl,
-        };
-        toolData = {
-            applicationProperties: { name: 'some app' },
-        } as ToolData;
-        deps = {
-            detailsViewActionMessageCreator: detailsViewActionMessageCreator.object,
-            isResultHighlightUnavailable: isResultHighlightUnavailableStub,
-        } as DetailsViewContainerDeps;
     });
 
     describe('render', () => {
