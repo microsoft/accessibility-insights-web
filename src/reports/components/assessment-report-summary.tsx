@@ -35,7 +35,7 @@ export class AssessmentReportSummary extends React.Component<AssessmentReportSum
     private renderDetails(): JSX.Element {
         return (
             <FlaggedComponent
-                featureFlag={FeatureFlags.exportReportOptions}
+                featureFlag={FeatureFlags.reflowUI}
                 featureFlagStoreData={this.props.featureFlagStoreData}
                 enableJSXElement={
                     <ReflowAssessmentSummaryDetails
