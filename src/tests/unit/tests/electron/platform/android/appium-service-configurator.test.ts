@@ -191,7 +191,7 @@ describe('AppiumServiceConfigurator tests', () => {
         adbMock.verifyAll();
     });
 
-    it('getPermissionInfo, service is running but has no screenshot permission', async () => {
+    it('getPermissionInfo, service is running without screenshot permission', async () => {
         adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
         adbMock
             .setup(m => m.shell(['dumpsys', 'accessibility']))
@@ -209,7 +209,7 @@ describe('AppiumServiceConfigurator tests', () => {
         adbMock.verifyAll();
     });
 
-    it('getPermissionInfo, service is running but has no screenshot permission', async () => {
+    it('getPermissionInfo, service is running with screenshot permission', async () => {
         adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
         adbMock
             .setup(m => m.shell(['dumpsys', 'accessibility']))
