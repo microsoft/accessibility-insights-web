@@ -20,6 +20,7 @@ import { GetSelectedDetailsViewProps } from 'DetailsView/components/left-nav/get
 import {
     DetailsViewContainer,
     DetailsViewContainerDeps,
+    DetailsViewContainerProps,
     DetailsViewContainerState,
 } from 'DetailsView/details-view-container';
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
@@ -97,19 +98,13 @@ describe('DetailsViewContainer', () => {
             testRenderStaticContent(viewType, false);
         });
 
-        // it('render no content available when no stores exist', () => {
-        //     const dropdownClickHandler = Mock.ofType(DropdownClickHandler);
-        //     const props = new DetailsViewContainerPropsBuilder(null)
-        //         .setDropdownClickHandler(dropdownClickHandler.object)
-        //         .build();
-        //     const rendered = shallow(<DetailsViewContainer {...props} />);
-        //     expect(rendered.debug()).toMatchSnapshot();
-        // });
-
-        it('renders TargetPageClosedView when target page origin url changed and url permissions not granted', () => {
-            // And test to ensure that it isn't rendered when that's not the case?
-            // What about individual unit tests for the methods... but they're basically just those variables w/null checks...
-            // but not if we do null check right before in the code instead of in the function?
+        it('render no content available when no stores exist', () => {
+            const dropdownClickHandler = Mock.ofType(DropdownClickHandler);
+            const props = new DetailsViewContainerPropsBuilder(null)
+                .setDropdownClickHandler(dropdownClickHandler.object)
+                .build();
+            const rendered = shallow(<DetailsViewContainer {...props} />);
+            expect(rendered.debug()).toMatchSnapshot();
         });
 
         it('shows NoContentAvailable when stores are not loaded', () => {
@@ -153,6 +148,52 @@ describe('DetailsViewContainer', () => {
 
             const rendered = shallow(<DetailsViewContainer {...props} />);
             expect(rendered.debug()).toMatchSnapshot();
+        });
+
+        it('shows NoContentAvailable when target page is closed', () => {
+            const storesHubMock = Mock.ofType(BaseClientStoresHub);
+
+            const props: DetailsViewContainerProps = {
+                storeState: {
+                    tabStoreData: {
+                        isClosed: true,
+                    },
+                },
+                deps: {
+                    storesHub: storesHubMock.object,
+                },
+            } as DetailsViewContainerProps;
+
+            storesHubMock.setup(mock => mock.hasStores()).returns(() => true);
+            storesHubMock.setup(mock => mock.hasStoreData()).returns(() => true);
+
+            const rendered = shallow(<DetailsViewContainer {...props} />);
+            expect(rendered.getElement()).toMatchSnapshot();
+        });
+
+        it('shows NoContentAvailable when target page is changed and no permissions granted', () => {
+            const storesHubMock = Mock.ofType(BaseClientStoresHub);
+
+            const props: DetailsViewContainerProps = {
+                storeState: {
+                    tabStoreData: {
+                        isClosed: false,
+                        isOriginChanged: true,
+                    },
+                    permissionsStateStoreData: {
+                        hasAllUrlAndFilePermissions: false,
+                    },
+                },
+                deps: {
+                    storesHub: storesHubMock.object,
+                },
+            } as DetailsViewContainerProps;
+
+            storesHubMock.setup(mock => mock.hasStores()).returns(() => true);
+            storesHubMock.setup(mock => mock.hasStoreData()).returns(() => true);
+
+            const rendered = shallow(<DetailsViewContainer {...props} />);
+            expect(rendered.getElement()).toMatchSnapshot();
         });
 
         it('render twice; should not call details view opened on second render', () => {
