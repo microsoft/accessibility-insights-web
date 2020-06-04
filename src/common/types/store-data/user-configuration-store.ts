@@ -11,6 +11,8 @@ export interface UserConfigurationStoreData {
 
     bugService: string;
     bugServicePropertiesMap: IssueFilingServicePropertiesMap;
+
+    adbLocation: string;
 }
 
 export interface IssueFilingServicePropertiesMap {
