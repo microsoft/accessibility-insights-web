@@ -1,54 +1,46 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { AppiumServiceConfiguratorFactory } from 'electron/platform/android/appium-service-configurator-factory';
+import { AppiumServiceConfigurator } from 'electron/platform/android/appium-service-configurator';
+import {
+    AdbCreate,
+    AppiumServiceConfiguratorFactory,
+} from 'electron/platform/android/appium-service-configurator-factory';
+import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('AppiumServiceConfiguratorFactory tests', () => {
-    const nonExistentPath = './This/Path/Does/Not/Exist';
-    const ANDROID_HOME = 'ANDROID_HOME';
-    const ANDROID_SDK_ROOT = 'ANDROID_SDK_ROOT';
-    const errorsFromAdb = 3;
+    let adbCreateMock: IMock<AdbCreate>;
 
-    it('getServiceConfigurator uses default if no path is provided', async () => {
-        if (canTestBeRun()) {
-            const factory = new AppiumServiceConfiguratorFactory();
-            expect.assertions(errorsFromAdb);
-            try {
-                await factory.getServiceConfigurator(null);
-            } catch (e) {
-                const error = e as Error;
-                expect(error.message.includes(nonExistentPath)).toBeFalsy();
-                expect(error.message.includes(ANDROID_HOME)).toBeTruthy();
-                expect(error.message.includes(ANDROID_SDK_ROOT)).toBeTruthy();
-            }
-        }
+    beforeEach(() => {
+        adbCreateMock = Mock.ofType<AdbCreate>(undefined, MockBehavior.Strict);
     });
 
-    it('getServiceConfigurator uses path if it is provided', async () => {
-        if (canTestBeRun()) {
-            const factory = new AppiumServiceConfiguratorFactory();
-            expect.assertions(errorsFromAdb);
-            try {
-                await factory.getServiceConfigurator(nonExistentPath);
-            } catch (e) {
-                const error = e as Error;
-                expect(error.message.includes(nonExistentPath)).toBeTruthy();
-                expect(error.message.includes(ANDROID_HOME)).toBeFalsy();
-                expect(error.message.includes(ANDROID_SDK_ROOT)).toBeFalsy();
-            }
-        }
+    it('getServiceConfigurator creates without parameters if no sdkRoot is provided', async () => {
+        adbCreateMock
+            .setup(m => m.createADB(undefined))
+            .returns(() => null)
+            .verifiable(Times.once());
+        const factory = new AppiumServiceConfiguratorFactory();
+
+        expect(
+            await factory.getServiceConfiguratorTestable(null, adbCreateMock.object),
+        ).toBeInstanceOf(AppiumServiceConfigurator);
+
+        adbCreateMock.verifyAll();
     });
 
-    // Appium-adb's built-in behavior is to use the environment variables if
-    // they're set, and without a good way to override them, we just skip the tests.
-    function canTestBeRun(): boolean {
-        return (
-            !isEnvironmentVariableSet(ANDROID_HOME) && !isEnvironmentVariableSet(ANDROID_SDK_ROOT)
-        );
-    }
+    it('getServiceConfigurator creates with sdkRoot if it is provided', async () => {
+        const expectedSdkRoot = 'path/to/android/sdk';
+        adbCreateMock
+            .setup(m => m.createADB({ sdkRoot: expectedSdkRoot }))
+            .returns(() => null)
+            .verifiable(Times.once());
+        const factory = new AppiumServiceConfiguratorFactory();
 
-    function isEnvironmentVariableSet(name: string): boolean {
-        const value = process.env[name];
-        return value && value.length > 0;
-    }
+        expect(
+            await factory.getServiceConfiguratorTestable(expectedSdkRoot, adbCreateMock.object),
+        ).toBeInstanceOf(AppiumServiceConfigurator);
+
+        adbCreateMock.verifyAll();
+    });
 });

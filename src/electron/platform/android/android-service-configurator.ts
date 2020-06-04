@@ -25,5 +25,5 @@ export interface AndroidServiceConfigurator {
 }
 
 export interface AndroidServiceConfiguratorFactory {
-    getServiceConfigurator(adbFileLocation: string): Promise<AndroidServiceConfigurator>;
+    getServiceConfigurator(sdkRoot: string): Promise<AndroidServiceConfigurator>;
 }
