@@ -58,7 +58,7 @@ exports[`DetailsViewContainer renderContent render once; should call details vie
 />
 `;
 
-exports[`DetailsViewContainer renderContent show NoContentAvailable when stores are not loaded 1`] = `
+exports[`DetailsViewContainer render content show NoContentAvailable when stores are not loaded 1`] = `
 <React.Fragment>
   <Header
     deps={
@@ -74,7 +74,7 @@ exports[`DetailsViewContainer renderContent show NoContentAvailable when stores 
 </React.Fragment>
 `;
 
-exports[`DetailsViewContainer renderContent show NoContentAvailable when target tab is closed 1`] = `
+exports[`DetailsViewContainer render content show NoContentAvailable when target tab is closed 1`] = `
 <React.Fragment>
   <Header
     deps={

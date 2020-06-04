@@ -215,7 +215,9 @@ describe(DetailsViewContent, () => {
                 )
                 .returns(() => cardsViewData);
 
-            const rendered = shallow(<DetailsViewContent {...props} />);
+            const rendered = shallow(
+                <DetailsViewContent {...props} isSideNavOpen={false} setSideNavOpen={() => {}} />,
+            );
             expect(rendered.getElement()).toMatchSnapshot();
 
             clickHandlerFactoryMock.verifyAll();
