@@ -12,11 +12,11 @@ export type AdbCreateParameters = {
     sdkRoot: string;
 };
 
-export interface AdbCreate {
+export interface AdbCreator {
     createADB(opts: AdbCreateParameters): Promise<ADB>;
 }
 
-class ProductionAdbCreate implements AdbCreate {
+class ProductionAdbCreator implements AdbCreator {
     public createADB = async (
         parameters: AdbCreateParameters,
     ): Promise<AndroidServiceConfigurator> => {
@@ -26,12 +26,12 @@ class ProductionAdbCreate implements AdbCreate {
 
 export class AppiumServiceConfiguratorFactory implements AndroidServiceConfiguratorFactory {
     public async getServiceConfigurator(sdkRoot: string): Promise<AndroidServiceConfigurator> {
-        return this.getServiceConfiguratorTestable(sdkRoot, new ProductionAdbCreate());
+        return this.getServiceConfiguratorTestable(sdkRoot, new ProductionAdbCreator());
     }
 
     public async getServiceConfiguratorTestable(
         sdkRoot: string,
-        adbCreate: AdbCreate,
+        adbCreator: AdbCreator,
     ): Promise<AndroidServiceConfigurator> {
         let adb: ADB;
 
@@ -40,7 +40,7 @@ export class AppiumServiceConfiguratorFactory implements AndroidServiceConfigura
             parameters = { sdkRoot };
         }
 
-        adb = await adbCreate.createADB(parameters);
+        adb = await adbCreator.createADB(parameters);
 
         return new AppiumServiceConfigurator(adb);
     }

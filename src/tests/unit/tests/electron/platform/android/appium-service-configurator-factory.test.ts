@@ -3,44 +3,59 @@
 
 import { AppiumServiceConfigurator } from 'electron/platform/android/appium-service-configurator';
 import {
-    AdbCreate,
+    AdbCreator,
     AppiumServiceConfiguratorFactory,
 } from 'electron/platform/android/appium-service-configurator-factory';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('AppiumServiceConfiguratorFactory tests', () => {
-    let adbCreateMock: IMock<AdbCreate>;
+    let adbCreatorMock: IMock<AdbCreator>;
 
     beforeEach(() => {
-        adbCreateMock = Mock.ofType<AdbCreate>(undefined, MockBehavior.Strict);
+        adbCreatorMock = Mock.ofType<AdbCreator>(undefined, MockBehavior.Strict);
     });
 
     it('getServiceConfigurator creates without parameters if no sdkRoot is provided', async () => {
-        adbCreateMock
+        adbCreatorMock
             .setup(m => m.createADB(undefined))
             .returns(() => null)
             .verifiable(Times.once());
         const factory = new AppiumServiceConfiguratorFactory();
 
         expect(
-            await factory.getServiceConfiguratorTestable(null, adbCreateMock.object),
+            await factory.getServiceConfiguratorTestable(null, adbCreatorMock.object),
         ).toBeInstanceOf(AppiumServiceConfigurator);
 
-        adbCreateMock.verifyAll();
+        adbCreatorMock.verifyAll();
     });
 
     it('getServiceConfigurator creates with sdkRoot if it is provided', async () => {
         const expectedSdkRoot = 'path/to/android/sdk';
-        adbCreateMock
+        adbCreatorMock
             .setup(m => m.createADB({ sdkRoot: expectedSdkRoot }))
             .returns(() => null)
             .verifiable(Times.once());
         const factory = new AppiumServiceConfiguratorFactory();
 
         expect(
-            await factory.getServiceConfiguratorTestable(expectedSdkRoot, adbCreateMock.object),
+            await factory.getServiceConfiguratorTestable(expectedSdkRoot, adbCreatorMock.object),
         ).toBeInstanceOf(AppiumServiceConfigurator);
 
-        adbCreateMock.verifyAll();
+        adbCreatorMock.verifyAll();
+    });
+
+    it('getServiceConfigurator propagates error to caller', async () => {
+        const expectedMessage = 'Soething bad happened';
+        adbCreatorMock
+            .setup(m => m.createADB(undefined))
+            .throws(new Error(expectedMessage))
+            .verifiable(Times.once());
+        const factory = new AppiumServiceConfiguratorFactory();
+
+        await expect(
+            factory.getServiceConfiguratorTestable(null, adbCreatorMock.object),
+        ).rejects.toThrowError(expectedMessage);
+
+        adbCreatorMock.verifyAll();
     });
 });
