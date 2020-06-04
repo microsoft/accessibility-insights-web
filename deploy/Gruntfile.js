@@ -15,8 +15,6 @@ module.exports = function (grunt) {
         webstoreAppId: grunt.option('webstore-app-id'),
     };
 
-    grunt.option('fakeBadPublish', true);
-
     if (!options.appInsightsInstrumentationKey) {
         grunt.fail.fatal('app-insights-instrumentation-key required to publish');
     }
@@ -51,6 +49,7 @@ module.exports = function (grunt) {
                     grunt.fail.fatal(JSON.stringify(info));
                 }
             },
+            fakeBadPublish: true,
         },
     });
 
