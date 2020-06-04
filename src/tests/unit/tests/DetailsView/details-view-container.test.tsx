@@ -2,11 +2,9 @@
 // Licensed under the MIT License.
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
-import { StoreActionMessageCreator } from 'common/message-creators/store-action-message-creator';
 import { StoreActionMessageCreatorImpl } from 'common/message-creators/store-action-message-creator-impl';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
-import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import {
     TargetAppData,
     ToolData,
@@ -20,13 +18,13 @@ import { GetSelectedDetailsViewProps } from 'DetailsView/components/left-nav/get
 import {
     DetailsViewContainer,
     DetailsViewContainerDeps,
+    DetailsViewContainerProps,
     DetailsViewContainerState,
 } from 'DetailsView/details-view-container';
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { DetailsViewStoreDataBuilder } from '../../common/details-view-store-data-builder';
 import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
@@ -62,32 +60,20 @@ describe('DetailsViewContainer', () => {
 
     describe('render', () => {
         it('renders spinner when stores not ready', () => {
-            const detailsViewStoreActionMessageCreatorMock = Mock.ofType(
-                StoreActionMessageCreatorImpl,
-                MockBehavior.Strict,
-            );
-            detailsViewStoreActionMessageCreatorMock
-                .setup(amc => amc.getAllStates())
-                .verifiable(Times.once());
+            const storesHubMock = Mock.ofType(BaseClientStoresHub);
 
-            const storeMocks = new StoreMocks()
-                .setDetailsViewStoreData(null)
-                .setVisualizationStoreData(null)
-                .setUserConfigurationStoreData({
-                    enableTelemetry: true,
-                } as UserConfigurationStoreData);
+            const props: DetailsViewContainerProps = {
+                storeState: null,
+                deps: {
+                    storesHub: storesHubMock.object,
+                },
+            } as DetailsViewContainerProps;
 
-            const props = new DetailsViewContainerPropsBuilder(deps)
-                .setStoreMocks(storeMocks)
-                .setStoresHubMock(createStoresHubMock(storeMocks, true, false).object)
-                .setDetailsViewStoreActionMessageCreator(
-                    detailsViewStoreActionMessageCreatorMock.object,
-                )
-                .build();
+            storesHubMock.setup(mock => mock.hasStores()).returns(() => true);
+            storesHubMock.setup(mock => mock.hasStoreData()).returns(() => false);
 
-            const testObject = shallow(<DetailsViewContainer {...props} />);
-
-            expect(testObject.getElement()).toMatchSnapshot();
+            const rendered = shallow(<DetailsViewContainer {...props} />);
+            expect(rendered.getElement()).toMatchSnapshot();
         });
     });
 
@@ -97,55 +83,41 @@ describe('DetailsViewContainer', () => {
             testRenderStaticContent(viewType, false);
         });
 
-        it('renders TargetPageClosedView when target page closed', () => {
-            const dropdownClickHandler = Mock.ofType(DropdownClickHandler);
-            const props = new DetailsViewContainerPropsBuilder(null)
-                .setDropdownClickHandler(dropdownClickHandler.object)
-                .build();
+        it('show NoContentAvailable when stores are not loaded', () => {
+            const storesHubMock = Mock.ofType(BaseClientStoresHub);
+
+            const props: DetailsViewContainerProps = {
+                storeState: null,
+                deps: {
+                    storesHub: storesHubMock.object,
+                },
+            } as DetailsViewContainerProps;
+
+            storesHubMock.setup(mock => mock.hasStores()).returns(() => false);
+
             const rendered = shallow(<DetailsViewContainer {...props} />);
-            expect(rendered.debug()).toMatchSnapshot();
+            expect(rendered.getElement()).toMatchSnapshot();
         });
 
-        it('shows target tab was closed when stores are not loaded', () => {
-            const storeActionCreator = Mock.ofType(
-                StoreActionMessageCreatorImpl,
-                MockBehavior.Strict,
-            );
+        it('show NoContentAvailable when target tab is closed', () => {
+            const storesHubMock = Mock.ofType(BaseClientStoresHub);
 
-            const visualizationStoreData = new VisualizationStoreDataBuilder()
-                .with('selectedAdhocDetailsView', VisualizationType.Issues)
-                .build();
+            const props: DetailsViewContainerProps = {
+                storeState: {
+                    tabStoreData: {
+                        isClosed: true,
+                    },
+                },
+                deps: {
+                    storesHub: storesHubMock.object,
+                },
+            } as DetailsViewContainerProps;
 
-            setupActionMessageCreatorMock(
-                detailsViewActionMessageCreator,
-                visualizationStoreData.selectedDetailsViewPivot,
-                1,
-            );
-
-            const tabStoreData: TabStoreData = {
-                title: pageTitle,
-                url: pageUrl,
-                id: 1,
-                isClosed: true,
-                isChanged: false,
-                isPageHidden: false,
-            };
-
-            const storeMocks = new StoreMocks()
-                .setVisualizationStoreData(visualizationStoreData)
-                .setTabStoreData(tabStoreData);
-
-            const detailsViewStoreActionCreatorMock = Mock.ofType<StoreActionMessageCreator>();
-
-            const props = new DetailsViewContainerPropsBuilder(deps)
-                .setStoreMocks(storeMocks)
-                .setStoreActionMessageCreator(storeActionCreator.object)
-                .setDetailsViewStoreActionMessageCreator(detailsViewStoreActionCreatorMock.object)
-                .setStoresHubMock(createStoresHubMock(storeMocks, false).object)
-                .build();
+            storesHubMock.setup(mock => mock.hasStores()).returns(() => true);
+            storesHubMock.setup(mock => mock.hasStoreData()).returns(() => true);
 
             const rendered = shallow(<DetailsViewContainer {...props} />);
-            expect(rendered.debug()).toMatchSnapshot();
+            expect(rendered.getElement()).toMatchSnapshot();
         });
 
         it('render twice; should not call details view opened on second render', () => {

@@ -29,6 +29,6 @@
         overflow: hidden;
         text-overflow: ellipsis;
         color: $primary-text;
-        width: 50%;
+        flex: 1 1 auto;
     }
 }

@@ -75,6 +75,7 @@ import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-r
 import { ScanController } from 'electron/platform/android/scan-controller';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
 import { UnifiedSettingsProvider } from 'electron/settings/unified-settings-provider';
+import { defaultAndroidSetupComponents } from 'electron/views/device-connect-view/components/android-setup/default-android-setup-components';
 import { UnifiedReportNameGenerator } from 'electron/views/report/unified-report-name-generator';
 import { UnifiedReportSectionFactory } from 'electron/views/report/unified-report-section-factory';
 import { RootContainerState } from 'electron/views/root-container/components/root-container';
@@ -462,6 +463,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             fileURLProvider: new FileURLProvider(windowUtils, provideBlob),
             getDateFromTimestamp: DateProvider.getDateFromTimestamp,
             reportExportServiceProvider: ReportExportServiceProviderImpl,
+            androidSetupStepComponentProvider: defaultAndroidSetupComponents,
         };
 
         window.insightsUserConfiguration = new UserConfigurationController(interpreter);

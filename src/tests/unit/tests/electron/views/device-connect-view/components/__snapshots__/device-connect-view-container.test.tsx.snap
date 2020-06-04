@@ -22,14 +22,46 @@ exports[`DeviceConnectViewContainer renders 1`] = `
   <div
     className="mainContentWrapper"
   >
-    <DeviceConnectBody
+    <FlaggedComponent
       deps={Object {}}
-      viewState={
-        Object {
-          "connectedDevice": undefined,
-          "deviceConnectState": 0,
-        }
+      disableJSXElement={
+        <DeviceConnectBody
+          deps={Object {}}
+          viewState={
+            Object {
+              "connectedDevice": undefined,
+              "deviceConnectState": 0,
+            }
+          }
+        />
       }
+      enableJSXElement={
+        <AndroidSetupStepContainer
+          androidSetupStoreData={
+            Object {
+              "currentStepId": "detect-adb",
+            }
+          }
+          deps={Object {}}
+          deviceStoreData={
+            Object {
+              "deviceConnectState": 0,
+            }
+          }
+          userConfigurationStoreData={
+            Object {
+              "isFirstTime": true,
+            }
+          }
+          windowStateStoreData={
+            Object {
+              "currentWindowState": "customSize",
+              "routeId": "deviceConnectView",
+            }
+          }
+        />
+      }
+      featureFlag="adbSetupView"
     />
     <TelemetryPermissionDialog
       deps={Object {}}
