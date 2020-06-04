@@ -28,12 +28,12 @@ export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
                 // First add devices that are flagged as emulator, then
                 // add devices that aren't flagged as emulators
                 const detectedDevices = {};
-                await this.AddDevices(
+                await this.addDevices(
                     await this.adb.getConnectedEmulators(),
                     true,
                     detectedDevices,
                 );
-                await this.AddDevices(await this.adb.getConnectedDevices(), false, detectedDevices);
+                await this.addDevices(await this.adb.getConnectedDevices(), false, detectedDevices);
 
                 const output: Array<DeviceInfo> = [];
                 Object.values(detectedDevices).forEach(device => output.push(device as DeviceInfo));
@@ -44,7 +44,7 @@ export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
         });
     };
 
-    private AddDevices(
+    private addDevices(
         devices: Array<AdbDevice>,
         isEmulator: boolean,
         detectedDevices: any,
