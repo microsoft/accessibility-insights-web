@@ -228,9 +228,13 @@ div.insights-file-issue-details-dialog-container {
         }
     }
     .details-view-body-nav-content-layout {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+        align-content: stretch;
         padding-left: 0px;
         padding-right: 0px;
-        display: grid;
         grid-template-columns: $detailsViewLeftNavWidth 1fr;
         grid-template-rows: 1fr;
         width: 100%;
@@ -527,7 +531,7 @@ div.insights-file-issue-details-dialog-container {
             box-sizing: border-box;
             max-height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));
             > div {
-                min-width: 600px;
+                width: 100%;
                 height: auto;
             }
             .ms-MessageBar-icon i {
