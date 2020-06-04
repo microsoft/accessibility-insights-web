@@ -16,6 +16,7 @@ import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-f
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { DetailsRightPanelConfiguration } from '../details-view-right-panel';
 import { DetailsViewSwitcherNavConfiguration, LeftNavDeps } from '../details-view-switcher-nav';
+import * as styles from './details-view-left-nav.scss';
 
 export type DetailsViewLeftNavDeps = {
     assessmentsProvider: AssessmentsProvider;
@@ -71,7 +72,7 @@ export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewL
     );
 
     const leftNav: JSX.Element = (
-        <div className="left-nav main-nav">
+        <div className={`${styles.leftNav} main-nav`}>
             <FlaggedComponent
                 featureFlag={FeatureFlags[FeatureFlags.reflowUI]}
                 featureFlagStoreData={featureFlagStoreData}
@@ -86,6 +87,7 @@ export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewL
                     data => data.testStepStatus,
                 )}
                 featureFlagStoreData={featureFlagStoreData}
+                expandedTest={assessmentStoreData.assessmentNavState.expandedTestType}
             />
         </div>
     );

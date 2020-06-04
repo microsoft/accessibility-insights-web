@@ -71,6 +71,11 @@ export class AssessmentsStoreDataBuilder extends BaseDataBuilder<AssessmentStore
         return this;
     }
 
+    public withExpandedTest(visualizationType: VisualizationType): AssessmentsStoreDataBuilder {
+        this.data.assessmentNavState.expandedTestType = visualizationType;
+        return this;
+    }
+
     public withTargetTab(
         id: number,
         url: string,

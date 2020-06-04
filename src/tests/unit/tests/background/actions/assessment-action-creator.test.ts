@@ -8,6 +8,7 @@ import {
     ChangeInstanceSelectionPayload,
     ChangeRequirementStatusPayload,
     EditFailureInstancePayload,
+    ExpandTestNavPayload,
     OnDetailsViewOpenPayload,
     RemoveFailureInstancePayload,
     SelectGettingStartedPayload,
@@ -584,6 +585,42 @@ describe('AssessmentActionCreatorTest', () => {
             tp => tp.publishTelemetry(TelemetryEvents.SELECT_GETTING_STARTED, payload),
             Times.once(),
         );
+    });
+
+    it('handles ExpandTestNav message', () => {
+        const payload: ExpandTestNavPayload = {
+            selectedTest: 1,
+        } as ExpandTestNavPayload;
+
+        const expandTestNavMock = createActionMock(payload);
+        const actionsMock = createActionsMock('expandTestNav', expandTestNavMock.object);
+        const interpreterMock = createInterpreterMock(AssessmentMessages.ExpandTestNav, payload);
+
+        const testSubject = new AssessmentActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
+
+        testSubject.registerCallbacks();
+
+        expandTestNavMock.verifyAll();
+    });
+
+    it('handles CollapseTestNav message', () => {
+        const collapseTestNavMock = createActionMock(null);
+        const actionsMock = createActionsMock('collapseTestNav', collapseTestNavMock.object);
+        const interpreterMock = createInterpreterMock(AssessmentMessages.CollapseTestNav, null);
+
+        const testSubject = new AssessmentActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
+
+        testSubject.registerCallbacks();
+
+        collapseTestNavMock.verifyAll();
     });
 
     it('handles ScanUpdate message', () => {

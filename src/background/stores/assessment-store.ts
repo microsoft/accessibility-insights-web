@@ -23,7 +23,11 @@ import {
 } from 'injected/analyzers/analyzer';
 import { forEach, isEmpty, pickBy } from 'lodash';
 import { DictionaryStringTo } from 'types/common-types';
-import { AddResultDescriptionPayload, SelectTestSubviewPayload } from '../actions/action-payloads';
+import {
+    AddResultDescriptionPayload,
+    ExpandTestNavPayload,
+    SelectTestSubviewPayload,
+} from '../actions/action-payloads';
 import { AssessmentDataConverter } from '../assessment-data-converter';
 import { InitialAssessmentStoreDataGenerator } from '../initial-assessment-store-data-generator';
 import {
@@ -108,6 +112,8 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         this.assessmentActions.resetData.addListener(this.onResetData);
         this.assessmentActions.resetAllAssessmentsData.addListener(this.onResetAllAssessmentsData);
         this.assessmentActions.selectTestSubview.addListener(this.onSelectTestSubview);
+        this.assessmentActions.expandTestNav.addListener(this.onExpandTestNav);
+        this.assessmentActions.collapseTestNav.addListener(this.onCollapseTestNav);
         this.assessmentActions.changeInstanceStatus.addListener(this.onChangeInstanceStatus);
         this.assessmentActions.changeRequirementStatus.addListener(this.onChangeStepStatus);
         this.assessmentActions.undoRequirementStatusChange.addListener(this.onUndoStepStatusChange);
@@ -367,6 +373,16 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
     private onSelectTestSubview = (payload: SelectTestSubviewPayload): void => {
         this.state.assessmentNavState.selectedTestType = payload.selectedTest;
         this.state.assessmentNavState.selectedTestSubview = payload.selectedTestSubview;
+        this.emitChanged();
+    };
+
+    private onExpandTestNav = (payload: ExpandTestNavPayload): void => {
+        this.state.assessmentNavState.expandedTestType = payload.selectedTest;
+        this.emitChanged();
+    };
+
+    private onCollapseTestNav = (): void => {
+        this.state.assessmentNavState.expandedTestType = null;
         this.emitChanged();
     };
 

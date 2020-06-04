@@ -7,6 +7,7 @@ import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
+import { FluentSideNav } from 'DetailsView/components/left-nav/fluent-side-nav';
 import { ISelection } from 'office-ui-fabric-react';
 import * as React from 'react';
 
@@ -28,10 +29,7 @@ import {
 } from './components/details-view-right-panel';
 import { DetailsViewSwitcherNavConfiguration } from './components/details-view-switcher-nav';
 import { IssuesTableHandler } from './components/issues-table-handler';
-import {
-    DetailsViewLeftNav,
-    DetailsViewLeftNavDeps,
-} from './components/left-nav/details-view-left-nav';
+import { DetailsViewLeftNavDeps } from './components/left-nav/details-view-left-nav';
 import { TargetPageHiddenBar } from './components/target-page-hidden-bar';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
@@ -100,14 +98,8 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
     }
 
     private renderNavBar(): JSX.Element {
-        const tabClosed = this.props.tabStoreData.isClosed;
-
-        if (tabClosed) {
-            return null;
-        }
-
         return (
-            <DetailsViewLeftNav
+            <FluentSideNav
                 selectedPivot={this.props.visualizationStoreData?.selectedDetailsViewPivot}
                 {...this.props}
             />

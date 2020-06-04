@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CurrentView renders for selected tool = stores 1`] = `
+<main
+  className="main"
+>
+  <StoresTree
+    deps={Object {}}
+    state={
+      Object {
+        "debugToolsNavStoreData": Object {
+          "selectedTool": "stores",
+        },
+      }
+    }
+  />
+</main>
+`;
+
+exports[`CurrentView renders for selected tool = telemetryViewer 1`] = `
+<main
+  className="main"
+>
+  <TelemetryViewer
+    deps={Object {}}
+    state={
+      Object {
+        "debugToolsNavStoreData": Object {
+          "selectedTool": "telemetryViewer",
+        },
+      }
+    }
+  />
+</main>
+`;

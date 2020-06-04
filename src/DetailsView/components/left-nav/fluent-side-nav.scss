@@ -1,0 +1,15 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../../common/styles/common.scss';
+
+#side-nav-container {
+    .left-nav-panel {
+        margin-top: $detailsViewHeaderBarHeight;
+        :global(.ms-Panel-main) {
+            width: $detailsViewReflowLeftNavWidth;
+        }
+        :global(.ms-Panel-content) {
+            padding: 0px;
+        }
+    }
+}

@@ -70,6 +70,7 @@ export interface TestStepResult {
 export interface AssessmentNavState {
     selectedTestSubview: RequirementName | GettingStarted;
     selectedTestType: VisualizationType;
+    expandedTestType?: VisualizationType;
 }
 
 export interface HeadingsAssessmentProperties {
