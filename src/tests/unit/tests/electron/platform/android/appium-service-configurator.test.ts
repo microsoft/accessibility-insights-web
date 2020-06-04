@@ -256,6 +256,31 @@ describe('AppiumServiceConfigurator tests', () => {
         adbMock.verifyAll();
     });
 
+    it('uninstallService, fails', async () => {
+        const expectedError: string = 'Oops';
+        adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
+        adbMock
+            .setup(m => m.uninstall(servicePackageName, { keepData: true }))
+            .throws(new Error(expectedError))
+            .verifiable(Times.once());
+
+        await expect(testSubject.uninstallService(emulatorId)).rejects.toThrowError(expectedError);
+
+        adbMock.verifyAll();
+    });
+
+    it('uninstallService, succeeds', async () => {
+        adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
+        adbMock
+            .setup(m => m.uninstall(servicePackageName, { keepData: true }))
+            .returns(() => '')
+            .verifiable(Times.once());
+
+        await testSubject.uninstallService(emulatorId);
+
+        adbMock.verifyAll();
+    });
+
     it('setTcpForwarding, fails', async () => {
         const expectedError: string = 'Oops';
         adbMock
