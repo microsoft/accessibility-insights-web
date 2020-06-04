@@ -137,13 +137,9 @@ describe('AppiumServiceConfigurator tests', () => {
             .returns(() => expectedPackageInfo)
             .verifiable(Times.once());
 
-        try {
-            await testSubject.getPackageInfo(emulatorId);
-            expect('Code should never run').toBe(true);
-        } catch (e) {
-            const error = e as Error;
-            expect(error.message).toBe('Unable to obtain package version information');
-        }
+        await expect(testSubject.getPackageInfo(emulatorId)).rejects.toThrowError(
+            'Unable to obtain package version information',
+        );
 
         adbMock.verifyAll();
     });
@@ -188,12 +184,9 @@ describe('AppiumServiceConfigurator tests', () => {
             .returns(() => '')
             .verifiable(Times.once());
 
-        try {
-            await testSubject.getPermissionInfo(emulatorId);
-        } catch (e) {
-            const error: Error = e as Error;
-            expect(error.message).toBe('Accessibility Insights for Android Service is not running');
-        }
+        await expect(testSubject.getPermissionInfo(emulatorId)).rejects.toThrowError(
+            'Accessibility Insights for Android Service is not running',
+        );
 
         adbMock.verifyAll();
     });
@@ -239,20 +232,14 @@ describe('AppiumServiceConfigurator tests', () => {
     });
 
     it('installService, fails', async () => {
-        const expectedResult: string = 'Installation failed';
+        const expectedError: string = 'Installation failed';
         adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
         adbMock
             .setup(m => m.adbExec(['install', '-d', pathToApk]))
-            .returns(() => expectedResult)
+            .returns(() => expectedError)
             .verifiable(Times.once());
 
-        try {
-            await testSubject.installService(emulatorId);
-            expect('Code should never run').toBe(true);
-        } catch (e) {
-            const error: Error = e as Error;
-            expect(error.message).toBe(expectedResult);
-        }
+        await expect(testSubject.installService(emulatorId)).rejects.toThrowError(expectedError);
 
         adbMock.verifyAll();
     });
@@ -277,13 +264,7 @@ describe('AppiumServiceConfigurator tests', () => {
             .throws(new Error(expectedError))
             .verifiable(Times.once());
 
-        try {
-            await testSubject.setTcpForwarding(emulatorId);
-            expect('Code should never run').toBe(true);
-        } catch (e) {
-            const error: Error = e as Error;
-            expect(error.message).toBe(expectedError);
-        }
+        await expect(testSubject.setTcpForwarding(emulatorId)).rejects.toThrowError(expectedError);
 
         adbMock.verifyAll();
     });
