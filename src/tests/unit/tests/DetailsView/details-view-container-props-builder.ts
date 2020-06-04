@@ -75,7 +75,18 @@ export class DetailsViewContainerPropsBuilder {
     }
 
     public build(): DetailsViewContainerProps {
-        const storesHub = this.storesHub;
+        const storesHub =
+            this.storesHub ||
+            new BaseClientStoresHub([
+                this.detailsViewStore,
+                this.featureFlagStore,
+                this.tabStore,
+                this.visualizationScanResultStore,
+                this.unifiedScanResultStore,
+                this.visualizationStore,
+                this.assessmentStore,
+                this.scopingStateStore,
+            ]);
 
         const storeState = this.storesHub ? this.storesHub.getAllStoreData() : null;
         if (this.deps !== null) {
