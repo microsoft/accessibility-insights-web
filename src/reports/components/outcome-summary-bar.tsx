@@ -4,13 +4,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { kebabCase } from 'lodash';
 import * as React from 'react';
 
-import {
-    outcomeIconMap,
-    outcomeIconMapInverted,
-    OutcomeStats,
-    OutcomeType,
-    outcomeTypeSemantics,
-} from './outcome-type';
+import { outcomeIconMap, outcomeIconMapInverted, OutcomeStats, OutcomeType } from './outcome-type';
 
 export type OutcomeSummaryBarProps = {
     outcomeStats: Partial<OutcomeStats>;
