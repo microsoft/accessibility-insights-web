@@ -8,7 +8,10 @@ import { DetailsViewBody } from 'DetailsView/details-view-body';
 import { DetailsViewContainerProps } from 'DetailsView/details-view-container';
 import * as React from 'react';
 
-export type DetailsViewContentProps = DetailsViewContainerProps;
+export type DetailsViewContentProps = DetailsViewContainerProps & {
+    isSideNavOpen: boolean;
+    setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
 export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewContent', props => {
     const renderHeader = () => {

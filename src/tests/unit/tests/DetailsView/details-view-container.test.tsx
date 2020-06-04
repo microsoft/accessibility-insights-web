@@ -77,7 +77,7 @@ describe('DetailsViewContainer', () => {
         });
     });
 
-    describe('renderContent', () => {
+    describe('render content', () => {
         it('renders normally', () => {
             const viewType = -1;
             testRenderStaticContent(viewType, false);
