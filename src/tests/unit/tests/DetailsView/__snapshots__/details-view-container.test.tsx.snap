@@ -8,7 +8,55 @@ exports[`DetailsViewContainer render renders spinner when stores not ready 1`] =
 />
 `;
 
-exports[`DetailsViewContainer renderContent renders normally 1`] = `"<DetailsViewContent deps={{...}} storeState={{...}} />"`;
+exports[`DetailsViewContainer renderContent render once; should call details view opened 1`] = `
+<DetailsViewContent
+  deps={
+    Object {
+      "detailsViewActionMessageCreator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "addPathForValidation": [Function],
+        "cancelStartOver": [Function],
+        "cancelStartOverAllAssessments": [Function],
+        "changeAssessmentVisualizationState": [Function],
+        "changeManualRequirementStatus": [Function],
+        "changeManualTestStatus": [Function],
+        "clearPathSnippetData": [Function],
+        "closePreviewFeaturesPanel": [Function],
+        "closeScopingPanel": [Function],
+        "closeSettingsPanel": [Function],
+        "continuePreviousAssessment": [Function],
+        "copyIssueDetailsClicked": [Function],
+        "dispatcher": undefined,
+        "editFailureInstance": [Function],
+        "removeFailureInstance": [Function],
+        "rescanVisualization": [Function],
+        "setAllUrlsPermissionState": [Function],
+        "setFeatureFlag": [Function],
+        "startOverAllAssessments": [Function],
+        "switchToTargetTab": [Function],
+        "telemetryFactory": undefined,
+        "undoManualRequirementStatusChange": [Function],
+        "undoManualTestStatusChange": [Function],
+      },
+      "storesHub": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "stores": undefined,
+      },
+    }
+  }
+  storeState={
+    Object {
+      "tabStoreData": Object {
+        "isClosed": false,
+        "isOriginChanged": false,
+      },
+      "visualizationStoreData": Object {
+        "selectedDetailsViewPivot": -1,
+      },
+    }
+  }
+/>
+`;
 
 exports[`DetailsViewContainer renderContent show NoContentAvailable when stores are not loaded 1`] = `
 <React.Fragment>
@@ -27,6 +75,22 @@ exports[`DetailsViewContainer renderContent show NoContentAvailable when stores 
 `;
 
 exports[`DetailsViewContainer renderContent show NoContentAvailable when target tab is closed 1`] = `
+<React.Fragment>
+  <Header
+    deps={
+      Object {
+        "storesHub": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "stores": undefined,
+        },
+      }
+    }
+  />
+  <NoContentAvailable />
+</React.Fragment>
+`;
+
+exports[`DetailsViewContainer renderContent shows NoContentAvailable when target page is changed and no permissions granted 1`] = `
 <React.Fragment>
   <Header
     deps={
