@@ -98,7 +98,7 @@ describe('DetailsViewContainer', () => {
             testRenderStaticContent(viewType, false);
         });
 
-        it('render no content available when no stores exist', () => {
+        it('renders TargetPageClosedView when target page closed', () => {
             const dropdownClickHandler = Mock.ofType(DropdownClickHandler);
             const props = new DetailsViewContainerPropsBuilder(null)
                 .setDropdownClickHandler(dropdownClickHandler.object)
@@ -107,7 +107,7 @@ describe('DetailsViewContainer', () => {
             expect(rendered.debug()).toMatchSnapshot();
         });
 
-        it('shows NoContentAvailable when stores are not loaded', () => {
+        it('shows target tab was closed when stores are not loaded', () => {
             const storeActionCreator = Mock.ofType(
                 StoreActionMessageCreatorImpl,
                 MockBehavior.Strict,
