@@ -85,6 +85,7 @@
     --pill-background: var(--neutral-alpha-8);
     --pill: var(--primary-text);
     --spinner-text: var(--communication-primary);
+    --nav-link-hover: var(--neutral-alpha-8);
 
     // Landmark colors
     --landmark-contentinfo: #00a88c;
@@ -151,5 +152,6 @@
         --pill: var(--black);
         --screenshot-image-outline: var(--white);
         --spinner-text: var(--communication-tint-40);
+        --nav-link-hover: #2a2a2a;
     }
 }
