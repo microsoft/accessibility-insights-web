@@ -79,15 +79,17 @@ export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
     public installService = async (deviceId: string): Promise<void> => {
         const pathToApk = './ServiceForAndroid/AccessibilityInsightsforAndroidService.apk';
         this.adb.setDeviceId(deviceId);
-        const stdout: string = await this.adb.adbExec(['install', '-d', pathToApk]);
-        if (!stdout.includes('Success')) {
-            throw new Error(stdout);
-        }
+        await this.adb.install(pathToApk);
+    };
+
+    public uninstallService = async (deviceId: string): Promise<void> => {
+        this.adb.setDeviceId(deviceId);
+        await this.adb.uninstall(servicePackageName, { keepData: true });
     };
 
     public setTcpForwarding = async (deviceId: string): Promise<void> => {
         const port: number = 62442;
         this.adb.setDeviceId(deviceId);
-        return this.adb.forwardPort(port, port);
+        await this.adb.forwardPort(port, port);
     };
 }

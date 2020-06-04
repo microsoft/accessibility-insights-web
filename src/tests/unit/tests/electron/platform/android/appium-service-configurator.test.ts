@@ -232,11 +232,11 @@ describe('AppiumServiceConfigurator tests', () => {
     });
 
     it('installService, fails', async () => {
-        const expectedError: string = 'Installation failed';
+        const expectedError: string = 'Oops';
         adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
         adbMock
-            .setup(m => m.adbExec(['install', '-d', pathToApk]))
-            .returns(() => expectedError)
+            .setup(m => m.install(pathToApk))
+            .throws(new Error(expectedError))
             .verifiable(Times.once());
 
         await expect(testSubject.installService(emulatorId)).rejects.toThrowError(expectedError);
@@ -245,11 +245,10 @@ describe('AppiumServiceConfigurator tests', () => {
     });
 
     it('installService, succeeds', async () => {
-        const expectedResult: string = 'Success';
         adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
         adbMock
-            .setup(m => m.adbExec(['install', '-d', pathToApk]))
-            .returns(() => expectedResult)
+            .setup(m => m.install(pathToApk))
+            .returns(() => '')
             .verifiable(Times.once());
 
         await testSubject.installService(emulatorId);
