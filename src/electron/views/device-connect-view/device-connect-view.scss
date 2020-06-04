@@ -11,5 +11,8 @@
     .main-content-wrapper {
         flex: 1 1 auto;
         overflow: auto;
+        .android-setup-spinner {
+            padding-top: 25%;
+        }
     }
 }
