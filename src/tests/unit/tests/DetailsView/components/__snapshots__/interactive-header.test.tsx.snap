@@ -78,9 +78,9 @@ exports[`InteractiveHeader render: tabClosed is false 1`] = `
   navMenu={
     <FlaggedComponent
       enableJSXElement={
-        <LeftNavHamburgerButton
-          ariaLabel="test-aria-label"
-        />
+        <div>
+          test-nav-menu
+        </div>
       }
       featureFlag="reflowUI"
       featureFlagStoreData={

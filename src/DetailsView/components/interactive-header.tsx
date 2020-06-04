@@ -3,10 +3,6 @@
 import { FlaggedComponent } from 'common/components/flagged-component';
 import { GearMenuButton, GearMenuButtonDeps } from 'common/components/gear-menu-button';
 import { Header, HeaderDeps } from 'common/components/header';
-import {
-    LeftNavHamburgerButton,
-    LeftNavHamburgerButtonProps,
-} from 'common/components/left-nav-hamburger-button';
 import { FeatureFlags } from 'common/feature-flags';
 import { NamedFC } from 'common/react/named-fc';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
@@ -22,7 +18,7 @@ export interface InteractiveHeaderProps {
     featureFlagStoreData: FeatureFlagStoreData;
     tabClosed: boolean;
     selectedPivot: DetailsViewPivotType;
-    navMenuAriaLabel: string;
+    navMenu: JSX.Element;
 }
 
 export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHeader', props => {
@@ -33,7 +29,7 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
     const getNavMenu = () => {
         return (
             <FlaggedComponent
-                enableJSXElement={<LeftNavHamburgerButton ariaLabel={props.navMenuAriaLabel} />}
+                enableJSXElement={props.navMenu}
                 featureFlag={FeatureFlags.reflowUI}
                 featureFlagStoreData={props.featureFlagStoreData}
             />

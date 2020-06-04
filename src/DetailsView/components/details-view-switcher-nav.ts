@@ -1,5 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import {
+    getAssessmentLeftNavHamburgerButton,
+    getFastPassLeftNavHamburgerButton,
+} from 'common/components/left-nav-hamburger-button';
 import { AssessmentCommandBar } from 'DetailsView/components/assessment-command-bar';
 import { AutomatedChecksCommandBar } from 'DetailsView/components/automated-checks-command-bar';
 import {
@@ -20,7 +24,6 @@ import {
     fastpassWarningConfiguration,
     WarningConfiguration,
 } from 'DetailsView/components/warning-configuration';
-
 import { ReactFCWithDisplayName } from '../../common/react/named-fc';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../common/types/visualization-type';
@@ -58,7 +61,7 @@ export type DetailsViewSwitcherNavConfiguration = Readonly<{
     LeftNav: ReactFCWithDisplayName<LeftNavProps>;
     getSelectedDetailsView: (props: GetSelectedDetailsViewProps) => VisualizationType;
     warningConfiguration: WarningConfiguration;
-    leftNavMenuAriaLabel: string;
+    leftNavHamburgerButton: () => JSX.Element;
 }>;
 
 type InternalDetailsViewSwitcherNavConfiguration = Readonly<{
@@ -68,16 +71,12 @@ type InternalDetailsViewSwitcherNavConfiguration = Readonly<{
     LeftNav: ReactFCWithDisplayName<InternalLeftNavProps>;
     getSelectedDetailsView: (props: GetSelectedDetailsViewProps) => VisualizationType;
     warningConfiguration: WarningConfiguration;
-    leftNavMenuAriaLabel: string;
+    leftNavHamburgerButton: () => JSX.Element;
 }>;
 
 export type GetDetailsSwitcherNavConfigurationProps = {
     selectedDetailsViewPivot: DetailsViewPivotType;
 };
-
-const assessmentLeftNavMenuAriaLabel: string =
-    'Assessment expand to see list of all tests and requirements';
-const fastPassLeftNavMenuAriaLabel: string = 'FastPass expand to see a list of all tests';
 
 const detailsViewSwitcherNavs: {
     [key in DetailsViewPivotType]: InternalDetailsViewSwitcherNavConfiguration;
@@ -89,7 +88,7 @@ const detailsViewSwitcherNavs: {
         LeftNav: AssessmentLeftNav,
         getSelectedDetailsView: getAssessmentSelectedDetailsView,
         warningConfiguration: assessmentWarningConfiguration,
-        leftNavMenuAriaLabel: assessmentLeftNavMenuAriaLabel,
+        leftNavHamburgerButton: getAssessmentLeftNavHamburgerButton,
     },
     [DetailsViewPivotType.fastPass]: {
         CommandBar: AutomatedChecksCommandBar,
@@ -98,7 +97,7 @@ const detailsViewSwitcherNavs: {
         LeftNav: FastPassLeftNav,
         getSelectedDetailsView: getFastPassSelectedDetailsView,
         warningConfiguration: fastpassWarningConfiguration,
-        leftNavMenuAriaLabel: fastPassLeftNavMenuAriaLabel,
+        leftNavHamburgerButton: getFastPassLeftNavHamburgerButton,
     },
 };
 

@@ -24,7 +24,7 @@ describe('InteractiveHeader', () => {
                 dropdownClickHandler: dropdownClickHandlerMock.object,
             } as InteractiveHeaderDeps,
             selectedPivot: DetailsViewPivotType.assessment,
-            navMenuAriaLabel: 'test-aria-label',
+            navMenu: <div>test-nav-menu</div>,
         };
 
         const rendered = shallow(<InteractiveHeader {...props} />);
@@ -40,7 +40,7 @@ describe('InteractiveHeader', () => {
             tabClosed: true,
             deps: null,
             selectedPivot: DetailsViewPivotType.assessment,
-            navMenuAriaLabel: 'test-aria-label',
+            navMenu: <div>test-nav-menu</div>,
         };
 
         const rendered = shallow(<InteractiveHeader {...props} />);
