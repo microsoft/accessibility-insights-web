@@ -136,7 +136,7 @@
         "webpack-node-externals": "^1.7.2"
     },
     "dependencies": {
-        "appium-adb": "^8.4.0",
+        "appium-adb": "^8.5.1",
         "applicationinsights-js": "^1.0.21",
         "axe-core": "3.5.1",
         "axios": "^0.19.2",
