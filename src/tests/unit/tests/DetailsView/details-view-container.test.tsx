@@ -97,16 +97,22 @@ describe('DetailsViewContainer', () => {
             testRenderStaticContent(viewType, false);
         });
 
-        it('renders TargetPageClosedView when target page closed', () => {
-            const dropdownClickHandler = Mock.ofType(DropdownClickHandler);
-            const props = new DetailsViewContainerPropsBuilder(null)
-                .setDropdownClickHandler(dropdownClickHandler.object)
-                .build();
-            const rendered = shallow(<DetailsViewContainer {...props} />);
-            expect(rendered.debug()).toMatchSnapshot();
+        // it('render no content available when no stores exist', () => {
+        //     const dropdownClickHandler = Mock.ofType(DropdownClickHandler);
+        //     const props = new DetailsViewContainerPropsBuilder(null)
+        //         .setDropdownClickHandler(dropdownClickHandler.object)
+        //         .build();
+        //     const rendered = shallow(<DetailsViewContainer {...props} />);
+        //     expect(rendered.debug()).toMatchSnapshot();
+        // });
+
+        it('renders TargetPageClosedView when target page origin url changed and url permissions not granted', () => {
+            // And test to ensure that it isn't rendered when that's not the case?
+            // What about individual unit tests for the methods... but they're basically just those variables w/null checks...
+            // but not if we do null check right before in the code instead of in the function?
         });
 
-        it('shows target tab was closed when stores are not loaded', () => {
+        it('shows NoContentAvailable when stores are not loaded', () => {
             const storeActionCreator = Mock.ofType(
                 StoreActionMessageCreatorImpl,
                 MockBehavior.Strict,

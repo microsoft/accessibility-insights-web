@@ -94,8 +94,8 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
 
     public render(): JSX.Element {
         if (
-            this.isTargetPageClosed() ||
-            (this.isTargetPageOriginDifferent() && !this.isAllTabsPermissionGranted())
+            !this.hasStores() ||
+            (this.props.deps.storesHub.hasStoreData() && this.isTargetPageInvalid())
         ) {
             return (
                 <>
@@ -119,28 +119,23 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
         return this.renderContent();
     }
 
-    private isTargetPageClosed(): boolean {
+    private isTargetPageInvalid(): boolean {
         return (
-            !this.hasStores() ||
-            (this.props.deps.storesHub.hasStoreData() &&
-                this.props.storeState.tabStoreData.isClosed)
+            this.isTargetPageClosed() ||
+            (this.isTargetPageOriginDifferent() && !this.isAllTabsPermissionGranted())
         );
+    }
+
+    private isTargetPageClosed(): boolean {
+        return this.props.storeState.tabStoreData.isClosed;
     }
 
     private isTargetPageOriginDifferent(): boolean {
-        return (
-            this.hasStores() &&
-            this.props.deps.storesHub.hasStoreData() &&
-            this.props.storeState.tabStoreData.isOriginChanged
-        );
+        return this.props.storeState.tabStoreData.isOriginChanged;
     }
 
     private isAllTabsPermissionGranted(): boolean {
-        return (
-            this.hasStores() &&
-            this.props.deps.storesHub.hasStoreData() &&
-            this.props.storeState.permissionsStateStoreData.hasAllUrlAndFilePermissions
-        );
+        return this.props.storeState.permissionsStateStoreData.hasAllUrlAndFilePermissions;
     }
 
     private renderSpinner(): JSX.Element {
