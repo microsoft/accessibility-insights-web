@@ -8,30 +8,9 @@ exports[`DetailsViewContainer render renders spinner when stores not ready 1`] =
 />
 `;
 
-exports[`DetailsViewContainer renderContent render no content available when no stores exist 1`] = `
-"<Fragment>
-  <Header deps={{...}} />
-  <NoContentAvailable />
-</Fragment>"
-`;
-
-exports[`DetailsViewContainer renderContent renders TargetPageClosedView when target page closed 1`] = `
-"<Fragment>
-  <Header deps={{...}} />
-  <NoContentAvailable />
-</Fragment>"
-`;
-
 exports[`DetailsViewContainer renderContent renders normally 1`] = `"<DetailsViewContent deps={{...}} storeState={{...}} />"`;
 
-exports[`DetailsViewContainer renderContent shows NoContentAvailable when stores are not loaded 1`] = `
-"<Fragment>
-  <Header deps={{...}} />
-  <NoContentAvailable />
-</Fragment>"
-`;
-
-exports[`DetailsViewContainer renderContent shows NoContentAvailable when target page is changed and no permissions granted 1`] = `
+exports[`DetailsViewContainer renderContent show NoContentAvailable when stores are not loaded 1`] = `
 <React.Fragment>
   <Header
     deps={
@@ -47,7 +26,7 @@ exports[`DetailsViewContainer renderContent shows NoContentAvailable when target
 </React.Fragment>
 `;
 
-exports[`DetailsViewContainer renderContent shows NoContentAvailable when target page is closed 1`] = `
+exports[`DetailsViewContainer renderContent show NoContentAvailable when target tab is closed 1`] = `
 <React.Fragment>
   <Header
     deps={
@@ -61,11 +40,4 @@ exports[`DetailsViewContainer renderContent shows NoContentAvailable when target
   />
   <NoContentAvailable />
 </React.Fragment>
-`;
-
-exports[`DetailsViewContainer renderContent shows target tab was closed when stores are not loaded 1`] = `
-"<Fragment>
-  <Header deps={{...}} />
-  <NoContentAvailable />
-</Fragment>"
 `;

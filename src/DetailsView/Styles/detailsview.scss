@@ -237,26 +237,6 @@ div.insights-file-issue-details-dialog-container {
         min-height: 0;
         &.reflow-ui {
             grid-template-columns: $detailsViewReflowLeftNavWidth 1fr;
-
-            .left-nav,
-            .test-step-nav {
-                .ms-Nav-compositeLink {
-                    &.is-selected {
-                        a {
-                            background-color: $communication-tint-20;
-                        }
-                    }
-                    &.is-expanded,
-                    &.is-expanded + ul {
-                        background-color: $communication-tint-40;
-                        .index-circle {
-                            color: $neutral-0;
-                            background: $index-circle-background;
-                            border-color: $neutral-0;
-                        }
-                    }
-                }
-            }
         }
         .details-view-test-nav-area {
             box-sizing: border-box;
@@ -407,55 +387,12 @@ div.insights-file-issue-details-dialog-container {
             overflow: hidden;
             padding-left: calc(0.5vw + 13px); // 13px is Chevron width.
         }
-        .left-nav {
-            max-height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));
-            height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));
-            overflow-y: auto;
-            border-right: 1px solid $neutral-8;
-            .dark-gray {
-                color: $neutral-60;
-            }
-            .is-selected .button-flex-container {
-                color: $always-black;
-            }
-            .button-flex-container {
-                padding-left: 5%;
-                padding-right: 8%;
-                width: $detailsViewLeftNavWidth;
-                color: $primary-text;
-                .status-icon {
-                    font-size: 24px;
-                }
-            }
-            .ms-Nav-link {
-                height: fit-content;
-            }
-            .overview-label {
-                padding-left: 10%;
-                text-align: left;
-                margin-top: 6px;
-                margin-bottom: 6px;
-                display: flex;
-                flex-direction: column;
-            }
-            .overview-name {
-                line-height: 20px;
-            }
-            .overview-percent {
-                color: $neutral-55;
-                line-height: 16px;
-                font-size: 12px;
-            }
-        }
         .test-step-nav {
             .ms-Nav-compositeLink {
                 .button-flex-container {
                     width: 100%;
                 }
             }
-        }
-        .left-nav,
-        .test-step-nav {
             z-index: 100;
             background-color: $neutral-0;
             .index-circle {
@@ -485,11 +422,6 @@ div.insights-file-issue-details-dialog-container {
                     justify-content: flex-start;
                     height: 100%;
                     align-items: center;
-                }
-                .index-circle {
-                    color: $secondary-text;
-                    background: $neutral-0;
-                    border-color: $neutral-20;
                 }
                 &.is-selected {
                     a {
