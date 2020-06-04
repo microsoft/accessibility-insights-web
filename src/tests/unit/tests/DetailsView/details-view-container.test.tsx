@@ -2,11 +2,9 @@
 // Licensed under the MIT License.
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
-import { StoreActionMessageCreator } from 'common/message-creators/store-action-message-creator';
 import { StoreActionMessageCreatorImpl } from 'common/message-creators/store-action-message-creator-impl';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
-import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import {
     TargetAppData,
     ToolData,
@@ -20,21 +18,18 @@ import { GetSelectedDetailsViewProps } from 'DetailsView/components/left-nav/get
 import {
     DetailsViewContainer,
     DetailsViewContainerDeps,
-    DetailsViewContainerState,
     DetailsViewContainerProps,
+    DetailsViewContainerState,
 } from 'DetailsView/details-view-container';
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { DetailsViewStoreDataBuilder } from '../../common/details-view-store-data-builder';
 import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 import { DetailsViewContainerPropsBuilder } from './details-view-container-props-builder';
 import { StoreMocks } from './store-mocks';
-import { StoreHub } from 'background/stores/store-hub';
-import { ClientStoresHub } from 'common/stores/client-stores-hub';
 
 describe('DetailsViewContainer', () => {
     const pageTitle = 'DetailsViewContainerTest title';
