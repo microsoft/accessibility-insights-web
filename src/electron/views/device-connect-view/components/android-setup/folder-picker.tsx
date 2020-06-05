@@ -5,7 +5,16 @@ import { PrimaryButton, TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
 import * as styles from './folder-picker-text-field.scss';
 
+export type ShowOpenDialog = (
+    opts: Electron.OpenDialogOptions,
+) => Promise<Electron.OpenDialogReturnValue>;
+
+export type FolderPickerDeps = {
+    showOpenDialog: ShowOpenDialog;
+};
+
 export type FolderPickerProps = {
+    deps: FolderPickerDeps;
     value: string;
     onChange: (newValue?: string) => void;
 };
@@ -17,8 +26,20 @@ export const FolderPicker = NamedFC<FolderPickerProps>(
             props.onChange(newValue);
         };
 
+        const onBrowseDialogComplete = (result: Electron.OpenDialogReturnValue) => {
+            if (result.filePaths.length >= 1) {
+                props.onChange(result.filePaths[0]);
+            }
+        };
+
         const onBrowseButtonClick = () => {
-            // To be implemented in terms of Electron.dialog.showOpenDialog in later feature work
+            // To be implemented in later feature work
+            props.deps
+                .showOpenDialog({
+                    properties: ['openDirectory'],
+                })
+                .then(onBrowseDialogComplete)
+                .catch(console.error);
         };
 
         return (
