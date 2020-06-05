@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LeftNavHamburgerButton renders per snapshot for Assessment 1`] = `
-<LeftNavHamburgerButton
-  ariaLabel="Assessment - all tests and requirements list"
-/>
-`;
-
-exports[`LeftNavHamburgerButton renders per snapshot for FastPass 1`] = `
-<LeftNavHamburgerButton
-  ariaLabel="FastPass - all tests list"
+exports[`LeftNavHamburgerButton renders per snapshot 1`] = `
+<CustomizedIconButton
+  ariaLabel="test-aria-label"
+  className="leftNavHamburgerButton"
+  iconProps={
+    Object {
+      "iconName": "GlobalNavButton",
+    }
+  }
 />
 `;

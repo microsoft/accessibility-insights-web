@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AssessmentLeftNavHamburgerButton renders per snapshot 1`] = `
+<LeftNavHamburgerButton
+  ariaLabel="Assessment - all tests and requirements list"
+/>
+`;
+
+exports[`FastPassLeftNavHamburgerButton renders per snapshot 1`] = `
+<LeftNavHamburgerButton
+  ariaLabel="FastPass - all tests list"
+/>
+`;

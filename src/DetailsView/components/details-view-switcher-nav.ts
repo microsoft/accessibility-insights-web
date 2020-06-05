@@ -4,7 +4,7 @@ import {
     AssessmentLeftNavHamburgerButton,
     ExpandCollpaseLeftNavButtonProps,
     FastPassLeftNavHamburgerButton,
-} from 'common/components/left-nav-hamburger-button';
+} from 'common/components/expand-collapse-left-nav-hamburger-button';
 import { AssessmentCommandBar } from 'DetailsView/components/assessment-command-bar';
 import { AutomatedChecksCommandBar } from 'DetailsView/components/automated-checks-command-bar';
 import {

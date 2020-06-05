@@ -10,7 +10,7 @@ type LeftNavHamburgerButtonProps = {
     ariaLabel: string;
 };
 
-const LeftNavHamburgerButton = NamedFC<LeftNavHamburgerButtonProps>(
+export const LeftNavHamburgerButton = NamedFC<LeftNavHamburgerButtonProps>(
     'LeftNavHamburgerButton',
     props => {
         return (
@@ -20,25 +20,5 @@ const LeftNavHamburgerButton = NamedFC<LeftNavHamburgerButtonProps>(
                 ariaLabel={props.ariaLabel}
             />
         );
-    },
-);
-
-export type ExpandCollpaseLeftNavButtonProps = {
-    isLeftNavOpen: boolean;
-};
-
-export const AssessmentLeftNavHamburgerButton = NamedFC<ExpandCollpaseLeftNavButtonProps>(
-    'AssessmentLeftNavHamburgerButton',
-    props => {
-        const ariaLabel: string = 'Assessment - all tests and requirements list';
-        return <LeftNavHamburgerButton ariaLabel={ariaLabel} />;
-    },
-);
-
-export const FastPassLeftNavHamburgerButton = NamedFC<ExpandCollpaseLeftNavButtonProps>(
-    'FastPassLeftNavHamburgerButton',
-    props => {
-        const ariaLabel: string = 'FastPass - all tests list';
-        return <LeftNavHamburgerButton ariaLabel={ariaLabel} />;
     },
 );

@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ExpandCollpaseLeftNavButtonProps } from 'common/components/expand-collapse-left-nav-hamburger-button';
 import { FlaggedComponent } from 'common/components/flagged-component';
 import { GearMenuButton, GearMenuButtonDeps } from 'common/components/gear-menu-button';
 import { Header, HeaderDeps } from 'common/components/header';
-import { ExpandCollpaseLeftNavButtonProps } from 'common/components/left-nav-hamburger-button';
 import { FeatureFlags } from 'common/feature-flags';
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
