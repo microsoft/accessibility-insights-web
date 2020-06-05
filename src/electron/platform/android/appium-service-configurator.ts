@@ -32,9 +32,8 @@ export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
         isEmulator: boolean,
         detectedDevices: DictionaryStringTo<DeviceInfo>,
     ): Promise<void> {
-        // This intentionally doesn't use foreach because foreach doesn't play nicely with await
-        for (let loop = 0; loop < devices.length; loop++) {
-            const id = devices[loop].udid;
+        for (const device of devices) {
+            const id = device.udid;
             if (!detectedDevices[id]) {
                 const deviceInfo: DeviceInfo = await this.getDeviceInfo(id, isEmulator);
                 detectedDevices[id] = deviceInfo;
