@@ -1,25 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`DetailsViewContainer render content renders normally 1`] = `"<DetailsViewContentWithLocalState deps={{...}} storeState={{...}} />"`;
+
+exports[`DetailsViewContainer render content show NoContentAvailable when stores are not loaded 1`] = `
+<React.Fragment>
+  <Header
+    deps={
+      Object {
+        "storesHub": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "stores": undefined,
+        },
+      }
+    }
+  />
+  <NoContentAvailable />
+</React.Fragment>
+`;
+
+exports[`DetailsViewContainer render content show NoContentAvailable when target tab is closed 1`] = `
+<React.Fragment>
+  <Header
+    deps={
+      Object {
+        "storesHub": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "stores": undefined,
+        },
+      }
+    }
+  />
+  <NoContentAvailable />
+</React.Fragment>
+`;
+
 exports[`DetailsViewContainer render renders spinner when stores not ready 1`] = `
 <StyledSpinnerBase
   className="details-view-spinner"
   label="Loading..."
   size={3}
 />
-`;
-
-exports[`DetailsViewContainer renderContent renders TargetPageClosedView when target page closed 1`] = `
-"<Fragment>
-  <Header deps={{...}} />
-  <NoContentAvailable />
-</Fragment>"
-`;
-
-exports[`DetailsViewContainer renderContent renders normally 1`] = `"<DetailsViewContent deps={{...}} storeState={{...}} />"`;
-
-exports[`DetailsViewContainer renderContent shows target tab was closed when stores are not loaded 1`] = `
-"<Fragment>
-  <Header deps={{...}} />
-  <NoContentAvailable />
-</Fragment>"
 `;

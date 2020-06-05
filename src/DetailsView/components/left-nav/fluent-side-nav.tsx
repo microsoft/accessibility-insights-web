@@ -14,6 +14,8 @@ import * as React from 'react';
 export type FluentSideNavDeps = DetailsViewLeftNavDeps;
 export type FluentSideNavProps = DetailsViewLeftNavProps & {
     tabStoreData: TabStoreData;
+    isSideNavOpen: boolean;
+    setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export class FluentSideNav extends React.Component<FluentSideNavProps> {
@@ -25,15 +27,20 @@ export class FluentSideNav extends React.Component<FluentSideNavProps> {
         }
         const nav = <DetailsViewLeftNav {...this.props} />;
 
+        const dismissPanel = () => {
+            this.props.setSideNavOpen(false);
+        };
+
         const navPanel = (
             <GenericPanel
                 className={styles.leftNavPanel}
-                isOpen={false}
+                isOpen={this.props.isSideNavOpen}
                 isLightDismiss
                 hasCloseButton={false}
                 onRenderNavigationContent={() => null}
                 onRenderHeader={() => null}
                 onRenderNavigation={() => null}
+                onDismiss={dismissPanel}
                 type={PanelType.customNear}
                 layerProps={{
                     hostId: styles.sideNavContainer,

@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AndroidSetupStepContainer passes common props and deps through 1`] = `
+<DetectTestComponent
+  androidSetupStoreData={
+    Object {
+      "currentStepId": "detect-adb",
+    }
+  }
+  deps={
+    Object {
+      "LinkComponent": null,
+      "androidSetupActionCreator": null,
+      "androidSetupStepComponentProvider": Object {
+        "detect-adb": [Function],
+        "prompt-locate-adb": [Function],
+      },
+    }
+  }
+  userConfigurationStoreData={null}
+/>
+`;
+
+exports[`AndroidSetupStepContainer renders different step 1`] = `"test component B prompt-locate-adb"`;
+
+exports[`AndroidSetupStepContainer renders step HTML 1`] = `"test component A detect-adb"`;
