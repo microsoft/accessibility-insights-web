@@ -482,6 +482,7 @@ module.exports = function (grunt) {
         config.appId = appId;
         config.directories.app = dropPath;
         config.directories.output = `${dropPath}/packed`;
+        config.extraResources[0].from = `${dropPath}/product/android-service`;
         config.extraMetadata.version = version;
         config.win.icon = `src/${electronIconBaseName}.ico`;
         // electron-builder infers the linux icon from the mac one

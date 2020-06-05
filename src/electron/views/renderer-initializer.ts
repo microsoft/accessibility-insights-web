@@ -124,6 +124,7 @@ import {
     RootContainerRendererDeps,
 } from './root-container/root-container-renderer';
 import { screenshotViewModelProvider } from './screenshot/screenshot-view-model-provider';
+import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
 
 declare var window: Window & {
     insightsUserConfiguration: UserConfigurationController;
@@ -475,5 +476,11 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         sendAppInitializedTelemetryEvent(telemetryEventHandler, platformInfo);
 
         ipcRendererShim.initializeWindow();
+
+        const androidServiceApkLocator = new AndroidServiceApkLocator(ipcRendererShim.getAppPath);
+        androidServiceApkLocator
+            .locateBundledApk()
+            .then(info => console.log(`locateBundledApk: ${info.path} v${info.versionName}`))
+            .catch(error => console.error(`locateBundledApk: ${error}`));
     },
 );
