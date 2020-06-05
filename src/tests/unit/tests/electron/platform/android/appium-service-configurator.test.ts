@@ -27,6 +27,18 @@ describe('AppiumServiceConfigurator tests', () => {
         testSubject = new AppiumServiceConfigurator(adbMock.object);
     });
 
+    it('getConnectedDevices, propagates error', async () => {
+        const expectedMessage = 'No devices connected';
+        adbMock
+            .setup(m => m.getConnectedEmulators())
+            .throws(new Error(expectedMessage))
+            .verifiable(Times.once());
+
+        await expect(testSubject.getConnectedDevices()).rejects.toThrowError(expectedMessage);
+
+        adbMock.verifyAll();
+    });
+
     it('getConnectedDevices, No devices detected', async () => {
         adbMock
             .setup(m => m.getConnectedEmulators())
@@ -131,8 +143,9 @@ describe('AppiumServiceConfigurator tests', () => {
 
     it('getPackageInfo, propagates error', async () => {
         const expectedMessage = 'Package not found';
+        adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
         adbMock
-            .setup(m => m.setDeviceId(emulatorId))
+            .setup(m => m.getPackageInfo(servicePackageName))
             .throws(new Error(expectedMessage))
             .verifiable(Times.once());
 
@@ -184,6 +197,21 @@ describe('AppiumServiceConfigurator tests', () => {
         const info = await testSubject.getPackageInfo(emulatorId);
         expect(info.versionCode).toBe(versionCode);
         expect(info.versionName).toBeUndefined();
+
+        adbMock.verifyAll();
+    });
+
+    it('getPermissionInfo, propagates error', async () => {
+        const expectedMessage = 'Something bad happened';
+        adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
+        adbMock
+            .setup(m => m.shell(['dumpsys', 'accessibility']))
+            .throws(new Error(expectedMessage))
+            .verifiable(Times.once());
+
+        await expect(testSubject.getPermissionInfo(emulatorId)).rejects.toThrowError(
+            expectedMessage,
+        );
 
         adbMock.verifyAll();
     });
@@ -242,7 +270,7 @@ describe('AppiumServiceConfigurator tests', () => {
         adbMock.verifyAll();
     });
 
-    it('installService, fails', async () => {
+    it('installService, propagates error', async () => {
         const expectedError: string = 'Oops';
         adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
         adbMock
@@ -267,7 +295,7 @@ describe('AppiumServiceConfigurator tests', () => {
         adbMock.verifyAll();
     });
 
-    it('uninstallService, fails', async () => {
+    it('uninstallService, propagates error', async () => {
         const expectedError: string = 'Oops';
         adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
         adbMock
@@ -292,7 +320,7 @@ describe('AppiumServiceConfigurator tests', () => {
         adbMock.verifyAll();
     });
 
-    it('setTcpForwarding, fails', async () => {
+    it('setTcpForwarding, propagates error', async () => {
         const expectedError: string = 'Oops';
         adbMock
             .setup(m => m.setDeviceId(emulatorId))
