@@ -1,0 +1,53 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../../../../common/styles/fonts.scss';
+
+.prompt-layout {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-items: stretch;
+
+    margin-left: 32px;
+    margin-right: 32px;
+    margin-bottom: 32px;
+    margin-top: 17px;
+
+    > {
+        // All flex growth goes to .prompt-content
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-basis: auto;
+    }
+
+    .prompt-header {
+        margin-top: 0;
+        margin-bottom: 0;
+
+        font-size: $fontSizeLML;
+        font-weight: $fontWeightNormal;
+        line-height: 25px;
+        letter-spacing: -0.02em;
+    }
+    .prompt-more-info {
+        margin-top: 4px;
+        font-size: $fontSize;
+        line-height: 14px;
+    }
+    .prompt-content {
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: auto;
+
+        margin-top: 24px;
+        font-size: $fontSizeM;
+        line-height: 16px;
+    }
+    .prompt-footer {
+        margin-top: 24px;
+        display: flex;
+        flex-direction: row;
+        justify-items: space-between;
+    }
+}
