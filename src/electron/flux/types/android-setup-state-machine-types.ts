@@ -6,7 +6,9 @@ import { StateMachine } from 'electron/platform/android/setup/state-machine/stat
 import { AndroidSetupActions } from '../action/android-setup-actions';
 
 export type AndroidSetupStateMachine = StateMachine<AndroidSetupStepId, AndroidSetupActions>;
+
 export type AndroidSetupStepTransitionCallback = (nextStep: AndroidSetupStepId) => void;
+
 export type AndroidSetupStateMachineFactory = (
     stepTransitionCallback: AndroidSetupStepTransitionCallback,
 ) => AndroidSetupStateMachine;
