@@ -1,5 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import {
+    AssessmentLeftNavHamburgerButton,
+    ExpandCollpaseLeftNavButtonProps,
+    FastPassLeftNavHamburgerButton,
+} from 'common/components/expand-collapse-left-nav-hamburger-button';
 import { AssessmentCommandBar } from 'DetailsView/components/assessment-command-bar';
 import { AutomatedChecksCommandBar } from 'DetailsView/components/automated-checks-command-bar';
 import {
@@ -20,7 +25,6 @@ import {
     fastpassWarningConfiguration,
     WarningConfiguration,
 } from 'DetailsView/components/warning-configuration';
-
 import { ReactFCWithDisplayName } from '../../common/react/named-fc';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../common/types/visualization-type';
@@ -58,6 +62,7 @@ export type DetailsViewSwitcherNavConfiguration = Readonly<{
     LeftNav: ReactFCWithDisplayName<LeftNavProps>;
     getSelectedDetailsView: (props: GetSelectedDetailsViewProps) => VisualizationType;
     warningConfiguration: WarningConfiguration;
+    leftNavHamburgerButton: ReactFCWithDisplayName<ExpandCollpaseLeftNavButtonProps>;
 }>;
 
 type InternalDetailsViewSwitcherNavConfiguration = Readonly<{
@@ -67,6 +72,7 @@ type InternalDetailsViewSwitcherNavConfiguration = Readonly<{
     LeftNav: ReactFCWithDisplayName<InternalLeftNavProps>;
     getSelectedDetailsView: (props: GetSelectedDetailsViewProps) => VisualizationType;
     warningConfiguration: WarningConfiguration;
+    leftNavHamburgerButton: ReactFCWithDisplayName<ExpandCollpaseLeftNavButtonProps>;
 }>;
 
 export type GetDetailsSwitcherNavConfigurationProps = {
@@ -83,6 +89,7 @@ const detailsViewSwitcherNavs: {
         LeftNav: AssessmentLeftNav,
         getSelectedDetailsView: getAssessmentSelectedDetailsView,
         warningConfiguration: assessmentWarningConfiguration,
+        leftNavHamburgerButton: AssessmentLeftNavHamburgerButton,
     },
     [DetailsViewPivotType.fastPass]: {
         CommandBar: AutomatedChecksCommandBar,
@@ -91,6 +98,7 @@ const detailsViewSwitcherNavs: {
         LeftNav: FastPassLeftNav,
         getSelectedDetailsView: getFastPassSelectedDetailsView,
         warningConfiguration: fastpassWarningConfiguration,
+        leftNavHamburgerButton: FastPassLeftNavHamburgerButton,
     },
 };
 

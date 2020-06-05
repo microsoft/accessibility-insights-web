@@ -78,8 +78,8 @@ exports[`InteractiveHeader render: tabClosed is false 1`] = `
   navMenu={
     <FlaggedComponent
       enableJSXElement={
-        <LeftNavHamburgerButton
-          selectedPivot={2}
+        <test-nav-menu
+          isLeftNavOpen={false}
         />
       }
       featureFlag="reflowUI"
