@@ -20,11 +20,11 @@ describe('AppiumServiceConfiguratorFactory tests', () => {
             .setup(m => m.createADB(undefined))
             .returns(() => null)
             .verifiable(Times.once());
-        const factory = new AppiumServiceConfiguratorFactory();
+        const factory = new AppiumServiceConfiguratorFactory(adbCreatorMock.object);
 
-        expect(
-            await factory.getServiceConfiguratorTestable(null, adbCreatorMock.object),
-        ).toBeInstanceOf(AppiumServiceConfigurator);
+        expect(await factory.getServiceConfigurator(null)).toBeInstanceOf(
+            AppiumServiceConfigurator,
+        );
 
         adbCreatorMock.verifyAll();
     });
@@ -35,11 +35,11 @@ describe('AppiumServiceConfiguratorFactory tests', () => {
             .setup(m => m.createADB({ sdkRoot: expectedSdkRoot }))
             .returns(() => null)
             .verifiable(Times.once());
-        const factory = new AppiumServiceConfiguratorFactory();
+        const factory = new AppiumServiceConfiguratorFactory(adbCreatorMock.object);
 
-        expect(
-            await factory.getServiceConfiguratorTestable(expectedSdkRoot, adbCreatorMock.object),
-        ).toBeInstanceOf(AppiumServiceConfigurator);
+        expect(await factory.getServiceConfigurator(expectedSdkRoot)).toBeInstanceOf(
+            AppiumServiceConfigurator,
+        );
 
         adbCreatorMock.verifyAll();
     });
@@ -50,11 +50,9 @@ describe('AppiumServiceConfiguratorFactory tests', () => {
             .setup(m => m.createADB(undefined))
             .throws(new Error(expectedMessage))
             .verifiable(Times.once());
-        const factory = new AppiumServiceConfiguratorFactory();
+        const factory = new AppiumServiceConfiguratorFactory(adbCreatorMock.object);
 
-        await expect(
-            factory.getServiceConfiguratorTestable(null, adbCreatorMock.object),
-        ).rejects.toThrowError(expectedMessage);
+        await expect(factory.getServiceConfigurator(null)).rejects.toThrowError(expectedMessage);
 
         adbCreatorMock.verifyAll();
     });
