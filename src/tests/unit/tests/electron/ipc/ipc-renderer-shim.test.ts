@@ -12,6 +12,7 @@ import {
     IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_RESTORE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_SETSIZEANDCENTER_BROWSER_WINDOW_CHANNEL_NAME,
+    IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME,
 } from 'electron/ipc/ipc-channel-names';
 import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
@@ -132,6 +133,28 @@ describe(IpcRendererShim, () => {
             testSubject.setSizeAndCenterWindow({ height: expectedHeight, width: expectedWidth });
             expect(actualHeight).toBe(expectedHeight);
             expect(actualWidth).toBe(expectedWidth);
+        });
+
+        describe('getAppPath', () => {
+            it('defers to the expected invoke call', async () => {
+                const appPath = '/test/path';
+                ipcRendererMock
+                    .setup(m => m.invoke(IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME))
+                    .returns(() => Promise.resolve(appPath))
+                    .verifiable(Times.once());
+
+                expect(await testSubject.getAppPath()).toBe(appPath);
+            });
+
+            it('propagates errors from the invoke call', async () => {
+                const error = new Error('test error message');
+                ipcRendererMock
+                    .setup(m => m.invoke(IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME))
+                    .returns(() => Promise.reject(error))
+                    .verifiable(Times.once());
+
+                await expect(testSubject.getAppPath()).rejects.toThrowError(error);
+            });
         });
     });
 });
