@@ -5,10 +5,8 @@ import { AndroidSetupActions } from 'electron/flux/action/android-setup-actions'
 import { AndroidSetupStepDeps } from 'electron/platform/android/setup/android-setup-step-deps';
 import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setup-step-id';
 import { createAndroidSetupSteps } from 'electron/platform/android/setup/android-setup-steps-factory';
-import { StateMachineStep } from 'electron/platform/android/setup/state-machine/state-machine-step';
 import { StateMachineSteps } from 'electron/platform/android/setup/state-machine/state-machine-steps';
-import { mapValues } from 'lodash';
-import { IMock, It, Mock, Times } from 'typemoq';
+import { It, Mock, Times } from 'typemoq';
 
 describe('android setup steps factory', () => {
     it('returns expected steps', () => {
