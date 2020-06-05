@@ -1,32 +1,44 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
-import * as React from 'react';
-
 import {
     LeftNavHamburgerButton,
     LeftNavHamburgerButtonProps,
 } from 'common/components/left-nav-hamburger-button';
-import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { shallow } from 'enzyme';
+import { IconButton } from 'office-ui-fabric-react';
+import * as React from 'react';
+import { Mock, Times } from 'typemoq';
 
 describe('LeftNavHamburgerButton', () => {
-    it('renders per snapshot for FastPass', () => {
-        const props: LeftNavHamburgerButtonProps = {
-            selectedPivot: DetailsViewPivotType.fastPass,
-        };
-
-        const wrapper = shallow(<LeftNavHamburgerButton {...props} />);
+    it('renders per snapshot', () => {
+        const ariaLabel: string = 'test-aria-label';
+        const wrapper = shallow(
+            <LeftNavHamburgerButton
+                isSideNavOpen={false}
+                setSideNavOpen={null}
+                ariaLabel={ariaLabel}
+            />,
+        );
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    it('renders per snapshot for Assessment', () => {
+    it('sets side nav state with correct value', () => {
+        const ariaLabel: string = 'test-aria-label';
+        const setSideNavOpenMock = Mock.ofInstance((isOpen: boolean) => {});
+        const isSideNavOpen = false;
+        setSideNavOpenMock.setup(sm => sm(!isSideNavOpen)).verifiable(Times.once());
         const props: LeftNavHamburgerButtonProps = {
-            selectedPivot: DetailsViewPivotType.assessment,
-        };
+            ariaLabel,
+            isSideNavOpen,
+            setSideNavOpen: setSideNavOpenMock.object,
+        } as LeftNavHamburgerButtonProps;
 
         const wrapper = shallow(<LeftNavHamburgerButton {...props} />);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        const button = wrapper.find(IconButton);
+        button.simulate('click');
+
+        setSideNavOpenMock.verifyAll();
     });
 });

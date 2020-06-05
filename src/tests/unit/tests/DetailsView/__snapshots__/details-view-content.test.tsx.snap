@@ -57,7 +57,9 @@ exports[` render renders normally 1`] = `
         "logTelemetryToConsole": false,
       }
     }
+    isSideNavOpen={false}
     selectedPivot={0}
+    setSideNavOpen={[Function]}
     tabClosed={false}
   />
   <DetailsViewBody
@@ -158,6 +160,7 @@ exports[` render renders normally 1`] = `
         "logTelemetryToConsole": false,
       }
     }
+    isSideNavOpen={false}
     pathSnippetStoreData={
       Object {
         "path": null,
@@ -180,6 +183,7 @@ exports[` render renders normally 1`] = `
       }
     }
     selectedTest={-1}
+    setSideNavOpen={[Function]}
     switcherNavConfiguration={
       Object {
         "getSelectedDetailsView": [Function],
@@ -198,6 +202,7 @@ exports[` render renders normally 1`] = `
     }
     userConfigurationStoreData={
       Object {
+        "adbLocation": null,
         "bugService": "gitHub",
         "bugServicePropertiesMap": Object {
           "gitHub": Object {
@@ -452,6 +457,7 @@ exports[` render renders normally 1`] = `
     }
     userConfigurationStoreData={
       Object {
+        "adbLocation": null,
         "bugService": "gitHub",
         "bugServicePropertiesMap": Object {
           "gitHub": Object {
