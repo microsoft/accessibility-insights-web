@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FeatureFlags } from 'common/feature-flags';
 import { NamedFC } from 'common/react/named-fc';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { DetailsViewOverlay } from 'DetailsView/components/details-view-overlay/details-view-overlay';
@@ -7,6 +8,7 @@ import { InteractiveHeader } from 'DetailsView/components/interactive-header';
 import { DetailsViewBody } from 'DetailsView/details-view-body';
 import { DetailsViewContainerProps } from 'DetailsView/details-view-container';
 import * as React from 'react';
+import ReactResizeDetector from 'react-resize-detector';
 
 export type DetailsViewContentProps = DetailsViewContainerProps & {
     isSideNavOpen: boolean;
@@ -21,7 +23,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
         },
     );
 
-    const renderHeader = () => {
+    const renderHeader = (isNarrowMode: boolean) => {
         const storeState = props.storeState;
         const visualizationStoreData = storeState.visualizationStoreData;
 
@@ -32,6 +34,8 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 featureFlagStoreData={storeState.featureFlagStoreData}
                 tabClosed={props.storeState.tabStoreData.isClosed}
                 navMenu={selectedDetailsViewSwitcherNavConfiguration.leftNavHamburgerButton}
+                setSideNavOpen={props.setSideNavOpen}
+                isNarrowMode={isNarrowMode}
             />
         );
     };
@@ -52,7 +56,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
         );
     };
 
-    const renderDetailsView = () => {
+    const renderDetailsView = (isNarrowMode: boolean) => {
         const { deps, storeState } = props;
         const selectedDetailsRightPanelConfiguration = props.deps.getDetailsRightPanelConfiguration(
             {
@@ -117,15 +121,25 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 scanMetadata={scanMetadata}
                 isSideNavOpen={props.isSideNavOpen}
                 setSideNavOpen={props.setSideNavOpen}
+                isNarrowMode={isNarrowMode}
             />
         );
     };
 
     return (
-        <>
-            {renderHeader()}
-            {renderDetailsView()}
-            {renderOverlay()}
-        </>
+        <ReactResizeDetector handleWidth querySelector="body">
+            {dimensions => {
+                const isNarrowMode =
+                    props.storeState.featureFlagStoreData[FeatureFlags.reflowUI] === true &&
+                    dimensions.width < 600;
+                return (
+                    <>
+                        {renderHeader(isNarrowMode)}
+                        {renderDetailsView(isNarrowMode)}
+                        {renderOverlay()}
+                    </>
+                );
+            }}
+        </ReactResizeDetector>
     );
 });

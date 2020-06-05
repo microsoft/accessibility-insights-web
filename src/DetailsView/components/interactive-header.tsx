@@ -20,6 +20,7 @@ export interface InteractiveHeaderProps {
     tabClosed: boolean;
     selectedPivot: DetailsViewPivotType;
     navMenu: ReactFCWithDisplayName<ExpandCollpaseLeftNavButtonProps>;
+    isNarrowMode: boolean;
 }
 
 export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHeader', props => {
@@ -28,6 +29,10 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
     }
 
     const getNavMenu = () => {
+        if (props.isNarrowMode === false) {
+            return null;
+        }
+
         return (
             <FlaggedComponent
                 enableJSXElement={<props.navMenu isLeftNavOpen={false} />}

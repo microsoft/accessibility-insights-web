@@ -33,6 +33,7 @@ describe('InteractiveHeader', () => {
             } as InteractiveHeaderDeps,
             selectedPivot: DetailsViewPivotType.assessment,
             navMenu: navMenuStub,
+            isNarrowMode: false,
         };
 
         const rendered = shallow(<InteractiveHeader {...props} />);
@@ -49,6 +50,7 @@ describe('InteractiveHeader', () => {
             deps: null,
             selectedPivot: DetailsViewPivotType.assessment,
             navMenu: navMenuStub,
+            isNarrowMode: false,
         };
 
         const rendered = shallow(<InteractiveHeader {...props} />);

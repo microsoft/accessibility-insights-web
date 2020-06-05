@@ -16,6 +16,7 @@ export type FluentSideNavProps = DetailsViewLeftNavProps & {
     tabStoreData: TabStoreData;
     isSideNavOpen: boolean;
     setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    isNarrowMode: boolean;
 };
 
 export class FluentSideNav extends React.Component<FluentSideNavProps> {
@@ -25,7 +26,7 @@ export class FluentSideNav extends React.Component<FluentSideNavProps> {
         if (tabClosed) {
             return null;
         }
-        const nav = <DetailsViewLeftNav {...this.props} />;
+        const navBar = <DetailsViewLeftNav {...this.props} />;
 
         const dismissPanel = () => {
             this.props.setSideNavOpen(false);
@@ -46,15 +47,14 @@ export class FluentSideNav extends React.Component<FluentSideNavProps> {
                     hostId: styles.sideNavContainer,
                 }}
             >
-                {nav}
+                {navBar}
             </GenericPanel>
         );
 
-        return (
-            <div id={styles.sideNavContainer}>
-                {nav}
-                {navPanel}
-            </div>
-        );
+        const renderNav = () => {
+            return this.props.isNarrowMode ? navPanel : navBar;
+        };
+
+        return <div id={styles.sideNavContainer}>{renderNav()}</div>;
     }
 }
