@@ -26,6 +26,9 @@ $outcome-not-applicable-color: $neutral-outcome;
     font-size: 17px;
     font-weight: 600;
     white-space: pre-wrap;
+    .outcome-summary {
+        max-width: 32%;
+    }
     .block {
         font-family: $fontFamily;
         line-height: 20px;

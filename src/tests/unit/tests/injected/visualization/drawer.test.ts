@@ -13,7 +13,6 @@ import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils'
 import { DrawerConfiguration, Formatter } from '../../../../../injected/visualization/formatter';
 import { HighlightBoxDrawer } from '../../../../../injected/visualization/highlight-box-drawer';
 import { NonTextComponentFormatter } from '../../../../../injected/visualization/non-text-component-formatter';
-import { itIsFunction } from '../../../common/it-is-function';
 import { TestDocumentCreator } from '../../../common/test-document-creator';
 
 describe('Drawer', () => {
@@ -37,6 +36,8 @@ describe('Drawer', () => {
 
         shadowUtilsMock = Mock.ofType(ShadowUtils);
         shadowUtilsMock.setup(x => x.getShadowContainer()).returns(() => shadowContainer);
+
+        jest.useFakeTimers();
     });
 
     test('eraseLayout called when initialize', () => {
@@ -853,59 +854,56 @@ describe('Drawer', () => {
         windowUtilsMock.verifyAll();
     });
 
-    test('verifyResetTimerOnScrolling', () => {
-        fakeDocument.body.innerHTML = "<div id='id1'></div>";
+    describe('verifyScrollHandlerExecution', () => {
+        [true, false].forEach(throttleTimeoutExpired => {
+            test(`throttle timeout expired: ${throttleTimeoutExpired}`, () => {
+                let drawCalledTimes = 1;
+                fakeDocument.body.innerHTML = "<div id='id1'></div>";
 
-        setupGetComputedStyleCalled();
+                setupGetComputedStyleCalled();
 
-        const elementResults = createElementResults(['#id1']);
+                const elementResults = createElementResults(['#id1']);
+                const testSubject = createDrawerBuilder()
+                    .setDomAndDrawerUtils(fakeDocument)
+                    .setWindowUtils(windowUtilsMock.object)
+                    .build();
 
-        const testSubject = createDrawerBuilder()
-            .setDomAndDrawerUtils(fakeDocument)
-            .setWindowUtils(windowUtilsMock.object)
-            .build();
+                testSubject.initialize(createDrawerInfo(elementResults));
+                expect(testSubject.isOverlayEnabled).toEqual(false);
+                let scrollCallback: Function;
+                const registerHandlerFunc: typeof windowUtilsMock.object.addEventListener = (
+                    window,
+                    eventName,
+                    handler,
+                    useCapture,
+                ) => (scrollCallback = handler);
 
-        testSubject.initialize(createDrawerInfo(elementResults));
-        expect(testSubject.isOverlayEnabled).toEqual(false);
-        let scrollCallback: Function;
-        const registerHandlerFunc: typeof windowUtilsMock.object.addEventListener = (
-            window,
-            eventName,
-            handler,
-            useCapture,
-        ) => (scrollCallback = handler);
+                setupWindow();
+                setupAddEventListerCalled(registerHandlerFunc);
 
-        setupWindow();
-        setupAddEventListerCalled(registerHandlerFunc);
-        testSubject.drawLayout();
+                // draw
+                testSubject.drawLayout();
 
-        // invoke scroll listener
-        const timeOutId = 10;
+                const drawMock = Mock.ofInstance(() => {});
+                (testSubject as any).draw = drawMock.object;
 
-        windowUtilsMock.setup(x => x.clearTimeout(It.isAny())).verifiable(Times.never());
-        windowUtilsMock
-            .setup(x => x.setTimeout(itIsFunction, HighlightBoxDrawer.recalculationTimeout))
-            .returns(() => timeOutId)
-            .verifiable();
+                scrollCallback();
+                if (throttleTimeoutExpired) {
+                    // Following call should not be throttled; draw is called again.
+                    jest.runAllTimers();
+                    drawCalledTimes = 2;
+                }
+                scrollCallback();
 
-        scrollCallback();
+                drawMock.setup(draw => draw()).verifiable(Times.exactly(drawCalledTimes));
 
-        windowUtilsMock.verifyAll();
-
-        // invoke scroll listener again (resets timer)
-        windowUtilsMock.reset();
-
-        windowUtilsMock.setup(x => x.clearTimeout(timeOutId)).verifiable();
-        windowUtilsMock
-            .setup(x => x.setTimeout(It.isAny(), HighlightBoxDrawer.recalculationTimeout))
-            .returns(() => timeOutId)
-            .verifiable();
-        scrollCallback();
-
-        windowUtilsMock.verifyAll();
+                drawMock.verifyAll();
+                windowUtilsMock.verifyAll();
+            });
+        });
     });
 
-    test('verifyScrollHandlerExecution', () => {
+    test('verifyDrawsOnlyOnceWhenEnabled', () => {
         fakeDocument.body.innerHTML = "<div id='id1'></div>";
 
         setupGetComputedStyleCalled();
@@ -918,44 +916,17 @@ describe('Drawer', () => {
 
         testSubject.initialize(createDrawerInfo(elementResults));
         expect(testSubject.isOverlayEnabled).toEqual(false);
-        let scrollCallback: Function;
-        const registerHandlerFunc: typeof windowUtilsMock.object.addEventListener = (
-            window,
-            eventName,
-            handler,
-            useCapture,
-        ) => (scrollCallback = handler);
 
         setupWindow();
-        setupAddEventListerCalled(registerHandlerFunc);
 
-        // draw
+        const drawMock = Mock.ofInstance(() => {});
+        drawMock.setup(draw => draw()).verifiable(Times.once());
+        (testSubject as any).draw = drawMock.object;
+
+        testSubject.eraseLayout();
         testSubject.drawLayout();
 
-        // invoke scroll listener
-        let timeOutCallback: Function;
-        const timeOutId = 10;
-        const registerTimeOutHandlerFunc = (handler, timeout, ...args): number => {
-            timeOutCallback = handler as Function;
-            return timeout;
-        };
-
-        windowUtilsMock
-            .setup(x => x.setTimeout(It.isAny(), HighlightBoxDrawer.recalculationTimeout))
-            .callback(registerTimeOutHandlerFunc)
-            .returns(() => timeOutId)
-            .verifiable();
-
-        scrollCallback();
-
-        // invoke timeout callback (should invoke draw)
-        const drawMock = Mock.ofInstance(() => {});
-        drawMock.setup(draw => draw()).verifiable();
-        (testSubject as any).draw = drawMock.object;
-        timeOutCallback();
-
         drawMock.verifyAll();
-        windowUtilsMock.verifyAll();
     });
 
     test('verifyWhenElementResultsIsEmpty', () => {

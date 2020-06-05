@@ -59,7 +59,11 @@ const createWindow = () => {
         nativeHighContrastModeListener.startListening();
     });
 
-    mainWindowRendererMessageHandlers = new MainWindowRendererMessageHandlers(mainWindow, ipcMain);
+    mainWindowRendererMessageHandlers = new MainWindowRendererMessageHandlers(
+        mainWindow,
+        ipcMain,
+        app,
+    );
 
     mainWindow
         .loadFile(path.resolve(__dirname, '../electron/views/index.html'))
