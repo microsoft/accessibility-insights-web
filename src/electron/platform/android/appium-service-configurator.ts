@@ -16,22 +16,14 @@ type AdbDevice = {
 const servicePackageName: string = 'com.microsoft.accessibilityinsightsforandroidservice';
 
 export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
-    private readonly adb: ADB;
-
-    constructor(adb: ADB) {
-        this.adb = adb;
-    }
+    constructor(private readonly adb: ADB) {}
 
     public getConnectedDevices = async (): Promise<Array<DeviceInfo>> => {
-        // First add devices that are flagged as emulator, then
-        // add devices that aren't flagged as emulators
         const detectedDevices = {};
         await this.addDevices(await this.adb.getConnectedEmulators(), true, detectedDevices);
         await this.addDevices(await this.adb.getConnectedDevices(), false, detectedDevices);
 
-        const output: Array<DeviceInfo> = [];
-        Object.values(detectedDevices).forEach(device => output.push(device as DeviceInfo));
-        return output;
+        return Object.values(detectedDevices);
     };
 
     private async addDevices(
@@ -39,6 +31,7 @@ export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
         isEmulator: boolean,
         detectedDevices: any,
     ): Promise<void> {
+        // This intentionally doesn't use foreach because foreach doesn't play nicely with await
         for (let loop = 0; loop < devices.length; loop++) {
             const id = devices[loop].udid;
             if (!detectedDevices[id]) {
@@ -57,14 +50,10 @@ export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
     public getPackageInfo = async (deviceId: string): Promise<PackageInfo> => {
         this.adb.setDeviceId(deviceId);
         const info: PackageInfo = await this.adb.getPackageInfo(servicePackageName);
-        const output: PackageInfo = {};
-        if (info?.versionCode) {
-            output.versionCode = info.versionCode;
-        }
-        if (info?.versionName) {
-            output.versionName = info.versionName;
-        }
-        return output;
+        return {
+            versionCode: info?.versionCode,
+            versionName: info?.versionName,
+        };
     };
 
     public getPermissionInfo = async (deviceId: string): Promise<PermissionInfo> => {
