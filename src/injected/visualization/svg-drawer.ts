@@ -152,10 +152,10 @@ export class SVGDrawer extends BaseDrawer {
         return svg;
     }
 
-    protected handlePositionChange(): void {
+    protected handlePositionChange = () => {
         super.handlePositionChange();
         this.setSVGSize();
-    }
+    };
 
     private setSVGSize(): void {
         const doc = this.drawerUtils.getDocumentElement();
