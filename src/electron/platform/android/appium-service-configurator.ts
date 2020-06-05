@@ -78,7 +78,7 @@ export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
 
     public uninstallService = async (deviceId: string): Promise<void> => {
         this.adb.setDeviceId(deviceId);
-        await this.adb.uninstall(servicePackageName, { keepData: true });
+        await this.adb.uninstallApk(servicePackageName);
     };
 
     public setTcpForwarding = async (deviceId: string): Promise<void> => {

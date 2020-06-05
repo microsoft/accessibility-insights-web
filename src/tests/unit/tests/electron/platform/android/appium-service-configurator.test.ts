@@ -299,7 +299,7 @@ describe('AppiumServiceConfigurator tests', () => {
         const expectedError: string = 'Oops';
         adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
         adbMock
-            .setup(m => m.uninstall(servicePackageName, { keepData: true }))
+            .setup(m => m.uninstallApk(servicePackageName))
             .throws(new Error(expectedError))
             .verifiable(Times.once());
 
@@ -311,7 +311,7 @@ describe('AppiumServiceConfigurator tests', () => {
     it('uninstallService, succeeds', async () => {
         adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
         adbMock
-            .setup(m => m.uninstall(servicePackageName, { keepData: true }))
+            .setup(m => m.uninstallApk(servicePackageName))
             .returns(() => '')
             .verifiable(Times.once());
 
@@ -350,17 +350,9 @@ describe('AppiumServiceConfigurator tests', () => {
     //
     // You'll also need to change the device ID to match your actual device
     async function setLiveTestSubject(): Promise<void> {
-
-        return new Promise<void>(async (resolve, reject) => {
-            try {
-                const adb: ADB = await ADB.createADB();
-                testSubject = new AppiumServiceConfigurator(adb);
-                adbMock = Mock.ofType<ADB>(undefined, MockBehavior.Strict);
-                resolve();
-            } catch (error) {
-                reject(error);
-            }
-        });
+        const adb: ADB = await ADB.createADB();
+        testSubject = new AppiumServiceConfigurator(adb);
+        adbMock = Mock.ofType<ADB>(undefined, MockBehavior.Strict);
     }
     */
 });
