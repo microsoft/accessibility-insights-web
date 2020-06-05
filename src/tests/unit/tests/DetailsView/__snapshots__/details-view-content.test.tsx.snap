@@ -57,7 +57,9 @@ exports[` render renders normally 1`] = `
         "logTelemetryToConsole": false,
       }
     }
+    isSideNavOpen={false}
     selectedPivot={0}
+    setSideNavOpen={[Function]}
     tabClosed={false}
   />
   <DetailsViewBody

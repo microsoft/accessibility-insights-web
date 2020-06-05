@@ -65,7 +65,10 @@ describe(FluentSideNav, () => {
             <FluentSideNav selectedPivot={DetailsViewPivotType.fastPass} {...props} />,
         );
 
-        wrapper.find(GenericPanel).props().onDismiss();
+        wrapper
+            .find(GenericPanel)
+            .props()
+            .onDismiss({} as React.SyntheticEvent<HTMLElement, Event>);
 
         setSideNavOpenMock.verifyAll();
     });
